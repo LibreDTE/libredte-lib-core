@@ -33,7 +33,7 @@ include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
  * Provee sólo el método estático getToken(). Modo de uso:
  *
  * \code{.php}
- *   include_once 'sasco/LibreDTE/lib/Sii/Autenticacion.php';
+ *   include_once 'sasco/libredte/lib/Sii/Autenticacion.php';
  *   $firma_config = ['file'=>'/ruta/al/certificado.p12', 'pass'=>'contraseña'];
  *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($firma_config);
  * \endcode
@@ -43,7 +43,7 @@ include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
  * aplicación: firma_electronica.default
  *
  * \code{.php}
- *   \sowerphp\core\App::import('Vendor/sasco/LibreDTE/lib/Sii/Auth');
+ *   \sowerphp\core\App::import('Vendor/sasco/libredte/lib/Sii/Autenticacion');
  *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken();
  * \endcode
  *
