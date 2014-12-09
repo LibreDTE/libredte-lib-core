@@ -1,0 +1,22 @@
+{
+    "name": "sasco/libredte",
+    "description": "Biblioteca para trabajo con DTE del SII de Chile",
+    "type": "library",
+    "keywords": ["dte", "sii"],
+    "homepage": "http://libredte.cl",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "SASCO SpA",
+            "homepage": "https://github.com/sascocl/LibreDTE/graphs/contributors"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/sascocl/LibreDTE/issues",
+        "forum": "http://stackoverflow.com/tags/libredte",
+        "source": "https://github.com/sascocl/LibreDTE"
+    },
+    "require": {
+        "php": "~5.5"
+    }
+}
