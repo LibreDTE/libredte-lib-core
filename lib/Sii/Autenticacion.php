@@ -50,12 +50,12 @@ include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
  * Referencia: http://www.sii.cl/factura_electronica/autenticacion.pdf
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-08
+ * @version 2014-12-18
  */
 class Sii_Autenticacion
 {
 
-    private static $seed_retry = 10;
+    private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
     private static $getToken_xml = '<?xml version="1.0"?>
 <getToken>
 <item>
@@ -97,17 +97,20 @@ class Sii_Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2014-12-18
      */
     private static function getSeed()
     {
         $soap = new \SoapClient('https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL');
-        for ($i=0; $i<self::$seed_retry; $i++) {
+        for ($i=0; $i<self::$retry; $i++) {
             try {
                 $body = $soap->getSeed();
                 break;
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+                $body = null;
+            }
         }
+        if ($body===null) return false;
         $xml = new \SimpleXMLElement($body);
         if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')
             return false;
@@ -140,7 +143,7 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2014-12-18
      */
     public static function getToken($firma_config = [])
     {
@@ -149,7 +152,15 @@ class Sii_Autenticacion
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
         $soap = new \SoapClient('https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL');
-        $body = $soap->getToken($requestFirmado);
+        for ($i=0; $i<self::$retry; $i++) {
+            try {
+                $body = $soap->getToken($requestFirmado);
+                break;
+            } catch (\Exception $e) {
+                $body = null;
+            }
+        }
+        if ($body===null) return false;
         $xml = new \SimpleXMLElement($body);
         if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')
             return false;
