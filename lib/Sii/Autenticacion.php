@@ -25,7 +25,7 @@ namespace sasco\LibreDTE;
 
 // importar clases
 include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
-include_once dirname(dirname(__FILE__)).'/Sii/WSDL.php';
+include_once dirname(dirname(__FILE__)).'/Sii/Wsdl.php';
 
 /**
  * Clase para realizar autenticación automática ante el SII y obtener el token
@@ -102,7 +102,7 @@ class Sii_Autenticacion
      */
     private static function getSeed()
     {
-        $soap = new \SoapClient(Sii_WSDL::get('CrSeed', Sii_WSDL::PRODUCCION));
+        $soap = new \SoapClient(Sii_Wsdl::get('CrSeed', Sii_Wsdl::PRODUCCION));
         for ($i=0; $i<self::$retry; $i++) {
             try {
                 $body = $soap->getSeed();
@@ -152,7 +152,7 @@ class Sii_Autenticacion
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
-        $soap = new \SoapClient(Sii_WSDL::get('GetTokenFromSeed', Sii_WSDL::PRODUCCION));
+        $soap = new \SoapClient(Sii_Wsdl::get('GetTokenFromSeed', Sii_Wsdl::PRODUCCION));
         for ($i=0; $i<self::$retry; $i++) {
             try {
                 $body = $soap->getToken($requestFirmado);
