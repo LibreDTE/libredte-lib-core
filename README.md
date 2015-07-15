@@ -18,3 +18,4 @@ Funcionalidades implementadas
 -----------------------------
 
 - Obtención de token para autenticación automática.
+- Obtención de estado de un DTE.
