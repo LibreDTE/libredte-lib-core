@@ -22,21 +22,16 @@
  */
 
 /**
- * @file getToken.php
- * Ejemplo de obtención de token para autenticación automática en el SII
+ * @file config-dist.php
+ * Archivo de configuración para los ejemplos
+ * ESTE ARCHIVO DEBE SER RENOMBRADO A config.php Y SU CONFIGURACIÓN AJUSTADA
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-08
+ * @version 2015-07-14
  */
 
-// respuesta en texto plano
-header('Content-type: text/plain');
-
-// importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
-
-// cargar configuración
-include 'config.php';
-
-// solicitar token
-$token = \sasco\LibreDTE\Sii_Autenticacion::getToken($config['firma']);
-var_dump($token);
+$config = [
+    'firma' => [
+        'file' => '/ruta/al/certificado.p12',
+        'pass' => 'contraseña',
+    ],
+];
