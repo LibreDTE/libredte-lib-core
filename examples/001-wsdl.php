@@ -25,29 +25,29 @@
  * @file 001-wsdl.php
  * Ejemplo de obtención de WSDL según ambiente que se esté utilizando
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-14
+ * @version 2015-07-15
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
 // importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Wsdl.php';
+include_once dirname(dirname(__FILE__)).'/lib/Sii.php';
 
 // solicitar ambiente producción
-echo \sasco\LibreDTE\Sii_Wsdl::get('CrSeed'),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";
 
 // solicitar ambiente desarrollo con parámetro
-echo \sasco\LibreDTE\Sii_Wsdl::get('CrSeed', \sasco\LibreDTE\Sii_Wsdl::CERTIFICACION),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::CERTIFICACION),"\n";
 
 // solicitar ambiente desarrollo con constante
 define('_LibreDTE_CERTIFICACION_', true);
-echo \sasco\LibreDTE\Sii_Wsdl::get('CrSeed'),"\n";
-echo \sasco\LibreDTE\Sii_Wsdl::get('GetTokenFromSeed'),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('GetTokenFromSeed'),"\n";
 
 // a pesar de estar en ambiente de desarrollo (por la constante antes definida)
 // se puede forzar producción usando el segundo parámetro. Al estar definido el
 // segundo parámetro no se considerará la existencia ni valor de la constante
 // _LibreDTE_CERTIFICACION_
-echo \sasco\LibreDTE\Sii_Wsdl::get('CrSeed', \sasco\LibreDTE\Sii_Wsdl::PRODUCCION),"\n";
-echo \sasco\LibreDTE\Sii_Wsdl::get('GetTokenFromSeed', \sasco\LibreDTE\Sii_Wsdl::PRODUCCION),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::PRODUCCION),"\n";
+echo \sasco\LibreDTE\Sii::wsdl('GetTokenFromSeed', \sasco\LibreDTE\Sii::PRODUCCION),"\n";

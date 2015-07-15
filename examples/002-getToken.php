@@ -25,7 +25,7 @@
  * @file 002-getToken.php
  * Ejemplo de obtención de token para autenticación automática en el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-08
+ * @version 2015-07-14
  */
 
 // respuesta en texto plano

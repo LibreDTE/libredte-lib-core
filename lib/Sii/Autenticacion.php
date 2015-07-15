@@ -25,7 +25,7 @@ namespace sasco\LibreDTE;
 
 // importar clases
 include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
-include_once dirname(dirname(__FILE__)).'/Sii/Wsdl.php';
+include_once dirname(dirname(__FILE__)).'/Sii.php';
 
 /**
  * Clase para realizar autenticación automática ante el SII y obtener el token
@@ -34,7 +34,6 @@ include_once dirname(dirname(__FILE__)).'/Sii/Wsdl.php';
  * Provee sólo el método estático getToken(). Modo de uso:
  *
  * \code{.php}
- *   include_once 'sasco/libredte/lib/Sii/Autenticacion.php';
  *   $firma_config = ['file'=>'/ruta/al/certificado.p12', 'pass'=>'contraseña'];
  *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($firma_config);
  * \endcode
@@ -44,7 +43,6 @@ include_once dirname(dirname(__FILE__)).'/Sii/Wsdl.php';
  * aplicación: firma_electronica.default
  *
  * \code{.php}
- *   \sowerphp\core\App::import('Vendor/sasco/libredte/lib/Sii/Autenticacion');
  *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken();
  * \endcode
  *
@@ -98,11 +96,11 @@ class Sii_Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-18
+     * @version 2015-07-15
      */
     private static function getSeed()
     {
-        $soap = new \SoapClient(Sii_Wsdl::get('CrSeed', Sii_Wsdl::PRODUCCION));
+        $soap = new \SoapClient(Sii::wsdl('CrSeed'));
         for ($i=0; $i<self::$retry; $i++) {
             try {
                 $body = $soap->getSeed();
@@ -144,7 +142,7 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-18
+     * @version 2015-07-15
      */
     public static function getToken($firma_config = [])
     {
@@ -152,7 +150,7 @@ class Sii_Autenticacion
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
-        $soap = new \SoapClient(Sii_Wsdl::get('GetTokenFromSeed', Sii_Wsdl::PRODUCCION));
+        $soap = new \SoapClient(Sii::wsdl('GetTokenFromSeed'));
         for ($i=0; $i<self::$retry; $i++) {
             try {
                 $body = $soap->getToken($requestFirmado);

@@ -24,54 +24,49 @@
 namespace sasco\LibreDTE;
 
 /**
- * Clase para obtener el WSDL correcto según ambiente, producción o
- * certificación, que se esté utilizando.
- *
- * Provee sólo el método estático get(). Modo de uso:
- *
- * \code{.php}
- *   include_once 'sasco/libredte/lib/Sii/WSDL.php';
- *   $wsdl = \sasco\LibreDTE\Sii_WSDL::get('CrSeed'); // WSDL para pedir semilla
- * \endcode
- *
- * Para forzar el uso del WSDL de certificación hay dos maneras, una es pasando
- * un segundo parámetro al método get con valor Sii_WSDL::CERTIFICACION:
- *
- * \code{.php}
- *   $wsdl = \sasco\LibreDTE\Sii_WSDL::get('CrSeed', Sii_WSDL::CERTIFICACION);
- * \endcode
- *
- * La otra, para evitar este segundo parámetro, es crear la constante
- * _LibreDTE_CERTIFICACION_ con valor true antes de ejecutar cualquier llamada a
- * la biblioteca:
- *
- * \code{.php}
- *   define('_LibreDTE_CERTIFICACION_', true);
- * \endcode
- *
+ * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-18
+ * @version 2015-07-15
  */
-class Sii_Wsdl
+class Sii
 {
 
     private static $wsdl = [
-        'CrSeed' => 'https://{server}.sii.cl/DTEWS/CrSeed.jws?WSDL',
-        'GetTokenFromSeed' => 'https://{server}.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL',
-    ]; ///< WSDLs con el servidor como la variable {server}
-    private static $server = ['palena', 'maullin']; ///< servidores 0: producción, 1: certificación
+        'url' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
+        'servidor' => ['palena', 'maullin'], ///< servidores 0: producción, 1: certificación
+    ];
     const PRODUCCION = 0; ///< Constante para indicar ambiente de producción
     const CERTIFICACION = 1; ///< Constante para indicar ambiente de desarrollo
 
     /**
      * Método para obtener el WSDL
+     *
+     * \code{.php}
+     *   $wsdl = \sasco\LibreDTE\Sii::wsdl('CrSeed'); // WSDL para pedir semilla
+     * \endcode
+     *
+     * Para forzar el uso del WSDL de certificación hay dos maneras, una es
+     * pasando un segundo parámetro al método get con valor Sii::CERTIFICACION:
+     *
+     * \code{.php}
+     *   $wsdl = \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::CERTIFICACION);
+     * \endcode
+     *
+     * La otra manera, para evitar este segundo parámetro, es crear la constante
+     * _LibreDTE_CERTIFICACION_ con valor true antes de ejecutar cualquier
+     * llamada a la biblioteca:
+     *
+     * \code{.php}
+     *   define('_LibreDTE_CERTIFICACION_', true);
+     * \endcode
+     *
      * @param servicio Servicio por el cual se está solicitando su WSDL
-     * @param ambiente Ambiente a usar: Sii_WSDL::PRODUCCION o Sii_WSDL::CERTIFICACION
+     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-18
+     * @version 2015-07-15
      */
-    public static function get($servicio, $ambiente = null)
+    public static function wsdl($servicio, $ambiente = null)
     {
         // determinar ambiente que se debe usar
         if ($ambiente===null) {
@@ -82,9 +77,9 @@ class Sii_Wsdl
         }
         // entregar WSDL
         return str_replace(
-            '{server}',
-            self::$server[$ambiente],
-            self::$wsdl[$servicio]
+            ['{servidor}', '{servicio}'],
+            [self::$wsdl['servidor'][$ambiente], $servicio],
+            self::$wsdl['url']
         );
     }
 
