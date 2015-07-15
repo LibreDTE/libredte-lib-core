@@ -22,7 +22,7 @@
  */
 
 /**
- * @file wsdl.php
+ * @file 001-wsdl.php
  * Ejemplo de obtención de WSDL según ambiente que se esté utilizando
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-07-14
