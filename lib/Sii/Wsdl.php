@@ -52,7 +52,7 @@ namespace sasco\LibreDTE;
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2014-12-18
  */
-class Sii_WSDL
+class Sii_Wsdl
 {
 
     private static $wsdl = [
