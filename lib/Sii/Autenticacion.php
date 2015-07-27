@@ -24,6 +24,7 @@
 namespace sasco\LibreDTE;
 
 // importar clases
+include_once dirname(dirname(__FILE__)).'/XML.php';
 include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
 include_once dirname(dirname(__FILE__)).'/Sii.php';
 
@@ -49,43 +50,12 @@ include_once dirname(dirname(__FILE__)).'/Sii.php';
  * Referencia: http://www.sii.cl/factura_electronica/autenticacion.pdf
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-18
+ * @version 2015-07-27
  */
 class Sii_Autenticacion
 {
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
-    private static $getToken_xml = '<?xml version="1.0"?>
-<getToken>
-<item>
-<Semilla>{semilla}</Semilla>
-</item>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-<SignedInfo>
-<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
-<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
-<Reference URI="">
-<Transforms>
-<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
-</Transforms>
-<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<DigestValue/>
-</Reference>
-</SignedInfo>
-<SignatureValue/>
-<KeyInfo>
-<KeyValue>
-<RSAKeyValue>
-<Modulus/>
-<Exponent/>
-</RSAKeyValue>
-</KeyValue>
-<X509Data>
-<X509Certificate/>
-</X509Data>
-</KeyInfo>
-</Signature>
-</getToken>'; ///< XML para solicitar token
 
     /**
      * Método para solicitar la semilla para la autenticación automática.
@@ -122,13 +92,16 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2015-07-27
      */
     private static function getTokenRequest($seed, $firma_config = [])
     {
-        $xml_data = str_replace('{semilla}', $seed, self::$getToken_xml);
+        $xml_data = XML::get('getToken', ['semilla'=>$seed]);
+        if (!$xml_data)
+            return false;
         $seedSigned = (new FirmaElectronica($firma_config))->signXML($xml_data);
-        if (!$seedSigned) return false;
+        if (!$seedSigned)
+            return false;
         return $seedSigned;
     }
 
