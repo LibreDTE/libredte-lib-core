@@ -22,8 +22,7 @@
  */
 
 /**
- * @file 003-estadoDte.php
- * Ejemplo de consulta del estado de un DTE
+ * @file 005-estado_envio_dte.php
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-07-28
  */
@@ -43,24 +42,20 @@ $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($config['firma']);
 if (!$token)
     die('No fue posible obtener token');
 
-// consultar estado dte
-$query = [
-    'RutConsultante'    => '',
-    'DvConsultante'     => '',
-    'RutCompania'       => '',
-    'DvCompania'        => '',
-    'RutReceptor'       => '',
-    'DvReceptor'        => '',
-    'TipoDte'           => '',
-    'FolioDte'          => '',
-    'FechaEmisionDte'   => '',
-    'MontoDte'          => '',
-];
-$estado = \sasco\LibreDTE\Sii_Dte::estado($query, $token);
+// consultar estado en ambiente de certificación
+define('_LibreDTE_CERTIFICACION_', true);
+
+// consultar estado enviado
+$empresa = '76.192.083-9';
+$trackID = '0033226876';
+$estado = \sasco\LibreDTE\Sii_Dte::estadoEnvio($empresa, $trackID, $token);
 
 // si el estado no se pudo recuperar error
 if ($estado===false)
-    die('No fue posible obtener estado');
+    die('No fue posible obtener estado del DTE envíado');
 
-// imprimir código y glosa estado
-print_r($estado);
+// mostrar estado y glosa
+print_r([
+    'codigo' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0],
+    'glosa' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA')[0],
+]);

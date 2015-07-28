@@ -191,7 +191,7 @@ class FirmaElectronica
      * @param xml_data Archivo XML que se desea firmar, debe venir con elemento Signature
      * @return XML firmado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2015-07-28
      */
     public function signXML($xml_data)
     {
@@ -199,7 +199,8 @@ class FirmaElectronica
         $doc->loadXML($xml_data);
         $dom = $doc->documentElement;
         // calcular DigestValue y SignatureValue
-        $Signature = $dom->removeChild($dom->getElementsByTagName('Signature')[0]);
+        $SignaturesElements = $dom->getElementsByTagName('Signature');
+        $Signature = $dom->removeChild($SignaturesElements->item($SignaturesElements->length-1));
         $digest = base64_encode(sha1($dom->C14N(), true));
         $Signature->getElementsByTagName('DigestValue')[0]->nodeValue = $digest;
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];

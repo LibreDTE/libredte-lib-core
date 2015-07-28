@@ -66,7 +66,7 @@ class Sii
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-15
+     * @version 2015-07-28
      */
     public static function wsdl($servicio, $ambiente = null)
     {
@@ -77,7 +77,13 @@ class Sii
             else
                 $ambiente = self::PRODUCCION;
         }
-        // entregar WSDL
+        // entregar WSDL local (modificados para ambiente de certificación)
+        if ($ambiente==self::CERTIFICACION) {
+            $wsdl = dirname(dirname(__FILE__)).'/wsdl/'.$servicio.'.jws';
+            if (is_readable($wsdl))
+                return $wsdl;
+        }
+        // entregar WSDL oficial desde SII
         return str_replace(
             ['{servidor}', '{servicio}'],
             [self::$wsdl['servidor'][$ambiente], $servicio],
@@ -91,9 +97,9 @@ class Sii
      * @param request Nombre de la función que se ejecutará en el servicio web
      * @param args Argumentos que se pasarán al servicio web
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
-     * @return Respuesta del servicio web consultado
+     * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-27
+     * @version 2015-07-28
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -116,10 +122,67 @@ class Sii
                 }
                 break;
             } catch (\Exception $e) {
+                print_r($e);
                 $body = null;
             }
         }
-        return $body;
+        if ($body===null)
+            return false;
+        return new \SimpleXMLElement($body, LIBXML_COMPACT);
+    }
+
+    /**
+     * Método que realiza el envío de un DTE al SII
+     * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
+     * @param usuario RUN del usuario que envía el DTE
+     * @param empresa RUT de la empresa emisora del DTE
+     * @param dte Documento XML con el DTE que se desea enviar a SII
+     * @param token Token de autenticación automática ante el SII
+     * @param retry Intentos que se realizarán como máximo para obtener respuesta
+     * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-07-28
+     */
+    public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
+    {
+        $url = 'https://maullin.sii.cl/cgi_dte/UPL/DTEUpload';
+        list($rutSender, $dvSender) = explode('-', str_replace('.', '', $usuario));
+        list($rutCompany, $dvCompany) = explode('-', str_replace('.', '', $empresa));
+        do {
+            $file = sys_get_temp_dir().'/dte_'.md5(microtime().$token.$dte).'.xml';
+        } while (file_exists($file));
+        file_put_contents($file, $dte);
+        $data = [
+            'rutSender' => $rutSender,
+            'dvSender' => $dvSender,
+            'rutCompany' => $rutCompany,
+            'dvCompany' => $dvCompany,
+            'archivo' => curl_file_create(
+                $file,
+                'application/xml',
+                basename($file)
+            ),
+        ];
+        $header = [
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)',
+            //'Referer: http://libredte.cl',
+            'Cookie: TOKEN='.$token,
+        ];
+        if (!$retry)
+            $retry = self::$retry;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        for ($i=0; $i<$retry; $i++) {
+            $response = curl_exec($curl);
+            if ($response and $response!='Error 500')
+                break;
+        }
+        unlink($file);
+        return ($response and $response!='Error 500') ? new \SimpleXMLElement($response, LIBXML_COMPACT) : false;
     }
 
 }

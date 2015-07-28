@@ -64,14 +64,12 @@ class Sii_Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-27
+     * @version 2015-07-28
      */
     private static function getSeed()
     {
-        $body = Sii::request('CrSeed', 'getSeed');
-        if ($body===null) return false;
-        $xml = new \SimpleXMLElement($body);
-        if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')
+        $xml = Sii::request('CrSeed', 'getSeed');
+        if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/SEMILLA')[0];
     }
@@ -82,11 +80,14 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-27
+     * @version 2015-07-28
      */
     private static function getTokenRequest($seed, $firma_config = [])
     {
-        $xml_data = XML::get('getToken', ['semilla'=>$seed]);
+        $xml_data = XML::get('getToken', [
+            'semilla'=>$seed,
+            'Signature'=>XML::get('Signature', ['referencia'=>'']),
+        ]);
         if (!$xml_data)
             return false;
         $seedSigned = (new FirmaElectronica($firma_config))->signXML($xml_data);
@@ -105,7 +106,7 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-27
+     * @version 2015-07-28
      */
     public static function getToken($firma_config = [])
     {
@@ -113,10 +114,8 @@ class Sii_Autenticacion
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
-        $body = Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
-        if ($body===null) return false;
-        $xml = new \SimpleXMLElement($body);
-        if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')
+        $xml = Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
+        if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/TOKEN')[0];
     }
