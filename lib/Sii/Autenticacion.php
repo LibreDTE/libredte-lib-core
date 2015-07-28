@@ -55,8 +55,6 @@ include_once dirname(dirname(__FILE__)).'/Sii.php';
 class Sii_Autenticacion
 {
 
-    private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
-
     /**
      * Método para solicitar la semilla para la autenticación automática.
      * Nota: la semilla tiene una validez de 2 minutos.
@@ -66,19 +64,11 @@ class Sii_Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-15
+     * @version 2015-07-27
      */
     private static function getSeed()
     {
-        $soap = new \SoapClient(Sii::wsdl('CrSeed'));
-        for ($i=0; $i<self::$retry; $i++) {
-            try {
-                $body = $soap->getSeed();
-                break;
-            } catch (\Exception $e) {
-                $body = null;
-            }
-        }
+        $body = Sii::request('CrSeed', 'getSeed');
         if ($body===null) return false;
         $xml = new \SimpleXMLElement($body);
         if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')
@@ -115,7 +105,7 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-15
+     * @version 2015-07-27
      */
     public static function getToken($firma_config = [])
     {
@@ -123,15 +113,7 @@ class Sii_Autenticacion
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
-        $soap = new \SoapClient(Sii::wsdl('GetTokenFromSeed'));
-        for ($i=0; $i<self::$retry; $i++) {
-            try {
-                $body = $soap->getToken($requestFirmado);
-                break;
-            } catch (\Exception $e) {
-                $body = null;
-            }
-        }
+        $body = Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
         if ($body===null) return false;
         $xml = new \SimpleXMLElement($body);
         if ((string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0] !== '00')

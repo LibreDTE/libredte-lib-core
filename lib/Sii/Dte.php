@@ -56,20 +56,20 @@ class Sii_Dte
      * @param token Token de la autenticación automática
      * @return Objeto con el estado del DTE o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-15
+     * @version 2015-07-27
      */
     public static function estado($query, $token)
     {
         extract($query);
-        $soap = new \SoapClient(Sii::wsdl('QueryEstDte'));
-        try {
-            $body = $soap->getEstDte(
-                $RutConsultante, $DvConsultante,
-                $RutCompania, $DvCompania,
-                $RutReceptor, $DvReceptor,
-                $TipoDte, $FolioDte, $FechaEmisionDte, $MontoDte, $token
-            );
-        } catch (\Exception $e) { return false; }
+        $body = Sii::request('QueryEstDte', 'getEstDte', [
+            $RutConsultante, $DvConsultante,
+            $RutCompania, $DvCompania,
+            $RutReceptor, $DvReceptor,
+            $TipoDte, $FolioDte, $FechaEmisionDte, $MontoDte,
+            $token
+        ]);
+        if ($body===null)
+            return false;
         $xml = new \SimpleXMLElement($body);
         return (object)[
             'estado' => (object)[

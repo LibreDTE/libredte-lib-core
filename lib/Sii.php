@@ -38,6 +38,8 @@ class Sii
     const PRODUCCION = 0; ///< Constante para indicar ambiente de producción
     const CERTIFICACION = 1; ///< Constante para indicar ambiente de desarrollo
 
+    private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
+
     /**
      * Método para obtener el WSDL
      *
@@ -81,6 +83,43 @@ class Sii
             [self::$wsdl['servidor'][$ambiente], $servicio],
             self::$wsdl['url']
         );
+    }
+
+    /**
+     * Método para realizar una solicitud al servicio web del SII
+     * @param wsdl Nombre del WSDL que se usará
+     * @param request Nombre de la función que se ejecutará en el servicio web
+     * @param args Argumentos que se pasarán al servicio web
+     * @param retry Intentos que se realizarán como máximo para obtener respuesta
+     * @return Respuesta del servicio web consultado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-07-27
+     */
+    public static function request($wsdl, $request, $args = null, $retry = null)
+    {
+        if (is_numeric($args)) {
+            $retry = (int)$args;
+            $args = null;
+        }
+        if (!$retry)
+            $retry = self::$retry;
+        if ($args and !is_array($args)) {
+            $args = [$args];
+        }
+        $soap = new \SoapClient(self::wsdl($wsdl));
+        for ($i=0; $i<$retry; $i++) {
+            try {
+                if ($args) {
+                    $body = call_user_func_array([$soap, $request], $args);
+                } else {
+                    $body = $soap->$request();
+                }
+                break;
+            } catch (\Exception $e) {
+                $body = null;
+            }
+        }
+        return $body;
     }
 
 }
