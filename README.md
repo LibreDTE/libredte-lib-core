@@ -19,3 +19,5 @@ Funcionalidades implementadas
 
 - Obtención de token para autenticación automática.
 - Obtención de estado de un DTE.
+- Envío de archivo XML de DTE a SII.
+- Consulta de estado de envío de DTE.
