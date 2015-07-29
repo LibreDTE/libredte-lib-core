@@ -122,7 +122,6 @@ class Sii
                 }
                 break;
             } catch (\Exception $e) {
-                print_r($e);
                 $body = null;
             }
         }
