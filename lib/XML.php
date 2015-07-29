@@ -37,7 +37,7 @@ class XML
      * @param vars Arreglo con variables que se desean pasar al archivo XML
      * @return Archivo XML con las variables reemplazadas
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-27
+     * @version 2015-07-29
      */
     public static function get($xml, $variables = [])
     {
@@ -46,8 +46,8 @@ class XML
             return false;
         $data = file_get_contents($file);
         foreach ($variables as $key => $valor) {
-            if (!is_object($valor)) {
-                $data = str_replace('{'.$key.'}', $valor, $data);
+            if (is_string($valor) or is_numeric($valor)) {
+                $data = str_replace('{'.$key.'}', utf8_decode($valor), $data);
             }
         }
         return $data;
