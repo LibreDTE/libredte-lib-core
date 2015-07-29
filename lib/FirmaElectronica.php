@@ -189,18 +189,27 @@ class FirmaElectronica
      * Referencia: http://www.di-mgt.com.au/xmldsig2.html
      *
      * @param xml_data Archivo XML que se desea firmar, debe venir con elemento Signature
+     * @param reference Referencia a la que hace la firma
      * @return XML firmado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-07-29
      */
-    public function signXML($xml_data)
+    public function signXML($xml_data, $reference = '')
     {
         $doc = new \DomDocument();
         $doc->loadXML($xml_data);
         $dom = $doc->documentElement;
-        // calcular DigestValue y SignatureValue
+        // crear nodo para la firma desde archivo Signature.xml
+        $xml_signature = XML::get('Signature', ['reference'=>$reference]);
+        $Signature = $doc->createDocumentFragment();
+        $Signature->appendXML($xml_signature);
+        // agregar nodo para la firma, se hace así porque se necesita un
+        // DOMElement y si se creó con archivo XML será un DOMDocumentFragment
+        $dom->appendChild($Signature);
+        // obtener nodo para la firma y quitar del documento
         $SignaturesElements = $dom->getElementsByTagName('Signature');
         $Signature = $dom->removeChild($SignaturesElements->item($SignaturesElements->length-1));
+        // calcular DigestValue y SignatureValue
         $digest = base64_encode(sha1($dom->C14N(), true));
         $Signature->getElementsByTagName('DigestValue')[0]->nodeValue = $digest;
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];

@@ -3,5 +3,4 @@
     <item>
         <Semilla>{semilla}</Semilla>
     </item>
-{Signature}
 </getToken>
