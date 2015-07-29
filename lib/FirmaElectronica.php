@@ -231,7 +231,7 @@ class FirmaElectronica
      * @param xml_data Archivo XML que se desea validar
      * @return =true si la firma del documento XML es válida o =false si no lo es
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2015-07-29
      */
     public function verifyXML($xml_data)
     {
@@ -239,7 +239,8 @@ class FirmaElectronica
         $doc->loadXML($xml_data);
         $dom = $doc->documentElement;
         // preparar datos que se verificarán
-        $Signature = $dom->removeChild($dom->getElementsByTagName('Signature')[0]);
+        $SignaturesElements = $dom->getElementsByTagName('Signature');
+        $Signature = $dom->removeChild($SignaturesElements->item($SignaturesElements->length-1));
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];
         $SignedInfo->setAttribute('xmlns', $Signature->getAttribute('xmlns'));
         $signed_info = $doc->saveHTML($SignedInfo);
