@@ -140,13 +140,16 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-08-03
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
         $url = 'https://maullin.sii.cl/cgi_dte/UPL/DTEUpload';
         list($rutSender, $dvSender) = explode('-', str_replace('.', '', $usuario));
         list($rutCompany, $dvCompany) = explode('-', str_replace('.', '', $empresa));
+        if (strpos($dte, '<?xml')===false) {
+            $dte = '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n".$dte;
+        }
         do {
             $file = sys_get_temp_dir().'/dte_'.md5(microtime().$token.$dte).'.xml';
         } while (file_exists($file));
