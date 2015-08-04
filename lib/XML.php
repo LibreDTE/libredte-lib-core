@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para cargar un archivo XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-27
+ * @version 2015-08-03
  */
 class XML
 {
@@ -37,7 +37,7 @@ class XML
      * @param vars Arreglo con variables que se desean pasar al archivo XML
      * @return Archivo XML con las variables reemplazadas
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-29
+     * @version 2015-08-03
      */
     public static function get($xml, $variables = [])
     {
@@ -46,11 +46,31 @@ class XML
             return false;
         $data = file_get_contents($file);
         foreach ($variables as $key => $valor) {
-            if (is_string($valor) or is_numeric($valor)) {
-                $data = str_replace('{'.$key.'}', utf8_decode($valor), $data);
-            }
+            $data = self::replace($key, $valor, $data);
         }
         return $data;
+    }
+
+    /**
+     * Método que realiza el reemplazo de las variables en el XML, lo hace forma
+     * recursiva en caso que existen arreglos como valores
+     * @param key Clave que se desea reemplazar
+     * @param valor Valor que se debe utilizar o arreglo para hacerlo de forma recursiva
+     * @param data Datos del archivo XML que se desean reemplazar
+     * @return Archivo XML con las variables reemplazadas
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-04
+     */
+    private static function replace($key, $valor, $data)
+    {
+        if (is_array($valor)) {
+            foreach ($valor as $key2 => $valor2) {
+                $data = self::replace($key.'_'.$key2, $valor2, $data);
+            }
+            return $data;
+        } else {
+            return str_replace('{'.$key.'}', utf8_decode($valor), $data);
+        }
     }
 
 }
