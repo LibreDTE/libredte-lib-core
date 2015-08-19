@@ -192,7 +192,7 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-05
+     * @version 2015-08-19
      */
     public function signXML($xml, $reference = '')
     {
@@ -251,15 +251,15 @@ class FirmaElectronica
         ])->documentElement, true);
         // calcular DigestValue y SignatureValue
         $digest = base64_encode(sha1($dom->C14N(), true));
-        $Signature->getElementsByTagName('DigestValue')[0]->nodeValue = $digest;
-        $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];
+        $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue = $digest;
+        $SignedInfo = $Signature->getElementsByTagName('SignedInfo')->item(0);
         $SignedInfo->setAttribute('xmlns', $Signature->getAttribute('xmlns'));
         $signature = wordwrap($this->sign($doc->saveHTML($SignedInfo)), $this->config['wordwrap'], "\n", true);
         // reemplazar valores en la firma de
-        $Signature->getElementsByTagName('SignatureValue')[0]->nodeValue = $signature;
-        $Signature->getElementsByTagName('Modulus')[0]->nodeValue = $this->getModulus();
-        $Signature->getElementsByTagName('Exponent')[0]->nodeValue = $this->getExponent();
-        $Signature->getElementsByTagName('X509Certificate')[0]->nodeValue = $this->cleanCert($this->certs['cert']);
+        $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue = $signature;
+        $Signature->getElementsByTagName('Modulus')->item(0)->nodeValue = $this->getModulus();
+        $Signature->getElementsByTagName('Exponent')->item(0)->nodeValue = $this->getExponent();
+        $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue = $this->cleanCert($this->certs['cert']);
         // agregar y entregar firma
         $dom->appendChild($Signature);
         return $doc->saveXML();
