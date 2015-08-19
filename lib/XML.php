@@ -24,53 +24,66 @@
 namespace sasco\LibreDTE;
 
 /**
- * Clase para cargar un archivo XML
+ * Clase para trabajar con XMLs
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-03
+ * @version 2015-08-05
  */
-class XML
+class XML extends \DomDocument
 {
 
     /**
-     * Método que carga y reempleza variables en un archivo XML
-     * @param xml Nombre del XML que se desea obtener
-     * @param vars Arreglo con variables que se desean pasar al archivo XML
-     * @return Archivo XML con las variables reemplazadas
+     * Constructor de la clase XML
+     * @param version Versión del documento XML
+     * @param encoding Codificación del documento XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-03
+     * @version 2015-08-05
      */
-    public static function get($xml, $variables = [])
+    public function __construct($version = '1.0', $encoding = 'ISO-8859-1')
     {
-        $file = dirname(dirname(__FILE__)).'/xml/'.$xml.'.xml';
-        if (!is_readable($file))
-            return false;
-        $data = file_get_contents($file);
-        foreach ($variables as $key => $valor) {
-            $data = self::replace($key, $valor, $data);
-        }
-        return $data;
+        parent::__construct($version, $encoding);
+        $this->formatOutput = true;
     }
 
     /**
-     * Método que realiza el reemplazo de las variables en el XML, lo hace forma
-     * recursiva en caso que existen arreglos como valores
-     * @param key Clave que se desea reemplazar
-     * @param valor Valor que se debe utilizar o arreglo para hacerlo de forma recursiva
-     * @param data Datos del archivo XML que se desean reemplazar
-     * @return Archivo XML con las variables reemplazadas
+     * Método que genera nodos XML a partir de un arreglo
+     * @param array Arreglo con los datos que se usarán para generar XML
+     * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
+     * @return DomDocument
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-04
+     * @version 2015-08-06
      */
-    private static function replace($key, $valor, $data)
+    public function generate(array $array, \DOMElement &$parent = null)
     {
-        if (is_array($valor)) {
-            foreach ($valor as $key2 => $valor2) {
-                $data = self::replace($key.'_'.$key2, $valor2, $data);
+        if ($parent===null)
+            $parent = &$this;
+        foreach ($array as $key => $value) {
+            if ($key=='@attributes') {
+                foreach ($value as $attr => $val)
+                    $parent->setAttribute($attr, $val);
+            } else if ($key=='@value') {
+                $parent->nodeValue = $value;
+            } else {
+                if (is_array($value)) {
+                    $keys = array_keys($value);
+                    if (!is_int($keys[0])) {
+                        $value = [$value];
+                    }
+                    foreach ($value as $value2) {
+                        $Node = new \DOMElement($key);
+                        $parent->appendChild($Node);
+                        $this->generate($value2, $Node);
+                    }
+                } else {
+                    if (is_object($value) and $value instanceof \DOMElement) {
+                        $Node = $this->importNode($value, true);
+                    } else {
+                        $Node = new \DOMElement($key, $value);
+                    }
+                    $parent->appendChild($Node);
+                }
             }
-            return $data;
-        } else {
-            return str_replace('{'.$key.'}', utf8_decode($valor), $data);
         }
+        return $this;
     }
 
 }

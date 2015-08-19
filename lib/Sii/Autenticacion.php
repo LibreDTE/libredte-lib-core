@@ -23,11 +23,6 @@
 
 namespace sasco\LibreDTE;
 
-// importar clases
-include_once dirname(dirname(__FILE__)).'/XML.php';
-include_once dirname(dirname(__FILE__)).'/FirmaElectronica.php';
-include_once dirname(dirname(__FILE__)).'/Sii.php';
-
 /**
  * Clase para realizar autenticación automática ante el SII y obtener el token
  * necesario para las transacciones con el sitio.
@@ -80,17 +75,19 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-08-05
      */
     private static function getTokenRequest($seed, $firma_config = [])
     {
-        $xml_data = XML::get('getToken', [
-            'semilla'=>$seed,
-            'Signature'=>XML::get('Signature', ['referencia'=>'']),
-        ]);
-        if (!$xml_data)
-            return false;
-        $seedSigned = (new FirmaElectronica($firma_config))->signXML($xml_data);
+        $seedSigned = (new FirmaElectronica($firma_config))->signXML(
+            (new XML())->generate([
+                'getToken' => [
+                    'item' => [
+                        'Semilla' => $seed
+                    ]
+                ]
+            ])->saveXML()
+        );
         if (!$seedSigned)
             return false;
         return $seedSigned;

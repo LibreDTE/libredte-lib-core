@@ -188,34 +188,73 @@ class FirmaElectronica
      *
      * Referencia: http://www.di-mgt.com.au/xmldsig2.html
      *
-     * @param xml_data Archivo XML que se desea firmar, debe venir con elemento Signature
+     * @param xml Datos XML que se desean firmar
      * @param reference Referencia a la que hace la firma
      * @return XML firmado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-29
+     * @version 2015-08-05
      */
-    public function signXML($xml_data, $reference = '')
+    public function signXML($xml, $reference = '')
     {
         $doc = new \DomDocument();
-        $doc->loadXML($xml_data);
+        $doc->loadXML($xml);
         $dom = $doc->documentElement;
-        // crear nodo para la firma desde archivo Signature.xml
-        $xml_signature = XML::get('Signature', ['reference'=>$reference]);
-        $Signature = $doc->createDocumentFragment();
-        $Signature->appendXML($xml_signature);
-        // agregar nodo para la firma, se hace así porque se necesita un
-        // DOMElement y si se creó con archivo XML será un DOMDocumentFragment
-        $dom->appendChild($Signature);
-        // obtener nodo para la firma y quitar del documento
-        $SignaturesElements = $dom->getElementsByTagName('Signature');
-        $Signature = $dom->removeChild($SignaturesElements->item($SignaturesElements->length-1));
+        // crear nodo para la firma
+        $Signature = $doc->importNode((new XML())->generate([
+            'Signature' => [
+                '@attributes' => [
+                    'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
+                ],
+                'SignedInfo' => [
+                    'CanonicalizationMethod' => [
+                        '@attributes' => [
+                            'Algorithm' => 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315',
+                        ],
+                    ],
+                    'SignatureMethod' => [
+                        '@attributes' => [
+                            'Algorithm' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+                        ],
+                    ],
+                    'Reference' => [
+                        '@attributes' => [
+                            'URI' => $reference,
+                        ],
+                        'Transforms' => [
+                            'Transform' => [
+                                '@attributes' => [
+                                    'Algorithm' => 'http://www.w3.org/2000/09/xmldsig#enveloped-signature',
+                                ],
+                            ],
+                        ],
+                        'DigestMethod' => [
+                            '@attributes' => [
+                                'Algorithm' => 'http://www.w3.org/2000/09/xmldsig#sha1',
+                            ],
+                        ],
+                        'DigestValue' => null,
+                    ],
+                ],
+                'SignatureValue' => null,
+                'KeyInfo' => [
+                    'KeyValue' => [
+                        'RSAKeyValue' => [
+                            'Modulus' => null,
+                            'Exponent' => null,
+                        ],
+                    ],
+                    'X509Data' => [
+                        'X509Certificate' => null,
+                    ],
+                ],
+            ],
+        ])->documentElement, true);
         // calcular DigestValue y SignatureValue
         $digest = base64_encode(sha1($dom->C14N(), true));
         $Signature->getElementsByTagName('DigestValue')[0]->nodeValue = $digest;
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];
         $SignedInfo->setAttribute('xmlns', $Signature->getAttribute('xmlns'));
-        $SignedInfo = $doc->saveHTML($SignedInfo);
-        $signature = wordwrap($this->sign($SignedInfo), $this->config['wordwrap'], "\n", true);
+        $signature = wordwrap($this->sign($doc->saveHTML($SignedInfo)), $this->config['wordwrap'], "\n", true);
         // reemplazar valores en la firma de
         $Signature->getElementsByTagName('SignatureValue')[0]->nodeValue = $signature;
         $Signature->getElementsByTagName('Modulus')[0]->nodeValue = $this->getModulus();
@@ -223,7 +262,7 @@ class FirmaElectronica
         $Signature->getElementsByTagName('X509Certificate')[0]->nodeValue = $this->cleanCert($this->certs['cert']);
         // agregar y entregar firma
         $dom->appendChild($Signature);
-        return $doc->C14N();
+        return $doc->saveXML();
     }
 
     /**
