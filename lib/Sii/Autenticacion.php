@@ -64,7 +64,7 @@ class Autenticacion
     private static function getSeed()
     {
         $xml = \sasco\LibreDTE\Sii::request('CrSeed', 'getSeed');
-        if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
+        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/SEMILLA')[0];
     }
@@ -112,7 +112,7 @@ class Autenticacion
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
         $xml = \sasco\LibreDTE\Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
-        if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
+        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/TOKEN')[0];
     }
