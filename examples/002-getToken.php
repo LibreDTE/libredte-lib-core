@@ -31,8 +31,8 @@
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
+// incluir archivos php de la biblioteca
+include 'inc.php';
 
 // cargar configuración
 include 'config.php';

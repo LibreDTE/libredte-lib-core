@@ -24,16 +24,16 @@
 /**
  * @file 003-estadoDte.php
  * Ejemplo de consulta del estado de un DTE
+ * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-28
+ * @version 2015-08-05
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Dte.php';
+// incluir archivos php de la biblioteca
+include 'inc.php';
 
 // configuración
 include 'config.php';
@@ -44,7 +44,7 @@ if (!$token)
     die('No fue posible obtener token');
 
 // consultar estado dte
-$query = [
+$xml = \sasco\LibreDTE\Sii::request('QueryEstDte', 'getEstDte', [
     'RutConsultante'    => '',
     'DvConsultante'     => '',
     'RutCompania'       => '',
@@ -55,12 +55,15 @@ $query = [
     'FolioDte'          => '',
     'FechaEmisionDte'   => '',
     'MontoDte'          => '',
-];
-$estado = \sasco\LibreDTE\Sii_Dte::estado($query, $token);
+    'token'             => $token,
+]);
 
 // si el estado no se pudo recuperar error
-if ($estado===false)
+if ($xml===false)
     die('No fue posible obtener estado');
 
 // imprimir código y glosa estado
-print_r($estado);
+print_r([
+    'codigo' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ERR_CODE')[0],
+    'glosa' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA_ERR')[0],
+]);

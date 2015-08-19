@@ -25,14 +25,14 @@
  * @file 001-wsdl.php
  * Ejemplo de obtención de WSDL según ambiente que se esté utilizando
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-15
+ * @version 2015-08-05
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii.php';
+// incluir archivos php de la biblioteca
+include 'inc.php';
 
 // solicitar ambiente producción
 echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";

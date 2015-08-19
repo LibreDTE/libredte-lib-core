@@ -30,9 +30,8 @@
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// importar clases
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
-include_once dirname(dirname(__FILE__)).'/lib/Sii/Dte.php';
+// incluir archivos php de la biblioteca
+include 'inc.php';
 
 // configuración
 include 'config.php';
@@ -46,9 +45,10 @@ if (!$token)
 define('_LibreDTE_CERTIFICACION_', true);
 
 // consultar estado enviado
-$empresa = '76.192.083-9';
+$rut = '76192083';
+$dv = '9';
 $trackID = '0033226876';
-$estado = \sasco\LibreDTE\Sii_Dte::estadoEnvio($empresa, $trackID, $token);
+$estado = Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
 
 // si el estado no se pudo recuperar error
 if ($estado===false)

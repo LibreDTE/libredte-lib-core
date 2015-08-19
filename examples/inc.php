@@ -22,21 +22,17 @@
  */
 
 /**
- * @file 006-verificarFirmaXML.php
+ * @file inc.php
+ * Archivo que incluye todos los archivo .php de la biblioteca para evitar
+ * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
+ * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-04
+ * @version 2015-08-05
  */
 
-// respuesta en texto plano
-header('Content-type: text/plain');
-
-// incluir archivos php de la biblioteca
-include 'inc.php';
-
-// configuración
-include 'config.php';
-
-// verificar firma
-$xml_data = file_get_contents('archivoFirmado.xml');
-$FirmaElectronica = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-var_dump($FirmaElectronica->verifyXML($xml_data));
+include dirname(dirname(__FILE__)).'/lib/XML.php';
+include dirname(dirname(__FILE__)).'/lib/FirmaElectronica.php';
+include dirname(dirname(__FILE__)).'/lib/Sii.php';
+include dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
+include dirname(dirname(__FILE__)).'/lib/Sii/Folios.php';
+include dirname(dirname(__FILE__)).'/lib/Sii/Dte.php';
