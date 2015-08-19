@@ -34,7 +34,7 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // solicitar token
-$token = \sasco\LibreDTE\Sii_Autenticacion::getToken($config['firma']);
+$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
 if (!$token)
     die('No fue posible obtener token');
 

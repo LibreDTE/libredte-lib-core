@@ -21,7 +21,7 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/gpl.html>.
  */
 
-namespace sasco\LibreDTE;
+namespace sasco\LibreDTE\Sii;
 
 /**
  * Clase para realizar autenticación automática ante el SII y obtener el token
@@ -31,7 +31,7 @@ namespace sasco\LibreDTE;
  *
  * \code{.php}
  *   $firma_config = ['file'=>'/ruta/al/certificado.p12', 'pass'=>'contraseña'];
- *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($firma_config);
+ *   $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($firma_config);
  * \endcode
  *
  * Si se está utilizando con el framework SowerPHP se puede omitir la
@@ -39,15 +39,15 @@ namespace sasco\LibreDTE;
  * aplicación: firma_electronica.default
  *
  * \code{.php}
- *   $token = \sasco\LibreDTE\Sii_Autenticacion::getToken();
+ *   $token = \sasco\LibreDTE\Sii\Autenticacion::getToken();
  * \endcode
  *
  * Referencia: http://www.sii.cl/factura_electronica/autenticacion.pdf
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-27
+ * @version 2015-08-19
  */
-class Sii_Autenticacion
+class Autenticacion
 {
 
     /**
@@ -59,11 +59,11 @@ class Sii_Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-08-19
      */
     private static function getSeed()
     {
-        $xml = Sii::request('CrSeed', 'getSeed');
+        $xml = \sasco\LibreDTE\Sii::request('CrSeed', 'getSeed');
         if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/SEMILLA')[0];
@@ -75,12 +75,12 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-05
+     * @version 2015-08-19
      */
     private static function getTokenRequest($seed, $firma_config = [])
     {
-        $seedSigned = (new FirmaElectronica($firma_config))->signXML(
-            (new XML())->generate([
+        $seedSigned = (new \sasco\LibreDTE\FirmaElectronica($firma_config))->signXML(
+            (new \sasco\LibreDTE\XML())->generate([
                 'getToken' => [
                     'item' => [
                         'Semilla' => $seed
@@ -103,7 +103,7 @@ class Sii_Autenticacion
      * @param firma_config Configuración de la firma electrónica
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-08-19
      */
     public static function getToken($firma_config = [])
     {
@@ -111,7 +111,7 @@ class Sii_Autenticacion
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $firma_config);
         if (!$requestFirmado) return false;
-        $xml = Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
+        $xml = \sasco\LibreDTE\Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
         if ($xml===null or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
             return false;
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/TOKEN')[0];
