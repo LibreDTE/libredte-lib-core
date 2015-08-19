@@ -38,12 +38,12 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/Santiago');
 
 // incluir archivos de la biblioteca
-include dirname(dirname(__FILE__)).'/lib/XML.php';
-include dirname(dirname(__FILE__)).'/lib/FirmaElectronica.php';
-include dirname(dirname(__FILE__)).'/lib/Sii.php';
-include dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
-include dirname(dirname(__FILE__)).'/lib/Sii/Folios.php';
-include dirname(dirname(__FILE__)).'/lib/Sii/Dte.php';
+$path = dirname(dirname(__FILE__)).'/lib';
+$Iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
+$files = new RegexIterator($Iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
+foreach ($files as $file => $object) {
+    include $file;
+}
 
 // incluir configuración específica de los ejemplos
 include 'config.php';
