@@ -45,10 +45,10 @@ if (!$token)
 define('_LibreDTE_CERTIFICACION_', true);
 
 // consultar estado enviado
-$rut = '76192083';
-$dv = '9';
-$trackID = '0033226876';
-$estado = Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
+$rut = '';
+$dv = '';
+$trackID = '';
+$estado = \sasco\LibreDTE\Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
 
 // si el estado no se pudo recuperar error
 if ($estado===false)
