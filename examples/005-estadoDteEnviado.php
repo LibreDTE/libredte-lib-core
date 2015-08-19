@@ -24,17 +24,14 @@
 /**
  * @file 005-estado_envio_dte.php
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-28
+ * @version 2015-08-19
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// incluir archivos php de la biblioteca
+// incluir archivos php de la biblioteca y configuraciones
 include 'inc.php';
-
-// configuración
-include 'config.php';
 
 // solicitar token
 $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($config['firma']);

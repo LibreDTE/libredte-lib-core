@@ -27,12 +27,23 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-05
+ * @version 2015-08-19
  */
 
+// activar todos los errores
+ini_set('display_errors', true);
+error_reporting(E_ALL);
+
+// zona horaria
+date_default_timezone_set('America/Santiago');
+
+// incluir archivos de la biblioteca
 include dirname(dirname(__FILE__)).'/lib/XML.php';
 include dirname(dirname(__FILE__)).'/lib/FirmaElectronica.php';
 include dirname(dirname(__FILE__)).'/lib/Sii.php';
 include dirname(dirname(__FILE__)).'/lib/Sii/Autenticacion.php';
 include dirname(dirname(__FILE__)).'/lib/Sii/Folios.php';
 include dirname(dirname(__FILE__)).'/lib/Sii/Dte.php';
+
+// incluir configuración específica de los ejemplos
+include 'config.php';

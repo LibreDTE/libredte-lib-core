@@ -26,17 +26,14 @@
  * Ejemplo de consulta del estado de un DTE
  * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-05
+ * @version 2015-08-19
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// incluir archivos php de la biblioteca
+// incluir archivos php de la biblioteca y configuraciones
 include 'inc.php';
-
-// configuración
-include 'config.php';
 
 // solicitar token
 $token = \sasco\LibreDTE\Sii_Autenticacion::getToken($config['firma']);
@@ -62,8 +59,5 @@ $xml = \sasco\LibreDTE\Sii::request('QueryEstDte', 'getEstDte', [
 if ($xml===false)
     die('No fue posible obtener estado');
 
-// imprimir código y glosa estado
-print_r([
-    'codigo' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ERR_CODE')[0],
-    'glosa' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA_ERR')[0],
-]);
+// imprimir respuesta de SII
+print_r((array)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR')[0]);

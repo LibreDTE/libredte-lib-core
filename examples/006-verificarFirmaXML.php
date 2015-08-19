@@ -24,17 +24,14 @@
 /**
  * @file 006-verificarFirmaXML.php
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-04
+ * @version 2015-08-19
  */
 
 // respuesta en texto plano
 header('Content-type: text/plain');
 
-// incluir archivos php de la biblioteca
+// incluir archivos php de la biblioteca y configuraciones
 include 'inc.php';
-
-// configuración
-include 'config.php';
 
 // verificar firma
 $xml_data = file_get_contents('archivoFirmado.xml');
