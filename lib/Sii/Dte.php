@@ -21,77 +21,16 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/gpl.html>.
  */
 
-namespace sasco\LibreDTE;
+namespace sasco\LibreDTE\Sii;
 
 /**
- * Clase para realizar operaciones generales de DTEs
+ * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-28
+ * @version 2015-08-19
  */
-class Sii_Dte
+class Dte
 {
 
-    /**
-     * Método para obtener el estado de un DTE
-     *
-     * \code{.php}
-     *   $query = [
-     *      'RutConsultante'    => '',
-     *      'DvConsultante'     => '',
-     *      'RutCompania'       => '',
-     *      'DvCompania'        => '',
-     *      'RutReceptor'       => '',
-     *      'DvReceptor'        => '',
-     *      'TipoDte'           => '',
-     *      'FolioDte'          => '',
-     *      'FechaEmisionDte'   => '',
-     *      'MontoDte'          => '',
-     *   ];
-     *   $estado = \sasco\LibreDTE\Sii_Dte::estado($query, $token);
-     * \endcode
-     *
-     * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
-     *
-     * @param query Arreglo con los datos del DTE que se consultarán
-     * @param token Token de la autenticación automática
-     * @return Objeto SimpleXMLElement con el estado del DTE o =false en caso de no poder determinar el estado
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
-     */
-    public static function estado($query, $token)
-    {
-        extract($query);
-        $xml = Sii::request('QueryEstDte', 'getEstDte', [
-            $RutConsultante, $DvConsultante,
-            $RutCompania, $DvCompania,
-            $RutReceptor, $DvReceptor,
-            $TipoDte, $FolioDte, $FechaEmisionDte, $MontoDte,
-            $token
-        ]);
-        if ($xml===false)
-            return false;
-        return [
-            'codigo' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ERR_CODE')[0],
-            'glosa' => (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA_ERR')[0],
-        ];
-    }
-
-    /**
-     * Método que entrega el estado de un DTE enviado al SII
-     *
-     * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
-     *
-     * @param empresa
-     * @param trackID
-     * @param token
-     * @return Objeto SimpleXMLElement con el estado del DTE o =false en caso de no poder determinar el estado
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
-     */
-    public static function estadoEnvio($empresa, $trackID, $token)
-    {
-        list($rut, $dv) = explode('-', str_replace('.', '', $empresa));
-        return Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
-    }
+    // ...
 
 }
