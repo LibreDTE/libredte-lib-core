@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para trabajar con XMLs
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-05
+ * @version 2015-08-20
  */
 class XML extends \DomDocument
 {
@@ -84,6 +84,18 @@ class XML extends \DomDocument
             }
         }
         return $this;
+    }
+
+    /**
+     * Método para realizar consultas XPATH al documento XML
+     * @param expression Expresión XPath a ejecutar
+     * @return DOMNodeList
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-05
+     */
+    public function xpath($expression)
+    {
+        return (new \DOMXPath($this))->query($expression);
     }
 
 }
