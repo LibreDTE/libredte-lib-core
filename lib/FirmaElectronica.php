@@ -112,14 +112,14 @@ class FirmaElectronica
      * @param cert Certificado que se desea normalizar
      * @return Certificado con el inicio y fin correspondiente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2015-08-20
      */
     private function normalizeCert($cert)
     {
         if (strpos($cert, '-----BEGIN CERTIFICATE-----')===false) {
             $body = trim($cert);
             $cert = '-----BEGIN CERTIFICATE-----'."\n";
-            $cert .= $body."\n";
+            $cert .= wordwrap($body, $this->config['wordwrap'], "\n", true)."\n";
             $cert .= '-----END CERTIFICATE-----'."\n";
         }
         return $cert;
@@ -192,7 +192,7 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-08-20
      */
     public function signXML($xml, $reference = '')
     {
@@ -206,6 +206,9 @@ class FirmaElectronica
                     'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
                 ],
                 'SignedInfo' => [
+                    '@attributes' => [
+                        'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
+                    ],
                     'CanonicalizationMethod' => [
                         '@attributes' => [
                             'Algorithm' => 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315',
@@ -253,7 +256,6 @@ class FirmaElectronica
         $digest = base64_encode(sha1($dom->C14N(), true));
         $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue = $digest;
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')->item(0);
-        $SignedInfo->setAttribute('xmlns', $Signature->getAttribute('xmlns'));
         $signature = wordwrap($this->sign($doc->saveHTML($SignedInfo)), $this->config['wordwrap'], "\n", true);
         // reemplazar valores en la firma de
         $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue = $signature;
@@ -270,7 +272,7 @@ class FirmaElectronica
      * @param xml_data Archivo XML que se desea validar
      * @return =true si la firma del documento XML es válida o =false si no lo es
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-29
+     * @version 2015-08-20
      */
     public function verifyXML($xml_data)
     {
@@ -291,9 +293,7 @@ class FirmaElectronica
         // verificar digest
         $digest_original = $Signature->getElementsByTagName('DigestValue')[0]->nodeValue;
         $digest_calculado = base64_encode(sha1($dom->C14N(), true));
-        if ($digest_original != $digest_calculado)
-            return false;
-        return true;
+        return $digest_original == $digest_calculado;
     }
 
 }
