@@ -190,7 +190,7 @@ class FirmaElectronica
      *
      * @param xml Datos XML que se desean firmar
      * @param reference Referencia a la que hace la firma
-     * @return XML firmado
+     * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-08-20
      */
@@ -256,7 +256,10 @@ class FirmaElectronica
         $digest = base64_encode(sha1($dom->C14N(), true));
         $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue = $digest;
         $SignedInfo = $Signature->getElementsByTagName('SignedInfo')->item(0);
-        $signature = wordwrap($this->sign($doc->saveHTML($SignedInfo)), $this->config['wordwrap'], "\n", true);
+        $firma = $this->sign($doc->saveHTML($SignedInfo));
+        if (!$firma)
+            return false;
+        $signature = wordwrap($firma, $this->config['wordwrap'], "\n", true);
         // reemplazar valores en la firma de
         $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue = $signature;
         $Signature->getElementsByTagName('Modulus')->item(0)->nodeValue = $this->getModulus();
