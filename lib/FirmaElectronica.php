@@ -27,7 +27,7 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2014-12-08
+ * @version 2015-08-24
  */
 class FirmaElectronica
 {
@@ -92,22 +92,6 @@ class FirmaElectronica
     }
 
     /**
-     * Método que quita el inicio y fin de un certificado (clave pública)
-     * @param cert Certificado que se desea limpiar
-     * @return Contenido del certificado, clave pública, del certificado digital
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
-     */
-    private function cleanCert($cert)
-    {
-        return trim(str_replace(
-            ['-----BEGIN CERTIFICATE-----', '-----END CERTIFICATE-----'],
-            '',
-            $cert
-        ));
-    }
-
-    /**
      * Método que agrega el inicio y fin de un certificado (clave pública)
      * @param cert Certificado que se desea normalizar
      * @return Certificado con el inicio y fin correspondiente
@@ -131,7 +115,7 @@ class FirmaElectronica
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2014-12-07
      */
-    private function getModulus()
+    public function getModulus()
     {
         $details = openssl_pkey_get_details(openssl_pkey_get_private($this->certs['pkey']));
         return wordwrap(base64_encode($details['rsa']['n']), $this->config['wordwrap'], "\n", true);
@@ -143,10 +127,48 @@ class FirmaElectronica
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2014-12-06
      */
-    private function getExponent()
+    public function getExponent()
     {
         $details = openssl_pkey_get_details(openssl_pkey_get_private($this->certs['pkey']));
         return wordwrap(base64_encode($details['rsa']['e']), $this->config['wordwrap'], "\n", true);
+    }
+
+    /**
+     * Método que entrega el certificado de la firma
+     * @return Contenido del certificado, clave pública del certificado digital, en base64
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-24
+     */
+    public function getCertificate($clean = false)
+    {
+        if ($clean) {
+            return trim(str_replace(
+                ['-----BEGIN CERTIFICATE-----', '-----END CERTIFICATE-----'],
+                '',
+                $this->certs['cert']
+            ));
+        } else {
+            return $this->certs['cert'];
+        }
+    }
+
+    /**
+     * Método que entrega la clave privada de la firma
+     * @return Contenido de la clave privada del certificado digital en base64
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-24
+     */
+    public function getPrivateKey($clean = false)
+    {
+        if ($clean) {
+            return trim(str_replace(
+                ['-----BEGIN PRIVATE KEY-----', '-----END PRIVATE KEY-----'],
+                '',
+                $this->certs['pkey']
+            ));
+        } else {
+            return $this->certs['pkey'];
+        }
     }
 
     /**
@@ -264,7 +286,7 @@ class FirmaElectronica
         $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue = $signature;
         $Signature->getElementsByTagName('Modulus')->item(0)->nodeValue = $this->getModulus();
         $Signature->getElementsByTagName('Exponent')->item(0)->nodeValue = $this->getExponent();
-        $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue = $this->cleanCert($this->certs['cert']);
+        $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue = $this->getCertificate(true);
         // agregar y entregar firma
         $dom->appendChild($Signature);
         return $doc->saveXML();
