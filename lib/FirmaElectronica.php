@@ -49,30 +49,49 @@ class FirmaElectronica
      *   $firma = new \sasco\LibreDTE\FirmaElectronica($firma_config);
      * \endcode
      *
-     * @param config Configuración para la cllase, si no se especifica se trarará de determinar
+     * También se permite que en vez de pasar la ruta al certificado p12 se pase
+     * el contenido del certificado, esto servirá por ejemplo si los datos del
+     * archivo están almacenados en una base de datos. Ejemplo:
+     *
+     * \code{.php}
+     *   $firma_config = ['data'=>file_get_contents('/ruta/al/certificado.p12'), 'pass'=>'contraseña'];
+     *   $firma = new \sasco\LibreDTE\FirmaElectronica($firma_config);
+     * \endcode
+     *
+     * @param config Configuración para la clase, si no se especifica se tratará de determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-08
+     * @version 2015-08-25
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
         // crear configuración
-        if (!$config and class_exists('\sowerphp\core\Configure')) {
-            $config = (array)\sowerphp\core\Configure::read('firma_electronica.default');
+        if (!$config) {
+            if (class_exists('\sowerphp\core\Configure')) {
+                $config = (array)\sowerphp\core\Configure::read('firma_electronica.default');
+            } else {
+                $config = [];
+            }
         }
         $this->config = array_merge([
             'file' => (defined('DIR_PROJECT') ? DIR_PROJECT.'/data/firma_electronica/' : '').'default.p12',
             'pass' => '',
             'wordwrap' => 64,
         ], $config);
-        // cargar certificado digital
-        if (file_exists($this->config['file'])) {
-            $pkcs12 = file_get_contents($this->config['file']);
-            if (openssl_pkcs12_read($pkcs12, $this->certs, $this->config['pass'])===false) {
-                $this->error('Contraseña incorrecta para la firma electrónica '.basename($this->config['file']));
+        // cargar firma electrónica desde el contenido del archivo .p12 si no
+        // se pasaron como datos del arreglo de configuración
+        if (empty($this->config['data'])) {
+            if (is_readable($this->config['file'])) {
+                $this->config['data'] = file_get_contents($this->config['file']);
+            } else {
+                $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
             }
-        } else {
-            $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no existe');
         }
+        // leer datos de la firma electrónica
+        if (openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
+            $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
+        }
+        // quitar datos del contenido del archivo de la firma
+        unset($this->config['data']);
     }
 
     /**
