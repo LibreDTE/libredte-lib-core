@@ -34,6 +34,7 @@ class Sii
     private static $config = [
         'wsdl' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
         'servidor' => ['palena', 'maullin'], ///< servidores 0: producción, 1: certificación
+        'certs' => [300, 100], ///< certificados 0: producción, 1: certificación
     ];
     const PRODUCCION = 0; ///< Constante para indicar ambiente de producción
     const CERTIFICACION = 1; ///< Constante para indicar ambiente de desarrollo
@@ -186,19 +187,26 @@ class Sii
      * Método para obtener la clave pública (certificado X.509) del SII
      *
      * \code{.php}
-     *   $pub_key = \sasco\LibreDTE\Sii::cert('CrSeed'); // WSDL para pedir semilla
+     *   $pub_key = \sasco\LibreDTE\Sii::cert(100); // Certificado IDK 100 (certificación)
      * \endcode
      *
-     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
+     * @param idk IDK de la clave pública del SII. Si no se indica se tratará de determinar con el ambiente que se esté usando
      * @return Contenido del certificado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-08-31
      */
-    public static function cert($ambiente = null)
+    public static function cert($idk = null)
     {
-        $ambiente = self::getAmbiente($ambiente);
-        $cert = dirname(dirname(__FILE__)).'/certs/'.self::$config['servidor'][$ambiente].'.pub';
-        return file_get_contents($cert);
+        // si se pasó un idk y existe el archivo asociado se entrega
+        if ($idk) {
+            $cert = dirname(dirname(__FILE__)).'/certs/'.$idk.'.cer';
+            if (is_readable($cert))
+                return file_get_contents($cert);
+        }
+        // determina certificado or tipo de ambiente en uso
+        $ambiente = self::getAmbiente();
+        $cert = dirname(dirname(__FILE__)).'/certs/'.self::$config['certs'][$ambiente].'.cer';
+        return is_readable($cert) ? file_get_contents($cert) : false;
     }
 
     /**
