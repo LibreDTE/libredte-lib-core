@@ -48,7 +48,7 @@ class XML extends \DomDocument
      * Método que genera nodos XML a partir de un arreglo
      * @param array Arreglo con los datos que se usarán para generar XML
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
-     * @return DomDocument
+     * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-08-06
      */
@@ -96,6 +96,47 @@ class XML extends \DomDocument
     public function xpath($expression)
     {
         return (new \DOMXPath($this))->query($expression);
+    }
+
+    /**
+     * Método que entrega el código XML canonicalizado y con la codificación que
+     * corresponde
+     * @return String con código XML canonicalizado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-30
+     */
+    public function C14N($exclusive = null, $with_comments = null, array $xpath = null, array $ns_prefixes = null)
+    {
+        return $this->encode(parent::C14N($exclusive, $with_comments, $xpath, $ns_prefixes));
+    }
+
+    /**
+     * Método que entrega el código XML aplanado y con la codificación que
+     * corresponde
+     * @return String con código XML aplanado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-30
+     */
+    public function getFlattened($xpath = null)
+    {
+        $xml = $xpath ? $this->encode($this->xpath($xpath)->item(0)->C14N()) : $this->C14N();
+        $xml = preg_replace("/\>\n\s+\</", '><', $xml);
+        $xml = preg_replace("/\>\n\t+\</", '><', $xml);
+        $xml = preg_replace("/\>\n+\</", '><', $xml);
+        return trim($xml);
+    }
+
+    /**
+     * Método que codifica el string XML como ISO-8859-1 si es que fue pasado
+     * como UTF-8
+     * @param xml String con código XML en UTF-8 o ISO-8859-1
+     * @return String con código XML en ISO-8859-1
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-30
+     */
+    private function encode($xml)
+    {
+        return mb_detect_encoding($xml, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($xml) : $xml;
     }
 
 }
