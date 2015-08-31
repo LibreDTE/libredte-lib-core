@@ -26,13 +26,13 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-15
+ * @version 2015-08-31
  */
 class Sii
 {
 
-    private static $wsdl = [
-        'url' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
+    private static $config = [
+        'wsdl' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
         'servidor' => ['palena', 'maullin'], ///< servidores 0: producción, 1: certificación
     ];
     const PRODUCCION = 0; ///< Constante para indicar ambiente de producción
@@ -63,20 +63,15 @@ class Sii
      * \endcode
      *
      * @param servicio Servicio por el cual se está solicitando su WSDL
-     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION
+     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-08-31
      */
     public static function wsdl($servicio, $ambiente = null)
     {
         // determinar ambiente que se debe usar
-        if ($ambiente===null) {
-            if (defined('_LibreDTE_CERTIFICACION_'))
-                $ambiente = (int)_LibreDTE_CERTIFICACION_;
-            else
-                $ambiente = self::PRODUCCION;
-        }
+        $ambiente = self::getAmbiente($ambiente);
         // entregar WSDL local (modificados para ambiente de certificación)
         if ($ambiente==self::CERTIFICACION) {
             $wsdl = dirname(dirname(__FILE__)).'/wsdl/'.$servicio.'.jws';
@@ -86,8 +81,8 @@ class Sii
         // entregar WSDL oficial desde SII
         return str_replace(
             ['{servidor}', '{servicio}'],
-            [self::$wsdl['servidor'][$ambiente], $servicio],
-            self::$wsdl['url']
+            [self::$config['servidor'][$ambiente], $servicio],
+            self::$config['wsdl']
         );
     }
 
@@ -185,6 +180,44 @@ class Sii
         }
         unlink($file);
         return ($response and $response!='Error 500') ? new \SimpleXMLElement($response, LIBXML_COMPACT) : false;
+    }
+
+    /**
+     * Método para obtener la clave pública (certificado X.509) del SII
+     *
+     * \code{.php}
+     *   $pub_key = \sasco\LibreDTE\Sii::cert('CrSeed'); // WSDL para pedir semilla
+     * \endcode
+     *
+     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
+     * @return Contenido del certificado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-31
+     */
+    public static function cert($ambiente = null)
+    {
+        $ambiente = self::getAmbiente($ambiente);
+        $cert = dirname(dirname(__FILE__)).'/certs/'.self::$config['servidor'][$ambiente].'.pub';
+        return file_get_contents($cert);
+    }
+
+    /**
+     * Método qu determina el ambiente que se debe utilizar: producción o
+     * certificación
+     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
+     * @return Ambiente que se debe utilizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-08-31
+     */
+    private static function getAmbiente($ambiente = null)
+    {
+        if ($ambiente===null) {
+            if (defined('_LibreDTE_CERTIFICACION_'))
+                $ambiente = (int)_LibreDTE_CERTIFICACION_;
+            else
+                $ambiente = self::PRODUCCION;
+        }
+        return $ambiente;
     }
 
 }
