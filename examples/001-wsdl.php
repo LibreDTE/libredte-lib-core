@@ -25,7 +25,7 @@
  * @file 001-wsdl.php
  * Ejemplo de obtención de WSDL según ambiente que se esté utilizando
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-05
+ * @version 2015-08-31
  */
 
 // respuesta en texto plano
@@ -33,6 +33,10 @@ header('Content-type: text/plain');
 
 // incluir archivos php de la biblioteca
 include 'inc.php';
+
+// si esta definido el ambiente en config.php avisar
+if (defined('_LibreDTE_CERTIFICACION_'))
+    die('Comentar _LibreDTE_CERTIFICACION_ en config.php para probar este ejemplo');
 
 // solicitar ambiente producción
 echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";

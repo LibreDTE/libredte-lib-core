@@ -26,12 +26,19 @@
  * Archivo de configuración para los ejemplos
  * ESTE ARCHIVO DEBE SER RENOMBRADO A config.php Y SU CONFIGURACIÓN AJUSTADA
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-07-14
+ * @version 2015-08-31
  */
 
+// configuración de la firma
+// se puede omitir/comentar el archivo (índice file) y entregar directamente el
+// contenido del archivo de la firma (índice data)
 $config = [
     'firma' => [
         'file' => '/ruta/al/certificado.p12',
+        //'data' => '', // contenido del archivo certificado.p12
         'pass' => 'contraseña',
     ],
 ];
+
+// trabajar en ambiente de certificación
+define('_LibreDTE_CERTIFICACION_', true);

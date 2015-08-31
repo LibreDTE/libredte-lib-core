@@ -38,9 +38,6 @@ $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
 if (!$token)
     die('No fue posible obtener token');
 
-// consultar estado en ambiente de certificación
-define('_LibreDTE_CERTIFICACION_', true);
-
 // consultar estado enviado
 $rut = '';
 $dv = '';
