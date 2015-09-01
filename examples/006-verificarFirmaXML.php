@@ -24,7 +24,7 @@
 /**
  * @file 006-verificarFirmaXML.php
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-19
+ * @version 2015-09-01
  */
 
 // respuesta en texto plano
@@ -34,6 +34,6 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // verificar firma
-$xml_data = file_get_contents('archivoFirmado.xml');
+$xml_data = file_get_contents('xml/archivoFirmado.xml');
 $FirmaElectronica = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-var_dump($FirmaElectronica->verifyXML($xml_data));
+var_dump($FirmaElectronica->verifyXML($xml_data, 'SetDTE'));
