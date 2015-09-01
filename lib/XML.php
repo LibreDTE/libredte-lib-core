@@ -50,7 +50,7 @@ class XML extends \DomDocument
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
      * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-06
+     * @version 2015-09-01
      */
     public function generate(array $array, \DOMElement &$parent = null)
     {
@@ -58,8 +58,10 @@ class XML extends \DomDocument
             $parent = &$this;
         foreach ($array as $key => $value) {
             if ($key=='@attributes') {
-                foreach ($value as $attr => $val)
-                    $parent->setAttribute($attr, $val);
+                foreach ($value as $attr => $val) {
+                    if ($val!==false)
+                        $parent->setAttribute($attr, $val);
+                }
             } else if ($key=='@value') {
                 $parent->nodeValue = $value;
             } else {
