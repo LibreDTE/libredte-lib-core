@@ -60,7 +60,7 @@ class FirmaElectronica
      *
      * @param config Configuración para la clase, si no se especifica se tratará de determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-25
+     * @version 2015-08-31
      */
     public function __construct(array $config = [])
     {
@@ -73,13 +73,14 @@ class FirmaElectronica
             }
         }
         $this->config = array_merge([
-            'file' => (defined('DIR_PROJECT') ? DIR_PROJECT.'/data/firma_electronica/' : '').'default.p12',
-            'pass' => '',
+            'file' => null,
+            'pass' => null,
+            'data' => null,
             'wordwrap' => 64,
         ], $config);
         // cargar firma electrónica desde el contenido del archivo .p12 si no
         // se pasaron como datos del arreglo de configuración
-        if (empty($this->config['data'])) {
+        if (!$this->config['data'] and $this->config['file']) {
             if (is_readable($this->config['file'])) {
                 $this->config['data'] = file_get_contents($this->config['file']);
             } else {
@@ -87,7 +88,7 @@ class FirmaElectronica
             }
         }
         // leer datos de la firma electrónica
-        if (openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
+        if ($this->config['data'] and openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
             $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
         }
         // quitar datos del contenido del archivo de la firma
@@ -233,13 +234,12 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-01
      */
-    public function signXML($xml, $reference = '')
+    public function signXML($xml, $reference = '', $tag = null, $xmlns_xsi = false)
     {
-        $doc = new \DomDocument();
+        $doc = new XML();
         $doc->loadXML($xml);
-        $dom = $doc->documentElement;
         // crear nodo para la firma
         $Signature = $doc->importNode((new XML())->generate([
             'Signature' => [
@@ -249,6 +249,7 @@ class FirmaElectronica
                 'SignedInfo' => [
                     '@attributes' => [
                         'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
+                        'xmlns:xsi' => $xmlns_xsi ? 'http://www.w3.org/2001/XMLSchema-instance' : false,
                     ],
                     'CanonicalizationMethod' => [
                         '@attributes' => [
@@ -293,11 +294,16 @@ class FirmaElectronica
                 ],
             ],
         ])->documentElement, true);
-        // calcular DigestValue y SignatureValue
-        $digest = base64_encode(sha1($dom->C14N(), true));
+        // calcular DigestValue
+        if ($tag) {
+            $digest = base64_encode(sha1($doc->encode($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N()), true));
+        } else {
+            $digest = base64_encode(sha1($doc->C14N(), true));
+        }
         $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue = $digest;
-        $SignedInfo = $Signature->getElementsByTagName('SignedInfo')->item(0);
-        $firma = $this->sign($doc->saveHTML($SignedInfo));
+        // calcular SignatureValue
+        $SignedInfo = $doc->saveHTML($Signature->getElementsByTagName('SignedInfo')->item(0));
+        $firma = $this->sign($SignedInfo);
         if (!$firma)
             return false;
         $signature = wordwrap($firma, $this->config['wordwrap'], "\n", true);
@@ -307,7 +313,7 @@ class FirmaElectronica
         $Signature->getElementsByTagName('Exponent')->item(0)->nodeValue = $this->getExponent();
         $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue = $this->getCertificate(true);
         // agregar y entregar firma
-        $dom->appendChild($Signature);
+        $doc->documentElement->appendChild($Signature);
         return $doc->saveXML();
     }
 
@@ -316,27 +322,30 @@ class FirmaElectronica
      * @param xml_data Archivo XML que se desea validar
      * @return =true si la firma del documento XML es válida o =false si no lo es
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-01
      */
-    public function verifyXML($xml_data)
+    public function verifyXML($xml_data, $tag = null)
     {
-        $doc = new \DomDocument();
+        $doc = new XML();
         $doc->loadXML($xml_data);
-        $dom = $doc->documentElement;
         // preparar datos que se verificarán
-        $SignaturesElements = $dom->getElementsByTagName('Signature');
-        $Signature = $dom->removeChild($SignaturesElements->item($SignaturesElements->length-1));
-        $SignedInfo = $Signature->getElementsByTagName('SignedInfo')[0];
+        $SignaturesElements = $doc->documentElement->getElementsByTagName('Signature');
+        $Signature = $doc->documentElement->removeChild($SignaturesElements->item($SignaturesElements->length-1));
+        $SignedInfo = $Signature->getElementsByTagName('SignedInfo')->item(0);
         $SignedInfo->setAttribute('xmlns', $Signature->getAttribute('xmlns'));
         $signed_info = $doc->saveHTML($SignedInfo);
-        $signature = $Signature->getElementsByTagName('SignatureValue')[0]->nodeValue;
-        $pub_key = $Signature->getElementsByTagName('X509Certificate')[0]->nodeValue;
+        $signature = $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
+        $pub_key = $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
         // verificar firma
         if (!$this->verify($signed_info, $signature, $pub_key))
             return false;
         // verificar digest
-        $digest_original = $Signature->getElementsByTagName('DigestValue')[0]->nodeValue;
-        $digest_calculado = base64_encode(sha1($dom->C14N(), true));
+        $digest_original = $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
+        if ($tag) {
+            $digest_calculado = base64_encode(sha1($doc->encode($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N()), true));
+        } else {
+            $digest_calculado = base64_encode(sha1($doc->C14N(), true));
+        }
         return $digest_original == $digest_calculado;
     }
 
