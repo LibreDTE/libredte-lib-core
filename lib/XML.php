@@ -132,9 +132,9 @@ class XML extends \DomDocument
      * @param xml String con código XML en UTF-8 o ISO-8859-1
      * @return String con código XML en ISO-8859-1
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-30
+     * @version 2015-08-31
      */
-    private function encode($xml)
+    public function encode($xml)
     {
         return mb_detect_encoding($xml, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($xml) : $xml;
     }

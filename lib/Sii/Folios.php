@@ -58,10 +58,7 @@ class Folios
         // validar firma del SII sobre los folios
         $firma = base64_decode($this->getFirma());
         $pub_key = \sasco\LibreDTE\Sii::cert($this->getIDK());
-        if (!openssl_public_decrypt($firma, $digest_firmado, $pub_key))
-            return false;
-        $digest = base64_encode(sha1($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), true));
-        if ($digest !== substr(base64_encode($digest_firmado), -strlen($digest)))
+        if (openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), $firma, $pub_key)!==1)
             return false;
         // validar clave privada y pública proporcionada por el SII
         $plain = md5(date('U'));
@@ -82,7 +79,7 @@ class Folios
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getFlattened('/AUTORIZACION/CAF');
+        return $this->xml->getElementsByTagName('CAF')->item(0);
     }
 
     /**
