@@ -66,14 +66,16 @@ class XML extends \DomDocument
                 $parent->nodeValue = $this->sanitize($value);
             } else {
                 if (is_array($value)) {
-                    $keys = array_keys($value);
-                    if (!is_int($keys[0])) {
-                        $value = [$value];
-                    }
-                    foreach ($value as $value2) {
-                        $Node = new \DOMElement($key);
-                        $parent->appendChild($Node);
-                        $this->generate($value2, $Node);
+                    if (!empty($value)) {
+                        $keys = array_keys($value);
+                        if (!is_int($keys[0])) {
+                            $value = [$value];
+                        }
+                        foreach ($value as $value2) {
+                            $Node = new \DOMElement($key);
+                            $parent->appendChild($Node);
+                            $this->generate($value2, $Node);
+                        }
                     }
                 } else {
                     if (is_object($value) and $value instanceof \DOMElement) {
