@@ -50,7 +50,7 @@ class XML extends \DomDocument
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
      * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-01
+     * @version 2015-09-02
      */
     public function generate(array $array, \DOMElement &$parent = null)
     {
@@ -63,7 +63,7 @@ class XML extends \DomDocument
                         $parent->setAttribute($attr, $val);
                 }
             } else if ($key=='@value') {
-                $parent->nodeValue = $value;
+                $parent->nodeValue = $this->sanitize($value);
             } else {
                 if (is_array($value)) {
                     $keys = array_keys($value);
@@ -79,13 +79,46 @@ class XML extends \DomDocument
                     if (is_object($value) and $value instanceof \DOMElement) {
                         $Node = $this->importNode($value, true);
                     } else {
-                        $Node = new \DOMElement($key, $value);
+                        $Node = new \DOMElement($key, $this->sanitize($value));
                     }
                     $parent->appendChild($Node);
                 }
             }
         }
         return $this;
+    }
+
+    /**
+     * Método que sanitiza los valores que son asignados a los tags del XML
+     * @param txt String que que se asignará como valor al nodo XML
+     * @return String sanitizado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-02
+     */
+    private function sanitize($txt)
+    {
+        // si no se paso un texto o bien es un número no se hace nada
+        if (!$txt or is_numeric($txt))
+            return $txt;
+        // convertir "predefined entities" de XML
+        $txt = str_replace(
+            ['&amp;', '&#38;', '&lt;', '&#60;', '&gt;', '&#62', '&quot;', '&#34;', '&apos;', '&#39;'],
+            ['&', '&', '<', '<', '>', '>', '"', '"', '\'', '\''],
+            $txt
+        );
+        $txt = str_replace(
+            ['&', '"', '\''],
+            ['&amp;', '&quot;', '&apos;'],
+            $txt
+        );
+        // quitar acentos, eñes y otros caracteres especiales
+        $txt = str_replace(
+            ['á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ü', 'Ü'],
+            ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'n', 'N', 'u', 'U'],
+            $txt
+        );
+        // entregar texto sanitizado
+        return $txt;
     }
 
     /**
@@ -129,16 +162,16 @@ class XML extends \DomDocument
     }
 
     /**
-     * Método que codifica el string XML como ISO-8859-1 si es que fue pasado
-     * como UTF-8
-     * @param xml String con código XML en UTF-8 o ISO-8859-1
-     * @return String con código XML en ISO-8859-1
+     * Método que codifica el string como ISO-8859-1 si es que fue pasado como
+     * UTF-8
+     * @param string String en UTF-8 o ISO-8859-1
+     * @return String en ISO-8859-1
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-02
      */
-    public function encode($xml)
+    public function encode($string)
     {
-        return mb_detect_encoding($xml, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($xml) : $xml;
+        return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($string) : $string;
     }
 
 }
