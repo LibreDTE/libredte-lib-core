@@ -21,3 +21,5 @@ Funcionalidades implementadas
 - Obtención de estado de un DTE.
 - Envío de archivo XML de DTE a SII.
 - Consulta de estado de envío de DTE.
+- Generación de XML DTE timbraje y firma (probado DTE 33).
+- Generación (y envío) de XML EnvioDTE firmado.
