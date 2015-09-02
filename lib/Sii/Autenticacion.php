@@ -72,14 +72,16 @@ class Autenticacion
     /**
      * Método que firma una semilla previamente obtenida
      * @param seed Semilla obtenida desde SII
-     * @param firma_config Configuración de la firma electrónica
+     * @param Firma objeto de la Firma electrónica o arreglo con configuración de la misma
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-09-02
      */
-    private static function getTokenRequest($seed, $firma_config = [])
+    private static function getTokenRequest($seed, $Firma = [])
     {
-        $seedSigned = (new \sasco\LibreDTE\FirmaElectronica($firma_config))->signXML(
+        if (is_array($Firma))
+            $Firma = new \sasco\LibreDTE\FirmaElectronica($Firma);
+        $seedSigned = $Firma->signXML(
             (new \sasco\LibreDTE\XML())->generate([
                 'getToken' => [
                     'item' => [
@@ -100,16 +102,16 @@ class Autenticacion
      * WSDL producción: https://palena.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL
      * WSDL certificación: https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL
      *
-     * @param firma_config Configuración de la firma electrónica
+     * @param Firma objeto de la Firma electrónica o arreglo con configuración de la misma
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-09-02
      */
-    public static function getToken($firma_config = [])
+    public static function getToken($Firma = [])
     {
         $semilla = self::getSeed();
         if (!$semilla) return false;
-        $requestFirmado = self::getTokenRequest($semilla, $firma_config);
+        $requestFirmado = self::getTokenRequest($semilla, $Firma);
         if (!$requestFirmado) return false;
         $xml = \sasco\LibreDTE\Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
         if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
