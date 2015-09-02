@@ -25,7 +25,7 @@
  * @file 007-folios.php
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-01
+ * @version 2015-09-02
  */
 
 // respuesta en texto plano
@@ -35,11 +35,11 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // cargar folios
-$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('folios.xml'));
+$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios.xml'));
 
 // ejemplos métodos
 echo 'Folios son validos?: ',($Folios->check()?'si':'no'),"\n\n";
 echo 'Rango de folios: ',$Folios->getDesde(),' al ',$Folios->getHasta(),"\n\n";
-echo 'CAF: ',$Folios->getCaf(),"\n\n";
+echo 'CAF: ',$Folios->getCaf()->C14N(),"\n\n";
 echo $Folios->getPrivateKey(),"\n";
 echo $Folios->getPublicKey();
