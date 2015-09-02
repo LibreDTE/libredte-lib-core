@@ -42,7 +42,7 @@ $XML->loadXML(file_get_contents('xml/archivoFirmado.xml'));
 $Signatures = $XML->documentElement->getElementsByTagName('Signature');
 
 // verificar firma de SetDTE
-$SetDTE = $XML->encode($XML->documentElement->getElementsByTagName('SetDTE')->item(0)->C14N());
+$SetDTE = $XML->documentElement->getElementsByTagName('SetDTE')->item(0)->C14N();
 $SignedInfo = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignedInfo')->item(0);
 $DigestValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('DigestValue')->item(0)->nodeValue;
 $SignatureValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignatureValue')->item(0)->nodeValue;

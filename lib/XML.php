@@ -113,12 +113,6 @@ class XML extends \DomDocument
             ['&amp;', '&quot;', '&apos;'],
             $txt
         );
-        // quitar acentos, eñes y otros caracteres especiales
-        $txt = str_replace(
-            ['á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ü', 'Ü'],
-            ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'n', 'N', 'u', 'U'],
-            $txt
-        );
         // entregar texto sanitizado
         return $txt;
     }
@@ -136,18 +130,6 @@ class XML extends \DomDocument
     }
 
     /**
-     * Método que entrega el código XML canonicalizado y con la codificación que
-     * corresponde
-     * @return String con código XML canonicalizado
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-30
-     */
-    public function C14N($exclusive = null, $with_comments = null, array $xpath = null, array $ns_prefixes = null)
-    {
-        return $this->encode(parent::C14N($exclusive, $with_comments, $xpath, $ns_prefixes));
-    }
-
-    /**
      * Método que entrega el código XML aplanado y con la codificación que
      * corresponde
      * @return String con código XML aplanado
@@ -157,6 +139,7 @@ class XML extends \DomDocument
     public function getFlattened($xpath = null)
     {
         $xml = $xpath ? $this->encode($this->xpath($xpath)->item(0)->C14N()) : $this->C14N();
+        //$xml = $xpath ? $this->xpath($xpath)->item(0)->C14N() : $this->C14N();
         $xml = preg_replace("/\>\n\s+\</", '><', $xml);
         $xml = preg_replace("/\>\n\t+\</", '><', $xml);
         $xml = preg_replace("/\>\n+\</", '><', $xml);
@@ -171,7 +154,7 @@ class XML extends \DomDocument
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-02
      */
-    public function encode($string)
+    private function encode($string)
     {
         return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($string) : $string;
     }

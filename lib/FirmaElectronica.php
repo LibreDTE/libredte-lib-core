@@ -234,7 +234,7 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-01
+     * @version 2015-09-02
      */
     public function signXML($xml, $reference = '', $tag = null, $xmlns_xsi = false)
     {
@@ -296,7 +296,7 @@ class FirmaElectronica
         ])->documentElement, true);
         // calcular DigestValue
         if ($tag) {
-            $digest = base64_encode(sha1($doc->encode($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N()), true));
+            $digest = base64_encode(sha1($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N(), true));
         } else {
             $digest = base64_encode(sha1($doc->C14N(), true));
         }
@@ -322,7 +322,7 @@ class FirmaElectronica
      * @param xml_data Archivo XML que se desea validar
      * @return =true si la firma del documento XML es válida o =false si no lo es
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-01
+     * @version 2015-09-02
      */
     public function verifyXML($xml_data, $tag = null)
     {
@@ -342,7 +342,7 @@ class FirmaElectronica
         // verificar digest
         $digest_original = $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
         if ($tag) {
-            $digest_calculado = base64_encode(sha1($doc->encode($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N()), true));
+            $digest_calculado = base64_encode(sha1($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N(), true));
         } else {
             $digest_calculado = base64_encode(sha1($doc->C14N(), true));
         }
