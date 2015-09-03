@@ -333,7 +333,33 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntNeto');
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una factura exenta electrónica
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_34(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Totales' => [
+                    'MntExe' => false,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntEx');
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -345,8 +371,25 @@ class Dte
      */
     private function normalizar_56(array &$datos)
     {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Totales' => [
+                    'MntNeto' => false,
+                    'MntExe' => false,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
+        if ($datos['Encabezado']['Totales']['MntNeto']===false) {
+            $datos['Encabezado']['Totales']['MntNeto'] = 0;
+        }
     }
 
     /**
@@ -357,8 +400,25 @@ class Dte
      */
     private function normalizar_61(array &$datos)
     {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Totales' => [
+                    'MntNeto' => false,
+                    'MntExe' => false,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
+        if ($datos['Encabezado']['Totales']['MntNeto']===false) {
+            $datos['Encabezado']['Totales']['MntNeto'] = 0;
+        }
     }
 
     /**
@@ -375,9 +435,10 @@ class Dte
         foreach ($datos['Detalle'] as &$d) {
             $d = array_merge([
                 'NroLinDet' => $item++,
-                'IndExe' => false,
+                'IndExe' =>false,
                 'NmbItem' => false,
                 'QtyItem' => false,
+                'UnmdItem' => false,
                 'PrcItem' => false,
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
@@ -390,13 +451,18 @@ class Dte
                     $d['MontoItem'] = $d['MontoItem'] - $d['DescuentoMonto'];
                 }
             }
+            // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
-                if ($d['IndExe']) {
-                    if ($d['IndExe']==1) {
-                        $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
-                    }
+                if ((!isset($datos['Encabezado']['Totales']['MntNeto']) or $datos['Encabezado']['Totales']['MntNeto']===false) and isset($datos['Encabezado']['Totales']['MntExe'])) {
+                    $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
                 } else {
-                    $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
+                    if ($d['IndExe']) {
+                        if ($d['IndExe']==1) {
+                            $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                        }
+                    } else {
+                        $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
+                    }
                 }
             }
         }
@@ -409,21 +475,21 @@ class Dte
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-03
      */
-    private function normalizar_aplicar_descuentos_recargos(array &$datos)
+    private function normalizar_aplicar_descuentos_recargos(array &$datos, $monto = 'MntNeto')
     {
         if (!empty($datos['DscRcgGlobal'])) {
             foreach ($datos['DscRcgGlobal'] as $dr) {
-                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales']['MntNeto']) : $dr['ValorDR'];
+                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
                 // aplicar descuento
                 if ($dr['TpoMov']=='D') {
-                    $datos['Encabezado']['Totales']['MntNeto'] -= $valor;
+                    $datos['Encabezado']['Totales'][$monto] -= $valor;
                 }
                 // aplicar recargo
                 else if ($dr['TpoMov']=='R') {
-                    $datos['Encabezado']['Totales']['MntNeto'] += $valor;
+                    $datos['Encabezado']['Totales'][$monto] += $valor;
                 }
             }
-            $datos['Encabezado']['Totales']['MntNeto'] = round($datos['Encabezado']['Totales']['MntNeto']);
+            $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
         }
     }
 
@@ -446,6 +512,10 @@ class Dte
                     $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['IVA'];
                 if (!empty($datos['Encabezado']['Totales']['MntExe']))
                     $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['MntExe'];
+            }
+        } else {
+            if (!empty($datos['Encabezado']['Totales']['MntExe'])) {
+                $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntExe'];
             }
         }
     }
