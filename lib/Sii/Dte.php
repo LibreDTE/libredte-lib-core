@@ -48,13 +48,14 @@ class Dte
     /**
      * Constructor de la clase DTE
      * @param datos Arreglo con los datos del DTE o el XML completo del DTE
+     * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-30
+     * @version 2015-09-03
      */
-    public function __construct($datos = null)
+    public function __construct($datos, $normalizar = true)
     {
         if (is_array($datos))
-            $this->setDatos($datos);
+            $this->setDatos($datos, $normalizar);
         else if (is_string($datos))
             $this->loadXML($datos);
         $this->timestamp = date('Y-m-d\TH:i:s');
@@ -81,21 +82,22 @@ class Dte
     /**
      * Método que asigna los datos del DTE
      * @param datos Arreglo con los datos del DTE que se quire generar
+     * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-03
      */
-    private function setDatos(array $datos)
+    private function setDatos(array $datos, $normalizar = true)
     {
         if (!empty($datos)) {
-            if (is_string($datos))
-                $datos = json_decode($datos);
             $this->tipo = $datos['Encabezado']['IdDoc']['TipoDTE'];
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
             $this->id = 'T'.$this->tipo.'F'.$this->folio;
-            $this->normalizar($datos);
-            $method = 'normalizar_'.$this->tipo;
-            if (method_exists($this, $method))
-                $this->$method($datos);
+            if ($normalizar) {
+                $this->normalizar($datos);
+                $method = 'normalizar_'.$this->tipo;
+                if (method_exists($this, $method))
+                    $this->$method($datos);
+            }
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
             $this->xml = (new \sasco\LibreDTE\XML())->generate([
                 'DTE' => [
