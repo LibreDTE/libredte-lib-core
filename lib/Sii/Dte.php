@@ -324,7 +324,7 @@ class Dte
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => false,
-                    'TasaIVA' => 19,
+                    'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' => 0,
                     'MntTotal' => 0,
                 ]

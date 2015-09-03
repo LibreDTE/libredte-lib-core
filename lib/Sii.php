@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-31
+ * @version 2015-09-03
  */
 class Sii
 {
@@ -36,8 +36,11 @@ class Sii
         'servidor' => ['palena', 'maullin'], ///< servidores 0: producción, 1: certificación
         'certs' => [300, 100], ///< certificados 0: producción, 1: certificación
     ];
+
     const PRODUCCION = 0; ///< Constante para indicar ambiente de producción
     const CERTIFICACION = 1; ///< Constante para indicar ambiente de desarrollo
+
+    const IVA = 19; ///< Tasa de IVA
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
 
@@ -226,6 +229,17 @@ class Sii
                 $ambiente = self::PRODUCCION;
         }
         return $ambiente;
+    }
+
+    /**
+     * Método que entrega la tasa de IVA vigente
+     * @return Tasa de IVA vigente
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    public static function getIVA()
+    {
+        return self::IVA;
     }
 
 }
