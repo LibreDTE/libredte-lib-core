@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-02
+ * @version 2015-09-03
  */
 class Dte
 {
@@ -37,6 +37,7 @@ class Dte
     private $id; ///< Identificador único del DTE
     private $tipo_general; ///< Tipo general de DTE: Documento, Liquidacion o Exportaciones
     private $timestamp; ///< Timestamp del DTE
+    private $datos = null; ///< Datos normalizados que se usaron para crear el DTE
 
     private $tipos = [
         'Documento' => [33, 34, 46, 52, 56, 61],
@@ -81,7 +82,7 @@ class Dte
      * Método que asigna los datos del DTE
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-03
      */
     private function setDatos(array $datos)
     {
@@ -110,7 +111,21 @@ class Dte
             ]);
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], $parent);
+            $this->datos = $datos;
         }
+    }
+
+    /**
+     * Método que entrega el arreglo con los datos normalizados que se usaron
+     * para crear el DTE, siempre y cuando se haya creado con datos de un
+     * arreglo
+     * @return Arreglo con datos normalizados del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    public function getDatos()
+    {
+        return $this->datos;
     }
 
     /**
