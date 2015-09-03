@@ -80,10 +80,13 @@ class XML extends \DomDocument
                 } else {
                     if (is_object($value) and $value instanceof \DOMElement) {
                         $Node = $this->importNode($value, true);
+                        $parent->appendChild($Node);
                     } else {
-                        $Node = new \DOMElement($key, $this->sanitize($value));
+                        if ($value!==false) {
+                            $Node = new \DOMElement($key, $this->sanitize($value));
+                            $parent->appendChild($Node);
+                        }
                     }
-                    $parent->appendChild($Node);
                 }
             }
         }
