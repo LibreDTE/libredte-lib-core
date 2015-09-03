@@ -264,7 +264,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-03
      */
     private function normalizar(array &$datos)
     {
@@ -281,7 +281,7 @@ class Dte
             ],
         ], $datos);
         // si existe descuento o recargo global se normalizan
-        if (isset($datos['DscRcgGlobal'])) {
+        if (!empty($datos['DscRcgGlobal'])) {
             if (!isset($datos['DscRcgGlobal'][0]))
                 $datos['DscRcgGlobal'] = [$datos['DscRcgGlobal']];
             $NroLinDR = 1;
@@ -292,7 +292,7 @@ class Dte
             }
         }
         // si existe una o más referencias se normalizan
-        if (isset($datos['Referencia'])) {
+        if (!empty($datos['Referencia'])) {
             if (!isset($datos['Referencia'][0]))
                 $datos['Referencia'] = [$datos['Referencia']];
             $NroLinRef = 1;
@@ -302,6 +302,7 @@ class Dte
                     'TpoDocRef' => false,
                     'FolioRef' => false,
                     'FchRef' => date('Y-m-d'),
+                    'CodRef' => false,
                 ], $r);
             }
         }
@@ -330,7 +331,44 @@ class Dte
                 ]
             ],
         ], $datos);
-        // procesar cada detalle
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una nota de débito
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_56(array &$datos)
+    {
+        $this->normalizar_detalle($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una nota de crédito
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_61(array &$datos)
+    {
+        $this->normalizar_detalle($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los detalles del documento
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_detalle(array &$datos)
+    {
         if (!isset($datos['Detalle'][0]))
             $datos['Detalle'] = [$datos['Detalle']];
         $item = 1;
@@ -344,7 +382,7 @@ class Dte
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
             ], $d);
-            if (!isset($d['MontoItem'])) {
+            if (empty($d['MontoItem'])) {
                 $d['MontoItem'] = $d['QtyItem'] * $d['PrcItem'];
                 $DescuentoPct = $d['DescuentoPct'] ? $d['DescuentoPct'] : 0;
                 if ($DescuentoPct) {
@@ -352,16 +390,28 @@ class Dte
                     $d['MontoItem'] = $d['MontoItem'] - $d['DescuentoMonto'];
                 }
             }
-            if ($d['IndExe']) {
-                if ($d['IndExe']==1) {
-                    $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+            if ($d['MontoItem']) {
+                if ($d['IndExe']) {
+                    if ($d['IndExe']==1) {
+                        $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                    }
+                } else {
+                    $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
                 }
-            } else {
-                $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
             }
         }
-        // aplicar descuento y/o recargo global
-        if (isset($datos['DscRcgGlobal'])) {
+    }
+
+    /**
+     * Método que aplica los descuentos y recargos generales respectivos al
+     * monto neto del documento
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_aplicar_descuentos_recargos(array &$datos)
+    {
+        if (!empty($datos['DscRcgGlobal'])) {
             foreach ($datos['DscRcgGlobal'] as $dr) {
                 $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales']['MntNeto']) : $dr['ValorDR'];
                 // aplicar descuento
@@ -375,9 +425,29 @@ class Dte
             }
             $datos['Encabezado']['Totales']['MntNeto'] = round($datos['Encabezado']['Totales']['MntNeto']);
         }
-        // determinar IVA y monto total
-        $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
-        $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'] + $datos['Encabezado']['Totales']['IVA'] + $datos['Encabezado']['Totales']['MntExe'];
+    }
+
+    /**
+     * Método que calcula el monto del IVA y el monto total del documento a
+     * partir del monto neto y la tasa de IVA si es que existe
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-03
+     */
+    private function normalizar_agregar_IVA_MntTotal(array &$datos)
+    {
+        if (!empty($datos['Encabezado']['Totales']['MntNeto'])) {
+            if (empty($datos['Encabezado']['Totales']['IVA']) and !empty($datos['Encabezado']['Totales']['TasaIVA'])) {
+                $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
+            }
+            if (empty($datos['Encabezado']['Totales']['MntTotal'])) {
+                $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'];
+                if (!empty($datos['Encabezado']['Totales']['IVA']))
+                    $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['IVA'];
+                if (!empty($datos['Encabezado']['Totales']['MntExe']))
+                    $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['MntExe'];
+            }
+        }
     }
 
 }
