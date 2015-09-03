@@ -81,7 +81,7 @@ class Dte
      * Método que asigna los datos del DTE
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-02
      */
     private function setDatos(array $datos)
     {
@@ -91,6 +91,7 @@ class Dte
             $this->tipo = $datos['Encabezado']['IdDoc']['TipoDTE'];
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
             $this->id = 'T'.$this->tipo.'F'.$this->folio;
+            $this->normalizar($datos);
             $method = 'normalizar_'.$this->tipo;
             if (method_exists($this, $method))
                 $this->$method($datos);
@@ -245,25 +246,69 @@ class Dte
     }
 
     /**
+     * Método que normaliza los datos de un documento tributario electrónico
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-02
+     */
+    private function normalizar(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => [
+                    'TipoDTE' => false,
+                    'Folio' => false,
+                    'FchEmis' => date('Y-m-d'),
+                ],
+                'Emisor' => false,
+                'Receptor' => false,
+            ],
+        ], $datos);
+        // si existe descuento o recargo global se normalizan
+        if (isset($datos['DscRcgGlobal'])) {
+            if (!isset($datos['DscRcgGlobal'][0]))
+                $datos['DscRcgGlobal'] = [$datos['DscRcgGlobal']];
+            $NroLinDR = 1;
+            foreach ($datos['DscRcgGlobal'] as &$dr) {
+                $dr = array_merge([
+                    'NroLinDR' => $NroLinDR++,
+                ], $dr);
+            }
+        }
+        // si existe una o más referencias se normalizan
+        if (isset($datos['Referencia'])) {
+            if (!isset($datos['Referencia'][0]))
+                $datos['Referencia'] = [$datos['Referencia']];
+            $NroLinRef = 1;
+            foreach ($datos['Referencia'] as &$r) {
+                $r = array_merge([
+                    'NroLinRef' => $NroLinRef++,
+                    'TpoDocRef' => false,
+                    'FolioRef' => false,
+                    'FchRef' => date('Y-m-d'),
+                ], $r);
+            }
+        }
+    }
+
+    /**
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-03
      */
     private function normalizar_33(array &$datos)
     {
         // completar con nodos por defecto
         $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
             'Encabezado' => [
-                'IdDoc' => [
-                    'TipoDTE' => 33,
-                    'Folio' => null,
-                    'FchEmis' => date('Y-m-d'),
-                ],
-                'Emisor' => null,
-                'Receptor' => null,
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
                 'Totales' => [
                     'MntNeto' => 0,
+                    'MntExe' => false,
                     'TasaIVA' => 19,
                     'IVA' => 0,
                     'MntTotal' => 0,
@@ -271,22 +316,53 @@ class Dte
             ],
         ], $datos);
         // procesar cada detalle
+        if (!isset($datos['Detalle'][0]))
+            $datos['Detalle'] = [$datos['Detalle']];
         $item = 1;
         foreach ($datos['Detalle'] as &$d) {
             $d = array_merge([
                 'NroLinDet' => $item++,
+                'IndExe' => false,
+                'NmbItem' => false,
+                'QtyItem' => false,
+                'PrcItem' => false,
+                'DescuentoPct' => false,
+                'DescuentoMonto' => false,
             ], $d);
             if (!isset($d['MontoItem'])) {
                 $d['MontoItem'] = $d['QtyItem'] * $d['PrcItem'];
-                $DescuentoPct = isset($d['DescuentoPct']) ? $d['DescuentoPct'] : 0;
-                if ($DescuentoPct)
-                    $d['MontoItem'] = round($d['MontoItem']*(1-$DescuentoPct/100));
+                $DescuentoPct = $d['DescuentoPct'] ? $d['DescuentoPct'] : 0;
+                if ($DescuentoPct) {
+                    $d['DescuentoMonto'] = round($d['MontoItem'] * $DescuentoPct/100);
+                    $d['MontoItem'] = $d['MontoItem'] - $d['DescuentoMonto'];
+                }
             }
-            $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
+            if ($d['IndExe']) {
+                if ($d['IndExe']==1) {
+                    $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                }
+            } else {
+                $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
+            }
+        }
+        // aplicar descuento y/o recargo global
+        if (isset($datos['DscRcgGlobal'])) {
+            foreach ($datos['DscRcgGlobal'] as $dr) {
+                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales']['MntNeto']) : $dr['ValorDR'];
+                // aplicar descuento
+                if ($dr['TpoMov']=='D') {
+                    $datos['Encabezado']['Totales']['MntNeto'] -= $valor;
+                }
+                // aplicar recargo
+                else if ($dr['TpoMov']=='R') {
+                    $datos['Encabezado']['Totales']['MntNeto'] += $valor;
+                }
+            }
+            $datos['Encabezado']['Totales']['MntNeto'] = round($datos['Encabezado']['Totales']['MntNeto']);
         }
         // determinar IVA y monto total
         $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
-        $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'] + $datos['Encabezado']['Totales']['IVA'];
+        $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'] + $datos['Encabezado']['Totales']['IVA'] + $datos['Encabezado']['Totales']['MntExe'];
     }
 
 }
