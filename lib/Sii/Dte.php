@@ -263,6 +263,37 @@ class Dte
     }
 
     /**
+     * Método que genera un arreglo con el resumen del documento. Este resumen
+     * puede servir, por ejemplo, para generar los detalles de los IECV
+     * @return Arreglo con el resumen del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-04
+     */
+    public function getResumen()
+    {
+        $resumen =  [
+            'TpoDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/TipoDTE')->item(0)->nodeValue,
+            'NroDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue,
+            'TasaImp' => 0,
+            'FchDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)->nodeValue,
+            'RUTDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue,
+            'RznSoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue,
+            'MntExe' => false,
+            'MntNeto' => false,
+            'MntIVA' => 0,
+            'MntTotal' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)->nodeValue,
+        ];
+        $montos = ['TasaImp'=>'TasaIVA', 'MntExe'=>'MntExe', 'MntNeto'=>'MntNeto', 'MntIVA'=>'IVA'];
+        foreach ($montos as $dest => $orig) {
+            $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/'.$orig)->item(0);
+            if ($nodo and !empty($nodo->nodeValue)) {
+                $resumen[$dest] = $nodo->nodeValue;
+            }
+        }
+        return $resumen;
+    }
+
+    /**
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
