@@ -59,7 +59,7 @@ class EnvioDte
      * @param Firma Objeto con la firma electrónica
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-04
      */
     public function enviar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
     {
@@ -75,7 +75,9 @@ class EnvioDte
         $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $xml, $token);
         if ($result===false)
             return false;
-        return (string)$result->TRACKID;
+        if (!is_numeric((string)$result->TRACKID))
+            return false;
+        return (int)(string)$result->TRACKID;
     }
 
     /**
