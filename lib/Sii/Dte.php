@@ -411,7 +411,7 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntEx');
+        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntExe');
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
