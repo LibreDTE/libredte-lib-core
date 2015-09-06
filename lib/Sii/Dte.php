@@ -419,7 +419,7 @@ class Dte
      * Método que normaliza los datos de una nota de débito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-06
      */
     private function normalizar_56(array &$datos)
     {
@@ -432,6 +432,8 @@ class Dte
                 'Totales' => [
                     'MntNeto' => false,
                     'MntExe' => false,
+                    'TasaIVA' => false,
+                    'IVA' =>false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -448,7 +450,7 @@ class Dte
      * Método que normaliza los datos de una nota de crédito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-06
      */
     private function normalizar_61(array &$datos)
     {
@@ -461,6 +463,8 @@ class Dte
                 'Totales' => [
                     'MntNeto' => false,
                     'MntExe' => false,
+                    'TasaIVA' => false,
+                    'IVA' =>false,
                     'MntTotal' => 0,
                 ]
             ],
