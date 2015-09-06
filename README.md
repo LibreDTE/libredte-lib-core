@@ -6,7 +6,7 @@ interacción con el SII en Chile.
 
 La biblioteca se construye originalmente para el módulo Dte de la extensión
 [empresa](https://github.com/SowerPHP/extension-empresa) del framework
-[SowerPHP](http://sowerphp.org). En esta biblioteca solo estará lo básico para
+[SowerPHP](http://sowerphp.org). En esta biblioteca sólo estará lo básico para
 que un desarrollador usando PHP pueda construir su aplicación, si se requiere
 de una base ya construída se recomienda revisar el framework y módulo antes
 mencionado.
@@ -28,6 +28,8 @@ Funcionalidades implementadas
     - Factura exenta electrónica (set de pruebas factura exenta)
     - Nota de débito electrónica (set de pruebas básico y set de pruebas factura exenta)
     - Nota de crédito electrónica (set de pruebas básico y set de pruebas factura exenta)
+    - Libro de ventas electrónico (set de pruebas básico)
+    - Libro de compras electrónico (set de pruebas de compras)
 
 Instalación
 -----------
@@ -70,11 +72,19 @@ Si deseas contribuir con el proyecto, especialmente resolviendo alguna de las
 [ejemplos](https://github.com/sascocl/LibreDTE/tree/master/examples) sobre el
 uso de la biblioteca, debes:
 
-1. Hacer fork del proyecto en [GitHub](https://github.com/sascocl/LibreDTE).
-2. Modificar código y publicar cambios en el fork.
-3. Crear un *pull request* para unir los cambios realizados con LibreDTE.
+1. Hacer fork del proyecto en [GitHub](https://github.com/sascocl/LibreDTE)
+2. Crear una *branch* para los cambios: git checkout -b nombre-branch
+3. Modificar código: git commit -am 'Se agrega...'
+4. Publicar cambios: git push origin nombre-branch
+5. Crear un *pull request* para unir la nueva *branch* con LibreDTE.
 
 **IMPORTANTE**: antes de hacer un *pull request* verificar que el código
 cumpla con los estándares [PSR-1](http://www.php-fig.org/psr/psr-1),
 [PSR-2](http://www.php-fig.org/psr/psr-2) y
 [PSR-4](http://www.php-fig.org/psr/psr-4).
+
+Contacto
+--------
+
+- Sitio web: <http://libredte.cl>
+- Twitter: <https://twitter.com/LibreDTE>
