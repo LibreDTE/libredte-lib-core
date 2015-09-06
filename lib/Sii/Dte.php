@@ -131,6 +131,17 @@ class Dte
     }
 
     /**
+     * Método que entrega el ID del documento
+     * @return String con el ID del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-06
+     */
+    public function getID()
+    {
+        return $this->id;
+    }
+
+    /**
      * Método que entrega el tipo general de documento, de acuerdo a
      * $this->tipos
      * @param dte Tipo númerico de DTE, ejemplo: 33 (factura electrónica)
@@ -195,10 +206,18 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-06
      */
     public function timbrar(Folios $Folios)
     {
+        // verificar que el folio que se está usando para el DTE esté dentro
+        // del rango de folios autorizados que se usarán para timbrar
+        // Esta validación NO verifica si el folio ya fue usado, sólo si está
+        // dentro del CAF que se está usando
+        $folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
+        if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta())
+            return false;
+        // timbrar
         $TED = new \sasco\LibreDTE\XML();
         $TED->generate([
             'TED' => [
@@ -208,7 +227,7 @@ class Dte
                 'DD' => [
                     'RE' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Emisor/RUTEmisor')->item(0)->nodeValue,
                     'TD' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/TipoDTE')->item(0)->nodeValue,
-                    'F' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue,
+                    'F' => $folio,
                     'FE' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)->nodeValue,
                     'RR' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue,
                     'RSR' => substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue, 0, 40),
