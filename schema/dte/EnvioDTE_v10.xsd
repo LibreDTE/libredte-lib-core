@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- El presente documento define el esquema XML que debe ser utilizado
+para realizar los envios de Documentos Tributarios Electronicos (DTE)
+hacia el Servicio de Impuestos Internos.
+
+Fecha Actualizacion:  25/05/07 15:00
+
+Se incorporan dos nuevos Tipos de datos :
+FechaType		:  Fecha entre 2000-01-01 y 2050-12-31
+FechaHoraType :  FechaType + hora entre 00:00 y 23:59
+ -->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="DTE_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="EnvioDTE">
+		<xs:annotation>
+			<xs:documentation>Envio de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SetDTE">
+					<xs:annotation>
+						<xs:documentation>Conjunto de DTE enviados</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Resumen de Informacion Enviada</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutEmisor">
+											<xs:annotation>
+												<xs:documentation>RUT Emisor de los DTE</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="SiiDte:RUTType"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RutEnvia" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que envia los DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutReceptor" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT al que se le envian los DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchResol" type="SiiDte:FechaType">
+											<xs:annotation>
+												<xs:documentation>Fecha de Resolucion que Autoriza el Envio de DTE (AAAA-MM-DD)</xs:documentation>
+												<xs:documentation>Fecha de Resolucion que Autoriza el Envio de DTE (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NroResol" type="SiiDte:NroResolType">
+											<xs:annotation>
+												<xs:documentation>Numero de Resolucion que Autoriza el Envio de DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstFirmaEnv" type="SiiDte:FechaHoraType">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de Envio</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="SubTotDTE" maxOccurs="20">
+											<xs:annotation>
+												<xs:documentation>Subtotales de DTE enviados</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TpoDTE" type="SiiDte:DOCType">
+														<xs:annotation>
+															<xs:documentation>Tipo de DTE Enviado</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="NroDTE" type="xs:positiveInteger">
+														<xs:annotation>
+															<xs:documentation>Numero de DTE Enviados</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="SiiDte:DTE" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Documento Tributario Electronico</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre SetDTE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

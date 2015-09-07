@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Esquema para tipos de datos generales.
+Fecha Actualizacion:  25/05/07 15:00
+
+Se incorporan dos nuevos Tipos de datos :
+FechaType		:  Fecha entre 2000-01-01 y 2050-12-31
+FechaHoraType :  FechaType + hora entre 00:00 y 23:59
+ImpAdicDTEType: elimina codigo 29 para DTE
+
+Fecha Actualizacion:  30/05/2011 12:00
+
+Se incorpora restricción en DineroPorcentajeType para que sea dato de largo 1
+
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="DOCType">
+		<xs:annotation>
+			<xs:documentation>Todos los tipos de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica de Venta de Bienes y Servicios No afectos o Exento de IVA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Factura de Compra Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Guia de Despacho Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Nota de Debito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Nota de Credito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="110"/>
+			<xs:enumeration value="111"/>
+			<xs:enumeration value="112"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DTEType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica de Venta de Bienes y Servicios No afectos o Exento de IVA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Factura de Compra Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Guia de Despacho Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Nota de Debito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Nota de Credito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DTEFacturasType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica de Venta de Bienes y Servicios No afectos o Exento de IVA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Factura de Compra Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="43">
+				<xs:annotation>
+					<xs:documentation>Liquidacion actura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RUTType">
+		<xs:annotation>
+			<xs:documentation>Rol Unico Tributario (99..99-X)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="3"/>
+			<xs:pattern value="[0-9]+-([0-9]|K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MntImpType">
+		<xs:annotation>
+			<xs:documentation>Monto de Impuesto - 18 digitos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValorType">
+		<xs:annotation>
+			<xs:documentation>Monto de 18 digitos - Positivo o Negativo</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FolioType">
+		<xs:annotation>
+			<xs:documentation>Folio de DTE - 10 digitos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FolioRType">
+		<xs:annotation>
+			<xs:documentation>Folio de Referencia - 18 digitos (incluye el cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="18"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+		<!-- Referencia a Documentos con Folio alfanumericos
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+-->
+	</xs:simpleType>
+	<xs:simpleType name="Dec16_2Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 16 Digitos de Cuerpo y 2 Decimales </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0.01"/>
+			<xs:maxInclusive value="9999999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Dec14_4Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 14 Digitos de Cuerpo y 4 Decimales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="0.0001"/>
+			<xs:maxInclusive value="99999999999999.9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Dec8_4Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 8 Digitos de Cuerpo y 4 Decimales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="12"/>
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="0.0001"/>
+			<xs:maxInclusive value="99999999.9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Dec6_4Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 6 Digitos de Cuerpo y 4 Decimales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="10"/>
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="0.0001"/>
+			<xs:maxInclusive value="999999.9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PctType">
+		<xs:annotation>
+			<xs:documentation>Monto de Porcentaje ( 3 y 2)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0.01"/>
+			<xs:maxInclusive value="999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Dec12_6Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 12 Digitos de Cuerpo y 6 Decimales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="6"/>
+			<xs:minInclusive value="0.000001"/>
+			<xs:maxInclusive value="999999999999.999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImpAdicType">
+		<xs:annotation>
+			<xs:documentation>Tipo de Impuesto o Retencion Adicional</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>IVA Margen Comercializacion (Factura Venta del Contribuyente) [F29 - C039]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Total (Factura Compra del Contribuyente) [F29 - C039]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Parcial (Factura Compra del Contribuyente) [F29]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Faenamiento Carne [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Carne [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Harina [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 a) b) c)  Oro, Joyas, Pieles [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 a) Licores, Pisco, Destilados [F29 - C148]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 c) Vinos</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 c) Cervezas y Bebidas Alcoholicas [F29 - C150]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 d) y e) Bebidas Analcoholicas y Minerales [F29 - C146]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Diesel [F29 - C127]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Recuperación Impuesto Específico diesel Transportistas  Para transportistas de carga
+ Art 2° Ley N°19.764/2001</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Legumbres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Silvestres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Ganado</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Madera</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Trigo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Gasolina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Arroz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Hidrobiologicas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Chatarra</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido PPA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Opcional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Construccion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 e) h) i) l)  1ra Venta (Alfombras, C. Rodantes, Caviar, Armas) [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 j)  1ra Venta (Pirotecnia) [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="301"/>
+			<xs:enumeration value="321"/>
+			<xs:enumeration value="331"/>
+			<xs:enumeration value="341"/>
+			<xs:enumeration value="361"/>
+			<xs:enumeration value="371"/>
+			<xs:enumeration value="481"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImpAdicDTEType">
+		<xs:annotation>
+			<xs:documentation>Tipo de Impuesto o Retencion Adicional de los DTE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>IVA Margen Comercializacion (Factura Venta del Contribuyente) [F29 - C039]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Total (Factura Compra del Contribuyente) [F29 - C039]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Parcial (Factura Compra del Contribuyente) [F29]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Faenamiento Carne [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Carne [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Harina [F29 - C042]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 a) b) c)  Oro, Joyas, Pieles [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 a) Licores, Pisco, Destilados [F29 - C148]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 c) Vinos</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 c) Cervezas y Bebidas Alcoholicas [F29 - C150]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 d) y e) Bebidas Analcoholicas y Minerales [F29 - C146]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Diesel [F29 - C127]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Legumbres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Silvestres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Ganado</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Madera</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Trigo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Gasolina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Arroz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Hidrobiologicas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Chatarra</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido PPA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Opcional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Construccion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 e) h) i) l)  1ra Venta (Alfombras, C. Rodantes, Caviar, Armas) [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Impuesto Adicional Productos Art. 37 j)  1ra Venta (Pirotecnia) [F29 - C113]</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="301"/>
+			<xs:enumeration value="321"/>
+			<xs:enumeration value="331"/>
+			<xs:enumeration value="341"/>
+			<xs:enumeration value="361"/>
+			<xs:enumeration value="371"/>
+			<xs:enumeration value="481"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MontoType">
+		<xs:annotation>
+			<xs:documentation>Monto de 18 digitos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documento</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica No Afecta o Exenta</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Factura de Compra Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Guia de Despacho Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="61"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MailType">
+		<xs:annotation>
+			<xs:documentation>Dirección email</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DineroPorcentajeType">
+		<xs:annotation>
+			<xs:documentation>Unidad en que se expresa el Valor</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="%">
+				<xs:annotation>
+					<xs:documentation>El valor se Expresa como Porcentaje</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="$">
+				<xs:annotation>
+					<xs:documentation>El Valor se Expresa en Pesos</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NroResolType">
+		<xs:annotation>
+			<xs:documentation>Número de Resolución</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RznSocLargaType">
+		<xs:annotation>
+			<xs:documentation>Razón Social (max 100)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RznSocCortaType">
+		<xs:annotation>
+			<xs:documentation>Razón Social (max 40)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DireccSoloDTEType">
+		<xs:annotation>
+			<xs:documentation>Dirección (maz 60)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DireccType">
+		<xs:annotation>
+			<xs:documentation>Dirección (max 80)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ComunaType">
+		<xs:annotation>
+			<xs:documentation>Comuna</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CiudadType">
+		<xs:annotation>
+			<xs:documentation>Ciudad</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FonoType">
+		<xs:annotation>
+			<xs:documentation>Fono</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NombreType">
+		<xs:annotation>
+			<xs:documentation>Nombre</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LIQType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Liquidaciones </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="43"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EXPType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Facturas de  Exportacion</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="110"/>
+			<xs:enumeration value="111"/>
+			<xs:enumeration value="112"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MedioPagoType">
+		<xs:annotation>
+			<xs:documentation>Medios de Pago</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CH">
+				<xs:annotation>
+					<xs:documentation>Cheque</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LT">
+				<xs:annotation>
+					<xs:documentation>Letra</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EF">
+				<xs:annotation>
+					<xs:documentation>Efectivo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PE">
+				<xs:annotation>
+					<xs:documentation>Pago a Cuenta Corriente</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TC">
+				<xs:annotation>
+					<xs:documentation>Tarjeta de Credito</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CF">
+				<xs:annotation>
+					<xs:documentation>Cheque a Fecha</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OT">
+				<xs:annotation>
+					<xs:documentation>Otro</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="version" type="xs:decimal" fixed="1.0"/>
+	<xs:simpleType name="TipMonType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Moneda de Aduana</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+			<xs:enumeration value="BOLIVAR"/>
+			<xs:enumeration value="BOLIVIANO"/>
+			<xs:enumeration value="CHELIN"/>
+			<xs:enumeration value="CORONA DIN"/>
+			<xs:enumeration value="CORONA NOR"/>
+			<xs:enumeration value="CORONA SC"/>
+			<xs:enumeration value="CRUZEIRO REAL"/>
+			<xs:enumeration value="DIRHAM"/>
+			<xs:enumeration value="DOLAR AUST"/>
+			<xs:enumeration value="DOLAR CAN"/>
+			<xs:enumeration value="DOLAR HK"/>
+			<xs:enumeration value="DOLAR NZ"/>
+			<xs:enumeration value="DOLAR SIN"/>
+			<xs:enumeration value="DOLAR TAI"/>
+			<xs:enumeration value="DOLAR USA"/>
+			<xs:enumeration value="DRACMA"/>
+			<xs:enumeration value="ESCUDO"/>
+			<xs:enumeration value="EURO"/>
+			<xs:enumeration value="FLORIN"/>
+			<xs:enumeration value="FRANCO BEL"/>
+			<xs:enumeration value="FRANCO FR"/>
+			<xs:enumeration value="FRANCO SZ"/>
+			<xs:enumeration value="GUARANI"/>
+			<xs:enumeration value="LIBRA EST"/>
+			<xs:enumeration value="LIRA"/>
+			<xs:enumeration value="MARCO AL"/>
+			<xs:enumeration value="MARCO FIN"/>
+			<xs:enumeration value="NUEVO SOL"/>
+			<xs:enumeration value="OTRAS MONEDAS"/>
+			<xs:enumeration value="PESETA"/>
+			<xs:enumeration value="PESO"/>
+			<xs:enumeration value="PESO CL"/>
+			<xs:enumeration value="PESO COL"/>
+			<xs:enumeration value="PESO MEX"/>
+			<xs:enumeration value="PESO URUG"/>
+			<xs:enumeration value="RAND"/>
+			<xs:enumeration value="RENMINBI"/>
+			<xs:enumeration value="RUPIA"/>
+			<xs:enumeration value="SUCRE"/>
+			<xs:enumeration value="YEN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FechaType">
+		<xs:annotation>
+			<xs:documentation> Fecha entre 2000-01-01 y 2050-12-31</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:minInclusive value="2000-01-01"/>
+			<xs:maxInclusive value="2050-12-31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FechaHoraType" final="restriction">
+		<xs:annotation>
+			<xs:documentation> FechaType + hora entre 00:00 y 23:59;  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime">
+			<xs:minInclusive value="2000-01-01T00:00:00" fixed="true"/>
+			<xs:maxInclusive value="2050-12-31T23:59:59"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
