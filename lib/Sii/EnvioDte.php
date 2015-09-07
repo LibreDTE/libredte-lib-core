@@ -307,8 +307,8 @@ class EnvioDte
     {
         if (!$this->xml)
             return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schema/dte/EnvioDTE_v10.xsd';
-        return @$this->xml->schemaValidate($xsd);
+        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/EnvioDTE_v10.xsd';
+        return $this->xml->schemaValidate($xsd);
     }
 
     /**
