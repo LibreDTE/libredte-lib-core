@@ -39,6 +39,7 @@ class EnvioDte
     private $caratula; ///< arreglo con la caratula del envío
     private $xml_data; ///< String con el documento XML
     private $xml; ///< Objeto XML que representa el EnvioDTE
+    private $arreglo; ///< Arreglo con los datos del XML
 
     /**
      * Método que agrega un DTE al listado que se enviará
@@ -190,7 +191,17 @@ class EnvioDte
         $this->xml_data = $xml_data;
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
+        $this->toArray();
         return $this->xml;
+    }
+
+    public function toArray()
+    {
+        if (!$this->xml)
+            return false;
+        if (!$this->arreglo)
+            $this->arreglo = $this->xml->toArray();
+        return $this->arreglo;
     }
 
     /**
@@ -201,15 +212,49 @@ class EnvioDte
      */
     public function getCaratula()
     {
-        if (!$this->xml)
-            return false;
-        $Caratula = $this->xml->getElementsByTagName('Caratula')->item(0);
-        if (!$Caratula)
-            return false;
-        $XML = new \sasco\LibreDTE\XML();
-        $XML->loadXML($Caratula->C14N());
-        $array = $XML->toArray();
-        return isset($array['Caratula']) ? $array['Caratula'] : false;
+        return isset($this->arreglo['EnvioDTE']['SetDTE']['Caratula']) ? $this->arreglo['EnvioDTE']['SetDTE']['Caratula'] : false;
+    }
+
+    /**
+     * Método que entrega el ID de SetDTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getID()
+    {
+        return isset($this->arreglo['EnvioDTE']['SetDTE']['@attributes']['ID']) ? $this->arreglo['EnvioDTE']['SetDTE']['@attributes']['ID'] : false;
+    }
+
+    /**
+     * Método que entrega el DigestValue de la firma del envío
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getDigest()
+    {
+        return isset($this->arreglo['EnvioDTE']['Signature']['SignedInfo']['Reference']['DigestValue']) ? $this->arreglo['EnvioDTE']['Signature']['SignedInfo']['Reference']['DigestValue'] : false;
+    }
+
+    /**
+     * Método que entrega el rut del emisor del envío
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getEmisor()
+    {
+        $Caratula = $this->getCaratula();
+        return $Caratula ? $Caratula['RutEmisor'] : false;
+    }
+
+    /**
+     * Método que entrega el rut del receptor del envío
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getReceptor()
+    {
+        $Caratula = $this->getCaratula();
+        return $Caratula ? $Caratula['RutReceptor'] : false;
     }
 
     /**
