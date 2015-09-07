@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-03
+ * @version 2015-09-07
  */
 class Dte
 {
@@ -65,7 +65,7 @@ class Dte
      * Método que carga el DTE ya armado desde un archivo XML
      * @param xml String con los datos completos del XML del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-07
      */
     private function loadXML($xml)
     {
@@ -74,7 +74,7 @@ class Dte
             $this->xml->loadXML($xml);
             $this->tipo = $this->xml->getElementsByTagName('TipoDTE')->item(0)->nodeValue;
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
-            $this->folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
+            $this->folio = $this->xml->getElementsByTagName('Folio')->item(0)->nodeValue;
             $this->id = 'T'.$this->tipo.'F'.$this->folio;
         }
     }
@@ -118,15 +118,22 @@ class Dte
     }
 
     /**
-     * Método que entrega el arreglo con los datos normalizados que se usaron
-     * para crear el DTE, siempre y cuando se haya creado con datos de un
-     * arreglo
-     * @return Arreglo con datos normalizados del DTE
+     * Método que entrega el arreglo con los datos del DTE.
+     * Si el DTE fue creado a partir de un arreglo serán los datos normalizados,
+     * en cambio si se creó a partir de un XML serán todos los nodos del
+     * documento sin cambios.
+     * @return Arreglo con datos del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-07
      */
     public function getDatos()
     {
+        if (!$this->datos) {
+            $datos = $this->xml->toArray();
+            if (!isset($datos['DTE'][$this->tipo_general]))
+                return false;
+            $this->datos = $datos['DTE'][$this->tipo_general];
+        }
         return $this->datos;
     }
 

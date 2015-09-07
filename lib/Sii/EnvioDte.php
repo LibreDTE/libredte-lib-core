@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un DTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-02
+ * @version 2015-09-07
  */
 class EnvioDte
 {
@@ -37,6 +37,8 @@ class EnvioDte
         'DTE_max' => 2000,
     ]; ///< Configuración/reglas para el documento XML
     private $caratula; ///< arreglo con la caratula del envío
+    private $xml_data; ///< String con el documento XML
+    private $xml; ///< Objeto XML que representa el EnvioDTE
 
     /**
      * Método que agrega un DTE al listado que se enviará
@@ -59,20 +61,21 @@ class EnvioDte
      * @param Firma Objeto con la firma electrónica
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-04
+     * @version 2015-09-07
      */
     public function enviar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
     {
         // generar XML que se enviará
-        $xml = $this->generar($caratula, $Firma);
-        if (!$xml)
+        if (!$this->xml_data)
+            $this->xml_data = $this->generar($caratula, $Firma);
+        if (!$this->xml_data)
             return false;
         // solicitar token
         $token = Autenticacion::getToken($Firma);
         if (!$token)
             return false;
         // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $xml, $token);
+        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $xml_data, $token);
         if ($result===false)
             return false;
         if (!is_numeric((string)$result->TRACKID))
@@ -86,10 +89,13 @@ class EnvioDte
      * @param Firma Objeto con la firma electrónica
      * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-07
      */
     public function generar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
     {
+        // si ya se había generado se entrega directamente
+        if ($this->xml_data)
+            return $this->xml_data;
         // si no hay DTEs para generar entregar falso
         if (!isset($this->dtes[0]))
             return false;
@@ -133,7 +139,8 @@ class EnvioDte
         foreach ($this->dtes as &$DTE)
             $DTEs[] = trim(str_replace('<?xml version="1.0" encoding="ISO-8859-1"?>', '', $DTE->saveXML()));
         // firmar XML del envío y entregar
-        return $Firma->signXML(str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio), '#SetDoc', 'SetDTE', true);
+        $this->xml_data = $Firma->signXML(str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio), '#SetDoc', 'SetDTE', true);
+        return $this->xml_data;
     }
 
     /**
@@ -158,6 +165,73 @@ class EnvioDte
             ];
         }
         return $SubTotDTE;
+    }
+
+    /**
+     * Método que entrega el string XML del EnvioDte
+     * @return String con XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function saveXML()
+    {
+        return $this->xml_data ? $this->xml_data : false;
+    }
+
+    /**
+     * Método que carga un XML de EnvioDte y asigna el objeto XML correspondiente
+     * para poder obtener los datos del envío
+     * @return Objeto XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function loadXML($xml_data)
+    {
+        $this->xml_data = $xml_data;
+        $this->xml = new \sasco\LibreDTE\XML();
+        $this->xml->loadXML($this->xml_data);
+        return $this->xml;
+    }
+
+    /**
+     * Método que entrega un arreglo con los datos de la carátula del envío
+     * @return Arreglo con datos de carátula
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getCaratula()
+    {
+        if (!$this->xml)
+            return false;
+        $Caratula = $this->xml->getElementsByTagName('Caratula')->item(0);
+        if (!$Caratula)
+            return false;
+        $XML = new \sasco\LibreDTE\XML();
+        $XML->loadXML($Caratula->C14N());
+        $array = $XML->toArray();
+        return isset($array['Caratula']) ? $array['Caratula'] : false;
+    }
+
+    /**
+     * Método que entrega el arreglo con los objetos DTE del envío
+     * @return Arreglo de objetos DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getDocumentos()
+    {
+        // si no hay documentos se deben crear
+        if (!$this->dtes) {
+            // si no hay XML no se pueden crear los documentos
+            if (!$this->xml)
+                return false;
+            // crear documentos a partir del XML
+            $DTEs = $this->xml->getElementsByTagName('DTE');
+            foreach ($DTEs as $nodo_dte) {
+                $this->dtes[] = new Dte($nodo_dte->C14N(), false); // cargar DTE sin normalizar
+            }
+        }
+        return $this->dtes;
     }
 
 }
