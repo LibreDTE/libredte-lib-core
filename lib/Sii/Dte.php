@@ -190,22 +190,64 @@ class Dte
      * Método que entrega rut del emisor del DTE
      * @return RUT del emiro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-07
      */
     public function getEmisor()
     {
-        return $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Emisor/RUTEmisor')->item(0)->nodeValue;
+        $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Emisor/RUTEmisor')->item(0);
+        if ($nodo)
+            return $nodo->nodeValue;
+        if (!$this->getDatos())
+            return false;
+        return $this->datos['Encabezado']['Emisor']['RUTEmisor'];
     }
 
     /**
      * Método que entrega rut del receptor del DTE
      * @return RUT del emiro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-07
      */
     public function getReceptor()
     {
-        return $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue;
+        $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0);
+        if ($nodo)
+            return $nodo->nodeValue;
+        if (!$this->getDatos())
+            return false;
+        return $this->datos['Encabezado']['Receptor']['RUTRecep'];
+    }
+
+    /**
+     * Método que entrega fecha de emisión del DTE
+     * @return Fecha de emisión en formato AAAA-MM-DD
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getFechaEmision()
+    {
+        $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0);
+        if ($nodo)
+            return $nodo->nodeValue;
+        if (!$this->getDatos())
+            return false;
+        return $this->datos['Encabezado']['IdDoc']['FchEmis'];
+    }
+
+    /**
+     * Método que entrega el monto total del DTE
+     * @return Monto total del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getMontoTotal()
+    {
+        $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0);
+        if ($nodo)
+            return $nodo->nodeValue;
+        if (!$this->getDatos())
+            return false;
+        return $this->datos['Encabezado']['Totales']['MntTotal'];
     }
 
     /**
