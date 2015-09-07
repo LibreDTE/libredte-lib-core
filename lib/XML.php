@@ -23,6 +23,10 @@
 
 namespace sasco\LibreDTE;
 
+// errores de XML se almacenarán internamente y no serán procesados por PHP
+// se deberán recuperar con: libxml_get_errors()
+libxml_use_internal_errors(true);
+
 /**
  * Clase para trabajar con XMLs
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
