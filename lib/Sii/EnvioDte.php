@@ -279,4 +279,59 @@ class EnvioDte
         return $this->dtes;
     }
 
+    /**
+     * Método que determina el estado de validación sobre el envío
+     * @param datos Arreglo con datos para hacer las validaciones
+     * @return Código del estado de la validación
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function getEstadoValidacion(array $datos = null)
+    {
+        if (!$this->schemaValidate())
+            return 1;
+        if (!$this->checkFirma())
+            return 2;
+        if ($datos and $this->getReceptor()!=$datos['RutReceptor'])
+            return 3;
+        return 0;
+    }
+
+    /**
+     * Método que valida el schema del EnvioDTE
+     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function schemaValidate()
+    {
+        if (!$this->xml)
+            return null;
+        $xsd = dirname(dirname(dirname(__FILE__))).'/schema/dte/EnvioDTE_v10.xsd';
+        return @$this->xml->schemaValidate($xsd);
+    }
+
+    /**
+     * Método que indica si la firma del documento es o no válida
+     * @return =true si la firma del documento del envío es válida, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function checkFirma()
+    {
+        if (!$this->xml)
+            return null;
+        // listado de firmas del XML
+        $Signatures = $this->xml->documentElement->getElementsByTagName('Signature');
+        // verificar firma de SetDTE
+        $SetDTE = $this->xml->documentElement->getElementsByTagName('SetDTE')->item(0)->C14N();
+        $SignedInfo = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignedInfo')->item(0);
+        $DigestValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('DigestValue')->item(0)->nodeValue;
+        $SignatureValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
+        $X509Certificate = $Signatures->item($Signatures->length-1)->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
+        $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
+        return $valid and $DigestValue===base64_encode(sha1($SetDTE, true));
+    }
+
 }
