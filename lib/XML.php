@@ -162,4 +162,76 @@ class XML extends \DomDocument
         return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($string) : $string;
     }
 
+    /**
+     * Método que convierte el XML a un arreglo
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function toArray(\DOMElement $dom = null, array &$array = null, $arregloNodos = false)
+    {
+        // determinar valores de parámetros
+        if (!$dom)
+            $dom = $this->documentElement;
+        if ($array===null)
+            $array = [$dom->tagName => null];
+        // agregar atributos del nodo
+        if ($dom->hasAttributes()) {
+            $array[$dom->tagName]['@attributes'] = [];
+            foreach ($dom->attributes as $attribute) {
+                $array[$dom->tagName]['@attributes'][$attribute->name] = $attribute->value;
+            }
+        }
+        // agregar nodos hijos
+        if ($dom->hasChildNodes()) {
+            foreach($dom->childNodes as $child) {
+                if ($child instanceof \DOMText) {
+                    $textContent = trim($child->textContent);
+                    if ($textContent!="") {
+                        if ($dom->childNodes->length==1) {
+                            $array[$dom->tagName] = $textContent;
+                        } else
+                            $array[$dom->tagName]['@value'] = $textContent;
+                    }
+                }
+                else if ($child instanceof \DOMElement) {
+                    $nodos_gemelos = $this->countTwins($dom, $child->tagName);
+                    if ($nodos_gemelos==1) {
+                        if ($arregloNodos)
+                            $this->toArray($child, $array);
+                        else
+                            $this->toArray($child, $array[$dom->tagName]);
+                    }
+                    // crear arreglo con nodos hijos que tienen el mismo nombre de tag
+                    else {
+                        if (!isset($array[$dom->tagName][$child->tagName]))
+                            $array[$dom->tagName][$child->tagName] = [];
+                        $siguiente = count($array[$dom->tagName][$child->tagName]);
+                        $array[$dom->tagName][$child->tagName][$siguiente] = [];
+                        $this->toArray($child, $array[$dom->tagName][$child->tagName][$siguiente], true);
+                    }
+                }
+            }
+        }
+        // entregar arreglo
+        return $array;
+    }
+
+    /**
+     * Método que cuenta los nodos con el mismo nombre hijos deun DOMElement
+     * No sirve usar: $dom->getElementsByTagName($tagName)->length ya que esto
+     * entrega todos los nodos con el nombre, sean hijos, nietos, etc.
+     * @return Cantidad de nodos hijos con el mismo nombre en el DOMElement
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    private function countTwins(\DOMElement $dom, $tagName)
+    {
+        $twins = 0;
+        foreach ($dom->childNodes as $child) {
+            if ($child instanceof \DOMElement and $child->tagName==$tagName)
+                $twins++;
+        }
+        return $twins;
+    }
+
 }
