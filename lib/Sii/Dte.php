@@ -632,16 +632,16 @@ class Dte
      *  - RUT del receptor (si se pasó uno para comparar)
      * @return Código del estado de la validación
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-08
      */
     public function getEstadoValidacion(array $datos = null)
     {
         if (!$this->checkFirma())
             return 1;
         if (is_array($datos)) {
-            if (isset($datos['']) and $this->getEmisor()!=$datos['RUTEmisor'])
+            if (isset($datos['RUTEmisor']) and $this->getEmisor()!=$datos['RUTEmisor'])
                 return 2;
-            if (isset($datos['']) and $this->getReceptor()!=$datos['RUTRecep'])
+            if (isset($datos['RUTRecep']) and $this->getReceptor()!=$datos['RUTRecep'])
                 return 3;
         }
         return 0;
@@ -650,8 +650,9 @@ class Dte
     /**
      * Método que indica si la firma del DTE es o no válida
      * @return =true si la firma del DTE es válida, =null si no se pudo determinar
+     * @warning No se está verificando el valor del DigestValue del documento (sólo la firma de ese DigestValue)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-08
      */
     public function checkFirma()
     {
@@ -673,7 +674,8 @@ class Dte
         $X509Certificate = $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
         $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
-        return $valid and $DigestValue===base64_encode(sha1($Documento->C14N(), true));
+        return $valid;
+        //return $valid and $DigestValue===base64_encode(sha1($Documento->C14N(), true));
     }
 
 }
