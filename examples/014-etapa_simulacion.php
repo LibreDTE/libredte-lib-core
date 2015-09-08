@@ -619,10 +619,13 @@ foreach ($documentos as $documento) {
     $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
         die('No fue posible timbrar el documento '.$DTE->getID());
-    $DTE->firmar($Firma);
+    if (!$DTE->firmar($Firma))
+        die('No fue posible firmar el documento '.$DTE->getID());
     $EnvioDTE->agregar($DTE);
 }
 
 // enviar dtes y mostrar resultado del envío: track id o bien =false si hubo error
-$track_id = $EnvioDTE->enviar($caratula, $Firma);
+$EnvioDTE->setCaratula($caratula);
+$EnvioDTE->setFirma($Firma);
+$track_id = $EnvioDTE->enviar();
 var_dump($track_id);

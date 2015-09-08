@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 version Inicial
+			     25-10-2005 17:00 Se agrega campo "Clase"
+			     27-12-2005 12:00 Se agrega en TipoLCE el valor 6 para Compra y Venta
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:element name="LceCal">
+		<xs:annotation>
+			<xs:documentation>Certificado Autorizacion de Libros, generado por el SII</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoCal">
+					<xs:annotation>
+						<xs:documentation>Documento de Cal</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RutDistribuidor" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT Distribuidor</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TipoCertificado">
+								<xs:annotation>
+									<xs:documentation>Tipo Certificado. C = Certificacion, P=Produccion</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="C">
+											<xs:annotation>
+												<xs:documentation>Certificación. 
+       Se utiliza para efectuar las pruebas de archivos</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="P">
+											<xs:annotation>
+												<xs:documentation>Producción.
+ Lo entrega el SII, una vez que se hayan efectuado las pruebas respectivas</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Clase">
+								<xs:annotation>
+									<xs:documentation>1:Contribuyente, 2:Holding, 3:Empresa de Software.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation>Contribuyente</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="2">
+											<xs:annotation>
+												<xs:documentation>Holding</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="3">
+											<xs:annotation>
+												<xs:documentation>Empresa Software</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="TipoLCE">
+								<xs:annotation>
+									<xs:documentation>Tipo del Libro Contable. </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:positiveInteger">
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation>Contable. Incluye, Diario, Mayor, Balance,  Inventarios y Balance </xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="2">
+											<xs:annotation>
+												<xs:documentation>Remuneraciones</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="3">
+											<xs:annotation>
+												<xs:documentation>Honorarios</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="4">
+											<xs:annotation>
+												<xs:documentation>Registro de Existencias</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="5">
+											<xs:annotation>
+												<xs:documentation>Activo Fijo</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="6">
+											<xs:annotation>
+												<xs:documentation>Compra y Venta</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FchEmision" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Fecha de Emision del CAL(AAAA-MM-DD)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="PeriodoVigencia" type="xs:gYear">
+								<xs:annotation>
+									<xs:documentation>En caso que Clase = 3 corresponde al año en que es valido hacer envios con este CAL, de lo contrario es año de inicio para realizar envios. ( Formato AAAA)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora de la Firma </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

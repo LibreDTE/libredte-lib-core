@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SiiTypes_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<!-- 
+Fecha ultima actualización : 10-03-05
+       -->
+	<xs:element name="RespuestaDTE">
+		<xs:annotation>
+			<xs:documentation>Envio de Respuesta a la Recepcion de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Resultado">
+					<xs:annotation>
+						<xs:documentation>Informacion de Resultado de los Procesos de Recepcion de Envios y Documentos</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Informacion de Identificacion del Envio de Resultados</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutResponde">
+											<xs:annotation>
+												<xs:documentation>RUT que Genera la Respuesta (RUT Receptor de los DTE)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="SiiDte:RUTType"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RutRecibe" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT al que se le envia la Respuesta (RUT Emisor de los DTE)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IdRespuesta">
+											<xs:annotation>
+												<xs:documentation>Numero Unico de Identificacion de la Respuesta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NroDetalles">
+											<xs:annotation>
+												<xs:documentation>Numero de Envios  en Seccion de Recepcion o Numero de DTE en Seccion de Resultados</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NmbContacto" type="SiiDte:NombreType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Persona de Contacto para aclarar dudas</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FonoContacto" type="SiiDte:FonoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Telefono de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MailContacto" type="SiiDte:MailType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Correo Electronico de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstFirmaResp" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de Respuesta</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="RecepcionEnvio" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Resultados de la Recepcion de Envios de Documentos</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="NmbEnvio">
+												<xs:annotation>
+													<xs:documentation>Nombre del Archivo de Envio</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FchRecep" type="xs:dateTime">
+												<xs:annotation>
+													<xs:documentation>Fecha y Hora de Recepcion del Envio</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="CodEnvio">
+												<xs:annotation>
+													<xs:documentation>Numero Unico (Generado por el Receptor) Para Identificar el Envio</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:positiveInteger">
+														<xs:totalDigits value="10"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="EnvioDTEID">
+												<xs:annotation>
+													<xs:documentation>Valor del Atributo ID del Tag EnvioDTE del Envio</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="Digest" type="xs:base64Binary" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Campo DigestValue de la Firma Digital del Envio</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="RutEmisor" type="SiiDte:RUTType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>RUT Emisor Informado en la Caratula del Envio</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="RutReceptor" type="SiiDte:RUTType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>RUT Receptor Informado en la Caratula del Envio</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="EstadoRecepEnv">
+												<xs:annotation>
+													<xs:documentation>Estado de Recepcion del Envio</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:nonNegativeInteger">
+														<xs:totalDigits value="2"/>
+														<xs:enumeration value="0">
+															<xs:annotation>
+																<xs:documentation>Envio Recibido Conforme</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="1">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - Error de Schema</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="2">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - Error de Firma</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="3">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - RUT Receptor No Corresponde</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="90">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - Archivo Repetido</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="91">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - Archivo Ilegible</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="99">
+															<xs:annotation>
+																<xs:documentation>Envio Rechazado - Otros</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="RecepEnvGlosa">
+												<xs:annotation>
+													<xs:documentation>Informacion Adicional Para el Estado de Recepcion</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="256"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NroDTE" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Numero de Documentos Incluidos en el Envio que se Informan como Recibidos/No Recibidos</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:positiveInteger">
+														<xs:totalDigits value="4"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="RecepcionDTE" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation>Resultados de Recepcion de los Documentos Incluidos en el Envio</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="TipoDTE" type="SiiDte:DTEType">
+															<xs:annotation>
+																<xs:documentation>Tipo de DTE</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="Folio" type="SiiDte:FolioType">
+															<xs:annotation>
+																<xs:documentation>Folio del DTE</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="FchEmis" type="xs:date">
+															<xs:annotation>
+																<xs:documentation>Fecha Emision Contable del DTE (AAAA-MM-DD)</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="RUTEmisor" type="SiiDte:RUTType">
+															<xs:annotation>
+																<xs:documentation>RUT Emisor del DTE</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="RUTRecep" type="SiiDte:RUTType">
+															<xs:annotation>
+																<xs:documentation>RUT Receptor del DTE</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="MntTotal" type="SiiDte:MontoType">
+															<xs:annotation>
+																<xs:documentation>Monto Total del DTE</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+														<xs:element name="EstadoRecepDTE">
+															<xs:annotation>
+																<xs:documentation>Estado de Recepcion del DTE</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:nonNegativeInteger">
+																	<xs:totalDigits value="2"/>
+																	<xs:enumeration value="0">
+																		<xs:annotation>
+																			<xs:documentation>DTE Recibido OK</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																	<xs:enumeration value="1">
+																		<xs:annotation>
+																			<xs:documentation>DTE No Recibido - Error de Firma</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																	<xs:enumeration value="2">
+																		<xs:annotation>
+																			<xs:documentation>DTE No Recibido - Error en RUT Emisor</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																	<xs:enumeration value="3">
+																		<xs:annotation>
+																			<xs:documentation>DTE No Recibido - Error en RUT Receptor</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																	<xs:enumeration value="4">
+																		<xs:annotation>
+																			<xs:documentation>DTE No Recibido - DTE Repetido</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																	<xs:enumeration value="99">
+																		<xs:annotation>
+																			<xs:documentation>DTE No Recibido - Otros</xs:documentation>
+																		</xs:annotation>
+																	</xs:enumeration>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="RecepDTEGlosa">
+															<xs:annotation>
+																<xs:documentation>Informacion Adicional para el Estado de Recepcion del DTE</xs:documentation>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:maxLength value="256"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="ResultadoDTE" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Resultados de la Aprobacion Comercial de Documentos</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="TipoDTE" type="SiiDte:DTEType">
+												<xs:annotation>
+													<xs:documentation>Tipo de DTE</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="Folio" type="SiiDte:FolioType">
+												<xs:annotation>
+													<xs:documentation>Folio del DTE</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="FchEmis" type="xs:date">
+												<xs:annotation>
+													<xs:documentation>Fecha Emision Contable del DTE (AAAA-MM-DD)</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="RUTEmisor" type="SiiDte:RUTType">
+												<xs:annotation>
+													<xs:documentation>RUT Emisor del DTE</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="RUTRecep" type="SiiDte:RUTType">
+												<xs:annotation>
+													<xs:documentation>RUT Receptor del DTE</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="MntTotal" type="SiiDte:MontoType">
+												<xs:annotation>
+													<xs:documentation>Monto Total del DTE</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="CodEnvio">
+												<xs:annotation>
+													<xs:documentation>Codigo de Identificacion del Envio en que se Recibio el DTE</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:positiveInteger">
+														<xs:totalDigits value="10"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="EstadoDTE">
+												<xs:annotation>
+													<xs:documentation>Estado de Aprobacion Comercial del DTE</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:nonNegativeInteger">
+														<xs:totalDigits value="2"/>
+														<xs:enumeration value="0">
+															<xs:annotation>
+																<xs:documentation>DTE Aceptado OK</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="1">
+															<xs:annotation>
+																<xs:documentation>DTE Aceptado con Discrepancias</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="2">
+															<xs:annotation>
+																<xs:documentation>DTE Rechazado</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="EstadoDTEGlosa">
+												<xs:annotation>
+													<xs:documentation>Informacion Adicional para el Estado de Aprobacion del DTE</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="256"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="CodRchDsc" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Codigo del Motivo de Rechazo o Discrepancia</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:negativeInteger">
+														<xs:totalDigits value="3"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre SetDTE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

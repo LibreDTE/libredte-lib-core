@@ -427,6 +427,8 @@ foreach ($set_pruebas as $documento) {
 }
 
 // enviar libro de ventas y mostrar resultado del envío: track id o bien =false si hubo error
-$LibroCompraVenta->generar($caratula, null, false); // generar XML sin firma y sin detalle
-$track_id = $LibroCompraVenta->enviar($caratula, $Firma); // enviar XML generado en línea anterior
+$LibroCompraVenta->setCaratula($caratula);
+$LibroCompraVenta->generar(false); // generar XML sin firma y sin detalle
+$LibroCompraVenta->setFirma($Firma);
+$track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anterior
 var_dump($track_id);

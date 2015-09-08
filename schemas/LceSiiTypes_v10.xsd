@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 
+                  07-09-2005 16:00 Se cambia "MontoType" con el largo de los decimales de los montos a 4.
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="RUTType">
+		<xs:annotation>
+			<xs:documentation>Rol Unico Tributario (99..99-X)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="3"/>
+			<xs:pattern value="[0-9]+-([0-9]|K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FolioType">
+		<xs:annotation>
+			<xs:documentation>Folio de DTE - 10 digitos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MontoType">
+		<xs:annotation>
+			<xs:documentation>Monto de 18 digitos y 4 decimales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImptoType">
+		<xs:annotation>
+			<xs:documentation>Impuestos Adicionales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>IVA Margen de Comercializacion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Total</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Parcial</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Faenamiento Carne</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Carne</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Harina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letras a, b, c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Ley 825/74 Letra a</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra d y e</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Diesel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Recuperacion Impuesto Especifico Diesel Transportistas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Legumbres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Silvestres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Ganado</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Madera</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Trigo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Gasolina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Arroz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Hidrobiologicas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Chatarra</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido PPA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Opcional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letras e, f, g y h</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letra j</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="version" type="xs:decimal" fixed="1.0"/>
+	<xs:simpleType name="MntImpType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (> cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PctType">
+		<xs:annotation>
+			<xs:documentation>Porcentaje (3 enteros y 2 decimales)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoctoType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="101"/>
+			<xs:enumeration value="102"/>
+			<xs:enumeration value="103"/>
+			<xs:enumeration value="104"/>
+			<xs:enumeration value="105"/>
+			<xs:enumeration value="106"/>
+			<xs:enumeration value="108"/>
+			<xs:enumeration value="109"/>
+			<xs:enumeration value="900"/>
+			<xs:enumeration value="901"/>
+			<xs:enumeration value="902"/>
+			<xs:enumeration value="903"/>
+			<xs:enumeration value="904"/>
+			<xs:enumeration value="905"/>
+			<xs:enumeration value="906"/>
+			<xs:enumeration value="907"/>
+			<xs:enumeration value="909"/>
+			<xs:enumeration value="910"/>
+			<xs:enumeration value="911"/>
+			<xs:enumeration value="914"/>
+			<xs:enumeration value="918"/>
+			<xs:enumeration value="919"/>
+			<xs:enumeration value="920"/>
+			<xs:enumeration value="921"/>
+			<xs:enumeration value="922"/>
+			<xs:enumeration value="110"/>
+			<xs:enumeration value="111"/>
+			<xs:enumeration value="112"/>
+			<xs:enumeration value="924"/>
+			<xs:enumeration value="500"/>
+			<xs:enumeration value="501"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValorType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (positivo o negativo)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Periodo">
+		<xs:annotation>
+			<xs:documentation>lapso de tiempo. En forma AAAA-MM hasta AAAA-MM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Inicial" type="xs:gYearMonth">
+				<xs:annotation>
+					<xs:documentation>Inicio del Periodo. En formato AAAA-MM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Final" type="xs:gYearMonth">
+				<xs:annotation>
+					<xs:documentation>Final del Periodo. Formato AAAA-MM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="MontoSinDecType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (mayor o igual a cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

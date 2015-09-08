@@ -37,6 +37,7 @@ class EnvioDte
         'DTE_max' => 2000,
     ]; ///< Configuración/reglas para el documento XML
     private $caratula; ///< arreglo con la caratula del envío
+    private $Firma; ///< objeto de la firma electrónica
     private $xml_data; ///< String con el documento XML
     private $xml; ///< Objeto XML que representa el EnvioDTE
     private $arreglo; ///< Arreglo con los datos del XML
@@ -57,54 +58,16 @@ class EnvioDte
     }
 
     /**
-     * Método que realiza el envío del sobre con el o los DTEs al SII
+     * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
-     * @param Firma Objeto con la firma electrónica
-     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-07
      */
-    public function enviar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
+    public function setCaratula(array $caratula)
     {
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar($caratula, $Firma);
-        if (!$this->xml_data)
-            return false;
-        // solicitar token
-        $token = Autenticacion::getToken($Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
-    }
-
-    /**
-     * Método que genera el XML para el envío del DTE al SII
-     * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
-     * @param Firma Objeto con la firma electrónica
-     * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function generar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        // si ya se había generado se entrega directamente
-        if ($this->xml_data)
-            return $this->xml_data;
-        // si no hay DTEs para generar entregar falso
-        if (!isset($this->dtes[0]))
-            return false;
-        // generar subtotales de DTE
         $SubTotDTE = $this->getSubTotDTE();
         if (isset($SubTotDTE[$this->config['SubTotDTE_max']]))
             return false;
-        // armar caratula
         $this->caratula = array_merge([
             '@attributes' => [
                 'version' => '1.0'
@@ -117,6 +80,63 @@ class EnvioDte
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
             'SubTotDTE' => $SubTotDTE,
         ], $caratula);
+        return true;
+    }
+
+    /**
+     * Método para asignar la caratula
+     * @param Firma Objeto con la firma electrónica
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
+    {
+        $this->Firma = $Firma;
+    }
+
+    /**
+     * Método que realiza el envío del sobre con el o los DTEs al SII
+     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function enviar()
+    {
+        // generar XML que se enviará
+        if (!$this->xml_data)
+            $this->xml_data = $this->generar();
+        if (!$this->xml_data)
+            return false;
+        // validar schema del documento antes de enviar
+        if (!$this->schemaValidate())
+            return false;
+        // solicitar token
+        $token = Autenticacion::getToken($this->Firma);
+        if (!$token)
+            return false;
+        // enviar DTE
+        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $this->xml_data, $token);
+        if ($result===false)
+            return false;
+        if (!is_numeric((string)$result->TRACKID))
+            return false;
+        return (int)(string)$result->TRACKID;
+    }
+
+    /**
+     * Método que genera el XML para el envío del DTE al SII
+     * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function generar()
+    {
+        // si ya se había generado se entrega directamente
+        if ($this->xml_data)
+            return $this->xml_data;
+        // si no hay DTEs para generar entregar falso
+        if (!isset($this->dtes[0]))
+            return false;
         // genear XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
             'EnvioDTE' => [
@@ -140,7 +160,8 @@ class EnvioDte
         foreach ($this->dtes as &$DTE)
             $DTEs[] = trim(str_replace('<?xml version="1.0" encoding="ISO-8859-1"?>', '', $DTE->saveXML()));
         // firmar XML del envío y entregar
-        $this->xml_data = $Firma->signXML(str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio), '#SetDoc', 'SetDTE', true);
+        $xml = str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio);
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#SetDoc', 'SetDTE', true) : $xml;
         return $this->xml_data;
     }
 
@@ -305,9 +326,11 @@ class EnvioDte
      */
     public function schemaValidate()
     {
-        if (!$this->xml)
+        if (!$this->xml_data)
             return null;
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/EnvioDTE_v10.xsd';
+        $this->xml = new \sasco\LibreDTE\XML();
+        $this->xml->loadXML($this->xml_data);
         return $this->xml->schemaValidate($xsd);
     }
 

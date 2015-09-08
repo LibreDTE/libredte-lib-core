@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version  01-08-2005 17:00 version inicial
+	Version  22-08-2005 09:00 Se corrige error en campo "RutFirmanteDistribuidor"
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:include schemaLocation="LceCal_v10.xsd"/>
+	<xs:element name="LceCoCertif">
+		<xs:annotation>
+			<xs:documentation>Comprobante de Certificacion</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoCoCertif">
+					<xs:annotation>
+						<xs:documentation>Documento de Comprobante de Certificacion</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT Contribuyente de los LCE</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FchEmision" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Fecha de Emision del Comprobante de Certificacion (AAAA-MM-DD)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="SiiLce:LceCal"/>
+							<xs:element name="RutFirmanteDistribuidor" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT autorizado por el Distribuidor a firmar este documento.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora de la Firma </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

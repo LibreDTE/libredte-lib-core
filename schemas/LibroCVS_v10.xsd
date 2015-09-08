@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--  Modificacion 31/10/2007 11:18 	 Restricciones a FchDoc (rango de validez 2000 al 2050)
+	       Modificación 08/01/2008   9:17     CdgSIISucur de 8 a 9 digitos
+	       Modificación 21/08/2008  15:08    FolioNotificacion de 18 a 10 digitos
+              Modificación 19/03/2010 12:10     Se agrega al impuesto (53) retenido a los suplementeros
+              Modificación 11/06/2010 10:05	 Se incrementa caracteres de NumId de 15 a 20 (receptor extranjero)
+              Modificación 30/07/10     15:00 	  Se limita a 30.000 documentos el máximo por envio o sobre (de 											   acuerdo a publicación)
+		Modificación 14/02/2011 10:50	 Se incorpora la Factura de Inicio (TpoDoc = 29)
+		Modificación 02/03/2011 12:40	 Se elimina limitacion a 30.000 documentos (detalles).
+ -->
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:import namespace="http://www.sii.cl/SiiLce" schemaLocation="LceCoCertif_v10.xsd"/>
+	<xs:element name="LibroCompraVenta">
+		<xs:annotation>
+			<xs:documentation>Informacion Electronica de Libros de Compra y Venta</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EnvioLibro">
+					<xs:annotation>
+						<xs:documentation>Identificacion, Resumen y Detalles del Libro Electronico</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutEmisorLibro" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT del Emisor del Libro Electronico</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutEnvia" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que Realiza el Envio del Libro Electronico</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="xs:gYearMonth">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico (AAAA-MM)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchResol" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha de Resolucion que Autoriza el Envio de Libros (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NroResol">
+											<xs:annotation>
+												<xs:documentation>Numero de Resolucion que Autoriza el Envio de Libros</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoOperacion">
+											<xs:annotation>
+												<xs:documentation>Tipo de Operacion Declarada en el Libro</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="COMPRA"/>
+													<xs:enumeration value="VENTA"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoLibro">
+											<xs:annotation>
+												<xs:documentation>Tipo de Libro de Compra o Venta Enviado</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="MENSUAL"/>
+													<xs:enumeration value="ESPECIAL"/>
+													<xs:enumeration value="RECTIFICA"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoEnvio">
+											<xs:annotation>
+												<xs:documentation>Tipo de Envio del Libro Electronico</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="5"/>
+													<xs:enumeration value="PARCIAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es un Envio Parcial del Libro y que Faltan Otros para Completar el Libro</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="FINAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es el Ultimo Envio Parcial. Con Esto se Completa el Libro.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="TOTAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es el Unico Envio que Compone el Libro</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="AJUSTE">
+														<xs:annotation>
+															<xs:documentation>Indica que es un Envio con Informacion para Corregir un Libro Previamente Enviado</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NroSegmento" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Correlativo del Segmento de Libro</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FolioNotificacion" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Folio de la Notificacion con que se Solicita el Libro Especial</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodAutRec" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Autorización de Rectificación</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ResumenSegmento" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Resumen del Segmento de Informacion Enviado</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TotalesSegmento" maxOccurs="40">
+											<xs:annotation>
+												<xs:documentation>Totales de Control, por Tipo de  Documento, Para el Segmento</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+														<xs:annotation>
+															<xs:documentation>Tipo de Documento</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TpoImp" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Impuesto Resumido (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="1"/>
+																<xs:enumeration value="1">
+																	<xs:annotation>
+																		<xs:documentation>IVA</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="2">
+																	<xs:annotation>
+																		<xs:documentation>Ley 18.211</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotDoc">
+														<xs:annotation>
+															<xs:documentation>Numero de Documentos del Tipo Incluidos en el Libro Electronico</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotAnulado" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Documentos Anulados </xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotOpExe" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones Exentas</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntExe" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Exentos</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntNeto" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Netos</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARec" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de Operaciones con IVA Recuperable (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntIVA" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos de IVA (LV) o IVA Recuperable (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpActivoFijo" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntActivoFijo" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Monto Neto de las Operaciones de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntIVAActivoFijo" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total del IVA de las Operaciones de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVANoRec" minOccurs="0" maxOccurs="5">
+														<xs:annotation>
+															<xs:documentation>Totales de IVA No Recuperable (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodIVANoRec">
+																	<xs:annotation>
+																		<xs:documentation>Codigo de IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:positiveInteger">
+																			<xs:totalDigits value="1"/>
+																			<xs:enumeration value="1">
+																				<xs:annotation>
+																					<xs:documentation>Compras destinadas a Generar Operaciones No Gravadas o Exentas</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="2">
+																				<xs:annotation>
+																					<xs:documentation>Facturas Registradas Fuera de Plazo</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="3">
+																				<xs:annotation>
+																					<xs:documentation>Gastos Rechazados</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="4">
+																				<xs:annotation>
+																					<xs:documentation>Entrega Gratuita</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="9">
+																				<xs:annotation>
+																					<xs:documentation>Otros</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotOpIVANoRec" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Numero de Operaciones con IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:integer">
+																			<xs:totalDigits value="10"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotMntIVANoRec" type="SiiDte:ValorType">
+																	<xs:annotation>
+																		<xs:documentation>Total de IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotOpIVAUsoComun" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA Uso Comun (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVAUsoComun" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Uso Comun (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVAFueraPlazo" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Fuera de Plazo (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVAPropio" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA Propio en Operaciones a Cuenta de Terceros (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVATerceros" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA a Cuenta de Terceros (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotLey18211" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Ley 18.211 (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOtrosImp" minOccurs="0" maxOccurs="20">
+														<xs:annotation>
+															<xs:documentation>Totales de Otros Impuestos </xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodImp" type="SiiDte:ImptoType">
+																	<xs:annotation>
+																		<xs:documentation>Codigo del Otro Impuesto</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntImp" type="SiiDte:ValorType">
+																	<xs:annotation>
+																		<xs:documentation>Monto del Otro Impuesto</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotImpSinCredito" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total  de Impuestos Sin Derecho a Credito (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARetTotal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA Retenido Total (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVARetTotal" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA Retenido Total (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARetParcial" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA Retenido Parcial (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVARetParcial" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA Retenido Parcial (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotCredEC" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Credito Empresa Constructora (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotDepEnvase" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de los Depositos por Envase (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotLiquidaciones" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Info. Elect. de Venta (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TotValComNeto" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor Neto Comisiones y Otros Cargos (LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotValComExe" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Val. Comis. y Otros Cargos no Afectos o Exentos )LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotValComIVA" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor IVA Comisiones y Otros Cargos   (LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotMntTotal" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Totales</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVANoRetenido" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA No Retenido (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVANoRetenido" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA No Retenido</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntNoFact" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total MOnto No Facturable (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Monto Periodo (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotPsjNac" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Venta Pasaje Nacional (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotPsjInt" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Venta Pasaje Internacional (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabPuros" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabacos - Puros (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabCigarrillos" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabacos - Cigarrillos (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabElaborado" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabacos - Elaborados (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ResumenPeriodo" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Resumen Para el Periodo Tributario</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TotalesPeriodo" maxOccurs="40">
+											<xs:annotation>
+												<xs:documentation>Totales de Control, por Tipo de  Documento, Para el Periodo Tributario</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+														<xs:annotation>
+															<xs:documentation>Tipo de Documento Resumido</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TpoImp" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Impuesto Resumido (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="1"/>
+																<xs:enumeration value="1">
+																	<xs:annotation>
+																		<xs:documentation>IVA</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="2">
+																	<xs:annotation>
+																		<xs:documentation>Ley 18.211</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotDoc">
+														<xs:annotation>
+															<xs:documentation>Numero de Documentos del Tipo Incluidos en el Libro Electronico</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:nonNegativeInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotAnulado" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Documentos Anulados </xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotOpExe" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones Exentas</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntExe" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Exentos</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntNeto" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Netos</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARec" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de Operaciones con IVA Recuperable (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntIVA" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos de IVA</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpActivoFijo" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones  de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotMntActivoFijo" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Monto Neto de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntIVAActivoFijo" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total del IVA de las Operaciones de Activo Fijo (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVANoRec" minOccurs="0" maxOccurs="5">
+														<xs:annotation>
+															<xs:documentation>Tabla de IVA No Recuperable (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodIVANoRec">
+																	<xs:annotation>
+																		<xs:documentation>Codigo de IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:positiveInteger">
+																			<xs:enumeration value="1"/>
+																			<xs:enumeration value="2"/>
+																			<xs:enumeration value="3"/>
+																			<xs:enumeration value="4"/>
+																			<xs:enumeration value="9">
+																				<xs:annotation>
+																					<xs:documentation>Otros</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotOpIVANoRec" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Numero de Operaciones de IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:positiveInteger">
+																			<xs:totalDigits value="10"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotMntIVANoRec" type="SiiDte:MontoType">
+																	<xs:annotation>
+																		<xs:documentation>Total de IVA No Recuperable</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotOpIVAUsoComun" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Opraciones con IVA Uso Comun (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVAUsoComun" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Uso Comun (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="FctProp" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Factor Proporcionalidad IVA (LC)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:decimal">
+																<xs:fractionDigits value="3"/>
+																<xs:totalDigits value="5"/>
+																<xs:maxInclusive value="99.999"/>
+																<xs:minInclusive value="00.001"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotCredIVAUsoComun" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Credito IVA Uso Comun (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVAFueraPlazo" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Fuera de Plazo (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVAPropio" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA Propio en Operaciones a Cuenta de Terceros (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotIVATerceros" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de IVA a Cuenta de Terceros (LV) </xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotLey18211" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Ley 18211</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOtrosImp" minOccurs="0" maxOccurs="20">
+														<xs:annotation>
+															<xs:documentation>Totales de Otros Impuestos </xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodImp" type="SiiDte:ImptoType">
+																	<xs:annotation>
+																		<xs:documentation>Codigo del Otro Impuesto</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntImp" type="SiiDte:ValorType">
+																	<xs:annotation>
+																		<xs:documentation>Monto Total del Otro Impuesto</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="FctImpAdic" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Factor Impuesto Adicional (LC)</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:decimal">
+																			<xs:totalDigits value="6"/>
+																			<xs:fractionDigits value="4"/>
+																			<xs:maxInclusive value="1.000"/>
+																			<xs:minInclusive value="0.001"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotCredImp" type="SiiDte:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Credito Impuesto (LC)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotImpSinCredito" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total  de Impuestos Sin Derecho a Credito (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARetTotal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA Retenido Total (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVARetTotal" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Retenido Total (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVARetParcial" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA Retenido Parcial (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVARetParcial" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA Retenido Parcial (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotCredEC" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Credito Empresa Constructore (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotDepEnvase" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Deposito Envase (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotLiquidaciones" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Info. Elect. de Venta (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TotValComNeto" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor Neto Comisiones y Otros Cargos (LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotValComExe" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Val. Comis. y Otros Cargos no Afectos o Exentos )LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotValComIVA" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor IVA Comisiones y Otros Cargos   (LV)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotMntTotal" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Total de los Montos Totales</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotOpIVANoRetenido" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Numero de Operaciones con IVA No Retenido (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotIVANoRetenido" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total IVA No Retenido</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntNoFact" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Monto No Facturable (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotMntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Monto Periodo (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotPsjNac" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Venta PasajeNacional (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotPsjInt" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Venta Pasaje Internacional (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabPuros" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabaco -Puros (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabCigarrillos" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabaco - Cigarrillos (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotTabElaborado" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Tabaco - Elaborado (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotImpVehiculo" type="SiiDte:MontoType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total Impuesto Vehiculos (LC)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Detalle" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Detalle de Documentos que Componen el Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+											<xs:annotation>
+												<xs:documentation>Tipo de Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Emisor" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica si NDébito o NCrédito afecta a una Factura de Compra</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="1"/>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Emitido por el Emisor del Libro de Compra</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="IndFactCompra" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica si NDébito o NCrédito afecta a una Factura de Compra</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="1"/>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Emitido por el Emisor del Libro de Compra</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NroDoc">
+											<xs:annotation>
+												<xs:documentation>Identificador o Folio del Documento.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Anulado" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica que el Estado del Documento es Anulado</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="A">
+														<xs:annotation>
+															<xs:documentation>Documento Anulado</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Operacion" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica si Agrega o Elimina Informacion</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Agrega</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Elimina</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TpoImp" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tipo de Impuesto Usado en la Operacion (LC)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="1"/>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>IVA</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Ley 18.211</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TasaImp" type="SiiDte:PctType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tasa de impuesto usada en la operación</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NumInt" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Numero Interno</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="IndServicio" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica si Corresponde a un Servicio (LV)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Facturacion de Servicios Periodicos Domiciliarios</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Facturacion de Otros Servicios Periodicos</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation>Facturacion de Servicios No Periodicos</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="IndSinCosto" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indicador de Venta sin Costo (LV)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Entrega Gratuita</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FchDoc" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fecha del Documento (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:date">
+													<xs:minInclusive value="2000-01-01"/>
+													<xs:maxInclusive value="2050-12-31"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CdgSIISucur" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Sucursal Entregado por el SII</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="9"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RUTDoc" type="SiiDte:RUTType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>RUT del Contraparte en la Operación Comercial</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RznSoc" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Razon Social de la Contraparte del Documento</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Extranjero" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Receptor Extranjero (LV)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="NumId" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Num. Identif. Receptor Extranjero (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Nacionalidad" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Nacionalidad Recptor Extranjero (LV)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:minLength value="1"/>
+																<xs:maxLength value="3"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="TpoDocRef" type="SiiDte:DoctoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tipo de Documento de Referencia (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FolioDocRef" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Folio del Documento Referenciado (LV)</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MntExe" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Exento o no Gravado del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntNeto" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Neto del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntIVA" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto de IVA del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntActivoFijo" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Neto Activo Fijo (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntIVAActivoFijo" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA de la Operacion de Activo Fijo (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVANoRec" minOccurs="0" maxOccurs="5">
+											<xs:annotation>
+												<xs:documentation>Tabla de IVA No Recuperable (LC)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodIVANoRec">
+														<xs:annotation>
+															<xs:documentation>Codigo de IVA No Recuperable</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:enumeration value="1">
+																	<xs:annotation>
+																		<xs:documentation>Compras Destinadas a Generar Operaciones No Gravadas o Exentas</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="2">
+																	<xs:annotation>
+																		<xs:documentation>Facturas de Proveedores Registradas Fuera de Plazo</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="3">
+																	<xs:annotation>
+																		<xs:documentation>Gastos Rechazados</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="4">
+																	<xs:annotation>
+																		<xs:documentation>Entrega Gratuita</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="9">
+																	<xs:annotation>
+																		<xs:documentation>Otros</xs:documentation>
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="MntIVANoRec" type="SiiDte:MontoType">
+														<xs:annotation>
+															<xs:documentation>Monto de IVA No Recuperable</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="IVAUsoComun" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA de Compras Destinadas en Parte a Ventas Exentas y Afectas (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVAFueraPlazo" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Solo Nota de Credito Fuera de Plazo (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVAPropio" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA Propio en Operaciones a Cuenta de Terceros (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVATerceros" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA por Cuenta de Terceros (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Ley18211" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Ley 18211 </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="OtrosImp" minOccurs="0" maxOccurs="20">
+											<xs:annotation>
+												<xs:documentation>Otros Impuestos o Recargos</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodImp" type="SiiDte:ImptoType">
+														<xs:annotation>
+															<xs:documentation>Codigo del Impuesto o Recargo</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TasaImp" type="SiiDte:PctType">
+														<xs:annotation>
+															<xs:documentation>Tasa del Impuesto o Recargo</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="MntImp" type="SiiDte:ValorType">
+														<xs:annotation>
+															<xs:documentation>Monto del Impuesto o Recargo. En el LC Registrar Solo el Monto Con Derecho a Credito</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="MntSinCred" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto del Impuesto Sin Derecho a Credito (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVARetTotal" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA Retenido Total (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVARetParcial" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA Retenido Parcial (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CredEC" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Credito 65% Empresas Constructoras (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="DepEnvase" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Deposito por Envase (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Liquidaciones" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Info. Elect. de Venta (LV)</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="RutEmisor" type="SiiDte:RUTType">
+														<xs:annotation>
+															<xs:documentation>Rut Emisor (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ValComNeto" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Valor Neto Comisiones y Otros Cargos (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ValComExe" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Val. Comis. y Otros Cargos no Afectos o Exentos )LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ValComIVA" type="SiiDte:ValorType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Valor IVA Comisiones y Otros Cargos   (LV)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="MntTotal" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Total del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IVANoRetenido" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>IVA No Retenido</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntNoFact" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation> Monto No Facturable (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total Monto Periodo (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PsjNac" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Venta Pasaje Nacional (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PsjInt" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Venta Pasaje Internacional (LV)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TabPuros" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tabacos - Puros (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TabCigarrillos" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tabacos - Cigarrillos (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TabElaborado" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tabacos - Elaborados (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ImpVehiculo" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Impuesto a Vehiculo (LC)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice minOccurs="0">
+								<xs:element ref="SiiLce:LceCal"/>
+								<xs:element ref="SiiLce:LceCoCertif"/>
+							</xs:choice>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre SetDTE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="RUTType">
+		<xs:annotation>
+			<xs:documentation>RUT 99999999-X</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="3"/>
+			<xs:pattern value="[0-9]+-([0-9]|K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MontoType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (mayor o igual a cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValorType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (positivo o negativo)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MntImpType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (> cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImptoType">
+		<xs:annotation>
+			<xs:documentation>Impuestos Adicionales</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="14">
+				<xs:annotation>
+					<xs:documentation>IVA Margen de Comercializacion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="15">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Total</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="16">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Parcial</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="17">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Faenamiento Carne</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="18">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Carne</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="19">
+				<xs:annotation>
+					<xs:documentation>IVA Anticipado Harina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letras a, b, c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Ley 825/74 Letra a</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra c</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 42 Letra d y e</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Diesel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation>Recuperacion Impuesto Especifico Diesel Transportistas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="30">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Legumbres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="31">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Silvestres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="32">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Ganado</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Madera</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Trigo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="35">
+				<xs:annotation>
+					<xs:documentation>Impuesto Especifico Gasolina</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Arroz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="37">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Hidrobiologicas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="38">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Chatarra</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido PPA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="40">
+				<xs:annotation>
+					<xs:documentation>IVA Retenido Opcional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="44">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letras e, f, g y h</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="45">
+				<xs:annotation>
+					<xs:documentation>Impuesto Art. 37 Letra j</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53">
+				<xs:annotation>
+					<xs:documentation>Impuesto retenido a los suplementeros Art. 74 N°5</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="301"/>
+			<xs:enumeration value="321"/>
+			<xs:enumeration value="331"/>
+			<xs:enumeration value="341"/>
+			<xs:enumeration value="361"/>
+			<xs:enumeration value="371"/>
+			<xs:enumeration value="481"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoctoType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="101"/>
+			<xs:enumeration value="102"/>
+			<xs:enumeration value="103"/>
+			<xs:enumeration value="104"/>
+			<xs:enumeration value="105"/>
+			<xs:enumeration value="106"/>
+			<xs:enumeration value="108"/>
+			<xs:enumeration value="109"/>
+			<xs:enumeration value="110"/>
+			<xs:enumeration value="111"/>
+			<xs:enumeration value="112"/>
+			<xs:enumeration value="175"/>
+			<xs:enumeration value="180"/>
+			<xs:enumeration value="185"/>
+			<xs:enumeration value="900"/>
+			<xs:enumeration value="901"/>
+			<xs:enumeration value="902"/>
+			<xs:enumeration value="903"/>
+			<xs:enumeration value="904"/>
+			<xs:enumeration value="905"/>
+			<xs:enumeration value="906"/>
+			<xs:enumeration value="907"/>
+			<xs:enumeration value="909"/>
+			<xs:enumeration value="910"/>
+			<xs:enumeration value="911"/>
+			<xs:enumeration value="914"/>
+			<xs:enumeration value="918"/>
+			<xs:enumeration value="919"/>
+			<xs:enumeration value="920"/>
+			<xs:enumeration value="921"/>
+			<xs:enumeration value="922"/>
+			<xs:enumeration value="924"/>
+			<xs:enumeration value="500"/>
+			<xs:enumeration value="501"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PctType">
+		<xs:annotation>
+			<xs:documentation>Porcentaje (3 enteros y 2 decimales)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

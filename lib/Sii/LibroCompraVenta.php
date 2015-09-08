@@ -26,13 +26,15 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un Libro de Compra o Venta
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-05
+ * @version 2015-09-07
  */
 class LibroCompraVenta
 {
 
     private $detalles = []; ///< Arreglos con el detalle de los DTEs que se reportarán
     private $xml_data; ///< String con el documento XML
+    private $caratula; ///< arreglo con la caratula del envío
+    private $Firma; ///< objeto de la firma electrónica
 
     /**
      * Método que agrega un detalle al listado que se enviará
@@ -116,50 +118,13 @@ class LibroCompraVenta
     }
 
     /**
-     * Método que realiza el envío del libro IECV al SII
-     * @param caratula Arreglo con datos de la carátula del libro de compra y venta
-     * @param Firma Objeto con la firma electrónica
-     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
+     * Método para asignar la caratula
+     * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-04
+     * @version 2015-09-07
      */
-    public function enviar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma)
+    public function setCaratula(array $caratula)
     {
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar($caratula, $Firma);
-        if (!$this->xml_data)
-            return false;
-        // solicitar token
-        $token = Autenticacion::getToken($Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisorLibro'], $this->xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
-    }
-
-    /**
-     * Método que genera el XML del libro IECV para el envío al SII
-     * @param caratula Arreglo con datos de la carátula del libro de compra y venta
-     * @param Firma Objeto con la firma electrónica
-     * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
-     * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
-     */
-    public function generar(array $caratula, \sasco\LibreDTE\FirmaElectronica $Firma = null, $incluirDetalle = true)
-    {
-        // si ya se había generado se entrega directamente
-        if ($this->xml_data)
-            return $this->xml_data;
-        // generar totales de DTE y sus montos
-        $TotalesPeriodo = $this->getTotalesPeriodo();
-        // armar caratula
         $this->caratula = array_merge([
             'RutEmisorLibro' => false,
             'RutEnvia' => false,
@@ -173,6 +138,63 @@ class LibroCompraVenta
         ], $caratula);
         if ($this->caratula['TipoEnvio']=='ESPECIAL')
             $this->caratula['FolioNotificacion'] = null;
+    }
+
+    /**
+     * Método para asignar la caratula
+     * @param Firma Objeto con la firma electrónica
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
+    {
+        $this->Firma = $Firma;
+    }
+
+    /**
+     * Método que realiza el envío del libro IECV al SII
+     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function enviar()
+    {
+        // generar XML que se enviará
+        if (!$this->xml_data)
+            $this->xml_data = $this->generar();
+        if (!$this->xml_data)
+            return false;
+        // validar schema del documento antes de enviar (sólo en producción, ya
+        // que en certificación el libro no se firma y daría error de schema)
+        if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION and !$this->schemaValidate())
+            return false;
+        // solicitar token
+        $token = Autenticacion::getToken($this->Firma);
+        if (!$token)
+            return false;
+        // enviar DTE
+        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisorLibro'], $this->xml_data, $token);
+        if ($result===false)
+            return false;
+        if (!is_numeric((string)$result->TRACKID))
+            return false;
+        return (int)(string)$result->TRACKID;
+    }
+
+    /**
+     * Método que genera el XML del libro IECV para el envío al SII
+     * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
+     * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function generar($incluirDetalle = true)
+    {
+        // si ya se había generado se entrega directamente
+        if ($this->xml_data)
+            return $this->xml_data;
+        // generar totales de DTE y sus montos
+        $TotalesPeriodo = $this->getTotalesPeriodo();
         // generar XML del envío
         $ID = 'LIBRO_'.$this->caratula['TipoOperacion'].'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
@@ -197,7 +219,7 @@ class LibroCompraVenta
             ]
         ])->saveXML();
         // firmar XML del envío y entregar
-        $this->xml_data = $Firma ? $Firma->signXML($xmlEnvio, '#'.$ID, 'EnvioLibro', true) : $xmlEnvio;
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$ID, 'EnvioLibro', true) : $xmlEnvio;
         return $this->xml_data;
     }
 
@@ -269,6 +291,22 @@ class LibroCompraVenta
             }
         }
         return $totales;
+    }
+
+    /**
+     * Método que valida el XML que se genera para la respuesta del envío
+     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-07
+     */
+    public function schemaValidate()
+    {
+        if (!$this->xml_data)
+            return null;
+        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/LibroCVS_v10.xsd';
+        $this->xml = new \sasco\LibreDTE\XML();
+        $this->xml->loadXML($this->xml_data);
+        return $this->xml->schemaValidate($xsd);
     }
 
 }

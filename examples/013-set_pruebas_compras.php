@@ -35,7 +35,7 @@
  *  - Número resolución y folio notificación deben ser: 102006
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-06
+ * @version 2015-09-07
  */
 
 // respuesta en texto plano
@@ -152,6 +152,8 @@ foreach ($detalles as $detalle) {
 }
 
 // enviar libro de compras y mostrar resultado del envío: track id o bien =false si hubo error
-$LibroCompraVenta->generar($caratula, null); // generar XML sin firma
-$track_id = $LibroCompraVenta->enviar($caratula, $Firma); // enviar XML generado en línea anterior
+$LibroCompraVenta->setCaratula($caratula);
+$LibroCompraVenta->generar(); // generar XML sin firma
+$LibroCompraVenta->setFirma($Firma);
+$track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anterior
 var_dump($track_id);

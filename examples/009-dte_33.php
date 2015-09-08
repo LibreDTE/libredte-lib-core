@@ -32,7 +32,7 @@
  * Relleno AFECTO               53            1473
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-02
+ * @version 2015-09-07
  */
 
 // respuesta en texto plano
@@ -86,7 +86,7 @@ $caratula = [
 
 // Objetos de Firma y Folios
 $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios.xml'));
+$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/33.xml'));
 
 // generar XML del DTE timbrado y firmado
 $DTE = new \sasco\LibreDTE\Sii\Dte($factura);
@@ -99,7 +99,9 @@ $DTE->firmar($Firma);
 // EnvioDTE::enviar() que envía el XML que se genera, ver ejemplo 010-set_pruebas.php
 $EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
 $EnvioDTE->agregar($DTE);
-$xml = $EnvioDTE->generar($caratula, $Firma);
+$EnvioDTE->setCaratula($caratula);
+$EnvioDTE->setFirma($Firma);
+$xml = $EnvioDTE->generar();
 
 // solicitar token
 $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<LibroCompraVenta xmlns="http://www.sii.cl/SiiDte" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sii.cl/SiiDte LibroCVS_v10.xsd" version="1.0">
+  <EnvioLibro ID="P_2015-09">
+    <Caratula>
+      <RutEmisorLibro>76192083-9</RutEmisorLibro>
+      <RutEnvia>16261063-5</RutEnvia>
+      <PeriodoTributario>2015-09</PeriodoTributario>
+      <FchResol>2014-12-05</FchResol>
+      <NroResol>0</NroResol>
+      <TipoOperacion>VENTA</TipoOperacion>
+      <TipoLibro>ESPECIAL</TipoLibro>
+      <TipoEnvio>TOTAL</TipoEnvio>
+      <FolioNotificacion>1</FolioNotificacion>
+    </Caratula>
+    <ResumenPeriodo>
+      <TotalesPeriodo>
+        <TpoDoc>33</TpoDoc>
+        <TotDoc>4</TotDoc>
+        <TotMntExe>48239</TotMntExe>
+        <TotMntNeto>1440818</TotMntNeto>
+        <TotMntIVA>273756</TotMntIVA>
+        <TotMntTotal>1762813</TotMntTotal>
+      </TotalesPeriodo>
+      <TotalesPeriodo>
+        <TpoDoc>61</TpoDoc>
+        <TotDoc>3</TotDoc>
+        <TotMntExe>34705</TotMntExe>
+        <TotMntNeto>751288</TotMntNeto>
+        <TotMntIVA>142745</TotMntIVA>
+        <TotMntTotal>928738</TotMntTotal>
+      </TotalesPeriodo>
+      <TotalesPeriodo>
+        <TpoDoc>56</TpoDoc>
+        <TotDoc>1</TotDoc>
+        <TotMntExe>0</TotMntExe>
+        <TotMntNeto>0</TotMntNeto>
+        <TotMntIVA>0</TotMntIVA>
+        <TotMntTotal>0</TotMntTotal>
+      </TotalesPeriodo>
+    </ResumenPeriodo>
+    <Detalle>
+      <TpoDoc>33</TpoDoc>
+      <NroDoc>21</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntNeto>191598</MntNeto>
+      <MntIVA>36404</MntIVA>
+      <MntTotal>228002</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>33</TpoDoc>
+      <NroDoc>22</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntNeto>585926</MntNeto>
+      <MntIVA>111326</MntIVA>
+      <MntTotal>697252</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>33</TpoDoc>
+      <NroDoc>23</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntExe>34705</MntExe>
+      <MntNeto>489763</MntNeto>
+      <MntIVA>93055</MntIVA>
+      <MntTotal>617523</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>33</TpoDoc>
+      <NroDoc>24</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntExe>13534</MntExe>
+      <MntNeto>173531</MntNeto>
+      <MntIVA>32971</MntIVA>
+      <MntTotal>220036</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>61</TpoDoc>
+      <NroDoc>13</NroDoc>
+      <TasaImp>0</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntIVA>0</MntIVA>
+      <MntTotal>0</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>61</TpoDoc>
+      <NroDoc>14</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntNeto>261525</MntNeto>
+      <MntIVA>49690</MntIVA>
+      <MntTotal>311215</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>61</TpoDoc>
+      <NroDoc>15</NroDoc>
+      <TasaImp>19</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntExe>34705</MntExe>
+      <MntNeto>489763</MntNeto>
+      <MntIVA>93055</MntIVA>
+      <MntTotal>617523</MntTotal>
+    </Detalle>
+    <Detalle>
+      <TpoDoc>56</TpoDoc>
+      <NroDoc>5</NroDoc>
+      <TasaImp>0</TasaImp>
+      <FchDoc>2015-09-04</FchDoc>
+      <RUTDoc>99511740-1</RUTDoc>
+      <RznSoc>Colectron S.A.</RznSoc>
+      <MntIVA>0</MntIVA>
+      <MntTotal>0</MntTotal>
+    </Detalle>
+    <TmstFirma>2015-09-04T21:40:54</TmstFirma>
+  </EnvioLibro>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#EnvioLibro"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>yP3PduCju/3OE6d9F1jYVrJvUOo=</DigestValue></Reference></SignedInfo><SignatureValue>pQVmtLqJw+cGLpzsm0HCF7rhmwfmF/7U+a9fczB0999dX+eq40BB1plXhIZvh6Vq
+uvrbGBXO/EDWZ9qFo2d1OezIKMCXmIzbm94iIPKh3Tl6BQajFizLc9zpEmDwR2HX
+xgZeJDL7IvePvo2OFDbR47rJwwPOrrpoOgXy/qTplIIEe/jn8vDWnOrb2iASBU37
+YJeEVU7jY7LslUeO9lM2za8Fhwg1QmBVos8OZPwXl1sLP6pO9IeSge/0FagK/FG7
+YhIPzZ/r9+Dvgkz9FljFidnL0+f1qqYEl59tLIupBcBd0vlvjwzYighSt4GjV1n2
+y/Q2maJJtUthXdonmeOnvw==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>p6XBrf+G+jJ9QxVhrOgu4R7OcRdJ1ZQAIKT99a6DE0OMS8Ft95ZNhR/275ecEhdn
+pWF61qeC77iy4ovKlEuIhtH7S/gRII6MQYRsA0o/+ujA804s9cn+eExDb4xQVwHD
+baYJ1WFeDJKA/YSYNMcHEahHOtbKsTxVO8cuzm4IBC/pQy6rCpRzaZ3relluTsgl
+p2gtlMHpj8+PMPLt806DzSWgZEFD6LwuCoq4EwI66yjD2r8U5KzuIeVbfbZbqoD0
+Wk6IDTGsKjPTSBAX6zDfSPzPQLAYLWgQl/box/72bWBNXA6p7tPM6VFMgpHNJwGO
+4Psgwmw7B9hlmgERJPurAQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIGVDCCBTygAwIBAgIDAQjsMA0GCSqGSIb3DQEBBQUAMIGmMQswCQYDVQQGEwJD
+TDEYMBYGA1UEChMPQWNlcHRhLmNvbSBTLkEuMUgwRgYDVQQDEz9BY2VwdGEuY29t
+IEF1dG9yaWRhZCBDZXJ0aWZpY2Fkb3JhIENsYXNlIDMgUGVyc29uYSBOYXR1cmFs
+IC0gVjIxHjAcBgkqhkiG9w0BCQEWD2luZm9AYWNlcHRhLmNvbTETMBEGA1UEBRMK
+OTY5MTkwNTAtODAeFw0xNDEyMDUxOTE2MjNaFw0xNzEyMDUxOTE2MjNaMIGKMQsw
+CQYDVQQGEwJDTDEYMBYGA1UEDBMPUEVSU09OQSBOQVRVUkFMMSswKQYDVQQDEyJF
+U1RFQkFOIEVEVUFSRE8gREUgTEEgRlVFTlRFIFJVQklPMR8wHQYJKoZIhvcNAQkB
+FhBlc3RlYmFuQGRlbGFmLmNsMRMwEQYDVQQFEwoxNjI2MTA2My01MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp6XBrf+G+jJ9QxVhrOgu4R7OcRdJ1ZQA
+IKT99a6DE0OMS8Ft95ZNhR/275ecEhdnpWF61qeC77iy4ovKlEuIhtH7S/gRII6M
+QYRsA0o/+ujA804s9cn+eExDb4xQVwHDbaYJ1WFeDJKA/YSYNMcHEahHOtbKsTxV
+O8cuzm4IBC/pQy6rCpRzaZ3relluTsglp2gtlMHpj8+PMPLt806DzSWgZEFD6Lwu
+Coq4EwI66yjD2r8U5KzuIeVbfbZbqoD0Wk6IDTGsKjPTSBAX6zDfSPzPQLAYLWgQ
+l/box/72bWBNXA6p7tPM6VFMgpHNJwGO4Psgwmw7B9hlmgERJPurAQIDAQABo4IC
+ozCCAp8wHwYDVR0jBBgwFoAUQN/o9lYQ+XQanoTMIgjQNq0pJlEwHQYDVR0OBBYE
+FP4scGG+6z3mZSNFt94dWVf2c73/MAsGA1UdDwQEAwIE8DAdBgNVHSUEFjAUBggr
+BgEFBQcDAgYIKwYBBQUHAwQwEQYJYIZIAYb4QgEBBAQDAgWgMIHyBgNVHSAEgeow
+gecwgeQGCisGAQQBtWuHaQIwgdUwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuYWNl
+cHRhLmNvbS9DUFNWMjCBqQYIKwYBBQUHAgIwgZwwFhYPQWNlcHRhLmNvbSBTLkEu
+MAMCAQIagYFFbCB0aXR1bGFyIGhhIHNpZG8gdmFsaWRhZG8gZW4gZm9ybWEgcHJl
+c2VuY2lhbCwgcXVlZGFuZG8gaGFiaWxpdGFkbyBlbCBDZXJ0aWZpY2FkbyBwYXJh
+IHVzbyB0cmlidXRhcmlvLCBwYWdvcywgY29tZXJjaW8geSBvdHJvcy4wWgYDVR0S
+BFMwUaAYBggrBgEEAcEBAqAMFgo5NjkxOTA1MC04oCQGCCsGAQUFBwgDoBgwFgwK
+OTY5MTkwNTAtOAYIKwYBBAHBAQKBD2luZm9AYWNlcHRhLmNvbTBbBgNVHREEVDBS
+oBgGCCsGAQQBwQEBoAwWCjE2MjYxMDYzLTWgJAYIKwYBBQUHCAOgGDAWDAoxNjI2
+MTA2My01BggrBgEEAcEBAoEQZXN0ZWJhbkBkZWxhZi5jbDA7BggrBgEFBQcBAQQv
+MC0wKwYIKwYBBQUHMAGGH2h0dHA6Ly9vY3NwLmFjZXB0YS5jb20vQ2xhc2UzVjIw
+MwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2NybC5hY2VwdGEuY29tL0NsYXNlM1Yy
+LmNybDANBgkqhkiG9w0BAQUFAAOCAQEAmDnJeOtvBVPjo128ftwg/Jsd/ewzv+gC
+1QagwbuG+JAjyrLYnDz3HGD6Fy7KIrNwGUg2dznr/Zx1ZwKzFcEbsF+5Sd69d6AJ
+ta4+2ksgImLuCv/CA1rDIng9DsRs+UGhPIn100GCdoeU2vLl+OHRLJBwy4VSFmsf
+HHndbGQzjF0lQIA/bDx+138rDiLv93ojaKntEOslKpH7e7MPFVhZHciq+cKvhac4
+a4odAthRTikU7NKTE9ros//TAmzbEc0RULyoNolgRYbrGmjO1AzbU+pUF4dBu7I5
+w6VNp8lyk9Vb7C4PeNqHds7oQffv9Oa70kIG6xZtl3jgHaDFj1pgMw==</X509Certificate></X509Data></KeyInfo></Signature></LibroCompraVenta>
