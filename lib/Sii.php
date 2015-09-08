@@ -218,9 +218,9 @@ class Sii
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return Ambiente que se debe utilizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-07
      */
-    private static function getAmbiente($ambiente = null)
+    public static function getAmbiente($ambiente = null)
     {
         if ($ambiente===null) {
             if (defined('_LibreDTE_CERTIFICACION_'))
