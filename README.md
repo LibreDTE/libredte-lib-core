@@ -30,6 +30,10 @@ Funcionalidades implementadas
     - Nota de crédito electrónica (set de pruebas básico y set de pruebas factura exenta)
     - Libro de ventas electrónico (set de pruebas básico)
     - Libro de compras electrónico (set de pruebas de compras)
+- Etapa de intercambio con otros contribuyentes:
+    - Acuse de recibo
+    - Recibo de mercaderías y servicios prestados
+    - Resultado validación DTEs
 
 Instalación
 -----------
