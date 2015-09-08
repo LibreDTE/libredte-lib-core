@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Ultima modificación : 15-06-05 10:30 -->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SiiTypes_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="Recibo" type="SiiDte:ReciboDefType">
+		<xs:annotation>
+			<xs:documentation>Comprobante de Recepcion de Mercaderias o Servicios Prestados</xs:documentation>
+			<xs:documentation>Recibos de Recepcion de Mercaderias o Servicios Prestados</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ReciboDefType">
+		<xs:annotation>
+			<xs:documentation>Documento Tributario Electronico</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocumentoRecibo">
+				<xs:annotation>
+					<xs:documentation>Identificacion del Documento Recibido</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TipoDoc" type="SiiDte:DocType">
+							<xs:annotation>
+								<xs:documentation>Tipo de Documento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Folio" type="SiiDte:FolioType">
+							<xs:annotation>
+								<xs:documentation>Folio del Documento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FchEmis" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Fecha Emision Contable del Documento (AAAA-MM-DD)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="RUTEmisor" type="SiiDte:RUTType">
+							<xs:annotation>
+								<xs:documentation>RUT Emisor del Documento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="RUTRecep" type="SiiDte:RUTType">
+							<xs:annotation>
+								<xs:documentation>RUT Receptor del Documento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="MntTotal" type="SiiDte:MontoType">
+							<xs:annotation>
+								<xs:documentation>Monto Total del Documento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Recinto">
+							<xs:annotation>
+								<xs:documentation>Lugar donde se materializa la recepción conforme  </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="80"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="RutFirma" type="SiiDte:RUTType">
+							<xs:annotation>
+								<xs:documentation>RUT de quien Firma el Recibo</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Declaracion" fixed="El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4, y la letra c) del Art. 5 de la Ley 19.983, acredita que la entrega de mercaderias o servicio(s) prestado(s) ha(n) sido recibido(s).">
+							<xs:annotation>
+								<xs:documentation>Texto Ley 19.983, acredita la recepcion mercaderías o servicio.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="256"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="TmstFirmaRecibo" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Fecha y Hora de la Firma del Recibo</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ID" type="xs:ID" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature">
+				<xs:annotation>
+					<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+	</xs:complexType>
+</xs:schema>

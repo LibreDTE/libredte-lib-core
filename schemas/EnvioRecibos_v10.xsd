@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- El presente documento define el esquema XML que debe ser utilizado
+para acreditar la conformidad de la recepcion de la mercaderias o servicio (s) prestado(s),
+de acuerdo a la Ley 19.983.
+
+Ultima Modificación : 24-03-05 15:17
+ -->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Recibos_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="EnvioRecibos">
+		<xs:annotation>
+			<xs:documentation>Envio de Recibos de Recepcion de Mercaderias o Servicios Prestados </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SetRecibos">
+					<xs:annotation>
+						<xs:documentation>Conjunto de Recibos Enviados</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Resumen de Informacion Enviada</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutResponde" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que genera este Recibo (RUT Receptor del Documento)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutRecibe" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT al que se le envian los Recibos (RUT Emisor de los Documento)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NmbContacto" type="SiiDte:NombreType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Persona de Contacto para aclarar dudas</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FonoContacto" type="SiiDte:FonoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Telefono de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MailContacto" type="SiiDte:MailType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Correo Electronico de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstFirmaEnv" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de EnvioRecibo</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="SiiDte:Recibo" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Comprobante de Recepcion de Mercaderias o Servicios Prestados</xs:documentation>
+									<xs:documentation>Recibos de Recepcion de Mercaderias o Servicios Prestados</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre SetRecibo</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
