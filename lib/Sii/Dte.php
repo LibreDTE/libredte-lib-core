@@ -138,6 +138,19 @@ class Dte
     }
 
     /**
+     * Método que entrega los datos del DTE (tag Documento) como un string JSON
+     * @return String JSON "lindo" con los datos del documento
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-08
+     */
+    public function getJSON()
+    {
+        if (!$this->getDatos())
+            return false;
+        return json_encode($this->datos, JSON_PRETTY_PRINT);
+    }
+
+    /**
      * Método que entrega el ID del documento
      * @return String con el ID del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
@@ -248,6 +261,30 @@ class Dte
         if (!$this->getDatos())
             return false;
         return $this->datos['Encabezado']['Totales']['MntTotal'];
+    }
+
+    /**
+     * Método que entrega el string XML del tag TED
+     * @return String XML con tag TED
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-09
+     */
+    public function getTED()
+    {
+        /*$xml = new \sasco\LibreDTE\XML();
+        $xml->loadXML($this->xml->getElementsByTagName('TED')->item(0)->getElementsByTagName('DD')->item(0)->C14N());
+        $xml->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
+        $xml->documentElement->removeAttributeNS('http://www.sii.cl/SiiDte', '');
+        $FRMT = $this->xml->getElementsByTagName('TED')->item(0)->getElementsByTagName('FRMT')->item(0)->nodeValue;
+        $pub_key = '';
+        if (openssl_verify($xml->getFlattened('/'), base64_decode($FRMT), $pub_key, OPENSSL_ALGO_SHA1)!==1);
+            return false;*/
+        $xml = new \sasco\LibreDTE\XML();
+        $xml->loadXML($this->xml->getElementsByTagName('TED')->item(0)->C14N());
+        $xml->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
+        $xml->documentElement->removeAttributeNS('http://www.sii.cl/SiiDte', '');
+        $TED = $xml->getFlattened('/');
+        return mb_detect_encoding($TED, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($TED) : $TED;
     }
 
     /**
