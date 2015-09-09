@@ -393,12 +393,11 @@ foreach ($set_pruebas as $documento) {
     if (!$DTE->firmar($Firma))
         die('No fue posible firmar el documento '.$DTE->getID());
     $EnvioDTE->agregar($DTE);
-    //echo json_encode($DTE->getDatos(), JSON_PRETTY_PRINT);
 }
 
 // enviar dtes y mostrar resultado del envío: track id o bien =false si hubo error
-//echo $EnvioDTE->generar(),"\n\n";
 $EnvioDTE->setCaratula($caratula);
 $EnvioDTE->setFirma($Firma);
+//echo $EnvioDTE->generar(),"\n\n";
 $track_id = $EnvioDTE->enviar();
 var_dump($track_id);

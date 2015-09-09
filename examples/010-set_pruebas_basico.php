@@ -427,8 +427,8 @@ foreach ($set_pruebas as $documento) {
 }
 
 // enviar dtes y mostrar resultado del envío: track id o bien =false si hubo error
-//echo $EnvioDTE->generar(),"\n\n";
 $EnvioDTE->setCaratula($caratula);
 $EnvioDTE->setFirma($Firma);
+//echo $EnvioDTE->generar(),"\n\n";
 $track_id = $EnvioDTE->enviar();
 var_dump($track_id);
