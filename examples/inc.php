@@ -27,7 +27,7 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-19
+ * @version 2015-09-08
  */
 
 // activar todos los errores
@@ -36,6 +36,9 @@ error_reporting(E_ALL);
 
 // zona horaria
 date_default_timezone_set('America/Santiago');
+
+// incluir autocarga de composer
+include dirname(dirname(__FILE__)).'/vendor/autoload.php';
 
 // incluir archivos de la biblioteca
 $path = dirname(dirname(__FILE__)).'/lib';

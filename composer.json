@@ -20,7 +20,8 @@
         "php": "~5.5",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "ext-soap": "*"
+        "ext-soap": "*",
+        "tecnick.com/tcpdf": "6.0.096"
     },
     "autoload": {
         "psr-4": {"sasco\\LibreDTE\\": "lib/"}
