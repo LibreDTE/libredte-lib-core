@@ -725,7 +725,7 @@ class Dte
      */
     public function esCedible()
     {
-        return !in_array($this->getFolio(), $this->noCedibles);
+        return !in_array($this->getTipo(), $this->noCedibles);
     }
 
 }
