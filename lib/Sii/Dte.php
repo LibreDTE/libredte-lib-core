@@ -45,6 +45,8 @@ class Dte
         'Exportaciones' => [110, 111, 112],
     ]; ///< Tipos posibles de documentos tributarios electrónicos
 
+    private $noCedibles = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no son cedibles
+
     /**
      * Constructor de la clase DTE
      * @param datos Arreglo con los datos del DTE o el XML completo del DTE
@@ -713,6 +715,17 @@ class Dte
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid;
         //return $valid and $DigestValue===base64_encode(sha1($Documento->C14N(), true));
+    }
+
+    /**
+     * Método que indica si el documento es o no cedible
+     * @return =true si el documento es cedible
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-10
+     */
+    public function esCedible()
+    {
+        return !in_array($this->getFolio(), $this->noCedibles);
     }
 
 }
