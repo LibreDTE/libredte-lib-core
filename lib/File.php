@@ -146,7 +146,7 @@ class File
                 foreach ($Iterator as $f) {
                     if (!$f->isDir()) {
                         $path = $f->getPath().DIRECTORY_SEPARATOR.$f->getFilename();
-                        $zip->addFile($path, str_replace($filepath, '', $path));
+                        $zip->addFile($path, str_replace($filepath, '', $file.DIRECTORY_SEPARATOR.$path));
                     }
                 }
             }
