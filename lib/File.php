@@ -87,12 +87,14 @@ class File
     }
 
     /**
-     * Método que empaqueta y comprime archivos (uno o varios, o directorios)
+     * Método que empaqueta y comprime archivos (uno o varios, o directorios).
+     * Si se pide usar formato zip entonces se usará ZipArchive de PHP para
+     * comprimir
      * @param filepath Directorio (o archivo) que se desea comprimir
      * @param options Arreglo con opciones para comprmir (format, download, delete)
      * @todo Preparar datos si se pasa un arreglo
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-05-08
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
+     * @version 2015-09-10
      */
     public static function compress($file, $options = [])
     {
@@ -115,6 +117,9 @@ class File
         if (is_array($file)) {
             // TODO
         }
+        // si el archivo no se puede leer se entrega =false
+        if (!is_readable($file))
+            return false;
         // si es formato gz y es directorio se cambia a tgz
         if (is_dir($file)) {
             if ($options['format']=='gz') $options['format'] = 'tar.gz';
@@ -124,11 +129,35 @@ class File
         $filepath = $file;
         $dir = dirname($file);
         $file = basename($file);
+        $file_compressed = $file.'.'.$options['format'];
         // empaquetar/comprimir directorio/archivo
-        exec('cd '.$dir.' && '.str_replace(':in', $file, $options['commands'][$options['format']]));
+        if ($options['format']=='zip') {
+            // crear archivo zip
+            $zip = new \ZipArchive();
+            if ($zip->open($dir.DIRECTORY_SEPARATOR.$file.'.zip', \ZipArchive::CREATE)!==true)
+                return false;
+            // agregar un único archivo al zip
+            if (!is_dir($filepath)) {
+                $zip->addFile($filepath, $file);
+            }
+            // agregar directorio al zip
+            else if (is_dir($filepath)) {
+                $Iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filepath));
+                foreach ($Iterator as $f) {
+                    if (!$f->isDir()) {
+                        $path = $f->getPath().DIRECTORY_SEPARATOR.$f->getFilename();
+                        $zip->addFile($path, str_replace($filepath, '', $path));
+                    }
+                }
+            }
+            // escribir en el sistema de archivos y cerrar archivo
+            file_put_contents($dir.DIRECTORY_SEPARATOR.$file_compressed, $zip->getStream(md5($filepath)));
+            $zip->close();
+        } else {
+            exec('cd '.$dir.' && '.str_replace(':in', $file, $options['commands'][$options['format']]));
+        }
         // enviar archivo
         if ($options['download']) {
-            $file_compressed = $file.'.'.$options['format'];
             ob_clean();
             header ('Content-Disposition: attachment; filename='.$file_compressed);
             header ('Content-Type: '.self::mimetype($dir.DIRECTORY_SEPARATOR.$file_compressed));
