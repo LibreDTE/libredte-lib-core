@@ -61,7 +61,7 @@ class EnvioDte
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-11
      */
     public function setCaratula(array $caratula)
     {
@@ -73,7 +73,7 @@ class EnvioDte
                 'version' => '1.0'
             ],
             'RutEmisor' => $this->dtes[0]->getEmisor(),
-            'RutEnvia' => '',
+            'RutEnvia' => isset($this->Firma) ? $this->Firma->getID() : '',
             'RutReceptor' => $this->dtes[0]->getReceptor(),
             'FchResol' => '',
             'NroResol' => '',

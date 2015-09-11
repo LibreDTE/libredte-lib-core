@@ -126,7 +126,7 @@ class RespuestaEnvio
 
     /**
      * Método para asignar la caratula
-     * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
+     * @param caratula Arreglo con datos de la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-07
      */
