@@ -162,6 +162,19 @@ class Folios
     }
 
     /**
+     * Método que entrega el tipo de DTE para el cual se emitió el CAF
+     * @return Código de tipo de DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getTipo()
+    {
+        if (!$this->xml)
+            return false;
+        return (int)$this->xml->getElementsByTagName('TD')->item(0)->nodeValue;
+    }
+
+    /**
      * Método que indica si el CAF es de certificación o no
      * @return =true si los folios son del ambiente de certificación
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
