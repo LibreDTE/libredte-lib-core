@@ -62,7 +62,6 @@ $EnvioRecibos->setCaratula($caratula);
 $EnvioRecibos->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
 
 // procesar cada DTE
-$RecepcionDTE = [];
 foreach ($Documentos as $DTE) {
     $EnvioRecibos->agregar([
         'TipoDoc' => $DTE->getTipo(),
