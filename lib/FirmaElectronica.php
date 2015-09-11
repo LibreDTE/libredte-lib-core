@@ -27,13 +27,14 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-24
+ * @version 2015-09-11
  */
 class FirmaElectronica
 {
 
     private $config; ///< Configuración de la firma electrónica
     private $certs; ///< Certificados digitales de la firma
+    private $data; ///< Datos del certificado digial
 
     /**
      * Constructor para la clase: crea configuración y carga certificado digital
@@ -60,7 +61,7 @@ class FirmaElectronica
      *
      * @param config Configuración para la clase, si no se especifica se tratará de determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-11
      */
     public function __construct(array $config = [])
     {
@@ -91,6 +92,7 @@ class FirmaElectronica
         if ($this->config['data'] and openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
             $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
         }
+        $this->data = openssl_x509_parse($this->certs['cert']);
         // quitar datos del contenido del archivo de la firma
         unset($this->config['data']);
     }
@@ -127,6 +129,50 @@ class FirmaElectronica
             $cert .= '-----END CERTIFICATE-----'."\n";
         }
         return $cert;
+    }
+
+    /**
+     * Método que entrega el serialNumber del subject
+     * @return serialNumber del subject
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getID()
+    {
+        return $this->data['subject']['serialNumber'];
+    }
+
+    /**
+     * Método que entrega el CN del subject
+     * @return CN del subject
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getName()
+    {
+        return $this->data['subject']['CN'];
+    }
+
+    /**
+     * Método que entrega el emailAddress del subject
+     * @return emailAddress del subject
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getEmail()
+    {
+        return $this->data['subject']['emailAddress'];
+    }
+
+    /**
+     * Método que entrega los datos del certificado
+     * @return Arreglo con todo los datos del certificado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 
     /**
