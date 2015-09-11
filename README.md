@@ -11,9 +11,6 @@ que un desarrollador usando PHP pueda construir su aplicación, si se requiere
 de una base ya construída se recomienda revisar el framework y módulo antes
 mencionado.
 
-**Biblioteca en desarrollo**: se irán publicando en el repositorio
-funcionalidades a medida que se vayan completando y probando.
-
 Funcionalidades implementadas
 -----------------------------
 
@@ -22,8 +19,8 @@ Funcionalidades implementadas
 - Envío de archivo XML de DTE al SII.
 - Consulta del estado de envío de DTE a través de su Track ID.
 - Generación, y envío, de XML EnvioDTE firmado.
-- Generación de XML, timbraje y firma del DTE. Documentos de sets de pruebas
-  aceptados por el SII:
+- Generación de XML, timbraje y firma del DTE. Documentos de sets de pruebas y
+  etapa simulación aceptados por el SII:
     - Factura electrónica (set de pruebas básico)
     - Factura exenta electrónica (set de pruebas factura exenta)
     - Nota de débito electrónica (set de pruebas básico y set de pruebas factura exenta)
@@ -33,7 +30,8 @@ Funcionalidades implementadas
 - Etapa de intercambio con otros contribuyentes:
     - Acuse de recibo
     - Recibo de mercaderías y servicios prestados
-    - Resultado validación DTEs
+    - Resultado validación 
+- Generación de documentos en PDF, con muestras aceptadas por el SII.
 
 Instalación
 -----------
