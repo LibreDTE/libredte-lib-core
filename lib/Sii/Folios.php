@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para realizar operaciones con lo Folios autorizados por el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-31
+ * @version 2015-09-11
  */
 class Folios
 {
@@ -159,6 +159,17 @@ class Folios
         if (!$this->xml)
             return false;
         return $this->xml->getElementsByTagName('RSAPUBK')->item(0)->nodeValue;
+    }
+
+    /**
+     * Método que indica si el CAF es de certificación o no
+     * @return =true si los folios son del ambiente de certificación
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function getCertificacion()
+    {
+        return $this->getIDK() === 100;
     }
 
 }
