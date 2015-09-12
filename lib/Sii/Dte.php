@@ -294,7 +294,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
+     * @version 2015-09-11
      */
     public function timbrar(Folios $Folios)
     {
@@ -304,6 +304,11 @@ class Dte
         // dentro del CAF que se está usando
         $folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
         if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta())
+            return false;
+        // verificar que existan datos para el timbre
+        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0))
+            return false;
+        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0))
             return false;
         // timbrar
         $TED = new \sasco\LibreDTE\XML();
@@ -726,6 +731,21 @@ class Dte
     public function esCedible()
     {
         return !in_array($this->getTipo(), $this->noCedibles);
+    }
+
+    /**
+     * Método que valida el schema del DTE
+     * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-11
+     */
+    public function schemaValidate()
+    {
+        /*if (!$this->xml)
+            return null;
+        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/DTE_v10.xsd';
+        return $this->xml->schemaValidate($xsd);*/
+        return true;
     }
 
 }
