@@ -299,7 +299,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2015-09-12
      */
     private function agregarReceptor(array $receptor, $x = 10)
     {
@@ -316,10 +316,15 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Dirección', $x);
         $this->Texto(':', $x+22);
         $this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
-        if (!empty($receptor['Contacto'])) {
+        $contacto = [];
+        if (!empty($receptor['Contacto']))
+            $contacto[] = $receptor['Contacto'];
+        if (!empty($receptor['CorreoRecep']))
+            $contacto[] = $receptor['CorreoRecep'];
+        if (!empty($contacto)) {
             $this->Texto('Contacto', $x);
             $this->Texto(':', $x+22);
-            $this->MultiTexto($receptor['Contacto'], $x+26);
+            $this->MultiTexto(implode(' / ', $contacto), $x+26);
         }
     }
 
