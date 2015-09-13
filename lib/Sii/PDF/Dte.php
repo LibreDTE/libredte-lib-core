@@ -156,14 +156,15 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
+     * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-09-13
      */
-    private function agregarEmisor(array $emisor, $x = 10, $y = 10, $w = 75)
+    private function agregarEmisor(array $emisor, $x = 10, $y = 10, $w = 75, $w_img = 30)
     {
         // logo máximo 1/5 del tamaño del documento
         if (isset($this->logo)) {
-            $this->Image($this->logo, $x, $y, 0, 0, 'PNG', (isset($emisor['url'])?$emisor['url']:''), 'T');
+            $this->Image($this->logo, $x, $y, $w_img, 0, 'PNG', (isset($emisor['url'])?$emisor['url']:''), 'T');
             $x = $this->x+3;
         } else {
             $this->y = $y-2;
