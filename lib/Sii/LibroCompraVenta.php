@@ -121,7 +121,7 @@ class LibroCompraVenta
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-09-13
      */
     public function setCaratula(array $caratula)
     {
@@ -138,6 +138,18 @@ class LibroCompraVenta
         ], $caratula);
         if ($this->caratula['TipoEnvio']=='ESPECIAL')
             $this->caratula['FolioNotificacion'] = null;
+        $this->id = 'LIBRO_'.$this->caratula['TipoOperacion'].'_'.str_replace('-', '', $this->caratula['RutEmisorLibro']).'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
+    }
+
+    /**
+     * Método que entrega el ID del libro
+     * @return ID del libro
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-13
+     */
+    public function getID()
+    {
+        return $this->id;
     }
 
     /**
@@ -186,7 +198,7 @@ class LibroCompraVenta
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-13
      */
     public function generar($incluirDetalle = true)
     {
@@ -196,7 +208,6 @@ class LibroCompraVenta
         // generar totales de DTE y sus montos
         $TotalesPeriodo = $this->getTotalesPeriodo();
         // generar XML del envío
-        $ID = 'LIBRO_'.$this->caratula['TipoOperacion'].'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
             'LibroCompraVenta' => [
                 '@attributes' => [
@@ -207,7 +218,7 @@ class LibroCompraVenta
                 ],
                 'EnvioLibro' => [
                     '@attributes' => [
-                        'ID' => $ID,
+                        'ID' => $this->id,
                     ],
                     'Caratula' => $this->caratula,
                     'ResumenPeriodo' => [
