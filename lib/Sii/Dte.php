@@ -379,27 +379,27 @@ class Dte
      * puede servir, por ejemplo, para generar los detalles de los IECV
      * @return Arreglo con el resumen del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-04
+     * @version 2015-09-13
      */
     public function getResumen()
     {
+        $this->getDatos();
         $resumen =  [
-            'TpoDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/TipoDTE')->item(0)->nodeValue,
-            'NroDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue,
+            'TpoDoc' => $this->datos['Encabezado']['IdDoc']['TipoDTE'],
+            'NroDoc' => $this->datos['Encabezado']['IdDoc']['Folio'],
             'TasaImp' => 0,
-            'FchDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)->nodeValue,
-            'RUTDoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue,
-            'RznSoc' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue,
+            'FchDoc' => $this->datos['Encabezado']['IdDoc']['FchEmis'],
+            'RUTDoc' => $this->datos['Encabezado']['Receptor']['RUTRecep'],
+            'RznSoc' => $this->datos['Encabezado']['Receptor']['RznSocRecep'],
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => 0,
-            'MntTotal' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)->nodeValue,
+            'MntTotal' => $this->datos['Encabezado']['Totales']['MntTotal'],
         ];
         $montos = ['TasaImp'=>'TasaIVA', 'MntExe'=>'MntExe', 'MntNeto'=>'MntNeto', 'MntIVA'=>'IVA'];
         foreach ($montos as $dest => $orig) {
-            $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/'.$orig)->item(0);
-            if ($nodo and !empty($nodo->nodeValue)) {
-                $resumen[$dest] = $nodo->nodeValue;
+            if (!empty($this->datos['Encabezado']['Totales'][$orig])) {
+                $resumen[$dest] = $this->datos['Encabezado']['Totales'][$orig];
             }
         }
         return $resumen;
