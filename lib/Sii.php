@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-03
+ * @version 2015-09-14
  */
 class Sii
 {
@@ -43,6 +43,19 @@ class Sii
     const IVA = 19; ///< Tasa de IVA
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
+
+    /**
+     * Método que permite asignar el nombre del servidor del SII que se
+     * usará para las consultas al SII
+     * @param servidor Servidor que se usará, si es https://maullin2.sii.cl, entonces se debe pasar como valor maullin2
+     * @param certificacion Permite definir si se está cambiando el servidor de certificación o el de producción
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-14
+     */
+    public static function setServidor($servidor = 'maullin', $certificacion = Sii::CERTIFICACION)
+    {
+        self::$config['servidor'][$certificacion] = $servidor;
+    }
 
     /**
      * Método para obtener el WSDL
@@ -70,7 +83,7 @@ class Sii
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-14
      */
     public static function wsdl($servicio, $ambiente = null)
     {
@@ -78,7 +91,7 @@ class Sii
         $ambiente = self::getAmbiente($ambiente);
         // entregar WSDL local (modificados para ambiente de certificación)
         if ($ambiente==self::CERTIFICACION) {
-            $wsdl = dirname(dirname(__FILE__)).'/wsdl/'.$servicio.'.jws';
+            $wsdl = dirname(dirname(__FILE__)).'/wsdl/'.self::$config['servidor'][$ambiente].'/'.$servicio.'.jws';
             if (is_readable($wsdl))
                 return $wsdl;
         }
@@ -98,7 +111,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-07-28
+     * @version 2015-09-14
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -121,11 +134,17 @@ class Sii
                 }
                 break;
             } catch (\Exception $e) {
+                $msg = $e->getMessage();
+                if (isset($e->getTrace()[0]['args'][1]))
+                    $msg .= ': '.$e->getTrace()[0]['args'][1];
+                \sasco\LibreDTE\Log::write($msg);
                 $body = null;
             }
         }
-        if ($body===null)
+        if ($body===null) {
+            \sasco\LibreDTE\Log::write('No se obtuvo respuesta para '.$wsdl.' en '.$retry.' intentos');
             return false;
+        }
         return new \SimpleXMLElement($body, LIBXML_COMPACT);
     }
 
@@ -139,11 +158,11 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-03
+     * @version 2015-09-14
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
-        $url = 'https://maullin.sii.cl/cgi_dte/UPL/DTEUpload';
+        $url = 'https://'.self::$config['servidor'][self::getAmbiente()].'.sii.cl/cgi_dte/UPL/DTEUpload';
         list($rutSender, $dvSender) = explode('-', str_replace('.', '', $usuario));
         list($rutCompany, $dvCompany) = explode('-', str_replace('.', '', $empresa));
         if (strpos($dte, '<?xml')===false) {

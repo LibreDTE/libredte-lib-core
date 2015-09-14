@@ -25,7 +25,7 @@
  * @file 002-getToken.php
  * Ejemplo de obtención de token para autenticación automática en el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-19
+ * @version 2015-09-14
  */
 
 // respuesta en texto plano
@@ -37,3 +37,8 @@ include 'inc.php';
 // solicitar token
 $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
 var_dump($token);
+
+// si hubo errores se muestran
+foreach (\sasco\LibreDTE\Log::readAll() as $error) {
+    echo $error,"\n";
+}

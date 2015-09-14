@@ -59,13 +59,15 @@ class Autenticacion
      *
      * @return Semilla obtenida desde SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-09-14
      */
     private static function getSeed()
     {
         $xml = \sasco\LibreDTE\Sii::request('CrSeed', 'getSeed');
-        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
+        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00') {
+            \sasco\LibreDTE\Log::write('No fue posible obtener la semilla');
             return false;
+        }
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/SEMILLA')[0];
     }
 
@@ -75,7 +77,7 @@ class Autenticacion
      * @param Firma objeto de la Firma electrónica o arreglo con configuración de la misma
      * @return Solicitud de token con la semilla incorporada y firmada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-14
      */
     private static function getTokenRequest($seed, $Firma = [])
     {
@@ -90,8 +92,10 @@ class Autenticacion
                 ]
             ])->saveXML()
         );
-        if (!$seedSigned)
+        if (!$seedSigned) {
+            \sasco\LibreDTE\Log::write('No fue posible firmar getToken');
             return false;
+        }
         return $seedSigned;
     }
 
@@ -105,7 +109,7 @@ class Autenticacion
      * @param Firma objeto de la Firma electrónica o arreglo con configuración de la misma
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-14
      */
     public static function getToken($Firma = [])
     {
@@ -114,8 +118,10 @@ class Autenticacion
         $requestFirmado = self::getTokenRequest($semilla, $Firma);
         if (!$requestFirmado) return false;
         $xml = \sasco\LibreDTE\Sii::request('GetTokenFromSeed', 'getToken', $requestFirmado);
-        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00')
+        if ($xml===false or (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0]!=='00') {
+            \sasco\LibreDTE\Log::write('No fue posible obtener el token de autenticacion');
             return false;
+        }
         return (string)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY/TOKEN')[0];
     }
 

@@ -26,7 +26,7 @@
  * Archivo de configuración para los ejemplos
  * ESTE ARCHIVO DEBE SER RENOMBRADO A config.php Y SU CONFIGURACIÓN AJUSTADA
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-31
+ * @version 2015-09-14
  */
 
 // configuración de la firma
@@ -42,3 +42,6 @@ $config = [
 
 // trabajar en ambiente de certificación
 define('_LibreDTE_CERTIFICACION_', true);
+
+// trabajar con maullin2 en vez de maullin para certificación
+\sasco\LibreDTE\Sii::setServidor('maullin2');

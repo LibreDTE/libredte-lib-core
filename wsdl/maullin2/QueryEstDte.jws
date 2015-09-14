@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" xmlns:intf="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:message name="getVersionMayorResponse">
+    <wsdl:part name="getVersionMayorReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionMenorRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionMayorRequest">
+  </wsdl:message>
+  <wsdl:message name="getEstDteRequest">
+    <wsdl:part name="RutConsultante" type="xsd:string"/>
+    <wsdl:part name="DvConsultante" type="xsd:string"/>
+    <wsdl:part name="RutCompania" type="xsd:string"/>
+    <wsdl:part name="DvCompania" type="xsd:string"/>
+    <wsdl:part name="RutReceptor" type="xsd:string"/>
+    <wsdl:part name="DvReceptor" type="xsd:string"/>
+    <wsdl:part name="TipoDte" type="xsd:string"/>
+    <wsdl:part name="FolioDte" type="xsd:string"/>
+    <wsdl:part name="FechaEmisionDte" type="xsd:string"/>
+    <wsdl:part name="MontoDte" type="xsd:string"/>
+    <wsdl:part name="Token" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionPatchRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionMenorResponse">
+    <wsdl:part name="getVersionMenorReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStateRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionPatchResponse">
+    <wsdl:part name="getVersionPatchReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionRequest">
+  </wsdl:message>
+  <wsdl:message name="getEstDteResponse">
+    <wsdl:part name="getEstDteReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionResponse">
+    <wsdl:part name="getVersionReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStateResponse">
+    <wsdl:part name="getStateReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:portType name="QueryEstDte">
+    <wsdl:operation name="getState">
+      <wsdl:input message="impl:getStateRequest" name="getStateRequest"/>
+      <wsdl:output message="impl:getStateResponse" name="getStateResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdl:input message="impl:getVersionRequest" name="getVersionRequest"/>
+      <wsdl:output message="impl:getVersionResponse" name="getVersionResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMayor">
+      <wsdl:input message="impl:getVersionMayorRequest" name="getVersionMayorRequest"/>
+      <wsdl:output message="impl:getVersionMayorResponse" name="getVersionMayorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMenor">
+      <wsdl:input message="impl:getVersionMenorRequest" name="getVersionMenorRequest"/>
+      <wsdl:output message="impl:getVersionMenorResponse" name="getVersionMenorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionPatch">
+      <wsdl:input message="impl:getVersionPatchRequest" name="getVersionPatchRequest"/>
+      <wsdl:output message="impl:getVersionPatchResponse" name="getVersionPatchResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getEstDte" parameterOrder="RutConsultante DvConsultante RutCompania DvCompania RutReceptor DvReceptor TipoDte FolioDte FechaEmisionDte MontoDte Token">
+      <wsdl:input message="impl:getEstDteRequest" name="getEstDteRequest"/>
+      <wsdl:output message="impl:getEstDteResponse" name="getEstDteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="QueryEstDteSoapBinding" type="impl:QueryEstDte">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getState">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getStateRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStateResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMayor">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionMayorRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionMayorResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMenor">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionMenorRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionMenorResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionPatch">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionPatchRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionPatchResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEstDte">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getEstDteRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEstDteResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="QueryEstDteService">
+    <wsdl:port binding="impl:QueryEstDteSoapBinding" name="QueryEstDte">
+      <wsdlsoap:address location="https://maullin2.sii.cl/DTEWS/QueryEstDte.jws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
