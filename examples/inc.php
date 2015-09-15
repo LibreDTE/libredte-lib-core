@@ -27,7 +27,7 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-14
+ * @version 2015-09-15
  */
 
 // activar todos los errores
@@ -50,6 +50,10 @@ $files = new RegexIterator($Iterator, '/^.+\.php$/i', RecursiveRegexIterator::GE
 foreach ($files as $file => $object) {
     include $file;
 }
+
+// todos los ejemplos se ejecutan con backtrace activado, esto para ayudar al
+// debug de los mismos
+\sasco\LibreDTE\Log::setBacktrace(true);
 
 // incluir configuración específica de los ejemplos
 include 'config.php';

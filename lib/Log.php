@@ -32,24 +32,46 @@ namespace sasco\LibreDTE;
  * antes que termine la ejecución de la página si se desea hacer algo con ellos.
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-14
+ * @version 2015-09-15
  */
 class Log
 {
 
     private static $bitacora = []; ///< Bitácora con todos los tipos de tipos de mensajes, cada tipo es un arreglo de mensajes
+    private static $backtrace = false; ///< Define si se usa o no backtrace
+
+    /**
+     * Método que permite activa/desactivar el backtrace para los mensajes que
+     * se escribirán en la bitácora
+     * Esto se permite ya que recuperar el backtrace consume memoria y dichos
+     * detalles podrían no ser necesarios en el ambiente de producción de la
+     * aplicación (por defecto el backtrace esta desactivado)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-15
+     */
+    public static function setBacktrace($backtrace = true)
+    {
+        self::$backtrace = $backtrace;
+    }
 
     /**
      * Método que escribe un mensaje en la bitácora
      * @param msg Mensaje que se desea escribir
      * @param severity Gravedad del mensaje, por defecto LOG_ERR (puede ser cualquiera de las constantes PHP de syslog)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-14
+     * @version 2015-09-15
      */
     public static function write($msg, $severity = LOG_ERR)
     {
+        // si no existe la bitácora para la gravedad se crea
         if (!isset(self::$bitacora[$severity]))
             self::$bitacora[$severity] = [];
+        // agregar datos de quien llamó al método
+        if (self::$backtrace) {
+            $trace = debug_backtrace(!DEBUG_BACKTRACE_PROVIDE_OBJECT and !DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+            $msg .= ' (by '.$trace[1]['class'].'::'.$trace[1]['function'].'() in '.$trace[0]['file'].' on line '.$trace[0]['line'].')';
+        }
+        // agregar mensaje a la bitácora
         array_push(self::$bitacora[$severity], $msg);
     }
 
