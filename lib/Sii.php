@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-15
+ * @version 2015-09-16
  */
 class Sii
 {
@@ -43,6 +43,7 @@ class Sii
     const IVA = 19; ///< Tasa de IVA
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
+    private static $verificar_ssl = true; ///< Indica si se deberá verificar o no el certificado SSL del SII
 
     private static $estados = [
         'enviar' => [
@@ -163,6 +164,18 @@ class Sii
     }
 
     /**
+     * Método que permite indicar si se debe o no verificar el certificado SSL
+     * del SII
+     * @param verificar =true si se quiere verificar certificado, =false en caso que no (por defecto se verifica)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-16
+     */
+    public static function setVerificarSSL($verificar = true)
+    {
+        self::$verificar_ssl = $verificar;
+    }
+
+    /**
      * Método que realiza el envío de un DTE al SII
      * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
      * @param usuario RUN del usuario que envía el DTE
@@ -176,7 +189,7 @@ class Sii
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
-        $url = 'https://'.self::$config['servidor'][self::getAmbiente()].'.sii.cl/cgi_dte/UPL/DTEUpload';
+        // definir datos que se usarán en el envío
         list($rutSender, $dvSender) = explode('-', str_replace('.', '', $usuario));
         list($rutCompany, $dvCompany) = explode('-', str_replace('.', '', $empresa));
         if (strpos($dte, '<?xml')===false) {
@@ -197,19 +210,34 @@ class Sii
                 basename($file)
             ),
         ];
+        // definir reintentos si no se pasaron
+        if (!$retry)
+            $retry = self::$retry;
+        // crear sesión curl con sus opciones
+        $curl = curl_init();
         $header = [
             'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)',
             //'Referer: http://libredte.cl',
             'Cookie: TOKEN='.$token,
         ];
-        if (!$retry)
-            $retry = self::$retry;
-        $curl = curl_init();
+        $url = 'https://'.self::$config['servidor'][self::getAmbiente()].'.sii.cl/cgi_dte/UPL/DTEUpload';
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // si no se debe verificar el SSL se asigna opción a curl, además si
+        // se está en el ambiente de producción y no se verifica SSL se
+        // generará un error de nivel E_USER_NOTICE
+        if (!self::$verificar_ssl) {
+            if (self::getAmbiente()==self::PRODUCCION) {
+                $msg = '¡No se está verificando el certificado SSL del SII en ambiente de producción!';
+                trigger_error($msg, E_USER_NOTICE);
+                \sasco\LibreDTE\Log::write($msg, LOG_WARNING);
+            }
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        }
+        // enviar XML al SII
         for ($i=0; $i<$retry; $i++) {
             $response = curl_exec($curl);
             if ($response and $response!='Error 500')
