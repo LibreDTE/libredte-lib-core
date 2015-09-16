@@ -25,7 +25,7 @@
  * @file 008-verificar_enviodte.php
  * Referencias: http://www.cryptosys.net/pki/xmldsig-ChileSII.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-02
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -89,6 +89,10 @@ foreach ($documentos as $D) {
     echo '  Digest SignedInfo valido: ',($valid?'si':'no'),"\n\n";
     $i++;
 }
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";
 
 // para el XML de ejemplo del SII la clave pública obtenida desde el certificado
 // no sirvió para validar las firmas del documento, se probó obteniendo la clave

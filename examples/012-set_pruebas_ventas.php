@@ -40,7 +40,7 @@
  * totales.
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-05
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -432,3 +432,7 @@ $LibroCompraVenta->generar(false); // generar XML sin firma y sin detalle
 $LibroCompraVenta->setFirma($Firma);
 $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anterior
 var_dump($track_id);
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

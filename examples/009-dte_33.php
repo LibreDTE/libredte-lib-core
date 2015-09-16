@@ -32,7 +32,7 @@
  * Relleno AFECTO               53            1473
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-09-15
  */
 
 // respuesta en texto plano
@@ -105,23 +105,26 @@ $xml = $EnvioDTE->generar();
 
 // solicitar token
 $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
-if (!$token)
-    die('No fue posible obtener token');
+if (!$token) {
+    foreach (\sasco\LibreDTE\Log::readAll() as $log)
+        echo $log,"\n";
+    exit;
+}
 
 // enviar DTE
 $result = \sasco\LibreDTE\Sii::enviar($caratula['RutEnvia'], $factura['Encabezado']['Emisor']['RUTEmisor'], $xml, $token);
 
 // si hubo algún error al enviar al servidor mostrar
-if ($result===false)
-    die('No fue posible enviar DTE al SII');
+if ($result===false) {
+    foreach (\sasco\LibreDTE\Log::readAll() as $log)
+        echo $log,"\n";
+    exit;
+}
 
 // Mostrar resultado del envío
 if ($result->STATUS!='0') {
-    echo 'Ocurrió un error al enviar el DTE: error ',$result->STATUS,"\n";
-    if (isset($result->DETAIL)) {
-        foreach ($result->DETAIL->ERROR as $e)
-            echo $e,"\n";
-    }
+    foreach (\sasco\LibreDTE\Log::readAll() as $log)
+        echo $log,"\n";
     exit;
 }
 echo 'DTE enviado. Track ID '.$result->TRACKID,"\n";

@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-14
+ * @version 2015-09-15
  */
 class Sii
 {
@@ -43,6 +43,20 @@ class Sii
     const IVA = 19; ///< Tasa de IVA
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
+
+    private static $estados = [
+        'enviar' => [
+            0 => 'Envío OK',
+            1 => 'Usuario no tiene permiso para enviar',
+            2 => 'Error en tamaño del archivo (muy grande o muy chico)',
+            3 => 'Archivo cortado (tamaño es diferente al parámetro size)',
+            5 => 'No está autenticado',
+            6 => 'Empresa no está autorizada a enviar archivos',
+            7 => 'Esquema inválido',
+            8 => 'Error en firma del documento',
+            9 => 'Sistema bloqueado',
+        ],
+    ]; ///< Códigos de estados y glosas del SII
 
     /**
      * Método que permite asignar el nombre del servidor del SII que se
@@ -158,7 +172,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-14
+     * @version 2015-09-15
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
@@ -202,7 +216,16 @@ class Sii
                 break;
         }
         unlink($file);
-        return ($response and $response!='Error 500') ? new \SimpleXMLElement($response, LIBXML_COMPACT) : false;
+        // verificar respuesta del envío y entregar error o el XML recibido
+        if (!$response or $response=='Error 500') {
+            \sasco\LibreDTE\Log::write('Falló el envío automático al SII');
+            return false;
+        }
+        $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
+        if ($xml->STATUS!=0) {
+            \sasco\LibreDTE\Log::write('Usuario '.$xml->RUTSENDER.' no pudo enviar el XML de la empresa '.$xml->RUTCOMPANY.'. El error fue: '.self::getEstado($xml->STATUS, 'enviar'));
+        }
+        return $xml;
     }
 
     /**
@@ -215,7 +238,7 @@ class Sii
      * @param idk IDK de la clave pública del SII. Si no se indica se tratará de determinar con el ambiente que se esté usando
      * @return Contenido del certificado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-15
      */
     public static function cert($idk = null)
     {
@@ -225,10 +248,14 @@ class Sii
             if (is_readable($cert))
                 return file_get_contents($cert);
         }
-        // determina certificado or tipo de ambiente en uso
+        // buscar certificado y entregar si existe o =false si no
         $ambiente = self::getAmbiente();
         $cert = dirname(dirname(__FILE__)).'/certs/'.self::$config['certs'][$ambiente].'.cer';
-        return is_readable($cert) ? file_get_contents($cert) : false;
+        if (!is_readable($cert)) {
+            \sasco\LibreDTE\Log::write('No se pudo leer el certificado X.509 del SII número '.self::$config['certs'][$ambiente]);
+            return false;
+        }
+        return file_get_contents($cert);
     }
 
     /**
@@ -259,6 +286,21 @@ class Sii
     public static function getIVA()
     {
         return self::IVA;
+    }
+
+    /**
+     * Método que entrega la glosa asociada al código de estado
+     * @param estado Código del estado
+     * @param funcionalidad funcionalidad a la que está asociado el código de estado
+     * @return Glosa del estado
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-15
+     */
+    private static function getEstado($estado, $funcionalidad)
+    {
+        if (isset(self::$estados[$funcionalidad][(int)$estado]))
+            return self::$estados[$funcionalidad][(int)$estado];
+        return $funcionalidad.' '.(int)$estado;
     }
 
 }

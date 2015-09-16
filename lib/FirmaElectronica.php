@@ -61,7 +61,7 @@ class FirmaElectronica
      *
      * @param config Configuración para la clase, si no se especifica se tratará de determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-09-15
      */
     public function __construct(array $config = [])
     {
@@ -85,12 +85,12 @@ class FirmaElectronica
             if (is_readable($this->config['file'])) {
                 $this->config['data'] = file_get_contents($this->config['file']);
             } else {
-                $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
+                return $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
             }
         }
         // leer datos de la firma electrónica
         if ($this->config['data'] and openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
-            $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
+            return $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
         }
         $this->data = openssl_x509_parse($this->certs['cert']);
         // quitar datos del contenido del archivo de la firma
@@ -102,15 +102,16 @@ class FirmaElectronica
      * el script si no se está usando el framework
      * @param msg Mensaje del error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2014-12-06
+     * @version 2015-09-15
      */
     private function error($msg)
     {
         if (class_exists('\sowerphp\core\Exception')) {
             throw new \sowerphp\core\Exception($msg);
         } else {
-            die($msg);
+            \sasco\LibreDTE\Log::write($msg);
         }
+        return false;
     }
 
     /**
@@ -248,8 +249,9 @@ class FirmaElectronica
     public function sign($data, $signature_alg = OPENSSL_ALGO_SHA1)
     {
         $signature = null;
-        if (openssl_sign($data, $signature, $this->certs['pkey'], $signature_alg)==false)
-            return false;
+        if (openssl_sign($data, $signature, $this->certs['pkey'], $signature_alg)==false) {
+            return $this->error('No fue posible firmar los datos');
+        }
         return base64_encode($signature);
     }
 

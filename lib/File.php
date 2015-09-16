@@ -94,7 +94,7 @@ class File
      * @param options Arreglo con opciones para comprmir (format, download, delete)
      * @todo Preparar datos si se pasa un arreglo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-10
+     * @version 2015-09-15
      */
     public static function compress($file, $options = [])
     {
@@ -112,14 +112,11 @@ class File
                 'zip' => 'zip -r :in.zip :in',
             ],
         ], $options);
-        // si la ruta del archivo es una arreglo los archivos se deben preparar
-        // antes de ser empaquetados y comprimidos
-        if (is_array($file)) {
-            // TODO
-        }
         // si el archivo no se puede leer se entrega =false
-        if (!is_readable($file))
+        if (!is_readable($file)) {
+            \sasco\LibreDTE\Log::write('No se puede leer el archivo que se desea comprimir');
             return false;
+        }
         // si es formato gz y es directorio se cambia a tgz
         if (is_dir($file)) {
             if ($options['format']=='gz') $options['format'] = 'tar.gz';
@@ -134,8 +131,10 @@ class File
         if ($options['format']=='zip') {
             // crear archivo zip
             $zip = new \ZipArchive();
-            if ($zip->open($dir.DIRECTORY_SEPARATOR.$file.'.zip', \ZipArchive::CREATE)!==true)
+            if ($zip->open($dir.DIRECTORY_SEPARATOR.$file.'.zip', \ZipArchive::CREATE)!==true) {
+                \sasco\LibreDTE\Log::write('No fue posible crear el archivo ZIP');
                 return false;
+            }
             // agregar un único archivo al zip
             if (!is_dir($filepath)) {
                 $zip->addFile($filepath, $file);

@@ -28,7 +28,7 @@
  * generado deberá ser subido "a mano" a https://www4.sii.cl/pfeInternet
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-08
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -97,12 +97,12 @@ $RespuestaEnvio->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma'])
 $xml = $RespuestaEnvio->generar();
 
 // validar schema del XML que se generó
-if (!$RespuestaEnvio->schemaValidate()) {
-    foreach (libxml_get_errors() as $error)
-        echo $error->message;
-    die("\n".'Error en schema');
+if ($RespuestaEnvio->schemaValidate()) {
+    // mostrar XML al usuario, deberá ser guardado y subido al SII en:
+    // https://www4.sii.cl/pfeInternet
+    echo $xml;
 }
 
-// mostrar XML al usuario, deberá ser guardado y subido al SII en:
-// https://www4.sii.cl/pfeInternet
-echo $xml;
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

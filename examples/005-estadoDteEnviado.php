@@ -24,7 +24,7 @@
 /**
  * @file 005-estado_envio_dte.php
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-19
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -35,8 +35,12 @@ include 'inc.php';
 
 // solicitar token
 $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
-if (!$token)
-    die('No fue posible obtener token');
+if (!$token) {
+    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+        echo $error,"\n";
+    exit;
+}
+
 
 // consultar estado enviado
 $rut = '';
@@ -44,12 +48,14 @@ $dv = '';
 $trackID = '';
 $estado = \sasco\LibreDTE\Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
 
-// si el estado no se pudo recuperar error
-if ($estado===false)
-    die('No fue posible obtener estado del DTE envíado');
+// si el estado se pudo recuperar se muestra estado y glosa
+if ($estado!==false) {
+    print_r([
+        'codigo' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0],
+        'glosa' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA')[0],
+    ]);
+}
 
-// mostrar estado y glosa
-print_r([
-    'codigo' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0],
-    'glosa' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA')[0],
-]);
+// mostrar error si hubo
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

@@ -126,14 +126,16 @@ class Dte
      * documento sin cambios.
      * @return Arreglo con datos del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-15
      */
     public function getDatos()
     {
         if (!$this->datos) {
             $datos = $this->xml->toArray();
-            if (!isset($datos['DTE'][$this->tipo_general]))
+            if (!isset($datos['DTE'][$this->tipo_general])) {
+                \sasco\LibreDTE\Log::write('No fue posible convertir el XML a arreglo para extraer los datos del DTE');
                 return false;
+            }
             $this->datos = $datos['DTE'][$this->tipo_general];
         }
         return $this->datos;
@@ -169,13 +171,14 @@ class Dte
      * @param dte Tipo númerico de DTE, ejemplo: 33 (factura electrónica)
      * @return String con el tipo general: Documento, Liquidacion o Exportaciones
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-20
+     * @version 2015-09-15
      */
-    private function getTipoGeneral($dte = null)
+    private function getTipoGeneral($dte)
     {
         foreach ($this->tipos as $tipo => $codigos)
             if (in_array($dte, $codigos))
                 return $tipo;
+        \sasco\LibreDTE\Log::write('No existe la definición del tipo de documento para el código '.$dte);
         return false;
     }
 
@@ -294,7 +297,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-09-15
      */
     public function timbrar(Folios $Folios)
     {
@@ -303,13 +306,19 @@ class Dte
         // Esta validación NO verifica si el folio ya fue usado, sólo si está
         // dentro del CAF que se está usando
         $folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
-        if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta())
+        if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta()) {
+            \sasco\LibreDTE\Log::write('Folio del DTE '.$this->getID().' está fuera de rango');
             return false;
+        }
         // verificar que existan datos para el timbre
-        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0))
+        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)) {
+            \sasco\LibreDTE\Log::write('Falta FchEmis del DTE '.$this->getID());
             return false;
-        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0))
+        }
+        if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)) {
+            \sasco\LibreDTE\Log::write('Falta MntTotal del DTE '.$this->getID());
             return false;
+        }
         // timbrar
         $TED = new \sasco\LibreDTE\XML();
         $TED->generate([
@@ -337,8 +346,10 @@ class Dte
             ]
         ]);
         $DD = $TED->getFlattened('/TED/DD');
-        if (openssl_sign($DD, $timbre, $Folios->getPrivateKey(), OPENSSL_ALGO_SHA1)==false)
+        if (openssl_sign($DD, $timbre, $Folios->getPrivateKey(), OPENSSL_ALGO_SHA1)==false) {
+            \sasco\LibreDTE\Log::write('No se pudo generar el timbre del DTE '.$this->getID());
             return false;
+        }
         $TED->getElementsByTagName('FRMT')->item(0)->nodeValue = base64_encode($timbre);
         $xml = str_replace('<TED/>', trim(str_replace('<?xml version="1.0" encoding="ISO-8859-1"?>', '', $TED->saveXML())), $this->saveXML());
         $this->loadXML($xml);
@@ -350,15 +361,17 @@ class Dte
      * @param Firma objeto que representa la Firma Electrónca
      * @return =true si el DTE pudo ser fimado o =false si no se pudo firmar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2015-09-15
      */
     public function firmar(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
         $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
         $this->xml->generate(['TmstFirma'=>$this->timestamp], $parent);
         $xml = $Firma->signXML($this->xml->saveXML(), '#'.$this->id, $this->tipo_general);
-        if (!$xml)
+        if (!$xml) {
+            \sasco\LibreDTE\Log::write('No se pudo generar la firma del DTE '.$this->getID());
             return false;
+        }
         $this->loadXML($xml);
         return true;
     }
@@ -755,14 +768,17 @@ class Dte
      * Método que valida el schema del DTE
      * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-09-15
      */
     public function schemaValidate()
     {
         /*if (!$this->xml)
             return null;
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/DTE_v10.xsd';
-        return $this->xml->schemaValidate($xsd);*/
+        $result = $this->xml->schemaValidate($xsd);
+        if (!$result)
+            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        return $result;*/
         return true;
     }
 

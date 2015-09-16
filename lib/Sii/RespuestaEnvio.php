@@ -164,7 +164,7 @@ class RespuestaEnvio
      * @param Firma Objeto con la firma electrónica
      * @return XML con la respuesta firmada o =false si no se pudo generar o firmar la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-09-15
      */
     public function generar()
     {
@@ -172,11 +172,15 @@ class RespuestaEnvio
         if ($this->xml_data)
             return $this->xml_data;
         // si no hay respuestas para generar entregar falso
-        if (!isset($this->respuesta_envios[0]) and !isset($this->respuesta_documentos[0]))
+        if (!isset($this->respuesta_envios[0]) and !isset($this->respuesta_documentos[0])) {
+            \sasco\LibreDTE\Log::write('No hay respuesta de envío ni documentos para generar');
             return false;
+        }
         // si no hay carátula error
-        if (!$this->caratula)
+        if (!$this->caratula) {
+            \sasco\LibreDTE\Log::write('No se ha asignado la carátula de RespuestaEnvio');
             return false;
+        }
         // crear arreglo de lo que se enviará
         $arreglo = [
             'RespuestaDTE' => [
@@ -210,7 +214,7 @@ class RespuestaEnvio
      * Método que valida el XML que se genera para la respuesta del envío
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-15
      */
     public function schemaValidate()
     {
@@ -219,7 +223,10 @@ class RespuestaEnvio
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/RespuestaEnvioDTE_v10.xsd';
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
-        return $this->xml->schemaValidate($xsd);
+        $result = $this->xml->schemaValidate($xsd);
+        if (!$result)
+            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        return $result;
     }
 
 }

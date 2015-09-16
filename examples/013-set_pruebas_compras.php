@@ -35,7 +35,7 @@
  *  - Número resolución y folio notificación deben ser: 102006
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -157,3 +157,7 @@ $LibroCompraVenta->generar(); // generar XML sin firma
 $LibroCompraVenta->setFirma($Firma);
 $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anterior
 var_dump($track_id);
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

@@ -167,15 +167,17 @@ class LibroCompraVenta
      * Método que realiza el envío del libro IECV al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-15
      */
     public function enviar()
     {
         // generar XML que se enviará
         if (!$this->xml_data)
             $this->xml_data = $this->generar();
-        if (!$this->xml_data)
+        if (!$this->xml_data) {
+            \sasco\LibreDTE\Log::write('No fue posible generar XML del LibroCompraVenta');
             return false;
+        }
         // validar schema del documento antes de enviar (sólo en producción, ya
         // que en certificación el libro no se firma y daría error de schema)
         if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION and !$this->schemaValidate())
@@ -308,16 +310,21 @@ class LibroCompraVenta
      * Método que valida el XML que se genera para la respuesta del envío
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-15
      */
     public function schemaValidate()
     {
-        if (!$this->xml_data)
+        if (!$this->xml_data) {
+            \sasco\LibreDTE\Log::write('No hay XML de LibroCompraVenta que validar');
             return null;
+        }
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/LibroCVS_v10.xsd';
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
-        return $this->xml->schemaValidate($xsd);
+        $result = $this->xml->schemaValidate($xsd);
+        if (!$result)
+            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        return $result;
     }
 
 }

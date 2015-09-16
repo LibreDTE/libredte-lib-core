@@ -25,7 +25,7 @@
  * @file 007-folios.php
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-02
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -43,3 +43,7 @@ echo 'Rango de folios: ',$Folios->getDesde(),' al ',$Folios->getHasta(),"\n\n";
 echo 'CAF: ',$Folios->getCaf()->C14N(),"\n\n";
 echo $Folios->getPrivateKey(),"\n";
 echo $Folios->getPublicKey();
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

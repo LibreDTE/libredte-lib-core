@@ -33,7 +33,7 @@
  * - Nota de débito electrónica (1)
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -618,9 +618,9 @@ $EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
 foreach ($documentos as $documento) {
     $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
-        die('No fue posible timbrar el documento '.$DTE->getID());
+        break;
     if (!$DTE->firmar($Firma))
-        die('No fue posible firmar el documento '.$DTE->getID());
+        break;
     $EnvioDTE->agregar($DTE);
 }
 
@@ -629,3 +629,7 @@ $EnvioDTE->setCaratula($caratula);
 $EnvioDTE->setFirma($Firma);
 $track_id = $EnvioDTE->enviar();
 var_dump($track_id);
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

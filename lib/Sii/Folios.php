@@ -37,35 +37,43 @@ class Folios
      * Constructor de la clase
      * @param xml Datos XML del código de autorización de folios (CAF)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-09-15
      */
     public function __construct($xml)
     {
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($xml);
-        if (!$this->check())
+        if (!$this->check()) {
+            \sasco\LibreDTE\Log::write('Archivo de folios no pudo ser verificado');
             $this->xml = null;
+        }
     }
 
     /**
      * Método que verifica el código de autorización de folios
      * @return =true si está ok el XML cargado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-09-15
      */
     public function check()
     {
         // validar firma del SII sobre los folios
         $firma = base64_decode($this->getFirma());
         $pub_key = \sasco\LibreDTE\Sii::cert($this->getIDK());
-        if (openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), $firma, $pub_key)!==1)
+        if (!$pub_key or openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), $firma, $pub_key)!==1) {
+            \sasco\LibreDTE\Log::write('No fue posible validar firma del CAF');
             return false;
+        }
         // validar clave privada y pública proporcionada por el SII
         $plain = md5(date('U'));
-        if (!openssl_private_encrypt($plain, $crypt, $this->getPrivateKey()))
+        if (!openssl_private_encrypt($plain, $crypt, $this->getPrivateKey())) {
+            \sasco\LibreDTE\Log::write('No fue posible encriptar con clave privada del CAF');
             return false;
-        if (!openssl_public_decrypt($crypt, $plain_firmado, $this->getPublicKey()))
+        }
+        if (!openssl_public_decrypt($crypt, $plain_firmado, $this->getPublicKey())) {
+            \sasco\LibreDTE\Log::write('No fue posible desencriptar con clave pública del CAF');
             return false;
+        }
         return $plain === $plain_firmado;
     }
 

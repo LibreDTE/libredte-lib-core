@@ -28,7 +28,7 @@
  * electrónica
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-11
+ * @version 2015-09-16
  */
 
 // respuesta en texto plano
@@ -45,3 +45,7 @@ echo 'RUN    : ',$Firma->getID(),"\n";
 echo 'Nombre : ',$Firma->getName(),"\n";
 echo 'Email  : ',$Firma->getEmail(),"\n\n";
 print_r($Firma->getData());
+
+// si hubo errores mostrar
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";
