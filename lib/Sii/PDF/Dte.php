@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-09
+ * @version 2015-09-16
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -54,6 +54,17 @@ class Dte extends \sasco\LibreDTE\PDF
         2 => 'Crédito',
         3 => 'Sin costo (entrega gratuita)',
     ]; ///< Glosas de las formas de pago
+
+    private $detalle_cols = [
+        'CdgItem' => ['title'=>'Código', 'align'=>'left', 'width'=>20],
+        'NmbItem' => ['title'=>'Item', 'align'=>'left', 'width'=>0],
+        'QtyItem' => ['title'=>'Cant.', 'align'=>'right', 'width'=>15],
+        'UnmdItem' => ['title'=>'Unidad', 'align'=>'left', 'width'=>22],
+        'PrcItem' => ['title'=>'P. unitario', 'align'=>'right', 'width'=>22],
+        'DescuentoMonto' => ['title'=>'Descuento', 'align'=>'right', 'width'=>22],
+        'RecargoMonto' => ['title'=>'Recargo', 'align'=>'right', 'width'=>22],
+        'MontoItem' => ['title'=>'Total item', 'align'=>'right', 'width'=>22],
+    ];
 
     private $sinAcuseRecibo = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
 
@@ -354,45 +365,34 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2015-09-16
      */
     private function agregarDetalle($detalle, $x = 10)
     {
         if (!isset($detalle[0]))
             $detalle = [$detalle];
         // titulos
-        $titulos = [
-            'CdgItem' => 'Código',
-            'NmbItem' => 'Item',
-            'DescItem' => 'Descripción',
-            'QtyItem' => 'Cantidad',
-            'UnmdItem' => 'Unidad',
-            'PrcItem' => 'P. unitario',
-            'DescuentoMonto' => 'Descuento',
-            'RecargoMonto' => 'Recargo',
-            'MontoItem' => 'Total item',
-        ];
-        $titulos_keys = array_keys($titulos);
+        $titulos = [];
+        $titulos_keys = array_keys($this->detalle_cols);
+        foreach ($this->detalle_cols as $key => $info) {
+            $titulos[$key] = $info['title'];
+        }
         // normalizar cada detalle
         foreach ($detalle as &$item) {
             // quitar columnas
             foreach ($item as $col => $valor) {
+                if ($col=='DescItem') {
+                    $item['NmbItem'] .= '<br/><span style="font-size:0.7em"> Desc: '.$item['DescItem'].'</span>';
+                }
                 if (!in_array($col, $titulos_keys))
                     unset($item[$col]);
             }
             // agregar todas las columnas que se podrían imprimir en la tabla
-            $item = array_merge([
-                'CdgItem' => false,
-                'NmbItem' => false,
-                'DescItem' => false,
-                'QtyItem' => false,
-                'UnmdItem' => false,
-                'PrcItem' => false,
-                'DescuentoMonto' => false,
-                'RecargoMonto' => false,
-                'MontoItem' => false,
-            ], $item);
-            // si hay código se item se extrae su valor
+            $item_default = [];
+            foreach ($this->detalle_cols as $key => $info)
+                $item_default[$key] = false;
+            $item = array_merge($item_default, $item);
+            // si hay código de item se extrae su valor
             if ($item['CdgItem'])
                 $item['CdgItem'] = $item['CdgItem']['VlrCodigo'];
             // dar formato a números
@@ -401,10 +401,19 @@ class Dte extends \sasco\LibreDTE\PDF
                     $item[$col] = $this->num($item[$col]);
             }
         }
+        // opciones
+        $options = ['align'=>[]];
+        $i = 0;
+        foreach ($this->detalle_cols as $info) {
+            if (isset($info['width']))
+                $options['width'][$i] = $info['width'];
+            $options['align'][$i] = $info['align'];
+            $i++;
+        }
         // agregar tabla de detalle
         $this->Ln();
         $this->SetX($x);
-        $this->addTableWithoutEmptyCols($titulos, $detalle);
+        $this->addTableWithoutEmptyCols($titulos, $detalle, $options);
     }
 
     /**

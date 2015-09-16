@@ -40,6 +40,8 @@ define ('K_PATH_IMAGES', '');
 class PDF extends \TCPDF
 {
 
+    private $footer; ///< Mensaje a colocar en el footer
+
     /**
      * Constructor de la clase
      * @param o Orientación
@@ -72,24 +74,54 @@ class PDF extends \TCPDF
     /**
      * Método que genera el footer del PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-08
+     * @version 2015-09-16
      */
     public function Footer()
     {
-        /*$style = ['width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => [50, 50, 50]];
-        $this->Line($this->getX(), $this->getY()-1, 201, $this->getY()-2, $style);
-        $this->SetFont('', 'B', 6);
-        $this->Texto('Documento generado utilizando LibreDTE by SASCO SpA');
-        $this->Texto('Este documento es sólo una muestra, el real NO contendrá este pie de página ni línea', null, null, 'R');*/
+        if (is_array($this->footer) and (!empty($this->footer['left']) or !empty($this->footer['right']))) {
+            $style = ['width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => [50, 50, 50]];
+            $this->Line($this->getX(), $this->getY()-1, 201, $this->getY()-2, $style);
+            $this->SetFont('', 'B', 6);
+            if (!empty($this->footer['left']))
+                $this->Texto($this->footer['left']);
+            if (!empty($this->footer['right']))
+                $this->Texto($this->footer['right'], null, null, 'R');
+        }
+    }
+
+    /**
+     * Método que asigna el texto que se deberá usar en el footer
+     * @param footer =true se asignará texto por defecto. String al lado izquiero o bien arreglo con índices left y right con sus textos
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
+     * @version 2015-09-16
+     */
+    public function setFooterText($footer = true)
+    {
+        if ($footer) {
+            // asignar valor por defecto
+            if ($footer===true) {
+                $footer = [
+                    'left' => 'LibreDTE: facturación electrónica libre para Chile',
+                    'right' => 'http://libredte.cl',
+                ];
+            }
+            // si no es arreglo se convierte en uno
+            if (!is_array($footer))
+                $footer = ['left'=>$footer];
+            // asignar footer
+            $this->footer = array_merge(['left'=>'', 'right'=>''], $footer);
+        } else {
+            $this->footer = null;
+        }
     }
 
     /**
      * Agregar una tabla al PDF removiendo aquellas columnas donde no existen
      * datos en la columna para todas las filas
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-04-18
+     * @version 2015-09-16
      */
-    public function addTableWithoutEmptyCols($titles, $data, $options = [], $html = false)
+    public function addTableWithoutEmptyCols($titles, $data, $options = [])
     {
         $cols_empty = [];
         foreach ($data as $row) {
@@ -102,14 +134,34 @@ class PDF extends \TCPDF
             }
         }
         $n_rows = count($data);
+        $titles_keys = array_flip(array_keys($titles));
         foreach ($cols_empty as $col => $rows) {
             if ($rows==$n_rows) {
                 unset($titles[$col]);
                 foreach ($data as &$row) {
                     unset($row[$col]);
                 }
+                if (isset($options['width']))
+                    unset($options['width'][$titles_keys[$col]]);
+                if (isset($options['align']))
+                    unset($options['align'][$titles_keys[$col]]);
             }
         }
+        if (isset($options['width'])) {
+            $options['width'] = array_slice($options['width'], 0);
+            $key_0 = null;
+            $suma = 0;
+            foreach ($options['width'] as $key => $val) {
+                if ($val===0)
+                    $key_0 = $key;
+                $suma += $val;
+            }
+            if ($key_0!==null) {
+                $options['width'][$key_0] = 190 - $suma;
+            }
+        }
+        if (isset($options['align']))
+            $options['align'] = array_slice($options['align'], 0);
         $this->addTable($titles, $data, $options);
     }
 
@@ -117,7 +169,7 @@ class PDF extends \TCPDF
      * Agregar una tabla generada a través de código HTML al PDF
      * @todo Utilizar las opciones para definir estilo de la tabla HTML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-08
+     * @version 2015-09-16
      */
     public function addTable($headers, $data, $options = [])
     {
@@ -131,9 +183,9 @@ class PDF extends \TCPDF
         $buffer .= '<tr>';
         $i = 0;
         foreach ($headers as &$col) {
-            $width = ($w and $w[$i]!==null) ? (';width:'.$w[$i].'mm') : '';
+            $width = ($w and isset($w[$i])) ? (';width:'.$w[$i].'mm') : '';
             $align = isset($a[$i]) ? $a[$i] : 'center';
-            $buffer .= '<th style="border-bottom:1px solid #333;text-align:'.$align.$width.'"><strong>'.strip_tags($col).'</strong></th>';
+            $buffer .= '<th style="border-right:1px solid #333;border-bottom:1px solid #333;text-align:'.$align.$width.'"><strong>'.strip_tags($col).'</strong></th>';
             $i++;
         }
         $buffer .= '</tr>';
@@ -146,9 +198,9 @@ class PDF extends \TCPDF
             $buffer .= '<tr>';
             $i = 0;
             foreach ($row as &$col) {
-                $width = ($w and $w[$i]!==null) ? (';width:'.$w[$i].'mm') : '';
+                $width = ($w and isset($w[$i])) ? (';width:'.$w[$i].'mm') : '';
                 $align = isset($a[$i]) ? $a[$i] : 'center';
-                $buffer .= '<td style="text-align:'.$align.$width.'">'.$col.'</td>';
+                $buffer .= '<td style="border-right:1px solid #333;text-align:'.$align.$width.'">'.$col.'</td>';
                 $i++;
             }
             $buffer .= '</tr>';
