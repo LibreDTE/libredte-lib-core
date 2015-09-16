@@ -172,7 +172,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-16
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
@@ -216,12 +216,23 @@ class Sii
                 break;
         }
         unlink($file);
-        // verificar respuesta del envío y entregar error o el XML recibido
+        // verificar respuesta del envío y entregar error en caso que haya uno
         if (!$response or $response=='Error 500') {
-            \sasco\LibreDTE\Log::write('Falló el envío automático al SII');
+            if (!$response)
+                \sasco\LibreDTE\Log::write('Falló el envío automático al SII. '.curl_error($curl));
+            if ($response=='Error 500')
+                \sasco\LibreDTE\Log::write('Falló el envío automático al SII con error 500');
             return false;
         }
-        $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
+        // cerrar sesión curl
+        curl_close($curl);
+        // crear XML con la respuesta y retornar
+        try {
+            $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
+        } catch (Exception $e) {
+            \sasco\LibreDTE\Log::write('Error al convertir respuesta de envío automático del SII a XML: '.$e->getMessage());
+            return false;
+        }
         if ($xml->STATUS!=0) {
             \sasco\LibreDTE\Log::write('Usuario '.$xml->RUTSENDER.' no pudo enviar el XML de la empresa '.$xml->RUTCOMPANY.'. El error fue: '.self::getEstado($xml->STATUS, 'enviar'));
         }
