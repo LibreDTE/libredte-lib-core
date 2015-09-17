@@ -126,14 +126,17 @@ class Dte
      * documento sin cambios.
      * @return Arreglo con datos del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function getDatos()
     {
         if (!$this->datos) {
             $datos = $this->xml->toArray();
             if (!isset($datos['DTE'][$this->tipo_general])) {
-                \sasco\LibreDTE\Log::write('No fue posible convertir el XML a arreglo para extraer los datos del DTE');
+                \sasco\LibreDTE\Log::write(
+                    \sasco\LibreDTE\Estado::DTE_ERROR_GETDATOS,
+                    \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_GETDATOS)
+                );
                 return false;
             }
             $this->datos = $datos['DTE'][$this->tipo_general];
@@ -171,14 +174,17 @@ class Dte
      * @param dte Tipo númerico de DTE, ejemplo: 33 (factura electrónica)
      * @return String con el tipo general: Documento, Liquidacion o Exportaciones
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     private function getTipoGeneral($dte)
     {
         foreach ($this->tipos as $tipo => $codigos)
             if (in_array($dte, $codigos))
                 return $tipo;
-        \sasco\LibreDTE\Log::write('No existe la definición del tipo de documento para el código '.$dte);
+        \sasco\LibreDTE\Log::write(
+            \sasco\LibreDTE\Estado::DTE_ERROR_TIPO,
+            \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_TIPO, $dte)
+        );
         return false;
     }
 
@@ -297,7 +303,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function timbrar(Folios $Folios)
     {
@@ -307,16 +313,26 @@ class Dte
         // dentro del CAF que se está usando
         $folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
         if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta()) {
-            \sasco\LibreDTE\Log::write('Folio del DTE '.$this->getID().' está fuera de rango');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_ERROR_RANGO_FOLIO,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_RANGO_FOLIO, $this->getID())
+            );
             return false;
         }
         // verificar que existan datos para el timbre
         if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_FALTA_FCHEMIS,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_FALTA_FCHEMIS, $this->getID())
+            );
             \sasco\LibreDTE\Log::write('Falta FchEmis del DTE '.$this->getID());
             return false;
         }
         if (!$this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)) {
-            \sasco\LibreDTE\Log::write('Falta MntTotal del DTE '.$this->getID());
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_FALTA_MNTTOTAL,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_FALTA_MNTTOTAL, $this->getID())
+            );
             return false;
         }
         // timbrar
@@ -347,7 +363,10 @@ class Dte
         ]);
         $DD = $TED->getFlattened('/TED/DD');
         if (openssl_sign($DD, $timbre, $Folios->getPrivateKey(), OPENSSL_ALGO_SHA1)==false) {
-            \sasco\LibreDTE\Log::write('No se pudo generar el timbre del DTE '.$this->getID());
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_ERROR_TIMBRE,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_TIMBRE, $this->getID())
+            );
             return false;
         }
         $TED->getElementsByTagName('FRMT')->item(0)->nodeValue = base64_encode($timbre);
@@ -361,7 +380,7 @@ class Dte
      * @param Firma objeto que representa la Firma Electrónca
      * @return =true si el DTE pudo ser fimado o =false si no se pudo firmar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function firmar(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
@@ -369,7 +388,10 @@ class Dte
         $this->xml->generate(['TmstFirma'=>$this->timestamp], $parent);
         $xml = $Firma->signXML($this->xml->saveXML(), '#'.$this->id, $this->tipo_general);
         if (!$xml) {
-            \sasco\LibreDTE\Log::write('No se pudo generar la firma del DTE '.$this->getID());
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_ERROR_FIRMA,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_FIRMA, $this->getID())
+            );
             return false;
         }
         $this->loadXML($xml);
@@ -768,7 +790,7 @@ class Dte
      * Método que valida el schema del DTE
      * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function schemaValidate()
     {
@@ -776,8 +798,12 @@ class Dte
             return null;
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/DTE_v10.xsd';
         $result = $this->xml->schemaValidate($xsd);
-        if (!$result)
-            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        if (!$result) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_ERROR_SCHEMA,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_SCHEMA, implode("\n", libxml_get_errors()))
+            );
+        }
         return $result;*/
         return true;
     }

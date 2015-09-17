@@ -94,7 +94,7 @@ class File
      * @param options Arreglo con opciones para comprmir (format, download, delete)
      * @todo Preparar datos si se pasa un arreglo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public static function compress($file, $options = [])
     {
@@ -114,7 +114,7 @@ class File
         ], $options);
         // si el archivo no se puede leer se entrega =false
         if (!is_readable($file)) {
-            \sasco\LibreDTE\Log::write('No se puede leer el archivo que se desea comprimir');
+            \sasco\LibreDTE\Log::write(Estado::COMPRESS_ERROR_READ, Estado::get(Estado::COMPRESS_ERROR_READ));
             return false;
         }
         // si es formato gz y es directorio se cambia a tgz
@@ -132,7 +132,7 @@ class File
             // crear archivo zip
             $zip = new \ZipArchive();
             if ($zip->open($dir.DIRECTORY_SEPARATOR.$file.'.zip', \ZipArchive::CREATE)!==true) {
-                \sasco\LibreDTE\Log::write('No fue posible crear el archivo ZIP');
+                \sasco\LibreDTE\Log::write(Estado::COMPRESS_ERROR_ZIP, Estado::get(Estado::COMPRESS_ERROR_ZIP));
                 return false;
             }
             // agregar un único archivo al zip

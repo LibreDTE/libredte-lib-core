@@ -167,7 +167,7 @@ class LibroCompraVenta
      * Método que realiza el envío del libro IECV al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function enviar()
     {
@@ -175,7 +175,10 @@ class LibroCompraVenta
         if (!$this->xml_data)
             $this->xml_data = $this->generar();
         if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write('No fue posible generar XML del LibroCompraVenta');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_GENERAR_XML,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_GENERAR_XML)
+            );
             return false;
         }
         // validar schema del documento antes de enviar (sólo en producción, ya
@@ -310,20 +313,27 @@ class LibroCompraVenta
      * Método que valida el XML que se genera para la respuesta del envío
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function schemaValidate()
     {
         if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write('No hay XML de LibroCompraVenta que validar');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_FALTA_XML,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_FALTA_XML)
+            );
             return null;
         }
         $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/LibroCVS_v10.xsd';
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
         $result = $this->xml->schemaValidate($xsd);
-        if (!$result)
-            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        if (!$result) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA, implode("\n", libxml_get_errors()))
+            );
+        }
         return $result;
     }
 

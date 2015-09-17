@@ -35,7 +35,7 @@
  * otra cosa.
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-16
+ * @version 2015-09-17
  */
 
 // respuesta en texto plano
@@ -68,6 +68,13 @@ class GeneradorErrores {
         for ($i=0; $i<5; $i++)
             \sasco\LibreDTE\Log::write('Soy el error '.($i+1));
     }
+    public function caso3()
+    {
+        \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_USUARIO_INCORRECTO, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_USUARIO_INCORRECTO));
+        \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_ERROR_XML, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_ERROR_XML, 'No hay XML'));
+        \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::REQUEST_ERROR_BODY, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::REQUEST_ERROR_BODY, 'getToken', 10));
+        \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_NO_AUTENTICADO, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_NO_AUTENTICADO));
+    }
 }
 $GeneradorErrores = new GeneradorErrores();
 
@@ -80,7 +87,7 @@ echo \sasco\LibreDTE\Log::read(),"\n\n";
 // mostrar el resto de errores y usar como string
 foreach (\sasco\LibreDTE\Log::readAll() as $error)
     echo $error,"\n";
-echo $error,"\n\n\n";
+echo "\n\n\n";
 
 // ejecutar caso 2
 $GeneradorErrores->caso2();
@@ -92,3 +99,22 @@ echo 'error código: ',$error->code,' y mensaje ',$error->msg,"\n\n";
 // mostrar el resto de errores y usar como objeto
 foreach (\sasco\LibreDTE\Log::readAll() as $error)
     echo 'error código: ',$error->code,' y mensaje ',$error->msg,"\n";
+echo "\n\n\n";
+
+// ejecutar caso 3 y mostrar en español todos los mensajes
+$GeneradorErrores->caso3();
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";
+echo "\n\n\n";
+
+// ejecutar caso 3 y mostrar en español todos los mensajes pero como objetos
+$GeneradorErrores->caso3();
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo 'error código: ',$error->code,' y mensaje ',$error->msg,"\n";
+echo "\n\n\n";
+
+// ejecutar caso 3 y mostrar en inglés todos los mensajes
+\sasco\LibreDTE\I18n::setIdioma('en'); // idioma se debe asignar antes que se registre cualquier mensaje en el Log
+$GeneradorErrores->caso3();
+foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    echo $error,"\n";

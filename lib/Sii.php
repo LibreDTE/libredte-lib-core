@@ -45,20 +45,6 @@ class Sii
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
     private static $verificar_ssl = true; ///< Indica si se deberá verificar o no el certificado SSL del SII
 
-    private static $estados = [
-        'enviar' => [
-            0 => 'Envío OK',
-            1 => 'Usuario no tiene permiso para enviar',
-            2 => 'Error en tamaño del archivo (muy grande o muy chico)',
-            3 => 'Archivo cortado (tamaño es diferente al parámetro size)',
-            5 => 'No está autenticado',
-            6 => 'Empresa no está autorizada a enviar archivos',
-            7 => 'Esquema inválido',
-            8 => 'Error en firma del documento',
-            9 => 'Sistema bloqueado',
-        ],
-    ]; ///< Códigos de estados y glosas del SII
-
     /**
      * Método que permite asignar el nombre del servidor del SII que se
      * usará para las consultas al SII
@@ -126,7 +112,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-14
+     * @version 2015-09-16
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -152,12 +138,12 @@ class Sii
                 $msg = $e->getMessage();
                 if (isset($e->getTrace()[0]['args'][1]))
                     $msg .= ': '.$e->getTrace()[0]['args'][1];
-                \sasco\LibreDTE\Log::write($msg);
+                \sasco\LibreDTE\Log::write(Estado::REQUEST_ERROR_SOAP, Estado::get(Estado::REQUEST_ERROR_SOAP, $msg));
                 $body = null;
             }
         }
         if ($body===null) {
-            \sasco\LibreDTE\Log::write('No se obtuvo respuesta para '.$wsdl.' en '.$retry.' intentos');
+            \sasco\LibreDTE\Log::write(Estado::REQUEST_ERROR_BODY, Estado::get(Estado::REQUEST_ERROR_BODY, $wsdl, $retry));
             return false;
         }
         return new \SimpleXMLElement($body, LIBXML_COMPACT);
@@ -231,9 +217,9 @@ class Sii
         // generará un error de nivel E_USER_NOTICE
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
-                $msg = '¡No se está verificando el certificado SSL del SII en ambiente de producción!';
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
                 trigger_error($msg, E_USER_NOTICE);
-                \sasco\LibreDTE\Log::write($msg, LOG_WARNING);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
@@ -247,9 +233,9 @@ class Sii
         // verificar respuesta del envío y entregar error en caso que haya uno
         if (!$response or $response=='Error 500') {
             if (!$response)
-                \sasco\LibreDTE\Log::write('Falló el envío automático al SII. '.curl_error($curl));
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_CURL, Estado::get(Estado::ENVIO_ERROR_CURL, curl_error($curl)));
             if ($response=='Error 500')
-                \sasco\LibreDTE\Log::write('Falló el envío automático al SII con error 500');
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_500, Estado::get(Estado::ENVIO_ERROR_500));
             return false;
         }
         // cerrar sesión curl
@@ -258,11 +244,11 @@ class Sii
         try {
             $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
         } catch (Exception $e) {
-            \sasco\LibreDTE\Log::write('Error al convertir respuesta de envío automático del SII a XML: '.$e->getMessage());
+            \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_XML, Estado::get(Estado::ENVIO_ERROR_XML, $e->getMessage()));
             return false;
         }
         if ($xml->STATUS!=0) {
-            \sasco\LibreDTE\Log::write('Usuario '.$xml->RUTSENDER.' no pudo enviar el XML de la empresa '.$xml->RUTCOMPANY.'. El error fue: '.self::getEstado($xml->STATUS, 'enviar'));
+            \sasco\LibreDTE\Log::write($xml->STATUS, Estado::get($xml->STATUS));
         }
         return $xml;
     }
@@ -277,7 +263,7 @@ class Sii
      * @param idk IDK de la clave pública del SII. Si no se indica se tratará de determinar con el ambiente que se esté usando
      * @return Contenido del certificado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-16
      */
     public static function cert($idk = null)
     {
@@ -291,7 +277,7 @@ class Sii
         $ambiente = self::getAmbiente();
         $cert = dirname(dirname(__FILE__)).'/certs/'.self::$config['certs'][$ambiente].'.cer';
         if (!is_readable($cert)) {
-            \sasco\LibreDTE\Log::write('No se pudo leer el certificado X.509 del SII número '.self::$config['certs'][$ambiente]);
+            \sasco\LibreDTE\Log::write(Estado::SII_ERROR_CERTIFICADO, Estado::get(Estado::SII_ERROR_CERTIFICADO, self::$config['certs'][$ambiente]));
             return false;
         }
         return file_get_contents($cert);
@@ -325,21 +311,6 @@ class Sii
     public static function getIVA()
     {
         return self::IVA;
-    }
-
-    /**
-     * Método que entrega la glosa asociada al código de estado
-     * @param estado Código del estado
-     * @param funcionalidad funcionalidad a la que está asociado el código de estado
-     * @return Glosa del estado
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
-     */
-    private static function getEstado($estado, $funcionalidad)
-    {
-        if (isset(self::$estados[$funcionalidad][(int)$estado]))
-            return self::$estados[$funcionalidad][(int)$estado];
-        return $funcionalidad.' '.(int)$estado;
     }
 
 }

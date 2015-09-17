@@ -47,12 +47,15 @@ class EnvioDte
      * @param DTE Objeto del DTE
      * @return =true si se pudo agregar el DTE o =false si no se agregó por exceder el límite de un envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function agregar(Dte $DTE)
     {
         if (isset($this->dtes[$this->config['DTE_max']-1])) {
-            \sasco\LibreDTE\Log::write('No es posible adjuntar más de '.$this->config['DTE_max'].' DTEs al envío');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_DTE_MAX,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_DTE_MAX, $this->config['DTE_max'])
+            );
             return false;
         }
         $this->dtes[] = $DTE;
@@ -63,13 +66,16 @@ class EnvioDte
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function setCaratula(array $caratula)
     {
         $SubTotDTE = $this->getSubTotDTE();
         if (isset($SubTotDTE[$this->config['SubTotDTE_max']])) {
-            \sasco\LibreDTE\Log::write('No puede adjuntar más de '.$this->config['SubTotDTE_max'].' tipos de DTE diferentes al envío');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX, $this->config['SubTotDTE_max'])
+            );
             return false;
         }
         $this->caratula = array_merge([
@@ -102,7 +108,7 @@ class EnvioDte
      * Método que realiza el envío del sobre con el o los DTEs al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function enviar()
     {
@@ -110,7 +116,10 @@ class EnvioDte
         if (!$this->xml_data)
             $this->xml_data = $this->generar();
         if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write('No hay XML con datos de EnvioDTE para enviar');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_FALTA_XML,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_FALTA_XML)
+            );
             return false;
         }
         // validar schema del documento antes de enviar
@@ -133,7 +142,7 @@ class EnvioDte
      * Método que genera el XML para el envío del DTE al SII
      * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-17
      */
     public function generar()
     {
@@ -142,7 +151,10 @@ class EnvioDte
             return $this->xml_data;
         // si no hay DTEs para generar entregar falso
         if (!isset($this->dtes[0])) {
-            \sasco\LibreDTE\Log::write('No hay ningún DTE agregado al envío');
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_FALTA_DTE,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_FALTA_DTE)
+            );
             return false;
         }
         // genear XML del envío
@@ -290,7 +302,7 @@ class EnvioDte
      * Método que entrega el arreglo con los objetos DTE del envío
      * @return Arreglo de objetos DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function getDocumentos()
     {
@@ -298,7 +310,10 @@ class EnvioDte
         if (!$this->dtes) {
             // si no hay XML no se pueden crear los documentos
             if (!$this->xml) {
-                \sasco\LibreDTE\Log::write('No hay XML, no es posible generar DTEs');
+                \sasco\LibreDTE\Log::write(
+                    \sasco\LibreDTE\Estado::ENVIODTE_GETDOCUMENTOS_FALTA_XML,
+                    \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_GETDOCUMENTOS_FALTA_XML)
+                );
                 return false;
             }
             // crear documentos a partir del XML
@@ -332,7 +347,7 @@ class EnvioDte
      * Método que valida el schema del EnvioDTE
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-17
      */
     public function schemaValidate()
     {
@@ -342,8 +357,12 @@ class EnvioDte
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
         $result = $this->xml->schemaValidate($xsd);
-        if (!$result)
-            \sasco\LibreDTE\Log::write(implode("\n", libxml_get_errors()));
+        if (!$result) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_ERROR_SCHEMA,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_ERROR_SCHEMA, implode("\n", libxml_get_errors()))
+            );
+        }
         return $result;
     }
 
