@@ -56,23 +56,36 @@ class Log
 
     /**
      * Método que escribe un mensaje en la bitácora
+     * @param code Código del mensaje que se desea escribir
      * @param msg Mensaje que se desea escribir
      * @param severity Gravedad del mensaje, por defecto LOG_ERR (puede ser cualquiera de las constantes PHP de syslog)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2015-09-16
      */
-    public static function write($msg, $severity = LOG_ERR)
+    public static function write($code, $msg = null, $severity = LOG_ERR)
     {
         // si no existe la bitácora para la gravedad se crea
         if (!isset(self::$bitacora[$severity]))
             self::$bitacora[$severity] = [];
+        // si el código es un string se copia a msg
+        if (is_string($code)) {
+            $msg = $code;
+            $code = -1; // código de error genérico
+        }
+        // crear mensaje
+        $LogMsg = new LogMsg($code, $msg);
         // agregar datos de quien llamó al método
         if (self::$backtrace) {
             $trace = debug_backtrace(!DEBUG_BACKTRACE_PROVIDE_OBJECT and !DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-            $msg .= ' (by '.$trace[1]['class'].'::'.$trace[1]['function'].'() in '.$trace[0]['file'].' on line '.$trace[0]['line'].')';
+            $LogMsg->file = $trace[0]['file'];
+            $LogMsg->line = $trace[0]['line'];
+            $LogMsg->function = $trace[1]['function'];
+            $LogMsg->class = $trace[1]['class'];
+            $LogMsg->type = $trace[1]['type'];
+            $LogMsg->args = $trace[1]['args'];
         }
         // agregar mensaje a la bitácora
-        array_push(self::$bitacora[$severity], $msg);
+        array_push(self::$bitacora[$severity], $LogMsg);
     }
 
     /**
@@ -106,6 +119,53 @@ class Log
             krsort($bitacora);
         self::$bitacora[$severity] = [];
         return $bitacora;
+    }
+
+}
+
+
+/**
+ * Clase que representa un mensaje del Log
+ *
+ * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * @version 2015-09-16
+ */
+class LogMsg
+{
+
+    public $code; ///< Código del error
+    public $msg; ///< Descripción o glosa del error
+    public $file; ///< Archivo donde se llamó al log
+    public $line; ///< Línea del archivo donde se llamó al log
+    public $function; ///< Método que llamó al log
+    public $class; ///< Clase del método que llamó al log
+    public $type; ///< Tipo de llamada (estática o de objeto instanciado)
+    public $args; ///< Argumntos que recibió el método que generó el log
+
+    /**
+     * Constructor del mensaje
+     * @param code Código del error
+     * @param msg Mensaje del error
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-16
+     */
+    public function __construct($code, $msg = null)
+    {
+        $this->code = (int)$code;
+        $this->msg = $msg;
+    }
+
+    /**
+     * Método mágico para obtener el mensaje como string a partir del objeto
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-16
+     */
+    public function __toString()
+    {
+        $msg = $this->msg ? $this->msg : 'Error código'.$this->code;
+        if (!$this->file)
+            return $msg;
+        return $msg.' (by '.$this->class.$this->type.$this->function.'() in '.$this->file.' on line '.$this->line.')';
     }
 
 }
