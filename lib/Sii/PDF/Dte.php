@@ -118,7 +118,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2015-09-17
      */
     public function agregar(array $dte, $timbre)
     {
@@ -130,7 +130,6 @@ class Dte extends \sasco\LibreDTE\PDF
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
-            //!empty($dte['Encabezado']['Emisor']['CdgSIISucur']) ? $dte['Encabezado']['Emisor']['CdgSIISucur'] : $dte['Encabezado']['Emisor']['CmnaOrigen']
             $dte['Encabezado']['Emisor']['CmnaOrigen']
         );
         // datos del documento
