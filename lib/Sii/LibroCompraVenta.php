@@ -56,7 +56,7 @@ class LibroCompraVenta
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
+     * @version 2015-09-17
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -66,6 +66,7 @@ class LibroCompraVenta
             'NroDoc' => false,
             'TasaImp' => 0,
             'FchDoc' => false,
+            'CdgSIISucur' => false,
             'RUTDoc' => false,
             'RznSoc' => false,
             'MntExe' => false,
@@ -78,7 +79,8 @@ class LibroCompraVenta
         ], $detalle);
         // calcular valores que no se hayan entregado
         if (isset($detalle['FctProp'])) {
-            $detalle['IVAUsoComun'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
+            if ($detalle['IVAUsoComun']===false)
+                $detalle['IVAUsoComun'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
         } else if (!$detalle['MntIVA'] and !is_array($detalle['IVANoRec']) and $detalle['TasaImp'] and $detalle['MntNeto']) {
             $detalle['MntIVA'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
         }
@@ -93,7 +95,7 @@ class LibroCompraVenta
                 $detalle['OtrosImp'] = [$detalle['OtrosImp']];
         }
         // calcular monto total si no se especificó
-        if (!$detalle['MntTotal']) {
+        if ($detalle['MntTotal']===false) {
             // calcular monto total inicial
             $detalle['MntTotal'] = $detalle['MntExe'] + $detalle['MntNeto'] + $detalle['MntIVA'];
             // agregar iva no recuperable al monto total
@@ -114,6 +116,147 @@ class LibroCompraVenta
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Método que agrega el detalle del libro de compras a partir de un archivo
+     * CSV.
+     *
+     * Formato del archivo (desde la columna A):
+     *   TpoDoc -> 0
+     *   NroDoc -> 1
+     *   TasaImp -> 2
+     *   FchDoc -> 3
+     *   CdgSIISucur -> 4 (opcional)
+     *   RUTDoc -> 5
+     *   RznSoc -> 6 (opcional)
+     *   MntExe -> 7
+     *   MntNeto -> 8
+     *   MntIVA -> 9 (calculable)
+     *   IVANoRec: (opcional)
+     *     CodIVANoRec -> 10
+     *     MntIVANoRec -> 11 (calculable)
+     *   FctProp -> 12
+     *   OtrosImp: (opcional)
+     *     CodImp -> 13
+     *     TasaImp -> 14
+     *     MntImp -> 15 (calculable)
+     *   MntTotal -> 16 (calculable)
+     *
+     * @param archivo  Ruta al archivo que se desea cargar
+     * @param separador Separador de campos del archivo CSV
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-17
+     */
+    public function agregarComprasCSV($archivo, $separador = ';')
+    {
+        $data = \sasco\LibreDTE\CSV::read($archivo);
+        $n_data = count($data);
+        $detalles = [];
+        for ($i=1; $i<$n_data; $i++) {
+            // detalle genérico
+            $detalle = [
+                'TpoDoc' => $data[$i][0],
+                'NroDoc' => $data[$i][1],
+                'TasaImp' => !empty($data[$i][2]) ? $data[$i][2] : false,
+                'FchDoc' => $data[$i][3],
+                'CdgSIISucur' => !empty($data[$i][4]) ? $data[$i][4] : false,
+                'RUTDoc' => $data[$i][5],
+                'RznSoc' => !empty($data[$i][6]) ? $data[$i][6] : false,
+                'MntExe' => !empty($data[$i][7]) ? $data[$i][7] : false,
+                'MntNeto' => !empty($data[$i][8]) ? $data[$i][8] : false,
+                'MntIVA' => !empty($data[$i][9]) ? $data[$i][9] : 0,
+            ];
+            // agregar código y monto de iva no recuperable si existe
+            if (!empty($data[$i][10])) {
+                $detalle['IVANoRec'] = [
+                    'CodIVANoRec' => $data[$i][10],
+                    'MntIVANoRec' => !empty($data[$i][11]) ? $data[$i][11] : round($detalle['MntNeto'] * ($detalle['TasaImp']/100)),
+                ];
+            }
+            // si hay factor de proporcionalidad se agrega
+            if (!empty($data[$i][12])) {
+                $detalle['FctProp'] = $data[$i][12];
+            }
+            // agregar código y monto de otros impuestos
+            if (!empty($data[$i][13]) and !empty($data[$i][14])) {
+                $detalle['OtrosImp'] = [
+                    'CodImp' => $data[$i][13],
+                    'TasaImp' => $data[$i][14],
+                    'MntImp' => !empty($data[$i][15]) ? $data[$i][15] : round($detalle['MntNeto'] * ($data[$i][14]/100)),
+                ];
+            }
+            // si hay monto total se agrega
+            if (!empty($data[$i][16])) {
+                $detalle['MntTotal'] = $data[$i][16];
+            }
+            // agregar a los detalles
+            $this->agregar($detalle);
+        }
+    }
+
+    /**
+     * Método que agrega el detalle del libro de compras a partir de un archivo
+     * CSV.
+     *
+     * Formato del archivo (desde la columna A):
+                             CodImp  TasaImp MntImp  MntTotal
+
+     *   TpoDoc -> 0
+     *   NroDoc -> 1
+     *   TasaImp -> 2
+     *   FchDoc -> 3
+     *   CdgSIISucur -> 4 (opcional)
+     *   RUTDoc -> 5
+     *   RznSoc -> 6 (opcional)
+     *   MntExe -> 7
+     *   MntNeto -> 8
+     *   MntIVA -> 9 (calculable)
+     *   OtrosImp: (opcional)
+     *     CodImp -> 10
+     *     TasaImp -> 11
+     *     MntImp -> 12 (calculable)
+     *   MntTotal -> 13 (calculable)
+     *
+     * @param archivo  Ruta al archivo que se desea cargar
+     * @param separador Separador de campos del archivo CSV
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-18
+     */
+    public function agregarVentasCSV($archivo, $separador = ';')
+    {
+        $data = \sasco\LibreDTE\CSV::read($archivo);
+        $n_data = count($data);
+        $detalles = [];
+        for ($i=1; $i<$n_data; $i++) {
+            // detalle genérico
+            $detalle = [
+                'TpoDoc' => $data[$i][0],
+                'NroDoc' => $data[$i][1],
+                'TasaImp' => !empty($data[$i][2]) ? $data[$i][2] : false,
+                'FchDoc' => $data[$i][3],
+                'CdgSIISucur' => !empty($data[$i][4]) ? $data[$i][4] : false,
+                'RUTDoc' => $data[$i][5],
+                'RznSoc' => !empty($data[$i][6]) ? $data[$i][6] : false,
+                'MntExe' => !empty($data[$i][7]) ? $data[$i][7] : false,
+                'MntNeto' => !empty($data[$i][8]) ? $data[$i][8] : false,
+                'MntIVA' => !empty($data[$i][9]) ? $data[$i][9] : 0,
+            ];
+            // agregar código y monto de otros impuestos
+            if (!empty($data[$i][10]) and !empty($data[$i][11])) {
+                $detalle['OtrosImp'] = [
+                    'CodImp' => $data[$i][10],
+                    'TasaImp' => $data[$i][11],
+                    'MntImp' => !empty($data[$i][12]) ? $data[$i][12] : round($detalle['MntNeto'] * ($data[$i][11]/100)),
+                ];
+            }
+            // si hay monto total se agrega
+            if (!empty($data[$i][13])) {
+                $detalle['MntTotal'] = $data[$i][13];
+            }
+            // agregar a los detalles
+            $this->agregar($detalle);
         }
     }
 
