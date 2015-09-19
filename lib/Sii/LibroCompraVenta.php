@@ -201,8 +201,6 @@ class LibroCompraVenta
      * CSV.
      *
      * Formato del archivo (desde la columna A):
-                             CodImp  TasaImp MntImp  MntTotal
-
      *   TpoDoc -> 0
      *   NroDoc -> 1
      *   TasaImp -> 2
