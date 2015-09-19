@@ -238,4 +238,18 @@ class XML extends \DomDocument
         return $twins;
     }
 
+    /**
+     * Método que entrega los errores de libxml que pueden existir
+     * @return Arreglo con los errores XML que han ocurrido
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-18
+     */
+    public function getErrors()
+    {
+        $errors = [];
+        foreach (libxml_get_errors() as $e)
+            $errors[] = $e->message;
+        return $errors;
+    }
+
 }

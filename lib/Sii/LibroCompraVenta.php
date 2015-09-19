@@ -456,7 +456,7 @@ class LibroCompraVenta
      * Método que valida el XML que se genera para la respuesta del envío
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-09-18
      */
     public function schemaValidate()
     {
@@ -474,7 +474,7 @@ class LibroCompraVenta
         if (!$result) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA, implode("\n", libxml_get_errors()))
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
             );
         }
         return $result;
