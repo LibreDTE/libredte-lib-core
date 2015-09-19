@@ -112,7 +112,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-16
+     * @version 2015-09-19
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -136,8 +136,9 @@ class Sii
                 break;
             } catch (\Exception $e) {
                 $msg = $e->getMessage();
-                if (isset($e->getTrace()[0]['args'][1]))
+                if (isset($e->getTrace()[0]['args'][1]) and is_string($e->getTrace()[0]['args'][1])) {
                     $msg .= ': '.$e->getTrace()[0]['args'][1];
+                }
                 \sasco\LibreDTE\Log::write(Estado::REQUEST_ERROR_SOAP, Estado::get(Estado::REQUEST_ERROR_SOAP, $msg));
                 $body = null;
             }
