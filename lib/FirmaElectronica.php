@@ -27,7 +27,7 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-11
+ * @version 2015-09-19
  */
 class FirmaElectronica
 {
@@ -397,5 +397,24 @@ class FirmaElectronica
         }
         return $digest_original == $digest_calculado;
     }
+
+    /**
+     * Método que obtiene la clave asociada al módulo y exponente entregados
+     * @param modulus Módulo de la clave
+     * @param exponent Exponente de la clave
+     * @return Entrega la clave asociada al módulo y exponente
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-19
+     */
+    public static function getFromModulusExponent($modulus, $exponent)
+    {
+        $rsa = new \phpseclib\Crypt\RSA();
+        $modulus = new \phpseclib\Math\BigInteger(base64_decode($modulus), 256);
+        $exponent = new \phpseclib\Math\BigInteger(base64_decode($exponent), 256);
+        $rsa->loadKey(['n' => $modulus, 'e' => $exponent]);
+        $rsa->setPublicKey();
+        return $rsa->getPublicKey();
+    }
+
 
 }

@@ -21,6 +21,7 @@
         "ext-curl": "*",
         "ext-openssl": "*",
         "ext-soap": "*",
+        "phpseclib/phpseclib": "2.0.0",
         "tecnick.com/tcpdf": "6.0.096"
     },
     "autoload": {
