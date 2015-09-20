@@ -627,7 +627,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-20
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -637,14 +637,22 @@ class Dte
         foreach ($datos['Detalle'] as &$d) {
             $d = array_merge([
                 'NroLinDet' => $item++,
+                'CdgItem' => false,
                 'IndExe' =>false,
                 'NmbItem' => false,
+                'DscItem' => false,
                 'QtyItem' => false,
                 'UnmdItem' => false,
                 'PrcItem' => false,
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
             ], $d);
+            if ($d['CdgItem']!==false and !is_array($d['CdgItem'])) {
+                $d['CdgItem'] = [
+                    'TpoCodigo' => 'INT1',
+                    'VlrCodigo' => $d['CdgItem'],
+                ];
+            }
             if (empty($d['MontoItem'])) {
                 $d['MontoItem'] = $d['QtyItem'] * $d['PrcItem'];
                 $DescuentoPct = $d['DescuentoPct'] ? $d['DescuentoPct'] : 0;
