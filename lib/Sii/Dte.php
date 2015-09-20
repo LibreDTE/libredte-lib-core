@@ -510,7 +510,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-20
      */
     private function normalizar_33(array &$datos)
     {
@@ -531,7 +531,7 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntNeto');
+        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntNeto', 'MntExe']);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -539,7 +539,7 @@ class Dte
      * Método que normaliza los datos de una factura exenta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-09-20
      */
     private function normalizar_34(array &$datos)
     {
@@ -557,7 +557,7 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, 'MntExe');
+        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntExe']);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -685,21 +685,25 @@ class Dte
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-03
      */
-    private function normalizar_aplicar_descuentos_recargos(array &$datos, $monto = 'MntNeto')
+    private function normalizar_aplicar_descuentos_recargos(array &$datos, array $montos)
     {
         if (!empty($datos['DscRcgGlobal'])) {
-            foreach ($datos['DscRcgGlobal'] as $dr) {
-                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
-                // aplicar descuento
-                if ($dr['TpoMov']=='D') {
-                    $datos['Encabezado']['Totales'][$monto] -= $valor;
+            foreach ($montos as $monto) {
+                if (!$datos['Encabezado']['Totales'][$monto])
+                    continue;
+                foreach ($datos['DscRcgGlobal'] as $dr) {
+                    $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
+                    // aplicar descuento
+                    if ($dr['TpoMov']=='D') {
+                        $datos['Encabezado']['Totales'][$monto] -= $valor;
+                    }
+                    // aplicar recargo
+                    else if ($dr['TpoMov']=='R') {
+                        $datos['Encabezado']['Totales'][$monto] += $valor;
+                    }
                 }
-                // aplicar recargo
-                else if ($dr['TpoMov']=='R') {
-                    $datos['Encabezado']['Totales'][$monto] += $valor;
-                }
+                $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
             }
-            $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
         }
     }
 
