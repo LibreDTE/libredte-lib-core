@@ -4,12 +4,9 @@ LibreDTE
 LibreDTE corresponde a una biblioteca escrita en lenguaje PHP para la
 interacción con el SII en Chile.
 
-La biblioteca se construye originalmente para el módulo Dte de la extensión
-[empresa](https://github.com/SowerPHP/extension-empresa) del framework
+La biblioteca se construye originalmente para el módulo Dte del framework
 [SowerPHP](http://sowerphp.org). En esta biblioteca sólo estará lo básico para
-que un desarrollador usando PHP pueda construir su aplicación, si se requiere
-de una base ya construída se recomienda revisar el framework y módulo antes
-mencionado.
+que un desarrollador usando PHP pueda construir su aplicación.
 
 Funcionalidades implementadas
 -----------------------------
@@ -30,7 +27,7 @@ Funcionalidades implementadas
 - Etapa de intercambio con otros contribuyentes:
     - Acuse de recibo
     - Recibo de mercaderías y servicios prestados
-    - Resultado validación 
+    - Resultado validación
 - Generación de documentos en PDF, con muestras aceptadas por el SII.
 
 Instalación
