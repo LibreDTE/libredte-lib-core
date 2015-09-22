@@ -28,7 +28,7 @@
  * electrónica
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-16
+ * @version 2015-09-22
  */
 
 // respuesta en texto plano
@@ -43,7 +43,10 @@ $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
 // mostrar datos de la persona dueña de la firma
 echo 'RUN    : ',$Firma->getID(),"\n";
 echo 'Nombre : ',$Firma->getName(),"\n";
-echo 'Email  : ',$Firma->getEmail(),"\n\n";
+echo 'Email  : ',$Firma->getEmail(),"\n";
+echo 'Desde  : ',$Firma->getFrom(),"\n";
+echo 'Hasta  : ',$Firma->getTo(),"\n";
+echo 'Emisor : ',$Firma->getIssuer(),"\n\n\n";
 print_r($Firma->getData());
 
 // si hubo errores mostrar

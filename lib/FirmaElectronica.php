@@ -27,7 +27,7 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-19
+ * @version 2015-09-22
  */
 class FirmaElectronica
 {
@@ -164,6 +164,39 @@ class FirmaElectronica
     public function getEmail()
     {
         return $this->data['subject']['emailAddress'];
+    }
+
+    /**
+     * Método que entrega desde cuando es válida la firma
+     * @return validFrom_time_t
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-22
+     */
+    public function getFrom()
+    {
+        return date('Y-m-d H:i:s', $this->data['validFrom_time_t']);
+    }
+
+    /**
+     * Método que entrega hasta cuando es válida la firma
+     * @return validTo_time_t
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-22
+     */
+    public function getTo()
+    {
+        return date('Y-m-d H:i:s', $this->data['validTo_time_t']);
+    }
+
+    /**
+     * Método que entrega el nombre del emisor de la firma
+     * @return CN del issuer
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-22
+     */
+    public function getIssuer()
+    {
+        return $this->data['issuer']['CN'];
     }
 
     /**
