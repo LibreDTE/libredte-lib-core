@@ -70,7 +70,6 @@ class EnvioDte
      */
     public function setCaratula(array $caratula)
     {
-        $SubTotDTE = $this->getSubTotDTE();
         // si no hay DTEs para generar entregar falso
         if (!isset($this->dtes[0])) {
             \sasco\LibreDTE\Log::write(
@@ -80,6 +79,7 @@ class EnvioDte
             return false;
         }
         // si se agregaron demasiados DTE error
+        $SubTotDTE = $this->getSubTotDTE();
         if (isset($SubTotDTE[$this->config['SubTotDTE_max']])) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX,
