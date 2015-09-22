@@ -139,14 +139,21 @@ class XML extends \DomDocument
     /**
      * Método que entrega el código XML aplanado y con la codificación que
      * corresponde
+     * @param xpath XPath para consulta al XML y extraer sólo una parte
      * @return String con código XML aplanado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-30
+     * @version 2015-09-22
      */
     public function getFlattened($xpath = null)
     {
-        $xml = $xpath ? $this->encode($this->xpath($xpath)->item(0)->C14N()) : $this->C14N();
-        //$xml = $xpath ? $this->xpath($xpath)->item(0)->C14N() : $this->C14N();
+        if ($xpath) {
+            $node = $this->xpath($xpath)->item(0);
+            if (!$node)
+                return false;
+            $xml = $this->encode($node->C14N());
+        } else {
+            $xml = $this->C14N();
+        }
         $xml = preg_replace("/\>\n\s+\</", '><', $xml);
         $xml = preg_replace("/\>\n\t+\</", '><', $xml);
         $xml = preg_replace("/\>\n+\</", '><', $xml);
