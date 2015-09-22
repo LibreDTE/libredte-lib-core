@@ -103,6 +103,19 @@ class Folios
     }
 
     /**
+     * Método que entrega el RUT de a quién se está autorizando el CAF
+     * @return Rut del emisor del CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-22
+     */
+    public function getEmisor()
+    {
+        if (!$this->xml)
+            return false;
+        return $this->xml->getElementsByTagName('RE')->item(0)->nodeValue;
+    }
+
+    /**
      * Método que entrega el primer folio autorizado en el CAF
      * @return Número del primer folio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
