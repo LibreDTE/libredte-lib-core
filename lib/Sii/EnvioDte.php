@@ -66,11 +66,20 @@ class EnvioDte
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-09-22
      */
     public function setCaratula(array $caratula)
     {
         $SubTotDTE = $this->getSubTotDTE();
+        // si no hay DTEs para generar entregar falso
+        if (!isset($this->dtes[0])) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_FALTA_DTE,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_FALTA_DTE)
+            );
+            return false;
+        }
+        // si se agregaron demasiados DTE error
         if (isset($SubTotDTE[$this->config['SubTotDTE_max']])) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX,
@@ -78,6 +87,7 @@ class EnvioDte
             );
             return false;
         }
+        // generar caratula
         $this->caratula = array_merge([
             '@attributes' => [
                 'version' => '1.0'
