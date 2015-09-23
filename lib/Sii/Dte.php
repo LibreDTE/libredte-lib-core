@@ -414,7 +414,7 @@ class Dte
      * puede servir, por ejemplo, para generar los detalles de los IECV
      * @return Arreglo con el resumen del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-13
+     * @version 2015-09-23
      */
     public function getResumen()
     {
@@ -424,6 +424,7 @@ class Dte
             'NroDoc' => $this->datos['Encabezado']['IdDoc']['Folio'],
             'TasaImp' => 0,
             'FchDoc' => $this->datos['Encabezado']['IdDoc']['FchEmis'],
+            'CdgSIISucur' => !empty($this->datos['Encabezado']['Emisor']['CdgSIISucur']) ? $this->datos['Encabezado']['Emisor']['CdgSIISucur'] : false,
             'RUTDoc' => $this->datos['Encabezado']['Receptor']['RUTRecep'],
             'RznSoc' => $this->datos['Encabezado']['Receptor']['RznSocRecep'],
             'MntExe' => false,
