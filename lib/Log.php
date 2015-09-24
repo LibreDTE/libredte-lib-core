@@ -162,7 +162,7 @@ class LogMsg
      */
     public function __toString()
     {
-        $msg = $this->msg ? $this->msg : 'Error código'.$this->code;
+        $msg = $this->msg ? $this->msg : 'Error código '.$this->code;
         if (!$this->file)
             return $msg;
         return $msg.' (by '.$this->class.$this->type.$this->function.'() in '.$this->file.' on line '.$this->line.')';

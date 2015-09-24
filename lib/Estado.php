@@ -175,19 +175,19 @@ class Estado
      * @param args Argumentos que se usarán para reemplazar "máscaras" en glosa
      * @return Glosa del estado si existe o bien el mismo código del estado si no hay glosa
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-16
+     * @version 2015-09-24
      */
     public static function get($codigo, $args = null)
     {
         // si no hay glosa asociada al código se entrega el mismo código
-        if (!isset(self::$glosas[$codigo]))
-            return $codigo;
+        if (!isset(self::$glosas[(int)$codigo]))
+            return (int)$codigo;
         // si los argumentos no son un arreglo se obtiene arreglo a partir
         // de los argumentos pasados a la función
         if (!is_array($args))
             $args = array_slice(func_get_args(), 1);
         // entregar glosa
-        return vsprintf(I18n::translate(self::$glosas[$codigo], 'estados'), $args);
+        return vsprintf(I18n::translate(self::$glosas[(int)$codigo], 'estados'), $args);
     }
 
 }
