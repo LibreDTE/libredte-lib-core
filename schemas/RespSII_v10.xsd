@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="RESULTADO_ENVIO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IDENTIFICACION">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RUTEMISOR">
+								<xs:simpleType>
+									<xs:restriction base="RUTType"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="RUTENVIA">
+								<xs:simpleType>
+									<xs:restriction base="RUTType"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="TRACKID" type="EnteroType"/>
+							<xs:element name="TMSTRECEPCION" type="xs:string"/>
+							<xs:element name="ESTADO" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ESTADISTICA" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SUBTOTAL" maxOccurs="5">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TIPODOC" type="DTEType"/>
+										<xs:element name="INFORMADO" type="EnteroType"/>
+										<xs:element name="RECHAZO" type="EnteroType" minOccurs="0"/>
+										<xs:element name="REPARO" type="EnteroType" minOccurs="0"/>
+										<xs:element name="ACEPTA" type="EnteroType" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ERRORENVIO" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DETERRENVIO" type="xs:string" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="REVISIONENVIO" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="REVISIONDTE" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FOLIO" type="EnteroType"/>
+										<xs:element name="TIPODTE" type="DTEType"/>
+										<xs:element name="ESTADO" type="xs:string"/>
+										<xs:element name="DETALLE" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="RUTType">
+		<xs:annotation>
+			<xs:documentation>Rol Unico Tributario (99..99-X)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="3"/>
+			<xs:pattern value="[0-9]+-([0-9]|K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DTEType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos Tributarios Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="33">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="34">
+				<xs:annotation>
+					<xs:documentation>Factura Electronica de Venta de Bienes y Servicios No afectos o Exento de IVA</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="46">
+				<xs:annotation>
+					<xs:documentation>Factura de Compra Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="52">
+				<xs:annotation>
+					<xs:documentation>Guia de Despacho Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="56">
+				<xs:annotation>
+					<xs:documentation>Nota de Debito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Nota de Credito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EnteroType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
