@@ -176,13 +176,15 @@ class XML extends \DomDocument
     /**
      * Método que convierte el XML a un arreglo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-09-26
      */
     public function toArray(\DOMElement $dom = null, array &$array = null, $arregloNodos = false)
     {
         // determinar valores de parámetros
         if (!$dom)
             $dom = $this->documentElement;
+        if (!$dom)
+            return false;
         if ($array===null)
             $array = [$dom->tagName => null];
         // agregar atributos del nodo
