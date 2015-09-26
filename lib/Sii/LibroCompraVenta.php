@@ -344,7 +344,7 @@ class LibroCompraVenta
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-13
+     * @version 2015-09-26
      */
     public function generar($incluirDetalle = true)
     {
@@ -376,7 +376,7 @@ class LibroCompraVenta
             ]
         ])->saveXML();
         // firmar XML del envío y entregar
-        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$ID, 'EnvioLibro', true) : $xmlEnvio;
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
         return $this->xml_data;
     }
 
