@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" xmlns:intf="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:message name="reenvioCorreoResponse">
+    <wsdl:part name="reenvioCorreoReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionMayorRequest">
+  </wsdl:message>
+  <wsdl:message name="getEnvResponse">
+    <wsdl:part name="getEnvReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStateRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionMenorResponse">
+    <wsdl:part name="getVersionMenorReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStateResponse">
+    <wsdl:part name="getStateReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="reenvioCorreoRequest">
+    <wsdl:part name="Token" type="xsd:string"/>
+    <wsdl:part name="RutEmpresa" type="xsd:string"/>
+    <wsdl:part name="DvEmpresa" type="xsd:string"/>
+    <wsdl:part name="TrackId" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionMayorResponse">
+    <wsdl:part name="getVersionMayorReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getEnvRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionMenorRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionPatchRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionRequest">
+  </wsdl:message>
+  <wsdl:message name="getVersionPatchResponse">
+    <wsdl:part name="getVersionPatchReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getVersionResponse">
+    <wsdl:part name="getVersionReturn" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:portType name="wsDTECorreo">
+    <wsdl:operation name="getState">
+      <wsdl:input message="impl:getStateRequest" name="getStateRequest"/>
+      <wsdl:output message="impl:getStateResponse" name="getStateResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdl:input message="impl:getVersionRequest" name="getVersionRequest"/>
+      <wsdl:output message="impl:getVersionResponse" name="getVersionResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="reenvioCorreo" parameterOrder="Token RutEmpresa DvEmpresa TrackId">
+      <wsdl:input message="impl:reenvioCorreoRequest" name="reenvioCorreoRequest"/>
+      <wsdl:output message="impl:reenvioCorreoResponse" name="reenvioCorreoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMayor">
+      <wsdl:input message="impl:getVersionMayorRequest" name="getVersionMayorRequest"/>
+      <wsdl:output message="impl:getVersionMayorResponse" name="getVersionMayorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMenor">
+      <wsdl:input message="impl:getVersionMenorRequest" name="getVersionMenorRequest"/>
+      <wsdl:output message="impl:getVersionMenorResponse" name="getVersionMenorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionPatch">
+      <wsdl:input message="impl:getVersionPatchRequest" name="getVersionPatchRequest"/>
+      <wsdl:output message="impl:getVersionPatchResponse" name="getVersionPatchResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getEnv">
+      <wsdl:input message="impl:getEnvRequest" name="getEnvRequest"/>
+      <wsdl:output message="impl:getEnvResponse" name="getEnvResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsDTECorreoSoapBinding" type="impl:wsDTECorreo">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getState">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getStateRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStateResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reenvioCorreo">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="reenvioCorreoRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="reenvioCorreoResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMayor">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionMayorRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionMayorResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionMenor">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionMenorRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionMenorResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersionPatch">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getVersionPatchRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionPatchResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEnv">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getEnvRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEnvResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://maullin.sii.cl/DTEWS/services/wsDTECorreo" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsDTECorreoService">
+    <wsdl:port binding="impl:wsDTECorreoSoapBinding" name="wsDTECorreo">
+      <wsdlsoap:address location="https://maullin.sii.cl/DTEWS/services/wsDTECorreo"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

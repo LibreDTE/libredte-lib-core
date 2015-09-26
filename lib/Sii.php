@@ -84,7 +84,7 @@ class Sii
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-14
+     * @version 2015-09-25
      */
     public static function wsdl($servicio, $ambiente = null)
     {
@@ -97,11 +97,16 @@ class Sii
                 return $wsdl;
         }
         // entregar WSDL oficial desde SII
-        return str_replace(
+        $wsdl = str_replace(
             ['{servidor}', '{servicio}'],
             [self::$config['servidor'][$ambiente], $servicio],
             self::$config['wsdl']
         );
+        // wsdl wsDTECorreo sale de la norma y tiene otra URL
+        if ($servicio == 'wsDTECorreo')
+            $wsdl = str_replace('wsDTECorreo.jws', 'services/wsDTECorreo', $wsdl);
+        // entregar wsdl
+        return $wsdl;
     }
 
     /**
@@ -112,7 +117,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-19
+     * @version 2015-09-25
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -122,10 +127,18 @@ class Sii
         }
         if (!$retry)
             $retry = self::$retry;
-        if ($args and !is_array($args)) {
+        if ($args and !is_array($args))
             $args = [$args];
+        try {
+            $soap = new \SoapClient(self::wsdl($wsdl));
+        } catch (\Exception $e) {
+            $msg = $e->getMessage();
+            if (isset($e->getTrace()[0]['args'][1]) and is_string($e->getTrace()[0]['args'][1])) {
+                $msg .= ': '.$e->getTrace()[0]['args'][1];
+            }
+            \sasco\LibreDTE\Log::write(Estado::REQUEST_ERROR_SOAP, Estado::get(Estado::REQUEST_ERROR_SOAP, $msg));
+            return false;
         }
-        $soap = new \SoapClient(self::wsdl($wsdl));
         for ($i=0; $i<$retry; $i++) {
             try {
                 if ($args) {

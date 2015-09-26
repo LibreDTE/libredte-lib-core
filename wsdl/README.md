@@ -17,3 +17,4 @@ Modificaciones
 - QueryEstDte: basado en modificación a QueryEstUp
 - CrSeed: basado en modificación a QueryEstUp
 - GetTokenFromSeed: basado en modificación a QueryEstUp
+- wsDTECorreo: basado en modificación a QueryEstUp
