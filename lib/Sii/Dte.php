@@ -821,4 +821,42 @@ class Dte
         return true;
     }
 
+    /**
+     * Método que obtiene el estado del DTE
+     * @param Firma objeto que representa la Firma Electrónca
+     * @return Arreglo con el estado del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-27
+     */
+    public function getEstado(\sasco\LibreDTE\FirmaElectronica $Firma)
+    {
+        // solicitar token
+        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
+        if (!$token)
+            return false;
+        // consultar estado dte
+        list($RutConsultante, $DvConsultante) = explode('-', $Firma->getID());
+        list($RutCompania, $DvCompania) = explode('-', $this->getEmisor());
+        list($RutReceptor, $DvReceptor) = explode('-', $this->getReceptor());
+        list($Y, $m, $d) = explode('-', $this->getFechaEmision());
+        $xml = \sasco\LibreDTE\Sii::request('QueryEstDte', 'getEstDte', [
+            'RutConsultante'    => $RutConsultante,
+            'DvConsultante'     => $DvConsultante,
+            'RutCompania'       => $RutCompania,
+            'DvCompania'        => $DvCompania,
+            'RutReceptor'       => $RutReceptor,
+            'DvReceptor'        => $DvReceptor,
+            'TipoDte'           => $this->getTipo(),
+            'FolioDte'          => $this->getFolio(),
+            'FechaEmisionDte'   => $d.$m.$Y,
+            'MontoDte'          => $this->getMontoTotal(),
+            'token'             => $token,
+        ]);
+        // si el estado se pudo recuperar se muestra
+        if ($xml===false)
+            return false;
+        // entregar estado
+        return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR')[0];
+    }
+
 }
