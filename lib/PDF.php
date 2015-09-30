@@ -93,7 +93,7 @@ class PDF extends \TCPDF
      * Método que asigna el texto que se deberá usar en el footer
      * @param footer =true se asignará texto por defecto. String al lado izquiero o bien arreglo con índices left y right con sus textos
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-16
+     * @version 2015-09-29
      */
     public function setFooterText($footer = true)
     {
@@ -101,7 +101,7 @@ class PDF extends \TCPDF
             // asignar valor por defecto
             if ($footer===true) {
                 $footer = [
-                    'left' => 'LibreDTE: facturación electrónica libre para Chile',
+                    'left' => 'LibreDTE ¡facturación electrónica libre para Chile!',
                     'right' => 'http://libredte.cl',
                 ];
             }
