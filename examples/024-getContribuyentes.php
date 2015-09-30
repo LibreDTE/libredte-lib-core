@@ -36,7 +36,8 @@ include 'inc.php';
 
 // solicitar datos
 $datos = \sasco\LibreDTE\Sii::getContribuyentes(
-    new \sasco\LibreDTE\FirmaElectronica($config['firma'])
+    new \sasco\LibreDTE\FirmaElectronica($config['firma']),
+    \sasco\LibreDTE\Sii::PRODUCCION
 );
 
 // si hubo errores se muestran
