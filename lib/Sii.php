@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-20
+ * @version 2015-09-30
  */
 class Sii
 {
@@ -325,6 +325,68 @@ class Sii
     public static function getIVA()
     {
         return self::IVA;
+    }
+
+    /**
+     * Método que entrega un arreglo con todos los datos de los contribuyentes
+     * que operan con factura electrónica descargados desde el SII
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-09-30
+     */
+    public static function getContribuyentes(\sasco\LibreDTE\FirmaElectronica $Firma, $ambiente = null)
+    {
+        // solicitar token
+        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
+        if (!$token)
+            return false;
+        // definir ambiente y servidor
+        $ambiente = self::getAmbiente($ambiente);
+        $servidor = self::$config['servidor'][$ambiente];
+        // preparar consulta curl
+        $curl = curl_init();
+        $header = [
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)',
+            'Referer: https://'.$servidor.'.sii.cl/cvc/dte/ee_empresas_dte.html',
+            'Cookie: TOKEN='.$token,
+            'Accept-Encoding' => 'gzip, deflate, sdch',
+        ];
+        $url = 'https://'.$servidor.'.sii.cl/cvc_cgi/dte/ee_consulta_empresas_dwnld?NOMBRE_ARCHIVO=ce_empresas_dwnld_'.date('Ymd').'.csv';
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // si no se debe verificar el SSL se asigna opción a curl, además si
+        // se está en el ambiente de producción y no se verifica SSL se
+        // generará un error de nivel E_USER_NOTICE
+        if (!self::$verificar_ssl) {
+            if ($ambiente==self::PRODUCCION) {
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
+                trigger_error($msg, E_USER_NOTICE);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
+            }
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        }
+        // realizar consulta curl
+        $response = curl_exec($curl);
+        if (!$response)
+            return false;
+        // cerrar sesión curl
+        curl_close($curl);
+        // entregar datos del archivo CSV
+        ini_set('memory_limit', '1024M');
+        $lines = explode("\n", $response);
+        $n_lines = count($lines);
+        $data = [];
+        for ($i=1; $i<$n_lines; $i++) {
+            $row = str_getcsv($lines[$i], ';', '');
+            unset($lines[$i]);
+            for ($j=0; $j<6; $j++)
+                $row[$j] = trim($row[$j]);
+            $row[1] = utf8_decode($row[1]);
+            $row[4] = strtolower($row[4]);
+            $row[5] = strtolower($row[5]);
+            $data[] = $row;
+        }
+        return $data;
     }
 
 }
