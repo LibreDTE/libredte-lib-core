@@ -379,6 +379,8 @@ class Sii
         for ($i=1; $i<$n_lines; $i++) {
             $row = str_getcsv($lines[$i], ';', '');
             unset($lines[$i]);
+            if (!isset($row[5]))
+                continue;
             for ($j=0; $j<6; $j++)
                 $row[$j] = trim($row[$j]);
             $row[1] = utf8_decode($row[1]);
