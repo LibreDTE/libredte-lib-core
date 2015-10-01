@@ -185,7 +185,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-16
+     * @version 2015-10-01
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
@@ -262,7 +262,10 @@ class Sii
             return false;
         }
         if ($xml->STATUS!=0) {
-            \sasco\LibreDTE\Log::write($xml->STATUS, Estado::get($xml->STATUS));
+            \sasco\LibreDTE\Log::write(
+                $xml->STATUS,
+                Estado::get($xml->STATUS).(isset($xml->DETAIL)?'. '.implode("\n", (array)$xml->DETAIL->ERROR):'')
+            );
         }
         return $xml;
     }
