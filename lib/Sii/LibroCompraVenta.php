@@ -307,8 +307,9 @@ class LibroCompraVenta
     /**
      * Método que realiza el envío del libro IECV al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
+     * @warning No se está validano schema
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-10-30
      */
     public function enviar()
     {
@@ -322,10 +323,13 @@ class LibroCompraVenta
             );
             return false;
         }
-        // validar schema del documento antes de enviar (sólo en producción, ya
-        // que en certificación el libro no se firma y daría error de schema)
-        if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION and !$this->schemaValidate())
-            return false;
+        // validar schema del documento antes de enviar
+        // WARNING: tanto en certificación como en producción si el libro se
+        // firma da error al subirlo, pero si va sin firma da error de schema,
+        // por esta razón no se valida el schema, para que pueda ser enviado al
+        // sii sin firmar ¿?
+        /*if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION and !$this->schemaValidate())
+            return false;*/
         // solicitar token
         $token = Autenticacion::getToken($this->Firma);
         if (!$token)
