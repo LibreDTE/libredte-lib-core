@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-17
+ * @version 2015-10-02
  */
 class Estado
 {
@@ -104,6 +104,11 @@ class Estado
     const RESPUESTAENVIO_FALTA_CARATULA = 902;
     const RESPUESTAENVIO_ERROR_SCHEMA = 903;
 
+    // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
+    const LIBROGUIA_ERROR_GENERAR_XML = 1001;
+    const LIBROGUIA_FALTA_XML = 1002;
+    const LIBROGUIA_ERROR_SCHEMA = 1003;
+
     // glosas de los estados
     private static $glosas = [
         // códigos de error para \sasco\LibreDTE\Sii::enviar()
@@ -167,6 +172,10 @@ class Estado
         self::RESPUESTAENVIO_FALTA_RESPUESTA => 'No hay respuesta de envío ni documentos para generar',
         self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio',
         self::RESPUESTAENVIO_ERROR_SCHEMA => 'Error schema RespuestaEnvio. %s',
+        // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
+        self::LIBROGUIA_ERROR_GENERAR_XML => 'No fue posible generar XML del LibroGuia',
+        self::LIBROGUIA_FALTA_XML => 'No hay XML de LibroGuia que validar',
+        self::LIBROGUIA_ERROR_SCHEMA => 'Error schema LibroGuia. %s',
     ];
 
     /**

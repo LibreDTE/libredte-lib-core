@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Certificacion;
 /**
  * Clase para parsear y procesar los casos de un set pruebas
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-12
+ * @version 2015-10-02
  */
 class SetPruebas
 {
@@ -35,6 +35,7 @@ class SetPruebas
         'FACTURA ELECTRONICA' => 33,
         'FACTURA NO AFECTA O EXENTA ELECTRONICA' => 34,
         'NOTA DE CREDITO ELECTRONICA' => 61,
+        'GUIA DE DESPACHO' => 52,
         'NOTA DE DEBITO ELECTRONICA' => 56,
     ]; ///< Glosas de los tipos de documentos de acuerdo a nombres en set de pruebas
 
@@ -88,13 +89,23 @@ class SetPruebas
         ],
     ]; ///< Detalles de qué hacer con cada uno de los tipos de referencias
 
+    private static $TipoDespachos = [
+        'EMISOR DEL DOCUMENTO AL LOCAL DEL CLIENTE' => 2,
+        'CLIENTE' => 1,
+    ];
+
+    private static $IndTraslados = [
+        'VENTA' => 1,
+        'TRASLADO DE MATERIALES ENTRE BODEGAS DE LA EMPRESA' => 5,
+    ]; ///< Indicadores para traslados en guías de despacho
+
     /**
      * Método que procesa el arreglo con los datos del set de pruebas y crea el
      * arreglo json con los documentos listos para ser pasados a la clase Dte
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-13
+     * @version 2015-10-02
      */
     public static function getJSON($archivo, array $folios = [], $separador = '==============')
     {
@@ -116,6 +127,15 @@ class SetPruebas
                     ]
                 ],
             ];
+            // si es guía de despacho se agrega indicador de traslado
+            if ($TipoDTE==52) {
+                if (isset($caso['traslado_por'])) {
+                    $documento['Encabezado']['IdDoc']['TipoDespacho'] = self::$TipoDespachos[$caso['traslado_por']];
+                }
+                if (isset($caso['motivo'])) {
+                    $documento['Encabezado']['IdDoc']['IndTraslado'] = self::$IndTraslados[$caso['motivo']];
+                }
+            }
             // agregar detalle del documento si fue pasado explícitamente
             if (isset($caso['detalle'])) {
                 $documento['Detalle'] = [];
@@ -254,7 +274,7 @@ class SetPruebas
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-12
+     * @version 2015-10-02
      */
     private static function parse($archivo, $separador)
     {
@@ -281,22 +301,37 @@ class SetPruebas
             // obtener tipo de documento
             $aux = explode("\t", $lineas[1]);
             $datos['documento'] = array_pop($aux);
-            // obtener referencia si existe (si hay línea 3 con contenido entonces
-            // hay una referencia
-            if (!empty($lineas[2])) {
+            // procesar datos antes de detalle si es guía de despacho
+            if ($datos['documento']=='GUIA DE DESPACHO') {
                 $aux = explode("\t", $lineas[2]);
-                $referencia = array_pop($aux);
-                $aux = explode(' ', $referencia);
-                $caso_referencia = array_pop($aux);
-                $aux = explode("\t", $lineas[3]);
-                $razon = array_pop($aux);
-                $datos['referencia'] = [
-                    'caso' => $caso_referencia,
-                    'razon' => $razon,
-                ];
-                $linea_titulos_detalles = 5;
-            } else {
-                $linea_titulos_detalles = 3;
+                $datos['motivo'] = array_pop($aux);
+                // si hay contenido en línea 4 entonces hay TRASLADO POR
+                if (!empty($lineas[3])) {
+                    $aux = explode("\t", $lineas[3]);
+                    $datos['traslado_por'] = array_pop($aux);
+                    $linea_titulos_detalles = 5;
+                } else {
+                    $linea_titulos_detalles = 4;
+                }
+            }
+            // si no es guía de despacho entonces obtener referencia si existe
+            // (si hay línea 3 con contenido entonces hay una referencia)
+            else {
+                if (!empty($lineas[2])) {
+                    $aux = explode("\t", $lineas[2]);
+                    $referencia = array_pop($aux);
+                    $aux = explode(' ', $referencia);
+                    $caso_referencia = array_pop($aux);
+                    $aux = explode("\t", $lineas[3]);
+                    $razon = array_pop($aux);
+                    $datos['referencia'] = [
+                        'caso' => $caso_referencia,
+                        'razon' => $razon,
+                    ];
+                    $linea_titulos_detalles = 5;
+                } else {
+                    $linea_titulos_detalles = 3;
+                }
             }
             // sólo continuar si hay más líneas, ya que serán detalles
             if (isset($lineas[$linea_titulos_detalles])) {

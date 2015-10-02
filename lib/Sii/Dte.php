@@ -445,7 +445,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-12
+     * @version 2015-10-02
      */
     private function normalizar(array &$datos)
     {
@@ -456,6 +456,8 @@ class Dte
                     'TipoDTE' => false,
                     'Folio' => false,
                     'FchEmis' => date('Y-m-d'),
+                    'TipoDespacho' => false,
+                    'IndTraslado' => false,
                 ],
                 'Emisor' => [
                     'RUTEmisor' => false,
@@ -559,6 +561,58 @@ class Dte
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos, ['MntExe']);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una guía de despacho electrónica
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-10-02
+     */
+    private function normalizar_52(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Transporte' => false,
+                'Totales' => [
+                    'MntNeto' => 0,
+                    'MntExe' => false,
+                    'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                    'IVA' => 0,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // si es traslado interno se copia el emisor en el receptor sólo si el
+        // receptor no está definido o bien se el receptor tiene RUT diferente
+        // al emisor
+        if ($datos['Encabezado']['IdDoc']['IndTraslado']==5) {
+            if (!$datos['Encabezado']['Receptor'] or $datos['Encabezado']['Receptor']['RUTRecep']!=$datos['Encabezado']['Emisor']['RUTEmisor']) {
+                $datos['Encabezado']['Receptor'] = [];
+                $cols = [
+                    'RUTEmisor'=>'RUTRecep',
+                    'RznSoc'=>'RznSocRecep',
+                    'GiroEmis'=>'GiroRecep',
+                    'Telefono'=>'Contacto',
+                    'CorreoEmisor'=>'CorreoRecep',
+                    'DirOrigen'=>'DirRecep',
+                    'CmnaOrigen'=>'CmnaRecep',
+                ];
+                foreach ($cols as $emisor => $receptor) {
+                    if (!empty($datos['Encabezado']['Emisor'][$emisor])) {
+                        $datos['Encabezado']['Receptor'][$receptor] = $datos['Encabezado']['Emisor'][$emisor];
+                    }
+                }
+            }
+        }
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntNeto', 'MntExe']);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
