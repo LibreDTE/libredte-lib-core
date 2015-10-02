@@ -64,7 +64,19 @@ class Dte extends \sasco\LibreDTE\PDF
         'DescuentoMonto' => ['title'=>'Descuento', 'align'=>'right', 'width'=>22],
         'RecargoMonto' => ['title'=>'Recargo', 'align'=>'right', 'width'=>22],
         'MontoItem' => ['title'=>'Total item', 'align'=>'right', 'width'=>22],
-    ];
+    ]; ///< Nombres de columnas detalle, alineación y ancho
+
+    private $traslados = [
+        1 => 'Operación constituye venta',
+        2 => 'Ventas por efectuar',
+        3 => 'Consignaciones',
+        4 => 'Entrega gratuita',
+        5 => 'Traslados internos',
+        6 => 'Otros traslados no venta',
+        7 => 'Guía de devolución',
+        8 => 'Traslado para exportación (no venta)',
+        9 => 'Venta para exportación',
+    ]; ///< Tipos de traslado para guías de despacho
 
     private $sinAcuseRecibo = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
 
@@ -118,7 +130,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-10-02
      */
     public function agregar(array $dte, $timbre)
     {
@@ -138,6 +150,11 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
             $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
         $this->agregarReceptor($dte['Encabezado']['Receptor']);
+        if ($dte['Encabezado']['IdDoc']['TipoDTE']==52)
+            $this->agregarTraslado(
+                $dte['Encabezado']['IdDoc']['IndTraslado'],
+                !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
+            );
         if (!empty($dte['Referencia']))
             $this->agregarReferencia($dte['Referencia']);
         $this->agregarDetalle($dte['Detalle']);
@@ -151,7 +168,7 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseRecibo();
             if ($this->cedible)
-                $this->agregarLeyendaDestino();
+                $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
     }
 
@@ -220,11 +237,12 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-10-02
      */
     private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 10, $w = 70)
     {
-        $this->SetTextColorArray([255,0,0]);
+        $color = $tipo==52 ? [0,172,140] : [255,0,0];
+        $this->SetTextColorArray($color);
         // colocar rut emisor, glosa documento y folio
         list($rut, $dv) = explode('-', $rut);
         $this->setFont ('', 'B', 15);
@@ -234,7 +252,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', 15);
         $this->MultiTexto('N° '.$folio, $x, null, 'C', $w);
         // dibujar rectángulo rojo
-        $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => [255, 0, 0]]]);
+        $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => $color]]);
         // colocar unidad del SII
         $this->setFont('', 'B', 10);
         $this->Texto('S.I.I. - '.$this->getSucursalSII($sucursal_sii), $x, $this->getY()+4, 'C', $w);
@@ -336,6 +354,44 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Texto('Contacto', $x);
             $this->Texto(':', $x+22);
             $this->MultiTexto(implode(' / ', $contacto), $x+26);
+        }
+    }
+
+    /**
+     * Método que agrega los datos del traslado
+     * @param IndTraslado
+     * @param Transporte
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-10-02
+     */
+    private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10)
+    {
+        // agregar tipo de traslado
+        $this->Texto('Traslado', $x);
+        $this->Texto(':', $x+22);
+        $this->MultiTexto($this->traslados[$IndTraslado], $x+26);
+        // agregar información de transporte
+        if ($Transporte) {
+            $transporte = '';
+            if (!empty($Transporte['DirDest']) and !empty($Transporte['CmnaDest'])) {
+                $transporte .= 'a '.$Transporte['DirDest'].', '.$Transporte['CmnaDest'].' ';
+            }
+            if (!empty($Transporte['RUTTrans']))
+                $transporte .= ' por '.$Transporte['RUTTrans'];
+            if (!empty($Transporte['Patente']))
+                $transporte .= ' en vehículo '.$Transporte['Patente'];
+            if (is_array($Transporte['Chofer'])) {
+                if (!empty($Transporte['Chofer']['NombreChofer']))
+                    $transporte .= ' con chofér '.$Transporte['Chofer']['NombreChofer'];
+                if (!empty($Transporte['Chofer']['RUTChofer']))
+                    $transporte .= ' ('.$Transporte['Chofer']['RUTChofer'].')';
+            }
+            if ($transporte) {
+                $this->Texto('Transporte', $x);
+                $this->Texto(':', $x+22);
+                $this->MultiTexto(ucfirst(trim($transporte)), $x+26);
+            }
         }
     }
 
@@ -530,12 +586,12 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que agrega la leyenda de destino
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2015-10-02
      */
-    private function agregarLeyendaDestino($y = 245)
+    private function agregarLeyendaDestino($tipo, $y = 245)
     {
         $this->setFont('', 'B', 10);
-        $this->Texto('CEDIBLE', null, $y, 'R');
+        $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $y, 'R');
     }
 
     /**
