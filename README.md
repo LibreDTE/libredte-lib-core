@@ -4,7 +4,7 @@ LibreDTE: Biblioteca PHP
 LibreDTE es un proyecto que tiene por objetivo proveer facturación electrónica
 libre para Chile.
 
-Aquí podrá encontrar la biblioteca escrita en lenguaje PHP para la interacción
+Aquí podrás encontrar la biblioteca escrita en lenguaje PHP para la interacción
 con el Servicio de Impuestos Internos (SII).
 
 La biblioteca se construye originalmente para ser usada en el módulo
@@ -13,10 +13,10 @@ La biblioteca se construye originalmente para ser usada en el módulo
 interfaces de usuario, para que un desarrollador pueda construir su propia
 aplicación.
 
-Si desea una aplicación ya construída puede revisar el
-[sitio web oficial de LibreDTE](http://libredte.cl) donde podrá registrarse
-gratuitamente y usar la plataforma web de facturación. Si desea acceder al
-código fuente de la aplicación web puede hacerlo
+Si deseas una aplicación ya construída puedes revisar el
+[sitio web oficial de LibreDTE](http://libredte.cl) donde podrás registrarte
+gratuitamente y usar la plataforma web de facturación. Si deseas acceder al
+código fuente de la aplicación web puedes hacerlo
 [aquí](https://github.com/LibreDTE/libredte-webapp).
 
 Funcionalidades implementadas
