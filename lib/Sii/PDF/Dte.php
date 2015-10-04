@@ -185,7 +185,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-13
+     * @version 2015-10-04
      */
     private function agregarEmisor(array $emisor, $x = 10, $y = 10, $w = 75, $w_img = 30)
     {
@@ -207,7 +207,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto($emisor['DirOrigen'].', '.$emisor['CmnaOrigen'], $x, $this->y, 'L', $w);
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
-            if (!isset($emisor['Telefono'][0]))
+            if (!is_array($emisor['Telefono']))
                 $emisor['Telefono'] = [$emisor['Telefono']];
             foreach ($emisor['Telefono'] as $t)
                 $contacto[] = $t;
