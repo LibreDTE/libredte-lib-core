@@ -130,7 +130,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-10-04
      */
     public function agregar(array $dte, $timbre)
     {
@@ -150,11 +150,10 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
             $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
         $this->agregarReceptor($dte['Encabezado']['Receptor']);
-        if ($dte['Encabezado']['IdDoc']['TipoDTE']==52)
-            $this->agregarTraslado(
-                $dte['Encabezado']['IdDoc']['IndTraslado'],
-                !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
-            );
+        $this->agregarTraslado(
+            !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
+            !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
+        );
         if (!empty($dte['Referencia']))
             $this->agregarReferencia($dte['Referencia']);
         $this->agregarDetalle($dte['Detalle']);
@@ -363,14 +362,16 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-10-04
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10)
     {
         // agregar tipo de traslado
-        $this->Texto('Traslado', $x);
-        $this->Texto(':', $x+22);
-        $this->MultiTexto($this->traslados[$IndTraslado], $x+26);
+        if ($IndTraslado) {
+            $this->Texto('Traslado', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto($this->traslados[$IndTraslado], $x+26);
+        }
         // agregar información de transporte
         if ($Transporte) {
             $transporte = '';
