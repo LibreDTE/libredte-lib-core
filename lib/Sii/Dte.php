@@ -682,7 +682,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-20
+     * @version 2015-10-05
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -710,11 +710,9 @@ class Dte
             }
             if (empty($d['MontoItem'])) {
                 $d['MontoItem'] = $d['QtyItem'] * $d['PrcItem'];
-                $DescuentoPct = $d['DescuentoPct'] ? $d['DescuentoPct'] : 0;
-                if ($DescuentoPct) {
-                    $d['DescuentoMonto'] = round($d['MontoItem'] * $DescuentoPct/100);
-                    $d['MontoItem'] = $d['MontoItem'] - $d['DescuentoMonto'];
-                }
+                if ($d['DescuentoPct'])
+                    $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
+                $d['MontoItem'] -= (int)$d['DescuentoMonto'];
             }
             // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
