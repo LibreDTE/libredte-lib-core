@@ -878,7 +878,7 @@ class Dte
      * @param Firma objeto que representa la Firma Electrónca
      * @return Arreglo con el estado del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-27
+     * @version 2015-10-24
      */
     public function getEstado(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
@@ -887,7 +887,10 @@ class Dte
         if (!$token)
             return false;
         // consultar estado dte
-        list($RutConsultante, $DvConsultante) = explode('-', $Firma->getID());
+        $run = $Firma->getID();
+        if ($run===false)
+            return false;
+        list($RutConsultante, $DvConsultante) = explode('-', $run);
         list($RutCompania, $DvCompania) = explode('-', $this->getEmisor());
         list($RutReceptor, $DvReceptor) = explode('-', $this->getReceptor());
         list($Y, $m, $d) = explode('-', $this->getFechaEmision());

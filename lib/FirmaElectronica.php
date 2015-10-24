@@ -137,33 +137,39 @@ class FirmaElectronica
      * Método que entrega el serialNumber del subject
      * @return serialNumber del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-10-24
      */
     public function getID()
     {
-        return $this->data['subject']['serialNumber'];
+        if (isset($this->data['subject']['serialNumber']))
+            return $this->data['subject']['serialNumber'];
+        return $this->error('No fue posible obtener el ID (subject.serialNumber) de la firma');
     }
 
     /**
      * Método que entrega el CN del subject
      * @return CN del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-10-24
      */
     public function getName()
     {
-        return $this->data['subject']['CN'];
+        if (isset($this->data['subject']['CN']))
+            return $this->data['subject']['CN'];
+        return $this->error('No fue posible obtener el Name (subject.CN) de la firma');
     }
 
     /**
      * Método que entrega el emailAddress del subject
      * @return emailAddress del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-10-24
      */
     public function getEmail()
     {
-        return $this->data['subject']['emailAddress'];
+        if (isset($this->data['subject']['emailAddress']))
+            return $this->data['subject']['emailAddress'];
+        return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma');
     }
 
     /**

@@ -92,13 +92,13 @@ class LibroGuia
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-10-24
      */
     public function setCaratula(array $caratula)
     {
         $this->caratula = array_merge([
             'RutEmisorLibro' => false,
-            'RutEnvia' => isset($this->Firma) ? $this->Firma->getID() : '',
+            'RutEnvia' => isset($this->Firma) ? $this->Firma->getID() : false,
             'PeriodoTributario' => date('Y-m'),
             'FchResol' => false,
             'NroResol' => false,
