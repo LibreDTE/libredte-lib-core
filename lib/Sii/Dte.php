@@ -513,7 +513,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-20
+     * @version 2015-10-25
      */
     private function normalizar_33(array &$datos)
     {
@@ -534,7 +534,7 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntNeto', 'MntExe']);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -542,7 +542,7 @@ class Dte
      * Método que normaliza los datos de una factura exenta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-20
+     * @version 2015-10-25
      */
     private function normalizar_34(array &$datos)
     {
@@ -560,7 +560,7 @@ class Dte
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntExe']);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -568,7 +568,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-10-25
      */
     private function normalizar_52(array &$datos)
     {
@@ -612,7 +612,7 @@ class Dte
         }
         // normalizar datos
         $this->normalizar_detalle($datos);
-        $this->normalizar_aplicar_descuentos_recargos($datos, ['MntNeto', 'MntExe']);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -732,28 +732,35 @@ class Dte
     }
 
     /**
-     * Método que aplica los descuentos y recargos generales respectivos al
-     * monto neto del documento
+     * Método que aplica los descuentos y recargos generales respectivos a los
+     * montos que correspondan según e indicador del descuento o recargo
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-10-25
      */
-    private function normalizar_aplicar_descuentos_recargos(array &$datos, array $montos)
+    private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
         if (!empty($datos['DscRcgGlobal'])) {
-            foreach ($montos as $monto) {
+            foreach ($datos['DscRcgGlobal'] as $dr) {
+                // determinar a que aplicar el descuento/recargo
+                if (!isset($dr['IndExeDR']))
+                    $monto = 'MntNeto';
+                else if ($dr['IndExeDR']==1)
+                    $monto = 'MntExe';
+                else if ($dr['IndExeDR']==2)
+                    $monto = 'MontoNF';
+                // si no hay monto al que aplicar el descuento se omite
                 if (!$datos['Encabezado']['Totales'][$monto])
                     continue;
-                foreach ($datos['DscRcgGlobal'] as $dr) {
-                    $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
-                    // aplicar descuento
-                    if ($dr['TpoMov']=='D') {
-                        $datos['Encabezado']['Totales'][$monto] -= $valor;
-                    }
-                    // aplicar recargo
-                    else if ($dr['TpoMov']=='R') {
-                        $datos['Encabezado']['Totales'][$monto] += $valor;
-                    }
+                // calcular valor del descuento o recargo
+                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
+                // aplicar descuento
+                if ($dr['TpoMov']=='D') {
+                    $datos['Encabezado']['Totales'][$monto] -= $valor;
+                }
+                // aplicar recargo
+                else if ($dr['TpoMov']=='R') {
+                    $datos['Encabezado']['Totales'][$monto] += $valor;
                 }
                 $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
             }
