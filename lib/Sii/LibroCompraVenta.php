@@ -352,7 +352,7 @@ class LibroCompraVenta
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-26
+     * @version 2015-10-27
      */
     public function generar($incluirDetalle = true)
     {
@@ -361,6 +361,7 @@ class LibroCompraVenta
             return $this->xml_data;
         // generar totales de DTE y sus montos
         $TotalesPeriodo = $this->getTotalesPeriodo();
+        $ResumenPeriodo = $TotalesPeriodo ? ['TotalesPeriodo'=>$TotalesPeriodo] : false;
         // generar XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
             'LibroCompraVenta' => [
@@ -375,9 +376,7 @@ class LibroCompraVenta
                         'ID' => $this->id,
                     ],
                     'Caratula' => $this->caratula,
-                    'ResumenPeriodo' => [
-                        'TotalesPeriodo' => $TotalesPeriodo,
-                    ],
+                    'ResumenPeriodo' => $ResumenPeriodo,
                     'Detalle' => $incluirDetalle ? $this->detalles : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
