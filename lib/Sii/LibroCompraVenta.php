@@ -56,7 +56,7 @@ class LibroCompraVenta
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-10-27
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -64,14 +64,14 @@ class LibroCompraVenta
         $detalle = array_merge([
             'TpoDoc' => false,
             'NroDoc' => false,
-            'TasaImp' => 0,
+            'TasaImp' => false,
             'FchDoc' => false,
             'CdgSIISucur' => false,
             'RUTDoc' => false,
             'RznSoc' => false,
             'MntExe' => false,
             'MntNeto' => false,
-            'MntIVA' => 0,
+            'MntIVA' => false,
             'IVANoRec' => false,
             'IVAUsoComun' => false,
             'OtrosImp' => false,
@@ -97,7 +97,7 @@ class LibroCompraVenta
         // calcular monto total si no se especificó
         if ($detalle['MntTotal']===false) {
             // calcular monto total inicial
-            $detalle['MntTotal'] = $detalle['MntExe'] + $detalle['MntNeto'] + $detalle['MntIVA'];
+            $detalle['MntTotal'] = $detalle['MntExe'] + $detalle['MntNeto'] + (int)$detalle['MntIVA'];
             // agregar iva no recuperable al monto total
             if (!empty($detalle['IVANoRec'])) {
                 foreach ($detalle['IVANoRec'] as $IVANoRec) {
@@ -116,6 +116,10 @@ class LibroCompraVenta
                     }
                 }
             }
+        }
+        // si no hay no hay monto neto, no se crean campos para IVA
+        if (!$detalle['MntNeto']) {
+            $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = false;
         }
     }
 
