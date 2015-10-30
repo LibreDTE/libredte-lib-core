@@ -56,14 +56,17 @@ class Folios
      * Método que verifica el código de autorización de folios
      * @return =true si está ok el XML cargado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-10-30
      */
     public function check()
     {
         // validar firma del SII sobre los folios
-        $firma = base64_decode($this->getFirma());
-        $pub_key = \sasco\LibreDTE\Sii::cert($this->getIDK());
-        if (!$pub_key or openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), $firma, $pub_key)!==1) {
+        $firma = $this->getFirma();
+        $idk = $this->getIDK();
+        if (!$firma or !$idk)
+            return false;
+        $pub_key = \sasco\LibreDTE\Sii::cert($idk);
+        if (!$pub_key or openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), base64_decode($firma), $pub_key)!==1) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA,
                 \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA)
@@ -71,15 +74,21 @@ class Folios
             return false;
         }
         // validar clave privada y pública proporcionada por el SII
+        $private_key = $this->getPrivateKey();
+        if (!$private_key)
+            return false;
         $plain = md5(date('U'));
-        if (!openssl_private_encrypt($plain, $crypt, $this->getPrivateKey())) {
+        if (!openssl_private_encrypt($plain, $crypt, $private_key)) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_ENCRIPTAR,
                 \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FOLIOS_ERROR_ENCRIPTAR)
             );
             return false;
         }
-        if (!openssl_public_decrypt($crypt, $plain_firmado, $this->getPublicKey())) {
+        $public_key = $this->getPublicKey();
+        if (!$public_key)
+            return false;
+        if (!openssl_public_decrypt($crypt, $plain_firmado, $public_key)) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_DESENCRIPTAR,
                 \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FOLIOS_ERROR_DESENCRIPTAR)
@@ -93,65 +102,70 @@ class Folios
      * Método que entrega el nodo CAF
      * @return DomElement
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-10-30
      */
     public function getCaf()
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getElementsByTagName('CAF')->item(0);
+        $CAF = $this->xml->getElementsByTagName('CAF')->item(0);
+        return $CAF ? $CAF : false;
     }
 
     /**
      * Método que entrega el RUT de a quién se está autorizando el CAF
      * @return Rut del emisor del CAF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-22
+     * @version 2015-10-30
      */
     public function getEmisor()
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getElementsByTagName('RE')->item(0)->nodeValue;
+        $RE = $this->xml->getElementsByTagName('RE')->item(0);
+        return $RE ? $RE->nodeValue : false;
     }
 
     /**
      * Método que entrega el primer folio autorizado en el CAF
      * @return Número del primer folio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-10-30
      */
     public function getDesde()
     {
         if (!$this->xml)
             return false;
-        return (int)$this->xml->getElementsByTagName('D')->item(0)->nodeValue;
+        $D = $this->xml->getElementsByTagName('D')->item(0);
+        return $D ? (int)$D->nodeValue : false;
     }
 
     /**
      * Método que entrega el últimmo folio autorizado en el CAF
      * @return Número del último folio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-10-30
      */
     public function getHasta()
     {
         if (!$this->xml)
             return false;
-        return (int)$this->xml->getElementsByTagName('H')->item(0)->nodeValue;
+        $H = $this->xml->getElementsByTagName('H')->item(0);
+        return $H ? (int)$H->nodeValue : false;
     }
 
     /**
      * Método que entrega la firma del SII sobre el nodo DA
      * @return Firma en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-30
+     * @version 2015-10-30
      */
     private function getFirma()
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getElementsByTagName('FRMA')->item(0)->nodeValue;
+        $FRMA = $this->xml->getElementsByTagName('FRMA')->item(0);
+        return $FRMA ? $FRMA->nodeValue : false;
     }
 
     /**
@@ -159,63 +173,68 @@ class Folios
      * utilizada para firmar el CAF
      * @return Serial number
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-31
+     * @version 2015-10-30
      */
     private function getIDK()
     {
         if (!$this->xml)
             return false;
-        return (int)$this->xml->getElementsByTagName('IDK')->item(0)->nodeValue;
+        $IDK = $this->xml->getElementsByTagName('IDK')->item(0);
+        return $IDK ? (int)$IDK->nodeValue : false;
     }
 
     /**
      * Método que entrega la clave privada proporcionada por el SII para el CAF
      * @return Clave privada en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-10-30
      */
     public function getPrivateKey()
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getElementsByTagName('RSASK')->item(0)->nodeValue;
+        $RSASK = $this->xml->getElementsByTagName('RSASK')->item(0);
+        return $RSASK ? $RSASK->nodeValue : false;
     }
 
     /**
      * Método que entrega la clave pública proporcionada por el SII para el CAF
      * @return Clave pública en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-08-19
+     * @version 2015-10-30
      */
     public function getPublicKey()
     {
         if (!$this->xml)
             return false;
-        return $this->xml->getElementsByTagName('RSAPUBK')->item(0)->nodeValue;
+        $RSAPUBK = $this->xml->getElementsByTagName('RSAPUBK')->item(0);
+        return $RSAPUBK ? $RSAPUBK->nodeValue : false;
     }
 
     /**
      * Método que entrega el tipo de DTE para el cual se emitió el CAF
      * @return Código de tipo de DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-10-30
      */
     public function getTipo()
     {
         if (!$this->xml)
             return false;
-        return (int)$this->xml->getElementsByTagName('TD')->item(0)->nodeValue;
+        $TD = $this->xml->getElementsByTagName('TD')->item(0);
+        return $TD ? (int)$TD->nodeValue : false;
     }
 
     /**
      * Método que indica si el CAF es de certificación o no
-     * @return =true si los folios son del ambiente de certificación
+     * @return =true si los folios son del ambiente de certificación, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-11
+     * @version 2015-10-30
      */
     public function getCertificacion()
     {
-        return $this->getIDK() === 100;
+        $idk = $this->getIDK();
+        return $idk ?  $idk === 100 : null;
     }
 
 }
