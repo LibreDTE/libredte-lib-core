@@ -115,10 +115,11 @@ class Autenticacion
      * @param Firma objeto de la Firma electrónica o arreglo con configuración de la misma
      * @return Token para autenticación en SII o =false si no se pudo obtener
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-11-03
      */
     public static function getToken($Firma = [])
     {
+        if (!$Firma) return false;
         $semilla = self::getSeed();
         if (!$semilla) return false;
         $requestFirmado = self::getTokenRequest($semilla, $Firma);
