@@ -56,7 +56,7 @@ class LibroCompraVenta
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-27
+     * @version 2015-11-03
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -121,6 +121,10 @@ class LibroCompraVenta
         if (!$detalle['MntNeto']) {
             $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = false;
         }
+        // si el código de sucursal no existe se pone a falso, esto básicamente
+        // porque algunos sistemas podrían usar 0 cuando no hay CdgSIISucur
+        if (!$detalle['CdgSIISucur'])
+            $detalle['CdgSIISucur'] = false;
     }
 
     /**
