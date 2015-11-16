@@ -82,10 +82,12 @@ class Dte extends \sasco\LibreDTE\PDF
 
     /**
      * Constructor de la clase
+     * @param papelContinuo =true indica que el PDF se generará en formato papel continuo (si se pasa un número será el ancho del PDF)
+     * @todo Implementar versión del PDF en papel contínuo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2015-11-16
      */
-    public function __construct()
+    public function __construct($papelContinuo = false)
     {
         parent::__construct();
         $this->SetTitle('Documento Tributario Electrónico (DTE) de Chile');
