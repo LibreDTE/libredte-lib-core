@@ -137,13 +137,28 @@ class FirmaElectronica
      * Método que entrega el serialNumber del subject
      * @return serialNumber del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-24
+     * @version 2015-11-16
      */
     public function getID()
     {
+        // RUN está en el serialNumber (ej: Acepta)
         if (isset($this->data['subject']['serialNumber']))
             return $this->data['subject']['serialNumber'];
-        return $this->error('No fue posible obtener el ID (subject.serialNumber) de la firma');
+        // RUN está dentro del OU (ej: E-Sign)
+        if (isset($this->data['subject']['OU']) and is_array($this->data['subject']['OU'])) {
+            foreach ($this->data['subject']['OU'] as $line) {
+                if (strpos($line, 'RUT')!==false) {
+                    $aux = explode(' ', $line);
+                    $run = trim($aux[count($aux)-1]);
+                    $l_run = strlen($run);
+                    if (strpos($run, '-') and $l_run >= 9 and $l_run <= 10) {
+                        return $run;
+                    }
+                }
+            }
+        }
+        // no se encontró el RUN
+        return $this->error('No fue posible obtener el ID (subject.serialNumber) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
     }
 
     /**
