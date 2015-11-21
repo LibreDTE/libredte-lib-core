@@ -67,18 +67,29 @@ class Dte
      * Método que carga el DTE ya armado desde un archivo XML
      * @param xml String con los datos completos del XML del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-11-21
      */
     private function loadXML($xml)
     {
         if (!empty($xml)) {
             $this->xml = new \sasco\LibreDTE\XML();
-            $this->xml->loadXML($xml);
-            $this->tipo = $this->xml->getElementsByTagName('TipoDTE')->item(0)->nodeValue;
+            if (!$this->xml->loadXML($xml) or !$this->schemaValidate())
+                return false;
+            $TipoDTE = $this->xml->getElementsByTagName('TipoDTE')->item(0);
+            if (!$TipoDTE)
+                return false;
+            $this->tipo = $TipoDTE->nodeValue;
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
-            $this->folio = $this->xml->getElementsByTagName('Folio')->item(0)->nodeValue;
+            if (!$this->tipo_general)
+                return false;
+            $Folio = $this->xml->getElementsByTagName('Folio')->item(0);
+            if (!$Folio)
+                return false;
+            $this->folio = $Folio->nodeValue;
             $this->id = 'T'.$this->tipo.'F'.$this->folio;
+            return true;
         }
+        return false;
     }
 
     /**
@@ -86,7 +97,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-11-21
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -116,7 +127,9 @@ class Dte
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], $parent);
             $this->datos = $datos;
+            return $this->schemaValidate();
         }
+        return false;
     }
 
     /**
