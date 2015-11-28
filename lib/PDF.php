@@ -102,7 +102,7 @@ class PDF extends \TCPDF
             if ($footer===true) {
                 $footer = [
                     'left' => 'LibreDTE ¡facturación electrónica libre para Chile!',
-                    'right' => 'http://libredte.cl',
+                    'right' => !$this->papelContinuo ? 'http://libredte.cl' : '',
                 ];
             }
             // si no es arreglo se convierte en uno

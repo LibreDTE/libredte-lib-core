@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-16
+ * @version 2015-11-28
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -35,6 +35,8 @@ class Dte extends \sasco\LibreDTE\PDF
     private $logo; ///< Ubicación del logo del emisor que se incluirá en el pdf
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
+    protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
+    private $sinAcuseRecibo = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
 
     private $tipos = [
         33 => 'FACTURA ELECTRÓNICA',
@@ -78,19 +80,17 @@ class Dte extends \sasco\LibreDTE\PDF
         9 => 'Venta para exportación',
     ]; ///< Tipos de traslado para guías de despacho
 
-    private $sinAcuseRecibo = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
-
     /**
      * Constructor de la clase
-     * @param papelContinuo =true indica que el PDF se generará en formato papel continuo (si se pasa un número será el ancho del PDF)
-     * @todo Implementar versión del PDF en papel contínuo
+     * @param papelContinuo =true indica que el PDF se generará en formato papel continuo (si se pasa un número será el ancho del PDF en mm)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-16
+     * @version 2015-11-28
      */
     public function __construct($papelContinuo = false)
     {
         parent::__construct();
         $this->SetTitle('Documento Tributario Electrónico (DTE) de Chile');
+        $this->papelContinuo = $papelContinuo === true ? 74 : $papelContinuo;
     }
 
     /**
@@ -128,13 +128,30 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
+     * Método que agrega un documento tributario, ya sea en formato de una
+     * página o papel contínuo según se haya indicado en el constructor
+     * @param dte Arreglo con los datos del XML (tag Documento)
+     * @param timbre String XML con el tag TED del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-11-28
+     */
+    public function agregar(array $dte, $timbre)
+    {
+        if ($this->papelContinuo) {
+            $this->agregarContinuo($dte, $timbre, $this->papelContinuo);
+        } else {
+            $this->agregarNormal($dte, $timbre);
+        }
+    }
+
+    /**
      * Método que agrega una página con el documento tributario
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-04
+     * @version 2015-11-28
      */
-    public function agregar(array $dte, $timbre)
+    private function agregarNormal(array $dte, $timbre)
     {
         // agregar página para la factura
         $this->AddPage();
@@ -172,12 +189,21 @@ class Dte extends \sasco\LibreDTE\PDF
                 $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
     }
-    
-    public function agregarContinuo(array $dte, $timbre)
+
+    /**
+     * Método que agrega una página con el documento tributario en papel
+     * contínuo
+     * @param dte Arreglo con los datos del XML (tag Documento)
+     * @param timbre String XML con el tag TED del DTE
+     * @param width Ancho del papel contínuo en mm
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
+    private function agregarContinuo(array $dte, $timbre, $width)
     {
         // agregar página para la factura
         $height=count($dte['Detalle'])*40+135;
-        $this->AddPage('P',array($height,74));
+        $this->AddPage('P',array($height,$width));
         // agregar cabecera del documento
         $this->agregarEmisorContinuo($dte['Encabezado']['Emisor']);
         $this->agregarFolioContinuo(
@@ -189,7 +215,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // datos del documento
         $this->setY(50);
         $this->agregarReceptorContinuo($dte['Encabezado']['Receptor']);
-        
+
         $this->agregarFechaEmisionContinuo($dte['Encabezado']['IdDoc']['FchEmis']);
         if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
             $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
@@ -200,7 +226,7 @@ class Dte extends \sasco\LibreDTE\PDF
             );
         if (!empty($dte['Referencia']))
             $this->agregarReferenciaContinuo($dte['Referencia']);
-        
+
         $this->agregarDetalleContinuo($dte['Detalle']);
         if (!empty($dte['DscRcgGlobal']))
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
@@ -261,8 +287,23 @@ class Dte extends \sasco\LibreDTE\PDF
         if ($contacto)
             $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', $w);
     }
-    
-    private function agregarEmisorContinuo(array $emisor, $x = 3, $y = 35, $w = 75, $w_img = 30)
+
+    /**
+     * Método que agrega los datos de la empresa
+     * Orden de los datos:
+     *  - Razón social del emisor
+     *  - Giro del emisor (sin abreviar)
+     *  - Dirección casa central del emisor
+     *  - Dirección sucursales
+     * @param emisor Arreglo con los datos del emisor (tag Emisor del XML)
+     * @param x Posición horizontal de inicio en el PDF
+     * @param y Posición vertical de inicio en el PDF
+     * @param w Ancho de la información del emisor
+     * @param w_img Ancho máximo de la imagen
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
+    private function agregarEmisorContinuo(array $emisor, $x = 3, $y = 35, $w = 75, $w_img = 8)
     {
         // logo máximo 1/5 del tamaño del documento
         if (isset($this->logo)) {
@@ -333,7 +374,28 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('S.I.I. - '.$this->getSucursalSII($sucursal_sii), $x, $this->getY()+4, 'C', $w);
         $this->SetTextColorArray([0,0,0]);
     }
-    
+
+    /**
+     * Método que agrega el recuadro con el folio
+     * Recuadro:
+     *  - Tamaño mínimo 1.5x5.5 cms
+     *  - En lado derecho (negro o rojo)
+     *  - Enmarcado por una línea de entre 0.5 y 1 mm de espesor
+     *  - Tamaño máximo 4x8 cms
+     *  - Letras tamaño 10 o superior en mayúsculas y negritas
+     *  - Datos del recuadro: RUT emisor, nombre de documento en 2 líneas,
+     *    folio.
+     *  - Bajo el recuadro indicar la Dirección regional o Unidad del SII a la
+     *    que pertenece el emisor
+     * @param rut RUT del emisor
+     * @param tipo Código o glosa del tipo de documento
+     * @param sucursal_sii Código o glosa de la sucursal del SII del Emisor
+     * @param x Posición horizontal de inicio en el PDF
+     * @param y Posición vertical de inicio en el PDF
+     * @param w Ancho de la información del emisor
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
     private function agregarFolioContinuo($rut, $tipo, $folio, $sucursal_sii = null, $x = 3, $y = 3, $w = 68)
     {
         $color = $tipo==52 ? [0,172,140] : [255,0,0];
@@ -403,7 +465,14 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto(':', $x+22);
         $this->MultiTexto(str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x+26);
     }
-    
+
+    /**
+     * Método que agrega la fecha de emisión de la factura
+     * @param date Fecha de emisión de la boleta en formato AAAA-MM-DD
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
     private function agregarFechaEmisionContinuo($date, $x = 3,$y = 50,$w = 68)
     {
         $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -463,8 +532,15 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->MultiTexto(implode(' / ', $contacto), $x+26);
         }
     }
-    
-    private function agregarReceptorContinuo(array $receptor, $x = 3,$y= 45,$w=68)
+
+    /**
+     * Método que agrega los datos del receptor
+     * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
+    private function agregarReceptorContinuo(array $receptor, $x = 3, $y= 45,$w=68)
     {
         list($rut, $dv) = explode('-', $receptor['RUTRecep']);
         //$this->Texto('Señor(es)', $x);
@@ -475,12 +551,11 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', 5);
         $this->SetTextColorArray([0,0,0]);
         $this->MultiTexto($receptor['RznSocRecep'], $x, $y, 'L', $w);
-        
+
         $this->MultiTexto('RUT: '.$this->num($rut).'-'.$dv, $x, $this->y, 'L', $w);
         $this->MultiTexto('Giro: '.$receptor['GiroRecep'], $x, $this->y, 'L', $w);
         $this->MultiTexto('Dirección: '.$receptor['DirRecep'], $x, $this->y, 'L', $w);
         $this->MultiTexto('Comuna: '.$receptor['CmnaRecep'], $x, $this->y, 'L', $w);
-        $this->MultiTexto('Ciudad: '.$receptor['CiudadRecep'], $x+50, $this->y-2, 'L', $w);
         //$this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
         $contacto = [];
         if (!empty($receptor['Contacto']))
@@ -552,17 +627,24 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->MultiTexto($texto, $x+26);
         }
     }
-    
+
+    /**
+     * Método que agrega las referencias del documento
+     * @param referencias Arreglo con las referencias del documento (tag Referencia del XML)
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
     private function agregarReferenciaContinuo($referencias, $x = 3,$y=60,$w=68)
     {
         if (!isset($referencias[0]))
             $referencias = [$referencias];
         $this->SetY($y+1);
         $this->setFont('', 'B', 7);
-        $this->Texto('Documentos de Referencia.', $x,$this->y);
-        
+        $this->Texto('Documentos de referencia', $x,$this->y);
+
         $style = array('width' => 0.2,'color' => array(0, 0, 0));
-        
+
         $this->setFont('', 'B', 5);
         foreach($referencias as $r) {
             $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'].': '.$r['RazonRef'];
@@ -572,7 +654,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $p2x = 71;
             $p2y   = $p1y;  // Use same y for a straight line
             $this->Line($p1x, $p1y, $p2x, $p2y, $style);
-            $this->SetY($this->GetY()+4); 
+            $this->SetY($this->GetY()+4);
             $this->MultiTexto('TIPO DOCUMENTO: '.$r['TpoDocRef'], $x, $this->y, 'L', $w);
             $this->MultiTexto('FOLIO: '.$r['FolioRef'], $x, $this->y, 'L', $w);
             $this->MultiTexto('FECHA: '.$r['FchRef'], $x, $this->y, 'L', $w);
@@ -581,7 +663,7 @@ class Dte extends \sasco\LibreDTE\PDF
            /* $this->Texto('Referenc.', $x);
             $this->Texto(':', $x+22);
             $this->MultiTexto($texto, $x+26);
-            * 
+            *
             */
         }
     }
@@ -642,13 +724,21 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetX($x);
         $this->addTableWithoutEmptyCols($titulos, $detalle, $options);
     }
-    
+
+    /**
+     * Método que agrega el detalle del documento
+     * @param detalle Arreglo con el detalle del documento (tag Detalle del XML)
+     * @param x Posición horizontal de inicio en el PDF
+     * @param y Posición vertical de inicio en el PDF
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
     private function agregarDetalleContinuo($detalle, $x = 3,$y=64)
     {
-        $pageWidth    = $this->getPageWidth();   
-        $pageMargins  = $this->getMargins();     
-        $headerMargin = $pageMargins['header']; 
-        $px2          = $pageWidth - $headerMargin; 
+        $pageWidth    = $this->getPageWidth();
+        $pageMargins  = $this->getMargins();
+        $headerMargin = $pageMargins['header'];
+        $px2          = $pageWidth - $headerMargin;
 
         $this->SetY($this->getY()+1);
         $p1x = 3;
@@ -657,27 +747,24 @@ class Dte extends \sasco\LibreDTE\PDF
         $p2y   = $p1y;  // Use same y for a straight line
         $style = array('width' => 0.2,'color' => array(0, 0, 0));
         $this->Line($p1x, $p1y, $p2x, $p2y, $style);
-        $this->Texto("Item", $x+1,$this->y);     
-        $this->Texto("Precio Unitario", $x+10,$this->y+2); 
-        $this->Texto("Cantidad", $x+40,$this->y); 
-        $this->Texto("Valor", $x+60,$this->y); 
+        $this->Texto("Item", $x+1,$this->y);
+        $this->Texto("Precio Unitario", $x+10,$this->y+2);
+        $this->Texto("Cantidad", $x+40,$this->y);
+        $this->Texto("Valor", $x+60,$this->y);
         $this->Line($p1x, $p1y+5, $p2x, $p2y+5, $style);
         if (!isset($detalle[0]))
             $detalle = [$detalle];
 
         $this->SetY($this->getY()+4);
-        foreach($detalle as  &$d):
-          
-            $this->Texto($d["NmbItem"], $x+1,$this->y+3);     
-            $this->Texto("($ ".number_format($d["PrcItem"],0,',','.')." c/u)", $x+5,$this->y+3); 
-            $this->Texto(number_format($d["QtyItem"],0,',','.'), $x+40,$this->y); 
-            $this->Texto(number_format($d["MontoItem"],0,',','.'), $x+60,$this->y); 
-         
-         
-        endforeach;
-        
+        foreach($detalle as  &$d) {
+            $this->Texto($d["NmbItem"], $x+1,$this->y+3);
+            $this->Texto("($ ".number_format($d["PrcItem"],0,',','.')." c/u)", $x+5,$this->y+3);
+            $this->Texto(number_format($d["QtyItem"],0,',','.'), $x+40,$this->y);
+            $this->Texto(number_format($d["MontoItem"],0,',','.'), $x+60,$this->y);
+        }
+
         $this->Line($p1x, $this->y+4, $p2x, $this->y+4, $style);
-      
+
     }
 
     /**
@@ -732,7 +819,13 @@ class Dte extends \sasco\LibreDTE\PDF
             }
         }
     }
-    
+
+    /**
+     * Método que agrega los totales del documento
+     * @param totales Arreglo con los totales (tag Totales del XML)
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
     private function agregarTotalesContinuo(array $totales,$y)
     {
         // normalizar totales
@@ -755,9 +848,9 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach ($totales as $key => $total) {
             if ($total!==false and isset($glosas[$key])) {
                 $x = 3;
-                $this->Texto($glosas[$key], $x,$this->y+1); 
-                $this->Texto("$", $x+40,$this->y); 
-                $this->Texto($this->num($total), $x+60,$this->y); 
+                $this->Texto($glosas[$key], $x,$this->y+1);
+                $this->Texto("$", $x+40,$this->y);
+                $this->Texto($this->num($total), $x+60,$this->y);
                 $this->Ln();
             }
         }
@@ -791,8 +884,19 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
         $this->Texto('Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w, 'http://www.sii.cl');
     }
-    
-    private function agregarTimbreContinuo($timbre, $x = 3, $y, $w = 68)
+
+    /**
+     * Método que agrega el timbre de la factura
+     *  - Se imprime en el tamaño mínimo: 2x5 cms
+     *  - En el lado de abajo con margen izquierdo mínimo de 2 cms
+     * @param timbre String con los datos del timbre
+     * @param x Posición horizontal de inicio en el PDF
+     * @param y Posición vertical de inicio en el PDF
+     * @param w Ancho del timbre
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
+    private function agregarTimbreContinuo($timbre, $x = 3, $y = null, $w = 68)
     {
         $style = [
             'border' => false,
@@ -840,7 +944,16 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x, $this->y+6, 'J', $w);
     }
 
-    private function agregarAcuseReciboContinuo($x = 3, $y , $w = 68, $h = 40)
+    /**
+     * Método que agrega el acuse de rebido
+     * @param x Posición horizontal de inicio en el PDF
+     * @param y Posición vertical de inicio en el PDF
+     * @param w Ancho del acuse de recibo
+     * @param h Alto del acuse de recibo
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2015-11-17
+     */
+    private function agregarAcuseReciboContinuo($x = 3, $y = null, $w = 68, $h = 40)
     {
         $this->SetTextColorArray([0,0,0]);
         $this->Rect($x, $y, $w, $h, 'D', ['all' => ['width' => 0.1, 'color' => [0, 0, 0]]]);
@@ -859,7 +972,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('________________', $x+12);
         $this->Texto('Recinto:', $x+32, $this->y+0.5);
         $this->Texto('___________________', $x+42.5);
-        
+
         $this->setFont('', 'B', 5);
         $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x+2, $this->y+8, 'J', $w-3);
     }
