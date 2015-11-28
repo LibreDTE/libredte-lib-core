@@ -172,6 +172,49 @@ class Dte extends \sasco\LibreDTE\PDF
                 $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
     }
+    
+    public function agregarContinuo(array $dte, $timbre)
+    {
+        // agregar página para la factura
+        $height=count($dte['Detalle'])*40+135;
+        $this->AddPage('P',array($height,74));
+        // agregar cabecera del documento
+        $this->agregarEmisorContinuo($dte['Encabezado']['Emisor']);
+        $this->agregarFolioContinuo(
+            $dte['Encabezado']['Emisor']['RUTEmisor'],
+            $dte['Encabezado']['IdDoc']['TipoDTE'],
+            $dte['Encabezado']['IdDoc']['Folio'],
+            $dte['Encabezado']['Emisor']['CmnaOrigen']
+        );
+        // datos del documento
+        $this->setY(50);
+        $this->agregarReceptorContinuo($dte['Encabezado']['Receptor']);
+        
+        $this->agregarFechaEmisionContinuo($dte['Encabezado']['IdDoc']['FchEmis']);
+        if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
+            $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
+        if ($dte['Encabezado']['IdDoc']['TipoDTE']==52)
+            $this->agregarTraslado(
+                $dte['Encabezado']['IdDoc']['IndTraslado'],
+                !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
+            );
+        if (!empty($dte['Referencia']))
+            $this->agregarReferenciaContinuo($dte['Referencia']);
+        
+        $this->agregarDetalleContinuo($dte['Detalle']);
+        if (!empty($dte['DscRcgGlobal']))
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
+        $this->agregarTotalesContinuo($dte['Encabezado']['Totales'],$this->y+6);
+        // agregar timbre
+        // agregar acuse de recibo y leyenda de destino sólo si no es nota de
+        // crédito ni nota de débito
+        if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+            $this->agregarAcuseReciboContinuo(3,$this->y+6,68,34);
+            if ($this->cedible)
+                $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
+        }
+        $this->agregarTimbreContinuo($timbre,3,$this->y+6,68);
+    }
 
     /**
      * Método que agrega los datos de la empresa
@@ -218,6 +261,37 @@ class Dte extends \sasco\LibreDTE\PDF
         if ($contacto)
             $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', $w);
     }
+    
+    private function agregarEmisorContinuo(array $emisor, $x = 3, $y = 35, $w = 75, $w_img = 30)
+    {
+        // logo máximo 1/5 del tamaño del documento
+        if (isset($this->logo)) {
+            $this->Image($this->logo, $x, $y, $w_img, 0, 'PNG', (isset($emisor['url'])?$emisor['url']:''), 'T');
+            $x = $this->x+3;
+        } else {
+            $this->y = $y-2;
+            $w += 40;
+        }
+        // agregar datos del emisor
+        $this->setFont('', 'B', 7);
+        $this->SetTextColorArray([32, 92, 144]);
+        $this->MultiTexto($emisor['RznSoc'], $x, $this->y+2, 'L', $w);
+        $this->setFont('', 'B', 5);
+        $this->SetTextColorArray([0,0,0]);
+        $this->MultiTexto("Giro: ".$emisor['GiroEmis'], $x, $this->y, 'L', $w);
+        $this->MultiTexto("Casa Matriz: ".$emisor['DirOrigen'].', '.$emisor['CmnaOrigen'], $x, $this->y, 'L', $w);
+        $contacto = [];
+        if (!empty($emisor['Telefono'])) {
+            if (!isset($emisor['Telefono'][0]))
+                $emisor['Telefono'] = [$emisor['Telefono']];
+            foreach ($emisor['Telefono'] as $t)
+                $contacto[] = $t;
+        }
+        if (!empty($emisor['CorreoEmisor']))
+            $contacto[] = $emisor['CorreoEmisor'];
+        if ($contacto)
+            $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', $w);
+    }
 
     /**
      * Método que agrega el recuadro con el folio
@@ -251,6 +325,26 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', 12);
         $this->MultiTexto($this->getTipo($tipo), $x, null, 'C', $w);
         $this->setFont('', 'B', 15);
+        $this->MultiTexto('N° '.$folio, $x, null, 'C', $w);
+        // dibujar rectángulo rojo
+        $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => $color]]);
+        // colocar unidad del SII
+        $this->setFont('', 'B', 10);
+        $this->Texto('S.I.I. - '.$this->getSucursalSII($sucursal_sii), $x, $this->getY()+4, 'C', $w);
+        $this->SetTextColorArray([0,0,0]);
+    }
+    
+    private function agregarFolioContinuo($rut, $tipo, $folio, $sucursal_sii = null, $x = 3, $y = 3, $w = 68)
+    {
+        $color = $tipo==52 ? [0,172,140] : [255,0,0];
+        $this->SetTextColorArray($color);
+        // colocar rut emisor, glosa documento y folio
+        list($rut, $dv) = explode('-', $rut);
+        $this->setFont ('', 'B', 10);
+        $this->MultiTexto('R.U.T.: '.$this->num($rut).'-'.$dv, $x, $y+4, 'C', $w);
+        $this->setFont('', 'B', 10);
+        $this->MultiTexto($this->getTipo($tipo), $x, null, 'C', $w);
+        $this->setFont('', 'B', 10);
         $this->MultiTexto('N° '.$folio, $x, null, 'C', $w);
         // dibujar rectángulo rojo
         $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => $color]]);
@@ -309,6 +403,18 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto(':', $x+22);
         $this->MultiTexto(str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x+26);
     }
+    
+    private function agregarFechaEmisionContinuo($date, $x = 3,$y = 50,$w = 68)
+    {
+        $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+        $unixtime = strtotime($date);
+        $fecha = date('\D\I\A j \d\e \M\E\S \d\e\l Y', $unixtime);
+        $dia = $dias[date('w', $unixtime)];
+        $mes = $meses[date('n', $unixtime)-1];
+       // $this->MultiTexto("Fecha de Emisión: ".str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x, $this->y, 'L', $w);
+        $this->MultiTexto("Fecha de Emisión: 2015-08-17", $x, $this->y, 'L', $w);
+    }
 
     /**
      * Método que agrega la condición de venta del documento
@@ -346,6 +452,36 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Dirección', $x);
         $this->Texto(':', $x+22);
         $this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
+        $contacto = [];
+        if (!empty($receptor['Contacto']))
+            $contacto[] = $receptor['Contacto'];
+        if (!empty($receptor['CorreoRecep']))
+            $contacto[] = $receptor['CorreoRecep'];
+        if (!empty($contacto)) {
+            $this->Texto('Contacto', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto(implode(' / ', $contacto), $x+26);
+        }
+    }
+    
+    private function agregarReceptorContinuo(array $receptor, $x = 3,$y= 45,$w=68)
+    {
+        list($rut, $dv) = explode('-', $receptor['RUTRecep']);
+        //$this->Texto('Señor(es)', $x);
+        //$this->Texto(':', $x+22);
+       // $this->MultiTexto($receptor['RznSocRecep'], $x);
+        //$this->Texto('R.U.T.', $x);
+        //$this->Texto(':', $x+22);
+        $this->setFont('', 'B', 5);
+        $this->SetTextColorArray([0,0,0]);
+        $this->MultiTexto($receptor['RznSocRecep'], $x, $y, 'L', $w);
+        
+        $this->MultiTexto('RUT: '.$this->num($rut).'-'.$dv, $x, $this->y, 'L', $w);
+        $this->MultiTexto('Giro: '.$receptor['GiroRecep'], $x, $this->y, 'L', $w);
+        $this->MultiTexto('Dirección: '.$receptor['DirRecep'], $x, $this->y, 'L', $w);
+        $this->MultiTexto('Comuna: '.$receptor['CmnaRecep'], $x, $this->y, 'L', $w);
+        $this->MultiTexto('Ciudad: '.$receptor['CiudadRecep'], $x+50, $this->y-2, 'L', $w);
+        //$this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
         $contacto = [];
         if (!empty($receptor['Contacto']))
             $contacto[] = $receptor['Contacto'];
@@ -416,6 +552,39 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->MultiTexto($texto, $x+26);
         }
     }
+    
+    private function agregarReferenciaContinuo($referencias, $x = 3,$y=60,$w=68)
+    {
+        if (!isset($referencias[0]))
+            $referencias = [$referencias];
+        $this->SetY($y+1);
+        $this->setFont('', 'B', 7);
+        $this->Texto('Documentos de Referencia.', $x,$this->y);
+        
+        $style = array('width' => 0.2,'color' => array(0, 0, 0));
+        
+        $this->setFont('', 'B', 5);
+        foreach($referencias as $r) {
+            $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'].': '.$r['RazonRef'];
+            $p1x = 3;
+            $p1y   = $this->y+3;
+            //$p2x   = $px2;
+            $p2x = 71;
+            $p2y   = $p1y;  // Use same y for a straight line
+            $this->Line($p1x, $p1y, $p2x, $p2y, $style);
+            $this->SetY($this->GetY()+4); 
+            $this->MultiTexto('TIPO DOCUMENTO: '.$r['TpoDocRef'], $x, $this->y, 'L', $w);
+            $this->MultiTexto('FOLIO: '.$r['FolioRef'], $x, $this->y, 'L', $w);
+            $this->MultiTexto('FECHA: '.$r['FchRef'], $x, $this->y, 'L', $w);
+            //$this->MultiTexto('FECHA: 2015-08-17', $x, $this->y, 'L', $w);
+            $this->MultiTexto('RAZON: '.$r['RazonRef'], $x, $this->y, 'L', $w);
+           /* $this->Texto('Referenc.', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto($texto, $x+26);
+            * 
+            */
+        }
+    }
 
     /**
      * Método que agrega el detalle del documento
@@ -473,6 +642,43 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetX($x);
         $this->addTableWithoutEmptyCols($titulos, $detalle, $options);
     }
+    
+    private function agregarDetalleContinuo($detalle, $x = 3,$y=64)
+    {
+        $pageWidth    = $this->getPageWidth();   
+        $pageMargins  = $this->getMargins();     
+        $headerMargin = $pageMargins['header']; 
+        $px2          = $pageWidth - $headerMargin; 
+
+        $this->SetY($this->getY()+1);
+        $p1x = 3;
+        $p1y   = $this->y;
+        $p2x = 71;
+        $p2y   = $p1y;  // Use same y for a straight line
+        $style = array('width' => 0.2,'color' => array(0, 0, 0));
+        $this->Line($p1x, $p1y, $p2x, $p2y, $style);
+        $this->Texto("Item", $x+1,$this->y);     
+        $this->Texto("Precio Unitario", $x+10,$this->y+2); 
+        $this->Texto("Cantidad", $x+40,$this->y); 
+        $this->Texto("Valor", $x+60,$this->y); 
+        $this->Line($p1x, $p1y+5, $p2x, $p2y+5, $style);
+        if (!isset($detalle[0]))
+            $detalle = [$detalle];
+
+        $this->SetY($this->getY()+4);
+        foreach($detalle as  &$d):
+          
+            $this->Texto($d["NmbItem"], $x+1,$this->y+3);     
+            $this->Texto("($ ".number_format($d["PrcItem"],0,',','.')." c/u)", $x+5,$this->y+3); 
+            $this->Texto(number_format($d["QtyItem"],0,',','.'), $x+40,$this->y); 
+            $this->Texto(number_format($d["MontoItem"],0,',','.'), $x+60,$this->y); 
+         
+         
+        endforeach;
+        
+        $this->Line($p1x, $this->y+4, $p2x, $this->y+4, $style);
+      
+    }
 
     /**
      * Método que agrega los descuentos y/o recargos globales del documento
@@ -526,6 +732,36 @@ class Dte extends \sasco\LibreDTE\PDF
             }
         }
     }
+    
+    private function agregarTotalesContinuo(array $totales,$y)
+    {
+        // normalizar totales
+        $totales = array_merge([
+            'MntNeto' => false,
+            'MntExe' => false,
+            'TasaIVA' => false,
+            'IVA' => false,
+            'MntTotal' => false,
+        ], $totales);
+        // glosas
+        $glosas = [
+            'MntNeto' => 'TOTAL NETO',
+            'MntExe' => 'EXENTO ',
+            'IVA' => 'IVA ('.$totales['TasaIVA'].'%)',
+            'MntTotal' => 'Total',
+        ];
+        // agregar cada uno de los totales
+        $this->setY($y);
+        foreach ($totales as $key => $total) {
+            if ($total!==false and isset($glosas[$key])) {
+                $x = 3;
+                $this->Texto($glosas[$key], $x,$this->y+1); 
+                $this->Texto("$", $x+40,$this->y); 
+                $this->Texto($this->num($total), $x+60,$this->y); 
+                $this->Ln();
+            }
+        }
+    }
 
     /**
      * Método que agrega el timbre de la factura
@@ -554,6 +790,24 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
         $this->Texto('Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w, 'http://www.sii.cl');
+    }
+    
+    private function agregarTimbreContinuo($timbre, $x = 3, $y, $w = 68)
+    {
+        $style = [
+            'border' => false,
+            'vpadding' => 0,
+            'hpadding' => 0,
+            'fgcolor' => [0,0,0],
+            'bgcolor' => false, // [255,255,255]
+            'module_width' => 1, // width of a single module in points
+            'module_height' => 1 // height of a single module in points
+        ];
+        $this->write2DBarcode($timbre, 'PDF417', $x+10, $y, $w, 0, $style, 'B');
+        $this->setFont('', 'B', 6);
+        $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
+        $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0].' - Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w);
+        //$this->Texto('Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w, 'http://www.sii.cl');
     }
 
     /**
@@ -586,6 +840,29 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x, $this->y+6, 'J', $w);
     }
 
+    private function agregarAcuseReciboContinuo($x = 3, $y , $w = 68, $h = 40)
+    {
+        $this->SetTextColorArray([0,0,0]);
+        $this->Rect($x, $y, $w, $h, 'D', ['all' => ['width' => 0.1, 'color' => [0, 0, 0]]]);
+        $style = array('width' => 0.2,'color' => array(0, 0, 0));
+        $this->Line($x, $y+22, $w+3, $y+22, $style);
+        //$this->setFont('', 'B', 10);
+        //$this->Texto('Acuse de recibo', $x, $y+1, 'C', $w);
+        $this->setFont('', 'B', 6);
+        $this->Texto('Nombre:', $x+2, $this->y+8);
+        $this->Texto('_____________________________________________', $x+12);
+        $this->Texto('R.U.T.:', $x+2, $this->y+6);
+        $this->Texto('________________', $x+12);
+        $this->Texto('Firma:', $x+32, $this->y+0.5);
+        $this->Texto('___________________', $x+42.5);
+        $this->Texto('Fecha:', $x+2, $this->y+6);
+        $this->Texto('________________', $x+12);
+        $this->Texto('Recinto:', $x+32, $this->y+0.5);
+        $this->Texto('___________________', $x+42.5);
+        
+        $this->setFont('', 'B', 5);
+        $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x+2, $this->y+8, 'J', $w-3);
+    }
     /**
      * Método que agrega la leyenda de destino
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
