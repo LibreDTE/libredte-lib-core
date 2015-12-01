@@ -165,26 +165,26 @@ class FirmaElectronica
      * Método que entrega el CN del subject
      * @return CN del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-24
+     * @version 2015-12-01
      */
     public function getName()
     {
         if (isset($this->data['subject']['CN']))
             return $this->data['subject']['CN'];
-        return $this->error('No fue posible obtener el Name (subject.CN) de la firma');
+        return $this->error('No fue posible obtener el Name (subject.CN) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
     }
 
     /**
      * Método que entrega el emailAddress del subject
      * @return emailAddress del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-24
+     * @version 2015-12-01
      */
     public function getEmail()
     {
         if (isset($this->data['subject']['emailAddress']))
             return $this->data['subject']['emailAddress'];
-        return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma');
+        return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
     }
 
     /**
