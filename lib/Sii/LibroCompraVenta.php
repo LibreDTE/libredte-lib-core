@@ -25,8 +25,9 @@ namespace sasco\LibreDTE\Sii;
 
 /**
  * Clase que representa el envío de un Libro de Compra o Venta
+ *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-12-08
  */
 class LibroCompraVenta
 {
@@ -35,6 +36,19 @@ class LibroCompraVenta
     private $xml_data; ///< String con el documento XML
     private $caratula; ///< arreglo con la caratula del envío
     private $Firma; ///< objeto de la firma electrónica
+    private $simplificado = false; ///< Indica si el libro es simplificado o no
+
+
+    /**
+     * Constructor del libro
+     * @param simplificado Indica si el libro es (=true) o no simplificado (=false, por defecto)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-08
+     */
+    public function __construct($simplificado = false)
+    {
+        $this->simplificado = $simplificado;
+    }
 
     /**
      * Método que agrega un detalle al listado que se enviará
@@ -315,9 +329,8 @@ class LibroCompraVenta
     /**
      * Método que realiza el envío del libro IECV al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
-     * @warning No se está validano schema
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-30
+     * @version 2015-12-08
      */
     public function enviar()
     {
@@ -332,12 +345,8 @@ class LibroCompraVenta
             return false;
         }
         // validar schema del documento antes de enviar
-        // WARNING: tanto en certificación como en producción si el libro se
-        // firma da error al subirlo, pero si va sin firma da error de schema,
-        // por esta razón no se valida el schema, para que pueda ser enviado al
-        // sii sin firmar ¿?
-        /*if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION and !$this->schemaValidate())
-            return false;*/
+        if (!$this->schemaValidate())
+            return false;
         // solicitar token
         $token = Autenticacion::getToken($this->Firma);
         if (!$token)
@@ -356,7 +365,7 @@ class LibroCompraVenta
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-27
+     * @version 2015-12-08
      */
     public function generar($incluirDetalle = true)
     {
@@ -372,7 +381,7 @@ class LibroCompraVenta
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
                     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte LibroCVS_v10.xsd',
+                    'xsi:schemaLocation' => $this->simplificado ? 'http://www.sii.cl/SiiDte LibroCVS_v10.xsd' : 'http://www.sii.cl/SiiDte LibroCV_v10.xsd',
                     'version' => '1.0',
                 ],
                 'EnvioLibro' => [
@@ -465,7 +474,7 @@ class LibroCompraVenta
      * Método que valida el XML que se genera para la respuesta del envío
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
+     * @version 2015-12-08
      */
     public function schemaValidate()
     {
@@ -476,7 +485,7 @@ class LibroCompraVenta
             );
             return null;
         }
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/LibroCVS_v10.xsd';
+        $xsd = dirname(dirname(dirname(__FILE__))).($this->simplificado?'/schemas/LibroCVS_v10.xsd':'/schemas/LibroCV_v10.xsd');
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
         $result = $this->xml->schemaValidate($xsd);
