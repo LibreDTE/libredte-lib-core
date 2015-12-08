@@ -396,7 +396,7 @@ class LibroCompraVenta
             ]
         ])->saveXML();
         // firmar XML del envío y entregar
-        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
+        $this->xml_data = !$this->simplificado and $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
         return $this->xml_data;
     }
 
