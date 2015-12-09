@@ -28,7 +28,7 @@
  * (IEV) para un período sin movimientos
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-10-27
+ * @version 2015-12-08
  */
 
 // respuesta en texto plano
@@ -40,14 +40,13 @@ include 'inc.php';
 // caratula del libro
 $caratula = [
     'RutEmisorLibro' => '76192083-9',
-    'RutEnvia' => '11222333-4',
-    'PeriodoTributario' => '1980-04',
-    'FchResol' => '2006-01-20',
-    'NroResol' => 102006,
+    //'RutEnvia' => '11222333-4', // si se omite se obtiene de la Firma
+    'PeriodoTributario' => '2015-10',
+    'FchResol' => '2014-08-22',
+    'NroResol' => 80,
     'TipoOperacion' => 'VENTA',
-    'TipoLibro' => 'ESPECIAL',
+    'TipoLibro' => 'MENSUAL',
     'TipoEnvio' => 'TOTAL',
-    'FolioNotificacion' => 102006,
 ];
 
 // datos del emisor
@@ -65,9 +64,9 @@ $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
 $LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta();
 
 // enviar libro de ventas y mostrar resultado del envío: track id o bien =false si hubo error
-$LibroCompraVenta->setCaratula($caratula);
-$LibroCompraVenta->generar(false); // generar XML sin firma y sin detalle
 $LibroCompraVenta->setFirma($Firma);
+$LibroCompraVenta->setCaratula($caratula);
+$LibroCompraVenta->generar();
 $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anterior
 var_dump($track_id);
 
