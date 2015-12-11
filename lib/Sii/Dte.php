@@ -749,7 +749,7 @@ class Dte
      * montos que correspondan según e indicador del descuento o recargo
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-25
+     * @version 2015-12-11
      */
     private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
@@ -763,7 +763,7 @@ class Dte
                 else if ($dr['IndExeDR']==2)
                     $monto = 'MontoNF';
                 // si no hay monto al que aplicar el descuento se omite
-                if (!$datos['Encabezado']['Totales'][$monto])
+                if (empty($datos['Encabezado']['Totales'][$monto]))
                     continue;
                 // calcular valor del descuento o recargo
                 $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
