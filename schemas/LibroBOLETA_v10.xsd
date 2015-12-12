@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- 
+      Modificacion : 22 de Abril de 2005 - 09:27 Hrs.
+      Modificacion : 28 de Abril de 2010 - 14:58 Hrs.
+       -->
+	<xs:element name="LibroBoleta">
+		<xs:annotation>
+			<xs:documentation>Informacion Electronica de Libros de Boletas</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EnvioLibro">
+					<xs:annotation>
+						<xs:documentation>Identificacion, Resumen y Detalles del Libro Electronico</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutEmisorLibro" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT del Emisor del Libro Electronico</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutEnvia" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que Realiza el Envio del Libro Electronico</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="xs:gYearMonth">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico (AAAA-MM)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchResol" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha de Resolucion que Autoriza el Envio de Libros (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NroResol">
+											<xs:annotation>
+												<xs:documentation>Numero de Resolucion que Autoriza el Envio de Libros</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoLibro">
+											<xs:annotation>
+												<xs:documentation>Tipo de Libro al que Corresponde el Envio</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="10"/>
+													<xs:enumeration value="ESPECIAL"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoEnvio" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tipo de Envio del Libro Electronico</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="PARCIAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es un Envio Parcial del Libro y que Faltan Otros para Completar el Libro</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="FINAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es el Ultimo Envio Parcial. Con Esto se Completa el Libro.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="TOTAL">
+														<xs:annotation>
+															<xs:documentation>Indica que es el Unico Envio que Compone el Libro</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="AJUSTE">
+														<xs:annotation>
+															<xs:documentation>Indica que es un Envio con Informacion para Corregir un Libro Previamente Enviado</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="NroSegmento" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Correlativo del Segmento de Libro</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FolioNotificacion">
+											<xs:annotation>
+												<xs:documentation>Folio de la Notificacion con que se Solicita el Libro Especial</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="18"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ResumenSegmento" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Resumen del Segmento de Informacion Enviado</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TotalesSegmento" maxOccurs="2">
+											<xs:annotation>
+												<xs:documentation>Totales de Control, por Tipo de  Documento, Tipo de Servicio y Periodo de Devengo, Para el Segmento</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+														<xs:annotation>
+															<xs:documentation>Tipo de Documento Resumido</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotAnulado" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de Folios Anulados</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:integer">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotalesServicio" minOccurs="0" maxOccurs="9">
+														<xs:annotation>
+															<xs:documentation>Totales de Control por Tipo de Servicio y Periodo de Devengo</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TpoServ">
+																	<xs:annotation>
+																		<xs:documentation>Tipo de Servicio Resumido</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:positiveInteger">
+																			<xs:totalDigits value="1"/>
+																			<xs:enumeration value="1">
+																				<xs:annotation>
+																					<xs:documentation>Servicio Periodico</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="2">
+																				<xs:annotation>
+																					<xs:documentation>Servicio Periodico Domiciliario</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="3">
+																				<xs:annotation>
+																					<xs:documentation>Venta y Servicio</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="4">
+																				<xs:annotation>
+																					<xs:documentation>Boleta de Espectáculo emitida por  cuenta de Terceros</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="PeriodoDevengo" type="xs:gYearMonth" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Periodo (AAAA-MM) en que  Vencen los Documentos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotDoc">
+																	<xs:annotation>
+																		<xs:documentation>Numero de Documentos del Tipo Incluidos en el Libro Electronico</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:integer">
+																			<xs:totalDigits value="10"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TotMntExe" type="SiiDte:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos Exentos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntTotal" type="SiiDte:MontoType">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos Totales</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntNoFact" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Monto No Facturable</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Monto Periodo</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotSaldoAnt" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Saldo Anterior </xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotVlrPagar" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Valor a Pagar</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotTicket" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total de Ticket informados en el Segmento</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="SiiDte:MontoType">
+																			<xs:totalDigits value="7"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ResumenPeriodo" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Resumen Para el Periodo Tributario</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TotalesPeriodo" maxOccurs="2">
+											<xs:annotation>
+												<xs:documentation>Totales de Control, por Tipo de  Documento, Tipo de Servicio y Periodo de Devengo, Para el Periodo Tributario</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+														<xs:annotation>
+															<xs:documentation>Tipo de Documento Resumido</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotAnulado" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total de Folios Anulados</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:positiveInteger">
+																<xs:totalDigits value="10"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotalesServicio" maxOccurs="9">
+														<xs:annotation>
+															<xs:documentation>Totales de Control por Tipo de Servicio y Periodo de Devengo</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TpoServ">
+																	<xs:annotation>
+																		<xs:documentation>Tipo de Servicio Resumido</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:positiveInteger">
+																			<xs:totalDigits value="1"/>
+																			<xs:enumeration value="1">
+																				<xs:annotation>
+																					<xs:documentation>Servicio Periodico</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="2">
+																				<xs:annotation>
+																					<xs:documentation>Servicio Periodico Domiciliario</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="3">
+																				<xs:annotation>
+																					<xs:documentation>Venta y Servicio</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="4">
+																				<xs:annotation>
+																					<xs:documentation>Boleta de Espectáculo emitida por  cuenta de Terceros</xs:documentation>
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="PeriodoDevengado" type="xs:gYearMonth" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Periodo (AAAA-MM) en que Vencen lod Documentos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotDoc" type="xs:positiveInteger">
+																	<xs:annotation>
+																		<xs:documentation>Numero de Documentos del Tipo Incluidos en el Libro Electronico</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntExe" type="SiiDte:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos Exentos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntNeto" type="SiiDte:MontoType">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos Netos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TasaIVA" type="SiiDte:PctType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Tasa de IVA Aplicada a los Documentos</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntIVA" type="SiiDte:MontoType">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos de IVA</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntTotal" type="SiiDte:MontoType">
+																	<xs:annotation>
+																		<xs:documentation>Total de los Montos Totales</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntNoFact" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Monto No Facturable</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotMntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Monto Periodo</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotSaldoAnt" type="SiiDte:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Saldo Anterior</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotVlrPagar" type="SiiDte:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total Valor a Pagar</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="TotTicket" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Total de Ticket informados en el Periodo</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="SiiDte:MontoType">
+																			<xs:totalDigits value="7"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Detalle" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Detalle de Documentos que Componen el Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TpoDoc" type="SiiDte:DoctoType">
+											<xs:annotation>
+												<xs:documentation>Tipo de Boleta</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FolioDoc">
+											<xs:annotation>
+												<xs:documentation>Folio de la Boleta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Anulado" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Indica que el Estado de la Boleta es Anulado</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="A">
+														<xs:annotation>
+															<xs:documentation>Documento Anulado</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TpoServ" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tipo de Servicio de la Boleta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="1"/>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Servicio Periodico</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Servicio Periodico Domiciliario</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation>Venta y Servicio</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="4">
+														<xs:annotation>
+															<xs:documentation>Boleta de Espectáculo emitida por  cuenta de Terceros</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FchEmiDoc" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fecha de Emision del Documento (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchVencDoc" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fecha de Vencimiento del Documento (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoDesde" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Inicio de Periodo de Cobro</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoHasta" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Termino de Periodo de Cobro</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CdgSIISucur" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Sucursal Entregado por el SII</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="8"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RUTCliente" type="SiiDte:RUTType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>RUT del Contraparte en la Operación Comercial</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CodIntCli" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo Interno de la Contraparte en la Operacion Comercial</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="80"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MntExe" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Exento del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntTotal" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Total del Documento</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntNoFact" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation> Monto No Facturable</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntPeriodo" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total Monto Periodo</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="SaldoAnt" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Saldo Anterior</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="VlrPagar" type="SiiDte:ValorType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Valor Total a Pagar</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TotTicketBoleta" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total de Ticket informados en la Boleta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="SiiDte:MontoType">
+													<xs:totalDigits value="3"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Signature" type="SiiDte:SignatureType">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Envio del Libro Electronico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="SignatureType">
+		<xs:annotation>
+			<xs:documentation>Firma Digital con Restricciones</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SignedInfo">
+				<xs:annotation>
+					<xs:documentation>Descripcion de la Informacion Firmada y del Metodo de Firma</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CanonicalizationMethod">
+							<xs:annotation>
+								<xs:documentation>Algoritmo de Canonicalizacion</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="Algorithm" type="xs:anyURI" use="required" fixed="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SignatureMethod">
+							<xs:annotation>
+								<xs:documentation>Algoritmo de Firma</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="Algorithm" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:anyURI">
+											<xs:enumeration value="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+											<xs:enumeration value="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Reference">
+							<xs:annotation>
+								<xs:documentation>Referencia a Elemento Firmado</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Transforms" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Algoritmo de Transformacion</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Transform">
+													<xs:complexType>
+														<xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="DigestMethod">
+										<xs:annotation>
+											<xs:documentation>Algoritmo de Digest</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="Algorithm" type="xs:anyURI" use="required" fixed="http://www.w3.org/2000/09/xmldsig#sha1"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="DigestValue" type="xs:base64Binary">
+										<xs:annotation>
+											<xs:documentation>Valor de Digest</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="URI" type="xs:anyURI" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SignatureValue" type="xs:base64Binary">
+				<xs:annotation>
+					<xs:documentation>Valor de la Firma Digital</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KeyInfo">
+				<xs:annotation>
+					<xs:documentation>Informacion de Claves Publicas y Certificado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="KeyValue">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="RSAKeyValue">
+										<xs:annotation>
+											<xs:documentation>Informacion de Claves Publicas RSA</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Modulus" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Modulo Clave RSA</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Exponent" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Exponente Clave RSA</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="DSAKeyValue">
+										<xs:annotation>
+											<xs:documentation>Informacion de Claves Publicas DSA</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="P" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Modulo Primo</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Q" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Entero Divisor de P - 1</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="G" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>Entero f(P, Q)</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Y" type="xs:base64Binary">
+													<xs:annotation>
+														<xs:documentation>G**X mod P</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="X509Data">
+							<xs:annotation>
+								<xs:documentation>Informacion del Certificado Publico</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="X509Certificate" type="xs:base64Binary">
+										<xs:annotation>
+											<xs:documentation>Certificado Publico</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RUTType">
+		<xs:annotation>
+			<xs:documentation>RUT 99999999-X</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="3"/>
+			<xs:pattern value="[0-9]+-([0-9]|K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MontoType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (mayor o igual a cero)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValorType">
+		<xs:annotation>
+			<xs:documentation>Monto 18 digitos (positivo o negativo)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoctoType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="39">
+				<xs:annotation>
+					<xs:documentation>Boleta Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Boleta Exenta Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PctType">
+		<xs:annotation>
+			<xs:documentation>Porcentaje (3 enteros y 2 decimales)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
