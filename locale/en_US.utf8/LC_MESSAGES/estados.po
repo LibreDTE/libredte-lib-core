@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibreDTE en_US estados\n"
-"PO-Revision-Date: 2015-10-02 11:38-0300\n"
+"PO-Revision-Date: 2015-12-12 22:55-0400\n"
 "Last-Translator: Esteban De La Fuente Rubio <esteban@sasco.cl>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -185,3 +185,25 @@ msgstr "XML LibroGuia is missing"
 
 msgid "Error schema LibroGuia. %s"
 msgstr "Invalid LibroGuia schema. %s"
+
+# códigos de error para \sasco\LibreDTE\Sii\ConsumoFolio
+
+msgid "No fue posible generar XML del ConsumoFolio"
+msgstr "Can not create XML ConsumoFolio"
+
+msgid "No hay XML de ConsumoFolio que validar"
+msgstr "XML ConsumoFolio is missing"
+
+msgid "Error schema ConsumoFolio. %s"
+msgstr "Invalid ConsumoFolio schema. %s"
+
+# códigos de error para \sasco\LibreDTE\Sii\LibroBoleta
+
+msgid "No fue posible generar XML del LibroBoleta"
+msgstr "Can not create XML LibroBoleta"
+
+msgid "No hay XML de LibroBoleta que validar"
+msgstr "XML LibroBoleta is missing"
+
+msgid "Error schema LibroBoleta. %s"
+msgstr "Invalid LibroBoleta schema. %s"
