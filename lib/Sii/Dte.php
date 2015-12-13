@@ -427,14 +427,15 @@ class Dte
      * puede servir, por ejemplo, para generar los detalles de los IECV
      * @return Arreglo con el resumen del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-23
+     * @version 2015-12-13
      */
     public function getResumen()
     {
         $this->getDatos();
+        // generar resumen
         $resumen =  [
-            'TpoDoc' => $this->datos['Encabezado']['IdDoc']['TipoDTE'],
-            'NroDoc' => $this->datos['Encabezado']['IdDoc']['Folio'],
+            'TpoDoc' => (int)$this->datos['Encabezado']['IdDoc']['TipoDTE'],
+            'NroDoc' => (int)$this->datos['Encabezado']['IdDoc']['Folio'],
             'TasaImp' => 0,
             'FchDoc' => $this->datos['Encabezado']['IdDoc']['FchEmis'],
             'CdgSIISucur' => !empty($this->datos['Encabezado']['Emisor']['CdgSIISucur']) ? $this->datos['Encabezado']['Emisor']['CdgSIISucur'] : false,
@@ -443,14 +444,29 @@ class Dte
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => 0,
-            'MntTotal' => $this->datos['Encabezado']['Totales']['MntTotal'],
+            'MntTotal' => (int)$this->datos['Encabezado']['Totales']['MntTotal'],
         ];
+        // obtener montos si es que existen en el documento
         $montos = ['TasaImp'=>'TasaIVA', 'MntExe'=>'MntExe', 'MntNeto'=>'MntNeto', 'MntIVA'=>'IVA'];
         foreach ($montos as $dest => $orig) {
             if (!empty($this->datos['Encabezado']['Totales'][$orig])) {
-                $resumen[$dest] = $this->datos['Encabezado']['Totales'][$orig];
+                $resumen[$dest] = (int)$this->datos['Encabezado']['Totales'][$orig];
             }
         }
+        // si es una boleta se calculan los datos para el resumen
+        if ($this->esBoleta()) {
+            if (!$resumen['TasaImp']) {
+                $resumen['TasaImp'] = \sasco\LibreDTE\Sii::getIVA();
+            }
+            $resumen['MntExe'] = (int)$resumen['MntExe'];
+            if (!$resumen['MntNeto']) {
+                $resumen['MntNeto'] = round(($resumen['MntTotal']-$resumen['MntExe'])/(1+$resumen['TasaImp']/100));
+            }
+            if (!$resumen['MntIVA']) {
+                $resumen['MntIVA'] = round($resumen['MntNeto']*($resumen['TasaImp']/100));
+            }
+        }
+        // entregar resumen
         return $resumen;
     }
 
