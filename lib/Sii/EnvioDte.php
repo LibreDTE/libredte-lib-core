@@ -326,6 +326,36 @@ class EnvioDte
     }
 
     /**
+     * Método que entrega la fecha del DTE más antiguo del envio
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-12
+     */
+    public function getFechaEmisionInicial()
+    {
+        $fecha = '9999-12-31';
+        foreach ($this->getDocumentos() as $Dte) {
+            if ($Dte->getFechaEmision() < $fecha)
+                $fecha = $Dte->getFechaEmision();
+        }
+        return $fecha;
+    }
+
+    /**
+     * Método que entrega la fecha del DTE más nuevo del envio
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-12
+     */
+    public function getFechaEmisionFinal()
+    {
+        $fecha = '0000-01-01';
+        foreach ($this->getDocumentos() as $Dte) {
+            if ($Dte->getFechaEmision() > $fecha)
+                $fecha = $Dte->getFechaEmision();
+        }
+        return $fecha;
+    }
+
+    /**
      * Método que entrega el arreglo con los objetos DTE del envío
      * @return Arreglo de objetos DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
