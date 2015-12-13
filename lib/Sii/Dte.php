@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-12-11
  */
 class Dte
 {
@@ -40,7 +40,7 @@ class Dte
     private $datos = null; ///< Datos normalizados que se usaron para crear el DTE
 
     private $tipos = [
-        'Documento' => [33, 34, 46, 52, 56, 61],
+        'Documento' => [33, 34, 39, 41, 46, 52, 56, 61],
         'Liquidacion' => [43],
         'Exportaciones' => [110, 111, 112],
     ]; ///< Tipos posibles de documentos tributarios electrónicos
@@ -578,6 +578,41 @@ class Dte
     }
 
     /**
+     * Método que normaliza los datos de una boleta electrónica
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-12
+     */
+    private function normalizar_39(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => [
+                    'TipoDTE' => false,
+                    'Folio' => false,
+                    'FchEmis' => date('Y-m-d'),
+                    'IndServicio' => 3, // boleta de ventas y servicios
+                ],
+                'Emisor' => [
+                    'RUTEmisor' => false,
+                    'RznSocEmisor' => false,
+                    'GiroEmisor' => false,
+                ],
+                'Receptor' => false,
+                'Totales' => [
+                    'MntExe' => false,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
@@ -695,7 +730,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-05
+     * @version 2015-12-12
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -729,16 +764,30 @@ class Dte
             }
             // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
-                if ((!isset($datos['Encabezado']['Totales']['MntNeto']) or $datos['Encabezado']['Totales']['MntNeto']===false) and isset($datos['Encabezado']['Totales']['MntExe'])) {
+                // si no es boleta
+                if (!$this->esBoleta()) {
+                    if ((!isset($datos['Encabezado']['Totales']['MntNeto']) or $datos['Encabezado']['Totales']['MntNeto']===false) and isset($datos['Encabezado']['Totales']['MntExe'])) {
                     $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
-                } else {
-                    if ($d['IndExe']) {
+                    } else {
+                        if (!empty($d['IndExe'])) {
+                            if ($d['IndExe']==1) {
+                                $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                            }
+                        } else {
+                            $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
+                        }
+                    }
+                }
+                // si es boleta
+                else {
+                    // si es exento
+                    if (!empty($d['IndExe'])) {
                         if ($d['IndExe']==1) {
                             $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
                         }
-                    } else {
-                        $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
                     }
+                    // agregar al monto total
+                    $datos['Encabezado']['Totales']['MntTotal'] += $d['MontoItem'];
                 }
             }
         }
@@ -785,7 +834,7 @@ class Dte
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-03
+     * @version 2015-12-12
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
@@ -801,7 +850,7 @@ class Dte
                     $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['MntExe'];
             }
         } else {
-            if (!empty($datos['Encabezado']['Totales']['MntExe'])) {
+            if (!$datos['Encabezado']['Totales']['MntTotal'] and !empty($datos['Encabezado']['Totales']['MntExe'])) {
                 $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntExe'];
             }
         }
@@ -869,6 +918,17 @@ class Dte
     public function esCedible()
     {
         return !in_array($this->getTipo(), $this->noCedibles);
+    }
+
+    /**
+     * Método que indica si el documento es o no una boleta electrónica
+     * @return =true si el documento es una boleta electrónica
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-11
+     */
+    public function esBoleta()
+    {
+        return in_array($this->getTipo(), [39, 41]);
     }
 
     /**

@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-11-28
+ * @version 2015-12-11
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -36,11 +36,14 @@ class Dte extends \sasco\LibreDTE\PDF
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
-    private $sinAcuseRecibo = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
+    private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
+    private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
 
     private $tipos = [
         33 => 'FACTURA ELECTRÓNICA',
         34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
+        39 => 'BOLETA ELECTRÓNICA',
+        41 => 'BOLETA EXENTA ELECTRÓNICA',
         43 => 'LIQUIDACIÓN FACTURA ELECTRÓNICA',
         46 => 'FACTURA DE COMPRA ELECTRÓNICA',
         52 => 'GUÍA DE DESPACHO ELECTRÓNICA',
@@ -84,7 +87,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Constructor de la clase
      * @param papelContinuo =true indica que el PDF se generará en formato papel continuo (si se pasa un número será el ancho del PDF en mm)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-28
+     * @version 2015-12-12
      */
     public function __construct($papelContinuo = false)
     {
@@ -114,6 +117,18 @@ class Dte extends \sasco\LibreDTE\PDF
     public function setResolucion(array $resolucion)
     {
         $this->resolucion = $resolucion;
+    }
+
+    /**
+     * Método que asigna la página web que se debe utilizar para indicar donde
+     * se puede verificar el DTE
+     * @param web Página web donde se puede verificar el documento
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-11
+     */
+    public function setWebVerificacion($web)
+    {
+        $this->web_verificacion = $web;
     }
 
     /**
@@ -255,7 +270,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-04
+     * @version 2015-12-11
      */
     private function agregarEmisor(array $emisor, $x = 10, $y = 10, $w = 75, $w_img = 30)
     {
@@ -270,10 +285,10 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar datos del emisor
         $this->setFont('', 'B', 20);
         $this->SetTextColorArray([32, 92, 144]);
-        $this->MultiTexto($emisor['RznSoc'], $x, $this->y+2, 'L', $w);
+        $this->MultiTexto(isset($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
         $this->setFont('', 'B', 9);
         $this->SetTextColorArray([0,0,0]);
-        $this->MultiTexto($emisor['GiroEmis'], $x, $this->y, 'L', $w);
+        $this->MultiTexto(isset($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', $w);
         $this->MultiTexto($emisor['DirOrigen'].', '.$emisor['CmnaOrigen'], $x, $this->y, 'L', $w);
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
@@ -316,10 +331,10 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar datos del emisor
         $this->setFont('', 'B', 7);
         $this->SetTextColorArray([32, 92, 144]);
-        $this->MultiTexto($emisor['RznSoc'], $x, $this->y+2, 'L', $w);
+        $this->MultiTexto(isset($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
         $this->setFont('', 'B', 5);
         $this->SetTextColorArray([0,0,0]);
-        $this->MultiTexto("Giro: ".$emisor['GiroEmis'], $x, $this->y, 'L', $w);
+        $this->MultiTexto("Giro: ".(isset($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor']), $x, $this->y, 'L', $w);
         $this->MultiTexto("Casa Matriz: ".$emisor['DirOrigen'].', '.$emisor['CmnaOrigen'], $x, $this->y, 'L', $w);
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
@@ -504,7 +519,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-12
+     * @version 2015-11-12
      */
     private function agregarReceptor(array $receptor, $x = 10)
     {
@@ -515,9 +530,11 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('R.U.T.', $x);
         $this->Texto(':', $x+22);
         $this->MultiTexto($this->num($rut).'-'.$dv, $x+26);
-        $this->Texto('Giro', $x);
-        $this->Texto(':', $x+22);
-        $this->MultiTexto($receptor['GiroRecep'], $x+26);
+        if (!empty($receptor['GiroRecep'])) {
+            $this->Texto('Giro', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto($receptor['GiroRecep'], $x+26);
+        }
         $this->Texto('Dirección', $x);
         $this->Texto(':', $x+22);
         $this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
@@ -538,25 +555,19 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-11-17
+     * @version 2015-12-12
      */
-    private function agregarReceptorContinuo(array $receptor, $x = 3, $y= 45,$w=68)
+    private function agregarReceptorContinuo(array $receptor, $x = 3, $y = 45, $w = 68)
     {
         list($rut, $dv) = explode('-', $receptor['RUTRecep']);
-        //$this->Texto('Señor(es)', $x);
-        //$this->Texto(':', $x+22);
-       // $this->MultiTexto($receptor['RznSocRecep'], $x);
-        //$this->Texto('R.U.T.', $x);
-        //$this->Texto(':', $x+22);
         $this->setFont('', 'B', 5);
         $this->SetTextColorArray([0,0,0]);
         $this->MultiTexto($receptor['RznSocRecep'], $x, $y, 'L', $w);
-
         $this->MultiTexto('RUT: '.$this->num($rut).'-'.$dv, $x, $this->y, 'L', $w);
-        $this->MultiTexto('Giro: '.$receptor['GiroRecep'], $x, $this->y, 'L', $w);
-        $this->MultiTexto('Dirección: '.$receptor['DirRecep'], $x, $this->y, 'L', $w);
-        $this->MultiTexto('Comuna: '.$receptor['CmnaRecep'], $x, $this->y, 'L', $w);
-        //$this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+26);
+        if (!empty($receptor['GiroRecep'])) {
+            $this->MultiTexto('Giro: '.$receptor['GiroRecep'], $x, $this->y, 'L', $w);
+        }
+        $this->MultiTexto('Dirección: '.$receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x, $this->y, 'L', $w);
         $contacto = [];
         if (!empty($receptor['Contacto']))
             $contacto[] = $receptor['Contacto'];
@@ -865,7 +876,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-12-11
      */
     private function agregarTimbre($timbre, $x = 20, $y = 190, $w = 70)
     {
@@ -882,7 +893,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', 8);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
-        $this->Texto('Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w, 'http://www.sii.cl');
+        $this->Texto('Verifique documento: '.$this->web_verificacion, $x, $this->y+4, 'C', $w);
     }
 
     /**
@@ -894,7 +905,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-11-17
+     * @version 2015-12-11
      */
     private function agregarTimbreContinuo($timbre, $x = 3, $y = null, $w = 68)
     {
@@ -910,8 +921,8 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->write2DBarcode($timbre, 'PDF417', $x+10, $y, $w, 0, $style, 'B');
         $this->setFont('', 'B', 6);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
-        $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0].' - Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w);
-        //$this->Texto('Verifique documento: www.sii.cl', $x, $this->y+4, 'C', $w, 'http://www.sii.cl');
+        $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
+        $this->Texto('Verifique documento: '.$this->web_verificacion, $x, $this->y+2, 'C', $w);
     }
 
     /**

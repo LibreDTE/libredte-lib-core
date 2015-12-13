@@ -32,29 +32,41 @@ class EnvioDte
 {
 
     private $dtes = []; ///< Objetos con los DTE que se enviarán
-    private $config = [
-        'SubTotDTE_max' => 20,
-        'DTE_max' => 2000,
+    private $config = [ // 0: DTE, 1: boleta
+        'SubTotDTE_max' => [20, 2], ///< máxima cantidad de tipos de documentos en el envío
+        'DTE_max' => [2000, 1000], ///< máxima cantidad de DTE en un envío
+        'tipos' => ['EnvioDTE', 'EnvioBOLETA'], ///< Tag para el envío, según si son Boletas o no
+        'schemas' => ['EnvioDTE_v10', 'EnvioBOLETA_v11'], ///< Schema (XSD) que se deberá usar para validar según si son boletas o no
     ]; ///< Configuración/reglas para el documento XML
     private $caratula; ///< arreglo con la caratula del envío
     private $Firma; ///< objeto de la firma electrónica
     private $xml_data; ///< String con el documento XML
     private $xml; ///< Objeto XML que representa el EnvioDTE
     private $arreglo; ///< Arreglo con los datos del XML
+    private $tipo = null; ///< =0 DTE, =1 boleta
 
     /**
      * Método que agrega un DTE al listado que se enviará
      * @param DTE Objeto del DTE
      * @return =true si se pudo agregar el DTE o =false si no se agregó por exceder el límite de un envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-12-11
      */
     public function agregar(Dte $DTE)
     {
-        if (isset($this->dtes[$this->config['DTE_max']-1])) {
+        // determinar el tipo del envío (DTE o boleta)
+        if ($this->tipo === null) {
+            $this->tipo = (int)$DTE->esBoleta();
+        }
+        // validar que el tipo de documento sea del tipo que se espera
+        else if ((int)$DTE->esBoleta() != $this->tipo) {
+            return false;
+        }
+        //
+        if (isset($this->dtes[$this->config['DTE_max'][$this->tipo]-1])) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::ENVIODTE_DTE_MAX,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_DTE_MAX, $this->config['DTE_max'])
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_DTE_MAX, $this->config['DTE_max'][$this->tipo])
             );
             return false;
         }
@@ -66,7 +78,7 @@ class EnvioDte
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-24
+     * @version 2015-12-11
      */
     public function setCaratula(array $caratula)
     {
@@ -80,10 +92,10 @@ class EnvioDte
         }
         // si se agregaron demasiados DTE error
         $SubTotDTE = $this->getSubTotDTE();
-        if (isset($SubTotDTE[$this->config['SubTotDTE_max']])) {
+        if (isset($SubTotDTE[$this->config['SubTotDTE_max'][$this->tipo]])) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX, $this->config['SubTotDTE_max'])
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_TIPO_DTE_MAX, $this->config['SubTotDTE_max'][$this->tipo])
             );
             return false;
         }
@@ -118,10 +130,14 @@ class EnvioDte
      * Método que realiza el envío del sobre con el o los DTEs al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-12-11
      */
     public function enviar()
     {
+        // si es boleta no se envía al SII
+        if ($this->tipo) {
+            return false;
+        }
         // generar XML que se enviará
         if (!$this->xml_data)
             $this->xml_data = $this->generar();
@@ -152,7 +168,7 @@ class EnvioDte
      * Método que genera el XML para el envío del DTE al SII
      * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2015-12-11
      */
     public function generar()
     {
@@ -169,11 +185,11 @@ class EnvioDte
         }
         // genear XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
-            'EnvioDTE' => [
+            $this->config['tipos'][$this->tipo] => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
                     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte EnvioDTE_v10.xsd',
+                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte '.$this->config['schemas'][$this->tipo].'.xsd',
                     'version' => '1.0'
                 ],
                 'SetDTE' => [
@@ -235,13 +251,14 @@ class EnvioDte
      * para poder obtener los datos del envío
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-12-11
      */
     public function loadXML($xml_data)
     {
         $this->xml_data = $xml_data;
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
+        $this->tipo = (int)($this->xml->documentElement->tagName=='EnvioBOLETA');
         $this->toArray();
         return $this->xml;
     }
@@ -259,31 +276,31 @@ class EnvioDte
      * Método que entrega un arreglo con los datos de la carátula del envío
      * @return Arreglo con datos de carátula
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-12-11
      */
     public function getCaratula()
     {
-        return isset($this->arreglo['EnvioDTE']['SetDTE']['Caratula']) ? $this->arreglo['EnvioDTE']['SetDTE']['Caratula'] : false;
+        return isset($this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['Caratula']) ? $this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['Caratula'] : false;
     }
 
     /**
      * Método que entrega el ID de SetDTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-12-11
      */
     public function getID()
     {
-        return isset($this->arreglo['EnvioDTE']['SetDTE']['@attributes']['ID']) ? $this->arreglo['EnvioDTE']['SetDTE']['@attributes']['ID'] : false;
+        return isset($this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['@attributes']['ID']) ? $this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['@attributes']['ID'] : false;
     }
 
     /**
      * Método que entrega el DigestValue de la firma del envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-12-11
      */
     public function getDigest()
     {
-        return isset($this->arreglo['EnvioDTE']['Signature']['SignedInfo']['Reference']['DigestValue']) ? $this->arreglo['EnvioDTE']['Signature']['SignedInfo']['Reference']['DigestValue'] : false;
+        return isset($this->arreglo[$this->config['tipos'][$this->tipo]]['Signature']['SignedInfo']['Reference']['DigestValue']) ? $this->arreglo[$this->config['tipos'][$this->tipo]]['Signature']['SignedInfo']['Reference']['DigestValue'] : false;
     }
 
     /**
@@ -357,13 +374,13 @@ class EnvioDte
      * Método que valida el schema del EnvioDTE
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
+     * @version 2015-12-11
      */
     public function schemaValidate()
     {
         if (!$this->xml_data)
             return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/EnvioDTE_v10.xsd';
+        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/'.$this->config['schemas'][$this->tipo].'.xsd';
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
         $result = $this->xml->schemaValidate($xsd);
