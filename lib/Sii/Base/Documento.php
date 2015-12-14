@@ -114,7 +114,7 @@ abstract class Documento
     }
 
     /**
-     * Método que valida el XML del libro de boletas
+     * Método que valida el XML del documento
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-14
