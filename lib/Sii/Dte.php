@@ -427,7 +427,7 @@ class Dte
      * puede servir, por ejemplo, para generar los detalles de los IECV
      * @return Arreglo con el resumen del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-13
+     * @version 2015-12-14
      */
     public function getResumen()
     {
@@ -460,10 +460,7 @@ class Dte
             }
             $resumen['MntExe'] = (int)$resumen['MntExe'];
             if (!$resumen['MntNeto']) {
-                $resumen['MntNeto'] = round(($resumen['MntTotal']-$resumen['MntExe'])/(1+$resumen['TasaImp']/100));
-            }
-            if (!$resumen['MntIVA']) {
-                $resumen['MntIVA'] = round($resumen['MntNeto']*($resumen['TasaImp']/100));
+                list($resumen['MntNeto'], $resumen['MntIVA']) = $this->calcularNetoIVA($resumen['MntTotal']-$resumen['MntExe'], $resumen['TasaImp']);
             }
         }
         // entregar resumen
@@ -471,10 +468,35 @@ class Dte
     }
 
     /**
+     * Método que permite obtener el monto neto y el IVA de ese neto a partir de
+     * un monto total
+     * @param total neto + iva
+     * @param tasa Tasa del IVA
+     * @return Arreglo con el neto y el iva
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-14
+     */
+    private function calcularNetoIVA($total, $tasa = null)
+    {
+        if ($tasa === 0 or $tasa === false)
+            return [0, 0];
+        if ($tasa === null)
+            $tasa = \sasco\LibreDTE\Sii::getIVA();
+        // WARNING: el IVA obtenido puede no ser el NETO*(TASA/100)
+        // se calcula el monto neto y luego se obtiene el IVA haciendo la resta
+        // entre el total y el neto, ya que hay casos de borde como:
+        //  - BRUTO:   680 => NETO:   571 e IVA:   108 => TOTAL:   679
+        //  - BRUTO: 86710 => NETO: 72866 e IVA: 13845 => TOTAL: 86711
+        $neto = round($total / (1+($tasa/100)));
+        $iva = $total - $neto;
+        return [$neto, $iva];
+    }
+
+    /**
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-12-14
      */
     private function normalizar(array &$datos)
     {
@@ -487,6 +509,8 @@ class Dte
                     'FchEmis' => date('Y-m-d'),
                     'TipoDespacho' => false,
                     'IndTraslado' => false,
+                    'IndServicio' => $this->esBoleta() ? 3 : false,
+                    'MntBruto' => false,
                 ],
                 'Emisor' => [
                     'RUTEmisor' => false,
@@ -597,19 +621,14 @@ class Dte
      * Método que normaliza los datos de una boleta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-12
+     * @version 2015-12-14
      */
     private function normalizar_39(array &$datos)
     {
         // completar con nodos por defecto
         $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
             'Encabezado' => [
-                'IdDoc' => [
-                    'TipoDTE' => false,
-                    'Folio' => false,
-                    'FchEmis' => date('Y-m-d'),
-                    'IndServicio' => 3, // boleta de ventas y servicios
-                ],
+                'IdDoc' => false,
                 'Emisor' => [
                     'RUTEmisor' => false,
                     'RznSocEmisor' => false,
@@ -622,6 +641,16 @@ class Dte
                 ]
             ],
         ], $datos);
+        // cambiar tags de DTE a boleta si se pasaron
+        if ($datos['Encabezado']['Emisor']['RznSoc']) {
+            $datos['Encabezado']['Emisor']['RznSocEmisor'] = $datos['Encabezado']['Emisor']['RznSoc'];
+            $datos['Encabezado']['Emisor']['RznSoc'] = false;
+        }
+        if ($datos['Encabezado']['Emisor']['GiroEmis']) {
+            $datos['Encabezado']['Emisor']['GiroEmisor'] = $datos['Encabezado']['Emisor']['GiroEmis'];
+            $datos['Encabezado']['Emisor']['GiroEmis'] = false;
+        }
+        $datos['Encabezado']['Emisor']['Acteco'] = false;
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
@@ -746,7 +775,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-12
+     * @version 2015-12-13
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -773,7 +802,7 @@ class Dte
                 ];
             }
             if (empty($d['MontoItem'])) {
-                $d['MontoItem'] = $d['QtyItem'] * $d['PrcItem'];
+                $d['MontoItem'] = round($d['QtyItem'] * $d['PrcItem']);
                 if ($d['DescuentoPct'])
                     $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
                 $d['MontoItem'] -= (int)$d['DescuentoMonto'];
@@ -850,13 +879,20 @@ class Dte
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-12
+     * @version 2015-12-14
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
         if (!empty($datos['Encabezado']['Totales']['MntNeto'])) {
-            if (empty($datos['Encabezado']['Totales']['IVA']) and !empty($datos['Encabezado']['Totales']['TasaIVA'])) {
-                $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
+            if ($datos['Encabezado']['IdDoc']['MntBruto']==1) {
+                list($datos['Encabezado']['Totales']['MntNeto'], $datos['Encabezado']['Totales']['IVA']) = $this->calcularNetoIVA(
+                    $datos['Encabezado']['Totales']['MntNeto'],
+                    $datos['Encabezado']['Totales']['TasaIVA']
+                );
+            } else {
+                if (empty($datos['Encabezado']['Totales']['IVA']) and !empty($datos['Encabezado']['Totales']['TasaIVA'])) {
+                    $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
+                }
             }
             if (empty($datos['Encabezado']['Totales']['MntTotal'])) {
                 $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'];

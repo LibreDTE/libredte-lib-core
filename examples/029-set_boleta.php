@@ -31,7 +31,7 @@
  *  <http://www.sii.cl/factura_electronica/guia_emitir_boleta_servicio.htm>
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-11
+ * @version 2015-12-14
  */
 
 // respuesta en texto plano
@@ -43,12 +43,12 @@ include 'inc.php';
 // primer folio a usar para envio de set de pruebas
 $folios = [
     39 => 1, // boleta electrónica
-    //61 => 56, // nota de crédito electrónicas
+    61 => 56, // nota de crédito electrónicas
 ];
 
 // caratula para el envío de los dte
 $caratula = [
-    'RutEnvia' => '16261063-5',
+    //'RutEnvia' => '11222333-4', // se obtiene automáticamente de la firma
     'RutReceptor' => '60803000-K',
     'FchResol' => '2014-12-05',
     'NroResol' => 0,
@@ -57,21 +57,22 @@ $caratula = [
 // datos del emisor
 $Emisor = [
     'RUTEmisor' => '76192083-9',
-    'RznSocEmisor' => 'SASCO SpA',
-    'GiroEmisor' => 'Servicios integrales de informática',
+    'RznSoc' => 'SASCO SpA', // tag verdadero es RznSocEmisor, pero se permite usar el de DTE
+    'GiroEmis' => 'Servicios integrales de informática', // tag verdadero es GiroEmisor, pero se permite usar el de DTE
+    'Acteco' => 726000, // en boleta este tag no va y se quita al normalizar (se deja para nota de crédito)
     'DirOrigen' => 'Santiago',
     'CmnaOrigen' => 'Santiago',
 ];
 
 // datos el recepor
 $Receptor = [
-    'RUTRecep' => '99511740-1',
-    'RznSocRecep' => 'Colectron S.A.',
+    'RUTRecep' => '55666777-8',
+    'RznSocRecep' => 'Cliente S.A.',
     'DirRecep' => 'Santiago',
     'CmnaRecep' => 'Santiago',
 ];
 
-// datos de los DTE (cada elemento del arreglo $set_pruebas es un DTE)
+// datos de las boletas (cada elemento del arreglo $set_pruebas es una boleta)
 $set_pruebas = [
     // CASO 1
     [
@@ -309,14 +310,14 @@ $set_pruebas = [
     ],
 ];
 
-// Objetos de Firma, Folios y EnvioDTE
+// Objetos de Firma y Folios
 $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
 $Folios = [];
 foreach ($folios as $tipo => $cantidad)
     $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
 
-// generar cada DTE, timbrar, firmar y agregar al sobre de EnvioDTE
+// generar cada DTE, timbrar, firmar y agregar al sobre de EnvioBOLETA
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
 foreach ($set_pruebas as $documento) {
     $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
@@ -325,13 +326,155 @@ foreach ($set_pruebas as $documento) {
         break;
     $EnvioDTE->agregar($DTE);
 }
-
-// enviar dtes y mostrar resultado del envío: track id o bien =false si hubo error
-$EnvioDTE->setCaratula($caratula);
 $EnvioDTE->setFirma($Firma);
+$EnvioDTE->setCaratula($caratula);
 $EnvioDTE->generar();
 if ($EnvioDTE->schemaValidate()) {
-    //file_put_contents('xml/EnvioBOLETA.xml', $EnvioDTE->generar()); // guardar XML en sistema de archivos
+    if (is_writable('xml/EnvioBOLETA.xml'))
+        file_put_contents('xml/EnvioBOLETA.xml', $EnvioDTE->generar()); // guardar XML en sistema de archivos
+    echo $EnvioDTE->generar();
+}
+
+// crear notas de crédito para el set de prueba
+$notas_credito = [
+    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[0], [
+        'Encabezado' => [
+            'IdDoc' => [
+                'TipoDTE' => 61,
+                'Folio' => $folios[61],
+                'MntBruto' => 1,
+            ],
+            'Totales' => [
+                // estos valores serán calculados automáticamente
+                'MntNeto' => 0,
+                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'IVA' => 0,
+                'MntTotal' => 0,
+            ],
+        ],
+        'Referencia' => [
+            'TpoDocRef' => $set_pruebas[0]['Encabezado']['IdDoc']['TipoDTE'],
+            'FolioRef' => $set_pruebas[0]['Encabezado']['IdDoc']['Folio'],
+            'CodRef' => 1,
+            'RazonRef' => 'ANULA BOLETA',
+        ],
+    ]),
+    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[2], [
+        'Encabezado' => [
+            'IdDoc' => [
+                'TipoDTE' => 61,
+                'Folio' => $folios[61]+1,
+                'MntBruto' => 1,
+            ],
+            'Totales' => [
+                // estos valores serán calculados automáticamente
+                'MntNeto' => 0,
+                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'IVA' => 0,
+                'MntTotal' => 0,
+            ],
+        ],
+        'Referencia' => [
+            'TpoDocRef' => $set_pruebas[2]['Encabezado']['IdDoc']['TipoDTE'],
+            'FolioRef' => $set_pruebas[2]['Encabezado']['IdDoc']['Folio'],
+            'CodRef' => 1,
+            'RazonRef' => 'ANULA BOLETA',
+        ],
+    ]),
+    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[4], [
+        'Encabezado' => [
+            'IdDoc' => [
+                'TipoDTE' => 61,
+                'Folio' => $folios[61]+2,
+                'MntBruto' => 1,
+            ],
+            'Totales' => [
+                // estos valores serán calculados automáticamente
+                'MntNeto' => 0,
+                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'IVA' => 0,
+                'MntTotal' => 0,
+            ],
+        ],
+        'Referencia' => [
+            'TpoDocRef' => $set_pruebas[4]['Encabezado']['IdDoc']['TipoDTE'],
+            'FolioRef' => $set_pruebas[4]['Encabezado']['IdDoc']['Folio'],
+            'CodRef' => 1,
+            'RazonRef' => 'ANULA BOLETA',
+        ],
+    ]),
+    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[6], [
+        'Encabezado' => [
+            'IdDoc' => [
+                'TipoDTE' => 61,
+                'Folio' => $folios[61]+3,
+                'MntBruto' => 1,
+            ],
+            'Totales' => [
+                // estos valores serán calculados automáticamente
+                'MntNeto' => 0,
+                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'IVA' => 0,
+                'MntTotal' => 0,
+            ],
+        ],
+        'Detalle' => [
+            [
+                'QtyItem' => $set_pruebas[6]['Detalle'][0]['QtyItem']*0.4,
+            ]
+        ],
+        'Referencia' => [
+            'TpoDocRef' => $set_pruebas[6]['Encabezado']['IdDoc']['TipoDTE'],
+            'FolioRef' => $set_pruebas[6]['Encabezado']['IdDoc']['Folio'],
+            'CodRef' => 3,
+            'RazonRef' => 'SE REBAJA EN UN 40%',
+        ],
+    ]),
+    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[9], [
+        'Encabezado' => [
+            'IdDoc' => [
+                'TipoDTE' => 61,
+                'Folio' => $folios[61]+4,
+                'MntBruto' => 1,
+            ],
+            'Totales' => [
+                // estos valores serán calculados automáticamente
+                'MntNeto' => 0,
+                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'IVA' => 0,
+                'MntTotal' => 0,
+            ],
+        ],
+        'Detalle' => [
+            [
+                'QtyItem' => $set_pruebas[9]['Detalle'][0]['QtyItem']*0.4,
+            ]
+        ],
+        'Referencia' => [
+            'TpoDocRef' => $set_pruebas[9]['Encabezado']['IdDoc']['TipoDTE'],
+            'FolioRef' => $set_pruebas[9]['Encabezado']['IdDoc']['Folio'],
+            'CodRef' => 3,
+            'RazonRef' => 'SE REBAJA EN UN 40%',
+        ],
+    ]),
+];
+
+// generar cada DTE, timbrar, firmar y agregar al sobre de EnvioDTE
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
+foreach ($notas_credito as $documento) {
+    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
+        break;
+    if (!$DTE->firmar($Firma))
+        break;
+    $EnvioDTE->agregar($DTE);
+}
+$EnvioDTE->setFirma($Firma);
+$EnvioDTE->setCaratula($caratula);
+$EnvioDTE->generar();
+if ($EnvioDTE->schemaValidate()) {
+    if (is_writable('xml/EnvioDTE.xml'))
+        file_put_contents('xml/EnvioDTE.xml', $EnvioDTE->generar()); // guardar XML en sistema de archivos
     echo $EnvioDTE->generar();
 }
 

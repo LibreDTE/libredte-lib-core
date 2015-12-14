@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Ultimas Modificaciones:
+          Modificacion    : 22 de Abril 2005 10:00
+          Modificacion    : 02 de marzo 2006 11:00. Se agrega "Nota de Credito"
+          Modificacion    : 25 de Agosto 2006 12:00. Se agrega "Caratula/Correlativo"
+          Modificacion    : 09 de Septiembre 15:00. Se corrige <xs:element name="Resumen" maxOccurs="3">
+ -->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="SiiTypes_v10.xsd"/>
+	<xs:element name="ConsumoFolios">
+		<xs:annotation>
+			<xs:documentation>Consumo de Folios</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoConsumoFolios">
+					<xs:annotation>
+						<xs:documentation>Documento de Consumo de Folios</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Caratula</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutEmisor" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT Emisor de los DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutEnvia" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que envia los DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchResol" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha de Resolución que Autoriza el Envío de DTE (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NroResol" type="SiiDte:NroResolType">
+											<xs:annotation>
+												<xs:documentation>Numero de Resolución que Autoriza el Envio de DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchInicio" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha primer día del Resumen(AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchFinal" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha último día del Resumen (AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Correlativo" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Se asume 1. Correlativo dentro del dia.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="3"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SecEnvio">
+											<xs:annotation>
+												<xs:documentation>Secuencia de Envio. La primera vez que se envia debe traer el numero 1. Si se desea corregir información se debe enviar el archivo completo, pero "SecEnvio", debe aumentar en 1, es decir la segunda vez debe traer el valor 2, la tercera vez debe traer el valor 3, etc.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="3"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TmstFirmaEnv" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de Envio</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resumen" maxOccurs="3">
+								<xs:annotation>
+									<xs:documentation>Detalle de Resumenes</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TipoDocumento" type="SiiDte:TipoConsumoType">
+											<xs:annotation>
+												<xs:documentation>Tipo de DTE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntNeto" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Neto de los folios consumidos</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntIva" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto del Iva</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TasaIVA" type="SiiDte:PctType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tasa de IVA</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntExento" type="SiiDte:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Monto Exento de los folios consumidos</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MntTotal" type="SiiDte:MontoType">
+											<xs:annotation>
+												<xs:documentation>Monto total de los folios consumidos</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FoliosEmitidos">
+											<xs:annotation>
+												<xs:documentation>Se debe indicar la cantidad total de documentos emitidos en el día.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FoliosAnulados">
+											<xs:annotation>
+												<xs:documentation>SE REFIERE A LOS FOLIOS ANULADOS EN EL SISTEMA (Opción anulación de folios) y no a Documentos anulados mediante Notas de Crédito</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FoliosUtilizados">
+											<xs:annotation>
+												<xs:documentation>Cantidad de Documentos del tipo correspondiente a emitidos y anulados.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="RangoUtilizados" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Tabla de Rangos de Folios Uilizados.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Inicial" type="SiiDte:FolioType">
+														<xs:annotation>
+															<xs:documentation>Folio inicial</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Final" type="SiiDte:FolioType">
+														<xs:annotation>
+															<xs:documentation>Folio Final</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="RangoAnulados" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Tabla de Rangos de Folios Anulados.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Inicial" type="SiiDte:FolioType">
+														<xs:annotation>
+															<xs:documentation>Folio inicial</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Final" type="SiiDte:FolioType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Folio Final</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="TipoConsumoType">
+		<xs:annotation>
+			<xs:documentation>Tipos de Documentos aceptados en consumo de Folios</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="41">
+				<xs:annotation>
+					<xs:documentation>Boleta Exenta Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="61">
+				<xs:annotation>
+					<xs:documentation>Nota de Credito Electronica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
