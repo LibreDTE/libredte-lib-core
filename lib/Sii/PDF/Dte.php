@@ -1002,14 +1002,16 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que formatea un número con separador de miles y decimales (si
      * corresponden)
      * @param n Número que se desea formatear
-     * @param d Cantidad de decimales
      * @return Número formateado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-09-14
      */
-    private function num($n, $d=0)
+    private function num($n)
     {
-        return number_format((float)$n, $d, ',', '.');
+        $broken_number = explode('.', (string)$n);
+        if (isset($broken_number[1]))
+            return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
+        return number_format($broken_number[0], 0, ',', '.');
     }
 
 }
