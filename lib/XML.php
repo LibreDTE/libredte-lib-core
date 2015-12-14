@@ -261,4 +261,29 @@ class XML extends \DomDocument
         return $errors;
     }
 
+    /**
+     * Método que entrega el nombre del tag raíz del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-14
+     */
+    public function getName()
+    {
+        return $this->documentElement->tagName;
+    }
+
+    /**
+     * Método que entrega el nombre del archivo del schema del XML
+     * @return Nombre del schema o bien =false si no se encontró
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-14
+     */
+    public function getSchema()
+    {
+        $schemaLocation = $this->documentElement->getAttribute('xsi:schemaLocation');
+        if (!$schemaLocation or strpos($schemaLocation, ' ')===false)
+            return false;
+        list($uri, $xsd) = explode(' ', $schemaLocation);
+        return $xsd;
+    }
+
 }

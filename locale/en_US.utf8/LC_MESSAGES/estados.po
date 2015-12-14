@@ -175,35 +175,13 @@ msgstr "Caratula missing"
 msgid "Error schema RespuestaEnvio. %s"
 msgstr "Invalid RespuestaEnvio schema. %s"
 
-# códigos de error para \sasco\LibreDTE\Sii\LibroGuia
+# códigos de error para \sasco\LibreDTE\Sii\Base\Documento
 
-msgid "No fue posible generar XML del LibroGuia"
-msgstr "Can not create XML LibroGuia"
+msgid "No fue posible generar XML del %s"
+msgstr "Can not create XML %s"
 
-msgid "No hay XML de LibroGuia que validar"
-msgstr "XML LibroGuia is missing"
+msgid "No hay XML de %s que validar"
+msgstr "XML %s is missing"
 
-msgid "Error schema LibroGuia. %s"
-msgstr "Invalid LibroGuia schema. %s"
-
-# códigos de error para \sasco\LibreDTE\Sii\ConsumoFolio
-
-msgid "No fue posible generar XML del ConsumoFolio"
-msgstr "Can not create XML ConsumoFolio"
-
-msgid "No hay XML de ConsumoFolio que validar"
-msgstr "XML ConsumoFolio is missing"
-
-msgid "Error schema ConsumoFolio. %s"
-msgstr "Invalid ConsumoFolio schema. %s"
-
-# códigos de error para \sasco\LibreDTE\Sii\LibroBoleta
-
-msgid "No fue posible generar XML del LibroBoleta"
-msgstr "Can not create XML LibroBoleta"
-
-msgid "No hay XML de LibroBoleta que validar"
-msgstr "XML LibroBoleta is missing"
-
-msgid "Error schema LibroBoleta. %s"
-msgstr "Invalid LibroBoleta schema. %s"
+msgid "Error schema %s. %s"
+msgstr "Invalid %s schema. %s"

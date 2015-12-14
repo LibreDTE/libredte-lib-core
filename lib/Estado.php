@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-12
+ * @version 2015-12-14
  */
 class Estado
 {
@@ -104,20 +104,10 @@ class Estado
     const RESPUESTAENVIO_FALTA_CARATULA = 902;
     const RESPUESTAENVIO_ERROR_SCHEMA = 903;
 
-    // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
-    const LIBROGUIA_ERROR_GENERAR_XML = 1001;
-    const LIBROGUIA_FALTA_XML = 1002;
-    const LIBROGUIA_ERROR_SCHEMA = 1003;
-
-    // códigos de error para \sasco\LibreDTE\Sii\ConsumoFolio
-    const CONSUMOFOLIO_ERROR_GENERAR_XML = 1101;
-    const CONSUMOFOLIO_FALTA_XML = 1102;
-    const CONSUMOFOLIO_ERROR_SCHEMA = 1103;
-
-    // códigos de error para \sasco\LibreDTE\Sii\LibroBoleta
-    const LIBROBOLETA_ERROR_GENERAR_XML = 1201;
-    const LIBROBOLETA_FALTA_XML = 1202;
-    const LIBROBOLETA_ERROR_SCHEMA = 1203;
+    // códigos de error para \sasco\LibreDTE\Sii\Base\Documento
+    const DOCUMENTO_ERROR_GENERAR_XML = 1001;
+    const DOCUMENTO_FALTA_XML = 1002;
+    const DOCUMENTO_ERROR_SCHEMA = 1003;
 
     // glosas de los estados
     private static $glosas = [
@@ -183,17 +173,9 @@ class Estado
         self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio',
         self::RESPUESTAENVIO_ERROR_SCHEMA => 'Error schema RespuestaEnvio. %s',
         // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
-        self::LIBROGUIA_ERROR_GENERAR_XML => 'No fue posible generar XML del LibroGuia',
-        self::LIBROGUIA_FALTA_XML => 'No hay XML de LibroGuia que validar',
-        self::LIBROGUIA_ERROR_SCHEMA => 'Error schema LibroGuia. %s',
-        // códigos de error para \sasco\LibreDTE\Sii\ConsumoFolio
-        self::CONSUMOFOLIO_ERROR_GENERAR_XML => 'No fue posible generar XML del ConsumoFolio',
-        self::CONSUMOFOLIO_FALTA_XML => 'No hay XML de ConsumoFolio que validar',
-        self::CONSUMOFOLIO_ERROR_SCHEMA => 'Error schema ConsumoFolio. %s',
-        // códigos de error para \sasco\LibreDTE\Sii\LibroBoleta
-        self::LIBROBOLETA_ERROR_GENERAR_XML => 'No fue posible generar XML del LibroBoleta',
-        self::LIBROBOLETA_FALTA_XML => 'No hay XML de LibroBoleta que validar',
-        self::LIBROBOLETA_ERROR_SCHEMA => 'Error schema LibroBoleta. %s',
+        self::DOCUMENTO_ERROR_GENERAR_XML => 'No fue posible generar XML del %s',
+        self::DOCUMENTO_FALTA_XML => 'No hay XML de %s que validar',
+        self::DOCUMENTO_ERROR_SCHEMA => 'Error schema %s. %s',
     ];
 
     /**

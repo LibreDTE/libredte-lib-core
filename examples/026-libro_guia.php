@@ -27,7 +27,7 @@
  * Ejemplo que genera y envía el libro electrónico de guías de despachos.
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-10-02
+ * @version 2015-12-14
  */
 
 // respuesta en texto plano
@@ -91,8 +91,11 @@ foreach ($detalles as $detalle) {
 $LibroGuia->setFirma($Firma);
 $LibroGuia->setCaratula($caratula);
 $LibroGuia->generar();
-$track_id = $LibroGuia->enviar(); // enviar XML generado en línea anterior
-var_dump($track_id);
+if ($LibroGuia->schemaValidate()) {
+    //echo $LibroGuia->generar();
+    $track_id = $LibroGuia->enviar();
+    var_dump($track_id);
+}
 
 // si hubo errores mostrar
 foreach (\sasco\LibreDTE\Log::readAll() as $error)

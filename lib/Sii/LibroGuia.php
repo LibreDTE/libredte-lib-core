@@ -26,15 +26,10 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un Libro de Guías de despacho
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-10-02
+ * @version 2015-12-14
  */
-class LibroGuia
+class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
 {
-
-    private $detalles = []; ///< Arreglos con el detalle de los DTEs que se reportarán
-    private $xml_data; ///< String con el documento XML
-    private $caratula; ///< arreglo con la caratula del envío
-    private $Firma; ///< objeto de la firma electrónica
 
     /**
      * Método que agrega un detalle al listado que se enviará
@@ -109,62 +104,6 @@ class LibroGuia
         if ($this->caratula['TipoEnvio']=='ESPECIAL')
             $this->caratula['FolioNotificacion'] = null;
         $this->id = 'LIBRO_GUIA_'.str_replace('-', '', $this->caratula['RutEmisorLibro']).'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
-    }
-
-    /**
-     * Método que entrega el ID del libro
-     * @return ID del libro
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
-     */
-    public function getID()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Método para asignar la caratula
-     * @param Firma Objeto con la firma electrónica
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
-     */
-    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        $this->Firma = $Firma;
-    }
-
-    /**
-     * Método que realiza el envío del libro IECV al SII
-     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
-     */
-    public function enviar()
-    {
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar();
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROGUIA_ERROR_GENERAR_XML,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROGUIA_ERROR_GENERAR_XML)
-            );
-            return false;
-        }
-        // validar schema del documento antes de enviar
-        if (!$this->schemaValidate())
-            return false;
-        // solicitar token
-        $token = Autenticacion::getToken($this->Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisorLibro'], $this->xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
     }
 
     /**
@@ -253,34 +192,6 @@ class LibroGuia
             }
         }
         return $ResumenPeriodo;
-    }
-
-    /**
-     * Método que valida el XML que se genera para la respuesta del envío
-     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
-     */
-    public function schemaValidate()
-    {
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROGUIA_FALTA_XML,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROGUIA_FALTA_XML)
-            );
-            return null;
-        }
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/LibroGuia_v10.xsd';
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROGUIA_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROGUIA_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;
     }
 
 }
