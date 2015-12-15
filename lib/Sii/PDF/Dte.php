@@ -164,7 +164,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-28
+     * @version 2015-12-15
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -196,12 +196,12 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->agregarTotales($dte['Encabezado']['Totales']);
         // agregar timbre
         $this->agregarTimbre($timbre);
-        // agregar acuse de recibo y leyenda de destino sólo si no es nota de
-        // crédito ni nota de débito
-        if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
-            $this->agregarAcuseRecibo();
-            if ($this->cedible)
-                $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
+        // agregar acuse de recibo y leyenda cedible
+        if ($this->cedible) {
+            if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+                $this->agregarAcuseRecibo();
+            }
+            $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
     }
 
@@ -212,7 +212,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param timbre String XML con el tag TED del DTE
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-11-17
+     * @version 2015-12-15
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -230,7 +230,6 @@ class Dte extends \sasco\LibreDTE\PDF
         // datos del documento
         $this->setY(50);
         $this->agregarReceptorContinuo($dte['Encabezado']['Receptor']);
-
         $this->agregarFechaEmisionContinuo($dte['Encabezado']['IdDoc']['FchEmis']);
         if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
             $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
@@ -246,14 +245,14 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['DscRcgGlobal']))
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
         $this->agregarTotalesContinuo($dte['Encabezado']['Totales'],$this->y+6);
-        // agregar timbre
-        // agregar acuse de recibo y leyenda de destino sólo si no es nota de
-        // crédito ni nota de débito
-        if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
-            $this->agregarAcuseReciboContinuo(3,$this->y+6,68,34);
-            if ($this->cedible)
-                $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
+        // agregar acuse de recibo y leyenda cedible
+        if ($this->cedible) {
+            if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+                $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
+            }
+            $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
+        // agregar timbre
         $this->agregarTimbreContinuo($timbre,3,$this->y+6,68);
     }
 
