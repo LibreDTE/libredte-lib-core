@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibreDTE en_US estados\n"
-"PO-Revision-Date: 2015-12-14 23:50-0400\n"
+"PO-Revision-Date: 2015-12-15 01:40-0400\n"
 "Last-Translator: Esteban De La Fuente Rubio <esteban@sasco.cl>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -105,9 +105,6 @@ msgstr "TED creation failed on DTE %s"
 msgid "No se pudo generar la firma del DTE %s"
 msgstr "Sign failed on DTE %s"
 
-msgid "Error schema DTE. %s"
-msgstr "Invalid DTE schema. %s"
-
 # códigos de error para \sasco\LibreDTE\Sii\EnvioDte
 
 msgid "No es posible adjuntar más de %d DTEs al envío"
@@ -116,17 +113,11 @@ msgstr "Can not attach more than %d DTE to EnvioDTE"
 msgid "No puede adjuntar más de %d tipos de DTE diferentes al envío"
 msgstr "Can not attach more dan %d types of DTE to EnvioDTE"
 
-msgid "No hay XML con datos de EnvioDTE para enviar"
-msgstr "XML missing in EnvioDTE"
-
 msgid "No hay ningún DTE agregado al envío"
 msgstr "DTE missing"
 
 msgid "No hay XML, no es posible generar DTEs"
 msgstr "XML missing"
-
-msgid "Error schema EnvioDte. %s"
-msgstr "Invalid EnvioDte schema. %s"
 
 # códigos de error para \sasco\LibreDTE\Sii\EnvioRecibos
 
@@ -135,9 +126,6 @@ msgstr "Recibos missing"
 
 msgid "No se ha definido la carátula de EnvioRecibos"
 msgstr "Caratula missing"
-
-msgid "Error schema EnvioRecibos. %s"
-msgstr "Invalid EnvioRecibos schema. %s"
 
 # códigos de error para \sasco\LibreDTE\Sii\Folios
 
@@ -160,9 +148,6 @@ msgstr "Respuestas missing"
 
 msgid "No se ha asignado la carátula de RespuestaEnvio"
 msgstr "Caratula missing"
-
-msgid "Error schema RespuestaEnvio. %s"
-msgstr "Invalid RespuestaEnvio schema. %s"
 
 # códigos de error para \sasco\LibreDTE\Sii\Base\Documento
 

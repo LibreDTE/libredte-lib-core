@@ -26,9 +26,9 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un DTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-07
+ * @version 2015-12-15
  */
-class EnvioDte
+class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
 {
 
     private $dtes = []; ///< Objetos con los DTE que se enviarán
@@ -38,10 +38,6 @@ class EnvioDte
         'tipos' => ['EnvioDTE', 'EnvioBOLETA'], ///< Tag para el envío, según si son Boletas o no
         'schemas' => ['EnvioDTE_v10', 'EnvioBOLETA_v11'], ///< Schema (XSD) que se deberá usar para validar según si son boletas o no
     ]; ///< Configuración/reglas para el documento XML
-    private $caratula; ///< arreglo con la caratula del envío
-    private $Firma; ///< objeto de la firma electrónica
-    private $xml_data; ///< String con el documento XML
-    private $xml; ///< Objeto XML que representa el EnvioDTE
     private $arreglo; ///< Arreglo con los datos del XML
     private $tipo = null; ///< =0 DTE, =1 boleta
 
@@ -116,21 +112,10 @@ class EnvioDte
     }
 
     /**
-     * Método para asignar la caratula
-     * @param Firma Objeto con la firma electrónica
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        $this->Firma = $Firma;
-    }
-
-    /**
      * Método que realiza el envío del sobre con el o los DTEs al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2015-12-15
      */
     public function enviar()
     {
@@ -138,30 +123,8 @@ class EnvioDte
         if ($this->tipo) {
             return false;
         }
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar();
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::ENVIODTE_FALTA_XML,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_FALTA_XML)
-            );
-            return false;
-        }
-        // validar schema del documento antes de enviar
-        if (!$this->schemaValidate())
-            return false;
-        // solicitar token
-        $token = Autenticacion::getToken($this->Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisor'], $this->xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
+        // enviar al SII
+        return parent::enviar();
     }
 
     /**
@@ -263,6 +226,12 @@ class EnvioDte
         return $this->xml;
     }
 
+    /**
+     * Método que entrega un arreglo con los datos del EnvioDTE
+     * @return Arreglo con datos del EnvioDTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-15
+     */
     public function toArray()
     {
         if (!$this->xml)
@@ -398,29 +367,6 @@ class EnvioDte
         if ($datos and $this->getReceptor()!=$datos['RutReceptor'])
             return 3;
         return 0;
-    }
-
-    /**
-     * Método que valida el schema del EnvioDTE
-     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
-     */
-    public function schemaValidate()
-    {
-        if (!$this->xml_data)
-            return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/'.$this->config['schemas'][$this->tipo].'.xsd';
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::ENVIODTE_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;
     }
 
     /**

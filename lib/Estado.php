@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2015-12-15
  */
 class Estado
 {
@@ -73,20 +73,16 @@ class Estado
     const DTE_FALTA_MNTTOTAL = 405;
     const DTE_ERROR_TIMBRE = 406;
     const DTE_ERROR_FIRMA = 407;
-    const DTE_ERROR_SCHEMA = 408;
 
     // códigos de error para \sasco\LibreDTE\Sii\EnvioDte
     const ENVIODTE_DTE_MAX = 501;
     const ENVIODTE_TIPO_DTE_MAX = 502;
-    const ENVIODTE_FALTA_XML = 503;
-    const ENVIODTE_FALTA_DTE = 504;
-    const ENVIODTE_GETDOCUMENTOS_FALTA_XML = 505;
-    const ENVIODTE_ERROR_SCHEMA = 506;
+    const ENVIODTE_FALTA_DTE = 503;
+    const ENVIODTE_GETDOCUMENTOS_FALTA_XML = 504;
 
     // códigos de error para \sasco\LibreDTE\Sii\EnvioRecibos
     const ENVIORECIBOS_FALTA_RECIBO = 601;
     const ENVIORECIBOS_FALTA_CARATULA = 602;
-    const ENVIORECIBOS_ERROR_SCHEMA = 603;
 
     // códigos de error para \sasco\LibreDTE\Sii\Folios
     const FOLIOS_ERROR_CHECK = 701;
@@ -95,14 +91,13 @@ class Estado
     const FOLIOS_ERROR_DESENCRIPTAR = 704;
 
     // códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
-    const RESPUESTAENVIO_FALTA_RESPUESTA = 901;
-    const RESPUESTAENVIO_FALTA_CARATULA = 902;
-    const RESPUESTAENVIO_ERROR_SCHEMA = 903;
+    const RESPUESTAENVIO_FALTA_RESPUESTA = 801;
+    const RESPUESTAENVIO_FALTA_CARATULA = 802;
 
     // códigos de error para \sasco\LibreDTE\Sii\Base\Documento
-    const DOCUMENTO_ERROR_GENERAR_XML = 1001;
-    const DOCUMENTO_FALTA_XML = 1002;
-    const DOCUMENTO_ERROR_SCHEMA = 1003;
+    const DOCUMENTO_ERROR_GENERAR_XML = 901;
+    const DOCUMENTO_FALTA_XML = 902;
+    const DOCUMENTO_ERROR_SCHEMA = 903;
 
     // glosas de los estados
     private static $glosas = [
@@ -142,18 +137,14 @@ class Estado
         self::DTE_FALTA_MNTTOTAL => 'Falta MntTotal del DTE %s',
         self::DTE_ERROR_TIMBRE => 'No se pudo generar el timbre del DTE %s',
         self::DTE_ERROR_FIRMA => 'No se pudo generar la firma del DTE %s',
-        self::DTE_ERROR_SCHEMA => 'Error schema DTE. %s',
         // códigos de error para \sasco\LibreDTE\Sii\EnvioDte
         self::ENVIODTE_DTE_MAX => 'No es posible adjuntar más de %d DTEs al envío',
         self::ENVIODTE_TIPO_DTE_MAX => 'No puede adjuntar más de %d tipos de DTE diferentes al envío',
-        self::ENVIODTE_FALTA_XML => 'No hay XML con datos de EnvioDTE para enviar',
         self::ENVIODTE_FALTA_DTE => 'No hay ningún DTE agregado al envío',
         self::ENVIODTE_GETDOCUMENTOS_FALTA_XML => 'No hay XML, no es posible generar DTEs',
-        self::ENVIODTE_ERROR_SCHEMA => 'Error schema EnvioDte. %s',
         // códigos de error para \sasco\LibreDTE\Sii\EnvioRecibos
         self::ENVIORECIBOS_FALTA_RECIBO => 'No hay recibos para generar',
         self::ENVIORECIBOS_FALTA_CARATULA => 'No se ha definido la carátula de EnvioRecibos',
-        self::ENVIORECIBOS_ERROR_SCHEMA => 'Error schema EnvioRecibos. %s',
         // códigos de error para \sasco\LibreDTE\Sii\Folios
         self::FOLIOS_ERROR_CHECK => 'Archivo de folios no pudo ser verificado',
         self::FOLIOS_ERROR_FIRMA => 'No fue posible validar firma del CAF',
@@ -162,7 +153,6 @@ class Estado
         // códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
         self::RESPUESTAENVIO_FALTA_RESPUESTA => 'No hay respuesta de envío ni documentos para generar',
         self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio',
-        self::RESPUESTAENVIO_ERROR_SCHEMA => 'Error schema RespuestaEnvio. %s',
         // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
         self::DOCUMENTO_ERROR_GENERAR_XML => 'No fue posible generar XML del %s',
         self::DOCUMENTO_FALTA_XML => 'No hay XML de %s que validar',

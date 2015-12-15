@@ -26,11 +26,12 @@ namespace sasco\LibreDTE\Sii\Base;
 /**
  * Clase base para los documentos XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2015-12-15
  */
 abstract class Documento
 {
 
+    protected $xml; ///< Objeto XML que representa el EnvioDTE
     protected $xml_data; ///< String con el documento XML
     protected $caratula; ///< arreglo con la caratula del envío
     protected $Firma; ///< objeto de la firma electrónica

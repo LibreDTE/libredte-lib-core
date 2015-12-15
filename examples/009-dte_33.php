@@ -32,7 +32,7 @@
  * Relleno AFECTO               53            1473
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-15
+ * @version 2015-12-15
  */
 
 // respuesta en texto plano
@@ -78,7 +78,7 @@ $factura = [
     ],
 ];
 $caratula = [
-    'RutEnvia' => '11222333-4',
+    //'RutEnvia' => '11222333-4', // se obtiene de la firma
     'RutReceptor' => '60803000-K',
     'FchResol' => '2014-12-05',
     'NroResol' => 0,
@@ -93,38 +93,18 @@ $DTE = new \sasco\LibreDTE\Sii\Dte($factura);
 $DTE->timbrar($Folios);
 $DTE->firmar($Firma);
 
-// generar sobre con el envío del DTE
-// en este ejemplo sólo se obtendrá el XML del EnvioDT y se enviará
-// posteriormente por el método "paso a paso", existe un método
-// EnvioDTE::enviar() que envía el XML que se genera, ver ejemplo 010-set_pruebas.php
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
+// generar sobre con el envío del DTE y enviar al SII
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
 $EnvioDTE->agregar($DTE);
-$EnvioDTE->setCaratula($caratula);
 $EnvioDTE->setFirma($Firma);
-$xml = $EnvioDTE->generar();
-
-// solicitar token
-$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
-if (!$token) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $log)
-        echo $log,"\n";
-    exit;
+$EnvioDTE->setCaratula($caratula);
+$EnvioDTE->generar();
+if ($EnvioDTE->schemaValidate()) {
+    echo $EnvioDTE->generar();
+    //$track_id = $EnvioDTE->enviar();
+    //var_dump($track_id);
 }
 
-// enviar DTE
-$result = \sasco\LibreDTE\Sii::enviar($caratula['RutEnvia'], $factura['Encabezado']['Emisor']['RUTEmisor'], $xml, $token);
-
-// si hubo algún error al enviar al servidor mostrar
-if ($result===false) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $log)
-        echo $log,"\n";
-    exit;
-}
-
-// Mostrar resultado del envío
-if ($result->STATUS!='0') {
-    foreach (\sasco\LibreDTE\Log::readAll() as $log)
-        echo $log,"\n";
-    exit;
-}
-echo 'DTE enviado. Track ID '.$result->TRACKID,"\n";
+// si hubo algún error se muestra
+foreach (\sasco\LibreDTE\Log::readAll() as $log)
+    echo $log,"\n";
