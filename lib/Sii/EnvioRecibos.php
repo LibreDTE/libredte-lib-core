@@ -27,15 +27,12 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un recibo por entrega de mercadería o
  * servicios prestados por un proveedor
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-08
+ * @version 2015-12-15
  */
-class EnvioRecibos
+class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
 {
 
     private $recibos = []; ///< recibos que se adjuntarán
-    private $caratula; ///< arreglo con la caratula del envío
-    private $Firma; ///< objeto de la firma electrónica
-    private $xml_data; ///< String con el documento XML
 
     /**
      * Método que agrega un recibo
@@ -72,7 +69,7 @@ class EnvioRecibos
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2015-12-15
      */
     public function setCaratula(array $caratula)
     {
@@ -87,17 +84,7 @@ class EnvioRecibos
             'MailContacto' => false,
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula);
-    }
-
-    /**
-     * Método para asignar la caratula
-     * @param Firma Objeto con la firma electrónica
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        $this->Firma = $Firma;
+        $this->id = 'SetDteRecibidos';
     }
 
     /**
@@ -135,7 +122,7 @@ class EnvioRecibos
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
                     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte EnvioRecibo_v10.xsd',
+                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte EnvioRecibos_v10.xsd',
                     'version' => '1.0',
                 ],
                 'SetRecibos' => [
@@ -159,29 +146,6 @@ class EnvioRecibos
         $xml = str_replace('<Recibo/>', implode("\n", $Recibos), $xmlEnvio);
         $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#SetDteRecibidos', 'SetRecibos', true) : $xml;
         return $this->xml_data;
-    }
-
-    /**
-     * Método que valida el XML que se genera para la respuesta del envío
-     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
-     */
-    public function schemaValidate()
-    {
-        if (!$this->xml_data)
-            return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/EnvioRecibos_v10.xsd';
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::ENVIORECIBOS_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIORECIBOS_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;
     }
 
 }

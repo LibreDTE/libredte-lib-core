@@ -28,7 +28,7 @@ namespace sasco\LibreDTE\Sii\Base;
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-14
  */
-abstract class Libro extends Documento
+abstract class Libro extends Envio
 {
 
     protected $detalles = []; ///< Arreglos con los detalles del documento

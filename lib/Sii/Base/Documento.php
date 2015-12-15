@@ -75,45 +75,6 @@ abstract class Documento
     }
 
     /**
-     * Método que realiza el envío del documento al SII
-     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
-     */
-    public function enviar()
-    {
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar();
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::DOCUMENTO_ERROR_GENERAR_XML,
-                \sasco\LibreDTE\Estado::get(
-                    \sasco\LibreDTE\Estado::DOCUMENTO_ERROR_GENERAR_XML,
-                    substr(get_class($this), strrpos(get_class($this), '\\')+1)
-                )
-            );
-            return false;
-        }
-        // validar schema del documento antes de enviar
-        if (!$this->schemaValidate())
-            return false;
-        // solicitar token
-        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($this->Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $envia = $this->caratula['RutEnvia'];
-        $emisor = !empty($this->caratula['RutEmisor']) ? $this->caratula['RutEmisor'] : $this->caratula['RutEmisorLibro'];
-        $result = \sasco\LibreDTE\Sii::enviar($envia, $emisor, $this->xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
-    }
-
-    /**
      * Método que valida el XML del documento
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
