@@ -51,7 +51,7 @@ $caratula = [
 
 // Objetos de Firma y LibroCompraVenta
 $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta(true); // se genera libro simplificado (solicitado así en certificación)
 
 // agregar detalle desde un archivo CSV con ; como separador
 $LibroCompraVenta->agregarVentasCSV('libros/libro_ventas.csv');

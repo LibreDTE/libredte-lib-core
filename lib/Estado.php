@@ -94,11 +94,6 @@ class Estado
     const FOLIOS_ERROR_ENCRIPTAR = 703;
     const FOLIOS_ERROR_DESENCRIPTAR = 704;
 
-    // códigos de error para \sasco\LibreDTE\Sii\LibroCompraVenta
-    const LIBROCOMPRAVENTA_ERROR_GENERAR_XML = 801;
-    const LIBROCOMPRAVENTA_FALTA_XML = 802;
-    const LIBROCOMPRAVENTA_ERROR_SCHEMA = 803;
-
     // códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
     const RESPUESTAENVIO_FALTA_RESPUESTA = 901;
     const RESPUESTAENVIO_FALTA_CARATULA = 902;
@@ -164,10 +159,6 @@ class Estado
         self::FOLIOS_ERROR_FIRMA => 'No fue posible validar firma del CAF',
         self::FOLIOS_ERROR_ENCRIPTAR => 'No fue posible encriptar con clave privada del CAF',
         self::FOLIOS_ERROR_DESENCRIPTAR => 'No fue posible desencriptar con clave pública del CAF',
-        // códigos de error para \sasco\LibreDTE\Sii\LibroCompraVenta
-        self::LIBROCOMPRAVENTA_ERROR_GENERAR_XML => 'No fue posible generar XML del LibroCompraVenta',
-        self::LIBROCOMPRAVENTA_FALTA_XML => 'No hay XML de LibroCompraVenta que validar',
-        self::LIBROCOMPRAVENTA_ERROR_SCHEMA => 'Error schema LibroCompraVenta. %s',
         // códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
         self::RESPUESTAENVIO_FALTA_RESPUESTA => 'No hay respuesta de envío ni documentos para generar',
         self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio',

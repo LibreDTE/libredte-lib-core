@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibreDTE en_US estados\n"
-"PO-Revision-Date: 2015-12-12 22:55-0400\n"
+"PO-Revision-Date: 2015-12-14 23:50-0400\n"
 "Last-Translator: Esteban De La Fuente Rubio <esteban@sasco.cl>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -152,17 +152,6 @@ msgstr "Can not encrypt with private key of CAF"
 
 msgid "No fue posible desencriptar con clave pública del CAF"
 msgstr "Can not decrypt with public key of CAF"
-
-# códigos de error para \sasco\LibreDTE\Sii\LibroCompraVenta
-
-msgid "No fue posible generar XML del LibroCompraVenta"
-msgstr "Can not create XML LibroCompraVenta"
-
-msgid "No hay XML de LibroCompraVenta que validar"
-msgstr "XML LibroCompraVenta is missing"
-
-msgid "Error schema LibroCompraVenta. %s"
-msgstr "Invalid LibroCompraVenta schema. %s"
 
 # códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
 

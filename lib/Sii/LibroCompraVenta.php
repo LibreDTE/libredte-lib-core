@@ -27,17 +27,12 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-08
+ * @version 2015-12-14
  */
-class LibroCompraVenta
+class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
 
-    private $detalles = []; ///< Arreglos con el detalle de los DTEs que se reportarán
-    private $xml_data; ///< String con el documento XML
-    private $caratula; ///< arreglo con la caratula del envío
-    private $Firma; ///< objeto de la firma electrónica
     private $simplificado = false; ///< Indica si el libro es simplificado o no
-
 
     /**
      * Constructor del libro
@@ -305,67 +300,11 @@ class LibroCompraVenta
     }
 
     /**
-     * Método que entrega el ID del libro
-     * @return ID del libro
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-13
-     */
-    public function getID()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Método para asignar la caratula
-     * @param Firma Objeto con la firma electrónica
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        $this->Firma = $Firma;
-    }
-
-    /**
-     * Método que realiza el envío del libro IECV al SII
-     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-08
-     */
-    public function enviar()
-    {
-        // generar XML que se enviará
-        if (!$this->xml_data)
-            $this->xml_data = $this->generar();
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_GENERAR_XML,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_GENERAR_XML)
-            );
-            return false;
-        }
-        // validar schema del documento antes de enviar
-        if (!$this->schemaValidate())
-            return false;
-        // solicitar token
-        $token = Autenticacion::getToken($this->Firma);
-        if (!$token)
-            return false;
-        // enviar DTE
-        $result = \sasco\LibreDTE\Sii::enviar($this->caratula['RutEnvia'], $this->caratula['RutEmisorLibro'], $this->xml_data, $token);
-        if ($result===false)
-            return false;
-        if (!is_numeric((string)$result->TRACKID))
-            return false;
-        return (int)(string)$result->TRACKID;
-    }
-
-    /**
      * Método que genera el XML del libro IECV para el envío al SII
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-08
+     * @version 2015-12-14
      */
     public function generar($incluirDetalle = true)
     {
@@ -396,7 +335,7 @@ class LibroCompraVenta
             ]
         ])->saveXML();
         // firmar XML del envío y entregar
-        $this->xml_data = !$this->simplificado and $this->Firma ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
+        $this->xml_data = (!$this->simplificado and $this->Firma) ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
         return $this->xml_data;
     }
 
@@ -468,34 +407,6 @@ class LibroCompraVenta
             }
         }
         return $totales;
-    }
-
-    /**
-     * Método que valida el XML que se genera para la respuesta del envío
-     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-08
-     */
-    public function schemaValidate()
-    {
-        if (!$this->xml_data) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_FALTA_XML,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_FALTA_XML)
-            );
-            return null;
-        }
-        $xsd = dirname(dirname(dirname(__FILE__))).($this->simplificado?'/schemas/LibroCVS_v10.xsd':'/schemas/LibroCV_v10.xsd');
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::LIBROCOMPRAVENTA_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;
     }
 
 }
