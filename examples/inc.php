@@ -27,7 +27,7 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-15
+ * @version 2015-12-15
  */
 
 // activar todos los errores
@@ -44,12 +44,12 @@ else
     die('Para probar los ejemplos debes ejecutar primero "composer install" en el directorio '.dirname(dirname(__FILE__)));
 
 // incluir archivos de la biblioteca
-$path = dirname(dirname(__FILE__)).'/lib';
+/*$path = dirname(dirname(__FILE__)).'/lib';
 $Iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
 $files = new RegexIterator($Iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
 foreach ($files as $file => $object) {
     include $file;
-}
+}*/
 
 // todos los ejemplos se ejecutan con backtrace activado, esto para ayudar al
 // debug de los mismos
