@@ -987,21 +987,10 @@ class Dte
      * Método que valida el schema del DTE
      * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
+     * @version 2015-12-15
      */
     public function schemaValidate()
     {
-        /*if (!$this->xml)
-            return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/DTE_v10.xsd';
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::DTE_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;*/
         return true;
     }
 
