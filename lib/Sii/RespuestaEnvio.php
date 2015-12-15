@@ -26,9 +26,9 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa la respuesta a un envío de un DTE por un proveedor
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-08
+ * @version 2015-12-15
  */
-class RespuestaEnvio
+class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
 {
 
     private $respuesta_envios = [];
@@ -37,9 +37,6 @@ class RespuestaEnvio
         'respuesta_envios_max' => 1000,
         'respuesta_documentos_max' => 1000,
     ]; ///< Configuración/reglas para el documento XML
-    private $caratula; ///< arreglo con la caratula del envío
-    private $Firma; ///< objeto de la firma electrónica
-    private $xml_data; ///< String con el documento XML
 
     // posibles estados para la respuesta del envío
     public static $estados = [
@@ -128,7 +125,7 @@ class RespuestaEnvio
      * Método para asignar la caratula
      * @param caratula Arreglo con datos de la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2015-12-15
      */
     public function setCaratula(array $caratula)
     {
@@ -145,17 +142,7 @@ class RespuestaEnvio
             'MailContacto' => false,
             'TmstFirmaResp' => date('Y-m-d\TH:i:s'),
         ], $caratula);
-    }
-
-    /**
-     * Método para asignar la caratula
-     * @param Firma Objeto con la firma electrónica
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function setFirma(\sasco\LibreDTE\FirmaElectronica $Firma)
-    {
-        $this->Firma = $Firma;
+        $this->id = 'ResultadoEnvio';
     }
 
     /**
@@ -214,29 +201,6 @@ class RespuestaEnvio
         // firmar XML del envío y entregar
         $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#ResultadoEnvio', 'Resultado', true) : $xmlEnvio;
         return $this->xml_data;
-    }
-
-    /**
-     * Método que valida el XML que se genera para la respuesta del envío
-     * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
-     */
-    public function schemaValidate()
-    {
-        if (!$this->xml_data)
-            return null;
-        $xsd = dirname(dirname(dirname(__FILE__))).'/schemas/RespuestaEnvioDTE_v10.xsd';
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
-        $result = $this->xml->schemaValidate($xsd);
-        if (!$result) {
-            \sasco\LibreDTE\Log::write(
-                \sasco\LibreDTE\Estado::RESPUESTAENVIO_ERROR_SCHEMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::RESPUESTAENVIO_ERROR_SCHEMA, implode("\n", $this->xml->getErrors()))
-            );
-        }
-        return $result;
     }
 
 }
