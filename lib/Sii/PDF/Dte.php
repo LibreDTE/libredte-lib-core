@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-11
+ * @version 2015-12-16
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -43,7 +43,7 @@ class Dte extends \sasco\LibreDTE\PDF
         33 => 'FACTURA ELECTRÓNICA',
         34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
         39 => 'BOLETA ELECTRÓNICA',
-        41 => 'BOLETA EXENTA ELECTRÓNICA',
+        41 => 'BOLETA NO AFECTA O EXENTA ELECTRÓNICA',
         43 => 'LIQUIDACIÓN FACTURA ELECTRÓNICA',
         46 => 'FACTURA DE COMPRA ELECTRÓNICA',
         52 => 'GUÍA DE DESPACHO ELECTRÓNICA',
@@ -269,9 +269,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2015-12-16
      */
-    private function agregarEmisor(array $emisor, $x = 10, $y = 10, $w = 75, $w_img = 30)
+    private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30)
     {
         // logo máximo 1/5 del tamaño del documento
         if (isset($this->logo)) {
@@ -367,9 +367,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2015-12-16
      */
-    private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 10, $w = 70)
+    private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70)
     {
         $color = $tipo==52 ? [0,172,140] : [255,0,0];
         $this->SetTextColorArray($color);

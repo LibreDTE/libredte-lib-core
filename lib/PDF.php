@@ -49,14 +49,14 @@ class PDF extends \TCPDF
      * @param s Tipo de hoja
      * @param top Margen extra (al normal) para la parte de arriba del PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-08
+     * @version 2015-12-16
      */
-    public function __construct($o = 'P', $u = 'mm', $s = 'Letter', $top = 8)
+    public function __construct($o = 'P', $u = 'mm', $s = 'Letter', $top = 0)
     {
         parent::__construct($o, $u, $s);
         $this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP+$top, PDF_MARGIN_RIGHT);
         $this->SetHeaderMargin(PDF_MARGIN_HEADER+$top);
-        $this->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $this->SetFooterMargin(PDF_MARGIN_FOOTER+6);
         $this->SetCreator('LibreDTE (http://libredte.cl)');
         $this->SetAuthor('LibreDTE (http://libredte.cl)');
         $this->setFont('helvetica');
