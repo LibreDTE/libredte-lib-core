@@ -659,11 +659,9 @@ class Dte extends \sasco\LibreDTE\PDF
 
         $this->setFont('', 'B', 5);
         foreach($referencias as $r) {
-            if (isset($r['RazonRef'])) {
-                $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'].': '.$r['RazonRef'];
-            } else {
-                $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'];
-            }
+            $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'];
+            if (isset($r['RazonRef']))
+                $texto = $texto.': '.$r['RazonRef'];
             $p1x = 3;
             $p1y   = $this->y+3;
             //$p2x   = $px2;
