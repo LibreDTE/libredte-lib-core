@@ -1007,7 +1007,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function num($n)
     {
-        $broken_number = explode('.', (string)$n);
+        $broken_number = explode(',', (string)$n);
         if (isset($broken_number[1]))
             return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
         return number_format($broken_number[0], 0, ',', '.');
