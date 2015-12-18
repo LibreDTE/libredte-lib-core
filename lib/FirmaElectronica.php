@@ -137,7 +137,7 @@ class FirmaElectronica
      * Método que entrega el serialNumber del subject
      * @return serialNumber del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-16
+     * @version 2015-12-18
      */
     public function getID()
     {
@@ -154,6 +154,16 @@ class FirmaElectronica
                     if (strpos($run, '-') and $l_run >= 9 and $l_run <= 10) {
                         return $run;
                     }
+                }
+            }
+        }
+        // RUN está codificado en las extenciones del certificado (ej: E-CERTCHILE)
+        if (in_array($this->data['issuer']['O'], ['E-CERTCHILE']) and isset($this->data['extensions'])) {
+            $x509 = new \phpseclib\File\X509();
+            $cert = $x509->loadX509($this->certs['cert']);
+            foreach ($cert['tbsCertificate']['extensions'] as $e) {
+                if ($e['extnId']=='id-ce-subjectAltName') {
+                    return $e['extnValue'][0]['otherName']['value']['ia5String'];
                 }
             }
         }
