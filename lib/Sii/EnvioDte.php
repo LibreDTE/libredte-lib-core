@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un DTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2015-12-22
  */
 class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
 {
@@ -38,7 +38,6 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         'tipos' => ['EnvioDTE', 'EnvioBOLETA'], ///< Tag para el envío, según si son Boletas o no
         'schemas' => ['EnvioDTE_v10', 'EnvioBOLETA_v11'], ///< Schema (XSD) que se deberá usar para validar según si son boletas o no
     ]; ///< Configuración/reglas para el documento XML
-    private $arreglo; ///< Arreglo con los datos del XML
     private $tipo = null; ///< =0 DTE, =1 boleta
 
     /**
@@ -199,46 +198,17 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
     }
 
     /**
-     * Método que entrega el string XML del EnvioDte
-     * @return String con XML
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
-     */
-    public function saveXML()
-    {
-        return $this->xml_data ? $this->xml_data : false;
-    }
-
-    /**
      * Método que carga un XML de EnvioDte y asigna el objeto XML correspondiente
      * para poder obtener los datos del envío
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2015-12-22
      */
     public function loadXML($xml_data)
     {
-        $this->xml_data = $xml_data;
-        $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
+        parent::loadXML($xml_data);
         $this->tipo = (int)($this->xml->documentElement->tagName=='EnvioBOLETA');
-        $this->toArray();
         return $this->xml;
-    }
-
-    /**
-     * Método que entrega un arreglo con los datos del EnvioDTE
-     * @return Arreglo con datos del EnvioDTE
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
-     */
-    public function toArray()
-    {
-        if (!$this->xml)
-            return false;
-        if (!$this->arreglo)
-            $this->arreglo = $this->xml->toArray();
-        return $this->arreglo;
     }
 
     /**
