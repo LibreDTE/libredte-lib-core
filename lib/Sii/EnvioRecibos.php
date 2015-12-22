@@ -148,4 +148,39 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
         return $this->xml_data;
     }
 
+    /**
+     * Método que entrega el ID del XML de recibos
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-22
+     */
+    public function getID()
+    {
+        return isset($this->arreglo['EnvioRecibos']['SetRecibos']['@attributes']['ID']) ? $this->arreglo['EnvioRecibos']['SetRecibos']['@attributes']['ID'] : false;
+    }
+
+    /**
+     * Método que entrega un arreglo con los recibos del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-22
+     */
+    public function getRecibos()
+    {
+        // si no hay recibos se deben crear
+        if (!$this->recibos) {
+            // si no está creado el arrelgo con los datos error
+            if (!$this->arreglo) {
+                return false;
+            }
+            // crear recibos a partir del arreglo
+            $Recibos = $this->arreglo['EnvioRecibos']['SetRecibos']['Recibo'];
+            if (!isset($Recibos[0]))
+                $Recibos = [$Recibos];
+            foreach ($Recibos as $Recibo) {
+                $this->recibos[] = $Recibo;
+            }
+        }
+        // entregar recibos
+        return $this->recibos;
+    }
+
 }
