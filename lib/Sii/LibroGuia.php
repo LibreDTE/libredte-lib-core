@@ -84,6 +84,43 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
     }
 
     /**
+     * Método que agrega el detalle del libro de guías a partir de un archivo
+     * CSV.
+     * @param archivo  Ruta al archivo que se desea cargar
+     * @param separador Separador de campos del archivo CSV
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-24
+     */
+    public function agregarCSV($archivo, $separador = ';')
+    {
+        $data = \sasco\LibreDTE\CSV::read($archivo);
+        $n_data = count($data);
+        $detalles = [];
+        for ($i=1; $i<$n_data; $i++) {
+            // detalle genérico
+            $detalle = [
+                'Folio' => $data[$i][0],
+                'Anulado' => !empty($data[$i][1]) ? $data[$i][1] : false,
+                'Operacion' => !empty($data[$i][2]) ? $data[$i][2] : false,
+                'TpoOper' => !empty($data[$i][3]) ? $data[$i][3] : false,
+                'FchDoc' => !empty($data[$i][4]) ? $data[$i][4] : date('Y-m-d'),
+                'RUTDoc' => !empty($data[$i][5]) ? $data[$i][5] : false,
+                'RznSoc' => !empty($data[$i][6]) ? $data[$i][6] : false,
+                'MntNeto' => !empty($data[$i][7]) ? $data[$i][7] : false,
+                'TasaImp' => !empty($data[$i][8]) ? $data[$i][8] : 0,
+                'IVA' => !empty($data[$i][9]) ? $data[$i][9] : 0,
+                'MntTotal' => !empty($data[$i][10]) ? $data[$i][10] : false,
+                'MntModificado' => !empty($data[$i][11]) ? $data[$i][11] : false,
+                'TpoDocRef' => !empty($data[$i][12]) ? $data[$i][12] : false,
+                'FolioDocRef' => !empty($data[$i][13]) ? $data[$i][13] : false,
+                'FchDocRef' => !empty($data[$i][14]) ? $data[$i][14] : false,
+            ];
+            // agregar a los detalles
+            $this->agregar($detalle);
+        }
+    }
+
+    /**
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
