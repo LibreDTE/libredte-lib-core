@@ -303,7 +303,7 @@ foreach ($folios as $tipo => $cantidad)
     $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioBOLETA
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
 foreach ($set_pruebas as $documento) {
     $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))

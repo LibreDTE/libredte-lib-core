@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa la respuesta a un envío de un DTE por un proveedor
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2015-12-23
  */
 class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
 {
@@ -201,6 +201,80 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
         // firmar XML del envío y entregar
         $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#ResultadoEnvio', 'Resultado', true) : $xmlEnvio;
         return $this->xml_data;
+    }
+
+    /**
+     * Método que indica si el XML corresonde a RecepcionEnvio
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-23
+     */
+    public function esRecepcionEnvio()
+    {
+        return isset($this->arreglo['RespuestaDTE']['Resultado']['RecepcionEnvio']);
+    }
+
+    /**
+     * Método que indica si el XML corresonde a ResultadoDTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-23
+     */
+    public function esResultadoDTE()
+    {
+        return isset($this->arreglo['RespuestaDTE']['Resultado']['ResultadoDTE']);
+    }
+
+    /**
+     * Método que entrega un arreglo con los resultados de recepciones del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-23
+     */
+    public function getRecepciones()
+    {
+        if (!$this->esRecepcionEnvio())
+            return false;
+        // si no hay respustas se deben crear
+        if (!$this->respuesta_envios) {
+            // si no está creado el arrelgo con los datos error
+            if (!$this->arreglo) {
+                return false;
+            }
+            // crear repuestas a partir del arreglo
+            $Recepciones = $this->arreglo['RespuestaDTE']['Resultado']['RecepcionEnvio']['RecepcionDTE'];
+            if (!isset($Recepciones[0]))
+                $Recepciones = [$Recepciones];
+            foreach ($Recepciones as $Recepcion) {
+                $this->respuesta_envios[] = $Recepcion;
+            }
+        }
+        // entregar recibos
+        return $this->respuesta_envios;
+    }
+
+    /**
+     * Método que entrega un arreglo con los resultados de DTE del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-23
+     */
+    public function getResultados()
+    {
+        if (!$this->esResultadoDTE())
+            return false;
+        // si no hay respustas se deben crear
+        if (!$this->respuesta_documentos) {
+            // si no está creado el arrelgo con los datos error
+            if (!$this->arreglo) {
+                return false;
+            }
+            // crear repuestas a partir del arreglo
+            $Resultados = $this->arreglo['RespuestaDTE']['Resultado']['ResultadoDTE'];
+            if (!isset($Resultados[0]))
+                $Resultados = [$Resultados];
+            foreach ($Resultados as $Resultado) {
+                $this->respuesta_documentos[] = $Resultado;
+            }
+        }
+        // entregar recibos
+        return $this->respuesta_documentos;
     }
 
 }

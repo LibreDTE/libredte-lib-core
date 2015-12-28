@@ -585,7 +585,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-04
+     * @version 2015-12-25
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10)
     {
@@ -607,7 +607,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 $transporte .= ' en vehículo '.$Transporte['Patente'];
             if (is_array($Transporte['Chofer'])) {
                 if (!empty($Transporte['Chofer']['NombreChofer']))
-                    $transporte .= ' con chofér '.$Transporte['Chofer']['NombreChofer'];
+                    $transporte .= ' con chofer '.$Transporte['Chofer']['NombreChofer'];
                 if (!empty($Transporte['Chofer']['RUTChofer']))
                     $transporte .= ' ('.$Transporte['Chofer']['RUTChofer'].')';
             }
@@ -688,7 +688,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-22
+     * @version 2015-12-25
      */
     private function agregarDetalle($detalle, $x = 10)
     {
@@ -704,7 +704,7 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach ($detalle as &$item) {
             // quitar columnas
             foreach ($item as $col => $valor) {
-                if ($col=='DscItem') {
+                if ($col=='DscItem' and !empty($item['DscItem'])) {
                     $item['NmbItem'] .= '<br/><span style="font-size:0.7em">'.$item['DscItem'].'</span>';
                 }
                 if (!in_array($col, $titulos_keys))
