@@ -1005,12 +1005,17 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-14
      */
-    private function num($n)
+    public function num($n)
     {
-        $broken_number = explode('.', (string)$n);
-        if (isset($broken_number[1]))
-            return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
-        return number_format($broken_number[0], 0, ',', '.');
+        $broken_number = explode(',', (string)$n);
+        if (!isset($broken_number[1])) {
+            return number_format($broken_number[0], 0, ',', '.');
+        }
+        $broken_number[1] = rtrim($broken_number[1], '0');
+        if ($broken_number[1] === ''){ //Todos los decimales son cero
+            return number_format($broken_number[0], 0, ',', '.');
+        } else {
+            return number_format($broken_number[0], 0, ',', '.') .','.$broken_number[1];
+        }
     }
-
 }
