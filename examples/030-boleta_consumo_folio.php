@@ -42,9 +42,9 @@ $boletas = 'xml/EnvioBOLETA.xml';
 $notas_credito = 'xml/EnvioDTE.xml';
 
 // cargar XML boletas y notas
-$EnvioBOLETA = new \sasco\LibreDTE\Sii\EnvioDTE();
+$EnvioBOLETA = new \sasco\LibreDTE\Sii\EnvioDte();
 $EnvioBOLETA->loadXML(file_get_contents($boletas));
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
 $EnvioDTE->loadXML(file_get_contents($notas_credito));
 
 // crear objeto para consumo de folios

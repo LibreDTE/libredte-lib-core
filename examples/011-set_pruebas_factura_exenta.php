@@ -383,7 +383,7 @@ $Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
 $Folios = [];
 foreach ($folios as $tipo => $cantidad)
     $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDTE();
+$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioDTE
 foreach ($set_pruebas as $documento) {

@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Base;
 /**
  * Clase base para los documentos XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2015-12-22
  */
 abstract class Documento
 {
@@ -36,6 +36,7 @@ abstract class Documento
     protected $caratula; ///< arreglo con la caratula del envío
     protected $Firma; ///< objeto de la firma electrónica
     protected $id; ///< ID del documento (se usa como referencia en la firma del XML)
+    protected $arreglo; ///< Arreglo con los datos del XML
 
     /**
      * Método para asignar la caratula
@@ -110,6 +111,48 @@ abstract class Documento
             );
         }
         return $result;
+    }
+
+    /**
+     * Método que entrega el string XML del objeto XML del documento
+     * @return String con XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-22
+     */
+    public function saveXML()
+    {
+        return $this->xml_data ? $this->xml_data : false;
+    }
+
+    /**
+     * Método que carga un XML y asigna el objeto XML correspondiente para poder
+     * obtener los datos del mismo a través de un arreglo
+     * @return Objeto XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-22
+     */
+    public function loadXML($xml_data)
+    {
+        $this->xml_data = $xml_data;
+        $this->xml = new \sasco\LibreDTE\XML();
+        $this->xml->loadXML($this->xml_data);
+        $this->toArray();
+        return $this->xml;
+    }
+
+    /**
+     * Método que entrega un arreglo con los datos del documento XML
+     * @return Arreglo con datos del documento XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-22
+     */
+    public function toArray()
+    {
+        if (!$this->xml)
+            return false;
+        if (!$this->arreglo)
+            $this->arreglo = $this->xml->toArray();
+        return $this->arreglo;
     }
 
 }
