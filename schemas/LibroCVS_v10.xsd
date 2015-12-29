@@ -1363,7 +1363,7 @@
 						<xs:attribute name="ID" type="xs:ID" use="required"/>
 					</xs:complexType>
 				</xs:element>
-				<xs:element ref="ds:Signature">
+				<xs:element ref="ds:Signature" minOccurs="0" maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>Firma Digital sobre SetDTE</xs:documentation>
 					</xs:annotation>
