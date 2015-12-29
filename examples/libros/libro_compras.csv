@@ -1,8 +1,8 @@
-TpoDoc;NroDoc;TasaImp;FchDoc;CdgSIISucur;RUTDoc;RznSoc;MntExe;MntNeto;MntIVA;CodIVANoRec;MntIVANoRec;FctProp;CodImp;TasaImp;MntImp;MntTotal
-30;234;19;2000-03-01;;78885550-8;;;53253;;;;;;;;
-33;32;19;2000-03-01;;78885550-8;;10633;11473;;;;;;;;
-30;781;19;2000-03-02;;78885550-8;;;30171;;;;60;;;;
-60;451;19;2000-03-03;;78885550-8;;;2928;;;;;;;;
-33;67;19;2000-03-04;;78885550-8;;;12135;;4;;;;;;
-46;9;19;2000-03-05;;78885550-8;;;10632;;;;;15;19;;
-60;211;19;2000-03-06;;78885550-8;;;9053;;;;;;;;
+Tipo Doc;Folio;Rut Contraparte;Tasa Impuesto;Razón Social Contraparte;Tipo Impuesto[1=IVA:2=LEY 18211];Fecha Emisión;Anulado[A];Monto Exento;Monto Neto;Monto IVA (Recuperable);Cod IVA no Rec;Monto IVA no Rec;IVA Uso Común;Factor IVA Uso Comun;Cod Otro Imp (Con Crédito);Tasa Otro Imp (Con Crédito);Monto Otro Imp (Con Crédito);Monto Total;Monto Otro Imp Sin Crédito;Monto Activo Fijo;Monto IVA Activo Fijo;IVA No Retenido;Sucursal SII
+30;234;78885550-8;19;;;2000-03-01;;;53253;;;;;;;;;;;;;;
+33;32;78885550-8;19;;;2000-03-01;;10633;11473;;;;;;;;;;;;;;
+30;781;78885550-8;19;;;2000-03-02;;;30171;;;;;60;;;;;;;;;
+60;451;78885550-8;19;;;2000-03-03;;;2928;;;;;;;;;;;;;;
+33;67;78885550-8;19;;;2000-03-04;;;12135;;4;;;;;;;;;;;;
+46;9;78885550-8;19;;;2000-03-05;;;10632;;;;;;15;19;;;;;;;
+60;211;78885550-8;19;;;2000-03-06;;;9053;;;;;;;;;;;;;;
