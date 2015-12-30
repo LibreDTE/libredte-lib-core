@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2015-12-29
  */
 class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
@@ -74,7 +74,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'TpoDoc' => false,
             'NroDoc' => false,
             'Anulado' => false,
-            'TpoImp' => false,
+            'TpoImp' => 1,
             'TasaImp' => false,
             'FchDoc' => false,
             'CdgSIISucur' => false,
@@ -192,7 +192,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 'RUTDoc' => $data[$i][2],
                 'TasaImp' => !empty($data[$i][3]) ? $data[$i][3] : false,
                 'RznSoc' => !empty($data[$i][4]) ? $data[$i][4] : false,
-                'TpoImp' => !empty($data[$i][5]) ? $data[$i][5] : false,
+                'TpoImp' => !empty($data[$i][5]) ? $data[$i][5] : 1,
                 'FchDoc' => $data[$i][6],
                 'Anulado' => !empty($data[$i][7]) ? $data[$i][7] : false,
                 'MntExe' => !empty($data[$i][8]) ? $data[$i][8] : false,
@@ -446,6 +446,47 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 $totales[$d['TpoDoc']]['TotIVANoRetenido'] += $d['IVANoRetenido'];
         }
         return $totales;
+    }
+
+    /**
+     * Método que obtiene los datos de las compras en el formato que se usa en
+     * el archivo CSV
+     * @return Arreglo con los datos de las compras
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2015-12-29
+     */
+    public function getCompras()
+    {
+        $detalle = [];
+        foreach ($this->detalles as $d) {
+            $detalle[] = [
+                (int)$d['TpoDoc'],
+                (int)$d['NroDoc'],
+                $d['RUTDoc'],
+                (int)$d['TasaImp'],
+                $d['RznSoc'],
+                $d['TpoImp']!==false ? $d['TpoImp'] : 1,
+                $d['FchDoc'],
+                $d['Anulado']!=false ? $d['Anulado'] : null,
+                $d['MntExe']!=false ? $d['MntExe'] : null,
+                $d['MntNeto']!=false ? $d['MntNeto'] : null,
+                (int)$d['MntIVA'],
+                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['CodIVANoRec']!=false) ? $d['IVANoRec'][0]['CodIVANoRec'] : null,
+                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['MntIVANoRec']!=false) ? $d['IVANoRec'][0]['MntIVANoRec'] : null,
+                $d['IVAUsoComun']!=false ? $d['IVAUsoComun'] : null,
+                (isset($d['FctProp']) and $d['FctProp']!=false) ? $d['FctProp'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['CodImp'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['TasaImp'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['MntImp'] : null,
+                $d['MntTotal']!=false ? $d['MntTotal'] : null,
+                $d['MntSinCred']!=false ? $d['MntSinCred'] : null,
+                $d['MntActivoFijo']!=false ? $d['MntActivoFijo'] : null,
+                $d['MntIVAActivoFijo']!=false ? $d['MntIVAActivoFijo'] : null,
+                $d['IVANoRetenido']!=false ? $d['IVANoRetenido'] : null,
+                $d['CdgSIISucur']!=false ? $d['CdgSIISucur'] : null,
+            ];
+        }
+        return $detalle;
     }
 
 }
