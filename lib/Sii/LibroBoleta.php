@@ -125,7 +125,7 @@ class LibroBoleta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-01-08
      */
     private function getResumenPeriodo()
     {
@@ -178,6 +178,10 @@ class LibroBoleta extends \sasco\LibreDTE\Sii\Base\Libro
                     //$resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntIVA'] = round($resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntNeto'] * ($tasa/100));
                     $resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntIVA'] = $resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntTotal'] - $resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntExe'] - $resumen[$d['TpoDoc']]['TotalesServicio'][$d['TpoServ']]['TotMntNeto'];
                 }
+            }
+            // documento anulado
+            else if ($d['Anulado']=='A') {
+                $resumen[$d['TpoDoc']]['TotAnulado'] += 1;
             }
         }
         // armar resumen verdadero
