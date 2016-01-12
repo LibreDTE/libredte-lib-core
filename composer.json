@@ -22,7 +22,7 @@
         "ext-openssl": "*",
         "ext-soap": "*",
         "phpseclib/phpseclib": "2.0.0",
-        "tecnick.com/tcpdf": "6.0.096"
+        "tecnickcom/tcpdf": "6.2.12"
     },
     "autoload": {
         "psr-4": {"sasco\\LibreDTE\\": "lib/"}

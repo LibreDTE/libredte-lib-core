@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4d24dbac5f34a3d6388fd25033cfd316",
+    "hash": "bc469f7cbc5d71ff071c2d0377cffb5e",
+    "content-hash": "fedc1a8e7d005b3f0c0d59cab962daa9",
     "packages": [
         {
             "name": "phpseclib/phpseclib",
@@ -95,17 +96,17 @@
             "time": "2015-08-04 04:48:03"
         },
         {
-            "name": "tecnick.com/tcpdf",
-            "version": "6.0.096",
+            "name": "tecnickcom/tcpdf",
+            "version": "6.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "ff8799164231d5c99a69bee276ce33bcb7f52a54"
+                "reference": "2f732eaa91b5665274689b1d40b285a7bacdc37f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/ff8799164231d5c99a69bee276ce33bcb7f52a54",
-                "reference": "ff8799164231d5c99a69bee276ce33bcb7f52a54",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/2f732eaa91b5665274689b1d40b285a7bacdc37f",
+                "reference": "2f732eaa91b5665274689b1d40b285a7bacdc37f",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +156,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-10-06 17:50:43"
+            "time": "2015-09-12 10:08:34"
         }
     ],
     "packages-dev": [],
@@ -165,7 +166,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~5.5",
+        "php": ">=5.5",
         "ext-curl": "*",
         "ext-openssl": "*",
         "ext-soap": "*"
