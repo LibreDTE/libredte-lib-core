@@ -137,13 +137,13 @@ class FirmaElectronica
      * Método que entrega el serialNumber del subject
      * @return serialNumber del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-18
+     * @version 2016-01-12
      */
     public function getID()
     {
         // RUN está en el serialNumber (ej: Acepta)
         if (isset($this->data['subject']['serialNumber']))
-            return $this->data['subject']['serialNumber'];
+            return ltrim($this->data['subject']['serialNumber'], '0');
         // RUN está dentro del OU (ej: E-Sign)
         if (isset($this->data['subject']['OU']) and is_array($this->data['subject']['OU'])) {
             foreach ($this->data['subject']['OU'] as $line) {
@@ -152,18 +152,18 @@ class FirmaElectronica
                     $run = trim($aux[count($aux)-1]);
                     $l_run = strlen($run);
                     if (strpos($run, '-') and $l_run >= 9 and $l_run <= 10) {
-                        return $run;
+                        return ltrim($run, '0');
                     }
                 }
             }
         }
-        // RUN está codificado en las extenciones del certificado (ej: E-CERTCHILE)
-        if (in_array($this->data['issuer']['O'], ['E-CERTCHILE']) and isset($this->data['extensions'])) {
+        // RUN está codificado en las extenciones del certificado (ej: E-CERTCHILE y PAPERLESS)
+        if (in_array($this->data['issuer']['O'], ['E-CERTCHILE', 'PAPERLESS']) and isset($this->data['extensions'])) {
             $x509 = new \phpseclib\File\X509();
             $cert = $x509->loadX509($this->certs['cert']);
             foreach ($cert['tbsCertificate']['extensions'] as $e) {
                 if ($e['extnId']=='id-ce-subjectAltName') {
-                    return $e['extnValue'][0]['otherName']['value']['ia5String'];
+                    return ltrim($e['extnValue'][0]['otherName']['value']['ia5String'], '0');
                 }
             }
         }
