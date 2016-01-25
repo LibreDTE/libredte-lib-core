@@ -38,6 +38,7 @@ Funcionalidades implementadas
     - Libro de compras electrónico (set de pruebas de compras)
     - Guía de despacho electrónica
     - Libro de guías de despacho electrónico
+    - Boletas electrónicas, libro de boletas y reporte de consumo de folios
 - Etapa de intercambio con otros contribuyentes:
     - Acuse de recibo
     - Recibo de mercaderías y servicios prestados
