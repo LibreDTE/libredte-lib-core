@@ -713,7 +713,7 @@ class Dte
      * Método que normaliza los datos de una nota de débito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
+     * @version 2016-01-27
      */
     private function normalizar_56(array &$datos)
     {
@@ -724,9 +724,9 @@ class Dte
                 'Emisor' => false,
                 'Receptor' => false,
                 'Totales' => [
-                    'MntNeto' => false,
-                    'MntExe' => false,
-                    'TasaIVA' => false,
+                    'MntNeto' => 0,
+                    'MntExe' => 0,
+                    'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' =>false,
                     'MntTotal' => 0,
                 ]
@@ -735,8 +735,9 @@ class Dte
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
-        if ($datos['Encabezado']['Totales']['MntNeto']===false) {
+        if (!$datos['Encabezado']['Totales']['MntNeto']) {
             $datos['Encabezado']['Totales']['MntNeto'] = 0;
+            $datos['Encabezado']['Totales']['TasaIVA'] = false;
         }
     }
 
@@ -744,7 +745,7 @@ class Dte
      * Método que normaliza los datos de una nota de crédito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
+     * @version 2016-01-27
      */
     private function normalizar_61(array &$datos)
     {
@@ -755,9 +756,9 @@ class Dte
                 'Emisor' => false,
                 'Receptor' => false,
                 'Totales' => [
-                    'MntNeto' => false,
-                    'MntExe' => false,
-                    'TasaIVA' => false,
+                    'MntNeto' => 0,
+                    'MntExe' => 0,
+                    'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' =>false,
                     'MntTotal' => 0,
                 ]
@@ -766,8 +767,9 @@ class Dte
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
-        if ($datos['Encabezado']['Totales']['MntNeto']===false) {
+        if (!$datos['Encabezado']['Totales']['MntNeto']) {
             $datos['Encabezado']['Totales']['MntNeto'] = 0;
+            $datos['Encabezado']['Totales']['TasaIVA'] = false;
         }
     }
 
@@ -812,7 +814,7 @@ class Dte
                 // si no es boleta
                 if (!$this->esBoleta()) {
                     if ((!isset($datos['Encabezado']['Totales']['MntNeto']) or $datos['Encabezado']['Totales']['MntNeto']===false) and isset($datos['Encabezado']['Totales']['MntExe'])) {
-                    $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                        $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
                     } else {
                         if (!empty($d['IndExe'])) {
                             if ($d['IndExe']==1) {
