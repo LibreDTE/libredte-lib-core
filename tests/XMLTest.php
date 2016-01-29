@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * LibreDTE
  * Copyright (C) SASCO SpA (https://sasco.cl)
@@ -23,7 +22,7 @@
  */
 
 /**
- * Clase tests de la clase \sasco\LibreDTE\XML
+ * Clase para tests de la clase \sasco\LibreDTE\XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2016-01-28
  */
