@@ -892,7 +892,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'module_width' => 1, // width of a single module in points
             'module_height' => 1 // height of a single module in points
         ];
-        $this->write2DBarcode($timbre, 'PDF417', $x, $y, $w, 0, $style, 'B');
+        $this->write2DBarcode($timbre, 'PDF417,,8', $x, $y, $w, 0, $style, 'B');
         $this->setFont('', 'B', 8);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
@@ -921,7 +921,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'module_width' => 1, // width of a single module in points
             'module_height' => 1 // height of a single module in points
         ];
-        $this->write2DBarcode($timbre, 'PDF417', $x+10, $y, $w, 0, $style, 'B');
+        $this->write2DBarcode($timbre, 'PDF417,,8', $x+10, $y, $w, 0, $style, 'B');
         $this->setFont('', 'B', 6);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
