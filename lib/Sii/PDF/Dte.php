@@ -819,7 +819,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $glosas = [
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
-            'IVA' => 'I.V.A. ('.$totales['TasaIVA'].'%)',
+            'IVA' => 'I.V.A. ('.$totales['TasaIVA'].'%) $',
             'MntTotal' => 'Total $',
         ];
         // agregar cada uno de los totales
@@ -855,7 +855,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'MntNeto' => 'TOTAL NETO',
             'MntExe' => 'EXENTO ',
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%)',
-            'MntTotal' => 'Total',
+            'MntTotal' => 'TOTAL',
         ];
         // agregar cada uno de los totales
         $this->setY($y);
