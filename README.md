@@ -3,6 +3,8 @@ LibreDTE: Biblioteca PHP
 
 [![Build Status](https://travis-ci.org/LibreDTE/libredte-lib.svg?branch=master)](https://travis-ci.org/LibreDTE/libredte-lib)
 [![Dependency Status](https://www.versioneye.com/user/projects/56a98dbe7e03c7003db68c7c/badge.svg)](https://www.versioneye.com/user/projects/56a98dbe7e03c7003db68c7c)
+[![Total Downloads](https://poser.pugx.org/sasco/libredte/downloads)](https://packagist.org/packages/sasco/libredte)
+[![License](https://poser.pugx.org/sasco/libredte/license)](https://packagist.org/packages/sasco/libredte)
 
 LibreDTE es un proyecto que tiene por objetivo proveer facturación electrónica
 libre para Chile.
