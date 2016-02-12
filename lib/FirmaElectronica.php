@@ -134,49 +134,56 @@ class FirmaElectronica
     }
 
     /**
-     * Método que entrega el RUN de la persona asociada al certificado
-     * @return RUN de la persona en formato: 11222333-4
+     * Método que entrega el RUN/RUT asociado al certificado
+     * @return RUN/RUT asociado al certificado en formato: 11222333-4
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-12
      */
     public function getID()
     {
-        // RUN de la persona se encuentra en la extensión del certificado
+        // RUN/RUT se encuentra en la extensión del certificado, esto de acuerdo
+        // a Ley 19.799 sobre documentos electrónicos y firma electrónica
         $x509 = new \phpseclib\File\X509();
         $cert = $x509->loadX509($this->certs['cert']);
-        foreach ($cert['tbsCertificate']['extensions'] as $e) {
-            if ($e['extnId']=='id-ce-subjectAltName') {
-                return ltrim($e['extnValue'][0]['otherName']['value']['ia5String'], '0');
+        if (isset($cert['tbsCertificate']['extensions'])) {
+            foreach ($cert['tbsCertificate']['extensions'] as $e) {
+                if ($e['extnId']=='id-ce-subjectAltName') {
+                    return ltrim($e['extnValue'][0]['otherName']['value']['ia5String'], '0');
+                }
             }
         }
+        // se obtiene desde serialNumber (esto es sólo para que funcione la firma para tests)
+        if (isset($this->data['subject']['serialNumber'])) {
+            return ltrim($this->data['subject']['serialNumber'], '0');
+        }
         // no se encontró el RUN
-        return $this->error('No fue posible obtener el ID (subject.serialNumber) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
+        return $this->error('No fue posible obtener el ID de la firma');
     }
 
     /**
      * Método que entrega el CN del subject
      * @return CN del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-01
+     * @version 2016-02-12
      */
     public function getName()
     {
         if (isset($this->data['subject']['CN']))
             return $this->data['subject']['CN'];
-        return $this->error('No fue posible obtener el Name (subject.CN) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
+        return $this->error('No fue posible obtener el Name (subject.CN) de la firma');
     }
 
     /**
      * Método que entrega el emailAddress del subject
      * @return emailAddress del subject
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-01
+     * @version 2016-02-12
      */
     public function getEmail()
     {
         if (isset($this->data['subject']['emailAddress']))
             return $this->data['subject']['emailAddress'];
-        return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma. Enviar lo siguiente al soporte de LibreDTE: \''.json_encode($this->data['subject']).'\'');
+        return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma');
     }
 
     /**
