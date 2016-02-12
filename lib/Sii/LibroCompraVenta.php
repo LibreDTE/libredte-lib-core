@@ -324,7 +324,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param incluirDetalle =true no se incluirá el detalle de los DTEs (sólo se usará para calcular totales)
      * @return XML con el envio del libro de compra y venta firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-02-12
      */
     public function generar($incluirDetalle = true)
     {
@@ -349,7 +349,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                     ],
                     'Caratula' => $this->caratula,
                     'ResumenPeriodo' => $ResumenPeriodo,
-                    'Detalle' => $incluirDetalle ? $this->detalles : false,
+                    'Detalle' => $incluirDetalle ? $this->getDetalle() : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ]
@@ -357,6 +357,27 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         // firmar XML del envío y entregar
         $this->xml_data = (!$this->simplificado and $this->Firma) ? $this->Firma->signXML($xmlEnvio, '#'.$this->id, 'EnvioLibro', true) : $xmlEnvio;
         return $this->xml_data;
+    }
+
+    /**
+     * Método que entrega el detalle a incluir en XML, en el libro de ventas no
+     * se incluyen ciertos documentos (como boletas), por eso se usa este método
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-12
+     */
+    private function getDetalle()
+    {
+        if ($this->caratula['TipoOperacion']=='VENTA') {
+            $omitir = [35, 38, 39, 41, 105, 500, 501, 919, 920, 922, 924];
+            $detalles = [];
+            foreach ($this->detalles as $d) {
+                if (!in_array($d['TpoDoc'], $omitir)) {
+                    $detalles[] = $d;
+                }
+            }
+            return $detalles;
+        }
+        return $this->detalles;
     }
 
     /**
