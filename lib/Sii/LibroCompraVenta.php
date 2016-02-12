@@ -332,7 +332,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         if ($this->xml_data)
             return $this->xml_data;
         // generar totales de DTE y sus montos
-        $TotalesPeriodo = $this->getTotalesPeriodo();
+        $TotalesPeriodo = $this->getResumen();
         $ResumenPeriodo = $TotalesPeriodo ? ['TotalesPeriodo'=>$TotalesPeriodo] : false;
         // generar XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
@@ -349,7 +349,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                     ],
                     'Caratula' => $this->caratula,
                     'ResumenPeriodo' => $ResumenPeriodo,
-                    'Detalle' => $incluirDetalle ? $this->getDetalle() : false,
+                    'Detalle' => $incluirDetalle ? $this->detalles : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ]
@@ -360,55 +360,65 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
     }
 
     /**
-     * Método que entrega el detalle a incluir en XML, en el libro de ventas no
-     * se incluyen ciertos documentos (como boletas), por eso se usa este método
+     * Método que permite agregar sólo resumen al libro (sin detalle), esto para
+     * poder agregar, por ejemplo, el resumen de las boletas en papel sin tener
+     * que agregar la totalidad al detalle
+     * @param resumen Arreglo con índice el DTE y valor arreglo con el resumen de ese DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-12
      */
-    private function getDetalle()
+    public function setResumen($resumen)
     {
-        if ($this->caratula['TipoOperacion']=='VENTA') {
-            $omitir = [35, 38, 39, 41, 105, 500, 501, 919, 920, 922, 924];
-            $detalles = [];
-            foreach ($this->detalles as $d) {
-                if (!in_array($d['TpoDoc'], $omitir)) {
-                    $detalles[] = $d;
-                }
+        // verificar que se haya pasado el tipo de documento y total como mínimo
+        foreach ($resumen as $tipo) {
+            if (!isset($tipo['TpoDoc']) or !isset($tipo['TotDoc'])) {
+                return false;
             }
-            return $detalles;
         }
-        return $this->detalles;
+        // asignar resumen
+        $this->resumen = [];
+        foreach ($resumen as $tipo) {
+            $this->resumen[$tipo['TpoDoc']] = $tipo;
+        }
     }
 
     /**
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-29
+     * @version 2016-02-12
      */
-    private function getTotalesPeriodo()
+    public function getResumen()
     {
+        $total_default = [
+            'TpoDoc' => null,
+            'TotDoc' => 0,
+            'TotAnulado' => false,
+            'TotOpExe' => false,
+            'TotMntExe' => 0,
+            'TotMntNeto' => 0,
+            'TotMntIVA' => 0,
+            'TotIVAPropio' => false,
+            'TotIVATerceros' => false,
+            'TotLey18211' => false,
+            'TotMntActivoFijo' => false,
+            'TotMntIVAActivoFijo' => false,
+            'TotIVANoRec' => false,
+            'TotIVAUsoComun' => false,
+            'FctProp' => false,
+            'TotCredIVAUsoComun' => false,
+            'TotOtrosImp' => false,
+            'TotImpSinCredito' => false,
+            'TotMntTotal' => 0,
+            'TotIVANoRetenido' => false,
+            'TotMntNoFact' => false,
+            'TotMntPeriodo' => false,
+        ];
         $totales = [];
+        // agregar resumen de detalles
         foreach ($this->detalles as &$d) {
             if (!isset($totales[$d['TpoDoc']])) {
-                $totales[$d['TpoDoc']] = [
-                    'TpoDoc' => $d['TpoDoc'],
-                    'TotDoc' => 0,
-                    'TotAnulado' => false,
-                    'TotMntExe' => 0,
-                    'TotMntNeto' => 0,
-                    'TotMntIVA' => 0,
-                    'TotMntActivoFijo' => false,
-                    'TotMntIVAActivoFijo' => false,
-                    'TotIVANoRec' => false,
-                    'TotIVAUsoComun' => false,
-                    'FctProp' => false,
-                    'TotCredIVAUsoComun' => false,
-                    'TotOtrosImp' => false,
-                    'TotImpSinCredito' => false,
-                    'TotMntTotal' => 0,
-                    'TotIVANoRetenido' => false,
-                ];
+                $totales[$d['TpoDoc']] = array_merge($total_default, ['TpoDoc'=>$d['TpoDoc']]);
             }
             // contabilizar cantidad de documentos y montos (exento, neto, iva y total)
             $totales[$d['TpoDoc']]['TotDoc']++;
@@ -466,6 +476,14 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             if (!empty($d['IVANoRetenido']))
                 $totales[$d['TpoDoc']]['TotIVANoRetenido'] += $d['IVANoRetenido'];
         }
+        // agregar resumenes pasados que no se hayan generado por los detalles
+        foreach ($this->resumen as $tipo => $resumen) {
+            if (!isset($totales[$tipo])) {
+                $totales[$tipo] = array_merge($total_default, $resumen);
+            }
+        }
+        // entregar resumen
+        ksort($totales);
         return $totales;
     }
 

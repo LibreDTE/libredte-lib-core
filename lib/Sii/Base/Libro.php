@@ -26,12 +26,13 @@ namespace sasco\LibreDTE\Sii\Base;
 /**
  * Clase base para los libros XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2016-02-12
  */
 abstract class Libro extends Envio
 {
 
     protected $detalles = []; ///< Arreglos con los detalles del documento
+    protected $resumen = []; ///< resumenes del libro
 
     /**
      * Método que agrega un detalle al listado que se generará
