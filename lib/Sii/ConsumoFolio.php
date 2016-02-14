@@ -26,10 +26,24 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un Consumo de Folios
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2016-02-14
  */
 class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
 {
+
+    private $documentos = []; ///< Documentos que se deben reportar en el consumo
+
+    /**
+     * Método que asigna los documentos que se deberán reportar en el consumo de
+     * folios
+     * @param documentos Arreglo con los códigos de DTEs a reportar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-14
+     */
+    public function setDocumentos(array $documentos)
+    {
+        $this->documentos = $documentos;
+    }
 
     /**
      * Método que agrega un DTE al listado que se enviará
@@ -138,13 +152,10 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
      * consumo de folios
      * @return Arreglo con los datos para generar los tags Resumen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-13
+     * @version 2016-02-14
      */
     private function getResumen()
     {
-        // si no hay detalles que enviar se entrega falso
-        if (!isset($this->detalles[0]))
-            return false;
         // si hay detalles generar resumen
         $Resumen = [];
         $RangoUtilizados = [];
@@ -152,6 +163,10 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
         foreach ($this->detalles as &$d) {
             // si no existe el tipo de documento se utiliza
             if (!isset($Resumen[$d['TpoDoc']])) {
+                $key = array_search($d['TpoDoc'], $this->documentos);
+                if ($key!==false) {
+                    unset($this->documentos[$key]);
+                }
                 $Resumen[$d['TpoDoc']] = [
                     'TipoDocumento' => $d['TpoDoc'],
                     'MntNeto' => false,
@@ -187,6 +202,16 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             $r['FoliosUtilizados'] = $r['FoliosEmitidos'] + $r['FoliosAnulados'];
             $r['RangoUtilizados'] = $this->getRangos($RangoUtilizados[$r['TipoDocumento']]);
         }
+        // completar con los resumenes que no se colocaron
+        foreach ($this->documentos as $tipo) {
+            $Resumen[$tipo] = [
+                'TipoDocumento' => $tipo,
+                'MntTotal' => 0,
+                'FoliosEmitidos' => 0,
+                'FoliosAnulados' => 0,
+                'FoliosUtilizados' => 0,
+            ];
+        }
         // entregar resumen
         return $Resumen;
     }
@@ -213,30 +238,26 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             }
             $aux[$inicial][] = $f;
             $i++;
-                $rango = [
-                    'Inicial' => $f,
-                    'Final' => $f,
-                ];
-
         }
         // crear rangos
         $rangos = [];
         foreach ($aux as $folios) {
-            $rango = [
+            $rangos[] = [
                 'Inicial' => $folios[0],
                 'Final' => $folios[count($folios)-1],
             ];
-            // WARNING: de acuerdo a documentación el Final es obligatorio en
-            // los rangos de folios utilizados, pero el Final no puede ser igual
-            // al Inicial, ¿entonces?
-            // en el caso de rangos de folios anulados el final se omite si es
-            // igual al inicial ¿así debería ser en el otro caso? pero no pasa
-            // por schema
-            if ($rango['Inicial']==$rango['Final'])
-                unset($rango['Final']);
-            $rangos[] = $rango;
         }
         return $rangos;
+    }
+
+    /**
+     * Método que entrega la secuencia del envio
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-14
+     */
+    public function getSecuencia()
+    {
+        return $this->caratula['SecEnvio'];
     }
 
 }
