@@ -621,7 +621,7 @@ class Dte
      * Método que normaliza los datos de una boleta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-02-15
      */
     private function normalizar_39(array &$datos)
     {
@@ -651,6 +651,52 @@ class Dte
             $datos['Encabezado']['Emisor']['GiroEmis'] = false;
         }
         $datos['Encabezado']['Emisor']['Acteco'] = false;
+        $datos['Encabezado']['Emisor']['Telefono'] = false;
+        $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
+        $datos['Encabezado']['Receptor']['GiroRecep'] = false;
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una boleta exenta electrónica
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-15
+     */
+    private function normalizar_41(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => [
+                    'RUTEmisor' => false,
+                    'RznSocEmisor' => false,
+                    'GiroEmisor' => false,
+                ],
+                'Receptor' => false,
+                'Totales' => [
+                    'MntExe' => 0,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // cambiar tags de DTE a boleta si se pasaron
+        if ($datos['Encabezado']['Emisor']['RznSoc']) {
+            $datos['Encabezado']['Emisor']['RznSocEmisor'] = $datos['Encabezado']['Emisor']['RznSoc'];
+            $datos['Encabezado']['Emisor']['RznSoc'] = false;
+        }
+        if ($datos['Encabezado']['Emisor']['GiroEmis']) {
+            $datos['Encabezado']['Emisor']['GiroEmisor'] = $datos['Encabezado']['Emisor']['GiroEmis'];
+            $datos['Encabezado']['Emisor']['GiroEmis'] = false;
+        }
+        $datos['Encabezado']['Emisor']['Acteco'] = false;
+        $datos['Encabezado']['Emisor']['Telefono'] = false;
+        $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
+        $datos['Encabezado']['Receptor']['GiroRecep'] = false;
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
