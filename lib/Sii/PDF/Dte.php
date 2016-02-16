@@ -164,22 +164,23 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
+     * @version 2016-02-16
      */
     private function agregarNormal(array $dte, $timbre)
     {
         // agregar página para la factura
         $this->AddPage();
         // agregar cabecera del documento
-        $this->agregarEmisor($dte['Encabezado']['Emisor']);
-        $this->agregarFolio(
+        $y[] = $this->agregarEmisor($dte['Encabezado']['Emisor']);
+        $y[] = $this->agregarFolio(
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
             $dte['Encabezado']['Emisor']['CmnaOrigen']
         );
         // datos del documento
-        $this->setY(50);
+        $this->setY(max($y));
+        $this->Ln();
         $this->agregarFechaEmision($dte['Encabezado']['IdDoc']['FchEmis']);
         if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
             $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
@@ -269,7 +270,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-16
+     * @version 2016-02-16
      */
     private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30)
     {
@@ -282,7 +283,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $w += 40;
         }
         // agregar datos del emisor
-        $this->setFont('', 'B', 20);
+        $this->setFont('', 'B', 14);
         $this->SetTextColorArray([32, 92, 144]);
         $this->MultiTexto(isset($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
         $this->setFont('', 'B', 9);
@@ -300,6 +301,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $contacto[] = $emisor['CorreoEmisor'];
         if ($contacto)
             $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', $w);
+        return $this->y;
     }
 
     /**
@@ -367,7 +369,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-16
+     * @version 2016-02-16
      */
     private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70)
     {
@@ -387,6 +389,8 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', 10);
         $this->Texto('S.I.I. - '.$this->getSucursalSII($sucursal_sii), $x, $this->getY()+4, 'C', $w);
         $this->SetTextColorArray([0,0,0]);
+        $this->Ln();
+        return $this->y;
     }
 
     /**
