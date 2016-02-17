@@ -71,7 +71,7 @@ Documentación
 -------------
 
 La documentación está disponible en formato HTML generada con Doxygen en:
-<http://libredte.cl/doxygen>.
+<http://doc.libredte.cl>.
 
 Los ejemplos están disponibles en el directorio
 [examples](https://github.com/LibreDTE/libredte-lib/tree/master/examples).
