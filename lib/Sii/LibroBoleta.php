@@ -125,7 +125,7 @@ class LibroBoleta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-01-08
+     * @version 2016-02-17
      */
     private function getResumenPeriodo()
     {
@@ -146,9 +146,9 @@ class LibroBoleta extends \sasco\LibreDTE\Sii\Base\Libro
                     'PeriodoDevengado' => false,
                     'TotDoc' => false,
                     'TotMntExe' => false,
-                    'TotMntNeto' => false,
-                    'TasaIVA' => false,
-                    'TotMntIVA' => false,
+                    'TotMntNeto' => 0,
+                    'TasaIVA' => 0,
+                    'TotMntIVA' => 0,
                     'TotMntTotal' => false,
                     'TotMntNoFact' => false,
                     'TotMntPeriodo' => false,
