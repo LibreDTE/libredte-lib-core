@@ -38,6 +38,7 @@ class Dte extends \sasco\LibreDTE\PDF
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
     private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
+    private $>ecl = 8; ///< error correction level para PHP >= 7.0.0
 
     private $tipos = [
         33 => 'FACTURA ELECTRÓNICA',
@@ -883,7 +884,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2016-02-18
      */
     private function agregarTimbre($timbre, $x = 20, $y = 190, $w = 70)
     {
@@ -896,7 +897,8 @@ class Dte extends \sasco\LibreDTE\PDF
             'module_width' => 1, // width of a single module in points
             'module_height' => 1 // height of a single module in points
         ];
-        $this->write2DBarcode($timbre, 'PDF417,,8', $x, $y, $w, 0, $style, 'B');
+        $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
+        $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x, $y, $w, 0, $style, 'B');
         $this->setFont('', 'B', 8);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
@@ -912,7 +914,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-12-11
+     * @version 2016-02-18
      */
     private function agregarTimbreContinuo($timbre, $x = 3, $y = null, $w = 68)
     {
@@ -925,7 +927,8 @@ class Dte extends \sasco\LibreDTE\PDF
             'module_width' => 1, // width of a single module in points
             'module_height' => 1 // height of a single module in points
         ];
-        $this->write2DBarcode($timbre, 'PDF417,,8', $x+10, $y, $w, 0, $style, 'B');
+        $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
+        $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x+10, $y, $w, 0, $style, 'B');
         $this->setFont('', 'B', 6);
         $this->Texto('Timbre Electrónico SII', $x, $this->y, 'C', $w);
         $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, $this->y+4, 'C', $w);
