@@ -38,7 +38,7 @@ class Dte extends \sasco\LibreDTE\PDF
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
     private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
-    private $>ecl = 8; ///< error correction level para PHP >= 7.0.0
+    private $ecl = 8; ///< error correction level para PHP >= 7.0.0
 
     private $tipos = [
         33 => 'FACTURA ELECTRÓNICA',
