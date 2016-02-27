@@ -566,7 +566,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-25
+     * @version 2016-02-26
      */
     private function normalizar_33(array &$datos)
     {
@@ -581,6 +581,7 @@ class Dte
                     'MntExe' => false,
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' => 0,
+                    'ImptoReten' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -588,6 +589,7 @@ class Dte
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
@@ -704,6 +706,38 @@ class Dte
     }
 
     /**
+     * Método que normaliza los datos de una factura de compra electrónica
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-26
+     */
+    private function normalizar_46(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Totales' => [
+                    'MntNeto' => 0,
+                    'MntExe' => false,
+                    'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                    'IVA' => 0,
+                    'ImptoReten' => false,
+                    'IVANoRet' => false,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+    }
+
+    /**
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
@@ -759,7 +793,7 @@ class Dte
      * Método que normaliza los datos de una nota de débito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-01-27
+     * @version 2016-02-26
      */
     private function normalizar_56(array &$datos)
     {
@@ -773,13 +807,17 @@ class Dte
                     'MntNeto' => 0,
                     'MntExe' => 0,
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
-                    'IVA' =>false,
+                    'IVA' => false,
+                    'ImptoReten' => false,
+                    'IVANoRet' => false,
                     'MntTotal' => 0,
                 ]
             ],
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
         if (!$datos['Encabezado']['Totales']['MntNeto']) {
             $datos['Encabezado']['Totales']['MntNeto'] = 0;
@@ -791,7 +829,7 @@ class Dte
      * Método que normaliza los datos de una nota de crédito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-01-27
+     * @version 2016-02-26
      */
     private function normalizar_61(array &$datos)
     {
@@ -805,13 +843,17 @@ class Dte
                     'MntNeto' => 0,
                     'MntExe' => 0,
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
-                    'IVA' =>false,
+                    'IVA' => false,
+                    'ImptoReten' => false,
+                    'IVANoRet' => false,
                     'MntTotal' => 0,
                 ]
             ],
         ], $datos);
         // normalizar datos
         $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
         if (!$datos['Encabezado']['Totales']['MntNeto']) {
             $datos['Encabezado']['Totales']['MntNeto'] = 0;
@@ -823,7 +865,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-13
+     * @version 2016-02-26
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -842,6 +884,7 @@ class Dte
                 'PrcItem' => false,
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
+                'CodImpAdic' => false,
             ], $d);
             if ($d['CdgItem']!==false and !is_array($d['CdgItem'])) {
                 $d['CdgItem'] = [
@@ -923,14 +966,80 @@ class Dte
     }
 
     /**
+     * Método que calcula los montos de impuestos adicionales o retenciones
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-27
+     */
+    private function normalizar_impuesto_retenido(array &$datos)
+    {
+        // copiar montos
+        $montos = [];
+        foreach ($datos['Detalle'] as &$d) {
+            if (!empty($d['CodImpAdic'])) {
+                if (!isset($montos[$d['CodImpAdic']]))
+                    $montos[$d['CodImpAdic']] = 0;
+                $montos[$d['CodImpAdic']] += $d['MontoItem'];
+            }
+        }
+        // si hay montos y no hay total para impuesto retenido se arma
+        if (!empty($montos)) {
+            if (!is_array($datos['Encabezado']['Totales']['ImptoReten'])) {
+                $datos['Encabezado']['Totales']['ImptoReten'] = [];
+            } else if (!isset($datos['Encabezado']['Totales']['ImptoReten'][0])) {
+                $datos['Encabezado']['Totales']['ImptoReten'] = [$datos['Encabezado']['Totales']['ImptoReten']];
+            }
+        }
+        // armar impuesto adicional o retención en los totales
+        foreach ($montos as $codigo => $neto) {
+            // buscar si existe el impuesto en los totales
+            $i = 0;
+            foreach ($datos['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
+                if ($ImptoReten['TipoImp']==$codigo) {
+                    break;
+                }
+                $i++;
+            }
+            // si no existe se crea
+            if (!isset($datos['Encabezado']['Totales']['ImptoReten'][$i])) {
+                $datos['Encabezado']['Totales']['ImptoReten'][] = [
+                    'TipoImp' => $codigo
+                ];
+            }
+            // se normaliza
+            $datos['Encabezado']['Totales']['ImptoReten'][$i] = array_merge([
+                'TipoImp' => $codigo,
+                'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+                'MontoImp' => null,
+            ], $datos['Encabezado']['Totales']['ImptoReten'][$i]);
+            // si el monto no existe se asigna
+            if ($datos['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp']===null) {
+                $datos['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp'] = round($neto * $datos['Encabezado']['Totales']['ImptoReten'][$i]['TasaImp']/100);
+            }
+        }
+        // quitar los codigos que no existen en el detalle
+        if (is_array($datos['Encabezado']['Totales']['ImptoReten'])) {
+            $codigos = array_keys($montos);
+            $n_impuestos = count($datos['Encabezado']['Totales']['ImptoReten']);
+            for ($i=0; $i<$n_impuestos; $i++) {
+                if (!in_array($datos['Encabezado']['Totales']['ImptoReten'][$i]['TipoImp'], $codigos)) {
+                    unset($datos['Encabezado']['Totales']['ImptoReten'][$i]);
+                }
+            }
+            sort($datos['Encabezado']['Totales']['ImptoReten']);
+        }
+    }
+
+    /**
      * Método que calcula el monto del IVA y el monto total del documento a
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-02-26
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
+        // agregar IVA y monto total
         if (!empty($datos['Encabezado']['Totales']['MntNeto'])) {
             if ($datos['Encabezado']['IdDoc']['MntBruto']==1) {
                 list($datos['Encabezado']['Totales']['MntNeto'], $datos['Encabezado']['Totales']['IVA']) = $this->calcularNetoIVA(
@@ -952,6 +1061,19 @@ class Dte
         } else {
             if (!$datos['Encabezado']['Totales']['MntTotal'] and !empty($datos['Encabezado']['Totales']['MntExe'])) {
                 $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntExe'];
+            }
+        }
+        // si hay impuesto retenido o adicional se contabiliza en el total
+        if (!empty($datos['Encabezado']['Totales']['ImptoReten'])) {
+            foreach ($datos['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
+                // si es retención se resta al total y se traspasaa IVA no retenido
+                // en caso que corresponda
+                if ($ImptoReten['TipoImp']==15) {
+                    $datos['Encabezado']['Totales']['MntTotal'] -= $ImptoReten['MontoImp'];
+                    if ($ImptoReten['MontoImp']!=$datos['Encabezado']['Totales']['IVA']) {
+                        $datos['Encabezado']['Totales']['IVANoRet'] = $datos['Encabezado']['Totales']['IVA'] - $ImptoReten['MontoImp'];
+                    }
+                }
             }
         }
     }

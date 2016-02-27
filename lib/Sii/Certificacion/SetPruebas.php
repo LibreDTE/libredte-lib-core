@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Certificacion;
 /**
  * Clase para parsear y procesar los casos de un set pruebas
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-10-02
+ * @version 2016-02-16
  */
 class SetPruebas
 {
@@ -34,9 +34,10 @@ class SetPruebas
     private static $tipos = [
         'FACTURA ELECTRONICA' => 33,
         'FACTURA NO AFECTA O EXENTA ELECTRONICA' => 34,
-        'NOTA DE CREDITO ELECTRONICA' => 61,
+        'FACTURA DE COMPRA ELECTRONICA' => 46,
         'GUIA DE DESPACHO' => 52,
         'NOTA DE DEBITO ELECTRONICA' => 56,
+        'NOTA DE CREDITO ELECTRONICA' => 61,
     ]; ///< Glosas de los tipos de documentos de acuerdo a nombres en set de pruebas
 
     private static $item_cols = [
@@ -172,6 +173,10 @@ class SetPruebas
                         if ($documentos[$caso['referencia']['caso']]['Encabezado']['IdDoc']['TipoDTE']==34 and isset($detalle['PrcItem'])) {
                             $detalle['IndExe'] = 1;
                         }
+                    }
+                    // si es factura de compra se agrega código de retención
+                    if ($TipoDTE==46) {
+                        $detalle['CodImpAdic'] = 15;
                     }
                     // agregar detalle del item a los detalles
                     $documento['Detalle'][] = $detalle;

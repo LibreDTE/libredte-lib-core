@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-16
+ * @version 2016-02-27
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -36,7 +36,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
-    private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Notas de crédito y notas de débito no tienen acuse de recibo
+    private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
     private $ecl = 8; ///< error correction level para PHP >= 7.0.0
 
@@ -83,6 +83,12 @@ class Dte extends \sasco\LibreDTE\PDF
         8 => 'Traslado para exportación (no venta)',
         9 => 'Venta para exportación',
     ]; ///< Tipos de traslado para guías de despacho
+
+    private $adicionales = [
+        15 => 'IVA retenido',
+        19 => 'IVA anticipado harina',
+        34 => 'IVA retenido trigo',
+    ]; ///< Impuestos adicionales y retenciones
 
     /**
      * Constructor de la clase
@@ -808,7 +814,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2016-02-27
      */
     private function agregarTotales(array $totales, $y = 190)
     {
@@ -824,17 +830,47 @@ class Dte extends \sasco\LibreDTE\PDF
         $glosas = [
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
-            'IVA' => 'I.V.A. ('.$totales['TasaIVA'].'%) $',
+            'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
             'MntTotal' => 'Total $',
         ];
+        // agregar impuestos adicionales y retenciones
+        if (!empty($totales['ImptoReten'])) {
+            $ImptoReten = $totales['ImptoReten'];
+            $MntTotal = $totales['MntTotal'];
+            unset($totales['ImptoReten'], $totales['MntTotal']);
+            if (!isset($ImptoReten[0])) {
+                $ImptoReten = [$ImptoReten];
+            }
+            foreach($ImptoReten as $i) {
+                // guardar monto
+                $totales['ImptoReten_'.$i['TipoImp']] = $i['MontoImp'];
+                // asignar glosa
+                if (isset($this->adicionales[$i['TipoImp']])) {
+                    $glosa = $this->adicionales[$i['TipoImp']];
+                } else {
+                    $glosa = 'Impto. Reten. Cód '.$i['TipoImp'];
+                }
+                $glosas['ImptoReten_'.$i['TipoImp']] = $glosa.' ('.$i['TasaImp'].'%) $';
+                debug($i);
+            }
+            $totales['MntTotal'] = $MntTotal;
+        }
         // agregar cada uno de los totales
         $this->setY($y);
         foreach ($totales as $key => $total) {
             if ($total!==false and isset($glosas[$key])) {
-                $x = 175;
-                $this->Texto($glosas[$key].' :', $x, null, 'R', 1);
-                $this->Texto($this->num($total), $x+25, null, 'R', 1);
-                $this->Ln();
+                $x = 145;
+                $y = $this->GetY();
+                if (!$this->cedible) {
+                    $this->Texto($glosas[$key].' :', $x, null, 'R', 30);
+                    $this->Texto($this->num($total), $x+25, $y, 'R', 30);
+                    $this->Ln();
+                } else {
+                    $this->MultiTexto($glosas[$key].' :', $x, null, 'R', 30);
+                    $y_new = $this->GetY();
+                    $this->Texto($this->num($total), $x+25, $y, 'R', 30);
+                    $this->SetY($y_new);
+                }
             }
         }
     }
@@ -843,7 +879,8 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-11-17
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-27
      */
     private function agregarTotalesContinuo(array $totales,$y)
     {
@@ -862,6 +899,28 @@ class Dte extends \sasco\LibreDTE\PDF
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%)',
             'MntTotal' => 'TOTAL',
         ];
+        // agregar impuestos adicionales y retenciones
+        if (!empty($totales['ImptoReten'])) {
+            $ImptoReten = $totales['ImptoReten'];
+            $MntTotal = $totales['MntTotal'];
+            unset($totales['ImptoReten'], $totales['MntTotal']);
+            if (!isset($ImptoReten[0])) {
+                $ImptoReten = [$ImptoReten];
+            }
+            foreach($ImptoReten as $i) {
+                // guardar monto
+                $totales['ImptoReten_'.$i['TipoImp']] = $i['MontoImp'];
+                // asignar glosa
+                if (isset($this->adicionales[$i['TipoImp']])) {
+                    $glosa = $this->adicionales[$i['TipoImp']];
+                } else {
+                    $glosa = 'Impto. Reten. Cód '.$i['TipoImp'];
+                }
+                $glosas['ImptoReten_'.$i['TipoImp']] = $glosa.' ('.$i['TasaImp'].'%) $';
+                debug($i);
+            }
+            $totales['MntTotal'] = $MntTotal;
+        }
         // agregar cada uno de los totales
         $this->setY($y);
         foreach ($totales as $key => $total) {
