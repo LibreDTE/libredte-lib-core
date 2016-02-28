@@ -33,17 +33,19 @@ Funcionalidades implementadas
 - Generación, y envío, de XML EnvioDTE firmado.
 - Consulta del estado de envío de DTE a través de su Track ID.
 - Consulta del estado de envío de un Libro a través de su Track ID.
-- Generación de XML, timbraje y firma del DTE. Documentos de sets de pruebas y
-  etapa simulación aceptados por el SII:
-    - Factura electrónica (set de pruebas básico)
-    - Factura exenta electrónica (set de pruebas factura exenta)
-    - Nota de débito electrónica (set de pruebas básico y set de pruebas factura exenta)
-    - Nota de crédito electrónica (set de pruebas básico y set de pruebas factura exenta)
-    - Libro de ventas electrónico (set de pruebas básico)
-    - Libro de compras electrónico (set de pruebas de compras)
-    - Guía de despacho electrónica
+- Generación de XML, timbraje y firma del DTE.
+- Documentos certificados por el SII:
+    - Factura electrónica (33)
+    - Factura exenta electrónica (34)
+    - Boleta electrónica (39)
+    - Boleta exenta electrónica (41)
+    - Factura de compra electrónica (46)
+    - Guía de despacho electrónica (52)
+    - Nota de débito electrónica (56)
+    - Nota de crédito electrónica (61)
+    - Información electrónica de compras y ventas (IECV)
     - Libro de guías de despacho electrónico
-    - Boletas electrónicas, libro de boletas y reporte de consumo de folios
+    - Libro de boletas y reporte de consumo de folios
 - Etapa de intercambio con otros contribuyentes:
     - Acuse de recibo
     - Recibo de mercaderías y servicios prestados
