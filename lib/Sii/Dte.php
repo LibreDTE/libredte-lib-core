@@ -1068,11 +1068,15 @@ class Dte
             foreach ($datos['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
                 // si es retención se resta al total y se traspasaa IVA no retenido
                 // en caso que corresponda
-                if ($ImptoReten['TipoImp']==15) {
+                if (in_array($ImptoReten['TipoImp'], [15, 34])) {
                     $datos['Encabezado']['Totales']['MntTotal'] -= $ImptoReten['MontoImp'];
                     if ($ImptoReten['MontoImp']!=$datos['Encabezado']['Totales']['IVA']) {
                         $datos['Encabezado']['Totales']['IVANoRet'] = $datos['Encabezado']['Totales']['IVA'] - $ImptoReten['MontoImp'];
                     }
+                }
+                // si es adicional se suma al total
+                else if (in_array($ImptoReten['TipoImp'], [19])) {
+                    $datos['Encabezado']['Totales']['MntTotal'] += $ImptoReten['MontoImp'];
                 }
             }
         }
