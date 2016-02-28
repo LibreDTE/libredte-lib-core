@@ -97,7 +97,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-21
+     * @version 2016-02-28
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -110,6 +110,7 @@ class Dte
                 $method = 'normalizar_'.$this->tipo;
                 if (method_exists($this, $method))
                     $this->$method($datos);
+                $this->normalizar_final($datos);
             }
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
             $this->xml = (new \sasco\LibreDTE\XML())->generate([
@@ -564,6 +565,34 @@ class Dte
                     'FchRef' => date('Y-m-d'),
                     'CodRef' => false,
                 ], $r);
+            }
+        }
+    }
+
+    /**
+     * Método que realiza la normalización final de los datos de un documento
+     * tributario electrónico. Esto se aplica todos los documentos una vez que
+     * ya se aplicaron las normalizaciones por tipo
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-28
+     */
+    private function normalizar_final(array &$datos)
+    {
+        // normalizar montos de pagos programados
+        if (is_array($datos['Encabezado']['IdDoc']['MntPagos'])) {
+            $montos = 0;
+            if (!isset($datos['Encabezado']['IdDoc']['MntPagos'][0]))
+                $datos['Encabezado']['IdDoc']['MntPagos'] = [$datos['Encabezado']['IdDoc']['MntPagos']];
+            foreach ($datos['Encabezado']['IdDoc']['MntPagos'] as &$MntPagos) {
+                $MntPagos = array_merge([
+                    'FchPago' => null,
+                    'MntPago' => null,
+                    'GlosaPagos' => false,
+                ], $MntPagos);
+                if ($MntPagos['MntPago']===null) {
+                    $MntPagos['MntPago'] = $datos['Encabezado']['Totales']['MntTotal'];
+                }
             }
         }
     }
