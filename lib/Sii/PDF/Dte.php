@@ -189,8 +189,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setY(max($y));
         $this->Ln();
         $this->agregarFechaEmision($dte['Encabezado']['IdDoc']['FchEmis']);
-        if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
-            $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
+        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']);
         $this->agregarReceptor($dte['Encabezado']['Receptor']);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
@@ -239,8 +238,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setY(50);
         $this->agregarReceptorContinuo($dte['Encabezado']['Receptor']);
         $this->agregarFechaEmisionContinuo($dte['Encabezado']['IdDoc']['FchEmis']);
-        if (!empty($dte['Encabezado']['IdDoc']['FmaPago']))
-            $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']['FmaPago']);
+        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']);
         if ($dte['Encabezado']['IdDoc']['TipoDTE']==52)
             $this->agregarTraslado(
                 $dte['Encabezado']['IdDoc']['IndTraslado'],
@@ -496,7 +494,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param date Fecha de emisión de la boleta en formato AAAA-MM-DD
      * @param x Posición horizontal de inicio en el PDF
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2015-11-17
+     * @version 2016-02-28
      */
     private function agregarFechaEmisionContinuo($date, $x = 3,$y = 50,$w = 68)
     {
@@ -506,22 +504,36 @@ class Dte extends \sasco\LibreDTE\PDF
         $fecha = date('\D\I\A j \d\e \M\E\S \d\e\l Y', $unixtime);
         $dia = $dias[date('w', $unixtime)];
         $mes = $meses[date('n', $unixtime)-1];
-       // $this->MultiTexto("Fecha de Emisión: ".str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x, $this->y, 'L', $w);
-        $this->MultiTexto("Fecha de Emisión: 2015-08-17", $x, $this->y, 'L', $w);
+        $this->MultiTexto("Fecha de Emisión: ".str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x, $this->y, 'L', $w);
     }
 
     /**
      * Método que agrega la condición de venta del documento
-     * @param condicion_venta Código de la condición de venta (tag FmaPago XML)
+     * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2016-02-28
      */
-    private function agregarCondicionVenta($condicion_venta, $x = 10)
+    private function agregarCondicionVenta($IdDoc, $x = 10)
     {
-        $this->Texto('Venta', $x);
-        $this->Texto(':', $x+22);
-        $this->MultiTexto($this->formas_pago[$condicion_venta], $x+26);
+        // forma de pago
+        if ($IdDoc['FmaPago']) {
+            $this->Texto('Venta', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto($this->formas_pago[$IdDoc['FmaPago']], $x+26);
+        }
+        // pago antificado
+        if ($IdDoc['FchCancel']) {
+            $this->Texto('Pagado el', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchCancel']), $x+26);
+        }
+        // fecha vencimiento
+        if ($IdDoc['FchVenc']) {
+            $this->Texto('Vencimiento', $x);
+            $this->Texto(':', $x+22);
+            $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchVenc']), $x+26);
+        }
     }
 
     /**
