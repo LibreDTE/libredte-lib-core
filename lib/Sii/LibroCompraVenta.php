@@ -349,7 +349,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                     ],
                     'Caratula' => $this->caratula,
                     'ResumenPeriodo' => $ResumenPeriodo,
-                    'Detalle' => $incluirDetalle ? $this->detalles : false,
+                    'Detalle' => $incluirDetalle ? $this->getDetalle() : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ]
@@ -485,6 +485,27 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         // entregar resumen
         ksort($totales);
         return $totales;
+    }
+
+    /**
+     * Método que entrega el detalle a incluir en XML, en el libro de ventas no
+     * se incluyen ciertos documentos (como boletas), por eso se usa este método
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-02-12
+     */
+    private function getDetalle()
+    {
+        if ($this->caratula['TipoOperacion']=='VENTA') {
+            $omitir = [35, 38, 39, 41, 105, 500, 501, 919, 920, 922, 924];
+            $detalles = [];
+            foreach ($this->detalles as $d) {
+                if (!in_array($d['TpoDoc'], $omitir)) {
+                    $detalles[] = $d;
+                }
+            }
+            return $detalles;
+        }
+        return $this->detalles;
     }
 
     /**
