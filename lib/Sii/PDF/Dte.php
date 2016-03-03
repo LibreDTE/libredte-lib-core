@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-02-27
+ * @version 2016-03-03
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -83,12 +83,6 @@ class Dte extends \sasco\LibreDTE\PDF
         8 => 'Traslado para exportación (no venta)',
         9 => 'Venta para exportación',
     ]; ///< Tipos de traslado para guías de despacho
-
-    private $adicionales = [
-        15 => 'IVA retenido',
-        19 => 'IVA anticipado harina',
-        34 => 'IVA retenido trigo',
-    ]; ///< Impuestos adicionales y retenciones
 
     /**
      * Constructor de la clase
@@ -826,7 +820,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-27
+     * @version 2016-03-03
      */
     private function agregarTotales(array $totales, $y = 190)
     {
@@ -854,16 +848,8 @@ class Dte extends \sasco\LibreDTE\PDF
                 $ImptoReten = [$ImptoReten];
             }
             foreach($ImptoReten as $i) {
-                // guardar monto
                 $totales['ImptoReten_'.$i['TipoImp']] = $i['MontoImp'];
-                // asignar glosa
-                if (isset($this->adicionales[$i['TipoImp']])) {
-                    $glosa = $this->adicionales[$i['TipoImp']];
-                } else {
-                    $glosa = 'Impto. Reten. Cód '.$i['TipoImp'];
-                }
-                $glosas['ImptoReten_'.$i['TipoImp']] = $glosa.' ('.$i['TasaImp'].'%) $';
-                debug($i);
+                $glosas['ImptoReten_'.$i['TipoImp']] = \sasco\LibreDTE\Sii\ImpuestosAdicionales::getGlosa($i['TipoImp']).' ('.$i['TasaImp'].'%) $';
             }
             $totales['MntTotal'] = $MntTotal;
         }
@@ -892,7 +878,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-27
+     * @version 2016-03-03
      */
     private function agregarTotalesContinuo(array $totales,$y)
     {
@@ -920,16 +906,8 @@ class Dte extends \sasco\LibreDTE\PDF
                 $ImptoReten = [$ImptoReten];
             }
             foreach($ImptoReten as $i) {
-                // guardar monto
                 $totales['ImptoReten_'.$i['TipoImp']] = $i['MontoImp'];
-                // asignar glosa
-                if (isset($this->adicionales[$i['TipoImp']])) {
-                    $glosa = $this->adicionales[$i['TipoImp']];
-                } else {
-                    $glosa = 'Impto. Reten. Cód '.$i['TipoImp'];
-                }
-                $glosas['ImptoReten_'.$i['TipoImp']] = $glosa.' ('.$i['TasaImp'].'%) $';
-                debug($i);
+                $glosas['ImptoReten_'.$i['TipoImp']] = \sasco\LibreDTE\Sii\ImpuestosAdicionales::getGlosa($i['TipoImp']).' ('.$i['TasaImp'].'%) $';
             }
             $totales['MntTotal'] = $MntTotal;
         }

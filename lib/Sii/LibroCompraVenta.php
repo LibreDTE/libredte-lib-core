@@ -65,7 +65,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-29
+     * @version 2016-03-03
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -88,6 +88,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'IVANoRec' => false,
             'IVAUsoComun' => false,
             'OtrosImp' => false,
+            'IVARetTotal' => false,
+            'IVARetParcial' => false,
             'MntSinCred' => false,
             'MntTotal' => false,
             'IVANoRetenido' => false,
@@ -108,6 +110,19 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         if (!empty($detalle['OtrosImp'])) {
             if (!isset($detalle['OtrosImp'][0]))
                 $detalle['OtrosImp'] = [$detalle['OtrosImp']];
+            // calcular y agregar IVA no retenido si corresponde
+            $retenido = ImpuestosAdicionales::getRetenido($detalle['OtrosImp']);
+            if ($retenido) {
+                // si el iva retenido es total
+                if ($retenido == $detalle['MntIVA']) {
+                    $detalle['IVARetTotal'] = $retenido;
+                }
+                // si el iva retenido es parcial
+                else {
+                    $detalle['IVARetParcial'] = $retenido;
+                    $detalle['IVANoRetenido'] = $detalle['MntIVA'] - $retenido;
+                }
+            }
         }
         // calcular monto total si no se especificó
         if ($detalle['MntTotal']===false) {
@@ -126,7 +141,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             // descontar del total la retención total de IVA
             if (!empty($detalle['OtrosImp'])) {
                 foreach ($detalle['OtrosImp'] as $OtrosImp) {
-                    if ($OtrosImp['CodImp']==15) {
+                    if (ImpuestosAdicionales::getTipo($OtrosImp['CodImp'])=='R') {
                         $detalle['MntTotal'] -= $OtrosImp['MntImp'];
                     }
                 }
@@ -386,7 +401,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-12
+     * @version 2016-03-03
      */
     public function getResumen()
     {
@@ -408,6 +423,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'FctProp' => false,
             'TotCredIVAUsoComun' => false,
             'TotOtrosImp' => false,
+            'TotIVARetTotal' => false,
+            'TotIVARetParcial' => false,
             'TotImpSinCredito' => false,
             'TotMntTotal' => 0,
             'TotIVANoRetenido' => false,
@@ -472,6 +489,12 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             // contabilizar impuesto sin derecho a crédito
             if (!empty($d['MntSinCred']))
                 $totales[$d['TpoDoc']]['TotImpSinCredito'] += $d['MntSinCred'];
+            // contabilidad IVA retenido total
+            if (!empty($d['IVARetTotal']))
+                $totales[$d['TpoDoc']]['TotIVARetTotal'] += $d['IVARetTotal'];
+            // contabilizar IVA retenido parcial
+            if (!empty($d['IVARetParcial']))
+                $totales[$d['TpoDoc']]['TotIVARetParcial'] += $d['IVARetParcial'];
             // contabilizar IVA no retenido
             if (!empty($d['IVANoRetenido']))
                 $totales[$d['TpoDoc']]['TotIVANoRetenido'] += $d['IVANoRetenido'];

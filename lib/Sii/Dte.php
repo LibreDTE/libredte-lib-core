@@ -1070,7 +1070,7 @@ class Dte
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-26
+     * @version 2016-03-03
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
@@ -1103,14 +1103,14 @@ class Dte
             foreach ($datos['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
                 // si es retención se resta al total y se traspasaa IVA no retenido
                 // en caso que corresponda
-                if (in_array($ImptoReten['TipoImp'], [15, 34])) {
+                if (ImpuestosAdicionales::getTipo($ImptoReten['TipoImp'])=='R') {
                     $datos['Encabezado']['Totales']['MntTotal'] -= $ImptoReten['MontoImp'];
                     if ($ImptoReten['MontoImp']!=$datos['Encabezado']['Totales']['IVA']) {
                         $datos['Encabezado']['Totales']['IVANoRet'] = $datos['Encabezado']['Totales']['IVA'] - $ImptoReten['MontoImp'];
                     }
                 }
                 // si es adicional se suma al total
-                else if (in_array($ImptoReten['TipoImp'], [19])) {
+                else if (ImpuestosAdicionales::getTipo($ImptoReten['TipoImp'])=='A') {
                     $datos['Encabezado']['Totales']['MntTotal'] += $ImptoReten['MontoImp'];
                 }
             }
