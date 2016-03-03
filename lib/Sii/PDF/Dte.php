@@ -512,24 +512,24 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-28
+     * @version 2016-03-03
      */
     private function agregarCondicionVenta($IdDoc, $x = 10)
     {
         // forma de pago
-        if ($IdDoc['FmaPago']) {
+        if (!empty($IdDoc['FmaPago'])) {
             $this->Texto('Venta', $x);
             $this->Texto(':', $x+22);
             $this->MultiTexto($this->formas_pago[$IdDoc['FmaPago']], $x+26);
         }
-        // pago antificado
-        if ($IdDoc['FchCancel']) {
+        // pago anticicado
+        if (!empty($IdDoc['FchCancel'])) {
             $this->Texto('Pagado el', $x);
             $this->Texto(':', $x+22);
             $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchCancel']), $x+26);
         }
         // fecha vencimiento
-        if ($IdDoc['FchVenc']) {
+        if (!empty($IdDoc['FchVenc'])) {
             $this->Texto('Vencimiento', $x);
             $this->Texto(':', $x+22);
             $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchVenc']), $x+26);
