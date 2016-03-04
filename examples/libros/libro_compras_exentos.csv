@@ -1,0 +1,8 @@
+Tipo Doc;Folio;Rut Contraparte;Tasa Impuesto;Razón Social Contraparte;Tipo Impuesto[1=IVA:2=LEY 18211];Fecha Emisión;Anulado[A];Monto Exento;Monto Neto;Monto IVA (Recuperable);Cod IVA no Rec;Monto IVA no Rec;IVA Uso Común;Factor IVA Uso Comun;Cod Otro Imp (Con Crédito);Tasa Otro Imp (Con Crédito);Monto Otro Imp (Con Crédito);Monto Total;Monto Otro Imp Sin Crédito;Monto Activo Fijo;Monto IVA Activo Fijo;IVA No Retenido;Sucursal SII
+30;234;60803000-K;19;;;2000-12-01;;;27690;;1;;;;;;;;;;;;
+33;32;60803000-K;19;;;2000-12-01;;9202;7517;;1;;;;;;;;;;;;
+34;781;60803000-K;;;;2000-12-01;;29862;;;;;;;;;;;;;;;
+32;45;60803000-K;;;;2000-12-01;;29662;;;;;;;;;;;;;;;
+60;451;60803000-K;19;;;2000-12-01;;;2761;;1;;;;;;;;;;;;
+61;67;60803000-K;19;;;2000-12-01;;9202;7517;;1;;;;;;;;;;;;
+56;211;60803000-K;;;;2000-12-01;;5383;;;;;;;;;;;;;;;
