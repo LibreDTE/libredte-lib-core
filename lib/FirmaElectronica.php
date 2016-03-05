@@ -336,7 +336,7 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2016-03-05
      */
     public function signXML($xml, $reference = '', $tag = null, $xmlns_xsi = false)
     {
@@ -398,7 +398,11 @@ class FirmaElectronica
         ])->documentElement, true);
         // calcular DigestValue
         if ($tag) {
-            $digest = base64_encode(sha1($doc->documentElement->getElementsByTagName($tag)->item(0)->C14N(), true));
+            $item = $doc->documentElement->getElementsByTagName($tag)->item(0);
+            if (!$item) {
+                return $this->error('No fue posible obtener el nodo con el tag '.$tag);
+            }
+            $digest = base64_encode(sha1($item->C14N(), true));
         } else {
             $digest = base64_encode(sha1($doc->C14N(), true));
         }
