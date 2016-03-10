@@ -54,6 +54,11 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
         $this->AddPage();
         if (isset($libro['LibroCompraVenta']))
             $libro = $libro['LibroCompraVenta'];
+        // título del libro
+        $this->SetFont('helvetica', 'B', 16);
+        $this->Texto('Libro de '.ucfirst(strtolower($libro['EnvioLibro']['Caratula']['TipoOperacion'])), null, null, 'C');
+        $this->Ln();
+        $this->Ln();
         // carátula
         $this->SetFont('helvetica', 'B', 12);
         $this->Texto('I.- Carátula');
