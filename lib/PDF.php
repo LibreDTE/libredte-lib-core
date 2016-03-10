@@ -57,8 +57,8 @@ class PDF extends \TCPDF
         $this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP+$top, PDF_MARGIN_RIGHT);
         $this->SetHeaderMargin(PDF_MARGIN_HEADER+$top);
         $this->SetFooterMargin(PDF_MARGIN_FOOTER+6);
-        $this->SetCreator('LibreDTE (http://libredte.cl)');
-        $this->SetAuthor('LibreDTE (http://libredte.cl)');
+        $this->SetCreator('LibreDTE (https://libredte.cl)');
+        $this->SetAuthor('LibreDTE (https://libredte.cl)');
         $this->setFont('helvetica');
     }
 
@@ -93,7 +93,7 @@ class PDF extends \TCPDF
      * Método que asigna el texto que se deberá usar en el footer
      * @param footer =true se asignará texto por defecto. String al lado izquiero o bien arreglo con índices left y right con sus textos
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-29
+     * @version 2016-03-09
      */
     public function setFooterText($footer = true)
     {
@@ -102,7 +102,7 @@ class PDF extends \TCPDF
             if ($footer===true) {
                 $footer = [
                     'left' => 'LibreDTE ¡facturación electrónica libre para Chile!',
-                    'right' => !$this->papelContinuo ? 'http://libredte.cl' : '',
+                    'right' => empty($this->papelContinuo) ? 'https://libredte.cl' : '',
                 ];
             }
             // si no es arreglo se convierte en uno
