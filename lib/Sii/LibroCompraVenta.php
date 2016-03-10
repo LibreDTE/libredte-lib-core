@@ -65,7 +65,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-03
+     * @version 2016-03-10
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -94,6 +94,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'MntTotal' => false,
             'IVANoRetenido' => false,
         ], $detalle);
+        // largo campos
+        $detalle['RznSoc'] = substr($detalle['RznSoc'], 0, 50);
         // calcular valores que no se hayan entregado
         if (isset($detalle['FctProp'])) {
             if ($detalle['IVAUsoComun']===false)
