@@ -118,7 +118,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                 num($d['MntTotal']),
             ];
         }
-        $titulos = ['DTE', 'Folio', 'Emisión', 'Receptor', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
+        $titulos = ['DTE', 'Folio', 'Emisión', 'RUT', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
         $this->addTable($titulos, $detalle, ['width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]]);
         // firma
         $this->SetFont('helvetica', 'B', 12);
