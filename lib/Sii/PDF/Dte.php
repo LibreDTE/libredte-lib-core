@@ -384,7 +384,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private function getSucursalSII($codigo)
     {
         if (!is_numeric($codigo)) {
-            $sucursal = strtoupper(utf8_encode($codigo));
+            $sucursal = mb_strtoupper($codigo, 'UTF-8');
             return $sucursal=='SANTIAGO' ? 'SANTIAGO CENTRO' : $sucursal;
         }
         return 'SUC '.$codigo;
