@@ -379,12 +379,12 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param codigo de la sucursal del SII
      * @return Sucursal del SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2016-03-11
      */
     private function getSucursalSII($codigo)
     {
         if (!is_numeric($codigo)) {
-            $sucursal = strtoupper($codigo);
+            $sucursal = strtoupper(utf8_encode($codigo));
             return $sucursal=='SANTIAGO' ? 'SANTIAGO CENTRO' : $sucursal;
         }
         return 'SUC '.$codigo;
