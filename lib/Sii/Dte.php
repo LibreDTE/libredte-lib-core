@@ -658,7 +658,7 @@ class Dte
      * Método que normaliza los datos de una boleta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-15
+     * @version 2016-03-14
      */
     private function normalizar_39(array &$datos)
     {
@@ -678,20 +678,8 @@ class Dte
                 ]
             ],
         ], $datos);
-        // cambiar tags de DTE a boleta si se pasaron
-        if ($datos['Encabezado']['Emisor']['RznSoc']) {
-            $datos['Encabezado']['Emisor']['RznSocEmisor'] = $datos['Encabezado']['Emisor']['RznSoc'];
-            $datos['Encabezado']['Emisor']['RznSoc'] = false;
-        }
-        if ($datos['Encabezado']['Emisor']['GiroEmis']) {
-            $datos['Encabezado']['Emisor']['GiroEmisor'] = $datos['Encabezado']['Emisor']['GiroEmis'];
-            $datos['Encabezado']['Emisor']['GiroEmis'] = false;
-        }
-        $datos['Encabezado']['Emisor']['Acteco'] = false;
-        $datos['Encabezado']['Emisor']['Telefono'] = false;
-        $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
-        $datos['Encabezado']['Receptor']['GiroRecep'] = false;
         // normalizar datos
+        $this->normalizar_boletas($datos);
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
@@ -701,7 +689,7 @@ class Dte
      * Método que normaliza los datos de una boleta exenta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-15
+     * @version 2016-03-14
      */
     private function normalizar_41(array &$datos)
     {
@@ -721,20 +709,8 @@ class Dte
                 ]
             ],
         ], $datos);
-        // cambiar tags de DTE a boleta si se pasaron
-        if ($datos['Encabezado']['Emisor']['RznSoc']) {
-            $datos['Encabezado']['Emisor']['RznSocEmisor'] = $datos['Encabezado']['Emisor']['RznSoc'];
-            $datos['Encabezado']['Emisor']['RznSoc'] = false;
-        }
-        if ($datos['Encabezado']['Emisor']['GiroEmis']) {
-            $datos['Encabezado']['Emisor']['GiroEmisor'] = $datos['Encabezado']['Emisor']['GiroEmis'];
-            $datos['Encabezado']['Emisor']['GiroEmis'] = false;
-        }
-        $datos['Encabezado']['Emisor']['Acteco'] = false;
-        $datos['Encabezado']['Emisor']['Telefono'] = false;
-        $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
-        $datos['Encabezado']['Receptor']['GiroRecep'] = false;
         // normalizar datos
+        $this->normalizar_boletas($datos);
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
@@ -1110,11 +1086,37 @@ class Dte
                     }
                 }
                 // si es adicional se suma al total
-                else if (ImpuestosAdicionales::getTipo($ImptoReten['TipoImp'])=='A') {
+                else if (ImpuestosAdicionales::getTipo($ImptoReten['TipoImp'])=='A' and isset($ImptoReten['MontoImp'])) {
                     $datos['Encabezado']['Totales']['MntTotal'] += $ImptoReten['MontoImp'];
                 }
             }
         }
+    }
+
+    /**
+     * Método que normaliza las boletas electrónicas, dte 39 y 41
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-03-14
+     */
+    private function normalizar_boletas(array &$datos)
+    {
+        // cambiar tags de DTE a boleta si se pasaron
+        if ($datos['Encabezado']['Emisor']['RznSoc']) {
+            $datos['Encabezado']['Emisor']['RznSocEmisor'] = $datos['Encabezado']['Emisor']['RznSoc'];
+            $datos['Encabezado']['Emisor']['RznSoc'] = false;
+        }
+        if ($datos['Encabezado']['Emisor']['GiroEmis']) {
+            $datos['Encabezado']['Emisor']['GiroEmisor'] = $datos['Encabezado']['Emisor']['GiroEmis'];
+            $datos['Encabezado']['Emisor']['GiroEmis'] = false;
+        }
+        $datos['Encabezado']['Emisor']['Acteco'] = false;
+        $datos['Encabezado']['Emisor']['Telefono'] = false;
+        $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
+        $datos['Encabezado']['Receptor']['GiroRecep'] = false;
+        // quitar otros tags que no son parte de las boletas
+        $datos['Encabezado']['IdDoc']['FmaPago'] = false;
+        $datos['Encabezado']['IdDoc']['FchCancel'] = false;
     }
 
     /**
