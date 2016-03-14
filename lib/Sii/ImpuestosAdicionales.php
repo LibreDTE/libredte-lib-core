@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para trabajar con los impuestos adicionales
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-03-03
+ * @version 2016-03-14
  */
 class ImpuestosAdicionales
 {
@@ -36,13 +36,97 @@ class ImpuestosAdicionales
             'tipo' => 'R',
             'glosa' => 'IVA retenido',
         ],
+        17 => [
+            'tipo' => 'A',
+            'glosa' => 'IVA anticipado faenamiento carne',
+        ],
+        18 => [
+            'tipo' => 'A',
+            'glosa' => 'IVA anticiado carne',
+        ],
         19 => [
             'tipo' => 'A',
             'glosa' => 'IVA anticipado harina',
         ],
+        23 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 37 letras A, B, C',
+        ],
+        24 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 42 letra B',
+        ],
+        25 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 42 letra C',
+        ],
+        26 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 42 letra C',
+        ],
+        27 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 42 letra A',
+        ],
+        271 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 42 letra A par. 2do',
+        ],
+        30 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido legumbres',
+        ],
+        31 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido silvestres',
+        ],
+        32 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido ganado',
+        ],
+        33 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido madera',
+        ],
         34 => [
             'tipo' => 'R',
             'glosa' => 'IVA retenido trigo',
+        ],
+        36 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido arroz',
+        ],
+        37 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido hidrobiológicas',
+        ],
+        38 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido chatarra',
+        ],
+        39 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido PPA',
+        ],
+        41 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido construcción',
+        ],
+        44 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 37 letras E, H, I, L',
+        ],
+        45 => [
+            'tipo' => 'A',
+            'glosa' => 'Art 37 letra J',
+        ],
+        47 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido cartones',
+        ],
+        48 => [
+            'tipo' => 'R',
+            'glosa' => 'IVA retenido frambuesas y pasas',
         ],
     ]; ///< Datos de impuestos adicionales (A) y retenciones (R)
 
