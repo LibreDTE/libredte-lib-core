@@ -176,7 +176,13 @@ class SetPruebas
                     }
                     // si es factura de compra se agrega código de retención
                     if ($TipoDTE==46) {
-                        $detalle['CodImpAdic'] = 15;
+                        if (strpos($detalle['NmbItem'], 'PPA')) {
+                            $detalle['CdgItem'] = 3900;
+                            $detalle['Retenedor'] = true;
+                            $detalle['CodImpAdic'] = 39;
+                        } else {
+                            $detalle['CodImpAdic'] = 15;
+                        }
                     }
                     // agregar detalle del item a los detalles
                     $documento['Detalle'][] = $detalle;

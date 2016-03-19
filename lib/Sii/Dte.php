@@ -876,7 +876,7 @@ class Dte
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-26
+     * @version 2016-03-19
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -887,19 +887,35 @@ class Dte
             $d = array_merge([
                 'NroLinDet' => $item++,
                 'CdgItem' => false,
-                'IndExe' =>false,
+                'IndExe' => false,
+                'Retenedor' => false,
                 'NmbItem' => false,
                 'DscItem' => false,
+                'QtyRef' => false,
+                'UnmdRef' => false,
+                'PrcRef' => false,
                 'QtyItem' => false,
                 'UnmdItem' => false,
                 'PrcItem' => false,
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
                 'CodImpAdic' => false,
+                'MontoItem' => false,
             ], $d);
+            if ($d['Retenedor']!==false) {
+                if (!is_array($d['Retenedor'])) {
+                    $d['Retenedor'] = ['IndAgente'=>'R'];
+                }
+                $d['Retenedor'] = array_merge([
+                    'IndAgente' => 'R',
+                    'MntBaseFaena' => false,
+                    'MntMargComer' => false,
+                    'PrcConsFinal' => false,
+                ], $d['Retenedor']);
+            }
             if ($d['CdgItem']!==false and !is_array($d['CdgItem'])) {
                 $d['CdgItem'] = [
-                    'TpoCodigo' => 'INT1',
+                    'TpoCodigo' => empty($d['Retenedor']['IndAgente']) ? 'INT1' : 'CPCS',
                     'VlrCodigo' => $d['CdgItem'],
                 ];
             }
@@ -980,7 +996,7 @@ class Dte
      * Método que calcula los montos de impuestos adicionales o retenciones
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-27
+     * @version 2016-03-19
      */
     private function normalizar_impuesto_retenido(array &$datos)
     {
@@ -1020,7 +1036,7 @@ class Dte
             // se normaliza
             $datos['Encabezado']['Totales']['ImptoReten'][$i] = array_merge([
                 'TipoImp' => $codigo,
-                'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaImp' => ImpuestosAdicionales::getTasa($codigo),
                 'MontoImp' => null,
             ], $datos['Encabezado']['Totales']['ImptoReten'][$i]);
             // si el monto no existe se asigna
