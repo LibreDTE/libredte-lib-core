@@ -902,6 +902,9 @@ class Dte
                 'CodImpAdic' => false,
                 'MontoItem' => false,
             ], $d);
+            if ($d['Retenedor']===false and is_array($d['CdgItem']) and $d['CdgItem']['TpoCodigo']=='CPCS') {
+                $d['Retenedor'] = true;
+            }
             if ($d['Retenedor']!==false) {
                 if (!is_array($d['Retenedor'])) {
                     $d['Retenedor'] = ['IndAgente'=>'R'];
