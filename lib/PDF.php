@@ -80,7 +80,7 @@ class PDF extends \TCPDF
     {
         if (is_array($this->footer) and (!empty($this->footer['left']) or !empty($this->footer['right']))) {
             $style = ['width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => [50, 50, 50]];
-            $this->Line(0, $this->getY()-1, 220, $this->getY()-2, $style);
+            $this->Line(0, $this->getY()-1, 290, $this->getY()-2, $style);
             $this->SetFont('', 'B', 6);
             if (empty($this->papelContinuo)) {
                 if (!empty($this->footer['left']))
