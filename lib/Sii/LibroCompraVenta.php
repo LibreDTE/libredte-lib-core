@@ -50,12 +50,14 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return =true si se pudo agregar el detalle o =false si no se agregó por exceder el límite del libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-05
+     * @version 2016-04-03
      */
     public function agregar(array $detalle, $normalizar = true)
     {
         if ($normalizar)
             $this->normalizarDetalle($detalle);
+        if (!$detalle['TpoDoc'])
+            return false;
         $this->detalles[] = $detalle;
         return true;
     }
