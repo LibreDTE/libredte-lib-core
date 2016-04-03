@@ -54,7 +54,7 @@ class XML extends \DomDocument
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
      * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2016-04-03
      */
     public function generate(array $array, \DOMElement &$parent = null)
     {
@@ -87,7 +87,7 @@ class XML extends \DomDocument
                         $parent->appendChild($Node);
                     } else {
                         if ($value!==false) {
-                            $Node = new \DOMElement($key, $this->sanitize($value));
+                            $Node = new \DOMElement($key, $this->iso2utf($this->sanitize($value)));
                             $parent->appendChild($Node);
                         }
                     }
@@ -142,7 +142,7 @@ class XML extends \DomDocument
      * @param xpath XPath para consulta al XML y extraer sólo una parte
      * @return String con código XML aplanado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-22
+     * @version 2016-04-03
      */
     public function getFlattened($xpath = null)
     {
@@ -150,7 +150,7 @@ class XML extends \DomDocument
             $node = $this->xpath($xpath)->item(0);
             if (!$node)
                 return false;
-            $xml = $this->encode($node->C14N());
+            $xml = $this->utf2iso($node->C14N());
         } else {
             $xml = $this->C14N();
         }
@@ -166,11 +166,25 @@ class XML extends \DomDocument
      * @param string String en UTF-8 o ISO-8859-1
      * @return String en ISO-8859-1
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-02
+     * @version 2016-04-03
      */
-    private function encode($string)
+    private function utf2iso($string)
     {
         return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($string) : $string;
+    }
+
+    /**
+     * Método que codifica el string como UTF-8 si es que fue pasado como
+     * ISO-8859-1
+     * @param string String en UTF-8 o ISO-8859-1
+     * @return String en ISO-8859-1
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-03
+     */
+    private function iso2utf($string)
+    {
+        return $string;
+        //return mb_detect_encoding($string, ['ISO-8859-1', 'UTF-8']) == 'ISO-8859-1' ? utf8_encode($string) : $string;
     }
 
     /**
