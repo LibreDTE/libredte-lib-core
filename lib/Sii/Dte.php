@@ -875,8 +875,9 @@ class Dte
     /**
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-19
+     * @version 2016-03-29
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -899,6 +900,8 @@ class Dte
                 'PrcItem' => false,
                 'DescuentoPct' => false,
                 'DescuentoMonto' => false,
+                'RecargoPct' => false,
+                'RecargoMonto' => false,
                 'CodImpAdic' => false,
                 'MontoItem' => false,
             ], $d);
@@ -924,9 +927,14 @@ class Dte
             }
             if (empty($d['MontoItem'])) {
                 $d['MontoItem'] = round($d['QtyItem'] * $d['PrcItem']);
+                // aplicar descuento
                 if ($d['DescuentoPct'])
                     $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
                 $d['MontoItem'] -= (int)$d['DescuentoMonto'];
+                // aplicar recargo
+                if ($d['RecargoPct'])
+                    $d['RecargoMonto'] = round($d['MontoItem'] * (int)$d['RecargoPct']/100);
+                $d['MontoItem'] += (int)$d['RecargoMonto'];
             }
             // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
@@ -963,6 +971,7 @@ class Dte
      * Método que aplica los descuentos y recargos generales respectivos a los
      * montos que correspondan según e indicador del descuento o recargo
      * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-11
      */
