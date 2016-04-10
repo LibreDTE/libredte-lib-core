@@ -49,7 +49,7 @@ class PDF extends \TCPDF
      * @param s Tipo de hoja
      * @param top Margen extra (al normal) para la parte de arriba del PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2016-02-06
+     * @version 2016-03-20
      */
     public function __construct($o = 'P', $u = 'mm', $s = 'LETTER', $top = 0)
     {
@@ -57,8 +57,8 @@ class PDF extends \TCPDF
         $this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP+$top, PDF_MARGIN_RIGHT);
         $this->SetHeaderMargin(PDF_MARGIN_HEADER+$top);
         $this->SetFooterMargin(PDF_MARGIN_FOOTER+6);
-        $this->SetCreator('LibreDTE (https://libredte.cl)');
-        $this->SetAuthor('LibreDTE (https://libredte.cl)');
+        $this->SetAuthor('Un proyecto de SASCO SpA - https://sasco.cl');
+        $this->SetCreator('LibreDTE - https://libredte.cl');
         $this->setFont('helvetica');
     }
 
@@ -74,18 +74,27 @@ class PDF extends \TCPDF
     /**
      * Método que genera el footer del PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-16
+     * @version 2015-03-20
      */
     public function Footer()
     {
         if (is_array($this->footer) and (!empty($this->footer['left']) or !empty($this->footer['right']))) {
             $style = ['width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => [50, 50, 50]];
-            $this->Line($this->getX(), $this->getY()-1, 201, $this->getY()-2, $style);
+            $this->Line(0, $this->getY()-1, 290, $this->getY()-2, $style);
             $this->SetFont('', 'B', 6);
-            if (!empty($this->footer['left']))
-                $this->Texto($this->footer['left']);
-            if (!empty($this->footer['right']))
-                $this->Texto($this->footer['right'], null, null, 'R');
+            if (empty($this->papelContinuo)) {
+                if (!empty($this->footer['left']))
+                    $this->Texto($this->footer['left']);
+                if (!empty($this->footer['right']))
+                    $this->Texto($this->footer['right'], null, null, 'R');
+            } else {
+                if (!empty($this->footer['left']))
+                    $this->Texto($this->footer['left'], null, null, 'C');
+                if (!empty($this->footer['right'])) {
+                    $this->Ln();
+                    $this->Texto($this->footer['right'], null, null, 'C');
+                }
+            }
         }
     }
 
@@ -93,7 +102,7 @@ class PDF extends \TCPDF
      * Método que asigna el texto que se deberá usar en el footer
      * @param footer =true se asignará texto por defecto. String al lado izquiero o bien arreglo con índices left y right con sus textos
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2016-03-09
+     * @version 2016-03-20
      */
     public function setFooterText($footer = true)
     {
@@ -102,7 +111,7 @@ class PDF extends \TCPDF
             if ($footer===true) {
                 $footer = [
                     'left' => 'LibreDTE ¡facturación electrónica libre para Chile!',
-                    'right' => empty($this->papelContinuo) ? 'https://libredte.cl' : '',
+                    'right' => 'https://libredte.cl',
                 ];
             }
             // si no es arreglo se convierte en uno
