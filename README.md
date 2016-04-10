@@ -81,17 +81,17 @@ Los ejemplos están disponibles en el directorio
 Licencia
 --------
 
-Este software se encuentra bajo los términos de la licencia GPL 3 que puedes
-encontrar en el archivo
+Este software se encuentra bajo los términos de la Licencia Pública General
+Affero de GNU puedes encontrar en el archivo
 [COPYING](https://raw.githubusercontent.com/LibreDTE/libredte-lib/master/COPYING).
 
 En resumen:
 
 - Tienes la libertad de: usar, estudiar, distribuir y cambiar LibreDTE.
 - Si utilizas LibreDTE en tu software, dicho software deberá ser publicado bajo
-  licencia GPL o bien alguna otra licencia compatible con la GPL.
-- Si haces cambios a LibreDTE, deberás publicar dichos cambios bajo licencia GPL
-  o bien alguna otra licencia compatible con la GPL.
+  licencia AGPL o bien alguna otra licencia compatible con la AGPL.
+- Si haces cambios a LibreDTE, deberás publicar dichos cambios bajo licencia
+  AGPL o bien alguna otra licencia compatible con la AGPL.
 - Debes hacer referencia al proyecto y autor original de LibreDTE, tanto si usas
   LibreDTE sin modificar o realizando cambios al código.
 
