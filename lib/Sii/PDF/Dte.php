@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-03-10
+ * @version 2016-04-05
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -53,13 +53,27 @@ class Dte extends \sasco\LibreDTE\PDF
         110 => 'FACTURA DE EXPORTACIÓN ELECTRÓNICA',
         111 => 'NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA',
         112 => 'NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA',
-    ]; ///< Glosas para los tipos de documentos
+        807 => 'DUS',
+        809 => 'AWB',
+        810 => 'MIC (MANIFIESTO INTERNACIONAL)',
+        812 => 'RESOLUCION SNA',
+        813 => 'PASAPORTE',
+    ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     private $formas_pago = [
         1 => 'Contado',
         2 => 'Crédito',
         3 => 'Sin costo (entrega gratuita)',
     ]; ///< Glosas de las formas de pago
+
+    private $formas_pago_exportacion = [
+        1 => 'Cobranza hasta 1 año',
+        2 => 'Cobranza más de 1 año',
+        11 => 'Acreditivo hasta 1 año',
+        12 => 'Acreditivo más de 1 año',
+        21 => 'Sin pago',
+        32 => 'Pago anticipado a la fecha de embarque',
+    ]; ///< Códigos de forma de pago (básicos) de la aduana para exportaciones
 
     private $detalle_cols = [
         'CdgItem' => ['title'=>'Código', 'align'=>'left', 'width'=>20],
@@ -415,15 +429,21 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-05
      */
     private function agregarCondicionVenta($IdDoc, $x = 10, $offset = 22)
     {
-        // forma de pago
+        // forma de pago nacional
         if (!empty($IdDoc['FmaPago'])) {
             $this->Texto('Venta', $x);
             $this->Texto(':', $x+$offset);
             $this->MultiTexto($this->formas_pago[$IdDoc['FmaPago']], $x+$offset+2);
+        }
+        // forma de pago exportación
+        if (!empty($IdDoc['FmaPagExp'])) {
+            $this->Texto('Venta', $x);
+            $this->Texto(':', $x+$offset);
+            $this->MultiTexto($this->formas_pago_exportacion[$IdDoc['FmaPagExp']], $x+$offset+2);
         }
         // pago anticicado
         if (!empty($IdDoc['FchCancel'])) {
@@ -444,7 +464,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-05
      */
     private function agregarReceptor(array $receptor, $x = 10, $offset = 22)
     {
@@ -452,9 +472,11 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Señor(es)', $x);
         $this->Texto(':', $x+$offset);
         $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2);
-        $this->Texto('R.U.T.', $x);
-        $this->Texto(':', $x+$offset);
-        $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
+        if ($receptor['RUTRecep']!='55555555-5') {
+            $this->Texto('R.U.T.', $x);
+            $this->Texto(':', $x+$offset);
+            $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
+        }
         if (!empty($receptor['GiroRecep'])) {
             $this->Texto('Giro', $x);
             $this->Texto(':', $x+$offset);
@@ -462,7 +484,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         $this->Texto('Dirección', $x);
         $this->Texto(':', $x+$offset);
-        $this->MultiTexto($receptor['DirRecep'].', '.$receptor['CmnaRecep'], $x+$offset+2);
+        $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):''), $x+$offset+2);
         $contacto = [];
         if (!empty($receptor['Contacto']))
             $contacto[] = $receptor['Contacto'];
@@ -481,7 +503,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-05
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
@@ -501,7 +523,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 $transporte .= ' por '.$Transporte['RUTTrans'];
             if (!empty($Transporte['Patente']))
                 $transporte .= ' en vehículo '.$Transporte['Patente'];
-            if (is_array($Transporte['Chofer'])) {
+            if (isset($Transporte['Chofer']) and is_array($Transporte['Chofer'])) {
                 if (!empty($Transporte['Chofer']['NombreChofer']))
                     $transporte .= ' con chofer '.$Transporte['Chofer']['NombreChofer'];
                 if (!empty($Transporte['Chofer']['RUTChofer']))
@@ -513,6 +535,24 @@ class Dte extends \sasco\LibreDTE\PDF
                 $this->MultiTexto(ucfirst(trim($transporte)), $x+$offset+2);
             }
         }
+        // agregar información de aduana
+        if (!empty($Transporte['Aduana']) and is_array($Transporte['Aduana'])) {
+            $col = 0;
+            foreach ($Transporte['Aduana'] as $tag => $codigo) {
+                $glosa = \sasco\LibreDTE\Sii\Aduana::getGlosa($tag);
+                $valor = \sasco\LibreDTE\Sii\Aduana::getValor($tag, $codigo);
+                if ($glosa!==false and $valor!==false) {
+                    $this->Texto($glosa, $x+$col);
+                    $this->Texto(':', $x+$offset+$col);
+                    $this->Texto($valor, $x+$offset+2+$col);
+                    if ($col)
+                        $this->Ln();
+                    $col = abs($col-110);
+                }
+            }
+            if ($col)
+                $this->Ln();
+        }
     }
 
     /**
@@ -520,7 +560,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param referencias Arreglo con las referencias del documento (tag Referencia del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-05
      */
     private function agregarReferencia($referencias, $x = 10, $offset = 22)
     {
@@ -530,7 +570,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'];
             if (isset($r['RazonRef']) and $r['RazonRef']!==false)
                 $texto = $texto.': '.$r['RazonRef'];
-            $this->Texto('Referenc.', $x);
+            $this->Texto('Referencia', $x);
             $this->Texto(':', $x+$offset);
             $this->MultiTexto($texto, $x+$offset+2);
         }
@@ -637,7 +677,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2016-04-05
      */
     private function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
     {
@@ -647,6 +687,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
             $this->Texto($tipo.' global de '.$valor, $x);
+            $this->Ln();
         }
     }
 
@@ -654,12 +695,13 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-05
      */
     private function agregarTotales(array $totales, $y = 190, $x = 145, $offset = 25)
     {
         // normalizar totales
         $totales = array_merge([
+            'TpoMoneda' => false,
             'MntNeto' => false,
             'MntExe' => false,
             'TasaIVA' => false,
@@ -668,6 +710,7 @@ class Dte extends \sasco\LibreDTE\PDF
         ], $totales);
         // glosas
         $glosas = [
+            'TpoMoneda' => 'Moneda',
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
@@ -818,10 +861,12 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param n Número que se desea formatear
      * @return Número formateado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-14
+     * @version 2016-04-05
      */
     private function num($n)
     {
+        if (!is_numeric($n))
+            return $n;
         $broken_number = explode('.', (string)$n);
         if (isset($broken_number[1]))
             return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];

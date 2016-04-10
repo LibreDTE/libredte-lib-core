@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Certificacion;
 /**
  * Clase para parsear y procesar los casos de un set pruebas
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-02-16
+ * @version 2016-04-04
  */
 class SetPruebas
 {
@@ -38,6 +38,9 @@ class SetPruebas
         'GUIA DE DESPACHO' => 52,
         'NOTA DE DEBITO ELECTRONICA' => 56,
         'NOTA DE CREDITO ELECTRONICA' => 61,
+        'FACTURA DE EXPORTACION ELECTRONICA' => 110,
+        'NOTA DE DEBITO DE EXPORTACION ELECTRONICA' => 111,
+        'NOTA DE CREDITO DE EXPORTACION ELECTRONICA' => 112,
     ]; ///< Glosas de los tipos de documentos de acuerdo a nombres en set de pruebas
 
     private static $item_cols = [
@@ -46,7 +49,9 @@ class SetPruebas
         'UNIDAD MEDIDA' => 'UnmdItem',
         'VALOR UNITARIO' => 'PrcItem',
         'PRECIO UNITARIO' => 'PrcItem',
+        'VALOR LINEA' => 'PrcItem',
         'DESCUENTO ITEM' => 'DescuentoPct',
+        'RECARGO ITEM' => 'RecargoPct',
     ]; ///< Glosas de los detalles en el set de pruebas y su nombre en el XML
 
     private static $referencias = [
@@ -100,13 +105,102 @@ class SetPruebas
         'TRASLADO DE MATERIALES ENTRE BODEGAS DE LA EMPRESA' => 5,
     ]; ///< Indicadores para traslados en guías de despacho
 
+    private static $formas_pago_exportacion = [
+        'COBRANZA' => 2,
+        'SIN PAGO' => 21,
+    ]; ///< Códigos de forma de pago de la aduana para exportaciones
+
+    private static $referencias_exportacion = [
+        'DUS' => 807,
+        'AWB' => 809,
+        'MIC (MANIFIESTO INTERNACIONAL)' => 810,
+        'RESOLUCION SNA' => 812,
+    ]; ///< Códigos de referencias para documentos de exportación
+
+    private static $Aduana = [
+        'MODALIDAD DE VENTA' => [
+            'tag' => 'CodModVenta',
+            'val' => [
+                'BAJO CONDICION' => 2,
+                'EN CONSIGNACION CON UN MINIMO A FIRME' => 4,
+            ],
+        ],
+        'CLAUSULA DE VENTA DE EXPORTACION' => [
+            'tag' => 'CodClauVenta',
+            'val' => [
+                'CIF' => 1,
+                'CFR' => 2,
+            ],
+        ],
+        'TOTAL CLAUSULA DE VENTA' => 'TotClauVenta',
+        'VIA DE TRANSPORTE' => [
+            'tag' => 'CodViaTransp',
+            'val' => [
+                'MARITIMA, FLUVIAL Y LACUSTRE' => 1,
+                'CARRETERO/TERRESTRE' => 7,
+            ],
+        ],
+        'PUERTO DE EMBARQUE' => [
+            'tag' => 'CodPtoEmbarque',
+            'val' => [
+                'SAN ANTONIO' => 906,
+                'CALDERA' => 918,
+            ],
+        ],
+        'PUERTO DE DESEMBARQUE' => [
+            'tag' => 'CodPtoDesemb',
+            'val' => [
+                'BARCELONA' => 563,
+                'SIDNEY' => 811,
+            ],
+        ],
+        'UNIDAD DE MEDIDA DE TARA' => [
+            'tag' => 'CodUnidMedTara',
+            'val' => [
+                'U' => 10,
+                'PAR' => 17,
+            ],
+        ],
+        'UNIDAD PESO BRUTO' => [
+            'tag' => 'CodUnidPesoBruto',
+            'val' => [
+                'KN' => 6,
+                'LT' => 9,
+            ],
+        ],
+        'UNIDAD PESO NETO' => [
+            'tag' => 'CodUnidPesoNeto',
+            'val' => [
+                'KN' => 6,
+                'LT' => 9,
+            ],
+        ],
+        'TOTAL BULTOS' => 'TotBultos',
+        'TIPO DE BULTO' => [
+            'tag' => 'TipoBultos',
+            'val' => [
+                'ROLLOS' => 13,
+                'PALLETS' => 80,
+            ],
+        ],
+        'FLETE (**)' => 'MntFlete',
+        'SEGURO (**)' => 'MntSeguro',
+        'PAIS RECEPTOR Y PAIS DESTINO' => [
+            'tag' => 'CodPaisRecep',
+            'val' => [
+                'AUSTRALIA' => 406,
+                'ESPANA' => 517,
+            ],
+        ],
+    ]; ///< Códigos de aduana usados en set de pruebas
+
     /**
      * Método que procesa el arreglo con los datos del set de pruebas y crea el
      * arreglo json con los documentos listos para ser pasados a la clase Dte
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2016-04-04
      */
     public static function getJSON($archivo, array $folios = [], $separador = '==============')
     {
@@ -137,6 +231,61 @@ class SetPruebas
                     $documento['Encabezado']['IdDoc']['IndTraslado'] = self::$IndTraslados[$caso['motivo']];
                 }
             }
+            // si es documento de exportación se agrega información de receptor más aduana
+            else if (in_array($TipoDTE, [110, 111, 112]) and isset($caso['exportacion'])) {
+                // forma de pago
+                if (!empty($caso['exportacion']['FORMA DE PAGO EXPORTACION'])) {
+                    $documento['Encabezado']['IdDoc']['FmaPagExp'] = self::$formas_pago_exportacion[$caso['exportacion']['FORMA DE PAGO EXPORTACION']];
+                    unset($caso['exportacion']['FORMA DE PAGO EXPORTACION']);
+                }
+                // datos del receptor
+                if (!empty($caso['exportacion']['NACIONALIDAD'])) {
+                    $documento['Encabezado']['Receptor']['Extranjero'] = [
+                        'Nacionalidad' => self::$Aduana['PAIS RECEPTOR Y PAIS DESTINO']['val'][$caso['exportacion']['NACIONALIDAD']],
+                    ];
+                    unset($caso['exportacion']['NACIONALIDAD']);
+                }
+                // datos de la aduana
+                $documento['Encabezado']['Transporte']['Aduana'] = [];
+                foreach ($caso['exportacion'] as $var => $val) {
+                    if (isset(self::$Aduana[$var]) and (isset(self::$Aduana[$var]['val'][$val]) or !is_array(self::$Aduana[$var]))) {
+                        $tag = is_array(self::$Aduana[$var]) ? self::$Aduana[$var]['tag'] : self::$Aduana[$var];
+                        $valor = is_array(self::$Aduana[$var]) ? self::$Aduana[$var]['val'][$val] : $val;
+                        $documento['Encabezado']['Transporte']['Aduana'][$tag] = $valor;
+                        unset($caso['exportacion'][$var]);
+                    }
+                }
+                if (!empty($documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'])) {
+                    $documento['Encabezado']['Transporte']['Aduana']['CodPaisDestin'] = $documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'];
+                }
+                // si existe tipo de bultos entonces se crea
+                if (!empty($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'])) {
+                    $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'] = [
+                        'CodTpoBultos' => $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'],
+                        'CantBultos' => $documento['Encabezado']['Transporte']['Aduana']['TotBultos'],
+                        'Marcas' => md5($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'].$documento['Encabezado']['Transporte']['Aduana']['TotBultos']),
+                    ];
+                }
+                if (empty($documento['Encabezado']['Transporte']['Aduana']))
+                    unset($documento['Encabezado']['Transporte']);
+                // agregar moneda a los totales
+                if (!empty($caso['exportacion']['MONEDA DE LA OPERACION'])) {
+                    $documento['Encabezado']['Totales']['TpoMoneda'] = $caso['exportacion']['MONEDA DE LA OPERACION'];
+                    unset($caso['exportacion']['MONEDA DE LA OPERACION']);
+                }
+                // agregar indicador de servicio
+                if (isset($caso['detalle'])) {
+                    foreach ($caso['detalle'] as $item) {
+                        if ($item['ITEM']=='ASESORIAS Y PROYECTOS PROFESIONALES') {
+                            $documento['Encabezado']['IdDoc']['IndServicio'] = 3;
+                            break;
+                        } else if ($item['ITEM']=='ALOJAMIENTO HABITACIONES') {
+                            $documento['Encabezado']['IdDoc']['IndServicio'] = 4;
+                            break;
+                        }
+                    }
+                }
+            }
             // agregar detalle del documento si fue pasado explícitamente
             if (isset($caso['detalle'])) {
                 $documento['Detalle'] = [];
@@ -146,7 +295,7 @@ class SetPruebas
                     foreach ($item as $col => $val) {
                         $col = self::$item_cols[$col];
                         // procesar cada valor de acuerdo al nombre de la columna
-                        if ($col=='DescuentoPct')
+                        if (in_array($col, ['DescuentoPct', 'RecargoPct']))
                             $detalle[$col] = substr($val, 0, -1);
                         else
                             $detalle[$col] = utf8_encode($val); // se convierte de ISO-8859-1 a UTF-8
@@ -206,13 +355,42 @@ class SetPruebas
                 }
             }
             // agregar descuento del documento
+            $documento['DscRcgGlobal'] = [];
             if (!empty($caso['descuento'])) {
-                $documento['DscRcgGlobal'] = [
+                $documento['DscRcgGlobal'][] = [
                     'TpoMov' => 'D',
                     'TpoValor' => '%',
                     'ValorDR' => substr($caso['descuento'], 0, -1),
                 ];
             }
+            // agregar recarglo total clausula
+            if (!empty($caso['recargo-total-clausula'])) {
+                $documento['DscRcgGlobal'][] = [
+                    'TpoMov' => 'R',
+                    'TpoValor' => '$',
+                    'ValorDR' => round((substr($caso['recargo-total-clausula'], 0, -1)/100) * $documento['Encabezado']['Transporte']['Aduana']['TotClauVenta'], 2),
+                ];
+            }
+            // agregar recargo por flete y/o seguro
+            foreach (['MntFlete', 'MntSeguro'] as $recargo_aduana) {
+                if (!empty($documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana])) {
+                    $documento['DscRcgGlobal'][] = [
+                        'TpoMov' => 'R',
+                        'TpoValor' => '$',
+                        'ValorDR' => $documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana],
+                    ];
+                }
+            }
+            // agregar recargo del documento
+            if (!empty($caso['recargo'])) {
+                $documento['DscRcgGlobal'][] = [
+                    'TpoMov' => 'R',
+                    'TpoValor' => '%',
+                    'ValorDR' => substr($caso['recargo'], 0, -1),
+                ];
+            }
+            if (empty($documento['DscRcgGlobal']))
+                unset($documento['DscRcgGlobal']);
             // agregar descuento del documento de la referencia
             else if (!empty($caso['referencia']) and isset($documentos[$caso['referencia']['caso']]['DscRcgGlobal'])) {
                 $documento['DscRcgGlobal'] = $documentos[$caso['referencia']['caso']]['DscRcgGlobal'];
@@ -246,6 +424,33 @@ class SetPruebas
                     else
                         unset($documento['Encabezado']['Totales']['MntExe']);
                 }
+                // si es documento de exportación se resetean los totales y se copia el tipo de moneda si no existe
+                if (in_array($documento['Encabezado']['IdDoc']['TipoDTE'], [111, 112])) {
+                    if (!empty($documento['Encabezado']['Totales']['TpoMoneda'])) {
+                        $documento['Encabezado']['Totales'] = ['TpoMoneda'=>$documento['Encabezado']['Totales']['TpoMoneda']];
+                    } else {
+                        $documento['Encabezado']['Totales'] = ['TpoMoneda'=>$documentos[$caso['referencia']['caso']]['Encabezado']['Totales']['TpoMoneda']];
+                    }
+                }
+            }
+            // agregar referencia de exportación si existe
+            if (!empty($caso['exportacion']['REFERENCIA'])) {
+                if (!is_array($caso['exportacion']['REFERENCIA']))
+                    $caso['exportacion']['REFERENCIA'] = [$caso['exportacion']['REFERENCIA']];
+                foreach ($caso['exportacion']['REFERENCIA'] as $ref) {
+                    $documento['Referencia'][] = [
+                        'TpoDocRef' => self::$referencias_exportacion[$ref],
+                        'FolioRef' => substr(md5($ref), 0, 18),
+                    ];
+                }
+                unset($caso['exportacion']['REFERENCIA']);
+            }
+            // si es servicio de hotelería se crea referencia para el pasaporte
+            if (isset($documento['Encabezado']['IdDoc']['IndServicio']) and $documento['Encabezado']['IdDoc']['IndServicio']==4) {
+                $documento['Referencia'][] = [
+                    'TpoDocRef' => 813,
+                    'FolioRef' => 'E12345',
+                ];
             }
             // si hay Totales pero no hay valores en los detalles entonces se cambia a sólo Totales de MntTotal = 0
             if (isset($documento['Encabezado']['Totales'])) {
@@ -285,7 +490,7 @@ class SetPruebas
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2016-04-04
      */
     private static function parse($archivo, $separador)
     {
@@ -372,6 +577,48 @@ class SetPruebas
                         if (strpos($lineas[$i], 'DESCUENTO GLOBAL ITEMES AFECTOS')===0) {
                             $aux = explode("\t", $lineas[$i]);
                             $datos['descuento'] = trim(array_pop($aux));
+                        }
+                        // si es factura de exportación las líneas podrían ser los datos de la factura
+                        if ($datos['documento']=='FACTURA DE EXPORTACION ELECTRONICA') {
+                            // recargo en item formato %VAL TIPO
+                            if ($lineas[$i][0]=='%') {
+                                if (strpos($lineas[$i], 'RECARGO EN LA LINEA DE ITEM')) {
+                                    $recargo = +substr($lineas[$i], 1, strpos($lineas[$i], ' ')-1);
+                                    foreach ($datos['detalle'] as &$d) {
+                                        $d['RECARGO ITEM'] = $recargo.'%';
+                                    }
+                                }
+                            }
+                            // datos de exportación formato VAR:VAL
+                            else {
+                                $aux = explode(':', $lineas[$i]);
+                                $val = trim(array_pop($aux));
+                                //$var = strtolower(str_replace(' ', '_', trim(array_pop($aux), " \t\n\r\0\x0B(*)")));
+                                $var = trim(array_pop($aux));
+                                // comisión en extranjero, recargo global
+                                if ($var=='COMISIONES EN EL EXTRANJERO (RECARGOS GLOBALES)') {
+                                    if (strpos($val, 'DEL TOTAL DE LA CLAUSULA')) {
+                                        $datos['recargo-total-clausula'] = substr($val, 0, strpos($val, '%')+1);
+                                    }
+                                }
+                                // descuento en alguna línea de detalle
+                                else if (strpos($var, 'DESCUENTO LINEA #')===0) {
+                                    $linea = (int)substr($var, strpos($var, '#')+1);
+                                    $datos['detalle'][$linea-1]['DESCUENTO ITEM'] = $val;
+                                }
+                                // agregar a los datos de aduanas
+                                else {
+                                    if (!isset($datos['exportacion']))
+                                        $datos['exportacion'] = [];
+                                    if (!isset($datos['exportacion'][$var])) {
+                                        $datos['exportacion'][$var] = $val;
+                                    } else {
+                                        if (!is_array($datos['exportacion'][$var]))
+                                            $datos['exportacion'][$var] = [$datos['exportacion'][$var]];
+                                        $datos['exportacion'][$var][] = $val;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

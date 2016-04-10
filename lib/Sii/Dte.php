@@ -475,7 +475,7 @@ class Dte
      * @param tasa Tasa del IVA
      * @return Arreglo con el neto y el iva
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-04-05
      */
     private function calcularNetoIVA($total, $tasa = null)
     {
@@ -497,7 +497,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-28
+     * @version 2016-04-05
      */
     private function normalizar(array &$datos)
     {
@@ -533,11 +533,15 @@ class Dte
                 'Receptor' => [
                     'RUTRecep' => false,
                     'RznSocRecep' => false,
+                    'Extranjero' => false,
                     'GiroRecep' => false,
                     'Contacto' => false,
                     'CorreoRecep' => false,
                     'DirRecep' => false,
                     'CmnaRecep' => false,
+                ],
+                'Totales' => [
+                    'TpoMoneda' => false,
                 ],
             ],
         ], $datos);
@@ -873,11 +877,225 @@ class Dte
     }
 
     /**
+     * Método que normaliza los datos de una factura electrónica de exportación
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-05
+     */
+    private function normalizar_110(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Transporte' => [
+                    'Patente' => false,
+                    'RUTTrans' => false,
+                    'Chofer' => false,
+                    'DirDest' => false,
+                    'CmnaDest' => false,
+                    'CiudadDest' => false,
+                    'Aduana' => [
+                        'CodModVenta' => false,
+                        'CodClauVenta' => false,
+                        'TotClauVenta' => false,
+                        'CodViaTransp' => false,
+                        'NombreTransp' => false,
+                        'RUTCiaTransp' => false,
+                        'NomCiaTransp' => false,
+                        'IdAdicTransp' => false,
+                        'Booking' => false,
+                        'Operador' => false,
+                        'CodPtoEmbarque' => false,
+                        'IdAdicPtoEmb' => false,
+                        'CodPtoDesemb' => false,
+                        'IdAdicPtoDesemb' => false,
+                        'Tara' => false,
+                        'CodUnidMedTara' => false,
+                        'PesoBruto' => false,
+                        'CodUnidPesoBruto' => false,
+                        'PesoNeto' => false,
+                        'CodUnidPesoNeto' => false,
+                        'TotItems' => false,
+                        'TotBultos' => false,
+                        'TipoBultos' => false,
+                        'MntFlete' => false,
+                        'MntSeguro' => false,
+                        'CodPaisRecep' => false,
+                        'CodPaisDestin' => false,
+                    ],
+                ],
+                'Totales' => [
+                    'TpoMoneda' => null,
+                    'MntExe' => 0,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+        $this->normalizar_exportacion($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una nota de débito de exportación
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-05
+     */
+    private function normalizar_111(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Transporte' => [
+                    'Patente' => false,
+                    'RUTTrans' => false,
+                    'Chofer' => false,
+                    'DirDest' => false,
+                    'CmnaDest' => false,
+                    'CiudadDest' => false,
+                    'Aduana' => [
+                        'CodModVenta' => false,
+                        'CodClauVenta' => false,
+                        'TotClauVenta' => false,
+                        'CodViaTransp' => false,
+                        'NombreTransp' => false,
+                        'RUTCiaTransp' => false,
+                        'NomCiaTransp' => false,
+                        'IdAdicTransp' => false,
+                        'Booking' => false,
+                        'Operador' => false,
+                        'CodPtoEmbarque' => false,
+                        'IdAdicPtoEmb' => false,
+                        'CodPtoDesemb' => false,
+                        'IdAdicPtoDesemb' => false,
+                        'Tara' => false,
+                        'CodUnidMedTara' => false,
+                        'PesoBruto' => false,
+                        'CodUnidPesoBruto' => false,
+                        'PesoNeto' => false,
+                        'CodUnidPesoNeto' => false,
+                        'TotItems' => false,
+                        'TotBultos' => false,
+                        'TipoBultos' => false,
+                        'MntFlete' => false,
+                        'MntSeguro' => false,
+                        'CodPaisRecep' => false,
+                        'CodPaisDestin' => false,
+                    ],
+                ],
+                'Totales' => [
+                    'TpoMoneda' => null,
+                    'MntExe' => 0,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+        $this->normalizar_exportacion($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de una nota de crédito de exportación
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-05
+     */
+    private function normalizar_112(array &$datos)
+    {
+        // completar con nodos por defecto
+        $datos = \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct([
+            'Encabezado' => [
+                'IdDoc' => false,
+                'Emisor' => false,
+                'Receptor' => false,
+                'Transporte' => [
+                    'Patente' => false,
+                    'RUTTrans' => false,
+                    'Chofer' => false,
+                    'DirDest' => false,
+                    'CmnaDest' => false,
+                    'CiudadDest' => false,
+                    'Aduana' => [
+                        'CodModVenta' => false,
+                        'CodClauVenta' => false,
+                        'TotClauVenta' => false,
+                        'CodViaTransp' => false,
+                        'NombreTransp' => false,
+                        'RUTCiaTransp' => false,
+                        'NomCiaTransp' => false,
+                        'IdAdicTransp' => false,
+                        'Booking' => false,
+                        'Operador' => false,
+                        'CodPtoEmbarque' => false,
+                        'IdAdicPtoEmb' => false,
+                        'CodPtoDesemb' => false,
+                        'IdAdicPtoDesemb' => false,
+                        'Tara' => false,
+                        'CodUnidMedTara' => false,
+                        'PesoBruto' => false,
+                        'CodUnidPesoBruto' => false,
+                        'PesoNeto' => false,
+                        'CodUnidPesoNeto' => false,
+                        'TotItems' => false,
+                        'TotBultos' => false,
+                        'TipoBultos' => false,
+                        'MntFlete' => false,
+                        'MntSeguro' => false,
+                        'CodPaisRecep' => false,
+                        'CodPaisDestin' => false,
+                    ],
+                ],
+                'Totales' => [
+                    'TpoMoneda' => null,
+                    'MntExe' => 0,
+                    'MntTotal' => 0,
+                ]
+            ],
+        ], $datos);
+        // normalizar datos
+        $this->normalizar_detalle($datos);
+        $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
+        $this->normalizar_agregar_IVA_MntTotal($datos);
+        $this->normalizar_exportacion($datos);
+    }
+
+    /**
+     * Método que normaliza los datos de exportacion de un documento
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-04
+     */
+    public function normalizar_exportacion(array &$datos)
+    {
+        // agregar modalidad de venta por defecto si no existe
+        if (empty($datos['Encabezado']['Transporte']['Aduana']['CodModVenta']) and (!isset($datos['Encabezado']['IdDoc']['IndServicio']) or !in_array($datos['Encabezado']['IdDoc']['IndServicio'], [3, 4, 5]))) {
+            $datos['Encabezado']['Transporte']['Aduana']['CodModVenta'] = 1;
+        }
+        // quitar campos que no son parte del documento de exportacion
+        $datos['Encabezado']['Receptor']['CmnaRecep'] = false;
+    }
+
+    /**
      * Método que normaliza los detalles del documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-29
+     * @version 2016-04-05
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -905,6 +1123,9 @@ class Dte
                 'CodImpAdic' => false,
                 'MontoItem' => false,
             ], $d);
+            if ($this->esExportacion()) {
+                $d['IndExe'] = 1;
+            }
             if ($d['Retenedor']===false and is_array($d['CdgItem']) and $d['CdgItem']['TpoCodigo']=='CPCS') {
                 $d['Retenedor'] = true;
             }
@@ -925,16 +1146,29 @@ class Dte
                     'VlrCodigo' => $d['CdgItem'],
                 ];
             }
-            if (empty($d['MontoItem'])) {
-                $d['MontoItem'] = round($d['QtyItem'] * $d['PrcItem']);
-                // aplicar descuento
-                if ($d['DescuentoPct'])
-                    $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
-                $d['MontoItem'] -= (int)$d['DescuentoMonto'];
-                // aplicar recargo
-                if ($d['RecargoPct'])
-                    $d['RecargoMonto'] = round($d['MontoItem'] * (int)$d['RecargoPct']/100);
-                $d['MontoItem'] += (int)$d['RecargoMonto'];
+            if ($d['PrcItem']) {
+                if (!$d['QtyItem'])
+                    $d['QtyItem'] = 1;
+                if (empty($d['MontoItem'])) {
+                    $d['MontoItem'] = $this->round(
+                        $d['QtyItem'] * $d['PrcItem'],
+                        $datos['Encabezado']['Totales']['TpoMoneda']
+                    );
+                    // aplicar descuento
+                    if ($d['DescuentoPct']) {
+                        $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
+                    }
+                    $d['MontoItem'] -= $d['DescuentoMonto'];
+                    // aplicar recargo
+                    if ($d['RecargoPct']) {
+                        $d['RecargoMonto'] = round($d['MontoItem'] * (int)$d['RecargoPct']/100);
+                    }
+                    $d['MontoItem'] += $d['RecargoMonto'];
+                    // aproximar monto del item
+                    $d['MontoItem'] = $this->round(
+                        $d['MontoItem'], $datos['Encabezado']['Totales']['TpoMoneda']
+                    );
+                }
             }
             // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
@@ -973,12 +1207,15 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2016-04-05
      */
     private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
         if (!empty($datos['DscRcgGlobal'])) {
             foreach ($datos['DscRcgGlobal'] as $dr) {
+                if (!isset($dr['IndExeDR']) and $this->esExportacion()) {
+                    $dr['IndExeDR'] = 1;
+                }
                 // determinar a que aplicar el descuento/recargo
                 if (!isset($dr['IndExeDR']))
                     $monto = 'MntNeto';
@@ -990,6 +1227,8 @@ class Dte
                 if (empty($datos['Encabezado']['Totales'][$monto]))
                     continue;
                 // calcular valor del descuento o recargo
+                if ($dr['TpoValor']=='$')
+                    $dr['ValorDR'] = $this->round($dr['ValorDR'], $datos['Encabezado']['Totales']['TpoMoneda'], 2);
                 $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
                 // aplicar descuento
                 if ($dr['TpoMov']=='D') {
@@ -999,7 +1238,10 @@ class Dte
                 else if ($dr['TpoMov']=='R') {
                     $datos['Encabezado']['Totales'][$monto] += $valor;
                 }
-                $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
+                $datos['Encabezado']['Totales'][$monto] = $this->round(
+                    $datos['Encabezado']['Totales'][$monto],
+                    $datos['Encabezado']['Totales']['TpoMoneda']
+                );
             }
         }
     }
@@ -1008,7 +1250,7 @@ class Dte
      * Método que calcula los montos de impuestos adicionales o retenciones
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-19
+     * @version 2016-04-05
      */
     private function normalizar_impuesto_retenido(array &$datos)
     {
@@ -1053,11 +1295,13 @@ class Dte
             ], $datos['Encabezado']['Totales']['ImptoReten'][$i]);
             // si el monto no existe se asigna
             if ($datos['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp']===null) {
-                $datos['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp'] = round($neto * $datos['Encabezado']['Totales']['ImptoReten'][$i]['TasaImp']/100);
+                $datos['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp'] = round(
+                    $neto * $datos['Encabezado']['Totales']['ImptoReten'][$i]['TasaImp']/100
+                );
             }
         }
         // quitar los codigos que no existen en el detalle
-        if (is_array($datos['Encabezado']['Totales']['ImptoReten'])) {
+        if (isset($datos['Encabezado']['Totales']['ImptoReten']) and is_array($datos['Encabezado']['Totales']['ImptoReten'])) {
             $codigos = array_keys($montos);
             $n_impuestos = count($datos['Encabezado']['Totales']['ImptoReten']);
             for ($i=0; $i<$n_impuestos; $i++) {
@@ -1074,7 +1318,7 @@ class Dte
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-03
+     * @version 2016-04-05
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
@@ -1087,7 +1331,9 @@ class Dte
                 );
             } else {
                 if (empty($datos['Encabezado']['Totales']['IVA']) and !empty($datos['Encabezado']['Totales']['TasaIVA'])) {
-                    $datos['Encabezado']['Totales']['IVA'] = round($datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100));
+                    $datos['Encabezado']['Totales']['IVA'] = round(
+                        $datos['Encabezado']['Totales']['MntNeto']*($datos['Encabezado']['Totales']['TasaIVA']/100)
+                    );
                 }
             }
             if (empty($datos['Encabezado']['Totales']['MntTotal'])) {
@@ -1145,6 +1391,18 @@ class Dte
         // quitar otros tags que no son parte de las boletas
         $datos['Encabezado']['IdDoc']['FmaPago'] = false;
         $datos['Encabezado']['IdDoc']['FchCancel'] = false;
+    }
+
+    /**
+     * Método que redondea valores. Si los montos son en pesos chilenos se
+     * redondea, si no se mantienen todos los decimales
+     * @param valor Valor que se desea redondear
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-05
+     */
+    private function round($valor, $moneda = false, $decimal = 4)
+    {
+        return (!$moneda or $moneda=='PESO CL') ? (int)round($valor) : (float)round($valor, $decimal);
     }
 
     /**
@@ -1220,6 +1478,17 @@ class Dte
     public function esBoleta()
     {
         return in_array($this->getTipo(), [39, 41]);
+    }
+
+    /**
+     * Método que indica si el documento es o no una exportación
+     * @return =true si el documento es una exportación
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-05
+     */
+    public function esExportacion()
+    {
+        return in_array($this->getTipo(), $this->tipos['Exportaciones']);
     }
 
     /**
