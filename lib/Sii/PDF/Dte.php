@@ -179,7 +179,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-16
+     * @version 2016-04-11
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -209,6 +209,8 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['DscRcgGlobal']))
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
         $this->agregarTotales($dte['Encabezado']['Totales']);
+        // agregar observaciones
+        $this->agregarObservacion($dte['Encabezado']['IdDoc']);
         // agregar timbre
         $this->agregarTimbre($timbre);
         // agregar acuse de recibo y leyenda cedible
@@ -228,7 +230,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-11
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -279,7 +281,8 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE'], $this->y+6, 8);
         }
         // agregar timbre
-        $this->agregarTimbre($timbre, 13, 3, $this->y+6, 70, 6);
+        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], 3, $this->y+6);
+        $this->agregarTimbre($timbre, 13, 3, $y+6, 70, 6);
     }
 
     /**
@@ -747,6 +750,20 @@ class Dte extends \sasco\LibreDTE\PDF
                 }
             }
         }
+    }
+
+    /**
+     * Método que coloca las diferentes observaciones que puede tener el documnto
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-11
+     */
+    private function agregarObservacion($IdDoc, $x = 10, $y = 175)
+    {
+        $this->SetXY($x, $y);
+        if (!empty($IdDoc['TermPagoGlosa'])) {
+            $this->MultiTexto('Observación: '.$IdDoc['TermPagoGlosa']);
+        }
+        return $this->GetY();
     }
 
     /**
