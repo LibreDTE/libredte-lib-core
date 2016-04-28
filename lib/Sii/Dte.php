@@ -1107,7 +1107,7 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-04-21
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -1181,6 +1181,8 @@ class Dte
                         $d['MontoItem'], $datos['Encabezado']['Totales']['TpoMoneda']
                     );
                 }
+            } else if (empty($d['MontoItem'])) {
+                $d['MontoItem'] = 0;
             }
             // sumar valor del monto a MntNeto o MntExe según corresponda
             if ($d['MontoItem']) {
