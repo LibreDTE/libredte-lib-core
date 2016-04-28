@@ -239,7 +239,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Ln();
         $this->setFont('', '', 8);
         $this->agregarFechaEmision($dte['Encabezado']['IdDoc']['FchEmis'], 2, 14, false);
-        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc'], 2, 14);
+        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc'], 2, 14, false);
         $this->agregarReceptor($dte['Encabezado']['Receptor'], 2, 14);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
@@ -395,19 +395,13 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param date Fecha de emisión de la boleta en formato AAAA-MM-DD
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-28
      */
     private function agregarFechaEmision($date, $x = 10, $offset = 22, $mostrar_dia = true)
     {
-        $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-        $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        $unixtime = strtotime($date);
-        $fecha = date(($mostrar_dia?'\D\I\A ':'').'j \d\e \M\E\S \d\e\l Y', $unixtime);
-        $dia = $dias[date('w', $unixtime)];
-        $mes = $meses[date('n', $unixtime)-1];
         $this->Texto('Emisión', $x);
         $this->Texto(':', $x+$offset);
-        $this->MultiTexto(str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha), $x+$offset+2);
+        $this->MultiTexto($this->date($date, $mostrar_dia), $x+$offset+2);
     }
 
     /**
@@ -415,9 +409,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-04-28
      */
-    private function agregarCondicionVenta($IdDoc, $x = 10, $offset = 22)
+    private function agregarCondicionVenta($IdDoc, $x = 10, $offset = 22, $mostrar_dia = true)
     {
         // forma de pago
         if (!empty($IdDoc['FmaPago'])) {
@@ -429,13 +423,13 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($IdDoc['FchCancel'])) {
             $this->Texto('Pagado el', $x);
             $this->Texto(':', $x+$offset);
-            $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchCancel']), $x+$offset+2);
+            $this->MultiTexto($this->date($IdDoc['FchCancel'], $mostrar_dia), $x+$offset+2);
         }
         // fecha vencimiento
         if (!empty($IdDoc['FchVenc'])) {
             $this->Texto('Vencimiento', $x);
             $this->Texto(':', $x+$offset);
-            $this->MultiTexto(\sowerphp\general\Utility_Date::format($IdDoc['FchVenc']), $x+$offset+2);
+            $this->MultiTexto($this->date($IdDoc['FchVenc'], $mostrar_dia), $x+$offset+2);
         }
     }
 
@@ -826,6 +820,22 @@ class Dte extends \sasco\LibreDTE\PDF
         if (isset($broken_number[1]))
             return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
         return number_format($broken_number[0], 0, ',', '.');
+    }
+
+    /**
+     * Método que formatea una fecha en formato YYYY-MM-DD a un string
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-04-28
+     */
+    public function date($date, $mostrar_dia = true)
+    {
+        $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+        $unixtime = strtotime($date);
+        $fecha = date(($mostrar_dia?'\D\I\A ':'').'j \d\e \M\E\S \d\e\l Y', $unixtime);
+        $dia = $dias[date('w', $unixtime)];
+        $mes = $meses[date('n', $unixtime)-1];
+        return str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha);
     }
 
 }
