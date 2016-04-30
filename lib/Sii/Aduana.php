@@ -29,7 +29,7 @@ namespace sasco\LibreDTE\Sii;
  *  - http://comext.aduana.cl:7001/codigos
  *  - https://www.aduana.cl/compendio-de-normas-anexo-51/aduana/2008-02-18/165942.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-04-05
+ * @version 2016-04-28
  */
 class Aduana
 {
@@ -38,8 +38,11 @@ class Aduana
         'CodModVenta' => [
             'glosa' => 'Mod. venta',
             'valor' => [
+                1 => 'A firme',
                 2 => 'Bajo condición',
+                3 => 'En consignación libre',
                 4 => 'En consignación con un mínimo a firme',
+                9 => 'Sin pago',
             ],
         ],
         'CodClauVenta' => [
