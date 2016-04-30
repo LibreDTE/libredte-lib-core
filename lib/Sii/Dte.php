@@ -617,7 +617,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-26
+     * @version 2016-04-30
      */
     private function normalizar_33(array &$datos)
     {
@@ -633,6 +633,7 @@ class Dte
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' => 0,
                     'ImptoReten' => false,
+                    'CredEC' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -768,7 +769,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-25
+     * @version 2016-04-30
      */
     private function normalizar_52(array &$datos)
     {
@@ -784,6 +785,7 @@ class Dte
                     'MntExe' => false,
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' => 0,
+                    'CredEC' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -820,7 +822,7 @@ class Dte
      * Método que normaliza los datos de una nota de débito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-26
+     * @version 2016-04-30
      */
     private function normalizar_56(array &$datos)
     {
@@ -837,6 +839,7 @@ class Dte
                     'IVA' => false,
                     'ImptoReten' => false,
                     'IVANoRet' => false,
+                    'CredEC' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -856,7 +859,7 @@ class Dte
      * Método que normaliza los datos de una nota de crédito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-26
+     * @version 2016-04-30
      */
     private function normalizar_61(array &$datos)
     {
@@ -873,6 +876,7 @@ class Dte
                     'IVA' => false,
                     'ImptoReten' => false,
                     'IVANoRet' => false,
+                    'CredEC' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -1378,6 +1382,12 @@ class Dte
                     $datos['Encabezado']['Totales']['MntTotal'] += $ImptoReten['MontoImp'];
                 }
             }
+        }
+        // si hay impuesto de crédito a constructoras del 65% se descuenta del total
+        if (!empty($datos['Encabezado']['Totales']['CredEC'])) {
+            if ($datos['Encabezado']['Totales']['CredEC']===true)
+                $datos['Encabezado']['Totales']['CredEC'] = round($datos['Encabezado']['Totales']['IVA'] * 0.65); // TODO: mover a constante o método
+            $datos['Encabezado']['Totales']['MntTotal'] -= $datos['Encabezado']['Totales']['CredEC'];
         }
     }
 
