@@ -461,15 +461,17 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-04-29
      */
     private function agregarReceptor(array $receptor, $x = 10, $offset = 22)
     {
-        list($rut, $dv) = explode('-', $receptor['RUTRecep']);
-        $this->Texto('Señor(es)', $x);
-        $this->Texto(':', $x+$offset);
-        $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2);
-        if ($receptor['RUTRecep']!='55555555-5') {
+        if (!empty($receptor['RznSocRecep'])) {
+            $this->Texto('Señor(es)', $x);
+            $this->Texto(':', $x+$offset);
+            $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2);
+        }
+        if (!empty($receptor['RUTRecep']) and $receptor['RUTRecep']!='66666666-6') {
+            list($rut, $dv) = explode('-', $receptor['RUTRecep']);
             $this->Texto('R.U.T.', $x);
             $this->Texto(':', $x+$offset);
             $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
@@ -479,9 +481,11 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Texto(':', $x+$offset);
             $this->MultiTexto($receptor['GiroRecep'], $x+$offset+2);
         }
-        $this->Texto('Dirección', $x);
-        $this->Texto(':', $x+$offset);
-        $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):''), $x+$offset+2);
+        if (!empty($receptor['DirRecep'])) {
+            $this->Texto('Dirección', $x);
+            $this->Texto(':', $x+$offset);
+            $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):''), $x+$offset+2);
+        }
         $contacto = [];
         if (!empty($receptor['Contacto']))
             $contacto[] = $receptor['Contacto'];
