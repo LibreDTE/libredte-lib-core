@@ -125,6 +125,18 @@ class XML extends \DomDocument
     }
 
     /**
+     * Método que carga un string XML en el Objeto
+     * @param source String con el documento XML a cargar
+     * @param options Opciones para la carga del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-05-05
+     */
+    public function loadXML($source, $options = null)
+    {
+        return parent::loadXML($this->iso2utf($source), $options);
+    }
+
+    /**
      * Método para realizar consultas XPATH al documento XML
      * @param expression Expresión XPath a ejecutar
      * @return DOMNodeList
