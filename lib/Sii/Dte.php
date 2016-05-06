@@ -963,8 +963,9 @@ class Dte
      * Método que aplica los descuentos y recargos generales respectivos a los
      * montos que correspondan según e indicador del descuento o recargo
      * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @warning Boleta afecta con algún item exento el descuento se podría estar aplicando mal
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
+     * @version 2016-05-05
      */
     private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
@@ -972,7 +973,7 @@ class Dte
             foreach ($datos['DscRcgGlobal'] as $dr) {
                 // determinar a que aplicar el descuento/recargo
                 if (!isset($dr['IndExeDR']))
-                    $monto = 'MntNeto';
+                    $monto = $this->getTipo()==39 ? 'MntTotal' : 'MntNeto';
                 else if ($dr['IndExeDR']==1)
                     $monto = 'MntExe';
                 else if ($dr['IndExeDR']==2)
@@ -991,6 +992,10 @@ class Dte
                     $datos['Encabezado']['Totales'][$monto] += $valor;
                 }
                 $datos['Encabezado']['Totales'][$monto] = round($datos['Encabezado']['Totales'][$monto]);
+                // si el descuento global se aplica a una boleta exenta se copia el valor exento al total
+                if ($this->getTipo()==41 and isset($dr['IndExeDR']) and $dr['IndExeDR']==1) {
+                    $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntExe'];
+                }
             }
         }
     }
