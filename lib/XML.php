@@ -133,7 +133,8 @@ class XML extends \DomDocument
      */
     public function loadXML($source, $options = null)
     {
-        parent::loadXML($this->decode($source), $options);
+        return parent::loadXML($source, $options);
+        //return parent::loadXML($this->decode($source), $options);
     }
 
     /**
@@ -190,6 +191,7 @@ class XML extends \DomDocument
      * ISO-8859-1
      * @param string String en ISO-8859-1 o UTF-8
      * @return String en UTF-8
+     * @warning Método no detecta correctamente strings en ISO-8859-1
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-05-05
      */
