@@ -125,6 +125,18 @@ class XML extends \DomDocument
     }
 
     /**
+     * Método que carga un string XML en el Objeto
+     * @param source String con el documento XML a cargar
+     * @param options Opciones para la carga del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-05-05
+     */
+    public function loadXML($source, $options = null)
+    {
+        parent::loadXML($this->decode($source), $options);
+    }
+
+    /**
      * Método para realizar consultas XPATH al documento XML
      * @param expression Expresión XPath a ejecutar
      * @return DOMNodeList
@@ -171,6 +183,19 @@ class XML extends \DomDocument
     private function encode($string)
     {
         return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) != 'ISO-8859-1' ? utf8_decode($string) : $string;
+    }
+
+    /**
+     * Método que codifica el string como UTF-8 si es que fue pasado como
+     * ISO-8859-1
+     * @param string String en ISO-8859-1 o UTF-8
+     * @return String en UTF-8
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-05-05
+     */
+    private function decode($string)
+    {
+        return mb_detect_encoding($string, ['UTF-8', 'ISO-8859-1']) == 'ISO-8859-1' ? utf8_encode($string) : $string;
     }
 
     /**
