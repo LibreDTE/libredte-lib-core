@@ -166,7 +166,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         // generar XML de los DTE que se deberán incorporar
         $DTEs = [];
         foreach ($this->dtes as &$DTE)
-            $DTEs[] = trim(str_replace('<?xml version="1.0" encoding="ISO-8859-1"?>', '', $DTE->saveXML()));
+            $DTEs[] = trim(str_replace(array('<?xml version="1.0" encoding="ISO-8859-1"?>','<?xml version="1.0"?>'), array('',''), $DTE->saveXML()));
         // firmar XML del envío y entregar
         $xml = str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio);
         $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#SetDoc', 'SetDTE', true) : $xml;
