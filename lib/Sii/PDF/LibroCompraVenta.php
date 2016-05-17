@@ -74,57 +74,69 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
         $this->Ln();
         $this->Ln();
         $this->SetFont('helvetica', '', 9);
-        if (!isset($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'][0])) {
-            $libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] = [$libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo']];
+        if (isset($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'])) {
+            if (!isset($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'][0])) {
+                $libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] = [$libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo']];
+            }
+            $resumen = [];
+            foreach ($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] as $total) {
+                $resumen[] = [
+                    $total['TpoDoc'],
+                    num($total['TotDoc']),
+                    !empty($total['TotMntExe']) ? num($total['TotMntExe']) : '',
+                    !empty($total['TotMntNeto']) ? num($total['TotMntNeto']) : '',
+                    !empty($total['TotMntIVA']) ? num($total['TotMntIVA']) : '',
+                    !empty($total['TotOtrosImp']) ? $total['TotOtrosImp']['CodImp'] : '',
+                    !empty($total['TotOtrosImp']) ? num($total['TotOtrosImp']['TotMntImp']) : '',
+                    !empty($total['TotIVARetParcial']) ? num($total['TotIVARetParcial']) : '',
+                    !empty($total['TotIVARetTotal']) ? num($total['TotIVARetTotal']) : '',
+                    !empty($total['TotIVANoRetenido']) ? num($total['TotIVANoRetenido']) : '',
+                    num($total['TotMntTotal']),
+                ];
+            }
+            $titulos = ['DTE', 'Total', 'Exento', 'Neto', 'IVA', 'Imp', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
+            $this->addTable($titulos, $resumen, ['width'=>[10, 19, 26, 27, 26, 10, 26, 26, 26, 26, 27]]);
+        } else {
+            $this->Texto('Sin movimientos');
+            $this->Ln();
+            $this->Ln();
         }
-        $resumen = [];
-        foreach ($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] as $total) {
-            $resumen[] = [
-                $total['TpoDoc'],
-                num($total['TotDoc']),
-                !empty($total['TotMntExe']) ? num($total['TotMntExe']) : '',
-                !empty($total['TotMntNeto']) ? num($total['TotMntNeto']) : '',
-                !empty($total['TotMntIVA']) ? num($total['TotMntIVA']) : '',
-                !empty($total['TotOtrosImp']) ? $total['TotOtrosImp']['CodImp'] : '',
-                !empty($total['TotOtrosImp']) ? num($total['TotOtrosImp']['TotMntImp']) : '',
-                !empty($total['TotIVARetParcial']) ? num($total['TotIVARetParcial']) : '',
-                !empty($total['TotIVARetTotal']) ? num($total['TotIVARetTotal']) : '',
-                !empty($total['TotIVANoRetenido']) ? num($total['TotIVANoRetenido']) : '',
-                num($total['TotMntTotal']),
-            ];
-        }
-        $titulos = ['DTE', 'Total', 'Exento', 'Neto', 'IVA', 'Imp', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
-        $this->addTable($titulos, $resumen, ['width'=>[10, 19, 26, 27, 26, 10, 26, 26, 26, 26, 27]]);
         // detalle
         $this->SetFont('helvetica', 'B', 12);
         $this->Texto('III.- Detalle');
         $this->Ln();
         $this->Ln();
         $this->SetFont('helvetica', '', 9);
-        if (!isset($libro['EnvioLibro']['Detalle'][0])) {
-            $libro['EnvioLibro']['Detalle'] = [$libro['EnvioLibro']['Detalle']];
+        if (isset($libro['EnvioLibro']['Detalle'])) {
+            if (!isset($libro['EnvioLibro']['Detalle'][0])) {
+                $libro['EnvioLibro']['Detalle'] = [$libro['EnvioLibro']['Detalle']];
+            }
+            $detalle = [];
+            foreach ($libro['EnvioLibro']['Detalle'] as $d) {
+                $detalle[] = [
+                    $d['TpoDoc'],
+                    $d['NroDoc'],
+                    $d['FchDoc'],
+                    $d['RUTDoc'],
+                    !empty($d['MntExe']) ? num($d['MntExe']) : '',
+                    !empty($d['MntNeto']) ? num($d['MntNeto']) : '',
+                    !empty($d['MntIVA']) ? num($d['MntIVA']) : '',
+                    !empty($d['OtrosImp']) ? $d['OtrosImp']['CodImp'] : '',
+                    !empty($d['OtrosImp']) ? $d['OtrosImp']['TasaImp'] : '',
+                    !empty($d['OtrosImp']) ? num($d['OtrosImp']['MntImp']) : '',
+                    !empty($d['IVARetParcial']) ? num($d['IVARetParcial']) : '',
+                    !empty($d['IVARetTotal']) ? num($d['IVARetTotal']) : '',
+                    !empty($d['IVANoRetenido']) ? num($d['IVANoRetenido']) : '',
+                    num($d['MntTotal']),
+                ];
+            }
+            $titulos = ['DTE', 'Folio', 'Emisión', 'RUT', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
+            $this->addTable($titulos, $detalle, ['width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]]);
+        } else {
+            $this->Texto('No hay detalle de documentos');
+            $this->Ln();
+            $this->Ln();
         }
-        $detalle = [];
-        foreach ($libro['EnvioLibro']['Detalle'] as $d) {
-            $detalle[] = [
-                $d['TpoDoc'],
-                $d['NroDoc'],
-                $d['FchDoc'],
-                $d['RUTDoc'],
-                !empty($d['MntExe']) ? num($d['MntExe']) : '',
-                !empty($d['MntNeto']) ? num($d['MntNeto']) : '',
-                !empty($d['MntIVA']) ? num($d['MntIVA']) : '',
-                !empty($d['OtrosImp']) ? $d['OtrosImp']['CodImp'] : '',
-                !empty($d['OtrosImp']) ? $d['OtrosImp']['TasaImp'] : '',
-                !empty($d['OtrosImp']) ? num($d['OtrosImp']['MntImp']) : '',
-                !empty($d['IVARetParcial']) ? num($d['IVARetParcial']) : '',
-                !empty($d['IVARetTotal']) ? num($d['IVARetTotal']) : '',
-                !empty($d['IVANoRetenido']) ? num($d['IVANoRetenido']) : '',
-                num($d['MntTotal']),
-            ];
-        }
-        $titulos = ['DTE', 'Folio', 'Emisión', 'RUT', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
-        $this->addTable($titulos, $detalle, ['width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]]);
         // firma
         $this->SetFont('helvetica', 'B', 12);
         $this->Texto('IV.- Firma electrónica');
