@@ -1,0 +1,45 @@
+{
+    "33_001_simple": {
+        "MntNeto": 31500,
+        "MntIVA": 5985,
+        "MntTotal": 37485
+    },
+    "33_002_factura_guia": {
+        "MntNeto": 31500,
+        "MntIVA": 5985,
+        "MntTotal": 37485
+    },
+    "39_001_simple": {
+        "MntNeto": 1000,
+        "MntIVA": 190,
+        "MntTotal": 1190
+    },
+    "39_002_descuento_global": {
+        "MntNeto": 900,
+        "MntIVA": 171,
+        "MntTotal": 1071
+    },
+    "41_001_simple": {
+        "MntExe": 1000,
+        "MntTotal": 1000
+    },
+    "41_002_descuento_global": {
+        "MntExe": 900,
+        "MntTotal": 900
+    },
+    "52_001_constituye_venta": {
+        "MntNeto": 31500,
+        "MntIVA": 5985,
+        "MntTotal": 37485
+    },
+    "56_001_anula_nota_credito": {
+        "MntNeto": 31500,
+        "MntIVA": 5985,
+        "MntTotal": 37485
+    },
+    "61_001_anula_factura": {
+        "MntNeto": 31500,
+        "MntIVA": 5985,
+        "MntTotal": 37485
+    }
+}

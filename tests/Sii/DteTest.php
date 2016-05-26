@@ -24,36 +24,38 @@
 /**
  * Clase para tests de la clase \sasco\LibreDTE\Sii\Dte
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-05-05
+ * @version 2016-05-26
  */
 class Sii_DteTest extends PHPUnit_Framework_TestCase
 {
 
-    private $casos = [
-        'BoletaAfecta_DescuentoGlobal' => [
-            'MntNeto' => 900,
-            'MntIVA' => 171,
-            'MntTotal' => 1071,
-        ],
-        'BoletaExenta_DescuentoGlobal' => [
-            'MntExe' => 900,
-            'MntTotal' => 900,
-        ],
-    ]; ///< Casos con los documentos que se desean probar
-
     /**
-     * Boleta con descuento global
+     * Test para verificar los ejemplos en JSON del directorio examples/json
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-05
+     * @version 2016-05-26
      */
-    public function testCasos()
+    public function testEjemplosJSON()
     {
-        foreach ($this->casos as $caso => $esperado) {
-            $json = dirname(dirname(__FILE__)).'/json/'.$caso.'.json';
-            $Dte = new \sasco\LibreDTE\Sii\Dte(json_decode(file_get_contents($json), true));
-            $resumen = $Dte->getResumen();
-            foreach ($esperado as $monto => $valor) {
-                $this->assertEquals($valor, $resumen[$monto]);
+        $dir = dirname(dirname(dirname(__FILE__))).'/examples/json';
+        $casos =  json_decode(file_get_contents($dir.'/montos_esperados.json'), true);
+        $this->assertNotNull($casos, 'No fue posible cargar el archivo montos_esperados.json');
+        $dtes = scandir($dir);
+        foreach ($dtes as $dte) {
+            if (is_numeric($dte) and is_dir($dir.'/'.$dte)) {
+                $jsons = scandir($dir.'/'.$dte);
+                foreach ($jsons as $json) {
+                    if (substr($json, -5)=='.json') {
+                        $caso = substr($json, 0, -5);
+                        $this->assertArrayHasKey($caso, $casos, 'No existen los valores esperados para el caso '.$caso);
+                        $datos = json_decode(file_get_contents($dir.'/'.$dte.'/'.$json), true);
+                        $this->assertNotNull($datos, 'No fue posible cargar los datos del caso '.$caso);
+                        $Dte = new \sasco\LibreDTE\Sii\Dte($datos);
+                        $resumen = $Dte->getResumen();
+                        foreach ($casos[$caso] as $monto => $valor) {
+                            $this->assertEquals($valor, $resumen[$monto], $monto.' no cuadra en el caso '.$caso);
+                        }
+                    }
+                }
             }
         }
     }

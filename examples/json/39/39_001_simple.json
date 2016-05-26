@@ -1,0 +1,26 @@
+{
+    "Encabezado": {
+        "IdDoc": {
+            "TipoDTE": 39,
+            "Folio": 1
+        },
+        "Emisor": {
+            "RUTEmisor": "76192083-9",
+            "RznSocEmisor": "SASCO SpA",
+            "GiroEmisor": "Servicios integrales de informática",
+            "DirOrigen": "Santiago",
+            "CmnaOrigen": "Santiago"
+        },
+        "Receptor": {
+            "RUTRecep": "66666666-6",
+            "RznSocRecep": "Sin RUT",
+            "DirRecep": "Santiago",
+            "CmnaRecep": "Santiago"
+        }
+    },
+    "Detalle": {
+        "NmbItem": "Producto",
+        "QtyItem": 1,
+        "PrcItem": 1190
+    }
+}
