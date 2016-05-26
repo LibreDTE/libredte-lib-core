@@ -1440,13 +1440,14 @@ class Dte
      *  - RUT del emisor (si se pasó uno para comparar)
      *  - RUT del receptor (si se pasó uno para comparar)
      * @return Código del estado de la validación
+     * @warning No se está validando la firma
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-08
      */
     public function getEstadoValidacion(array $datos = null)
     {
-        if (!$this->checkFirma())
-            return 1;
+        /*if (!$this->checkFirma())
+            return 1;*/
         if (is_array($datos)) {
             if (isset($datos['RUTEmisor']) and $this->getEmisor()!=$datos['RUTEmisor'])
                 return 2;

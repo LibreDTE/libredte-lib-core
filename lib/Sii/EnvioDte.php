@@ -326,6 +326,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que determina el estado de validación sobre el envío
      * @param datos Arreglo con datos para hacer las validaciones
      * @return Código del estado de la validación
+     * @warning No se está validando la firma del EnvioDTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-07
      */
@@ -333,8 +334,8 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
     {
         if (!$this->schemaValidate())
             return 1;
-        if (!$this->checkFirma())
-            return 2;
+        /*if (!$this->checkFirma())
+            return 2;*/
         if ($datos and $this->getReceptor()!=$datos['RutReceptor'])
             return 3;
         return 0;
