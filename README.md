@@ -96,6 +96,9 @@ En resumen:
 - Debes hacer referencia al proyecto y autor original de LibreDTE, tanto si usas
   LibreDTE sin modificar o realizando cambios al código.
 
+Al utilizar el proyecto automáticamente se acepta cumplir con los términos y
+condiciones disponibles en <https://wiki.libredte.cl/doku.php/terminos>
+
 Contribuir al proyecto
 ----------------------
 
