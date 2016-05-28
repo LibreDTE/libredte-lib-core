@@ -1,6 +1,7 @@
 doc
 examples/config.php
 examples/xml
+examples/pdf
 vendor
 tests/firma.p12
 
