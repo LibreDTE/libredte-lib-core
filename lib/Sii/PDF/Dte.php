@@ -298,7 +298,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-05-28
      */
     private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null)
     {
@@ -313,10 +313,10 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar datos del emisor
         $this->setFont('', 'B', $font_size ? $font_size : 14);
         $this->SetTextColorArray([32, 92, 144]);
-        $this->MultiTexto(isset($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
+        $this->MultiTexto(!empty($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
         $this->setFont('', 'B', $font_size ? $font_size : 9);
         $this->SetTextColorArray([0,0,0]);
-        $this->MultiTexto(isset($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', $w);
+        $this->MultiTexto(!empty($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', $w);
         $this->MultiTexto($emisor['DirOrigen'].', '.$emisor['CmnaOrigen'], $x, $this->y, 'L', $w);
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
