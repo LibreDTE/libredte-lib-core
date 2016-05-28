@@ -46,7 +46,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
      * Método que agrega un libro al PDF
      * @param libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-05-28
      */
     public function agregar(array $libro)
     {
@@ -86,8 +86,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                     !empty($total['TotMntExe']) ? num($total['TotMntExe']) : '',
                     !empty($total['TotMntNeto']) ? num($total['TotMntNeto']) : '',
                     !empty($total['TotMntIVA']) ? num($total['TotMntIVA']) : '',
-                    !empty($total['TotOtrosImp']) ? $total['TotOtrosImp']['CodImp'] : '',
-                    !empty($total['TotOtrosImp']) ? num($total['TotOtrosImp']['TotMntImp']) : '',
+                    !empty($total['TotOtrosImp']['CodImp']) ? $total['TotOtrosImp']['CodImp'] : '',
+                    !empty($total['TotOtrosImp']['TotMntImp']) ? num($total['TotOtrosImp']['TotMntImp']) : '',
                     !empty($total['TotIVARetParcial']) ? num($total['TotIVARetParcial']) : '',
                     !empty($total['TotIVARetTotal']) ? num($total['TotIVARetTotal']) : '',
                     !empty($total['TotIVANoRetenido']) ? num($total['TotIVANoRetenido']) : '',
