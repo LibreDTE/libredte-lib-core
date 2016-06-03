@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-30
+ * @version 2016-06-03
  */
 class Sii
 {
@@ -44,6 +44,11 @@ class Sii
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
     private static $verificar_ssl = true; ///< Indica si se deberá verificar o no el certificado SSL del SII
+
+    private static $direcciones_regionales = [
+        'SANTIAGO' => 'SANTIAGO CENTRO',
+        'SAN MIGUEL' => 'SANTIAGO SUR',
+    ]; /// Direcciones regionales del SII según la comuna
 
     /**
      * Método que permite asignar el nombre del servidor del SII que se
@@ -392,6 +397,23 @@ class Sii
             $data[] = $row;
         }
         return $data;
+    }
+
+    /**
+     * Método que entrega la dirección regional según la comuna que se esté
+     * consultando
+     * @param comuna de la sucursal del emior o bien código de la sucursal del SII
+     * @return Dirección regional del SII
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-06-03
+     */
+    public static function getDireccionRegional($comuna)
+    {
+        if (!is_numeric($comuna)) {
+            $direccion = mb_strtoupper($comuna, 'UTF-8');
+            return isset(self::$direcciones_regionales[$direccion]) ? self::$direcciones_regionales[$direccion] : $direccion;
+        }
+        return 'SUC '.$comuna;
     }
 
 }

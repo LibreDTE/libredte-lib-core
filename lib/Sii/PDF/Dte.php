@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-04-05
+ * @version 2016-06-03
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -353,7 +353,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-16
+     * @version 2016-06-03
      */
     private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null)
     {
@@ -371,7 +371,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => $color]]);
         // colocar unidad del SII
         $this->setFont('', 'B', $font_size ? $font_size : 10);
-        $this->Texto('S.I.I. - '.$this->getSucursalSII($sucursal_sii), $x, $this->getY()+4, 'C', $w);
+        $this->Texto('S.I.I. - '.\sasco\LibreDTE\Sii::getDireccionRegional($sucursal_sii), $x, $this->getY()+4, 'C', $w);
         $this->SetTextColorArray([0,0,0]);
         $this->Ln();
         return $this->y;
@@ -389,22 +389,6 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!is_numeric($tipo))
             return $tipo;
         return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'DTE '.$tipo;
-    }
-
-    /**
-     * Método que entrega la sucursal del SII asociada al emisor
-     * @param codigo de la sucursal del SII
-     * @return Sucursal del SII
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-11
-     */
-    private function getSucursalSII($codigo)
-    {
-        if (!is_numeric($codigo)) {
-            $sucursal = mb_strtoupper($codigo, 'UTF-8');
-            return $sucursal=='SANTIAGO' ? 'SANTIAGO CENTRO' : $sucursal;
-        }
-        return 'SUC '.$codigo;
     }
 
     /**
