@@ -185,7 +185,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-01
+     * @version 2016-06-03
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
@@ -216,8 +216,8 @@ class Sii
         // crear sesión curl con sus opciones
         $curl = curl_init();
         $header = [
-            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)',
-            //'Referer: http://libredte.cl',
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; TGlicmVEVEU=)',
+            'Referer: https://libredte.cl',
             'Cookie: TOKEN='.$token,
         ];
         $url = 'https://'.self::$config['servidor'][self::getAmbiente()].'.sii.cl/cgi_dte/UPL/DTEUpload';
