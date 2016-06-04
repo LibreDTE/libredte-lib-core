@@ -79,25 +79,30 @@ La documentación está disponible en formato HTML generada con Doxygen en:
 Los ejemplos están disponibles en el directorio
 [examples](https://github.com/LibreDTE/libredte-lib/tree/master/examples).
 
-Licencia
---------
+Términos y condiciones de uso
+-----------------------------
 
-Este software se encuentra bajo los términos de la Licencia Pública General
-Affero de GNU puedes encontrar en el archivo
-[COPYING](https://raw.githubusercontent.com/LibreDTE/libredte-lib/master/COPYING).
+Al utilizar este proyecto, total o parcialmente, automáticamente se acepta
+cumplir con los [términos y condiciones de uso](https://wiki.libredte.cl/doku.php/terminos)
+que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/LibreDTE/libredte-lib/master/COPYING)
+sólo aplica para quienes respeten los términos y condiciones de uso. No existe
+una licencia comercial de LibreDTE, por lo cual no es posible usar el proyecto
+si no aceptas cumplir dichos términos y condiciones.
 
-En resumen:
+La versión resumida de los términos y condiciones de uso de LibreDTE que
+permiten utilizar el proyecto, son los siguientes:
 
 - Tienes la libertad de: usar, estudiar, distribuir y cambiar LibreDTE.
-- Si utilizas LibreDTE en tu software, dicho software deberá ser publicado bajo
-  licencia AGPL o bien alguna otra licencia compatible con la AGPL.
-- Si haces cambios a LibreDTE, deberás publicar dichos cambios bajo licencia
-  AGPL o bien alguna otra licencia compatible con la AGPL.
-- Debes hacer referencia al proyecto y autor original de LibreDTE, tanto si usas
-  LibreDTE sin modificar o realizando cambios al código.
+- Si utilizas LibreDTE en tu software, el código fuente de dicho software deberá
+  ser liberado de manera pública bajo licencia AGPL.
+- Si haces cambios a LibreDTE deberás liberar de manera pública el código fuente
+  de dichos cambios bajo licencia AGPL.
+- Debes hacer referencia de manera pública en tu software al proyecto y autor
+  original de LibreDTE, tanto si usas LibreDTE sin modificar o realizando
+  cambios al código.
 
-Al utilizar el proyecto automáticamente se acepta cumplir con los términos y
-condiciones disponibles en <https://wiki.libredte.cl/doku.php/terminos>
+Es obligación de quienes quieran usar el proyecto leer y aceptar por completo
+los [términos y condiciones de uso](https://wiki.libredte.cl/doku.php/terminos).
 
 Contribuir al proyecto
 ----------------------
