@@ -3,7 +3,7 @@
     "description": "Biblioteca para trabajo con DTE del SII de Chile",
     "type": "library",
     "keywords": ["dte", "sii", "facturación electrónica"],
-    "homepage": "http://libredte.cl",
+    "homepage": "https://libredte.cl",
     "license": "AGPL-3.0+",
     "authors": [
         {
@@ -12,9 +12,9 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/sascocl/LibreDTE/issues",
-        "forum": "https://stackoverflow.com/tags/libredte",
-        "source": "https://github.com/sascocl/LibreDTE"
+        "issues": "https://github.com/LibreDTE/libredte-lib/issues",
+        "forum": "https://groups.google.com/forum/#!forum/libredte",
+        "source": "https://github.com/LibreDTE/libredte-lib"
     },
     "require": {
         "php": ">=5.5",
