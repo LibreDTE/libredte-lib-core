@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-03
+ * @version 2016-06-09
  */
 class Sii
 {
@@ -46,8 +46,10 @@ class Sii
     private static $verificar_ssl = true; ///< Indica si se deberá verificar o no el certificado SSL del SII
 
     private static $direcciones_regionales = [
+        'LA CISTERNA' => 'SANTIAGO SUR',
         'SANTIAGO' => 'SANTIAGO CENTRO',
         'SAN MIGUEL' => 'SANTIAGO SUR',
+        'VITACURA' => 'SANTIAGO ORIENTE',
     ]; /// Direcciones regionales del SII según la comuna
 
     /**
