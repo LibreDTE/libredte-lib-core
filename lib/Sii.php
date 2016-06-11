@@ -44,8 +44,10 @@ class Sii
 
     private static $retry = 10; ///< Veces que se reintentará conectar a SII al usar el servicio web
     private static $verificar_ssl = true; ///< Indica si se deberá verificar o no el certificado SSL del SII
+    private static $ambiente = self::PRODUCCION; ///< Ambiente que se utilizará
 
     private static $direcciones_regionales = [
+        'CHILLÁN VIEJO' => 'CHILLÁN',
         'LA CISTERNA' => 'SANTIAGO SUR',
         'SANTIAGO' => 'SANTIAGO CENTRO',
         'SAN MIGUEL' => 'SANTIAGO SUR',
@@ -308,7 +310,19 @@ class Sii
     }
 
     /**
-     * Método qu determina el ambiente que se debe utilizar: producción o
+     * Método que asigna el ambiente que se usará por defecto (si no está
+     * asignado con _LibreDTE_CERTIFICACION_)
+     * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-06-11
+     */
+    public static function setAmbiente($ambiente = self::PRODUCCION)
+    {
+        self::$ambiente = $ambiente ? self::CERTIFICACION : self::PRODUCCION;
+    }
+
+    /**
+     * Método que determina el ambiente que se debe utilizar: producción o
      * certificación
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return Ambiente que se debe utilizar
@@ -321,7 +335,7 @@ class Sii
             if (defined('_LibreDTE_CERTIFICACION_'))
                 $ambiente = (int)_LibreDTE_CERTIFICACION_;
             else
-                $ambiente = self::PRODUCCION;
+                $ambiente = self::$ambiente;
         }
         return $ambiente;
     }
