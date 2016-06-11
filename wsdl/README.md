@@ -10,11 +10,4 @@ Estos WSDL se usarán automáticamente al solicitar el WSDL del ambiente de
 certificación a través de LibreDTE. Los WSDL para el ambiente de producción son
 directamente los proporcionados por SII.
 
-Modificaciones
---------------
-
-- QueryEstUp: http://stackoverflow.com/a/28464354/3333009
-- QueryEstDte: basado en modificación a QueryEstUp
-- CrSeed: basado en modificación a QueryEstUp
-- GetTokenFromSeed: basado en modificación a QueryEstUp
-- wsDTECorreo: basado en modificación a QueryEstUp
+Todas las modificaciones están basadas en <http://stackoverflow.com/a/28464354/3333009>

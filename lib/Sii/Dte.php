@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-11
+ * @version 2016-06-11
  */
 class Dte
 {
@@ -38,6 +38,7 @@ class Dte
     private $tipo_general; ///< Tipo general de DTE: Documento, Liquidacion o Exportaciones
     private $timestamp; ///< Timestamp del DTE
     private $datos = null; ///< Datos normalizados que se usaron para crear el DTE
+    private $Signature = null; ///< Datos de la firma del DTE
 
     private $tipos = [
         'Documento' => [33, 34, 39, 41, 46, 52, 56, 61],
@@ -154,8 +155,23 @@ class Dte
                 return false;
             }
             $this->datos = $datos['DTE'][$this->tipo_general];
+            $this->Signature = $datos['DTE']['Signature'];
         }
         return $this->datos;
+    }
+
+    /**
+     * Método que entrega el arreglo con los datos de la firma del DTE
+     * @return Arreglo con datos de la firma
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-06-11
+     */
+    public function getFirma()
+    {
+        if (!$this->Signature) {
+            $this->getDatos();
+        }
+        return $this->Signature;
     }
 
     /**
@@ -1571,6 +1587,44 @@ class Dte
             return false;
         // entregar estado
         return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR')[0];
+    }
+
+    /**
+     * Método que obtiene el estado avanzado del DTE
+     * @param Firma objeto que representa la Firma Electrónca
+     * @return Arreglo con el estado del DTE
+     * @warning Para un documento válido indica que datos no coinciden, podría ser problema de como se manda fecha o firma
+     * @todo Corregir warning y también definir que se retornará (sobre todo en caso de error)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-06-11
+     */
+    public function getEstadoAvanzado(\sasco\LibreDTE\FirmaElectronica $Firma)
+    {
+        // solicitar token
+        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
+        if (!$token)
+            return false;
+        // consultar estado dte
+        list($RutEmpresa, $DvEmpresa) = explode('-', $this->getEmisor());
+        list($RutReceptor, $DvReceptor) = explode('-', $this->getReceptor());
+        list($Y, $m, $d) = explode('-', $this->getFechaEmision());
+        $xml = \sasco\LibreDTE\Sii::request('QueryEstDteAv', 'getEstDteAv', [
+            'RutEmpresa'       => $RutEmpresa,
+            'DvEmpresa'        => $DvEmpresa,
+            'RutReceptor'       => $RutReceptor,
+            'DvReceptor'        => $DvReceptor,
+            'TipoDte'           => $this->getTipo(),
+            'FolioDte'          => $this->getFolio(),
+            'FechaEmisionDte'   => $d.'-'.$m.'-'.$Y,
+            'MontoDte'          => $this->getMontoTotal(),
+            'FirmaDte'          => $this->getFirma()['SignatureValue'],
+            'token'             => $token,
+        ]);
+        // si el estado se pudo recuperar se muestra
+        if ($xml===false)
+            return false;
+        // entregar estado
+        return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY')[0];
     }
 
 }

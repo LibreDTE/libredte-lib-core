@@ -26,13 +26,17 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-09
+ * @version 2016-06-11
  */
 class Sii
 {
 
     private static $config = [
-        'wsdl' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
+        'wsdl' => [
+            '*' => 'https://{servidor}.sii.cl/DTEWS/{servicio}.jws?WSDL',
+            'QueryEstDteAv' => 'https://{servidor}.sii.cl/DTEWS/services/{servicio}?WSDL',
+            'wsDTECorreo' => 'https://{servidor}.sii.cl/DTEWS/services/{servicio}?WSDL',
+        ],
         'servidor' => ['palena', 'maullin2'], ///< servidores 0: producción, 1: certificación
         'certs' => [300, 100], ///< certificados 0: producción, 1: certificación
     ];
@@ -93,7 +97,7 @@ class Sii
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION o null (para detección automática)
      * @return URL del WSDL del servicio según ambiente solicitado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-25
+     * @version 2016-06-11
      */
     public static function wsdl($servicio, $ambiente = null)
     {
@@ -106,14 +110,12 @@ class Sii
                 return $wsdl;
         }
         // entregar WSDL oficial desde SII
+        $location = isset(self::$config['wsdl'][$servicio]) ? self::$config['wsdl'][$servicio] : self::$config['wsdl']['*'];
         $wsdl = str_replace(
             ['{servidor}', '{servicio}'],
             [self::$config['servidor'][$ambiente], $servicio],
-            self::$config['wsdl']
+            $location
         );
-        // wsdl wsDTECorreo sale de la norma y tiene otra URL
-        if ($servicio == 'wsDTECorreo')
-            $wsdl = str_replace('wsDTECorreo.jws', 'services/wsDTECorreo', $wsdl);
         // entregar wsdl
         return $wsdl;
     }
