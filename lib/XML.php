@@ -202,7 +202,7 @@ class XML extends \DomDocument
     /**
      * Método que convierte el XML a un arreglo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-26
+     * @version 2016-06-11
      */
     public function toArray(\DOMElement $dom = null, array &$array = null, $arregloNodos = false)
     {
@@ -226,7 +226,7 @@ class XML extends \DomDocument
                 if ($child instanceof \DOMText) {
                     $textContent = trim($child->textContent);
                     if ($textContent!="") {
-                        if ($dom->childNodes->length==1) {
+                        if ($dom->childNodes->length==1 and empty($array[$dom->tagName])) {
                             $array[$dom->tagName] = $textContent;
                         } else
                             $array[$dom->tagName]['@value'] = $textContent;
