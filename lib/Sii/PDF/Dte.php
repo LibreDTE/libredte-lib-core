@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-03
+ * @version 2016-06-12
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -41,6 +41,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $ecl = 8; ///< error correction level para PHP >= 7.0.0
 
     private $tipos = [
+        0 => 'COTIZACIÓN',
         33 => 'FACTURA ELECTRÓNICA',
         34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
         39 => 'BOLETA ELECTRÓNICA',
@@ -165,7 +166,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-11-28
      */
-    public function agregar(array $dte, $timbre)
+    public function agregar(array $dte, $timbre = null)
     {
         if ($this->papelContinuo) {
             $this->agregarContinuo($dte, $timbre, $this->papelContinuo);
@@ -759,27 +760,29 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-06-12
      */
     private function agregarTimbre($timbre, $x_timbre = 20, $x = 20, $y = 190, $w = 70, $font_size = 8)
     {
-        $style = [
-            'border' => false,
-            'vpadding' => 0,
-            'hpadding' => 0,
-            'fgcolor' => [0,0,0],
-            'bgcolor' => false, // [255,255,255]
-            'module_width' => 1, // width of a single module in points
-            'module_height' => 1 // height of a single module in points
-        ];
-        $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
-        $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x_timbre, $y, $w, 0, $style, 'B');
-        $this->setFont('', 'B', $font_size);
-        $this->Texto('Timbre Electrónico SII', $x, null, 'C', $w);
-        $this->Ln();
-        $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, null, 'C', $w);
-        $this->Ln();
-        $this->Texto('Verifique documento: '.$this->web_verificacion, $x, null, 'C', $w);
+        if ($timbre!==null) {
+            $style = [
+                'border' => false,
+                'vpadding' => 0,
+                'hpadding' => 0,
+                'fgcolor' => [0,0,0],
+                'bgcolor' => false, // [255,255,255]
+                'module_width' => 1, // width of a single module in points
+                'module_height' => 1 // height of a single module in points
+            ];
+            $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
+            $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x_timbre, $y, $w, 0, $style, 'B');
+            $this->setFont('', 'B', $font_size);
+            $this->Texto('Timbre Electrónico SII', $x, null, 'C', $w);
+            $this->Ln();
+            $this->Texto('Resolución '.$this->resolucion['NroResol'].' de '.explode('-', $this->resolucion['FchResol'])[0], $x, null, 'C', $w);
+            $this->Ln();
+            $this->Texto('Verifique documento: '.$this->web_verificacion, $x, null, 'C', $w);
+        }
     }
 
     /**
