@@ -513,7 +513,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-11
+     * @version 2016-06-13
      */
     private function normalizar(array &$datos)
     {
@@ -573,9 +573,25 @@ class Dte
                 ],
             ],
         ], $datos);
-        // corregir DV rut emisor y receptor (por si es con K)
+        // corregir algunos datos que podrían venir malos para no caer por schema
         $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper($datos['Encabezado']['Emisor']['RUTEmisor']);
         $datos['Encabezado']['Receptor']['RUTRecep'] = strtoupper($datos['Encabezado']['Receptor']['RUTRecep']);
+        $datos['Encabezado']['Receptor']['RznSocRecep'] = substr($datos['Encabezado']['Receptor']['RznSocRecep'], 0, 100);
+        if (!empty($datos['Encabezado']['Receptor']['GiroRecep'])) {
+            $datos['Encabezado']['Receptor']['GiroRecep'] = substr($datos['Encabezado']['Receptor']['GiroRecep'], 0, 40);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['Contacto'])) {
+            $datos['Encabezado']['Receptor']['Contacto'] = substr($datos['Encabezado']['Receptor']['Contacto'], 0, 80);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['CorreoRecep'])) {
+            $datos['Encabezado']['Receptor']['CorreoRecep'] = substr($datos['Encabezado']['Receptor']['CorreoRecep'], 0, 80);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['DirRecep'])) {
+            $datos['Encabezado']['Receptor']['DirRecep'] = substr($datos['Encabezado']['Receptor']['DirRecep'], 0, 70);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['CmnaRecep'])) {
+            $datos['Encabezado']['Receptor']['CmnaRecep'] = substr($datos['Encabezado']['Receptor']['CmnaRecep'], 0, 20);
+        }
         // si existe descuento o recargo global se normalizan
         if (!empty($datos['DscRcgGlobal'])) {
             if (!isset($datos['DscRcgGlobal'][0]))
@@ -1130,7 +1146,7 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-21
+     * @version 2016-06-13
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -1158,6 +1174,12 @@ class Dte
                 'CodImpAdic' => false,
                 'MontoItem' => false,
             ], $d);
+            // corregir datos
+            $d['NmbItem'] = substr($d['NmbItem'], 0, 80);
+            if (!empty($d['DscItem'])) {
+                $d['DscItem'] = substr($d['DscItem'], 0, 1000);
+            }
+            // normalizar
             if ($this->esExportacion()) {
                 $d['IndExe'] = 1;
             }
@@ -1419,7 +1441,7 @@ class Dte
      * Método que normaliza las boletas electrónicas, dte 39 y 41
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-14
+     * @version 2016-06-13
      */
     private function normalizar_boletas(array &$datos)
     {
@@ -1436,6 +1458,7 @@ class Dte
         $datos['Encabezado']['Emisor']['Telefono'] = false;
         $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
         $datos['Encabezado']['Receptor']['GiroRecep'] = false;
+        $datos['Encabezado']['Receptor']['CorreoRecep'] = false;
         // quitar otros tags que no son parte de las boletas
         $datos['Encabezado']['IdDoc']['FmaPago'] = false;
         $datos['Encabezado']['IdDoc']['FchCancel'] = false;
