@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-11
+ * @version 2016-06-15
  */
 class Sii
 {
@@ -37,7 +37,7 @@ class Sii
             'QueryEstDteAv' => 'https://{servidor}.sii.cl/DTEWS/services/{servicio}?WSDL',
             'wsDTECorreo' => 'https://{servidor}.sii.cl/DTEWS/services/{servicio}?WSDL',
         ],
-        'servidor' => ['palena', 'maullin2'], ///< servidores 0: producción, 1: certificación
+        'servidor' => ['palena', 'maullin'], ///< servidores 0: producción, 1: certificación
         'certs' => [300, 100], ///< certificados 0: producción, 1: certificación
     ];
 
