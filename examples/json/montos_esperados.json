@@ -24,12 +24,12 @@
         "IVA": 17799,
         "MntTotal": 111480
     },
-    "33_005_decuento_item_monto": {
+    "33_005_descuento_item_monto": {
         "MntNeto": 94097,
         "IVA": 17878,
         "MntTotal": 111975
     },
-    "33_006_decuento_item_porcentaje": {
+    "33_006_descuento_item_porcentaje": {
         "MntNeto": 93681,
         "IVA": 17799,
         "MntTotal": 111480
