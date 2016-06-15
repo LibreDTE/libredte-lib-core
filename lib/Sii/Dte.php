@@ -513,7 +513,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-13
+     * @version 2016-06-15
      */
     private function normalizar(array &$datos)
     {
@@ -572,6 +572,11 @@ class Dte
                     'TpoMoneda' => false,
                 ],
             ],
+            'Detalle' => false,
+            'SubTotInfo' => false,
+            'DscRcgGlobal' => false,
+            'Referencia' => false,
+            'Comisiones' => false,
         ], $datos);
         // corregir algunos datos que podrían venir malos para no caer por schema
         $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper($datos['Encabezado']['Emisor']['RUTEmisor']);
