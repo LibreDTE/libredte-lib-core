@@ -21,10 +21,8 @@
         }
     },
     "Detalle": {
-        "NroLinDet": 1,
         "NmbItem": "Anillo Oro 18 Quilates 2,8 Grs",
         "QtyItem": 1,
-        "UnmdItem": "UNI",
         "PrcItem": 45000
     }
 }

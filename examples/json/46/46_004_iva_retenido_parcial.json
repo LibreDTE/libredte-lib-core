@@ -21,7 +21,6 @@
         }
     },
     "Detalle": {
-        "NroLinDet": 1,
         "CdgItem": {
             "TpoCodigo": "INT1",
             "VlrCodigo": "trigo"

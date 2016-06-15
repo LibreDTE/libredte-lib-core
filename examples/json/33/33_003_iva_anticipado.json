@@ -21,7 +21,6 @@
         }
     },
     "Detalle": {
-        "NroLinDet": "1",
         "CdgItem": {
             "TpoCodigo": "CPCS",
             "VlrCodigo": 1900

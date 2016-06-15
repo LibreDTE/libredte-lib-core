@@ -21,7 +21,6 @@
         }
     },
     "Detalle": {
-        "NroLinDet": 1,
         "NmbItem": "P1",
         "QtyItem": 1,
         "PrcItem": 100000,
