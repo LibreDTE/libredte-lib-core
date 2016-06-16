@@ -329,6 +329,19 @@ class Dte
     }
 
     /**
+     * Método que indica si el DTE es de certificación o no
+     * @return =true si el DTE es de certificación, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-06-15
+     */
+    public function getCertificacion()
+    {
+        $datos = $this->getDatos();
+        $idk = !empty($datos['TED']['DD']['CAF']['DA']['IDK']) ? (int)$datos['TED']['DD']['CAF']['DA']['IDK'] : null;
+        return $idk ? $idk === 100 : null;
+    }
+
+    /**
      * Método que realiza el timbrado del DTE
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
