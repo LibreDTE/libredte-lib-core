@@ -34,6 +34,11 @@
         "IVA": 17799,
         "MntTotal": 111480
     },
+    "33_007_contado_observacion": {
+        "MntNeto": 31500,
+        "IVA": 5985,
+        "MntTotal": 37485
+    },
     "34_001_simple": {
         "MntExe": 125000,
         "MntTotal": 125000
