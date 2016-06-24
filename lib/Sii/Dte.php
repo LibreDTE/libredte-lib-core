@@ -1164,7 +1164,7 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-13
+     * @version 2016-06-23
      */
     private function normalizar_detalle(array &$datos)
     {
@@ -1201,8 +1201,14 @@ class Dte
             if ($this->esExportacion()) {
                 $d['IndExe'] = 1;
             }
-            if ($d['Retenedor']===false and is_array($d['CdgItem']) and $d['CdgItem']['TpoCodigo']=='CPCS') {
-                $d['Retenedor'] = true;
+            if (is_array($d['CdgItem'])) {
+                $d['CdgItem'] = array_merge([
+                    'TpoCodigo' => false,
+                    'VlrCodigo' => false,
+                ], $d['CdgItem']);
+                if ($d['Retenedor']===false and $d['CdgItem']['TpoCodigo']=='CPCS') {
+                    $d['Retenedor'] = true;
+                }
             }
             if ($d['Retenedor']!==false) {
                 if (!is_array($d['Retenedor'])) {
