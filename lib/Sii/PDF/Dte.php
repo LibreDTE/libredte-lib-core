@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-12
+ * @version 2016-06-28
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -36,7 +36,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
-    private $sinAcuseRecibo = [39, 41, 56, 61, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
+    private $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
     private $ecl = 5; ///< error correction level para PHP >= 7.0.0
 
