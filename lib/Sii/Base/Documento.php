@@ -129,13 +129,15 @@ abstract class Documento
      * obtener los datos del mismo a través de un arreglo
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-22
+     * @version 2016-06-29
      */
     public function loadXML($xml_data)
     {
         $this->xml_data = $xml_data;
         $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($this->xml_data);
+        if (!$this->xml->loadXML($this->xml_data)) {
+            return false;
+        }
         $this->toArray();
         return $this->xml;
     }

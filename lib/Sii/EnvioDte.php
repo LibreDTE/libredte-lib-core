@@ -203,13 +203,23 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * para poder obtener los datos del envío
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-22
+     * @version 2016-06-29
      */
     public function loadXML($xml_data)
     {
-        parent::loadXML($xml_data);
-        $this->tipo = (int)($this->xml->documentElement->tagName=='EnvioBOLETA');
-        return $this->xml;
+        if (!parent::loadXML($xml_data)) {
+            return false;
+        }
+        $tagName = $this->xml->documentElement->tagName;
+        if ($tagName=='EnvioDTE') {
+            $this->tipo = 0;
+            return $this->xml;
+        }
+        if ($tagName=='EnvioBOLETA') {
+            $this->tipo = 1;
+            return $this->xml;
+        }
+        return false;
     }
 
     /**
