@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-28
+ * @version 2016-06-30
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -48,6 +48,7 @@ class Dte extends \sasco\LibreDTE\PDF
         41 => 'BOLETA NO AFECTA O EXENTA ELECTRÓNICA',
         43 => 'LIQUIDACIÓN FACTURA ELECTRÓNICA',
         46 => 'FACTURA DE COMPRA ELECTRÓNICA',
+        50 => 'GUÍA DE DESPACHO',
         52 => 'GUÍA DE DESPACHO ELECTRÓNICA',
         56 => 'NOTA DE DÉBITO ELECTRÓNICA',
         61 => 'NOTA DE CRÉDITO ELECTRÓNICA',
