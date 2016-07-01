@@ -181,7 +181,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-11
+     * @version 2016-07-01
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -210,6 +210,8 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->agregarDetalle($dte['Detalle']);
         if (!empty($dte['DscRcgGlobal']))
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
+        if (!empty($dte['Encabezado']['IdDoc']['MntPagos']))
+            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos']);
         $this->agregarTotales($dte['Encabezado']['Totales']);
         // agregar observaciones
         $this->agregarObservacion($dte['Encabezado']['IdDoc']);
@@ -232,7 +234,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-11
+     * @version 2016-07-01
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -273,6 +275,11 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Ln();
             $this->Ln();
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], 2);
+        }
+        if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
+            $this->Ln();
+            $this->Ln();
+            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], 2);
         }
         $this->agregarTotales($dte['Encabezado']['Totales'], $this->y+6, 23, 17);
         // agregar acuse de recibo y leyenda cedible
@@ -674,6 +681,26 @@ class Dte extends \sasco\LibreDTE\PDF
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
             $this->Texto($tipo.' global de '.$valor, $x);
+            $this->Ln();
+        }
+    }
+
+    /**
+     * Método que agrega los pagos del documento
+     * @param pagos Arreglo con los pagos del documento
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-01
+     */
+    private function agregarPagos(array $pagos, $x = 10)
+    {
+        if (!isset($pagos[0]))
+            $pagos = [$pagos];
+        $this->Texto('Pago(s) programado(s):', $x);
+        $this->Ln();
+        foreach($pagos as $p) {
+            debug($p);
+            $this->Texto('  - '.$this->date($p['FchPago'], false).': $'.$this->num($p['MntPago']).'.-'.(!empty($p['GlosaPagos'])?(' ('.$p['GlosaPagos'].')'):''), $x);
             $this->Ln();
         }
     }
