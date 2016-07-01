@@ -67,7 +67,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-07-01
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -104,6 +104,10 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 $detalle['IVAUsoComun'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
         } else if (!$detalle['MntIVA'] and !is_array($detalle['IVANoRec']) and $detalle['TasaImp'] and $detalle['MntNeto']) {
             $detalle['MntIVA'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
+        }
+        // si el monto total es 0 pero no se asigno neto ni exento se coloca
+        if ($detalle['MntExe']===false and $detalle['MntNeto']===false and $detalle['MntTotal']===0) {
+            $detalle['MntNeto'] = 0;
         }
         // normalizar IVA no recuperable
         if (!empty($detalle['IVANoRec'])) {
@@ -152,7 +156,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             }
         }
         // si no hay no hay monto neto, no se crean campos para IVA
-        if (!$detalle['MntNeto']) {
+        if ($detalle['MntNeto']===false) {
             $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = false;
         }
         // si el código de sucursal no existe se pone a falso, esto básicamente
