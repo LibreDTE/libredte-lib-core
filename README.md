@@ -44,6 +44,9 @@ Funcionalidades implementadas
     - Guía de despacho electrónica (52)
     - Nota de débito electrónica (56)
     - Nota de crédito electrónica (61)
+    - Factura de exportación electrónica (110)
+    - Nota de débito exportación electrónica (111)
+    - Nota de crédito exportación electrónica (112)
     - Información electrónica de compras y ventas (IECV)
     - Libro de guías de despacho electrónico
     - Libro de boletas y reporte de consumo de folios
