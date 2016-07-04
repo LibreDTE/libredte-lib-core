@@ -362,11 +362,11 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-03
+     * @version 2016-07-04
      */
     private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null)
     {
-        $color = $tipo==52 ? [0,172,140] : [255,0,0];
+        $color = $tipo ? ($tipo==52 ? [0,172,140] : [255,0,0]) : [0,0,0];
         $this->SetTextColorArray($color);
         // colocar rut emisor, glosa documento y folio
         list($rut, $dv) = explode('-', $rut);
@@ -380,7 +380,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Rect($x, $y, $w, round($this->getY()-$y+3), 'D', ['all' => ['width' => 0.5, 'color' => $color]]);
         // colocar unidad del SII
         $this->setFont('', 'B', $font_size ? $font_size : 10);
-        $this->Texto('S.I.I. - '.\sasco\LibreDTE\Sii::getDireccionRegional($sucursal_sii), $x, $this->getY()+4, 'C', $w);
+        if ($tipo) {
+            $this->Texto('S.I.I. - '.\sasco\LibreDTE\Sii::getDireccionRegional($sucursal_sii), $x, $this->getY()+4, 'C', $w);
+        }
         $this->SetTextColorArray([0,0,0]);
         $this->Ln();
         return $this->y;
