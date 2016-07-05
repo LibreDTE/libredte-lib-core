@@ -141,7 +141,7 @@ class Dte
      * documento sin cambios.
      * @return Arreglo con datos del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-07-04
      */
     public function getDatos()
     {
@@ -155,7 +155,9 @@ class Dte
                 return false;
             }
             $this->datos = $datos['DTE'][$this->tipo_general];
-            $this->Signature = $datos['DTE']['Signature'];
+            if (isset($datos['DTE']['Signature'])) {
+                $this->Signature = $datos['DTE']['Signature'];
+            }
         }
         return $this->datos;
     }
