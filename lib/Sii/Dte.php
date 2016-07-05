@@ -348,7 +348,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-07-05
      */
     public function timbrar(Folios $Folios)
     {
@@ -393,9 +393,9 @@ class Dte
                     'F' => $folio,
                     'FE' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)->nodeValue,
                     'RR' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue,
-                    'RSR' => substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue, 0, 40),
+                    'RSR' => trim(substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue, 0, 40)),
                     'MNT' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)->nodeValue,
-                    'IT1' => substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Detalle')->item(0)->getElementsByTagName('NmbItem')->item(0)->nodeValue, 0, 40),
+                    'IT1' => trim(substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Detalle')->item(0)->getElementsByTagName('NmbItem')->item(0)->nodeValue, 0, 40)),
                     'CAF' => $Folios->getCaf(),
                     'TSTED' => $this->timestamp,
                 ],
