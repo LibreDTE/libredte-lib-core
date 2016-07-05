@@ -499,7 +499,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-07-05
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
@@ -535,6 +535,8 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($Transporte['Aduana']) and is_array($Transporte['Aduana'])) {
             $col = 0;
             foreach ($Transporte['Aduana'] as $tag => $codigo) {
+                if ($codigo===false)
+                    continue;
                 $glosa = \sasco\LibreDTE\Sii\Aduana::getGlosa($tag);
                 $valor = \sasco\LibreDTE\Sii\Aduana::getValor($tag, $codigo);
                 if ($glosa!==false and $valor!==false) {
