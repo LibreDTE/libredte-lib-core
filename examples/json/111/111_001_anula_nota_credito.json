@@ -1,0 +1,48 @@
+{
+    "Encabezado": {
+        "IdDoc": {
+            "TipoDTE": 111,
+            "Folio": 1,
+            "IndServicio": 4
+        },
+        "Emisor": {
+            "RUTEmisor": "76192083-9",
+            "RznSoc": "SASCO SpA",
+            "GiroEmis": "Servicios integrales de informática",
+            "Acteco": 726000,
+            "DirOrigen": "Santiago",
+            "CmnaOrigen": "Santiago"
+        },
+        "Receptor": {
+            "RUTRecep": "55555555-5",
+            "RznSocRecep": "Jackie Chan",
+            "Extranjero": {
+                "Nacionalidad": "225"
+            },
+            "GiroRecep": "Particular",
+            "DirRecep": "Calle 123, Hong Kong, China"
+        },
+        "Totales": {
+            "TpoMoneda": "DOLAR USA"
+        }
+    },
+    "Detalle": {
+        "IndExe": 1,
+        "NmbItem": "Alojamiento 5 noches",
+        "QtyItem": 1,
+        "PrcItem": 50
+    },
+    "Referencia": [
+        {
+            "TpoDocRef": 813,
+            "FolioRef": "E12345"
+        },
+        {
+            "TpoDocRef": 112,
+            "FolioRef": 1,
+            "FchRef": "2016-01-01",
+            "CodRef": 1,
+            "RazonRef": "Anula nota de credito"
+        }
+    ]
+}

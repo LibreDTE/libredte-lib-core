@@ -101,5 +101,17 @@
         "MntNeto": 31500,
         "IVA": 5985,
         "MntTotal": 37485
+    },
+    "110_001_hotel": {
+        "MntExe": 50,
+        "MntTotal": 50
+    },
+    "111_001_anula_nota_credito": {
+        "MntExe": 50,
+        "MntTotal": 50
+    },
+    "112_001_anula_factura": {
+        "MntExe": 50,
+        "MntTotal": 50
     }
 }
