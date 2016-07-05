@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-04
+ * @version 2016-07-05
  */
 class Sii
 {
@@ -54,6 +54,7 @@ class Sii
         'CHILLÁN VIEJO' => 'CHILLÁN',
         'LA CISTERNA' => 'SANTIAGO SUR',
         'LAS CONDES' => 'SANTIAGO ORIENTE',
+        'PEÑALOLÉN' => 'ÑUÑOA',
         'SANTIAGO' => 'SANTIAGO CENTRO',
         'SAN MIGUEL' => 'SANTIAGO SUR',
         'SAN VICENTE' => 'SAN VICENTE TAGUA TAGUA',
