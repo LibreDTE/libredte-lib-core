@@ -27,14 +27,14 @@
  * Archivo que se ejecuta al iniciar el comando
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2016-07-06
  */
 
 // sin límite de tiempo para la ejecución de comandos
 set_time_limit(0);
 
 // por defecto se usa la misma configuración que para los ejemplos
-include '../examples/inc.php';
+include dirname(dirname(dirname(__FILE__))).'/examples/inc.php';
 
 // incluir clase de la que heredarán los comandos
 include 'Command.php';

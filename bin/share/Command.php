@@ -81,7 +81,7 @@ abstract class Command
      */
     protected function error($msg)
     {
-        echo "\n",'[error] ',$msg,"\n\n";
+        echo '[error] ',$msg,"\n";
         $this->usemode();
         exit;
     }
@@ -89,15 +89,14 @@ abstract class Command
     /**
      * Método que muestra el modo de uso del comando
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
+     * @version 2016-07-06
      */
     protected function usemode()
     {
-        echo 'Opciones del comando:',"\n\n";
+        echo 'Opciones del comando:',"\n";
         foreach ($this->config['args'] as $arg => $info) {
-            printf("\t--%s\n\t%s\n\n", str_replace(':', '', $arg), $info['description']);
+            printf("  --%s\n    %s\n", str_replace(':', '', $arg), $info['description']);
         }
-        echo "\n";
     }
 
     /**
