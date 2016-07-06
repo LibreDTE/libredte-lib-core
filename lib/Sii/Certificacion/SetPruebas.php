@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Certificacion;
 /**
  * Clase para parsear y procesar los casos de un set pruebas
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-04-04
+ * @version 2016-07-06
  */
 class SetPruebas
 {
@@ -108,6 +108,7 @@ class SetPruebas
     private static $formas_pago_exportacion = [
         'COBRANZA' => 2,
         'SIN PAGO' => 21,
+        'ANTICIPO' => 32,
     ]; ///< Códigos de forma de pago de la aduana para exportaciones
 
     private static $referencias_exportacion = [
@@ -118,81 +119,21 @@ class SetPruebas
     ]; ///< Códigos de referencias para documentos de exportación
 
     private static $Aduana = [
-        'MODALIDAD DE VENTA' => [
-            'tag' => 'CodModVenta',
-            'val' => [
-                'BAJO CONDICION' => 2,
-                'EN CONSIGNACION CON UN MINIMO A FIRME' => 4,
-            ],
-        ],
-        'CLAUSULA DE VENTA DE EXPORTACION' => [
-            'tag' => 'CodClauVenta',
-            'val' => [
-                'CIF' => 1,
-                'CFR' => 2,
-            ],
-        ],
+        'MODALIDAD DE VENTA' => 'CodModVenta',
+        'CLAUSULA DE VENTA DE EXPORTACION' => 'CodClauVenta',
         'TOTAL CLAUSULA DE VENTA' => 'TotClauVenta',
-        'VIA DE TRANSPORTE' => [
-            'tag' => 'CodViaTransp',
-            'val' => [
-                'MARITIMA, FLUVIAL Y LACUSTRE' => 1,
-                'CARRETERO/TERRESTRE' => 7,
-            ],
-        ],
-        'PUERTO DE EMBARQUE' => [
-            'tag' => 'CodPtoEmbarque',
-            'val' => [
-                'SAN ANTONIO' => 906,
-                'CALDERA' => 918,
-            ],
-        ],
-        'PUERTO DE DESEMBARQUE' => [
-            'tag' => 'CodPtoDesemb',
-            'val' => [
-                'BARCELONA' => 563,
-                'SIDNEY' => 811,
-            ],
-        ],
-        'UNIDAD DE MEDIDA DE TARA' => [
-            'tag' => 'CodUnidMedTara',
-            'val' => [
-                'U' => 10,
-                'PAR' => 17,
-            ],
-        ],
-        'UNIDAD PESO BRUTO' => [
-            'tag' => 'CodUnidPesoBruto',
-            'val' => [
-                'KN' => 6,
-                'LT' => 9,
-            ],
-        ],
-        'UNIDAD PESO NETO' => [
-            'tag' => 'CodUnidPesoNeto',
-            'val' => [
-                'KN' => 6,
-                'LT' => 9,
-            ],
-        ],
+        'VIA DE TRANSPORTE' => 'CodViaTransp',
+        'PUERTO DE EMBARQUE' => 'CodPtoEmbarque',
+        'PUERTO DE DESEMBARQUE' => 'CodPtoDesemb',
+        'UNIDAD DE MEDIDA DE TARA' => 'CodUnidMedTara',
+        'UNIDAD PESO BRUTO' => 'CodUnidPesoBruto',
+        'UNIDAD PESO NETO' => 'CodUnidPesoNeto',
         'TOTAL BULTOS' => 'TotBultos',
-        'TIPO DE BULTO' => [
-            'tag' => 'TipoBultos',
-            'val' => [
-                'ROLLOS' => 13,
-                'PALLETS' => 80,
-            ],
-        ],
+        'TIPO DE BULTO' => 'TipoBultos',
         'FLETE (**)' => 'MntFlete',
         'SEGURO (**)' => 'MntSeguro',
-        'PAIS RECEPTOR Y PAIS DESTINO' => [
-            'tag' => 'CodPaisRecep',
-            'val' => [
-                'AUSTRALIA' => 406,
-                'ESPANA' => 517,
-            ],
-        ],
-    ]; ///< Códigos de aduana usados en set de pruebas
+        'PAIS RECEPTOR Y PAIS DESTINO' => 'CodPaisRecep',
+    ]; ///< Traducción para códigos de aduana usados en set de pruebas
 
     /**
      * Método que procesa el arreglo con los datos del set de pruebas y crea el
@@ -200,7 +141,7 @@ class SetPruebas
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-04
+     * @version 2016-07-06
      */
     public static function getJSON($archivo, array $folios = [], $separador = '==============')
     {
@@ -241,16 +182,19 @@ class SetPruebas
                 // datos del receptor
                 if (!empty($caso['exportacion']['NACIONALIDAD'])) {
                     $documento['Encabezado']['Receptor']['Extranjero'] = [
-                        'Nacionalidad' => self::$Aduana['PAIS RECEPTOR Y PAIS DESTINO']['val'][$caso['exportacion']['NACIONALIDAD']],
+                        'Nacionalidad' => \sasco\LibreDTE\Sii\Aduana::getCodigo(
+                            self::$Aduana['PAIS RECEPTOR Y PAIS DESTINO'],
+                            $caso['exportacion']['NACIONALIDAD']
+                        ),
                     ];
                     unset($caso['exportacion']['NACIONALIDAD']);
                 }
                 // datos de la aduana
                 $documento['Encabezado']['Transporte']['Aduana'] = [];
                 foreach ($caso['exportacion'] as $var => $val) {
-                    if (isset(self::$Aduana[$var]) and (isset(self::$Aduana[$var]['val'][$val]) or !is_array(self::$Aduana[$var]))) {
-                        $tag = is_array(self::$Aduana[$var]) ? self::$Aduana[$var]['tag'] : self::$Aduana[$var];
-                        $valor = is_array(self::$Aduana[$var]) ? self::$Aduana[$var]['val'][$val] : $val;
+                    if (isset(self::$Aduana[$var])) {
+                        $tag = self::$Aduana[$var];
+                        $valor = \sasco\LibreDTE\Sii\Aduana::getCodigo($tag, $val);
                         $documento['Encabezado']['Transporte']['Aduana'][$tag] = $valor;
                         unset($caso['exportacion'][$var]);
                     }
@@ -354,6 +298,10 @@ class SetPruebas
                     ];
                 }
             }
+            // si es documento de exportación y es referencia, se copian los datos de transporte
+            if (in_array($TipoDTE, [111, 112]) and !empty($caso['referencia'])) {
+                $documento['Encabezado']['Transporte'] = $documentos[$caso['referencia']['caso']]['Encabezado']['Transporte'];
+            }
             // agregar descuento del documento
             $documento['DscRcgGlobal'] = [];
             if (!empty($caso['descuento'])) {
@@ -363,7 +311,7 @@ class SetPruebas
                     'ValorDR' => substr($caso['descuento'], 0, -1),
                 ];
             }
-            // agregar recarglo total clausula
+            // agregar recargo total clausula
             if (!empty($caso['recargo-total-clausula'])) {
                 $documento['DscRcgGlobal'][] = [
                     'TpoMov' => 'R',
@@ -402,6 +350,14 @@ class SetPruebas
                 'FolioRef' => $folios[$TipoDTE],
                 'RazonRef' => 'CASO '.$caso['caso'],
             ];
+            // si es documento de exportación y es referencia, se copian las referencias de la referencia
+            if (in_array($TipoDTE, [111, 112]) and !empty($caso['referencia'])) {
+                foreach ($documentos[$caso['referencia']['caso']]['Referencia'] as $Referencia) {
+                    if ($Referencia['TpoDocRef']!='SET' and !isset($Referencia['CodRef'])) {
+                        $documento['Referencia'][] = $Referencia;
+                    }
+                }
+            }
             // agregar referencias del caso
             if (!empty($caso['referencia'])) {
                 $referencia = self::getReferencia($caso['referencia']['razon']);
