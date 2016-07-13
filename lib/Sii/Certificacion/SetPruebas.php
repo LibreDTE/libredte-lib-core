@@ -319,14 +319,18 @@ class SetPruebas
                     'ValorDR' => round((substr($caso['recargo-total-clausula'], 0, -1)/100) * $documento['Encabezado']['Transporte']['Aduana']['TotClauVenta'], 2),
                 ];
             }
-            // agregar recargo por flete y/o seguro
-            foreach (['MntFlete', 'MntSeguro'] as $recargo_aduana) {
-                if (!empty($documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana])) {
-                    $documento['DscRcgGlobal'][] = [
-                        'TpoMov' => 'R',
-                        'TpoValor' => '$',
-                        'ValorDR' => $documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana],
-                    ];
+            // agregar recargo por flete y/o seguro, se agrega sólo en factura
+            // ya que las notas de crédito y débito de los SETs no consideran
+            // estos recargos
+            if ($documento['Encabezado']['IdDoc']['TipoDTE']==110) {
+                foreach (['MntFlete', 'MntSeguro'] as $recargo_aduana) {
+                    if (!empty($documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana])) {
+                        $documento['DscRcgGlobal'][] = [
+                            'TpoMov' => 'R',
+                            'TpoValor' => '$',
+                            'ValorDR' => $documento['Encabezado']['Transporte']['Aduana'][$recargo_aduana],
+                        ];
+                    }
                 }
             }
             // agregar recargo del documento
@@ -340,8 +344,11 @@ class SetPruebas
             if (empty($documento['DscRcgGlobal']))
                 unset($documento['DscRcgGlobal']);
             // agregar descuento del documento de la referencia
-            else if (!empty($caso['referencia']) and isset($documentos[$caso['referencia']['caso']]['DscRcgGlobal'])) {
-                $documento['DscRcgGlobal'] = $documentos[$caso['referencia']['caso']]['DscRcgGlobal'];
+            else if (!empty($caso['referencia'])) {
+                $referencia = self::getReferencia($caso['referencia']['razon']);
+                if ($referencia['codigo']===1 and isset($documentos[$caso['referencia']['caso']]['DscRcgGlobal'])) {
+                    $documento['DscRcgGlobal'] = $documentos[$caso['referencia']['caso']]['DscRcgGlobal'];
+                }
             }
             // agregar referencia obligatoria
             $documento['Referencia'] = [];
@@ -350,14 +357,6 @@ class SetPruebas
                 'FolioRef' => $folios[$TipoDTE],
                 'RazonRef' => 'CASO '.$caso['caso'],
             ];
-            // si es documento de exportación y es referencia, se copian las referencias de la referencia
-            if (in_array($TipoDTE, [111, 112]) and !empty($caso['referencia'])) {
-                foreach ($documentos[$caso['referencia']['caso']]['Referencia'] as $Referencia) {
-                    if ($Referencia['TpoDocRef']!='SET' and !isset($Referencia['CodRef'])) {
-                        $documento['Referencia'][] = $Referencia;
-                    }
-                }
-            }
             // agregar referencias del caso
             if (!empty($caso['referencia'])) {
                 $referencia = self::getReferencia($caso['referencia']['razon']);
