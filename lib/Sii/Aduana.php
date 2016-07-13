@@ -881,4 +881,14 @@ class Aduana
         return self::$tablasInvertidas;
     }
 
+    /**
+     * Método que entrega los datos de las nacionalidades
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-13
+     */
+    public static function getNacionalidades()
+    {
+        return self::$tablas['paises'];
+    }
+
 }
