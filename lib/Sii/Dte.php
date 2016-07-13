@@ -1475,7 +1475,7 @@ class Dte
      * Método que normaliza las boletas electrónicas, dte 39 y 41
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-13
+     * @version 2016-07-13
      */
     private function normalizar_boletas(array &$datos)
     {
@@ -1491,6 +1491,7 @@ class Dte
         $datos['Encabezado']['Emisor']['Acteco'] = false;
         $datos['Encabezado']['Emisor']['Telefono'] = false;
         $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
+        $datos['Encabezado']['Emisor']['CdgVendedor'] = false;
         $datos['Encabezado']['Receptor']['GiroRecep'] = false;
         $datos['Encabezado']['Receptor']['CorreoRecep'] = false;
         // quitar otros tags que no son parte de las boletas
