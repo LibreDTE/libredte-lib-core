@@ -307,6 +307,22 @@ class Dte
     }
 
     /**
+     * Método que entrega el tipo de moneda del documento
+     * @return String con el tipo de moneda
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-16
+     */
+    public function getMoneda()
+    {
+        $nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/TpoMoneda')->item(0);
+        if ($nodo)
+            return $nodo->nodeValue;
+        if (!$this->getDatos())
+            return false;
+        return $this->datos['Encabezado']['Totales']['TpoMoneda'];
+    }
+
+    /**
      * Método que entrega el string XML del tag TED
      * @return String XML con tag TED
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
