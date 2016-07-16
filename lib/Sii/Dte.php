@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-11
+ * @version 2016-07-15
  */
 class Dte
 {
@@ -46,7 +46,7 @@ class Dte
         'Exportaciones' => [110, 111, 112],
     ]; ///< Tipos posibles de documentos tributarios electrónicos
 
-    private $noCedibles = [56, 61, 111, 112]; ///< Notas de crédito y notas de débito no son cedibles
+    private $noCedibles = [39, 41, 56, 61, 110, 111, 112]; ///< Documentos que no son cedibles
 
     /**
      * Constructor de la clase DTE
@@ -459,7 +459,7 @@ class Dte
      * puede servir, por ejemplo, para generar los detalles de los IECV
      * @return Arreglo con el resumen del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-07-15
      */
     public function getResumen()
     {
@@ -476,13 +476,13 @@ class Dte
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => 0,
-            'MntTotal' => (int)$this->datos['Encabezado']['Totales']['MntTotal'],
+            'MntTotal' => 0,
         ];
         // obtener montos si es que existen en el documento
-        $montos = ['TasaImp'=>'TasaIVA', 'MntExe'=>'MntExe', 'MntNeto'=>'MntNeto', 'MntIVA'=>'IVA'];
+        $montos = ['TasaImp'=>'TasaIVA', 'MntExe'=>'MntExe', 'MntNeto'=>'MntNeto', 'MntIVA'=>'IVA', 'MntTotal'=>'MntTotal'];
         foreach ($montos as $dest => $orig) {
             if (!empty($this->datos['Encabezado']['Totales'][$orig])) {
-                $resumen[$dest] = (int)$this->datos['Encabezado']['Totales'][$orig];
+                $resumen[$dest] = !$this->esExportacion() ? round($this->datos['Encabezado']['Totales'][$orig]) : $this->datos['Encabezado']['Totales'][$orig];
             }
         }
         // si es una boleta se calculan los datos para el resumen

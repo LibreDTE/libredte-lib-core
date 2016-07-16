@@ -181,7 +181,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-01
+     * @version 2016-07-15
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -218,10 +218,8 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar timbre
         $this->agregarTimbre($timbre);
         // agregar acuse de recibo y leyenda cedible
-        if ($this->cedible) {
-            if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
-                $this->agregarAcuseRecibo();
-            }
+        if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+            $this->agregarAcuseRecibo();
             $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
     }
@@ -234,7 +232,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-01
+     * @version 2016-07-15
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -283,10 +281,8 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         $this->agregarTotales($dte['Encabezado']['Totales'], $this->y+6, 23, 17);
         // agregar acuse de recibo y leyenda cedible
-        if ($this->cedible) {
-            if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
-                $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
-            }
+        if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+            $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
             $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE'], $this->y+6, 8);
         }
         // agregar timbre
