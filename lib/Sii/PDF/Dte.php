@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-30
+ * @version 2016-07-15
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -55,11 +55,21 @@ class Dte extends \sasco\LibreDTE\PDF
         110 => 'FACTURA DE EXPORTACIÓN ELECTRÓNICA',
         111 => 'NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA',
         112 => 'NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA',
+        801 => 'ORDEN DE COMPRA',
+        802 => 'NOTA DE PEDIDO',
+        803 => 'CONTRATO',
+        804 => 'RESOLUCIÓN',
+        805 => 'PROCEDO CHILECOMPRA',
+        806 => 'FICHA CHILECOMPRA',
         807 => 'DUS',
+        808 => 'B/L (CONOCIMIENTO DE EMBARQUE)',
         809 => 'AWB',
         810 => 'MIC (MANIFIESTO INTERNACIONAL)',
+        811 => 'CARTA DE PORTE',
         812 => 'RESOLUCION SNA',
         813 => 'PASAPORTE',
+        814 => 'CERTIFICADO DE DEPÓSITO BOLSA PROD. CHILE',
+        815 => 'VALE DE PRENDA BOLSA PROD. CHILE',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     private $formas_pago = [
@@ -99,6 +109,12 @@ class Dte extends \sasco\LibreDTE\PDF
         8 => 'Traslado para exportación (no venta)',
         9 => 'Venta para exportación',
     ]; ///< Tipos de traslado para guías de despacho
+
+    public static $papel = [
+        0  => 'Hoja carta',
+        75 => 'Papel contínuo 75mm',
+        80 => 'Papel contínuo 80mm',
+    ]; ///< Tamaño de papel que es soportado
 
     /**
      * Constructor de la clase
