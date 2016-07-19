@@ -848,7 +848,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-30
+     * @version 2016-07-19
      */
     private function normalizar_52(array &$datos)
     {
@@ -864,6 +864,7 @@ class Dte
                     'MntExe' => false,
                     'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
                     'IVA' => 0,
+                    'ImptoReten' => false,
                     'CredEC' => false,
                     'MntTotal' => 0,
                 ]
@@ -894,6 +895,7 @@ class Dte
         // normalizar datos
         $this->normalizar_detalle($datos);
         $this->normalizar_aplicar_descuentos_recargos($datos);
+        $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
     }
 
