@@ -1314,10 +1314,9 @@ class Dte
      * Método que aplica los descuentos y recargos generales respectivos a los
      * montos que correspondan según e indicador del descuento o recargo
      * @param datos Arreglo con los datos del documento que se desean normalizar
-     * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @warning Boleta afecta con algún item exento el descuento se podría estar aplicando mal
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-05
+     * @version 2016-07-19
      */
     private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
@@ -1339,7 +1338,11 @@ class Dte
                 // calcular valor del descuento o recargo
                 if ($dr['TpoValor']=='$')
                     $dr['ValorDR'] = $this->round($dr['ValorDR'], $datos['Encabezado']['Totales']['TpoMoneda'], 2);
-                $valor = $dr['TpoValor']=='%' ? (($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto]) : $dr['ValorDR'];
+                $valor =
+                    $dr['TpoValor']=='%'
+                    ? $this->round(($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto], $datos['Encabezado']['Totales']['TpoMoneda'])
+                    : $dr['ValorDR']
+                ;
                 // aplicar descuento
                 if ($dr['TpoMov']=='D') {
                     $datos['Encabezado']['Totales'][$monto] -= $valor;
