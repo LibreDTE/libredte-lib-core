@@ -29,7 +29,7 @@ namespace sasco\LibreDTE\Sii;
  *  - http://comext.aduana.cl:7001/codigos
  *  - https://www.aduana.cl/compendio-de-normas-anexo-51/aduana/2008-02-18/165942.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-06
+ * @version 2016-07-20
  */
 class Aduana
 {
@@ -112,7 +112,7 @@ class Aduana
                 13 => 'ROLLOS',
                 16 => 'BARRA',
                 17 => 'LINGOTE',
-                18 => 'TRONCO',
+                18 => 'TRONCOS',
                 19 => 'BLOQUE',
                 20 => 'ROLLIZO',
                 21 => 'CAJON',

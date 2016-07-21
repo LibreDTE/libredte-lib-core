@@ -106,6 +106,7 @@ class SetPruebas
     ]; ///< Indicadores para traslados en guías de despacho
 
     private static $formas_pago_exportacion = [
+        'COB1' => 1,
         'COBRANZA' => 2,
         'SIN PAGO' => 21,
         'ANTICIPO' => 32,
