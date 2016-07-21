@@ -848,7 +848,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-19
+     * @version 2016-07-21
      */
     private function normalizar_52(array &$datos)
     {
@@ -871,7 +871,7 @@ class Dte
             ],
         ], $datos);
         // si es traslado interno se copia el emisor en el receptor sólo si el
-        // receptor no está definido o bien se el receptor tiene RUT diferente
+        // receptor no está definido o bien si el receptor tiene RUT diferente
         // al emisor
         if ($datos['Encabezado']['IdDoc']['IndTraslado']==5) {
             if (!$datos['Encabezado']['Receptor'] or $datos['Encabezado']['Receptor']['RUTRecep']!=$datos['Encabezado']['Emisor']['RUTEmisor']) {
@@ -889,6 +889,9 @@ class Dte
                     if (!empty($datos['Encabezado']['Emisor'][$emisor])) {
                         $datos['Encabezado']['Receptor'][$receptor] = $datos['Encabezado']['Emisor'][$emisor];
                     }
+                }
+                if (!empty($datos['Encabezado']['Receptor']['GiroRecep'])) {
+                    $datos['Encabezado']['Receptor']['GiroRecep'] = substr($datos['Encabezado']['Receptor']['GiroRecep'], 0, 40);
                 }
             }
         }
