@@ -706,7 +706,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param pagos Arreglo con los pagos del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-01
+     * @version 2016-07-24
      */
     private function agregarPagos(array $pagos, $x = 10)
     {
@@ -715,7 +715,6 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Pago(s) programado(s):', $x);
         $this->Ln();
         foreach($pagos as $p) {
-            debug($p);
             $this->Texto('  - '.$this->date($p['FchPago'], false).': $'.$this->num($p['MntPago']).'.-'.(!empty($p['GlosaPagos'])?(' ('.$p['GlosaPagos'].')'):''), $x);
             $this->Ln();
         }
