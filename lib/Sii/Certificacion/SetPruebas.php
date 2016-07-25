@@ -368,6 +368,10 @@ class SetPruebas
                     'CodRef' => $referencia['codigo'],
                     'RazonRef' => $caso['referencia']['razon'],
                 ];
+                // si la referencia es corrige giro se asigna automáticamente la corrección
+                if (isset($documento['Referencia'][1]['RazonRef']) and $documento['Referencia'][1]['RazonRef']=='CORRIGE GIRO') {
+                    $documento['Detalle'][0]['NmbItem'] = 'DONDE DICE Servicios integrales de informática DEBE DECIR Informática';
+                }
                 // agregar totales
                 $documento['Encabezado']['Totales'] = $referencia['Totales'];
                 // agregar tasa de IVA si corresponde
