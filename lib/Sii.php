@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-24
+ * @version 2016-07-25
  */
 class Sii
 {
@@ -52,8 +52,10 @@ class Sii
 
     private static $direcciones_regionales = [
         'CHILLÁN VIEJO' => 'CHILLÁN',
+        'HUECHURABA' => 'SANTIAGO NORTE',
         'LA CISTERNA' => 'SANTIAGO SUR',
         'LAS CONDES' => 'SANTIAGO ORIENTE',
+        'LO ESPEJO' => 'SANTIAGO SUR',
         'PEÑALOLÉN' => 'ÑUÑOA',
         'PUDAHUEL' => 'SANTIAGO PONIENTE',
         'RECOLETA' => 'SANTIAGO NORTE',
