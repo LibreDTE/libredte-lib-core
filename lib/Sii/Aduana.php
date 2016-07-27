@@ -29,7 +29,7 @@ namespace sasco\LibreDTE\Sii;
  *  - http://comext.aduana.cl:7001/codigos
  *  - https://www.aduana.cl/compendio-de-normas-anexo-51/aduana/2008-02-18/165942.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-20
+ * @version 2016-07-26
  */
 class Aduana
 {
@@ -151,7 +151,7 @@ class Aduana
                 67 => 'SOBRE',
                 73 => 'CONT20',
                 74 => 'CONT40',
-                75 => 'REEFER20',
+                75 => 'CONTENEDOR REFRIGERADO', // REEFER20
                 76 => 'REEFER40',
                 77 => 'ESTANQUE',
                 78 => 'CONTNOESP',
@@ -819,7 +819,7 @@ class Aduana
     /**
      * Entrega el valor traducido a partir de la tabla
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-07-27
      */
     public static function getValor($tag, $codigo)
     {
@@ -831,10 +831,10 @@ class Aduana
         if ($tag=='TipoBultos') {
             $valor = isset($tabla[$codigo['CodTpoBultos']]) ? $tabla[$codigo['CodTpoBultos']] : $codigo['CodTpoBultos'];
             $valor = $codigo['CantBultos'].' '.$valor;
-            if (!empty($codigo['Marcas'])) {
+            if (!empty($codigo['IdContainer'])) {
+                $valor .= ' ('.$codigo['IdContainer'].' / '.$codigo['Sello'].' / '.$codigo['EmisorSello'].')';
+            } else if (!empty($codigo['Marcas'])) {
                 $valor .= ' ('.$codigo['Marcas'].')';
-            } else if (!empty($codigo['IdContainer'])) {
-                $valor .= ' ('.$codigo['IdContainer'].')';
             }
         } else {
             $valor = isset($tabla[$codigo]) ? $tabla[$codigo] : $codigo;
@@ -845,13 +845,14 @@ class Aduana
     /**
      * Método que entrega a partir de su valor (texto) el código que corresponde
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-06
+     * @version 2016-07-26
      */
     public static function getCodigo($tag, $valor)
     {
         if (self::$tablasInvertidas===null) {
             self::$tablasInvertidas = self::getTablasInvertidas();
         }
+        $valor = strtoupper($valor);
         return isset(self::$tablasInvertidas[$tag][$valor]) ? self::$tablasInvertidas[$tag][$valor] : $valor;
     }
 

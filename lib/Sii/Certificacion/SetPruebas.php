@@ -108,6 +108,8 @@ class SetPruebas
     private static $formas_pago_exportacion = [
         'COB1' => 1,
         'COBRANZA' => 2,
+        'ACRED' => 11,
+        'CBOF' => 12,
         'SIN PAGO' => 21,
         'ANTICIPO' => 32,
     ]; ///< Códigos de forma de pago de la aduana para exportaciones
@@ -142,7 +144,7 @@ class SetPruebas
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-06
+     * @version 2016-07-26
      */
     public static function getJSON($archivo, array $folios = [], $separador = '==============')
     {
@@ -210,6 +212,12 @@ class SetPruebas
                         'CantBultos' => $documento['Encabezado']['Transporte']['Aduana']['TotBultos'],
                         'Marcas' => md5($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'].$documento['Encabezado']['Transporte']['Aduana']['TotBultos']),
                     ];
+                    // si el bulto es contenedor entonces se colocan datos extras
+                    if ($documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['CodTpoBultos']==75) {
+                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['IdContainer'] = 'ABC123';
+                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['Sello'] = '10973348-2';
+                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['EmisorSello'] = 'Sellos de Chile';
+                    }
                 }
                 if (empty($documento['Encabezado']['Transporte']['Aduana']))
                     unset($documento['Encabezado']['Transporte']);
@@ -369,7 +377,7 @@ class SetPruebas
                     'RazonRef' => $caso['referencia']['razon'],
                 ];
                 // si la referencia es corrige giro se asigna automáticamente la corrección
-                if (isset($documento['Referencia'][1]['RazonRef']) and $documento['Referencia'][1]['RazonRef']=='CORRIGE GIRO') {
+                if (isset($documento['Referencia'][1]['RazonRef']) and strpos($documento['Referencia'][1]['RazonRef'], 'CORRIGE GIRO')===0) {
                     $documento['Detalle'][0]['NmbItem'] = 'DONDE DICE Servicios integrales de informática DEBE DECIR Informática';
                 }
                 // agregar totales

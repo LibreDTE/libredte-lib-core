@@ -511,7 +511,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-05
+     * @version 2016-07-27
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
@@ -555,6 +555,8 @@ class Dte extends \sasco\LibreDTE\PDF
                     $this->Texto($glosa, $x+$col);
                     $this->Texto(':', $x+$offset+$col);
                     $this->Texto($valor, $x+$offset+2+$col);
+                    if ($tag=='TipoBultos')
+                        $col = abs($col-110);
                     if ($col)
                         $this->Ln();
                     $col = abs($col-110);
