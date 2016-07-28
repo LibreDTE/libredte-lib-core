@@ -27,12 +27,13 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-29
+ * @version 2016-07-28
  */
 class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
 
     private $simplificado = false; ///< Indica si el libro es simplificado o no
+    private $datos = null; ///< Arreglo con los datos del XML del libro
 
     /**
      * Constructor del libro
@@ -43,6 +44,19 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
     public function __construct($simplificado = false)
     {
         $this->simplificado = $simplificado;
+    }
+
+    /**
+     * Método que permite obtener el ID del libro
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-28
+     */
+    public function getID()
+    {
+        if ($this->datos===null) {
+            $this->datos = $this->toArray();
+        }
+        return !empty($this->datos['LibroCompraVenta']['EnvioLibro']['@attributes']['ID']) ? $this->datos['LibroCompraVenta']['EnvioLibro']['@attributes']['ID'] : false;
     }
 
     /**
