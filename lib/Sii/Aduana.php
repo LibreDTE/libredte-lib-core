@@ -892,4 +892,14 @@ class Aduana
         return self::$tablas['paises'];
     }
 
+    /**
+     * Método que entrega la glosa de la nacionalidad a partir de su código
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-29
+     */
+    public static function getNacionalidad($codigo)
+    {
+        return isset(self::$tablas['paises'][$codigo]) ? self::$tablas['paises'][$codigo] : $codigo;
+    }
+
 }
