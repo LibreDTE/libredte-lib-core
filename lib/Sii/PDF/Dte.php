@@ -197,7 +197,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-15
+     * @version 2016-07-29
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -224,8 +224,10 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['Referencia']))
             $this->agregarReferencia($dte['Referencia']);
         $this->agregarDetalle($dte['Detalle']);
-        if (!empty($dte['DscRcgGlobal']))
+        if (!empty($dte['DscRcgGlobal'])) {
+            $this->agregarSubTotal($dte['Detalle']);
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
+        }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos']))
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos']);
         $this->agregarTotales($dte['Encabezado']['Totales']);
@@ -288,6 +290,7 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['DscRcgGlobal'])) {
             $this->Ln();
             $this->Ln();
+            $this->agregarSubTotal($dte['Detalle'], 2);
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], 2);
         }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
@@ -685,6 +688,23 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
+     * Método que agrega el subtotal del DTE
+     * @param detalle Arreglo con los detalles del documentos para poder
+     * calcular subtotal
+     * @param x Posición horizontal de inicio en el PDF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-07-29
+     */
+    private function agregarSubTotal(array $detalle, $x = 10) {
+        $subtotal = 0;
+        foreach($detalle as  &$d) {
+            $subtotal += $d['MontoItem'];
+        }
+        $this->Texto('Subtotal: '.$this->num($subtotal).'.-', $x);
+        $this->Ln();
+    }
+
+    /**
      * Método que agrega los descuentos y/o recargos globales del documento
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
@@ -698,7 +718,7 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach($descuentosRecargos as $dr) {
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
-            $this->Texto($tipo.' global de '.$valor, $x);
+            $this->Texto($tipo.' global: '.$valor, $x);
             $this->Ln();
         }
     }
