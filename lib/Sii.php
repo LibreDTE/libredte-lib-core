@@ -80,6 +80,17 @@ class Sii
     }
 
     /**
+     * Método que entrega el nombre del servidor a usar según el ambiente
+     * @param ambiente Ambiente que se desea obtener el servidor, si es null se autodetectará
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-01
+     */
+    public static function getServidor($ambiente = null)
+    {
+        return self::$config['servidor'][self::getAmbiente($ambiente)];
+    }
+
+    /**
      * Método para obtener el WSDL
      *
      * \code{.php}
