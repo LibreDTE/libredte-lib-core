@@ -27,11 +27,12 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-15
+ * @version 2016-08-03
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
 
+    private $dte; ///< Tipo de DTE que se está generando
     private $logo; ///< Ubicación del logo del emisor que se incluirá en el pdf
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
@@ -90,6 +91,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $detalle_cols = [
         'CdgItem' => ['title'=>'Código', 'align'=>'left', 'width'=>20],
         'NmbItem' => ['title'=>'Item', 'align'=>'left', 'width'=>0],
+        'IndExe' => ['title'=>'IE', 'align'=>'left', 'width'=>'7'],
         'QtyItem' => ['title'=>'Cant.', 'align'=>'right', 'width'=>15],
         'UnmdItem' => ['title'=>'Unidad', 'align'=>'left', 'width'=>22],
         'PrcItem' => ['title'=>'P. unitario', 'align'=>'right', 'width'=>22],
@@ -185,6 +187,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     public function agregar(array $dte, $timbre = null)
     {
+        $this->dte = $dte['Encabezado']['IdDoc']['TipoDTE'];
         if ($this->papelContinuo) {
             $this->agregarContinuo($dte, $timbre, $this->papelContinuo);
         } else {
@@ -606,7 +609,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-25
+     * @version 2016-08-03
      */
     private function agregarDetalle($detalle, $x = 10)
     {
@@ -619,14 +622,22 @@ class Dte extends \sasco\LibreDTE\PDF
             $titulos[$key] = $info['title'];
         }
         // normalizar cada detalle
+        $dte_exento = in_array($this->dte, [34, 110, 111, 112]);
         foreach ($detalle as &$item) {
             // quitar columnas
             foreach ($item as $col => $valor) {
                 if ($col=='DscItem' and !empty($item['DscItem'])) {
                     $item['NmbItem'] .= '<br/><span style="font-size:0.7em">'.$item['DscItem'].'</span>';
                 }
-                if (!in_array($col, $titulos_keys))
+                if (!in_array($col, $titulos_keys) or ($dte_exento and $col=='IndExe'))
                     unset($item[$col]);
+            }
+            // ajustes a IndExe
+            if (isset($item['IndExe'])) {
+                if ($item['IndExe']==1)
+                    $item['IndExe'] = 'EX';
+                else if ($item['IndExe']==2)
+                    $item['IndExe'] = 'NF';
             }
             // agregar todas las columnas que se podrían imprimir en la tabla
             $item_default = [];
@@ -755,7 +766,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-30
+     * @version 2016-08-03
      */
     private function agregarTotales(array $totales, $y = 190, $x = 145, $offset = 25)
     {
@@ -768,6 +779,10 @@ class Dte extends \sasco\LibreDTE\PDF
             'IVA' => false,
             'CredEC' => false,
             'MntTotal' => false,
+            'MontoNF' => false,
+            'MontoPeriodo' => false,
+            'SaldoAnterior' => false,
+            'VlrPagar' => false,
         ], $totales);
         // glosas
         $glosas = [
@@ -777,6 +792,10 @@ class Dte extends \sasco\LibreDTE\PDF
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
             'CredEC' => 'Desc. 65% IVA $',
             'MntTotal' => 'Total $',
+            'MontoNF' => 'Monto no facturable $',
+            'MontoPeriodo' => 'Monto período $',
+            'SaldoAnterior' => 'Saldo anterior $',
+            'VlrPagar' => 'Valor a pagar $',
         ];
         // agregar impuestos adicionales y retenciones
         if (!empty($totales['ImptoReten'])) {
