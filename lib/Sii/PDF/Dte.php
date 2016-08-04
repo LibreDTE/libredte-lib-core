@@ -33,7 +33,7 @@ class Dte extends \sasco\LibreDTE\PDF
 {
 
     private $dte; ///< Tipo de DTE que se está generando
-    private $logo; ///< Ubicación del logo del emisor que se incluirá en el pdf
+    private $logo; ///< Datos del logo que se ubicará en el PDF (ruta, datos y/o posición)
     private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
     private $cedible = false; ///< Por defecto DTEs no son cedibles
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
@@ -136,12 +136,16 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que asigna la ubicación del logo de la empresa
      * @param logo URI del logo (puede ser local o en una URL)
+     * @param posicion Posición respecto a datos del emisor (=0 izq, =1 arriba)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2016-08-04
      */
-    public function setLogo($logo)
+    public function setLogo($logo, $posicion = 0)
     {
-        $this->logo = $logo;
+        $this->logo = [
+            'uri' => $logo,
+            'posicion' => (int)$posicion,
+        ];
     }
 
     /**
@@ -349,14 +353,27 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-29
+     * @version 2016-08-03
      */
     private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null)
     {
-        // logo máximo 1/5 del tamaño del documento
+        // logo del documento
         if (isset($this->logo)) {
-            $this->Image($this->logo, $x, $y, $w_img, 0, 'PNG', (isset($emisor['url'])?$emisor['url']:''), 'T');
-            $x = $this->x+3;
+            $this->Image(
+                $this->logo['uri'],
+                $x,
+                $y,
+                !$this->logo['posicion']?$w_img:null, $this->logo['posicion']?($w_img/2):null,
+                'PNG',
+                (isset($emisor['url'])?$emisor['url']:''),
+                'T'
+            );
+            if ($this->logo['posicion']) {
+                $this->SetY($this->y + ($w_img/2));
+                $w += 40;
+            } else {
+                $x = $this->x+3;
+            }
         } else {
             $this->y = $y-2;
             $w += 40;
