@@ -326,7 +326,7 @@ class Dte
      * Método que entrega el string XML del tag TED
      * @return String XML con tag TED
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
+     * @version 2016-08-03
      */
     public function getTED()
     {
@@ -339,7 +339,10 @@ class Dte
         if (openssl_verify($xml->getFlattened('/'), base64_decode($FRMT), $pub_key, OPENSSL_ALGO_SHA1)!==1);
             return false;*/
         $xml = new \sasco\LibreDTE\XML();
-        $xml->loadXML($this->xml->getElementsByTagName('TED')->item(0)->C14N());
+        $TED = $this->xml->getElementsByTagName('TED')->item(0);
+        if (!$TED)
+            return '<TED/>';
+        $xml->loadXML($TED->C14N());
         $xml->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
         $xml->documentElement->removeAttributeNS('http://www.sii.cl/SiiDte', '');
         $TED = $xml->getFlattened('/');
