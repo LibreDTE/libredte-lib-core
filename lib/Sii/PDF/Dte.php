@@ -76,7 +76,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $formas_pago = [
         1 => 'Contado',
         2 => 'Crédito',
-        3 => 'Sin costo (entrega gratuita)',
+        3 => 'Sin costo',
     ]; ///< Glosas de las formas de pago
 
     private $formas_pago_exportacion = [
@@ -99,6 +99,8 @@ class Dte extends \sasco\LibreDTE\PDF
         'RecargoMonto' => ['title'=>'Recargo', 'align'=>'right', 'width'=>22],
         'MontoItem' => ['title'=>'Total item', 'align'=>'right', 'width'=>22],
     ]; ///< Nombres de columnas detalle, alineación y ancho
+
+    private $detalle_fuente = 10; ///< Tamaño de la fuente para el detalle en hoja carta
 
     private $traslados = [
         1 => 'Operación constituye venta',
@@ -178,6 +180,30 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
+     * Método que asigna el tamaño de la fuente para el detalle
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-03
+     */
+    public function setFuenteDetalle($fuente)
+    {
+        $this->detalle_fuente = (int)$fuente;
+    }
+
+    /**
+     * Método que asigna el ancho e las columnas del detalle desde un arreglo
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-03
+     */
+    public function setAnchoColumnasDetalle(array $anchos)
+    {
+        foreach ($anchos as $col => $ancho) {
+            if (isset($this->detalle_cols[$col]) and $ancho) {
+                $this->detalle_cols[$col]['width'] = (int)$ancho;
+            }
+        }
+    }
+
+    /**
      * Método que agrega un documento tributario, ya sea en formato de una
      * página o papel contínuo según se haya indicado en el constructor
      * @param dte Arreglo con los datos del XML (tag Documento)
@@ -200,7 +226,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-29
+     * @version 2016-08-03
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -217,8 +243,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // datos del documento
         $this->setY(max($y));
         $this->Ln();
-        $this->agregarFechaEmision($dte['Encabezado']['IdDoc']['FchEmis']);
-        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc']);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc']);
         $this->agregarReceptor($dte['Encabezado']['Receptor']);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
@@ -253,7 +278,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-15
+     * @version 2016-08-03
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -277,8 +302,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetY($y);
         $this->Ln();
         $this->setFont('', '', 8);
-        $this->agregarFechaEmision($dte['Encabezado']['IdDoc']['FchEmis'], 2, 14, false);
-        $this->agregarCondicionVenta($dte['Encabezado']['IdDoc'], 2, 14, false);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], 2, 14, false);
         $this->agregarReceptor($dte['Encabezado']['Receptor'], 2, 14);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
@@ -425,51 +449,79 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
-     * Método que agrega la fecha de emisión de la factura
-     * @param date Fecha de emisión de la boleta en formato AAAA-MM-DD
-     * @param x Posición horizontal de inicio en el PDF
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-28
-     */
-    private function agregarFechaEmision($date, $x = 10, $offset = 22, $mostrar_dia = true)
-    {
-        $this->Texto('Emisión', $x);
-        $this->Texto(':', $x+$offset);
-        $this->MultiTexto($this->date($date, $mostrar_dia), $x+$offset+2);
-    }
-
-    /**
-     * Método que agrega la condición de venta del documento
+     * Método que agrega los datos de la emisión del DTE que no son los dato del
+     * receptor
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-28
+     * @version 2016-08-03
      */
-    private function agregarCondicionVenta($IdDoc, $x = 10, $offset = 22, $mostrar_dia = true)
+    private function agregarDatosEmision($IdDoc, $x = 10, $offset = 22, $mostrar_dia = true)
     {
-        // forma de pago nacional
-        if (!empty($IdDoc['FmaPago'])) {
-            $this->Texto('Venta', $x);
-            $this->Texto(':', $x+$offset);
-            $this->MultiTexto($this->formas_pago[$IdDoc['FmaPago']], $x+$offset+2);
+        // si es hoja carta
+        if ($x==10) {
+            $y = $this->GetY();
+            $this->setFont('', 'B', null);
+            $this->MultiTexto($this->date($IdDoc['FchEmis'], $mostrar_dia), $x, null, 'R');
+            $this->setFont('', '', null);
+            // pago anticicado
+            if (!empty($IdDoc['FchCancel'])) {
+                $this->MultiTexto('Pagado el '.$this->date($IdDoc['FchCancel'], false), $x, null, 'R');
+            }
+            // fecha vencimiento
+            if (!empty($IdDoc['FchVenc'])) {
+                $this->MultiTexto('Vence el '.$this->date($IdDoc['FchVenc'], false), $x, null, 'R');
+            }
+            // forma de pago nacional
+            if (!empty($IdDoc['FmaPago'])) {
+                $this->MultiTexto('Venta: '.strtolower($this->formas_pago[$IdDoc['FmaPago']]), $x, null, 'R');
+            }
+            // forma de pago exportación
+            if (!empty($IdDoc['FmaPagExp'])) {
+                $this->MultiTexto('Venta: '.strtolower($this->formas_pago_exportacion[$IdDoc['FmaPagExp']]), $x, null, 'R');
+            }
+            $this->SetY($y);
         }
-        // forma de pago exportación
-        if (!empty($IdDoc['FmaPagExp'])) {
-            $this->Texto('Venta', $x);
+        // papel contínuo
+        else {
+            // fecha de emisión
+            $this->setFont('', 'B', null);
+            $this->Texto('Emisión', $x);
             $this->Texto(':', $x+$offset);
-            $this->MultiTexto($this->formas_pago_exportacion[$IdDoc['FmaPagExp']], $x+$offset+2);
-        }
-        // pago anticicado
-        if (!empty($IdDoc['FchCancel'])) {
-            $this->Texto('Pagado el', $x);
-            $this->Texto(':', $x+$offset);
-            $this->MultiTexto($this->date($IdDoc['FchCancel'], $mostrar_dia), $x+$offset+2);
-        }
-        // fecha vencimiento
-        if (!empty($IdDoc['FchVenc'])) {
-            $this->Texto('Vencimiento', $x);
-            $this->Texto(':', $x+$offset);
-            $this->MultiTexto($this->date($IdDoc['FchVenc'], $mostrar_dia), $x+$offset+2);
+            $this->setFont('', '', null);
+            $this->MultiTexto($this->date($IdDoc['FchEmis'], $mostrar_dia), $x+$offset+2);
+            // forma de pago nacional
+            if (!empty($IdDoc['FmaPago'])) {
+                $this->setFont('', 'B', null);
+                $this->Texto('Venta', $x);
+                $this->Texto(':', $x+$offset);
+                $this->setFont('', '', null);
+                $this->MultiTexto($this->formas_pago[$IdDoc['FmaPago']], $x+$offset+2);
+            }
+            // forma de pago exportación
+            if (!empty($IdDoc['FmaPagExp'])) {
+                $this->setFont('', 'B', null);
+                $this->Texto('Venta', $x);
+                $this->Texto(':', $x+$offset);
+                $this->setFont('', '', null);
+                $this->MultiTexto($this->formas_pago_exportacion[$IdDoc['FmaPagExp']], $x+$offset+2);
+            }
+            // pago anticicado
+            if (!empty($IdDoc['FchCancel'])) {
+                $this->setFont('', 'B', null);
+                $this->Texto('Pagado el', $x);
+                $this->Texto(':', $x+$offset);
+                $this->setFont('', '', null);
+                $this->MultiTexto($this->date($IdDoc['FchCancel'], $mostrar_dia), $x+$offset+2);
+            }
+            // fecha vencimiento
+            if (!empty($IdDoc['FchVenc'])) {
+                $this->setFont('', 'B', null);
+                $this->Texto('Vence el', $x);
+                $this->Texto(':', $x+$offset);
+                $this->setFont('', '', null);
+                $this->MultiTexto($this->date($IdDoc['FchVenc'], $mostrar_dia), $x+$offset+2);
+            }
         }
     }
 
@@ -478,34 +530,44 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-29
+     * @version 2016-08-03
      */
     private function agregarReceptor(array $receptor, $x = 10, $offset = 22)
     {
-        if (!empty($receptor['RznSocRecep'])) {
-            $this->Texto('Señor(es)', $x);
-            $this->Texto(':', $x+$offset);
-            $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2);
-        }
         if (!empty($receptor['RUTRecep']) and $receptor['RUTRecep']!='66666666-6') {
             list($rut, $dv) = explode('-', $receptor['RUTRecep']);
+            $this->setFont('', 'B', null);
             $this->Texto('R.U.T.', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
         }
+        if (!empty($receptor['RznSocRecep'])) {
+            $this->setFont('', 'B', null);
+            $this->Texto('Señor(es)', $x);
+            $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
+            $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2, null, '', $x==10?105:0);
+        }
         if (!empty($receptor['GiroRecep'])) {
+            $this->setFont('', 'B', null);
             $this->Texto('Giro', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto($receptor['GiroRecep'], $x+$offset+2);
         }
         if (!empty($receptor['DirRecep'])) {
+            $this->setFont('', 'B', null);
             $this->Texto('Dirección', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):''), $x+$offset+2);
         }
         if (!empty($receptor['Extranjero']['Nacionalidad'])) {
+            $this->setFont('', 'B', null);
             $this->Texto('Nacionalidad', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto(\sasco\LibreDTE\Sii\Aduana::getNacionalidad($receptor['Extranjero']['Nacionalidad']), $x+$offset+2);
         }
         $contacto = [];
@@ -514,8 +576,10 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($receptor['CorreoRecep']))
             $contacto[] = $receptor['CorreoRecep'];
         if (!empty($contacto)) {
+            $this->setFont('', 'B', null);
             $this->Texto('Contacto', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto(implode(' / ', $contacto), $x+$offset+2);
         }
     }
@@ -526,21 +590,23 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-27
+     * @version 2016-08-03
      */
     private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
         // agregar tipo de traslado
         if ($IndTraslado) {
+            $this->setFont('', 'B', null);
             $this->Texto('Traslado', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto($this->traslados[$IndTraslado], $x+$offset+2);
         }
         // agregar información de transporte
         if ($Transporte) {
             $transporte = '';
             if (!empty($Transporte['DirDest']) and !empty($Transporte['CmnaDest'])) {
-                $transporte .= 'a '.$Transporte['DirDest'].', '.$Transporte['CmnaDest'].' ';
+                $transporte .= 'a '.$Transporte['DirDest'].', '.$Transporte['CmnaDest'];
             }
             if (!empty($Transporte['RUTTrans']))
                 $transporte .= ' por '.$Transporte['RUTTrans'];
@@ -553,8 +619,10 @@ class Dte extends \sasco\LibreDTE\PDF
                     $transporte .= ' ('.$Transporte['Chofer']['RUTChofer'].')';
             }
             if ($transporte) {
+                $this->setFont('', 'B', null);
                 $this->Texto('Transporte', $x);
                 $this->Texto(':', $x+$offset);
+                $this->setFont('', '', null);
                 $this->MultiTexto(ucfirst(trim($transporte)), $x+$offset+2);
             }
         }
@@ -567,8 +635,10 @@ class Dte extends \sasco\LibreDTE\PDF
                 $glosa = \sasco\LibreDTE\Sii\Aduana::getGlosa($tag);
                 $valor = \sasco\LibreDTE\Sii\Aduana::getValor($tag, $codigo);
                 if ($glosa!==false and $valor!==false) {
+                    $this->setFont('', 'B', null);
                     $this->Texto($glosa, $x+$col);
                     $this->Texto(':', $x+$offset+$col);
+                    $this->setFont('', '', null);
                     $this->Texto($valor, $x+$offset+2+$col);
                     if ($tag=='TipoBultos')
                         $col = abs($col-110);
@@ -587,7 +657,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param referencias Arreglo con las referencias del documento (tag Referencia del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-08-03
      */
     private function agregarReferencia($referencias, $x = 10, $offset = 22)
     {
@@ -597,8 +667,10 @@ class Dte extends \sasco\LibreDTE\PDF
             $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'];
             if (isset($r['RazonRef']) and $r['RazonRef']!==false)
                 $texto = $texto.': '.$r['RazonRef'];
+            $this->setFont('', 'B', null);
             $this->Texto('Referencia', $x);
             $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
             $this->MultiTexto($texto, $x+$offset+2);
         }
     }
@@ -615,6 +687,7 @@ class Dte extends \sasco\LibreDTE\PDF
     {
         if (!isset($detalle[0]))
             $detalle = [$detalle];
+        $this->setFont('', '', $this->detalle_fuente);
         // titulos
         $titulos = [];
         $titulos_keys = array_keys($this->detalle_cols);
@@ -729,7 +802,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2016-08-03
      */
     private function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
     {
@@ -738,7 +811,7 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach($descuentosRecargos as $dr) {
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
-            $this->Texto($tipo.' global: '.$valor, $x);
+            $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?('('.$dr['GlosaDR'].')'):''), $x);
             $this->Ln();
         }
     }
@@ -813,6 +886,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         // agregar cada uno de los totales
         $this->setY($y);
+        $this->setFont('', 'B', null);
         foreach ($totales as $key => $total) {
             if ($total!==false and isset($glosas[$key])) {
                 $y = $this->GetY();
@@ -944,9 +1018,9 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que agrega la leyenda de destino
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-10
+     * @version 2016-08-04
      */
-    private function agregarLeyendaDestino($tipo, $y = 245, $font_size = 10)
+    private function agregarLeyendaDestino($tipo, $y = 254, $font_size = 10)
     {
         $this->setFont('', 'B', $font_size);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $y, 'R');
