@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2016-08-04
  */
 class Estado
 {
@@ -98,6 +98,7 @@ class Estado
     const DOCUMENTO_ERROR_GENERAR_XML = 901;
     const DOCUMENTO_FALTA_XML = 902;
     const DOCUMENTO_ERROR_SCHEMA = 903;
+    const DOCUMENTO_FALTA_SCHEMA = 904;
 
     // glosas de los estados
     private static $glosas = [
@@ -157,6 +158,7 @@ class Estado
         self::DOCUMENTO_ERROR_GENERAR_XML => 'No fue posible generar XML del %s',
         self::DOCUMENTO_FALTA_XML => 'No hay XML de %s que validar',
         self::DOCUMENTO_ERROR_SCHEMA => 'Error schema %s. %s',
+        self::DOCUMENTO_FALTA_SCHEMA => 'No se encontró el schema para el documento',
     ];
 
     /**

@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Base;
 /**
  * Clase base para los documentos XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-22
+ * @version 2016-08-05
  */
 abstract class Documento
 {
@@ -37,6 +37,9 @@ abstract class Documento
     protected $Firma; ///< objeto de la firma electrónica
     protected $id; ///< ID del documento (se usa como referencia en la firma del XML)
     protected $arreglo; ///< Arreglo con los datos del XML
+    private $schemas = [
+        'EnvioDTE' => 'EnvioDTE_v10.xsd',
+    ]; ///< Tablas de esquemas por defecto (por si no vienen en el XML)
 
     /**
      * Método para asignar la caratula
@@ -80,7 +83,7 @@ abstract class Documento
      * Método que valida el XML del documento
      * @return =true si el schema del documento del envío es válido, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-14
+     * @version 2016-08-05
      */
     public function schemaValidate()
     {
@@ -96,9 +99,25 @@ abstract class Documento
         }
         $this->xml = new \sasco\LibreDTE\XML();
         $this->xml->loadXML($this->xml_data);
-        $xsd = dirname(dirname(dirname(dirname(__FILE__)))).'/schemas/'.$this->xml->getSchema();
-        if (!is_readable($xsd))
+        $schema = $this->xml->getSchema();
+        if (!$schema) {
+            $tag = array_keys($this->toArray())[0];
+            if (isset($this->schemas[$tag])) {
+                $schema = $this->schemas[$tag];
+            }
+        }
+        if ($schema) {
+            $xsd = dirname(dirname(dirname(dirname(__FILE__)))).'/schemas/'.$schema;
+        }
+        if (!$schema or !is_readable($xsd)) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DOCUMENTO_FALTA_SCHEMA,
+                \sasco\LibreDTE\Estado::get(
+                    \sasco\LibreDTE\Estado::DOCUMENTO_FALTA_SCHEMA
+                )
+            );
             return null;
+        }
         $result = $this->xml->schemaValidate($xsd);
         if (!$result) {
             \sasco\LibreDTE\Log::write(

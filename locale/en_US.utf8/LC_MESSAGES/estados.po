@@ -159,3 +159,6 @@ msgstr "XML %s is missing"
 
 msgid "Error schema %s. %s"
 msgstr "Invalid %s schema. %s"
+
+msgid "No se encontró el schema para el documento"
+msgstr "Can't find the schema for the document"
