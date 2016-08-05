@@ -100,6 +100,7 @@ class Dte extends \sasco\LibreDTE\PDF
         'MontoItem' => ['title'=>'Total item', 'align'=>'right', 'width'=>22],
     ]; ///< Nombres de columnas detalle, alineación y ancho
 
+    private $item_detalle_posicion = 0; ///< Posición del detalle del item respecto al nombre
     private $detalle_fuente = 10; ///< Tamaño de la fuente para el detalle en hoja carta
 
     private $traslados = [
@@ -181,6 +182,16 @@ class Dte extends \sasco\LibreDTE\PDF
     public function setCedible($cedible = true)
     {
         $this->cedible = $cedible;
+    }
+
+    /**
+     * Método que asigna la posición del detalle del Item respecto al nombre
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-05
+     */
+    public function setPosicionDetalleItem($posicion)
+    {
+        $this->item_detalle_posicion = (int)$posicion;
     }
 
     /**
@@ -698,7 +709,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-08-05
      */
     private function agregarDetalle($detalle, $x = 10)
     {
@@ -717,7 +728,8 @@ class Dte extends \sasco\LibreDTE\PDF
             // quitar columnas
             foreach ($item as $col => $valor) {
                 if ($col=='DscItem' and !empty($item['DscItem'])) {
-                    $item['NmbItem'] .= '<br/><span style="font-size:0.7em">'.$item['DscItem'].'</span>';
+                    $item['NmbItem'] .= !$this->item_detalle_posicion ? '<br/>' : ': ';
+                    $item['NmbItem'] .= '<span style="font-size:0.7em">'.$item['DscItem'].'</span>';
                 }
                 if (!in_array($col, $titulos_keys) or ($dte_exento and $col=='IndExe'))
                     unset($item[$col]);
