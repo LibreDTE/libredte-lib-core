@@ -130,7 +130,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que genera el XML para el envío del DTE al SII
      * @return XML con el envio del DTE firmado o =false si no se pudo generar o firmar el envío
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-09
+     * @version 2016-08-06
      */
     public function generar()
     {
@@ -156,7 +156,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
                 ],
                 'SetDTE' => [
                     '@attributes' => [
-                        'ID' => 'SetDoc'
+                        'ID' => 'LibreDTE_SetDoc'
                     ],
                     'Caratula' => $this->caratula,
                     'DTE' => null,
@@ -170,7 +170,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         }
         // firmar XML del envío y entregar
         $xml = str_replace('<DTE/>', implode("\n", $DTEs), $xmlEnvio);
-        $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#SetDoc', 'SetDTE', true) : $xml;
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#LibreDTE_SetDoc', 'SetDTE', true) : $xml;
         return $this->xml_data;
     }
 

@@ -38,7 +38,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
      * Método que agrega un recibo
      * @param datos Arreglo con los datos del recibo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2016-08-06
      */
     public function agregar(array $datos)
     {
@@ -48,7 +48,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
             ],
             'DocumentoRecibo' => array_merge([
                 '@attributes' => [
-                    'ID' => 'T'.$datos['TipoDoc'].'F'.$datos['Folio'],
+                    'ID' => 'LibreDTE_T'.$datos['TipoDoc'].'F'.$datos['Folio'],
                 ],
                 'TipoDoc' => false,
                 'Folio' => false,
@@ -93,7 +93,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
      * @param Firma Objeto con la firma electrónica
      * @return XML con la respuesta firmada o =false si no se pudo generar o firmar la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-08-06
      */
     public function generar()
     {
@@ -127,7 +127,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
                 ],
                 'SetRecibos' => [
                     '@attributes' => [
-                        'ID' => 'SetDteRecibidos'
+                        'ID' => 'LibreDTE_SetDteRecibidos'
                     ],
                     'Caratula' => $this->caratula,
                     'Recibo' => null,
@@ -144,7 +144,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
         }
         // firmar XML del envío y entregar
         $xml = str_replace('<Recibo/>', implode("\n", $Recibos), $xmlEnvio);
-        $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#SetDteRecibidos', 'SetRecibos', true) : $xml;
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xml, '#LibreDTE_SetDteRecibidos', 'SetRecibos', true) : $xml;
         return $this->xml_data;
     }
 

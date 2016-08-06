@@ -124,7 +124,7 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-24
+     * @version 2016-08-06
      */
     public function setCaratula(array $caratula)
     {
@@ -140,7 +140,7 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
         ], $caratula);
         if ($this->caratula['TipoEnvio']=='ESPECIAL')
             $this->caratula['FolioNotificacion'] = null;
-        $this->id = 'LIBRO_GUIA_'.str_replace('-', '', $this->caratula['RutEmisorLibro']).'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
+        $this->id = 'LibreDTE_LIBRO_GUIA_'.str_replace('-', '', $this->caratula['RutEmisorLibro']).'_'.str_replace('-', '', $this->caratula['PeriodoTributario']).'_'.date('U');
     }
 
     /**

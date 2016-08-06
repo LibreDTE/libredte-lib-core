@@ -60,7 +60,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol, etc
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-13
+     * @version 2016-08-06
      */
     public function setCaratula(array $caratula)
     {
@@ -78,7 +78,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             'SecEnvio' => 1,
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula);
-        $this->id = 'CONSUMO_FOLIO_'.str_replace('-', '', $this->caratula['RutEmisor']).'_'.str_replace('-', '', $this->caratula['FchInicio']).'_'.date('U');
+        $this->id = 'LibreDTE_CONSUMO_FOLIO_'.str_replace('-', '', $this->caratula['RutEmisor']).'_'.str_replace('-', '', $this->caratula['FchInicio']).'_'.date('U');
     }
 
     /**

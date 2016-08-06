@@ -151,7 +151,7 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
      * @param Firma Objeto con la firma electrónica
      * @return XML con la respuesta firmada o =false si no se pudo generar o firmar la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-08-06
      */
     public function generar()
     {
@@ -185,7 +185,7 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
                 ],
                 'Resultado' => [
                     '@attributes' => [
-                        'ID' => 'ResultadoEnvio'
+                        'ID' => 'LibreDTE_ResultadoEnvio'
                     ],
                     'Caratula' => $this->caratula,
                 ]
@@ -199,7 +199,7 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
         // generar XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate($arreglo)->saveXML();
         // firmar XML del envío y entregar
-        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#ResultadoEnvio', 'Resultado', true) : $xmlEnvio;
+        $this->xml_data = $this->Firma ? $this->Firma->signXML($xmlEnvio, '#LibreDTE_ResultadoEnvio', 'Resultado', true) : $xmlEnvio;
         return $this->xml_data;
     }
 

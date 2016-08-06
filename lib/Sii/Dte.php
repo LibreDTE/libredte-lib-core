@@ -68,7 +68,7 @@ class Dte
      * Método que carga el DTE ya armado desde un archivo XML
      * @param xml String con los datos completos del XML del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-11-21
+     * @version 2016-08-06
      */
     private function loadXML($xml)
     {
@@ -87,7 +87,7 @@ class Dte
             if (!$Folio)
                 return false;
             $this->folio = $Folio->nodeValue;
-            $this->id = 'T'.$this->tipo.'F'.$this->folio;
+            $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
             return true;
         }
         return false;
@@ -98,14 +98,14 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-28
+     * @version 2016-08-06
      */
     private function setDatos(array $datos, $normalizar = true)
     {
         if (!empty($datos)) {
             $this->tipo = $datos['Encabezado']['IdDoc']['TipoDTE'];
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
-            $this->id = 'T'.$this->tipo.'F'.$this->folio;
+            $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
             if ($normalizar) {
                 $this->normalizar($datos);
                 $method = 'normalizar_'.$this->tipo;

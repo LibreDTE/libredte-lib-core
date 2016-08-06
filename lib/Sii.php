@@ -215,7 +215,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-03
+     * @version 2016-08-06
      */
     public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
     {
@@ -246,7 +246,7 @@ class Sii
         // crear sesión curl con sus opciones
         $curl = curl_init();
         $header = [
-            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; TGlicmVEVEU=)',
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; LibreDTE)',
             'Referer: https://libredte.cl',
             'Cookie: TOKEN='.$token,
         ];
@@ -376,7 +376,7 @@ class Sii
      * Método que entrega un arreglo con todos los datos de los contribuyentes
      * que operan con factura electrónica descargados desde el SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-30
+     * @version 2016-08-06
      */
     public static function getContribuyentes(\sasco\LibreDTE\FirmaElectronica $Firma, $ambiente = null)
     {
@@ -390,7 +390,7 @@ class Sii
         // preparar consulta curl
         $curl = curl_init();
         $header = [
-            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; Windows NT 5.0; YComp 5.0.2.4)',
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; LibreDTE)',
             'Referer: https://'.$servidor.'.sii.cl/cvc/dte/ee_empresas_dte.html',
             'Cookie: TOKEN='.$token,
             'Accept-Encoding' => 'gzip, deflate, sdch',
