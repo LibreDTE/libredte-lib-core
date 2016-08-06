@@ -1684,10 +1684,9 @@ class Dte
      * Método que obtiene el estado avanzado del DTE
      * @param Firma objeto que representa la Firma Electrónca
      * @return Arreglo con el estado del DTE
-     * @warning Para un documento válido indica que datos no coinciden, podría ser problema de como se manda fecha o firma
      * @todo Corregir warning y también definir que se retornará (sobre todo en caso de error)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-11
+     * @version 2016-08-05
      */
     public function getEstadoAvanzado(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
@@ -1708,7 +1707,7 @@ class Dte
             'FolioDte'          => $this->getFolio(),
             'FechaEmisionDte'   => $d.'-'.$m.'-'.$Y,
             'MontoDte'          => $this->getMontoTotal(),
-            'FirmaDte'          => $this->getFirma()['SignatureValue'],
+            'FirmaDte'          => str_replace("\n", '', $this->getFirma()['SignatureValue']),
             'token'             => $token,
         ]);
         // si el estado se pudo recuperar se muestra
