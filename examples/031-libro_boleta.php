@@ -27,7 +27,7 @@
  * Ejemplo que genera el XML de LibroBoleta para boletas electrónicas
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-14
+ * @version 2016-08-07
  */
 
 // respuesta en texto plano
@@ -53,7 +53,7 @@ foreach ($EnvioBOLETA->getDocumentos() as $Dte) {
     $LibroBoleta->agregar([
         'TpoDoc' => $r['TpoDoc'],
         'FolioDoc' => $r['NroDoc'],
-        'Anulado' => in_array($r['NroDoc'], [1, 3, 5]) ? 'A' : false, // se anularon folios 1, 3 y 5
+        //'Anulado' => in_array($r['NroDoc'], [1, 3, 5]) ? 'A' : false, // se anularon folios 1, 3 y 5
         'FchEmiDoc' => $r['FchDoc'],
         'RUTCliente' => $r['RUTDoc'],
         'MntExe' => $r['MntExe'] ? $r['MntExe'] : false,
