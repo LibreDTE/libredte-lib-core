@@ -815,12 +815,17 @@ class Dte extends \sasco\LibreDTE\PDF
      * calcular subtotal
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-29
+     * @version 2016-08-08
      */
     private function agregarSubTotal(array $detalle, $x = 10) {
         $subtotal = 0;
+        if (!isset($detalle[0])) {
+            $detalle = [$detalle];
+        }
         foreach($detalle as  &$d) {
-            $subtotal += $d['MontoItem'];
+            if (!empty($d['MontoItem'])) {
+                $subtotal += $d['MontoItem'];
+            }
         }
         $this->Texto('Subtotal: '.$this->num($subtotal).'.-', $x);
         $this->Ln();
