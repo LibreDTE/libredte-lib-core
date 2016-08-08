@@ -81,24 +81,37 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-01
+     * @version 2016-08-07
      */
     private function normalizarDetalle(array &$detalle)
     {
         // agregar nodos (esto para mantener orden del XML)
         $detalle = array_merge([
             'TpoDoc' => false,
+            'Emisor' => false,
             'NroDoc' => false,
             'Anulado' => false,
+            'Operacion' => false,
             'TpoImp' => 1,
             'TasaImp' => false,
+            'NumInt' => false,
+            'IndServicio' => false,
+            'IndSinCosto' => false,
             'FchDoc' => false,
             'CdgSIISucur' => false,
             'RUTDoc' => false,
             'RznSoc' => false,
+            'NumId' => false,
+            'Nacionalidad' => false,
+            'TpoDocRef' => false,
+            'FolioDocRef' => false,
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => false,
+            'IVAFueraPlazo' => false,
+            'IVAPropio' => false,
+            'IVATerceros' => false,
+            'Ley18211' => false,
             'MntActivoFijo' => false,
             'MntIVAActivoFijo' => false,
             'IVANoRec' => false,
@@ -106,9 +119,20 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'OtrosImp' => false,
             'IVARetTotal' => false,
             'IVARetParcial' => false,
+            'CredEC' => false,
+            'DepEnvase' => false,
+            'Liquidaciones' => false,
             'MntSinCred' => false,
             'MntTotal' => false,
             'IVANoRetenido' => false,
+            'MntNoFact' => false,
+            'MntPeriodo' => false,
+            'PsjNac' => false,
+            'PsjInt' => false,
+            'TabPuros' => false,
+            'TabCigarrillos' => false,
+            'TabElaborado' => false,
+            'ImpVehiculo' => false,
         ], $detalle);
         // largo campos
         $detalle['RznSoc'] = substr($detalle['RznSoc'], 0, 50);
@@ -168,6 +192,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                     }
                 }
             }
+            // agregar otro montos e impuestos al total
+            $detalle['MntTotal'] += (int)$detalle['MntSinCred'] + (int)$detalle['TabPuros'] + (int)$detalle['TabCigarrillos'] + (int)$detalle['TabElaborado'] + (int)$detalle['ImpVehiculo'];
         }
         // si no hay no hay monto neto, no se crean campos para IVA
         if ($detalle['MntNeto']===false) {
@@ -184,37 +210,43 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * CSV.
      *
      * Formato del archivo (desde la columna A):
-     *   TpoDoc -> 0
-     *   NroDoc -> 1
-     *   RUTDoc -> 2
-     *   TasaImp -> 3
-     *   RznSoc -> 4 (opcional)
-     *   TpoImp -> 5 (opcional, por defecto 1)
-     *   FchDoc -> 6
-     *   Anulado -> 7
-     *   MntExe -> 8
-     *   MntNeto -> 9
-     *   MntIVA -> 10 (calculable)
+     *   0: TpoDoc
+     *   1: NroDoc
+     *   2: RUTDoc
+     *   3: TasaImp
+     *   4: RznSoc (opcional)
+     *   5: TpoImp (opcional, por defecto 1)
+     *   6: FchDoc
+     *   7: Anulado (opcional, 'A' sólo para folios anulados, no anulados con NC o ND)
+     *   8: MntExe (opcional)
+     *   9: MntNeto (opcional)
+     *   10: MntIVA (calculable a partir de MntNeto * TasaImp, si no hay es 0)
      *   IVANoRec: (opcional)
-     *     CodIVANoRec -> 11
-     *     MntIVANoRec -> 12 (calculable)
-     *   IVAUsoComun -> 13 (calculable)
-     *   FctProp -> 14
+     *     11: CodIVANoRec
+     *     12: MntIVANoRec (calculable)
+     *   13: IVAUsoComun (calculable a partir de FctProp)
      *   OtrosImp: (opcional)
-     *     CodImp -> 15
-     *     TasaImp -> 16
-     *     MntImp -> 17 (calculable)
-     *   MntTotal -> 18 (calculable)
-     *   MntSinCred -> 19 (opcional)
-     *   MntActivoFijo -> 20 (opcional)
-     *   MntIVAActivoFijo -> 21 (opcional)
-     *   IVANoRetenido -> 22 (opcional)
-     *   CdgSIISucur -> 23 (opcional)
+     *     14: CodImp
+     *     15: TasaImp
+     *     16: MntImp (calculable a partir de TasaImp)
+     *   17: MntSinCred (opcional)
+     *   18: MntActivoFijo (opcional)
+     *   19: MntIVAActivoFijo (opcional)
+     *   20: IVANoRetenido (opcional)
+     *   21: TabPuros (opcional)
+     *   22: TabCigarrillos (opcional)
+     *   23: TabElaborado (opcional)
+     *   24: ImpVehiculo (opcional)
+     *   25: CdgSIISucur (opcional)
+     *   26: NumInt (opcional)
+     *   27: Emisor (opcional, '1' sólo si es NC o ND de FC emitida por el emisor del libro)
+     *   28: MntTotal -> 18 (calculable: MntExe + MntNeto + MntIVA + MntIVANoRec + IVAUsoComun + MntImp + MntSinCred + TabPuros + TabCigarrillos + TabElaborado + ImpVehiculo)
+     *   29: FctProp -> 14 (permite calcular el valor IVAUsoComun, no es parte del detalle real)
      *
      * @param archivo  Ruta al archivo que se desea cargar
      * @param separador Separador de campos del archivo CSV
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-29
+     * @version 2016-08-07
      */
     public function agregarComprasCSV($archivo, $separador = ';')
     {
@@ -235,12 +267,22 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 'MntExe' => !empty($data[$i][8]) ? $data[$i][8] : false,
                 'MntNeto' => !empty($data[$i][9]) ? $data[$i][9] : false,
                 'MntIVA' => !empty($data[$i][10]) ? $data[$i][10] : 0,
+                'IVANoRec' => false, // 11 y 12
                 'IVAUsoComun' => !empty($data[$i][13]) ? $data[$i][13] : false,
-                'MntSinCred' => !empty($data[$i][19]) ? $data[$i][19] : false,
-                'MntActivoFijo' => !empty($data[$i][20]) ? $data[$i][20] : false,
-                'MntIVAActivoFijo' => !empty($data[$i][21]) ? $data[$i][21] : false,
-                'IVANoRetenido' => !empty($data[$i][22]) ? $data[$i][22] : false,
-                'CdgSIISucur' => !empty($data[$i][23]) ? $data[$i][23] : false,
+                'OtrosImp' => false, // 14 al 16
+                'MntSinCred' => !empty($data[$i][17]) ? $data[$i][17] : false,
+                'MntActivoFijo' => !empty($data[$i][18]) ? $data[$i][18] : false,
+                'MntIVAActivoFijo' => !empty($data[$i][19]) ? $data[$i][19] : false,
+                'IVANoRetenido' => !empty($data[$i][20]) ? $data[$i][20] : false,
+                'TabPuros' => !empty($data[$i][21]) ? $data[$i][21] : false,
+                'TabCigarrillos' => !empty($data[$i][22]) ? $data[$i][22] : false,
+                'TabElaborado' => !empty($data[$i][23]) ? $data[$i][23] : false,
+                'ImpVehiculo' => !empty($data[$i][24]) ? $data[$i][24] : false,
+                'CdgSIISucur' => !empty($data[$i][25]) ? $data[$i][25] : false,
+                'NumInt' => !empty($data[$i][26]) ? $data[$i][26] : false,
+                'Emisor' => !empty($data[$i][27]) ? $data[$i][27] : false,
+                //'MntTotal' => !empty($data[$i][28]) ? $data[$i][28] : false,
+                //'FctProp' => !empty($data[$i][29]) ? $data[$i][29] : false,
             ];
             // agregar código y monto de iva no recuperable si existe
             if (!empty($data[$i][11])) {
@@ -249,21 +291,21 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                     'MntIVANoRec' => !empty($data[$i][12]) ? $data[$i][12] : round($detalle['MntNeto'] * ($detalle['TasaImp']/100)),
                 ];
             }
-            // si hay factor de proporcionalidad se agrega
-            if (!empty($data[$i][14])) {
-                $detalle['FctProp'] = $data[$i][14];
-            }
             // agregar código y monto de otros impuestos
-            if (!empty($data[$i][15]) and !empty($data[$i][16])) {
+            if (!empty($data[$i][14]) and !empty($data[$i][15])) {
                 $detalle['OtrosImp'] = [
-                    'CodImp' => $data[$i][15],
-                    'TasaImp' => $data[$i][16],
-                    'MntImp' => !empty($data[$i][17]) ? $data[$i][17] : round($detalle['MntNeto'] * ($data[$i][16]/100)),
+                    'CodImp' => $data[$i][14],
+                    'TasaImp' => $data[$i][15],
+                    'MntImp' => !empty($data[$i][16]) ? $data[$i][16] : round($detalle['MntNeto'] * ($data[$i][15]/100)),
                 ];
             }
             // si hay monto total se agrega
-            if (!empty($data[$i][18])) {
-                $detalle['MntTotal'] = $data[$i][18];
+            if (!empty($data[$i][28])) {
+                $detalle['MntTotal'] = $data[$i][28];
+            }
+            // si hay factor de proporcionalidad se agrega
+            if (!empty($data[$i][29])) {
+                $detalle['FctProp'] = $data[$i][29];
             }
             // agregar a los detalles
             $this->agregar($detalle);
@@ -271,7 +313,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
     }
 
     /**
-     * Método que agrega el detalle del libro de compras a partir de un archivo
+     * Método que agrega el detalle del libro de ventas a partir de un archivo
      * CSV.
      *
      * Formato del archivo (desde la columna A):
@@ -558,7 +600,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * el archivo CSV
      * @return Arreglo con los datos de las compras
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-29
+     * @version 2016-08-08
      */
     public function getCompras()
     {
@@ -572,23 +614,29 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 $d['RznSoc'],
                 $d['TpoImp']!==false ? $d['TpoImp'] : 1,
                 $d['FchDoc'],
-                $d['Anulado']!=false ? $d['Anulado'] : null,
-                $d['MntExe']!=false ? $d['MntExe'] : null,
-                $d['MntNeto']!=false ? $d['MntNeto'] : null,
+                $d['Anulado']!==false ? $d['Anulado'] : null,
+                $d['MntExe']!==false ? $d['MntExe'] : null,
+                $d['MntNeto']!==false ? $d['MntNeto'] : null,
                 (int)$d['MntIVA'],
-                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['CodIVANoRec']!=false) ? $d['IVANoRec'][0]['CodIVANoRec'] : null,
-                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['MntIVANoRec']!=false) ? $d['IVANoRec'][0]['MntIVANoRec'] : null,
-                $d['IVAUsoComun']!=false ? $d['IVAUsoComun'] : null,
-                (isset($d['FctProp']) and $d['FctProp']!=false) ? $d['FctProp'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['CodImp'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['TasaImp'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!=false) ? $d['OtrosImp'][0]['MntImp'] : null,
-                $d['MntTotal']!=false ? $d['MntTotal'] : null,
-                $d['MntSinCred']!=false ? $d['MntSinCred'] : null,
-                $d['MntActivoFijo']!=false ? $d['MntActivoFijo'] : null,
-                $d['MntIVAActivoFijo']!=false ? $d['MntIVAActivoFijo'] : null,
-                $d['IVANoRetenido']!=false ? $d['IVANoRetenido'] : null,
-                $d['CdgSIISucur']!=false ? $d['CdgSIISucur'] : null,
+                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['CodIVANoRec']!==false) ? $d['IVANoRec'][0]['CodIVANoRec'] : null,
+                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['MntIVANoRec']!==false) ? $d['IVANoRec'][0]['MntIVANoRec'] : null,
+                $d['IVAUsoComun']!==false ? $d['IVAUsoComun'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['CodImp'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['TasaImp'] : null,
+                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['MntImp'] : null,
+                $d['MntSinCred']!==false ? $d['MntSinCred'] : null,
+                $d['MntActivoFijo']!==false ? $d['MntActivoFijo'] : null,
+                $d['MntIVAActivoFijo']!==false ? $d['MntIVAActivoFijo'] : null,
+                $d['IVANoRetenido']!==false ? $d['IVANoRetenido'] : null,
+                $d['TabPuros']!==false ? $d['TabPuros'] : null,
+                $d['TabCigarrillos']!==false ? $d['TabCigarrillos'] : null,
+                $d['TabElaborado']!==false ? $d['TabElaborado'] : null,
+                $d['ImpVehiculo']!==false ? $d['ImpVehiculo'] : null,
+                $d['CdgSIISucur']!==false ? $d['CdgSIISucur'] : null,
+                $d['NumInt']!==false ? $d['NumInt'] : null,
+                $d['Emisor']!==false ? $d['Emisor'] : null,
+                $d['MntTotal']!==false ? $d['MntTotal'] : null,
+                (isset($d['FctProp']) and $d['FctProp']!==false) ? $d['FctProp'] : null,
             ];
         }
         return $detalle;
