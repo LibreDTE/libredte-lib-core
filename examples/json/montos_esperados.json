@@ -39,6 +39,11 @@
         "IVA": 5985,
         "MntTotal": 37485
     },
+    "33_008_impuesto_adicional": {
+        "MntNeto": 1000,
+        "IVA": 190,
+        "MntTotal": 1505
+    },
     "34_001_simple": {
         "MntExe": 125000,
         "MntTotal": 125000
