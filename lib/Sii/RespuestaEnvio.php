@@ -226,7 +226,7 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
     /**
      * Método que entrega un arreglo con los resultados de recepciones del XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-23
+     * @version 2016-08-09
      */
     public function getRecepciones()
     {
@@ -238,12 +238,15 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
             if (!$this->arreglo) {
                 return false;
             }
-            // crear repuestas a partir del arreglo
-            $Recepciones = $this->arreglo['RespuestaDTE']['Resultado']['RecepcionEnvio']['RecepcionDTE'];
-            if (!isset($Recepciones[0]))
-                $Recepciones = [$Recepciones];
-            foreach ($Recepciones as $Recepcion) {
-                $this->respuesta_envios[] = $Recepcion;
+            // procesa rsólo si hay recepciones
+            if (isset($this->arreglo['RespuestaDTE']['Resultado']['RecepcionEnvio']['RecepcionDTE'])) {
+                // crear repuestas a partir del arreglo
+                $Recepciones = $this->arreglo['RespuestaDTE']['Resultado']['RecepcionEnvio']['RecepcionDTE'];
+                if (!isset($Recepciones[0]))
+                    $Recepciones = [$Recepciones];
+                foreach ($Recepciones as $Recepcion) {
+                    $this->respuesta_envios[] = $Recepcion;
+                }
             }
         }
         // entregar recibos
