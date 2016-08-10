@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa el envío de un DTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-22
+ * @version 2016-08-10
  */
 class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
 {
@@ -330,6 +330,16 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             }
         }
         return $this->dtes;
+    }
+
+    /**
+     * Método que indica si es EnvioDTE o EnvioBOLETA
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-10
+     */
+    public function esBoleta()
+    {
+        return (bool)$this->tipo;
     }
 
     /**
