@@ -49,10 +49,12 @@ class Chile
      * @param comuna de la sucursal del emior o bien código de la sucursal del SII
      * @return Dirección regional del SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-03
+     * @version 2016-08-12
      */
     public static function getCiudad($comuna)
     {
+        if (!$comuna)
+            return false;
         $comuna = mb_strtoupper($comuna, 'UTF-8');
         return isset(self::$ciudades[$comuna]) ? self::$ciudades[$comuna] : false;
     }

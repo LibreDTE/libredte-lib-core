@@ -558,7 +558,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-08-12
      */
     private function agregarReceptor(array $receptor, $x = 10, $offset = 22)
     {
@@ -589,7 +589,8 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Texto('Dirección', $x);
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
-            $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):''), $x+$offset+2);
+            $ciudad = !empty($receptor['CiudadRecep']) ? $receptor['CiudadRecep'] : \sasco\LibreDTE\Chile::getCiudad($receptor['CmnaRecep']);
+            $this->MultiTexto($receptor['DirRecep'].(!empty($receptor['CmnaRecep'])?(', '.$receptor['CmnaRecep']):'').($ciudad?(', '.$ciudad):''), $x+$offset+2);
         }
         if (!empty($receptor['Extranjero']['Nacionalidad'])) {
             $this->setFont('', 'B', null);
