@@ -70,4 +70,42 @@ abstract class Envio extends Documento
         return (int)(string)$result->TRACKID;
     }
 
+    /**
+     * Método que realiza el envío del AEC al SII
+     * @return Track ID del envío o =false si hubo algún problema al enviar el documento
+     * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
+     * @version 2016-08-10
+     */
+    public function enviarRTC()
+    {
+        // generar XML que se enviará
+        if (!$this->xml_data)
+            $this->xml_data = $this->generar();
+        if (!$this->xml_data) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DOCUMENTO_ERROR_GENERAR_XML,
+                \sasco\LibreDTE\Estado::get(
+                    \sasco\LibreDTE\Estado::DOCUMENTO_ERROR_GENERAR_XML,
+                    substr(get_class($this), strrpos(get_class($this), '\\')+1)
+                )
+            );
+            return false;
+        }
+        // validar schema del documento antes de enviar
+        if (!$this->schemaValidate())
+            return false;
+        // solicitar token
+        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($this->Firma);
+        if (!$token)
+            return false;
+        // enviar AEC
+        $email = $this->caratula['MailContacto'];
+        $emisor = $this->caratula['RutCedente'];
+        $result = \sasco\LibreDTE\Sii::enviarRTC($email, $emisor, $this->xml_data, $token);
+        if ($result===false)
+            return false;
+        if (!is_numeric((string)$result->TRACKID))
+            return false;
+        return (int)(string)$result->TRACKID;
+    }
 }
