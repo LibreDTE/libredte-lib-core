@@ -33,8 +33,6 @@ class Cesion
             'Cesion' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
-                    'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte Cesion_v10.xsd',
                     'version' => '1.0'
                 ],
                 'DocumentoCesion' => [
@@ -65,7 +63,7 @@ class Cesion
                         'Direccion' => '',
                         'eMail' => ''
                     ],
-                    'MontoCesion' => '',
+                    'MontoCesion' => 0,
                     'UltimoVencimiento' => isset($this->dte['IdDoc']['MntPagos']['FchPago']) ? $this->dte['IdDoc']['MntPagos']['FchPago'] : $this->dte['IdDoc']['FchEmis'],
                     'OtrasCondiciones' => false,
                     'eMailDeudor' => false,
