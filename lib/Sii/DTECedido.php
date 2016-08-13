@@ -27,8 +27,6 @@ class DTECedido
             'DTECedido' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
-                    'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte DTECedido_v10.xsd',
                     'version' => '1.0'
                 ],
                 'DocumentoDTECedido' => [
@@ -68,7 +66,12 @@ class DTECedido
         $this->dtes = $this->envio->getElementsByTagName('DTE');
         $this->dte = $this->dtes[0]->C14N();
 
-        $this->xml = str_replace('<DTE/>', $this->dte, $this->xml);
+        //Limpio XML y extraigo solo <DTE></DTE>
+        $start = '<DTE';
+        $end = '</DTE>';
+        $output = strstr(substr($xml, strpos($xml, $start) + strlen($start)), $end, true);
+        $dte = $start.$output.$end;
+        $this->xml = str_replace('<DTE/>', $dte, $this->xml);
 
         return true;
     }
@@ -86,6 +89,9 @@ class DTECedido
             $this->dte = $xml;
 
             $this->xml = str_replace('<DTE/>', $this->dte, $this->xml);
+
+            print_r($this->xml);exit();
+            
             return true;
 
         }
@@ -116,7 +122,7 @@ class DTECedido
             return false;
         }
 
-        $this->loadXML($xml);
+        $this->xml = $xml;
         return true;
     }
 
@@ -146,7 +152,7 @@ class DTECedido
      */
     public function saveXML()
     {
-        return $this->xml->saveXML();
+        return $this->xml;
     }
 
     /**
@@ -177,5 +183,23 @@ class DTECedido
         }
     }
 
+    /**
+     * Método que carga el ID del DTE ya armado desde un archivo XML
+     * @param xml String con los datos completos del XML del DTE
+     * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
+     * @version 2016-08-10
+     */
+    public function getDTEID()
+    {
+        if (!empty($this->dte)) {
+            $xml = new \sasco\LibreDTE\XML();
+            if (!$xml->loadXML($this->dte))
+                return false;
 
+            $xml = $xml->toArray();
+
+            return ($xml['DTE']['Documento']['@attributes']['ID']);
+
+        }
+    }
 }
