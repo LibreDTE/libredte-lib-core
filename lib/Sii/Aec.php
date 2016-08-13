@@ -10,10 +10,8 @@ namespace sasco\LibreDTE\Sii;
 class DocumentoAEC extends \sasco\LibreDTE\Sii\Base\Envio
 {
 
-
     private $cedido; ///< Objetos DTECedido
     private $cesion; ///< Objetos sesion
-
 
     /**
      * Método para asignar la caratula
@@ -47,14 +45,14 @@ class DocumentoAEC extends \sasco\LibreDTE\Sii\Base\Envio
     public function enviar()
     {
         // enviar al SII
-        return parent::enviar();
+        return parent::enviarRTC();
     }
 
     /**
      * Método que genera el XML AEC
      * @return XML AEC con DTE y Cesion
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
-     * @version 2016-08-10 
+     * @version 2016-08-10
      */
     public function generar()
     {
@@ -105,7 +103,9 @@ class DocumentoAEC extends \sasco\LibreDTE\Sii\Base\Envio
 
         // firmar XML del envío y entregar
         $this->xml_data = $this->Firma->signXML($xmlEnvio, '#AECDoc', 'DocumentoAEC', true);
+
         return $this->xml_data;
+        
     }
 
     /**
