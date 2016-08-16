@@ -482,16 +482,21 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-08-16
      */
     private function agregarDatosEmision($IdDoc, $x = 10, $offset = 22, $mostrar_dia = true)
     {
         // si es hoja carta
         if ($x==10) {
             $y = $this->GetY();
+            // fecha emisión
             $this->setFont('', 'B', null);
             $this->MultiTexto($this->date($IdDoc['FchEmis'], $mostrar_dia), $x, null, 'R');
             $this->setFont('', '', null);
+            // período facturación
+            if (!empty($IdDoc['PeriodoDesde']) and !empty($IdDoc['PeriodoHasta'])) {
+                $this->MultiTexto('Período del '.date('d/m/y', strtotime($IdDoc['PeriodoDesde'])).' al '.date('d/m/y', strtotime($IdDoc['PeriodoHasta'])), $x, null, 'R');
+            }
             // pago anticicado
             if (!empty($IdDoc['FchCancel'])) {
                 $this->MultiTexto('Pagado el '.$this->date($IdDoc['FchCancel'], false), $x, null, 'R');
