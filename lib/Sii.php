@@ -411,7 +411,7 @@ class Sii
      * @version 2015-09-16
      */
     public static function cert($idk = null)
-    {e
+    {
         // si se pasó un idk y existe el archivo asociado se entrega
         if ($idk) {
             $cert = dirname(dirname(__FILE__)).'/certs/'.$idk.'.cer';
