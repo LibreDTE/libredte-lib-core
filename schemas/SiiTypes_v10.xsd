@@ -8,8 +8,14 @@ FechaHoraType :  FechaType + hora entre 00:00 y 23:59
 ImpAdicDTEType: elimina codigo 29 para DTE
 
 Fecha Actualizacion:  30/05/2011 12:00
-
 Se incorpora restricción en DineroPorcentajeType para que sea dato de largo 1
+
+Fecha Actualizacion:  07/05/2014 11:30
+ImpAdicDTEType	: se agregan los codigos 54 y 55 (SDI-1092)
+
+Fecha Actualizacion:  30/09/2014 11:40
+ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
+
 
 -->
 <xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
@@ -382,6 +388,9 @@ Se incorpora restricción en DineroPorcentajeType para que sea dato de largo 1
 			<xs:enumeration value="51"/>
 			<xs:enumeration value="52"/>
 			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="271"/>
 			<xs:enumeration value="301"/>
 			<xs:enumeration value="321"/>
 			<xs:enumeration value="331"/>
@@ -535,6 +544,13 @@ Se incorpora restricción en DineroPorcentajeType para que sea dato de largo 1
 			<xs:enumeration value="51"/>
 			<xs:enumeration value="52"/>
 			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="271">
+				<xs:annotation>
+					<xs:documentation>Bebidas analcohólicas y Minerales con elevado contenido de azúcares.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="301"/>
 			<xs:enumeration value="321"/>
 			<xs:enumeration value="331"/>

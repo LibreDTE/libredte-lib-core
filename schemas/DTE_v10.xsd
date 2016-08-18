@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Zulema Olguín Traro (Servicios de Impuestos Internos) -->
 <!--Esquema para documentos DTE.
 Fecha Actualizacion:  25/05/07 15:00
 
@@ -1868,6 +1869,7 @@ según tabla Países aduana</xs:documentation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
 													<xs:maxLength value="60"/>
+													<xs:minLength value="1"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:element>
@@ -3142,7 +3144,7 @@ según tabla Países aduana</xs:documentation>
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
-													<xs:element name="MNT" type="xs:unsignedLong">
+													<xs:element name="MNT" type="SiiDte:ValorType">
 														<xs:annotation>
 															<xs:documentation>Monto Total DTE</xs:documentation>
 														</xs:annotation>

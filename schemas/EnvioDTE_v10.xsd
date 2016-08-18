@@ -3,13 +3,15 @@
 para realizar los envios de Documentos Tributarios Electronicos (DTE)
 hacia el Servicio de Impuestos Internos.
 
-Fecha Actualizacion:  25/05/07 15:00
+Fecha Actualizacion:  30/07/10 15:00
 
 Se incorporan dos nuevos Tipos de datos :
 FechaType		:  Fecha entre 2000-01-01 y 2050-12-31
 FechaHoraType :  FechaType + hora entre 00:00 y 23:59
+
+Se limita a 2.000 documentos el máximo por envio o sobre (de acuerdo a publicación)
  -->
-<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="DTE_v10.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
 	<xs:element name="EnvioDTE">
@@ -87,7 +89,7 @@ FechaHoraType :  FechaType + hora entre 00:00 y 23:59
 									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
 								</xs:complexType>
 							</xs:element>
-							<xs:element ref="SiiDte:DTE" maxOccurs="unbounded">
+							<xs:element ref="SiiDte:DTE" maxOccurs="2000">
 								<xs:annotation>
 									<xs:documentation>Documento Tributario Electronico</xs:documentation>
 								</xs:annotation>
