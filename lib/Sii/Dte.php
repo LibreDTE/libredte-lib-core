@@ -68,7 +68,7 @@ class Dte
      * Método que carga el DTE ya armado desde un archivo XML
      * @param xml String con los datos completos del XML del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-06
+     * @version 2016-08-17
      */
     private function loadXML($xml)
     {
@@ -87,7 +87,7 @@ class Dte
             if (!$Folio)
                 return false;
             $this->folio = $Folio->nodeValue;
-            $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
+            $this->id = $this->getDatos()['@attributes']['ID'];
             return true;
         }
         return false;
@@ -193,11 +193,11 @@ class Dte
      * Método que entrega el ID del documento
      * @return String con el ID del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-06
+     * @version 2016-08-17
      */
-    public function getID()
+    public function getID($estandar = false)
     {
-        return $this->id;
+        return $estandar ? ('T'.$this->tipo.'F'.$this->folio) : $this->id;
     }
 
     /**
