@@ -87,7 +87,11 @@ class Dte
             if (!$Folio)
                 return false;
             $this->folio = $Folio->nodeValue;
-            $this->id = $this->getDatos()['@attributes']['ID'];
+            if (isset($this->getDatos()['@attributes'])) {
+                $this->id = $this->getDatos()['@attributes']['ID'];
+            } else {
+                $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
+            }
             return true;
         }
         return false;
