@@ -821,7 +821,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * calcular subtotal
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-08
+     * @version 2016-08-17
      */
     private function agregarSubTotal(array $detalle, $x = 10) {
         $subtotal = 0;
@@ -833,7 +833,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 $subtotal += $d['MontoItem'];
             }
         }
-        $this->Texto('Subtotal: '.$this->num($subtotal).'.-', $x);
+        $this->Texto('Subtotal: $'.$this->num($subtotal).'.-', $x);
         $this->Ln();
     }
 
@@ -842,7 +842,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-08-17
      */
     private function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
     {
@@ -851,7 +851,7 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach($descuentosRecargos as $dr) {
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
-            $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?('('.$dr['GlosaDR'].')'):''), $x);
+            $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):''), $x);
             $this->Ln();
         }
     }
