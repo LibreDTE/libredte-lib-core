@@ -706,7 +706,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-30
+     * @version 2016-08-18
      */
     private function normalizar_33(array &$datos)
     {
@@ -715,7 +715,10 @@ class Dte
             'Encabezado' => [
                 'IdDoc' => false,
                 'Emisor' => false,
+                'RUTMandante' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
+                'Transporte' => false,
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => false,
@@ -724,7 +727,8 @@ class Dte
                     'ImptoReten' => false,
                     'CredEC' => false,
                     'MntTotal' => 0,
-                ]
+                ],
+                'OtraMoneda' => false,
             ],
         ], $datos);
         // normalizar datos
