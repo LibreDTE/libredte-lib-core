@@ -237,4 +237,14 @@ class Folios
         return $idk ?  $idk === 100 : null;
     }
 
+    /**
+     * Método que entrega el XML completo del archivo CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-08-24
+     */
+    public function saveXML()
+    {
+        return $this->xml->saveXML();
+    }
+
 }
