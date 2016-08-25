@@ -46,7 +46,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
      * Método que agrega un libro al PDF
      * @param libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-28
+     * @version 2016-08-24
      */
     public function agregar(array $libro)
     {
@@ -146,7 +146,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
         $titulos = ['Fecha y hora', 'Digest'];
         $this->addTable($titulos, [[
             str_replace('T', ' ', $libro['EnvioLibro']['TmstFirma']),
-            $libro['Signature']['SignedInfo']['Reference']['DigestValue']
+            isset($libro['Signature']) ? $libro['Signature']['SignedInfo']['Reference']['DigestValue'] : 'Sin firma',
         ]]);
     }
 
