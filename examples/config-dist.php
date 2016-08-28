@@ -41,7 +41,7 @@ $config = [
 ];
 
 // trabajar en ambiente de certificación
-define('_LibreDTE_CERTIFICACION_', true);
+\sasco\LibreDTE\Sii::setAmbiente(\sasco\LibreDTE\Sii::CERTIFICACION);
 
 // trabajar con maullin para certificación
 \sasco\LibreDTE\Sii::setServidor('maullin');
