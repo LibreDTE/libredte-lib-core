@@ -104,12 +104,11 @@ class Sii
      *   $wsdl = \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::CERTIFICACION);
      * \endcode
      *
-     * La otra manera, para evitar este segundo parámetro, es crear la constante
-     * _LibreDTE_CERTIFICACION_ con valor true antes de ejecutar cualquier
-     * llamada a la biblioteca:
+     * La otra manera, para evitar este segundo parámetro, es asignar el valor a
+     * través de la configuración:
      *
      * \code{.php}
-     *   define('_LibreDTE_CERTIFICACION_', true);
+     *   \sasco\LibreDTE\Sii::setAmbiente(\sasco\LibreDTE\Sii::CERTIFICACION);
      * \endcode
      *
      * @param servicio Servicio por el cual se está solicitando su WSDL
@@ -147,7 +146,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-25
+     * @version 2016-08-28
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -159,8 +158,24 @@ class Sii
             $retry = self::$retry;
         if ($args and !is_array($args))
             $args = [$args];
+        if (!self::$verificar_ssl) {
+            if (self::getAmbiente()==self::PRODUCCION) {
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
+                trigger_error($msg, E_USER_NOTICE);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
+            }
+            $options = ['stream_context' => stream_context_create([
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ]
+            ])];
+        } else {
+            $options = [];
+        }
         try {
-            $soap = new \SoapClient(self::wsdl($wsdl));
+            $soap = new \SoapClient(self::wsdl($wsdl), $options);
         } catch (\Exception $e) {
             $msg = $e->getMessage();
             if (isset($e->getTrace()[0]['args'][1]) and is_string($e->getTrace()[0]['args'][1])) {
@@ -332,14 +347,19 @@ class Sii
 
     /**
      * Método que asigna el ambiente que se usará por defecto (si no está
-     * asignado con _LibreDTE_CERTIFICACION_)
+     * asignado con la constante _LibreDTE_CERTIFICACION_)
      * @param ambiente Ambiente a usar: Sii::PRODUCCION o Sii::CERTIFICACION
+     * @warning No se está verificando SSL en ambiente de certificación
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-11
+     * @version 2016-08-28
      */
     public static function setAmbiente($ambiente = self::PRODUCCION)
     {
-        self::$ambiente = $ambiente ? self::CERTIFICACION : self::PRODUCCION;
+        $ambiente = $ambiente ? self::CERTIFICACION : self::PRODUCCION;
+        if ($ambiente==self::CERTIFICACION) {
+            self::setVerificarSSL(false);
+        }
+        self::$ambiente = $ambiente;
     }
 
     /**
