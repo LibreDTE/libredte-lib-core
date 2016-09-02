@@ -102,16 +102,12 @@ class FirmaElectronica
      * el script si no se está usando el framework
      * @param msg Mensaje del error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-09-01
      */
     private function error($msg)
     {
         $msg = Estado::get(Estado::FIRMA_ERROR, $msg);
-        if (class_exists('\sowerphp\core\Exception')) {
-            throw new \sowerphp\core\Exception($msg);
-        } else {
-            \sasco\LibreDTE\Log::write(Estado::FIRMA_ERROR, $msg);
-        }
+        \sasco\LibreDTE\Log::write(Estado::FIRMA_ERROR, $msg);
         return false;
     }
 
