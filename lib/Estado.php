@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-08-04
+ * @version 2016-09-01
  */
 class Estado
 {
@@ -73,6 +73,7 @@ class Estado
     const DTE_FALTA_MNTTOTAL = 405;
     const DTE_ERROR_TIMBRE = 406;
     const DTE_ERROR_FIRMA = 407;
+    const DTE_ERROR_LOADXML = 408;
 
     // códigos de error para \sasco\LibreDTE\Sii\EnvioDte
     const ENVIODTE_DTE_MAX = 501;
@@ -138,6 +139,7 @@ class Estado
         self::DTE_FALTA_MNTTOTAL => 'Falta MntTotal del DTE %s',
         self::DTE_ERROR_TIMBRE => 'No se pudo generar el timbre del DTE %s',
         self::DTE_ERROR_FIRMA => 'No se pudo generar la firma del DTE %s',
+        self::DTE_ERROR_LOADXML => 'No fue posible cargar el XML del DTE',
         // códigos de error para \sasco\LibreDTE\Sii\EnvioDte
         self::ENVIODTE_DTE_MAX => 'No es posible adjuntar más de %d DTEs al envío',
         self::ENVIODTE_TIPO_DTE_MAX => 'No puede adjuntar más de %d tipos de DTE diferentes al envío',

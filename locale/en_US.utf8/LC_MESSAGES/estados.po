@@ -105,6 +105,9 @@ msgstr "TED creation failed on DTE %s"
 msgid "No se pudo generar la firma del DTE %s"
 msgstr "Sign failed on DTE %s"
 
+msgid "No fue posible cargar el XML del DTE"
+msgstr "Can not load XML of DTE"
+
 # códigos de error para \sasco\LibreDTE\Sii\EnvioDte
 
 msgid "No es posible adjuntar más de %d DTEs al envío"

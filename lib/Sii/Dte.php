@@ -68,24 +68,32 @@ class Dte
      * Método que carga el DTE ya armado desde un archivo XML
      * @param xml String con los datos completos del XML del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-17
+     * @version 2016-09-01
      */
     private function loadXML($xml)
     {
         if (!empty($xml)) {
             $this->xml = new \sasco\LibreDTE\XML();
-            if (!$this->xml->loadXML($xml) or !$this->schemaValidate())
+            if (!$this->xml->loadXML($xml) or !$this->schemaValidate()) {
+                \sasco\LibreDTE\Log::write(
+                    \sasco\LibreDTE\Estado::DTE_ERROR_LOADXML,
+                    \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_LOADXML)
+                );
                 return false;
+            }
             $TipoDTE = $this->xml->getElementsByTagName('TipoDTE')->item(0);
-            if (!$TipoDTE)
+            if (!$TipoDTE) {
                 return false;
+            }
             $this->tipo = $TipoDTE->nodeValue;
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
-            if (!$this->tipo_general)
+            if (!$this->tipo_general) {
                 return false;
+            }
             $Folio = $this->xml->getElementsByTagName('Folio')->item(0);
-            if (!$Folio)
+            if (!$Folio) {
                 return false;
+            }
             $this->folio = $Folio->nodeValue;
             if (isset($this->getDatos()['@attributes'])) {
                 $this->id = $this->getDatos()['@attributes']['ID'];
@@ -371,7 +379,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-05
+     * @version 2016-09-01
      */
     public function timbrar(Folios $Folios)
     {
@@ -439,7 +447,13 @@ class Dte
         }
         $TED->getElementsByTagName('FRMT')->item(0)->nodeValue = base64_encode($timbre);
         $xml = str_replace('<TED/>', trim(str_replace('<?xml version="1.0" encoding="ISO-8859-1"?>', '', $TED->saveXML())), $this->saveXML());
-        $this->loadXML($xml);
+        if (!$this->loadXML($xml)) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::DTE_ERROR_TIMBRE,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_TIMBRE, $this->getID())
+            );
+            return false;
+        }
         return true;
     }
 
