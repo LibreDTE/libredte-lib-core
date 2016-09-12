@@ -24,25 +24,37 @@
 namespace sasco\LibreDTE\Sii\Dte\Formatos;
 
 /**
- * Clase que permite cargar los datos de un DTE desde un archivo en formato YAML
+ * Clase que permite cargar los datos de un DTE desde un archivo en formato XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-06-29
+ * @version 2016-09-12
  */
-class Yaml
+class XML
 {
 
     /**
      * Método que recibe los datos y los entrega como un arreglo PHP en el
      * formato del DTE que usa LibreDTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-29
+     * @version 2016-09-12
      */
-    public function toArray($data)
+    public static function toArray($data)
     {
-        if (!function_exists('\yaml_parse')) {
-            throw new \Exception('No hay soporte para YAML en PHP');
+        $XML = new \sasco\LibreDTE\XML();
+        if (!$XML->loadXML($data)) {
+            throw new \Exception('Ocurrió un problema al cargar el XML');
         }
-        return \yaml_parse($data);
+        $datos = $XML->toArray();
+        if (!isset($datos['DTE'])) {
+            throw new \Exception('El nodo raíz del string XML debe ser el tag DTE');
+        }
+        if (isset($datos['DTE']['Documento']))
+            $dte = $datos['DTE']['Documento'];
+        else if (isset($datos['DTE']['Exportaciones']))
+            $dte = $datos['DTE']['Exportaciones'];
+        else if (isset($datos['DTE']['Liquidacion']))
+            $dte = $datos['DTE']['Liquidacion'];
+        unset($dte['@attributes']);
+        return $dte;
     }
 
 }
