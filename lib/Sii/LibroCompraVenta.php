@@ -27,13 +27,40 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-28
+ * @version 2016-09-13
  */
 class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
 
     private $simplificado = false; ///< Indica si el libro es simplificado o no
     private $datos = null; ///< Arreglo con los datos del XML del libro
+
+    private $total_default = [
+        'TpoDoc' => null,
+        'TotDoc' => 0,
+        'TotAnulado' => false,
+        'TotOpExe' => false,
+        'TotMntExe' => 0,
+        'TotMntNeto' => 0,
+        'TotMntIVA' => 0,
+        'TotIVAPropio' => false,
+        'TotIVATerceros' => false,
+        'TotLey18211' => false,
+        'TotMntActivoFijo' => false,
+        'TotMntIVAActivoFijo' => false,
+        'TotIVANoRec' => false,
+        'TotIVAUsoComun' => false,
+        'FctProp' => false,
+        'TotCredIVAUsoComun' => false,
+        'TotOtrosImp' => false,
+        'TotIVARetTotal' => false,
+        'TotIVARetParcial' => false,
+        'TotImpSinCredito' => false,
+        'TotMntTotal' => 0,
+        'TotIVANoRetenido' => false,
+        'TotMntNoFact' => false,
+        'TotMntPeriodo' => false,
+    ]; ///< Campos para totales
 
     /**
      * Constructor del libro
@@ -465,41 +492,15 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-03
+     * @version 2016-09-13
      */
     public function getResumen()
     {
-        $total_default = [
-            'TpoDoc' => null,
-            'TotDoc' => 0,
-            'TotAnulado' => false,
-            'TotOpExe' => false,
-            'TotMntExe' => 0,
-            'TotMntNeto' => 0,
-            'TotMntIVA' => 0,
-            'TotIVAPropio' => false,
-            'TotIVATerceros' => false,
-            'TotLey18211' => false,
-            'TotMntActivoFijo' => false,
-            'TotMntIVAActivoFijo' => false,
-            'TotIVANoRec' => false,
-            'TotIVAUsoComun' => false,
-            'FctProp' => false,
-            'TotCredIVAUsoComun' => false,
-            'TotOtrosImp' => false,
-            'TotIVARetTotal' => false,
-            'TotIVARetParcial' => false,
-            'TotImpSinCredito' => false,
-            'TotMntTotal' => 0,
-            'TotIVANoRetenido' => false,
-            'TotMntNoFact' => false,
-            'TotMntPeriodo' => false,
-        ];
         $totales = [];
         // agregar resumen de detalles
         foreach ($this->detalles as &$d) {
             if (!isset($totales[$d['TpoDoc']])) {
-                $totales[$d['TpoDoc']] = array_merge($total_default, ['TpoDoc'=>$d['TpoDoc']]);
+                $totales[$d['TpoDoc']] = array_merge($this->total_default, ['TpoDoc'=>$d['TpoDoc']]);
             }
             // contabilizar cantidad de documentos y montos (exento, neto, iva y total)
             $totales[$d['TpoDoc']]['TotDoc']++;
@@ -566,12 +567,30 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         // agregar resumenes pasados que no se hayan generado por los detalles
         foreach ($this->resumen as $tipo => $resumen) {
             if (!isset($totales[$tipo])) {
-                $totales[$tipo] = array_merge($total_default, $resumen);
+                $totales[$tipo] = array_merge($this->total_default, $resumen);
             }
         }
         // entregar resumen
         ksort($totales);
         return $totales;
+    }
+
+    /**
+     * Método que entrega el resumen manual, de los totales registrados en el
+     * XML del libro
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-09-13
+     */
+    public function getResumenManual()
+    {
+        $manual = [];
+        $totales = $this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'];
+        foreach ($totales as $total) {
+            if (in_array($total['TpoDoc'], [35, 38, 48])) {
+                $manual[$total['TpoDoc']] = array_merge($this->total_default, $total);
+            }
+        }
+        return $manual;
     }
 
     /**
