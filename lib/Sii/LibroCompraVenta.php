@@ -594,6 +594,23 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
     }
 
     /**
+     * Método que entrega el resumen de las boletas electrónicas
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-09-15
+     */
+    public function getResumenBoletas()
+    {
+        $manual = [];
+        $totales = $this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'];
+        foreach ($totales as $total) {
+            if (in_array($total['TpoDoc'], [39, 41])) {
+                $manual[$total['TpoDoc']] = array_merge($this->total_default, $total);
+            }
+        }
+        return $manual;
+    }
+
+    /**
      * Método que entrega el detalle a incluir en XML, en el libro de ventas no
      * se incluyen ciertos documentos (como boletas), por eso se usa este método
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
