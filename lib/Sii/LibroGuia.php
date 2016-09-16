@@ -231,4 +231,14 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
         return $ResumenPeriodo;
     }
 
+    /**
+     * Método que entrega el folio de notificación del libro
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-09-15
+     */
+    public function getFolioNotificacion()
+    {
+        return $this->toArray()['LibroGuia']['EnvioLibro']['Caratula']['FolioNotificacion'];
+    }
+
 }
