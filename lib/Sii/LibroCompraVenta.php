@@ -579,14 +579,14 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que entrega el resumen manual, de los totales registrados en el
      * XML del libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-13
+     * @version 2016-09-20
      */
     public function getResumenManual()
     {
         $manual = [];
         $totales = $this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'];
         foreach ($totales as $total) {
-            if (in_array($total['TpoDoc'], [35, 38, 48])) {
+            if (isset($total['TpoDoc']) and in_array($total['TpoDoc'], [35, 38, 48])) {
                 $manual[$total['TpoDoc']] = array_merge($this->total_default, $total);
             }
         }
