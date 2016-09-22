@@ -273,7 +273,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param archivo  Ruta al archivo que se desea cargar
      * @param separador Separador de campos del archivo CSV
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-07
+     * @version 2016-09-22
      */
     public function agregarComprasCSV($archivo, $separador = ';')
     {
@@ -319,10 +319,10 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 ];
             }
             // agregar código y monto de otros impuestos
-            if (!empty($data[$i][14]) and !empty($data[$i][15])) {
+            if (!empty($data[$i][14]) and (!empty($data[$i][15]) or !empty($data[$i][16]))) {
                 $detalle['OtrosImp'] = [
                     'CodImp' => $data[$i][14],
-                    'TasaImp' => $data[$i][15],
+                    'TasaImp' => !empty($data[$i][15]) ? $data[$i][15] : 0,
                     'MntImp' => !empty($data[$i][16]) ? $data[$i][16] : round($detalle['MntNeto'] * ($data[$i][15]/100)),
                 ];
             }
