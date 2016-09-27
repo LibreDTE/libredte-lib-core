@@ -52,7 +52,7 @@ class CSV
             while (($row = fgetcsv($handle, 0, $separador, $delimitadortexto)) !== FALSE) {
                 $j = 0;
                 foreach ($row as &$col) {
-                    $data[$i][$j++] = $col;
+                    $data[$i][$j++] = iconv(mb_detect_encoding($col), 'ASCII//TRANSLIT//IGNORE', $col); // Problemas con acentos
                 }
                 ++$i;
             }
