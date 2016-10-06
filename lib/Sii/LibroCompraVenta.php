@@ -668,12 +668,29 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * el archivo CSV
      * @return Arreglo con los datos de las compras
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-08
+     * @version 2016-10-06
      */
     public function getCompras()
     {
         $detalle = [];
         foreach ($this->detalles as $d) {
+            // armar iva no recuperable
+            $iva_no_recuperable_codigo = [];
+            $iva_no_recuperable_monto = [];
+            foreach ((array)$d['IVANoRec'] as $inr) {
+                $iva_no_recuperable_codigo[] = $inr['CodIVANoRec'];
+                $iva_no_recuperable_monto[] = $inr['MntIVANoRec'];
+            }
+            // armar impuestos adicionales
+            $impuesto_adicional_codigo = [];
+            $impuesto_adicional_tasa = [];
+            $impuesto_adicional_monto = [];
+            foreach ((array)$d['OtrosImp'] as $ia) {
+                $impuesto_adicional_codigo[] = $ia['CodImp'];
+                $impuesto_adicional_tasa[] = $ia['TasaImp'];
+                $impuesto_adicional_monto[] = $ia['MntImp'];
+            }
+            // armar detalle
             $detalle[] = [
                 (int)$d['TpoDoc'],
                 (int)$d['NroDoc'],
@@ -686,12 +703,12 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 $d['MntExe']!==false ? $d['MntExe'] : null,
                 $d['MntNeto']!==false ? $d['MntNeto'] : null,
                 (int)$d['MntIVA'],
-                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['CodIVANoRec']!==false) ? $d['IVANoRec'][0]['CodIVANoRec'] : null,
-                (is_array($d['IVANoRec']) and $d['IVANoRec'][0]['MntIVANoRec']!==false) ? $d['IVANoRec'][0]['MntIVANoRec'] : null,
+                $iva_no_recuperable_codigo ? implode(',', $iva_no_recuperable_codigo) : null,
+                $iva_no_recuperable_monto ? implode(',', $iva_no_recuperable_monto) : null,
                 $d['IVAUsoComun']!==false ? $d['IVAUsoComun'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['CodImp'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['TasaImp'] : null,
-                (is_array($d['OtrosImp']) and $d['OtrosImp'][0]['CodImp']!==false) ? $d['OtrosImp'][0]['MntImp'] : null,
+                $impuesto_adicional_codigo ? implode(',', $impuesto_adicional_codigo) : null,
+                $impuesto_adicional_tasa ? implode(',', $impuesto_adicional_tasa) : null,
+                $impuesto_adicional_monto ? implode(',', $impuesto_adicional_monto) : null,
                 $d['MntSinCred']!==false ? $d['MntSinCred'] : null,
                 $d['MntActivoFijo']!==false ? $d['MntActivoFijo'] : null,
                 $d['MntIVAActivoFijo']!==false ? $d['MntIVAActivoFijo'] : null,
