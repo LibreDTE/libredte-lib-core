@@ -178,6 +178,19 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         if (!empty($detalle['IVANoRec'])) {
             if (!isset($detalle['IVANoRec'][0]))
                 $detalle['IVANoRec'] = [$detalle['IVANoRec']];
+            // si son múltiples iva no recuperable se arma arreglo real
+            if (strpos($detalle['IVANoRec'][0]['CodIVANoRec'], ',')) {
+                $CodIVANoRec = explode(',', $detalle['IVANoRec'][0]['CodIVANoRec']);
+                $MntIVANoRec = explode(',', $detalle['IVANoRec'][0]['MntIVANoRec']);
+                $detalle['IVANoRec'] = [];
+                $n_inr = count($CodIVANoRec);
+                for ($i=0; $i<$n_inr; $i++) {
+                    $detalle['IVANoRec'][] = [
+                        'CodIVANoRec' => $CodIVANoRec[$i],
+                        'MntIVANoRec' => $MntIVANoRec[$i],
+                    ];
+                }
+            }
         }
         // normalizar otros impuestos
         if (!empty($detalle['OtrosImp'])) {
