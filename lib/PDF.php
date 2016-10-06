@@ -35,12 +35,27 @@ define ('K_PATH_IMAGES', '');
  * <https://github.com/SowerPHP/extension-general/blob/master/View/Helper/PDF.php>
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
- * @version 2015-09-08
+ * @version 2016-10-06
  */
 class PDF extends \TCPDF
 {
 
     private $footer; ///< Mensaje a colocar en el footer
+
+    protected $defaultOptions = [
+        'font' => ['family' => 'helvetica', 'size' => 10],
+        'table' => [
+            'fontsize' => 10,
+            'width' => 186,
+            'height' => 6,
+            'align' => 'C',
+            'headerbackground' => [255, 255, 255],
+            'headercolor' => [0, 0, 0],
+            'bodybackground' => [255, 255, 255],
+            'bodycolor' => [0, 0, 0],
+            'colorchange' => false,
+        ],
+    ];
 
     /**
      * Constructor de la clase
@@ -59,7 +74,7 @@ class PDF extends \TCPDF
         $this->SetFooterMargin(PDF_MARGIN_FOOTER+6);
         $this->SetAuthor('Un proyecto de SASCO SpA - https://sasco.cl');
         $this->SetCreator('LibreDTE - https://libredte.cl');
-        $this->setFont('helvetica');
+        $this->setFont($this->defaultOptions['font']['family']);
     }
 
     /**
@@ -125,12 +140,35 @@ class PDF extends \TCPDF
     }
 
     /**
+     * Obtener el ancho de las columnas de una tabla
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
+     * @version 2016-01-22
+     */
+    private function getTableCellWidth($total, $cells)
+    {
+        $widths = [];
+        if (is_int($cells)) {
+            $width = floor($total/$cells);
+            for ($i=0; $i<$cells; ++$i) {
+                $widths[] = $width;
+            }
+        }
+        else if (is_array($cells)){
+            $width = floor($total/count($cells));
+            foreach ($cells as $i) {
+                $widths[$i] = $width;
+            }
+        }
+        return $widths;
+    }
+
+    /**
      * Agregar una tabla al PDF removiendo aquellas columnas donde no existen
      * datos en la columna para todas las filas
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-16
+     * @version 2016-10-06
      */
-    public function addTableWithoutEmptyCols($titles, $data, $options = [])
+    public function addTableWithoutEmptyCols($titles, $data, $options = [], $html = true)
     {
         $cols_empty = [];
         foreach ($data as $row) {
@@ -171,16 +209,31 @@ class PDF extends \TCPDF
         }
         if (isset($options['align']))
             $options['align'] = array_slice($options['align'], 0);
-        $this->addTable($titles, $data, $options);
+        $this->addTable($titles, $data, $options, $html);
+    }
+
+    /**
+     * Agregar una tabla generada al PDF (puede ser en HTML o normal)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
+     * @version 2016-10-06
+     */
+    public function addTable($headers, $data, $options = [], $html = true)
+    {
+        $options = array_merge($this->defaultOptions['table'], $options);
+        if ($html) {
+            $this->addHTMLTable($headers, $data, $options);
+        } else {
+            $this->addNormalTable($headers, $data, $options);
+        }
     }
 
     /**
      * Agregar una tabla generada a través de código HTML al PDF
      * @todo Utilizar las opciones para definir estilo de la tabla HTML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2015-09-16
+     * @version 2016-10-06
      */
-    public function addTable($headers, $data, $options = [])
+    private function addHTMLTable($headers, $data, $options = [])
     {
         $w = (isset($options['width']) and is_array($options['width'])) ? $options['width'] : null;
         $a = (isset($options['align']) and is_array($options['align'])) ? $options['align'] : [];
@@ -220,6 +273,74 @@ class PDF extends \TCPDF
         $buffer .= '</table>';
         // generar tabla en HTML
         $this->writeHTML($buffer, true, false, false, false, '');
+    }
+
+    /**
+     * Agregar una tabla generada mediante el método Cell
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
+     * @version 2016-01-22
+     */
+    private function addNormalTable($headers, $data, $options = array())
+    {
+        // Colors, line width and bold font
+        $this->SetFillColor(
+            $options['headerbackground'][0],
+            $options['headerbackground'][1],
+            $options['headerbackground'][2]
+        );
+        $this->SetTextColor(
+            $options['headercolor'][0],
+            $options['headercolor'][1],
+            $options['headercolor'][2]
+        );
+        $this->SetFont($this->defaultOptions['font']['family'], 'B',  $options['fontsize']);
+        // Header
+        $w = is_array($options['width']) ? $options['width'] :
+            $this->getTableCellWidth($options['width'], array_keys($headers));
+        foreach($headers as $i => $header) {
+            $this->Cell ($w[$i], $options['height'], $headers[$i], 1, 0, $options['align'], 1);
+        }
+        $this->Ln();
+        // Color and font restoration
+        $this->SetFillColor (
+            $options['bodybackground'][0],
+            $options['bodybackground'][1],
+            $options['bodybackground'][2]
+        );
+        $this->SetTextColor(
+            $options['bodycolor'][0],
+            $options['bodycolor'][1],
+            $options['bodycolor'][2]
+        );
+        $this->SetFont($this->defaultOptions['font']['family']);
+        // Data
+        $fill = false;
+        foreach ($data as &$row) {
+            $num_pages = $this->getNumPages();
+            $this->startTransaction();
+            foreach($headers as $i => $header) {
+                $this->Cell ($w[$i], $options['height'], $row[$i], 'LR', 0, $options['align'], $fill);
+            }
+            $this->Ln();
+            if($num_pages < $this->getNumPages()) {
+                $this->rollbackTransaction(true);
+                $this->AddPage();
+                foreach($headers as $i => $header) {
+                    $this->Cell ($w[$i], $options['height'], $headers[$i], 1, 0, $options['align'], 1);
+                }
+                $this->Ln();
+                foreach($headers as $i => $header) {
+                    $this->Cell ($w[$i], $options['height'], $row[$i], 'LR', 0, $options['align'], $fill);
+                }
+                $this->Ln();
+            } else {
+                $this->commitTransaction();
+            }
+            if ($options['colorchange'])
+                $fill = !$fill;
+        }
+        $this->Cell(array_sum($w), 0, '', 'T');
+        $this->Ln();
     }
 
     /**

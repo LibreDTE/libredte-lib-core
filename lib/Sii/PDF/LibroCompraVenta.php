@@ -46,7 +46,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
      * Método que agrega un libro al PDF
      * @param libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-24
+     * @version 2016-10-06
      */
     public function agregar(array $libro)
     {
@@ -131,7 +131,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                 ];
             }
             $titulos = ['DTE', 'Folio', 'Emisión', 'RUT', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
-            $this->addTable($titulos, $detalle, ['width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]]);
+            $this->addTable($titulos, $detalle, ['fontsize'=>9, 'width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]], false);
         } else {
             $this->Texto('No hay detalle de documentos');
             $this->Ln();
