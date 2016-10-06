@@ -113,6 +113,13 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
             }
             $detalle = [];
             foreach ($libro['EnvioLibro']['Detalle'] as $d) {
+                // impuesto adicional
+                if (!empty($d['OtrosImp'])) {
+                    if (!isset($d['OtrosImp'][0]))
+                        $d['OtrosImp'] = [$d['OtrosImp']];
+                    $n_OtrosImp = count($d['OtrosImp']);
+                } else $n_OtrosImp = 0;
+                // se agrega detalle
                 $detalle[] = [
                     $d['TpoDoc'],
                     $d['NroDoc'],
@@ -121,14 +128,35 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                     !empty($d['MntExe']) ? num($d['MntExe']) : '',
                     !empty($d['MntNeto']) ? num($d['MntNeto']) : '',
                     !empty($d['MntIVA']) ? num($d['MntIVA']) : '',
-                    !empty($d['OtrosImp']) ? $d['OtrosImp']['CodImp'] : '',
-                    !empty($d['OtrosImp']) ? $d['OtrosImp']['TasaImp'] : '',
-                    !empty($d['OtrosImp']) ? num($d['OtrosImp']['MntImp']) : '',
+                    $n_OtrosImp ? $d['OtrosImp'][0]['CodImp'] : '',
+                    $n_OtrosImp ? $d['OtrosImp'][0]['TasaImp'] : '',
+                    $n_OtrosImp ? num($d['OtrosImp'][0]['MntImp']) : '',
                     !empty($d['IVARetParcial']) ? num($d['IVARetParcial']) : '',
                     !empty($d['IVARetTotal']) ? num($d['IVARetTotal']) : '',
                     !empty($d['IVANoRetenido']) ? num($d['IVANoRetenido']) : '',
                     num($d['MntTotal']),
                 ];
+                // agregar otros impuestos adicionales
+                if ($n_OtrosImp>1) {
+                    for ($i=1; $i<$n_OtrosImp; $i++) {
+                        $detalle[] = [
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            $d['OtrosImp'][$i]['CodImp'],
+                            $d['OtrosImp'][$i]['TasaImp'],
+                            num($d['OtrosImp'][$i]['MntImp']),
+                            '',
+                            '',
+                            '',
+                            '',
+                        ];
+                    }
+                }
             }
             $titulos = ['DTE', 'Folio', 'Emisión', 'RUT', 'Exento', 'Neto', 'IVA', 'Imp', 'Tasa', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
             $this->addTable($titulos, $detalle, ['fontsize'=>9, 'width'=>[10, 19, 20, 20, 20, 20, 20, 10, 10, 20, 20, 20, 20, 20]], false);
