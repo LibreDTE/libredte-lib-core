@@ -108,7 +108,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-07
+     * @version 2016-10-06
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -183,6 +183,21 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         if (!empty($detalle['OtrosImp'])) {
             if (!isset($detalle['OtrosImp'][0]))
                 $detalle['OtrosImp'] = [$detalle['OtrosImp']];
+            // si son múltiples impuestos se arma arreglo real
+            if (strpos($detalle['OtrosImp'][0]['CodImp'], ',')) {
+                $CodImp = explode(',', $detalle['OtrosImp'][0]['CodImp']);
+                $TasaImp = explode(',', $detalle['OtrosImp'][0]['TasaImp']);
+                $MntImp = explode(',', $detalle['OtrosImp'][0]['MntImp']);
+                $detalle['OtrosImp'] = [];
+                $n_impuestos = count($CodImp);
+                for ($i=0; $i<$n_impuestos; $i++) {
+                    $detalle['OtrosImp'][] = [
+                        'CodImp' => $CodImp[$i],
+                        'TasaImp' => $TasaImp[$i],
+                        'MntImp' => $MntImp[$i],
+                    ];
+                }
+            }
             // calcular y agregar IVA no retenido si corresponde
             $retenido = ImpuestosAdicionales::getRetenido($detalle['OtrosImp']);
             if ($retenido) {
