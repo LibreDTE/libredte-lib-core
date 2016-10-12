@@ -607,13 +607,15 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que entrega el resumen manual, de los totales registrados en el
      * XML del libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-06
+     * @version 2016-10-12
      */
     public function getResumenManual()
     {
         $manual = [];
         if (isset($this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'])) {
             $totales = $this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'];
+            if (!isset($totales[0]))
+                $totales = [$totales];
             foreach ($totales as $total) {
                 if (isset($total['TpoDoc']) and in_array($total['TpoDoc'], [35, 38, 48])) {
                     $manual[$total['TpoDoc']] = array_merge($this->total_default, $total);
@@ -626,13 +628,15 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
     /**
      * Método que entrega el resumen de las boletas electrónicas
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-06
+     * @version 2016-10-12
      */
     public function getResumenBoletas()
     {
         $manual = [];
         if (isset($this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'])) {
             $totales = $this->toArray()['LibroCompraVenta']['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'];
+            if (!isset($totales[0]))
+                $totales = [$totales];
             foreach ($totales as $total) {
                 if (in_array($total['TpoDoc'], [39, 41])) {
                     $manual[$total['TpoDoc']] = array_merge($this->total_default, $total);
