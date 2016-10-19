@@ -43,6 +43,7 @@ class Dte extends \sasco\LibreDTE\PDF
 
     private $tipos = [
         0 => 'COTIZACIÓN',
+        30 => 'FACTURA',
         33 => 'FACTURA ELECTRÓNICA',
         34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
         39 => 'BOLETA ELECTRÓNICA',
