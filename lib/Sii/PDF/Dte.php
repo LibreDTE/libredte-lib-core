@@ -241,7 +241,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-10-19
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -259,7 +259,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setY(max($y));
         $this->Ln();
         $this->agregarDatosEmision($dte['Encabezado']['IdDoc']);
-        $this->agregarReceptor($dte['Encabezado']['Receptor']);
+        $this->agregarReceptor($dte['Encabezado']);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
             !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
@@ -293,7 +293,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-10-19
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -318,7 +318,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Ln();
         $this->setFont('', '', 8);
         $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], 2, 14, false);
-        $this->agregarReceptor($dte['Encabezado']['Receptor'], 2, 14);
+        $this->agregarReceptor($dte['Encabezado'], 2, 14);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
             !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null,
@@ -563,10 +563,11 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-23
+     * @version 2016-10-19
      */
-    private function agregarReceptor(array $receptor, $x = 10, $offset = 22)
+    private function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
     {
+        $receptor = $Encabezado['Receptor'];
         if (!empty($receptor['RUTRecep']) and $receptor['RUTRecep']!='66666666-6') {
             list($rut, $dv) = explode('-', $receptor['RUTRecep']);
             $this->setFont('', 'B', null);
@@ -617,6 +618,14 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto(implode(' / ', $contacto), $x+$offset+2);
+        }
+        if (!empty($Encabezado['RUTSolicita'])) {
+            list($rut, $dv) = explode('-', $Encabezado['RUTSolicita']);
+            $this->setFont('', 'B', null);
+            $this->Texto('RUT solicita', $x);
+            $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
+            $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
         }
     }
 
