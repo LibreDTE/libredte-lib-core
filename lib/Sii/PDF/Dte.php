@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-08-03
+ * @version 2016-11-18
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -42,18 +42,35 @@ class Dte extends \sasco\LibreDTE\PDF
     private $ecl = 5; ///< error correction level para PHP >= 7.0.0
 
     private $tipos = [
-        0 => 'COTIZACIÓN',
+        // códigos oficiales SII
+        29 => 'FACTURA DE INICIO',
         30 => 'FACTURA',
+        32 => 'FACTURA DE VENTA BIENES Y SERVICIOS NO AFECTOS O EXENTOS DE IVA',
         33 => 'FACTURA ELECTRÓNICA',
         34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
+        35 => 'BOLETA',
+        38 => 'BOLETA EXENTA',
         39 => 'BOLETA ELECTRÓNICA',
+        40 => 'LIQUIDACION FACTURA',
         41 => 'BOLETA NO AFECTA O EXENTA ELECTRÓNICA',
         43 => 'LIQUIDACIÓN FACTURA ELECTRÓNICA',
+        45 => 'FACTURA DE COMPRA',
         46 => 'FACTURA DE COMPRA ELECTRÓNICA',
+        48 => 'COMPROBANTE DE PAGO ELECTRÓNICO',
         50 => 'GUÍA DE DESPACHO',
         52 => 'GUÍA DE DESPACHO ELECTRÓNICA',
+        55 => 'NOTA DE DÉBITO',
         56 => 'NOTA DE DÉBITO ELECTRÓNICA',
+        60 => 'NOTA DE CRÉDITO',
         61 => 'NOTA DE CRÉDITO ELECTRÓNICA',
+        101 => 'FACTURA DE EXPORTACIÓN',
+        102 => 'FACTURA DE VENTA EXENTA A ZONA FRANCA PRIMARIA',
+        103 => 'LIQUIDACIÓN',
+        104 => 'NOTA DE DÉBITO DE EXPORTACIÓN',
+        105 => 'BOLETA LIQUIDACIÓN',
+        106 => 'NOTA DE CRÉDITO DE EXPORTACIÓN',
+        108 => 'SOLICITUD REGISTRO DE FACTURA (SRF)',
+        109 => 'FACTURA TURISTA',
         110 => 'FACTURA DE EXPORTACIÓN ELECTRÓNICA',
         111 => 'NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA',
         112 => 'NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA',
@@ -72,6 +89,24 @@ class Dte extends \sasco\LibreDTE\PDF
         813 => 'PASAPORTE',
         814 => 'CERTIFICADO DE DEPÓSITO BOLSA PROD. CHILE',
         815 => 'VALE DE PRENDA BOLSA PROD. CHILE',
+        901 => 'FACTURA DE VENTAS A EMPRESAS DEL TERRITORIO PREFERENCIAL',
+        902 => 'CONOCIMIENTO DE EMBARQUE',
+        903 => 'DOCUMENTO ÚNICO DE SALIDA (DUS)',
+        904 => 'FACTURA DE TRASPASO',
+        905 => 'FACTURA DE REEXPEDICIÓN',
+        906 => 'BOLETAS VENTA MÓDULOS ZF (TODAS)',
+        907 => 'FACTURAS VENTA MÓDULO ZF (TODAS)',
+        909 => 'FACTURAS VENTA MÓDULO ZF',
+        910 => 'SOLICITUD TRASLADO ZONA FRANCA (Z)',
+        911 => 'DECLARACIÓN DE INGRESO A ZONA FRANCA PRIMARIA',
+        914 => 'DECLARACIÓN DE INGRESO (DIN)',
+        919 => 'RESUMEN VENTAS DE NACIONALES PASAJES SIN FACTURA',
+        920 => 'OTROS REGISTROS NO DOCUMENTADOS (AUMENTA DÉBITO)',
+        922 => 'OTROS REGISTROS (DISMINUYE DÉBITO)',
+        924 => 'RESUMEN VENTAS DE INTERNACIONALES PASAJES SIN FACTURA',
+        // códigos de LibreDTE
+        0 => 'COTIZACIÓN',
+        'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     private $formas_pago = [
@@ -468,13 +503,13 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param tipo Código del tipo de documento
      * @return Glosa del tipo de documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2016-11-18
      */
     private function getTipo($tipo)
     {
-        if (!is_numeric($tipo))
+        if (!is_numeric($tipo) and !isset($this->tipos[$tipo]))
             return $tipo;
-        return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'DTE '.$tipo;
+        return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'Documento '.$tipo;
     }
 
     /**
