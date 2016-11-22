@@ -203,7 +203,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * para poder obtener los datos del envío
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-29
+     * @version 2016-11-21
      */
     public function loadXML($xml_data)
     {
@@ -211,6 +211,23 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             return false;
         }
         $tagName = $this->xml->documentElement->tagName;
+        if ($tagName=='DTE') {
+            $this->xml = null;
+            $this->xml_data = null;
+            $this->arreglo = null;
+            $Dte = new Dte($xml_data, false);
+            $this->agregar($Dte);
+            $this->setCaratula([
+                'RutEnvia' => $Dte->getEmisor(),
+                'RutReceptor' => $Dte->getReceptor(),
+                'FchResol' => date('Y-m-d'),
+                'NroResol' => ($Dte->getCertificacion()?'0':'').'9999',
+            ]);
+            if (!parent::loadXML($this->generar())) {
+                return false;
+            }
+            $tagName = $this->xml->documentElement->tagName;
+        }
         if ($tagName=='EnvioDTE') {
             $this->tipo = 0;
             return $this->xml;
@@ -309,9 +326,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que entrega el arreglo con los objetos DTE del envío
      * @return Arreglo de objetos DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-11-21
      */
-    public function getDocumentos()
+    public function getDocumentos($c14n = true)
     {
         // si no hay documentos se deben crear
         if (!$this->dtes) {
@@ -326,10 +343,41 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             // crear documentos a partir del XML
             $DTEs = $this->xml->getElementsByTagName('DTE');
             foreach ($DTEs as $nodo_dte) {
-                $this->dtes[] = new Dte($nodo_dte->C14N(), false); // cargar DTE sin normalizar
+                $xml = $c14n ? $nodo_dte->C14N() : $this->xml->saveXML($nodo_dte);
+                $this->dtes[] = new Dte($xml, false); // cargar DTE sin normalizar
             }
         }
         return $this->dtes;
+    }
+
+    /**
+     * Método que entrega el objeto DTE solicitado del envío
+     * @return Objeto DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2016-11-21
+     */
+    public function getDocumento($emisor, $dte, $folio)
+    {
+        $emisor = str_replace('.', '', $emisor);
+        // si no hay XML no se pueden crear los documentos
+        if (!$this->xml) {
+            \sasco\LibreDTE\Log::write(
+                \sasco\LibreDTE\Estado::ENVIODTE_GETDOCUMENTOS_FALTA_XML,
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIODTE_GETDOCUMENTOS_FALTA_XML)
+            );
+            return false;
+        }
+        // buscar documento
+        $DTEs = $this->xml->getElementsByTagName('DTE');
+        foreach ($DTEs as $nodo_dte) {
+            $e = $nodo_dte->getElementsByTagName('RUTEmisor')->item(0)->nodeValue;
+            $d = (int)$nodo_dte->getElementsByTagName('TipoDTE')->item(0)->nodeValue;
+            $f = (int)$nodo_dte->getElementsByTagName('Folio')->item(0)->nodeValue;
+            if ($folio == $f and $dte == $d and $emisor == $e) {
+                return new Dte($nodo_dte->C14N(), false); // cargar DTE sin normalizar
+            }
+        }
+        return false;
     }
 
     /**
