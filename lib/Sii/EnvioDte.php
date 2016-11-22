@@ -371,6 +371,8 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         $DTEs = $this->xml->getElementsByTagName('DTE');
         foreach ($DTEs as $nodo_dte) {
             $e = $nodo_dte->getElementsByTagName('RUTEmisor')->item(0)->nodeValue;
+            if (is_numeric($emisor))
+                $e = substr($e, 0, -2);
             $d = (int)$nodo_dte->getElementsByTagName('TipoDTE')->item(0)->nodeValue;
             $f = (int)$nodo_dte->getElementsByTagName('Folio')->item(0)->nodeValue;
             if ($folio == $f and $dte == $d and $emisor == $e) {
