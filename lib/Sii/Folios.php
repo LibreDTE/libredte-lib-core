@@ -37,12 +37,12 @@ class Folios
      * Constructor de la clase
      * @param xml Datos XML del código de autorización de folios (CAF)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2016-11-21
      */
     public function __construct($xml)
     {
         $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML($xml);
+        $this->xml->loadXML(utf8_encode($xml));
         if (!$this->check()) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_CHECK,
