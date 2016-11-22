@@ -129,11 +129,11 @@ class XML extends \DomDocument
      * @param source String con el documento XML a cargar
      * @param options Opciones para la carga del XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-05
+     * @version 2016-11-21
      */
     public function loadXML($source, $options = null)
     {
-        return parent::loadXML($this->iso2utf($source), $options);
+        return $source ? parent::loadXML($this->iso2utf($source), $options) : false;
     }
 
     /**
