@@ -412,6 +412,9 @@ class Dte
             return false;
         }
         // timbrar
+        $RR = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue;
+        $RSR_nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep');
+        $RSR = $RSR_nodo->length ? trim(mb_substr($RSR_nodo->item(0)->nodeValue, 0, 40)) : $RR;
         $TED = new \sasco\LibreDTE\XML();
         $TED->generate([
             'TED' => [
@@ -424,7 +427,7 @@ class Dte
                     'F' => $folio,
                     'FE' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/FchEmis')->item(0)->nodeValue,
                     'RR' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue,
-                    'RSR' => trim(mb_substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep')->item(0)->nodeValue, 0, 40)),
+                    'RSR' => $RSR,
                     'MNT' => $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Totales/MntTotal')->item(0)->nodeValue,
                     'IT1' => trim(mb_substr($this->xml->xpath('/DTE/'.$this->tipo_general.'/Detalle')->item(0)->getElementsByTagName('NmbItem')->item(0)->nodeValue, 0, 40)),
                     'CAF' => $Folios->getCaf(),
@@ -509,7 +512,7 @@ class Dte
             'FchDoc' => $this->datos['Encabezado']['IdDoc']['FchEmis'],
             'CdgSIISucur' => !empty($this->datos['Encabezado']['Emisor']['CdgSIISucur']) ? $this->datos['Encabezado']['Emisor']['CdgSIISucur'] : false,
             'RUTDoc' => $this->datos['Encabezado']['Receptor']['RUTRecep'],
-            'RznSoc' => $this->datos['Encabezado']['Receptor']['RznSocRecep'],
+            'RznSoc' => isset($this->datos['Encabezado']['Receptor']['RznSocRecep']) ? $this->datos['Encabezado']['Receptor']['RznSocRecep'] : false,
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => 0,
