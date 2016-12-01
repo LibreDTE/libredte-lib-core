@@ -108,7 +108,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-06
+     * @version 2016-12-01
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -116,6 +116,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         $detalle = array_merge([
             'TpoDoc' => false,
             'Emisor' => false,
+            'IndFactCompra' => false,
             'NroDoc' => false,
             'Anulado' => false,
             'Operacion' => false,
@@ -128,28 +129,27 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'CdgSIISucur' => false,
             'RUTDoc' => false,
             'RznSoc' => false,
-            'NumId' => false,
-            'Nacionalidad' => false,
+            'Extranjero' => false,
             'TpoDocRef' => false,
             'FolioDocRef' => false,
             'MntExe' => false,
             'MntNeto' => false,
             'MntIVA' => false,
-            'IVAFueraPlazo' => false,
-            'IVAPropio' => false,
-            'IVATerceros' => false,
-            'Ley18211' => false,
             'MntActivoFijo' => false,
             'MntIVAActivoFijo' => false,
             'IVANoRec' => false,
             'IVAUsoComun' => false,
+            'IVAFueraPlazo' => false,
+            'IVAPropio' => false,
+            'IVATerceros' => false,
+            'Ley18211' => false,
             'OtrosImp' => false,
+            'MntSinCred' => false,
             'IVARetTotal' => false,
             'IVARetParcial' => false,
             'CredEC' => false,
             'DepEnvase' => false,
             'Liquidaciones' => false,
-            'MntSinCred' => false,
             'MntTotal' => false,
             'IVANoRetenido' => false,
             'MntNoFact' => false,
@@ -372,26 +372,54 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * CSV.
      *
      * Formato del archivo (desde la columna A):
-     *   TpoDoc -> 0
-     *   NroDoc -> 1
-     *   TasaImp -> 2
-     *   FchDoc -> 3
-     *   CdgSIISucur -> 4 (opcional)
-     *   RUTDoc -> 5
-     *   RznSoc -> 6 (opcional)
-     *   MntExe -> 7
-     *   MntNeto -> 8
-     *   MntIVA -> 9 (calculable)
-     *   OtrosImp: (opcional)
-     *     CodImp -> 10
-     *     TasaImp -> 11
-     *     MntImp -> 12 (calculable)
-     *   MntTotal -> 13 (calculable)
+     *   0: TpoDoc
+     *   1: NroDoc
+     *   2: RUTDoc
+     *   3: TasaImp
+     *   4: RznSoc (opcional)
+     *   5: FchDoc
+     *   6: Anulado (opcional, 'A' sólo para folios anulados, no anulados con NC o ND)
+     *   7: MntExe (opcional)
+     *   8: MntNeto (opcional)
+     *   9: MntIVA (calculable)
+     *   10: IVAFueraPlazo
+     *   OtrosImp (opcional):
+     *     11: CodImp
+     *     12: TasaImp
+     *     13: MntImp (calculable)
+     *   14: IVAPropio
+     *   15: IVATerceros
+     *   16: IVARetTotal
+     *   17: IVARetParcial
+     *   18: IVANoRetenido
+     *   19: Ley18211
+     *   20: CredEC
+     *   21: TpoDocRef
+     *   22: FolioDocRef
+     *   23: DepEnvase
+     *   24: MntNoFact
+     *   25: MntPeriodo
+     *   26: PsjNac
+     *   27: PsjInt
+     *   Extranjero (sólo DTE de exportación):
+     *     28: NumId
+     *     29: Nacionalidad
+     *   30: IndServicio (=1 servicios periodicos domiciliarios, =2 otros servicios periodicos, =3 servicios no periodicos)
+     *   31: IndSinCosto
+     *   Liquidaciones (opcional):
+     *     32: RutEmisor
+     *     33: ValComNeto
+     *     34: ValComExe
+     *     35: ValComIVA
+     *   36: CdgSIISucur (opcional)
+     *   37: NumInt
+     *   38: Emisor
+     *   39: MntTotal (calculable)
      *
-     * @param archivo  Ruta al archivo que se desea cargar
+     * @param archivo Ruta al archivo que se desea cargar
      * @param separador Separador de campos del archivo CSV
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
+     * @version 2016-12-01
      */
     public function agregarVentasCSV($archivo, $separador = ';')
     {
@@ -403,26 +431,62 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             $detalle = [
                 'TpoDoc' => $data[$i][0],
                 'NroDoc' => $data[$i][1],
-                'TasaImp' => !empty($data[$i][2]) ? $data[$i][2] : false,
-                'FchDoc' => $data[$i][3],
-                'CdgSIISucur' => !empty($data[$i][4]) ? $data[$i][4] : false,
-                'RUTDoc' => $data[$i][5],
-                'RznSoc' => !empty($data[$i][6]) ? $data[$i][6] : false,
+                'RUTDoc' => $data[$i][2],
+                'TasaImp' => !empty($data[$i][3]) ? $data[$i][3] : false,
+                'RznSoc' => !empty($data[$i][4]) ? $data[$i][4] : false,
+                'FchDoc' => $data[$i][5],
+                'Anulado' => !empty($data[$i][6]) ? 'A' : false,
                 'MntExe' => !empty($data[$i][7]) ? $data[$i][7] : false,
                 'MntNeto' => !empty($data[$i][8]) ? $data[$i][8] : false,
                 'MntIVA' => !empty($data[$i][9]) ? $data[$i][9] : 0,
+                'IVAFueraPlazo' => !empty($data[$i][10]) ? $data[$i][10] : false,
+                'IVAPropio' => !empty($data[$i][14]) ? $data[$i][14] : false,
+                'IVATerceros' => !empty($data[$i][15]) ? $data[$i][15] : false,
+                'IVARetTotal' => !empty($data[$i][16]) ? $data[$i][16] : false,
+                'IVARetParcial' => !empty($data[$i][17]) ? $data[$i][17] : false,
+                'IVANoRetenido' => !empty($data[$i][18]) ? $data[$i][18] : false,
+                'Ley18211' => !empty($data[$i][19]) ? $data[$i][19] : false,
+                'CredEC' => !empty($data[$i][20]) ? $data[$i][20] : false,
+                'TpoDocRef' => !empty($data[$i][21]) ? $data[$i][21] : false,
+                'FolioDocRef' => !empty($data[$i][22]) ? $data[$i][22] : false,
+                'DepEnvase' => !empty($data[$i][23]) ? $data[$i][23] : false,
+                'MntNoFact' => !empty($data[$i][24]) ? $data[$i][24] : false,
+                'MntPeriodo' => !empty($data[$i][25]) ? $data[$i][25] : false,
+                'PsjNac' => !empty($data[$i][26]) ? $data[$i][26] : false,
+                'PsjInt' => !empty($data[$i][27]) ? $data[$i][27] : false,
+                'IndServicio' => !empty($data[$i][30]) ? $data[$i][30] : false,
+                'IndSinCosto' => !empty($data[$i][31]) ? $data[$i][31] : false,
+                'CdgSIISucur' => !empty($data[$i][36]) ? $data[$i][36] : false,
+                'NumInt' => !empty($data[$i][37]) ? $data[$i][37] : false,
+                'Emisor' => !empty($data[$i][38]) ? 1 : false,
             ];
             // agregar código y monto de otros impuestos
-            if (!empty($data[$i][10]) and !empty($data[$i][11])) {
+            if (!empty($data[$i][11])) {
                 $detalle['OtrosImp'] = [
-                    'CodImp' => $data[$i][10],
-                    'TasaImp' => $data[$i][11],
-                    'MntImp' => !empty($data[$i][12]) ? $data[$i][12] : round($detalle['MntNeto'] * ($data[$i][11]/100)),
+                    'CodImp' => $data[$i][11],
+                    'TasaImp' => !empty($data[$i][12]) ? $data[$i][12] : false,
+                    'MntImp' => !empty($data[$i][13]) ? $data[$i][13] : round($detalle['MntNeto'] * ($data[$i][12]/100)),
+                ];
+            }
+            // agregar datos extranjeros
+            if (!empty($data[$i][28]) or !empty($data[$i][29])) {
+                $detalle['Extranjero'] = [
+                    'NumId' => !empty($data[$i][28]) ? $data[$i][28] : false,
+                    'Nacionalidad' => !empty($data[$i][29]) ? $data[$i][29] : false,
+                ];
+            }
+            // agregar datos de liquidaciones
+            if (!empty($data[$i][32])) {
+                $detalle['Liquidaciones'] = [
+                    'RutEmisor' => $data[$i][32],
+                    'ValComNeto' => !empty($data[$i][33]) ? $data[$i][33] : false,
+                    'ValComExe' => !empty($data[$i][34]) ? $data[$i][34] : false,
+                    'ValComIVA' => !empty($data[$i][35]) ? $data[$i][35] : false,
                 ];
             }
             // si hay monto total se agrega
-            if (!empty($data[$i][13])) {
-                $detalle['MntTotal'] = $data[$i][13];
+            if (!empty($data[$i][39])) {
+                $detalle['MntTotal'] = $data[$i][39];
             }
             // agregar a los detalles
             $this->agregar($detalle);
