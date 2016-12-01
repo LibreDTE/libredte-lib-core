@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-09-13
+ * @version 2016-12-01
  */
 class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
@@ -52,6 +52,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         'TotIVAUsoComun' => false,
         'FctProp' => false,
         'TotCredIVAUsoComun' => false,
+        'TotIVAFueraPlazo' => false,
         'TotOtrosImp' => false,
         'TotIVARetTotal' => false,
         'TotIVARetParcial' => false,
@@ -631,6 +632,9 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 $totales[$d['TpoDoc']]['TotCredIVAUsoComun'] += round($d['IVAUsoComun'] * ($d['FctProp']/100));
                 unset($d['FctProp']); // se quita el factor de proporcionalidad del detalle ya que no es parte del XML
             }
+            // contabilizar IVA fuera de plazo
+            if (!empty($d['IVAFueraPlazo']))
+                $totales[$d['TpoDoc']]['TotIVAFueraPlazo'] += $d['IVAFueraPlazo'];
             // si hay otro tipo de impuesto se contabiliza
             if (!empty($d['OtrosImp'])) {
                 foreach ($d['OtrosImp'] as $OtrosImp) {
