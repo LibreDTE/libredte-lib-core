@@ -334,48 +334,51 @@ class Dte extends \sasco\LibreDTE\PDF
     private function agregarContinuo(array $dte, $timbre, $width)
     {
         $this->logo = null;
+        $x_start = 1;
+        $y_start = 1;
+        $offset = 14;
         // determinar alto de la página y agregarla
         $height = 145;
         $n_detalle = count($dte['Detalle']);
         if ($n_detalle>1) $height += $n_detalle*20;
         if ($this->cedible) $height += 50;
-        $this->AddPage('P',array($height, $width));
+        $this->AddPage('P', [$height, $width]);
         // agregar cabecera del documento
         $y = $this->agregarFolio(
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
             $dte['Encabezado']['Emisor']['CmnaOrigen'],
-            3, 3, 68, 10,
+            $x_start, $y_start, $width-($x_start*4), 10,
             [0,0,0]
         );
-        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], 2, $y+2, 40, 8, 9, [0,0,0]);
+        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, 40, 8, 9, [0,0,0]);
         // datos del documento
         $this->SetY($y);
         $this->Ln();
         $this->setFont('', '', 8);
-        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], 2, 14, false);
-        $this->agregarReceptor($dte['Encabezado'], 2, 14);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], $x_start, $offset, false);
+        $this->agregarReceptor($dte['Encabezado'], $x_start, $offset);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
             !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null,
-            2, 14
+            $x_start, $offset
         );
         if (!empty($dte['Referencia'])) {
-            $this->agregarReferencia($dte['Referencia'], 2, 14);
+            $this->agregarReferencia($dte['Referencia'], $x_start, $offset);
         }
         $this->Ln();
         $this->agregarDetalleContinuo($dte['Detalle']);
         if (!empty($dte['DscRcgGlobal'])) {
             $this->Ln();
             $this->Ln();
-            $this->agregarSubTotal($dte['Detalle'], 2);
-            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], 2);
+            $this->agregarSubTotal($dte['Detalle'], $x_start);
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
         }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
             $this->Ln();
             $this->Ln();
-            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], 2);
+            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
         }
         $this->agregarTotales($dte['Encabezado']['Totales'], $this->y+6, 23, 17);
         // agregar acuse de recibo y leyenda cedible
@@ -384,8 +387,8 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE'], $this->y+6, 8);
         }
         // agregar timbre
-        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], 3, $this->y+6);
-        $this->agregarTimbre($timbre, 13, 3, $y+6, 70, 6);
+        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
+        $this->agregarTimbre($timbre, 0, $x_start, $y+6, 70, 6);
     }
 
     /**
@@ -681,7 +684,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar tipo de traslado
         if ($IndTraslado) {
             $this->setFont('', 'B', null);
-            $this->Texto('Traslado', $x);
+            $this->Texto('Tipo oper.', $x);
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto($this->traslados[$IndTraslado], $x+$offset+2);
@@ -704,7 +707,7 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             if ($transporte) {
                 $this->setFont('', 'B', null);
-                $this->Texto('Transporte', $x);
+                $this->Texto('Traslado', $x);
                 $this->Texto(':', $x+$offset);
                 $this->setFont('', '', null);
                 $this->MultiTexto(ucfirst(trim($transporte)), $x+$offset+2);
@@ -833,18 +836,14 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-11-23
+     * @version 2016-12-02
      */
-    private function agregarDetalleContinuo($detalle, $x = 3,$y=64)
+    private function agregarDetalleContinuo($detalle, $x = 3)
     {
-        $pageWidth    = $this->getPageWidth();
-        $pageMargins  = $this->getMargins();
-        $headerMargin = $pageMargins['header'];
-        $px2          = $pageWidth - $headerMargin;
         $this->SetY($this->getY()+1);
-        $p1x = 3;
+        $p1x = $x;
         $p1y = $this->y;
-        $p2x = 71;
+        $p2x = $this->getPageWidth() - 2;
         $p2y = $p1y;  // Use same y for a straight line
         $style = array('width' => 0.2,'color' => array(0, 0, 0));
         $this->Line($p1x, $p1y, $p2x, $p2y, $style);
@@ -1017,19 +1016,21 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-12
+     * @version 2016-12-02
      */
     private function agregarTimbre($timbre, $x_timbre = 20, $x = 20, $y = 190, $w = 70, $font_size = 8)
     {
         if ($timbre!==null) {
             $style = [
                 'border' => false,
-                'vpadding' => 0,
+                'padding' => 0,
                 'hpadding' => 0,
+                'vpadding' => 0,
+                'module_width' => 1, // width of a single module in points
+                'module_height' => 1, // height of a single module in points
                 'fgcolor' => [0,0,0],
                 'bgcolor' => false, // [255,255,255]
-                'module_width' => 1, // width of a single module in points
-                'module_height' => 1 // height of a single module in points
+                'position' => $this->papelContinuo ? 'C' : 'S',
             ];
             $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
             $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x_timbre, $y, $w, 0, $style, 'B');
