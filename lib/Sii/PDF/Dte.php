@@ -329,7 +329,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-19
+     * @version 2016-12-02
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -346,9 +346,10 @@ class Dte extends \sasco\LibreDTE\PDF
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
             $dte['Encabezado']['Emisor']['CmnaOrigen'],
-            3, 3, 68, 10
+            3, 3, 68, 10,
+            [0,0,0]
         );
-        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], 2, $y+2, 40, 8, 9);
+        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], 2, $y+2, 40, 8, 9, [0,0,0]);
         // datos del documento
         $this->SetY($y);
         $this->Ln();
@@ -400,9 +401,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2016-12-02
      */
-    private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null)
+    private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
     {
         // logo del documento
         if (isset($this->logo)) {
@@ -427,7 +428,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         // agregar datos del emisor
         $this->setFont('', 'B', $font_size ? $font_size : 14);
-        $this->SetTextColorArray([32, 92, 144]);
+        $this->SetTextColorArray($color===null?[32, 92, 144]:$color);
         $this->MultiTexto(!empty($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
         $this->setFont('', 'B', $font_size ? $font_size : 9);
         $this->SetTextColorArray([0,0,0]);
@@ -472,11 +473,13 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-04
+     * @version 2016-12-02
      */
-    private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null)
+    private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null, array $color = null)
     {
-        $color = $tipo ? ($tipo==52 ? [0,172,140] : [255,0,0]) : [0,0,0];
+        if ($color===null) {
+            $color = $tipo ? ($tipo==52 ? [0,172,140] : [255,0,0]) : [0,0,0];
+        }
         $this->SetTextColorArray($color);
         // colocar rut emisor, glosa documento y folio
         list($rut, $dv) = explode('-', $rut);
