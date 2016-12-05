@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Ultima modificación : 22 de Junio 2005-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Cesion_v10.xsd"/>
+	<xs:include schemaLocation="DTECedido_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="AEC">
+		<xs:annotation>
+			<xs:documentation>Archivo Electronico de Cesion</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoAEC">
+					<xs:annotation>
+						<xs:documentation>Documento de AEC</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Informacion de AEC</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutCedente" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que Genera el Archivo de Transferencias</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutCesionario" type="SiiDte:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT a Quien Va Dirigido el Archivo de Transferencias</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NmbContacto" type="SiiDte:NombreType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Persona de Contacto para aclarar dudas</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FonoContacto" type="SiiDte:FonoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Telefono de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MailContacto" type="SiiDte:MailType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Correo Electronico de Contacto</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstFirmaEnvio" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de Transferencias</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Cesiones">
+								<xs:annotation>
+									<xs:documentation>Cesiones</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="SiiDte:DTECedido">
+											<xs:annotation>
+												<xs:documentation>Representacion XML y Grafica del DTE Cedido</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element ref="SiiDte:Cesion" maxOccurs="40">
+											<xs:annotation>
+												<xs:documentation>Informacion Electronica de Recepcion y Aceptacion del DTE por Parte del Receptor</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Transferencia</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

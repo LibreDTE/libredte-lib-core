@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Ultima Modificacion:  09-01-2013 10:00 - se agrega ImagenAR -->
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="DTE_v10.xsd"/>
+	<xs:include schemaLocation="Recibos_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="DTECedido" type="SiiDte:DTECedidoDefType">
+		<xs:annotation>
+			<xs:documentation>DTE con Imagen y Recibos</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DTECedidoDefType">
+		<xs:sequence>
+			<xs:element name="DocumentoDTECedido">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="SiiDte:DTE">
+							<xs:annotation>
+								<xs:documentation>Representacion XML del DTE Cedido</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ImagenDTE" type="xs:base64Binary" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Representacion PDF del DTE Cedido</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="SiiDte:Recibo" minOccurs="0" maxOccurs="40">
+							<xs:annotation>
+								<xs:documentation>Informacion Electronica de Recepcion y Aceptacion del DTE por Parte del Receptor</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ImagenAR" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Representacion PDF del los Acuse de Recibo</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:base64Binary">
+									<xs:maxLength value="4000000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="TmstFirma" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>Fecha y Hora en que se Firmo Digitalmente el Documento Cedido AAAA-MM-DDTHH:MI:SS</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ID" type="xs:ID" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature">
+				<xs:annotation>
+					<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:string" use="required" fixed="1.0"/>
+	</xs:complexType>
+</xs:schema>
