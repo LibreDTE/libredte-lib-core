@@ -1,3 +1,4 @@
+# ejemplos, composer, pruebas, etc (archivos generados al usar la biblioteca)
 doc
 examples/config.php
 examples/xml
@@ -5,3 +6,7 @@ examples/pdf
 vendor
 tests/firma.p12
 
+# funcionalidades aun no liberadas
+lib/Sii/Dte/Formatos
+lib/Sii/Cesion
+lib/Sii/Timbraje.php
