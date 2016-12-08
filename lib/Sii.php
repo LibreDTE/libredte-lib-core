@@ -21,7 +21,7 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace sasco\LibreDTE;
+namespace sasco\LibreDTE; 
 
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
