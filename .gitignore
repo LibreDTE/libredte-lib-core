@@ -8,5 +8,4 @@ tests/firma.p12
 
 # funcionalidades aun no liberadas
 lib/Sii/Dte/Formatos
-lib/Sii/Cesion
 lib/Sii/Timbraje.php
