@@ -28,33 +28,52 @@ código fuente de la aplicación web puedes hacerlo
 Funcionalidades implementadas
 -----------------------------
 
+- Conexión a maullin o palena.
 - Obtención de token para autenticación automática.
 - Obtención de estado de un DTE a través del folio, fecha y monto.
-- Envío automático de archivo XML de DTE al SII.
+- Parser para set de pruebas.
+- Generación de XML, timbraje y firma del DTE.
 - Generación, y envío, de XML EnvioDTE firmado.
 - Consulta del estado de envío de DTE a través de su Track ID.
 - Consulta del estado de envío de un Libro a través de su Track ID.
-- Generación de XML, timbraje y firma del DTE.
-- Documentos certificados por el SII:
-    - Factura electrónica (33)
-    - Factura exenta electrónica (34)
-    - Boleta electrónica (39)
-    - Boleta exenta electrónica (41)
-    - Factura de compra electrónica (46)
-    - Guía de despacho electrónica (52)
-    - Nota de débito electrónica (56)
-    - Nota de crédito electrónica (61)
-    - Factura de exportación electrónica (110)
-    - Nota de débito exportación electrónica (111)
-    - Nota de crédito exportación electrónica (112)
-    - Información electrónica de compras y ventas (IECV)
-    - Libro de guías de despacho electrónico
-    - Libro de boletas y reporte de consumo de folios
+- Documentos oficialmente soportados (sets certificados):
+    - Factura electrónica (33).
+    - Factura exenta electrónica (34).
+    - Boleta electrónica (39).
+    - Boleta exenta electrónica (41).
+    - Factura de compra electrónica (46).
+    - Guía de despacho electrónica (52).
+    - Nota de débito electrónica (56).
+    - Nota de crédito electrónica (61).
+    - Factura de exportación electrónica (110).
+    - Nota de débito exportación electrónica (111).
+    - Nota de crédito exportación electrónica (112).
+    - Información electrónica de compras y ventas (IECV).
+    - Libro de guías de despacho electrónico.
+    - Libro de boletas y reporte de consumo de folios (RCOF).
 - Etapa de intercambio con otros contribuyentes:
-    - Acuse de recibo
-    - Recibo de mercaderías y servicios prestados
-    - Resultado validación
-- Generación de documentos en PDF, con muestras aceptadas por el SII.
+    - Acuse de recibo.
+    - Recibo de mercaderías y servicios prestados.
+    - Resultado validación.
+- Generación de DTE en PDF a partir de su XML, hoja carta y papel contínuo.
+- Generación de IECV en PDF a partir de su XML.
+- Impuestos adicionales (excepto combustibles).
+- Descarga contribuyentes electrónicos desde SII con email de intercambio.
+- Cesión electrónica (factoring).
+
+### Funcionalidades independientes
+
+- Conversión de arreglos PHP a XML.
+- Firma electrónica de cualquier XML.
+- Internacionalización.
+- Sistema de logs.
+
+### Formatos soportados de entrada de datos de DTE
+
+- Formatos oficiales con estructura del SII:
+  - JSON
+  - XML
+  - YAML
 
 Instalación
 -----------
@@ -129,7 +148,8 @@ cumpla con los estándares [PSR-1](http://www.php-fig.org/psr/psr-1),
 Contacto y redes sociales
 -------------------------
 
-- Sitio web: <http://libredte.cl>
+- Sitio web: <https://libredte.cl>
+- Documentación: <https://wiki.libredte.cl>
 - Twitter: <https://twitter.com/LibreDTE>
 - Facebook: <https://www.facebook.com/LibreDTE>
 - Google+: <https://plus.google.com/u/0/101078963971350176990/about>
