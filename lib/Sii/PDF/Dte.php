@@ -836,7 +836,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-02
+     * @version 2016-12-13
      */
     private function agregarDetalleContinuo($detalle, $x = 3)
     {
@@ -857,7 +857,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetY($this->getY()+2);
         foreach($detalle as  &$d) {
             $this->MultiTexto($d['NmbItem'], $x+1, $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
-            $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+15, $this->y+3, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
+            $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+15, $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
             $this->Texto($this->num($d['QtyItem']), $x+35, $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
             $this->Texto($this->num($d['MontoItem']), $x+45, $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
         }
