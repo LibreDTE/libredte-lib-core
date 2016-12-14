@@ -161,7 +161,6 @@ class Sii
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
                 $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
-                trigger_error($msg, E_USER_NOTICE);
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
             $options = ['stream_context' => stream_context_create([
@@ -276,11 +275,8 @@ class Sii
         // generará una entrada en el log
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
-                \sasco\LibreDTE\Log::write(
-                    Estado::ENVIO_SSL_SIN_VERIFICAR,
-                    Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR),
-                    LOG_WARNING
-                );
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
@@ -428,7 +424,6 @@ class Sii
         if (!self::$verificar_ssl) {
             if ($ambiente==self::PRODUCCION) {
                 $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
-                trigger_error($msg, E_USER_NOTICE);
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
