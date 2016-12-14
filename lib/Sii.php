@@ -273,12 +273,14 @@ class Sii
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // si no se debe verificar el SSL se asigna opción a curl, además si
         // se está en el ambiente de producción y no se verifica SSL se
-        // generará un error de nivel E_USER_NOTICE
+        // generará una entrada en el log
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
-                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
-                trigger_error($msg, E_USER_NOTICE);
-                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
+                \sasco\LibreDTE\Log::write(
+                    Estado::ENVIO_SSL_SIN_VERIFICAR,
+                    Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR),
+                    LOG_WARNING
+                );
             }
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
