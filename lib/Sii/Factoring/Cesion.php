@@ -27,14 +27,14 @@ namespace sasco\LibreDTE\Sii\Factoring;
  * Clase que representa la cesion electrónica
  * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-12-10
+ * @version 2016-12-30
  */
 class Cesion
 {
 
     private $Encabezado; ///< Encabezado del DTE que se está cediendo
     private $datos; ///< Datos del XML de cesión
-    private $declaracion = 'Yo, {usuario_nombre}, cédula nacional de identidad N° {usuario_run}, en representación de {emisor_razon_social}, RUT {emisor_rut}, declaro bajo juramento que he puesto a disposición del cesionario {cesionario_razon_social}, RUT {cesionario_rut}, el (los) documento(s) donde constan los recibos de la recepción de las mercaderías entregadas o servicios prestados, entregados por parte del deudor de la factura {receptor_razon_social}, RUT {receptor_rut}, de acuerdo a lo establecido en la Ley N° 19.983'; ///< Declaración estándar en caso que no sea indicada al momento de crear al cedente
+    private $declaracion = 'Yo, {usuario_nombre}, RUN {usuario_run}, representando a {emisor_razon_social}, RUT {emisor_rut}, declaro que he puesto a disposición del cesionario {cesionario_razon_social}, RUT {cesionario_rut}, el documento donde constan los recibos de la recepción de mercaderías entregadas o servicios prestados, entregados por parte del deudor de la factura {receptor_razon_social}, RUT {receptor_rut}, de acuerdo a lo establecido en la Ley N° 19.983'; ///< Declaración estándar en caso que no sea indicada al momento de crear al cedente
 
     /**
      * Constructor de la clase Cesion
@@ -101,7 +101,7 @@ class Cesion
     /**
      * Método que agrega los datos del cedente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-10
+     * @version 2016-12-30
      */
     public function setCedente(array $cedente = [])
     {
@@ -117,7 +117,7 @@ class Cesion
             'DeclaracionJurada' => false,
         ], $cedente);
         if (!$this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada']) {
-            $this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada'] = str_replace(
+            $this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada'] = substr(str_replace(
                 [
                     '{usuario_nombre}',
                     '{usuario_run}',
@@ -139,7 +139,7 @@ class Cesion
                     $this->Encabezado['Receptor']['RUTRecep'],
                 ],
                 $this->declaracion
-            );
+            ), 0, 512);
         }
     }
 
