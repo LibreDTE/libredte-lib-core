@@ -109,7 +109,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-01
+     * @version 2017-01-18
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -207,7 +207,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 for ($i=0; $i<$n_impuestos; $i++) {
                     $detalle['OtrosImp'][] = [
                         'CodImp' => $CodImp[$i],
-                        'TasaImp' => $TasaImp[$i],
+                        'TasaImp' => !empty($TasaImp[$i]) ? $TasaImp[$i] : false,
                         'MntImp' => $MntImp[$i],
                     ];
                 }
