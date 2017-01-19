@@ -27,7 +27,7 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-12-15
+ * @version 2017-01-19
  */
 
 // activar todos los errores
@@ -41,19 +41,15 @@ date_default_timezone_set('America/Santiago');
 if (is_readable(dirname(dirname(__FILE__)).'/vendor/autoload.php'))
     include dirname(dirname(__FILE__)).'/vendor/autoload.php';
 else
-    die('Para probar los ejemplos debes ejecutar primero "composer install" en el directorio '.dirname(dirname(__FILE__)));
-
-// incluir archivos de la biblioteca
-/*$path = dirname(dirname(__FILE__)).'/lib';
-$Iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
-$files = new RegexIterator($Iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
-foreach ($files as $file => $object) {
-    include $file;
-}*/
+    die('Para probar los ejemplos debes ejecutar primero "composer install" en el directorio '.dirname(dirname(__FILE__))."\n");
 
 // todos los ejemplos se ejecutan con backtrace activado, esto para ayudar al
 // debug de los mismos
 \sasco\LibreDTE\Log::setBacktrace(true);
 
 // incluir configuración específica de los ejemplos
-include 'config.php';
+if (is_readable('config.php'))
+    include 'config.php';
+else
+    die('Debes crear config.php a partir de config-dist.php'."\n");
+
