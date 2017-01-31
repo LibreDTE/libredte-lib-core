@@ -728,6 +728,10 @@ class Dte extends \sasco\LibreDTE\PDF
                 $glosa = \sasco\LibreDTE\Sii\Aduana::getGlosa($tag);
                 $valor = \sasco\LibreDTE\Sii\Aduana::getValor($tag, $codigo);
                 if ($glosa!==false and $valor!==false) {
+                    if ($tag=='TipoBultos' and $col) {
+                        $col = abs($col-110);
+                        $this->Ln();
+                    }
                     $this->setFont('', 'B', null);
                     $this->Texto($glosa, $x+$col);
                     $this->Texto(':', $x+$offset+$col);
