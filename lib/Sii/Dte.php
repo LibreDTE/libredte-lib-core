@@ -110,7 +110,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-06
+     * @version 2017-02-06
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -141,6 +141,8 @@ class Dte
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], $parent);
             $this->datos = $datos;
+            if (!$this->verificarDatos())
+                return false;
             return $this->schemaValidate();
         }
         return false;
@@ -1672,6 +1674,22 @@ class Dte
      */
     public function schemaValidate()
     {
+        return true;
+    }
+
+    /**
+     * Método que valida los datos del DTE
+     * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-02-06
+     */
+    public function verificarDatos()
+    {
+        if (class_exists('\sasco\LibreDTE\Sii\VerificadorDatos')) {
+            if (!\sasco\LibreDTE\Sii\VerificadorDatos::Dte($this->getDatos())) {
+                return false;
+            }
+        }
         return true;
     }
 
