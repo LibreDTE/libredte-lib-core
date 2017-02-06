@@ -9,3 +9,4 @@ tests/firma.p12
 # funcionalidades aun no liberadas
 lib/Sii/Dte/Formatos
 lib/Sii/Timbraje.php
+VerificadorDatos.php
