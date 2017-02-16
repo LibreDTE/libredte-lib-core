@@ -963,7 +963,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
-            'IVANoRet' => 'IVA no retenido',
+            'IVANoRet' => 'IVA no retenido $',
             'CredEC' => 'Desc. 65% IVA $',
             'MntTotal' => 'Total $',
             'MontoNF' => 'Monto no facturable $',
