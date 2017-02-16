@@ -938,7 +938,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2017-02-15
      */
     private function agregarTotales(array $totales, $y = 190, $x = 145, $offset = 25)
     {
@@ -949,6 +949,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'MntExe' => false,
             'TasaIVA' => false,
             'IVA' => false,
+            'IVANoRet' => false,
             'CredEC' => false,
             'MntTotal' => false,
             'MontoNF' => false,
@@ -962,6 +963,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
             'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
+            'IVANoRet' => 'IVA no retenido',
             'CredEC' => 'Desc. 65% IVA $',
             'MntTotal' => 'Total $',
             'MontoNF' => 'Monto no facturable $',
