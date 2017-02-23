@@ -761,7 +761,7 @@ class Dte
      * Método que normaliza los datos de una factura exenta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-25
+     * @version 2017-02-23
      */
     private function normalizar_34(array &$datos)
     {
@@ -771,6 +771,7 @@ class Dte
                 'IdDoc' => false,
                 'Emisor' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
                 'Totales' => [
                     'MntExe' => false,
                     'MntTotal' => 0,
@@ -859,6 +860,7 @@ class Dte
                 'IdDoc' => false,
                 'Emisor' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => false,
@@ -881,7 +883,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-21
+     * @version 2017-02-23
      */
     private function normalizar_52(array &$datos)
     {
@@ -891,6 +893,7 @@ class Dte
                 'IdDoc' => false,
                 'Emisor' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
                 'Transporte' => false,
                 'Totales' => [
                     'MntNeto' => 0,
@@ -939,7 +942,7 @@ class Dte
      * Método que normaliza los datos de una nota de débito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-30
+     * @version 2017-02-23
      */
     private function normalizar_56(array &$datos)
     {
@@ -949,6 +952,7 @@ class Dte
                 'IdDoc' => false,
                 'Emisor' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => 0,
@@ -976,7 +980,7 @@ class Dte
      * Método que normaliza los datos de una nota de crédito
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-30
+     * @version 2017-02-23
      */
     private function normalizar_61(array &$datos)
     {
@@ -986,6 +990,7 @@ class Dte
                 'IdDoc' => false,
                 'Emisor' => false,
                 'Receptor' => false,
+                'RUTSolicita' => false,
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => 0,
