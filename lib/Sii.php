@@ -314,6 +314,120 @@ class Sii
     }
 
     /**
+     * Método que realiza el envío de un AEC al SII
+     * Referencia: https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2
+     * @param email del usuario que envía el AEC
+     * @param empresa RUT de la empresa emisora del AEC
+     * @param dte Documento XML con el DTE que se desea enviar a SII
+     * @param token Token de autenticación automática ante el SII
+     * @param retry Intentos que se realizarán como máximo para obtener respuesta
+     * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
+     * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
+     * @version 2016-08-10
+     */
+    public static function enviarRTC($email, $empresa, $dte, $token, $retry = null)
+    {
+        // definir datos que se usarán en el envío
+        list($rutCompany, $dvCompany) = explode('-', str_replace('.', '', $empresa));
+        if (strpos($dte, '<?xml') === false) {
+            $dte = '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\n" . $dte;
+        }
+        do {
+            $file = sys_get_temp_dir() . '/aec_' . md5(microtime() . $token . $dte) . '.xml';
+        } while (file_exists($file));
+        file_put_contents($file, $dte);
+        $data = [
+            'emailNotif' => $email,
+            'rutCompany' => $rutCompany,
+            'dvCompany' => $dvCompany,
+            'archivo' => curl_file_create(
+                $file,
+                'application/xml',
+                basename($file)
+            ),
+        ];
+        // definir reintentos si no se pasaron
+        if (!$retry)
+            $retry = self::$retry;
+        // crear sesión curl con sus opciones
+        $curl = curl_init();
+        $header = [
+            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; TGlicmVEVEU=)',
+            'Referer: https://libredte.cl',
+            'Cookie: TOKEN=' . $token,
+        ];
+        $url = 'https://' . self::$config['servidor'][self::getAmbiente()] . '.sii.cl/cgi_rtc/RTC/RTCAnotEnvio.cgi';
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // si no se debe verificar el SSL se asigna opción a curl, además si
+        // se está en el ambiente de producción y no se verifica SSL se
+        // generará un error de nivel E_USER_NOTICE
+        if (!self::$verificar_ssl) {
+            if (self::getAmbiente() == self::PRODUCCION) {
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
+                trigger_error($msg, E_USER_NOTICE);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
+            }
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        }
+        // enviar XML al SII
+        for ($i = 0; $i < $retry; $i++) {
+            $response = curl_exec($curl);
+            if ($response and $response != 'Error 500')
+                break;
+        }
+        unlink($file);
+        // verificar respuesta del envío y entregar error en caso que haya uno
+        if (!$response or $response == 'Error 500') {
+            if (!$response)
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_CURL, Estado::get(Estado::ENVIO_ERROR_CURL, curl_error($curl)));
+            if ($response == 'Error 500')
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_500, Estado::get(Estado::ENVIO_ERROR_500));
+            return false;
+        }
+        // cerrar sesión curl
+        curl_close($curl);
+
+        print_r($response);
+        // crear XML con la respuesta y retornar
+        try {
+            $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
+        } catch (Exception $e) {
+            \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_XML, Estado::get(Estado::ENVIO_ERROR_XML, $e->getMessage()));
+            return false;
+        }
+
+        /*
+         * 0 Envío recibido OK.
+         * 1 Rut usuario autenticado no tiene permiso para enviar en empresa Cedente.
+         * 2 Error en tamaño del archivo enviado.
+         * 4 Faltan parámetros de entrada.
+         * 5 Error de autenticación, TOKEN inválido, no existe o está expirado.
+         * 6 Empresa no es DTE.
+         * 9 Error Interno.
+         * 10 Error Interno
+         */
+        $error = [
+            1 => 'Rut usuario autenticado no tiene permiso para enviar en empresa Cedente',
+            2 => 'Error en tamaño del archivo enviado',
+            4 => 'Faltan parámetros de entrada',
+            5 => 'Error de autenticación, TOKEN inválido, no existe o está expirado',
+            6 => 'Empresa no es DTE',
+            9 => 'Error Interno',
+            10 => 'Error Interno'
+        ];
+        if ($xml->STATUS != 0) {
+            \sasco\LibreDTE\Log::write(
+                $xml->STATUS,
+                $error[$xml->STATUS]
+            );
+        }
+        return $xml;
+    }
+    /**
      * Método para obtener la clave pública (certificado X.509) del SII
      *
      * \code{.php}
