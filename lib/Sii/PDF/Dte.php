@@ -938,7 +938,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-02-15
+     * @version 2017-04-17
      */
     private function agregarTotales(array $totales, $y = 190, $x = 145, $offset = 25)
     {
@@ -981,7 +981,11 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             foreach($ImptoReten as $i) {
                 $totales['ImptoReten_'.$i['TipoImp']] = $i['MontoImp'];
-                $glosas['ImptoReten_'.$i['TipoImp']] = \sasco\LibreDTE\Sii\ImpuestosAdicionales::getGlosa($i['TipoImp']).' ('.$i['TasaImp'].'%) $';
+                if (!empty($i['TasaImp'])) {
+                    $glosas['ImptoReten_'.$i['TipoImp']] = \sasco\LibreDTE\Sii\ImpuestosAdicionales::getGlosa($i['TipoImp']).' ('.$i['TasaImp'].'%) $';
+                } else {
+                    $glosas['ImptoReten_'.$i['TipoImp']] = \sasco\LibreDTE\Sii\ImpuestosAdicionales::getGlosa($i['TipoImp']).' $';
+                }
             }
             $totales['MntTotal'] = $MntTotal;
         }
