@@ -415,7 +415,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que indica si la firma del documento es o no válida
      * @return =true si la firma del documento del envío es válida, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2017-04-07
      */
     public function checkFirma()
     {
@@ -429,7 +429,14 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         $DigestValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('DigestValue')->item(0)->nodeValue;
         $SignatureValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
         $X509Certificate = $Signatures->item($Signatures->length-1)->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
-        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
+        if ($X509Certificate[1]==' ' or $X509Certificate[1]=="\t") {
+            $lineas = explode("\n", $X509Certificate);
+            $X509Certificate = '';
+            foreach($lineas as $l) {
+                $X509Certificate .= trim($l);
+            }
+        }
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE-----';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid and $DigestValue===base64_encode(sha1($SetDTE, true));
     }
