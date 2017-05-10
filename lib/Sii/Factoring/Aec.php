@@ -219,8 +219,8 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         /*if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
                 \sasco\LibreDTE\Log::write(
-                    Estado::ENVIO_SSL_SIN_VERIFICAR,
-                    Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR),
+                    \sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR,
+                    \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR),
                     LOG_WARNING
                 );
             }
@@ -236,9 +236,9 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         // verificar respuesta del envío y entregar error en caso que haya uno
         if (!$response or $response == 'Error 500') {
             if (!$response)
-                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_CURL, Estado::get(Estado::ENVIO_ERROR_CURL, curl_error($curl)));
+                \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_ERROR_CURL, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_ERROR_CURL, curl_error($curl)));
             if ($response == 'Error 500')
-                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_500, Estado::get(Estado::ENVIO_ERROR_500));
+                \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_ERROR_500, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_ERROR_500));
             return false;
         }
         // cerrar sesión curl
@@ -247,7 +247,7 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         try {
             $xml = new \SimpleXMLElement($response, LIBXML_COMPACT);
         } catch (Exception $e) {
-            \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_XML, Estado::get(Estado::ENVIO_ERROR_XML, $e->getMessage()));
+            \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_ERROR_XML, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_ERROR_XML, $e->getMessage()));
             return false;
         }
         /*
