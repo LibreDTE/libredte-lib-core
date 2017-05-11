@@ -177,7 +177,8 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
-     * @version 2016-12-10
+     * @author Esteban De La Fuente Rubio (esteban[sasco.cl])
+     * @version 2017-05-11
      */
     private function enviarRTC($email, $empresa, $dte, $token, $retry = null)
     {
@@ -216,8 +217,8 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         // si no se debe verificar el SSL se asigna opción a curl, además si
         // se está en el ambiente de producción y no se verifica SSL se
         // generará una entrada en el log
-        /*if (!self::$verificar_ssl) {
-            if (self::getAmbiente()==self::PRODUCCION) {
+        if (!\sasco\LibreDTE\Sii::getVerificarSSL()) {
+            if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION) {
                 \sasco\LibreDTE\Log::write(
                     \sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR,
                     \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR),
@@ -225,7 +226,7 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
                 );
             }
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        }*/
+        }
         // enviar XML al SII
         for ($i = 0; $i < $retry; $i++) {
             $response = curl_exec($curl);

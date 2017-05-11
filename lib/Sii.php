@@ -220,6 +220,16 @@ class Sii
     }
 
     /**
+     * Método que indica si se está o no verificando el SSL en las conexiones al SII
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-05-11
+     */
+    public static function getVerificarSSL()
+    {
+        return self::$verificar_ssl;
+    }
+
+    /**
      * Método que realiza el envío de un DTE al SII
      * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
      * @param usuario RUN del usuario que envía el DTE
