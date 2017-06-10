@@ -30,7 +30,7 @@ libxml_use_internal_errors(true);
 /**
  * Clase para trabajar con XMLs
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-08-20
+ * @version 2017-01-20
  */
 class XML extends \DomDocument
 {
@@ -115,11 +115,12 @@ class XML extends \DomDocument
             ['&', '&', '<', '<', '>', '>', '"', '"', '\'', '\''],
             $txt
         );
-        $txt = str_replace(
+        $txt = str_replace('&', '&amp;', $txt);
+        /*$txt = str_replace(
             ['&', '"', '\''],
             ['&amp;', '&quot;', '&apos;'],
             $txt
-        );
+        );*/
         // entregar texto sanitizado
         return $txt;
     }
@@ -154,7 +155,7 @@ class XML extends \DomDocument
      * @param xpath XPath para consulta al XML y extraer sólo una parte
      * @return String con código XML aplanado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-03
+     * @version 2017-01-20
      */
     public function getFlattened($xpath = null)
     {
@@ -163,6 +164,7 @@ class XML extends \DomDocument
             if (!$node)
                 return false;
             $xml = $this->utf2iso($node->C14N());
+            $xml = $this->fixEntities($xml);
         } else {
             $xml = $this->C14N();
         }
@@ -310,6 +312,56 @@ class XML extends \DomDocument
             return false;
         list($uri, $xsd) = explode(' ', $schemaLocation);
         return $xsd;
+    }
+
+    /**
+     * Wrapper para saveXML() y corregir entities
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-01-20
+     */
+    public function saveXML(\DOMNode $node = null, $options = null)
+    {
+        $xml = parent::saveXML($node, $options);
+        $xml = $this->fixEntities($xml);
+        return $xml;
+    }
+
+    /**
+     * Wrapper para C14N() y corregir entities
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-01-20
+     */
+    public function C14N($exclusive = null, $with_comments = null, array $xpath = null, array $ns_prefixes = null)
+    {
+        $xml = parent::C14N($exclusive, $with_comments, $xpath, $ns_prefixes);
+        $xml = $this->fixEntities($xml);
+        return $xml;
+    }
+
+    /**
+     * Método que corrige las entities ' (&apos;) y " (&quot;) ya que el SII no
+     * respeta el estándar y las requiere convertidas
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-01-20
+     */
+    private function fixEntities($xml)
+    {
+        $newXML = '';
+        $n_letras = strlen($xml);
+        $convertir = false;
+        for ($i=0; $i<$n_letras; ++$i) {
+            if ($xml[$i]=='>')
+                $convertir = true;
+            if ($xml[$i]=='<')
+                $convertir = false;
+            if ($convertir) {
+                $l = $xml[$i]=='\'' ? '&apos;' : ($xml[$i]=='"' ? '&quot;' : $xml[$i]);
+            } else {
+                $l = $xml[$i];
+            }
+            $newXML .= $l;
+        }
+        return $newXML;
     }
 
 }
