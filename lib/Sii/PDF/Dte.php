@@ -277,7 +277,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-15
+     * @version 2017-06-15
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -295,7 +295,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setY(max($y));
         $this->Ln();
         $y = [];
-        $y[] = $this->agregarDatosEmision($dte['Encabezado']['IdDoc']);
+        $y[] = $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null);
         $y[] = $this->agregarReceptor($dte['Encabezado']);
         $this->setY(max($y));
         $this->agregarTraslado(
@@ -331,7 +331,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-02
+     * @version 2017-06-15
      */
     private function agregarContinuo(array $dte, $timbre, $width)
     {
@@ -359,7 +359,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetY($y);
         $this->Ln();
         $this->setFont('', '', 8);
-        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], $x_start, $offset, false);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null, $x_start, $offset, false);
         $this->agregarReceptor($dte['Encabezado'], $x_start, $offset);
         $this->agregarTraslado(
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
@@ -526,9 +526,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-15
+     * @version 2017-06-15
      */
-    private function agregarDatosEmision($IdDoc, $x = 10, $offset = 22, $mostrar_dia = true)
+    private function agregarDatosEmision($IdDoc, $CdgVendedor, $x = 10, $offset = 22, $mostrar_dia = true)
     {
         // si es hoja carta
         if ($x==10) {
@@ -556,6 +556,10 @@ class Dte extends \sasco\LibreDTE\PDF
             // forma de pago exportación
             if (!empty($IdDoc['FmaPagExp'])) {
                 $this->MultiTexto('Venta: '.strtolower($this->formas_pago_exportacion[$IdDoc['FmaPagExp']]), $x, null, 'R');
+            }
+            // vendedor
+            if (!empty($CdgVendedor)) {
+                $this->MultiTexto('Vendedor: '.$CdgVendedor, $x, null, 'R');
             }
             $y_end = $this->GetY();
             $this->SetY($y);
@@ -610,7 +614,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-15
+     * @version 2017-06-15
      */
     private function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
     {
@@ -673,6 +677,13 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
+        }
+        if (!empty($receptor['CdgIntRecep'])) {
+            $this->setFont('', 'B', null);
+            $this->Texto('Cód. recep.', $x);
+            $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
+            $this->MultiTexto($receptor['CdgIntRecep'], $x+$offset+2, null, '', $x==10?105:0);
         }
         return $this->GetY();
     }
