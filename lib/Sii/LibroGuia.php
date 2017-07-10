@@ -51,7 +51,7 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-02
+     * @version 2017-07-10
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -73,6 +73,10 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
             'FolioDocRef' => false,
             'FchDocRef' => false,
         ], $detalle);
+        // acortar razon social
+        if ($detalle['RznSoc']) {
+            $detalle['RznSoc'] = substr($detalle['RznSoc'], 0, 50);
+        }
         // calcular valores que no se hayan entregado
         if (!$detalle['IVA'] and $detalle['TasaImp'] and $detalle['MntNeto']) {
             $detalle['IVA'] = round($detalle['MntNeto'] * ($detalle['TasaImp']/100));
@@ -89,7 +93,7 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
      * @param archivo  Ruta al archivo que se desea cargar
      * @param separador Separador de campos del archivo CSV
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-24
+     * @version 2017-07-10
      */
     public function agregarCSV($archivo, $separador = ';')
     {
@@ -105,7 +109,7 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
                 'TpoOper' => !empty($data[$i][3]) ? $data[$i][3] : false,
                 'FchDoc' => !empty($data[$i][4]) ? $data[$i][4] : date('Y-m-d'),
                 'RUTDoc' => !empty($data[$i][5]) ? $data[$i][5] : false,
-                'RznSoc' => !empty($data[$i][6]) ? $data[$i][6] : false,
+                'RznSoc' => !empty($data[$i][6]) ? substr($data[$i][6], 0, 50) : false,
                 'MntNeto' => !empty($data[$i][7]) ? $data[$i][7] : false,
                 'TasaImp' => !empty($data[$i][8]) ? $data[$i][8] : 0,
                 'IVA' => !empty($data[$i][9]) ? $data[$i][9] : 0,
