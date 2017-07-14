@@ -413,7 +413,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // determinar alto de la página y agregarla
         $height = 100;
         if ($this->cedible) $height += 50;
-        if ($dte['Encabezado']['Receptor']['RUTRecep']!='66666666-6') $height += 30;
+        if ($dte['Encabezado']['Receptor']['RUTRecep']!='66666666-6') $height += 40;
         $this->AddPage('P', [$height, $width]);
         $x = 1;
         $y = 5;
