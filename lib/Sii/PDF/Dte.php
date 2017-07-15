@@ -984,7 +984,12 @@ class Dte extends \sasco\LibreDTE\PDF
                 $subtotal += $d['MontoItem'];
             }
         }
-        $this->Texto('Subtotal: $'.$this->num($subtotal).'.-', $x);
+        if ($this->papelContinuo) {
+            $this->Texto('Subtotal: $'.$this->num($subtotal), $x);
+        } else {
+            $this->Texto('Subtotal $ :', 77, null, 'R', 100);
+            $this->Texto($this->num($subtotal), 177, null, 'R', 22);
+        }
         $this->Ln();
     }
 
@@ -1001,8 +1006,13 @@ class Dte extends \sasco\LibreDTE\PDF
             $descuentosRecargos = [$descuentosRecargos];
         foreach($descuentosRecargos as $dr) {
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
-            $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']).'.-';
-            $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):''), $x);
+            $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : '$'.$this->num($dr['ValorDR']);
+            if ($this->papelContinuo) {
+                $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):''), $x);
+            } else {
+                $this->Texto($tipo.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):'').':', 77, null, 'R', 100);
+                $this->Texto($valor, 177, null, 'R', 22);
+            }
             $this->Ln();
         }
     }
