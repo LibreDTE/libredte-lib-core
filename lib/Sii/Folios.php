@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para realizar operaciones con lo Folios autorizados por el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-11
+ * @version 2017-07-19
  */
 class Folios
 {
@@ -223,6 +223,20 @@ class Folios
             return false;
         $TD = $this->xml->getElementsByTagName('TD')->item(0);
         return $TD ? (int)$TD->nodeValue : false;
+    }
+
+    /**
+     * Método que entrega la fecha de autorización con la que se emitió el CAF
+     * @return Fecha de autorización del CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-07-19
+     */
+    public function getFechaAutorizacion()
+    {
+        if (!$this->xml)
+            return false;
+        $FA = $this->xml->getElementsByTagName('FA')->item(0);
+        return $FA ? $FA->nodeValue : false;
     }
 
     /**
