@@ -107,6 +107,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
             'SubTotDTE' => $SubTotDTE,
         ], $caratula);
+        
+        $this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['Caratula'] = $this->caratula;
+
         return true;
     }
 
