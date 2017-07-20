@@ -10,7 +10,7 @@
  * 3 de la Licencia, o (a su elección) cualquier versión posterior de la
  * misma.
  *
- * Este programa se distribuye con la esperanza de que sea útil, pero
+ * Este programa se distribuye con la esperanza de que sea útil, perosetCaratula
  * SIN GARANTÍA ALGUNA; ni siquiera la garantía implícita
  * MERCANTIL o de APTITUD PARA UN PROPÓSITO DETERMINADO.
  * Consulte los detalles de la Licencia Pública General Affero de GNU para
@@ -107,6 +107,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
             'SubTotDTE' => $SubTotDTE,
         ], $caratula);
+        
+        $this->arreglo[$this->config['tipos'][$this->tipo]]['SetDTE']['Caratula'] = $this->caratula;
+
         return true;
     }
 
