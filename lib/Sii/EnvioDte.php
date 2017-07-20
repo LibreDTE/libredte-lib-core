@@ -10,7 +10,7 @@
  * 3 de la Licencia, o (a su elección) cualquier versión posterior de la
  * misma.
  *
- * Este programa se distribuye con la esperanza de que sea útil, perosetCaratula
+ * Este programa se distribuye con la esperanza de que sea útil, pero
  * SIN GARANTÍA ALGUNA; ni siquiera la garantía implícita
  * MERCANTIL o de APTITUD PARA UN PROPÓSITO DETERMINADO.
  * Consulte los detalles de la Licencia Pública General Affero de GNU para
