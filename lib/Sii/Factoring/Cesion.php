@@ -101,7 +101,7 @@ class Cesion
     /**
      * Método que agrega los datos del cedente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-30
+     * @version 2017-07-24
      */
     public function setCedente(array $cedente = [])
     {
@@ -117,7 +117,7 @@ class Cesion
             'DeclaracionJurada' => false,
         ], $cedente);
         if (!$this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada']) {
-            $this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada'] = substr(str_replace(
+            $this->datos['Cesion']['DocumentoCesion']['Cedente']['DeclaracionJurada'] = mb_substr(str_replace(
                 [
                     '{usuario_nombre}',
                     '{usuario_run}',

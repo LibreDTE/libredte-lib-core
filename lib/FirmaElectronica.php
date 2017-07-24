@@ -332,14 +332,14 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-03
+     * @version 2017-07-24
      */
     public function signXML($xml, $reference = '', $tag = null, $xmlns_xsi = false)
     {
         $doc = new XML();
         $doc->loadXML($xml);
         if (!$doc->documentElement) {
-            return $this->error('No fue posible obtener el documentElement desde el XML a firmar');
+            return $this->error('No se pudo obtener el documentElement desde el XML a firmar (posible XML mal formado)');
         }
         // crear nodo para la firma
         $Signature = $doc->importNode((new XML())->generate([
