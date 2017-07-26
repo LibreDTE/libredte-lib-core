@@ -26,10 +26,15 @@ namespace sasco\LibreDTE\Sii\PDF;
 /**
  * Clase para generar el PDF de la IECV
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-03-09
+ * @version 2017-07-26
  */
 class LibroCompraVenta extends \sasco\LibreDTE\PDF
 {
+
+    private $dte_tipo_operacion = [
+        'suma' => [30, 32, 33, 34, 35, 38, 39, 41, 48, 55, 56, 110, 111, 914],
+        'resta' => [45, 46, 60, 61, 112],
+    ]; ///< Tipos de operaciones si suman o restan los DTE al vender
 
     /**
      * Constructor de la clase
@@ -75,11 +80,47 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
         $this->Ln();
         $this->SetFont('helvetica', '', 9);
         if (isset($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'])) {
+            // agregar resumen
             if (!isset($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'][0])) {
                 $libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] = [$libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo']];
             }
             $resumen = [];
+            $total_resumen = [
+                    'TotDoc' => 0,
+                    'TotMntExe' => 0,
+                    'TotMntNeto' => 0,
+                    'TotMntIVA' => 0,
+                    'CodImp' => 0,
+                    'TotMntImp' => 0,
+                    'TotIVARetParcial' => 0,
+                    'TotIVARetTotal' => 0,
+                    'TotIVANoRetenido' => 0,
+                    'TotMntTotal' => 0,
+            ];
             foreach ($libro['EnvioLibro']['ResumenPeriodo']['TotalesPeriodo'] as $total) {
+                // contabilizar totales del resumen
+                $total_resumen['TotDoc'] += $total['TotDoc'];
+                if (in_array($total['TpoDoc'], $this->dte_tipo_operacion['suma'])) {
+                    $total_resumen['TotMntExe'] += !empty($total['TotMntExe']) ? $total['TotMntExe'] : 0;
+                    $total_resumen['TotMntNeto'] += !empty($total['TotMntNeto']) ? $total['TotMntNeto'] : 0;
+                    $total_resumen['TotMntIVA'] += !empty($total['TotMntIVA']) ? $total['TotMntIVA'] : 0;
+                    $total_resumen['TotMntImp'] += !empty($total['TotOtrosImp']['TotMntImp']) ? $total['TotOtrosImp']['TotMntImp'] : 0;
+                    $total_resumen['TotIVARetParcial'] += !empty($total['TotIVARetParcial']) ? $total['TotIVARetParcial'] : 0;
+                    $total_resumen['TotIVARetTotal'] += !empty($total['TotIVARetTotal']) ? $total['TotIVARetTotal'] : 0;
+                    $total_resumen['TotIVANoRetenido'] += !empty($total['TotIVANoRetenido']) ? $total['TotIVANoRetenido'] : 0;
+                    $total_resumen['TotMntTotal'] += $total['TotMntTotal'];
+                }
+                else if (in_array($total['TpoDoc'], $this->dte_tipo_operacion['resta'])) {
+                    $total_resumen['TotMntExe'] -= !empty($total['TotMntExe']) ? $total['TotMntExe'] : 0;
+                    $total_resumen['TotMntNeto'] -= !empty($total['TotMntNeto']) ? $total['TotMntNeto'] : 0;
+                    $total_resumen['TotMntIVA'] -= !empty($total['TotMntIVA']) ? $total['TotMntIVA'] : 0;
+                    $total_resumen['TotMntImp'] -= !empty($total['TotOtrosImp']['TotMntImp']) ? $total['TotOtrosImp']['TotMntImp'] : 0;
+                    $total_resumen['TotIVARetParcial'] -= !empty($total['TotIVARetParcial']) ? $total['TotIVARetParcial'] : 0;
+                    $total_resumen['TotIVARetTotal'] -= !empty($total['TotIVARetTotal']) ? $total['TotIVARetTotal'] : 0;
+                    $total_resumen['TotIVANoRetenido'] -= !empty($total['TotIVANoRetenido']) ? $total['TotIVANoRetenido'] : 0;
+                    $total_resumen['TotMntTotal'] -= $total['TotMntTotal'];
+                }
+                // agregar al resumen
                 $resumen[] = [
                     $total['TpoDoc'],
                     num($total['TotDoc']),
@@ -94,6 +135,21 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                     num($total['TotMntTotal']),
                 ];
             }
+            // agregar totales
+            $resumen[] = [
+                '',
+                num($total_resumen['TotDoc']),
+                !empty($total_resumen['TotMntExe']) ? num($total_resumen['TotMntExe']) : '',
+                !empty($total_resumen['TotMntNeto']) ? num($total_resumen['TotMntNeto']) : '',
+                !empty($total_resumen['TotMntIVA']) ? num($total_resumen['TotMntIVA']) : '',
+                '',
+                !empty($total_resumen['TotMntImp']) ? num($total_resumen['TotMntImp']) : '',
+                !empty($total_resumen['TotIVARetParcial']) ? num($total_resumen['TotIVARetParcial']) : '',
+                !empty($total_resumen['TotIVARetTotal']) ? num($total_resumen['TotIVARetTotal']) : '',
+                !empty($total_resumen['TotIVANoRetenido']) ? num($total_resumen['TotIVANoRetenido']) : '',
+                num($total_resumen['TotMntTotal']),
+            ];
+            // agregar tabla
             $titulos = ['DTE', 'Total', 'Exento', 'Neto', 'IVA', 'Imp', 'Monto', 'Ret parc.', 'Ret tot.', 'No reten.', 'Total'];
             $this->addTable($titulos, $resumen, ['width'=>[10, 19, 26, 27, 26, 10, 26, 26, 26, 26, 27]]);
         } else {
