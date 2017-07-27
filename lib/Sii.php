@@ -404,7 +404,7 @@ class Sii
      * Método que entrega un arreglo con todos los datos de los contribuyentes
      * que operan con factura electrónica descargados desde el SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-28
+     * @version 2017-07-07
      */
     public static function getContribuyentes(\sasco\LibreDTE\FirmaElectronica $Firma, $ambiente = null, $dia = null)
     {
@@ -424,7 +424,7 @@ class Sii
             'Accept-Encoding' => 'gzip, deflate, sdch',
         ];
         $dia = $dia===null ? date('Ymd') : str_replace('-', '', $dia);
-        $url = 'https://'.$servidor.'.sii.cl/cvc_cgi/dte/ee_consulta_empresas_dwnld?NOMBRE_ARCHIVO=ce_empresas_dwnld_'.$dia.'.csv';
+        $url = 'https://'.$servidor.'.sii.cl/cvc_cgi/dte/ce_empresas_dwnld?NOMBRE_ARCHIVO=ce_empresas_dwnld_'.$dia.'.csv';
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
