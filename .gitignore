@@ -7,6 +7,7 @@ vendor
 tests/firma.p12
 
 # funcionalidades aun no liberadas
+examples/999-navegador.php
+lib/Sii/Navegador.php
+lib/Sii/VerificadorDatos.php
 lib/Sii/Dte/Formatos
-lib/Sii/Timbraje.php
-VerificadorDatos.php
