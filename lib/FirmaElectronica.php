@@ -102,13 +102,17 @@ class FirmaElectronica
      * el script si no se está usando el framework
      * @param msg Mensaje del error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-01
+     * @version 2017-08-04
      */
     private function error($msg)
     {
-        $msg = Estado::get(Estado::FIRMA_ERROR, $msg);
-        \sasco\LibreDTE\Log::write(Estado::FIRMA_ERROR, $msg);
-        return false;
+        if (class_exists('\sasco\LibreDTE\Estado') and class_exists('\sasco\LibreDTE\Log')) {
+            $msg = \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FIRMA_ERROR, $msg);
+            \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::FIRMA_ERROR, $msg);
+            return false;
+        } else {
+            throw new \Exception($msg);
+        }
     }
 
     /**
