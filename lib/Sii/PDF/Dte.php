@@ -739,6 +739,13 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->setFont('', '', null);
             $this->MultiTexto(\sasco\LibreDTE\Sii\Aduana::getNacionalidad($receptor['Extranjero']['Nacionalidad']), $x+$offset+2);
         }
+        if (!empty($receptor['Extranjero']['NumId'])) {
+            $this->setFont('', 'B', null);
+            $this->Texto('N° ID extranj.', $x);
+            $this->Texto(':', $x+$offset);
+            $this->setFont('', '', null);
+            $this->MultiTexto($receptor['Extranjero']['NumId'], $x+$offset+2);
+        }
         $contacto = [];
         if (!empty($receptor['Contacto']))
             $contacto[] = $receptor['Contacto'];
