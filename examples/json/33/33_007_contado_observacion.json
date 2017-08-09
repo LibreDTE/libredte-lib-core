@@ -15,9 +15,9 @@
             "CmnaOrigen": "Santiago"
         },
         "Receptor": {
-            "RUTRecep": "66666666-6",
-            "RznSocRecep": "Sin RUT",
-            "GiroRecep": "Particular",
+            "RUTRecep": "60803000-K",
+            "RznSocRecep": "Servicio de Impuestos Internos",
+            "GiroRecep": "Gobierno",
             "DirRecep": "Santiago",
             "CmnaRecep": "Santiago"
         }
