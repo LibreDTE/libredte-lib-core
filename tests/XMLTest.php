@@ -24,9 +24,9 @@
 /**
  * Clase para tests de la clase \sasco\LibreDTE\XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-01-28
+ * @version 2017-08-16
  */
-class XMLTest extends PHPUnit_Framework_TestCase
+class XMLTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

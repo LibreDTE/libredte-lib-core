@@ -24,9 +24,9 @@
 /**
  * Clase para tests de la clase \sasco\LibreDTE\Log
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-01-29
+ * @version 2017-08-16
  */
-class LogTest extends PHPUnit_Framework_TestCase
+class LogTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

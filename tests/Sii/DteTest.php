@@ -24,9 +24,9 @@
 /**
  * Clase para tests de la clase \sasco\LibreDTE\Sii\Dte
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-05-26
+ * @version 2017-08-16
  */
-class Sii_DteTest extends PHPUnit_Framework_TestCase
+class Sii_DteTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

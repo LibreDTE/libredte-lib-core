@@ -24,9 +24,9 @@
 /**
  * Clase para tests de la clase \sasco\LibreDTE\Sii\LibroCompraVenta
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-02-05
+ * @version 2017-08-16
  */
-class Sii_LibroCompraVentaTest extends PHPUnit_Framework_TestCase
+class Sii_LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
