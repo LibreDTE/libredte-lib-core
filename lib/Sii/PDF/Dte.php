@@ -853,16 +853,26 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param referencias Arreglo con las referencias del documento (tag Referencia del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2017-08-17
      */
     private function agregarReferencia($referencias, $x = 10, $offset = 22)
     {
         if (!isset($referencias[0]))
             $referencias = [$referencias];
         foreach($referencias as $r) {
-            $texto = $r['NroLinRef'].' - '.$this->getTipo($r['TpoDocRef']).' N° '.$r['FolioRef'].' del '.$r['FchRef'];
-            if (isset($r['RazonRef']) and $r['RazonRef']!==false)
+            $texto = $r['NroLinRef'].' - ';
+            if (!empty($r['TpoDocRef'])) {
+                $texto .= $this->getTipo($r['TpoDocRef']).' ';
+            }
+            if (!empty($r['FolioRef'])) {
+                $texto .= ' N° '.$r['FolioRef'].' ';
+            }
+            if (!empty($r['FchRef'])) {
+                $texto .= 'del '.$r['FchRef'];
+            }
+            if (isset($r['RazonRef']) and $r['RazonRef']!==false) {
                 $texto = $texto.': '.$r['RazonRef'];
+            }
             $this->setFont('', 'B', null);
             $this->Texto('Referencia', $x);
             $this->Texto(':', $x+$offset);
