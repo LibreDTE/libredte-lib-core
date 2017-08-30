@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase que representa un DTE y permite trabajar con el
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-15
+ * @version 2017-08-29
  */
 class Dte
 {
@@ -1793,6 +1793,24 @@ class Dte
             return false;
         // entregar estado
         return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY')[0];
+    }
+
+    /**
+     * Método que entrega la última acción registrada para el DTE en el registro de compra y venta
+     * @return Arreglo con los datos de la última acción
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-08-29
+     */
+    public function getUltimaAccionRCV(\sasco\LibreDTE\FirmaElectronica $Firma)
+    {
+        list($emisor_rut, $emisor_dv) = explode('-', $this->getEmisor());
+        $RCV = new \sasco\LibreDTE\Sii\RegistroCompraVenta($Firma);
+        try {
+            $eventos = $RCV->listarEventosHistDoc($emisor_rut, $emisor_dv, $this->getTipo(), $this->getFolio());
+            return $eventos ? $eventos[count($eventos)-1] : null;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
 }
