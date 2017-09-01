@@ -39,8 +39,8 @@ class RegistroCompraVenta
     ]; ///< Documentos que tienen acuse de recibo
 
     public static $acciones = [
-        'ACD' => 'Acepta contenido del documento',
         'ERM' => 'Otorga recibo de mercaderías o servicios',
+        'ACD' => 'Acepta contenido del documento',
         'RCD' => 'Reclamo al contenido del documento',
         'RFP' => 'Reclamo por falta parcial de mercaderías',
         'RFT' => 'Reclamo por falta total de mercaderías',
