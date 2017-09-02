@@ -60,6 +60,7 @@ Funcionalidades implementadas
 - Impuestos adicionales (excepto combustibles).
 - Descarga contribuyentes electrónicos desde SII con email de intercambio.
 - Cesión electrónica (factoring).
+- Registro de compra y venta (RCV).
 
 ### Funcionalidades independientes
 
