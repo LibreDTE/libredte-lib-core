@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-07-13
+ * @version 2017-09-02
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -40,6 +40,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
     private $ecl = 5; ///< error correction level para PHP >= 7.0.0
+    private $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
 
     private $tipos = [
         // códigos oficiales SII
@@ -339,20 +340,17 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-06-15
+     * @version 2017-09-02
      */
-    private function agregarContinuo(array $dte, $timbre, $width)
+    private function agregarContinuo(array $dte, $timbre, $width, $height = 0)
     {
+        // determinar alto de la página y agregarla
         $this->logo = null;
         $x_start = 1;
         $y_start = 1;
         $offset = 14;
         // determinar alto de la página y agregarla
-        $height = 145;
-        $n_detalle = count($dte['Detalle']);
-        if ($n_detalle>1) $height += $n_detalle*20;
-        if ($this->cedible) $height += 50;
-        $this->AddPage('P', [$height, $width]);
+        $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
         // agregar cabecera del documento
         $y = $this->agregarFolio(
             $dte['Encabezado']['Emisor']['RUTEmisor'],
@@ -399,6 +397,12 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar timbre
         $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
         $this->agregarTimbre($timbre, 0, $x_start, $y+6, 70, 6);
+        // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
+        // que se logró determinar para crear la página con el alto correcto
+        if (!$height) {
+            $this->deletePage($this->PageNo());
+            $this->agregarContinuo($dte, $timbre, $width, $this->getY()+30);
+        }
     }
 
     /**
@@ -406,15 +410,12 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-13
+     * @version 2017-09-02
      */
-    private function agregarContinuo57(array $dte, $timbre, $width = 57)
+    private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
         // determinar alto de la página y agregarla
-        $height = 100;
-        if ($this->cedible) $height += 50;
-        if ($dte['Encabezado']['Receptor']['RUTRecep']!='66666666-6') $height += 40;
-        $this->AddPage('P', [$height, $width]);
+        $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
         $x = 1;
         $y = 5;
         $this->SetXY($x,$y);
@@ -472,6 +473,12 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         // agregar timbre
         $this->agregarTimbre($timbre, 0, $x, $this->GetY()+6, 55, 6);
+        // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
+        // que se logró determinar para crear la página con el alto correcto
+        if (!$height) {
+            $this->deletePage($this->PageNo());
+            $this->agregarContinuo57($dte, $timbre, $width, $this->getY()+30);
+        }
     }
 
     /**
