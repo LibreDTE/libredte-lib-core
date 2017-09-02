@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii;
  * Clase con las acciones asociadas al registro de compras y ventas del SII
  * Este registro reemplaza a LibroCompraVenta (IECV)
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-08-28
+ * @version 2017-09-02
  */
 class RegistroCompraVenta
 {
@@ -45,6 +45,15 @@ class RegistroCompraVenta
         'RFP' => 'Reclamo por falta parcial de mercaderías',
         'RFT' => 'Reclamo por falta total de mercaderías',
     ]; ///< Posibles acciones a que tiene asociadas un DTE
+
+    public static $tipo_transacciones = [
+        1 => 'Compras del giro',
+        2 => 'Compras en supermercados o comercios similares',
+        3 => 'Adquisición de bienes raíces',
+        4 => 'Compra de activo fijo',
+        5 => 'Compras con IVA uso común',
+        6 => 'Compras sin derecho a crédito',
+    ]; ///< Tipos de transacciones o caracterizaciones/clasificaciones de las compras
 
     private static $wsdl = [
         'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
