@@ -725,7 +725,7 @@ class Dte
      * Método que normaliza los datos de una factura electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-18
+     * @version 2017-09-01
      */
     private function normalizar_33(array &$datos)
     {
@@ -755,6 +755,7 @@ class Dte
         $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
+        $this->normalizar_transporte($datos);
     }
 
     /**
@@ -883,7 +884,7 @@ class Dte
      * Método que normaliza los datos de una guía de despacho electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-24
+     * @version 2017-09-01
      */
     private function normalizar_52(array &$datos)
     {
@@ -936,6 +937,7 @@ class Dte
         $this->normalizar_aplicar_descuentos_recargos($datos);
         $this->normalizar_impuesto_retenido($datos);
         $this->normalizar_agregar_IVA_MntTotal($datos);
+        $this->normalizar_transporte($datos);
     }
 
     /**
@@ -1541,6 +1543,27 @@ class Dte
             if ($datos['Encabezado']['Totales']['CredEC']===true)
                 $datos['Encabezado']['Totales']['CredEC'] = round($datos['Encabezado']['Totales']['IVA'] * 0.65); // TODO: mover a constante o método
             $datos['Encabezado']['Totales']['MntTotal'] -= $datos['Encabezado']['Totales']['CredEC'];
+        }
+    }
+
+    /**
+     * Método que normaliza los datos de transporte
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-09-01
+     */
+    private function normalizar_transporte(array &$datos)
+    {
+        if (!empty($datos['Encabezado']['Transporte'])) {
+            $datos['Encabezado']['Transporte'] = array_merge([
+                'Patente' => false,
+                'RUTTrans' => false,
+                'Chofer' => false,
+                'DirDest' => false,
+                'CmnaDest' => false,
+                'CiudadDest' => false,
+                'Aduana' => false,
+            ], $datos['Encabezado']['Transporte']);
         }
     }
 
