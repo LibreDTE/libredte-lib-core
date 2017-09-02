@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-07-25
+ * @version 2017-09-01
  */
 class Sii
 {
@@ -64,6 +64,7 @@ class Sii
         'SAN VICENTE' => 'SAN VICENTE TAGUA TAGUA',
         'TALTAL' => 'ANTOFAGASTA',
         'VITACURA' => 'SANTIAGO ORIENTE',
+        'VICHUQUÉN' => 'CURICÓ',
     ]; /// Direcciones regionales del SII según la comuna
 
     /**
