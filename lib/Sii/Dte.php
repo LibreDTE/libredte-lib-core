@@ -1361,14 +1361,14 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Boleta afecta con algún item exento el descuento se podría estar aplicando mal
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-10-18
+     * @version 2017-09-06
      */
     private function normalizar_aplicar_descuentos_recargos(array &$datos)
     {
         if (!empty($datos['DscRcgGlobal'])) {
             if (!isset($datos['DscRcgGlobal'][0]))
                 $datos['DscRcgGlobal'] = [$datos['DscRcgGlobal']];
-            foreach ($datos['DscRcgGlobal'] as $dr) {
+            foreach ($datos['DscRcgGlobal'] as &$dr) {
                 $dr = array_merge([
                     'NroLinDR' => false,
                     'TpoMov' => false,
@@ -1382,18 +1382,21 @@ class Dte
                     $dr['IndExeDR'] = 1;
                 }
                 // determinar a que aplicar el descuento/recargo
-                if (!isset($dr['IndExeDR']) or $dr['IndExeDR']===false)
+                if (!isset($dr['IndExeDR']) or $dr['IndExeDR']===false) {
                     $monto = $this->getTipo()==39 ? 'MntTotal' : 'MntNeto';
-                else if ($dr['IndExeDR']==1)
+                } else if ($dr['IndExeDR']==1) {
                     $monto = 'MntExe';
-                else if ($dr['IndExeDR']==2)
+                } else if ($dr['IndExeDR']==2) {
                     $monto = 'MontoNF';
+                }
                 // si no hay monto al que aplicar el descuento se omite
-                if (empty($datos['Encabezado']['Totales'][$monto]))
+                if (empty($datos['Encabezado']['Totales'][$monto])) {
                     continue;
+                }
                 // calcular valor del descuento o recargo
-                if ($dr['TpoValor']=='$')
+                if ($dr['TpoValor']=='$') {
                     $dr['ValorDR'] = $this->round($dr['ValorDR'], $datos['Encabezado']['Totales']['TpoMoneda'], 2);
+                }
                 $valor =
                     $dr['TpoValor']=='%'
                     ? $this->round(($dr['ValorDR']/100)*$datos['Encabezado']['Totales'][$monto], $datos['Encabezado']['Totales']['TpoMoneda'])
