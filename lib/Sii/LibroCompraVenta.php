@@ -163,7 +163,9 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'ImpVehiculo' => false,
         ], $detalle);
         // largo campos
-        $detalle['RznSoc'] = mb_substr($detalle['RznSoc'], 0, 50);
+        if ($detalle['RznSoc']) {
+            $detalle['RznSoc'] = mb_substr($detalle['RznSoc'], 0, 50);
+        }
         // calcular valores que no se hayan entregado
         if (isset($detalle['FctProp'])) {
             if ($detalle['IVAUsoComun']===false)
