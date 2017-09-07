@@ -420,7 +420,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param archivo Ruta al archivo que se desea cargar
      * @param separador Separador de campos del archivo CSV
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-01
+     * @version 2017-09-06
      */
     public function agregarVentasCSV($archivo, $separador = ';')
     {
@@ -432,10 +432,10 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             $detalle = [
                 'TpoDoc' => $data[$i][0],
                 'NroDoc' => $data[$i][1],
-                'RUTDoc' => $data[$i][2],
+                'RUTDoc' => !empty($data[$i][2]) ? $data[$i][2] : false,
                 'TasaImp' => !empty($data[$i][3]) ? $data[$i][3] : false,
                 'RznSoc' => !empty($data[$i][4]) ? $data[$i][4] : false,
-                'FchDoc' => $data[$i][5],
+                'FchDoc' => !empty($data[$i][5]) ? $data[$i][5] : false,
                 'Anulado' => !empty($data[$i][6]) ? 'A' : false,
                 'MntExe' => !empty($data[$i][7]) ? $data[$i][7] : false,
                 'MntNeto' => !empty($data[$i][8]) ? $data[$i][8] : false,
