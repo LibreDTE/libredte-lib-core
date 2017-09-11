@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-09-01
+ * @version 2017-09-11
  */
 class Sii
 {
@@ -89,6 +89,18 @@ class Sii
     public static function getServidor($ambiente = null)
     {
         return self::$config['servidor'][self::getAmbiente($ambiente)];
+    }
+
+    /**
+     * Método que entrega la URL de un recurso en el SII según el ambiente que se esté usando
+     * @param recurso Recurso del sitio del SII que se desea obtener la URL
+     * @param ambiente Ambiente que se desea obtener el servidor, si es null se autodetectará
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-09-11
+     */
+    public static function getURL($recurso, $ambiente = null)
+    {
+        return 'https://'.self::getServidor($ambiente).'.sii.cl'.$recurso;
     }
 
     /**
