@@ -110,7 +110,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-02-06
+     * @version 2017-09-14
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -141,8 +141,9 @@ class Dte
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], $parent);
             $this->datos = $datos;
-            if (!$this->verificarDatos())
+            if ($normalizar and !$this->verificarDatos()) {
                 return false;
+            }
             return $this->schemaValidate();
         }
         return false;
