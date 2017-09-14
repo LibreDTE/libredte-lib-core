@@ -1730,7 +1730,7 @@ class Dte
 
     /**
      * Método que valida los datos del DTE
-     * @return =true si el schema del documento del DTE es válido, =null si no se pudo determinar
+     * @return =true si no hay errores de validación, =false si se encontraron errores al validar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-02-06
      */
