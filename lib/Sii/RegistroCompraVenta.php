@@ -177,7 +177,7 @@ class RegistroCompraVenta
     /**
      *
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-08-29
+     * @version 2017-09-21
      */
     public function consultarFechaRecepcionSii($rut, $dv, $dte, $folio)
     {
@@ -189,7 +189,7 @@ class RegistroCompraVenta
             'folio' => $folio,
         ]);
         // si no se pudo recuperar error
-        if ($r===false) {
+        if (!$r) {
             return false;
         }
         // armar y entregar fecha
