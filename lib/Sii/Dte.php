@@ -700,15 +700,16 @@ class Dte
      * ya se aplicaron las normalizaciones por tipo
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-28
+     * @version 2017-09-23
      */
     private function normalizar_final(array &$datos)
     {
         // normalizar montos de pagos programados
         if (is_array($datos['Encabezado']['IdDoc']['MntPagos'])) {
             $montos = 0;
-            if (!isset($datos['Encabezado']['IdDoc']['MntPagos'][0]))
+            if (!isset($datos['Encabezado']['IdDoc']['MntPagos'][0])) {
                 $datos['Encabezado']['IdDoc']['MntPagos'] = [$datos['Encabezado']['IdDoc']['MntPagos']];
+            }
             foreach ($datos['Encabezado']['IdDoc']['MntPagos'] as &$MntPagos) {
                 $MntPagos = array_merge([
                     'FchPago' => null,
@@ -717,6 +718,66 @@ class Dte
                 ], $MntPagos);
                 if ($MntPagos['MntPago']===null) {
                     $MntPagos['MntPago'] = $datos['Encabezado']['Totales']['MntTotal'];
+                }
+            }
+        }
+        // si existe OtraMoneda se verifican los tipos de cambio y totales
+        if (!empty($datos['Encabezado']['OtraMoneda'])) {
+            if (!isset($datos['Encabezado']['OtraMoneda'][0])) {
+                $datos['Encabezado']['OtraMoneda'] = [$datos['Encabezado']['OtraMoneda']];
+            }
+            foreach ($datos['Encabezado']['OtraMoneda'] as &$OtraMoneda) {
+                // colocar campos por defecto
+                $OtraMoneda = array_merge([
+                    'TpoMoneda' => false,
+                    'TpoCambio' => false,
+                    'MntNetoOtrMnda' => false,
+                    'MntExeOtrMnda' => false,
+                    'MntFaeCarneOtrMnda' => false,
+                    'MntMargComOtrMnda' => false,
+                    'IVAOtrMnda' => false,
+                    'ImpRetOtrMnda' => false,
+                    'IVANoRetOtrMnda' => false,
+                    'MntTotOtrMnda' => false,
+                ], $OtraMoneda);
+                // si no hay tipo de cambio no seguir
+                if (empty($OtraMoneda['TpoCambio'])) {
+                    continue;
+                }
+                // buscar si los valores están asignados, si no lo están asignar
+                // usando el tipo de cambio que existe para la moneda
+                foreach (['MntNeto', 'MntExe', 'IVA', 'IVANoRet'] as $monto) {
+                    if (empty($OtraMoneda[$monto.'OtrMnda']) and !empty($datos['Encabezado']['Totales'][$monto])) {
+                        $OtraMoneda[$monto.'OtrMnda'] = round($datos['Encabezado']['Totales'][$monto] * $OtraMoneda['TpoCambio'], 4);
+                    }
+                }
+                // calcular MntFaeCarneOtrMnda, MntMargComOtrMnda, ImpRetOtrMnda
+                if (empty($OtraMoneda['MntFaeCarneOtrMnda'])) {
+                    $OtraMoneda['MntFaeCarneOtrMnda'] = false; // TODO
+                }
+                if (empty($OtraMoneda['MntMargComOtrMnda'])) {
+                    $OtraMoneda['MntMargComOtrMnda'] = false; // TODO
+                }
+                if (empty($OtraMoneda['ImpRetOtrMnda'])) {
+                    $OtraMoneda['ImpRetOtrMnda'] = false; // TODO
+                }
+                // calcular monto total
+                if (empty($OtraMoneda['MntTotOtrMnda'])) {
+                    $OtraMoneda['MntTotOtrMnda'] = 0;
+                    $cols = ['MntNetoOtrMnda', 'MntExeOtrMnda', 'MntFaeCarneOtrMnda', 'MntMargComOtrMnda', 'IVAOtrMnda', 'IVANoRetOtrMnda'];
+                    foreach ($cols as $monto) {
+                        if (!empty($OtraMoneda[$monto])) {
+                            $OtraMoneda['MntTotOtrMnda'] += $OtraMoneda[$monto];
+                        }
+                    }
+                    // agregar total de impuesto retenido otra moneda
+                    if (!empty($OtraMoneda['ImpRetOtrMnda'])) {
+                        // TODO
+                    }
+                    // aproximar el total si es en pesos chilenos
+                    if ($OtraMoneda['TpoMoneda']=='PESO CL') {
+                        $OtraMoneda['MntTotOtrMnda'] = round($OtraMoneda['MntTotOtrMnda']);
+                    }
                 }
             }
         }
