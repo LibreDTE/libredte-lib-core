@@ -676,8 +676,9 @@ class Dte
         }
         // si existe una o más referencias se normalizan
         if (!empty($datos['Referencia'])) {
-            if (!isset($datos['Referencia'][0]))
+            if (!isset($datos['Referencia'][0])) {
                 $datos['Referencia'] = [$datos['Referencia']];
+            }
             $NroLinRef = 1;
             foreach ($datos['Referencia'] as &$r) {
                 $r = array_merge([
@@ -1636,7 +1637,7 @@ class Dte
      * Método que normaliza las boletas electrónicas, dte 39 y 41
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-08-17
+     * @version 2017-09-25
      */
     private function normalizar_boletas(array &$datos)
     {
@@ -1654,6 +1655,12 @@ class Dte
         $datos['Encabezado']['Emisor']['CorreoEmisor'] = false;
         $datos['Encabezado']['Emisor']['CdgVendedor'] = false;
         $datos['Encabezado']['Receptor']['GiroRecep'] = false;
+        if (!empty($datos['Encabezado']['Receptor']['CorreoRecep'])) {
+            $datos['Referencia'][] = [
+                'NroLinRef' => count($datos['Referencia'])+1,
+                'RazonRef' => mb_substr('Email receptor: '.$datos['Encabezado']['Receptor']['CorreoRecep'], 0, 90),
+            ];
+        }
         $datos['Encabezado']['Receptor']['CorreoRecep'] = false;
         // quitar otros tags que no son parte de las boletas
         $datos['Encabezado']['IdDoc']['FmaPago'] = false;
