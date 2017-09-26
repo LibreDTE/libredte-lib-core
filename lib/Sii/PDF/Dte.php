@@ -286,7 +286,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-06-15
+     * @version 2017-09-25
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -320,7 +320,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos']))
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos']);
-        $this->agregarTotales($dte['Encabezado']['Totales']);
+        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null);
         // agregar observaciones
         $this->agregarObservacion($dte['Encabezado']['IdDoc']);
         // agregar timbre
@@ -340,7 +340,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-02
+     * @version 2017-09-25
      */
     private function agregarContinuo(array $dte, $timbre, $width, $height = 0)
     {
@@ -388,7 +388,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Ln();
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
         }
-        $this->agregarTotales($dte['Encabezado']['Totales'], $this->y+6, 23, 17);
+        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 23, 17);
         // agregar acuse de recibo y leyenda cedible
         if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
@@ -860,7 +860,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param referencias Arreglo con las referencias del documento (tag Referencia del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-08-17
+     * @version 2017-09-25
      */
     private function agregarReferencia($referencias, $x = 10, $offset = 22)
     {
@@ -872,10 +872,14 @@ class Dte extends \sasco\LibreDTE\PDF
                 $texto .= $this->getTipo($r['TpoDocRef']).' ';
             }
             if (!empty($r['FolioRef'])) {
-                $texto .= ' N° '.$r['FolioRef'].' ';
+                if (is_numeric($r['FolioRef'])) {
+                    $texto .= ' N° '.$r['FolioRef'].' ';
+                } else {
+                    $texto .= ' '.$r['FolioRef'].' ';
+                }
             }
             if (!empty($r['FchRef'])) {
-                $texto .= 'del '.$r['FchRef'];
+                $texto .= 'del '.date('d/m/Y', strtotime($r['FchRef']));
             }
             if (isset($r['RazonRef']) and $r['RazonRef']!==false) {
                 $texto = $texto.': '.$r['RazonRef'];
@@ -1064,9 +1068,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-04-17
+     * @version 2017-09-25
      */
-    private function agregarTotales(array $totales, $y = 190, $x = 145, $offset = 25)
+    private function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
         // normalizar totales
         $totales = array_merge([
@@ -1132,6 +1136,28 @@ class Dte extends \sasco\LibreDTE\PDF
                     $this->SetY($y_new);
                 }
             }
+        }
+        // agregar totales en otra moneda
+        if (!empty($otra_moneda)) {
+            if (!isset($otra_moneda[0])) {
+                $otra_moneda = [$otra_moneda];
+            }
+            $this->setFont('', '', null);
+            $this->Ln();
+            foreach ($otra_moneda as $om) {
+                $y = $this->GetY();
+                if (!$this->cedible or $this->papelContinuo) {
+                    $this->Texto('Total '.$om['TpoMoneda'].' :', $x, null, 'R', 30);
+                    $this->Texto($this->num($om['MntTotOtrMnda']), $x+$offset, $y, 'R', 30);
+                    $this->Ln();
+                } else {
+                    $this->MultiTexto('Total '.$om['TpoMoneda'].' :', $x, null, 'R', 30);
+                    $y_new = $this->GetY();
+                    $this->Texto($this->num($om['MntTotOtrMnda']), $x+$offset, $y, 'R', 30);
+                    $this->SetY($y_new);
+                }
+            }
+            $this->setFont('', 'B', null);
         }
     }
 
