@@ -824,4 +824,65 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 			<xs:maxInclusive value="2050-12-31T23:59:59"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="TipoTransCOMPRA">
+		<xs:annotation>
+			<xs:documentation>Tipo de Transacción para el comprador</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Del Giro</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Supermercados y Similares</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Adquisición o Construcción de Bienes inmuebles, BBRR</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>Activo Fijo</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="5">
+				<xs:annotation>
+					<xs:documentation>Compra IVA Uso Común o no Recuperable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoTransVENTA">
+		<xs:annotation>
+			<xs:documentation>Tipo de Transacción para el vendedor</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Del Giro</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Ventas que no son del Giro (Activo Fijo y Otros)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Venta de Bienes inmuebles, BBRR</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>NCE MR * (solo NCE</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

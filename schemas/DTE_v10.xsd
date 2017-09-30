@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Zulema Olguín Traro (Servicios de Impuestos Internos) -->
 <!--Esquema para documentos DTE.
 Fecha Actualizacion:  25/05/07 15:00
 
@@ -193,6 +192,18 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 																</xs:enumeration>
 															</xs:restriction>
 														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TpoTranCompra" type="SiiDte:TipoTransCOMPRA" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Transacción para el comprador</xs:documentation>
+															<xs:documentation>Indica el Uso de Montos Brutos en Detalle</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TpoTranVenta" type="SiiDte:TipoTransVENTA" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Transacción para el vendedor</xs:documentation>
+															<xs:documentation>Indica el Uso de Montos Brutos en Detalle</xs:documentation>
+														</xs:annotation>
 													</xs:element>
 													<xs:element name="FmaPago" minOccurs="0">
 														<xs:annotation>
@@ -2202,6 +2213,18 @@ según tabla Países aduana</xs:documentation>
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
+													<xs:element name="TpoTranCompra" type="SiiDte:TipoTransCOMPRA" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Transacción para el comprador</xs:documentation>
+															<xs:documentation>Indica el Uso de Montos Brutos en Detalle</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TpoTranVenta" type="SiiDte:TipoTransVENTA" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Transacción para el vendedor</xs:documentation>
+															<xs:documentation>Indica el Uso de Montos Brutos en Detalle</xs:documentation>
+														</xs:annotation>
+													</xs:element>
 													<xs:element name="FmaPago" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>Forma de Pago del DTE</xs:documentation>
@@ -2611,7 +2634,7 @@ según tabla Países aduana</xs:documentation>
 																		<xs:documentation>Tasa de Impuesto o Retencion</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
-																<xs:element name="MontoImp" type="SiiDte:MntImpType">
+																<xs:element name="MontoImp" type="SiiDte:ValorType">
 																	<xs:annotation>
 																		<xs:documentation>Monto del Impuesto o Retencion</xs:documentation>
 																	</xs:annotation>
