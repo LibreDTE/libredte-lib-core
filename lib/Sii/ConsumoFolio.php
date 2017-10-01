@@ -123,7 +123,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
      */
     public function getFechaEmisionInicial()
     {
-        $fecha = '9999-12-31';
+        $fecha = date('Y-m-d');
         foreach ($this->detalles as &$d) {
             if ($d['FchDoc'] < $fecha)
                 $fecha = $d['FchDoc'];
@@ -139,12 +139,35 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
      */
     public function getFechaEmisionFinal()
     {
-        $fecha = '0000-01-01';
+        $fecha = date('Y-m-d');
         foreach ($this->detalles as &$d) {
             if ($d['FchDoc'] > $fecha)
                 $fecha = $d['FchDoc'];
         }
         return $fecha;
+    }
+
+    /**
+     * Método que permite agregar sólo resumen al libro, esto para
+     * poder agregar, por ejemplo, un día en el cual no se consumieron folios
+     * @param resumen Arreglo Eje: ['TipoDocumento' => 39, 'MntTotal' => 0, 'FoliosEmitidos' => 0, 'FoliosAnulados' => 0, 'FoliosUtilizados' => 0]
+     * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
+     * @version 2017-09-29
+     */
+    public function setResumen($resumen)
+    {
+
+        // verificar que se haya pasado el tipo de documento como mínimo
+        foreach ($resumen as $tipo) {
+            if (!isset($tipo['TipoDocumento'])) {
+                return false;
+            }
+        }
+        // asignar resumen
+        $this->resumen = [];
+        foreach ($resumen as $tipo) {
+            $this->resumen[$tipo['TipoDocumento']] = $tipo;
+        }
     }
 
     /**
@@ -157,17 +180,16 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
     private function getResumen()
     {
         // si hay detalles generar resumen
-        $Resumen = [];
         $RangoUtilizados = [];
         //$RangoAnulados = [];
         foreach ($this->detalles as &$d) {
             // si no existe el tipo de documento se utiliza
-            if (!isset($Resumen[$d['TpoDoc']])) {
+            if (!isset($this->resumen[$d['TpoDoc']])) {
                 $key = array_search($d['TpoDoc'], $this->documentos);
                 if ($key!==false) {
                     unset($this->documentos[$key]);
                 }
-                $Resumen[$d['TpoDoc']] = [
+                $this->resumen[$d['TpoDoc']] = [
                     'TipoDocumento' => $d['TpoDoc'],
                     'MntNeto' => false,
                     'MntIva' => false,
@@ -185,26 +207,26 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             }
             // ir agregando al resumen cada detalle
             if ($d['MntNeto']) {
-                $Resumen[$d['TpoDoc']]['MntNeto'] += $d['MntNeto'];
-                $Resumen[$d['TpoDoc']]['MntIva'] += $d['MntIVA'];
+                $this->resumen[$d['TpoDoc']]['MntNeto'] += $d['MntNeto'];
+                $this->resumen[$d['TpoDoc']]['MntIva'] += $d['MntIVA'];
             }
             if ($d['MntExe']) {
-                $Resumen[$d['TpoDoc']]['MntExento'] += $d['MntExe'];
+                $this->resumen[$d['TpoDoc']]['MntExento'] += $d['MntExe'];
             }
-            $Resumen[$d['TpoDoc']]['MntTotal'] += $d['MntTotal'];
-            $Resumen[$d['TpoDoc']]['FoliosEmitidos']++;
+            $this->resumen[$d['TpoDoc']]['MntTotal'] += $d['MntTotal'];
+            $this->resumen[$d['TpoDoc']]['FoliosEmitidos']++;
             // ir guardando folios emitidos para luego crear rangos
             $RangoUtilizados[$d['TpoDoc']][] = $d['NroDoc'];
         }
         // ajustes post agregar detalles
-        foreach ($Resumen as &$r) {
+        foreach ($this->resumen as &$r) {
             // obtener folios utilizados = emitidos + anulados
             $r['FoliosUtilizados'] = $r['FoliosEmitidos'] + $r['FoliosAnulados'];
             $r['RangoUtilizados'] = $this->getRangos($RangoUtilizados[$r['TipoDocumento']]);
         }
         // completar con los resumenes que no se colocaron
         foreach ($this->documentos as $tipo) {
-            $Resumen[$tipo] = [
+            $this->resumen[$tipo] = [
                 'TipoDocumento' => $tipo,
                 'MntTotal' => 0,
                 'FoliosEmitidos' => 0,
@@ -213,7 +235,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             ];
         }
         // entregar resumen
-        return $Resumen;
+        return $this->resumen;
     }
 
     /**
