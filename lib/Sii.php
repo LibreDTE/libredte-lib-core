@@ -477,6 +477,105 @@ class Sii
         return $data;
     }
 
+    
+    /**
+     * Método que entrega un arreglo con todas los documentos tributarios electrónicos
+     * recepcionados en el SII
+     * @param Firma digital del certificado
+     * @param Ambiente de prueba
+     * @param Rut empresa a consultar
+     * @param Desde fecha a consultar. Formato d-m-Y
+     * @param Hasta fecha a consultar. Formato d-m-Y
+     * @return Dirección regional del SII
+     * [0] Lin.
+     * [1] Rut del Emisor
+     * [2] Razón Social Emisor
+     * [3] Tipo Dte
+     * [4] Folio Dte
+     * [5] Fecha Emisión
+     * [6] Monto Total
+     * [7] Fecha Recepción
+     * [8] Número Envío
+     * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
+     * @version 2017-09-30
+     */
+    public static function getDTERecibidos(\sasco\LibreDTE\FirmaElectronica $Firma, $ambiente = null, $rut = null, $desde = null, $hasta = null)
+    {
+        // solicitar token
+        $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
+        if (!$token)
+            return false;
+
+        // RUT_NS Y DV_NS
+        list($rut_ns, $dv_ns) = explode('-', $rut);
+
+        // definir ambiente y servidor
+        $ambiente = self::getAmbiente($ambiente);
+        $servidor = self::$config['servidor'][$ambiente];
+
+        // preparar consulta curl
+        $curl = curl_init();
+        $header = [
+            'User-Agent: User-Agent: Mozilla/4.0 (compatible; PROG 1.0; LibreDTE)',
+            'Referer: https://' . $servidor . '.sii.cl',
+            'Cookie: TOKEN=' . $token . '; RUT_NS='.$rut_ns.'; DV_NS='.$dv_ns,
+            'Accept-Encoding' => 'gzip, deflate, sdch',
+        ];
+        $desde = $desde === null ? date('01-m-Y', strtotime('-60 days')) : $desde; // Consulto últimos 2 meses
+        $hasta = $hasta === null ? date('d-m-Y') : $hasta; //Hasta fecha actual
+
+        $fields = [
+            'DESDE' => urlencode($desde),
+            'HASTA' => urlencode($hasta),
+            'RUT' => urlencode($rut),
+            'TIPO_CONSULTA' => '' // En blancopara que genere un CSV
+        ];
+
+        $url = 'https://' . $servidor . '.sii.cl/cgi_dte/consultaDTE/wsDTEConsRecCont.sh';
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLINFO_HEADER_OUT, true); // capture the header info
+
+
+        // si no se debe verificar el SSL se asigna opción a curl, además si
+        // se está en el ambiente de producción y no se verifica SSL se
+        // generará un error de nivel E_USER_NOTICE
+        if (!self::$verificar_ssl) {
+            if ($ambiente == self::PRODUCCION) {
+                $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
+            }
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        }
+
+        // realizar consulta curl
+        $response = curl_exec($curl);
+        if (!$response)
+            return false;
+        // cerrar sesión curl
+        curl_close($curl);
+        // entregar datos del archivo CSV
+        ini_set('memory_limit', '1024M');
+        $lines = explode("\n", $response);
+        $n_lines = count($lines);
+        $data = [];
+        for ($i = 1; $i < $n_lines; $i++) {
+            $row = str_getcsv($lines[$i], ';', '');
+            unset($lines[$i]);
+            for ($j = 0; $j < 6; $j++)
+                $row[$j] = trim($row[$j]);
+            $row[1] = utf8_decode($row[1]);
+            $row[2] = utf8_decode($row[2]);
+            $row[3] = utf8_decode($row[3]);
+
+            $data[] = $row;
+        }
+
+        return $data;
+    }
     /**
      * Método que entrega la dirección regional según la comuna que se esté
      * consultando
