@@ -42,7 +42,7 @@ class Folios
     public function __construct($xml)
     {
         $this->xml = new \sasco\LibreDTE\XML();
-        $this->xml->loadXML(utf8_encode($xml));
+        $this->xml->loadXML(iconv(mb_detect_encoding($xml), 'utf-8', $xml));
         if (!$this->check()) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_CHECK,
