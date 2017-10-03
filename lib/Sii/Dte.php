@@ -1281,7 +1281,7 @@ class Dte
      * Método que normaliza los datos de exportacion de un documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-04
+     * @version 2017-10-03
      */
     public function normalizar_exportacion(array &$datos)
     {
@@ -1291,6 +1291,14 @@ class Dte
         }
         // quitar campos que no son parte del documento de exportacion
         $datos['Encabezado']['Receptor']['CmnaRecep'] = false;
+        // colocar forma de pago de exportación
+        if (!empty($datos['Encabezado']['IdDoc']['FmaPago'])) {
+            $formas = [3 => 21];
+            if (isset($formas[$datos['Encabezado']['IdDoc']['FmaPago']])) {
+                $datos['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$datos['Encabezado']['IdDoc']['FmaPago']];
+            }
+            $datos['Encabezado']['IdDoc']['FmaPago'] = false;
+        }
     }
 
     /**
