@@ -50,6 +50,7 @@ $EnvioDTE->loadXML(file_get_contents($notas_credito));
 // crear objeto para consumo de folios
 $ConsumoFolio = new \sasco\LibreDTE\Sii\ConsumoFolio();
 $ConsumoFolio->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
+$ConsumoFolio->setDocumentos([39, 41, 61]); // [39, 61] si es sólo afecto, [41, 61] si es sólo exento
 
 // agregar detalle de boletas
 foreach ($EnvioBOLETA->getDocumentos() as $Dte) {
