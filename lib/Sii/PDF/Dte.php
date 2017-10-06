@@ -1094,7 +1094,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
-        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         // normalizar totales
         $totales = array_merge([
             'TpoMoneda' => false,
@@ -1191,7 +1191,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function agregarObservacion($IdDoc, $x = 10, $y = 190)
     {
-        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         if (!$this->papelContinuo and $this->timbre_pie) {
             $y -= 15;
         }
@@ -1215,7 +1215,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function agregarTimbre($timbre, $x_timbre = 20, $x = 20, $y = 190, $w = 70, $font_size = 8)
     {
-        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         if ($timbre!==null) {
             $style = [
                 'border' => false,
@@ -1256,7 +1256,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function agregarAcuseRecibo($x = 93, $y = 190, $w = 50, $h = 40)
     {
-        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         $this->SetTextColorArray([0,0,0]);
         $this->Rect($x, $y, $w, $h, 'D', ['all' => ['width' => 0.1, 'color' => [0, 0, 0]]]);
         $this->setFont('', 'B', 10);
@@ -1316,7 +1316,7 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function agregarLeyendaDestino($tipo, $y = 190, $font_size = 10)
     {
-        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         $y += 64;
         $this->setFont('', 'B', $font_size);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $y, 'R');
