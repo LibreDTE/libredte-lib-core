@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-09-02
+ * @version 2017-10-05
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -41,6 +41,7 @@ class Dte extends \sasco\LibreDTE\PDF
     private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
     private $ecl = 5; ///< error correction level para PHP >= 7.0.0
     private $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
+    private $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
 
     private $tipos = [
         // códigos oficiales SII
@@ -257,6 +258,16 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
+     * Método que asigna si el tumbre va al pie (por defecto) o va pegado al detalle
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-10-05
+     */
+    public function setTimbrePie($timbre_pie = true)
+    {
+        $this->timbre_pie = (bool)$timbre_pie;
+    }
+
+    /**
      * Método que agrega un documento tributario, ya sea en formato de una
      * página o papel contínuo según se haya indicado en el constructor
      * @param dte Arreglo con los datos del XML (tag Documento)
@@ -286,7 +297,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-25
+     * @version 2017-10-05
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -311,18 +322,25 @@ class Dte extends \sasco\LibreDTE\PDF
             !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
             !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null
         );
-        if (!empty($dte['Referencia']))
+        if (!empty($dte['Referencia'])) {
             $this->agregarReferencia($dte['Referencia']);
+        }
         $this->agregarDetalle($dte['Detalle']);
         if (!empty($dte['DscRcgGlobal'])) {
             $this->agregarSubTotal($dte['Detalle']);
             $this->agregarDescuentosRecargos($dte['DscRcgGlobal']);
         }
-        if (!empty($dte['Encabezado']['IdDoc']['MntPagos']))
+        if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos']);
-        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null);
+        }
         // agregar observaciones
+        $this->x_fin_datos = $this->getY();
         $this->agregarObservacion($dte['Encabezado']['IdDoc']);
+        if (!$this->timbre_pie) {
+            $this->Ln();
+        }
+        $this->x_fin_datos = $this->getY();
+        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null);
         // agregar timbre
         $this->agregarTimbre($timbre);
         // agregar acuse de recibo y leyenda cedible
@@ -340,7 +358,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-25
+     * @version 2017-10-05
      */
     private function agregarContinuo(array $dte, $timbre, $width, $height = 0)
     {
@@ -392,7 +410,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar acuse de recibo y leyenda cedible
         if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
-            $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE'], $this->y+6, 8);
+            $this->agregarLeyendaDestinoContinuo($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
         // agregar timbre
         $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
@@ -410,7 +428,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-02
+     * @version 2017-10-05
      */
     private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
@@ -438,8 +456,8 @@ class Dte extends \sasco\LibreDTE\PDF
             if (!empty($dte['Encabezado']['Receptor']['DirRecep'])) {
                 $this->MultiTexto($dte['Encabezado']['Receptor']['DirRecep'].', '.$dte['Encabezado']['Receptor']['CmnaRecep'], $x, null, '', $width-2);
             }
-            $this->Ln();
         }
+        $this->Ln();
         // hay un sólo detalle
         if (!isset($dte['Detalle'][0])) {
             $this->MultiTexto($dte['Detalle']['NmbItem'].': $'.$this->num($dte['Detalle']['MontoItem']), $x, null, '', $width-2);
@@ -469,9 +487,13 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar acuse de recibo y leyenda cedible
         if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseReciboContinuo(-1, $this->y+6, $width+2, 34);
-            $this->agregarLeyendaDestino($dte['Encabezado']['IdDoc']['TipoDTE'], $this->y+6, 8);
+            $this->agregarLeyendaDestinoContinuo($dte['Encabezado']['IdDoc']['TipoDTE']);
         }
         // agregar timbre
+        if (!empty($dte['Encabezado']['IdDoc']['TermPagoGlosa'])) {
+            $this->Ln();
+            $this->MultiTexto('Observación: '.$dte['Encabezado']['IdDoc']['TermPagoGlosa']."\n\n", $x);
+        }
         $this->agregarTimbre($timbre, 0, $x, $this->GetY()+6, 55, 6);
         // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
         // que se logró determinar para crear la página con el alto correcto
@@ -1068,10 +1090,11 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-25
+     * @version 2017-10-05
      */
     private function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
+        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
         // normalizar totales
         $totales = array_merge([
             'TpoMoneda' => false,
@@ -1164,10 +1187,14 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que coloca las diferentes observaciones que puede tener el documnto
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-11
+     * @version 2017-10-05
      */
-    private function agregarObservacion($IdDoc, $x = 10, $y = 175)
+    private function agregarObservacion($IdDoc, $x = 10, $y = 190)
     {
+        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        if (!$this->papelContinuo and $this->timbre_pie) {
+            $y -= 15;
+        }
         $this->SetXY($x, $y);
         if (!empty($IdDoc['TermPagoGlosa'])) {
             $this->MultiTexto('Observación: '.$IdDoc['TermPagoGlosa']);
@@ -1184,10 +1211,11 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-13
+     * @version 2017-10-05
      */
     private function agregarTimbre($timbre, $x_timbre = 20, $x = 20, $y = 190, $w = 70, $font_size = 8)
     {
+        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
         if ($timbre!==null) {
             $style = [
                 'border' => false,
@@ -1224,10 +1252,11 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho del acuse de recibo
      * @param h Alto del acuse de recibo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2017-10-05
      */
     private function agregarAcuseRecibo($x = 93, $y = 190, $w = 50, $h = 40)
     {
+        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
         $this->SetTextColorArray([0,0,0]);
         $this->Rect($x, $y, $w, $h, 'D', ['all' => ['width' => 0.1, 'color' => [0, 0, 0]]]);
         $this->setFont('', 'B', 10);
@@ -1283,12 +1312,25 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que agrega la leyenda de destino
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-04
+     * @version 2017-10-05
      */
-    private function agregarLeyendaDestino($tipo, $y = 254, $font_size = 10)
+    private function agregarLeyendaDestino($tipo, $y = 190, $font_size = 10)
     {
+        $y = (!$this->papelContinuo and $this->timbre_pie) ? $y : $this->x_fin_datos;
+        $y += 64;
         $this->setFont('', 'B', $font_size);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $y, 'R');
+    }
+
+    /**
+     * Método que agrega la leyenda de destino
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-10-05
+     */
+    private function agregarLeyendaDestinoContinuo($tipo)
+    {
+        $this->setFont('', 'B', 8);
+        $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $this->y+6, 'R');
     }
 
     /**
