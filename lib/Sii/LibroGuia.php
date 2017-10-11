@@ -195,8 +195,8 @@ class LibroGuia extends \sasco\LibreDTE\Sii\Base\Libro
         $ResumenPeriodo = [
             'TotFolAnulado' => false,
             'TotGuiaAnulada' => false,
-            'TotGuiaVenta' => false,
-            'TotMntGuiaVta' => false,
+            'TotGuiaVenta' => 0,
+            'TotMntGuiaVta' => 0,
             'TotTraslado' => false,
         ];
         foreach ($this->detalles as &$d) {
