@@ -742,7 +742,7 @@ class Dte
                     'MntTotOtrMnda' => false,
                 ], $OtraMoneda);
                 // si no hay tipo de cambio no seguir
-                if (empty($OtraMoneda['TpoCambio'])) {
+                if (!isset($OtraMoneda['TpoCambio'])) {
                     continue;
                 }
                 // buscar si los valores están asignados, si no lo están asignar
@@ -779,6 +779,10 @@ class Dte
                     if ($OtraMoneda['TpoMoneda']=='PESO CL') {
                         $OtraMoneda['MntTotOtrMnda'] = round($OtraMoneda['MntTotOtrMnda']);
                     }
+                }
+                // si el tipo de cambio es 0, se quita
+                if ($OtraMoneda['TpoCambio']==0) {
+                    $OtraMoneda['TpoCambio'] = false;
                 }
             }
         }
@@ -1281,7 +1285,7 @@ class Dte
      * Método que normaliza los datos de exportacion de un documento
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-03
+     * @version 2017-10-15
      */
     public function normalizar_exportacion(array &$datos)
     {
@@ -1298,6 +1302,17 @@ class Dte
                 $datos['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$datos['Encabezado']['IdDoc']['FmaPago']];
             }
             $datos['Encabezado']['IdDoc']['FmaPago'] = false;
+        }
+        // si es entrega gratuita se coloca el tipo de cambio en CLP en 0 para que total sea 0
+        if (!empty($datos['Encabezado']['IdDoc']['FmaPagExp']) and $datos['Encabezado']['IdDoc']['FmaPagExp']==21 and !empty($datos['Encabezado']['OtraMoneda'])) {
+            if (!isset($datos['Encabezado']['OtraMoneda'][0])) {
+                $datos['Encabezado']['OtraMoneda'] = [$datos['Encabezado']['OtraMoneda']];
+            }
+            foreach ($datos['Encabezado']['OtraMoneda'] as &$OtraMoneda) {
+                if ($OtraMoneda['TpoMoneda']=='PESO CL') {
+                    $OtraMoneda['TpoCambio'] = 0;
+                }
+            }
         }
     }
 

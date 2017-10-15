@@ -238,6 +238,11 @@ class SetPruebas
                         }
                     }
                 }
+                // agregar tipo de cambio para colocar el valor en CLP
+                $documento['Encabezado']['OtraMoneda'] = [
+                    'TpoMoneda' => 'PESO CL',
+                    'TpoCambio' => 500,
+                ];
             }
             // agregar detalle del documento si fue pasado explícitamente
             if (isset($caso['detalle'])) {
