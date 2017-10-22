@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibreDTE en_US estados\n"
-"PO-Revision-Date: 2015-12-15 01:40-0400\n"
+"PO-Revision-Date: 2017-10-22 20:20-0400\n"
 "Last-Translator: Esteban De La Fuente Rubio <esteban@sasco.cl>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -50,6 +50,9 @@ msgstr "Automatic upload failed with error 500"
 
 msgid "Error al convertir respuesta de envío automático del SII a XML: %s"
 msgstr "Can not convert response of SII to XML: %s"
+
+msgid "No fue posible comprimir el archivo XML a GZIP"
+msgstr "Can not compress file from XML to GZIP"
 
 # códigos de error para \sasco\LibreDTE\Sii::request()
 msgid "Error al ejecutar consulta a webservice soap. %s"

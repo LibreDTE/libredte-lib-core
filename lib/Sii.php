@@ -249,12 +249,13 @@ class Sii
      * @param empresa RUT de la empresa emisora del DTE
      * @param dte Documento XML con el DTE que se desea enviar a SII
      * @param token Token de autenticación automática ante el SII
+     * @param gzip Permite enviar el archivo XML comprimido al servidor
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-06
+     * @version 2017-10-22
      */
-    public static function enviar($usuario, $empresa, $dte, $token, $retry = null)
+    public static function enviar($usuario, $empresa, $dte, $token, $gzip = false, $retry = null)
     {
         // definir datos que se usarán en el envío
         list($rutSender, $dvSender) = explode('-', str_replace('.', '', $usuario));
@@ -263,8 +264,15 @@ class Sii
             $dte = '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n".$dte;
         }
         do {
-            $file = sys_get_temp_dir().'/dte_'.md5(microtime().$token.$dte).'.xml';
+            $file = sys_get_temp_dir().'/dte_'.md5(microtime().$token.$dte).'.'.($gzip?'gz':'xml');
         } while (file_exists($file));
+        if ($gzip) {
+            $dte = gzcompress($dte);
+            if ($dte===false) {
+                \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_GZIP, Estado::get(Estado::ENVIO_ERROR_GZIP));
+                return false;
+            }
+        }
         file_put_contents($file, $dte);
         $data = [
             'rutSender' => $rutSender,
@@ -273,13 +281,14 @@ class Sii
             'dvCompany' => $dvCompany,
             'archivo' => curl_file_create(
                 $file,
-                'application/xml',
+                $gzip ? 'application/gzip' : 'application/xml',
                 basename($file)
             ),
         ];
         // definir reintentos si no se pasaron
-        if (!$retry)
+        if (!$retry) {
             $retry = self::$retry;
+        }
         // crear sesión curl con sus opciones
         $curl = curl_init();
         $header = [
@@ -306,16 +315,19 @@ class Sii
         // enviar XML al SII
         for ($i=0; $i<$retry; $i++) {
             $response = curl_exec($curl);
-            if ($response and $response!='Error 500')
+            if ($response and $response!='Error 500') {
                 break;
+            }
         }
         unlink($file);
         // verificar respuesta del envío y entregar error en caso que haya uno
         if (!$response or $response=='Error 500') {
-            if (!$response)
+            if (!$response) {
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_CURL, Estado::get(Estado::ENVIO_ERROR_CURL, curl_error($curl)));
-            if ($response=='Error 500')
+            }
+            if ($response=='Error 500') {
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_500, Estado::get(Estado::ENVIO_ERROR_500));
+            }
             return false;
         }
         // cerrar sesión curl

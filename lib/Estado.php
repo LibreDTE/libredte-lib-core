@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase con códigos y glosas de estados (generalmente errores) de LibreDTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-09-01
+ * @version 2017-10-22
  */
 class Estado
 {
@@ -45,6 +45,7 @@ class Estado
     const ENVIO_ERROR_CURL = 52;
     const ENVIO_ERROR_500 = 53;
     const ENVIO_ERROR_XML = 54;
+    const ENVIO_ERROR_GZIP = 55; /// código inventado en LibreDTE (no oficial SII)
 
     // códigos de error para \sasco\LibreDTE\Sii::request()
     const REQUEST_ERROR_SOAP = 61;
@@ -117,6 +118,7 @@ class Estado
         self::ENVIO_ERROR_CURL => 'Falló el envío automático al SII. %s',
         self::ENVIO_ERROR_500 => 'Falló el envío automático al SII con error 500',
         self::ENVIO_ERROR_XML => 'Error al convertir respuesta de envío automático del SII a XML: %s',
+        self::ENVIO_ERROR_GZIP => 'No fue posible comprimir el archivo XML a GZIP',
         // códigos de error para \sasco\LibreDTE\Sii::request()
         self::REQUEST_ERROR_SOAP => 'Error al ejecutar consulta a webservice soap. %s',
         self::REQUEST_ERROR_BODY => 'No se obtuvo respuesta para %s en %d intentos',
