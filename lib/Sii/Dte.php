@@ -110,7 +110,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-14
+     * @version 2017-10-22
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -139,7 +139,7 @@ class Dte
                 ]
             ]);
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
-            $this->xml->generate($datos + ['TED' => null], $parent);
+            $this->xml->generate($datos + ['TED' => null], null, $parent);
             $this->datos = $datos;
             if ($normalizar and !$this->verificarDatos()) {
                 return false;
@@ -468,12 +468,12 @@ class Dte
      * @param Firma objeto que representa la Firma Electrónca
      * @return =true si el DTE pudo ser fimado o =false si no se pudo firmar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-17
+     * @version 2017-10-22
      */
     public function firmar(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
         $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
-        $this->xml->generate(['TmstFirma'=>$this->timestamp], $parent);
+        $this->xml->generate(['TmstFirma'=>$this->timestamp], null, $parent);
         $xml = $Firma->signXML($this->xml->saveXML(), '#'.$this->id, $this->tipo_general);
         if (!$xml) {
             \sasco\LibreDTE\Log::write(

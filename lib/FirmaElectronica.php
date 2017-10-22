@@ -336,10 +336,18 @@ class FirmaElectronica
      * @param reference Referencia a la que hace la firma
      * @return XML firmado o =false si no se pudo fimar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-24
+     * @version 2017-10-22
      */
     public function signXML($xml, $reference = '', $tag = null, $xmlns_xsi = false)
     {
+        // normalizar 4to parámetro que puede ser boolean o array
+        if (is_array($xmlns_xsi)) {
+            $namespace = $xmlns_xsi;
+            $xmlns_xsi = false;
+        } else {
+            $namespace = null;
+        }
+        // obtener objeto del XML que se va a firmar
         $doc = new XML();
         $doc->loadXML($xml);
         if (!$doc->documentElement) {
@@ -348,11 +356,11 @@ class FirmaElectronica
         // crear nodo para la firma
         $Signature = $doc->importNode((new XML())->generate([
             'Signature' => [
-                '@attributes' => [
+                '@attributes' => $namespace ? false : [
                     'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
                 ],
                 'SignedInfo' => [
-                    '@attributes' => [
+                    '@attributes' => $namespace ? false : [
                         'xmlns' => 'http://www.w3.org/2000/09/xmldsig#',
                         'xmlns:xsi' => $xmlns_xsi ? 'http://www.w3.org/2001/XMLSchema-instance' : false,
                     ],
@@ -398,7 +406,7 @@ class FirmaElectronica
                     ],
                 ],
             ],
-        ])->documentElement, true);
+        ], $namespace)->documentElement, true);
         // calcular DigestValue
         if ($tag) {
             $item = $doc->documentElement->getElementsByTagName($tag)->item(0);

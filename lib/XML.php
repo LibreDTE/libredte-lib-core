@@ -50,21 +50,26 @@ class XML extends \DomDocument
 
     /**
      * Método que genera nodos XML a partir de un arreglo
-     * @param array Arreglo con los datos que se usarán para generar XML
+     * @param data Arreglo con los datos que se usarán para generar XML
+     * @param namespace Arreglo con el espacio de nombres para el XML que se generará (URI y prefijo)
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
      * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-03
+     * @version 2017-10-22
      */
-    public function generate(array $array, \DOMElement &$parent = null)
+    public function generate(array $data, array $namespace = null, \DOMElement &$parent = null)
     {
-        if ($parent===null)
+        if ($parent===null) {
             $parent = &$this;
-        foreach ($array as $key => $value) {
+        }
+        foreach ($data as $key => $value) {
             if ($key=='@attributes') {
-                foreach ($value as $attr => $val) {
-                    if ($val!==false)
-                        $parent->setAttribute($attr, $val);
+                if ($value!==false) {
+                    foreach ($value as $attr => $val) {
+                        if ($val!==false) {
+                            $parent->setAttribute($attr, $val);
+                        }
+                    }
                 }
             } else if ($key=='@value') {
                 $parent->nodeValue = $this->sanitize($value);
@@ -76,9 +81,13 @@ class XML extends \DomDocument
                             $value = [$value];
                         }
                         foreach ($value as $value2) {
-                            $Node = new \DOMElement($key);
+                            if ($namespace) {
+                                $Node = $this->createElementNS($namespace[0], $namespace[1].':'.$key);
+                            } else {
+                                $Node = $this->createElement($key);
+                            }
                             $parent->appendChild($Node);
-                            $this->generate($value2, $Node);
+                            $this->generate($value2, $namespace, $Node);
                         }
                     }
                 } else {
@@ -87,7 +96,11 @@ class XML extends \DomDocument
                         $parent->appendChild($Node);
                     } else {
                         if ($value!==false) {
-                            $Node = new \DOMElement($key, $this->iso2utf($this->sanitize($value)));
+                            if ($namespace) {
+                                $Node = $this->createElementNS($namespace[0], $namespace[1].':'.$key, $this->iso2utf($this->sanitize($value)));
+                            } else {
+                                $Node = $this->createElement($key, $this->iso2utf($this->sanitize($value)));
+                            }
                             $parent->appendChild($Node);
                         }
                     }
