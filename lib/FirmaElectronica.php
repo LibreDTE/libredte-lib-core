@@ -476,5 +476,4 @@ class FirmaElectronica
         return $rsa->getPublicKey();
     }
 
-
 }
