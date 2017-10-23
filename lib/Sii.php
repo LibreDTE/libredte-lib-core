@@ -253,7 +253,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-22
+     * @version 2017-10-23
      */
     public static function enviar($usuario, $empresa, $dte, $token, $gzip = false, $retry = null)
     {
@@ -267,7 +267,7 @@ class Sii
             $file = sys_get_temp_dir().'/dte_'.md5(microtime().$token.$dte).'.'.($gzip?'gz':'xml');
         } while (file_exists($file));
         if ($gzip) {
-            $dte = gzcompress($dte);
+            $dte = gzencode($dte);
             if ($dte===false) {
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_ERROR_GZIP, Estado::get(Estado::ENVIO_ERROR_GZIP));
                 return false;
