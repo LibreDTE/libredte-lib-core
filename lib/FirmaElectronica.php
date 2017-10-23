@@ -381,7 +381,7 @@ class FirmaElectronica
                         'Transforms' => [
                             'Transform' => [
                                 '@attributes' => [
-                                    'Algorithm' => 'http://www.w3.org/2000/09/xmldsig#enveloped-signature',
+                                    'Algorithm' => $namespace ? 'http://www.altova.com' : 'http://www.w3.org/2000/09/xmldsig#enveloped-signature',
                                 ],
                             ],
                         ],
