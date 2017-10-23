@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+	Version 1,  01-08-2005 17:00
+	Version  08-09-2005 16:00  -Se agrega etiqueta de LibroFirmado.
+									-Se modifica el CodiigoLibro
+									-Se agrega etiqueta "Cierres"
+									-Se elimina fecha de Emision
+									-Se cambia de posicion a "CoCertif"
+									-Se agrega etiquetas "Año" y  "Periodos".
+									-Se cambia PeriodoTriibutario por Periodo
+	              25-10-2005 17:00 - Se utilizan los documentos de resumenes de Diario,Mayor y Existencias
+	              				    - Se puede utilizar LceCoCertif o LceCal
+	              28-10-2005 17:10 - Etiqueta "Cierres" se cambia a "Cierre".
+	              				    - 	Etiqueta "Resumenes" se cambia a "Resumen".
+	              14-11-2005 11:00 - Balance y Diccionario pasan a formar parte del CoCierre
+	              18-04-2007 11:30 - Elimina CompraRes y VentaRes ya que se envian a DTE
+
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:include schemaLocation="LceCal_v10.xsd"/>
+	<xs:include schemaLocation="LceCoCertif_v10.xsd"/>
+	<xs:include schemaLocation="LceMayorRes_v10.xsd"/>
+	<xs:include schemaLocation="LceDiarioRes_v10.xsd"/>
+	<xs:include schemaLocation="LceBalance_v10.xsd"/>
+	<xs:include schemaLocation="LceDic_v10.xsd"/>
+	<xs:element name="LceCoCierre">
+		<xs:annotation>
+			<xs:documentation>Comprobante de Cierres</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="SiiLce:LceMayorRes"/>
+					<xs:element ref="SiiLce:LceDiarioRes"/>
+					<xs:element ref="SiiLce:LceBalance"/>
+					<xs:element ref="SiiLce:LceDiccionario"/>
+				</xs:choice>
+				<xs:choice>
+					<xs:element ref="SiiLce:LceCoCertif">
+						<xs:annotation>
+							<xs:documentation>Comprobante de Certificacion</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="SiiLce:LceCal"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

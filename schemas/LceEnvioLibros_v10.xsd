@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 
+                       Modif: 09-08-2005 16:00 Se agrega Libro Diario
+                       Modif: 08-09-2005 18:00 Se altera el orden del campo "Comprobante de certificacion"
+                       Modif: 25-10-2005 17:00 Se elimina atributo "VERSION" de etiqueta "Caratula"
+                       Modif: 28-10-2005 17:10 -Se agrega etiqueta opcional "DocumentoEnvioLibros.LceCal"
+                       						   -Se agrega LceExistencia a LCE
+                       						   -Se elimina etiqueta "Caratula" y se traspasan sus campos
+                       						    a "DocumentoEnvioLibros"	
+                       						    -Ya no se firma campo "LCE"
+			               14-11-2005 16:00 - Balance y Diccionario pasan a formar parte de la etiqueta NoCerrado
+					   14-03-2006 17:00 - Se agrega campo "Parcial".
+					   18-04-2007 11:30 - Se elimina Compra y Venta
+					   07-03-2008 12:10 - Se elimina de Compra y Venta de los include
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceMayor_v10.xsd"/>
+	<xs:include schemaLocation="LceDiario_v10.xsd"/>
+	<xs:include schemaLocation="LceCoCertif_v10.xsd"/>
+	<xs:include schemaLocation="LceBalance_v10.xsd"/>
+	<xs:include schemaLocation="LceDic_v10.xsd"/>
+	<xs:element name="LceEnvioLibros">
+		<xs:annotation>
+			<xs:documentation>Envio de Libros Contables Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoEnvioLibros">
+					<xs:annotation>
+						<xs:documentation>Documento de Envio de LCE</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RutEnvia" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT que envia los LCE</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT contribuyente.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Notificacion">
+								<xs:annotation>
+									<xs:documentation>Notificacion emitida por el SII</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Tipo">
+											<xs:annotation>
+												<xs:documentation>1: Formulario F 3301. Usado para IVA e Impuesto a la Renta 2: Formulario F 3302: Origen de Fondos</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Formulario F 3301. Usado para IVA e Impuesto a la Renta </xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Formulario F 3302: Origen de Fondos</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Folio" type="SiiLce:FolioType">
+											<xs:annotation>
+												<xs:documentation>Folio de la notificacion</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TmstFirmaEnv" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora de la Firma del Archivo de Envio</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LCE" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:sequence minOccurs="0" maxOccurs="unbounded">
+								<xs:choice>
+									<xs:annotation>
+										<xs:documentation>Libro a enviar</xs:documentation>
+									</xs:annotation>
+									<xs:element ref="SiiLce:LceMayor">
+										<xs:annotation>
+											<xs:documentation>Informacion Electronica de Libros de Compra y Venta</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element ref="SiiLce:LceDiario"/>
+								</xs:choice>
+								<xs:element name="Parcial" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>true= Indica que el libro es PARCIAL. Se asume "false", es decir, que es COMPLETO.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:element name="NoCerrado" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="SiiLce:LceBalance" minOccurs="0"/>
+										<xs:element ref="SiiLce:LceDiccionario" minOccurs="0"/>
+										<xs:choice>
+											<xs:element ref="SiiLce:LceCoCertif"/>
+											<xs:element ref="SiiLce:LceCal">
+												<xs:annotation>
+													<xs:documentation>Certificado Autorizacion de Libros, generado por el SII</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

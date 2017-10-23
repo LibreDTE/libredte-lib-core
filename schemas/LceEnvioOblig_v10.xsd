@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 
+	            11-09-2005 10:00 Elimina atributo "version" de etiqueta "Caratula"
+			14-11-2005 11:00 Balance y Diccionario pasan a formar parte del CoCierre
+			21-11-2005 17:00 Se agrega RutContribuyente a la Caratula
+     21-12-2005 17:25 Se modifica xmldsignature_v10.xsd por xmldsignature_exc14_v10.xsd 
+					   18-04-2007 11:30 - Se elimina Compra y Venta
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceCoCierre_v10.xsd"/>
+	<xs:element name="LceEnvioOblig">
+		<xs:annotation>
+			<xs:documentation>Envio de información obligatoria de los Libros Contables Electronicos</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoEnvioOblig">
+					<xs:annotation>
+						<xs:documentation>Documento de Envio de Informacion obligatoria de LCE.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Caratula">
+								<xs:annotation>
+									<xs:documentation>Caratula</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutEnvia" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que envia los LCE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT contribuyente.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstFirmaEnv" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora de la Firma del Archivo de Envio</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="SiiLce:LceCoCierre" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Comprobante de Certificacion</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

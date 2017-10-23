@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 MLG
+	            26-09-2005 17:15 Se cambia tipo de "string" a token de las etiquetas "CodigoCuenta" y "CodigoSII", con un largo minimo de 1.
+	            03-12-2009 10:15 Sa agrega Clasificacion de Cuenta numero 5: Orden
+							
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:element name="LceDiccionario">
+		<xs:annotation>
+			<xs:documentation>Informacion del Diccionario</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoDiccionario">
+					<xs:annotation>
+						<xs:documentation>Informacion del Diccionario</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT Contribuyente de los LCE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="xs:gYear">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico (AAAA)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Rectificatoria" type="xs:positiveInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Si un Libro se emite mas de una vez se debe anotar la secuencia de reemisión   que corresponda, partiendo del número 1.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Cuenta" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Detalle de la cuentas</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ClasificacionCuenta">
+											<xs:annotation>
+												<xs:documentation>Clasificacion de la cuenta Contable. A Acivo,Pasivo,Patrimonio,Pardidas y Ganancias</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation>Activo</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation>Pasivo</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation>Patrimonio</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="4">
+														<xs:annotation>
+															<xs:documentation>Perdidas y Ganancias</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="5">
+														<xs:annotation>
+															<xs:documentation>Orden</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodigoCuenta">
+											<xs:annotation>
+												<xs:documentation>Codigo Cuenta Contable</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Glosa">
+											<xs:annotation>
+												<xs:documentation>Descripcion de la Cuenta</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="40"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodigoSII">
+											<xs:annotation>
+												<xs:documentation>Codigo equivalente del SII</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="16"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RutFirma" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT que firma este Documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

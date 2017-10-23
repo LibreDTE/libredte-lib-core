@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 
+			     07-09-2005 16:00 Se modifica "comprobante" agregando etiquetas "Nulo" y "Val"
+                                                       Se cambia el largo de los decimales de los montos a 4.
+                                                       Se modifica los largos de "Glosa" y "Ref"
+			  16-09-2005 09:00    -Se eliminan etiquetas "Nulo" y "Val"
+			  					 -NumComp se cambia de numerico a String(18) Sin Aceptar 
+			  					 Blancos
+                     26-09-2005 17:15 Se coloca tipo a etiqueta Rectificatoria a "positiveInteger"
+                          				    - Se coloca un minimo de largo 1 a etiqueta "Moneda"
+
+		         25-10-2005 17:00 - Se elimina Apertura/Fecha, Cierre/Fecha y  campos relacionados con la Firma
+		         				     - Se elimina etiqueta Apertura.
+			   				     - Se cambia nombre de Comprobantes/Fecha a Comprobantes/FechaContable
+			  28-10-2005 17:10 - Se cambia "Identicacion" por referencia a "LceDiarioRes"
+			  03-11-2005 16:00 - Se elimina LceDiario/Cierre
+			  09-11-2005 15:30 - El Debe o Haber se coloca en un "choice"
+	     		 26-12-2005 16:00 Se amplia de 15 a 60 el largo maximo en LceDiario/Comprobante/Movimientos/TpoDocum.
+			05-06-2006 11:00 - Se amplia TpoComp, de los valores I,E,T,U, a cualquiera
+								de largo 4.
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:include schemaLocation="LceDiarioRes_v10.xsd"/>
+	<xs:element name="LceDiario">
+		<xs:annotation>
+			<xs:documentation>Informacion del Mayor</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SiiLce:LceDiarioRes"/>
+				<xs:element name="ValorApertura" type="SiiLce:MontoType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Valor de la Apertura </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Comprobante" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Detalle de Documentos que Componen el Libro Electronico</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TpoComp">
+								<xs:annotation>
+									<xs:documentation>Tipo de Comprobante. </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:token">
+										<xs:maxLength value="4"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="NumComp">
+								<xs:annotation>
+									<xs:documentation>Numero comprobante. Puede ser alfanumerico.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:token">
+										<xs:maxLength value="18"/>
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FechaContable" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Fecha Contable (AAAA-MM-DD)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="GlosaAnalisis" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Glosa de analisis.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="120"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Movimientos" minOccurs="2" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoCuenta">
+											<xs:annotation>
+												<xs:documentation>Codigo Cuenta Contable</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Rut" type="SiiLce:RUTType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>RUT </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Nombre" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Nombre o Razon Social</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="120"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TpoDocum" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Nombre del tipo de documento, se puede usar abreviatura</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="60"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Numero" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Número del documento</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="18"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FchEmision" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Fecha de Emision ( AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FchVencimiento" type="xs:date" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>fecha de Vencimiento ( AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="GlosaRef" minOccurs="0" maxOccurs="4">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Glosa">
+														<xs:annotation>
+															<xs:documentation>Nombre del campo</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="30"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Ref">
+														<xs:annotation>
+															<xs:documentation>Dato del campo</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:choice>
+											<xs:element name="Debe" type="SiiLce:MontoType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Debe haber uno sólo campo ( Debe o Haber).</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="Haber" type="SiiLce:MontoType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Debe haber uno sólo campo ( Debe o Haber). </xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ValorComprobante" type="SiiLce:MontoType">
+								<xs:annotation>
+									<xs:documentation>Valor del Comprobante. Es la sumatoria de los "Debe" de los movimientos.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

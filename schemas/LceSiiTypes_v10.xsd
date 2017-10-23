@@ -2,6 +2,7 @@
 <!--  
 	Version 1,  01-08-2005 17:00 
                   07-09-2005 16:00 Se cambia "MontoType" con el largo de los decimales de los montos a 4.
+                  18-04-2007 11:30 Se agrega a Clase el valor 4=Prestador de Libros Contables.
 -->
 <xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:simpleType name="RUTType">

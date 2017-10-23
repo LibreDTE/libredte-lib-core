@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:element name="LceResultado">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoResultado">
+					<xs:annotation>
+						<xs:documentation>Informacion de Resumen de Libro Mayor</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion">
+								<xs:annotation>
+									<xs:documentation>Identificacion del resultado.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TrackId" type="SiiLce:FolioType">
+											<xs:annotation>
+												<xs:documentation>Identificacion del Envio otorgada por el SII</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Ambiente">
+											<xs:annotation>
+												<xs:documentation>Es el ambiente en que se proceso este envio. Puede ser CERTIFICACION, PRODUCCION o DESARROLLO</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:NMTOKEN">
+													<xs:enumeration value="CERTIFICACION">
+														<xs:annotation>
+															<xs:documentation>Ambiente en que se realizan pruebas por parte del contribuyente y/o empresas de software con el objetivo de Certificarse.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="PRODUCCION">
+														<xs:annotation>
+															<xs:documentation>Ambiente en que se realizan envios formales por parte del contribuyente.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="DESARROLLO">
+														<xs:annotation>
+															<xs:documentation>Ambiente de desarrollo interno del SII.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TmstFirma">
+											<xs:annotation>
+												<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:dateTime"/>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Envio">
+								<xs:annotation>
+									<xs:documentation>Informacion del envio realizado por el contribuyente.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT del Contribuyente LCE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RazonSocial" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Nombre - Razon Social del Contribuyente.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RutEnvia" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT que envia los LCE</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TmstRecepcion" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha de recepcion en el SII.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="TamanoArchivo">
+											<xs:annotation>
+												<xs:documentation>Tamano en caracteres del envio.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TamanoArchivoDescomprimido" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Tamano en caracteres del envio descomprimido.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="TipoEnvio">
+											<xs:annotation>
+												<xs:documentation>Tipo de Envio. Puede ser Automatico o Manual</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Automatico"/>
+													<xs:enumeration value="Manual"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Resultado">
+								<xs:annotation>
+									<xs:documentation>Informacion del Resultado del envio.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Estado">
+											<xs:annotation>
+												<xs:documentation>Estado del envio. Puede ser CORRECTO, ERRONEO</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="CORRECTO">
+														<xs:annotation>
+															<xs:documentation>El SII ha aceptado el envio.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="ERRONEO">
+														<xs:annotation>
+															<xs:documentation>El SII ha rechazado el envio, debido a errores.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="REPARO">
+														<xs:annotation>
+															<xs:documentation>El SII ha aceptado el Envio, e informa que contiene Reparos.</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Errores" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Solo existe si cantidad de errores es mayor que cero.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Esquema" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Errores de Esquema.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CantidadTotal" type="xs:positiveInteger">
+																	<xs:annotation>
+																		<xs:documentation>Cantidad total de errores de esquema</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Error" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Se envian los primero "N" errores de esquema.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Linea">
+																				<xs:annotation>
+																					<xs:documentation>Linea donde se produjo el error</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:positiveInteger"/>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Detalle">
+																				<xs:annotation>
+																					<xs:documentation>Detalle del error</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string"/>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Consistencia" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Errores de consistencia. Solo viene si no existen errores de esquema.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Documento" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Los documentos que vienen en el envio.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="TipoDocumento" type="xs:NMTOKEN">
+																				<xs:annotation>
+																					<xs:documentation>Tipo del Documento. Ejemplo: LceMayorRes,LceMayor, LceDiario...etc</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="CantidadTotal" type="xs:positiveInteger">
+																				<xs:annotation>
+																					<xs:documentation>Cantidad total de errores de consistencia.</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="ErrorDoc" maxOccurs="unbounded">
+																				<xs:annotation>
+																					<xs:documentation>Los errores por cada "tipo de error"</xs:documentation>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="Tipo" type="xs:token">
+																							<xs:annotation>
+																								<xs:documentation>Tipo de error</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																						<xs:element name="CantidadTotal" type="xs:positiveInteger">
+																							<xs:annotation>
+																								<xs:documentation>Cantidad total de errores de consistencia de este "Tipo"</xs:documentation>
+																							</xs:annotation>
+																						</xs:element>
+																						<xs:element name="Error" maxOccurs="unbounded">
+																							<xs:annotation>
+																								<xs:documentation>Son los primeros "M" errores de este Tipo.</xs:documentation>
+																							</xs:annotation>
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="Detalle">
+																										<xs:annotation>
+																											<xs:documentation>Detalle del error</xs:documentation>
+																										</xs:annotation>
+																										<xs:simpleType>
+																											<xs:restriction base="xs:string"/>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="Linea">
+																										<xs:annotation>
+																											<xs:documentation>Linea donde se produjo el error</xs:documentation>
+																										</xs:annotation>
+																										<xs:simpleType>
+																											<xs:restriction base="xs:positiveInteger"/>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="LineaFinal" minOccurs="0">
+																										<xs:annotation>
+																											<xs:documentation>Linea final donde se produjo el error</xs:documentation>
+																										</xs:annotation>
+																										<xs:simpleType>
+																											<xs:restriction base="xs:positiveInteger"/>
+																										</xs:simpleType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Firma" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Errores de Firma Electronica. Solo viene si no hay errores de esuqema.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DocumentoFirmado" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Documentos firmados en este envio.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="TipoDocumento" type="xs:NMTOKEN">
+																				<xs:annotation>
+																					<xs:documentation>Tipo del Documento. Ejemplo: LceMayorRes,LceDiarioRes...etc</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Uri" type="xs:string" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Es el atributo URI de la etiqueta Signature/SignedInfo/Reference, el cual es unico por cada envio.</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Digest" type="xs:string" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Es el valor de Signature/SignedInfo/Reference/DigestValue, el cual es el resumen de lo firmado. Solo para documentos firmados.</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="Detalle">
+																				<xs:annotation>
+																					<xs:documentation>Detalle del error</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string"/>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Estadisticas" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Estadisticas de los documentos. Solo si no hay errores de esquema.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Documento" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Informacion de cada documento enviado.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TipoDocumento" type="xs:NMTOKEN">
+																	<xs:annotation>
+																		<xs:documentation>Tipo del Documento. Ejemplo:  LceMayor, LceMayorRes,LceDiarioRes...etc</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Uri" type="xs:string" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Es el atributo URI de la etiqueta Signature/SignedInfo/Reference, el cual es unico por cada envio. Solo para documentos firmados.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Digest" type="xs:string" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Es el valor de Signature/SignedInfo/Reference/DigestValue, el cual es el resumen de lo firmado. Solo para documentos firmados.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="LineaInicial" type="xs:long">
+																	<xs:annotation>
+																		<xs:documentation>Linea Inicial donde comienza este documento</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="LineaFinal" type="xs:long">
+																	<xs:annotation>
+																		<xs:documentation>Linea Final donde comienza este documento</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="CantidadLineas" type="xs:long">
+																	<xs:annotation>
+																		<xs:documentation>Cantidad total de lineas.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital sobre Documento</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

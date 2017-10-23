@@ -4297,12 +4297,12 @@ según tabla Países aduana</xs:documentation>
 															<xs:documentation>Tipo de Cambio fijado por el Banco Central de Chile</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="MntExeOtrMnda" type="SiiDte:Dec14_4Type" minOccurs="0">
+													<xs:element name="MntExeOtrMnda" type="xs:decimal" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>Monto Exento del DTE en Otra Moneda  </xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="MntTotOtrMnda" type="SiiDte:Dec14_4Type">
+													<xs:element name="MntTotOtrMnda" type="xs:decimal">
 														<xs:annotation>
 															<xs:documentation>Monto Total Otra Moneda</xs:documentation>
 														</xs:annotation>

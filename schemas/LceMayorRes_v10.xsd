@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	25-10-2005 Primera Version
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:element name="LceMayorRes">
+		<xs:annotation>
+			<xs:documentation>Informacion del Resumen del Mayor</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoMayorRes">
+					<xs:annotation>
+						<xs:documentation>Informacion de Resumen de Libro Mayor</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT contribuyente.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="SiiLce:Periodo">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Moneda" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Moneda</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Rectificatoria" type="xs:positiveInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Si un Libro se emite mas de una vez se debe anotar la secuencia de reemisión   que corresponda, partiendo del número 1.El mismo número debe estar en el Comprobante de Cierre.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Cuenta" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Informacion de cada cuenta.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoCuenta">
+											<xs:annotation>
+												<xs:documentation>Codigo Cuenta Contable</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CantidadMovimientos">
+											<xs:annotation>
+												<xs:documentation>Cantidad de movimientos para este codigo de cuenta.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Cierre">
+											<xs:annotation>
+												<xs:documentation>Cierre de la cuenta.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="MontosPeriodo" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Montos del Periodo</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Debe" type="SiiLce:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Sumatoria de los "Debe" de los movimientos.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Haber" type="SiiLce:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Sumatoria de los "Haber" de los movimientos.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:choice>
+																	<xs:element name="SaldoDeudor" type="SiiLce:MontoType">
+																		<xs:annotation>
+																			<xs:documentation>Solo si Debe es mayor que Haber. Corresponde a "Debe - Haber"</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																	<xs:element name="SaldoAcreedor" type="SiiLce:MontoType">
+																		<xs:annotation>
+																			<xs:documentation>Solo si Haber es mayor de Debe. Corresponde "Haber - Debe"</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																</xs:choice>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="MontosAcumulado">
+														<xs:annotation>
+															<xs:documentation>Montos Acumulados</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Debe" type="SiiLce:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Corresponde a la suma de "Debe" de Apertura mas "Debe" de MontosPeriodo.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Haber" type="SiiLce:MontoType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Corresponde a la suma de "Haber" de Apertura mas "Haber" de MontosPeriodo.</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:choice>
+																	<xs:element name="SaldoDeudor" type="SiiLce:MontoType">
+																		<xs:annotation>
+																			<xs:documentation>Solo si Debe es mayor que Haber. Corresponde a "Debe - Haber"</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																	<xs:element name="SaldoAcreedor" type="SiiLce:MontoType">
+																		<xs:annotation>
+																			<xs:documentation>Solo si Haber es mayor de Debe. Corresponde "Haber - Debe"</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																</xs:choice>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RutFirma" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT que firma este Documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Envio del Libro Electronico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

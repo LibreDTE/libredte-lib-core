@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+	Version 1,  01-08-2005 17:00 MLG
+                  26-09-2005 17:15 Se coloca tipo a etiqueta Rectificatoria a "positiveInteger"
+                     				    - Se coloca un minimo de largo 1 a etiqueta "Moneda"
+	                   
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<xs:element name="LceBalance">
+		<xs:annotation>
+			<xs:documentation>Informacion del Libro Balance</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoBalance">
+					<xs:annotation>
+						<xs:documentation>Informacion del Balance</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT contribuyente.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="xs:gYearMonth">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico. Formato AAAA-MM</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Moneda" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Moneda</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Rectificatoria" type="xs:positiveInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Si un Libro se emite mas de una vez se debe anotar la secuencia de reemisión   que corresponda, partiendo del número 1.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Cuenta" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Detalle de Documentos que Componen el Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoCuenta">
+											<xs:annotation>
+												<xs:documentation>Codigo Cuenta Contable</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="20"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Debe" type="SiiLce:MontoType">
+											<xs:annotation>
+												<xs:documentation>Total Debitos</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Haber" type="SiiLce:MontoType">
+											<xs:annotation>
+												<xs:documentation>Total Cerditos</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="SaldoDeudor" type="SiiLce:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Solo si Debe es mayor que Haber. Corresponde a "Debe - Haber"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="SaldoAcreedor" type="SiiLce:MontoType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Solo si Haber es mayor de Debe. Corresponde "Haber - Debe"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RutFirma" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT que Firma este Documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Envio del Libro Electronico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

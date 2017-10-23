@@ -3,8 +3,9 @@
 	Version 1,  01-08-2005 17:00 version Inicial
 			     25-10-2005 17:00 Se agrega campo "Clase"
 			     27-12-2005 12:00 Se agrega en TipoLCE el valor 6 para Compra y Venta
+			     18-04-2007 11:30 Se agrega a Clase el valor 4=Prestador de Libros Contables.
 -->
-<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiLce="http://www.sii.cl/SiiLce" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
 	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
 	<xs:element name="LceCal">
@@ -47,7 +48,7 @@
 							</xs:element>
 							<xs:element name="Clase">
 								<xs:annotation>
-									<xs:documentation>1:Contribuyente, 2:Holding, 3:Empresa de Software.</xs:documentation>
+									<xs:documentation>1:Contribuyente, 2:Holding, 3:Empresa de Software.,4:Prestador de Servicios Contables.</xs:documentation>
 								</xs:annotation>
 								<xs:simpleType>
 									<xs:restriction base="xs:string">
@@ -64,6 +65,11 @@
 										<xs:enumeration value="3">
 											<xs:annotation>
 												<xs:documentation>Empresa Software</xs:documentation>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="4">
+											<xs:annotation>
+												<xs:documentation>Prestador de Servicios Contables</xs:documentation>
 											</xs:annotation>
 										</xs:enumeration>
 									</xs:restriction>

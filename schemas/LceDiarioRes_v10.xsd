@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--  
+    25-10-2005 Primera Version
+-->
+<xs:schema targetNamespace="http://www.sii.cl/SiiLce" xmlns:SiiLce="http://www.sii.cl/SiiLce" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
+	<xs:include schemaLocation="LceSiiTypes_v10.xsd"/>
+	<!--  Bitacora 200501
+	Modificación 05-07-2005 FctProp (5,3)  -->
+	<xs:element name="LceDiarioRes">
+		<xs:annotation>
+			<xs:documentation>Informacion de resumen del Diario</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoDiarioRes">
+					<xs:annotation>
+						<xs:documentation>Informacion de de resumen del Libro Diario</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identificacion">
+								<xs:annotation>
+									<xs:documentation>Identificacion del Envio del Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RutContribuyente" type="SiiLce:RUTType">
+											<xs:annotation>
+												<xs:documentation>RUT contribuyente.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="PeriodoTributario" type="SiiLce:Periodo">
+											<xs:annotation>
+												<xs:documentation>Periodo Tributario del Libro Electronico </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Moneda" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Codigo de Moneda</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:token">
+													<xs:minLength value="1"/>
+													<xs:maxLength value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Rectificatoria" type="xs:positiveInteger" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Si un Libro se emite mas de una vez se debe anotar la secuencia de reemisión   que corresponda, partiendo del número 1.El mismo número debe estar en el Comprobante de Cierre.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RegistroDiario" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Detalle de Documentos que Componen el Libro Electronico</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FechaContable" type="xs:date">
+											<xs:annotation>
+												<xs:documentation>Fecha Contable(AAAA-MM-DD)</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CantidadComprobantes">
+											<xs:annotation>
+												<xs:documentation>Cantidad de Comprobantes en este dia</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CantidadMovimientos">
+											<xs:annotation>
+												<xs:documentation>Cantidad de movimientos</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SumaValorComprobante" type="SiiLce:MontoType">
+											<xs:annotation>
+												<xs:documentation>Sumatoria de los Valores Comprobante.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Cierre">
+								<xs:annotation>
+									<xs:documentation>Cierre del Libro.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CantidadComprobantes">
+											<xs:annotation>
+												<xs:documentation>Cantidad de Comprobantes en el periodo.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CantidadMovimientos">
+											<xs:annotation>
+												<xs:documentation>Cantidad de movimientos del periodo</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:nonNegativeInteger">
+													<xs:totalDigits value="10"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SumaValorComprobante" type="SiiLce:MontoType">
+											<xs:annotation>
+												<xs:documentation>Sumatoria de los Valores Comprobante del periodo.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ValorAcumulado" type="SiiLce:MontoType">
+											<xs:annotation>
+												<xs:documentation>Valor Acumulado. Es la sumatoria de Valor Apertura mas "Suma Valor Comprobante".</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RutFirma" type="SiiLce:RUTType">
+								<xs:annotation>
+									<xs:documentation>RUT que firma este Documento</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TmstFirma">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora en formato AAAA-MM-DDTHH24:MI:SS de la Firma Electronica</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:dateTime"/>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ID" type="xs:ID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Envio del Libro Electronico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
