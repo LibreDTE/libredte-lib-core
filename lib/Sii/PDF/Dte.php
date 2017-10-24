@@ -358,7 +358,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2017-10-24
      */
     private function agregarContinuo(array $dte, $timbre, $width, $height = 0)
     {
@@ -414,7 +414,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         // agregar timbre
         $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
-        $this->agregarTimbre($timbre, 0, $x_start, $y+6, 70, 6);
+        $this->agregarTimbre($timbre, -10, $x_start, $y+6, 70, 6);
         // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
         // que se logró determinar para crear la página con el alto correcto
         if (!$height) {
