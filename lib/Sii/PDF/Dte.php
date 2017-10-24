@@ -428,7 +428,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2017-10-24
      */
     private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
@@ -494,7 +494,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->Ln();
             $this->MultiTexto('Observación: '.$dte['Encabezado']['IdDoc']['TermPagoGlosa']."\n\n", $x);
         }
-        $this->agregarTimbre($timbre, 0, $x, $this->GetY()+6, 55, 6);
+        $this->agregarTimbre($timbre, -11, $x, $this->GetY()+6, 55, 6);
         // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
         // que se logró determinar para crear la página con el alto correcto
         if (!$height) {
