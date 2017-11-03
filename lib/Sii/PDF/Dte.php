@@ -109,6 +109,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // códigos de LibreDTE
         0 => 'COTIZACIÓN',
         'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
+        'EM' => 'Entrada de mercadería (EM)',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     private $formas_pago = [
