@@ -144,7 +144,7 @@ class SetPruebas
      * @param archivo Contenido del archivo del set de set de pruebas
      * @param separador usado en el archivo para los casos (son los "=" debajo del título del caso)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-26
+     * @version 2017-11-04
      */
     public static function getJSON($archivo, array $folios = [], $separador = '==============')
     {
@@ -175,56 +175,60 @@ class SetPruebas
                     $documento['Encabezado']['IdDoc']['IndTraslado'] = self::$IndTraslados[$caso['motivo']];
                 }
             }
-            // si es documento de exportación se agrega información de receptor más aduana
-            else if (in_array($TipoDTE, [110, 111, 112]) and isset($caso['exportacion'])) {
-                // forma de pago
-                if (!empty($caso['exportacion']['FORMA DE PAGO EXPORTACION'])) {
-                    $documento['Encabezado']['IdDoc']['FmaPagExp'] = self::$formas_pago_exportacion[$caso['exportacion']['FORMA DE PAGO EXPORTACION']];
-                    unset($caso['exportacion']['FORMA DE PAGO EXPORTACION']);
-                }
-                // datos del receptor
-                if (!empty($caso['exportacion']['NACIONALIDAD'])) {
-                    $documento['Encabezado']['Receptor']['Extranjero'] = [
-                        'Nacionalidad' => \sasco\LibreDTE\Sii\Aduana::getCodigo(
-                            self::$Aduana['PAIS RECEPTOR Y PAIS DESTINO'],
-                            $caso['exportacion']['NACIONALIDAD']
-                        ),
-                    ];
-                    unset($caso['exportacion']['NACIONALIDAD']);
-                }
-                // datos de la aduana
-                $documento['Encabezado']['Transporte']['Aduana'] = [];
-                foreach ($caso['exportacion'] as $var => $val) {
-                    if (isset(self::$Aduana[$var])) {
-                        $tag = self::$Aduana[$var];
-                        $valor = \sasco\LibreDTE\Sii\Aduana::getCodigo($tag, $val);
-                        $documento['Encabezado']['Transporte']['Aduana'][$tag] = $valor;
-                        unset($caso['exportacion'][$var]);
+            // si es documento de exportación se agregan datos específicos para exportación
+            else if (in_array($TipoDTE, [110, 111, 112])) {
+                // si hay datos de exportación se agrega información de receptor más aduana
+                if (isset($caso['exportacion'])) {
+                    // forma de pago
+                    if (!empty($caso['exportacion']['FORMA DE PAGO EXPORTACION'])) {
+                        $documento['Encabezado']['IdDoc']['FmaPagExp'] = self::$formas_pago_exportacion[$caso['exportacion']['FORMA DE PAGO EXPORTACION']];
+                        unset($caso['exportacion']['FORMA DE PAGO EXPORTACION']);
                     }
-                }
-                if (!empty($documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'])) {
-                    $documento['Encabezado']['Transporte']['Aduana']['CodPaisDestin'] = $documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'];
-                }
-                // si existe tipo de bultos entonces se crea
-                if (!empty($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'])) {
-                    $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'] = [
-                        'CodTpoBultos' => $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'],
-                        'CantBultos' => $documento['Encabezado']['Transporte']['Aduana']['TotBultos'],
-                        'Marcas' => md5($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'].$documento['Encabezado']['Transporte']['Aduana']['TotBultos']),
-                    ];
-                    // si el bulto es contenedor entonces se colocan datos extras
-                    if ($documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['CodTpoBultos']==75) {
-                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['IdContainer'] = 'ABC123';
-                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['Sello'] = '10973348-2';
-                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['EmisorSello'] = 'Sellos de Chile';
+                    // datos del receptor
+                    if (!empty($caso['exportacion']['NACIONALIDAD'])) {
+                        $documento['Encabezado']['Receptor']['Extranjero'] = [
+                            'Nacionalidad' => \sasco\LibreDTE\Sii\Aduana::getCodigo(
+                                self::$Aduana['PAIS RECEPTOR Y PAIS DESTINO'],
+                                $caso['exportacion']['NACIONALIDAD']
+                            ),
+                        ];
+                        unset($caso['exportacion']['NACIONALIDAD']);
                     }
-                }
-                if (empty($documento['Encabezado']['Transporte']['Aduana']))
-                    unset($documento['Encabezado']['Transporte']);
-                // agregar moneda a los totales
-                if (!empty($caso['exportacion']['MONEDA DE LA OPERACION'])) {
-                    $documento['Encabezado']['Totales']['TpoMoneda'] = $caso['exportacion']['MONEDA DE LA OPERACION'];
-                    unset($caso['exportacion']['MONEDA DE LA OPERACION']);
+                    // datos de la aduana
+                    $documento['Encabezado']['Transporte']['Aduana'] = [];
+                    foreach ($caso['exportacion'] as $var => $val) {
+                        if (isset(self::$Aduana[$var])) {
+                            $tag = self::$Aduana[$var];
+                            $valor = \sasco\LibreDTE\Sii\Aduana::getCodigo($tag, $val);
+                            $documento['Encabezado']['Transporte']['Aduana'][$tag] = $valor;
+                            unset($caso['exportacion'][$var]);
+                        }
+                    }
+                    if (!empty($documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'])) {
+                        $documento['Encabezado']['Transporte']['Aduana']['CodPaisDestin'] = $documento['Encabezado']['Transporte']['Aduana']['CodPaisRecep'];
+                    }
+                    // si existe tipo de bultos entonces se crea
+                    if (!empty($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'])) {
+                        $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'] = [
+                            'CodTpoBultos' => $documento['Encabezado']['Transporte']['Aduana']['TipoBultos'],
+                            'CantBultos' => $documento['Encabezado']['Transporte']['Aduana']['TotBultos'],
+                            'Marcas' => md5($documento['Encabezado']['Transporte']['Aduana']['TipoBultos'].$documento['Encabezado']['Transporte']['Aduana']['TotBultos']),
+                        ];
+                        // si el bulto es contenedor entonces se colocan datos extras
+                        if ($documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['CodTpoBultos']==75) {
+                            $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['IdContainer'] = 'ABC123';
+                            $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['Sello'] = '10973348-2';
+                            $documento['Encabezado']['Transporte']['Aduana']['TipoBultos']['EmisorSello'] = 'Sellos de Chile';
+                        }
+                    }
+                    if (empty($documento['Encabezado']['Transporte']['Aduana'])) {
+                        unset($documento['Encabezado']['Transporte']);
+                    }
+                    // agregar moneda a los totales
+                    if (!empty($caso['exportacion']['MONEDA DE LA OPERACION'])) {
+                        $documento['Encabezado']['Totales']['TpoMoneda'] = $caso['exportacion']['MONEDA DE LA OPERACION'];
+                        unset($caso['exportacion']['MONEDA DE LA OPERACION']);
+                    }
                 }
                 // agregar indicador de servicio
                 if (isset($caso['detalle'])) {
