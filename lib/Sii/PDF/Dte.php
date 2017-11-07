@@ -298,7 +298,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2017-11-07
      */
     private function agregarNormal(array $dte, $timbre)
     {
@@ -310,7 +310,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
-            $dte['Encabezado']['Emisor']['CmnaOrigen']
+            !empty($dte['Encabezado']['Emisor']['CmnaOrigen']) ? $dte['Encabezado']['Emisor']['CmnaOrigen'] : null
         );
         // datos del documento
         $this->setY(max($y));
@@ -549,8 +549,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont('', 'B', $font_size ? $font_size : 9);
         $this->SetTextColorArray([0,0,0]);
         $this->MultiTexto(!empty($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', $w);
-        $ciudad = !empty($emisor['CiudadOrigen']) ? $emisor['CiudadOrigen'] : \sasco\LibreDTE\Chile::getCiudad($emisor['CmnaOrigen']);
-        $this->MultiTexto($emisor['DirOrigen'].', '.$emisor['CmnaOrigen'].($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', $w);
+        $comuna = !empty($emisor['CmnaOrigen']) ? $emisor['CmnaOrigen'] : null;
+        $ciudad = !empty($emisor['CiudadOrigen']) ? $emisor['CiudadOrigen'] : \sasco\LibreDTE\Chile::getCiudad($comuna);
+        $this->MultiTexto($emisor['DirOrigen'].($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', $w);
         if (!empty($emisor['Sucursal'])) {
             $this->MultiTexto('Sucursal: '.$emisor['Sucursal'], $x, $this->y, 'L', $w);
         }
