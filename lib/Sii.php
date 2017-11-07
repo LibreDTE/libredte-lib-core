@@ -495,10 +495,13 @@ class Sii
      * @param comuna de la sucursal del emior o bien código de la sucursal del SII
      * @return Dirección regional del SII
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-06-03
+     * @version 2017-11-07
      */
     public static function getDireccionRegional($comuna)
     {
+        if (!$comuna) {
+            return 'N.N.';
+        }
         if (!is_numeric($comuna)) {
             $direccion = mb_strtoupper($comuna, 'UTF-8');
             return isset(self::$direcciones_regionales[$direccion]) ? self::$direcciones_regionales[$direccion] : $direccion;
