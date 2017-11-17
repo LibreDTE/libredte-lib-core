@@ -14,7 +14,7 @@ Aquí podrás encontrar la biblioteca escrita en lenguaje PHP para la interacci�
 con el Servicio de Impuestos Internos (SII).
 
 La biblioteca se construye originalmente para ser usada en el módulo
-[Dte](https://github.com/LibreDTE/libredte-sowerphp) del framework
+[Dte](https://github.com/LibreDTE/libredte-modulo-Dte) del framework
 [SowerPHP](http://sowerphp.org). En esta biblioteca sólo estará lo básico, sin
 interfaces de usuario, para que un desarrollador pueda construir su propia
 aplicación.
@@ -24,6 +24,8 @@ Si deseas una aplicación ya construída puedes revisar el
 gratuitamente y usar la plataforma web de facturación. Si deseas acceder al
 código fuente de la aplicación web puedes hacerlo
 [aquí](https://github.com/LibreDTE/libredte-webapp).
+
+[Realiza una donación al proyecto](https://libredte.github.io/#donar)
 
 Funcionalidades implementadas
 -----------------------------
