@@ -338,6 +338,27 @@ class Dte
     }
 
     /**
+     * Método que entrega las referencias del DTE si existen
+     * @return Arreglo con las referencias
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2017-11-17
+     */
+    public function getReferencias()
+    {
+        if (!$this->getDatos()) {
+            return false;
+        }
+        $referencias = !empty($this->datos['Referencia']) ? $this->datos['Referencia'] : false;
+        if (!$referencias) {
+            return [];
+        }
+        if (!isset($referencias[0])) {
+            $referencias = [$referencias];
+        }
+        return $referencias;
+    }
+
+    /**
      * Método que entrega el string XML del tag TED
      * @return String XML con tag TED
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
