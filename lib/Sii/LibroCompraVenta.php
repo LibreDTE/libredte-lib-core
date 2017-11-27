@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii;
  * Clase que representa el envío de un Libro de Compra o Venta
  *  - Libros simplificados: https://www.sii.cl/DJI/DJI_Formato_XML.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-12-01
+ * @version 2017-11-27
  */
 class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
 {
@@ -61,6 +61,12 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         'TotIVANoRetenido' => false,
         'TotMntNoFact' => false,
         'TotMntPeriodo' => false,
+        'TotPsjNac' => false,
+        'TotPsjInt' => false,
+        'TotTabPuros' => false,
+        'TotTabCigarrillos' => false,
+        'TotTabElaborado' => false,
+        'TotImpVehiculo' => false,
     ]; ///< Campos para totales
 
     /**
@@ -587,7 +593,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * Método que obtiene los datos para generar los tags TotalesPeriodo
      * @return Arreglo con los datos para generar los tags TotalesPeriodo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-13
+     * @version 2017-11-27
      */
     public function getResumen()
     {
@@ -606,13 +612,16 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             }
             $totales[$d['TpoDoc']]['TotMntTotal'] += $d['MntTotal'];
             // contabilizar documentos anulados
-            if (!empty($d['Anulado']) and $d['Anulado']=='A')
+            if (!empty($d['Anulado']) and $d['Anulado']=='A') {
                 $totales[$d['TpoDoc']]['TotAnulado']++;
+            }
             // si hay activo fijo se contabiliza
-            if (!empty($d['MntActivoFijo']))
+            if (!empty($d['MntActivoFijo'])) {
                 $totales[$d['TpoDoc']]['TotMntActivoFijo'] += $d['MntActivoFijo'];
-            if (!empty($d['MntIVAActivoFijo']))
+            }
+            if (!empty($d['MntIVAActivoFijo'])) {
                 $totales[$d['TpoDoc']]['TotMntIVAActivoFijo'] += $d['MntIVAActivoFijo'];
+            }
             // si hay iva no recuperable se contabiliza
             if (!empty($d['IVANoRec'])) {
                 foreach ($d['IVANoRec'] as $IVANoRec) {
@@ -635,8 +644,9 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 unset($d['FctProp']); // se quita el factor de proporcionalidad del detalle ya que no es parte del XML
             }
             // contabilizar IVA fuera de plazo
-            if (!empty($d['IVAFueraPlazo']))
+            if (!empty($d['IVAFueraPlazo'])) {
                 $totales[$d['TpoDoc']]['TotIVAFueraPlazo'] += $d['IVAFueraPlazo'];
+            }
             // si hay otro tipo de impuesto se contabiliza
             if (!empty($d['OtrosImp'])) {
                 foreach ($d['OtrosImp'] as $OtrosImp) {
@@ -650,17 +660,25 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
                 }
             }
             // contabilizar impuesto sin derecho a crédito
-            if (!empty($d['MntSinCred']))
+            if (!empty($d['MntSinCred'])) {
                 $totales[$d['TpoDoc']]['TotImpSinCredito'] += $d['MntSinCred'];
+            }
             // contabilidad IVA retenido total
-            if (!empty($d['IVARetTotal']))
+            if (!empty($d['IVARetTotal'])) {
                 $totales[$d['TpoDoc']]['TotIVARetTotal'] += $d['IVARetTotal'];
+            }
             // contabilizar IVA retenido parcial
-            if (!empty($d['IVARetParcial']))
+            if (!empty($d['IVARetParcial'])) {
                 $totales[$d['TpoDoc']]['TotIVARetParcial'] += $d['IVARetParcial'];
+            }
             // contabilizar IVA no retenido
-            if (!empty($d['IVANoRetenido']))
+            if (!empty($d['IVANoRetenido'])) {
                 $totales[$d['TpoDoc']]['TotIVANoRetenido'] += $d['IVANoRetenido'];
+            }
+            // contabilidar impuesto vehículos
+            if (!empty($d['ImpVehiculo'])) {
+                $totales[$d['TpoDoc']]['TotImpVehiculo'] += $d['ImpVehiculo'];
+            }
         }
         // agregar resumenes pasados que no se hayan generado por los detalles
         foreach ($this->resumen as $tipo => $resumen) {
