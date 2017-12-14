@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-09-11
+ * @version 2017-12-14
  */
 class Sii
 {
@@ -57,6 +57,7 @@ class Sii
         'LAS CONDES' => 'SANTIAGO ORIENTE',
         'LO ESPEJO' => 'SANTIAGO SUR',
         'PEÑALOLÉN' => 'ÑUÑOA',
+        'PUCÓN' => 'VILLARRICA',
         'PUDAHUEL' => 'SANTIAGO PONIENTE',
         'RECOLETA' => 'SANTIAGO NORTE',
         'SANTIAGO' => 'SANTIAGO CENTRO',
