@@ -26,7 +26,7 @@ namespace sasco\LibreDTE;
 /**
  * Clase para acciones genéricas asociadas al SII de Chile
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-12-14
+ * @version 2018-01-17
  */
 class Sii
 {
@@ -62,6 +62,7 @@ class Sii
         'RECOLETA' => 'SANTIAGO NORTE',
         'SANTIAGO' => 'SANTIAGO CENTRO',
         'SAN MIGUEL' => 'SANTIAGO SUR',
+        'SAN NICOLÁS' => 'SAN CARLOS',
         'SAN VICENTE' => 'SAN VICENTE TAGUA TAGUA',
         'TALTAL' => 'ANTOFAGASTA',
         'VITACURA' => 'SANTIAGO ORIENTE',
