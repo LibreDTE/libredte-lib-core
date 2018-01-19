@@ -58,11 +58,11 @@ class Formatos
      * Método que convierte los datos en el formato de entrada al formato
      * oficial en JSON
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-12
+     * @version 2018-01-19
      */
     public static function toJSON($formato, $datos)
     {
-        return json_encode(self::toArray($formato, $datos), JSON_PRETTY_PRINT);
+        return json_encode(self::toArray($formato, $datos), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
     /**
