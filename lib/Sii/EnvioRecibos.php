@@ -69,7 +69,7 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
+     * @version 2018-01-23
      */
     public function setCaratula(array $caratula)
     {
@@ -84,6 +84,9 @@ class EnvioRecibos extends \sasco\LibreDTE\Sii\Base\Documento
             'MailContacto' => false,
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula);
+        if ($this->caratula['NmbContacto']) {
+            $this->caratula['NmbContacto'] = mb_substr($this->caratula['NmbContacto'], 0, 40);
+        }
         $this->id = 'SetDteRecibidos';
     }
 

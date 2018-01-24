@@ -125,7 +125,7 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
      * Método para asignar la caratula
      * @param caratula Arreglo con datos de la respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
+     * @version 2018-01-23
      */
     public function setCaratula(array $caratula)
     {
@@ -142,6 +142,9 @@ class RespuestaEnvio extends \sasco\LibreDTE\Sii\Base\Documento
             'MailContacto' => false,
             'TmstFirmaResp' => date('Y-m-d\TH:i:s'),
         ], $caratula);
+        if ($this->caratula['NmbContacto']) {
+            $this->caratula['NmbContacto'] = mb_substr($this->caratula['NmbContacto'], 0, 40);
+        }
         $this->id = 'ResultadoEnvio';
     }
 
