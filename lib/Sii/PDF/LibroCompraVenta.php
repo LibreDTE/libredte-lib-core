@@ -179,8 +179,8 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                 $detalle[] = [
                     $d['TpoDoc'],
                     $d['NroDoc'],
-                    $d['FchDoc'],
-                    $d['RUTDoc'],
+                    !empty($d['FchDoc']) ? $d['FchDoc'] : ((!empty($d['Anulado']) && $d['Anulado']=='A') ? 'ANULADO' : ''),
+                    !empty($d['RUTDoc']) ? $d['RUTDoc'] : '',
                     !empty($d['MntExe']) ? num($d['MntExe']) : '',
                     !empty($d['MntNeto']) ? num($d['MntNeto']) : '',
                     !empty($d['MntIVA']) ? num($d['MntIVA']) : '',
@@ -190,7 +190,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\PDF
                     !empty($d['IVARetParcial']) ? num($d['IVARetParcial']) : '',
                     !empty($d['IVARetTotal']) ? num($d['IVARetTotal']) : '',
                     !empty($d['IVANoRetenido']) ? num($d['IVANoRetenido']) : '',
-                    num($d['MntTotal']),
+                    isset($d['MntTotal']) ? num($d['MntTotal']) : '',
                 ];
                 // agregar otros impuestos adicionales
                 if ($n_OtrosImp>1) {
