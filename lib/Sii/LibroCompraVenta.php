@@ -115,7 +115,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @param detalle Arreglo con el resumen del DTE que se desea agregar
      * @return Arreglo con el detalle normalizado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-24
+     * @version 2018-01-26
      */
     private function normalizarDetalle(array &$detalle)
     {
@@ -168,6 +168,15 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             'TabElaborado' => false,
             'ImpVehiculo' => false,
         ], $detalle);
+        // si el caso está anulado se genera sólo lo mínimo pedido por el SII
+        if (!empty($detalle['Anulado']) and $detalle['Anulado']=='A') {
+            $detalle = [
+                'TpoDoc' => $detalle['TpoDoc'],
+                'NroDoc' => $detalle['NroDoc'],
+                'Anulado' => $detalle['Anulado']
+            ];
+            return;
+        }
         // largo campos
         if ($detalle['RznSoc']) {
             $detalle['RznSoc'] = mb_substr($detalle['RznSoc'], 0, 50);
@@ -265,8 +274,9 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         }
         // si el código de sucursal no existe se pone a falso, esto básicamente
         // porque algunos sistemas podrían usar 0 cuando no hay CdgSIISucur
-        if (!$detalle['CdgSIISucur'])
+        if (!$detalle['CdgSIISucur']) {
             $detalle['CdgSIISucur'] = false;
+        }
     }
 
     /**
