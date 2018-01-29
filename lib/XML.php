@@ -145,10 +145,20 @@ class XML extends \DomDocument
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-11-21
      */
-    public function loadXML($source, $options = null)
-    {
-        return $source ? parent::loadXML($this->iso2utf($source), $options) : false;
-    }
+     public function loadXML($source, $options = null)
+     {
+         $tRetorno = $source ? parent::load($this->iso2utf($source), $options) : false;
+
+         if (!$tRetorno){
+           $tRetorno = parent::loadXML($this->iso2utf($source), $options);
+         }
+         if(!$tRetorno){
+           foreach (libxml_get_errors() as $error) {
+               echo "Error: " . $error->message;
+           }
+         }
+         return $tRetorno;
+     }
 
     /**
      * Método para realizar consultas XPATH al documento XML
