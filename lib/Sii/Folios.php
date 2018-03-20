@@ -54,20 +54,20 @@ class Folios
 
     /**
      * Método que verifica el código de autorización de folios
-     * @return =true si está ok el XML cargado
+     * @return bool =true si está ok el XML cargado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-10-30
+     * @version 2018-03-20
      */
     public function check()
     {
         // validar firma del SII sobre los folios
         $firma = $this->getFirma();
         $idk = $this->getIDK();
-        if (!$firma || !$idk) {
+        if ($firma === false || $idk === false) {
             return false;
         }
         $pub_key = \sasco\LibreDTE\Sii::cert($idk);
-        if (!$pub_key || openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), base64_decode($firma), $pub_key)!==1) {
+        if ($pub_key === false || openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), base64_decode($firma), $pub_key)!==1) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA,
                 \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA)
@@ -118,7 +118,7 @@ class Folios
 
     /**
      * Método que entrega el RUT de a quién se está autorizando el CAF
-     * @return Rut del emisor del CAF
+     * @return string RUT del emisor del CAF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -133,7 +133,7 @@ class Folios
 
     /**
      * Método que entrega el primer folio autorizado en el CAF
-     * @return Número del primer folio
+     * @return int Número del primer folio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -148,7 +148,7 @@ class Folios
 
     /**
      * Método que entrega el últimmo folio autorizado en el CAF
-     * @return Número del último folio
+     * @return int Número del último folio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -163,7 +163,7 @@ class Folios
 
     /**
      * Método que entrega la firma del SII sobre el nodo DA
-     * @return Firma en base64
+     * @return string Firma en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -179,7 +179,7 @@ class Folios
     /**
      * Método que entrega el IDK (serial number) de la clave pública del SII
      * utilizada para firmar el CAF
-     * @return Serial number
+     * @return int Serial number
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -194,7 +194,7 @@ class Folios
 
     /**
      * Método que entrega la clave privada proporcionada por el SII para el CAF
-     * @return Clave privada en base64
+     * @return string Clave privada en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -209,7 +209,7 @@ class Folios
 
     /**
      * Método que entrega la clave pública proporcionada por el SII para el CAF
-     * @return Clave pública en base64
+     * @return string Clave pública en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -224,7 +224,7 @@ class Folios
 
     /**
      * Método que entrega el tipo de DTE para el cual se emitió el CAF
-     * @return Código de tipo de DTE
+     * @return int Código de tipo de DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -239,7 +239,7 @@ class Folios
 
     /**
      * Método que entrega la fecha de autorización con la que se emitió el CAF
-     * @return Fecha de autorización del CAF
+     * @return string Fecha de autorización del CAF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-07-19
      */
@@ -254,7 +254,7 @@ class Folios
 
     /**
      * Método que indica si el CAF es de certificación o no
-     * @return =true si los folios son del ambiente de certificación, =null si no se pudo determinar
+     * @return bool =true si los folios son del ambiente de certificación, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-10-30
      */
@@ -266,7 +266,7 @@ class Folios
 
     /**
      * Método que indica si el CAF está o no vigente
-     * @return =true si el CAF está vigente, =false si no está vigente
+     * @return bool =true si el CAF está vigente, =false si no está vigente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2018-03-20
      */
@@ -283,6 +283,7 @@ class Folios
 
     /**
      * Método que entrega el XML completo del archivo CAF
+     * @return string XML del CAF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-24
      */

@@ -694,8 +694,9 @@ class Sii
         // si se pasó un idk y existe el archivo asociado se entrega
         if ($idk) {
             $cert = dirname(dirname(__FILE__)).'/certs/'.$idk.'.cer';
-            if (is_readable($cert))
+            if (is_readable($cert)) {
                 return file_get_contents($cert);
+            }
         }
         // buscar certificado y entregar si existe o =false si no
         $ambiente = self::getAmbiente();
