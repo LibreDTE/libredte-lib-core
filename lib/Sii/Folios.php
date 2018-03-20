@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para realizar operaciones con lo Folios autorizados por el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-07-19
+ * @version 2018-03-20
  */
 class Folios
 {
@@ -63,10 +63,11 @@ class Folios
         // validar firma del SII sobre los folios
         $firma = $this->getFirma();
         $idk = $this->getIDK();
-        if (!$firma or !$idk)
+        if (!$firma || !$idk) {
             return false;
+        }
         $pub_key = \sasco\LibreDTE\Sii::cert($idk);
-        if (!$pub_key or openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), base64_decode($firma), $pub_key)!==1) {
+        if (!$pub_key || openssl_verify($this->xml->getFlattened('/AUTORIZACION/CAF/DA'), base64_decode($firma), $pub_key)!==1) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA,
                 \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::FOLIOS_ERROR_FIRMA)
@@ -75,8 +76,9 @@ class Folios
         }
         // validar clave privada y pública proporcionada por el SII
         $private_key = $this->getPrivateKey();
-        if (!$private_key)
+        if (!$private_key) {
             return false;
+        }
         $plain = md5(date('U'));
         if (!openssl_private_encrypt($plain, $crypt, $private_key)) {
             \sasco\LibreDTE\Log::write(
@@ -86,8 +88,9 @@ class Folios
             return false;
         }
         $public_key = $this->getPublicKey();
-        if (!$public_key)
+        if (!$public_key) {
             return false;
+        }
         if (!openssl_public_decrypt($crypt, $plain_firmado, $public_key)) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::FOLIOS_ERROR_DESENCRIPTAR,
@@ -106,8 +109,9 @@ class Folios
      */
     public function getCaf()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $CAF = $this->xml->getElementsByTagName('CAF')->item(0);
         return $CAF ? $CAF : false;
     }
@@ -120,8 +124,9 @@ class Folios
      */
     public function getEmisor()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $RE = $this->xml->getElementsByTagName('RE')->item(0);
         return $RE ? $RE->nodeValue : false;
     }
@@ -134,8 +139,9 @@ class Folios
      */
     public function getDesde()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $D = $this->xml->getElementsByTagName('D')->item(0);
         return $D ? (int)$D->nodeValue : false;
     }
@@ -148,8 +154,9 @@ class Folios
      */
     public function getHasta()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $H = $this->xml->getElementsByTagName('H')->item(0);
         return $H ? (int)$H->nodeValue : false;
     }
@@ -162,8 +169,9 @@ class Folios
      */
     private function getFirma()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $FRMA = $this->xml->getElementsByTagName('FRMA')->item(0);
         return $FRMA ? $FRMA->nodeValue : false;
     }
@@ -177,8 +185,9 @@ class Folios
      */
     private function getIDK()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $IDK = $this->xml->getElementsByTagName('IDK')->item(0);
         return $IDK ? (int)$IDK->nodeValue : false;
     }
@@ -191,8 +200,9 @@ class Folios
      */
     public function getPrivateKey()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $RSASK = $this->xml->getElementsByTagName('RSASK')->item(0);
         return $RSASK ? $RSASK->nodeValue : false;
     }
@@ -205,8 +215,9 @@ class Folios
      */
     public function getPublicKey()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $RSAPUBK = $this->xml->getElementsByTagName('RSAPUBK')->item(0);
         return $RSAPUBK ? $RSAPUBK->nodeValue : false;
     }
@@ -219,8 +230,9 @@ class Folios
      */
     public function getTipo()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $TD = $this->xml->getElementsByTagName('TD')->item(0);
         return $TD ? (int)$TD->nodeValue : false;
     }
@@ -233,8 +245,9 @@ class Folios
      */
     public function getFechaAutorizacion()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return false;
+        }
         $FA = $this->xml->getElementsByTagName('FA')->item(0);
         return $FA ? $FA->nodeValue : false;
     }
@@ -249,6 +262,23 @@ class Folios
     {
         $idk = $this->getIDK();
         return $idk ?  $idk === 100 : null;
+    }
+
+    /**
+     * Método que indica si el CAF está o no vigente
+     * @return =true si el CAF está vigente, =false si no está vigente
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2018-03-20
+     */
+    public function vigente()
+    {
+        if (!in_array($this->getTipo(), [33, 46, 61])) {
+            return true;
+        }
+        $d1 = new \DateTime($this->getFechaAutorizacion());
+        $d2 = new \DateTime(date('Y-m-d'));
+        $meses = $d1->diff($d2)->m + ($d1->diff($d2)->y*12);
+        return $meses <= 18;
     }
 
     /**
