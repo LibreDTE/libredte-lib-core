@@ -1,0 +1,33 @@
+{
+    "Encabezado": {
+        "IdDoc": {
+            "TipoDTE": 52,
+            "Folio": 1,
+            "IndTraslado": 5
+        },
+        "Emisor": {
+            "RUTEmisor": "76192083-9",
+            "RznSoc": "SASCO SpA",
+            "GiroEmis": "Servicios integrales de informática",
+            "Acteco": 726000,
+            "DirOrigen": "Santiago",
+            "CmnaOrigen": "Santiago"
+        },
+        "Receptor": {
+            "RUTRecep": "76192083-9",
+            "RznSocRecep": "SASCO SpA",
+            "GiroRecep": "Servicios integrales de informática",
+            "DirRecep": "Santiago",
+            "CmnaRecep": "Santiago"
+        },
+        "Transporte": {
+            "Patente": "ABCD12",
+            "DirDest": "Calle 123",
+            "CmnaDest": "Santiago"
+        }
+    },
+    "Detalle": {
+        "NmbItem": "Impresora",
+        "QtyItem": "1"
+    }
+}
