@@ -27,21 +27,21 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-10-05
+ * @version 2018-04-13
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
 
-    private $dte; ///< Tipo de DTE que se está generando
-    private $logo; ///< Datos del logo que se ubicará en el PDF (ruta, datos y/o posición)
-    private $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
-    private $cedible = false; ///< Por defecto DTEs no son cedibles
+    protected $dte; ///< Tipo de DTE que se está generando
+    protected $logo; ///< Datos del logo que se ubicará en el PDF (ruta, datos y/o posición)
+    protected $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
+    protected $cedible = false; ///< Por defecto DTEs no son cedibles
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
-    private $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
-    private $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
-    private $ecl = 5; ///< error correction level para PHP >= 7.0.0
-    private $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
-    private $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
+    protected $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
+    protected $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
+    protected $ecl = 5; ///< error correction level para PHP >= 7.0.0
+    protected $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
+    protected $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
 
     private $tipos = [
         // códigos oficiales SII
@@ -389,7 +389,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $x_start, $y_start, $width-($x_start*4), 10,
             [0,0,0]
         );
-        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, 40, 8, 9, [0,0,0]);
+        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, $width-($x_start*4), 8, 9, [0,0,0]);
         // datos del documento
         $this->SetY($y);
         $this->Ln();
@@ -527,9 +527,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-02
+     * @version 2018-04-13
      */
-    private function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
+    protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
     {
         // logo del documento
         if (isset($this->logo)) {
@@ -538,9 +538,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 $x,
                 $y,
                 !$this->logo['posicion']?$w_img:null, $this->logo['posicion']?($w_img/2):null,
-                'PNG',
-                (isset($emisor['url'])?$emisor['url']:''),
-                'T'
+                'PNG'
             );
             if ($this->logo['posicion']) {
                 $this->SetY($this->y + ($w_img/2));
@@ -602,7 +600,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-12-02
      */
-    private function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null, array $color = null)
+    protected function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null, array $color = null)
     {
         if ($color===null) {
             $color = $tipo ? ($tipo==52 ? [0,172,140] : [255,0,0]) : [0,0,0];
@@ -637,8 +635,9 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     private function getTipo($tipo)
     {
-        if (!is_numeric($tipo) and !isset($this->tipos[$tipo]))
+        if (!is_numeric($tipo) and !isset($this->tipos[$tipo])) {
             return $tipo;
+        }
         return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'Documento '.$tipo;
     }
 
@@ -650,7 +649,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-06-15
      */
-    private function agregarDatosEmision($IdDoc, $CdgVendedor, $x = 10, $offset = 22, $mostrar_dia = true)
+    protected function agregarDatosEmision($IdDoc, $CdgVendedor, $x = 10, $offset = 22, $mostrar_dia = true)
     {
         // si es hoja carta
         if ($x==10) {
@@ -738,7 +737,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-06-15
      */
-    private function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
+    protected function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
     {
         $receptor = $Encabezado['Receptor'];
         if (!empty($receptor['RUTRecep']) and $receptor['RUTRecep']!='66666666-6') {
@@ -825,7 +824,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-03
      */
-    private function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
+    protected function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
         // agregar tipo de traslado
         if ($IndTraslado) {
@@ -896,7 +895,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-09-25
      */
-    private function agregarReferencia($referencias, $x = 10, $offset = 22)
+    protected function agregarReferencia($referencias, $x = 10, $offset = 22)
     {
         if (!isset($referencias[0]))
             $referencias = [$referencias];
@@ -934,7 +933,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-05
      */
-    private function agregarDetalle($detalle, $x = 10)
+    protected function agregarDetalle($detalle, $x = 10)
     {
         if (!isset($detalle[0]))
             $detalle = [$detalle];
@@ -1002,7 +1001,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-12-13
      */
-    private function agregarDetalleContinuo($detalle, $x = 3)
+    protected function agregarDetalleContinuo($detalle, $x = 3)
     {
         $this->SetY($this->getY()+1);
         $p1x = $x;
@@ -1036,7 +1035,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-17
      */
-    private function agregarSubTotal(array $detalle, $x = 10) {
+    protected function agregarSubTotal(array $detalle, $x = 10) {
         $subtotal = 0;
         if (!isset($detalle[0])) {
             $detalle = [$detalle];
@@ -1062,7 +1061,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-17
      */
-    private function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
+    protected function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
     {
         if (!isset($descuentosRecargos[0]))
             $descuentosRecargos = [$descuentosRecargos];
@@ -1086,7 +1085,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-07-24
      */
-    private function agregarPagos(array $pagos, $x = 10)
+    protected function agregarPagos(array $pagos, $x = 10)
     {
         if (!isset($pagos[0]))
             $pagos = [$pagos];
@@ -1104,7 +1103,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-10-05
      */
-    private function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
+    protected function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         // normalizar totales
@@ -1201,7 +1200,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2018-01-26
      */
-    private function agregarObservacion($IdDoc, $x = 10, $y = 190)
+    protected function agregarObservacion($IdDoc, $x = 10, $y = 190)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         if (!$this->papelContinuo and $this->timbre_pie) {
@@ -1235,9 +1234,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2018-04-12
      */
-    private function agregarTimbre($timbre, $x_timbre = 20, $x = 20, $y = 190, $w = 70, $font_size = 8)
+    protected function agregarTimbre($timbre, $x_timbre = 10, $x = 10, $y = 190, $w = 70, $font_size = 8)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         if ($timbre!==null) {
@@ -1276,9 +1275,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho del acuse de recibo
      * @param h Alto del acuse de recibo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2018-04-13
      */
-    private function agregarAcuseRecibo($x = 93, $y = 190, $w = 50, $h = 40)
+    protected function agregarAcuseRecibo($x = 83, $y = 190, $w = 60, $h = 40)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         $this->SetTextColorArray([0,0,0]);
@@ -1287,15 +1286,15 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Acuse de recibo', $x, $y+1, 'C', $w);
         $this->setFont('', 'B', 8);
         $this->Texto('Nombre', $x+2, $this->y+8);
-        $this->Texto('________________', $x+18);
-        $this->Texto('R.U.T.', $x+2, $this->y+6);
-        $this->Texto('________________', $x+18);
+        $this->Texto('_________________________', $x+18);
+        $this->Texto('RUN', $x+2, $this->y+6);
+        $this->Texto('_________________________', $x+18);
         $this->Texto('Fecha', $x+2, $this->y+6);
-        $this->Texto('________________', $x+18);
+        $this->Texto('_________________________', $x+18);
         $this->Texto('Recinto', $x+2, $this->y+6);
-        $this->Texto('________________', $x+18);
+        $this->Texto('_________________________', $x+18);
         $this->Texto('Firma', $x+2, $this->y+8);
-        $this->Texto('________________', $x+18);
+        $this->Texto('_________________________', $x+18);
         $this->setFont('', 'B', 7);
         $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x, $this->y+6, 'J', $w);
     }
@@ -1309,7 +1308,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @version 2015-11-17
      */
-    private function agregarAcuseReciboContinuo($x = 3, $y = null, $w = 68, $h = 40)
+    protected function agregarAcuseReciboContinuo($x = 3, $y = null, $w = 68, $h = 40)
     {
         $this->SetTextColorArray([0,0,0]);
         $this->Rect($x, $y, $w, $h, 'D', ['all' => ['width' => 0.1, 'color' => [0, 0, 0]]]);
@@ -1318,15 +1317,15 @@ class Dte extends \sasco\LibreDTE\PDF
         //$this->setFont('', 'B', 10);
         //$this->Texto('Acuse de recibo', $x, $y+1, 'C', $w);
         $this->setFont('', 'B', 6);
-        $this->Texto('Nombre:', $x+2, $this->y+8);
+        $this->Texto('Nombre', $x+2, $this->y+8);
         $this->Texto('_____________________________________________', $x+12);
-        $this->Texto('R.U.T.:', $x+2, $this->y+6);
+        $this->Texto('RUN', $x+2, $this->y+6);
         $this->Texto('________________', $x+12);
-        $this->Texto('Firma:', $x+32, $this->y+0.5);
+        $this->Texto('Firma', $x+32, $this->y+0.5);
         $this->Texto('___________________', $x+42.5);
-        $this->Texto('Fecha:', $x+2, $this->y+6);
+        $this->Texto('Fecha', $x+2, $this->y+6);
         $this->Texto('________________', $x+12);
-        $this->Texto('Recinto:', $x+32, $this->y+0.5);
+        $this->Texto('Recinto', $x+32, $this->y+0.5);
         $this->Texto('___________________', $x+42.5);
 
         $this->setFont('', 'B', 5);
@@ -1338,7 +1337,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-10-05
      */
-    private function agregarLeyendaDestino($tipo, $y = 190, $font_size = 10)
+    protected function agregarLeyendaDestino($tipo, $y = 190, $font_size = 10)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         $y += 64;
@@ -1351,7 +1350,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-10-05
      */
-    private function agregarLeyendaDestinoContinuo($tipo)
+    protected function agregarLeyendaDestinoContinuo($tipo)
     {
         $this->setFont('', 'B', 8);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $this->y+6, 'R');
@@ -1365,7 +1364,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-04-05
      */
-    private function num($n)
+    protected function num($n)
     {
         if (!is_numeric($n))
             return $n;
@@ -1380,7 +1379,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-04-28
      */
-    public function date($date, $mostrar_dia = true)
+    protected function date($date, $mostrar_dia = true)
     {
         $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
