@@ -538,7 +538,9 @@ class Dte extends \sasco\LibreDTE\PDF
                 $x,
                 $y,
                 !$this->logo['posicion']?$w_img:null, $this->logo['posicion']?($w_img/2):null,
-                'PNG'
+                'PNG',
+                (isset($emisor['url'])?$emisor['url']:''),
+                'T'
             );
             if ($this->logo['posicion']) {
                 $this->SetY($this->y + ($w_img/2));
