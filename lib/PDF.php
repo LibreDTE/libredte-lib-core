@@ -49,6 +49,8 @@ class PDF extends \TCPDF
             'width' => 186,
             'height' => 6,
             'align' => 'C',
+            'bordercolor' => [0, 0, 0],
+            'borderwidth' => 0.1,
             'headerbackground' => [255, 255, 255],
             'headercolor' => [0, 0, 0],
             'bodybackground' => [255, 255, 255],
@@ -278,9 +280,9 @@ class PDF extends \TCPDF
     /**
      * Agregar una tabla generada mediante el método Cell
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2016-01-22
+     * @version 2018-04-15
      */
-    private function addNormalTable($headers, $data, $options = array())
+    private function addNormalTable(array $headers, array $data, array $options = [])
     {
         // Colors, line width and bold font
         $this->SetFillColor(
@@ -293,12 +295,30 @@ class PDF extends \TCPDF
             $options['headercolor'][1],
             $options['headercolor'][2]
         );
+        $this->SetDrawColor(
+            $options['bordercolor'][0],
+            $options['bordercolor'][1],
+            $options['bordercolor'][2]
+        );
+        $this->SetLineWidth($options['borderwidth']);
         $this->SetFont($this->defaultOptions['font']['family'], 'B',  $options['fontsize']);
+        // corregir indices
+        $headers_keys = array_keys($headers);
+        if (is_array($options['width'])) {
+            $options['width'] = array_combine($headers_keys, $options['width']);
+        } else {
+            $options['width'] = $this->getTableCellWidth($options['width'], $headers_keys);
+        }
+        if (is_array($options['width'])) {
+            $options['align'] = array_combine($headers_keys, $options['align']);
+            foreach ($options['align'] as &$a) {
+                $a = strtoupper($a[0]);
+            }
+        }
         // Header
-        $w = is_array($options['width']) ? $options['width'] :
-            $this->getTableCellWidth($options['width'], array_keys($headers));
+        $x = $this->GetX();
         foreach($headers as $i => $header) {
-            $this->Cell ($w[$i], $options['height'], $headers[$i], 1, 0, $options['align'], 1);
+            $this->Cell($options['width'][$i], $options['height'], $headers[$i], 1, 0, $options['align'][$i], 1);
         }
         $this->Ln();
         // Color and font restoration
@@ -312,34 +332,45 @@ class PDF extends \TCPDF
             $options['bodycolor'][1],
             $options['bodycolor'][2]
         );
+        $this->SetDrawColor(
+            $options['bordercolor'][0],
+            $options['bordercolor'][1],
+            $options['bordercolor'][2]
+        );
+        $this->SetLineWidth($options['borderwidth']);
         $this->SetFont($this->defaultOptions['font']['family']);
         // Data
         $fill = false;
         foreach ($data as &$row) {
             $num_pages = $this->getNumPages();
             $this->startTransaction();
+            $this->SetX($x);
             foreach($headers as $i => $header) {
-                $this->Cell ($w[$i], $options['height'], $row[$i], 'LR', 0, $options['align'], $fill);
+                $this->Cell($options['width'][$i], $options['height'], $row[$i], 'LR', 0, $options['align'][$i], $fill);
             }
             $this->Ln();
             if($num_pages < $this->getNumPages()) {
                 $this->rollbackTransaction(true);
                 $this->AddPage();
+                $this->SetX($x);
                 foreach($headers as $i => $header) {
-                    $this->Cell ($w[$i], $options['height'], $headers[$i], 1, 0, $options['align'], 1);
+                    $this->Cell($options['width'][$i], $options['height'], $headers[$i], 1, 0, $options['align'][$i], 1);
                 }
                 $this->Ln();
+                $this->SetX($x);
                 foreach($headers as $i => $header) {
-                    $this->Cell ($w[$i], $options['height'], $row[$i], 'LR', 0, $options['align'], $fill);
+                    $this->Cell($options['width'][$i], $options['height'], $row[$i], 'LR', 0, $options['align'][$i], $fill);
                 }
                 $this->Ln();
             } else {
                 $this->commitTransaction();
             }
-            if ($options['colorchange'])
+            if ($options['colorchange']) {
                 $fill = !$fill;
+            }
         }
-        $this->Cell(array_sum($w), 0, '', 'T');
+        $this->SetX($x);
+        $this->Cell(array_sum($options['width']), 0, '', 'T');
         $this->Ln();
     }
 
