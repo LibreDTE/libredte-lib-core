@@ -933,9 +933,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-05
+     * @version 2018-04-15
      */
-    protected function agregarDetalle($detalle, $x = 10)
+    protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
         if (!isset($detalle[0]))
             $detalle = [$detalle];
@@ -952,8 +952,12 @@ class Dte extends \sasco\LibreDTE\PDF
             // quitar columnas
             foreach ($item as $col => $valor) {
                 if ($col=='DscItem' and !empty($item['DscItem'])) {
-                    $item['NmbItem'] .= !$this->item_detalle_posicion ? '<br/>' : ': ';
-                    $item['NmbItem'] .= '<span style="font-size:0.7em">'.$item['DscItem'].'</span>';
+                    $item['NmbItem'] .= !$this->item_detalle_posicion ? ($html?'<br/>':"\n") : ': ';
+                    if ($html) {
+                        $item['NmbItem'] .= '<span style="font-size:0.7em">'.$item['DscItem'].'</span>';
+                    } else {
+                        $item['NmbItem'] .= $item['DscItem'];
+                    }
                 }
                 if (!in_array($col, $titulos_keys) or ($dte_exento and $col=='IndExe'))
                     unset($item[$col]);
