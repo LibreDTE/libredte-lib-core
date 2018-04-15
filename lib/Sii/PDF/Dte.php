@@ -1061,7 +1061,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-17
+     * @version 2018-04-15
      */
     protected function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
     {
@@ -1069,6 +1069,9 @@ class Dte extends \sasco\LibreDTE\PDF
             $descuentosRecargos = [$descuentosRecargos];
         foreach($descuentosRecargos as $dr) {
             $tipo = $dr['TpoMov']=='D' ? 'Descuento' : 'Recargo';
+            if ($dr['IndExeDR']) {
+                $tipo .= ' EX';
+            }
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : $this->num($dr['ValorDR']);
             if ($this->papelContinuo) {
                 $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):''), $x);
