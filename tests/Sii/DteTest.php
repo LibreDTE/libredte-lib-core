@@ -32,7 +32,7 @@ class Sii_DteTest extends \PHPUnit\Framework\TestCase
     /**
      * Test para verificar los ejemplos en JSON del directorio examples/json
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-05-28
+     * @version 2018-04-15
      */
     public function testEjemplosJSON()
     {
@@ -64,7 +64,6 @@ class Sii_DteTest extends \PHPUnit\Framework\TestCase
                         $totales = $Dte->getDatos()['Encabezado']['Totales'];
                         foreach ($casos[$caso] as $monto => $valor) {
                             $this->assertArrayHasKey($monto, $totales, 'No existe el total para '.$monto.' en el caso '.$caso);
-                            $this->assertNotEmpty($totales[$monto], 'No existe el total para '.$monto.' en el caso '.$caso);
                             if (!is_array($valor)) {
                                 $this->assertEquals($valor, $totales[$monto], $monto.' no cuadra en el caso '.$caso);
                             } else {
