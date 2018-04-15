@@ -48,6 +48,7 @@ class PDF extends \TCPDF
             'fontsize' => 10,
             'width' => 186,
             'height' => 6,
+            'end' => null, // indica la coordenada 'y' donde termina la tabla
             'align' => 'C',
             'bordercolor' => [0, 0, 0],
             'borderwidth' => 0.1,
@@ -369,7 +370,20 @@ class PDF extends \TCPDF
                 $fill = !$fill;
             }
         }
-        $this->SetX($x);
+        // si la tabla tiene indicado un punto específico en Y donde terminar se usa ese punto
+        if ($options['end']) {
+            $y = $this->GetY();
+            $lx = $x;
+            $this->Line($lx, $y, $lx, $options['end']);
+            foreach ($options['width'] as $ancho) {
+                $lx += $ancho;
+                $this->Line($lx, $y, $lx, $options['end']);
+            }
+            $this->SetXY($x, $options['end']);
+        } else {
+            $this->SetX($x);
+        }
+        // asignar línea final
         $this->Cell(array_sum($options['width']), 0, '', 'T');
         $this->Ln();
     }
