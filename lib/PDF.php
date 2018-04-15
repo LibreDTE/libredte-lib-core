@@ -52,6 +52,7 @@ class PDF extends \TCPDF
             'align' => 'C',
             'bordercolor' => [0, 0, 0],
             'borderwidth' => 0.1,
+            'tdborder' => 'LR',
             'headerbackground' => [255, 255, 255],
             'headercolor' => [0, 0, 0],
             'bodybackground' => [255, 255, 255],
@@ -310,10 +311,16 @@ class PDF extends \TCPDF
         } else {
             $options['width'] = $this->getTableCellWidth($options['width'], $headers_keys);
         }
-        if (is_array($options['width'])) {
+        if (is_array($options['align'])) {
             $options['align'] = array_combine($headers_keys, $options['align']);
             foreach ($options['align'] as &$a) {
                 $a = strtoupper($a[0]);
+            }
+        } else if (is_string($options['align'])) {
+            $align = $options['align'];
+            $options['align'] = [];
+            foreach ($headers_keys as $key) {
+                $options['align'][$key] = $align;
             }
         }
         // Header
@@ -352,13 +359,15 @@ class PDF extends \TCPDF
             foreach($headers as $i => $header) {
                 $x_0 = $this->GetX();
                 $this->SetXY($x_0, $y_0);
-                list($value1, $value2) = explode("\n", $row[$i]);
-                $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, '', $options['align'][$i], false, 0);
+                $aux = explode("\n", $row[$i]);
+                $value1 = $aux[0];
+                $value2 = isset($aux[1]) ? $aux[1] : null;
+                $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, $options['tdborder'], $options['align'][$i], false, 0);
                 if ($value2) {
                     $this->Ln();
                     $this->SetX($x_0);
                     $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']-2);
-                    $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, '', $options['align'][$i], false, 0);
+                    $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, $options['tdborder'], $options['align'][$i], false, 0);
                     $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']);
                     $y_s[] = $y_1 + $y_2*0.9;
                 } else {
@@ -381,13 +390,15 @@ class PDF extends \TCPDF
                 foreach($headers as $i => $header) {
                     $x_0 = $this->GetX();
                     $this->SetXY($x_0, $y_0);
-                    list($value1, $value2) = explode("\n", $row[$i]);
-                    $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, '', $options['align'][$i], false, 0);
+                    $aux = explode("\n", $row[$i]);
+                    $value1 = $aux[0];
+                    $value2 = isset($aux[1]) ? $aux[1] : null;
+                    $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, $options['tdborder'], $options['align'][$i], false, 0);
                     if ($value2) {
                         $this->Ln();
                         $this->SetX($x_0);
                         $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']-2);
-                        $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, '', $options['align'][$i], false, 0);
+                        $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, $options['tdborder'], $options['align'][$i], false, 0);
                         $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']);
                         $y_s[] = $y_1 + $y_2*0.9;
                     } else {
