@@ -322,6 +322,7 @@ class PDF extends \TCPDF
             $this->Cell($options['width'][$i], $options['height'], $headers[$i], 1, 0, $options['align'][$i], 1);
         }
         $this->Ln();
+        $y = $this->GetY();
         // Color and font restoration
         $this->SetFillColor (
             $options['bodybackground'][0],
@@ -341,15 +342,31 @@ class PDF extends \TCPDF
         $this->SetLineWidth($options['borderwidth']);
         $this->SetFont($this->defaultOptions['font']['family']);
         // Data
-        $fill = false;
         foreach ($data as &$row) {
             $num_pages = $this->getNumPages();
             $this->startTransaction();
+            // agregar datos de la fila
             $this->SetX($x);
+            $y_0 = $this->GetY();
+            $y_s = [];
             foreach($headers as $i => $header) {
-                $this->Cell($options['width'][$i], $options['height'], $row[$i], 'LR', 0, $options['align'][$i], $fill);
+                $x_0 = $this->GetX();
+                $this->SetXY($x_0, $y_0);
+                list($value1, $value2) = explode("\n", $row[$i]);
+                $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, '', $options['align'][$i], false, 0);
+                if ($value2) {
+                    $this->Ln();
+                    $this->SetX($x_0);
+                    $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']-2);
+                    $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, '', $options['align'][$i], false, 0);
+                    $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']);
+                    $y_s[] = $y_1 + $y_2*0.9;
+                } else {
+                    $y_s[] = $y_1;
+                }
             }
-            $this->Ln();
+            $this->Ln(max($y_s)*5);
+            // si se pasó a página siguiente se hace rollback y se crea nueva página con cabecera nuevamente en la tabla
             if($num_pages < $this->getNumPages()) {
                 $this->rollbackTransaction(true);
                 $this->AddPage();
@@ -359,20 +376,31 @@ class PDF extends \TCPDF
                 }
                 $this->Ln();
                 $this->SetX($x);
+                $y_0 = $this->GetY();
+                $y_s = [];
                 foreach($headers as $i => $header) {
-                    $this->Cell($options['width'][$i], $options['height'], $row[$i], 'LR', 0, $options['align'][$i], $fill);
+                    $x_0 = $this->GetX();
+                    $this->SetXY($x_0, $y_0);
+                    list($value1, $value2) = explode("\n", $row[$i]);
+                    $y_1 = $this->MultiCell($options['width'][$i], $options['height'], $value1, '', $options['align'][$i], false, 0);
+                    if ($value2) {
+                        $this->Ln();
+                        $this->SetX($x_0);
+                        $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']-2);
+                        $y_2 = $this->MultiCell($options['width'][$i], $options['height'], $value2, '', $options['align'][$i], false, 0);
+                        $this->SetFont($this->defaultOptions['font']['family'], '',  $options['fontsize']);
+                        $y_s[] = $y_1 + $y_2*0.9;
+                    } else {
+                        $y_s[] = $y_1;
+                    }
                 }
-                $this->Ln();
+                $this->Ln(max($y_s)*5);
             } else {
                 $this->commitTransaction();
-            }
-            if ($options['colorchange']) {
-                $fill = !$fill;
             }
         }
         // si la tabla tiene indicado un punto específico en Y donde terminar se usa ese punto
         if ($options['end']) {
-            $y = $this->GetY();
             $lx = $x;
             $this->Line($lx, $y, $lx, $options['end']);
             foreach ($options['width'] as $ancho) {
