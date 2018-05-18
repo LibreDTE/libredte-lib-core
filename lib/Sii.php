@@ -425,11 +425,21 @@ class Sii
      * @param recurso Recurso del sitio del SII que se desea obtener la URL
      * @param ambiente Ambiente que se desea obtener el servidor, si es null se autodetectará
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-11
+     * @version 2018-05-18
      */
     public static function getURL($recurso, $ambiente = null)
     {
-        return 'https://'.self::getServidor($ambiente).'.sii.cl'.$recurso;
+        $ambiente = self::getAmbiente($ambiente);
+        // si es anulación masiva de folios
+        if ($recurso=='/anulacionMsvDteInternet') {
+            $servidor = $ambiente ? 'www4c' : 'www4';
+        }
+        // servidor estandar (maullin o palena)
+        else {
+            $servidor = self::getServidor($ambiente);
+        }
+        // entregar URL
+        return 'https://'.$servidor.'.sii.cl'.$recurso;
     }
 
     /**
