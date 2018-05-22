@@ -550,6 +550,7 @@ class Sii
                 }
                 \sasco\LibreDTE\Log::write(Estado::REQUEST_ERROR_SOAP, Estado::get(Estado::REQUEST_ERROR_SOAP, $msg));
                 $body = null;
+                usleep(200000); // pausa de 0.2 segundos antes de volver a intentar el envío
             }
         }
         if ($body===null) {
