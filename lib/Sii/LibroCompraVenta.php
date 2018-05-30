@@ -192,6 +192,12 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         if ($detalle['MntExe']===false and $detalle['MntNeto']===false and $detalle['MntTotal']===0) {
             $detalle['MntNeto'] = 0;
         }
+        // colocar montos que falten en 0 si es solo exento y no neto
+        if ($detalle['MntNeto']===false and $detalle['MntExe']) {
+            $detalle['TasaImp'] = \sasco\LibreDTE\Sii::getIVA();
+            $detalle['MntNeto'] = 0;
+            $detalle['MntIVA'] = 0;
+        }
         // normalizar IVA no recuperable
         if (!empty($detalle['IVANoRec'])) {
             if (!isset($detalle['IVANoRec'][0]))
