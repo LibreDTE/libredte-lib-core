@@ -592,7 +592,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-05-22
+     * @version 2018-06-05
      */
     private function normalizar(array &$datos)
     {
@@ -668,8 +668,8 @@ class Dte
             'Comisiones' => false,
         ], $datos);
         // corregir algunos datos que podrían venir malos para no caer por schema
-        $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper($datos['Encabezado']['Emisor']['RUTEmisor']);
-        $datos['Encabezado']['Receptor']['RUTRecep'] = strtoupper($datos['Encabezado']['Receptor']['RUTRecep']);
+        $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Emisor']['RUTEmisor'])));
+        $datos['Encabezado']['Receptor']['RUTRecep'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Receptor']['RUTRecep'])));
         $datos['Encabezado']['Receptor']['RznSocRecep'] = mb_substr($datos['Encabezado']['Receptor']['RznSocRecep'], 0, 100);
         if (!empty($datos['Encabezado']['Receptor']['GiroRecep'])) {
             $datos['Encabezado']['Receptor']['GiroRecep'] = mb_substr($datos['Encabezado']['Receptor']['GiroRecep'], 0, 40);
