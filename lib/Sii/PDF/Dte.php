@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-04-13
+ * @version 2018-06-15
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -39,6 +39,7 @@ class Dte extends \sasco\LibreDTE\PDF
     protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
     protected $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
     protected $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
+    protected $casa_matriz = false; ///< Dirección de la casa matriz
     protected $ecl = 5; ///< error correction level para PHP >= 7.0.0
     protected $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
     protected $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
@@ -232,6 +233,17 @@ class Dte extends \sasco\LibreDTE\PDF
     public function setCedible($cedible = true)
     {
         $this->cedible = $cedible;
+    }
+
+    /**
+     * Método que indica la dirección de la casa matriz
+     * @param casa_matriz Dirección de la casa matriz que emite el DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2018-06-15
+     */
+    public function setCasaMatriz($casa_matriz)
+    {
+        $this->casa_matriz = $casa_matriz;
     }
 
     /**
@@ -527,7 +539,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-04-13
+     * @version 2018-06-15
      */
     protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
     {
@@ -564,6 +576,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto($emisor['DirOrigen'].($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', $w);
         if (!empty($emisor['Sucursal'])) {
             $this->MultiTexto('Sucursal: '.$emisor['Sucursal'], $x, $this->y, 'L', $w);
+        }
+        if (!empty($this->casa_matriz)) {
+            $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, $this->y, 'L', $w);
         }
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
