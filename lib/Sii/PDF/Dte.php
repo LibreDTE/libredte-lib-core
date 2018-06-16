@@ -156,12 +156,12 @@ class Dte extends \sasco\LibreDTE\PDF
     ]; ///< Tipos de traslado para guías de despacho
 
     private $medios_pago = [
+        'EF' => 'Efectivo',
+        'PE' => 'Depósito o transferencia',
+        'TC' => 'Tarjeta de crédito o débito',
         'CH' => 'Cheque',
         'CF' => 'Cheque a fecha',
         'LT' => 'Letra',
-        'EF' => 'Efectivo',
-        'PE' => 'Pago a cuenta corriente',
-        'TC' => 'Tarjeta de crédito',
         'OT' => 'Otro',
     ]; ///< Medio de pago disponibles
 
@@ -1223,7 +1223,7 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que coloca las diferentes observaciones que puede tener el documnto
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-01-26
+     * @version 2018-06-15
      */
     protected function agregarObservacion($IdDoc, $x = 10, $y = 190)
     {
@@ -1238,8 +1238,17 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($IdDoc['MedioPago']) or !empty($IdDoc['TermPagoDias'])) {
             $pago = [];
             if (!empty($IdDoc['MedioPago'])) {
-                $medio = !empty($this->medios_pago[$IdDoc['MedioPago']]) ? $this->medios_pago[$IdDoc['MedioPago']] : $IdDoc['MedioPago'];
-                $pago[] = 'Medio de pago: '.$medio;
+                $medio = 'Medio de pago: '.(!empty($this->medios_pago[$IdDoc['MedioPago']]) ? $this->medios_pago[$IdDoc['MedioPago']] : $IdDoc['MedioPago']);
+                if (!empty($IdDoc['BcoPago'])) {
+                    $medio .= ' a '.$IdDoc['BcoPago'];
+                }
+                if (!empty($IdDoc['TpoCtaPago'])) {
+                    $medio .= ' en cuenta '.strtolower($IdDoc['TpoCtaPago']);
+                }
+                if (!empty($IdDoc['NumCtaPago'])) {
+                    $medio .= ' N° '.$IdDoc['NumCtaPago'];
+                }
+                $pago[] = $medio;
             }
             if (!empty($IdDoc['TermPagoDias'])) {
                 $pago[] = 'Días de pago: '.$IdDoc['TermPagoDias'];
