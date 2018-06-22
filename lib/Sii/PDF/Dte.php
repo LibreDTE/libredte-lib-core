@@ -401,7 +401,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $x_start, $y_start, $width-($x_start*4), 10,
             [0,0,0]
         );
-        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, $width-($x_start*4), 8, 9, [0,0,0]);
+        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, $width-($x_start*45), 8, 9, [0,0,0]);
         // datos del documento
         $this->SetY($y);
         $this->Ln();
