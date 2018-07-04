@@ -451,7 +451,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-24
+     * @version 2018-07-04
      */
     private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
@@ -466,6 +466,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto($dte['Encabezado']['Emisor']['RUTEmisor'], $x, null, '', $width-2);
         $this->MultiTexto('Giro: '.(!empty($dte['Encabezado']['Emisor']['GiroEmis']) ? $dte['Encabezado']['Emisor']['GiroEmis'] : $dte['Encabezado']['Emisor']['GiroEmisor']), $x, null, '', $width-2);
         $this->MultiTexto($dte['Encabezado']['Emisor']['DirOrigen'].', '.$dte['Encabezado']['Emisor']['CmnaOrigen'], $x, null, '', $width-2);
+        if (!empty($this->casa_matriz)) {
+            $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, null, '', $width-2);
+        }
         $this->MultiTexto($this->getTipo($dte['Encabezado']['IdDoc']['TipoDTE']).' N° '.$dte['Encabezado']['IdDoc']['Folio'], $x, null, '', $width-2);
         $this->MultiTexto('Fecha: '.date('d/m/Y', strtotime($dte['Encabezado']['IdDoc']['FchEmis'])), $x, null, '', $width-2);
         // si no es boleta no nominativa se agregan datos receptor
