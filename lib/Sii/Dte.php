@@ -687,13 +687,8 @@ class Dte
             $datos['Encabezado']['Receptor']['CmnaRecep'] = mb_substr($datos['Encabezado']['Receptor']['CmnaRecep'], 0, 20);
         }
         if (!empty($datos['Encabezado']['Emisor']['Acteco'])) {
-            // tiene tamaño 5 -> se agrega un 0 al inicio
-            if (!isset($datos['Encabezado']['Emisor']['Acteco'][5])) {
+            if (strlen((string)$datos['Encabezado']['Emisor']['Acteco'])==5) {
                 $datos['Encabezado']['Emisor']['Acteco'] = '0'.$datos['Encabezado']['Emisor']['Acteco'];
-            }
-            // tiene tamaño 7 y tiene un 0 al inicio -> se quita el 0 del inicio
-            if (isset($datos['Encabezado']['Emisor']['Acteco'][6]) and $datos['Encabezado']['Emisor']['Acteco'][0]==0) {
-                $datos['Encabezado']['Emisor']['Acteco'] = substr($datos['Encabezado']['Emisor']['Acteco'],1);
             }
         }
         // si existe descuento o recargo global se normalizan
