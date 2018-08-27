@@ -385,11 +385,11 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
     /**
      * Método que indica si es EnvioDTE o EnvioBOLETA
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-10
+     * @version 2018-08-27
      */
     public function esBoleta()
     {
-        return (bool)$this->tipo;
+        return $this->tipo!==null ? (bool)$this->tipo : null;
     }
 
     /**
