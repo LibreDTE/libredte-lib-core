@@ -1372,12 +1372,12 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que agrega la leyenda de destino
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2018-09-10
      */
     protected function agregarLeyendaDestino($tipo, $y = 190, $font_size = 10)
     {
-        $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
-        $y += 64;
+        $y = (!$this->papelContinuo and !$this->timbre_pie and $this->x_fin_datos<=$y) ? $this->x_fin_datos : $y;
+        $y += 48;
         $this->setFont('', 'B', $font_size);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $y, 'R');
     }
