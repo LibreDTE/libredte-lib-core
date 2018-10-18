@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para trabajar con los impuestos adicionales
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-03-14
+ * @version 2018-10-18
  */
 class ImpuestosAdicionales
 {
@@ -151,6 +151,11 @@ class ImpuestosAdicionales
             'tipo' => 'R',
             'glosa' => 'IVA retenido frambuesas y pasas',
             'tasa' => 14,
+        ],
+        271 => [
+            'tipo' => 'A',
+            'glosa' => 'Bebidas azucaradas',
+            'tasa' => 18,
         ],
     ]; ///< Datos de impuestos adicionales (A) y retenciones (R)
 
