@@ -6,9 +6,13 @@ examples/pdf
 vendor
 tests/firma.p12
 
-# funcionalidades aun no liberadas
-examples/999-navegador.php
-lib/Sii/Navegador.php
-lib/Sii/VerificadorDatos.php
+# funcionalidades aun no disponibles
 lib/Sii/Dte/Formatos
+lib/Sii/Dte/ESCPOS/
+lib/Sii/Dte/VerificadorDatos.php
 lib/Sii/Lce
+lib/Sii/Navegador.php
+
+# ejemplos no disponibles (funcionalidades no existen)
+examples/035-generar_escpos.php
+examples/999-navegador.php

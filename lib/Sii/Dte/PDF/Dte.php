@@ -21,114 +21,28 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace sasco\LibreDTE\Sii\PDF;
+namespace sasco\LibreDTE\Sii\Dte\PDF;
 
 /**
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-06-15
+ * @version 2018-11-04
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
 
-    protected $dte; ///< Tipo de DTE que se está generando
+    use \sasco\LibreDTE\Sii\Dte\Base\DteImpreso;
+
     protected $logo; ///< Datos del logo que se ubicará en el PDF (ruta, datos y/o posición)
-    protected $resolucion; ///< Arreglo con los datos de la resolución (índices: NroResol y FchResol)
-    protected $cedible = false; ///< Por defecto DTEs no son cedibles
-    protected $papelContinuo = false; ///< Indica si se usa papel continuo o no
-    protected $sinAcuseRecibo = [39, 41, 56, 61, 110, 111, 112]; ///< Boletas, notas de crédito y notas de débito no tienen acuse de recibo
-    protected $web_verificacion = 'www.sii.cl'; ///< Página web para verificar el documento
-    protected $casa_matriz = false; ///< Dirección de la casa matriz
+    protected $papelContinuo = false; ///< Indica si se usa papel continuo o no (=0 papel carta, otro valor contínuo en PDF)
     protected $ecl = 5; ///< error correction level para PHP >= 7.0.0
     protected $papel_continuo_alto = 5000; ///< Alto exageradamente grande para autocálculo de alto en papel continuo
     protected $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
+    protected $item_detalle_posicion = 0; ///< Posición del detalle del item respecto al nombre
+    protected $detalle_fuente = 10; ///< Tamaño de la fuente para el detalle en hoja carta
 
-    private $tipos = [
-        // códigos oficiales SII
-        29 => 'FACTURA DE INICIO',
-        30 => 'FACTURA',
-        32 => 'FACTURA DE VENTA BIENES Y SERVICIOS NO AFECTOS O EXENTOS DE IVA',
-        33 => 'FACTURA ELECTRÓNICA',
-        34 => 'FACTURA NO AFECTA O EXENTA ELECTRÓNICA',
-        35 => 'BOLETA',
-        38 => 'BOLETA EXENTA',
-        39 => 'BOLETA ELECTRÓNICA',
-        40 => 'LIQUIDACION FACTURA',
-        41 => 'BOLETA NO AFECTA O EXENTA ELECTRÓNICA',
-        43 => 'LIQUIDACIÓN FACTURA ELECTRÓNICA',
-        45 => 'FACTURA DE COMPRA',
-        46 => 'FACTURA DE COMPRA ELECTRÓNICA',
-        48 => 'COMPROBANTE DE PAGO ELECTRÓNICO',
-        50 => 'GUÍA DE DESPACHO',
-        52 => 'GUÍA DE DESPACHO ELECTRÓNICA',
-        55 => 'NOTA DE DÉBITO',
-        56 => 'NOTA DE DÉBITO ELECTRÓNICA',
-        60 => 'NOTA DE CRÉDITO',
-        61 => 'NOTA DE CRÉDITO ELECTRÓNICA',
-        101 => 'FACTURA DE EXPORTACIÓN',
-        102 => 'FACTURA DE VENTA EXENTA A ZONA FRANCA PRIMARIA',
-        103 => 'LIQUIDACIÓN',
-        104 => 'NOTA DE DÉBITO DE EXPORTACIÓN',
-        105 => 'BOLETA LIQUIDACIÓN',
-        106 => 'NOTA DE CRÉDITO DE EXPORTACIÓN',
-        108 => 'SOLICITUD REGISTRO DE FACTURA (SRF)',
-        109 => 'FACTURA TURISTA',
-        110 => 'FACTURA DE EXPORTACIÓN ELECTRÓNICA',
-        111 => 'NOTA DE DÉBITO DE EXPORTACIÓN ELECTRÓNICA',
-        112 => 'NOTA DE CRÉDITO DE EXPORTACIÓN ELECTRÓNICA',
-        801 => 'ORDEN DE COMPRA',
-        802 => 'NOTA DE PEDIDO',
-        803 => 'CONTRATO',
-        804 => 'RESOLUCIÓN',
-        805 => 'PROCEDO CHILECOMPRA',
-        806 => 'FICHA CHILECOMPRA',
-        807 => 'DUS',
-        808 => 'B/L (CONOCIMIENTO DE EMBARQUE)',
-        809 => 'AWB',
-        810 => 'MIC (MANIFIESTO INTERNACIONAL)',
-        811 => 'CARTA DE PORTE',
-        812 => 'RESOLUCION SNA',
-        813 => 'PASAPORTE',
-        814 => 'CERTIFICADO DE DEPÓSITO BOLSA PROD. CHILE',
-        815 => 'VALE DE PRENDA BOLSA PROD. CHILE',
-        901 => 'FACTURA DE VENTAS A EMPRESAS DEL TERRITORIO PREFERENCIAL',
-        902 => 'CONOCIMIENTO DE EMBARQUE',
-        903 => 'DOCUMENTO ÚNICO DE SALIDA (DUS)',
-        904 => 'FACTURA DE TRASPASO',
-        905 => 'FACTURA DE REEXPEDICIÓN',
-        906 => 'BOLETAS VENTA MÓDULOS ZF (TODAS)',
-        907 => 'FACTURAS VENTA MÓDULO ZF (TODAS)',
-        909 => 'FACTURAS VENTA MÓDULO ZF',
-        910 => 'SOLICITUD TRASLADO ZONA FRANCA (Z)',
-        911 => 'DECLARACIÓN DE INGRESO A ZONA FRANCA PRIMARIA',
-        914 => 'DECLARACIÓN DE INGRESO (DIN)',
-        919 => 'RESUMEN VENTAS DE NACIONALES PASAJES SIN FACTURA',
-        920 => 'OTROS REGISTROS NO DOCUMENTADOS (AUMENTA DÉBITO)',
-        922 => 'OTROS REGISTROS (DISMINUYE DÉBITO)',
-        924 => 'RESUMEN VENTAS DE INTERNACIONALES PASAJES SIN FACTURA',
-        // códigos de LibreDTE
-        0 => 'COTIZACIÓN',
-        'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
-        'EM' => 'Entrada de mercadería (EM)',
-    ]; ///< Glosas para los tipos de documentos (DTE y otros)
-
-    private $formas_pago = [
-        1 => 'Contado',
-        2 => 'Crédito',
-        3 => 'Sin costo',
-    ]; ///< Glosas de las formas de pago
-
-    private $formas_pago_exportacion = [
-        1 => 'Cobranza hasta 1 año',
-        2 => 'Cobranza más de 1 año',
-        11 => 'Acreditivo hasta 1 año',
-        12 => 'Acreditivo más de 1 año',
-        21 => 'Sin pago',
-        32 => 'Pago anticipado a la fecha de embarque',
-    ]; ///< Códigos de forma de pago (básicos) de la aduana para exportaciones
-
-    private $detalle_cols = [
+    protected $detalle_cols = [
         'CdgItem' => ['title'=>'Código', 'align'=>'left', 'width'=>20],
         'NmbItem' => ['title'=>'Item', 'align'=>'left', 'width'=>0],
         'IndExe' => ['title'=>'IE', 'align'=>'left', 'width'=>'7'],
@@ -139,31 +53,6 @@ class Dte extends \sasco\LibreDTE\PDF
         'RecargoMonto' => ['title'=>'Recargo', 'align'=>'right', 'width'=>22],
         'MontoItem' => ['title'=>'Total item', 'align'=>'right', 'width'=>22],
     ]; ///< Nombres de columnas detalle, alineación y ancho
-
-    private $item_detalle_posicion = 0; ///< Posición del detalle del item respecto al nombre
-    private $detalle_fuente = 10; ///< Tamaño de la fuente para el detalle en hoja carta
-
-    private $traslados = [
-        1 => 'Operación constituye venta',
-        2 => 'Ventas por efectuar',
-        3 => 'Consignaciones',
-        4 => 'Entrega gratuita',
-        5 => 'Traslados internos',
-        6 => 'Otros traslados no venta',
-        7 => 'Guía de devolución',
-        8 => 'Traslado para exportación (no venta)',
-        9 => 'Venta para exportación',
-    ]; ///< Tipos de traslado para guías de despacho
-
-    private $medios_pago = [
-        'EF' => 'Efectivo',
-        'PE' => 'Depósito o transferencia',
-        'TC' => 'Tarjeta de crédito o débito',
-        'CH' => 'Cheque',
-        'CF' => 'Cheque a fecha',
-        'LT' => 'Letra',
-        'OT' => 'Otro',
-    ]; ///< Medio de pago disponibles
 
     public static $papel = [
         0  => 'Hoja carta',
@@ -198,52 +87,6 @@ class Dte extends \sasco\LibreDTE\PDF
             'uri' => $logo,
             'posicion' => (int)$posicion,
         ];
-    }
-
-    /**
-     * Método que asigna los datos de la resolución del SII que autoriza al
-     * emisor a emitir DTEs
-     * @param resolucion Arreglo con índices NroResol y FchResol
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
-     */
-    public function setResolucion(array $resolucion)
-    {
-        $this->resolucion = $resolucion;
-    }
-
-    /**
-     * Método que asigna la página web que se debe utilizar para indicar donde
-     * se puede verificar el DTE
-     * @param web Página web donde se puede verificar el documento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-11
-     */
-    public function setWebVerificacion($web)
-    {
-        $this->web_verificacion = $web;
-    }
-
-    /**
-     * Método que indica si el documento será o no cedible
-     * @param cedible =true se incorporará leyenda de destino
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-09
-     */
-    public function setCedible($cedible = true)
-    {
-        $this->cedible = $cedible;
-    }
-
-    /**
-     * Método que indica la dirección de la casa matriz
-     * @param casa_matriz Dirección de la casa matriz que emite el DTE
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-06-15
-     */
-    public function setCasaMatriz($casa_matriz)
-    {
-        $this->casa_matriz = $casa_matriz;
     }
 
     /**
@@ -451,7 +294,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-07-04
+     * @version 2018-11-04
      */
     private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
@@ -466,6 +309,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->MultiTexto($dte['Encabezado']['Emisor']['RUTEmisor'], $x, null, '', $width-2);
         $this->MultiTexto('Giro: '.(!empty($dte['Encabezado']['Emisor']['GiroEmis']) ? $dte['Encabezado']['Emisor']['GiroEmis'] : $dte['Encabezado']['Emisor']['GiroEmisor']), $x, null, '', $width-2);
         $this->MultiTexto($dte['Encabezado']['Emisor']['DirOrigen'].', '.$dte['Encabezado']['Emisor']['CmnaOrigen'], $x, null, '', $width-2);
+        if (!empty($dte['Encabezado']['Emisor']['Sucursal'])) {
+            $this->MultiTexto('Sucursal: '.$dte['Encabezado']['Emisor']['Sucursal'], $x, null, '', $width-2);
+        }
         if (!empty($this->casa_matriz)) {
             $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, null, '', $width-2);
         }
@@ -644,21 +490,6 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetTextColorArray([0,0,0]);
         $this->Ln();
         return $this->y;
-    }
-
-    /**
-     * Método que entrega la glosa del tipo de documento
-     * @param tipo Código del tipo de documento
-     * @return Glosa del tipo de documento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-11-18
-     */
-    private function getTipo($tipo)
-    {
-        if (!is_numeric($tipo) and !isset($this->tipos[$tipo])) {
-            return $tipo;
-        }
-        return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'Documento '.$tipo;
     }
 
     /**
@@ -1391,40 +1222,6 @@ class Dte extends \sasco\LibreDTE\PDF
     {
         $this->setFont('', 'B', 8);
         $this->Texto('CEDIBLE'.($tipo==52?' CON SU FACTURA':''), null, $this->y+6, 'R');
-    }
-
-    /**
-     * Método que formatea un número con separador de miles y decimales (si
-     * corresponden)
-     * @param n Número que se desea formatear
-     * @return Número formateado
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
-     */
-    protected function num($n)
-    {
-        if (!is_numeric($n))
-            return $n;
-        $broken_number = explode('.', (string)$n);
-        if (isset($broken_number[1]))
-            return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
-        return number_format($broken_number[0], 0, ',', '.');
-    }
-
-    /**
-     * Método que formatea una fecha en formato YYYY-MM-DD a un string
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-28
-     */
-    protected function date($date, $mostrar_dia = true)
-    {
-        $dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-        $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        $unixtime = strtotime($date);
-        $fecha = date(($mostrar_dia?'\D\I\A ':'').'j \d\e \M\E\S \d\e\l Y', $unixtime);
-        $dia = $dias[date('w', $unixtime)];
-        $mes = $meses[date('n', $unixtime)-1];
-        return str_replace(array('DIA', 'MES'), array($dia, $mes), $fecha);
     }
 
 }

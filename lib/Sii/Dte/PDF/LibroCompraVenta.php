@@ -21,7 +21,7 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace sasco\LibreDTE\Sii\PDF;
+namespace sasco\LibreDTE\Sii\Dte\PDF;
 
 /**
  * Clase para generar el PDF de la IECV

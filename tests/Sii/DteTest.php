@@ -77,7 +77,7 @@ class Sii_DteTest extends \PHPUnit\Framework\TestCase
                         // guardar XML del caso
                         file_put_contents($dir_xml.'/'.$caso.'.xml', $Dte->saveXML());
                         // guardar PDF del caso
-                        $pdf = new \sasco\LibreDTE\Sii\PDF\Dte();
+                        $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte();
                         $pdf->setResolucion(['FchResol'=>date('Y-m-d'), 'NroResol'=>0]);
                         $pdf->setFooterText();
                         $pdf->agregar($Dte->getDatos(), $Dte->getTED());

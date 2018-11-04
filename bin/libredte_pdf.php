@@ -95,7 +95,7 @@ class generar_pdf extends Command
             if (!$DTE->getDatos())
                 $this->error('No se pudieron obtener los datos de uno de los DTE del XML');
             $this->out('Generando PDF para DTE '.$DTE->getID());
-            $pdf = new \sasco\LibreDTE\Sii\PDF\Dte($this->args['papel']);
+            $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte($this->args['papel']);
             $pdf->setFooterText();
             if ($this->args['logo'])
                 $pdf->setLogo($this->args['logo']);
