@@ -782,7 +782,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-04-15
+     * @version 2018-11-04
      */
     protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
@@ -808,8 +808,15 @@ class Dte extends \sasco\LibreDTE\PDF
                         $item['NmbItem'] .= $item['DscItem'];
                     }
                 }
-                if (!in_array($col, $titulos_keys) or ($dte_exento and $col=='IndExe'))
+                if ($col=='DescuentoPct' and !empty($item['DescuentoPct'])) {
+                    $item['DescuentoMonto'] = $item['DescuentoPct'].'%';
+                }
+                if ($col=='RecargoPct' and !empty($item['RecargoPct'])) {
+                    $item['RecargoMonto'] = $item['RecargoPct'].'%';
+                }
+                if (!in_array($col, $titulos_keys) or ($dte_exento and $col=='IndExe')) {
                     unset($item[$col]);
+                }
             }
             // ajustes a IndExe
             if (isset($item['IndExe'])) {
@@ -824,12 +831,14 @@ class Dte extends \sasco\LibreDTE\PDF
                 $item_default[$key] = false;
             $item = array_merge($item_default, $item);
             // si hay código de item se extrae su valor
-            if ($item['CdgItem'])
+            if ($item['CdgItem']) {
                 $item['CdgItem'] = $item['CdgItem']['VlrCodigo'];
+            }
             // dar formato a números
             foreach (['QtyItem', 'PrcItem', 'DescuentoMonto', 'RecargoMonto', 'MontoItem'] as $col) {
-                if ($item[$col])
-                    $item[$col] = $this->num($item[$col]);
+                if ($item[$col]) {
+                    $item[$col] = is_numeric($item[$col]) ? $this->num($item[$col]) : $item[$col];
+                }
             }
         }
         // opciones
