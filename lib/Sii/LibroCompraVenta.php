@@ -756,7 +756,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-12
      */
-    private function getDetalle()
+    public function getDetalle()
     {
         if ($this->caratula['TipoOperacion']=='VENTA') {
             $omitir = [35, 38, 39, 41, 105, 500, 501, 919, 920, 922, 924];
