@@ -152,8 +152,8 @@ Contacto y redes sociales
 
 - Sitio web: <https://libredte.cl>
 - Documentación: <https://wiki.libredte.cl>
-- Twitter: <https://twitter.com/LibreDTE>
 - Facebook: <https://www.facebook.com/LibreDTE>
+- Youtube: <https://www.youtube.com/c/LibredteCl>
+- Twitter: <https://twitter.com/LibreDTE>
 - Google+: <https://plus.google.com/u/0/101078963971350176990/about>
 - Linkedin: <https://www.linkedin.com/grp/home?gid=8403251>
-- Youtube: <https://www.youtube.com/channel/UCnh5duQUXmo4l8AD28PakiQ>
