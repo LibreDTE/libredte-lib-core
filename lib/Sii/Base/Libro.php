@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Base;
 /**
  * Clase base para los libros XML
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-10-06
+ * @version 2018-11-07
  */
 abstract class Libro extends Envio
 {
@@ -51,6 +51,17 @@ abstract class Libro extends Envio
     public function cantidad()
     {
         return count($this->detalles);
+    }
+
+    /**
+     * Método que entrega el detalle del libro
+     * @return Arreglo con los datos de cada detalle del libro
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2018-11-07
+     */
+    public function getDetalle()
+    {
+        return $this->detalles;
     }
 
 }
