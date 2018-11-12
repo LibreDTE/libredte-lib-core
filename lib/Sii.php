@@ -498,7 +498,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-28
+     * @version 2018-11-12
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -506,24 +506,25 @@ class Sii
             $retry = (int)$args;
             $args = null;
         }
-        if (!$retry)
+        if (!$retry) {
             $retry = self::$retry;
-        if ($args and !is_array($args))
+        }
+        if ($args and !is_array($args)) {
             $args = [$args];
+        }
+        $options = ['cache_wsdl' => WSDL_CACHE_DISK];
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
                 $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
                 \sasco\LibreDTE\Log::write(Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
-            $options = ['stream_context' => stream_context_create([
+            $options['stream_context'] = stream_context_create([
                 'ssl' => [
                     'verify_peer' => false,
                     'verify_peer_name' => false,
                     'allow_self_signed' => true
                 ]
-            ])];
-        } else {
-            $options = [];
+            ]);
         }
         try {
             $soap = new \SoapClient(self::wsdl($wsdl), $options);
