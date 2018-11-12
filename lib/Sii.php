@@ -399,7 +399,7 @@ class Sii
     /**
      * Método que permite asignar el nombre del servidor del SII que se
      * usará para las consultas al SII
-     * @param servidor Servidor que se usará, si es https://maullin2.sii.cl, entonces se debe pasar como valor maullin2
+     * @param servidor Servidor que se usará: maullin (certificación) o palena (producción)
      * @param certificacion Permite definir si se está cambiando el servidor de certificación o el de producción
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-09-14
