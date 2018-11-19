@@ -1429,12 +1429,12 @@ class Dte
                     );
                     // aplicar descuento
                     if ($d['DescuentoPct']) {
-                        $d['DescuentoMonto'] = round($d['MontoItem'] * (int)$d['DescuentoPct']/100);
+                        $d['DescuentoMonto'] = round($d['MontoItem'] * (float)$d['DescuentoPct']/100);
                     }
                     $d['MontoItem'] -= $d['DescuentoMonto'];
                     // aplicar recargo
                     if ($d['RecargoPct']) {
-                        $d['RecargoMonto'] = round($d['MontoItem'] * (int)$d['RecargoPct']/100);
+                        $d['RecargoMonto'] = round($d['MontoItem'] * (float)$d['RecargoPct']/100);
                     }
                     $d['MontoItem'] += $d['RecargoMonto'];
                     // aproximar monto del item
