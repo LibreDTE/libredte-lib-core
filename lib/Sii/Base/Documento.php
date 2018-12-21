@@ -165,14 +165,19 @@ abstract class Documento
      * Método que entrega un arreglo con los datos del documento XML
      * @return Arreglo con datos del documento XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-22
+     * @version 2018-12-20
      */
     public function toArray()
     {
-        if (!$this->xml)
+        if (!$this->xml and $this->xml_data) {
+            $this->loadXML($this->xml_data);
+        }
+        if (!$this->xml) {
             return false;
-        if (!$this->arreglo)
+        }
+        if (!$this->arreglo) {
             $this->arreglo = $this->xml->toArray();
+        }
         return $this->arreglo;
     }
 
