@@ -1732,9 +1732,9 @@ class Dte
         $datos['Encabezado']['IdDoc']['TpoTranCompra'] = false;
         $datos['Encabezado']['IdDoc']['TpoTranVenta'] = false;
         // si es boleta no nominativa se deja sólo el RUT en el campo del receptor
-        if ($datos['Encabezado']['Receptor']['RUTRecep']=='66666666-6') {
+        /*if ($datos['Encabezado']['Receptor']['RUTRecep']=='66666666-6') {
             $datos['Encabezado']['Receptor'] = ['RUTRecep'=>'66666666-6'];
-        }
+        }*/
         // ajustar las referencias si existen
         if (!empty($datos['Referencia'])) {
             if (!isset($datos['Referencia'][0])) {
