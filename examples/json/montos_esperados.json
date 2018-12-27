@@ -114,6 +114,10 @@
         "MntExe": 50,
         "MntTotal": 50
     },
+    "110_002_otra_moneda": {
+        "MntExe": 50,
+        "MntTotal": 50
+    },
     "111_001_anula_nota_credito": {
         "MntExe": 50,
         "MntTotal": 50
