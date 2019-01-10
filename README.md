@@ -102,6 +102,8 @@ La documentación está disponible en formato HTML generada con Doxygen en:
 
 Los ejemplos están disponibles en el directorio
 [examples](https://github.com/LibreDTE/libredte-lib/tree/master/examples).
+Los ejemplos que requieren archivos XML son casos donde el XML es entregado
+por el SII o bien casos de XML generados por la misma biblioteca.
 
 Términos y condiciones de uso
 -----------------------------
