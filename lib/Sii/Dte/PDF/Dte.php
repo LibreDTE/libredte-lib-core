@@ -831,7 +831,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 $item_default[$key] = false;
             $item = array_merge($item_default, $item);
             // si hay código de item se extrae su valor
-            if ($item['CdgItem']) {
+            if (!empty($item['CdgItem']['VlrCodigo'])){
                 $item['CdgItem'] = $item['CdgItem']['VlrCodigo'];
             }
             // dar formato a números
