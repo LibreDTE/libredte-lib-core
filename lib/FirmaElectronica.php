@@ -27,7 +27,7 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-09-22
+ * @version 2019-02-12
  */
 class FirmaElectronica
 {
@@ -181,8 +181,9 @@ class FirmaElectronica
      */
     public function getEmail()
     {
-        if (isset($this->data['subject']['emailAddress']))
+        if (isset($this->data['subject']['emailAddress'])) {
             return $this->data['subject']['emailAddress'];
+        }
         return $this->error('No fue posible obtener el Email (subject.emailAddress) de la firma');
     }
 
@@ -206,6 +207,37 @@ class FirmaElectronica
     public function getTo()
     {
         return date('Y-m-d H:i:s', $this->data['validTo_time_t']);
+    }
+
+    /**
+     * Método que entrega los días totales que la firma es válida
+     * @return int Días totales en que la firma es válida
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-02-12
+     */
+    public function getTotalDays()
+    {
+        $start = new \DateTime($this->getFrom());
+        $end = new \DateTime($this->getTo());
+        $diff = $start->diff($end);
+        return $diff->format('%a');
+    }
+
+    /**
+     * Método que entrega los días que faltan para que la firma expire
+     * @return int Días que faltan para que la firma expire
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-02-12
+     */
+    public function getExpirationDays($desde = null)
+    {
+        if (!$desde) {
+            $desde = date('Y-m-d H:i:s');
+        }
+        $start = new \DateTime($desde);
+        $end = new \DateTime($this->getTo());
+        $diff = $start->diff($end);
+        return $diff->format('%a');
     }
 
     /**
