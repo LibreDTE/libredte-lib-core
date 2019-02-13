@@ -586,7 +586,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-06-15
+     * @version 2019-02-13
      */
     protected function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
     {
@@ -594,14 +594,14 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($receptor['RUTRecep']) and $receptor['RUTRecep']!='66666666-6') {
             list($rut, $dv) = explode('-', $receptor['RUTRecep']);
             $this->setFont('', 'B', null);
-            $this->Texto('R.U.T.', $x);
+            $this->Texto(in_array($this->dte, [39, 41]) ? 'R.U.N.' : 'R.U.T.', $x);
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto($this->num($rut).'-'.$dv, $x+$offset+2);
         }
         if (!empty($receptor['RznSocRecep'])) {
             $this->setFont('', 'B', null);
-            $this->Texto('Señor(es)', $x);
+            $this->Texto(in_array($this->dte, [39, 41]) ? 'Nombre' : 'Razón social', $x);
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2, null, '', $x==10?105:0);
