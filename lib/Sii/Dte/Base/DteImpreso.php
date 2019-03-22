@@ -106,6 +106,7 @@ trait DteImpreso
         0 => 'COTIZACIÓN',
         'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
         'EM' => 'Entrada de mercadería (EM)',
+        'RDM' => 'Recepción de material/mercadería (RDM)',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     protected $formas_pago = [
