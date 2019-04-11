@@ -273,7 +273,7 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         if ($xml->STATUS != 0) {
             \sasco\LibreDTE\Log::write(
                 $xml->STATUS,
-                $error[$xml->STATUS]
+                $error[(int)$xml->STATUS]
             );
         }
         return $xml;
