@@ -22,7 +22,7 @@
         "ext-openssl": "*",
         "ext-soap": "*",
         "phpseclib/phpseclib": "2.0.6",
-        "tecnickcom/tcpdf": "6.2.13",
+        "tecnickcom/tcpdf": "6.2.26",
         "mike42/escpos-php": "2.0.1"
     },
     "require-dev": {
