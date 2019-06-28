@@ -235,7 +235,7 @@ class PDF extends \TCPDF
      * Agregar una tabla generada a través de código HTML al PDF
      * @todo Utilizar las opciones para definir estilo de la tabla HTML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2016-10-06
+     * @version 2019-06-28
      */
     private function addHTMLTable($headers, $data, $options = [])
     {
@@ -244,26 +244,29 @@ class PDF extends \TCPDF
         $buffer = '<table style="border:1px solid #333">';
         // Definir títulos de columnas
         $thead = isset($options['width']) and is_array($options['width']) and count($options['width']) == count($headers);
-        if ($thead)
+        if ($thead) {
             $buffer .= '<thead>';
+        }
         $buffer .= '<tr>';
         $i = 0;
-        foreach ($headers as &$col) {
+        foreach ($headers as $col) {
             $width = ($w and isset($w[$i])) ? (';width:'.$w[$i].'mm') : '';
             $align = isset($a[$i]) ? $a[$i] : 'center';
             $buffer .= '<th style="border-right:1px solid #333;border-bottom:1px solid #333;text-align:'.$align.$width.'"><strong>'.strip_tags($col).'</strong></th>';
             $i++;
         }
         $buffer .= '</tr>';
-        if ($thead)
+        if ($thead) {
             $buffer .= '</thead>';
+        }
         // Definir datos de la tabla
-        if ($thead)
+        if ($thead) {
             $buffer .= '<tbody>';
+        }
         foreach ($data as &$row) {
             $buffer .= '<tr>';
             $i = 0;
-            foreach ($row as &$col) {
+            foreach ($row as $col) {
                 $width = ($w and isset($w[$i])) ? (';width:'.$w[$i].'mm') : '';
                 $align = isset($a[$i]) ? $a[$i] : 'center';
                 $buffer .= '<td style="border-right:1px solid #333;text-align:'.$align.$width.'">'.$col.'</td>';
@@ -271,8 +274,9 @@ class PDF extends \TCPDF
             }
             $buffer .= '</tr>';
         }
-        if ($thead)
+        if ($thead) {
             $buffer .= '</tbody>';
+        }
         // Finalizar tabla
         $buffer .= '</table>';
         // generar tabla en HTML
