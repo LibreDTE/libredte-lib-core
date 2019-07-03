@@ -439,7 +439,7 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
                 $X509Certificate .= trim($l);
             }
         }
-        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE-----';
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim(str_replace(' ','',$X509Certificate)), 64, "\n", true)."\n".'-----END CERTIFICATE-----';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid and $DigestValue===base64_encode(sha1($SetDTE, true));
     }

@@ -1812,7 +1812,7 @@ class Dte
         $DigestValue = $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
         $SignatureValue = $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
         $X509Certificate = $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
-        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim($X509Certificate), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim(str_replace(' ','',$X509Certificate)), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid;
         //return $valid and $DigestValue===base64_encode(sha1($Documento->C14N(), true));
