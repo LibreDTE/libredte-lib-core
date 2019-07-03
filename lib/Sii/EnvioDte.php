@@ -396,18 +396,20 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que determina el estado de validación sobre el envío
      * @param datos Arreglo con datos para hacer las validaciones
      * @return Código del estado de la validación
-     * @warning No se está validando la firma del EnvioDTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-07
+     * @version 2019-07-03
      */
     public function getEstadoValidacion(array $datos = null)
     {
-        if (!$this->schemaValidate())
+        if (!$this->schemaValidate()) {
             return 1;
-        /*if (!$this->checkFirma())
-            return 2;*/
-        if ($datos and $this->getReceptor()!=$datos['RutReceptor'])
+        }
+        if (!$this->checkFirma()) {
+            return 2;
+        }
+        if ($datos and $this->getReceptor()!=$datos['RutReceptor']) {
             return 3;
+        }
         return 0;
     }
 
@@ -419,8 +421,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      */
     public function checkFirma()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return null;
+        }
         // listado de firmas del XML
         $Signatures = $this->xml->documentElement->getElementsByTagName('Signature');
         // verificar firma de SetDTE

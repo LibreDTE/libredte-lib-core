@@ -1768,19 +1768,21 @@ class Dte
      *  - RUT del emisor (si se pasó uno para comparar)
      *  - RUT del receptor (si se pasó uno para comparar)
      * @return Código del estado de la validación
-     * @warning No se está validando la firma
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2019-07-03
      */
     public function getEstadoValidacion(array $datos = null)
     {
-        /*if (!$this->checkFirma())
-            return 1;*/
+        if (!$this->checkFirma()) {
+            return 1;
+        }
         if (is_array($datos)) {
-            if (isset($datos['RUTEmisor']) and $this->getEmisor()!=$datos['RUTEmisor'])
+            if (isset($datos['RUTEmisor']) and $this->getEmisor()!=$datos['RUTEmisor']) {
                 return 2;
-            if (isset($datos['RUTRecep']) and $this->getReceptor()!=$datos['RUTRecep'])
+            }
+            if (isset($datos['RUTRecep']) and $this->getReceptor()!=$datos['RUTRecep']) {
                 return 3;
+            }
         }
         return 0;
     }
@@ -1790,12 +1792,13 @@ class Dte
      * @return =true si la firma del DTE es válida, =null si no se pudo determinar
      * @warning No se está verificando el valor del DigestValue del documento (sólo la firma de ese DigestValue)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-08
+     * @version 2019-07-03
      */
     public function checkFirma()
     {
-        if (!$this->xml)
+        if (!$this->xml) {
             return null;
+        }
         // obtener firma
         $Signature = $this->xml->documentElement->getElementsByTagName('Signature')->item(0);
         // preparar documento a validar
@@ -1803,7 +1806,6 @@ class Dte
         $Documento = new \sasco\LibreDTE\XML();
         $Documento->loadXML($D->C14N());
         $Documento->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
-        $Documento->documentElement->removeAttributeNS('http://www.sii.cl/SiiDte', '');
         $SignedInfo = new \sasco\LibreDTE\XML();
         $SignedInfo->loadXML($Signature->getElementsByTagName('SignedInfo')->item(0)->C14N());
         $SignedInfo->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
