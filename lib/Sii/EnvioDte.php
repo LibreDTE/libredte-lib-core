@@ -430,16 +430,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
         $SetDTE = $this->xml->documentElement->getElementsByTagName('SetDTE')->item(0)->C14N();
         $SignedInfo = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignedInfo')->item(0);
         $DigestValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('DigestValue')->item(0)->nodeValue;
-        $SignatureValue = $Signatures->item($Signatures->length-1)->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
-        $X509Certificate = $Signatures->item($Signatures->length-1)->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
-        if ($X509Certificate[1]==' ' or $X509Certificate[1]=="\t") {
-            $lineas = explode("\n", $X509Certificate);
-            $X509Certificate = '';
-            foreach($lineas as $l) {
-                $X509Certificate .= trim($l);
-            }
-        }
-        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim(str_replace(' ','',$X509Certificate)), 64, "\n", true)."\n".'-----END CERTIFICATE-----';
+        $SignatureValue = trim(str_replace(["\n", ' ', "\t"], '', $Signatures->item($Signatures->length-1)->getElementsByTagName('SignatureValue')->item(0)->nodeValue));
+        $X509Certificate = trim(str_replace(["\n", ' ', "\t"], '', $Signatures->item($Signatures->length-1)->getElementsByTagName('X509Certificate')->item(0)->nodeValue));
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap($X509Certificate, 64, "\n", true)."\n".'-----END CERTIFICATE-----';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid and $DigestValue===base64_encode(sha1($SetDTE, true));
     }

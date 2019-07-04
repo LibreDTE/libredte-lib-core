@@ -1792,7 +1792,7 @@ class Dte
      * @return =true si la firma del DTE es válida, =null si no se pudo determinar
      * @warning No se está verificando el valor del DigestValue del documento (sólo la firma de ese DigestValue)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-07-03
+     * @version 2019-07-04
      */
     public function checkFirma()
     {
@@ -1810,8 +1810,8 @@ class Dte
         $SignedInfo->loadXML($Signature->getElementsByTagName('SignedInfo')->item(0)->C14N());
         $SignedInfo->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
         $DigestValue = $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
-        $SignatureValue = trim(str_replace("\n", '', $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue));
-        $X509Certificate = trim(str_replace(["\n", ' '], '', $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue));
+        $SignatureValue = trim(str_replace(["\n", ' ', "\t"], '', $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue));
+        $X509Certificate = trim(str_replace(["\n", ' ', "\t"], '', $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue));
         $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap($X509Certificate, 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid;
