@@ -1810,9 +1810,9 @@ class Dte
         $SignedInfo->loadXML($Signature->getElementsByTagName('SignedInfo')->item(0)->C14N());
         $SignedInfo->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
         $DigestValue = $Signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
-        $SignatureValue = $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
-        $X509Certificate = $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue;
-        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap(trim(str_replace(' ','',$X509Certificate)), 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
+        $SignatureValue = trim(str_replace("\n", '', $Signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue));
+        $X509Certificate = trim(str_replace(["\n", ' '], '', $Signature->getElementsByTagName('X509Certificate')->item(0)->nodeValue));
+        $X509Certificate = '-----BEGIN CERTIFICATE-----'."\n".wordwrap($X509Certificate, 64, "\n", true)."\n".'-----END CERTIFICATE----- ';
         $valid = openssl_verify($SignedInfo->C14N(), base64_decode($SignatureValue), $X509Certificate) === 1 ? true : false;
         return $valid;
         //return $valid and $DigestValue===base64_encode(sha1($Documento->C14N(), true));
@@ -1889,32 +1889,35 @@ class Dte
     {
         // solicitar token
         $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
-        if (!$token)
+        if (!$token) {
             return false;
+        }
         // consultar estado dte
         $run = $Firma->getID();
-        if ($run===false)
+        if ($run===false) {
             return false;
+        }
         list($RutConsultante, $DvConsultante) = explode('-', $run);
         list($RutCompania, $DvCompania) = explode('-', $this->getEmisor());
         list($RutReceptor, $DvReceptor) = explode('-', $this->getReceptor());
         list($Y, $m, $d) = explode('-', $this->getFechaEmision());
         $xml = \sasco\LibreDTE\Sii::request('QueryEstDte', 'getEstDte', [
-            'RutConsultante'    => $RutConsultante,
-            'DvConsultante'     => $DvConsultante,
-            'RutCompania'       => $RutCompania,
-            'DvCompania'        => $DvCompania,
-            'RutReceptor'       => $RutReceptor,
-            'DvReceptor'        => $DvReceptor,
-            'TipoDte'           => $this->getTipo(),
-            'FolioDte'          => $this->getFolio(),
-            'FechaEmisionDte'   => $d.$m.$Y,
-            'MontoDte'          => $this->getMontoTotal(),
-            'token'             => $token,
+            'RutConsultante'  => $RutConsultante,
+            'DvConsultante'   => $DvConsultante,
+            'RutCompania'     => $RutCompania,
+            'DvCompania'      => $DvCompania,
+            'RutReceptor'     => $RutReceptor,
+            'DvReceptor'      => $DvReceptor,
+            'TipoDte'         => $this->getTipo(),
+            'FolioDte'        => $this->getFolio(),
+            'FechaEmisionDte' => $d.$m.$Y,
+            'MontoDte'        => $this->getMontoTotal(),
+            'token'           => $token,
         ]);
         // si el estado se pudo recuperar se muestra
-        if ($xml===false)
+        if ($xml===false) {
             return false;
+        }
         // entregar estado
         return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_HDR')[0];
     }
@@ -1931,27 +1934,29 @@ class Dte
     {
         // solicitar token
         $token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
-        if (!$token)
+        if (!$token) {
             return false;
+        }
         // consultar estado dte
         list($RutEmpresa, $DvEmpresa) = explode('-', $this->getEmisor());
         list($RutReceptor, $DvReceptor) = explode('-', $this->getReceptor());
         list($Y, $m, $d) = explode('-', $this->getFechaEmision());
         $xml = \sasco\LibreDTE\Sii::request('QueryEstDteAv', 'getEstDteAv', [
-            'RutEmpresa'       => $RutEmpresa,
-            'DvEmpresa'        => $DvEmpresa,
-            'RutReceptor'       => $RutReceptor,
-            'DvReceptor'        => $DvReceptor,
-            'TipoDte'           => $this->getTipo(),
-            'FolioDte'          => $this->getFolio(),
-            'FechaEmisionDte'   => $d.'-'.$m.'-'.$Y,
-            'MontoDte'          => $this->getMontoTotal(),
-            'FirmaDte'          => str_replace("\n", '', $this->getFirma()['SignatureValue']),
-            'token'             => $token,
+            'RutEmpresa'      => $RutEmpresa,
+            'DvEmpresa'       => $DvEmpresa,
+            'RutReceptor'     => $RutReceptor,
+            'DvReceptor'      => $DvReceptor,
+            'TipoDte'         => $this->getTipo(),
+            'FolioDte'        => $this->getFolio(),
+            'FechaEmisionDte' => $d.'-'.$m.'-'.$Y,
+            'MontoDte'        => $this->getMontoTotal(),
+            'FirmaDte'        => str_replace("\n", '', $this->getFirma()['SignatureValue']),
+            'token'           => $token,
         ]);
         // si el estado se pudo recuperar se muestra
-        if ($xml===false)
+        if ($xml===false) {
             return false;
+        }
         // entregar estado
         return (array)$xml->xpath('/SII:RESPUESTA/SII:RESP_BODY')[0];
     }
