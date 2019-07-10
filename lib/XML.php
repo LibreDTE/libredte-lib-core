@@ -222,12 +222,15 @@ class XML extends \DomDocument
     public function toArray(\DOMElement $dom = null, array &$array = null, $arregloNodos = false)
     {
         // determinar valores de parámetros
-        if (!$dom)
+        if (!$dom) {
             $dom = $this->documentElement;
-        if (!$dom)
+        }
+        if (!$dom) {
             return false;
-        if ($array===null)
+        }
+        if ($array===null) {
             $array = [$dom->tagName => null];
+        }
         // agregar atributos del nodo
         if ($dom->hasAttributes()) {
             $array[$dom->tagName]['@attributes'] = [];
@@ -235,7 +238,7 @@ class XML extends \DomDocument
                 $array[$dom->tagName]['@attributes'][$attribute->name] = $attribute->value;
             }
         }
-        // agregar nodos hijos
+        // si existen nodos hijos se agregan
         if ($dom->hasChildNodes()) {
             foreach($dom->childNodes as $child) {
                 if ($child instanceof \DOMText) {
@@ -243,22 +246,28 @@ class XML extends \DomDocument
                     if ($textContent!="") {
                         if ($dom->childNodes->length==1 and empty($array[$dom->tagName])) {
                             $array[$dom->tagName] = $textContent;
-                        } else
+                        } else {
                             $array[$dom->tagName]['@value'] = $textContent;
+                        }
                     }
                 }
                 else if ($child instanceof \DOMElement) {
                     $nodos_gemelos = $this->countTwins($dom, $child->tagName);
+                    // agregar nodo hijo directamente, ya que es el único nodo hijo con el mismo nombre de tag
                     if ($nodos_gemelos==1) {
-                        if ($arregloNodos)
+                        if ($arregloNodos) {
                             $this->toArray($child, $array);
-                        else
+                        } else {
                             $this->toArray($child, $array[$dom->tagName]);
+                        }
                     }
                     // crear arreglo con nodos hijos que tienen el mismo nombre de tag
+                    // WARNING falla al crear nodos con el mismo nombre dentro de otro
+                    // nodo que tiene más de uno con el mismo nombre (issue abierta)
                     else {
-                        if (!isset($array[$dom->tagName][$child->tagName]))
+                        if (!isset($array[$dom->tagName][$child->tagName])) {
                             $array[$dom->tagName][$child->tagName] = [];
+                        }
                         $siguiente = count($array[$dom->tagName][$child->tagName]);
                         $array[$dom->tagName][$child->tagName][$siguiente] = [];
                         $this->toArray($child, $array[$dom->tagName][$child->tagName][$siguiente], true);
@@ -271,7 +280,7 @@ class XML extends \DomDocument
     }
 
     /**
-     * Método que cuenta los nodos con el mismo nombre hijos deun DOMElement
+     * Método que cuenta los nodos con el mismo nombre hijos de un DOMElement
      * No sirve usar: $dom->getElementsByTagName($tagName)->length ya que esto
      * entrega todos los nodos con el nombre, sean hijos, nietos, etc.
      * @return Cantidad de nodos hijos con el mismo nombre en el DOMElement
@@ -282,8 +291,9 @@ class XML extends \DomDocument
     {
         $twins = 0;
         foreach ($dom->childNodes as $child) {
-            if ($child instanceof \DOMElement and $child->tagName==$tagName)
+            if ($child instanceof \DOMElement and $child->tagName==$tagName) {
                 $twins++;
+            }
         }
         return $twins;
     }

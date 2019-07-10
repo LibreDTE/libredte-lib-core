@@ -783,7 +783,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-11-04
+     * @version 2019-07-09
      */
     protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
@@ -808,6 +808,19 @@ class Dte extends \sasco\LibreDTE\PDF
                         $item['NmbItem'] .= '<span style="font-size:0.7em">'.$item['DscItem'].'</span>';
                     } else {
                         $item['NmbItem'] .= $item['DscItem'];
+                    }
+                }
+                if ($col=='Subcantidad' and !empty($item['Subcantidad'])) {
+                    //$item['NmbItem'] .= $html ? '<br/>' : "\n";
+                    if (!isset($item['Subcantidad'][0])) {
+                        $item['Subcantidad'] = [$item['Subcantidad']];
+                    }
+                    foreach ($item['Subcantidad'] as $Subcantidad) {
+                        if ($html) {
+                            $item['NmbItem'] .= '<br/><span style="font-size:0.7em">  - Subcantidad: '.$Subcantidad['SubQty'].' '.$Subcantidad['SubCod'].'</span>';
+                        } else {
+                            $item['NmbItem'] .= "\n".'  - Subcantidad: '.$Subcantidad['SubQty'].' '.$Subcantidad['SubCod'];
+                        }
                     }
                 }
                 if ($col=='UnmdRef' and !empty($item['UnmdRef']) and !empty($item['QtyRef'])) {
