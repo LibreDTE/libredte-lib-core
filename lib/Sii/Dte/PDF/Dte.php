@@ -48,6 +48,7 @@ class Dte extends \sasco\LibreDTE\PDF
         'IndExe' => ['title'=>'IE', 'align'=>'left', 'width'=>'7'],
         'QtyItem' => ['title'=>'Cant.', 'align'=>'right', 'width'=>15],
         'UnmdItem' => ['title'=>'Unidad', 'align'=>'left', 'width'=>22],
+        'QtyRef' => ['title'=>'Cant. Ref.', 'align'=>'right', 'width'=>22],
         'PrcItem' => ['title'=>'P. unitario', 'align'=>'right', 'width'=>22],
         'DescuentoMonto' => ['title'=>'Descuento', 'align'=>'right', 'width'=>22],
         'RecargoMonto' => ['title'=>'Recargo', 'align'=>'right', 'width'=>22],
@@ -786,8 +787,9 @@ class Dte extends \sasco\LibreDTE\PDF
      */
     protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
-        if (!isset($detalle[0]))
+        if (!isset($detalle[0])) {
             $detalle = [$detalle];
+        }
         $this->setFont('', '', $this->detalle_fuente);
         // titulos
         $titulos = [];
@@ -808,6 +810,9 @@ class Dte extends \sasco\LibreDTE\PDF
                         $item['NmbItem'] .= $item['DscItem'];
                     }
                 }
+                if ($col=='UnmdRef' and !empty($item['UnmdRef']) and !empty($item['QtyRef'])) {
+                    $item['QtyRef'] .= ' '.$item['UnmdRef'];
+                }
                 if ($col=='DescuentoPct' and !empty($item['DescuentoPct'])) {
                     $item['DescuentoMonto'] = $item['DescuentoPct'].'%';
                 }
@@ -820,15 +825,17 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             // ajustes a IndExe
             if (isset($item['IndExe'])) {
-                if ($item['IndExe']==1)
+                if ($item['IndExe']==1) {
                     $item['IndExe'] = 'EX';
-                else if ($item['IndExe']==2)
+                } else if ($item['IndExe']==2) {
                     $item['IndExe'] = 'NF';
+                }
             }
             // agregar todas las columnas que se podrían imprimir en la tabla
             $item_default = [];
-            foreach ($this->detalle_cols as $key => $info)
+            foreach ($this->detalle_cols as $key => $info) {
                 $item_default[$key] = false;
+            }
             $item = array_merge($item_default, $item);
             // si hay código de item se extrae su valor
             if (!empty($item['CdgItem']['VlrCodigo'])){
@@ -845,8 +852,9 @@ class Dte extends \sasco\LibreDTE\PDF
         $options = ['align'=>[]];
         $i = 0;
         foreach ($this->detalle_cols as $info) {
-            if (isset($info['width']))
+            if (isset($info['width'])) {
                 $options['width'][$i] = $info['width'];
+            }
             $options['align'][$i] = $info['align'];
             $i++;
         }
