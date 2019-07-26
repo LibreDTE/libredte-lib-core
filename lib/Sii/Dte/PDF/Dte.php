@@ -697,10 +697,12 @@ class Dte extends \sasco\LibreDTE\PDF
             if (!empty($Transporte['Patente']))
                 $transporte .= ' en vehículo '.$Transporte['Patente'];
             if (isset($Transporte['Chofer']) and is_array($Transporte['Chofer'])) {
-                if (!empty($Transporte['Chofer']['NombreChofer']))
+                if (!empty($Transporte['Chofer']['NombreChofer'])) {
                     $transporte .= ' con chofer '.$Transporte['Chofer']['NombreChofer'];
-                if (!empty($Transporte['Chofer']['RUTChofer']))
+                }
+                if (!empty($Transporte['Chofer']['RUTChofer'])) {
                     $transporte .= ' ('.$Transporte['Chofer']['RUTChofer'].')';
+                }
             }
             if ($transporte) {
                 $this->setFont('', 'B', null);
@@ -714,8 +716,9 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($Transporte['Aduana']) and is_array($Transporte['Aduana'])) {
             $col = 0;
             foreach ($Transporte['Aduana'] as $tag => $codigo) {
-                if ($codigo===false)
+                if ($codigo===false) {
                     continue;
+                }
                 $glosa = \sasco\LibreDTE\Sii\Aduana::getGlosa($tag);
                 $valor = \sasco\LibreDTE\Sii\Aduana::getValor($tag, $codigo);
                 if ($glosa!==false and $valor!==false) {
@@ -723,20 +726,26 @@ class Dte extends \sasco\LibreDTE\PDF
                         $col = abs($col-110);
                         $this->Ln();
                     }
+                    if (in_array($tag, ['CodClauVenta', 'CodViaTransp', 'CodPtoEmbarque', 'Tara', 'MntFlete', 'CodPaisRecep']) and $col) {
+                        $col = 0;
+                    }
                     $this->setFont('', 'B', null);
                     $this->Texto($glosa, $x+$col);
                     $this->Texto(':', $x+$offset+$col);
                     $this->setFont('', '', null);
                     $this->Texto($valor, $x+$offset+2+$col);
-                    if ($tag=='TipoBultos')
+                    if ($tag=='TipoBultos') {
                         $col = abs($col-110);
-                    if ($col)
+                    }
+                    if ($col or $tag=='CodModVenta') {
                         $this->Ln();
+                    }
                     $col = abs($col-110);
                 }
             }
-            if ($col)
+            if ($col) {
                 $this->Ln();
+            }
         }
     }
 

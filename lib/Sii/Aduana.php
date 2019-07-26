@@ -91,6 +91,9 @@ class Aduana
                 10 => 'Otra',
             ],
         ],
+        'NombreTransp' => 'Nomb. trans.',
+        'RUTCiaTransp' => 'RUT trans.',
+        'NomCiaTransp' => 'Comp. trans.',
         'CodPtoEmbarque' => [
             'glosa' => 'Embarque',
             'tabla' => 'puertos',
@@ -99,18 +102,22 @@ class Aduana
             'glosa' => 'Desembarq.',
             'tabla' => 'puertos',
         ],
+        'Tara' => 'Tara',
         'CodUnidMedTara' => [
             'glosa' => 'U. tara',
             'tabla' => 'unidades',
         ],
+        'PesoBruto' => 'Peso bruto',
         'CodUnidPesoBruto' => [
             'glosa' => 'U. p. bruto',
             'tabla' => 'unidades',
         ],
+        'PesoNeto' => 'Peso neto',
         'CodUnidPesoNeto' => [
             'glosa' => 'U. p. neto',
             'tabla' => 'unidades',
         ],
+        'TotItems' => 'Items',
         'TotBultos' => 'Total bultos',
         'TipoBultos' => [
             'glosa' => 'Bultos',
@@ -184,6 +191,8 @@ class Aduana
                 99 => 'S/EMBALAR',
             ],
         ],
+        'MntFlete' => 'Flete',
+        'MntSeguro' => 'Seguro',
         'CodPaisRecep' => [
             'glosa' => 'P. receptor',
             'tabla' => 'paises',
