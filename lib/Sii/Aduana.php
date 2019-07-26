@@ -29,12 +29,26 @@ namespace sasco\LibreDTE\Sii;
  *  - http://comext.aduana.cl:7001/codigos
  *  - https://www.aduana.cl/compendio-de-normas-anexo-51/aduana/2008-02-18/165942.html
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-08-08
+ * @version 2019-07-25
  */
 class Aduana
 {
 
     private static $tablas = [
+        'FmaPagExp' => [
+            'glosa' => 'Forma pago exp.',
+            'valor' => [
+                1 => 'COB1',
+                11 => 'ACRED',
+                12 => 'CBOF',
+                2 => 'COBRANZA',
+                21 => 'S/PAGO',
+                32 => 'ANTICIPO',
+                50 => 'ANT/COB',
+                60 => 'ANT/CRED',
+                80 => 'S/PAGO/COB',
+            ],
+        ],
         'CodModVenta' => [
             'glosa' => 'Mod. venta',
             'valor' => [
@@ -813,8 +827,9 @@ class Aduana
      */
     public static function getGlosa($tag)
     {
-        if (!isset(self::$tablas[$tag]))
+        if (!isset(self::$tablas[$tag])) {
             return false;
+        }
         return is_array(self::$tablas[$tag]) ? self::$tablas[$tag]['glosa'] : self::$tablas[$tag];
     }
 
@@ -825,17 +840,20 @@ class Aduana
      */
     public static function getValor($tag, $codigo)
     {
-        if (!isset(self::$tablas[$tag]))
+        if (!isset(self::$tablas[$tag])) {
             return false;
-        if (!is_array(self::$tablas[$tag]))
+        }
+        if (!is_array(self::$tablas[$tag])) {
             return $codigo;
+        }
         $tabla = isset(self::$tablas[$tag]['valor']) ? self::$tablas[$tag]['valor'] : self::$tablas[self::$tablas[$tag]['tabla']];
         if ($tag=='TipoBultos') {
             $valor = isset($tabla[$codigo['CodTpoBultos']]) ? $tabla[$codigo['CodTpoBultos']] : $codigo['CodTpoBultos'];
             $valor = $codigo['CantBultos'].' '.$valor;
             if (!empty($codigo['IdContainer'])) {
                 $valor .= ' ('.$codigo['IdContainer'].' / '.$codigo['Sello'].' / '.$codigo['EmisorSello'].')';
-            } else if (!empty($codigo['Marcas'])) {
+            }
+            else if (!empty($codigo['Marcas'])) {
                 $valor .= ' ('.$codigo['Marcas'].')';
             }
         } else {
@@ -868,8 +886,9 @@ class Aduana
     {
         self::$tablasInvertidas = [];
         foreach (self::$tablas as $tag => $info) {
-            if (is_string($info) or (!isset($info['valor']) and !isset($info['tabla'])))
+            if (is_string($info) or (!isset($info['valor']) and !isset($info['tabla']))) {
                 continue;
+            }
             $tabla = isset($info['valor']) ? $info['valor'] : self::$tablas[$info['tabla']];
             foreach ($tabla as &$val) {
                 $val = str_replace(
@@ -902,6 +921,76 @@ class Aduana
     public static function getNacionalidad($codigo)
     {
         return isset(self::$tablas['paises'][$codigo]) ? self::$tablas['paises'][$codigo] : $codigo;
+    }
+
+    /**
+     * Método que entrega los datos de las formas de pago
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getFormasDePago()
+    {
+        return self::$tablas['FmaPagExp']['valor'];
+    }
+
+    /**
+     * Método que entrega los datos de las modalidades de venta
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getModalidadesDeVenta()
+    {
+        return self::$tablas['CodModVenta']['valor'];
+    }
+
+    /**
+     * Método que entrega los datos de las clausulas de venta
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getClausulasDeVenta()
+    {
+        return self::$tablas['CodClauVenta']['valor'];
+    }
+
+    /**
+     * Método que entrega los datos de los tipos de transportes
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getTransportes()
+    {
+        return self::$tablas['CodViaTransp']['valor'];
+    }
+
+    /**
+     * Método que entrega los datos de los puertos
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getPuertos()
+    {
+        return self::$tablas['puertos'];
+    }
+
+    /**
+     * Método que entrega los datos de las unidades
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getUnidades()
+    {
+        return self::$tablas['unidades'];
+    }
+
+    /**
+     * Método que entrega los datos de los tipos de bultos
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-07-25
+     */
+    public static function getBultos()
+    {
+        return self::$tablas['TipoBultos']['valor'];
     }
 
 }
