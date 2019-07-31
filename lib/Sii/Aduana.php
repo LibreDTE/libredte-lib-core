@@ -94,14 +94,19 @@ class Aduana
         'NombreTransp' => 'Nomb. trans.',
         'RUTCiaTransp' => 'RUT trans.',
         'NomCiaTransp' => 'Comp. trans.',
+        'IdAdicTransp' => 'Trans. Ad.',
+        'Booking' => 'Booking',
+        'Operador' => 'Operador',
         'CodPtoEmbarque' => [
             'glosa' => 'Embarque',
             'tabla' => 'puertos',
         ],
+        'IdAdicPtoEmb' => 'Embarq. Ad.',
         'CodPtoDesemb' => [
             'glosa' => 'Desembarq.',
             'tabla' => 'puertos',
         ],
+        'IdAdicPtoDesemb' => 'Desemb. Ad.',
         'Tara' => 'Tara',
         'CodUnidMedTara' => [
             'glosa' => 'U. tara',

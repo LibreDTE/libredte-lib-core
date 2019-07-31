@@ -726,9 +726,9 @@ class Dte extends \sasco\LibreDTE\PDF
                         $col = abs($col-110);
                         $this->Ln();
                     }
-                    if (in_array($tag, ['CodClauVenta', 'CodViaTransp', 'CodPtoEmbarque', 'Tara', 'MntFlete', 'CodPaisRecep']) and $col) {
+                    /*if (in_array($tag, ['CodClauVenta', 'CodViaTransp', 'CodPtoEmbarque', 'Tara', 'MntFlete', 'CodPaisRecep']) and $col) {
                         $col = 0;
-                    }
+		    }*/
                     $this->setFont('', 'B', null);
                     $this->Texto($glosa, $x+$col);
                     $this->Texto(':', $x+$offset+$col);
@@ -737,7 +737,7 @@ class Dte extends \sasco\LibreDTE\PDF
                     if ($tag=='TipoBultos') {
                         $col = abs($col-110);
                     }
-                    if ($col or $tag=='CodModVenta') {
+                    if ($col) {
                         $this->Ln();
                     }
                     $col = abs($col-110);
