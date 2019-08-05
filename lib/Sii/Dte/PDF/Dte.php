@@ -295,7 +295,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-11-04
+     * @version 2019-08-05
      */
     private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
     {
@@ -316,7 +316,7 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($this->casa_matriz)) {
             $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, null, '', $width-2);
         }
-        $this->MultiTexto($this->getTipo($dte['Encabezado']['IdDoc']['TipoDTE']).' N° '.$dte['Encabezado']['IdDoc']['Folio'], $x, null, '', $width-2);
+        $this->MultiTexto($this->getTipo($dte['Encabezado']['IdDoc']['TipoDTE'], $dte['Encabezado']['IdDoc']['Folio']).' N° '.$dte['Encabezado']['IdDoc']['Folio'], $x, null, '', $width-2);
         $this->MultiTexto('Fecha: '.date('d/m/Y', strtotime($dte['Encabezado']['IdDoc']['FchEmis'])), $x, null, '', $width-2);
         // si no es boleta no nominativa se agregan datos receptor
         if ($dte['Encabezado']['Receptor']['RUTRecep']!='66666666-6') {
@@ -465,7 +465,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho de la información del emisor
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-02
+     * @version 2019-08-05
      */
     protected function agregarFolio($rut, $tipo, $folio, $sucursal_sii = null, $x = 130, $y = 15, $w = 70, $font_size = null, array $color = null)
     {
@@ -478,7 +478,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->setFont ('', 'B', $font_size ? $font_size : 15);
         $this->MultiTexto('R.U.T.: '.$this->num($rut).'-'.$dv, $x, $y+4, 'C', $w);
         $this->setFont('', 'B', $font_size ? $font_size : 12);
-        $this->MultiTexto($this->getTipo($tipo), $x, null, 'C', $w);
+        $this->MultiTexto($this->getTipo($tipo, $folio), $x, null, 'C', $w);
         $this->setFont('', 'B', $font_size ? $font_size : 15);
         $this->MultiTexto('N° '.$folio, $x, null, 'C', $w);
         // dibujar rectángulo rojo

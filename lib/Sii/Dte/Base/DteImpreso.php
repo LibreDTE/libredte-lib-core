@@ -103,7 +103,10 @@ trait DteImpreso
         922 => 'OTROS REGISTROS (DISMINUYE DÉBITO)',
         924 => 'RESUMEN VENTAS DE INTERNACIONALES PASAJES SIN FACTURA',
         // códigos de LibreDTE
-        0 => 'COTIZACIÓN',
+        0 => [
+            0 => 'COTIZACIÓN',
+            110 => 'FACTURA PROFORMA',
+        ],
         'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
         'EM' => 'Entrada de mercadería (EM)',
         'RDM' => 'Recepción de material/mercadería (RDM)',
@@ -195,16 +198,42 @@ trait DteImpreso
     /**
      * Método que entrega la glosa del tipo de documento
      * @param tipo Código del tipo de documento
+     * @param folio Folio del tipo de documento (usado al ser generados a partir de borradores en formato libredte)
      * @return Glosa del tipo de documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-11-18
+     * @version 2019-08-05
      */
-    protected function getTipo($tipo)
+    protected function getTipo($tipo, $folio = 0)
     {
+        // el tipo no es númerico y no está asignado como un tipo
+        // probablemente se pasó el nombre del tipo de documento directamente
+        // útil en referencias que no son estándares y no están listadas en
+        // los tipos de documentos reconocidos por LibreDTE
         if (!is_numeric($tipo) and !isset($this->tipos[$tipo])) {
             return $tipo;
         }
-        return isset($this->tipos[$tipo]) ? strtoupper($this->tipos[$tipo]) : 'Documento '.$tipo;
+        // si no está el tipo de documento en el listado se entrega un
+        // nombre genérico usando el código del tipo
+        if (!isset($this->tipos[$tipo])) {
+            return 'Documento '.$tipo;
+        }
+        // si el tipo existe y es un string, entonces es el nombre del tipo de
+        // documento
+        if (is_string($this->tipos[$tipo])) {
+            return strtoupper($this->tipos[$tipo]);
+        }
+        // si el tipo es 0, entonces es una cotización, la cual puede tener
+        // diferente nombre según el tipo de documento, este se indica en el
+        // folio del documento si existe, si no se entrega el tipo estándar
+        if (!$tipo) {
+            if (is_string($folio) and strpos($folio, '-')) {
+                list($tipo, $folio) = explode('-', $folio);
+                if (isset($this->tipos[0][$tipo])) {
+                    return $this->tipos[0][$tipo];
+                }
+            }
+            return $this->tipos[0][0];
+        }
     }
 
     /**
