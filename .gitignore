@@ -12,6 +12,7 @@ lib/Sii/Dte/ESCPOS/
 lib/Sii/Dte/VerificadorDatos.php
 lib/Sii/Lce
 lib/Sii/Navegador.php
+lib/Sii/Comunas.php
 
 # ejemplos no disponibles (funcionalidades no existen)
 examples/035-generar_escpos.php
