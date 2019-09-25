@@ -62,6 +62,12 @@ class RegistroCompraVenta
         6 => 'Compras sin derecho a crédito',
     ]; ///< Tipos de transacciones o caracterizaciones/clasificaciones de las compras
 
+    public static $estados_ok = [
+        7,  // Evento registrado previamente
+        8,  // Pasados 8 días después de la recepción no es posible registrar reclamos o eventos
+        27, // No se puede registrar un evento (acuse de recibo, reclamo o aceptación de contenido) de un DTE pagado al contado o gratuito
+    ]; ///< Código de estado de respuesta de la asignación de estado que son considerados como OK
+
     private static $wsdl = [
         'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
         'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
