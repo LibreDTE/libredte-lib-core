@@ -1695,7 +1695,7 @@ class Dte
      * Método que normaliza las boletas electrónicas, dte 39 y 41
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-06-15
+     * @version 2019-09-30
      */
     private function normalizar_boletas(array &$datos)
     {
@@ -1731,10 +1731,6 @@ class Dte
         $datos['Encabezado']['RUTSolicita'] = false;
         $datos['Encabezado']['IdDoc']['TpoTranCompra'] = false;
         $datos['Encabezado']['IdDoc']['TpoTranVenta'] = false;
-        // si es boleta no nominativa se deja sólo el RUT en el campo del receptor
-        /*if ($datos['Encabezado']['Receptor']['RUTRecep']=='66666666-6') {
-            $datos['Encabezado']['Receptor'] = ['RUTRecep'=>'66666666-6'];
-        }*/
         // ajustar las referencias si existen
         if (!empty($datos['Referencia'])) {
             if (!isset($datos['Referencia'][0])) {
