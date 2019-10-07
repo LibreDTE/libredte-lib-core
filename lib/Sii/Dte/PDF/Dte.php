@@ -60,6 +60,7 @@ class Dte extends \sasco\LibreDTE\PDF
         57 => 'Papel contínuo 57mm',
         75 => 'Papel contínuo 75mm',
         80 => 'Papel contínuo 80mm',
+        110 => 'Papel contínuo 110mm',
     ]; ///< Tamaño de papel que es soportado
 
     /**
@@ -78,7 +79,7 @@ class Dte extends \sasco\LibreDTE\PDF
     /**
      * Método que asigna la ubicación del logo de la empresa
      * @param logo URI del logo (puede ser local o en una URL)
-     * @param posicion Posición respecto a datos del emisor (=0 izq, =1 arriba)
+     * @param posicion Posición respecto a datos del emisor (=0 izq, =1 arriba). Nota: parámetro válido sólo para formato hoja carta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-04
      */
@@ -92,6 +93,7 @@ class Dte extends \sasco\LibreDTE\PDF
 
     /**
      * Método que asigna la posición del detalle del Item respecto al nombre
+     * Nota: método válido sólo para formato hoja carta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-05
      */
@@ -102,6 +104,7 @@ class Dte extends \sasco\LibreDTE\PDF
 
     /**
      * Método que asigna el tamaño de la fuente para el detalle
+     * Nota: método válido sólo para formato hoja carta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-03
      */
@@ -112,6 +115,7 @@ class Dte extends \sasco\LibreDTE\PDF
 
     /**
      * Método que asigna el ancho e las columnas del detalle desde un arreglo
+     * Nota: método válido sólo para formato hoja carta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-03
      */
@@ -126,6 +130,7 @@ class Dte extends \sasco\LibreDTE\PDF
 
     /**
      * Método que asigna si el tumbre va al pie (por defecto) o va pegado al detalle
+     * Nota: método válido sólo para formato hoja carta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-10-05
      */
@@ -140,23 +145,18 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-13
+     * @version 2019-10-06
      */
     public function agregar(array $dte, $timbre = null)
     {
         $this->dte = $dte['Encabezado']['IdDoc']['TipoDTE'];
-        // papel hoja carta
-        if (!$this->papelContinuo) {
-            $this->agregarNormal($dte, $timbre);
+        $papel_tipo = (int)$this->papelContinuo;
+        $method = 'agregar_papel_'.$papel_tipo;
+        if (!method_exists($this, $method)) {
+            $tipo = !empty(self::$papel[$papel_tipo]) ? self::$papel[$papel_tipo] : $papel_tipo;
+            throw new \Exception('Papel de tipo "'.$tipo.'" no está disponible');
         }
-        // papel contínuo 57mm
-        else if ($this->papelContinuo==57) {
-            $this->agregarContinuo57($dte, $timbre);
-        }
-        // papel contínuo 75 o 80mm
-        else {
-            $this->agregarContinuo($dte, $timbre, $this->papelContinuo);
-        }
+        $this->$method($dte, $timbre);
     }
 
     /**
@@ -166,7 +166,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2017-11-07
      */
-    private function agregarNormal(array $dte, $timbre)
+    private function agregar_papel_0(array $dte, $timbre)
     {
         // agregar página para la factura
         $this->AddPage();
@@ -178,9 +178,9 @@ class Dte extends \sasco\LibreDTE\PDF
             $dte['Encabezado']['IdDoc']['Folio'],
             !empty($dte['Encabezado']['Emisor']['CmnaOrigen']) ? $dte['Encabezado']['Emisor']['CmnaOrigen'] : null
         );
-        // datos del documento
         $this->setY(max($y));
         $this->Ln();
+        // datos del documento
         $y = [];
         $y[] = $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null);
         $y[] = $this->agregarReceptor($dte['Encabezado']);
@@ -218,87 +218,15 @@ class Dte extends \sasco\LibreDTE\PDF
     }
 
     /**
-     * Método que agrega una página con el documento tributario en papel
-     * contínuo
-     * @param dte Arreglo con los datos del XML (tag Documento)
-     * @param timbre String XML con el tag TED del DTE
-     * @param width Ancho del papel contínuo en mm
-     * @author Pablo Reyes (https://github.com/pabloxp)
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-24
-     */
-    private function agregarContinuo(array $dte, $timbre, $width, $height = 0)
-    {
-        // determinar alto de la página y agregarla
-        $this->logo = null;
-        $x_start = 1;
-        $y_start = 1;
-        $offset = 14;
-        // determinar alto de la página y agregarla
-        $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
-        // agregar cabecera del documento
-        $y = $this->agregarFolio(
-            $dte['Encabezado']['Emisor']['RUTEmisor'],
-            $dte['Encabezado']['IdDoc']['TipoDTE'],
-            $dte['Encabezado']['IdDoc']['Folio'],
-            $dte['Encabezado']['Emisor']['CmnaOrigen'],
-            $x_start, $y_start, $width-($x_start*4), 10,
-            [0,0,0]
-        );
-        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, $width-($x_start*45), 8, 9, [0,0,0]);
-        // datos del documento
-        $this->SetY($y);
-        $this->Ln();
-        $this->setFont('', '', 8);
-        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null, $x_start, $offset, false);
-        $this->agregarReceptor($dte['Encabezado'], $x_start, $offset);
-        $this->agregarTraslado(
-            !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
-            !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null,
-            $x_start, $offset
-        );
-        if (!empty($dte['Referencia'])) {
-            $this->agregarReferencia($dte['Referencia'], $x_start, $offset);
-        }
-        $this->Ln();
-        $this->agregarDetalleContinuo($dte['Detalle']);
-        if (!empty($dte['DscRcgGlobal'])) {
-            $this->Ln();
-            $this->Ln();
-            $this->agregarSubTotal($dte['Detalle'], $x_start);
-            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
-        }
-        if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
-            $this->Ln();
-            $this->Ln();
-            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
-        }
-        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 23, 17);
-        // agregar acuse de recibo y leyenda cedible
-        if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
-            $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
-            $this->agregarLeyendaDestinoContinuo($dte['Encabezado']['IdDoc']['TipoDTE']);
-        }
-        // agregar timbre
-        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
-        $this->agregarTimbre($timbre, -10, $x_start, $y+6, 70, 6);
-        // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
-        // que se logró determinar para crear la página con el alto correcto
-        if (!$height) {
-            $this->deletePage($this->PageNo());
-            $this->agregarContinuo($dte, $timbre, $width, $this->getY()+30);
-        }
-    }
-
-    /**
      * Método que agrega una página con el documento tributario
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2019-08-05
      */
-    private function agregarContinuo57(array $dte, $timbre, $width = 57, $height = 0)
+    private function agregar_papel_57(array $dte, $timbre, $height = 0)
     {
+        $width = 57;
         // determinar alto de la página y agregarla
         $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
         $x = 1;
@@ -372,7 +300,175 @@ class Dte extends \sasco\LibreDTE\PDF
         // que se logró determinar para crear la página con el alto correcto
         if (!$height) {
             $this->deletePage($this->PageNo());
-            $this->agregarContinuo57($dte, $timbre, $width, $this->getY()+30);
+            $this->agregar_papel_57($dte, $timbre, $this->getY()+30);
+        }
+    }
+
+    /**
+     * Método que agrega una página con el documento tributario en papel
+     * contínuo de 75mm
+     * @param dte Arreglo con los datos del XML (tag Documento)
+     * @param timbre String XML con el tag TED del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-10-06
+     */
+    private function agregar_papel_75(array $dte, $timbre)
+    {
+        $this->agregar_papel_80($dte, $timbre, 75);
+    }
+
+    /**
+     * Método que agrega una página con el documento tributario en papel
+     * contínuo de 80mm
+     * @param dte Arreglo con los datos del XML (tag Documento)
+     * @param timbre String XML con el tag TED del DTE
+     * @param width Ancho del papel contínuo en mm (es parámetro porque se usa el mismo método para 75mm)
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-10-06
+     */
+    private function agregar_papel_80(array $dte, $timbre, $width = 80, $height = 0)
+    {
+        // si hay logo asignado se usa centrado
+        if (!empty($this->logo)) {
+            $this->logo['posicion'] = 'C';
+        }
+        // determinar alto de la página y agregarla
+        $x_start = 1;
+        $y_start = 1;
+        $offset = 14;
+        // determinar alto de la página y agregarla
+        $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
+        // agregar cabecera del documento
+        $y = $this->agregarFolio(
+            $dte['Encabezado']['Emisor']['RUTEmisor'],
+            $dte['Encabezado']['IdDoc']['TipoDTE'],
+            $dte['Encabezado']['IdDoc']['Folio'],
+            $dte['Encabezado']['Emisor']['CmnaOrigen'],
+            $x_start, $y_start, $width-($x_start*4), 10,
+            [0,0,0]
+        );
+        $y = $this->agregarEmisor($dte['Encabezado']['Emisor'], $x_start, $y+2, $width-($x_start*45), 8, 9, [0,0,0]);
+        // datos del documento
+        $this->SetY($y);
+        $this->Ln();
+        $this->setFont('', '', 8);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null, $x_start, $offset, false);
+        $this->agregarReceptor($dte['Encabezado'], $x_start, $offset);
+        $this->agregarTraslado(
+            !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
+            !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null,
+            $x_start, $offset
+        );
+        if (!empty($dte['Referencia'])) {
+            $this->agregarReferencia($dte['Referencia'], $x_start, $offset);
+        }
+        $this->Ln();
+        $this->agregarDetalleContinuo($dte['Detalle']);
+        if (!empty($dte['DscRcgGlobal'])) {
+            $this->Ln();
+            $this->Ln();
+            $this->agregarSubTotal($dte['Detalle'], $x_start);
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
+        }
+        if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
+            $this->Ln();
+            $this->Ln();
+            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
+        }
+        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 23, 17);
+        // agregar acuse de recibo y leyenda cedible
+        if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+            $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
+            $this->agregarLeyendaDestinoContinuo($dte['Encabezado']['IdDoc']['TipoDTE']);
+        }
+        // agregar timbre
+        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
+        $this->agregarTimbre($timbre, -10, $x_start, $y+6, 70, 6);
+        // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
+        // que se logró determinar para crear la página con el alto correcto
+        if (!$height) {
+            $this->deletePage($this->PageNo());
+            $this->agregar_papel_80($dte, $timbre, $width, $this->getY()+30);
+        }
+    }
+
+    /**
+     * Método que agrega una página con el documento tributario en papel
+     * contínuo de 110mm
+     * @param dte Arreglo con los datos del XML (tag Documento)
+     * @param timbre String XML con el tag TED del DTE
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2019-10-06
+     */
+    private function agregar_papel_110(array $dte, $timbre, $height = 0)
+    {
+        $width = 110;
+        if (!empty($this->logo)) {
+            $this->logo['posicion'] = 1;
+        }
+        // determinar alto de la página y agregarla
+        $x_start = 1;
+        $y_start = 1;
+        $offset = 14;
+        // determinar alto de la página y agregarla
+        $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
+        // agregar cabecera del documento
+        $y[] = $this->agregarEmisor($dte['Encabezado']['Emisor'], 1, 2, 20, 30, 9, [0,0,0]);
+        $y[] = $this->agregarFolio(
+            $dte['Encabezado']['Emisor']['RUTEmisor'],
+            $dte['Encabezado']['IdDoc']['TipoDTE'],
+            $dte['Encabezado']['IdDoc']['Folio'],
+            !empty($dte['Encabezado']['Emisor']['CmnaOrigen']) ? $dte['Encabezado']['Emisor']['CmnaOrigen'] : null,
+            63,
+            2,
+            45,
+            9,
+            [0,0,0]
+        );
+        $this->SetY(max($y));
+        $this->Ln();
+        // datos del documento
+        $this->setFont('', '', 8);
+        $this->agregarDatosEmision($dte['Encabezado']['IdDoc'], !empty($dte['Encabezado']['Emisor']['CdgVendedor'])?$dte['Encabezado']['Emisor']['CdgVendedor']:null, $x_start, $offset, false);
+        $this->agregarReceptor($dte['Encabezado'], $x_start, $offset);
+        $this->agregarTraslado(
+            !empty($dte['Encabezado']['IdDoc']['IndTraslado']) ? $dte['Encabezado']['IdDoc']['IndTraslado'] : null,
+            !empty($dte['Encabezado']['Transporte']) ? $dte['Encabezado']['Transporte'] : null,
+            $x_start, $offset
+        );
+        if (!empty($dte['Referencia'])) {
+            $this->agregarReferencia($dte['Referencia'], $x_start, $offset);
+        }
+        $this->Ln();
+        $this->agregarDetalleContinuo($dte['Detalle'], 3, [1, 53, 73, 83], true);
+        if (!empty($dte['DscRcgGlobal'])) {
+            $this->Ln();
+            $this->Ln();
+            $this->agregarSubTotal($dte['Detalle'], $x_start);
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
+        }
+        if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
+            $this->Ln();
+            $this->Ln();
+            $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
+        }
+        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 61, 17);
+        // agregar observaciones
+        $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
+        // agregar timbre
+        $this->agregarTimbre($timbre, 2, 2, $y+6, 60, 6, 'S');
+        // agregar acuse de recibo y leyenda cedible
+        if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
+            $this->agregarAcuseRecibo(63, $y+6, 45, 40, 15);
+            $this->setFont('', 'B', 8);
+            $this->Texto('CEDIBLE'.($dte['Encabezado']['IdDoc']['TipoDTE']==52?' CON SU FACTURA':''), $x_start, $this->y+1, 'L');
+        }
+        // si el alto no se pasó, entonces es con autocálculo, se elimina esta página y se pasa el alto
+        // que se logró determinar para crear la página con el alto correcto
+        if (!$height) {
+            $this->deletePage($this->PageNo());
+            $this->agregar_papel_110($dte, $timbre, $this->getY()+30);
         }
     }
 
@@ -389,26 +485,45 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-06-15
+     * @version 2019-10-06
      */
     protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
     {
         // logo del documento
         if (isset($this->logo)) {
+            if (!empty($this->logo['posicion']) and $this->logo['posicion'] == 'C') {
+                $logo_w = null;
+                $logo_y = null;
+                $logo_position = 'C';
+                $logo_next_pointer = 'N';
+            } else {
+                $logo_w = !$this->logo['posicion'] ? $w_img : null;
+                $logo_y = $this->logo['posicion'] ? $w_img/2 : null;
+                $logo_position = '';
+                $logo_next_pointer = 'T';
+            }
             $this->Image(
                 $this->logo['uri'],
                 $x,
                 $y,
-                !$this->logo['posicion']?$w_img:null, $this->logo['posicion']?($w_img/2):null,
+                $logo_w,
+                $logo_y,
                 'PNG',
                 (isset($emisor['url'])?$emisor['url']:''),
-                'T'
+                $logo_next_pointer,
+                2,
+                300,
+                $logo_position
             );
-            if ($this->logo['posicion']) {
-                $this->SetY($this->y + ($w_img/2));
+            if (!empty($this->logo['posicion']) and $this->logo['posicion'] == 'C') {
                 $w += 40;
             } else {
-                $x = $this->x+3;
+                if ($this->logo['posicion']) {
+                    $this->SetY($this->y + ($w_img/2));
+                    $w += 40;
+                } else {
+                    $x = $this->x+3;
+                }
             }
         } else {
             $this->y = $y-2;
@@ -587,7 +702,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param receptor Arreglo con los datos del receptor (tag Receptor del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-02-13
+     * @version 2019-10-06
      */
     protected function agregarReceptor(array $Encabezado, $x = 10, $offset = 22)
     {
@@ -602,7 +717,7 @@ class Dte extends \sasco\LibreDTE\PDF
         }
         if (!empty($receptor['RznSocRecep'])) {
             $this->setFont('', 'B', null);
-            $this->Texto(in_array($this->dte, [39, 41]) ? 'Nombre' : 'Razón social', $x);
+            $this->Texto(in_array($this->dte, [39, 41]) ? 'Nombre' : ($x==10?'Razón social':'Razón soc.'), $x);
             $this->Texto(':', $x+$offset);
             $this->setFont('', '', null);
             $this->MultiTexto($receptor['RznSocRecep'], $x+$offset+2, null, '', $x==10?105:0);
@@ -891,12 +1006,15 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param detalle Arreglo con el detalle del documento (tag Detalle del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
-     * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-13
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2019-10-06
      */
-    protected function agregarDetalleContinuo($detalle, $x = 3)
+    protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [], $descripcion = false)
     {
+        if (!$offsets) {
+            $offsets = [1, 15, 35, 45];
+        }
         $this->SetY($this->getY()+1);
         $p1x = $x;
         $p1y = $this->y;
@@ -904,19 +1022,24 @@ class Dte extends \sasco\LibreDTE\PDF
         $p2y = $p1y;  // Use same y for a straight line
         $style = array('width' => 0.2,'color' => array(0, 0, 0));
         $this->Line($p1x, $p1y, $p2x, $p2y, $style);
-        $this->Texto($this->detalle_cols['NmbItem']['title'], $x+1, $this->y, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
-        $this->Texto($this->detalle_cols['PrcItem']['title'], $x+15, $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
-        $this->Texto($this->detalle_cols['QtyItem']['title'], $x+35, $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
-        $this->Texto($this->detalle_cols['MontoItem']['title'], $x+45, $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
+        $this->Texto($this->detalle_cols['NmbItem']['title'], $x+$offsets[0], $this->y, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
+        $this->Texto($this->detalle_cols['PrcItem']['title'], $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
+        $this->Texto($this->detalle_cols['QtyItem']['title'], $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
+        $this->Texto($this->detalle_cols['MontoItem']['title'], $x+$offsets[3], $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
         $this->Line($p1x, $p1y+4, $p2x, $p2y+4, $style);
-        if (!isset($detalle[0]))
+        if (!isset($detalle[0])) {
             $detalle = [$detalle];
+        }
         $this->SetY($this->getY()+2);
         foreach($detalle as  &$d) {
-            $this->MultiTexto($d['NmbItem'], $x+1, $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
-            $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+15, $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
-            $this->Texto($this->num($d['QtyItem']), $x+35, $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
-            $this->Texto($this->num($d['MontoItem']), $x+45, $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
+            $item = $d['NmbItem'];
+            if ($descripcion and !empty($d['DscItem'])) {
+                $item .= ': '.$d['DscItem'];
+            }
+            $this->MultiTexto($item, $x+$offsets[0], $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
+            $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
+            $this->Texto($this->num($d['QtyItem']), $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
+            $this->Texto($this->num($d['MontoItem']), $x+$offsets[3], $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
         }
         $this->Line($p1x, $this->y+4, $p2x, $this->y+4, $style);
     }
@@ -1141,9 +1264,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @param w Ancho del timbre
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-04-12
+     * @version 2019-10-06
      */
-    protected function agregarTimbre($timbre, $x_timbre = 10, $x = 10, $y = 190, $w = 70, $font_size = 8)
+    protected function agregarTimbre($timbre, $x_timbre = 10, $x = 10, $y = 190, $w = 70, $font_size = 8, $position = null)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         if ($timbre!==null) {
@@ -1156,7 +1279,7 @@ class Dte extends \sasco\LibreDTE\PDF
                 'module_height' => 1, // height of a single module in points
                 'fgcolor' => [0,0,0],
                 'bgcolor' => false, // [255,255,255]
-                'position' => $this->papelContinuo ? 'C' : 'S',
+                'position' => $position === null ? ($this->papelContinuo ? 'C' : 'S') : $position,
             ];
             $ecl = version_compare(phpversion(), '7.0.0', '<') ? -1 : $this->ecl;
             $this->write2DBarcode($timbre, 'PDF417,,'.$ecl, $x_timbre, $y, $w, 0, $style, 'B');
@@ -1182,9 +1305,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho del acuse de recibo
      * @param h Alto del acuse de recibo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-04-13
+     * @version 2019-10-06
      */
-    protected function agregarAcuseRecibo($x = 83, $y = 190, $w = 60, $h = 40)
+    protected function agregarAcuseRecibo($x = 83, $y = 190, $w = 60, $h = 40, $line = 25)
     {
         $y = (!$this->papelContinuo and !$this->timbre_pie) ? $this->x_fin_datos : $y;
         $this->SetTextColorArray([0,0,0]);
@@ -1193,15 +1316,15 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->Texto('Acuse de recibo', $x, $y+1, 'C', $w);
         $this->setFont('', 'B', 8);
         $this->Texto('Nombre', $x+2, $this->y+8);
-        $this->Texto('_________________________', $x+18);
+        $this->Texto(str_repeat('_', $line), $x+18);
         $this->Texto('RUN', $x+2, $this->y+6);
-        $this->Texto('_________________________', $x+18);
+        $this->Texto(str_repeat('_', $line), $x+18);
         $this->Texto('Fecha', $x+2, $this->y+6);
-        $this->Texto('_________________________', $x+18);
+        $this->Texto(str_repeat('_', $line), $x+18);
         $this->Texto('Recinto', $x+2, $this->y+6);
-        $this->Texto('_________________________', $x+18);
+        $this->Texto(str_repeat('_', $line), $x+18);
         $this->Texto('Firma', $x+2, $this->y+8);
-        $this->Texto('_________________________', $x+18);
+        $this->Texto(str_repeat('_', $line), $x+18);
         $this->setFont('', 'B', 7);
         $this->MultiTexto('El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4°, y la letra c) del Art. 5° de la Ley 19.983, acredita que la entrega de mercaderías o servicio (s) prestado (s) ha (n) sido recibido (s).'."\n", $x, $this->y+6, 'J', $w);
     }
