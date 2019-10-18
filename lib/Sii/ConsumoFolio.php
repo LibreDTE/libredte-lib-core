@@ -90,8 +90,9 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
     public function generar()
     {
         // si ya se había generado se entrega directamente
-        if ($this->xml_data)
+        if ($this->xml_data) {
             return $this->xml_data;
+        }
         // generar XML del envío
         $xmlEnvio = (new \sasco\LibreDTE\XML())->generate([
             'ConsumoFolios' => [
@@ -125,8 +126,9 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
     {
         $fecha = '9999-12-31';
         foreach ($this->detalles as &$d) {
-            if ($d['FchDoc'] < $fecha)
+            if ($d['FchDoc'] < $fecha) {
                 $fecha = $d['FchDoc'];
+            }
         }
         return $fecha;
     }
@@ -141,8 +143,9 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
     {
         $fecha = '0000-01-01';
         foreach ($this->detalles as &$d) {
-            if ($d['FchDoc'] > $fecha)
+            if ($d['FchDoc'] > $fecha) {
                 $fecha = $d['FchDoc'];
+            }
         }
         return $fecha;
     }
@@ -191,7 +194,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             if ($d['MntExe']) {
                 $Resumen[$d['TpoDoc']]['MntExento'] += $d['MntExe'];
             }
-            $Resumen[$d['TpoDoc']]['MntTotal'] += $d['MntTotal'];
+            $Resumen[$d['TpoDoc']]['MntTotal'] += (int)$d['MntTotal'];
             $Resumen[$d['TpoDoc']]['FoliosEmitidos']++;
             // ir guardando folios emitidos para luego crear rangos
             $RangoUtilizados[$d['TpoDoc']][] = $d['NroDoc'];
