@@ -414,7 +414,6 @@ class Dte extends \sasco\LibreDTE\PDF
         // determinar alto de la página y agregarla
         $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
         // agregar cabecera del documento
-        $y[] = $this->agregarEmisor($dte['Encabezado']['Emisor'], 1, 2, 20, 30, 9, [0,0,0]);
         $y[] = $this->agregarFolio(
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
@@ -426,6 +425,7 @@ class Dte extends \sasco\LibreDTE\PDF
             9,
             [0,0,0]
         );
+        $y[] = $this->agregarEmisor($dte['Encabezado']['Emisor'], 1, 2, 20, 30, 9, [0,0,0], $y[0]);
         $this->SetY(max($y));
         $this->Ln();
         // datos del documento
@@ -485,9 +485,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-10-06
+     * @version 2019-10-22
      */
-    protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null)
+    protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null, $h_folio = null, $w_all = null)
     {
         // logo del documento
         if (isset($this->logo)) {
@@ -532,18 +532,18 @@ class Dte extends \sasco\LibreDTE\PDF
         // agregar datos del emisor
         $this->setFont('', 'B', $font_size ? $font_size : 14);
         $this->SetTextColorArray($color===null?[32, 92, 144]:$color);
-        $this->MultiTexto(!empty($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', $w);
+        $this->MultiTexto(!empty($emisor['RznSoc']) ? $emisor['RznSoc'] : $emisor['RznSocEmisor'], $x, $this->y+2, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         $this->setFont('', 'B', $font_size ? $font_size : 9);
         $this->SetTextColorArray([0,0,0]);
-        $this->MultiTexto(!empty($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', $w);
+        $this->MultiTexto(!empty($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         $comuna = !empty($emisor['CmnaOrigen']) ? $emisor['CmnaOrigen'] : null;
         $ciudad = !empty($emisor['CiudadOrigen']) ? $emisor['CiudadOrigen'] : \sasco\LibreDTE\Chile::getCiudad($comuna);
-        $this->MultiTexto($emisor['DirOrigen'].($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', $w);
+        $this->MultiTexto($emisor['DirOrigen'].($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         if (!empty($emisor['Sucursal'])) {
-            $this->MultiTexto('Sucursal: '.$emisor['Sucursal'], $x, $this->y, 'L', $w);
+            $this->MultiTexto('Sucursal: '.$emisor['Sucursal'], $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         }
         if (!empty($this->casa_matriz)) {
-            $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, $this->y, 'L', $w);
+            $this->MultiTexto('Casa matriz: '.$this->casa_matriz, $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         }
         $contacto = [];
         if (!empty($emisor['Telefono'])) {
@@ -556,7 +556,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $contacto[] = $emisor['CorreoEmisor'];
         }
         if ($contacto) {
-            $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', $w);
+            $this->MultiTexto(implode(' / ', $contacto), $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
         }
         return $this->y;
     }
