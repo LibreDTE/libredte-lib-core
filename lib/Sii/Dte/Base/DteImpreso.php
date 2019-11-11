@@ -107,6 +107,7 @@ trait DteImpreso
             0 => 'COTIZACIÓN',
             110 => 'FACTURA PROFORMA',
         ],
+        'HEM' => 'HOJA DE ENTRADA DE MATERIALES (HEM)',
         'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
         'EM' => 'Entrada de mercadería (EM)',
         'RDM' => 'Recepción de material/mercadería (RDM)',
