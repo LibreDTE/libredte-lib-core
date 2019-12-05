@@ -61,7 +61,7 @@ class FirmaElectronica
      *
      * @param config Configuración para la clase, si no se especifica se tratará de determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-15
+     * @version 2019-12-04
      */
     public function __construct(array $config = [])
     {
@@ -76,25 +76,36 @@ class FirmaElectronica
         $this->config = array_merge([
             'file' => null,
             'pass' => null,
-            'data' => null,
             'wordwrap' => 64,
         ], $config);
-        // cargar firma electrónica desde el contenido del archivo .p12 si no
-        // se pasaron como datos del arreglo de configuración
-        if (!$this->config['data'] and $this->config['file']) {
-            if (is_readable($this->config['file'])) {
-                $this->config['data'] = file_get_contents($this->config['file']);
-            } else {
-                return $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
+        // leer datos de la firma electrónica desde configuración con índices: cert y pkey
+        if (!empty($this->config['cert']) and !empty($this->config['pkey'])) {
+            $this->certs = [
+                'cert' => $this->config['cert'],
+                'pkey' => $this->config['pkey'],
+            ];
+            unset($this->config['cert'], $this->config['pkey']);
+        }
+        // se pasó el archivo de la firma o bien los datos de la firma
+        else {
+            // cargar firma electrónica desde el contenido del archivo .p12 si no
+            // se pasaron como datos del arreglo de configuración
+            if (empty($this->config['data']) and $this->config['file']) {
+                if (is_readable($this->config['file'])) {
+                    $this->config['data'] = file_get_contents($this->config['file']);
+                } else {
+                    return $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
+                }
+            }
+            // leer datos de la firma desde el archivo que se ha pasado
+            if (!empty($this->config['data'])) {
+                if (openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
+                    return $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
+                }
+                unset($this->config['data']);
             }
         }
-        // leer datos de la firma electrónica
-        if ($this->config['data'] and openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
-            return $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
-        }
         $this->data = openssl_x509_parse($this->certs['cert']);
-        // quitar datos del contenido del archivo de la firma
-        unset($this->config['data']);
     }
 
     /**
