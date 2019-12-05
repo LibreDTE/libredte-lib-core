@@ -16,4 +16,3 @@ lib/Sii/Comunas.php
 
 # ejemplos no disponibles (funcionalidades no existen)
 examples/035-generar_escpos.php
-examples/999-navegador.php
