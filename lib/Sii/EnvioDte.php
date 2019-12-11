@@ -114,16 +114,16 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que realiza el envío del sobre con el o los DTEs al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-12-15
+     * @version 2019-12-10
      */
-    public function enviar()
+    public function enviar($retry = null, $gzip = false)
     {
         // si es boleta no se envía al SII
         if ($this->tipo) {
             return false;
         }
         // enviar al SII
-        return parent::enviar();
+        return parent::enviar($retry, $gzip);
     }
 
     /**
