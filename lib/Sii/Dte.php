@@ -1424,7 +1424,7 @@ class Dte
                     $d['QtyItem'] = 1;
                 if (empty($d['MontoItem'])) {
                     $d['MontoItem'] = $this->round(
-                        $d['QtyItem'] * $d['PrcItem'],
+                        (float)$d['QtyItem'] * (float)$d['PrcItem'],
                         $datos['Encabezado']['Totales']['TpoMoneda']
                     );
                     // aplicar descuento
