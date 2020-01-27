@@ -157,5 +157,4 @@ Contacto y redes sociales
 - Facebook: <https://www.facebook.com/LibreDTE>
 - Youtube: <https://www.youtube.com/c/LibredteCl>
 - Twitter: <https://twitter.com/LibreDTE>
-- Google+: <https://plus.google.com/u/0/101078963971350176990/about>
 - Linkedin: <https://www.linkedin.com/grp/home?gid=8403251>
