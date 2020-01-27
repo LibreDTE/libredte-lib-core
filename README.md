@@ -6,8 +6,8 @@ LibreDTE: Biblioteca PHP
 [![Monthly Downloads](https://poser.pugx.org/sasco/libredte/d/monthly)](https://packagist.org/packages/sasco/libredte)
 [![License](https://poser.pugx.org/sasco/libredte/license)](https://packagist.org/packages/sasco/libredte)
 
-LibreDTE es un proyecto que tiene por objetivo proveer facturación electrónica
-libre para Chile.
+LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica
+Libre para Chile.
 
 Aquí podrás encontrar la biblioteca escrita en lenguaje PHP para la interacción
 con el Servicio de Impuestos Internos (SII).
@@ -24,7 +24,7 @@ gratuitamente y usar la plataforma web de facturación. Si deseas acceder al
 código fuente de la aplicación web puedes hacerlo
 [aquí](https://github.com/LibreDTE/libredte-webapp).
 
-[Realiza una donación al proyecto](https://libredte.github.io/#donar)
+[Realiza una donación al proyecto](https://facturacionlibre.cl/#donar)
 
 Funcionalidades implementadas
 -----------------------------
@@ -94,12 +94,6 @@ O editando el archivo *composer.json* y agregando:
 
 Por el momento, la única versión disponible es la de desarrollo.
 
-Documentación
--------------
-
-La documentación está disponible en formato HTML generada con Doxygen en:
-<http://doc.libredte.cl>.
-
 Los ejemplos están disponibles en el directorio
 [examples](https://github.com/LibreDTE/libredte-lib/tree/master/examples).
 Los ejemplos que requieren archivos XML son casos donde el XML es entregado
@@ -153,8 +147,7 @@ Contacto y redes sociales
 -------------------------
 
 - Sitio web: <https://libredte.cl>
-- Documentación: <https://wiki.libredte.cl>
 - Facebook: <https://www.facebook.com/LibreDTE>
 - Youtube: <https://www.youtube.com/c/LibredteCl>
 - Twitter: <https://twitter.com/LibreDTE>
-- Linkedin: <https://www.linkedin.com/grp/home?gid=8403251>
+- Linkedin: <https://www.linkedin.com/groups/8403251>
