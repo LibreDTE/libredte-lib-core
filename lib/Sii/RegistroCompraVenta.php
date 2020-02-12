@@ -211,24 +211,23 @@ class RegistroCompraVenta
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto o String con la respuesta (depende servicio web)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-08-28
+     * @version 2020-02-12
      */
     private function request($request, $args, $retry = 10)
     {
+        $options = ['keep_alive' => false];
         if (!\sasco\LibreDTE\Sii::getVerificarSSL()) {
             if (\sasco\LibreDTE\Sii::getAmbiente()==\sasco\LibreDTE\Sii::PRODUCCION) {
                 $msg = \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR);
                 \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::ENVIO_SSL_SIN_VERIFICAR, $msg, LOG_WARNING);
             }
-            $options = ['stream_context' => stream_context_create([
+            $options['stream_context'] = stream_context_create([
                 'ssl' => [
                     'verify_peer' => false,
                     'verify_peer_name' => false,
                     'allow_self_signed' => true
                 ]
-            ])];
-        } else {
-            $options = [];
+            ]);
         }
         try {
             $wsdl = self::$wsdl[\sasco\LibreDTE\Sii::getAmbiente()];

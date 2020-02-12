@@ -498,7 +498,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Objeto SimpleXMLElement con la espuesta del servicio web consultado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-11-12
+     * @version 2020-02-12
      */
     public static function request($wsdl, $request, $args = null, $retry = null)
     {
@@ -512,7 +512,7 @@ class Sii
         if ($args and !is_array($args)) {
             $args = [$args];
         }
-        $options = ['cache_wsdl' => WSDL_CACHE_DISK];
+        $options = ['cache_wsdl' => WSDL_CACHE_DISK, 'keep_alive' => false];
         if (!self::$verificar_ssl) {
             if (self::getAmbiente()==self::PRODUCCION) {
                 $msg = Estado::get(Estado::ENVIO_SSL_SIN_VERIFICAR);
