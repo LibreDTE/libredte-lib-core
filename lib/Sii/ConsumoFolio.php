@@ -60,7 +60,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
      * Método para asignar la caratula
      * @param caratula Arreglo con datos del envío: RutEnvia, FchResol y NroResol, etc
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-06
+     * @version 2020-02-13
      */
     public function setCaratula(array $caratula)
     {
@@ -75,7 +75,7 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
             'FchInicio' => $this->getFechaEmisionInicial(),
             'FchFinal' => $this->getFechaEmisionFinal(),
             'Correlativo' => false,
-            'SecEnvio' => 1,
+            'SecEnvio' => $this->getSecuencia(),
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula);
         $this->id = 'LibreDTE_CONSUMO_FOLIO_'.str_replace('-', '', $this->caratula['RutEmisor']).'_'.str_replace('-', '', $this->caratula['FchInicio']).'_'.date('U');
@@ -256,11 +256,14 @@ class ConsumoFolio extends \sasco\LibreDTE\Sii\Base\Libro
     /**
      * Método que entrega la secuencia del envio
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-14
+     * @version 2020-02-13
      */
     public function getSecuencia()
     {
-        return $this->caratula['SecEnvio'];
+        if(isset($this->caratula['SecEnvio']))
+            return trim($this->caratula['SecEnvio']);
+        else
+            return 1;
     }
 
 }
