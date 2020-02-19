@@ -35,12 +35,15 @@ class YAML
      * Método que recibe los datos y los entrega como un arreglo PHP en el
      * formato del DTE que usa LibreDTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-12
+     * @version 2020-02-16
      */
     public static function toArray($data)
     {
         if (!function_exists('\yaml_parse')) {
             throw new \Exception('No hay soporte para YAML en PHP');
+        }
+        if (empty($data)) {
+            throw new \Exception('No hay datos que procesar en formato YAML');
         }
         return \yaml_parse($data);
     }
