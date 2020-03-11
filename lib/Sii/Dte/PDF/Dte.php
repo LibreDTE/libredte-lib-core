@@ -325,7 +325,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm (es parámetro porque se usa el mismo método para 75mm)
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-10-06
+     * @version 2020-03-11
      */
     private function agregar_papel_80(array $dte, $timbre, $width = 80, $height = 0)
     {
@@ -336,7 +336,7 @@ class Dte extends \sasco\LibreDTE\PDF
         // determinar alto de la página y agregarla
         $x_start = 1;
         $y_start = 1;
-        $offset = 14;
+        $offset = 16;
         // determinar alto de la página y agregarla
         $this->AddPage('P', [$height ? $height : $this->papel_continuo_alto, $width]);
         // agregar cabecera del documento
