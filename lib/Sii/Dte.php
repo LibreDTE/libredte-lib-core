@@ -1867,7 +1867,7 @@ class Dte
     public function verificarDatos()
     {
         if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            if (!\sasco\LibreDTE\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
+            if (!\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
                 return false;
             }
         }
