@@ -1862,11 +1862,11 @@ class Dte
      * Método que valida los datos del DTE
      * @return =true si no hay errores de validación, =false si se encontraron errores al validar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-11-04
+     * @version 2020-03-13
      */
     public function verificarDatos()
     {
-        if (class_exists('\sasco\LibreDTE\Sii\Dte\VerificadorDatos')) {
+        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
             if (!\sasco\LibreDTE\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
                 return false;
             }
