@@ -27,31 +27,46 @@ namespace sasco\LibreDTE\Sii\Dte;
  * Clase para convertir entre formatos soportados oficialmente por LibreDTE para
  * los DTE
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2016-09-12
+ * @version 2020-03-13
  */
 class Formatos
 {
 
+    private static $namespaces = [
+        '\sasco\LibreDTE',
+        '\sasco\LibreDTE\Extra'
+    ]; ///< Posible ubicaciones para los formatos que LibreDTE soporta
     private static $formatos = []; ///< Formatos oficialmente soportados (para los que existe un parser)
 
     /**
      * Método que convierte los datos en el formato de entrada a un arreglo PHP
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-12
+     * @version 2020-03-13
      */
     public static function toArray($formato, $datos)
     {
-        $class = '\sasco\LibreDTE\Sii\Dte\Formatos\\'.str_replace('.', '\\', $formato);
-        if (!class_exists($class)) {
-            $class = '\sasco\LibreDTE\Sii\Dte\Formatos\\'.str_replace('.', '\\', strtoupper($formato));
-            if (!class_exists($class)) {
-                $class = '\sasco\LibreDTE\Sii\Dte\Formatos\\'.str_replace('.', '\\', strtolower($formato));
-                if (!class_exists($class)) {
-                    throw new \Exception('Formato '.$formato.' no es válido como entrada para datos del DTE');
+        $founded = false;
+        foreach (self::$namespaces as $namespace) {
+            $formato = str_replace('.', '\\', $formato);
+            $combinations = [
+                $namespace.'\Sii\Dte\Formatos\\'.$formato,
+                $namespace.'\Sii\Dte\Formatos\\'.strtoupper($formato),
+                $namespace.'\Sii\Dte\Formatos\\'.strtolower($formato),
+            ];
+            foreach ($combinations as $class) {
+                if (class_exists($class)) {
+                    $founded = $class;
+                    break;
                 }
             }
+            if ($founded) {
+                break;
+            }
         }
-        return $class::toArray($datos);
+        if (!$founded) {
+            throw new \Exception('Formato '.$formato.' no es válido como entrada para datos del DTE');
+        }
+        return $founded::toArray($datos);
     }
 
     /**
