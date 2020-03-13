@@ -27,7 +27,7 @@
  * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
  * usar la autocarga de composer
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2017-01-19
+ * @version 2020-03-13
  */
 
 // activar todos los errores
@@ -38,18 +38,19 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/Santiago');
 
 // incluir autocarga de composer
-if (is_readable(dirname(dirname(__FILE__)).'/vendor/autoload.php'))
+if (is_readable(dirname(dirname(__FILE__)).'/vendor/autoload.php')) {
     include dirname(dirname(__FILE__)).'/vendor/autoload.php';
-else
+} else {
     die('Para probar los ejemplos debes ejecutar primero "composer install" en el directorio '.dirname(dirname(__FILE__))."\n");
+}
 
 // todos los ejemplos se ejecutan con backtrace activado, esto para ayudar al
 // debug de los mismos
 \sasco\LibreDTE\Log::setBacktrace(true);
 
 // incluir configuración específica de los ejemplos
-if (is_readable('config.php'))
-    include 'config.php';
-else
+if (is_readable(dirname(__FILE__).'/config.php')) {
+    include dirname(__FILE__).'/config.php';
+} else {
     die('Debes crear config.php a partir de config-dist.php'."\n");
-
+}
