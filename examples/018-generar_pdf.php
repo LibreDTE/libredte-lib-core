@@ -71,4 +71,4 @@ foreach ($Documentos as $DTE) {
 }
 
 // entregar archivo comprimido que incluirá cada uno de los DTEs
-\sasco\LibreDTE\File::compress($dir, ['format'=>'zip', 'delete'=>true]);
+\sasco\LibreDTE\File::compress($dir, ['format'=>'zip', 'delete'=>true, 'download'=>false]);

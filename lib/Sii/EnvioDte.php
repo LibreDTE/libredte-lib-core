@@ -201,9 +201,10 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
     /**
      * Método que carga un XML de EnvioDte y asigna el objeto XML correspondiente
      * para poder obtener los datos del envío
+     * @param xml_data XML con tag inicial: EnvioDTE, EnvioBOLETA, DTE o SetDTE
      * @return Objeto XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-11-21
+     * @version 2020-04-22
      */
     public function loadXML($xml_data)
     {
@@ -211,18 +212,36 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
             return false;
         }
         $tagName = $this->xml->documentElement->tagName;
-        if ($tagName=='DTE') {
+        if ($tagName=='DTE' or $tagName=='SetDTE') {
+            // obtener documentos
+            if ($tagName=='DTE') {
+                $dtes = [$xml_data];
+            } else {
+                $dtes = [];
+                $aux = $this->xml->documentElement->getElementsByTagName('DTE');
+                foreach ($aux as $a) {
+                    $dtes[] = $a;
+                }
+                unset($aux);
+            }
+            unset($xml_data);
+            // reiniciar datos leídos
             $this->xml = null;
             $this->xml_data = null;
             $this->arreglo = null;
-            $Dte = new Dte($xml_data, false);
-            $this->agregar($Dte);
+            // agregar documentos
+            foreach ($dtes as $dte) {
+                $Dte = new Dte(is_string($dte) ? $dte : $dte->C14N(), false);
+                $this->agregar($Dte);
+            }
+            // crear carátula falta
             $this->setCaratula([
                 'RutEnvia' => $Dte->getEmisor(),
                 'RutReceptor' => $Dte->getReceptor(),
                 'FchResol' => date('Y-m-d'),
                 'NroResol' => ($Dte->getCertificacion()?'0':'').'9999',
             ]);
+            // cargar nuevo XML con datos completos
             if (!parent::loadXML($this->generar())) {
                 return false;
             }
