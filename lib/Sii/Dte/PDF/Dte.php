@@ -441,7 +441,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->agregarReferencia($dte['Referencia'], $x_start, $offset);
         }
         $this->Ln();
-        $this->agregarDetalleContinuo($dte['Detalle'], 3, [1, 53, 73, 83], true);
+        $this->agregarDetalleContinuo($dte['Detalle'], 3, [1, 53, 73, 83]);
         if (!empty($dte['DscRcgGlobal'])) {
             $this->Ln();
             $this->Ln();
@@ -1024,9 +1024,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2019-10-06
+     * @version 2020-05-21
      */
-    protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [], $descripcion = false)
+    protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [])
     {
         if (!$offsets) {
             $offsets = [1, 15, 35, 45];
@@ -1049,7 +1049,7 @@ class Dte extends \sasco\LibreDTE\PDF
         $this->SetY($this->getY()+2);
         foreach($detalle as  &$d) {
             $item = $d['NmbItem'];
-            if ($descripcion and !empty($d['DscItem'])) {
+            if (!empty($d['DscItem'])) {
                 $item .= ': '.$d['DscItem'];
             }
             $this->MultiTexto($item, $x+$offsets[0], $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
