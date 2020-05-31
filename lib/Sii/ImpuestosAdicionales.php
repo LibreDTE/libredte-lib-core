@@ -59,27 +59,27 @@ class ImpuestosAdicionales
         ],
         24 => [
             'tipo' => 'A',
-            'glosa' => 'Imp. Licores, Piscos, Whisky', // Art 42 letra B
+            'glosa' => 'Licores, Piscos, Whisky', // Art 42 letra B
             'tasa' => 31.5,
         ],
         25 => [
             'tipo' => 'A',
-            'glosa' => 'Imp. Vinos', // Art 42 letra C
+            'glosa' => 'Vinos', // Art 42 letra C
             'tasa' => 20.5,
         ],
         26 => [
             'tipo' => 'A',
-            'glosa' => 'Imp. Cervezas y Bebidas Alcohólicas', // Art 42 letra C
+            'glosa' => 'Cervezas y Bebidas Alcoh.', // Art 42 letra C
             'tasa' => 20.5,
         ],
         27 => [
             'tipo' => 'A',
-            'glosa' => 'Imp. Bebidas Analcohólicas y Minerales', // Art 42 letra A
+            'glosa' => 'Bebida Analcoh. y Mineral', // Art 42 letra A
             'tasa' => 10,
         ],
         271 => [
             'tipo' => 'A',
-            'glosa' => 'Imp. Bebidas Azucaradas', // Art 42 letra A par. 2do
+            'glosa' => 'Bebidas Azucaradas', // Art 42 letra A par. 2do
             'tasa' => 18,
         ],
         30 => [
