@@ -923,7 +923,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-07-09
+     * @version 2020-06-05
      */
     protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
@@ -940,6 +940,15 @@ class Dte extends \sasco\LibreDTE\PDF
         // normalizar cada detalle
         $dte_exento = in_array($this->dte, [34, 110, 111, 112]);
         foreach ($detalle as &$item) {
+            // quitar caracteres html que dan problemas
+            if ($html) {
+                $reemplazar_textos_html = [['<'], ['&lt;']];
+                foreach (['NmbItem', 'DscItem'] as $col) {
+                    if (!empty($item[$col])) {
+                        $item[$col] = str_replace($reemplazar_textos_html[0], $reemplazar_textos_html[1], $item[$col]);
+                    }
+                }
+            }
             // quitar columnas
             foreach ($item as $col => $valor) {
                 if ($col=='DscItem' and !empty($item['DscItem'])) {
