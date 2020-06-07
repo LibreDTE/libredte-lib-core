@@ -1033,7 +1033,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2020-05-21
+     * @version 2020-06-07
      */
     protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [])
     {
@@ -1055,13 +1055,25 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!isset($detalle[0])) {
             $detalle = [$detalle];
         }
+        // mostrar items
         $this->SetY($this->getY()+2);
         foreach($detalle as  &$d) {
+            // nombre y descripción del item
             $item = $d['NmbItem'];
             if (!empty($d['DscItem'])) {
                 $item .= ': '.$d['DscItem'];
             }
             $this->MultiTexto($item, $x+$offsets[0], $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
+            // descuento
+            if (!empty($d['DescuentoPct']) or !empty($d['DescuentoMonto'])) {
+                if (!empty($d['DescuentoPct'])) {
+                    $descuento = number_format($d['DescuentoPct'],0,',','.').'%';
+                } else {
+                    $descuento = number_format($d['DescuentoMonto'],0,',','.');
+                }
+                $this->Texto('Desc.: '.$descuento, $x+$offsets[0], $this->y, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
+            }
+            // precio y cantidad
             $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
             $this->Texto($this->num($d['QtyItem']), $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
             $this->Texto($this->num($d['MontoItem']), $x+$offsets[3], $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
