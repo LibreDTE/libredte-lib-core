@@ -82,17 +82,15 @@ Instalación
 
 Directamente desde la terminal con:
 
-	$ composer require sasco/libredte dev-master
+	$ composer require sasco/libredte
 
 O editando el archivo *composer.json* y agregando:
 
 	{
 		"require": {
-			 "sasco/libredte": "dev-master"
+			 "sasco/libredte": "20.7.*"
 		}
 	}
-
-Por el momento, la única versión disponible es la de desarrollo.
 
 Los ejemplos están disponibles en el directorio
 [examples](https://github.com/LibreDTE/libredte-lib/tree/master/examples).
