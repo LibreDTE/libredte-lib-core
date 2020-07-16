@@ -1923,7 +1923,6 @@ class Dte
      * Método que obtiene el estado avanzado del DTE
      * @param Firma objeto que representa la Firma Electrónca
      * @return Arreglo con el estado del DTE
-     * @todo Corregir warning y también definir que se retornará (sobre todo en caso de error)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-08-05
      */

@@ -233,7 +233,6 @@ class PDF extends \TCPDF
 
     /**
      * Agregar una tabla generada a través de código HTML al PDF
-     * @todo Utilizar las opciones para definir estilo de la tabla HTML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
      * @version 2019-06-28
      */

@@ -94,7 +94,6 @@ class File
      * comprimir
      * @param filepath Directorio (o archivo) que se desea comprimir
      * @param options Arreglo con opciones para comprmir (format, download, delete)
-     * @todo Preparar datos si se pasa un arreglo
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
      * @version 2015-11-03
      */

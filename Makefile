@@ -12,3 +12,12 @@ firma:
 
 test:
 	phpunit --bootstrap tests/bootstrap.php tests
+
+pdf:
+	doxygen && cd doc/latex && make pdf
+
+clean:
+	rm -rf tests/firma.p12 doc/html doc/latex
+
+latexbase:
+	doxygen -w latex doc/doxygen/header.tex doc/doxygen/footer.tex doc/doxygen/doxygen.sty
