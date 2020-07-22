@@ -132,9 +132,9 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
      * Método que realiza el envío del AEC al SII
      * @return Track ID del envío o =false si hubo algún problema al enviar el documento
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
-     * @version 2016-12-10
+     * @version 2020-07-22
      */
-    public function enviar()
+    public function enviar($retry = null, $gzip = false)
     {
         // generar XML que se enviará
         if (!$this->xml_data)
