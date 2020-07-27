@@ -35,12 +35,12 @@ define ('K_PATH_IMAGES', '');
  * <https://github.com/SowerPHP/extension-general/blob/master/View/Helper/PDF.php>
  *
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
- * @version 2016-10-06
+ * @version 2020-07-26
  */
 class PDF extends \TCPDF
 {
 
-    private $footer; ///< Mensaje a colocar en el footer
+    protected $footer; ///< Mensaje a colocar en el footer
 
     protected $defaultOptions = [
         'font' => ['family' => 'helvetica', 'size' => 10],
@@ -121,7 +121,7 @@ class PDF extends \TCPDF
      * Método que asigna el texto que se deberá usar en el footer
      * @param footer =true se asignará texto por defecto. String al lado izquiero o bien arreglo con índices left y right con sus textos
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]delaf.cl)
-     * @version 2016-03-20
+     * @version 2020-07-26
      */
     public function setFooterText($footer = true)
     {
@@ -129,8 +129,8 @@ class PDF extends \TCPDF
             // asignar valor por defecto
             if ($footer===true) {
                 $footer = [
-                    'left' => 'LibreDTE ¡facturación electrónica libre para Chile!',
-                    'right' => 'https://libredte.cl',
+                    'left' => 'Boletas y Facturas con LibreDTE',
+                    'right' => 'www.libredte.cl',
                 ];
             }
             // si no es arreglo se convierte en uno
