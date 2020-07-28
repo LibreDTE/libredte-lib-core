@@ -35,6 +35,7 @@ class Cesion
     private $Encabezado; ///< Encabezado del DTE que se está cediendo
     private $datos; ///< Datos del XML de cesión
     private $declaracion = 'Yo, {usuario_nombre}, RUN {usuario_run}, representando a {emisor_razon_social}, RUT {emisor_rut}, declaro que he puesto a disposición del cesionario {cesionario_razon_social}, RUT {cesionario_rut}, el documento donde constan los recibos de la recepción de mercaderías entregadas o servicios prestados, entregados por parte del deudor de la factura {receptor_razon_social}, RUT {receptor_rut}, de acuerdo a lo establecido en la Ley N° 19.983'; ///< Declaración estándar en caso que no sea indicada al momento de crear al cedente
+    private $secuencia = 1;
 
     /**
      * Constructor de la clase Cesion
@@ -42,11 +43,12 @@ class Cesion
      * @param Seq secuencia de la cesión
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-07-27
+     * @version 2020-07-28
      */
     public function __construct(DteCedido $DTECedido = null, $Seq = 1)
     {
         if (!empty($DTECedido)) {
+            $this->secuencia = $Seq;
             $this->Encabezado = $DTECedido->getDTE()->getDatos()['Encabezado'];
             $this->datos = [
                 'Cesion' => [
@@ -56,7 +58,7 @@ class Cesion
                     ],
                     'DocumentoCesion' => [
                         '@attributes' => [
-                            'ID' => 'LibreDTE_Cesion',
+                            'ID' => $this->getID(),
                         ],
                         'SeqCesion' => $Seq,
                         'IdDTE' => [
@@ -81,6 +83,17 @@ class Cesion
                 ]
             ];
         }
+    }
+
+    /**
+     * Método entrega el ID de la cesión en base a la secuencia
+     * @param declaracion String con la declaración y las variables para poder reemplazar los datos si es necesario
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2020-07-28
+     */
+    protected function getID()
+    {
+        return 'LibreDTE_Cesion_'.$this->secuencia;
     }
 
     /**
@@ -185,16 +198,16 @@ class Cesion
      * @param Firma objeto que representa la Firma Electrónca
      * @return =true si el DTE pudo ser fimado o =false si no se pudo firmar
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
-     * @version 2016-08-10
+     * @version 2020-07-28
      */
     public function firmar(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
         $xml_unsigned = (new \sasco\LibreDTE\XML())->generate($this->datos)->saveXML();
-        $xml = $Firma->signXML($xml_unsigned, '#LibreDTE_Cesion', 'DocumentoCesion');
+        $xml = $Firma->signXML($xml_unsigned, '#'.$this->getID(), 'DocumentoCesion');
         if (!$xml) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::DTE_ERROR_FIRMA,
-                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_FIRMA, '#LibreDTE_Cesion')
+                \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_FIRMA, '#'.$this->getID())
             );
             return false;
         }
