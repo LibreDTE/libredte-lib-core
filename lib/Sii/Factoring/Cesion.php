@@ -42,40 +42,45 @@ class Cesion
      * @param Seq secuencia de la cesión
      * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-10
+     * @version 2020-07-27
      */
-    public function __construct(DteCedido $DTECedido, $Seq = 1)
+    public function __construct(DteCedido $DTECedido = null, $Seq = 1)
     {
-        $this->Encabezado = $DTECedido->getDTE()->getDatos()['Encabezado'];
-        $this->datos = [
-            'Cesion' => [
-                '@attributes' => [
-                    'xmlns' => 'http://www.sii.cl/SiiDte',
-                    'version' => '1.0'
-                ],
-                'DocumentoCesion' => [
+        if (!empty($DTECedido)) {
+            $this->Encabezado = $DTECedido->getDTE()->getDatos()['Encabezado'];
+            $this->datos = [
+                'Cesion' => [
                     '@attributes' => [
-                        'ID' => 'LibreDTE_Cesion',
+                        'xmlns' => 'http://www.sii.cl/SiiDte',
+                        'version' => '1.0'
                     ],
-                    'SeqCesion' => $Seq,
-                    'IdDTE' => [
-                        'TipoDTE' => $this->Encabezado['IdDoc']['TipoDTE'],
-                        'RUTEmisor' => $this->Encabezado['Emisor']['RUTEmisor'],
-                        'RUTReceptor' => $this->Encabezado['Receptor']['RUTRecep'],
-                        'Folio' => $this->Encabezado['IdDoc']['Folio'],
-                        'FchEmis' => $this->Encabezado['IdDoc']['FchEmis'],
-                        'MntTotal' => $this->Encabezado['Totales']['MntTotal'],
-                    ],
-                    'Cedente' => false,
-                    'Cesionario' => false,
-                    'MontoCesion' => $this->Encabezado['Totales']['MntTotal'],
-                    'UltimoVencimiento' => isset($this->Encabezado['IdDoc']['MntPagos']['FchPago']) ? $this->Encabezado['IdDoc']['MntPagos']['FchPago'] : $this->Encabezado['IdDoc']['FchEmis'],
-                    'OtrasCondiciones' => false,
-                    'eMailDeudor' => false,
-                    'TmstCesion' => date('Y-m-d\TH:i:s')
+                    'DocumentoCesion' => [
+                        '@attributes' => [
+                            'ID' => 'LibreDTE_Cesion',
+                        ],
+                        'SeqCesion' => $Seq,
+                        'IdDTE' => [
+                            'TipoDTE' => $this->Encabezado['IdDoc']['TipoDTE'],
+                            'RUTEmisor' => $this->Encabezado['Emisor']['RUTEmisor'],
+                            'RUTReceptor' => $this->Encabezado['Receptor']['RUTRecep'],
+                            'Folio' => $this->Encabezado['IdDoc']['Folio'],
+                            'FchEmis' => $this->Encabezado['IdDoc']['FchEmis'],
+                            'MntTotal' => $this->Encabezado['Totales']['MntTotal'],
+                        ],
+                        'Cedente' => false,
+                        'Cesionario' => false,
+                        'MontoCesion' => $this->Encabezado['Totales']['MntTotal'],
+                        'UltimoVencimiento' =>
+                            isset($this->Encabezado['IdDoc']['MntPagos']['FchPago'])
+                            ? $this->Encabezado['IdDoc']['MntPagos']['FchPago']
+                            : $this->Encabezado['IdDoc']['FchEmis'],
+                        'OtrasCondiciones' => false,
+                        'eMailDeudor' => false,
+                        'TmstCesion' => date('Y-m-d\TH:i:s')
+                    ]
                 ]
-            ]
-        ];
+            ];
+        }
     }
 
     /**
@@ -238,6 +243,21 @@ class Cesion
     public function getCesionario()
     {
         return $this->datos['Cesion']['DocumentoCesion']['Cesionario'];
+    }
+
+    /**
+     * Método que carga un XML y asigna el objeto XML correspondiente
+     * @return Objeto XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2020-07-27
+     */
+    public function loadXML($xml_data)
+    {
+        $this->xml = new \sasco\LibreDTE\XML();
+        if (!$this->xml->loadXML($xml_data)) {
+            return false;
+        }
+        return $this->xml;
     }
 
 }

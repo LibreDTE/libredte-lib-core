@@ -279,4 +279,22 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
         return $xml;
     }
 
+    /**
+     * Método que entrega el listado de cesiones que contiene el AEC
+     * @return array Arreglo con los objetos de la cesiones
+     * @author Esteban De La Fuente Rubio (esteban[sasco.cl])
+     * @version 2020-07-27
+     */
+    public function getCesiones()
+    {
+        $cesiones = [];
+        $aux = $this->xml->getElementsByTagName('Cesion');
+        foreach ($aux as $cesion) {
+            $Cesion = new Cesion();
+            $Cesion->loadXML($cesion->C14N());
+            $cesiones[] = $Cesion;
+        }
+        return $cesiones;
+    }
+
 }
