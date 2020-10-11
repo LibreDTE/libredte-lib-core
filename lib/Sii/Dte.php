@@ -1789,7 +1789,7 @@ class Dte
      * @return =true si la firma del DTE es válida, =null si no se pudo determinar
      * @warning No se está verificando el valor del DigestValue del documento (sólo la firma de ese DigestValue)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-07-04
+     * @version 2020-08-06
      */
     public function checkFirma()
     {
@@ -1799,7 +1799,7 @@ class Dte
         // obtener firma
         $Signature = $this->xml->documentElement->getElementsByTagName('Signature')->item(0);
         // preparar documento a validar
-        $D = $this->xml->documentElement->getElementsByTagName('Documento')->item(0);
+        $D = $this->xml->documentElement->getElementsByTagName($this->tipo_general)->item(0);
         $Documento = new \sasco\LibreDTE\XML();
         $Documento->loadXML($D->C14N());
         $Documento->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
