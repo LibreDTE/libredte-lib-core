@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii\Dte\Base;
 /**
  * Trait para las clases que generan documentos impresos (ej: PDF y ESCPOS)
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-11-04
+ * @version 2020-08-11
  */
 trait DteImpreso
 {
@@ -149,6 +149,10 @@ trait DteImpreso
         'LT' => 'Letra',
         'OT' => 'Otro',
     ]; ///< Medio de pago disponibles
+
+    protected $etiquetas = [
+        'CdgVendedor' => 'Vendedor',
+    ]; ///< etiquetas de campos del PDF
 
     /**
      * Método que asigna los datos de la resolución del SII que autoriza al

@@ -27,7 +27,7 @@ namespace sasco\LibreDTE\Sii\Dte\PDF;
  * Clase para generar el PDF de un documento tributario electrónico (DTE)
  * chileno.
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-11-04
+ * @version 2020-08-21
  */
 class Dte extends \sasco\LibreDTE\PDF
 {
@@ -41,6 +41,7 @@ class Dte extends \sasco\LibreDTE\PDF
     protected $timbre_pie = true; ///< Indica si el timbre va al pie o no (va pegado al detalle)
     protected $item_detalle_posicion = 0; ///< Posición del detalle del item respecto al nombre
     protected $detalle_fuente = 10; ///< Tamaño de la fuente para el detalle en hoja carta
+    protected $papel_continuo_item_detalle = true; ///< Mostrar detalle en papel continuo
 
     protected $detalle_cols = [
         'CdgItem' => ['title'=>'Código', 'align'=>'left', 'width'=>20],
@@ -137,6 +138,16 @@ class Dte extends \sasco\LibreDTE\PDF
     public function setTimbrePie($timbre_pie = true)
     {
         $this->timbre_pie = (bool)$timbre_pie;
+    }
+
+    /**
+     * Indica si se debe mostrar o no el detalle en papel continuo
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2020-08-21
+     */
+    public function setPapelContinuoItemDetalle($mostrar = true)
+    {
+        $this->papel_continuo_item_detalle = (bool)$mostrar;
     }
 
     /**
@@ -630,7 +641,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param IdDoc Información general del documento
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-06-15
+     * @version 2020-08-11
      */
     protected function agregarDatosEmision($IdDoc, $CdgVendedor, $x = 10, $offset = 22, $mostrar_dia = true)
     {
@@ -663,7 +674,7 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             // vendedor
             if (!empty($CdgVendedor)) {
-                $this->MultiTexto('Vendedor: '.$CdgVendedor, $x, null, 'R');
+                $this->MultiTexto($this->etiquetas['CdgVendedor'].': '.$CdgVendedor, $x, null, 'R');
             }
             $y_end = $this->GetY();
             $this->SetY($y);
@@ -923,7 +934,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param x Posición horizontal de inicio en el PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-06-05
+     * @version 2020-08-28
      */
     protected function agregarDetalle($detalle, $x = 10, $html = true)
     {
@@ -953,6 +964,7 @@ class Dte extends \sasco\LibreDTE\PDF
             foreach ($item as $col => $valor) {
                 if ($col=='DscItem' and !empty($item['DscItem'])) {
                     $item['NmbItem'] .= !$this->item_detalle_posicion ? ($html?'<br/>':"\n") : ': ';
+                    $item['DscItem'] = $html ? str_replace("\n", '<br/>', $item['DscItem']) : str_replace(['<br/>', '<br>'], "\n", $item['DscItem']);
                     if ($html) {
                         $item['NmbItem'] .= '<span style="font-size:0.7em">'.$item['DscItem'].'</span>';
                     } else {
@@ -1033,7 +1045,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2020-06-07
+     * @version 2020-08-21
      */
     protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [])
     {
@@ -1060,7 +1072,7 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach($detalle as  &$d) {
             // nombre y descripción del item
             $item = $d['NmbItem'];
-            if (!empty($d['DscItem'])) {
+            if ($this->papel_continuo_item_detalle and !empty($d['DscItem'])) {
                 $item .= ': '.$d['DscItem'];
             }
             $this->MultiTexto($item, $x+$offsets[0], $this->y+4, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
@@ -1188,7 +1200,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'IVANoRet' => 'IVA no retenido $',
             'CredEC' => 'Desc. 65% IVA $',
             'MntTotal' => 'Total $',
-            'MontoNF' => 'Monto no facturable $',
+            'MontoNF' => 'No facturable $',
             'MontoPeriodo' => 'Monto período $',
             'SaldoAnterior' => 'Saldo anterior $',
             'VlrPagar' => 'Valor a pagar $',
