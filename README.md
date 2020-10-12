@@ -88,7 +88,7 @@ O editando el archivo *composer.json* y agregando:
 
 	{
 		"require": {
-			 "sasco/libredte": "20.7.*"
+			 "sasco/libredte": "20.10.*"
 		}
 	}
 
