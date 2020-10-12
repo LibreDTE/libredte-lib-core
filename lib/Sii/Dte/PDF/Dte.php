@@ -233,7 +233,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-08-05
+     * @version 2020-10-12
      */
     private function agregar_papel_57(array $dte, $timbre, $height = 0)
     {
@@ -283,19 +283,17 @@ class Dte extends \sasco\LibreDTE\PDF
                 $this->MultiTexto('TOTAL: $'.$this->num($dte['Encabezado']['Totales']['MntTotal']), $x, null, '', $width-2);
             }
         }
-        // si no es boleta se coloca EXENTO, NETO, IVA y TOTAL si corresponde
-        if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [39, 41])) {
-            if (!empty($dte['Encabezado']['Totales']['MntExe'])) {
-                $this->MultiTexto('EXENTO: $'.$this->num($dte['Encabezado']['Totales']['MntExe']), $x, null, '', $width-2);
-            }
-            if (!empty($dte['Encabezado']['Totales']['MntNeto'])) {
-                $this->MultiTexto('NETO: $'.$this->num($dte['Encabezado']['Totales']['MntNeto']), $x, null, '', $width-2);
-            }
-            if (!empty($dte['Encabezado']['Totales']['IVA'])) {
-                $this->MultiTexto('IVA: $'.$this->num($dte['Encabezado']['Totales']['IVA']), $x, null, '', $width-2);
-            }
-            $this->MultiTexto('TOTAL: $'.$this->num($dte['Encabezado']['Totales']['MntTotal']), $x, null, '', $width-2);
+        // colocar EXENTO, NETO, IVA y TOTAL si corresponde
+        if (!empty($dte['Encabezado']['Totales']['MntExe'])) {
+            $this->MultiTexto('EXENTO: $'.$this->num($dte['Encabezado']['Totales']['MntExe']), $x, null, '', $width-2);
         }
+        if (!empty($dte['Encabezado']['Totales']['MntNeto'])) {
+            $this->MultiTexto('NETO: $'.$this->num($dte['Encabezado']['Totales']['MntNeto']), $x, null, '', $width-2);
+        }
+        if (!empty($dte['Encabezado']['Totales']['IVA'])) {
+            $this->MultiTexto('IVA: $'.$this->num($dte['Encabezado']['Totales']['IVA']), $x, null, '', $width-2);
+        }
+        $this->MultiTexto('TOTAL: $'.$this->num($dte['Encabezado']['Totales']['MntTotal']), $x, null, '', $width-2);
         // agregar acuse de recibo y leyenda cedible
         if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseReciboContinuo(-1, $this->y+6, $width+2, 34);
@@ -1171,7 +1169,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-05
+     * @version 2020-10-12
      */
     protected function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
@@ -1196,7 +1194,7 @@ class Dte extends \sasco\LibreDTE\PDF
             'TpoMoneda' => 'Moneda',
             'MntNeto' => 'Neto $',
             'MntExe' => 'Exento $',
-            'IVA' => 'IVA ('.$totales['TasaIVA'].'%) $',
+            'IVA' => 'IVA '.(!empty($totales['TasaIVA'])?(' ('.$totales['TasaIVA'].'%) '):'').'$',
             'IVANoRet' => 'IVA no retenido $',
             'CredEC' => 'Desc. 65% IVA $',
             'MntTotal' => 'Total $',

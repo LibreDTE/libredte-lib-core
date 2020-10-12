@@ -11,7 +11,7 @@ firma:
 	rm tests/firma.key tests/firma.crt
 
 test:
-	phpunit --bootstrap tests/bootstrap.php tests
+	vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
 
 pdf:
 	doxygen && cd doc/latex && make pdf

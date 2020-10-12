@@ -439,6 +439,9 @@ class Dte
         $RR = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RUTRecep')->item(0)->nodeValue;
         $RSR_nodo = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/Receptor/RznSocRecep');
         $RSR = $RSR_nodo->length ? trim(mb_substr($RSR_nodo->item(0)->nodeValue, 0, 40)) : $RR;
+        if (!$RSR) {
+            $RSR = $RR;
+        }
         $TED = new \sasco\LibreDTE\XML();
         $TED->generate([
             'TED' => [
@@ -574,10 +577,12 @@ class Dte
      */
     private function calcularNetoIVA($total, $tasa = null)
     {
-        if ($tasa === 0 or $tasa === false)
+        if ($tasa === 0 or $tasa === false) {
             return [0, 0];
-        if ($tasa === null)
+        }
+        if ($tasa === null) {
             $tasa = \sasco\LibreDTE\Sii::getIVA();
+        }
         // WARNING: el IVA obtenido puede no ser el NETO*(TASA/100)
         // se calcula el monto neto y luego se obtiene el IVA haciendo la resta
         // entre el total y el neto, ya que hay casos de borde como:
@@ -888,7 +893,7 @@ class Dte
      * Método que normaliza los datos de una boleta electrónica
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-03-14
+     * @version 2020-10-12
      */
     private function normalizar_39(array &$datos)
     {
@@ -903,7 +908,9 @@ class Dte
                 ],
                 'Receptor' => false,
                 'Totales' => [
+                    'MntNeto' => false,
                     'MntExe' => false,
+                    'IVA' => false,
                     'MntTotal' => 0,
                 ]
             ],
@@ -1615,10 +1622,22 @@ class Dte
      * partir del monto neto y la tasa de IVA si es que existe
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2020-10-12
      */
     private function normalizar_agregar_IVA_MntTotal(array &$datos)
     {
+        // si es una boleta y no están los datos de monto neto ni IVA se obtienen
+        // WARNING: no considera los casos donde hay impuestos adicionales en las boletas
+        //          si la boleta tiene impuestos adicionales, se deben indicar MntNeto e IVA
+        //          y no se usará esta parte de la normalización
+        // valor IndMntNeto = 2 indica que los montosde las líneas on netos en cuyo caso no aplica el cálculo
+        // de neto e iva a partir del total y deberá venir informado de otra forma (aun no definido)
+        if ($this->esBoleta() and (empty($datos['Encabezado']['IdDoc']['IndMntNeto']) or $datos['Encabezado']['IdDoc']['IndMntNeto']!=2)) {
+            $total = (int)$datos['Encabezado']['Totales']['MntTotal'] - (int)$datos['Encabezado']['Totales']['MntExe'];
+            if ($total and (empty($datos['Encabezado']['Totales']['MntNeto']) or empty($datos['Encabezado']['Totales']['IVA']))) {
+                list($datos['Encabezado']['Totales']['MntNeto'], $datos['Encabezado']['Totales']['IVA']) = $this->calcularNetoIVA($total);
+            }
+        }
         // agregar IVA y monto total
         if (!empty($datos['Encabezado']['Totales']['MntNeto'])) {
             if ($datos['Encabezado']['IdDoc']['MntBruto']==1) {
@@ -1635,10 +1654,12 @@ class Dte
             }
             if (empty($datos['Encabezado']['Totales']['MntTotal'])) {
                 $datos['Encabezado']['Totales']['MntTotal'] = $datos['Encabezado']['Totales']['MntNeto'];
-                if (!empty($datos['Encabezado']['Totales']['IVA']))
+                if (!empty($datos['Encabezado']['Totales']['IVA'])) {
                     $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['IVA'];
-                if (!empty($datos['Encabezado']['Totales']['MntExe']))
+                }
+                if (!empty($datos['Encabezado']['Totales']['MntExe'])) {
                     $datos['Encabezado']['Totales']['MntTotal'] += $datos['Encabezado']['Totales']['MntExe'];
+                }
             }
         } else {
             if (!$datos['Encabezado']['Totales']['MntTotal'] and !empty($datos['Encabezado']['Totales']['MntExe'])) {
@@ -1664,8 +1685,9 @@ class Dte
         }
         // si hay impuesto de crédito a constructoras del 65% se descuenta del total
         if (!empty($datos['Encabezado']['Totales']['CredEC'])) {
-            if ($datos['Encabezado']['Totales']['CredEC']===true)
+            if ($datos['Encabezado']['Totales']['CredEC']===true) {
                 $datos['Encabezado']['Totales']['CredEC'] = round($datos['Encabezado']['Totales']['IVA'] * 0.65); // TODO: mover a constante o método
+            }
             $datos['Encabezado']['Totales']['MntTotal'] -= $datos['Encabezado']['Totales']['CredEC'];
         }
     }
@@ -1695,7 +1717,7 @@ class Dte
      * Método que normaliza las boletas electrónicas, dte 39 y 41
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-06-19
+     * @version 2020-10-11
      */
     private function normalizar_boletas(array &$datos)
     {
@@ -1738,7 +1760,7 @@ class Dte
                 $datos['Referencia'] = [$datos['Referencia']];
             }
             foreach ($datos['Referencia'] as &$r) {
-                foreach (['TpoDocRef', 'FolioRef', 'FchRef'] as $c) {
+                foreach (['FchRef'] as $c) {
                     if (isset($r[$c])) {
                         unset($r[$c]);
                     }

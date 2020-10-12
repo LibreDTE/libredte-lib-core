@@ -26,7 +26,7 @@
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2017-08-16
  */
-class Sii_LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
+class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

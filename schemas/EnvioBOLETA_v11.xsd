@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
-	<!--
-	  Modificacion		 : 16 de Abril del  2007.
-         Nueva version		: EnvioBOLETA_v11.xsd
-         Modificacion 		: 22 de Abril del  2010.
-         Nueva version		: EnvioBOLETA_v11.xsd
-      -->
 	<xs:element name="EnvioBOLETA">
 		<xs:annotation>
 			<xs:documentation>Envio de Boletas Electronicas</xs:documentation>
@@ -86,7 +80,7 @@
 									<xs:attribute name="version" type="xs:decimal" use="required" fixed="1.0"/>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="DTE" type="SiiDte:BOLETADefType" maxOccurs="unbounded">
+							<xs:element name="DTE" type="SiiDte:BOLETADefType" maxOccurs="500">
 								<xs:annotation>
 									<xs:documentation>Boletas Electronicas Enviadas</xs:documentation>
 								</xs:annotation>
@@ -429,7 +423,7 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="Detalle" maxOccurs="1000">
+						<xs:element name="Detalle" minOccurs="0" maxOccurs="1000">
 							<xs:annotation>
 								<xs:documentation>Detalle de Itemes del Documento</xs:documentation>
 							</xs:annotation>
@@ -565,7 +559,7 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="TpoTiket">
+												<xs:element name="TpoTicket">
 													<xs:annotation>
 														<xs:documentation>Tipo de ticket, Por ejemplo: Adulto, Niño, etc</xs:documentation>
 													</xs:annotation>
@@ -649,10 +643,13 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="QtyItem" type="SiiDte:Dec5Type" minOccurs="0">
+									<xs:element name="QtyItem" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Cantidad del Item</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="SiiDte:Dec5Type"/>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="UnmdItem" minOccurs="0">
 										<xs:annotation>
@@ -664,10 +661,13 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="PrcItem" type="SiiDte:Dec5Type" minOccurs="0">
+									<xs:element name="PrcItem" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Precio Unitario del Item en Pesos</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="SiiDte:Dec5Type"/>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="DescuentoPct" minOccurs="0">
 										<xs:annotation>
@@ -675,7 +675,7 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="SiiDte:PctType">
-                                                                                            <!--<xs:minInclusive value="0.00"/>--> <!-- LibreDTE: invalid schema -->
+												<xs:minInclusive value="0.00"/>
 												<xs:maxInclusive value="100.00"/>
 											</xs:restriction>
 										</xs:simpleType>
@@ -697,7 +697,7 @@
 										<xs:simpleType>
 											<xs:restriction base="SiiDte:PctType">
 												<xs:maxInclusive value="100.00"/>
-<!-- 												<xs:minInclusive value="0.00"/> --> <!-- LibreDTE: invalid schema -->
+												<xs:minInclusive value="0.00"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -745,7 +745,7 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="OrdenSTI">
+									<xs:element name="OrdenSTI" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Ubicación para Impresión </xs:documentation>
 										</xs:annotation>
@@ -755,15 +755,21 @@
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="SubTotNetoSTI" type="SiiDte:Dec1Type" minOccurs="0">
+									<xs:element name="SubTotNetoSTI" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Valor Neto del Subtotal</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="SiiDte:Dec1Type"/>
+										</xs:simpleType>
 									</xs:element>
-									<xs:element name="SubTotIVASTI" type="SiiDte:Dec1Type" minOccurs="0">
+									<xs:element name="SubTotIVASTI" minOccurs="0">
 										<xs:annotation>
 											<xs:documentation>Valor del IVA del Subtotal</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="SiiDte:Dec1Type"/>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="SubTotAdicSTI" type="SiiDte:Dec1Type" minOccurs="0">
 										<xs:annotation>
@@ -780,13 +786,13 @@
 											<xs:documentation>Valor de la línea de subtotal</xs:documentation>
 										</xs:annotation>
 									</xs:element>
-									<xs:element name="LineasDeta" minOccurs="0" maxOccurs="60">
+									<xs:element name="LineasDeta" minOccurs="0" maxOccurs="1000">
 										<xs:annotation>
 											<xs:documentation>TABLA de  Líneas de Detalle que se agrupan en el Subtotal</xs:documentation>
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:positiveInteger">
-												<xs:maxInclusive value="60"/>
+												<xs:maxInclusive value="1000"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -898,6 +904,26 @@
 										<xs:simpleType>
 											<xs:restriction base="xs:positiveInteger">
 												<xs:maxInclusive value="40"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TpoDocRef" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Tipo Documento de referencia </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FolioRef" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Folio de Referencia</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="18"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -1246,7 +1272,8 @@
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="18"/>
 			<xs:fractionDigits value="2"/>
-			<xs:minExclusive value="0"/>
+			<xs:minInclusive value="0.01"/>
+			<xs:maxInclusive value="9999999999999999.99"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="Dec5Type">
@@ -1256,7 +1283,8 @@
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="18"/>
 			<xs:fractionDigits value="6"/>
-			<xs:minExclusive value="0"/>
+			<xs:minInclusive value="0.000001"/>
+			<xs:maxInclusive value="999999999999.999999"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="PctType">
@@ -1266,8 +1294,8 @@
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="5"/>
 			<xs:fractionDigits value="2"/>
-			<xs:minInclusive value="0.01"/>
-			<xs:maxInclusive value="999.99"/>
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="100.00"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

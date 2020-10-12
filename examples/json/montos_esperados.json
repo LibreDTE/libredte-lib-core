@@ -49,9 +49,13 @@
         "MntTotal": 125000
     },
     "39_001_simple": {
+        "MntNeto": 1000,
+        "IVA": 190,
         "MntTotal": 1190
     },
     "39_002_descuento_global": {
+        "MntNeto": 900,
+        "IVA": 171,
         "MntTotal": 1071
     },
     "41_001_simple": {
