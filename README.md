@@ -1,5 +1,5 @@
-LibreDTE: Biblioteca PHP
-========================
+LibreDTE: Biblioteca Estándar en PHP
+====================================
 
 [![Build Status](https://travis-ci.org/LibreDTE/libredte-lib.svg?branch=master)](https://travis-ci.org/LibreDTE/libredte-lib)
 [![Total Downloads](https://poser.pugx.org/sasco/libredte/downloads)](https://packagist.org/packages/sasco/libredte)
