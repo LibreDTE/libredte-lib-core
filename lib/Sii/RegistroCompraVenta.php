@@ -32,6 +32,14 @@ namespace sasco\LibreDTE\Sii;
 class RegistroCompraVenta
 {
 
+    private static $config = [
+        'wsdl' => [
+            'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
+            'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
+        ],
+        'servidor' => ['ws1', 'ws2'], ///< servidores 0: producción, 1: certificación
+    ];
+
     public static $dtes = [
         33 => 'Factura electrónica',
         34 => 'Factura no afecta o exenta electrónica',
@@ -67,11 +75,6 @@ class RegistroCompraVenta
         8,  // Pasados 8 días después de la recepción no es posible registrar reclamos o eventos
         27, // No se puede registrar un evento (acuse de recibo, reclamo o aceptación de contenido) de un DTE pagado al contado o gratuito
     ]; ///< Código de estado de respuesta de la asignación de estado que son considerados como OK
-
-    private static $wsdl = [
-        'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
-        'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
-    ]; ///< Rutas de los WSDL de producción y certificación
 
     private $token; ///< Token que se usará en la sesión de consultas al RCV
 
@@ -229,8 +232,14 @@ class RegistroCompraVenta
                 ]
             ]);
         }
+        // buscar WSDL
+        $ambiente = \sasco\LibreDTE\Sii::getAmbiente();
+        $wsdl = dirname(dirname(dirname(__FILE__))).'/wsdl/'.self::$config['servidor'][$ambiente].'/registroreclamodteservice.xml';
+        if (!file_exists($wsdl)) {
+            $wsdl = self::$config['wsdl'][$ambiente];
+        }
+        // crear el cliente SOAP
         try {
-            $wsdl = self::$wsdl[\sasco\LibreDTE\Sii::getAmbiente()];
             $soap = new \SoapClient($wsdl, $options);
             $soap->__setCookie('TOKEN', $this->token);
         } catch (\Exception $e) {
@@ -241,6 +250,7 @@ class RegistroCompraVenta
             \sasco\LibreDTE\Log::write(\sasco\LibreDTE\Estado::REQUEST_ERROR_SOAP, \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::REQUEST_ERROR_SOAP, $msg));
             return false;
         }
+        // hacer consultas al SII
         for ($i=0; $i<$retry; $i++) {
             try {
                 $body = call_user_func_array([$soap, $request], $args);
