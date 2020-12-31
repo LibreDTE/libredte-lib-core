@@ -148,7 +148,7 @@ class FirmaElectronica
      * Método que entrega el RUN/RUT asociado al certificado
      * @return RUN/RUT asociado al certificado en formato: 11222333-4
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-02-12
+     * @version 2020-12-31
      */
     public function getID()
     {
@@ -159,13 +159,13 @@ class FirmaElectronica
         if (isset($cert['tbsCertificate']['extensions'])) {
             foreach ($cert['tbsCertificate']['extensions'] as $e) {
                 if ($e['extnId']=='id-ce-subjectAltName') {
-                    return ltrim($e['extnValue'][0]['otherName']['value']['ia5String'], '0');
+                    return strtoupper(ltrim($e['extnValue'][0]['otherName']['value']['ia5String'], '0'));
                 }
             }
         }
         // se obtiene desde serialNumber (esto es sólo para que funcione la firma para tests)
         if (isset($this->data['subject']['serialNumber'])) {
-            return ltrim($this->data['subject']['serialNumber'], '0');
+            return strtoupper(ltrim($this->data['subject']['serialNumber'], '0'));
         }
         // no se encontró el RUN
         return $this->error('No fue posible obtener el ID de la firma');
