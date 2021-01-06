@@ -82,11 +82,16 @@ class RegistroCompraVenta
      * Constructor, obtiene el token de la sesión y lo guarda
      * @param Firma Objeto con la firma electrónica
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-08-28
+     * @version 2021-01-06
      */
     public function __construct(\sasco\LibreDTE\FirmaElectronica $Firma)
     {
+        // Se usa siempre ambiente de producción para obtener el token
+        // https://github.com/LibreDTE/libredte-lib/issues/72
+        $ambienteAntiguo = \sasco\LibreDTE\Sii::getAmbiente();
+        \sasco\LibreDTE\Sii::setAmbiente(\sasco\LibreDTE\Sii::PRODUCCION);
         $this->token = \sasco\LibreDTE\Sii\Autenticacion::getToken($Firma);
+        \sasco\LibreDTE\Sii::setAmbiente($ambienteAntiguo);
         if (!$this->token) {
             throw new \Exception('No fue posible obtener el token para la sesión del RCV');
         }
