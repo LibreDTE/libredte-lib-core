@@ -334,7 +334,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param width Ancho del papel contínuo en mm (es parámetro porque se usa el mismo método para 75mm)
      * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-03-11
+     * @version 2021-01-08
      */
     private function agregar_papel_80(array $dte, $timbre, $width = 80, $height = 0)
     {
@@ -353,7 +353,7 @@ class Dte extends \sasco\LibreDTE\PDF
             $dte['Encabezado']['Emisor']['RUTEmisor'],
             $dte['Encabezado']['IdDoc']['TipoDTE'],
             $dte['Encabezado']['IdDoc']['Folio'],
-            $dte['Encabezado']['Emisor']['CmnaOrigen'],
+            isset($dte['Encabezado']['Emisor']['CmnaOrigen']) ? $dte['Encabezado']['Emisor']['CmnaOrigen'] : 'Sin comuna', // siempre debería tener comuna
             $x_start, $y_start, $width-($x_start*4), 10,
             [0,0,0]
         );
@@ -494,7 +494,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param w Ancho de la información del emisor
      * @param w_img Ancho máximo de la imagen
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-11-22
+     * @version 2021-01-08
      */
     protected function agregarEmisor(array $emisor, $x = 10, $y = 15, $w = 75, $w_img = 30, $font_size = null, array $color = null, $h_folio = null, $w_all = null)
     {
@@ -558,9 +558,10 @@ class Dte extends \sasco\LibreDTE\PDF
             $this->setFont('', 'B', $font_size ? $font_size : 9);
             $this->SetTextColorArray([0,0,0]);
             $this->MultiTexto(!empty($emisor['GiroEmis']) ? $emisor['GiroEmis'] : $emisor['GiroEmisor'], $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
+            $direccion = !empty($emisor['DirOrigen']) ? $emisor['DirOrigen'] : null;
             $comuna = !empty($emisor['CmnaOrigen']) ? $emisor['CmnaOrigen'] : null;
             $ciudad = !empty($emisor['CiudadOrigen']) ? $emisor['CiudadOrigen'] : \sasco\LibreDTE\Chile::getCiudad($comuna);
-            $this->MultiTexto($emisor['DirOrigen'].($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
+            $this->MultiTexto($direccion.($comuna?(', '.$comuna):'').($ciudad?(', '.$ciudad):''), $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
             if (!empty($emisor['Sucursal'])) {
                 $this->MultiTexto('Sucursal: '.$emisor['Sucursal'], $x, $this->y, 'L', ($h_folio and $h_folio < $this->getY()) ? $w_all : $w);
             }
@@ -1043,7 +1044,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2020-08-21
+     * @version 2021-01-08
      */
     protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [])
     {
@@ -1084,8 +1085,12 @@ class Dte extends \sasco\LibreDTE\PDF
                 $this->Texto('Desc.: '.$descuento, $x+$offsets[0], $this->y, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
             }
             // precio y cantidad
-            $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
-            $this->Texto($this->num($d['QtyItem']), $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
+            if (isset($d['PrcItem'])) {
+                $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
+            }
+            if (isset($d['QtyItem'])) {
+                $this->Texto($this->num($d['QtyItem']), $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
+            }
             $this->Texto($this->num($d['MontoItem']), $x+$offsets[3], $this->y, ucfirst($this->detalle_cols['MontoItem']['align'][0]), $this->detalle_cols['MontoItem']['width']);
         }
         $this->Line($p1x, $this->y+4, $p2x, $this->y+4, $style);
