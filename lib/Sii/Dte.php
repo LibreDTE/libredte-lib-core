@@ -597,7 +597,7 @@ class Dte
      * Método que normaliza los datos de un documento tributario electrónico
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-11-03
+     * @version 2021-02-14
      */
     private function normalizar(array &$datos)
     {
@@ -674,30 +674,6 @@ class Dte
             'Referencia' => false,
             'Comisiones' => false,
         ], $datos);
-        // corregir algunos datos que podrían venir malos para no caer por schema
-        $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Emisor']['RUTEmisor'])));
-        $datos['Encabezado']['Receptor']['RUTRecep'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Receptor']['RUTRecep'])));
-        $datos['Encabezado']['Receptor']['RznSocRecep'] = mb_substr($datos['Encabezado']['Receptor']['RznSocRecep'], 0, 100);
-        if (!empty($datos['Encabezado']['Receptor']['GiroRecep'])) {
-            $datos['Encabezado']['Receptor']['GiroRecep'] = mb_substr($datos['Encabezado']['Receptor']['GiroRecep'], 0, 40);
-        }
-        if (!empty($datos['Encabezado']['Receptor']['Contacto'])) {
-            $datos['Encabezado']['Receptor']['Contacto'] = mb_substr($datos['Encabezado']['Receptor']['Contacto'], 0, 80);
-        }
-        if (!empty($datos['Encabezado']['Receptor']['CorreoRecep'])) {
-            $datos['Encabezado']['Receptor']['CorreoRecep'] = mb_substr($datos['Encabezado']['Receptor']['CorreoRecep'], 0, 80);
-        }
-        if (!empty($datos['Encabezado']['Receptor']['DirRecep'])) {
-            $datos['Encabezado']['Receptor']['DirRecep'] = mb_substr($datos['Encabezado']['Receptor']['DirRecep'], 0, 70);
-        }
-        if (!empty($datos['Encabezado']['Receptor']['CmnaRecep'])) {
-            $datos['Encabezado']['Receptor']['CmnaRecep'] = mb_substr($datos['Encabezado']['Receptor']['CmnaRecep'], 0, 20);
-        }
-        if (!empty($datos['Encabezado']['Emisor']['Acteco'])) {
-            if (strlen((string)$datos['Encabezado']['Emisor']['Acteco'])==5) {
-                $datos['Encabezado']['Emisor']['Acteco'] = '0'.$datos['Encabezado']['Emisor']['Acteco'];
-            }
-        }
         // si existe descuento o recargo global se normalizan
         if (!empty($datos['DscRcgGlobal'])) {
             if (!isset($datos['DscRcgGlobal'][0]))
@@ -740,7 +716,7 @@ class Dte
      * ya se aplicaron las normalizaciones por tipo
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-23
+     * @version 2021-02-14
      */
     private function normalizar_final(array &$datos)
     {
@@ -825,6 +801,8 @@ class Dte
                 }
             }
         }
+        // corregir algunos datos que podrían venir malos para no caer por schema
+        $this->sanitizar($datos);
     }
 
     /**
@@ -1772,6 +1750,61 @@ class Dte
     }
 
     /**
+     * Método que limpia los datos, el objetivo es reducir los problemas por
+     * errores de esquema que se pueden dar por los datos enviados
+     * @param datos Arreglo con los datos del documento que se desean limpiar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-02-14
+     */
+    private function sanitizar(array &$datos)
+    {
+        // correcciones básicas
+        $datos['Encabezado']['Emisor']['RUTEmisor'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Emisor']['RUTEmisor'])));
+        $datos['Encabezado']['Receptor']['RUTRecep'] = strtoupper(trim(str_replace('.', '', $datos['Encabezado']['Receptor']['RUTRecep'])));
+        $datos['Encabezado']['Receptor']['RznSocRecep'] = mb_substr($datos['Encabezado']['Receptor']['RznSocRecep'], 0, 100);
+        if (!empty($datos['Encabezado']['Receptor']['GiroRecep'])) {
+            $datos['Encabezado']['Receptor']['GiroRecep'] = mb_substr($datos['Encabezado']['Receptor']['GiroRecep'], 0, 40);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['Contacto'])) {
+            $datos['Encabezado']['Receptor']['Contacto'] = mb_substr($datos['Encabezado']['Receptor']['Contacto'], 0, 80);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['CorreoRecep'])) {
+            $datos['Encabezado']['Receptor']['CorreoRecep'] = mb_substr($datos['Encabezado']['Receptor']['CorreoRecep'], 0, 80);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['DirRecep'])) {
+            $datos['Encabezado']['Receptor']['DirRecep'] = mb_substr($datos['Encabezado']['Receptor']['DirRecep'], 0, 70);
+        }
+        if (!empty($datos['Encabezado']['Receptor']['CmnaRecep'])) {
+            $datos['Encabezado']['Receptor']['CmnaRecep'] = mb_substr($datos['Encabezado']['Receptor']['CmnaRecep'], 0, 20);
+        }
+        if (!empty($datos['Encabezado']['Emisor']['Acteco'])) {
+            if (strlen((string)$datos['Encabezado']['Emisor']['Acteco'])==5) {
+                $datos['Encabezado']['Emisor']['Acteco'] = '0'.$datos['Encabezado']['Emisor']['Acteco'];
+            }
+        }
+        // correcciones más específicas
+        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
+            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::sanitize($datos);
+        }
+    }
+
+    /**
+     * Método que valida los datos del DTE
+     * @return =true si no hay errores de validación, =false si se encontraron errores al validar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2020-03-13
+     */
+    public function verificarDatos()
+    {
+        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
+            if (!\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Método que redondea valores. Si los montos son en pesos chilenos se
      * redondea, si no se mantienen todos los decimales
      * @param valor Valor que se desea redondear
@@ -1883,22 +1916,6 @@ class Dte
      */
     public function schemaValidate()
     {
-        return true;
-    }
-
-    /**
-     * Método que valida los datos del DTE
-     * @return =true si no hay errores de validación, =false si se encontraron errores al validar
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-03-13
-     */
-    public function verificarDatos()
-    {
-        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            if (!\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
-                return false;
-            }
-        }
         return true;
     }
 
