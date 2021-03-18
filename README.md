@@ -19,12 +19,17 @@ interfaces de usuario, para que un desarrollador pueda construir su propia
 aplicación.
 
 Si deseas una aplicación ya construída puedes revisar el
-[sitio web oficial de LibreDTE](http://libredte.cl) donde podrás registrarte
-gratuitamente y usar la plataforma web de facturación. Si deseas acceder al
-código fuente de la aplicación web puedes hacerlo
+[sitio web oficial de LibreDTE](https://libredte.cl) donde podrás registrarte y
+usar la plataforma web de facturación. Si deseas acceder al código fuente de la
+aplicación web versión comunidad puedes hacerlo
 [aquí](https://github.com/LibreDTE/libredte-webapp).
 
 [Realiza una donación al proyecto](https://facturacionlibre.cl/#donar)
+
+**Importante**: SASCO SpA, empresa autora y dueña de LibreDTE, no provee soporte
+oficial para integraciones usando esta Biblioteca de manera directa. SASCO SpA
+sólo provee el soporte para integraciones mediante servicios web de la
+plataforma web de LibreDTE, normalmente en [www.libredte.cl](https://libredte.cl).
 
 Funcionalidades implementadas
 -----------------------------
