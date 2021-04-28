@@ -10,7 +10,7 @@ firma:
 	openssl pkcs12 -export -out tests/firma.p12 -inkey tests/firma.key -in tests/firma.crt -passout pass:test
 	rm tests/firma.key tests/firma.crt
 
-test:
+test: firma
 	vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
 
 pdf:
