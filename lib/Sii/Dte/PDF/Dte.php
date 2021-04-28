@@ -332,9 +332,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @param width Ancho del papel contínuo en mm (es parámetro porque se usa el mismo método para 75mm)
-     * @author Pablo Reyes (https://github.com/pabloxp)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2021-01-08
+     * @author Pablo Reyes (https://github.com/pabloxp)
+     * @version 2021-04-27
      */
     private function agregar_papel_80(array $dte, $timbre, $width = 80, $height = 0)
     {
@@ -377,15 +377,16 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['DscRcgGlobal'])) {
             $this->Ln();
             $this->Ln();
-            $this->agregarSubTotal($dte['Detalle'], $x_start);
-            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
+            $this->agregarSubTotal($dte['Detalle'], 23, 17);
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], 23, 17);
         }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
             $this->Ln();
             $this->Ln();
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
         }
-        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 23, 17);
+        $OtraMoneda = !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null;
+        $this->agregarTotales($dte['Encabezado']['Totales'], $OtraMoneda, $this->y+6, 23, 17);
         // agregar acuse de recibo y leyenda cedible
         if ($this->cedible and !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], $this->sinAcuseRecibo)) {
             $this->agregarAcuseReciboContinuo(3, $this->y+6, 68, 34);
@@ -408,7 +409,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param dte Arreglo con los datos del XML (tag Documento)
      * @param timbre String XML con el tag TED del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2019-10-06
+     * @version 2021-04-27
      */
     private function agregar_papel_110(array $dte, $timbre, $height = 0)
     {
@@ -454,15 +455,16 @@ class Dte extends \sasco\LibreDTE\PDF
         if (!empty($dte['DscRcgGlobal'])) {
             $this->Ln();
             $this->Ln();
-            $this->agregarSubTotal($dte['Detalle'], $x_start);
-            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], $x_start);
+            $this->agregarSubTotal($dte['Detalle'], 61, 17);
+            $this->agregarDescuentosRecargos($dte['DscRcgGlobal'], 61, 17);
         }
         if (!empty($dte['Encabezado']['IdDoc']['MntPagos'])) {
             $this->Ln();
             $this->Ln();
             $this->agregarPagos($dte['Encabezado']['IdDoc']['MntPagos'], $x_start);
         }
-        $this->agregarTotales($dte['Encabezado']['Totales'], !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null, $this->y+6, 61, 17);
+        $OtraMoneda = !empty($dte['Encabezado']['OtraMoneda']) ? $dte['Encabezado']['OtraMoneda'] : null;
+        $this->agregarTotales($dte['Encabezado']['Totales'], $OtraMoneda, $this->y+6, 61, 17);
         // agregar observaciones
         $y = $this->agregarObservacion($dte['Encabezado']['IdDoc'], $x_start, $this->y+6);
         // agregar timbre
@@ -1102,9 +1104,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * calcular subtotal
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-17
+     * @version 2021-04-27
      */
-    protected function agregarSubTotal(array $detalle, $x = 10) {
+    protected function agregarSubTotal(array $detalle, $x = 10, $offset = 25) {
         $subtotal = 0;
         if (!isset($detalle[0])) {
             $detalle = [$detalle];
@@ -1115,7 +1117,8 @@ class Dte extends \sasco\LibreDTE\PDF
             }
         }
         if ($this->papelContinuo) {
-            $this->Texto('Subtotal: '.$this->num($subtotal), $x);
+            $this->Texto('Subtotal :', $x, null, 'R', 30);
+            $this->Texto($this->num($subtotal), $x+$offset, null, 'R', 30);
         } else {
             $this->Texto('Subtotal:', 77, null, 'R', 100);
             $this->Texto($this->num($subtotal), 177, null, 'R', 22);
@@ -1128,9 +1131,9 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param descuentosRecargos Arreglo con los descuentos y/o recargos del documento (tag DscRcgGlobal del XML)
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-05-29
+     * @version 2011-04-27
      */
-    protected function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10)
+    protected function agregarDescuentosRecargos(array $descuentosRecargos, $x = 10, $offset = 25)
     {
         if (!isset($descuentosRecargos[0])) {
             $descuentosRecargos = [$descuentosRecargos];
@@ -1142,7 +1145,9 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             $valor = $dr['TpoValor']=='%' ? $dr['ValorDR'].'%' : $this->num($dr['ValorDR']);
             if ($this->papelContinuo) {
-                $this->Texto($tipo.' global: '.$valor.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):''), $x);
+                $glosa = $tipo.' global'.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):'').':';
+                $this->Texto($glosa, $x, null, 'R', 30);
+                $this->Texto($valor, $x+$offset, null, 'R', 30);
             } else {
                 $this->Texto($tipo.(!empty($dr['GlosaDR'])?(' ('.$dr['GlosaDR'].')'):'').':', 77, null, 'R', 100);
                 $this->Texto($valor, 177, null, 'R', 22);
