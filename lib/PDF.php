@@ -238,9 +238,10 @@ class PDF extends \TCPDF
      */
     private function addHTMLTable($headers, $data, $options = [])
     {
+        $width_table = (isset($options['width_table']) and !empty($options['width_table'])) ? 'width:'.$options['width_table'].'%;' : '';
         $w = (isset($options['width']) and is_array($options['width'])) ? $options['width'] : null;
         $a = (isset($options['align']) and is_array($options['align'])) ? $options['align'] : [];
-        $buffer = '<table style="border:1px solid #333">';
+        $buffer = '<table style="border:1px solid #333;'.$width_table.'">';
         // Definir títulos de columnas
         $thead = isset($options['width']) and is_array($options['width']) and count($options['width']) == count($headers);
         if ($thead) {
