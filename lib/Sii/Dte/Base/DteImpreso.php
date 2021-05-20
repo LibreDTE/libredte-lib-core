@@ -111,6 +111,7 @@ trait DteImpreso
         'HES' => 'HOJA DE ENTRADA DE SERVICIOS (HES)',
         'EM' => 'Entrada de mercadería (EM)',
         'RDM' => 'Recepción de material/mercadería (RDM)',
+        'MLE' => 'Modalidad Libre Elección (MLE)',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     protected $formas_pago = [
