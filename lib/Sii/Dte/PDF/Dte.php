@@ -1013,8 +1013,19 @@ class Dte extends \sasco\LibreDTE\PDF
             }
             $item = array_merge($item_default, $item);
             // si hay código de item se extrae su valor
-            if (!empty($item['CdgItem']['VlrCodigo'])){
-                $item['CdgItem'] = $item['CdgItem']['VlrCodigo'];
+            // pueden venir varios códigos (donde CdgItem es un arreglo)
+            // asi que se normaliza y se trata siempre a CdgItem como arreglo
+            if (!empty($item['CdgItem'])) {
+                if (!isset($item['CdgItem'][0])) {
+                    $item['CdgItem'] = [$item['CdgItem']];
+                }
+                $codigos = [];
+                foreach ($item['CdgItem'] as $c) {
+                    if (!empty($c['VlrCodigo'])) {
+                        $codigos[] = $c['VlrCodigo'];
+                    }
+                }
+                $item['CdgItem'] = implode(' / ', $codigos);
             }
             // dar formato a números
             foreach (['QtyItem', 'PrcItem', 'DescuentoMonto', 'RecargoMonto', 'MontoItem'] as $col) {
