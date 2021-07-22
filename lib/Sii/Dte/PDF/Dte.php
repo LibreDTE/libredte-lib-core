@@ -1190,7 +1190,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * Método que agrega los totales del documento
      * @param totales Arreglo con los totales (tag Totales del XML)
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2020-10-12
+     * @version 2021-07-22
      */
     protected function agregarTotales(array $totales, $otra_moneda, $y = 190, $x = 145, $offset = 25)
     {
@@ -1248,14 +1248,17 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach ($totales as $key => $total) {
             if ($total!==false and isset($glosas[$key])) {
                 $y = $this->GetY();
+                $monto_total = (!empty($totales['TpoMoneda']) and !isset($this->tipo_moneda_decimales[$totales['TpoMoneda']]))
+                                ? $this->num($total)
+                                : $this->num($total, $this->tipo_moneda_decimales[$totales['TpoMoneda']]);
                 if (!$this->cedible or $this->papelContinuo) {
                     $this->Texto($glosas[$key].' :', $x, null, 'R', 30);
-                    $this->Texto($this->num($total), $x+$offset, $y, 'R', 30);
+                    $this->Texto($monto_total, $x+$offset, $y, 'R', 30);
                     $this->Ln();
                 } else {
                     $this->MultiTexto($glosas[$key].' :', $x, null, 'R', 30);
                     $y_new = $this->GetY();
-                    $this->Texto($this->num($total), $x+$offset, $y, 'R', 30);
+                    $this->Texto($monto_total, $x+$offset, $y, 'R', 30);
                     $this->SetY($y_new);
                 }
             }

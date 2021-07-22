@@ -155,6 +155,10 @@ trait DteImpreso
         'CdgVendedor' => 'Vendedor',
     ]; ///< etiquetas de campos del PDF
 
+    protected $tipo_moneda_decimales = [
+        'DOLAR USA' => 2,
+    ]; ///< decimales según tipo de moneda
+
     /**
      * Método que asigna los datos de la resolución del SII que autoriza al
      * emisor a emitir DTEs
@@ -248,18 +252,22 @@ trait DteImpreso
      * @param n Número que se desea formatear
      * @return Número formateado
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-04-05
+     * @version 2021-07-22
      */
-    protected function num($n)
+    protected function num($n, $decimales = null)
     {
         if (!is_numeric($n)) {
             return $n;
         }
-        $broken_number = explode('.', (string)$n);
-        if (isset($broken_number[1])) {
-            return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
+        if ($decimales === null) {
+            $broken_number = explode('.', (string)$n);
+            if (isset($broken_number[1])) {
+                return number_format($broken_number[0], 0, ',', '.').','.$broken_number[1];
+            }
+            return number_format($broken_number[0], 0, ',', '.');
+        } else {
+            return number_format($n, $decimales, ',', '.');
         }
-        return number_format($broken_number[0], 0, ',', '.');
     }
 
     /**
