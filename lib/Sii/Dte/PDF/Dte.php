@@ -1248,9 +1248,9 @@ class Dte extends \sasco\LibreDTE\PDF
         foreach ($totales as $key => $total) {
             if ($total!==false and isset($glosas[$key])) {
                 $y = $this->GetY();
-                $monto_total = (!empty($totales['TpoMoneda']) and !isset($this->tipo_moneda_decimales[$totales['TpoMoneda']]))
-                                ? $this->num($total)
-                                : $this->num($total, $this->tipo_moneda_decimales[$totales['TpoMoneda']]);
+                $monto_total = (!empty($totales['TpoMoneda']) and isset($this->tipo_moneda_decimales[$totales['TpoMoneda']]))
+                                ? $this->num($total, $this->tipo_moneda_decimales[$totales['TpoMoneda']])
+                                : $this->num($total);
                 if (!$this->cedible or $this->papelContinuo) {
                     $this->Texto($glosas[$key].' :', $x, null, 'R', 30);
                     $this->Texto($monto_total, $x+$offset, $y, 'R', 30);
