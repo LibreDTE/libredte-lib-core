@@ -27,7 +27,7 @@ namespace sasco\LibreDTE;
  * Clase para trabajar con firma electrónica, permite firmar y verificar firmas.
  * Provee los métodos: sign(), verify(), signXML() y verifyXML()
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2019-02-12
+ * @version 2021-08-16
  */
 class FirmaElectronica
 {
@@ -249,6 +249,20 @@ class FirmaElectronica
         $end = new \DateTime($this->getTo());
         $diff = $start->diff($end);
         return $diff->format('%a');
+    }
+
+    /**
+     * Método que indica si la firma está vigente o vencida
+     * @return bool =true si la firma está vigente, =false si está vencida
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-16
+     */
+    public function isActive($when = null)
+    {
+        if (!$when) {
+            $when = date('Y-m-d').' 00:00:00';
+        }
+        return $this->getTo() > $when;
     }
 
     /**

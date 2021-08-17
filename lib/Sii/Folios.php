@@ -268,7 +268,7 @@ class Folios
      * Método que indica si el CAF está o no vigente
      * @return bool =true si el CAF está vigente, =false si no está vigente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2018-12-21
+     * @version 2021-08-16
      */
     public function vigente()
     {
@@ -276,15 +276,8 @@ class Folios
             return true;
         }
         $fecha_autorizacion = $this->getFechaAutorizacion();
-        $hoy = date('Y-m-d');
-        if ($fecha_autorizacion < '2018-07-01' and $hoy > '2018-12-31') {
-            return false;
-        }
-        $vigencia = $fecha_autorizacion >= '2018-07-01' ? 6 : 18;
-        $d1 = new \DateTime($fecha_autorizacion);
-        $d2 = new \DateTime($hoy);
-        $meses = $d1->diff($d2)->m + ($d1->diff($d2)->y*12);
-        return $meses <= $vigencia;
+        $fecha_vencimiento = date('Y-m-d', strtotime($fecha_autorizacion. ' + 180 days')); // 6 meses = 6 * 30 días
+        return date('Y-m-d') < $fecha_vencimiento;
     }
 
     /**
