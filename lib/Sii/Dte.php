@@ -57,10 +57,11 @@ class Dte
      */
     public function __construct($datos, $normalizar = true)
     {
-        if (is_array($datos))
+        if (is_array($datos)) {
             $this->setDatos($datos, $normalizar);
-        else if (is_string($datos))
+        } else if (is_string($datos)) {
             $this->loadXML($datos);
+        }
         $this->timestamp = date('Y-m-d\TH:i:s');
     }
 
@@ -110,20 +111,25 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-22
+     * @version 2021-08-16
      */
     private function setDatos(array $datos, $normalizar = true)
     {
         if (!empty($datos)) {
             $this->tipo = $datos['Encabezado']['IdDoc']['TipoDTE'];
+            if (!isset($datos['Encabezado']['IdDoc']['Folio'])) {
+                throw new \Exception('Se debe indicar el folio del DTE');
+            }
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
             $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
             if ($normalizar) {
                 $this->normalizar($datos);
                 $method = 'normalizar_'.$this->tipo;
-                if (method_exists($this, $method))
+                if (method_exists($this, $method)) {
                     $this->$method($datos);
+                }
                 $this->normalizar_final($datos);
+                $this->normalizar_extra($datos);
             }
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
             $this->xml = (new \sasco\LibreDTE\XML())->generate([
@@ -141,9 +147,7 @@ class Dte
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], null, $parent);
             $this->datos = $datos;
-            if ($normalizar and !$this->verificarDatos()) {
-                return false;
-            }
+            $this->verificar_datos();
             return $this->schemaValidate();
         }
         return false;
@@ -1789,19 +1793,29 @@ class Dte
     }
 
     /**
+     * Método que realiza una normalización extra a los datos del DTE
+     * @param datos Arreglo con los datos del documento que se desean normalizar
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-16
+     */
+    private function normalizar_extra(array &$datos)
+    {
+        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
+            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::normalize($datos);
+        }
+    }
+
+    /**
      * Método que valida los datos del DTE
-     * @return =true si no hay errores de validación, =false si se encontraron errores al validar
+     * Genera una excepción en caso de que alguna validación no sea pasada
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2020-03-13
      */
-    public function verificarDatos()
+    private function verificar_datos()
     {
         if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            if (!\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos())) {
-                return false;
-            }
+            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos());
         }
-        return true;
     }
 
     /**
