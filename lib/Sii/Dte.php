@@ -1344,13 +1344,18 @@ class Dte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @warning Revisar como se aplican descuentos y recargos, ¿debería ser un porcentaje del monto original?
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-07-24
+     * @version 2021-08-25
      */
     private function normalizar_detalle(array &$datos)
     {
-        if (!isset($datos['Detalle'][0]))
+        if (!isset($datos['Detalle'][0])) {
             $datos['Detalle'] = [$datos['Detalle']];
+        }
         $item = 1;
+        $sumarMontoNF = (
+            !isset($datos['Encabezado']['Totales']['MontoNF'])
+            or $datos['Encabezado']['Totales']['MontoNF'] === false
+        );
         foreach ($datos['Detalle'] as &$d) {
             $d = array_merge([
                 'NroLinDet' => $item++,
@@ -1411,8 +1416,9 @@ class Dte
                 ];
             }
             if ($d['PrcItem']) {
-                if (!$d['QtyItem'])
+                if (!$d['QtyItem']) {
                     $d['QtyItem'] = 1;
+                }
                 if (empty($d['MontoItem'])) {
                     $d['MontoItem'] = $this->round(
                         (float)$d['QtyItem'] * (float)$d['PrcItem'],
@@ -1443,9 +1449,17 @@ class Dte
                     if ((!isset($datos['Encabezado']['Totales']['MntNeto']) or $datos['Encabezado']['Totales']['MntNeto']===false) and isset($datos['Encabezado']['Totales']['MntExe'])) {
                         $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
                     } else {
+                        // si es exento o no facturable
                         if (!empty($d['IndExe'])) {
                             if ($d['IndExe']==1) {
                                 $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                            } else if ($d['IndExe']==2) {
+                                if ($sumarMontoNF) {
+                                    if (empty($datos['Encabezado']['Totales']['MontoNF'])) {
+                                        $datos['Encabezado']['Totales']['MontoNF'] = 0;
+                                    }
+                                    $datos['Encabezado']['Totales']['MontoNF'] += $d['MontoItem'];
+                                }
                             }
                         } else {
                             $datos['Encabezado']['Totales']['MntNeto'] += $d['MontoItem'];
@@ -1454,14 +1468,24 @@ class Dte
                 }
                 // si es boleta
                 else {
-                    // si es exento
+                    // si es exento o no facturable
                     if (!empty($d['IndExe'])) {
                         if ($d['IndExe']==1) {
                             $datos['Encabezado']['Totales']['MntExe'] += $d['MontoItem'];
+                            $datos['Encabezado']['Totales']['MntTotal'] += $d['MontoItem'];
+                        } else if ($d['IndExe']==2) {
+                            if ($sumarMontoNF) {
+                                if (empty($datos['Encabezado']['Totales']['MontoNF'])) {
+                                    $datos['Encabezado']['Totales']['MontoNF'] = 0;
+                                }
+                                $datos['Encabezado']['Totales']['MontoNF'] += $d['MontoItem'];
+                            }
                         }
                     }
-                    // agregar al monto total
-                    $datos['Encabezado']['Totales']['MntTotal'] += $d['MontoItem'];
+                    // si es afecto, sólo agregar al monto total
+                    else {
+                        $datos['Encabezado']['Totales']['MntTotal'] += $d['MontoItem'];
+                    }
                 }
             }
         }
