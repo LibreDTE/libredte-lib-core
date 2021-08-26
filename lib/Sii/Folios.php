@@ -26,10 +26,12 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para realizar operaciones con lo Folios autorizados por el SII
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-03-20
+ * @version 2021-08-26
  */
 class Folios
 {
+
+    private static $vencen = [33, 43, 46, 56, 61];
 
     private $xml; ///< Objeto XML que representa el CAF
 
@@ -253,6 +255,66 @@ class Folios
     }
 
     /**
+     * Método que entrega la fecha de vencimiento del CAF
+     * @return string Fecha de vencimiento del CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-26
+     */
+    public function getFechaVencimiento()
+    {
+        if (!$this->vence()) {
+            return null;
+        }
+        $fecha_autorizacion = $this->getFechaAutorizacion();
+        if (!$fecha_autorizacion) {
+            return false;
+        }
+        return date('Y-m-d', strtotime($fecha_autorizacion. ' + 180 days')); // 6 meses = 6 * 30 días
+    }
+
+    /**
+     * Método que entrega la cantidad de meses que han pasado desde la solicitud del CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-26
+     */
+    public function getMesesAutorizacion()
+    {
+        $d1 = new \DateTime($this->getFechaAutorizacion());
+        $d2 = new \DateTime(date('Y-m-d'));
+        $diff = $d1->diff($d2);
+        $meses = $diff->m + ($diff->y*12);
+        if ($diff->d) {
+            $meses += round($diff->d / 30, 2);
+        }
+        return $meses;
+    }
+
+    /**
+     * Método que indica si el CAF está o no vigente
+     * @return bool =true si el CAF está vigente, =false si no está vigente
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-26
+     */
+    public function vigente()
+    {
+        if (!$this->vence()) {
+            return true;
+        }
+        return date('Y-m-d') < $this->getFechaVencimiento();
+    }
+
+    /**
+     * Método que indica si el CAF de este tipo de documento vence o no
+     * @return bool =true si los folios de este tipo vencen, =false si no vencen
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2021-08-26
+     */
+    private function vence()
+    {
+        return in_array($this->getTipo(), self::$vencen);
+    }
+
+    /**
      * Método que indica si el CAF es de certificación o no
      * @return bool =true si los folios son del ambiente de certificación, =null si no se pudo determinar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
@@ -262,22 +324,6 @@ class Folios
     {
         $idk = $this->getIDK();
         return $idk ?  $idk === 100 : null;
-    }
-
-    /**
-     * Método que indica si el CAF está o no vigente
-     * @return bool =true si el CAF está vigente, =false si no está vigente
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2021-08-16
-     */
-    public function vigente()
-    {
-        if (!in_array($this->getTipo(), [33, 43, 46, 56, 61])) {
-            return true;
-        }
-        $fecha_autorizacion = $this->getFechaAutorizacion();
-        $fecha_vencimiento = date('Y-m-d', strtotime($fecha_autorizacion. ' + 180 days')); // 6 meses = 6 * 30 días
-        return date('Y-m-d') < $fecha_vencimiento;
     }
 
     /**
