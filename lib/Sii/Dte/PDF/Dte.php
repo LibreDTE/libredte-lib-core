@@ -1057,7 +1057,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param y Posición vertical de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @author Pablo Reyes (https://github.com/pabloxp)
-     * @version 2021-01-08
+     * @version 2021-09-02
      */
     protected function agregarDetalleContinuo($detalle, $x = 3, array $offsets = [])
     {
@@ -1091,15 +1091,15 @@ class Dte extends \sasco\LibreDTE\PDF
             // descuento
             if (!empty($d['DescuentoPct']) or !empty($d['DescuentoMonto'])) {
                 if (!empty($d['DescuentoPct'])) {
-                    $descuento = number_format($d['DescuentoPct'],0,',','.').'%';
+                    $descuento = (is_numeric($d['DescuentoPct']) ? $this->num($d['DescuentoPct']) : $d['DescuentoPct']).'%';
                 } else {
-                    $descuento = number_format($d['DescuentoMonto'],0,',','.');
+                    $descuento = is_numeric($d['DescuentoMonto']) ? $this->num($d['DescuentoMonto']) : $d['DescuentoMonto'];
                 }
                 $this->Texto('Desc.: '.$descuento, $x+$offsets[0], $this->y, ucfirst($this->detalle_cols['NmbItem']['align'][0]), $this->detalle_cols['NmbItem']['width']);
             }
             // precio y cantidad
             if (isset($d['PrcItem'])) {
-                $this->Texto(number_format($d['PrcItem'],0,',','.'), $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
+                $this->Texto(is_numeric($d['PrcItem']) ? $this->num($d['PrcItem']) : $d['PrcItem'], $x+$offsets[1], $this->y, ucfirst($this->detalle_cols['PrcItem']['align'][0]), $this->detalle_cols['PrcItem']['width']);
             }
             if (isset($d['QtyItem'])) {
                 $this->Texto($this->num($d['QtyItem']), $x+$offsets[2], $this->y, ucfirst($this->detalle_cols['QtyItem']['align'][0]), $this->detalle_cols['QtyItem']['width']);
