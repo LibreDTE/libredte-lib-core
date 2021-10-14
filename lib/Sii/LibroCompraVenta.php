@@ -252,7 +252,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
         // calcular monto total si no se especificó
         if ($detalle['MntTotal']===false) {
             // calcular monto total inicial
-            $detalle['MntTotal'] = $detalle['MntExe'] + $detalle['MntNeto'] + (int)$detalle['MntIVA'];
+            $detalle['MntTotal'] = (int)$detalle['MntExe'] + (int)$detalle['MntNeto'] + (int)$detalle['MntIVA'];
             // agregar iva no recuperable al monto total
             if (!empty($detalle['IVANoRec'])) {
                 foreach ($detalle['IVANoRec'] as $IVANoRec) {
@@ -261,13 +261,13 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             }
             // agregar iva de uso común al monto total
             if (isset($detalle['FctProp'])) {
-                $detalle['MntTotal'] += $detalle['IVAUsoComun'];
+                $detalle['MntTotal'] += (int)$detalle['IVAUsoComun'];
             }
             // descontar del total la retención total de IVA
             if (!empty($detalle['OtrosImp'])) {
                 foreach ($detalle['OtrosImp'] as $OtrosImp) {
                     if (ImpuestosAdicionales::getTipo($OtrosImp['CodImp'])=='R') {
-                        $detalle['MntTotal'] -= $OtrosImp['MntImp'];
+                        $detalle['MntTotal'] -= (int)$OtrosImp['MntImp'];
                     }
                 }
             }
@@ -368,7 +368,7 @@ class LibroCompraVenta extends \sasco\LibreDTE\Sii\Base\Libro
             if (!empty($data[$i][11])) {
                 $detalle['IVANoRec'] = [
                     'CodIVANoRec' => $data[$i][11],
-                    'MntIVANoRec' => !empty($data[$i][12]) ? $data[$i][12] : round($detalle['MntNeto'] * ($detalle['TasaImp']/100)),
+                    'MntIVANoRec' => !empty($data[$i][12]) ? $data[$i][12] : round((int)$detalle['MntNeto'] * ((float)$detalle['TasaImp']/100)),
                 ];
             }
             // agregar código y monto de otros impuestos
