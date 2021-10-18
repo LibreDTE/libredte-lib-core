@@ -9,22 +9,18 @@ LibreDTE: Biblioteca Estándar en PHP
 LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica
 Libre para Chile.
 
-Aquí podrás encontrar la biblioteca escrita en lenguaje PHP para la interacción
-con el Servicio de Impuestos Internos (SII).
+Aquí podrás encontrar la biblioteca escrita en lenguaje PHP para la integración
+con el Servicio de Impuestos Internos (SII) asociada a los Documentos Tributarios
+Electrónicos (DTE).
 
-La biblioteca se construye originalmente para ser usada en el módulo
-[Dte](https://github.com/LibreDTE/libredte-modulo-Dte) del framework
-[SowerPHP](http://sowerphp.org). En esta biblioteca sólo estará lo básico, sin
-interfaces de usuario, para que un desarrollador pueda construir su propia
-aplicación.
+La biblioteca se construye originalmente para ser usada en la
+[Aplicación Web de LibreDTE Versión Comunidad](https://github.com/LibreDTE/libredte-webapp).
+En esta biblioteca sólo estará lo básico, sin interfaces de usuario, para que un
+desarrollador pueda construir su propia aplicación.
 
-Si deseas una aplicación ya construída puedes revisar el
-[sitio web oficial de LibreDTE](https://libredte.cl) donde podrás registrarte y
-usar la plataforma web de facturación. Si deseas acceder al código fuente de la
-aplicación web versión comunidad puedes hacerlo
-[aquí](https://github.com/LibreDTE/libredte-webapp).
-
-[Realiza una donación al proyecto](https://facturacionlibre.cl/#donar)
+Si deseas una aplicación "llegar y usar" sin preocuparte por instalaciones o
+servidores, revisa la [Aplicación Web de LibreDTE Versión Oficial](https://libredte.cl).
+Podrás registrarte y usar la plataforma web de facturación junto a otros módulos.
 
 **Importante**: SASCO SpA, empresa autora y dueña de LibreDTE, no provee soporte
 oficial para integraciones usando esta Biblioteca de manera directa. SASCO SpA
@@ -54,9 +50,9 @@ Funcionalidades implementadas
     - Factura de exportación electrónica (110).
     - Nota de débito exportación electrónica (111).
     - Nota de crédito exportación electrónica (112).
-    - Información electrónica de compras y ventas (IECV).
-    - Libro de guías de despacho electrónico.
-    - Libro de boletas y reporte de consumo de folios (RCOF).
+- Información electrónica de compras y ventas (IECV).
+- Libro de guías de despacho electrónico.
+- Libro de boletas y reporte de consumo de folios (RCOF).
 - Etapa de intercambio con otros contribuyentes:
     - Acuse de recibo.
     - Recibo de mercaderías y servicios prestados.
@@ -64,14 +60,17 @@ Funcionalidades implementadas
 - Generación de DTE en PDF a partir de su XML, hoja carta y papel contínuo.
 - Generación de IECV en PDF a partir de su XML.
 - Impuestos adicionales (excepto combustibles).
-- Descarga contribuyentes electrónicos desde SII con email de intercambio.
 - Cesión electrónica (factoring).
-- Registro de compra y venta (RCV).
+- Acciones para el Registro de Compras y Ventas (RCV).
+    - Ingresar aceptación o reclamo.
+    - Listar eventos del DTE.
+    - Consultar posibilidad de cesión del DTE.
+    - Consultar fecha de recepción en SII del DTE.
 
 ### Funcionalidades independientes
 
 - Conversión de arreglos PHP a XML.
-- Firma electrónica de cualquier XML.
+- Firma electrónica de un XML.
 - Internacionalización.
 - Sistema de logs.
 
@@ -93,7 +92,7 @@ O editando el archivo *composer.json* y agregando:
 
 	{
 		"require": {
-			 "sasco/libredte": "20.10.*"
+			 "sasco/libredte": "21.10.*"
 		}
 	}
 
