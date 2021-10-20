@@ -26,7 +26,7 @@ namespace sasco\LibreDTE\Sii;
 /**
  * Clase para trabajar con los impuestos adicionales
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2018-10-18
+ * @version 2021-10-20
  */
 class ImpuestosAdicionales
 {
@@ -44,7 +44,7 @@ class ImpuestosAdicionales
         ],
         18 => [
             'tipo' => 'A',
-            'glosa' => 'IVA anticiado carne',
+            'glosa' => 'IVA anticipado carne',
             'tasa' => 5,
         ],
         19 => [
