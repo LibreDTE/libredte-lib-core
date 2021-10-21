@@ -655,7 +655,7 @@ class Sii
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
         // enviar XML al SII
-        for ($i=0; $i<=$retry; $i++) {
+        for ($i=0; $i<$retry; $i++) {
             $response = curl_exec($curl);
             if ($response and $response!='Error 500') {
                 break;
