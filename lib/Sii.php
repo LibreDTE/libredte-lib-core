@@ -636,6 +636,7 @@ class Sii
             'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; LibreDTE)',
             'Referer: https://libredte.cl',
             'Cookie: TOKEN='.$token,
+            'Content-Type: multipart/form-data'
         ];
         $url = 'https://'.self::$config['servidor'][self::getAmbiente()].'.sii.cl/cgi_dte/UPL/DTEUpload';
         curl_setopt($curl, CURLOPT_POST, true);
@@ -654,7 +655,7 @@ class Sii
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
         // enviar XML al SII
-        for ($i=0; $i<$retry; $i++) {
+        for ($i=0; $i<=$retry; $i++) {
             $response = curl_exec($curl);
             if ($response and $response!='Error 500') {
                 break;
