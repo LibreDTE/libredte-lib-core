@@ -257,14 +257,16 @@ class SetPruebas
                     foreach ($item as $col => $val) {
                         $col = self::$item_cols[$col];
                         // procesar cada valor de acuerdo al nombre de la columna
-                        if (in_array($col, ['DescuentoPct', 'RecargoPct']))
+                        if (in_array($col, ['DescuentoPct', 'RecargoPct'])) {
                             $detalle[$col] = substr($val, 0, -1);
-                        else
+                        } else {
                             $detalle[$col] = utf8_encode($val); // se convierte de ISO-8859-1 a UTF-8
+                        }
                     }
-                    // si el item es EXENTO se agrega campo que lo indica
-                    if (strpos($detalle['NmbItem'], 'EXENTO'))
+                    // si el documento o el item es EXENTO se agrega campo que lo indica
+                    if (in_array($TipoDTE, [34, 110, 111, 112]) or strpos($detalle['NmbItem'], 'EXENTO')) {
                         $detalle['IndExe'] = 1;
+                    }
                     // si hay una referencia se completa con los campos del
                     // detalle de la referencia que no estén en este detalle
                     if (!empty($caso['referencia'])) {
@@ -274,8 +276,9 @@ class SetPruebas
                         for ($i=0; $i<$n_detalle_r; $i++) {
                             if ($detalle_r[$i]['NmbItem']==$detalle['NmbItem']) {
                                 foreach ($detalle_r[$i] as $attr => $val) {
-                                    if (!isset($detalle[$attr]))
+                                    if (!isset($detalle[$attr])) {
                                         $detalle[$attr] = $val;
+                                    }
                                 }
                             }
                         }
