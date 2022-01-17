@@ -1696,6 +1696,12 @@ class Dte
             }
             $datos['Encabezado']['Totales']['MntTotal'] -= $datos['Encabezado']['Totales']['CredEC'];
         }
+        // si hay monto total y monto no facturable se agrega monto del periodo
+        if (!in_array($datos['Encabezado']['IdDoc']['TipoDTE'], [39, 41])) {
+            if (!empty($datos['Encabezado']['Totales']['MntTotal']) and !empty($datos['Encabezado']['Totales']['MontoNF'])) {
+                $datos['Encabezado']['Totales']['MontoPeriodo'] = $datos['Encabezado']['Totales']['MntTotal'] + $datos['Encabezado']['Totales']['MontoNF'];
+            }
+        }
     }
 
     /**
