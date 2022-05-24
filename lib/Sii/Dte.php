@@ -160,11 +160,11 @@ class Dte
      * documento sin cambios.
      * @return Arreglo con datos del DTE
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-07-04
+     * @version 2022-04-24
      */
-    public function getDatos()
+    public function getDatos($force_reload = false)
     {
-        if (!$this->datos) {
+        if (!$this->datos or $force_reload) {
             $datos = $this->xml->toArray();
             if (!isset($datos['DTE'][$this->tipo_general])) {
                 \sasco\LibreDTE\Log::write(
