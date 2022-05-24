@@ -149,7 +149,7 @@ Contacto y redes sociales
 -------------------------
 
 - Sitio web: <https://libredte.cl>
-- Facebook: <https://www.facebook.com/libredte>
 - Youtube: <https://www.youtube.com/libredtecl>
+- Facebook: <https://www.facebook.com/libredte>
+- Instagram: <https://www.instagram.com/libredte>
 - Twitter: <https://twitter.com/libredte>
-- Linkedin: <https://www.linkedin.com/groups/8403251>
