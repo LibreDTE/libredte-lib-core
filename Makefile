@@ -10,14 +10,14 @@ firma:
 	openssl pkcs12 -export -out tests/firma.p12 -inkey tests/firma.key -in tests/firma.crt -passout pass:test
 	rm tests/firma.key tests/firma.crt
 
-test: firma
+test: composer firma
 	vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
 
 pdf:
 	doxygen && cd doc/latex && make pdf
 
 clean:
-	rm -rf tests/firma.p12 doc/html doc/latex
+	rm -rf tests/firma.p12 doc/html doc/latex examples/pdf examples/xml
 
 latexbase:
 	doxygen -w latex doc/doxygen/header.tex doc/doxygen/footer.tex doc/doxygen/doxygen.sty
