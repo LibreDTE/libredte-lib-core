@@ -112,6 +112,7 @@ trait DteImpreso
         'EM' => 'Entrada de mercadería (EM)',
         'RDM' => 'Recepción de material/mercadería (RDM)',
         'MLE' => 'Modalidad Libre Elección (MLE)',
+        'RC' => 'Recepción Conforme (RC)',
     ]; ///< Glosas para los tipos de documentos (DTE y otros)
 
     protected $formas_pago = [
