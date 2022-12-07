@@ -61,7 +61,7 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
      * Método para asignar la carátula. Opcional, si no se usa se sacan los datos
      * del documento de Cesion
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-12-10
+     * @version 2022-12-07
      */
     public function setCaratula(array $caratula = [])
     {
@@ -71,7 +71,7 @@ class Aec extends \sasco\LibreDTE\Sii\Base\Envio
             ],
             'RutCedente' => isset($this->cesiones[0]) ? $this->cesiones[0]->getCedente()['RUT'] : false,
             'RutCesionario' => isset($this->cesiones[0]) ? $this->cesiones[0]->getCesionario()['RUT'] : false,
-            'NmbContacto' => isset($this->cesiones[0]) ? $this->cesiones[0]->getCedente()['RUTAutorizado']['Nombre'] : false,
+            'NmbContacto' => isset($this->cesiones[0]) ? mb_substr($this->cesiones[0]->getCedente()['RUTAutorizado']['Nombre'], 0, 40) : false,
             'FonoContacto' => false,
             'MailContacto' => isset($this->cesiones[0]) ? $this->cesiones[0]->getCedente()['eMail'] : false,
             'TmstFirmaEnvio' => date('Y-m-d\TH:i:s'),
