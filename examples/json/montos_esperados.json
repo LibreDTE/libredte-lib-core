@@ -114,6 +114,16 @@
         "IVA": 5985,
         "MntTotal": 37485
     },
+    "61_002_corrige_texto_factura": {
+        "MntNeto": 0,
+        "IVA": 0,
+        "MntTotal": 0
+    },
+    "61_003_corrige_monto_factura": {
+        "MntNeto": 9000,
+        "IVA": 1710,
+        "MntTotal": 10710
+    },
     "110_001_hotel": {
         "MntExe": 50,
         "MntTotal": 50
