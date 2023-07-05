@@ -862,7 +862,7 @@ class Dte
                 'Receptor' => false,
                 'RUTSolicita' => false,
                 'Totales' => [
-                    'MntExe' => false,
+                    'MntExe' => 0,
                     'MntTotal' => 0,
                 ]
             ],
