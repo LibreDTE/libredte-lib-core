@@ -594,7 +594,7 @@ class Sii
      * @param retry Intentos que se realizarán como máximo para obtener respuesta
      * @return Respuesta XML desde SII o bien null si no se pudo obtener respuesta
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-23
+     * @version 2023-08-25
      */
     public static function enviar($usuario, $empresa, $dte, $token, $gzip = false, $retry = null)
     {
@@ -617,9 +617,9 @@ class Sii
         file_put_contents($file, $dte);
         $data = [
             'rutSender' => $rutSender,
-            'dvSender' => $dvSender,
+            'dvSender' => strtoupper($dvSender),
             'rutCompany' => $rutCompany,
-            'dvCompany' => $dvCompany,
+            'dvCompany' => strtoupper($dvCompany),
             'archivo' => curl_file_create(
                 $file,
                 $gzip ? 'application/gzip' : 'application/xml',
