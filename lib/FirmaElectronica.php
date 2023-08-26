@@ -94,18 +94,49 @@ class FirmaElectronica
                 if (is_readable($this->config['file'])) {
                     $this->config['data'] = file_get_contents($this->config['file']);
                 } else {
-                    return $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído');
+                    return $this->error('Archivo de la firma electrónica '.basename($this->config['file']).' no puede ser leído.');
                 }
             }
             // leer datos de la firma desde el archivo que se ha pasado
             if (!empty($this->config['data'])) {
                 if (openssl_pkcs12_read($this->config['data'], $this->certs, $this->config['pass'])===false) {
-                    return $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña)');
+                    return $this->error('No fue posible leer los datos de la firma electrónica (verificar la contraseña).');
                 }
                 unset($this->config['data']);
             }
         }
         $this->data = openssl_x509_parse($this->certs['cert']);
+    }
+
+    /**
+     * Método que realiza diferentes validaciones de la firma electrónica
+     * para determinar si es posible o no usarla.
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2023-08-25
+     */
+    public function check()
+    {
+        // si hay algún log, hubo un error (por defecto se leen los severity = LOG_ERR)
+        $logs = \sasco\LibreDTE\Log::readAll();
+        if (!empty($logs)) {
+            foreach ($logs as $Log) {
+                if ($Log->code == \sasco\LibreDTE\Estado::FIRMA_ERROR) {
+                    throw new \Exception($Log);
+                }
+            }
+        }
+        // validar que venga el RUN de la firma y que si termina en K no sea minúscula
+        $run = trim($this->getID(false));
+        if (empty($run)) {
+            throw new \Exception('No fue posible obtener el RUN de la firma electrónica (verificar contraseña).');
+        }
+        if (explode('-', $run)[1] == 'k') {
+            throw new \Exception('El RUN '.$run.' asociado a la firma no es válido, termina en "k" (minúscula). Debe adquirir una nueva firma y al comprarla corroborar que la "K" sea mayúscula. Se recomienda no comprar con el mismo proveedor: '.$this->getIssuer().'.');
+        }
+        // validar que la firma está vigente
+        if (!$this->isActive()) {
+            throw new \Exception('La firma venció el '.$this->getTo().', debe usar una firma vigente. Si no posee una, debe adquirirla con un proveedor autorizado.');
+        }
     }
 
     /**
