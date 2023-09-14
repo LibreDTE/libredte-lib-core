@@ -111,7 +111,7 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2021-08-16
+     * @version 2023-09-14
      */
     private function setDatos(array $datos, $normalizar = true)
     {
@@ -122,6 +122,7 @@ class Dte
             }
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
             $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
+            // normalizar
             if ($normalizar) {
                 $this->normalizar($datos);
                 $method = 'normalizar_'.$this->tipo;
@@ -132,6 +133,13 @@ class Dte
                 $this->normalizar_extra($datos);
             }
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
+            // quitar nodos que no deben estar presentes
+            foreach (['TED', 'TmstFirma'] as $nodo) {
+                if (isset($datos[$nodo])) {
+                    unset($datos[$nodo]);
+                }
+            }
+            // armar XML
             $this->xml = (new \sasco\LibreDTE\XML())->generate([
                 'DTE' => [
                     '@attributes' => [
@@ -147,6 +155,7 @@ class Dte
             $parent = $this->xml->getElementsByTagName($this->tipo_general)->item(0);
             $this->xml->generate($datos + ['TED' => null], null, $parent);
             $this->datos = $datos;
+            // validar datos
             $this->verificar_datos();
             return $this->schemaValidate();
         }
