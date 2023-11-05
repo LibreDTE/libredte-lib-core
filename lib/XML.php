@@ -55,7 +55,7 @@ class XML extends \DomDocument
      * @param parent DOMElement padre para los elementos, o =null para que sea la raíz
      * @return Objeto \sasco\LibreDTE\XML
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-10-22
+     * @version 2023-11-04
      */
     public function generate(array $data, array $namespace = null, \DOMElement &$parent = null)
     {
@@ -66,7 +66,12 @@ class XML extends \DomDocument
             if ($key=='@attributes') {
                 if ($value!==false) {
                     foreach ($value as $attr => $val) {
-                        if ($val!==false) {
+                        if (is_array($val)) {
+                            throw new \TypeError(
+                                'El tipo de dato del valor ingresado para el atributo \''.$attr.'\' del nodo \''.$parent->tagName.'\' es incorrecto, serializado como JSON es: '.json_encode($val).'. Y este valor está dentro del campo \''.$key.'\' serializado como JSON así: '.json_encode($value).'.'
+                            );
+                        }
+                        if ($val!==false) { // este false hace que todo campo del JSON con valor false no vaya al XML
                             $parent->setAttribute($attr, $val);
                         }
                     }
@@ -81,6 +86,9 @@ class XML extends \DomDocument
                             $value = [$value];
                         }
                         foreach ($value as $value2) {
+                            if (!is_array($value2)) {
+                                throw new \TypeError('El valor del nodo '.$key.' es un texto y debería ser un arreglo. El contenido serializado es: '.json_encode($value2).'. Es probable que los datos que se pasaron no sean válidos para generar el XML.');
+                            }
                             if ($namespace) {
                                 $Node = $this->createElementNS($namespace[0], $namespace[1].':'.$key);
                             } else {
@@ -120,8 +128,9 @@ class XML extends \DomDocument
     private function sanitize($txt)
     {
         // si no se paso un texto o bien es un número no se hace nada
-        if (!$txt or is_numeric($txt))
+        if (!$txt or is_numeric($txt)) {
             return $txt;
+        }
         // convertir "predefined entities" de XML
         $txt = str_replace(
             ['&amp;', '&#38;', '&lt;', '&#60;', '&gt;', '&#62', '&quot;', '&#34;', '&apos;', '&#39;'],
@@ -174,8 +183,9 @@ class XML extends \DomDocument
     {
         if ($xpath) {
             $node = $this->xpath($xpath)->item(0);
-            if (!$node)
+            if (!$node) {
                 return false;
+            }
             $xml = $this->utf2iso($node->C14N());
             $xml = $this->fixEntities($xml);
         } else {
@@ -300,15 +310,42 @@ class XML extends \DomDocument
 
     /**
      * Método que entrega los errores de libxml que pueden existir
-     * @return Arreglo con los errores XML que han ocurrido
+     * @return array Arreglo con los errores XML que han ocurrido
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2015-09-18
+     * @version 2023-11-04
      */
     public function getErrors()
     {
+        $replace = [
+            '{'.$this->getNamespace().'}' => '',
+            '\': ' => '\' (línea %(linea)s): ',
+            ': [facet \'pattern\'] The value' => ': tiene el valor',
+            ': This element is not expected. Expected is one of' => ': no era el esperado, el campo esperado era alguno de los siguientes',
+            ': This element is not expected. Expected is' => ': no era el esperado, el campo esperado era',
+            'is not accepted by the pattern' => 'el que no es válido según la expresión regular (patrón)',
+            'is not a valid value of the local atomic type' => 'no es un valor válido para el tipo de dato del campo',
+            'is not a valid value of the atomic type' => 'no es un valor válido, se requiere un valor de tipo',
+            ': [facet \'maxLength\'] The value has a length of ' => ': el valor del campo tiene un largo de ',
+            '; this exceeds the allowed maximum length of ' => ' caracteres excediendo el largo máximo permitido de ',
+            ': [facet \'enumeration\'] The value ' => ': el valor ',
+            'is not an element of the set' => 'no es válido, debe ser alguno de los valores siguientes',
+            '[facet \'minLength\'] The value has a length of' => 'el valor del campo tiene un largo de ',
+            '; this underruns the allowed minimum length of' => ' y el largo mínimo requerido es',
+            'Missing child element(s). Expected is' => 'debe tener un nivel interior con campos, debería tener el campo',
+            'Character content other than whitespace is not allowed because the content type is \'element-only\'' => 'el valor del campo es inválido',
+            'Element' => 'Campo',
+            ' ( ' => ' \'',
+            ' ).' => '\'.',
+        ];
+        $replace_from = array_keys($replace);
+        $replace_to = array_values($replace);
+        unset($replace);
         $errors = [];
-        foreach (libxml_get_errors() as $e)
-            $errors[] = $e->message;
+        foreach (libxml_get_errors() as $e) {
+            $error = str_replace($replace_from, $replace_to, trim($e->message));
+            $error = str_replace('%(linea)s', $e->line, $error);
+            $errors[] = $error;
+        }
         return $errors;
     }
 
@@ -322,6 +359,17 @@ class XML extends \DomDocument
         return $this->documentElement->tagName;
     }
 
+     /**
+     * Método que entrega el namespace del tag raíz del XML
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2023-11-04
+     */
+    public function getNamespace()
+    {
+        $namespace = $this->documentElement->getAttribute('xmlns');
+        return $namespace ?? null;
+    }
+
     /**
      * Método que entrega el nombre del archivo del schema del XML
      * @return Nombre del schema o bien =false si no se encontró
@@ -331,8 +379,9 @@ class XML extends \DomDocument
     public function getSchema()
     {
         $schemaLocation = $this->documentElement->getAttribute('xsi:schemaLocation');
-        if (!$schemaLocation or strpos($schemaLocation, ' ')===false)
+        if (!$schemaLocation or strpos($schemaLocation, ' ')===false) {
             return false;
+        }
         list($uri, $xsd) = explode(' ', $schemaLocation);
         return $xsd;
     }

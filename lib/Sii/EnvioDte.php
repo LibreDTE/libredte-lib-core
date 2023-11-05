@@ -135,8 +135,9 @@ class EnvioDte extends \sasco\LibreDTE\Sii\Base\Envio
     public function generar()
     {
         // si ya se había generado se entrega directamente
-        if ($this->xml_data)
+        if ($this->xml_data) {
             return $this->xml_data;
+        }
         // si no hay DTEs para generar entregar falso
         if (!isset($this->dtes[0])) {
             \sasco\LibreDTE\Log::write(

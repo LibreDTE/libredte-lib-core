@@ -65,8 +65,9 @@ class Log
     public static function write($code, $msg = null, $severity = LOG_ERR)
     {
         // si no existe la bitácora para la gravedad se crea
-        if (!isset(self::$bitacora[$severity]))
+        if (!isset(self::$bitacora[$severity])) {
             self::$bitacora[$severity] = [];
+        }
         // si el código es un string se copia a msg
         if (is_string($code)) {
             $msg = $code;
@@ -97,8 +98,9 @@ class Log
      */
     public static function read($severity = LOG_ERR)
     {
-        if (!isset(self::$bitacora[$severity]))
+        if (!isset(self::$bitacora[$severity])) {
             return false;
+        }
         return array_pop(self::$bitacora[$severity]);
     }
 
@@ -112,11 +114,13 @@ class Log
      */
     public static function readAll($severity = LOG_ERR, $new_first = true)
     {
-        if (!isset(self::$bitacora[$severity]))
+        if (!isset(self::$bitacora[$severity])) {
             return [];
+        }
         $bitacora = self::$bitacora[$severity];
-        if ($new_first)
+        if ($new_first) {
             krsort($bitacora);
+        }
         self::$bitacora[$severity] = [];
         return $bitacora;
     }
@@ -163,8 +167,9 @@ class LogMsg
     public function __toString()
     {
         $msg = $this->msg ? $this->msg : 'Error código '.$this->code;
-        if (!$this->file)
+        if (!$this->file) {
             return $msg;
+        }
         return $msg.' (by '.$this->class.$this->type.$this->function.'() in '.$this->file.' on line '.$this->line.')';
     }
 

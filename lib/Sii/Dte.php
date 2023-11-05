@@ -111,14 +111,14 @@ class Dte
      * @param datos Arreglo con los datos del DTE que se quire generar
      * @param normalizar Si se pasa un arreglo permitirá indicar si el mismo se debe o no normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2023-09-14
+     * @version 2023-11-04
      */
     private function setDatos(array $datos, $normalizar = true)
     {
         if (!empty($datos)) {
             $this->tipo = $datos['Encabezado']['IdDoc']['TipoDTE'];
             if (!isset($datos['Encabezado']['IdDoc']['Folio'])) {
-                throw new \Exception('Se debe indicar el folio del DTE');
+                throw new \Exception('Se debe indicar el folio del DTE.');
             }
             $this->folio = $datos['Encabezado']['IdDoc']['Folio'];
             $this->id = 'LibreDTE_T'.$this->tipo.'F'.$this->folio;
@@ -133,6 +133,11 @@ class Dte
                 $this->normalizar_extra($datos);
             }
             $this->tipo_general = $this->getTipoGeneral($this->tipo);
+            if (!$this->tipo_general) {
+                throw new \Exception(
+                    'No fue posible determinar el tipo del documento entre los disponibles: '.implode(', ', array_keys($this->tipos)).'.'
+                );
+            }
             // quitar nodos que no deben estar presentes
             foreach (['TED', 'TmstFirma'] as $nodo) {
                 if (isset($datos[$nodo])) {
@@ -238,9 +243,11 @@ class Dte
      */
     private function getTipoGeneral($dte)
     {
-        foreach ($this->tipos as $tipo => $codigos)
-            if (in_array($dte, $codigos))
+        foreach ($this->tipos as $tipo => $codigos) {
+            if (in_array($dte, $codigos)) {
                 return $tipo;
+            }
+        }
         \sasco\LibreDTE\Log::write(
             \sasco\LibreDTE\Estado::DTE_ERROR_TIPO,
             \sasco\LibreDTE\Estado::get(\sasco\LibreDTE\Estado::DTE_ERROR_TIPO, $dte)
@@ -416,7 +423,7 @@ class Dte
      * @param Folios Objeto de los Folios con los que se desea timbrar
      * @return =true si se pudo timbrar o =false en caso de error
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-09-01
+     * @version 2023-11-04
      */
     public function timbrar(Folios $Folios)
     {
@@ -424,7 +431,11 @@ class Dte
         // del rango de folios autorizados que se usarán para timbrar
         // Esta validación NO verifica si el folio ya fue usado, sólo si está
         // dentro del CAF que se está usando
-        $folio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio')->item(0)->nodeValue;
+        $NodoFolio = $this->xml->xpath('/DTE/'.$this->tipo_general.'/Encabezado/IdDoc/Folio');
+        if (!$NodoFolio->length) {
+            return false;
+        }
+        $folio = $NodoFolio->item(0)->nodeValue;
         if ($folio<$Folios->getDesde() or $folio>$Folios->getHasta()) {
             \sasco\LibreDTE\Log::write(
                 \sasco\LibreDTE\Estado::DTE_ERROR_RANGO_FOLIO,

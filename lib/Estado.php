@@ -105,64 +105,64 @@ class Estado
     // glosas de los estados
     private static $glosas = [
         // códigos de error para \sasco\LibreDTE\Sii::enviar()
-        self::ENVIO_OK => 'Envío ok',
-        self::ENVIO_USUARIO_INCORRECTO => 'Usuario no tiene permiso para enviar',
-        self::ENVIO_TAMANIO_ARCHIVO => 'Error en tamaño del archivo (muy grande o muy chico)',
-        self::ENVIO_ARCHIVO_CORTADO => 'Archivo cortado (tamaño es diferente al parámetro size)',
-        self::ENVIO_NO_AUTENTICADO => 'No está autenticado',
-        self::ENVIO_EMPRESA_NO_AUTORIZADA => 'Empresa no está autorizada a enviar archivos',
-        self::ENVIO_ESQUEMA_INVALIDO => 'Esquema inválido',
-        self::ENVIO_ERROR_FIRMA => 'Error en firma del documento',
-        self::ENVIO_SISTEMA_BLOQUEADO => 'Sistema bloqueado',
+        self::ENVIO_OK => 'Envío ok.',
+        self::ENVIO_USUARIO_INCORRECTO => 'Usuario no tiene permiso para enviar.',
+        self::ENVIO_TAMANIO_ARCHIVO => 'Error en tamaño del archivo (muy grande o muy chico).',
+        self::ENVIO_ARCHIVO_CORTADO => 'Archivo cortado (tamaño es diferente al parámetro size).',
+        self::ENVIO_NO_AUTENTICADO => 'No está autenticado.',
+        self::ENVIO_EMPRESA_NO_AUTORIZADA => 'Empresa no está autorizada a enviar archivos.',
+        self::ENVIO_ESQUEMA_INVALIDO => 'Esquema inválido.',
+        self::ENVIO_ERROR_FIRMA => 'Error en firma del documento.',
+        self::ENVIO_SISTEMA_BLOQUEADO => 'Sistema bloqueado.',
         self::ENVIO_SSL_SIN_VERIFICAR => '¡No se está verificando el certificado SSL del SII en ambiente de producción!',
         self::ENVIO_ERROR_CURL => 'Falló el envío automático al SII. %s',
-        self::ENVIO_ERROR_500 => 'Falló el envío automático al SII con error 500',
+        self::ENVIO_ERROR_500 => 'Falló el envío automático al SII con error 500.',
         self::ENVIO_ERROR_XML => 'Error al convertir respuesta de envío automático del SII a XML: %s',
-        self::ENVIO_ERROR_GZIP => 'No fue posible comprimir el archivo XML a GZIP',
+        self::ENVIO_ERROR_GZIP => 'No fue posible comprimir el archivo XML a GZIP.',
         // códigos de error para \sasco\LibreDTE\Sii::request()
         self::REQUEST_ERROR_SOAP => 'Error al ejecutar consulta a webservice soap. %s',
-        self::REQUEST_ERROR_BODY => 'No se obtuvo respuesta para %s en %d intentos',
+        self::REQUEST_ERROR_BODY => 'No se obtuvo respuesta para %s en %d intentos.',
         // códigos de error para \sasco\LibreDTE\Sii::cert()
-        self::SII_ERROR_CERTIFICADO => 'No se pudo leer el certificado X.509 del SII número %d',
+        self::SII_ERROR_CERTIFICADO => 'No se pudo leer el certificado X.509 del SII número %d.',
         // códigos de error para \sasco\LibreDTE\FirmaElectronica
         self::FIRMA_ERROR => '%s',
         // códigos de error para \sasco\LibreDTE\File::compress()
-        self::COMPRESS_ERROR_READ => 'No se puede leer el archivo que se desea comprimir',
-        self::COMPRESS_ERROR_ZIP => 'No fue posible crear el archivo ZIP',
+        self::COMPRESS_ERROR_READ => 'No se puede leer el archivo que se desea comprimir.',
+        self::COMPRESS_ERROR_ZIP => 'No fue posible crear el archivo ZIP.',
         // códigos de error para \sasco\LibreDTE\Sii\Autenticacion
-        self::AUTH_ERROR_SEMILLA => 'No fue posible obtener la semilla',
-        self::AUTH_ERROR_FIRMA_SOLICITUD_TOKEN => 'No fue posible firmar getToken',
-        self::AUTH_ERROR_TOKEN => 'No fue posible obtener el token de autenticacion',
+        self::AUTH_ERROR_SEMILLA => 'No fue posible obtener la semilla.',
+        self::AUTH_ERROR_FIRMA_SOLICITUD_TOKEN => 'No fue posible firmar getToken.',
+        self::AUTH_ERROR_TOKEN => 'No fue posible obtener el token de autenticacion.',
         // códigos de error para \sasco\LibreDTE\Sii\Dte
-        self::DTE_ERROR_GETDATOS => 'No fue posible convertir el XML a arreglo para extraer los datos del DTE',
-        self::DTE_ERROR_TIPO => 'No existe la definición del tipo de documento para el código %d',
-        self::DTE_ERROR_RANGO_FOLIO => 'Folio del DTE %s está fuera de rango',
-        self::DTE_FALTA_FCHEMIS => 'Falta FchEmis del DTE %s',
-        self::DTE_FALTA_MNTTOTAL => 'Falta MntTotal del DTE %s',
-        self::DTE_ERROR_TIMBRE => 'No se pudo generar el timbre del DTE %s',
-        self::DTE_ERROR_FIRMA => 'No se pudo generar la firma del DTE %s',
-        self::DTE_ERROR_LOADXML => 'No fue posible cargar el XML del DTE',
+        self::DTE_ERROR_GETDATOS => 'No fue posible convertir el XML a arreglo para extraer los datos del DTE.',
+        self::DTE_ERROR_TIPO => 'No existe la definición del tipo de documento para el código %d.',
+        self::DTE_ERROR_RANGO_FOLIO => 'Folio del DTE %s está fuera del rango de los folios del CAF.',
+        self::DTE_FALTA_FCHEMIS => 'Falta FchEmis del DTE %s.',
+        self::DTE_FALTA_MNTTOTAL => 'Falta MntTotal del DTE %s.',
+        self::DTE_ERROR_TIMBRE => 'No se pudo generar el timbre del DTE %s.',
+        self::DTE_ERROR_FIRMA => 'No se pudo generar la firma del DTE %s.',
+        self::DTE_ERROR_LOADXML => 'No fue posible cargar el XML del DTE.',
         // códigos de error para \sasco\LibreDTE\Sii\EnvioDte
-        self::ENVIODTE_DTE_MAX => 'No es posible adjuntar más de %d DTEs al envío',
-        self::ENVIODTE_TIPO_DTE_MAX => 'No puede adjuntar más de %d tipos de DTE diferentes al envío',
-        self::ENVIODTE_FALTA_DTE => 'No hay ningún DTE agregado al envío',
-        self::ENVIODTE_GETDOCUMENTOS_FALTA_XML => 'No hay XML, no es posible generar DTEs',
+        self::ENVIODTE_DTE_MAX => 'No es posible adjuntar más de %d DTEs al envío.',
+        self::ENVIODTE_TIPO_DTE_MAX => 'No puede adjuntar más de %d tipos de DTE diferentes al envío.',
+        self::ENVIODTE_FALTA_DTE => 'No hay ningún DTE agregado al envío.',
+        self::ENVIODTE_GETDOCUMENTOS_FALTA_XML => 'No hay XML, no es posible generar DTEs.',
         // códigos de error para \sasco\LibreDTE\Sii\EnvioRecibos
-        self::ENVIORECIBOS_FALTA_RECIBO => 'No hay recibos para generar',
-        self::ENVIORECIBOS_FALTA_CARATULA => 'No se ha definido la carátula de EnvioRecibos',
+        self::ENVIORECIBOS_FALTA_RECIBO => 'No hay recibos para generar.',
+        self::ENVIORECIBOS_FALTA_CARATULA => 'No se ha definido la carátula de EnvioRecibos.',
         // códigos de error para \sasco\LibreDTE\Sii\Folios
-        self::FOLIOS_ERROR_CHECK => 'Archivo de folios no pudo ser verificado',
-        self::FOLIOS_ERROR_FIRMA => 'No fue posible validar firma del CAF',
-        self::FOLIOS_ERROR_ENCRIPTAR => 'No fue posible encriptar con clave privada del CAF',
-        self::FOLIOS_ERROR_DESENCRIPTAR => 'No fue posible desencriptar con clave pública del CAF',
+        self::FOLIOS_ERROR_CHECK => 'Archivo de folios no pudo ser verificado.',
+        self::FOLIOS_ERROR_FIRMA => 'No fue posible validar firma del CAF.',
+        self::FOLIOS_ERROR_ENCRIPTAR => 'No fue posible encriptar con clave privada del CAF.',
+        self::FOLIOS_ERROR_DESENCRIPTAR => 'No fue posible desencriptar con clave pública del CAF.',
         // códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
-        self::RESPUESTAENVIO_FALTA_RESPUESTA => 'No hay respuesta de envío ni documentos para generar',
-        self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio',
+        self::RESPUESTAENVIO_FALTA_RESPUESTA => 'No hay respuesta de envío ni documentos para generar.',
+        self::RESPUESTAENVIO_FALTA_CARATULA => 'No se ha asignado la carátula de RespuestaEnvio.',
         // códigos de error para \sasco\LibreDTE\Sii\LibroGuia
-        self::DOCUMENTO_ERROR_GENERAR_XML => 'No fue posible generar XML del %s',
-        self::DOCUMENTO_FALTA_XML => 'No hay XML de %s que validar',
-        self::DOCUMENTO_ERROR_SCHEMA => 'Error schema %s. %s',
-        self::DOCUMENTO_FALTA_SCHEMA => 'No se encontró el schema para el documento',
+        self::DOCUMENTO_ERROR_GENERAR_XML => 'No fue posible generar el XML %s.',
+        self::DOCUMENTO_FALTA_XML => 'No hay XML de %s que validar.',
+        self::DOCUMENTO_ERROR_SCHEMA => 'Error en la estructura del XML %s. %s',
+        self::DOCUMENTO_FALTA_SCHEMA => 'No se encontró el archivo de estructura del XML para el documento.',
     ];
 
     /**
@@ -176,12 +176,14 @@ class Estado
     public static function get($codigo, $args = null)
     {
         // si no hay glosa asociada al código se entrega el mismo código
-        if (!isset(self::$glosas[(int)$codigo]))
+        if (!isset(self::$glosas[(int)$codigo])) {
             return (int)$codigo;
+        }
         // si los argumentos no son un arreglo se obtiene arreglo a partir
         // de los argumentos pasados a la función
-        if (!is_array($args))
+        if (!is_array($args)) {
             $args = array_slice(func_get_args(), 1);
+        }
         // entregar glosa
         return vsprintf(I18n::translate(self::$glosas[(int)$codigo], 'estados'), $args);
     }
