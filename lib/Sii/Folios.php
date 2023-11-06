@@ -173,7 +173,7 @@ class Folios
     {
         $desde = $this->getHasta();
         $hasta = $this->getDesde();
-        if (!$desde || $hasta) {
+        if (!$desde || !$hasta) {
             return false;
         }
         return $hasta - $desde + 1;
