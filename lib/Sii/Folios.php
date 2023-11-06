@@ -171,8 +171,8 @@ class Folios
      */
     public function getCantidad()
     {
-        $desde = $this->getHasta();
-        $hasta = $this->getDesde();
+        $desde = $this->getDesde();
+        $hasta = $this->getHasta();
         if (!$desde || !$hasta) {
             return false;
         }
