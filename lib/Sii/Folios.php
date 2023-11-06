@@ -164,6 +164,22 @@ class Folios
     }
 
     /**
+     * Método que entrega la cantidad de folios que vienen en el CAF
+     * @return int|false Cantidad total de folios del CAF
+     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+     * @version 2023-11-06
+     */
+    public function getCantidad()
+    {
+        $desde = $this->getHasta();
+        $hasta = $this->getDesde();
+        if (!$desde || $hasta) {
+            return false;
+        }
+        return $hasta - $desde + 1;
+    }
+
+    /**
      * Método que entrega la firma del SII sobre el nodo DA
      * @return string Firma en base64
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
