@@ -21,7 +21,7 @@
         "ext-curl": "*",
         "ext-openssl": "*",
         "ext-soap": "*",
-        "phpseclib/phpseclib": "2.0.31",
+        "phpseclib/phpseclib": "3.0.34",
         "tecnickcom/tcpdf": "6.4.1"
     },
     "require-dev": {
