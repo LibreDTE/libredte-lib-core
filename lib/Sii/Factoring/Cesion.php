@@ -34,7 +34,7 @@ class Cesion
 
     private $Encabezado; ///< Encabezado del DTE que se está cediendo
     private $datos; ///< Datos del XML de cesión
-    private $declaracion = 'Yo, {usuario_nombre}, RUN {usuario_run}, representando a {emisor_razon_social}, RUT {emisor_rut}, declaro que he puesto a disposición del cesionario {cesionario_razon_social}, RUT {cesionario_rut}, el documento donde constan los recibos de la recepción de mercaderías entregadas o servicios prestados, entregados por parte del deudor de la factura {receptor_razon_social}, RUT {receptor_rut}, de acuerdo a lo establecido en la Ley N° 19.983'; ///< Declaración estándar en caso que no sea indicada al momento de crear al cedente
+    private $declaracion = 'Yo, {usuario_nombre}, RUN {usuario_run}, representando a {cedente_razon_social}, RUT {cedente_rut}, declaro que he puesto a disposición del cesionario {cesionario_razon_social}, RUT {cesionario_rut}, el documento donde constan los recibos de la recepción de mercaderías entregadas o servicios prestados, entregados por parte del deudor de la factura {deudor_razon_social}, RUT {deudor_rut}, de acuerdo a lo establecido en la Ley N° 19.983'; ///< Declaración estándar en caso que no sea indicada al momento de crear al cedente
     private $secuencia = 1;
 
     /**
@@ -119,7 +119,7 @@ class Cesion
     /**
      * Método que agrega los datos del cedente
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2022-12-07
+     * @version 2023-12-13
      */
     public function setCedente(array $cedente = [])
     {
@@ -144,10 +144,15 @@ class Cesion
                 [
                     '{usuario_nombre}',
                     '{usuario_run}',
-                    '{emisor_razon_social}',
-                    '{emisor_rut}',
+                    '{cedente_razon_social}',
+                    '{cedente_rut}',
                     '{cesionario_razon_social}',
                     '{cesionario_rut}',
+                    '{deudor_razon_social}',
+                    '{deudor_rut}',
+                    // compatibilidad variables antiguas
+                    '{emisor_razon_social}',
+                    '{emisor_rut}',
                     '{receptor_razon_social}',
                     '{receptor_rut}',
                 ],
@@ -158,6 +163,11 @@ class Cesion
                     $this->datos['Cesion']['DocumentoCesion']['Cedente']['RUT'],
                     $this->datos['Cesion']['DocumentoCesion']['Cesionario']['RazonSocial'],
                     $this->datos['Cesion']['DocumentoCesion']['Cesionario']['RUT'],
+                    $this->Encabezado['Receptor']['RznSocRecep'],
+                    $this->Encabezado['Receptor']['RUTRecep'],
+                    // compatibilidad variables antiguas
+                    $this->datos['Cesion']['DocumentoCesion']['Cedente']['RazonSocial'],
+                    $this->datos['Cesion']['DocumentoCesion']['Cedente']['RUT'],
                     $this->Encabezado['Receptor']['RznSocRecep'],
                     $this->Encabezado['Receptor']['RUTRecep'],
                 ],
