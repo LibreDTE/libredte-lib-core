@@ -1835,8 +1835,8 @@ class Dte
             }
         }
         // correcciones más específicas
-        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::sanitize($datos);
+        if (class_exists('\libredte\lib_extra\Sii\Dte\VerificadorDatos')) {
+            \libredte\lib_extra\Sii\Dte\VerificadorDatos::sanitize($datos);
         }
     }
 
@@ -1848,8 +1848,8 @@ class Dte
      */
     private function normalizar_extra(array &$datos)
     {
-        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::normalize($datos);
+        if (class_exists('\libredte\lib_extra\Sii\Dte\VerificadorDatos')) {
+            \libredte\lib_extra\Sii\Dte\VerificadorDatos::normalize($datos);
         }
     }
 
@@ -1861,8 +1861,8 @@ class Dte
      */
     private function verificar_datos()
     {
-        if (class_exists('\sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos')) {
-            \sasco\LibreDTE\Extra\Sii\Dte\VerificadorDatos::check($this->getDatos());
+        if (class_exists('\libredte\lib_extra\Sii\Dte\VerificadorDatos')) {
+            \libredte\lib_extra\Sii\Dte\VerificadorDatos::check($this->getDatos());
         }
     }
 

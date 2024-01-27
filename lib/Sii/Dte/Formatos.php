@@ -34,7 +34,7 @@ class Formatos
 
     private static $namespaces = [
         '\sasco\LibreDTE',
-        '\sasco\LibreDTE\Extra'
+        '\libredte\lib_extra'
     ]; ///< Posible ubicaciones para los formatos que LibreDTE soporta
     private static $formatos = []; ///< Formatos oficialmente soportados (para los que existe un parser)
 
