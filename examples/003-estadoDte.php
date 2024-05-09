@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -25,7 +25,6 @@
  * @file 003-estadoDte.php
  * Ejemplo de consulta del estado de un DTE
  * Referencia: http://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -36,15 +35,15 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // solicitar token
-$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
+$token = \libredte\lib\Sii\Autenticacion::getToken($config['firma']);
 if (!$token) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    foreach (\libredte\lib\Log::readAll() as $error)
         echo $error,"\n";
     exit;
 }
 
 // consultar estado dte
-$xml = \sasco\LibreDTE\Sii::request('QueryEstDte', 'getEstDte', [
+$xml = \libredte\lib\Sii::request('QueryEstDte', 'getEstDte', [
     'RutConsultante'    => '',
     'DvConsultante'     => '',
     'RutCompania'       => '',
@@ -64,5 +63,5 @@ if ($xml!==false) {
 }
 
 // si hubo errores se muestran
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

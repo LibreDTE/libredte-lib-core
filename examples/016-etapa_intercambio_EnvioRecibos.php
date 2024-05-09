@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que genera el XML de recibos para un proveedor, el XML generado
  * deberá ser subido "a mano" a https://www4.sii.cl/pfeInternet
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -43,7 +42,7 @@ $RutResponde = '76192083-9';
 $RutFirma = '';
 
 // Cargar EnvioDTE y extraer arreglo con datos de carátula y DTEs
-$EnvioDte = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDte = new \libredte\lib\Sii\EnvioDte();
 $EnvioDte->loadXML(file_get_contents($archivo_recibido));
 $Caratula = $EnvioDte->getCaratula();
 $Documentos = $EnvioDte->getDocumentos();
@@ -57,9 +56,9 @@ $caratula = [
 ];
 
 // objeto EnvioRecibo, asignar carátula y Firma
-$EnvioRecibos = new \sasco\LibreDTE\Sii\EnvioRecibos();
+$EnvioRecibos = new \libredte\lib\Sii\EnvioRecibos();
 $EnvioRecibos->setCaratula($caratula);
-$EnvioRecibos->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
+$EnvioRecibos->setFirma(new \libredte\lib\FirmaElectronica($config['firma']));
 
 // procesar cada DTE
 foreach ($Documentos as $DTE) {
@@ -86,5 +85,5 @@ if ($EnvioRecibos->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

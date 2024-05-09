@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que muestra lo simple que es generar un XML con la clase XML de
  * LibreDTE
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-08
  */
 
@@ -64,4 +63,4 @@ $xml = [
 ];
 
 // generar XML
-echo (new \sasco\LibreDTE\XML())->generate($xml)->saveXML();
+echo (new \libredte\lib\XML())->generate($xml)->saveXML();

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -22,8 +22,7 @@
  */
 
 /**
- * Clase para tests de la clase \sasco\LibreDTE\Sii\LibroCompraVenta
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * Clase para tests de la clase \libredte\lib\Sii\LibroCompraVenta
  * @version 2017-08-16
  */
 class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
@@ -31,12 +30,11 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de compra simplificado sin movimiento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroComprasSimplificadoSinMovimiento()
     {
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta(true);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta(true);
         $Libro->setCaratula([
             'RutEmisorLibro' => '76192083-9',
             'RutEnvia' => '11222333-4',
@@ -50,7 +48,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);
@@ -58,12 +56,11 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de venta simplificado sin movimiento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroVentasSimplificadoSinMovimiento()
     {
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta(true);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta(true);
         $Libro->setCaratula([
             'RutEmisorLibro' => '76192083-9',
             'RutEnvia' => '11222333-4',
@@ -77,7 +74,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);
@@ -85,14 +82,13 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de compra sin movimiento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroComprasSinMovimiento()
     {
         global $_config;
-        $Firma = new \sasco\LibreDTE\FirmaElectronica($_config['firma']);
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+        $Firma = new \libredte\lib\FirmaElectronica($_config['firma']);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta();
         $Libro->setFirma($Firma);
         $Libro->setCaratula([
             'RutEmisorLibro' => '76192083-9',
@@ -106,7 +102,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);
@@ -114,14 +110,13 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de venta sin movimiento
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroVentasSinMovimiento()
     {
         global $_config;
-        $Firma = new \sasco\LibreDTE\FirmaElectronica($_config['firma']);
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+        $Firma = new \libredte\lib\FirmaElectronica($_config['firma']);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta();
         $Libro->setFirma($Firma);
         $Libro->setCaratula([
             'RutEmisorLibro' => '76192083-9',
@@ -135,7 +130,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);
@@ -143,14 +138,13 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de compra desde archivo CSV
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroComprasCSV()
     {
         global $_config;
-        $Firma = new \sasco\LibreDTE\FirmaElectronica($_config['firma']);
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+        $Firma = new \libredte\lib\FirmaElectronica($_config['firma']);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta();
         $Libro->agregarComprasCSV(dirname(dirname(dirname(__FILE__))).'/examples/libros/libro_compras.csv');
         $Libro->setFirma($Firma);
         $Libro->setCaratula([
@@ -165,7 +159,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);
@@ -173,14 +167,13 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Creación libro de venta desde archivo CSV
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-02-05
      */
     public function testLibroVentasCSV()
     {
         global $_config;
-        $Firma = new \sasco\LibreDTE\FirmaElectronica($_config['firma']);
-        $Libro = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+        $Firma = new \libredte\lib\FirmaElectronica($_config['firma']);
+        $Libro = new \libredte\lib\Sii\LibroCompraVenta();
         $Libro->agregarVentasCSV(dirname(dirname(dirname(__FILE__))).'/examples/libros/libro_ventas.csv');
         $Libro->setFirma($Firma);
         $Libro->setCaratula([
@@ -195,7 +188,7 @@ class LibroCompraVentaTest extends \PHPUnit\Framework\TestCase
         $Libro->generar();
         $valid = $Libro->schemaValidate();
         if (!$valid) {
-            foreach (\sasco\LibreDTE\Log::readAll() as $error)
+            foreach (\libredte\lib\Log::readAll() as $error)
                 echo $error,"\n";
         }
         $this->assertEquals(true, $valid);

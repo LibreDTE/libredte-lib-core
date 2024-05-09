@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -31,7 +31,6 @@
  * Cajón AFECTO               123             923
  * Relleno AFECTO               53            1473
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-15
  */
 
@@ -85,16 +84,16 @@ $caratula = [
 ];
 
 // Objetos de Firma y Folios
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/33.xml'));
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$Folios = new \libredte\lib\Sii\Folios(file_get_contents('xml/folios/33.xml'));
 
 // generar XML del DTE timbrado y firmado
-$DTE = new \sasco\LibreDTE\Sii\Dte($factura);
+$DTE = new \libredte\lib\Sii\Dte($factura);
 $DTE->timbrar($Folios);
 $DTE->firmar($Firma);
 
 // generar sobre con el envío del DTE y enviar al SII
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 $EnvioDTE->agregar($DTE);
 $EnvioDTE->setFirma($Firma);
 $EnvioDTE->setCaratula($caratula);
@@ -106,5 +105,5 @@ if ($EnvioDTE->schemaValidate()) {
 }
 
 // si hubo algún error se muestra
-foreach (\sasco\LibreDTE\Log::readAll() as $log)
+foreach (\libredte\lib\Log::readAll() as $log)
     echo $log,"\n";

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -26,7 +26,6 @@
  *
  * Ejemplo que genera los documentos PDF de los DTE a partir del XML de EnvioDTE
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-11-28
  */
 
@@ -45,7 +44,7 @@ $archivo = 'xml/certificado/set_pruebas/set_pruebas_basico.xml';
 //$archivo = 'xml/certificado/etapa_simulacion.xml';
 
 // Cargar EnvioDTE y extraer arreglo con datos de carátula y DTEs
-$EnvioDte = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDte = new \libredte\lib\Sii\EnvioDte();
 $EnvioDte->loadXML(file_get_contents($archivo));
 $Caratula = $EnvioDte->getCaratula();
 $Documentos = $EnvioDte->getDocumentos();
@@ -53,7 +52,7 @@ $Documentos = $EnvioDte->getDocumentos();
 // directorio temporal para guardar los PDF
 $dir = sys_get_temp_dir().'/dte_'.$Caratula['RutEmisor'].'_'.$Caratula['RutReceptor'].'_'.str_replace(['-', ':', 'T'], '', $Caratula['TmstFirmaEnv']);
 if (is_dir($dir))
-    \sasco\LibreDTE\File::rmdir($dir);
+    \libredte\lib\File::rmdir($dir);
 if (!mkdir($dir))
     die('No fue posible crear directorio temporal para DTEs');
 
@@ -61,9 +60,9 @@ if (!mkdir($dir))
 foreach ($Documentos as $DTE) {
     if (!$DTE->getDatos())
         die('No se pudieron obtener los datos del DTE');
-    $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte(false); // =false hoja carta, =true papel contínuo (false por defecto si no se pasa)
+    $pdf = new \libredte\lib\Sii\Dte\PDF\Dte(false); // =false hoja carta, =true papel contínuo (false por defecto si no se pasa)
     $pdf->setFooterText();
-    $pdf->setLogo('/home/delaf/www/localhost/dev/pages/sasco/website/webroot/img/logo_mini.png'); // debe ser PNG!
+    $pdf->setLogo('/var/www/html/img/logo.png'); // debe ser PNG!
     $pdf->setResolucion(['FchResol'=>$Caratula['FchResol'], 'NroResol'=>$Caratula['NroResol']]);
     //$pdf->setCedible(true);
     $pdf->agregar($DTE->getDatos(), $DTE->getTED());
@@ -71,4 +70,4 @@ foreach ($Documentos as $DTE) {
 }
 
 // entregar archivo comprimido que incluirá cada uno de los DTEs
-\sasco\LibreDTE\File::compress($dir, ['format'=>'zip', 'delete'=>true, 'download'=>false]);
+\libredte\lib\File::compress($dir, ['format'=>'zip', 'delete'=>true, 'download'=>false]);

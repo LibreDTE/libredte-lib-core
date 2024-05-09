@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -30,7 +30,6 @@
  * Para obtener set seguir pasos de:
  *  <http://www.sii.cl/factura_electronica/guia_emitir_boleta_servicio.htm>
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-14
  */
 
@@ -311,15 +310,15 @@ $set_pruebas = [
 ];
 
 // Objetos de Firma y Folios
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
 $Folios = [];
 foreach ($folios as $tipo => $cantidad)
-    $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
+    $Folios[$tipo] = new \libredte\lib\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioBOLETA
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 foreach ($set_pruebas as $documento) {
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    $DTE = new \libredte\lib\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
         break;
     if (!$DTE->firmar($Firma))
@@ -337,7 +336,7 @@ if ($EnvioDTE->schemaValidate()) {
 
 // crear notas de crédito para el set de prueba
 $notas_credito = [
-    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[0], [
+    \libredte\lib\Arreglo::mergeRecursiveDistinct($set_pruebas[0], [
         'Encabezado' => [
             'IdDoc' => [
                 'TipoDTE' => 61,
@@ -347,7 +346,7 @@ $notas_credito = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -359,7 +358,7 @@ $notas_credito = [
             'RazonRef' => 'ANULA BOLETA',
         ],
     ]),
-    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[2], [
+    \libredte\lib\Arreglo::mergeRecursiveDistinct($set_pruebas[2], [
         'Encabezado' => [
             'IdDoc' => [
                 'TipoDTE' => 61,
@@ -369,7 +368,7 @@ $notas_credito = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -381,7 +380,7 @@ $notas_credito = [
             'RazonRef' => 'ANULA BOLETA',
         ],
     ]),
-    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[4], [
+    \libredte\lib\Arreglo::mergeRecursiveDistinct($set_pruebas[4], [
         'Encabezado' => [
             'IdDoc' => [
                 'TipoDTE' => 61,
@@ -391,7 +390,7 @@ $notas_credito = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -403,7 +402,7 @@ $notas_credito = [
             'RazonRef' => 'ANULA BOLETA',
         ],
     ]),
-    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[6], [
+    \libredte\lib\Arreglo::mergeRecursiveDistinct($set_pruebas[6], [
         'Encabezado' => [
             'IdDoc' => [
                 'TipoDTE' => 61,
@@ -413,7 +412,7 @@ $notas_credito = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -430,7 +429,7 @@ $notas_credito = [
             'RazonRef' => 'SE REBAJA EN UN 40%',
         ],
     ]),
-    \sasco\LibreDTE\Arreglo::mergeRecursiveDistinct($set_pruebas[9], [
+    \libredte\lib\Arreglo::mergeRecursiveDistinct($set_pruebas[9], [
         'Encabezado' => [
             'IdDoc' => [
                 'TipoDTE' => 61,
@@ -440,7 +439,7 @@ $notas_credito = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -460,9 +459,9 @@ $notas_credito = [
 ];
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioDTE
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 foreach ($notas_credito as $documento) {
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    $DTE = new \libredte\lib\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
         break;
     if (!$DTE->firmar($Firma))
@@ -479,5 +478,5 @@ if ($EnvioDTE->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

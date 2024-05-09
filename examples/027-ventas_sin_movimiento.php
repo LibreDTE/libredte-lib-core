@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que genera y envía el archivo de Información Electrónica de Ventas
  * (IEV) para un período sin movimientos
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-08
  */
 
@@ -60,8 +59,8 @@ $Emisor = [
 ];
 
 // Objetos de Firma y LibroCompraVenta
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$LibroCompraVenta = new \libredte\lib\Sii\LibroCompraVenta();
 
 // enviar libro de ventas y mostrar resultado del envío: track id o bien =false si hubo error
 $LibroCompraVenta->setFirma($Firma);
@@ -71,5 +70,5 @@ $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anteri
 var_dump($track_id);
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

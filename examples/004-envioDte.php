@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 004-envioDte.php
  * Ejemplo de envío de un XML de un DTE ya timbrado y firmado al SII
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -40,26 +39,26 @@ $RutEnvia = '99888777-6';
 $RutEmisor = '55444333-2';
 
 // solicitar token
-$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
+$token = \libredte\lib\Sii\Autenticacion::getToken($config['firma']);
 if (!$token) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    foreach (\libredte\lib\Log::readAll() as $error)
         echo $error,"\n";
     exit;
 }
 
 // enviar DTE
-$result = \sasco\LibreDTE\Sii::enviar($RutEnvia, $RutEmisor, $xml, $token);
+$result = \libredte\lib\Sii::enviar($RutEnvia, $RutEmisor, $xml, $token);
 
 // si hubo algún error al enviar al servidor mostrar
 if ($result===false) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    foreach (\libredte\lib\Log::readAll() as $error)
         echo $error,"\n";
     exit;
 }
 
 // Mostrar resultado del envío
 if ($result->STATUS!='0') {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    foreach (\libredte\lib\Log::readAll() as $error)
         echo $error,"\n";
     exit;
 }

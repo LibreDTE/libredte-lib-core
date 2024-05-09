@@ -2,8 +2,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@ include 'share/bootstrap.php';
 
 /**
  * Comando para generar el JSON de un set de prueba
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-18
  */
 class set_prueba_json extends Command
@@ -48,7 +47,6 @@ class set_prueba_json extends Command
 
     /**
      * Método que valida los argumentos pasados al comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-18
      */
     public function args_check()
@@ -61,12 +59,11 @@ class set_prueba_json extends Command
 
     /**
      * Método principal del comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-18
      */
     public function main()
     {
-        $json = \sasco\LibreDTE\Sii\Certificacion\SetPruebas::getJSON(
+        $json = \libredte\lib\Sii\Certificacion\SetPruebas::getJSON(
             file_get_contents($this->args['set'])
         );
         if (!empty($this->args['json']))

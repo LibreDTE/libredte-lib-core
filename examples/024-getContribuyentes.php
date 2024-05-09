@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 024-getContribuyentes.php
  * Ejemplo de obtención de datos archivo CSV con getContribuyentes autorizados
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-30
  */
 
@@ -35,14 +34,14 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // solicitar datos
-$datos = \sasco\LibreDTE\Sii::getContribuyentes(
-    new \sasco\LibreDTE\FirmaElectronica($config['firma']),
-    \sasco\LibreDTE\Sii::PRODUCCION
+$datos = \libredte\lib\Sii::getContribuyentes(
+    new \libredte\lib\FirmaElectronica($config['firma']),
+    \libredte\lib\Sii::PRODUCCION
 );
 
 // si hubo errores se muestran
 if (!$datos) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error) {
+    foreach (\libredte\lib\Log::readAll() as $error) {
         echo $error,"\n";
     }
     exit;
@@ -50,4 +49,4 @@ if (!$datos) {
 
 // descargar archivo como CSV
 array_unshift($datos, ['RUT', 'Razón social', 'Número resolución', 'Fecha resolución', 'Email intercambio', 'URL']);
-\sasco\LibreDTE\CSV::generate($datos, 'contribuyentes', ';', '');
+\libredte\lib\CSV::generate($datos, 'contribuyentes', ';', '');

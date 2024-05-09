@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -23,7 +23,6 @@
 
 /**
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-15
  */
 abstract class Command
@@ -34,7 +33,6 @@ abstract class Command
     /**
      * Constructor del comando: carga argumentos, muestra la ayuda si se
      * solicitó y valida los argumentos pasados
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     public function __construct()
@@ -49,7 +47,6 @@ abstract class Command
 
     /**
      * Método que recupera los argumentos pasados al comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     private function args_get()
@@ -66,7 +63,6 @@ abstract class Command
 
     /**
      * Método para imprimir dentro del comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     protected function out($msg, $n = 1)
@@ -76,7 +72,6 @@ abstract class Command
 
     /**
      * Método para renderizar un error
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     protected function error($msg)
@@ -88,7 +83,6 @@ abstract class Command
 
     /**
      * Método que muestra el modo de uso del comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-07-06
      */
     protected function usemode()
@@ -102,7 +96,6 @@ abstract class Command
     /**
      * Método que se debe implementar con las validaciones a los argumentos
      * que se pasan al comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     abstract function args_check();

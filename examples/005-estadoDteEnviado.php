@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -23,7 +23,6 @@
 
 /**
  * @file 005-estado_envio_dte.php
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -34,9 +33,9 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // solicitar token
-$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
+$token = \libredte\lib\Sii\Autenticacion::getToken($config['firma']);
 if (!$token) {
-    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+    foreach (\libredte\lib\Log::readAll() as $error)
         echo $error,"\n";
     exit;
 }
@@ -46,7 +45,7 @@ if (!$token) {
 $rut = '';
 $dv = '';
 $trackID = '';
-$estado = \sasco\LibreDTE\Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
+$estado = \libredte\lib\Sii::request('QueryEstUp', 'getEstUp', [$rut, $dv, $trackID, $token]);
 
 // si el estado se pudo recuperar se muestra estado y glosa
 if ($estado!==false) {
@@ -57,5 +56,5 @@ if ($estado!==false) {
 }
 
 // mostrar error si hubo
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 002-getToken.php
  * Ejemplo de obtención de token para autenticación automática en el SII
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-14
  */
 
@@ -35,10 +34,10 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // solicitar token
-$token = \sasco\LibreDTE\Sii\Autenticacion::getToken($config['firma']);
+$token = \libredte\lib\Sii\Autenticacion::getToken($config['firma']);
 var_dump($token);
 
 // si hubo errores se muestran
-foreach (\sasco\LibreDTE\Log::readAll() as $error) {
+foreach (\libredte\lib\Log::readAll() as $error) {
     echo $error,"\n";
 }

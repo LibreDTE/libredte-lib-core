@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que genera el XML de ConsumoFolio para el reporte de las boletas
  * electrónicas y notas de crédito electrónicas del set de prueba de boletas
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-14
  */
 
@@ -42,15 +41,15 @@ $boletas = 'xml/EnvioBOLETA.xml';
 $notas_credito = 'xml/EnvioDTE.xml';
 
 // cargar XML boletas y notas
-$EnvioBOLETA = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioBOLETA = new \libredte\lib\Sii\EnvioDte();
 $EnvioBOLETA->loadXML(file_get_contents($boletas));
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 $EnvioDTE->loadXML(file_get_contents($notas_credito));
 
 // crear objeto para consumo de folios
-$ConsumoFolio = new \sasco\LibreDTE\Sii\ConsumoFolio();
-$ConsumoFolio->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
-$ConsumoFolio->setDocumentos([39, 41, 61]); // [39, 61] si es sólo afecto, [41, 61] si es sólo exento
+$ConsumoFolio = new \libredte\lib\Sii\ConsumoFolio();
+$ConsumoFolio->setFirma(new \libredte\lib\FirmaElectronica($config['firma']));
+$ConsumoFolio->setDocumentos([39, 41, 61]); // [39, 61] si es solo afecto, [41, 61] si es solo exento
 
 // agregar detalle de boletas
 foreach ($EnvioBOLETA->getDocumentos() as $Dte) {
@@ -80,5 +79,5 @@ if ($ConsumoFolio->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

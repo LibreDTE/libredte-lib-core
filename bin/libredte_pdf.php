@@ -2,8 +2,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@ include 'share/bootstrap.php';
 
 /**
  * Comando para generar el versión en PDF de un DTE a partir del EnvioDTE
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-15
  */
 class generar_pdf extends Command
@@ -63,7 +62,6 @@ class generar_pdf extends Command
 
     /**
      * Método que valida los argumentos pasados al comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     public function args_check()
@@ -80,13 +78,12 @@ class generar_pdf extends Command
 
     /**
      * Método principal del comando
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2015-12-15
      */
     public function main()
     {
         // cargar XML y extraer arreglo con datos de carátula y DTEs
-        $EnvioDte = new \sasco\LibreDTE\Sii\EnvioDte();
+        $EnvioDte = new \libredte\lib\Sii\EnvioDte();
         $EnvioDte->loadXML(file_get_contents($this->args['xml']));
         $Caratula = $EnvioDte->getCaratula();
         $Documentos = $EnvioDte->getDocumentos();
@@ -95,7 +92,7 @@ class generar_pdf extends Command
             if (!$DTE->getDatos())
                 $this->error('No se pudieron obtener los datos de uno de los DTE del XML');
             $this->out('Generando PDF para DTE '.$DTE->getID());
-            $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte($this->args['papel']);
+            $pdf = new \libredte\lib\Sii\Dte\PDF\Dte($this->args['papel']);
             $pdf->setFooterText();
             if ($this->args['logo'])
                 $pdf->setLogo($this->args['logo']);

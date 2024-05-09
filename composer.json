@@ -1,33 +1,37 @@
 {
-    "name": "sasco/libredte",
-    "description": "Biblioteca para trabajo con DTE del SII de Chile",
+    "name": "libredte/libredte-lib",
+    "description": "LibreDTE: Biblioteca Estándar en PHP (Núcleo)",
     "type": "library",
-    "keywords": ["dte", "sii", "facturación electrónica"],
-    "homepage": "https://libredte.cl",
+    "keywords": ["dte", "sii", "facturación electrónica", "chile"],
+    "homepage": "https://www.libredte.cl",
     "license": "AGPL-3.0+",
     "authors": [
         {
-            "name": "SASCO SpA",
-            "homepage": "https://sasco.cl"
+            "name": "LibreDTE",
+            "homepage": "https://www.libredte.cl"
         }
     ],
     "support": {
         "issues": "https://github.com/LibreDTE/libredte-lib/issues",
-        "forum": "https://groups.google.com/forum/#!forum/libredte",
         "source": "https://github.com/LibreDTE/libredte-lib"
     },
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    },
+    "autoload": {
+        "psr-4": {"libredte\\lib\\": "src/"}
+    },
     "require": {
-        "php": "7.3.* || 7.4.*",
+        "php": "^7.3 || ^8.0",
+        "phpseclib/phpseclib": "2.0.47",
+        "tecnickcom/tcpdf": "6.7.5",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "ext-soap": "*",
-        "phpseclib/phpseclib": "2.0.31",
-        "tecnickcom/tcpdf": "6.4.1"
+        "ext-soap": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "9.5.4"
-    },
-    "autoload": {
-        "psr-4": {"sasco\\LibreDTE\\": "lib/"}
     }
 }

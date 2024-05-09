@@ -17,7 +17,7 @@ construyó específicamente para realizar las tareas que realiza la Biblioteca d
 PHP vía servicios web. Así cualquier programador puede consumir las
 funcionalidades de LibreDTE desde cualquier lenguaje.
 
-Si estás interesado en que se creen nuevos comandos, puedes [contactarnos](https://libredte.cl/contacto)
+Si estás interesado en que se creen nuevos comandos, puedes [contactarnos](https://www.libredte.cl/contacto)
 y lo revisamos.
 
 libredte_set2json
@@ -27,7 +27,7 @@ Permite crear objeto JSON con los datos en TXT de los casos de los set de
 pruebas para el proceso de certificación.
 
 Primero se debe editar el archivo TXT con los casos del set de prueba para que
-quede sólo con los datos que el comando requiere. Se debe eliminar todo lo que
+quede solo con los datos que el comando requiere. Se debe eliminar todo lo que
 no tiene que ver con los casos de prueba. Puedes ver un ejemplo de un archivo
 TXT ya preparado [aquí](https://github.com/LibreDTE/libredte-lib/blob/master/examples/set_pruebas/001-basico.txt).
 
@@ -58,6 +58,6 @@ PDF en papel continuo de 75 mm, sin logo y sin copia cedible:
 
     $ libredte_pdf.php --xml EnvioDTE.xml --dir salida --papel 75
 
-PDF en hoja carta, sin logo, sin copia cedible y con web de verificación personalizada (sólo para boletas):
+PDF en hoja carta, sin logo, sin copia cedible y con web de verificación personalizada (solo para boletas):
 
     $ libredte_pdf.php --xml EnvioDTE.xml --dir salida --web libredte.cl/boletas

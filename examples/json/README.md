@@ -28,7 +28,7 @@ entonces los ejemplos tienen una pequeña variación:
 automáticamente la aplicación web. Si se envía, será sobreescrito por el folio
 que LibreDTE determine es el siguiente.
 
-2. Es posible enviar sólo el campo RUTEmisor (el cual es obligatorio), ya que la
+2. Es posible enviar solo el campo RUTEmisor (el cual es obligatorio), ya que la
 aplicación completará automáticamente los campos RznSoc, GiroEmis, Telefono (si
 existe), CorreoEmisor (si existe), Acteco, DirOrigen y CmnaOrigen con los datos
 registrados para el contribuyente en el sistema.

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -34,7 +34,6 @@
  *  - Fecha resolución debe ser 2006-01-20
  *  - Número resolución y folio notificación deben ser: 102006
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -67,7 +66,7 @@ $detalles = [
     [
         'TpoDoc' => 30,
         'NroDoc' => 234,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-01',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 53253,
@@ -76,7 +75,7 @@ $detalles = [
     [
         'TpoDoc' => 33,
         'NroDoc' => 32,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-01',
         'RUTDoc' => '78885550-8',
         'MntExe' => 10633,
@@ -86,7 +85,7 @@ $detalles = [
     [
         'TpoDoc' => 30,
         'NroDoc' => 781,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-02',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 30171,
@@ -99,7 +98,7 @@ $detalles = [
     [
         'TpoDoc' => 60,
         'NroDoc' => 451,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-03',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 2928,
@@ -108,34 +107,34 @@ $detalles = [
     [
         'TpoDoc' => 33,
         'NroDoc' => 67,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-04',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 12135,
         'IVANoRec' => [
             'CodIVANoRec' => 4,
-            'MntIVANoRec' => round(12135 * (\sasco\LibreDTE\Sii::getIVA()/100)),
+            'MntIVANoRec' => round(12135 * (\libredte\lib\Sii::getIVA()/100)),
         ],
     ],
     // COMPRA CON RETENCION TOTAL DEL IVA
     [
         'TpoDoc' => 46,
         'NroDoc' => 9,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-05',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 10632,
         'OtrosImp' => [
             'CodImp' => 15,
-            'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
-            'MntImp' => round(10632 * (\sasco\LibreDTE\Sii::getIVA()/100)),
+            'TasaImp' => \libredte\lib\Sii::getIVA(),
+            'MntImp' => round(10632 * (\libredte\lib\Sii::getIVA()/100)),
         ],
     ],
     // NOTA DE CREDITO POR DESCUENTO FACTURA ELECTRONICA 32
     [
         'TpoDoc' => 60,
         'NroDoc' => 211,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'FchDoc' => $caratula['PeriodoTributario'].'-06',
         'RUTDoc' => '78885550-8',
         'MntNeto' => 9053,
@@ -143,8 +142,8 @@ $detalles = [
 ];
 
 // Objetos de Firma y LibroCompraVenta
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$LibroCompraVenta = new \libredte\lib\Sii\LibroCompraVenta();
 
 // agregar cada uno de los detalles al libro
 foreach ($detalles as $detalle) {
@@ -159,5 +158,5 @@ $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anteri
 var_dump($track_id);
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

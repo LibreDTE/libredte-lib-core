@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -22,8 +22,7 @@
  */
 
 /**
- * Clase para tests de la clase \sasco\LibreDTE\Log
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * Clase para tests de la clase \libredte\lib\Log
  * @version 2017-08-16
  */
 class LogTest extends \PHPUnit\Framework\TestCase
@@ -31,7 +30,6 @@ class LogTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Se verifica que lo que se escriba al log se pueda leer todo
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-01-29
      */
     public function testWriteReadAll()
@@ -56,12 +54,12 @@ class LogTest extends \PHPUnit\Framework\TestCase
             // escribir al log
             foreach ($logs as $severity => $mensajes) {
                 foreach ($mensajes as $codigo => $mensaje) {
-                    \sasco\LibreDTE\Log::write($codigo, $mensaje, $severity);
+                    \libredte\lib\Log::write($codigo, $mensaje, $severity);
                 }
             }
             // revisar lo que se escribió al log
             foreach ($logs as $severity => $mensajes) {
-                $registros = \sasco\LibreDTE\Log::readAll($severity, $new_first);
+                $registros = \libredte\lib\Log::readAll($severity, $new_first);
                 $this->assertNotEmpty($registros);
                 $this->assertCount(count($logs[$severity]), $registros);
                 if ($new_first)

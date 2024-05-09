@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que muestra como obtejer el objeto JSON con los casos del set básico
  * de pruebas
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-19
  */
 
@@ -45,6 +44,6 @@ $folios = [
 ];
 
 // obtener JSON del set de pruebas
-echo \sasco\LibreDTE\Sii\Certificacion\SetPruebas::getJSON(
+echo \libredte\lib\Sii\Certificacion\SetPruebas::getJSON(
     file_get_contents('set_pruebas/001-basico.txt'), $folios
 );

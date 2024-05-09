@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -36,10 +36,9 @@
  *
  * Adicionalmente el libro de ventas no debe incluir el detalle de los
  * documentos si son electrónicos, o sea en este caso (al ser del set de DTE) no
- * se incluyen los detalles. Los detalles sólo se usan para hacer el cálculo de
+ * se incluyen los detalles. Los detalles solo se usan para hacer el cálculo de
  * totales.
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -287,7 +286,7 @@ $set_pruebas = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -339,7 +338,7 @@ $set_pruebas = [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
                 'MntExe' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -417,12 +416,12 @@ $set_pruebas = [
 ];
 
 // Objetos de Firma y LibroCompraVenta
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta();
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$LibroCompraVenta = new \libredte\lib\Sii\LibroCompraVenta();
 
 // generar cada DTE y agregar su resumen al detalle del libro
 foreach ($set_pruebas as $documento) {
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    $DTE = new \libredte\lib\Sii\Dte($documento);
     $LibroCompraVenta->agregar($DTE->getResumen(), false); // agregar detalle sin normalizar
 }
 
@@ -434,5 +433,5 @@ $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anteri
 var_dump($track_id);
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

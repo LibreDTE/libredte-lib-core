@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -26,7 +26,6 @@
  *
  * Ejemplo que genera el XML de LibroBoleta para boletas electrónicas
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2016-08-07
  */
 
@@ -40,12 +39,12 @@ include 'inc.php';
 $boletas = 'xml/EnvioBOLETA.xml';
 
 // cargar XML boletas y notas
-$EnvioBOLETA = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioBOLETA = new \libredte\lib\Sii\EnvioDte();
 $EnvioBOLETA->loadXML(file_get_contents($boletas));
 
 // crear objeto para libro de boletas
-$LibroBoleta = new \sasco\LibreDTE\Sii\LibroBoleta();
-$LibroBoleta->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
+$LibroBoleta = new \libredte\lib\Sii\LibroBoleta();
+$LibroBoleta->setFirma(new \libredte\lib\FirmaElectronica($config['firma']));
 
 // agregar detalle de boletas
 foreach ($EnvioBOLETA->getDocumentos() as $Dte) {
@@ -77,5 +76,5 @@ if ($LibroBoleta->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LibreDTE en_US estados\n"
 "PO-Revision-Date: 2017-10-22 20:20-0400\n"
-"Last-Translator: Esteban De La Fuente Rubio <esteban@sasco.cl>\n"
+"Last-Translator: LibreDTE <libredte@libredte.cl>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-# códigos de error para \sasco\LibreDTE\Sii::enviar()
+# códigos de error para \libredte\lib\Sii::enviar()
 
 msgid "Envío ok"
 msgstr "Sent ok"
@@ -54,19 +54,19 @@ msgstr "Can not convert response of SII to XML: %s"
 msgid "No fue posible comprimir el archivo XML a GZIP"
 msgstr "Can not compress file from XML to GZIP"
 
-# códigos de error para \sasco\LibreDTE\Sii::request()
+# códigos de error para \libredte\lib\Sii::request()
 msgid "Error al ejecutar consulta a webservice soap. %s"
 msgstr "Request to webservice soap failed. %s"
 
 msgid "No se obtuvo respuesta para %s en %d intentos"
 msgstr "Can not get response for %s in %d retries"
 
-# códigos de error para \sasco\LibreDTE\Sii::cert()
+# códigos de error para \libredte\lib\Sii::cert()
 
 msgid "No se pudo leer el certificado X.509 del SII número %d"
 msgstr "Can not read the X.509 certificate of SII with number %d"
 
-# códigos de error para \sasco\LibreDTE\File::compress()
+# códigos de error para \libredte\lib\File::compress()
 
 msgid "No se puede leer el archivo que se desea comprimir"
 msgstr "Compress Failed. Can not read file"
@@ -74,7 +74,7 @@ msgstr "Compress Failed. Can not read file"
 msgid "No fue posible crear el archivo ZIP"
 msgstr "Can not create zip file"
 
-# códigos de error para \sasco\LibreDTE\Sii\Autenticacion
+# códigos de error para \libredte\lib\Sii\Autenticacion
 
 msgid "No fue posible obtener la semilla"
 msgstr "Can not get seed"
@@ -85,7 +85,7 @@ msgstr "Can not sign token request"
 msgid "No fue posible obtener el token de autenticacion"
 msgstr "Can not get token"
 
-# códigos de error para \sasco\LibreDTE\Sii\Dte
+# códigos de error para \libredte\lib\Sii\Dte
 
 msgid "No fue posible convertir el XML a arreglo para extraer los datos del DTE"
 msgstr "Can not convert XML to array"
@@ -111,7 +111,7 @@ msgstr "Sign failed on DTE %s"
 msgid "No fue posible cargar el XML del DTE"
 msgstr "Can not load XML of DTE"
 
-# códigos de error para \sasco\LibreDTE\Sii\EnvioDte
+# códigos de error para \libredte\lib\Sii\EnvioDte
 
 msgid "No es posible adjuntar más de %d DTEs al envío"
 msgstr "Can not attach more than %d DTE to EnvioDTE"
@@ -125,7 +125,7 @@ msgstr "DTE missing"
 msgid "No hay XML, no es posible generar DTEs"
 msgstr "XML missing"
 
-# códigos de error para \sasco\LibreDTE\Sii\EnvioRecibos
+# códigos de error para \libredte\lib\Sii\EnvioRecibos
 
 msgid "No hay recibos para generar"
 msgstr "Recibos missing"
@@ -133,7 +133,7 @@ msgstr "Recibos missing"
 msgid "No se ha definido la carátula de EnvioRecibos"
 msgstr "Caratula missing"
 
-# códigos de error para \sasco\LibreDTE\Sii\Folios
+# códigos de error para \libredte\lib\Sii\Folios
 
 msgid "Archivo de folios no pudo ser verificado"
 msgstr "Can not check CAF"
@@ -147,7 +147,7 @@ msgstr "Can not encrypt with private key of CAF"
 msgid "No fue posible desencriptar con clave pública del CAF"
 msgstr "Can not decrypt with public key of CAF"
 
-# códigos de error para \sasco\LibreDTE\Sii\RespuestaEnvio
+# códigos de error para \libredte\lib\Sii\RespuestaEnvio
 
 msgid "No hay respuesta de envío ni documentos para generar"
 msgstr "Respuestas missing"
@@ -155,7 +155,7 @@ msgstr "Respuestas missing"
 msgid "No se ha asignado la carátula de RespuestaEnvio"
 msgstr "Caratula missing"
 
-# códigos de error para \sasco\LibreDTE\Sii\Base\Documento
+# códigos de error para \libredte\lib\Sii\Base\Documento
 
 msgid "No fue posible generar XML del %s"
 msgstr "Can not create XML %s"

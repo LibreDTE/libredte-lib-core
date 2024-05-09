@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que muestra como obtener los datos de la persona dueña de la firma
  * electrónica
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-22
  */
 
@@ -38,7 +37,7 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // objeto de la firma
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
 
 // mostrar datos de la persona dueña de la firma
 echo 'RUN    : ',$Firma->getID(),"\n";
@@ -50,5 +49,5 @@ echo 'Emisor : ',$Firma->getIssuer(),"\n\n\n";
 print_r($Firma->getData());
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 001-wsdl.php
  * Ejemplo de obtención de WSDL según ambiente que se esté utilizando
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2016-08-28
  */
 
@@ -35,22 +34,22 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // reset configuración (valor original biblioteca: producción)
-\sasco\LibreDTE\Sii::setAmbiente();
+\libredte\lib\Sii::setAmbiente();
 
 // solicitar ambiente producción
-echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";
+echo \libredte\lib\Sii::wsdl('CrSeed'),"\n";
 
 // solicitar ambiente desarrollo con parámetro
-echo \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::CERTIFICACION),"\n";
+echo \libredte\lib\Sii::wsdl('CrSeed', \libredte\lib\Sii::CERTIFICACION),"\n";
 
 // solicitar ambiente desarrollo con configuración
-\sasco\LibreDTE\Sii::setAmbiente(\sasco\LibreDTE\Sii::CERTIFICACION);
-echo \sasco\LibreDTE\Sii::wsdl('CrSeed'),"\n";
-echo \sasco\LibreDTE\Sii::wsdl('GetTokenFromSeed'),"\n";
+\libredte\lib\Sii::setAmbiente(\libredte\lib\Sii::CERTIFICACION);
+echo \libredte\lib\Sii::wsdl('CrSeed'),"\n";
+echo \libredte\lib\Sii::wsdl('GetTokenFromSeed'),"\n";
 
 // a pesar de estar en ambiente de desarrollo (por la configuración antes
 // definida) se puede forzar producción usando el segundo parámetro. Al estar
 // definido el segundo parámetro no se considerará la existencia ni valor de la
 // configuración
-echo \sasco\LibreDTE\Sii::wsdl('CrSeed', \sasco\LibreDTE\Sii::PRODUCCION),"\n";
-echo \sasco\LibreDTE\Sii::wsdl('GetTokenFromSeed', \sasco\LibreDTE\Sii::PRODUCCION),"\n";
+echo \libredte\lib\Sii::wsdl('CrSeed', \libredte\lib\Sii::PRODUCCION),"\n";
+echo \libredte\lib\Sii::wsdl('GetTokenFromSeed', \libredte\lib\Sii::PRODUCCION),"\n";

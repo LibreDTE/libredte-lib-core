@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que genera el XML de respuesta a la recepción de un DTE, el XML
  * generado deberá ser subido "a mano" a https://www4.sii.cl/pfeInternet
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -43,7 +42,7 @@ $RutReceptor_esperado = '76192083-9';
 $RutEmisor_esperado = '88888888-8';
 
 // Cargar EnvioDTE y extraer arreglo con datos de carátula y DTEs
-$EnvioDte = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDte = new \libredte\lib\Sii\EnvioDte();
 $EnvioDte->loadXML(file_get_contents($archivo_recibido));
 $Caratula = $EnvioDte->getCaratula();
 $Documentos = $EnvioDte->getDocumentos();
@@ -69,13 +68,13 @@ foreach ($Documentos as $DTE) {
         'RUTRecep' => $DTE->getReceptor(),
         'MntTotal' => $DTE->getMontoTotal(),
         'EstadoRecepDTE' => $estado,
-        'RecepDTEGlosa' => \sasco\LibreDTE\Sii\RespuestaEnvio::$estados['documento'][$estado],
+        'RecepDTEGlosa' => \libredte\lib\Sii\RespuestaEnvio::$estados['documento'][$estado],
     ];
 }
 
 // armar respuesta de envío
 $estado = $EnvioDte->getEstadoValidacion(['RutReceptor'=>$RutReceptor_esperado]);
-$RespuestaEnvio = new \sasco\LibreDTE\Sii\RespuestaEnvio();
+$RespuestaEnvio = new \libredte\lib\Sii\RespuestaEnvio();
 $RespuestaEnvio->agregarRespuestaEnvio([
     'NmbEnvio' => basename($archivo_recibido),
     'CodEnvio' => 1,
@@ -84,14 +83,14 @@ $RespuestaEnvio->agregarRespuestaEnvio([
     'RutEmisor' => $EnvioDte->getEmisor(),
     'RutReceptor' => $EnvioDte->getReceptor(),
     'EstadoRecepEnv' => $estado,
-    'RecepEnvGlosa' => \sasco\LibreDTE\Sii\RespuestaEnvio::$estados['envio'][$estado],
+    'RecepEnvGlosa' => \libredte\lib\Sii\RespuestaEnvio::$estados['envio'][$estado],
     'NroDTE' => count($RecepcionDTE),
     'RecepcionDTE' => $RecepcionDTE,
 ]);
 
 // asignar carátula y Firma
 $RespuestaEnvio->setCaratula($caratula);
-$RespuestaEnvio->setFirma(new \sasco\LibreDTE\FirmaElectronica($config['firma']));
+$RespuestaEnvio->setFirma(new \libredte\lib\FirmaElectronica($config['firma']));
 
 // generar XML
 $xml = $RespuestaEnvio->generar();
@@ -104,5 +103,5 @@ if ($RespuestaEnvio->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -22,8 +22,7 @@
  */
 
 /**
- * Clase para tests de la clase \sasco\LibreDTE\XML
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * Clase para tests de la clase \libredte\lib\XML
  * @version 2017-08-16
  */
 class XMLTest extends \PHPUnit\Framework\TestCase
@@ -32,7 +31,6 @@ class XMLTest extends \PHPUnit\Framework\TestCase
     /**
      * Se verifica que un arreglo se pueda convertir a XML y luego a arreglo
      * obteniendo el arreglo original
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2016-01-28
      */
     public function testArrayXMLArray()
@@ -60,10 +58,10 @@ class XMLTest extends \PHPUnit\Framework\TestCase
                 ],
             ],
         ];
-        $XML = new \sasco\LibreDTE\XML();
+        $XML = new \libredte\lib\XML();
         $XML->generate($array);
         $xml = $XML->C14N();
-        $XML2 = new \sasco\LibreDTE\XML();
+        $XML2 = new \libredte\lib\XML();
         $XML2->loadXML($xml);
         $this->assertEquals($array, $XML2->toArray());
     }

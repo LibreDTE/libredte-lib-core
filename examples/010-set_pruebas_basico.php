@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -31,7 +31,6 @@
  * - Nota de crédito electrónica
  * - Nota de débito electrónica
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -279,7 +278,7 @@ $set_pruebas = [
             'Totales' => [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -331,7 +330,7 @@ $set_pruebas = [
                 // estos valores serán calculados automáticamente
                 'MntNeto' => 0,
                 'MntExe' => 0,
-                'TasaIVA' => \sasco\LibreDTE\Sii::getIVA(),
+                'TasaIVA' => \libredte\lib\Sii::getIVA(),
                 'IVA' => 0,
                 'MntTotal' => 0,
             ],
@@ -409,15 +408,15 @@ $set_pruebas = [
 ];
 
 // Objetos de Firma, Folios y EnvioDTE
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
 $Folios = [];
 foreach ($folios as $tipo => $cantidad)
-    $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+    $Folios[$tipo] = new \libredte\lib\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioDTE
 foreach ($set_pruebas as $documento) {
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    $DTE = new \libredte\lib\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
         break;
     if (!$DTE->firmar($Firma))
@@ -433,5 +432,5 @@ $track_id = $EnvioDTE->enviar();
 var_dump($track_id);
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

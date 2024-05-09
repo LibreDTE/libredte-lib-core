@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -26,7 +26,6 @@
  *
  * Ejemplo que genera y envía el libro electrónico de guías de despachos.
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-14
  */
 
@@ -54,7 +53,7 @@ $detalles = [
         'Folio' => 4,
         'TpoOper' => 5,
         'RUTDoc' => $caratula['RutEmisorLibro'],
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
     ],
     // CASO 2 CORRESPONDE A UNA GUIA QUE SE FACTURO EN EL PERIODO
     [
@@ -62,7 +61,7 @@ $detalles = [
         'TpoOper' => 1,
         'RUTDoc' => $receptor,
         'MntNeto' => 1375761,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
         'TpoDocRef' => 33,
         'FolioDocRef' => 69,
         'FchDocRef' => date('Y-m-d'),
@@ -74,13 +73,13 @@ $detalles = [
         'TpoOper' => 1,
         'RUTDoc' => $receptor,
         'MntNeto' => 1050032,
-        'TasaImp' => \sasco\LibreDTE\Sii::getIVA(),
+        'TasaImp' => \libredte\lib\Sii::getIVA(),
     ],
 ];
 
 // Objetos de Firma y LibroGuia
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroGuia = new \sasco\LibreDTE\Sii\LibroGuia();
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$LibroGuia = new \libredte\lib\Sii\LibroGuia();
 
 // agregar cada uno de los detalles al libro
 foreach ($detalles as $detalle) {
@@ -98,5 +97,5 @@ if ($LibroGuia->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

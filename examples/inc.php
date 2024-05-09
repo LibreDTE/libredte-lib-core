@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,9 +24,8 @@
 /**
  * @file inc.php
  * Archivo que incluye todos los archivo .php de la biblioteca para evitar
- * incluirlos manualmente. Esto es sólo válido en los ejemplos, en código real
+ * incluirlos manualmente. Esto es solo válido en los ejemplos, en código real
  * usar la autocarga de composer
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2020-03-13
  */
 
@@ -46,7 +45,7 @@ if (is_readable(dirname(dirname(__FILE__)).'/vendor/autoload.php')) {
 
 // todos los ejemplos se ejecutan con backtrace activado, esto para ayudar al
 // debug de los mismos
-\sasco\LibreDTE\Log::setBacktrace(true);
+\libredte\lib\Log::setBacktrace(true);
 
 // incluir configuración específica de los ejemplos
 if (is_readable(dirname(__FILE__).'/config.php')) {

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -22,8 +22,7 @@
  */
 
 /**
- * Clase para tests de la clase \sasco\LibreDTE\Sii\Dte
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * Clase para tests de la clase \libredte\lib\Sii\Dte
  * @version 2017-08-16
  */
 class DteTest extends \PHPUnit\Framework\TestCase
@@ -31,7 +30,6 @@ class DteTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test para verificar los ejemplos en JSON del directorio examples/json
-     * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
      * @version 2020-03-14
      */
     public function testEjemplosJSON()
@@ -61,7 +59,7 @@ class DteTest extends \PHPUnit\Framework\TestCase
                         $this->assertArrayHasKey($caso, $casos, 'No existen los valores esperados para el caso '.$caso);
                         $sin_normalizar = json_decode(file_get_contents($dir_json.'/'.$dte.'/'.$json), true);
                         $this->assertNotNull($sin_normalizar, 'No fue posible cargar los datos del caso '.$caso);
-                        $Dte = new \sasco\LibreDTE\Sii\Dte($sin_normalizar);
+                        $Dte = new \libredte\lib\Sii\Dte($sin_normalizar);
                         // probar valores de totales del caso
                         $totales = $Dte->getDatos()['Encabezado']['Totales'];
                         foreach ($casos[$caso] as $monto => $valor_esperado) {
@@ -81,7 +79,7 @@ class DteTest extends \PHPUnit\Framework\TestCase
                         // guardar XML del caso
                         file_put_contents($dir_xml.'/'.$caso.'.xml', $Dte->saveXML());
                         // guardar PDF del caso
-                        $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte();
+                        $pdf = new \libredte\lib\Sii\Dte\PDF\Dte();
                         $pdf->setResolucion(['FchResol'=>date('Y-m-d'), 'NroResol'=>0]);
                         $pdf->setFooterText();
                         $pdf->agregar($Dte->getDatos(), $Dte->getTED());

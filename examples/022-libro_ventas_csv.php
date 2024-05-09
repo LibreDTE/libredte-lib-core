@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -26,7 +26,6 @@
  *
  * Ejemplo que muestra como crear el libro de ventas a partir de un archivo CSV
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-18
  */
 
@@ -50,8 +49,8 @@ $caratula = [
 ];
 
 // Objetos de Firma y LibroCompraVenta
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
-$LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta(true); // se genera libro simplificado (solicitado así en certificación)
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
+$LibroCompraVenta = new \libredte\lib\Sii\LibroCompraVenta(true); // se genera libro simplificado (solicitado así en certificación)
 
 // agregar detalle desde un archivo CSV con ; como separador
 $LibroCompraVenta->agregarVentasCSV('libros/libro_ventas.csv');
@@ -64,5 +63,5 @@ $track_id = $LibroCompraVenta->enviar(); // enviar XML generado en línea anteri
 var_dump($track_id);
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

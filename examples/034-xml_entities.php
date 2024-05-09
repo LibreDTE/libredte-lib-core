@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -26,7 +26,6 @@
  *
  * Ejemplo de XML entities y su conversión con la clase XML
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2017-01-20
  */
 
@@ -38,7 +37,7 @@ include 'inc.php';
 
 // caso A: generar XML
 $string1 = '< > & " \'';
-$XML1 = (new \sasco\LibreDTE\XML())->generate([
+$XML1 = (new \libredte\lib\XML())->generate([
     'nodo1' => [
         'nodo2'=>[
             '@attributes' => [
@@ -65,7 +64,7 @@ echo $XML1->getFlattened('/nodo1/nodo2')."\n\n";
 
 // caso B: leer XML
 $string2 = '&lt; &gt; &amp; &quot; &apos;';
-$XML2 = new \sasco\LibreDTE\XML();
+$XML2 = new \libredte\lib\XML();
 $XML2->loadXML('<?xml version="1.0" encoding="ISO-8859-1"?><nodo1><nodo2 id="ID123"><nodo3>'.$string2.'</nodo3></nodo2></nodo1>', LIBXML_NOENT);
 echo str_repeat('=', 50)."\n";
 echo 'Caso B: leer XML'."\n\n";
@@ -83,5 +82,5 @@ echo '-- getFlattened(\'/nodo1/nodo2\') --'."\n";
 echo $XML2->getFlattened('/nodo1/nodo2')."\n\n";
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error, "\n";

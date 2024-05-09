@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -23,7 +23,6 @@
 
 /**
  * @file 006-verificarFirmaXML.php
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -35,9 +34,9 @@ include 'inc.php';
 
 // verificar firma
 $xml_data = file_get_contents('xml/archivoFirmado.xml');
-$FirmaElectronica = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$FirmaElectronica = new \libredte\lib\FirmaElectronica($config['firma']);
 var_dump($FirmaElectronica->verifyXML($xml_data, 'SetDTE'));
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

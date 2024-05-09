@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 008-verificar_enviodte.php
  * Referencias: http://www.cryptosys.net/pki/xmldsig-ChileSII.html
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-09-16
  */
 
@@ -35,7 +34,7 @@ header('Content-type: text/plain; charset=ISO-8859-1');
 include 'inc.php';
 
 // crear objeto con XML del DTE que se desea validar
-$XML = new \sasco\LibreDTE\XML();
+$XML = new \libredte\lib\XML();
 $XML->loadXML(file_get_contents('xml/archivoFirmado.xml'));
 
 // listado de firmas del XML
@@ -65,11 +64,11 @@ echo '  Digest SignedInfo valido: ',($valid?'si':'no'),"\n\n";
 $i = 0;
 $documentos = $XML->documentElement->getElementsByTagName('Documento');
 foreach ($documentos as $D) {
-    $Documento = new \sasco\LibreDTE\XML();
+    $Documento = new \libredte\lib\XML();
     $Documento->loadXML($D->C14N());
     $Documento->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
     $Documento->documentElement->removeAttributeNS('http://www.sii.cl/SiiDte', '');
-    $SignedInfo = new \sasco\LibreDTE\XML();
+    $SignedInfo = new \libredte\lib\XML();
     $SignedInfo->loadXML($Signatures->item($i)->getElementsByTagName('SignedInfo')->item(0)->C14N());
     $SignedInfo->documentElement->removeAttributeNS('http://www.w3.org/2001/XMLSchema-instance', 'xsi');
     $DigestValue = $Signatures->item($i)->getElementsByTagName('DigestValue')->item(0)->nodeValue;
@@ -91,7 +90,7 @@ foreach ($documentos as $D) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";
 
 // para el XML de ejemplo del SII la clave pública obtenida desde el certificado

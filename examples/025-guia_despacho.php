@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,13 +24,9 @@
 /**
  * @file 025-guia_despacho.php
  *
- * Ejemplo que genera el JSON del set de pruebas guía de despacho
- * Este JSON se utiliza luego para generar el EnvioDTE, por ejemplo usando
- * la utilidad disponible en <https://libredte.sasco.cl/utilidades/generar_xml>
- * o bien utilizando un ejemplo similar al 010-set_pruebas_basico
- *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-10-02
+ * Ejemplo que genera el JSON del set de pruebas guía de despacho.
+ * Este JSON se utiliza luego para generar el EnvioDTE utilizando un ejemplo
+ * similar al 010-set_pruebas_basico
  */
 
 // respuesta en texto plano
@@ -45,6 +41,6 @@ $folios = [
 ];
 
 // obtener JSON del set de pruebas
-echo \sasco\LibreDTE\Sii\Certificacion\SetPruebas::getJSON(
+echo \libredte\lib\Sii\Certificacion\SetPruebas::getJSON(
     file_get_contents('set_pruebas/005-guia_despacho.txt'), $folios
 );

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,7 +24,6 @@
 /**
  * @file 007-folios.php
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2016-05-05
  */
 
@@ -35,7 +34,7 @@ header('Content-type: text/plain');
 include 'inc.php';
 
 // cargar folios
-$Folios = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios.xml'));
+$Folios = new \libredte\lib\Sii\Folios(file_get_contents('xml/folios.xml'));
 
 // ejemplos métodos
 echo 'Folios son validos?: ',($Folios->check()?'si':'no'),"\n\n";
@@ -46,5 +45,5 @@ echo $Folios->getPrivateKey(),"\n";
 echo $Folios->getPublicKey();
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";

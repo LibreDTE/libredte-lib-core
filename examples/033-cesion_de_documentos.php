@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -24,10 +24,7 @@
 /**
  * @file 033-cesion_de_documentos.php
  *
- * Ejemplo para cesión de documentos electrónicos (factoring)
- *
- * @author Adonias Vasquez (adonias.vasquez[at]epys.cl)
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
+ * Ejemplo para cesión de documentos electrónicos (factoring).
  * @version 2016-12-10
  */
 
@@ -41,19 +38,19 @@ include 'inc.php';
 $archivo = 'xml/factura.xml';
 
 // objeto de firma electrónica
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
 
 // cargar EnvioDTE y extraer DTE a ceder
-$EnvioDte = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDte = new \libredte\lib\Sii\EnvioDte();
 $EnvioDte->loadXML(file_get_contents($archivo));
 $Dte = $EnvioDte->getDocumentos()[0];
 
 // armar el DTE cedido
-$DteCedido = new \sasco\LibreDTE\Sii\Factoring\DteCedido($Dte);
+$DteCedido = new \libredte\lib\Sii\Factoring\DteCedido($Dte);
 $DteCedido->firmar($Firma);
 
 // crear declaración de cesión y monto a cesionar
-$Cesion = new \sasco\LibreDTE\Sii\Factoring\Cesion($DteCedido);
+$Cesion = new \libredte\lib\Sii\Factoring\Cesion($DteCedido);
 $Cesion->setCesionario([
     'RUT' => '55666777-8',
     'RazonSocial' => 'Empresa de Factoring SpA',
@@ -70,7 +67,7 @@ $Cesion->setCedente([
 $Cesion->firmar($Firma);
 
 // crear AEC
-$AEC = new \sasco\LibreDTE\Sii\Factoring\Aec();
+$AEC = new \libredte\lib\Sii\Factoring\Aec();
 $AEC->setFirma($Firma);
 $AEC->agregarDteCedido($DteCedido);
 $AEC->agregarCesion($Cesion);
@@ -82,5 +79,5 @@ echo $AEC->generar();
 //echo $AEC->enviar();
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error, "\n";

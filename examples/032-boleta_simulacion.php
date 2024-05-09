@@ -1,8 +1,8 @@
 <?php
 
 /**
- * LibreDTE
- * Copyright (C) SASCO SpA (https://sasco.cl)
+ * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o
  * modificarlo bajo los términos de la Licencia Pública General Affero de GNU
@@ -27,7 +27,6 @@
  * Ejemplo que genera el EnvioBOLETA para el set de simulación de boletas
  * electrónicas
  *
- * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
  * @version 2015-12-14
  */
 
@@ -297,15 +296,15 @@ $set_pruebas = [
 ];
 
 // Objetos de Firma y Folios
-$Firma = new \sasco\LibreDTE\FirmaElectronica($config['firma']);
+$Firma = new \libredte\lib\FirmaElectronica($config['firma']);
 $Folios = [];
 foreach ($folios as $tipo => $cantidad)
-    $Folios[$tipo] = new \sasco\LibreDTE\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
+    $Folios[$tipo] = new \libredte\lib\Sii\Folios(file_get_contents('xml/folios/'.$tipo.'.xml'));
 
 // generar cada DTE, timbrar, firmar y agregar al sobre de EnvioBOLETA
-$EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
+$EnvioDTE = new \libredte\lib\Sii\EnvioDte();
 foreach ($set_pruebas as $documento) {
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+    $DTE = new \libredte\lib\Sii\Dte($documento);
     if (!$DTE->timbrar($Folios[$DTE->getTipo()]))
         break;
     if (!$DTE->firmar($Firma))
@@ -320,5 +319,5 @@ if ($EnvioDTE->schemaValidate()) {
 }
 
 // si hubo errores mostrar
-foreach (\sasco\LibreDTE\Log::readAll() as $error)
+foreach (\libredte\lib\Log::readAll() as $error)
     echo $error,"\n";
