@@ -1,7 +1,6 @@
 LibreDTE: Biblioteca Estándar en PHP
 ====================================
 
-[![Build Status](https://travis-ci.org/LibreDTE/libredte-lib.svg?branch=master)](https://travis-ci.org/LibreDTE/libredte-lib)
 [![Total Downloads](https://poser.pugx.org/sasco/libredte/downloads)](https://packagist.org/packages/sasco/libredte)
 [![Monthly Downloads](https://poser.pugx.org/sasco/libredte/d/monthly)](https://packagist.org/packages/sasco/libredte)
 [![License](https://poser.pugx.org/sasco/libredte/license)](https://packagist.org/packages/sasco/libredte)
