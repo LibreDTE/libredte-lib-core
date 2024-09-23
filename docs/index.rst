@@ -1,8 +1,8 @@
 Docs: lib-core
 ==============
 
-.. image:: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=libredte_lib_2024&event=push
-   :target: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Alibredte_lib_2024
+.. image:: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=master&event=push
+   :target: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Amaster
 
 .. image:: https://poser.pugx.org/libredte/libredte-lib-core/downloads
    :target: https://packagist.org/packages/libredte/libredte-lib-core

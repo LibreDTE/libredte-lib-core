@@ -1,6 +1,6 @@
 # LibreDTE: Biblioteca PHP (Núcleo)
 
-[![CI Workflow](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=libredte_lib_2024&event=push)](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Alibredte_lib_2024)
+[![CI Workflow](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=master&event=push)](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Descargas Totales](https://poser.pugx.org/libredte/libredte-lib-core/downloads)](https://packagist.org/packages/libredte/libredte-lib-core)
 [![Descargas Mensuales](https://poser.pugx.org/libredte/libredte-lib-core/d/monthly)](https://packagist.org/packages/libredte/libredte-lib-core)
 [![Licencia](https://poser.pugx.org/libredte/libredte-lib-core/license)](https://packagist.org/packages/libredte/libredte-lib-core)

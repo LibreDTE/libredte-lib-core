@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - libredte_lib_2024
+      - master
 
 jobs:
   docs:
