@@ -1,9 +1,12 @@
-# ejemplos, composer, pruebas, etc (archivos generados al usar la biblioteca)
-doc/html
-doc/latex
-examples/config.php
-examples/xml
-examples/pdf
-vendor
-tests/firma.p12
-
+/.php-cs-fixer.cache
+/.phpunit.result.cache
+/build/
+/tests/env-tests
+/tests/resources/caf/*.xml
+/tests/resources/yaml/documentos_ok/*/*.xml
+/tests/resources/yaml/documentos_ok/*/*.pdf
+/tests/resources/yaml/documentos_ok/*/*.json
+/tools/
+/var/
+/vendor/
+/ast.dump

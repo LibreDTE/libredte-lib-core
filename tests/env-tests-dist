@@ -1,0 +1,13 @@
+#
+# Definición de variables de entorno para los tests de LibreDTE.
+#
+# Para configurar se debe renombrar este archivo a env-tests con:
+#   $ mv env-tests-dist env-tests
+#
+# Las variables se deben cargar antes de ejecutar los tests ejecutando:
+#   $ source tests/env-tests
+#
+
+# Certificado digital.
+export LIBREDTE_CERTIFICATE_FILE=""
+export LIBREDTE_CERTIFICATE_PASS=""

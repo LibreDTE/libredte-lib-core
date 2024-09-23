@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
+>
+    <title>LibreDTE</title>
+    <paths>
+        <output>build/docs</output>
+        <cache>var/cache/phpdocumentor</cache>
+    </paths>
+    <version number="latest">
+        <folder>latest</folder>
+        <api>
+            <default-package-name>LibreDTE</default-package-name>
+            <source dsn=".">
+                <path>src</path>
+            </source>
+            <extensions>
+                <extension>php</extension>
+            </extensions>
+            <include-source>false</include-source>
+            <markers>
+                <marker>TODO</marker>
+                <marker>FIXME</marker>
+                <marker>WARNING</marker>
+                <marker>NOTE</marker>
+            </markers>
+        </api>
+        <guide format="rst">
+            <source dsn=".">
+                <path>docs</path>
+            </source>
+            <output>/guide</output>
+        </guide>
+    </version>
+    <setting name="template.color" value="blue" />
+    <setting name="guides.enabled" value="true" />
+    <!-- <setting name="graphs.enabled" value="true" /> -->
+</phpdocumentor>

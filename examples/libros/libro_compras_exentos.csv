@@ -1,8 +1,0 @@
-Tipo Doc;Folio;Rut Contraparte;Tasa Impuesto;Razón Social Contraparte;Tipo Impuesto[1=IVA:2=LEY 18211];Fecha Emisión;Anulado[A];Monto Exento;Monto Neto;Monto IVA (Recuperable);Cod IVA no Rec;Monto IVA no Rec;IVA Uso Común;Cod Otro Imp (Con Crédito);Tasa Otro Imp (Con Crédito);Monto Otro Imp (Con Crédito);Monto Otro Imp (Sin Crédito);Neto Activo Fijo;IVA Activo Fijo;IVA No Retenido;Monto Imp Cigarrros Puros;Monto Imp Cigarrillos;Monto Imp Tabaco Elaborado;Monto Imp Vehículos y Autos.;Sucursal SII;Número Interno;NC o ND de FC [1];Monto Total;Factor IVA Uso Comun
-30;234;76192083-9;19;;;2000-01-01;;;27690;;1;;;;;;;;;;;;;;;;;;
-33;32;76192083-9;19;;;2000-01-01;;9202;7517;;1;;;;;;;;;;;;;;;;;;
-34;781;76192083-9;;;;2000-01-01;;29862;;;;;;;;;;;;;;;;;;;;;
-32;45;76192083-9;;;;2000-01-01;;29662;;;;;;;;;;;;;;;;;;;;;
-60;451;76192083-9;19;;;2000-01-01;;;2761;;1;;;;;;;;;;;;;;;;;;
-61;67;76192083-9;19;;;2000-01-01;;9202;7517;;1;;;;;;;;;;;;;;;;;;
-56;211;76192083-9;;;;2000-01-01;;5383;;;;;;;;;;;;;;;;;;;;;

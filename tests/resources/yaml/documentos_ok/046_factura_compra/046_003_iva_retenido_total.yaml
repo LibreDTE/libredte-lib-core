@@ -1,0 +1,34 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 46
+    Folio: 1
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: P1
+  QtyItem: 1
+  PrcItem: 100000
+  CodImpAdic: 15
+
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 100000
+        IVA: 19000
+        ImptoReten:
+            - TipoImp: 15
+              TasaImp: 19
+              MontoImp: 19000
+        MntTotal: 100000

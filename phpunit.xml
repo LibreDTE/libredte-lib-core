@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    backupGlobals="true"
+    bootstrap="vendor/autoload.php"
+    cacheDirectory="var/cache/phpunit"
+    processIsolation="true"
+    executionOrder="depends,defects"
+    colors="true"
+    testdox="true"
+    requireCoverageMetadata="true"
+    beStrictAboutCoverageMetadata="true"
+    beStrictAboutOutputDuringTests="false"
+    beStrictAboutChangesToGlobalState="true"
+    stopOnError="true"
+    stopOnFailure="true"
+    stopOnWarning="true"
+    stopOnDeprecation="true"
+    stopOnNotice="true"
+    failOnEmptyTestSuite="true"
+    failOnWarning="true"
+    failOnRisky="true"
+    failOnDeprecation="true"
+    failOnPhpunitDeprecation="true"
+    failOnNotice="true"
+>
+    <source>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </source>
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/src/Unit</directory>
+        </testsuite>
+        <testsuite name="functional">
+            <directory>tests/src/Functional</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/src/Integration</directory>
+        </testsuite>
+    </testsuites>
+    <coverage
+        ignoreDeprecatedCodeUnits="true"
+        pathCoverage="true"
+    >
+        <report>
+            <text
+                outputFile="var/tests-coverage.txt"
+                showUncoveredFiles="true"
+            />
+        </report>
+    </coverage>
+    <logging>
+        <testdoxText outputFile="var/tests-testdox.txt"/>
+    </logging>
+    <php>
+        <ini name="memory_limit" value="-1" />
+        <env name="LIBREDTE_TESTS_DIR" value="tests" />
+        <env name="LIBREDTE_COMPANY" value="76192083-9" />
+        <env name="LIBREDTE_ENV_TEST_AUTH_DATE" value="2019-12-23" />
+        <env name="LIBREDTE_CERTIFICATE_FILE" value="tests/resources/certificates/fake-certificate.pfx" />
+        <env name="LIBREDTE_CERTIFICATE_PASS" value="i_love_libredte" />
+    </php>
+</phpunit>

@@ -15,23 +15,47 @@
         "issues": "https://github.com/LibreDTE/libredte-lib/issues",
         "source": "https://github.com/LibreDTE/libredte-lib"
     },
-    "config": {
-        "platform": {
-            "php": "7.3"
+    "autoload": {
+        "psr-4": {
+            "libredte\\lib\\Core\\": "src/"
         }
     },
-    "autoload": {
-        "psr-4": {"libredte\\lib\\": "src/"}
+    "autoload-dev": {
+        "psr-4": {
+            "libredte\\lib\\Tests\\": "tests/src/"
+        }
     },
     "require": {
-        "php": "^7.3 || ^8.0",
-        "phpseclib/phpseclib": "2.0.47",
-        "tecnickcom/tcpdf": "6.7.5",
+        "php": "^8.2",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "ext-soap": "*"
+        "ext-soap": "*",
+        "illuminate/support": "^11.22",
+        "league/csv": "^9.16",
+        "maennchen/zipstream-php": "^3.1",
+        "nesbot/carbon": "^3.8",
+        "phpseclib/phpseclib": "^3.0",
+        "psr/simple-cache": "^3.0",
+        "symfony/cache": "^7.1",
+        "symfony/filesystem": "^7.1",
+        "symfony/mime": "^7.1",
+        "symfony/yaml": "^7.1",
+        "tecnickcom/tcpdf": "^6.7"
     },
     "require-dev": {
-        "phpunit/phpunit": "9.5.4"
+        "friendsofphp/php-cs-fixer": "^3.63",
+        "phpstan/phpstan": "^1.12",
+        "phpunit/phpunit": "^11.3"
+    },
+    "scripts": {
+        "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
+        "tests": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml",
+        "tests-unit": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite unit",
+        "tests-functional": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite functional",
+        "tests-integration": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite integration",
+        "phpcs-fix": "php-cs-fixer fix -v --config=php-cs-fixer.php .",
+        "phpcs-fix-dry-run": "php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php .",
+        "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=1G",
+        "phpstan-export": "phpstan analyse --configuration=phpstan.neon --level 9 --generate-baseline"
     }
 }
