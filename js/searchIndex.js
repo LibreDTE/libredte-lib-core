@@ -703,42 +703,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ARESOURCES_PATH",
             "name": "RESOURCES_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_RESOURCES_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ATESTS_PATH",
             "name": "TESTS_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020tests.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_TESTS_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003AVAR_PATH",
             "name": "VAR_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020datos\u0020variables\u0020que\u0020puede\u0020escribir\u0020la\u0020biblioteca\u0020en\u0020su\nciclo\u0020de\u0020ejecuci\u00F3n\u0020normal.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_VAR_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ACERTIFICATES_PATH",
             "name": "CERTIFICATES_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020certificados\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_CERTIFICATES_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ADATA_PATH",
             "name": "DATA_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020archivos\u0020PHP\u0020de\u0020datos\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_DATA_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ASCHEMAS_PATH",
             "name": "SCHEMAS_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020esquemas\u0020XML\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_SCHEMAS_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003AWSDL_PATH",
             "name": "WSDL_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020WSDL\u0020de\u0020API\u0020SOAP\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_WSDL_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ACACHE_PATH",
             "name": "CACHE_PATH",
-            "summary": "",
+            "summary": "Ubicaci\u00F3n\u0020del\u0020directorio\u0020de\u0020cach\u00E9\u0020dentro\u0020del\u0020directorio\u0020de\u0020datos\nvariables.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_CACHE_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Signature\\Certificate",
