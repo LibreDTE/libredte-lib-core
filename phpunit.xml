@@ -48,6 +48,7 @@
                 outputFile="var/tests-coverage.txt"
                 showUncoveredFiles="true"
             />
+            <clover outputFile="var/tests-coverage.xml" />
         </report>
     </coverage>
     <logging>
