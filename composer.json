@@ -28,6 +28,8 @@
     "require": {
         "php": "^8.2",
         "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-soap": "*",
         "illuminate/support": "^11.22",
@@ -43,6 +45,7 @@
         "tecnickcom/tcpdf": "^6.7"
     },
     "require-dev": {
+        "ext-xdebug": "*",
         "friendsofphp/php-cs-fixer": "^3.63",
         "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^11.3"

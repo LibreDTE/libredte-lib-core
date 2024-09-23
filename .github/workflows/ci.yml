@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - libredte_lib_2024
+  pull_request:
+    branches:
+      - libredte_lib_2024
+
+jobs:
+  tests:
+    name: Tests
+    timeout-minutes: 10
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php-version: ['8.2', '8.3']
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: curl, json, mbstring, openssl, soap, xdebug
+          tools: composer
+      - name: Install Dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+      - name: Run PHPUnit
+        run: composer tests
+      - name: Upload PHPUnit result report
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-testdox
+          path: var/tests-testdox.txt
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: tests-coverage
+          path: var/tests-coverage.txt
+      - name: Display PHP version
+        run: php -v
