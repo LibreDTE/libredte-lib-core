@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<EnvioDTE>
+  <SetDTE ID="LibreDTE_SetDoc">
+    <Caratula>
+      <RutEmisor>76192083-9</RutEmisor>
+    </Caratula>
+    <DTE version="1.0">
+      <Documento ID="T33F1">
+        <Encabezado>
+          <IdDoc>
+            <TipoDTE>33</TipoDTE>
+            <Folio>1</Folio>
+            <FchEmis>2016-02-13</FchEmis>
+          </IdDoc>
+        </Encabezado>
+      </Documento>
+    </DTE>
+  </SetDTE>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="LibreDTE_SetDoc"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>rB2h03LW0aClxj+KP+CnJTfZbAw=</DigestValue></Reference></SignedInfo><SignatureValue>DCXsndU3M0wjeEeugb7EFXuiTtPZLdrk49PCn2m/wT6KeKKcZdAqveSTFMrlxSlf
+UNOiqaqIqtl8+OJ389zF/Siu0bkMgSHMWX/UsJowQ/9996LRlUc6mnuihLEMSO5W
+SgnxUj05M+/kdfyL9XgbtSyq9jRahAr7Bbj0Axqjjeob/b/vbLqiNrDeG+y5Arl3
+VrKMSNTVaZdvFCkF9DAguhd+1///PghI8JcSgMP2dL3lCWyREHEmAmTSrkjnhEIT
+x0JYRVcPd+JT1341mMtJMiisbYJ3YGke0k69UpRdhAyAGNLvkYAuoxu3exWi+eG6
+LDSko5G53qA+oMz5vdJ1hQ==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>nbA9DHW0pbEjS/Fiky4NWBB3c+WdBVOpdHY8jgKV0fmN/ezO0vzpL8Sk1uIEZvPg
+EIlU3lPvg7A8kk2k/4hgIYd4Wp56OphwHZawNWa8WGbkoosd8LvXpvZikjqb9buX
+BCQP+C08vglE4iGtgTLRrVHBdA25yuKLFjLezjg8TrkoMdaxxbDVBn9vV6kkUlio
+/DZZT2zeD89Ih3s+a3a8WPxYaPVSAigCNuyHFDzJy1NIzzutI9rjKZqJxPirTIqr
+KgGkv3JSCbVL5Il48BcLHgK7V/3Mlxu3vAiVX0pHTSoKpf2oqxlPrrR+NvdM6uAo
+yBMwG4q6mHT/SZPHRwMZ+w==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIGdDCCBVygAwIBAgIDA6lwMA0GCSqGSIb3DQEBCwUAMIGmMQswCQYDVQQGEwJD
+TDEYMBYGA1UEChMPQWNlcHRhLmNvbSBTLkEuMUgwRgYDVQQDEz9BY2VwdGEuY29t
+IEF1dG9yaWRhZCBDZXJ0aWZpY2Fkb3JhIENsYXNlIDMgUGVyc29uYSBOYXR1cmFs
+IC0gRzQxHjAcBgkqhkiG9w0BCQEWD2luZm9AYWNlcHRhLmNvbTETMBEGA1UEBRMK
+OTY5MTkwNTAtODAeFw0yMzA5MTExNjExMTlaFw0yNjA5MTExNjExMTlaMIGKMQsw
+CQYDVQQGEwJDTDEYMBYGA1UEDBMPUEVSU09OQSBOQVRVUkFMMSswKQYDVQQDEyJF
+U1RFQkFOIEVEVUFSRE8gREUgTEEgRlVFTlRFIFJVQklPMR8wHQYJKoZIhvcNAQkB
+FhBFU1RFQkFOQFNBU0NPLkNMMRMwEQYDVQQFEwoxNjI2MTA2My01MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnbA9DHW0pbEjS/Fiky4NWBB3c+WdBVOp
+dHY8jgKV0fmN/ezO0vzpL8Sk1uIEZvPgEIlU3lPvg7A8kk2k/4hgIYd4Wp56Ophw
+HZawNWa8WGbkoosd8LvXpvZikjqb9buXBCQP+C08vglE4iGtgTLRrVHBdA25yuKL
+FjLezjg8TrkoMdaxxbDVBn9vV6kkUlio/DZZT2zeD89Ih3s+a3a8WPxYaPVSAigC
+NuyHFDzJy1NIzzutI9rjKZqJxPirTIqrKgGkv3JSCbVL5Il48BcLHgK7V/3Mlxu3
+vAiVX0pHTSoKpf2oqxlPrrR+NvdM6uAoyBMwG4q6mHT/SZPHRwMZ+wIDAQABo4IC
+wzCCAr8wHwYDVR0jBBgwFoAUqv29xek3TfaZTVeOwXEa+evDBuMwHQYDVR0OBBYE
+FB+cdNMt2Y6Z1lWBGKF/oi51bl91MAsGA1UdDwQEAwIE8DAdBgNVHSUEFjAUBggr
+BgEFBQcDAgYIKwYBBQUHAwQwEQYJYIZIAYb4QgEBBAQDAgWgMIH6BgNVHSAEgfIw
+ge8wgewGCCsGAQQBtWsCMIHfMDEGCCsGAQUFBwIBFiVodHRwczovL2FjZzQuYWNl
+cHRhLmNvbS9DUFMtQWNlcHRhY29tMIGpBggrBgEFBQcCAjCBnDAWFg9BY2VwdGEu
+Y29tIFMuQS4wAwIBAhqBgUVsIHRpdHVsYXIgaGEgc2lkbyB2YWxpZGFkbyBlbiBm
+b3JtYSBwcmVzZW5jaWFsLCBxdWVkYW5kbyBoYWJpbGl0YWRvIGVsIENlcnRpZmlj
+YWRvIHBhcmEgdXNvIHRyaWJ1dGFyaW8sIHBhZ29zLCBjb21lcmNpbyB5IG90cm9z
+LjBaBgNVHRIEUzBRoBgGCCsGAQQBwQECoAwWCjk2OTE5MDUwLTigJAYIKwYBBQUH
+CAOgGDAWDAo5NjkxOTA1MC04BggrBgEEAcEBAoEPaW5mb0BhY2VwdGEuY29tMFsG
+A1UdEQRUMFKgGAYIKwYBBAHBAQGgDBYKMTYyNjEwNjMtNaAkBggrBgEFBQcIA6AY
+MBYMCjE2MjYxMDYzLTUGCCsGAQQBwQECgRBFU1RFQkFOQFNBU0NPLkNMMEcGCCsG
+AQUFBwEBBDswOTA3BggrBgEFBQcwAYYraHR0cHM6Ly9hY2c0LmFjZXB0YS5jb20v
+YWNnNC9vY3NwL0NsYXNlMy1HNDA/BgNVHR8EODA2MDSgMqAwhi5odHRwczovL2Fj
+ZzQuYWNlcHRhLmNvbS9hY2c0L2NybC9DbGFzZTMtRzQuY3JsMA0GCSqGSIb3DQEB
+CwUAA4IBAQBatNrN9MU7hyhLW+htkrOxf6+GxxZ2tTGj0kPoeXn8+JewNFha1LqA
+rfdoLSsg1GgK88hNcHvN0bAVRyDEk+g0o86QDb00HnRIvEyQ+K40FT1C9IviTY4W
+0YscvwLpMbHkAM4O9DiK6J8HYv1NTqD7tycziOZSEcrzo3h2FjcFndm7DM1ozPXz
+3l5PA2kyiaeGVwCfSFksXbWecK15N8LGNlhHKcLYSoI+by4oqj9lIRpW1lwuSfMH
+/aXEUmp1DgNDezWJrNRt4YrvNSaTeO+Kc6wmO0hdu1GbV2OJwacjfmMi3CwoMUIj
+IKM0yJD3j702thWnzs65MFMVw3o0r87U</X509Certificate></X509Data></KeyInfo></Signature></EnvioDTE>
