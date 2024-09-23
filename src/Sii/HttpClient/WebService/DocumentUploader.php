@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\HttpClient\WebService;
 
-use UnexpectedValueException;
 use libredte\lib\Core\Helper\Rut;
 use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
 use libredte\lib\Core\Sii\HttpClient\SiiClientException;
 use libredte\lib\Core\Sii\HttpClient\TokenManager;
-use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDocument;
+use UnexpectedValueException;
 
 /**
  * Clase para el envío de documentos al SII.
@@ -73,8 +73,7 @@ class DocumentUploader
         Certificate $certificate,
         ConnectionConfig $config,
         TokenManager $tokenManager,
-    )
-    {
+    ) {
         $this->certificate = $certificate;
         $this->config = $config;
         $this->tokenManager = $tokenManager;
@@ -95,8 +94,7 @@ class DocumentUploader
         string $company,
         bool $compress = false,
         ?int $retry = null
-    ): int
-    {
+    ): int {
         // Crear string del documento XML.
         $xml = $doc->saveXML();
         if (empty($xml) || $xml == '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n") {
@@ -219,7 +217,7 @@ class DocumentUploader
         // Ver si vienen detalles del error.
         $error = $response['DETAIL']['ERROR'] ?? null;
         if ($error !== null) {
-            $message .= ' ' . implode(' ',  $error);
+            $message .= ' ' . implode(' ', $error);
         }
 
         // Lanzar una excepción con el mensaje de error determinado.

@@ -30,8 +30,8 @@ use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateLoader;
 use libredte\lib\Core\Signature\CertificateUtils;
 use libredte\lib\Core\Signature\CertificateValidator;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CertificateValidator::class)]
 #[CoversClass(Certificate::class)]

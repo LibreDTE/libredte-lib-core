@@ -35,22 +35,46 @@ class PathManager
      */
     private const BASE_PATH = __DIR__ . '/../..';
 
-    // Directorios base de la biblioteca.
-    //private const CONFIG_PATH = self::BASE_PATH . '/config';
-    //private const DOCS_PATH = self::BASE_PATH . '/docs';
+    /**
+     * Ubicación de los recursos.
+     */
     private const RESOURCES_PATH = self::BASE_PATH . '/resources';
-    //private const SRC_PATH = self::BASE_PATH . '/src';
-    private const TESTS_PATH = self::BASE_PATH . '/tests';
-    private const VAR_PATH = self::BASE_PATH . '/var';
-    //private const VENDOR_PATH = self::BASE_PATH . '/vendor';
 
-    // Directorios de recursos.
+    /**
+     * Ubicación de los tests.
+     */
+    private const TESTS_PATH = self::BASE_PATH . '/tests';
+
+    /**
+     * Ubicación de los datos variables que puede escribir la biblioteca en su
+     * ciclo de ejecución normal.
+     */
+    private const VAR_PATH = self::BASE_PATH . '/var';
+
+    /**
+     * Ubicación de los certificados dentro del directorio de recursos.
+     */
     private const CERTIFICATES_PATH = self::RESOURCES_PATH . '/certificates';
+
+    /**
+     * Ubicación de los archivos PHP de datos dentro del directorio de recursos.
+     */
     private const DATA_PATH = self::RESOURCES_PATH . '/data';
+
+    /**
+     * Ubicación de los esquemas XML dentro del directorio de recursos.
+     */
     private const SCHEMAS_PATH = self::RESOURCES_PATH . '/schemas';
+
+    /**
+     * Ubicación de los WSDL de API SOAP dentro del directorio de recursos.
+     */
     private const WSDL_PATH = self::RESOURCES_PATH . '/wsdl';
 
-    // Directorio de caché.
+    /**
+     * Ubicación del directorio de caché dentro del directorio de datos
+     * variables.
+     */
     private const CACHE_PATH = self::VAR_PATH . '/cache';
 
     /**

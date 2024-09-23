@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Repository;
 
-use UnexpectedValueException;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\DataProviderInterface;
+use UnexpectedValueException;
 
 /**
  * Repositorio para trabajar con las tablas de la Aduana.

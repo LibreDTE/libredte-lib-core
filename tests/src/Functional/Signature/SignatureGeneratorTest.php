@@ -36,8 +36,8 @@ use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlException;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(SignatureGenerator::class)]
 #[CoversClass(Certificate::class)]

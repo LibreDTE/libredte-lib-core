@@ -37,15 +37,15 @@ use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
 use libredte\lib\Core\Sii\HttpClient\SiiClient;
 use libredte\lib\Core\Sii\HttpClient\TokenManager;
 use libredte\lib\Core\Sii\HttpClient\WebService\AbstractWebServiceResponse;
-use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploadStatusResponse;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploader;
+use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploadStatusResponse;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentValidator;
 use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Arr::class)]
 #[CoversClass(Rut::class)]
@@ -93,7 +93,7 @@ class DocumentUploadStatusTest extends TestCase
             ->getDocumentValidator()
             ->getDocumentUploadStatus($trackId, $company)
         ;
-        $this->assertEquals('RFR', $documentUploadStatus->getStatus());
+        $this->assertSame('RFR', $documentUploadStatus->getStatus());
     }
 
     public function testUploadStatusRfr2(): void
@@ -104,7 +104,7 @@ class DocumentUploadStatusTest extends TestCase
             ->getDocumentValidator()
             ->getDocumentUploadStatus($trackId, $company)
         ;
-        $this->assertEquals('RFR - Rechazado por Error en Firma', $documentUploadStatus->getReviewStatus());
+        $this->assertSame('RFR - Rechazado por Error en Firma', $documentUploadStatus->getReviewStatus());
     }
 
     public function testUploadStatusWrongEnvironment(): void
@@ -115,8 +115,8 @@ class DocumentUploadStatusTest extends TestCase
             ->getDocumentValidator()
             ->getDocumentUploadStatus($trackId, $company)
         ;
-        $this->assertEquals('-11', $documentUploadStatus->getStatus());
-        $this->assertEquals('Error de Proceso', $documentUploadStatus->getDescription());
+        $this->assertSame('-11', $documentUploadStatus->getStatus());
+        $this->assertSame('Error de Proceso', $documentUploadStatus->getDescription());
     }
 
     public function testUploadStatusEpr(): void
@@ -127,6 +127,6 @@ class DocumentUploadStatusTest extends TestCase
             ->getDocumentValidator()
             ->getDocumentUploadStatus($trackId, $company)
         ;
-        $this->assertEquals('EPR - Envio Procesado', $documentUploadStatus->getReviewStatus());
+        $this->assertSame('EPR - Envio Procesado', $documentUploadStatus->getReviewStatus());
     }
 }

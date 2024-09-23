@@ -1,0 +1,40 @@
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - phpunit.xml
+            environment:
+                php:
+                    version: 8.3
+    dependencies:
+        before:
+            - composer install --no-progress --no-suggest --prefer-dist
+        cache:
+            directories:
+                - vendor
+
+tools:
+    php_code_sniffer:
+        config:
+            standard: PSR12
+    php_cs_fixer:
+        config: php-cs-fixer.php
+    php_unit:
+        config: phpunit.xml
+
+filter:
+    paths:
+        - src/*
+    excluded_paths:
+        - resources/*
+        - tests/*
+        - tools/*
+        - vendor/*
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
+        syntax: true
+        unused_use_statements: true

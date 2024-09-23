@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\HttpClient;
 
-use SoapClient;
-use SoapFault;
 use libredte\lib\Core\Service\PathManager;
 use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Signature\SignatureException;
 use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
+use SoapClient;
+use SoapFault;
 
 /**
  * Clase para consumir los servicios web SOAP del SII.
@@ -61,8 +61,7 @@ class WsdlConsumer
     public function __construct(
         Certificate $certificate,
         ConnectionConfig $config,
-    )
-    {
+    ) {
         $this->certificate = $certificate;
         $this->config = $config;
     }
@@ -225,8 +224,7 @@ class WsdlConsumer
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlDocument
-    {
+    ): XmlDocument {
         // Revisar si se pasó en $args el valor de $retry.
         if (is_numeric($args)) {
             $retry = (int)$args;
@@ -261,8 +259,7 @@ class WsdlConsumer
         string $function,
         array $args,
         int $retry
-    ): XmlDocument
-    {
+    ): XmlDocument {
         // Definir las opciones para consumir el servicio web.
         $soapClientOptions = $this->createSoapClientOptions();
 

@@ -72,7 +72,7 @@ class ConnectionConfig
             'www4' => [
                 self::PRODUCCION => 'www4',
                 self::CERTIFICACION => 'www4c',
-            ]
+            ],
         ],
 
         // URL de los WSDL de diferentes servicios del SII. Se define una regla
@@ -169,8 +169,7 @@ class ConnectionConfig
         string $servidor = 'palena',
         int $ambiente = self::PRODUCCION,
         string $tipo = 'default'
-    ): self
-    {
+    ): self {
         $this->config['servidores'][$tipo][$ambiente] = $servidor;
 
         return $this;

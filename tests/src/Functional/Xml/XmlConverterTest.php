@@ -29,9 +29,9 @@ use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlException;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDocument::class)]
@@ -128,7 +128,7 @@ class XmlConverterTest extends TestCase
         $arrayData = XmlConverter::xmlToArray($xmlDocument);
 
         // Validar estructura
-        $this->assertEquals($expected, $arrayData);
+        $this->assertSame($expected, $arrayData);
 
         // Validar codificación en cada valor del arreglo
         $this->assertArrayEncoding($arrayData, 'UTF-8');
@@ -149,10 +149,10 @@ class XmlConverterTest extends TestCase
         $xmlString = $xmlDocument->saveXML();
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
 
         // Validar codificación
-        $this->assertEquals('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
+        $this->assertSame('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
     }
 
     /**
@@ -171,7 +171,7 @@ class XmlConverterTest extends TestCase
         $xmlString = XmlUtils::fixEntities($xmlString);
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
     }
 
     /**
@@ -190,10 +190,10 @@ class XmlConverterTest extends TestCase
         $xmlString = $xmlDocument->C14NWithIsoEncoding();
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
 
         // Validar codificación
-        $this->assertEquals('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
+        $this->assertSame('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
     }
 
     /**
@@ -213,7 +213,7 @@ class XmlConverterTest extends TestCase
         $arrayData = XmlConverter::xmlToArray($doc);
 
         // Validar estructura
-        $this->assertEquals($expected, $arrayData);
+        $this->assertSame($expected, $arrayData);
 
         // Validar codificación en cada valor del arreglo
         $this->assertArrayEncoding($arrayData, 'UTF-8');
@@ -235,10 +235,10 @@ class XmlConverterTest extends TestCase
         $xmlString = $doc->saveXML();
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
 
         // Validar codificación
-        $this->assertEquals('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
+        $this->assertSame('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
     }
 
     /**
@@ -258,7 +258,7 @@ class XmlConverterTest extends TestCase
         $xmlString = XmlUtils::fixEntities($xmlString);
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
     }
 
     /**
@@ -278,10 +278,10 @@ class XmlConverterTest extends TestCase
         $xmlString = $doc->C14NWithIsoEncoding();
 
         // Validar contenido
-        $this->assertEquals($expected, $xmlString);
+        $this->assertSame($expected, $xmlString);
 
         // Validar codificación
-        $this->assertEquals('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
+        $this->assertSame('ISO-8859-1', mb_detect_encoding($xmlString, 'ISO-8859-1', true));
     }
 
     /**
@@ -292,9 +292,9 @@ class XmlConverterTest extends TestCase
      */
     private function assertArrayEncoding(array $data, string $expectedEncoding): void
     {
-        array_walk_recursive($data, function($item) use ($expectedEncoding) {
+        array_walk_recursive($data, function ($item) use ($expectedEncoding) {
             if (is_string($item)) {
-                $this->assertEquals(
+                $this->assertSame(
                     $expectedEncoding,
                     mb_detect_encoding($item, $expectedEncoding, true)
                 );

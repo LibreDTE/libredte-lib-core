@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Unit\Helper;
 
 use libredte\lib\Core\Helper\Arr;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Arr::class)]
 class ArrTest extends TestCase
@@ -44,17 +44,17 @@ class ArrTest extends TestCase
     {
         $array1 = [
             'a' => ['a1' => 1, 'a2' => 2],
-            'b' => 2
+            'b' => 2,
         ];
         $array2 = [
             'a' => ['a2' => 3, 'a3' => 4],
-            'c' => 5
+            'c' => 5,
         ];
 
         $expected = [
             'a' => ['a1' => 1, 'a2' => 3, 'a3' => 4],
             'b' => 2,
-            'c' => 5
+            'c' => 5,
         ];
         $this->assertSame($expected, Arr::mergeRecursiveDistinct($array1, $array2));
     }
@@ -66,7 +66,7 @@ class ArrTest extends TestCase
 
         $expected = [
             'a' => 1,
-            'b' => ['b1' => 2, 'b2' => 4, 'b3' => 5]
+            'b' => ['b1' => 2, 'b2' => 4, 'b3' => 5],
         ];
         $this->assertSame($expected, Arr::mergeRecursiveDistinct($array1, $array2));
     }

@@ -42,37 +42,44 @@ return (new Config())
     // Basado en PSR-12, la última recomendación de estilo.
     ->setRules([
         '@PSR12' => true,
-        // Convertir arrays a la sintaxis corta.
-        'array_syntax' => ['syntax' => 'short'],
-        // Ordenar los "use" alfabéticamente.
-        'ordered_imports' => ['sort_algorithm' => 'alpha'],
-        // Usar constructores de PHPUnit en lugar de métodos de fábrica.
-        'php_unit_construct' => true,
-        // Usar aserciones más estrictas en PHPUnit.
-        'php_unit_strict' => true,
         // Añadir "declare(strict_types=1);" a los archivos.
+        // Esto los añade así <?php declare(strict_types=1); sin embargo se
+        // recomienda editarlos o añadirlos manualmente en líneas separadas.
         'declare_strict_types' => true,
-        // Añadir comas finales en listas multilineales.
-        'trailing_comma_in_multiline' => true,
+        // Indentar con espacios.
+        'indentation_type' => true,
+        // Ordenar los "use" alfabéticamente.
+        'ordered_imports' => [
+            'sort_algorithm' => 'alpha',
+        ],
         // Eliminar imports no usados.
         'no_unused_imports' => true,
         // Un import por declaración.
         'single_import_per_statement' => true,
+        // Convertir arreglos a la sintaxis corta "[]".
+        'array_syntax' => [
+            'syntax' => 'short',
+        ],
+        // Añadir comas finales en arreglos de varias líneas.
+        'trailing_comma_in_multiline' => true,
         // Separar constantes y propiedades.
-        // 'class_attributes_separation' => [
-        //     'elements' => [
-        //         'const' => 'one',
-        //         'property' => 'one',
-        //     ],
-        // ],
+        'class_attributes_separation' => [
+            'elements' => [
+                'const' => 'one',
+                'property' => 'one',
+                'method' => 'one',
+            ],
+        ],
         // Reemplazar strpos con un return de bool.
+        // Ejemplo usar: str_contains().
         'modernize_strpos' => true,
-        // Reemplazar elseif con else if.
-        'no_superfluous_elseif' => true,
         // Convertir funciones anónimas a funciones flecha.
         'use_arrow_functions' => true,
-        // Indentar con espacios.
-        'indentation_type' => true,
+        // Usar constructores de PHPUnit en lugar de métodos de fábrica.
+        'php_unit_construct' => true,
+        // Usar aserciones más estrictas en PHPUnit.
+        // Ejemplo: usar assertSame() en vez de assertEquals().
+        'php_unit_strict' => true,
     ])
     ->setLineEnding("\n")
     ->setCacheFile($dir . '/var/cache/php-cs-fixer.cache')

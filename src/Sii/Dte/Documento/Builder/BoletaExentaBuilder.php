@@ -27,8 +27,8 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 use libredte\lib\Core\Helper\Arr;
 use libredte\lib\Core\Sii\Dte\Documento\BoletaExenta;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\BoletasNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
 
 /**
@@ -70,7 +70,7 @@ class BoletaExentaBuilder extends AbstractDocumentoBuilder
                 'Totales' => [
                     'MntExe' => 0,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

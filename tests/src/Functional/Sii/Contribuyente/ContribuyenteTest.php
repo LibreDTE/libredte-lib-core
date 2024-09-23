@@ -39,8 +39,8 @@ use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test funcional para la clase Contribuyente.
@@ -83,14 +83,14 @@ class ContribuyenteTest extends TestCase
      */
     public function testContribuyenteData(): void
     {
-        $this->assertEquals('12345678-5', $this->contribuyente->getRut());
-        $this->assertEquals('Test Razon Social', $this->contribuyente->getRazonSocial());
-        $this->assertEquals('Comercio', $this->contribuyente->getGiro());
-        $this->assertEquals(123, $this->contribuyente->getActividadEconomica());
-        $this->assertEquals('+56 9 88775544', $this->contribuyente->getTelefono());
-        $this->assertEquals('test@example.com', $this->contribuyente->getEmail());
-        $this->assertEquals('123 Calle Falsa', $this->contribuyente->getDireccion());
-        $this->assertEquals('Santiago', $this->contribuyente->getComuna());
+        $this->assertSame('12345678-5', $this->contribuyente->getRut());
+        $this->assertSame('Test Razon Social', $this->contribuyente->getRazonSocial());
+        $this->assertSame('Comercio', $this->contribuyente->getGiro());
+        $this->assertSame(123, $this->contribuyente->getActividadEconomica());
+        $this->assertSame('+56 9 88775544', $this->contribuyente->getTelefono());
+        $this->assertSame('test@example.com', $this->contribuyente->getEmail());
+        $this->assertSame('123 Calle Falsa', $this->contribuyente->getDireccion());
+        $this->assertSame('Santiago', $this->contribuyente->getComuna());
     }
 
     /**
@@ -101,7 +101,7 @@ class ContribuyenteTest extends TestCase
         $fakeCert = $this->contribuyente->getFakeCertificate();
         $this->assertInstanceOf(Certificate::class, $fakeCert);
 
-        $this->assertEquals('12345678-5', $fakeCert->getID());
+        $this->assertSame('12345678-5', $fakeCert->getID());
     }
 
     /**
@@ -112,9 +112,9 @@ class ContribuyenteTest extends TestCase
         $caf = $this->contribuyente->getFakeCaf(33, 1000, 1100);
         $this->assertInstanceOf(Caf::class, $caf);
 
-        $this->assertEquals('CAF33D1000H1100', $caf->getID());
-        $this->assertEquals(33, $caf->getTipoDocumento()->getCodigo());
-        $this->assertEquals(1000, $caf->getFolioDesde());
-        $this->assertEquals(1100, $caf->getFolioHasta());
+        $this->assertSame('CAF33D1000H1100', $caf->getID());
+        $this->assertSame(33, $caf->getTipoDocumento()->getCodigo());
+        $this->assertSame(1000, $caf->getFolioDesde());
+        $this->assertSame(1100, $caf->getFolioHasta());
     }
 }

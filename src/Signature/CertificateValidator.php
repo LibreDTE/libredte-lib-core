@@ -31,7 +31,6 @@ namespace libredte\lib\Core\Signature;
  */
 class CertificateValidator
 {
-
     /**
      * Realiza diferentes validaciones de la firma electrónica.
      *
@@ -69,5 +68,4 @@ class CertificateValidator
             ));
         }
     }
-
 }

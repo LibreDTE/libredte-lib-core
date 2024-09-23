@@ -24,11 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Helper;
 
-use LogicException;
 use League\Csv\UnavailableStream;
 use libredte\lib\Core\Helper\Csv;
-use PHPUnit\Framework\TestCase;
+use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Csv::class)]
 class CsvTest extends TestCase
@@ -59,7 +59,7 @@ class CsvTest extends TestCase
 
         $result = Csv::read($this->testFile);
 
-        $this->assertEquals($data, $result);
+        $this->assertSame($data, $result);
     }
 
     public function testReadCsvFileNotFound(): void
@@ -83,7 +83,7 @@ class CsvTest extends TestCase
                           'value1;value2' . "\n" .
                           'value3;value4' . "\n";
 
-        $this->assertEquals($expectedOutput, $result);
+        $this->assertSame($expectedOutput, $result);
     }
 
     public function testWriteCsvSuccess(): void
@@ -97,7 +97,7 @@ class CsvTest extends TestCase
         Csv::write($data, $this->testFile);
 
         $this->assertFileExists($this->testFile);
-        $this->assertEquals($data, Csv::read($this->testFile));
+        $this->assertSame($data, Csv::read($this->testFile));
     }
 
     public function testWriteCsvFileError(): void
@@ -119,7 +119,7 @@ class CsvTest extends TestCase
         Csv::send($data, $this->testFile, sendHttpHeaders: false);
         $result = ob_get_clean();
 
-        $this->assertEquals($data, Csv::load($result));
+        $this->assertSame($data, Csv::load($result));
     }
 
     public function testGenerateCsvWithSpecialCharacters(): void
@@ -138,7 +138,7 @@ class CsvTest extends TestCase
                         '"value ""with quotes""";"value with spaces"' . "\n" .
                         '"value with newline";"value' . "\n" . 'with' . "\n" . 'newlines"' . "\n";
 
-        $this->assertEquals($expectedOutput, $result);
+        $this->assertSame($expectedOutput, $result);
     }
 
     public function testReadCsvWithSpecialCharacters(): void
@@ -159,7 +159,7 @@ class CsvTest extends TestCase
 
         $result = Csv::read($this->testFile);
 
-        $this->assertEquals($expectedData, $result);
+        $this->assertSame($expectedData, $result);
     }
 
     public function testGenerateCsvWithEmptyFields(): void
@@ -176,7 +176,7 @@ class CsvTest extends TestCase
                         'value1;' . "\n" .
                         ';value2' . "\n";
 
-        $this->assertEquals($expectedOutput, $result);
+        $this->assertSame($expectedOutput, $result);
     }
 
     public function testReadCsvWithEmptyFields(): void
@@ -195,6 +195,6 @@ class CsvTest extends TestCase
 
         $result = Csv::read($this->testFile);
 
-        $this->assertEquals($expectedData, $result);
+        $this->assertSame($expectedData, $result);
     }
 }

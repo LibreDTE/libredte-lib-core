@@ -26,9 +26,9 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
 use libredte\lib\Core\Sii\Dte\Documento\FacturaExportacion;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ExportacionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\ExportacionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
 
@@ -106,7 +106,7 @@ class FacturaExportacionBuilder extends AbstractDocumentoBuilder
                     'TpoMoneda' => null,
                     'MntExe' => 0,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

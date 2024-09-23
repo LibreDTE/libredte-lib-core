@@ -68,8 +68,7 @@ class DocumentValidator
         Certificate $certificate,
         WsdlConsumer $wsdlConsumer,
         TokenManager $tokenManager,
-    )
-    {
+    ) {
         $this->certificate = $certificate;
         $this->wsdlConsumer = $wsdlConsumer;
         $this->tokenManager = $tokenManager;
@@ -91,8 +90,7 @@ class DocumentValidator
     public function getDocumentUploadStatus(
         int $trackId,
         string $company
-    ): DocumentUploadStatusResponse
-    {
+    ): DocumentUploadStatusResponse {
         // Validar el RUT de la empresa que se utilizará para la consulta del
         // estado de envío al SII.
         Rut::validate($company);
@@ -149,8 +147,7 @@ class DocumentValidator
     public function requestDocumentUploadStatusEmail(
         int $trackId,
         string $company
-    ): DocumentUploadStatusEmailResponse
-    {
+    ): DocumentUploadStatusEmailResponse {
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         Rut::validate($company);
         [$rutCompany, $dvCompany] = Rut::toArray($company);
@@ -212,8 +209,7 @@ class DocumentValidator
         string $date,
         int $total,
         string $recipient
-    ): DocumentStatusResponse
-    {
+    ): DocumentStatusResponse {
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         $user = $this->certificate->getID();
         Rut::validate($user);
@@ -302,8 +298,7 @@ class DocumentValidator
         int $total,
         string $recipient,
         string $signature
-    ): DocumentSignatureStatusResponse
-    {
+    ): DocumentSignatureStatusResponse {
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         Rut::validate($company);
         Rut::validate($recipient);

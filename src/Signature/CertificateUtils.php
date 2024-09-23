@@ -48,8 +48,7 @@ class CertificateUtils
     public static function normalizePublicKey(
         string $publicKey,
         int $wordwrap = self::WORDWRAP
-    ): string
-    {
+    ): string {
         if (!str_contains($publicKey, '-----BEGIN CERTIFICATE-----')) {
             $body = trim($publicKey);
             $publicKey = '-----BEGIN CERTIFICATE-----' . "\n";
@@ -70,8 +69,7 @@ class CertificateUtils
     public static function normalizePrivateKey(
         string $privateKey,
         int $wordwrap = self::WORDWRAP
-    ): string
-    {
+    ): string {
         if (!str_contains($privateKey, '-----BEGIN PRIVATE KEY-----')) {
             $body = trim($privateKey);
             $privateKey = '-----BEGIN PRIVATE KEY-----' . "\n";
@@ -96,8 +94,7 @@ class CertificateUtils
         int $width = self::WORDWRAP,
         string $break = "\n",
         bool $cut_long_words = true
-    ): string
-    {
+    ): string {
         return wordwrap($string, $width, $break, $cut_long_words);
     }
 
@@ -111,14 +108,13 @@ class CertificateUtils
     public static function generatePublicKeyFromModulusExponent(
         string $modulus,
         string $exponent
-    ): string
-    {
+    ): string {
         $modulus = new BigInteger(base64_decode($modulus), 256);
         $exponent = new BigInteger(base64_decode($exponent), 256);
 
         $rsa = PublicKeyLoader::load([
             'n' => $modulus,
-            'e' => $exponent
+            'e' => $exponent,
         ]);
 
         return $rsa->toString('PKCS1');

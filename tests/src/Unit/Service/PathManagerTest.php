@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Unit\Service;
 
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(PathManager::class)]
 class PathManagerTest extends TestCase
@@ -50,13 +50,13 @@ class PathManagerTest extends TestCase
         // Probar sin archivo específico.
         $expected = $this->baseDir. '/resources/certificates';
         $actual = PathManager::getCertificatesPath();
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
 
         // Probar con un archivo que si existe.
         $filename = '100.cer';
         $expected = $this->baseDir. '/resources/certificates/' . $filename;
         $actual = PathManager::getCertificatesPath($filename);
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
 
         // Probar con un archivo que no existe.
         $filename = '200.cer';

@@ -25,12 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Signature;
 
 use libredte\lib\Core\Signature\Certificate;
-use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateException;
+use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateLoader;
 use libredte\lib\Core\Signature\CertificateUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CertificateFaker::class)]
 #[CoversClass(Certificate::class)]
@@ -57,7 +57,7 @@ class CertificateTest extends TestCase
             'isActive' => $certificate->isActive(),
             'getIssuer' => $certificate->getIssuer(),
         ];
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 
     public function testCertificateCreationWithValidSerialNumber(): void
@@ -65,7 +65,7 @@ class CertificateTest extends TestCase
         $faker = new CertificateFaker();
         $faker->setSubject(serialNumber: '1-9');
         $certificate = $faker->create();
-        $this->assertEquals('1-9', $certificate->getID());
+        $this->assertSame('1-9', $certificate->getID());
     }
 
     public function testCertificateCreationWithInvalidSerialNumber(): void
@@ -73,7 +73,7 @@ class CertificateTest extends TestCase
         $faker = new CertificateFaker();
         $faker->setSubject(serialNumber: '1-2');
         $certificate = $faker->create();
-        $this->assertNotEquals('1-9', $certificate->getID());
+        $this->assertNotSame('1-9', $certificate->getID());
     }
 
     public function testCertificateCreationWithKSerialNumber(): void
@@ -81,7 +81,7 @@ class CertificateTest extends TestCase
         $faker = new CertificateFaker();
         $faker->setSubject(serialNumber: '10-k');
         $certificate = $faker->create();
-        $this->assertEquals('10-K', $certificate->getID());
+        $this->assertSame('10-K', $certificate->getID());
     }
 
     public function testGetModulus(): void

@@ -26,17 +26,17 @@ namespace libredte\lib\Core\Sii\Dte\Documento;
 
 use DateTime;
 use libredte\lib\Core\Service\ArrayDataProvider;
-use libredte\lib\Core\Xml\XmlDocument;
-use libredte\lib\Core\Xml\XmlConverter;
-use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Service\DataProviderInterface;
 use libredte\lib\Core\Service\PathManager;
+use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Signature\SignatureException;
 use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Signature\XmlSignatureNode;
-use libredte\lib\Core\Sii\Dte\AutorizacionFolio\Caf;
 use libredte\lib\Core\Sii\Contribuyente\Contribuyente;
+use libredte\lib\Core\Sii\Dte\AutorizacionFolio\Caf;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\CafException;
+use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlException;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
@@ -412,11 +412,11 @@ abstract class AbstractDocumento
                 ],
                 'FRMT' => [
                     '@attributes' => [
-                        'algoritmo' => 'SHA1withRSA'
+                        'algoritmo' => 'SHA1withRSA',
                     ],
                     '@value' => '', // Se agregará luego.
                 ],
-            ]
+            ],
         ];
 
         // Armar XML del timbre y obtener los datos a timbrar (tag DD: datos

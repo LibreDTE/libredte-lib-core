@@ -25,10 +25,10 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Xml;
 
 use libredte\lib\Core\Xml\XmlDocument;
-use libredte\lib\Core\Xml\XmlValidator;
 use libredte\lib\Core\Xml\XmlException;
-use PHPUnit\Framework\TestCase;
+use libredte\lib\Core\Xml\XmlValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(XmlValidator::class)]
 #[CoversClass(XmlDocument::class)]

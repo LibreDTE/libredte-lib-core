@@ -258,7 +258,7 @@ class SobreEnvio
         }
 
         // Validar que el tipo de documento sea del tipo que se espera.
-        else if ($esBoleta !== (bool) $this->tipo) {
+        elseif ($esBoleta !== (bool) $this->tipo) {
             throw new DocumentoException(
                 'No es posible mezclar DTE con BOLETA en el envío al SII.'
             );
@@ -308,7 +308,7 @@ class SobreEnvio
         // Generar carátula.
         $this->caratula = array_merge([
             '@attributes' => [
-                'version' => '1.0'
+                'version' => '1.0',
             ],
             'RutEmisor' => $this->documentos[0]->getEmisor()->getRut(),
             'RutEnvia' => false,
@@ -376,7 +376,7 @@ class SobreEnvio
                         'Caratula' => $this->caratula,
                         'DTE' => '',
                     ],
-                ]
+                ],
             ]);
 
             // Generar XML de los documentos que se deberán incorporar.

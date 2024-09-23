@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\TrasladosRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(TrasladosRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,13 +44,13 @@ class TrasladosRepositoryTest extends TestCase
 
     public function testGetValor(): void
     {
-        $this->assertEquals('Operación constituye venta', $this->repository->getValor(1));
-        $this->assertEquals('Venta para exportación', $this->repository->getValor(9));
+        $this->assertSame('Operación constituye venta', $this->repository->getValor(1));
+        $this->assertSame('Venta para exportación', $this->repository->getValor(9));
     }
 
     public function testGetCodigo(): void
     {
-        $this->assertEquals(1, $this->repository->getCodigo('Operación constituye venta'));
-        $this->assertEquals(9, $this->repository->getCodigo('Venta para exportación'));
+        $this->assertSame(1, $this->repository->getCodigo('Operación constituye venta'));
+        $this->assertSame(9, $this->repository->getCodigo('Venta para exportación'));
     }
 }

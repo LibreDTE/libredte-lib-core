@@ -30,12 +30,12 @@ use libredte\lib\Core\Helper\Rut;
 use libredte\lib\Core\Service\PathManager;
 use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Signature\CertificateException;
-use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
-use libredte\lib\Core\Sii\HttpClient\SiiClient;
 use libredte\lib\Core\Signature\CertificateLoader;
 use libredte\lib\Core\Signature\CertificateUtils;
 use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Signature\XmlSignatureNode;
+use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
+use libredte\lib\Core\Sii\HttpClient\SiiClient;
 use libredte\lib\Core\Sii\HttpClient\TokenManager;
 use libredte\lib\Core\Sii\HttpClient\WebService\AbstractWebServiceResponse;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentStatusResponse;
@@ -45,8 +45,8 @@ use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(SiiClient::class)]
 #[CoversClass(Arr::class)]
@@ -100,7 +100,7 @@ class DocumentStatusTest extends TestCase
                 '76192083-9',
             )
         ;
-        $this->assertEquals('DOK', $documentStatus->getStatus());
+        $this->assertSame('DOK', $documentStatus->getStatus());
     }
 
     public function testStatusAnc(): void
@@ -116,7 +116,7 @@ class DocumentStatusTest extends TestCase
                 '76192083-9',
             )
         ;
-        $this->assertEquals('ANC', $documentStatus->getStatus());
+        $this->assertSame('ANC', $documentStatus->getStatus());
     }
 
     public function testStatusMmc(): void
@@ -132,7 +132,7 @@ class DocumentStatusTest extends TestCase
                 '76192083-9',
             )
         ;
-        $this->assertEquals('MMC', $documentStatus->getStatus());
+        $this->assertSame('MMC', $documentStatus->getStatus());
     }
 
     public function testStatusTmc(): void
@@ -148,6 +148,6 @@ class DocumentStatusTest extends TestCase
                 '76192083-9',
             )
         ;
-        $this->assertEquals('TMC', $documentStatus->getStatus());
+        $this->assertSame('TMC', $documentStatus->getStatus());
     }
 }

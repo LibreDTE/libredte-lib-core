@@ -26,8 +26,8 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
 use libredte\lib\Core\Sii\Dte\Documento\FacturaCompra;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
 
@@ -72,7 +72,7 @@ class FacturaCompraBuilder extends AbstractDocumentoBuilder
                     'ImptoReten' => false,
                     'IVANoRet' => false,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

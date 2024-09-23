@@ -26,8 +26,8 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
 use libredte\lib\Core\Sii\Dte\Documento\FacturaExenta;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
 
 /**
@@ -65,7 +65,7 @@ class FacturaExentaBuilder extends AbstractDocumentoBuilder
                 'Totales' => [
                     'MntExe' => 0,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

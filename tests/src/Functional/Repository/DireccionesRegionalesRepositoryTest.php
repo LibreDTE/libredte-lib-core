@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\DireccionesRegionalesRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(DireccionesRegionalesRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,24 +44,24 @@ class DireccionesRegionalesRepositoryTest extends TestCase
 
     public function testGetDireccionRegionalConNombreComuna(): void
     {
-        $this->assertEquals('ARICA', $this->repository->getDireccionRegional('Arica'));
-        $this->assertEquals('IQUIQUE', $this->repository->getDireccionRegional('iquique'));
+        $this->assertSame('ARICA', $this->repository->getDireccionRegional('Arica'));
+        $this->assertSame('IQUIQUE', $this->repository->getDireccionRegional('iquique'));
     }
 
     public function testGetDireccionRegionalConCodigoSucursal(): void
     {
-        $this->assertEquals('SUC 123', $this->repository->getDireccionRegional(123));
-        $this->assertEquals('SUC 456', $this->repository->getDireccionRegional(456));
+        $this->assertSame('SUC 123', $this->repository->getDireccionRegional(123));
+        $this->assertSame('SUC 456', $this->repository->getDireccionRegional(456));
     }
 
     public function testGetDireccionRegionalConComunaNoExistente(): void
     {
-        $this->assertEquals('NO_EXISTE', $this->repository->getDireccionRegional('No_Existe'));
+        $this->assertSame('NO_EXISTE', $this->repository->getDireccionRegional('No_Existe'));
     }
 
     public function testGetDireccionRegionalConValorVacio(): void
     {
-        $this->assertEquals('N.N.', $this->repository->getDireccionRegional(''));
-        $this->assertEquals('N.N.', $this->repository->getDireccionRegional(null));
+        $this->assertSame('N.N.', $this->repository->getDireccionRegional(''));
+        $this->assertSame('N.N.', $this->repository->getDireccionRegional(null));
     }
 }

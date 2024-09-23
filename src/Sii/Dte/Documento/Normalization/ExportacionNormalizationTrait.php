@@ -84,5 +84,4 @@ trait ExportacionNormalizationTrait
         // Entregar los datos normalizados.
         return $data;
     }
-
 }

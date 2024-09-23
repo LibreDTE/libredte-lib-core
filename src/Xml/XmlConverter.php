@@ -74,8 +74,7 @@ class XmlConverter
         ?array $namespace = null,
         ?DOMElement $parent = null,
         ?XmlDocument $doc = null
-    ): XmlDocument|DOMElement
-    {
+    ): XmlDocument|DOMElement {
         // Si no hay un documento XML completo (desde raíz, no vale un nodo),
         // entonces se crea, pues se necesitará para crear los futuros nodos.
         if ($doc === null) {
@@ -106,7 +105,7 @@ class XmlConverter
             // el valor al nodo, pues es un escalar (no un arreglo con nodos
             // hijos). Este caso normalmente se usa cuando se crea un nodo que
             // debe tener valor y atributos.
-            else if ($key === '@value') {
+            elseif ($key === '@value') {
                 if (!self::skipValue($value)) {
                     $parent->nodeValue = XmlUtils::sanitize($value);
                 }
@@ -115,7 +114,7 @@ class XmlConverter
             // Acá el índice es el nombre de un nodo. En este caso, el nodo es
             // un arreglo. Por lo que se procesará recursivamente para agregar
             // a este nodo los nodos hijos que están en el arreglo.
-            else if (is_array($value)) {
+            elseif (is_array($value)) {
                 // Solo se crea el nodo si tiene nodos hijos. El nodo no será
                 // creado si se pasa un arreglo vacio (sin hijos).
                 if (!empty($value)) {
@@ -189,8 +188,7 @@ class XmlConverter
         string $tagName,
         array $childs,
         ?array $namespace = null,
-    ): void
-    {
+    ): void {
         $keys = array_keys($childs);
         if (!is_int($keys[0])) {
             $childs = [$childs];
@@ -217,7 +215,10 @@ class XmlConverter
                 // Agregar nodos hijos del nodo hijo (agregar
                 // asociativo al nodo $tagName).
                 $Node = $namespace
-                    ? $doc->createElementNS($namespace[0], $namespace[1] . ':' . $tagName)
+                    ? $doc->createElementNS(
+                        $namespace[0],
+                        $namespace[1] . ':' . $tagName
+                    )
                     : $doc->createElement($tagName)
                 ;
                 $parent->appendChild($Node);
@@ -229,7 +230,8 @@ class XmlConverter
                 $value = XmlUtils::sanitize((string) $child);
                 $Node = $namespace
                     ? $doc->createElementNS(
-                        $namespace[0], $namespace[1] . ':' . $tagName,
+                        $namespace[0],
+                        $namespace[1] . ':' . $tagName,
                         $value
                     )
                     : $doc->createElement($tagName, $value)
@@ -256,12 +258,12 @@ class XmlConverter
         string $tagName,
         string $value,
         ?array $namespace = null,
-    ): void
-    {
+    ): void {
         $value = XmlUtils::sanitize($value);
         $Node = $namespace
             ? $doc->createElementNS(
-                $namespace[0], $namespace[1] . ':' . $tagName,
+                $namespace[0],
+                $namespace[1] . ':' . $tagName,
                 $value
             )
             : $doc->createElement($tagName, $value)
@@ -313,8 +315,7 @@ class XmlConverter
         XmlDocument|DOMElement $documentElement,
         ?array &$data = null,
         bool $twinsAsArray = false
-    ): array
-    {
+    ): array {
         // Si no viene un tagElement se busca uno, si no se obtiene se termina
         // la generación.
         $tagElement = $documentElement instanceof DOMElement
@@ -375,8 +376,7 @@ class XmlConverter
         DOMElement $tagElement,
         DOMNodeList $childs,
         bool $twinsAsArray,
-    ): void
-    {
+    ): void {
         $key = $tagElement->tagName;
         // Se recorre cada uno de los nodos hijos.
         foreach ($childs as $child) {
@@ -385,13 +385,13 @@ class XmlConverter
                 if ($textContent !== '') {
                     if ($tagElement->hasAttributes()) {
                         $data[$key]['@value'] = $textContent;
-                    } else if ($childs->length === 1 && empty($data[$key])) {
+                    } elseif ($childs->length === 1 && empty($data[$key])) {
                         $data[$key] = $textContent;
                     } else {
                         $array[$key]['@value'] = $textContent;
                     }
                 }
-            } else if ($child instanceof DOMElement) {
+            } elseif ($child instanceof DOMElement) {
                 $n_twinsNodes = self::nodeCountTwins(
                     $tagElement,
                     $child->tagName

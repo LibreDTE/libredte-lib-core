@@ -45,8 +45,8 @@ use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Arr::class)]
 #[CoversClass(Date::class)]
@@ -102,7 +102,7 @@ class DocumentSignatureStatusTest extends TestCase
                 $signature,
             )
         ;
-        $this->assertEquals('DOK', $documentStatus->getStatus());
+        $this->assertSame('DOK', $documentStatus->getStatus());
     }
 
     public function testStatusDnk(): void
@@ -120,6 +120,6 @@ class DocumentSignatureStatusTest extends TestCase
                 $signature,
             )
         ;
-        $this->assertEquals('DNK', $documentStatus->getStatus());
+        $this->assertSame('DNK', $documentStatus->getStatus());
     }
 }

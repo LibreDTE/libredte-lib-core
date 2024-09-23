@@ -25,12 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
-use libredte\lib\Core\Sii\Dte\Documento\NotaCreditoExportacion;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ExportacionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\ExportacionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\NotaCreditoExportacion;
 
 /**
  * Constructor ("builder") del documento nota de crédito de exportación.
@@ -106,7 +106,7 @@ class NotaCreditoExportacionBuilder extends AbstractDocumentoBuilder
                     'TpoMoneda' => null,
                     'MntExe' => 0,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

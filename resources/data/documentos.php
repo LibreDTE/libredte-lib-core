@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * LibreDTE: Biblioteca PHP (Núcleo).
  * Copyright (C) LibreDTE <https://www.libredte.cl>
@@ -20,7 +22,7 @@
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
- return [
+return [
     // Documentos tributarios oficiales del SII.
     29 => [
         'nombre' => 'Factura de inicio',

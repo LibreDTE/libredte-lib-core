@@ -31,13 +31,13 @@ use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateLoader;
 use libredte\lib\Core\Signature\CertificateUtils;
 use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
-use libredte\lib\Core\Sii\HttpClient\TokenManager;
 use libredte\lib\Core\Sii\HttpClient\SiiClient;
-use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
+use libredte\lib\Core\Sii\HttpClient\TokenManager;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploader;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentValidator;
-use PHPUnit\Framework\TestCase;
+use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(WsdlConsumer::class)]
 #[CoversClass(Arr::class)]
@@ -60,7 +60,7 @@ class WsdlConsumerTest extends TestCase
         $siiClient = new SiiClient($certificate);
 
         $ambiente = $siiClient->getConfig()->getAmbiente();
-        $this->assertEquals(0, $ambiente); // 0 es Producción.
+        $this->assertSame(0, $ambiente); // 0 es Producción.
     }
 
     public function testConfigGetWsdlCrSeedPalena(): void
@@ -71,7 +71,7 @@ class WsdlConsumerTest extends TestCase
 
         $expected = 'https://palena.sii.cl/DTEWS/CrSeed.jws?WSDL';
         $ambiente = $siiClient->getWsdlConsumer()->getWsdlUri('CrSeed');
-        $this->assertEquals($expected, $ambiente);
+        $this->assertSame($expected, $ambiente);
     }
 
     public function testConfigGetWsdlCrSeedMaullin(): void

@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\DocumentoTipoRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(DocumentoTipoRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -45,45 +45,45 @@ class DocumentoTipoRepositoryTest extends TestCase
     public function testGetDatosDocumentos(): void
     {
         $documento = $this->repository->getData(33);
-        $this->assertEquals('Factura electrónica', $documento['nombre']);
+        $this->assertSame('Factura electrónica', $documento['nombre']);
 
         $documento = $this->repository->getData(110);
-        $this->assertEquals('Factura de exportación electrónica', $documento['nombre']);
+        $this->assertSame('Factura de exportación electrónica', $documento['nombre']);
     }
 
     public function testCountDocumentos(): void
     {
         $documentos = $this->repository->getDocumentos();
-        $this->assertEquals(67, count($documentos));
+        $this->assertSame(67, count($documentos));
     }
 
     public function testCountDocumentosTributarios(): void
     {
         $documentos = $this->repository->getDocumentosTributarios();
-        $this->assertEquals(33, count($documentos));
+        $this->assertSame(33, count($documentos));
     }
 
     public function testCountDocumentosInformativos(): void
     {
         $documentos = $this->repository->getDocumentosInformativos();
-        $this->assertEquals(21, count($documentos));
+        $this->assertSame(21, count($documentos));
     }
 
     public function testCountDocumentosTributariosElectronicos(): void
     {
         $documentos = $this->repository->getDocumentosTributariosElectronicos();
-        $this->assertEquals(12, count($documentos));
+        $this->assertSame(12, count($documentos));
     }
 
     public function testCountDocumentosTributariosElectronicosCedibles(): void
     {
         $documentos = $this->repository->getDocumentosTributariosElectronicosCedibles();
-        $this->assertEquals(5, count($documentos));
+        $this->assertSame(5, count($documentos));
     }
 
     public function testCountDocumentosDisponibles(): void
     {
         $documentos = $this->repository->getDocumentosDisponibles();
-        $this->assertEquals(11, count($documentos));
+        $this->assertSame(11, count($documentos));
     }
 }

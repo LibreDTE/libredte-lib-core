@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Service;
 
-use LogicException;
 use libredte\lib\Core\Service\ArrayDataProvider;
-use PHPUnit\Framework\TestCase;
+use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+
 #[CoversClass(ArrayDataProvider::class)]
 final class ArrayDataProviderTest extends TestCase
 {

@@ -25,17 +25,17 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Signature;
 
 use libredte\lib\Core\Service\PathManager;
-use libredte\lib\Core\Signature\CertificateUtils;
 use libredte\lib\Core\Signature\CertificateException;
-use libredte\lib\Core\Signature\SignatureGenerator;
-use libredte\lib\Core\Signature\XmlSignatureNode;
+use libredte\lib\Core\Signature\CertificateUtils;
 use libredte\lib\Core\Signature\SignatureException;
+use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Signature\SignatureValidator;
+use libredte\lib\Core\Signature\XmlSignatureNode;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(SignatureValidator::class)]
 #[CoversClass(PathManager::class)]

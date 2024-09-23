@@ -150,8 +150,9 @@ trait DetalleNormalizationTrait
                         $data['Encabezado']['Totales']['TpoMoneda']
                     );
                 }
+            }
             // Si el monto del item es vacío se estandariza como "0".
-            } else if (empty($d['MontoItem'])) {
+            elseif (empty($d['MontoItem'])) {
                 $d['MontoItem'] = 0;
             }
 
@@ -165,7 +166,7 @@ trait DetalleNormalizationTrait
                             $data['Encabezado']['Totales']['MntExe'] +=
                                 $d['MontoItem']
                             ;
-                        } else if ($d['IndExe'] == 2) {
+                        } elseif ($d['IndExe'] == 2) {
                             if ($sumarMontoNF) {
                                 if (empty($data['Encabezado']['Totales']['MontoNF'])) {
                                     $data['Encabezado']['Totales']['MontoNF'] = 0;
@@ -189,14 +190,14 @@ trait DetalleNormalizationTrait
                 else {
                     // Si es exento o no facturable.
                     if (!empty($d['IndExe'])) {
-                        if ($d['IndExe']==1) {
+                        if ($d['IndExe'] == 1) {
                             $data['Encabezado']['Totales']['MntExe'] +=
                                 $d['MontoItem']
                             ;
                             $data['Encabezado']['Totales']['MntTotal'] +=
                                 $d['MontoItem']
                             ;
-                        } else if ($d['IndExe'] == 2) {
+                        } elseif ($d['IndExe'] == 2) {
                             if ($sumarMontoNF) {
                                 if (empty($data['Encabezado']['Totales']['MontoNF'])) {
                                     $data['Encabezado']['Totales']['MontoNF'] = 0;

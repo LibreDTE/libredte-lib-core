@@ -25,11 +25,11 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
-use libredte\lib\Core\Sii\Dte\Documento\NotaCredito;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\NotaCredito;
 
 /**
  * Constructor ("builder") del documento nota de crédito.
@@ -73,7 +73,7 @@ class NotaCreditoBuilder extends AbstractDocumentoBuilder
                     'IVANoRet' => false,
                     'CredEC' => false,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 

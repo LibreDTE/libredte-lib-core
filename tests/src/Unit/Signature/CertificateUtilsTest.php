@@ -22,13 +22,13 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
- namespace libredte\lib\Tests\Unit\Signature;
+namespace libredte\lib\Tests\Unit\Signature;
 
 use libredte\lib\Core\Signature\CertificateUtils;
 use phpseclib3\Crypt\PublicKeyLoader;
 use phpseclib3\Math\BigInteger;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CertificateUtils::class)]
 class CertificateUtilsTest extends TestCase
@@ -44,7 +44,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePublicKey($certBody);
 
-        $this->assertEquals($expectedCert, $normalizedCert);
+        $this->assertSame($expectedCert, $normalizedCert);
     }
 
     /**
@@ -61,7 +61,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePublicKey($cert);
 
-        $this->assertEquals($cert, $normalizedCert);
+        $this->assertSame($cert, $normalizedCert);
     }
 
     /**
@@ -76,7 +76,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePublicKey($certBody, $wordwrap);
 
-        $this->assertEquals($expectedCert, $normalizedCert);
+        $this->assertSame($expectedCert, $normalizedCert);
     }
 
     /**
@@ -90,7 +90,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePrivateKey($certBody);
 
-        $this->assertEquals($expectedCert, $normalizedCert);
+        $this->assertSame($expectedCert, $normalizedCert);
     }
 
     /**
@@ -107,7 +107,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePrivateKey($cert);
 
-        $this->assertEquals($cert, $normalizedCert);
+        $this->assertSame($cert, $normalizedCert);
     }
 
     /**
@@ -122,7 +122,7 @@ class CertificateUtilsTest extends TestCase
 
         $normalizedCert = CertificateUtils::normalizePrivateKey($certBody, $wordwrap);
 
-        $this->assertEquals($expectedCert, $normalizedCert);
+        $this->assertSame($expectedCert, $normalizedCert);
     }
 
     /**
@@ -144,6 +144,6 @@ class CertificateUtilsTest extends TestCase
 
         $publicKey = CertificateUtils::generatePublicKeyFromModulusExponent($modulus, $exponent);
 
-        $this->assertEquals($expectedPublicKey, $publicKey);
+        $this->assertSame($expectedPublicKey, $publicKey);
     }
 }

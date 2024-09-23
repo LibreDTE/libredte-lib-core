@@ -52,7 +52,7 @@ trait ImpuestoAdicionalRetencionNormalizationTrait
         if (!empty($montos)) {
             if (!is_array($data['Encabezado']['Totales']['ImptoReten'])) {
                 $data['Encabezado']['Totales']['ImptoReten'] = [];
-            } else if (!isset($data['Encabezado']['Totales']['ImptoReten'][0])) {
+            } elseif (!isset($data['Encabezado']['Totales']['ImptoReten'][0])) {
                 $data['Encabezado']['Totales']['ImptoReten'] = [
                     $data['Encabezado']['Totales']['ImptoReten'],
                 ];
@@ -110,5 +110,4 @@ trait ImpuestoAdicionalRetencionNormalizationTrait
         // Entregar los datos normalizados.
         return $data;
     }
-
 }

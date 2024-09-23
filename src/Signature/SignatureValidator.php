@@ -47,8 +47,7 @@ class SignatureValidator
         string $signature,
         string $publicKey,
         string|int $signatureAlgorithm = OPENSSL_ALGO_SHA1
-    ): bool
-    {
+    ): bool {
         $publicKey = CertificateUtils::normalizePublicKey($publicKey);
 
         $result = openssl_verify(

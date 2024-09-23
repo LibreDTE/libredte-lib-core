@@ -25,12 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Signature;
 
 use libredte\lib\Core\Signature\Certificate;
-use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateException;
+use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateLoader;
 use libredte\lib\Core\Signature\CertificateUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CertificateLoader::class)]
 #[CoversClass(Certificate::class)]

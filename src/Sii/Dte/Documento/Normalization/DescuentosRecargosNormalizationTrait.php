@@ -89,7 +89,7 @@ trait DescuentosRecargosNormalizationTrait
                 }
                 $valor = $dr['TpoValor'] === '%'
                     ? $this->round(
-                        ($dr['ValorDR']/100) * $data['Encabezado']['Totales'][$monto],
+                        ($dr['ValorDR'] / 100) * $data['Encabezado']['Totales'][$monto],
                         $data['Encabezado']['Totales']['TpoMoneda']
                     )
                     : $dr['ValorDR']
@@ -101,7 +101,7 @@ trait DescuentosRecargosNormalizationTrait
                 }
 
                 // Aplicar recargo.
-                else if ($dr['TpoMov'] === 'R') {
+                elseif ($dr['TpoMov'] === 'R') {
                     $data['Encabezado']['Totales'][$monto] += $valor;
                 }
                 $data['Encabezado']['Totales'][$monto] = $this->round(

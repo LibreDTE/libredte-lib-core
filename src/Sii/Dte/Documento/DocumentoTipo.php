@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento;
 
-use libredte\lib\Core\Service\DataProviderInterface;
 use libredte\lib\Core\Repository\DocumentoTipoRepository;
+use libredte\lib\Core\Service\DataProviderInterface;
 
 /**
  * Clase que representa un tipo de documento que se puede utilizar.
@@ -133,8 +133,7 @@ class DocumentoTipo
     public function __construct(
         int|string $codigo,
         ?DataProviderInterface $dataProvider = null
-    )
-    {
+    ) {
         $this->codigo = $codigo;
 
         $repository = new DocumentoTipoRepository($dataProvider);

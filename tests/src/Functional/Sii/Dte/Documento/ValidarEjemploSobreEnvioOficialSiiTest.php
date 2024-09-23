@@ -39,8 +39,8 @@ use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Prueba del documento tributario electrónico de ejemplo disponible en el SII:
@@ -132,7 +132,7 @@ class ValidarEjemploSobreEnvioOficialSiiTest extends TestCase
     {
         $sobre = $this->getSobreEjemploOficialSii();
         $documentos = $sobre->getDocumentos();
-        $this->assertEquals(1, count($documentos));
+        $this->assertSame(1, count($documentos));
     }
 
     // public function testValidateDocumentoDigestValue(): void

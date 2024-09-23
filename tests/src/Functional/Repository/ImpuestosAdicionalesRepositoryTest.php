@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\ImpuestosAdicionalesRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ImpuestosAdicionalesRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,22 +44,22 @@ class ImpuestosAdicionalesRepositoryTest extends TestCase
 
     public function testGetTipo(): void
     {
-        $this->assertEquals('R', $this->repository->getTipo(15));
-        $this->assertEquals('A', $this->repository->getTipo(17));
+        $this->assertSame('R', $this->repository->getTipo(15));
+        $this->assertSame('A', $this->repository->getTipo(17));
         $this->assertFalse($this->repository->getTipo(999));
     }
 
     public function testGetGlosa(): void
     {
-        $this->assertEquals('IVA retenido', $this->repository->getGlosa(15));
-        $this->assertEquals('Licores, Piscos, Whisky', $this->repository->getGlosa(24));
-        $this->assertEquals('Impto. cód. 999', $this->repository->getGlosa(999));
+        $this->assertSame('IVA retenido', $this->repository->getGlosa(15));
+        $this->assertSame('Licores, Piscos, Whisky', $this->repository->getGlosa(24));
+        $this->assertSame('Impto. cód. 999', $this->repository->getGlosa(999));
     }
 
     public function testGetTasa(): void
     {
-        $this->assertEquals(19, $this->repository->getTasa(15));
-        $this->assertEquals(31.5, $this->repository->getTasa(24));
+        $this->assertSame(19, $this->repository->getTasa(15));
+        $this->assertSame(31.5, $this->repository->getTasa(24));
         $this->assertFalse($this->repository->getTasa(999));
     }
 
@@ -71,6 +71,6 @@ class ImpuestosAdicionalesRepositoryTest extends TestCase
             ['CodImp' => 30, 'MntImp' => 700],
         ];
 
-        $this->assertEquals(1700, $this->repository->getRetenido($OtrosImp));
+        $this->assertSame(1700, $this->repository->getRetenido($OtrosImp));
     }
 }

@@ -25,9 +25,9 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Sii\Contribuyente;
 
 use libredte\lib\Core\Helper\Rut;
-use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\DataProviderInterface;
+use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\Caf;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\CafFaker;
@@ -136,8 +136,7 @@ class Contribuyente
         ?string $comuna = null,
         ?array $data = null,
         ?DataProviderInterface $dataProvider = null
-    )
-    {
+    ) {
         // Asignar datos pasados en variable $data como arreglo.
         if ($data !== null) {
             $this->setData($data);
@@ -344,8 +343,7 @@ class Contribuyente
         int $codigoDocumento,
         int $folioDesde,
         ?int $folioHasta = null
-    ): Caf
-    {
+    ): Caf {
         if ($folioHasta === null) {
             $folioHasta = $folioDesde;
         }

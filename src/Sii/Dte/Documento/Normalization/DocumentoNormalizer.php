@@ -68,8 +68,7 @@ class DocumentoNormalizer
     public function __construct(
         DocumentoTipo $tipoDocumento,
         callable $documentNormalizationCallback = null
-    )
-    {
+    ) {
         $this->tipoDocumento = $tipoDocumento;
         $this->documentNormalizationCallback = $documentNormalizationCallback;
     }
@@ -312,8 +311,7 @@ class DocumentoNormalizer
                     ) {
                         $OtraMoneda[$monto.'OtrMnda'] = round(
                             $data['Encabezado']['Totales'][$monto]
-                                * $OtraMoneda['TpoCambio']
-                            ,
+                                * $OtraMoneda['TpoCambio'],
                             4
                         );
                     }
@@ -359,7 +357,8 @@ class DocumentoNormalizer
                     // Aproximar el total si es en pesos chilenos.
                     if ($OtraMoneda['TpoMoneda'] === 'PESO CL') {
                         $OtraMoneda['MntTotOtrMnda'] = round(
-                            $OtraMoneda['MntTotOtrMnda'], 0
+                            $OtraMoneda['MntTotOtrMnda'],
+                            0
                         );
                     }
                 }

@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\FormasDePagoRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(FormasDePagoRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,13 +44,13 @@ class FormasDePagoRepositoryTest extends TestCase
 
     public function testGetValor(): void
     {
-        $this->assertEquals('Contado', $this->repository->getValor(1));
-        $this->assertEquals('Crédito', $this->repository->getValor(2));
+        $this->assertSame('Contado', $this->repository->getValor(1));
+        $this->assertSame('Crédito', $this->repository->getValor(2));
     }
 
     public function testGetCodigo(): void
     {
-        $this->assertEquals(1, $this->repository->getCodigo('Contado'));
-        $this->assertEquals(2, $this->repository->getCodigo('Crédito'));
+        $this->assertSame(1, $this->repository->getCodigo('Contado'));
+        $this->assertSame(2, $this->repository->getCodigo('Crédito'));
     }
 }

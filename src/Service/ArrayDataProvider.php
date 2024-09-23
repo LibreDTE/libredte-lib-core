@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Service;
 
 use LogicException;
-use libredte\lib\Core\Service\PathManager;
 
 /**
  * Clase que implementa la interfaz DataProviderInterface.

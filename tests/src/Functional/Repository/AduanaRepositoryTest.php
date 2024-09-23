@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\AduanaRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(AduanaRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -45,7 +45,7 @@ class AduanaRepositoryTest extends TestCase
     public function testGetGlosaCorrect(): void
     {
         $glosa = $this->aduanaRepository->getGlosa('FmaPagExp');
-        $this->assertEquals('Forma pago exp.', $glosa);
+        $this->assertSame('Forma pago exp.', $glosa);
     }
 
     public function testGetGlosaIncorrect(): void
@@ -57,37 +57,37 @@ class AduanaRepositoryTest extends TestCase
     public function testGetValorCorrect(): void
     {
         $valor = $this->aduanaRepository->getValor('FmaPagExp', 1);
-        $this->assertEquals('COB1', $valor);
+        $this->assertSame('COB1', $valor);
     }
 
     public function testGetValorIncorrectTag(): void
     {
         $valor = $this->aduanaRepository->getValor('NonExistentTag', 1);
-        $this->assertEquals('1', $valor);
+        $this->assertSame('1', $valor);
     }
 
     public function testGetValorIncorrectCodigo(): void
     {
         $valor = $this->aduanaRepository->getValor('FmaPagExp', 999);
-        $this->assertEquals('999', $valor);
+        $this->assertSame('999', $valor);
     }
 
     public function testGetCodigoCorrect(): void
     {
         $codigo = $this->aduanaRepository->getCodigo('FmaPagExp', 'COB1');
-        $this->assertEquals(1, $codigo);
+        $this->assertSame(1, $codigo);
     }
 
     public function testGetCodigoIncorrectTag(): void
     {
         $codigo = $this->aduanaRepository->getCodigo('NonExistentTag', 'COB1');
-        $this->assertEquals('COB1', $codigo);
+        $this->assertSame('COB1', $codigo);
     }
 
     public function testGetCodigoIncorrectValue(): void
     {
         $codigo = $this->aduanaRepository->getCodigo('FmaPagExp', 'NON_EXISTENT');
-        $this->assertEquals('NON_EXISTENT', $codigo);
+        $this->assertSame('NON_EXISTENT', $codigo);
     }
 
     public function testGetNacionalidades(): void
@@ -100,13 +100,13 @@ class AduanaRepositoryTest extends TestCase
     public function testGetNacionalidadCorrect(): void
     {
         $nacionalidad = $this->aduanaRepository->getNacionalidad(563);
-        $this->assertEquals('ALEMANIA', $nacionalidad);
+        $this->assertSame('ALEMANIA', $nacionalidad);
     }
 
     public function testGetNacionalidadIncorrect(): void
     {
         $nacionalidad = $this->aduanaRepository->getNacionalidad(9999);
-        $this->assertEquals('9999', $nacionalidad);
+        $this->assertSame('9999', $nacionalidad);
     }
 
     public function testGetFormasDePago(): void

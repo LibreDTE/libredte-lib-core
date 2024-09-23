@@ -47,8 +47,7 @@ trait UtilsTrait
         int|float $amount,
         string|null|false $currency = null,
         int $decimals = 4
-    ): int|float
-    {
+    ): int|float {
         return (!$currency || $currency === 'PESO CL')
             ? (int) round($amount)
             : (float) round($amount, $decimals)
@@ -84,7 +83,7 @@ trait UtilsTrait
         }
 
         // Obtener el neto e IVA a partir del total.
-        $neto = round($total / (1+($tasa/100)));
+        $neto = round($total / (1 + ($tasa / 100)));
         $iva = $total - $neto;
 
         // Entregar el neto e IVA.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * LibreDTE: Biblioteca PHP (Núcleo).
  * Copyright (C) LibreDTE <https://www.libredte.cl>

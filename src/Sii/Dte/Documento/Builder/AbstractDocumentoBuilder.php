@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
-use libredte\lib\Core\Service\DataProviderInterface;
-use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
-use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
 use libredte\lib\Core\Repository\ImpuestosAdicionalesRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Service\DataProviderInterface;
+use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
+use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 
 /**
  * Clase abstracta (base) para los constructores ("builders") de documentos.

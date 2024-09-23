@@ -26,9 +26,9 @@ namespace libredte\lib\Tests\Unit\Xml;
 
 use DOMDocument;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use libredte\lib\Core\Xml\XmlUtils;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(XmlUtils::class)]
 class XmlUtilsTest extends TestCase
@@ -48,8 +48,8 @@ class XmlUtilsTest extends TestCase
         $result = XmlUtils::xpath($doc, '//element1');
 
         $this->assertInstanceOf(\DOMNodeList::class, $result);
-        $this->assertEquals(1, $result->length);
-        $this->assertEquals('Value 1', $result->item(0)->textContent);
+        $this->assertSame(1, $result->length);
+        $this->assertSame('Value 1', $result->item(0)->textContent);
     }
 
     public function testUtf2Iso(): void
@@ -59,7 +59,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::utf2iso($utf8String);
 
-        $this->assertEquals($expectedIsoString, $result);
+        $this->assertSame($expectedIsoString, $result);
     }
 
     public function testIso2Utf(): void
@@ -69,7 +69,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::iso2utf($isoString);
 
-        $this->assertEquals($expectedUtf8String, $result);
+        $this->assertSame($expectedUtf8String, $result);
     }
 
     public function testFixEntities(): void
@@ -80,7 +80,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::fixEntities($xml);
 
-        $this->assertEquals($expectedXml, $result);
+        $this->assertSame($expectedXml, $result);
     }
 
     public function testXpathInvalidExpression(): void
@@ -108,7 +108,7 @@ class XmlUtilsTest extends TestCase
 
         // In this case, the result should be the original string since it
         // cannot be converted.
-        $this->assertEquals($invalidUtf8String, $result);
+        $this->assertSame($invalidUtf8String, $result);
     }
 
     public function testIso2UtfInvalidEncoding(): void
@@ -123,7 +123,7 @@ class XmlUtilsTest extends TestCase
 
         // In this case, the result should be the original string since it
         // cannot be converted.
-        $this->assertEquals($expectedString, $result);
+        $this->assertSame($expectedString, $result);
     }
 
     public function testFixEntitiesMalformedXml(): void
@@ -137,7 +137,7 @@ class XmlUtilsTest extends TestCase
         // process still works on the valid parts
         //$expectedXml = '<root>He said &quot;Hello&quot; &amp; <child>Goodbye</child>';
         $expectedXml = '<root>He said &quot;Hello&quot; & <child>Goodbye</child>';
-        $this->assertEquals($expectedXml, $result);
+        $this->assertSame($expectedXml, $result);
     }
 
     public function testFixEntitiesEmptyString(): void
@@ -147,7 +147,7 @@ class XmlUtilsTest extends TestCase
         $result = XmlUtils::fixEntities($emptyXml);
 
         // Empty string should return an empty string.
-        $this->assertEquals('', $result);
+        $this->assertSame('', $result);
     }
 
     public function testSanitizeNoSpecialCharacters(): void
@@ -157,7 +157,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeWithAmpersand(): void
@@ -167,7 +167,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeWithQuotes(): void
@@ -178,7 +178,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeWithApostrophe(): void
@@ -189,7 +189,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeWithLessThanAndGreaterThan(): void
@@ -200,7 +200,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeWithNumericValue(): void
@@ -210,7 +210,7 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     public function testSanitizeEmptyString(): void
@@ -220,6 +220,6 @@ class XmlUtilsTest extends TestCase
 
         $result = XmlUtils::sanitize($input);
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 }

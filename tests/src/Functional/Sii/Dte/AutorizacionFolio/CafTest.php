@@ -35,9 +35,9 @@ use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Caf::class)]
 #[CoversClass(CafFaker::class)]
@@ -64,18 +64,18 @@ class CafTest extends TestCase
         $caf = $cafFaker->create();
 
         // Verificar que se pueda obtener el RUT del emisor.
-        $this->assertEquals('76192083-9', $caf->getEmisor()->getRut());
+        $this->assertSame('76192083-9', $caf->getEmisor()->getRut());
 
         // Verificar el rango de folios.
-        $this->assertEquals(1, $caf->getFolioDesde());
-        $this->assertEquals(100, $caf->getFolioHasta());
+        $this->assertSame(1, $caf->getFolioDesde());
+        $this->assertSame(100, $caf->getFolioHasta());
 
         // Verificar que las claves pública y privada no estén vacías.
         $this->assertNotEmpty($caf->getPrivateKey());
         $this->assertNotEmpty($caf->getPublicKey());
 
         // Verificar que el tipo de documento sea el esperado.
-        $this->assertEquals(33, $caf->getTipoDocumento()->getCodigo());
+        $this->assertSame(33, $caf->getTipoDocumento()->getCodigo());
     }
 
     /**
@@ -94,9 +94,9 @@ class CafTest extends TestCase
         $caf = $cafFaker->create();
 
         // Verificar que los folios y el tipo de documento sean correctos.
-        $this->assertEquals(200, $caf->getFolioDesde());
-        $this->assertEquals(300, $caf->getFolioHasta());
-        $this->assertEquals(61, $caf->getTipoDocumento()->getCodigo());
+        $this->assertSame(200, $caf->getFolioDesde());
+        $this->assertSame(300, $caf->getFolioHasta());
+        $this->assertSame(61, $caf->getTipoDocumento()->getCodigo());
 
         // Verificar que la fecha de autorización esté en el formato correcto.
         $this->assertMatchesRegularExpression('/\d{4}-\d{2}-\d{2}/', $caf->getFechaAutorizacion());
@@ -132,7 +132,7 @@ class CafTest extends TestCase
         $caf = $cafFaker->create();
 
         // Verificar que el ambiente sea el de LibreDTE.
-        $this->assertEquals(null, $caf->getAmbiente());
+        $this->assertNull($caf->getAmbiente());
     }
 
     /**
@@ -184,6 +184,6 @@ class CafTest extends TestCase
         $caf->loadXML($xml);
         $caf->validate();
 
-        $this->assertEquals($code, $caf->getTipoDocumento()->getCodigo());
+        $this->assertSame($code, $caf->getTipoDocumento()->getCodigo());
     }
 }

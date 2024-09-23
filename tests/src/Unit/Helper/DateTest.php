@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Unit\Helper;
 
 use libredte\lib\Core\Helper\Date;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Date::class)]
 class DateTest extends TestCase
@@ -36,9 +36,9 @@ class DateTest extends TestCase
      */
     public function testValidateAndConvertValidDate(): void
     {
-        $this->assertEquals('12/03/2023', Date::validateAndConvert('2023-03-12'));
-        $this->assertEquals('31/12/2022', Date::validateAndConvert('2022-12-31'));
-        $this->assertEquals('01/01/2020', Date::validateAndConvert('2020-01-01'));
+        $this->assertSame('12/03/2023', Date::validateAndConvert('2023-03-12'));
+        $this->assertSame('31/12/2022', Date::validateAndConvert('2022-12-31'));
+        $this->assertSame('01/01/2020', Date::validateAndConvert('2020-01-01'));
     }
 
     /**
@@ -47,8 +47,8 @@ class DateTest extends TestCase
      */
     public function testValidateAndConvertWithCustomFormat(): void
     {
-        $this->assertEquals('12-03-2023', Date::validateAndConvert('2023-03-12', 'd-m-Y'));
-        $this->assertEquals('31.12.2022', Date::validateAndConvert('2022-12-31', 'd.m.Y'));
+        $this->assertSame('12-03-2023', Date::validateAndConvert('2023-03-12', 'd-m-Y'));
+        $this->assertSame('31.12.2022', Date::validateAndConvert('2022-12-31', 'd.m.Y'));
     }
 
     /**

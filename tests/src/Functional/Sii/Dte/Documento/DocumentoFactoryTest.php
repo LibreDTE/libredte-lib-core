@@ -45,9 +45,9 @@ use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTra
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(DocumentoFactory::class)]
 #[CoversClass(Arr::class)]
@@ -160,7 +160,7 @@ class DocumentoFactoryTest extends TestCase
 
         $factory = new DocumentoFactory();
         $documento = $factory->createFromArray($data);
-        $this->assertEquals(571200, $documento->getMontoTotal());
+        $this->assertSame(571200, $documento->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromXmlOk(): void
@@ -170,7 +170,7 @@ class DocumentoFactoryTest extends TestCase
         $factory = new DocumentoFactory();
         $documento = $factory->createFromXml($data);
 
-        $this->assertEquals(571200, $documento->getMontoTotal());
+        $this->assertSame(571200, $documento->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromYamlOk(): void
@@ -200,7 +200,7 @@ class DocumentoFactoryTest extends TestCase
         $factory = new DocumentoFactory();
         $documento = $factory->createFromYaml($data);
 
-        $this->assertEquals(571200, $documento->getMontoTotal());
+        $this->assertSame(571200, $documento->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromJsonOk(): void
@@ -235,6 +235,6 @@ class DocumentoFactoryTest extends TestCase
         $factory = new DocumentoFactory();
         $documento = $factory->createFromJson($data);
 
-        $this->assertEquals(571200, $documento->getMontoTotal());
+        $this->assertSame(571200, $documento->getMontoTotal());
     }
 }

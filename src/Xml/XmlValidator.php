@@ -95,8 +95,7 @@ class XmlValidator
         XmlDocument $xmlDocument,
         ?string $schemaPath = null,
         array $translations = []
-    ): void
-    {
+    ): void {
         // Determinar $schemaPath si no fue pasado.
         if ($schemaPath === null) {
             $schemaPath = self::getSchemaPath($xmlDocument);
@@ -139,8 +138,7 @@ class XmlValidator
     private static function translateLibxmlErrors(
         array $errors,
         array $translations = []
-    ): array
-    {
+    ): array {
         // Definir reglas de traducción.
         $replace = array_merge(self::$defaultLibxmlTranslations, $translations);
 

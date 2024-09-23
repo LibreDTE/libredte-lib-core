@@ -250,14 +250,14 @@ class DocumentUploadStatusResponse extends AbstractWebServiceResponse
         }
 
         // Si el estado es un error de token se asigna.
-        else if (isset(self::ERRORS['TOKEN'][$status])) {
+        elseif (isset(self::ERRORS['TOKEN'][$status])) {
             //$description = self::ERRORS['TOKEN'][$code];
             $description = $headers['GLOSA'] ?? null;
         }
 
         // El error es uno de los números negativos. Donde hay 3 opciones:
         // El error es -11 y puede ser uno de los 3 que detalla -11.
-        else if ($status == '-11') {
+        elseif ($status == '-11') {
             $errors = [];
             foreach (['SRV_CODE', 'SQL_CODE', 'ERR_CODE'] as $errorType) {
                 if (isset($headers[$errorType])) {
@@ -274,7 +274,7 @@ class DocumentUploadStatusResponse extends AbstractWebServiceResponse
         }
 
         // El error es uno de los definidos como error de estado (excepto -11).
-        else if (isset(self::ERRORS['ESTADO'][$status])) {
+        elseif (isset(self::ERRORS['ESTADO'][$status])) {
             $description = self::ERRORS['ESTADO'][$status];
         }
 

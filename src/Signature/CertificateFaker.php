@@ -96,8 +96,7 @@ class CertificateFaker
         string $emailAddress = 'daniel.bot@example.com',
         string $serialNumber = '11222333-9',
         string $title = 'Bot',
-    ): self
-    {
+    ): self {
         if (empty($CN) || empty($emailAddress) || empty($serialNumber)) {
             throw new CertificateException(
                 'El CN, emailAddress y serialNumber son obligatorios.'
@@ -141,8 +140,7 @@ class CertificateFaker
         string $CN = 'LibreDTE Autoridad Certificadora de Pruebas',
         string $emailAddress = 'fakes-certificates@libredte.cl',
         string $serialNumber = '76192083-9',
-    ): self
-    {
+    ): self {
         $this->issuer = [
             'C' => $C,
             'ST' => $ST,

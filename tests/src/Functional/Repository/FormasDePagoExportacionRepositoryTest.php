@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\FormasDePagoExportacionRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(FormasDePagoExportacionRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,13 +44,13 @@ class FormasDePagoExportacionRepositoryTest extends TestCase
 
     public function testGetValor(): void
     {
-        $this->assertEquals('Cobranza hasta 1 año', $this->repository->getValor(1));
-        $this->assertEquals('Sin pago', $this->repository->getValor(21));
+        $this->assertSame('Cobranza hasta 1 año', $this->repository->getValor(1));
+        $this->assertSame('Sin pago', $this->repository->getValor(21));
     }
 
     public function testGetCodigo(): void
     {
-        $this->assertEquals(1, $this->repository->getCodigo('Cobranza hasta 1 año'));
-        $this->assertEquals(21, $this->repository->getCodigo('Sin pago'));
+        $this->assertSame(1, $this->repository->getCodigo('Cobranza hasta 1 año'));
+        $this->assertSame(21, $this->repository->getCodigo('Sin pago'));
     }
 }

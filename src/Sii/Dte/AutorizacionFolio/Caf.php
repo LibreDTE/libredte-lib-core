@@ -34,8 +34,8 @@ use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Sii\Contribuyente\Contribuyente;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\HttpClient\ConnectionConfig;
-use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDocument;
 
 /**
  * Clase para representar un Código de Autorización de Folios (CAF).
@@ -46,7 +46,6 @@ use libredte\lib\Core\Xml\XmlConverter;
  */
 class Caf
 {
-
     /**
      * Ambiente de certificación del SII.
      *

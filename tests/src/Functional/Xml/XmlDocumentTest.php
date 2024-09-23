@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Xml;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlException;
 use libredte\lib\Core\Xml\XmlUtils;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(XmlDocument::class)]
 #[CoversClass(XmlUtils::class)]
@@ -50,7 +50,7 @@ class XmlDocumentTest extends TestCase
         $result = $doc->loadXML($xmlContent);
 
         $this->assertTrue($result);
-        $this->assertEquals('root', $doc->documentElement->tagName);
+        $this->assertSame('root', $doc->documentElement->tagName);
     }
 
     /**
@@ -68,7 +68,7 @@ class XmlDocumentTest extends TestCase
         $doc = new XmlDocument();
         $doc->loadXML($xmlContent);
 
-        $this->assertEquals('root', $doc->getName());
+        $this->assertSame('root', $doc->getName());
     }
 
     /**
@@ -86,7 +86,7 @@ class XmlDocumentTest extends TestCase
         $doc = new XmlDocument();
         $doc->loadXML($xmlContent);
 
-        $this->assertEquals('http://example.com', $doc->getNamespace());
+        $this->assertSame('http://example.com', $doc->getNamespace());
     }
 
     /**
@@ -123,7 +123,7 @@ class XmlDocumentTest extends TestCase
         $doc = new XmlDocument();
         $doc->loadXML($xmlContent);
 
-        $this->assertEquals('schema.xsd', $doc->getSchema());
+        $this->assertSame('schema.xsd', $doc->getSchema());
     }
 
     /**
@@ -209,7 +209,7 @@ class XmlDocumentTest extends TestCase
         $flattenedXml = $doc->C14NWithIsoEncodingFlattened();
 
         $expectedXml = '<root><element>Value</element></root>';
-        $this->assertEquals($expectedXml, $flattenedXml);
+        $this->assertSame($expectedXml, $flattenedXml);
     }
 
     /**
@@ -231,7 +231,7 @@ class XmlDocumentTest extends TestCase
         $flattenedXml = $doc->C14NWithIsoEncoding('//element2');
 
         $expectedXml = '<element2>Other Value</element2>';
-        $this->assertEquals($expectedXml, $flattenedXml);
+        $this->assertSame($expectedXml, $flattenedXml);
     }
 
     /**

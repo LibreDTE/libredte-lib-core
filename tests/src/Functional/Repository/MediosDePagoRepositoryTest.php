@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\MediosDePagoRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(MediosDePagoRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -44,13 +44,13 @@ class MediosDePagoRepositoryTest extends TestCase
 
     public function testGetValor(): void
     {
-        $this->assertEquals('Efectivo', $this->repository->getValor('EF'));
-        $this->assertEquals('Tarjeta de crédito o débito', $this->repository->getValor('TC'));
+        $this->assertSame('Efectivo', $this->repository->getValor('EF'));
+        $this->assertSame('Tarjeta de crédito o débito', $this->repository->getValor('TC'));
     }
 
     public function testGetCodigo(): void
     {
-        $this->assertEquals('EF', $this->repository->getCodigo('Efectivo'));
-        $this->assertEquals('TC', $this->repository->getCodigo('Tarjeta de crédito o débito'));
+        $this->assertSame('EF', $this->repository->getCodigo('Efectivo'));
+        $this->assertSame('TC', $this->repository->getCodigo('Tarjeta de crédito o débito'));
     }
 }

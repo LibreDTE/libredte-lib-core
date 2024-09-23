@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Helper;
 
-use UnexpectedValueException;
 use libredte\lib\Core\Helper\Rut;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
 #[CoversClass(Rut::class)]
 class RutTest extends TestCase
@@ -45,9 +45,9 @@ class RutTest extends TestCase
      */
     public function testToArrayValid(): void
     {
-        $this->assertEquals([12345678, 'K'], Rut::toArray('12.345.678-K'));
-        $this->assertEquals([12345678, 'K'], Rut::toArray('12345678-K'));
-        $this->assertEquals([9876543, '5'], Rut::toArray('9876543-5'));
+        $this->assertSame([12345678, 'K'], Rut::toArray('12.345.678-K'));
+        $this->assertSame([12345678, 'K'], Rut::toArray('12345678-K'));
+        $this->assertSame([9876543, '5'], Rut::toArray('9876543-5'));
     }
 
     /**
@@ -55,8 +55,8 @@ class RutTest extends TestCase
      */
     public function testFormatValid(): void
     {
-        $this->assertEquals('12345678-K', Rut::format('12.345.678-K'));
-        $this->assertEquals('12345678-5', Rut::format(12345678));
+        $this->assertSame('12345678-K', Rut::format('12.345.678-K'));
+        $this->assertSame('12345678-5', Rut::format(12345678));
     }
 
     /**
@@ -64,8 +64,8 @@ class RutTest extends TestCase
      */
     public function testFormatFullValid(): void
     {
-        $this->assertEquals('12.345.678-K', Rut::formatFull('12345678-K'));
-        $this->assertEquals('9.876.543-3', Rut::formatFull(9876543));
+        $this->assertSame('12.345.678-K', Rut::formatFull('12345678-K'));
+        $this->assertSame('9.876.543-3', Rut::formatFull(9876543));
     }
 
     /**
@@ -73,9 +73,9 @@ class RutTest extends TestCase
      */
     public function testCalculateDv(): void
     {
-        $this->assertEquals('5', Rut::calculateDv(12345678));
-        $this->assertEquals('3', Rut::calculateDv(9876543));
-        $this->assertEquals('1', Rut::calculateDv(11111111));
+        $this->assertSame('5', Rut::calculateDv(12345678));
+        $this->assertSame('3', Rut::calculateDv(9876543));
+        $this->assertSame('1', Rut::calculateDv(11111111));
     }
 
     /**
@@ -128,8 +128,8 @@ class RutTest extends TestCase
      */
     public function testRemoveDv(): void
     {
-        $this->assertEquals(12345678, Rut::removeDv('12.345.678-K'));
-        $this->assertEquals(9876543, Rut::removeDv('9.876.543-5'));
+        $this->assertSame(12345678, Rut::removeDv('12.345.678-K'));
+        $this->assertSame(9876543, Rut::removeDv('9.876.543-5'));
     }
 
     /**
@@ -137,7 +137,7 @@ class RutTest extends TestCase
      */
     public function testAddDv(): void
     {
-        $this->assertEquals('123456785', Rut::addDv(12345678));
-        $this->assertEquals('98765433', Rut::addDv(9876543));
+        $this->assertSame('123456785', Rut::addDv(12345678));
+        $this->assertSame('98765433', Rut::addDv(9876543));
     }
 }

@@ -46,8 +46,7 @@ class SignatureGenerator
         string $data,
         string $privateKey,
         string|int $signatureAlgorithm = OPENSSL_ALGO_SHA1
-    ): string
-    {
+    ): string {
         // Firmar los datos.
         $signature = null;
         $result = openssl_sign(
@@ -81,8 +80,7 @@ class SignatureGenerator
         XmlDocument|string $xml,
         Certificate $certificate,
         ?string $reference = null
-    ): string
-    {
+    ): string {
         // Si se pasó un objeto XmlDocument se convierte a string. Esto es
         // necesario para poder mantener el formato "lindo" si se pasó y poder
         // obtener el C14N de manera correcta.
@@ -134,8 +132,7 @@ class SignatureGenerator
     public static function digestXmlReference(
         XmlDocument $doc,
         ?string $reference = null
-    ): string
-    {
+    ): string {
         // Se hará la digestión de una referencia (ID) específico en el XML.
         if (!empty($reference)) {
             $xpath = '//*[@ID="' . ltrim($reference, '#') . '"]';

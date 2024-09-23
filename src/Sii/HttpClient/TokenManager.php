@@ -71,8 +71,7 @@ class TokenManager
     public function __construct(
         CacheInterface $cache,
         WsdlConsumer $wsdlConsumer
-    )
-    {
+    ) {
         $this->cache = $cache;
         $this->wsdlConsumer = $wsdlConsumer;
     }
@@ -109,5 +108,4 @@ class TokenManager
         // Entregar el nuevo token obtenido.
         return $newToken;
     }
-
 }

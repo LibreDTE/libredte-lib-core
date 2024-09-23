@@ -24,8 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\HttpClient\WebService;
 
-use libredte\lib\Core\Sii\HttpClient\WebService\AbstractWebServiceResponse;
-
 /**
  * Respuesta con el estado de un DTE aceptado por el SII.
  *
@@ -185,13 +183,13 @@ class DocumentStatusResponse extends AbstractWebServiceResponse
         }
 
         // Si el estado es un error de token se asigna.
-        else if (isset(self::ERRORS['TOKEN'][$status])) {
+        elseif (isset(self::ERRORS['TOKEN'][$status])) {
             //$description = self::ERRORS['TOKEN'][$code];
             $description = $headers['GLOSA'] ?? null;
         }
 
         // El error es uno de los definidos como error de estado (excepto -11).
-        else if (isset(self::ERRORS['ESTADO'][$status])) {
+        elseif (isset(self::ERRORS['ESTADO'][$status])) {
             $description = self::ERRORS['ESTADO'][$status];
         }
 

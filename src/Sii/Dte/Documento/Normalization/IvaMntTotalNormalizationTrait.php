@@ -139,7 +139,7 @@ trait IvaMntTotalNormalizationTrait
                 }
 
                 // Si es impuesto adicional se suma al total.
-                else if (
+                elseif (
                     $this->getImpuestosAdicionalesRepository()->getTipo($ImptoReten['TipoImp']) == 'A'
                     && isset($ImptoReten['MontoImp'])
                 ) {

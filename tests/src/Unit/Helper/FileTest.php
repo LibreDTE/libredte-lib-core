@@ -24,16 +24,17 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Helper;
 
-use RuntimeException;
-use PHPUnit\Framework\TestCase;
 use libredte\lib\Core\Helper\File;
-use Symfony\Component\Filesystem\Filesystem;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
+use Symfony\Component\Filesystem\Filesystem;
 
 #[CoversClass(File::class)]
 class FileTest extends TestCase
 {
     private string $testDir;
+
     private string $testFile;
 
     protected function setUp(): void
@@ -67,7 +68,7 @@ class FileTest extends TestCase
     {
         $result = File::mimetype($this->testFile);
 
-        $this->assertEquals('text/plain', $result);
+        $this->assertSame('text/plain', $result);
     }
 
     public function testMimetypeFileNotFound(): void

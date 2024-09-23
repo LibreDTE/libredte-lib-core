@@ -26,8 +26,8 @@ namespace libredte\lib\Tests\Functional\Log;
 
 use libredte\lib\Core\Log\Logger;
 use libredte\lib\Core\Log\LogMessage;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Logger::class)]
 #[CoversClass(LogMessage::class)]
@@ -49,8 +49,8 @@ class LoggerTest extends TestCase
 
         $logMessage = $logs[0];
         $this->assertInstanceOf(LogMessage::class, $logMessage);
-        $this->assertEquals(LOG_ERR, $logMessage->code);
-        $this->assertEquals('Test error message', $logMessage->message);
+        $this->assertSame(LOG_ERR, $logMessage->code);
+        $this->assertSame('Test error message', $logMessage->message);
         $this->assertNull($logMessage->file);
         $this->assertNull($logMessage->line);
     }
@@ -64,8 +64,8 @@ class LoggerTest extends TestCase
 
         $logMessage = $logs[0];
         $this->assertInstanceOf(LogMessage::class, $logMessage);
-        $this->assertEquals(LOG_WARNING, $logMessage->code);
-        $this->assertEquals('Test warning message', $logMessage->message);
+        $this->assertSame(LOG_WARNING, $logMessage->code);
+        $this->assertSame('Test warning message', $logMessage->message);
         $this->assertNull($logMessage->file);
         $this->assertNull($logMessage->line);
     }
@@ -79,8 +79,8 @@ class LoggerTest extends TestCase
 
         $logMessage = $logs[0];
         $this->assertInstanceOf(LogMessage::class, $logMessage);
-        $this->assertEquals(LOG_INFO, $logMessage->code);
-        $this->assertEquals('Test info message', $logMessage->message);
+        $this->assertSame(LOG_INFO, $logMessage->code);
+        $this->assertSame('Test info message', $logMessage->message);
         $this->assertNull($logMessage->file);
         $this->assertNull($logMessage->line);
     }
@@ -94,8 +94,8 @@ class LoggerTest extends TestCase
 
         $logMessage = $logs[0];
         $this->assertInstanceOf(LogMessage::class, $logMessage);
-        $this->assertEquals(LOG_DEBUG, $logMessage->code);
-        $this->assertEquals('Test debug message', $logMessage->message);
+        $this->assertSame(LOG_DEBUG, $logMessage->code);
+        $this->assertSame('Test debug message', $logMessage->message);
         $this->assertNull($logMessage->file);
         $this->assertNull($logMessage->line);
     }
@@ -110,11 +110,11 @@ class LoggerTest extends TestCase
 
         $logMessage = $logs[0];
         $this->assertInstanceOf(LogMessage::class, $logMessage);
-        $this->assertEquals(LOG_ERR, $logMessage->code);
-        $this->assertEquals('Backtrace error message', $logMessage->message);
+        $this->assertSame(LOG_ERR, $logMessage->code);
+        $this->assertSame('Backtrace error message', $logMessage->message);
         $this->assertNotNull($logMessage->file);
         $this->assertNotNull($logMessage->line);
-        $this->assertEquals('testLogWithBacktrace', $logMessage->function);
+        $this->assertSame('testLogWithBacktrace', $logMessage->function);
     }
 
     public function testFlushLogs(): void
@@ -126,8 +126,8 @@ class LoggerTest extends TestCase
         $logs = $this->logger->flushLogs(LOG_ERR);
 
         $this->assertCount(2, $logs);
-        $this->assertEquals('Second error message', $logs[0]->message);
-        $this->assertEquals('First error message', $logs[1]->message);
+        $this->assertSame('Second error message', $logs[0]->message);
+        $this->assertSame('First error message', $logs[1]->message);
 
         $logsAfterFlush = $this->logger->getLogs(LOG_ERR);
         $this->assertEmpty($logsAfterFlush);
@@ -161,7 +161,7 @@ class LoggerTest extends TestCase
         $this->assertCount(1, $logs);
 
         $logMessage = $logs[0];
-        $this->assertEquals($context, $logMessage->context);
+        $this->assertSame($context, $logMessage->context);
     }
 
     /**
@@ -180,7 +180,7 @@ class LoggerTest extends TestCase
                 'Este es el primer warning',
                 'Un segundo warning',
                 'El penúltimo warning',
-                'El warning final (4to)'
+                'El warning final (4to)',
             ],
         ];
 
@@ -193,7 +193,7 @@ class LoggerTest extends TestCase
                 foreach ($mensajes as $codigo => $mensaje) {
                     if ($severity === LOG_ERR) {
                         $this->logger->error($mensaje, ['code' => $codigo]);
-                    } else if ($severity === LOG_WARNING) {
+                    } elseif ($severity === LOG_WARNING) {
                         $this->logger->warning($mensaje, ['code' => $codigo]);
                     }
                 }
@@ -211,8 +211,8 @@ class LoggerTest extends TestCase
 
                 foreach ($mensajes as $codigo => $mensaje) {
                     $Log = array_shift($registros);
-                    $this->assertEquals($codigo, $Log->code);
-                    $this->assertEquals($mensaje, $Log->message);
+                    $this->assertSame($codigo, $Log->code);
+                    $this->assertSame($mensaje, $Log->message);
                 }
             }
         }

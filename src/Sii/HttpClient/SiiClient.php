@@ -29,9 +29,9 @@ use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploader;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentValidator;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Psr16Cache;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Psr16Cache;
 
 /**
  * Clase que funciona como "punto de entrada" para la comunicación entre la
@@ -99,8 +99,7 @@ class SiiClient
         Certificate $certificate,
         array $config = [],
         ?CacheInterface $cache = null,
-    )
-    {
+    ) {
         $this->certificate = $certificate;
         $this->config = new ConnectionConfig($config);
         $this->cache = $cache ?? $this->getCache();

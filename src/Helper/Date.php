@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Helper;
 
-use Exception;
 use Carbon\Carbon;
+use Exception;
 
 /**
  * Clase para trabajar con fecha en PHP.
@@ -44,8 +44,7 @@ class Date extends Carbon
     public static function validateAndConvert(
         string $date,
         string $format = 'd/m/Y'
-    ): ?string
-    {
+    ): ?string {
         try {
 
             $carbonDate = self::createFromFormat('Y-m-d', $date);

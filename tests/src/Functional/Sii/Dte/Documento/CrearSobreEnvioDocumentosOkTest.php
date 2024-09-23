@@ -70,9 +70,9 @@ use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(DocumentoFactory::class)]
@@ -234,7 +234,7 @@ class CrearSobreEnvioDocumentosOkTest extends TestCase
 
         $xml = $sobre->firmar($certificate);
 
-        $sobre->validateSignature();; // Validar firma con excepciones.
+        $sobre->validateSignature(); // Validar firma con excepciones.
         $sobre->validateSchema(); // El esquema se valida con excepciones.
 
         $this->assertIsString($xml); // Todo OK.
@@ -279,7 +279,7 @@ class CrearSobreEnvioDocumentosOkTest extends TestCase
 
         $xml = $sobre->firmar($certificate);
 
-        $sobre->validateSignature();; // Validar firma con excepciones.
+        $sobre->validateSignature(); // Validar firma con excepciones.
         $sobre->validateSchema(); // El esquema se valida con excepciones.
 
         $this->assertIsString($xml); // Todo OK.

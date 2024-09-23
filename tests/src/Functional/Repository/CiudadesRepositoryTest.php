@@ -27,8 +27,8 @@ namespace libredte\lib\Tests\Functional\Repository;
 use libredte\lib\Core\Repository\CiudadesRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CiudadesRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
@@ -39,8 +39,8 @@ class CiudadesRepositoryTest extends TestCase
     {
         $repository = new CiudadesRepository();
 
-        $this->assertEquals('Santiago', $repository->getCiudad('HUECHURABA'));
-        $this->assertEquals('Santiago', $repository->getCiudad('LAS CONDES'));
+        $this->assertSame('Santiago', $repository->getCiudad('HUECHURABA'));
+        $this->assertSame('Santiago', $repository->getCiudad('LAS CONDES'));
         $this->assertFalse($repository->getCiudad('NON_EXISTENT'));
     }
 }

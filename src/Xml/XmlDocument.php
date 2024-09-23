@@ -41,8 +41,7 @@ class XmlDocument extends DomDocument
     public function __construct(
         string $version = '1.0',
         string $encoding = 'ISO-8859-1'
-    )
-    {
+    ) {
         parent::__construct($version, $encoding);
 
         $this->formatOutput = true;

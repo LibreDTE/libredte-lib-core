@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Xml;
 
 use Exception;
-use Throwable;
 use LibXMLError;
+use Throwable;
 
 /**
  * Excepción personalizada para errores asociados a los XML.
@@ -84,7 +84,7 @@ class XmlException extends Exception
     private function libXmlErrorToString(array $errors): array
     {
         return array_map(function ($error) {
-            if ($error instanceof LibXMLError ) {
+            if ($error instanceof LibXMLError) {
                 return sprintf(
                     'Error %s: %s en la línea %d, columna %d (Código: %d).',
                     $error->level === LIBXML_ERR_WARNING ? 'Advertencia' :

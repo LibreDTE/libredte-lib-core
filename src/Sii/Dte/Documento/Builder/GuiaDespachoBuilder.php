@@ -26,8 +26,8 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Builder;
 
 use libredte\lib\Core\Helper\Arr;
 use libredte\lib\Core\Sii\Dte\Documento\GuiaDespacho;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
@@ -75,7 +75,7 @@ class GuiaDespachoBuilder extends AbstractDocumentoBuilder
                     'ImptoReten' => false,
                     'CredEC' => false,
                     'MntTotal' => 0,
-                ]
+                ],
             ],
         ], $data);
 
@@ -90,13 +90,13 @@ class GuiaDespachoBuilder extends AbstractDocumentoBuilder
             ) {
                 $data['Encabezado']['Receptor'] = [];
                 $cols = [
-                    'RUTEmisor'=>'RUTRecep',
-                    'RznSoc'=>'RznSocRecep',
-                    'GiroEmis'=>'GiroRecep',
-                    'Telefono'=>'Contacto',
-                    'CorreoEmisor'=>'CorreoRecep',
-                    'DirOrigen'=>'DirRecep',
-                    'CmnaOrigen'=>'CmnaRecep',
+                    'RUTEmisor' => 'RUTRecep',
+                    'RznSoc' => 'RznSocRecep',
+                    'GiroEmis' => 'GiroRecep',
+                    'Telefono' => 'Contacto',
+                    'CorreoEmisor' => 'CorreoRecep',
+                    'DirOrigen' => 'DirRecep',
+                    'CmnaOrigen' => 'CmnaRecep',
                 ];
                 foreach ($cols as $emisor => $receptor) {
                     if (!empty($data['Encabezado']['Emisor'][$emisor])) {
