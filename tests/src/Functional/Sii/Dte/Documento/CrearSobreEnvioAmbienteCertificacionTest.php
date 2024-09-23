@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * LibreDTE: Biblioteca PHP (Núcleo).
  * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o modificarlo
@@ -133,12 +133,12 @@ class CrearSobreEnvioAmbienteCertificacionTest extends TestCase
         $data['Encabezado']['IdDoc']['Folio'] = $caf->getFolioDesde();
 
         // Sanitizar el arreglo quitando todo lo que no sea ASCII.
-        array_walk_recursive($data, function (&$value) {
-            if (is_string($value)) {
-                // Reemplazar caracteres no ASCII con "?".
-                $value = preg_replace('/[^\x20-\x7E]/', '?', $value);
-            }
-        });
+        // array_walk_recursive($data, function (&$value) {
+        //     if (is_string($value)) {
+        //         // Reemplazar caracteres no ASCII con "?".
+        //         $value = preg_replace('/[^\x20-\x7E]/', '?', $value);
+        //     }
+        // });
 
         // Crear documento tributario con los datos del caso.
         $documento = $factory->createFromArray($data);

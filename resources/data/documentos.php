@@ -1,7 +1,7 @@
 <?php
 
 /**
- * LibreDTE: Biblioteca Estándar en PHP (Núcleo).
+ * LibreDTE: Biblioteca PHP (Núcleo).
  * Copyright (C) LibreDTE <https://www.libredte.cl>
  *
  * Este programa es software libre: usted puede redistribuirlo y/o modificarlo

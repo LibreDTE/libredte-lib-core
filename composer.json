@@ -1,9 +1,9 @@
 {
-    "name": "libredte/libredte-lib",
-    "description": "LibreDTE: Biblioteca Estándar en PHP (Núcleo)",
+    "name": "libredte/libredte-lib-core",
+    "description": "LibreDTE: Biblioteca PHP (Núcleo)",
     "type": "library",
     "keywords": ["dte", "sii", "facturación electrónica", "chile"],
-    "homepage": "https://www.libredte.cl",
+    "homepage": "https://lib-core.docs.libredte.cl",
     "license": "AGPL-3.0+",
     "authors": [
         {
@@ -12,8 +12,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/LibreDTE/libredte-lib/issues",
-        "source": "https://github.com/LibreDTE/libredte-lib"
+        "issues": "https://github.com/libredte/libredte-lib-core/issues",
+        "source": "https://github.com/libredte/libredte-lib-core"
     },
     "autoload": {
         "psr-4": {

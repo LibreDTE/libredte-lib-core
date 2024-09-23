@@ -1,17 +1,17 @@
-# LibreDTE: Biblioteca Estándar en PHP (Núcleo)
+# LibreDTE: Biblioteca PHP (Núcleo)
 
-[![CI Workflow](https://github.com/LibreDTE/libredte-lib/actions/workflows/ci.yml/badge.svg?branch=libredte_lib_2024&event=push)](https://github.com/LibreDTE/libredte-lib/actions/workflows/ci.yml?query=branch%3Alibredte_lib_2024)
-[![Descargas Totales](https://poser.pugx.org/libredte/libredte-lib/downloads)](https://packagist.org/packages/libredte/libredte-lib)
-[![Descargas Mensuales](https://poser.pugx.org/libredte/libredte-lib/d/monthly)](https://packagist.org/packages/libredte/libredte-lib)
-[![Licencia](https://poser.pugx.org/libredte/libredte-lib/license)](https://packagist.org/packages/libredte/libredte-lib)
+[![CI Workflow](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=libredte_lib_2024&event=push)](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Alibredte_lib_2024)
+[![Descargas Totales](https://poser.pugx.org/libredte/libredte-lib-core/downloads)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![Descargas Mensuales](https://poser.pugx.org/libredte/libredte-lib-core/d/monthly)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![Licencia](https://poser.pugx.org/libredte/libredte-lib-core/license)](https://packagist.org/packages/libredte/libredte-lib-core)
 
 LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica Libre para Chile.
 
-Revisa la [documentación](https://libredte.github.io/libredte-lib) de la biblioteca para más información, sus características y detalles de su uso.
+Revisa la [documentación](https://lib-core.docs.libredte.cl) de la biblioteca para más información, sus características y detalles de su uso.
 
 ## Términos y condiciones de uso
 
-Al utilizar este proyecto, total o parcialmente, automáticamente se acepta cumplir con los [términos y condiciones de uso](https://www.libredte.cl/legal) que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/LibreDTE/libredte-lib/master/COPYING) solo aplica para quienes respeten los términos y condiciones de uso. No existe una licencia comercial de LibreDTE, por lo cual no es posible usar el proyecto si no aceptas cumplir dichos términos y condiciones.
+Al utilizar este proyecto, total o parcialmente, automáticamente se acepta cumplir con los [términos y condiciones de uso](https://www.libredte.cl/legal) que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/libredte/libredte-lib-core/master/COPYING) solo aplica para quienes respeten los términos y condiciones de uso. No existe una licencia comercial de LibreDTE, por lo cual no es posible usar el proyecto si no aceptas cumplir dichos términos y condiciones.
 
 La versión resumida de los términos y condiciones de uso de LibreDTE que permiten utilizar el proyecto, son los siguientes:
 
@@ -26,6 +26,6 @@ Enlaces
 -------
 
 - [Sitio web LibreDTE](https://www.libredte.cl).
-- [Código fuente en GitHub](https://github.com/LibreDTE/libredte-lib).
-- [Paquete en Packagist](https://packagist.org/packages/libredte/libredte-lib).
-- [Documentación](https://libredte.github.io/libredte-lib).
+- [Código fuente en GitHub](https://github.com/libredte/libredte-lib-core).
+- [Paquete en Packagist](https://packagist.org/packages/libredte/libredte-lib-core).
+- [Documentación](https://lib-core.docs.libredte.cl).

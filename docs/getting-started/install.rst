@@ -5,7 +5,7 @@ La forma recomendada de instalar es mediante composer:
 
 .. code-block:: shell
 
-   composer require libredte/libredte-lib
+   composer require libredte/libredte-lib-core
 
 Requerimientos
 --------------
