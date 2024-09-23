@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>LibreDTE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">LibreDTE</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+                        <li class="phpdocumentor-topnav__menu-item -menu">
+                <a href="https://www.libredte.cl">
+                    <span>
+                                                                        LibreDTE Edición Enterprise
+                    </span>
+                </a>
+            </li>
+                                <li class="phpdocumentor-topnav__menu-item -social">
+                <a href="https://github.com/libredte/libredte-lib">
+                    <span>
+                                                                        <i class="fab fa-github"></i>
+                                                
+                    </span>
+                </a>
+            </li>
+                    <li class="phpdocumentor-topnav__menu-item -social">
+                <a href="https://www.libredte.cl/forum">
+                    <span>
+                                                                        <i class="fas fa-envelope-open-text"></i>
+                                                
+                    </span>
+                </a>
+            </li>
+                </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -docs">
+            <h2 class="phpdocumentor-sidebar__category-header">Docs</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="guide/getting-started/index.html#empezando" class="">Empezando</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guide/getting-started/openssl.html#legacy-openssl" class="">Legacy OpenSSL</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="guide/internals/index.html#guias-internas" class="">Guías internas</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guide/internals/wsdl.html#archivos-wsdl-certificacion" class="">Archivos WSDL certificación</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category -namespaces">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/libredte.html" class="">libredte</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/libredte-lib.html" class="">lib</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category -packages">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/LibreDTE.html" class="">LibreDTE</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category -reports">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category -indices">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-sii.html">Sii</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-sii-dte.html">Dte</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-sii-dte-documento.html">Documento</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    SobreEnvio
+
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Clase que representa un sobre para el envío de documentos al SII.</p>
+
+
+    <section class="phpdocumentor-description"><p>Este sobre permite enviar facturas (EnvioDTE) y boletas (EnvioBOLETA).</p>
+</section>
+
+
+
+
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_CONFIG">CONFIG</a>
+    <span>
+        &nbsp;= [self::SOBRE_DTE =&gt; [
+    // Máxima cantidad de tipos de documentos en el envío.
+    &#039;SubTotDTE_max&#039; =&gt; 20,
+    // Máxima cantidad de documentos en un envío.
+    &#039;DTE_max&#039; =&gt; 2000,
+    // Tag XML para el envío.
+    &#039;tag&#039; =&gt; &#039;EnvioDTE&#039;,
+    // Schema principal del XML del envío.
+    &#039;schema&#039; =&gt; &#039;EnvioDTE_v10&#039;,
+], self::SOBRE_BOLETA =&gt; [
+    // Máxima cantidad de tipos de documentos en el envío.
+    &#039;SubTotDTE_max&#039; =&gt; 2,
+    // Máxima cantidad de documentos en un envío.
+    &#039;DTE_max&#039; =&gt; 1000,
+    // Tag XML para el envío.
+    &#039;tag&#039; =&gt; &#039;EnvioBOLETA&#039;,
+    // Schema principal del XML del envío.
+    &#039;schema&#039; =&gt; &#039;EnvioBOLETA_v11&#039;,
+]]                            </span>
+</dt>
+<dd>Configuración (reglas) para el documento XML del envío.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_BOLETA">SOBRE_BOLETA</a>
+    <span>
+        &nbsp;= 1                            </span>
+</dt>
+<dd>Constante que representa que el envío es de boletas.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_DTE">SOBRE_DTE</a>
+    <span>
+        &nbsp;= 0                            </span>
+</dt>
+<dd>Constante que representa que el envío es de DTE.</dd>
+
+    </dl>
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_dataProvider">$dataProvider</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>            </span>
+</dt>
+<dd>Proveedor de datos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_xmlDocument">$xmlDocument</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>            </span>
+</dt>
+<dd>Instancia del documento XML asociado al sobre.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_caratula">$caratula</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd>Datos de la carátula del envío</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_documentos">$documentos</a>
+    <span>
+                        &nbsp;: array&lt;int, <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&gt;            </span>
+</dt>
+<dd>Arreglo con las instancias de documentos que se enviarán.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_tipo">$tipo</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+<dd>Tipo de sobre que se está generando.</dd>
+
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method___construct">__construct()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Constructor del sobre del envío de DTE al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_agregar">agregar()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega un documento al listado que se enviará al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_firmar">firmar()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Realiza la firma del sobre del envío.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getDocumentos">getDocumentos()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&gt;    </span>
+</dt>
+<dd>Entrega el listado de documentos incluídos en el sobre.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXml">getXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el string XML del sobre con el formato de XmlDocument::getXML().</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlDocument">getXmlDocument()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>    </span>
+</dt>
+<dd>Genera el documento XML.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlSignatureNode">getXmlSignatureNode()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html"><abbr title="\libredte\lib\Core\Signature\XmlSignatureNode">XmlSignatureNode</abbr></a>    </span>
+</dt>
+<dd>Obtiene una instancia del nodo de la firma.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_loadXML">loadXML()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Permite crear el documento XML del sobre a partir de un string XML.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_saveXml">saveXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el string XML del sobre en el formato de XmlDocument::saveXML().</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_setCaratula">setCaratula()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Asignar la carátula del sobre del envío.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSchema">validateSchema()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida el esquema del XML del sobre del envío.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSignature">validateSignature()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida la firma electrónica del documento XML del sobre.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getSubTotDTE">getSubTotDTE()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Obtiene los datos para generar los tags SubTotDTE.</dd>
+
+    </dl>
+
+
+
+        
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_CONFIG">
+        CONFIG
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_CONFIG" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">62</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Configuración (reglas) para el documento XML del envío.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">CONFIG</span>
+    = <span class="phpdocumentor-signature__default-value">[self::SOBRE_DTE =&gt; [
+    // Máxima cantidad de tipos de documentos en el envío.
+    &#039;SubTotDTE_max&#039; =&gt; 20,
+    // Máxima cantidad de documentos en un envío.
+    &#039;DTE_max&#039; =&gt; 2000,
+    // Tag XML para el envío.
+    &#039;tag&#039; =&gt; &#039;EnvioDTE&#039;,
+    // Schema principal del XML del envío.
+    &#039;schema&#039; =&gt; &#039;EnvioDTE_v10&#039;,
+], self::SOBRE_BOLETA =&gt; [
+    // Máxima cantidad de tipos de documentos en el envío.
+    &#039;SubTotDTE_max&#039; =&gt; 2,
+    // Máxima cantidad de documentos en un envío.
+    &#039;DTE_max&#039; =&gt; 1000,
+    // Tag XML para el envío.
+    &#039;tag&#039; =&gt; &#039;EnvioBOLETA&#039;,
+    // Schema principal del XML del envío.
+    &#039;schema&#039; =&gt; &#039;EnvioBOLETA_v11&#039;,
+]]</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_SOBRE_BOLETA">
+        SOBRE_BOLETA
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_BOLETA" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">57</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Constante que representa que el envío es de boletas.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">SOBRE_BOLETA</span>
+    = <span class="phpdocumentor-signature__default-value">1</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_SOBRE_DTE">
+        SOBRE_DTE
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_DTE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Constante que representa que el envío es de DTE.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">SOBRE_DTE</span>
+    = <span class="phpdocumentor-signature__default-value">0</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>Este sobre se usa para todo menos boletas.</p>
+</section>
+
+    
+    
+
+    
+
+</article>
+            </section>
+
+        
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_dataProvider">
+        $dataProvider
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_dataProvider" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">123</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Proveedor de datos.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$dataProvider</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_xmlDocument">
+        $xmlDocument
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_xmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Instancia del documento XML asociado al sobre.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$xmlDocument</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_caratula">
+        $caratula
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_caratula" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">109</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Datos de la carátula del envío</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$caratula</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_documentos">
+        $documentos
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_documentos" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">116</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Arreglo con las instancias de documentos que se enviarán.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;int, <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&gt;</span>
+    <span class="phpdocumentor-signature__name">$documentos</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_tipo">
+        $tipo
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_tipo" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">102</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Tipo de sobre que se está generando.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$tipo</span>
+    </code>
+
+        <section class="phpdocumentor-description"><p>Posibles valores:</p>
+<ul>
+<li>SobreEnvio::SOBRE_DTE</li>
+<li>SobreEnvio::SOBRE_BOLETA</li>
+</ul>
+</section>
+
+    
+    
+
+    
+
+</article>
+            </section>
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">130</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Constructor del sobre del envío de DTE al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dataProvider</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dataProvider</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_agregar">
+        agregar()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_agregar" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">242</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega un documento al listado que se enviará al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">agregar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$documento</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Instancia del documento que se desea
+agregar al listado del envío.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_firmar">
+        firmar()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_firmar" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">175</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Realiza la firma del sobre del envío.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">firmar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$certificate</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Instancia que representa la firma
+electrónica.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_firmar#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si existe algún problema al firmar el sobre.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>String con el XML firmado.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDocumentos">
+        getDocumentos()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getDocumentos" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">412</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el listado de documentos incluídos en el sobre.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDocumentos</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getXml">
+        getXml()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">152</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el string XML del sobre con el formato de XmlDocument::getXML().</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getXmlDocument">
+        getXmlDocument()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">358</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el documento XML.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getXmlSignatureNode">
+        getXmlSignatureNode()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlSignatureNode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">196</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene una instancia del nodo de la firma.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getXmlSignatureNode</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html"><abbr title="\libredte\lib\Core\Signature\XmlSignatureNode">XmlSignatureNode</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlSignatureNode#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si el documento XML no está firmado.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html"><abbr title="\libredte\lib\Core\Signature\XmlSignatureNode">XmlSignatureNode</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_loadXML">
+        loadXML()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_loadXML" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">141</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Permite crear el documento XML del sobre a partir de un string XML.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">loadXML</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$xml</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_saveXml">
+        saveXml()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">162</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el string XML del sobre en el formato de XmlDocument::saveXML().</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">saveXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setCaratula">
+        setCaratula()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_setCaratula" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">290</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asignar la carátula del sobre del envío.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setCaratula</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$caratula</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$caratula</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Arreglo con datos: RutEnvia, FchResol y NroResol.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Arreglo con la carátula normalizada.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateSchema">
+        validateSchema()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSchema" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">231</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida el esquema del XML del sobre del envío.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateSchema</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método valida tanto los esquemas de EnvioDTE como el EnvioBOLETA.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSchema#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Xml-XmlException.html"><abbr title="\libredte\lib\Core\Xml\XmlException">XmlException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si la validación del esquema falla.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateSignature">
+        validateSignature()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSignature" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">217</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida la firma electrónica del documento XML del sobre.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateSignature</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSignature#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si la validación de la firma falla.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSubTotDTE">
+        getSubTotDTE()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getSubTotDTE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/SobreEnvio.php"><a href="files/src-sii-dte-documento-sobreenvio.html"><abbr title="src/Sii/Dte/Documento/SobreEnvio.php">SobreEnvio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">331</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos para generar los tags SubTotDTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getSubTotDTE</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Arreglo con los datos para generar los tags SubTotDTE.</p>
+</section>
+
+            </section>
+
+</article>
+            </section>
+
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Sii/Dte/Documento/SobreEnvio.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_CONFIG">CONFIG</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_BOLETA">SOBRE_BOLETA</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#constant_SOBRE_DTE">SOBRE_DTE</a></li>
+                                            </ul>
+                </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_dataProvider">$dataProvider</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_xmlDocument">$xmlDocument</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_caratula">$caratula</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_documentos">$documentos</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#property_tipo">$tipo</a></li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_agregar">agregar()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_firmar">firmar()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getDocumentos">getDocumentos()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXml">getXml()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlDocument">getXmlDocument()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getXmlSignatureNode">getXmlSignatureNode()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_loadXML">loadXML()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_saveXml">saveXml()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_setCaratula">setCaratula()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSchema">validateSchema()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_validateSignature">validateSignature()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#method_getSubTotDTE">getSubTotDTE()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-SobreEnvio.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+            <title>LibreDTE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">LibreDTE</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+                        <li class="phpdocumentor-topnav__menu-item -menu">
+                <a href="https://www.libredte.cl">
+                    <span>
+                                                                        LibreDTE Edición Enterprise
+                    </span>
+                </a>
+            </li>
+                                <li class="phpdocumentor-topnav__menu-item -social">
+                <a href="https://github.com/libredte/libredte-lib">
+                    <span>
+                                                                        <i class="fab fa-github"></i>
+                                                
+                    </span>
+                </a>
+            </li>
+                    <li class="phpdocumentor-topnav__menu-item -social">
+                <a href="https://www.libredte.cl/forum">
+                    <span>
+                                                                        <i class="fas fa-envelope-open-text"></i>
+                                                
+                    </span>
+                </a>
+            </li>
+                </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category -docs">
+            <h2 class="phpdocumentor-sidebar__category-header">Docs</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="guide/getting-started/index.html#empezando" class="">Empezando</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guide/getting-started/openssl.html#legacy-openssl" class="">Legacy OpenSSL</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="guide/internals/index.html#guias-internas" class="">Guías internas</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guide/internals/wsdl.html#archivos-wsdl-certificacion" class="">Archivos WSDL certificación</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category -namespaces">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/libredte.html" class="">libredte</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/libredte-lib.html" class="">lib</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category -packages">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/LibreDTE.html" class="">LibreDTE</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category -reports">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category -indices">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-signature.html">Signature</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    XmlSignatureNode
+
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">34</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Clase que representa el nodo &quot;Signature&quot; en un XML firmado electrónicamente
+utilizando el estándar de firma digital de XML (XML DSIG).</p>
+
+
+
+
+
+
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_certificate">$certificate</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>            </span>
+</dt>
+<dd>Instancia del certificado digital cuando se están creando firmas.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_data">$data</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd>Datos del nodo Signature.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_doc">$doc</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>            </span>
+</dt>
+<dd>Documento XML que representa el nodo de la firma electrónica.</dd>
+
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getDigestValue">getDigestValue()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene el valor del DigestValue del nodo &quot;Reference&quot;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getReference">getReference()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene la referencia asociada a la firma electrónica, si existe.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXML">getXML()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el XML que representa el nodo &quot;Signature&quot; como string.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_loadXML">loadXML()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Carga el contenido de un nodo XML &quot;Signature&quot; en la instancia actual.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setDigestValue">setDigestValue()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Establece el valor del DigestValue del nodo &quot;Reference&quot;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setReference">setReference()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Establece la referencia URI para la firma electrónica.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_sign">sign()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Firma el nodo &quot;SignedInfo&quot; del documento XML utilizando un certificado
+digital. Si no se ha proporcionado previamente un certificado, este
+puede ser pasado como argumento en la firma.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validate">validate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida el nodo de la firma electrónica del XML.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateDigestValue">validateDigestValue()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Validar DigestValue de los datos firmados.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateSignatureValue">validateSignatureValue()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida la firma del nodo &quot;SignedInfo&quot; del XML utilizando el certificado
+X509.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getCertificate">getCertificate()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>|null    </span>
+</dt>
+<dd>Obtiene el certificado asociado a la firma electrónica.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getSignatureValue">getSignatureValue()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene la firma calculada para el nodo &quot;SignedInfo&quot;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getX509Certificate">getX509Certificate()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el certificado X509 asociado al nodo &quot;KeyInfo&quot;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXmlDocument">getXmlDocument()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>    </span>
+</dt>
+<dd>Obtiene el objeto `XmlDocument` que representa el nodo &quot;Signature&quot;.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setCertificate">setCertificate()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Asigna un certificado digital a la instancia actual y actualiza los
+valores correspondientes en el nodo &quot;KeyInfo&quot; (módulo, exponente y
+certificado en formato X509).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setSignatureValue">setSignatureValue()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+<dd>Establece el valor de la firma calculada para el nodo &quot;SignedInfo&quot;.</dd>
+
+    </dl>
+
+
+
+        
+
+        
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_certificate">
+        $certificate
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_certificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Instancia del certificado digital cuando se están creando firmas.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$certificate</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_data">
+        $data
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_data" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">59</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Datos del nodo Signature.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$data</span>
+     = <span class="phpdocumentor-signature__default-value">[
+    // Nodo raíz es Signature.
+    // Este es el nodo que se incluirá en los XML firmados.
+    &#039;Signature&#039; =&gt; [
+        &#039;@attributes&#039; =&gt; [&#039;xmlns&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#&#039;],
+        // Datos que se firmarán. Acá el más importante es el tag
+        // &quot;DigestValue&quot; que contiene un &quot;resumen&quot; (digestión) del C14N
+        // del nodo de la referencia.
+        &#039;SignedInfo&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;xmlns:xsi&#039; =&gt; &#039;http://www.w3.org/2001/XMLSchema-instance&#039;], &#039;CanonicalizationMethod&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;Algorithm&#039; =&gt; &#039;http://www.w3.org/TR/2001/REC-xml-c14n-20010315&#039;]], &#039;SignatureMethod&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;Algorithm&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#rsa-sha1&#039;]], &#039;Reference&#039; =&gt; [&#039;@attributes&#039; =&gt; [
+            // Indica cuál es el nodo de la referencia, debe tener
+            // como prefijo un &quot;#&quot;. Si está vacío se entiende que
+            // se desea firmar todo el XML.
+            &#039;URI&#039; =&gt; &#039;&#039;,
+        ], &#039;Transforms&#039; =&gt; [&#039;Transform&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;Algorithm&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#enveloped-signature&#039;]]], &#039;DigestMethod&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;Algorithm&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#sha1&#039;]], &#039;DigestValue&#039; =&gt; &#039;&#039;]],
+        // Firma del C14N del nodo &quot;SignedInfo&quot;.
+        // Se agrega después de construir el C14N del SignedInfo y firmar.
+        &#039;SignatureValue&#039; =&gt; &#039;&#039;,
+        // Obligatorio.
+        // Información de la clave pública para la validación posterior
+        // de la firma electrónica.
+        &#039;KeyInfo&#039; =&gt; [&#039;KeyValue&#039; =&gt; [&#039;RSAKeyValue&#039; =&gt; [
+            &#039;Modulus&#039; =&gt; &#039;&#039;,
+            // Obligatorio.
+            &#039;Exponent&#039; =&gt; &#039;&#039;,
+        ]], &#039;X509Data&#039; =&gt; [&#039;X509Certificate&#039; =&gt; &#039;&#039;]],
+    ],
+]</span></code>
+
+        <section class="phpdocumentor-description"><p>Por defecto se dejan vacíos los datos que se completarán posteriormente.
+Ya sea mediante una asignación de los datos o bien mediante la carga de
+un nuevo XML con los datos.</p>
+</section>
+
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_doc">
+        $doc
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_doc" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Documento XML que representa el nodo de la firma electrónica.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$doc</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+            </section>
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDigestValue">
+        getDigestValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getDigestValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">212</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el valor del DigestValue del nodo &quot;Reference&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDigestValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El valor del DigestValue o <code class="prettyprint">null</code> si no está definido.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getReference">
+        getReference()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getReference" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">175</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene la referencia asociada a la firma electrónica, si existe.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getReference</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La referencia URI asociada al nodo &quot;Signature&quot;, o <code class="prettyprint">null</code>
+si no tiene.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getXML">
+        getXML()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXML" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">164</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el XML que representa el nodo &quot;Signature&quot; como string.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getXML</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El XML en formato string del nodo &quot;Signature&quot;.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_loadXML">
+        loadXML()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_loadXML" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">130</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Carga el contenido de un nodo XML &quot;Signature&quot; en la instancia actual.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">loadXML</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$xml</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>String XML que representa el nodo &quot;Signature&quot;.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setDigestValue">
+        setDigestValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setDigestValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">225</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Establece el valor del DigestValue del nodo &quot;Reference&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setDigestValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$digestValue</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$digestValue</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>El DigestValue calculado.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setReference">
+        setReference()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setReference" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">188</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Establece la referencia URI para la firma electrónica.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setReference</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reference</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$reference</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>La referencia URI (debe incluir el prefijo &quot;#&quot;).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_sign">
+        sign()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_sign" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">290</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Firma el nodo &quot;SignedInfo&quot; del documento XML utilizando un certificado
+digital. Si no se ha proporcionado previamente un certificado, este
+puede ser pasado como argumento en la firma.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">sign</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$certificate</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>El certificado digital a usar para
+firmar. Si no se proporciona, se utilizará el ya asignado.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_sign#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si no se ha asignado el DigestValue o el
+certificado digital.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validate">
+        validate()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">370</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida el nodo de la firma electrónica del XML.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Valida el DigestValue y la firma de dicho DigestValue.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$xml</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento XML que se desea validar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validate#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>En caso de error de DigestValue o firma.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateDigestValue">
+        validateDigestValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateDigestValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">383</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Validar DigestValue de los datos firmados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateDigestValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$xml</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento XML que se desea validar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateDigestValue#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si el DigestValue no es válido.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateSignatureValue">
+        validateSignatureValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateSignatureValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">425</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida la firma del nodo &quot;SignedInfo&quot; del XML utilizando el certificado
+X509.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateSignatureValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateSignatureValue#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Signature-SignatureException.html"><abbr title="\libredte\lib\Core\Signature\SignatureException">SignatureException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si la firma electrónica del XML no es válida.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCertificate">
+        getCertificate()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getCertificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">242</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el certificado asociado a la firma electrónica.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El certificado asociado o <code class="prettyprint">null</code> si no está asignado.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSignatureValue">
+        getSignatureValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getSignatureValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">326</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene la firma calculada para el nodo &quot;SignedInfo&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getSignatureValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El valor de la firma calculada en base64.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getX509Certificate">
+        getX509Certificate()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getX509Certificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">356</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el certificado X509 asociado al nodo &quot;KeyInfo&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getX509Certificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El certificado X509 en base64.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getXmlDocument">
+        getXmlDocument()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">148</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el objeto `XmlDocument` que representa el nodo &quot;Signature&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El objeto <code class="prettyprint">XmlDocument</code> con los datos del nodo
+&quot;Signature&quot;.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setCertificate">
+        setCertificate()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setCertificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">255</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna un certificado digital a la instancia actual y actualiza los
+valores correspondientes en el nodo &quot;KeyInfo&quot; (módulo, exponente y
+certificado en formato X509).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$certificate</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Signature-Certificate.html"><abbr title="\libredte\lib\Core\Signature\Certificate">Certificate</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>El certificado digital a asignar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setSignatureValue">
+        setSignatureValue()
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setSignatureValue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/XmlSignatureNode.php"><a href="files/src-signature-xmlsignaturenode.html"><abbr title="src/Signature/XmlSignatureNode.php">XmlSignatureNode.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">337</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Establece el valor de la firma calculada para el nodo &quot;SignedInfo&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">setSignatureValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signatureValue</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$signatureValue</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>El valor de la firma en base64.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La instancia actual para encadenamiento de métodos.</p>
+</section>
+
+            </section>
+
+</article>
+            </section>
+
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Signature/XmlSignatureNode.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_certificate">$certificate</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_data">$data</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#property_doc">$doc</a></li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getDigestValue">getDigestValue()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getReference">getReference()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXML">getXML()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_loadXML">loadXML()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setDigestValue">setDigestValue()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setReference">setReference()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_sign">sign()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validate">validate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateDigestValue">validateDigestValue()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_validateSignatureValue">validateSignatureValue()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getCertificate">getCertificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getSignatureValue">getSignatureValue()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getX509Certificate">getX509Certificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_getXmlDocument">getXmlDocument()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setCertificate">setCertificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#method_setSignatureValue">setSignatureValue()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+        </div>
+        <a href="classes/libredte-lib-Core-Signature-XmlSignatureNode.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>
