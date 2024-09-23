@@ -103,7 +103,7 @@ Los casos de uso representan una situación específica que se puede dar al crea
    1. [x] Existe soporte para todos los impuestos adicionales y retenciones, excepto los asociados a combustibles.
 
 7. **PDF del DTE**
-   1. [ ] A partir del XML del DTE se puede generar un PDF en diferenes formatos.
+   1. [ ] A partir del XML del DTE se puede generar un PDF en diferentes formatos.
    2. [ ] Formatos disponibles:
       1. [ ] Estándar: con tamaño de hoja carta y papel contínuo.
 

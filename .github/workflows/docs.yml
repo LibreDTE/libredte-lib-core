@@ -1,0 +1,35 @@
+name: Docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - libredte_lib_2024
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        tools: composer
+
+    - name: Install Dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist
+
+    - name: Generate Documentation
+      run: composer docs
+
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/docs
+        publish_branch: gh-pages
