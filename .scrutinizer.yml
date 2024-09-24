@@ -2,14 +2,20 @@ build:
     nodes:
         analysis:
             tests:
-                override:
-                    - phpunit.xml
+                config_path: phpunit.xml
             environment:
                 php:
                     version: 8.2.1
+    environment:
+        variables:
+            LIBREDTE_TESTS_DIR: tests
+            LIBREDTE_COMPANY: '76192083-9'
+            LIBREDTE_ENV_TEST_AUTH_DATE: '2019-12-23'
+            LIBREDTE_CERTIFICATE_FILE: 'tests/resources/certificates/fake-certificate.pfx'
+            LIBREDTE_CERTIFICATE_PASS: 'i_love_libredte'
     dependencies:
         before:
-            - composer install --no-progress --no-suggest --prefer-dist
+            - composer install --no-progress --prefer-dist
 
 tools:
     php_code_sniffer:
