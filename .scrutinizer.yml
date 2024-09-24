@@ -2,12 +2,22 @@ build:
     nodes:
         analysis:
             tests:
-                config_path: phpunit.xml
+                override:
+                    - mkdir -p var
+                    - vendor/bin/phpunit --configuration=phpunit.xml
             environment:
                 php:
                     version: 8.2.1
+                    extensions:
+                        - curl
+                        - json
+                        - mbstring
+                        - openssl
+                        - soap
+                        - xdebug
     environment:
         variables:
+            XDEBUG_MODE: coverage
             LIBREDTE_TESTS_DIR: tests
             LIBREDTE_COMPANY: '76192083-9'
             LIBREDTE_ENV_TEST_AUTH_DATE: '2019-12-23'
@@ -23,7 +33,9 @@ tools:
             standard: PSR12
     php_cs_fixer:
         config: php-cs-fixer.php
-    php_code_coverage: true
+    php_code_coverage:
+        config:
+            clover_file: var/tests-coverage.xml
 
 filter:
     paths:
