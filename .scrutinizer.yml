@@ -9,11 +9,6 @@ build:
                 php:
                     version: 8.2.1
                     pecl_extensions:
-                        - curl
-                        - json
-                        - mbstring
-                        - openssl
-                        - soap
                         - xdebug
     environment:
         variables:
@@ -26,6 +21,7 @@ build:
     dependencies:
         before:
             - composer install --no-progress --prefer-dist
+            - php -m
 
 tools:
     php_code_sniffer:
