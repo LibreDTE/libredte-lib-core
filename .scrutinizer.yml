@@ -1,48 +1,36 @@
+checks:
+  php: true
+
 build:
-    nodes:
-        analysis:
-            tests:
-                override:
-                    - mkdir -p var
-                    - vendor/bin/phpunit --configuration=phpunit.xml
-            environment:
-                php:
-                    version: 8.2.1
-                    pecl_extensions:
-                        - xdebug
-    environment:
-        variables:
-            XDEBUG_MODE: coverage
-            LIBREDTE_TESTS_DIR: tests
-            LIBREDTE_COMPANY: '76192083-9'
-            LIBREDTE_ENV_TEST_AUTH_DATE: '2019-12-23'
-            LIBREDTE_CERTIFICATE_FILE: 'tests/resources/certificates/fake-certificate.pfx'
-            LIBREDTE_CERTIFICATE_PASS: 'i_love_libredte'
-    dependencies:
-        before:
-            - composer install --no-progress --prefer-dist
-            - php -m
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+          - command: composer tests
+            coverage:
+              file: var/tests-coverage.xml
+              format: clover
+      environment:
+        php:
+          version: 8.2.1
+          pecl_extensions:
+            - xdebug
+  dependencies:
+    before:
+      - composer install --no-progress --prefer-dist
 
 tools:
-    php_code_sniffer:
-        config:
-            standard: PSR12
-    php_cs_fixer:
-        config: php-cs-fixer.php
-    php_code_coverage:
-        config:
-            clover_file: var/tests-coverage.xml
+  php_code_sniffer:
+    enabled: true
+    config:
+      standard: PSR12
 
 filter:
-    paths:
-        - src/*
-    excluded_paths:
-        - resources/*
-        - tests/*
-        - tools/*
-        - vendor/*
-
-checks:
-    php:
-        code_rating: true
-        duplication: true
+  paths:
+    - src/*
+  excluded_paths:
+    - resources/*
+    - tests/*
+    - tools/*
+    - vendor/*

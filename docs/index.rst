@@ -13,6 +13,12 @@ Docs: lib-core
 .. image:: https://poser.pugx.org/libredte/libredte-lib-core/license
    :target: https://packagist.org/packages/libredte/libredte-lib-core
 
+.. image:: https://app.fossa.com/api/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core.svg?type=shield&issueType=license
+   :target: https://app.fossa.com/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core?ref=badge_shield&issueType=license
+
+.. image:: https://app.fossa.com/api/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core.svg?type=shield&issueType=security
+   :target: https://app.fossa.com/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core?ref=badge_shield&issueType=security
+
 Bienvenido a la documentación de LibreDTE.
 
 .. toctree::

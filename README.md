@@ -4,6 +4,8 @@
 [![Descargas Totales](https://poser.pugx.org/libredte/libredte-lib-core/downloads)](https://packagist.org/packages/libredte/libredte-lib-core)
 [![Descargas Mensuales](https://poser.pugx.org/libredte/libredte-lib-core/d/monthly)](https://packagist.org/packages/libredte/libredte-lib-core)
 [![Licencia](https://poser.pugx.org/libredte/libredte-lib-core/license)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core?ref=badge_shield&issueType=license)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core?ref=badge_shield&issueType=security)
 
 LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica Libre para Chile.
 
