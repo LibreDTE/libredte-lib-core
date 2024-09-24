@@ -4,8 +4,9 @@
     <meta charset="utf-8">
             <title>LibreDTE</title>
     
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="../">
+    <base href="../../">
     <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
@@ -169,158 +170,201 @@
 </aside>
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
-                                <section>
-                                        <ul class="phpdocumentor-breadcrumbs">
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-sii.html">Sii</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-sii-httpclient.html">HttpClient</a></li>
-    </ul>
+                                        <section class="section " id="contribuir-a-libredte">
+            <h1>Contribuir a LibreDTE</h1>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">WebService</h2>
+            <div class="phpdocumentor-admonition attention">
+                        <article>
+        <img
+    src="https://gravatar.com/avatar/593daa4c87476e28d7716c451a707366?size=100"
+    width="100"    height="100"        alt="Avatar Esteban Delaf"        />
 
-        
-<h3 id="toc">
-    Table of Contents
-    <a href="namespaces/libredte-lib-core-sii-httpclient-webservice.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <p>Si deseas contribuir a LibreDTE, te lo agradezco. Después de más de 10 años aportando al software libre en Chile a veces se hace difícil tener todo el tiempo que quisiera para realizar mejoras a LibreDTE. Por lo que cualquier corrección de error, mejora o nueva funcionalidad que tengas en mente me comprometo a revisarla.</p>
 
-</h3>
-
-
-
-
-    <h4 id="toc-classes">
-        Classes
-        <a href="namespaces/libredte-lib-core-sii-httpclient-webservice.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-AbstractWebServiceResponse.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\AbstractWebServiceResponse">AbstractWebServiceResponse</abbr></a></dt><dd>Clase base para respuestas de los servicios web del SII utilizando SOAP.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentSignatureStatusResponse.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentSignatureStatusResponse">DocumentSignatureStatusResponse</abbr></a></dt><dd>Respuesta con el estado avanzado de un DTE aceptado por el SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentStatusResponse.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentStatusResponse">DocumentStatusResponse</abbr></a></dt><dd>Respuesta con el estado de un DTE aceptado por el SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentUploader.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploader">DocumentUploader</abbr></a></dt><dd>Clase para el envío de documentos al SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentUploadStatusEmailResponse.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploadStatusEmailResponse">DocumentUploadStatusEmailResponse</abbr></a></dt><dd>Respuesta de la solicitud de correo de estado de un documento subido al SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentUploadStatusResponse.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploadStatusResponse">DocumentUploadStatusResponse</abbr></a></dt><dd>Respuesta de la consulta de estado de un documento subido al SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Sii-HttpClient-WebService-DocumentValidator.html"><abbr title="\libredte\lib\Core\Sii\HttpClient\WebService\DocumentValidator">DocumentValidator</abbr></a></dt><dd>Clase para realizar las consultas de validación de documentos al SII.</dd>    </dl>
-
-
-
-
-
-
-
-
-        
-
-        
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
+    <p><a href="https://esteban.delaf.cl">Esteban Delaf</a>, Autor de LibreDTE.</p>
 
     </article>
-                                </section>
-                <section class="phpdocumentor-on-this-page__sidebar">
-                            
-    <section class="phpdocumentor-on-this-page__content">
-        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+</div>
 
-        <ul class="phpdocumentor-list -clean">
-            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
-            <li>
-                <ul class="phpdocumentor-list -clean">
-                                                                                                    <li><a href="namespaces/libredte-lib-core-sii-httpclient-webservice.html#toc-classes">Classes</a></li>
-                                                                                                                    </ul>
-            </li>
+            <section class="section " id="trabaja-con-una-copia-del-repositorio">
+            <h2>Trabaja con una copia del repositorio</h2>
 
             
-                    </ul>
+    <p>Si deseas contribuir con el proyecto, especialmente resolviendo alguna de las <a href="https://github.com/libredte/libredte-lib-core/issues">incidencias abiertas</a>, debes:</p>
+
+            
+    
+<ol start="1" type="1">
+    <li value="1">Hacer una copia mediante una bifurcación del <a href="https://github.com/libredte/libredte-lib-core">repositorio en GitHub</a> y luego clonar dicho repositorio.</li>
+
+</ol>
+
+            <pre><code class="language-shell">mkdir -p ~/dev
+cd ~/dev
+git clone https://github.com/TU_USUARIO/libredte-lib-core
+cd libredte-lib-core</code></pre>
+
+            
+    
+<ol start="2" type="1">
+    <li value="2">Crear una rama para los cambios.</li>
+
+</ol>
+
+            <pre><code class="language-shell">git checkout -b nombre-branch</code></pre>
+
+            
+    
+<ol start="3" type="1">
+    <li value="3">Programar tu código siguiendo los lineamientos descritos más abajo.</li>
+
+</ol>
+
+            <pre><code class="language-php">declare(strict_types=1);
+
+// Seguir PSR12
+// Seguir KISS, SRP, DRY, YAGNI y TDD.
+// Ejecutar las validaciones y pruebas.</code></pre>
+
+            
+    
+<ol start="4" type="1">
+    <li value="4">Guardar los cambios en tu repositorio local.</li>
+
+</ol>
+
+            <pre><code class="language-shell">git commit -m &#039;Se agrega...&#039;</code></pre>
+
+            
+    
+<ol start="5" type="1">
+    <li value="5">Subir los cambios a tu repositorio en Github.</li>
+
+</ol>
+
+            <pre><code class="language-shell">git push origin nombre-branch</code></pre>
+
+            
+    
+<ol start="6" type="1">
+    <li value="6">Crear una <a href="https://github.com/LibreDTE/libredte-lib-core/pulls">solicitud en el repositorio de LibreDTE</a> para unir tu rama con la oficial de LibreDTE.</li>
+
+</ol>
+
     </section>
 
-                </section>
+            <section class="section " id="lineamientos-de-codigo">
+            <h2>Lineamientos de código</h2>
+
+            
+    <p>El código debe seguir los siguientes lineamientos:</p>
+
+            
+    
+<ol start="1" type="1">
+    <li value="1">Respetar el estándar <a href="https://www.php-fig.org/psr/psr-12/">PSR12</a>.</li>
+
+    <li value="2">
+    <p>Seguir los patrones y principios:</p>
+
+
+<ul>
+    <li class="dash"><strong>KISS</strong>
+: Mantén el código simple y directo. Evita complejidades innecesarias.</li>
+
+    <li class="dash"><strong>SRP</strong>
+: Cada clase y método debe tener una única responsabilidad.</li>
+
+    <li class="dash"><strong>DRY</strong>
+: Evita la duplicación de código. Si encuentras el mismo código en varios lugares, refactorízalo para que se utilice de manera centralizada.</li>
+
+    <li class="dash"><strong>YAGNI</strong>
+: No implementes funcionalidades que no sean necesarias en el presente. El código debe ser lo más minimalista posible, construyendo solo lo que realmente se necesita.</li>
+
+    <li class="dash"><strong>TDD</strong>
+: Escribe las pruebas antes del código. Esto ayuda a garantizar que el código haga lo que se supone que debe hacer.</li>
+
+</ul>
+</li>
+
+    <li value="3">Tener el 100% de cobertura en las pruebas.</li>
+
+    <li value="4">Escribir la documentación correspondiente, ver anexo más abajo.</li>
+
+</ol>
+
+            
+    <p>Una vez tengas tu código debes ejecutar los siguientes comandos para validarlo:</p>
+
+            <pre><code class="language-shell"># Revisión del estilo de código según estándar definido para la biblioteca.
+php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php .
+
+# Buscar errores potenciales en tu código sin ejecutar tests.
+phpstan analyse --configuration=phpstan.neon --memory-limit=1G
+
+# Pruebas unitarias, funcionales y de integración de toda la biblioteca.
+XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml</code></pre>
+
+            <div class="phpdocumentor-admonition important">
+        <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <article>
+        
+    <p>Si tu código no pasa las validaciones anteriores no será aceptado para ser unido al repositorio oficial.</p>
+
+    </article>
+</div>
+
+    </section>
+
+            <section class="section " id="organizacion-de-pruebas">
+            <h2>Organización de pruebas</h2>
+
+            
+    <p>Las pruebas se organizan en 3 tipos:</p>
+
+            
+    
+<ol start="1" type="1">
+    <li value="1"><strong>Unitarias</strong>
+: deben probar solo una clase. Estas pruebas no deben realizar conexiones al SII.</li>
+
+    <li value="2"><strong>Funcionales</strong>
+: prueban una funcionalidad con múltiples clases. Estas pruebas no deben realizar conexiones al SII.</li>
+
+    <li value="3"><strong>Integración</strong>
+: prueban una funcionalidad que requiere realizar conexión al SII.</li>
+
+</ol>
+
+    </section>
+
+            <section class="section " id="documentacion">
+            <h2>Documentación</h2>
+
+            
+    <p>El código que generes debe estar correctamente documentado. La documentación puede ser de 2 tipos:</p>
+
+            
+    
+<ol start="1" type="1">
+    <li value="1">En el <strong>código</strong>
+: utilizando PHPDoc, y que será validada por <em>phpstan</em>
+.</li>
+
+    <li value="2">En las <strong>guías de documentación</strong>
+ estática en <code>docs/dev</code>
+.</li>
+
+</ol>
+
+            
+    <p>Adicionalmente, si tu código implementa una funcionalidad nueva, deberás agregarla a <code>docs/features/list.rst</code>
+.</p>
+
+    </section>
+
+    </section>
+
                             </div>
             <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
@@ -334,7 +378,7 @@
     </section>
 </section>
         </div>
-        <a href="namespaces/libredte-lib-core-sii-httpclient-webservice.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
