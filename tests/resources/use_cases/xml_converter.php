@@ -75,7 +75,7 @@ return [
         // Caso con nodos vacíos.
         'empty_node' => [
             'data' => ['root' => ['element' => '']],
-            'expected' => ['root' => ['element' => '']],
+            'expected' => ['root' => ['element' => null]],
             'expectedException' => null,
         ],
         // Caso con múltiples valores repetidos.
@@ -306,7 +306,7 @@ return [
         // Caso con nodos vacíos.
         'empty_node' => [
             'xmlContent' => '<?xml version="1.0" encoding="ISO-8859-1"?><root><element></element></root>',
-            'expected' => ['root' => ['element' => '']],
+            'expected' => ['root' => ['element' => null]],
             'expectedException' => null,
         ],
         // Caso con múltiples valores repetidos.

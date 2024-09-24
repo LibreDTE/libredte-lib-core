@@ -10,9 +10,6 @@ build:
     dependencies:
         before:
             - composer install --no-progress --no-suggest --prefer-dist
-        cache:
-            directories:
-                - vendor
 
 tools:
     php_code_sniffer:

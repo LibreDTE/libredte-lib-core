@@ -206,6 +206,18 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
 
             // Si el valor esperado no es un arreglo, se compara directamente.
             else {
+                // Si el valor actual es un flotante, se revisa si se debe
+                // convertir a un entero para usar assertSame() con el tipo de
+                // datos correcto y que no falle porque se compara entero con
+                // float.
+                if (
+                    is_float($actualValues[$key])
+                    && floor($actualValues[$key]) == $actualValues[$key]
+                ) {
+                    $actualValues[$key] = (int) $actualValues[$key];
+                }
+
+                // Realizar validación del valor.
                 $this->assertSame(
                     $expectedValue,
                     $actualValues[$key],

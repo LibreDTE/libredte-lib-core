@@ -28,6 +28,9 @@ jobs:
       - name: Generate Documentation
         run: php tools/phpdocumentor run --config=phpdoc.xml
 
+      - name: Create CNAME file
+        run: echo "lib-core.docs.libredte.cl" > build/docs/CNAME
+
       - name: Deploy to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v4

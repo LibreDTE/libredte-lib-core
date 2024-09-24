@@ -121,6 +121,13 @@ trait IvaMntTotalNormalizationTrait
             }
         }
 
+        // Si hay IVA definido se cambia a valor entero. El IVA no es decimal.
+        if (is_numeric($data['Encabezado']['Totales']['IVA'] ?? null)) {
+            $data['Encabezado']['Totales']['IVA'] =
+                (int) $data['Encabezado']['Totales']['IVA']
+            ;
+        }
+
         // Si hay impuesto retenido o adicional se contabiliza en el total.
         if (!empty($data['Encabezado']['Totales']['ImptoReten'])) {
             foreach ($data['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
@@ -177,6 +184,17 @@ trait IvaMntTotalNormalizationTrait
                 $data['Encabezado']['Totales']['MontoPeriodo'] =
                     $data['Encabezado']['Totales']['MntTotal']
                         + $data['Encabezado']['Totales']['MontoNF']
+                ;
+            }
+        }
+
+        // Si hay monto total definido, y el documento no es de exportación, se
+        // cambia a valor entero. El monto total no es decimal en documentos
+        // nacionales.
+        if (is_numeric($data['Encabezado']['Totales']['MntTotal'] ?? null)) {
+            if (!$this->getTipoDocumento()->esExportacion()) {
+                $data['Encabezado']['Totales']['MntTotal'] =
+                    (int) $data['Encabezado']['Totales']['MntTotal']
                 ;
             }
         }

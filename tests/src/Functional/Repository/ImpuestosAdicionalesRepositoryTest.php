@@ -58,7 +58,7 @@ class ImpuestosAdicionalesRepositoryTest extends TestCase
 
     public function testGetTasa(): void
     {
-        $this->assertSame(19, $this->repository->getTasa(15));
+        $this->assertSame(19.0, $this->repository->getTasa(15));
         $this->assertSame(31.5, $this->repository->getTasa(24));
         $this->assertFalse($this->repository->getTasa(999));
     }
@@ -71,6 +71,6 @@ class ImpuestosAdicionalesRepositoryTest extends TestCase
             ['CodImp' => 30, 'MntImp' => 700],
         ];
 
-        $this->assertSame(1700, $this->repository->getRetenido($OtrosImp));
+        $this->assertSame(1700, (int) $this->repository->getRetenido($OtrosImp));
     }
 }

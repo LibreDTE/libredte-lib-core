@@ -306,8 +306,15 @@ abstract class AbstractDocumento
     public function getMontoTotal(): int|float
     {
         $data = $this->getData();
+        $monto = $data['Encabezado']['Totales']['MntTotal'];
 
-        return $data['Encabezado']['Totales']['MntTotal'];
+        // Verificar si el monto es equivalente a un entero.
+        if (is_float($monto) && floor($monto) == $monto) {
+            return (int) $monto;
+        }
+
+        // Entregar como flotante.
+        return $monto;
     }
 
     /**

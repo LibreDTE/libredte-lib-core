@@ -106,8 +106,8 @@ class ImpuestosAdicionalesRepository
     {
         $retenido = 0.0;
         foreach ($OtrosImp as $Imp) {
-            if ($this->getTipo((int)$Imp['CodImp']) === 'R') {
-                $retenido += (float)$Imp['MntImp'];
+            if ($this->getTipo((int) $Imp['CodImp']) === 'R') {
+                $retenido += (float) $Imp['MntImp'];
             }
         }
         return $retenido;
