@@ -32,7 +32,7 @@ Bienvenido a la documentación de LibreDTE.
 
    getting-started/index
    features/index
-   internals/index
+   dev/index
 
 LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica Libre para Chile.
 

@@ -117,7 +117,7 @@ class Contribuyente
      * @param string|int|null $rut RUT del contribuyente.
      * @param string|null $razon_social Razón social del contribuyente.
      * @param string|null $giro Giro comercial del contribuyente.
-     * @param int|null $actividad_economicaCódigo de actividad económica.
+     * @param int|null $actividad_economica Código de actividad económica.
      * @param string|null $telefono Teléfono del contribuyente.
      * @param string|null $email Correo electrónico del contribuyente.
      * @param string|null $direccion Dirección física del contribuyente.

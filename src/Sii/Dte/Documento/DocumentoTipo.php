@@ -217,9 +217,9 @@ class DocumentoTipo
     /**
      * Indica si el documento es cedible.
      *
-     * @return void
+     * @return bool
      */
-    public function esCedible()
+    public function esCedible(): bool
     {
         return $this->cedible;
     }

@@ -49,7 +49,7 @@ class Date extends Carbon
 
             $carbonDate = self::createFromFormat('Y-m-d', $date);
             if (
-                $carbonDate === false
+                $carbonDate === null
                 || $carbonDate->format('Y-m-d') !== $date
                 || $carbonDate->getLastErrors()['error_count'] > 0
             ) {
