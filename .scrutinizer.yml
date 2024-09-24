@@ -8,7 +8,7 @@ build:
             environment:
                 php:
                     version: 8.2.1
-                    extensions:
+                    pecl_extensions:
                         - curl
                         - json
                         - mbstring
