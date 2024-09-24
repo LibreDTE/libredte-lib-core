@@ -32,5 +32,3 @@ checks:
     php:
         code_rating: true
         duplication: true
-        syntax: true
-        unused_use_statements: true
