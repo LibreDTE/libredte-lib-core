@@ -17,8 +17,7 @@ tools:
             standard: PSR12
     php_cs_fixer:
         config: php-cs-fixer.php
-    php_unit:
-        config: phpunit.xml
+    php_code_coverage: true
 
 filter:
     paths:
