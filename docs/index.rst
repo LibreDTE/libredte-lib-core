@@ -4,11 +4,11 @@ Docs: lib-core
 .. image:: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=master&event=push
    :target: https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Amaster
 
-.. image:: https://poser.pugx.org/libredte/libredte-lib-core/downloads
-   :target: https://packagist.org/packages/libredte/libredte-lib-core
+.. image:: https://scrutinizer-ci.com/g/libredte/libredte-lib-core/badges/quality-score.png?b=master
+   :target: https://scrutinizer-ci.com/g/libredte/libredte-lib-core/
 
-.. image:: https://poser.pugx.org/libredte/libredte-lib-core/d/monthly
-   :target: https://packagist.org/packages/libredte/libredte-lib-core
+.. image:: https://scrutinizer-ci.com/g/libredte/libredte-lib-core/badges/coverage.png?b=master
+   :target: https://scrutinizer-ci.com/g/libredte/libredte-lib-core/
 
 .. image:: https://poser.pugx.org/libredte/libredte-lib-core/license
    :target: https://packagist.org/packages/libredte/libredte-lib-core
@@ -18,6 +18,12 @@ Docs: lib-core
 
 .. image:: https://app.fossa.com/api/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core.svg?type=shield&issueType=security
    :target: https://app.fossa.com/projects/git%2Bgithub.com%2FLibreDTE%2Flibredte-lib-core?ref=badge_shield&issueType=security
+
+.. image:: https://poser.pugx.org/libredte/libredte-lib-core/downloads
+   :target: https://packagist.org/packages/libredte/libredte-lib-core
+
+.. image:: https://poser.pugx.org/libredte/libredte-lib-core/d/monthly
+   :target: https://packagist.org/packages/libredte/libredte-lib-core
 
 Bienvenido a la documentación de LibreDTE.
 
