@@ -6,7 +6,7 @@ build:
                     - phpunit.xml
             environment:
                 php:
-                    version: 8.3
+                    version: 8.2.1
     dependencies:
         before:
             - composer install --no-progress --no-suggest --prefer-dist
