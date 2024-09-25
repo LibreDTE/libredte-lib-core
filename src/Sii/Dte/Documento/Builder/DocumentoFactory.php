@@ -174,7 +174,7 @@ class DocumentoFactory
         $data = $array['DTE']['Documento']
             ?? $array['DTE']['Exportaciones']
             ?? $array['DTE']['Liquidacion']
-            ?? null
+            ?? []
         ;
 
         // Crear builder para el documento que se creará.

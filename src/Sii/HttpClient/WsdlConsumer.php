@@ -227,7 +227,7 @@ class WsdlConsumer
     ): XmlDocument {
         // Revisar si se pasó en $args el valor de $retry.
         if (is_numeric($args)) {
-            $retry = (int)$args;
+            $retry = (int) $args;
             $args = [];
         }
 
@@ -309,7 +309,7 @@ class WsdlConsumer
                     $args,
                     $options,
                     $requestHeaders,
-                    $outputHeaders
+                    $responseHeaders
                 );
                 // Si la llamada no falló (no hubo excepción), se rompe el
                 // ciclo de reintentos.

@@ -24,11 +24,21 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Repository\ImpuestosAdicionalesRepository;
+
 /**
  * Reglas de normalización para documentos con impuesto adicional o retención.
  */
 trait ImpuestoAdicionalRetencionNormalizationTrait
 {
+    /**
+     * Entrega el repositorio de impuestos adicionales que se pueden usar en un
+     * documento tributario.
+     *
+     * @return ImpuestosAdicionalesRepository
+     */
+    abstract protected function getImpuestosAdicionalesRepository(): ImpuestosAdicionalesRepository;
+
     /**
      * Calcula los montos de impuestos adicionales o retenciones.
      *

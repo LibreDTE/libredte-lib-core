@@ -117,6 +117,6 @@ class CertificateUtils
             'e' => $exponent,
         ]);
 
-        return $rsa->toString('PKCS1');
+        return (string) $rsa->toString('PKCS1');
     }
 }

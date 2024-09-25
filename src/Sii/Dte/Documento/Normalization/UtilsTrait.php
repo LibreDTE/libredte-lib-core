@@ -72,14 +72,14 @@ trait UtilsTrait
      */
     protected function calcularNetoIVA($total, int|false|null $tasa = null): array
     {
-        // Si no existe tasa es porque no hay Neto e IVA (doc exento).
-        if ($tasa === 0 || $tasa === false) {
-            return [0, 0];
-        }
-
-        // Si no se indicó tasa se usa el valor por defecto.
+        // Si no se indicó tasa se usa el valor por defecto para el documento.
         if ($tasa === null) {
             $tasa = $this->getTipoDocumento()->getDefaultTasaIVA();
+        }
+
+        // Si no existe tasa es porque no hay Neto ni IVA (doc exento).
+        if ($tasa === 0 || $tasa === false) {
+            return [0, 0];
         }
 
         // Obtener el neto e IVA a partir del total.

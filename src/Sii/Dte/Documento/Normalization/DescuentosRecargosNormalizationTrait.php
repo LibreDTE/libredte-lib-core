@@ -24,11 +24,22 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
+
 /**
  * Reglas de normalización para los descuentos y recargos de un documento.
  */
 trait DescuentosRecargosNormalizationTrait
 {
+    use UtilsTrait;
+
+    /**
+     * Entrega el tipo de documento que este "builder" puede construir.
+     *
+     * @return DocumentoTipo
+     */
+    abstract protected function getTipoDocumento(): DocumentoTipo;
+
     /**
      * Aplica los descuentos y recargos generales respectivos a los montos que
      * correspondan según el indicador del descuento o recargo.

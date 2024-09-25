@@ -181,7 +181,7 @@ final class ArrayDataProvider implements DataProviderInterface
     private function loadData(string $key): void
     {
         if (isset($this->dataFilepath)) {
-            $filepath = sprintf($this->dataFilepath, $key);
+            $filepath = sprintf($this->dataFilepath ?? '', $key);
             $filepath = is_readable($filepath) ? $filepath : null;
         } else {
             $filepath = PathManager::getDataPath($key);

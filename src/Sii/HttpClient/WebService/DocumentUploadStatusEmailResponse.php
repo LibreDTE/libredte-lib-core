@@ -80,10 +80,7 @@ class DocumentUploadStatusEmailResponse extends AbstractWebServiceResponse
             ;
 
             // Normalizar el estado de la consulta del envío.
-            [$status, $description] = $this->parseEstado(
-                $this->headers,
-                $this->body
-            );
+            [$status, $description] = $this->parseEstado($this->headers);
 
             // Armar los datos normalizados.
             $this->data = [
@@ -103,10 +100,9 @@ class DocumentUploadStatusEmailResponse extends AbstractWebServiceResponse
      * Parsea el estado de la respuesta del SII.
      *
      * @param array $headers Encabezados de la respuesta.
-     * @param array $body Cuerpo de la respuesta.
      * @return array Arreglo con el estado, error y descripción.
      */
-    private function parseEstado(array $headers, array $body): array
+    private function parseEstado(array $headers): array
     {
         // Asignar el código del estado.
         $status = $headers['SII:ESTADO'];

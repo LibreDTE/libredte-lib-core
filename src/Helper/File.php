@@ -117,7 +117,7 @@ class File
     {
         // Abre un flujo para el archivo de salida.
         $outputStream = fopen($zipFilePath, 'w');
-        if (!$outputStream) {
+        if ($outputStream === false) {
             throw new RuntimeException(sprintf(
                 'No se puede abrir el archivo para escritura: $%s',
                 $zipFilePath

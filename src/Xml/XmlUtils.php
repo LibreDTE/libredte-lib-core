@@ -60,28 +60,30 @@ class XmlUtils
      * Codifica el string como ISO-8859-1 si es que fue pasado como UTF-8.
      *
      * @param string $string String en UTF-8 o ISO-8859-1.
-     * @return string String en ISO-8859-1.
+     * @return string String en ISO-8859-1 si se logró convertir.
      */
     public static function utf2iso(string $string): string
     {
-        return mb_detect_encoding($string, 'UTF-8', true)
-            ? mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8')
-            : $string
-        ;
+        if (!mb_detect_encoding($string, 'UTF-8', true)) {
+            return $string;
+        }
+
+        return (string) mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8');
     }
 
     /**
      * Codifica el string como UTF-8 si es que fue pasado como ISO-8859-1.
      *
      * @param string $string String en UTF-8 o ISO-8859-1.
-     * @return string String en UTF-8.
+     * @return string String en UTF-8 si se logró convertir.
      */
     public static function iso2utf(string $string): string
     {
-        return mb_detect_encoding($string, 'ISO-8859-1', true)
-            ? mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1')
-            : $string
-        ;
+        if (!mb_detect_encoding($string, 'ISO-8859-1', true)) {
+            return $string;
+        }
+
+        return (string) mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1');
     }
 
     /**

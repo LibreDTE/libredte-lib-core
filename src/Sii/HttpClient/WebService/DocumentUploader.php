@@ -291,7 +291,7 @@ class DocumentUploader
         // Validar si hubo un error en la respuesta.
         if (!$responseBody || $responseBody === 'Error 500') {
             $message = 'Falló el envío del XML al SII. ';
-            $message = !$responseBody
+            $message .= !$responseBody
                 ? curl_error($curl)
                 : 'El SII tiene problemas en sus servidores (Error 500).'
             ;

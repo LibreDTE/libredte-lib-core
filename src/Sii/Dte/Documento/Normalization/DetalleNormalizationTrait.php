@@ -24,11 +24,22 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
+
 /**
  * Reglas de normalización para el detalle de los documentos.
  */
 trait DetalleNormalizationTrait
 {
+    use UtilsTrait;
+
+    /**
+     * Entrega el tipo de documento que este "builder" puede construir.
+     *
+     * @return DocumentoTipo
+     */
+    abstract protected function getTipoDocumento(): DocumentoTipo;
+
     /**
      * Normaliza los detalles del documento.
      *

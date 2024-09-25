@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Xml;
 
 use DOMElement;
+use DOMNode;
 use DOMNodeList;
 use DOMText;
 use InvalidArgumentException;
@@ -67,14 +68,14 @@ class XmlConverter
      * @param DOMElement|null $parent Elemento padre para los nodos, o null
      * para que sea la raíz.
      * @param XmlDocument $doc El documento raíz del XML que se genera.
-     * @return XmlDocument|DOMElement
+     * @return XmlDocument
      */
     public static function arrayToXml(
         array $data,
         ?array $namespace = null,
         ?DOMElement $parent = null,
         ?XmlDocument $doc = null
-    ): XmlDocument|DOMElement {
+    ): XmlDocument {
         // Si no hay un documento XML completo (desde raíz, no vale un nodo),
         // entonces se crea, pues se necesitará para crear los futuros nodos.
         if ($doc === null) {
@@ -138,7 +139,7 @@ class XmlConverter
         }
 
         // Entregar el documento XML generado.
-        return $parent;
+        return $doc;
     }
 
     /**
@@ -173,7 +174,7 @@ class XmlConverter
      * Agrega nodos hijos a un nodo XML a partir de un arreglo.
      *
      * @param XmlDocument $doc Documento XML en el que se agregarán los nodos.
-     * @param XmlDocument|DOMElement $parent Nodo padre al que se agregarán los
+     * @param DOMNode $parent Nodo padre al que se agregarán los
      * nodos hijos.
      * @param string $tagName Nombre del tag del nodo hijo.
      * @param array $childs Arreglo de datos de los nodos hijos.
@@ -184,7 +185,7 @@ class XmlConverter
      */
     private static function nodeAddChilds(
         XmlDocument $doc,
-        XmlDocument|DOMElement $parent,
+        DOMNode $parent,
         string $tagName,
         array $childs,
         ?array $namespace = null,
@@ -245,7 +246,7 @@ class XmlConverter
      * Agrega un nodo XML con un valor escalar a un nodo padre.
      *
      * @param XmlDocument $doc Documento XML en el que se agregarán los nodos.
-     * @param DOMElement $parent Nodo padre al que se agregará el nodo hijo.
+     * @param DOMNode $parent Nodo padre al que se agregará el nodo hijo.
      * @param string $tagName Nombre del tag del nodo hijo.
      * @param string $value Valor del nodo hijo.
      * @param array|null $namespace Espacio de nombres para el XML (URI y
@@ -254,7 +255,7 @@ class XmlConverter
      */
     private static function nodeAddValue(
         XmlDocument $doc,
-        DOMElement $parent,
+        DOMNode $parent,
         string $tagName,
         string $value,
         ?array $namespace = null,
@@ -322,7 +323,7 @@ class XmlConverter
             ? $documentElement
             : $documentElement->documentElement
         ;
-        if (!$tagElement) {
+        if ($tagElement === null) {
             return [];
         }
 

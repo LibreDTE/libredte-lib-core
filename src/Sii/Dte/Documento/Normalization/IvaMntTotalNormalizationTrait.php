@@ -24,11 +24,31 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Repository\ImpuestosAdicionalesRepository;
+use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
+
 /**
  * Reglas de normalización para el IVA y monto total del documento.
  */
 trait IvaMntTotalNormalizationTrait
 {
+    use UtilsTrait;
+
+    /**
+     * Entrega el tipo de documento que este "builder" puede construir.
+     *
+     * @return DocumentoTipo
+     */
+    abstract protected function getTipoDocumento(): DocumentoTipo;
+
+    /**
+     * Entrega el repositorio de impuestos adicionales que se pueden usar en un
+     * documento tributario.
+     *
+     * @return ImpuestosAdicionalesRepository
+     */
+    abstract protected function getImpuestosAdicionalesRepository(): ImpuestosAdicionalesRepository;
+
     /**
      * Calcula el monto del IVA y el monto total del documento a partir del
      * monto neto y la tasa de IVA si es que existe.

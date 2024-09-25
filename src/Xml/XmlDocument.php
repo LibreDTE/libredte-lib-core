@@ -107,7 +107,7 @@ class XmlDocument extends DomDocument
 
         // Convertir el XML si es necesario.
         preg_match('/<\?xml\s+version="([^"]+)"\s+encoding="([^"]+)"\?>/', $source, $matches);
-        $version = $matches[1] ?? $this->xmlVersion;
+        //$version = $matches[1] ?? $this->xmlVersion;
         $encoding = strtoupper($matches[2] ?? $this->encoding);
         if ($encoding === 'UTF-8') {
             $source = XmlUtils::utf2iso($source);

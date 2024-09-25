@@ -51,7 +51,8 @@ class ImpuestosAdicionalesRepository
      * Indica si el impuesto es adicional o retención.
      *
      * @param int $codigo Código del impuesto
-     * @return string A: adicional, R: retención y =false no se pudo determinar.
+     * @return string|false A: adicional, R: retención o `false` si no se pudo
+     * determinar.
      */
     public function getTipo(int $codigo): string|false
     {
@@ -60,6 +61,7 @@ class ImpuestosAdicionalesRepository
             $codigo,
             false
         );
+
         return $tipo['tipo'] ?? false;
     }
 
@@ -76,6 +78,7 @@ class ImpuestosAdicionalesRepository
             $codigo,
             false
         );
+
         return $glosa['glosa'] ?? 'Impto. cód. ' . $codigo;
     }
 
@@ -110,6 +113,7 @@ class ImpuestosAdicionalesRepository
                 $retenido += (float) $Imp['MntImp'];
             }
         }
+
         return $retenido;
     }
 }

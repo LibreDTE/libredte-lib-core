@@ -216,6 +216,11 @@ class CertificateFaker
 
         // Crear clave privada y CSR para el emisor.
         $issuerPrivateKey = openssl_pkey_new();
+        if (!$issuerPrivateKey) {
+            throw new CertificateException(
+                'No fue posible generar la llave privada del emisor del certificado.'
+            );
+        }
         $issuerCsr = openssl_csr_new($this->issuer, $issuerPrivateKey);
 
         // Crear certificado autofirmado para el emisor.
@@ -230,6 +235,11 @@ class CertificateFaker
 
         // Crear clave privada y CSR para el sujeto.
         $subjectPrivateKey = openssl_pkey_new();
+        if (!$subjectPrivateKey) {
+            throw new CertificateException(
+                'No fue posible generar la llave privada del certificado.'
+            );
+        }
         $subjectCsr = openssl_csr_new($this->subject, $subjectPrivateKey);
 
         // Usar el certificado del emisor para firmar el CSR del sujeto.

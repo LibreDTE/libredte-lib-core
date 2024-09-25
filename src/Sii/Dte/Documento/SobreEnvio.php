@@ -359,7 +359,7 @@ class SobreEnvio
     {
         if (!isset($this->xmlDocument)) {
             // Generar estructura base del XML del sobre (envío).
-            $this->xmlDocument = XmlConverter::arrayToXml([
+            $xmlDocumentData = [
                 self::CONFIG[$this->tipo]['tag'] => [
                     '@attributes' => [
                         'xmlns' => 'http://www.sii.cl/SiiDte',
@@ -377,7 +377,8 @@ class SobreEnvio
                         'DTE' => '',
                     ],
                 ],
-            ]);
+            ];
+            $this->xmlDocument = XmlConverter::arrayToXml($xmlDocumentData);
 
             // Generar XML de los documentos que se deberán incorporar.
             $documentos = [];

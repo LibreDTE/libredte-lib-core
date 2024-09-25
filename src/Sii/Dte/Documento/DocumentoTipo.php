@@ -221,7 +221,7 @@ class DocumentoTipo
      */
     public function esCedible(): bool
     {
-        return $this->cedible;
+        return $this->cedible ?? false;
     }
 
     /*
