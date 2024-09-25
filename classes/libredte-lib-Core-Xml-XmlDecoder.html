@@ -179,7 +179,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    XmlConverter
+    XmlDecoder
 
     
             <div class="phpdocumentor-element__package">
@@ -198,15 +198,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlConverter.php"><a href="files/src-xml-xmlconverter.html"><abbr title="src/Xml/XmlConverter.php">XmlConverter.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlDecoder.php"><a href="files/src-xml-xmldecoder.html"><abbr title="src/Xml/XmlDecoder.php">XmlDecoder.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Clase `XmlConverter` que proporciona métodos para convertir entre arreglos
-PHP y documentos XML, permitiendo generar nodos XML a partir de datos
-estructurados y viceversa.</p>
+            <p class="phpdocumentor-summary">Clase `XmlDecoder` crea un arreglo PHP a partir de un documento XML.</p>
 
 
 
@@ -218,7 +216,7 @@ estructurados y viceversa.</p>
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -233,24 +231,30 @@ estructurados y viceversa.</p>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_arrayToXml">arrayToXml()</a>
-    <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>    </span>
-</dt>
-<dd>Convierte un arreglo PHP a un documento XML, generando los nodos y
-respetando un espacio de nombres si se proporciona.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_xmlToArray">xmlToArray()</a>
+    <a class="" href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_decode">decode()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Convierte un documento XML a un arreglo PHP.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_arrayAddChilds">arrayAddChilds()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega nodos hijos de un documento XML a un arreglo PHP.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_nodeCountTwins">nodeCountTwins()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Cuenta los nodos con el mismo nombre hijos de un DOMElement.</dd>
 
     </dl>
 
@@ -263,7 +267,7 @@ respetando un espacio de nombres si se proporciona.</dd>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -272,96 +276,15 @@ respetando un espacio de nombres si se proporciona.</dd>
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_arrayToXml">
-        arrayToXml()
-        <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_arrayToXml" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_decode">
+        decode()
+        <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_decode" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlConverter.php"><a href="files/src-xml-xmlconverter.html"><abbr title="src/Xml/XmlConverter.php">XmlConverter.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlDecoder.php"><a href="files/src-xml-xmldecoder.html"><abbr title="src/Xml/XmlDecoder.php">XmlDecoder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Convierte un arreglo PHP a un documento XML, generando los nodos y
-respetando un espacio de nombres si se proporciona.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">arrayToXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$namespace</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parent</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Arreglo con los datos que se usarán para generar XML.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$namespace</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Espacio de nombres para el XML (URI y
-prefijo).</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$parent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Elemento padre para los nodos, o null
-para que sea la raíz.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$doc</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>El documento raíz del XML que se genera.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_xmlToArray">
-        xmlToArray()
-        <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_xmlToArray" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlConverter.php"><a href="files/src-xml-xmlconverter.html"><abbr title="src/Xml/XmlConverter.php">XmlConverter.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -369,7 +292,7 @@ para que sea la raíz.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">xmlToArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|<abbr title="\DOMElement">DOMElement</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$data</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$twinsAsArray</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">decode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|<abbr title="\DOMElement">DOMElement</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentElement</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$data</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$twinsAsArray</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -378,13 +301,13 @@ para que sea la raíz.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$doc</span>
+                <span class="phpdocumentor-signature__argument__name">$documentElement</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>|<abbr title="\DOMElement">DOMElement</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento XML que se desea convertir a
-un arreglo de PHP o el elemento donde vamos a hacer la conversión si no
-es el documento XML completo.</p>
+                    <section class="phpdocumentor-description"><p>Documento XML que se
+desea convertir a un arreglo de PHP o el elemento donde vamos a hacer la
+conversión si no es el documento XML completo.</p>
 </section>
 
             </dd>
@@ -423,13 +346,153 @@ como un arreglo.</p>
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_arrayAddChilds">
+        arrayAddChilds()
+        <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_arrayAddChilds" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlDecoder.php"><a href="files/src-xml-xmldecoder.html"><abbr title="src/Xml/XmlDecoder.php">XmlDecoder.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">107</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega nodos hijos de un documento XML a un arreglo PHP.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">arrayAddChilds</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tagElement</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMNodeList">DOMNodeList</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$childs</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$twinsAsArray</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Arreglo donde se agregarán los nodos hijos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tagElement</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nodo padre del que se extraerán los nodos
+hijos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$childs</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMNodeList">DOMNodeList</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Lista de nodos hijos del nodo padre.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$twinsAsArray</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Indica si se deben tratar los nodos gemelos
+como un arreglo.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_nodeCountTwins">
+        nodeCountTwins()
+        <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_nodeCountTwins" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Xml/XmlDecoder.php"><a href="files/src-xml-xmldecoder.html"><abbr title="src/Xml/XmlDecoder.php">XmlDecoder.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">175</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Cuenta los nodos con el mismo nombre hijos de un DOMElement.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">nodeCountTwins</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dom</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tagName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dom</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DOMElement">DOMElement</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Elemento DOM donde se buscarán los nodos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tagName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nombre del tag a contar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Cantidad de nodos hijos con el mismo nombre.</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Xml/XmlConverter.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Xml/XmlDecoder.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -528,7 +591,7 @@ como un arreglo.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Xml-XmlConverter.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -536,8 +599,9 @@ como un arreglo.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_arrayToXml">arrayToXml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Xml-XmlConverter.html#method_xmlToArray">xmlToArray()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_decode">decode()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_arrayAddChilds">arrayAddChilds()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#method_nodeCountTwins">nodeCountTwins()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -557,7 +621,7 @@ como un arreglo.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Xml-XmlConverter.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Xml-XmlDecoder.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

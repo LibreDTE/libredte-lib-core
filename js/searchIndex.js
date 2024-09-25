@@ -2346,6 +2346,11 @@ Search.appendIndex(
             "summary": "Clase\u0020con\u0020m\u00E9todos\u0020auxiliares\u0020para\u0020el\u0020proceso\u0020de\u0020normalizaci\u00F3n\u0020de\u0020los\u0020datos\nde\u0020un\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-UtilsTrait.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\UtilsTrait\u003A\u003AgetTipoDocumento\u0028\u0029",
+            "name": "getTipoDocumento",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020documento\u0020que\u0020este\u0020\u0022builder\u0022\u0020puede\u0020construir.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-UtilsTrait.html#method_getTipoDocumento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\UtilsTrait\u003A\u003Around\u0028\u0029",
             "name": "round",
             "summary": "Redondea\u0020valores\u0020asociados\u0020a\u0020un\u0020tipo\u0020de\u0020moneda.",
@@ -3041,45 +3046,30 @@ Search.appendIndex(
             "summary": "Convierte\u0020un\u0020arreglo\u0020PHP\u0020a\u0020un\u0020documento\u0020XML,\u0020generando\u0020los\u0020nodos\u0020y\nrespetando\u0020un\u0020espacio\u0020de\u0020nombres\u0020si\u0020se\u0020proporciona.",
             "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_arrayToXml"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AnodeAddAttributes\u0028\u0029",
-            "name": "nodeAddAttributes",
-            "summary": "Agrega\u0020atributos\u0020a\u0020un\u0020nodo\u0020XML\u0020a\u0020partir\u0020de\u0020un\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_nodeAddAttributes"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AnodeAddChilds\u0028\u0029",
-            "name": "nodeAddChilds",
-            "summary": "Agrega\u0020nodos\u0020hijos\u0020a\u0020un\u0020nodo\u0020XML\u0020a\u0020partir\u0020de\u0020un\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_nodeAddChilds"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AnodeAddValue\u0028\u0029",
-            "name": "nodeAddValue",
-            "summary": "Agrega\u0020un\u0020nodo\u0020XML\u0020con\u0020un\u0020valor\u0020escalar\u0020a\u0020un\u0020nodo\u0020padre.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_nodeAddValue"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AskipValue\u0028\u0029",
-            "name": "skipValue",
-            "summary": "Verifica\u0020si\u0020un\u0020valor\u0020debe\u0020omitirse\u0020al\u0020generar\u0020un\u0020nodo\u0020XML.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_skipValue"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AxmlToArray\u0028\u0029",
             "name": "xmlToArray",
             "summary": "Convierte\u0020un\u0020documento\u0020XML\u0020a\u0020un\u0020arreglo\u0020PHP.",
             "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_xmlToArray"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AarrayAddChilds\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlDecoder",
+            "name": "XmlDecoder",
+            "summary": "Clase\u0020\u0060XmlDecoder\u0060\u0020crea\u0020un\u0020arreglo\u0020PHP\u0020a\u0020partir\u0020de\u0020un\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Xml-XmlDecoder.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlDecoder\u003A\u003Adecode\u0028\u0029",
+            "name": "decode",
+            "summary": "Convierte\u0020un\u0020documento\u0020XML\u0020a\u0020un\u0020arreglo\u0020PHP.",
+            "url": "classes/libredte-lib-Core-Xml-XmlDecoder.html#method_decode"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlDecoder\u003A\u003AarrayAddChilds\u0028\u0029",
             "name": "arrayAddChilds",
             "summary": "Agrega\u0020nodos\u0020hijos\u0020de\u0020un\u0020documento\u0020XML\u0020a\u0020un\u0020arreglo\u0020PHP.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_arrayAddChilds"
+            "url": "classes/libredte-lib-Core-Xml-XmlDecoder.html#method_arrayAddChilds"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003AnodeCountTwins\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlDecoder\u003A\u003AnodeCountTwins\u0028\u0029",
             "name": "nodeCountTwins",
             "summary": "Cuenta\u0020los\u0020nodos\u0020con\u0020el\u0020mismo\u0020nombre\u0020hijos\u0020de\u0020un\u0020DOMElement.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#method_nodeCountTwins"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlConverter\u003A\u003A\u0024rules",
-            "name": "rules",
-            "summary": "Reglas\u0020para\u0020convertir\u0020de\u0020arreglo\u0020de\u0020PHP\u0020a\u0020XML\u0020y\u0020viceversa.",
-            "url": "classes/libredte-lib-Core-Xml-XmlConverter.html#property_rules"
+            "url": "classes/libredte-lib-Core-Xml-XmlDecoder.html#method_nodeCountTwins"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlDocument",
             "name": "XmlDocument",
@@ -3130,6 +3120,41 @@ Search.appendIndex(
             "name": "C14NWithIsoEncodingFlattened",
             "summary": "Entrega\u0020el\u0020string\u0020XML\u0020canonicalizado,\u0020con\u0020la\u0020codificaci\u00F3n\u0020que\ncorresponde\u0020\u0028ISO\u002D8859\u002D1\u0029\u0020y\u0020aplanado.",
             "url": "classes/libredte-lib-Core-Xml-XmlDocument.html#method_C14NWithIsoEncodingFlattened"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder",
+            "name": "XmlEncoder",
+            "summary": "Clase\u0020\u0060XmlEncoder\u0060\u0020que\u0020crea\u0020un\u0020documento\u0020XML\u0020a\u0020partir\u0020de\u0020un\u0020arreglo\u0020PHP.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003Aencode\u0028\u0029",
+            "name": "encode",
+            "summary": "Convierte\u0020un\u0020arreglo\u0020PHP\u0020a\u0020un\u0020documento\u0020XML,\u0020generando\u0020los\u0020nodos\u0020y\nrespetando\u0020un\u0020espacio\u0020de\u0020nombres\u0020si\u0020se\u0020proporciona.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#method_encode"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003AnodeAddAttributes\u0028\u0029",
+            "name": "nodeAddAttributes",
+            "summary": "Agrega\u0020atributos\u0020a\u0020un\u0020nodo\u0020XML\u0020a\u0020partir\u0020de\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#method_nodeAddAttributes"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003AnodeAddChilds\u0028\u0029",
+            "name": "nodeAddChilds",
+            "summary": "Agrega\u0020nodos\u0020hijos\u0020a\u0020un\u0020nodo\u0020XML\u0020a\u0020partir\u0020de\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#method_nodeAddChilds"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003AnodeAddValue\u0028\u0029",
+            "name": "nodeAddValue",
+            "summary": "Agrega\u0020un\u0020nodo\u0020XML\u0020con\u0020un\u0020valor\u0020escalar\u0020a\u0020un\u0020nodo\u0020padre.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#method_nodeAddValue"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003AskipValue\u0028\u0029",
+            "name": "skipValue",
+            "summary": "Verifica\u0020si\u0020un\u0020valor\u0020debe\u0020omitirse\u0020al\u0020generar\u0020un\u0020nodo\u0020XML.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#method_skipValue"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlEncoder\u003A\u003A\u0024rules",
+            "name": "rules",
+            "summary": "Reglas\u0020para\u0020convertir\u0020de\u0020arreglo\u0020de\u0020PHP\u0020a\u0020XML\u0020y\u0020viceversa.",
+            "url": "classes/libredte-lib-Core-Xml-XmlEncoder.html#property_rules"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Xml\\XmlException",
             "name": "XmlException",
