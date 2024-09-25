@@ -304,7 +304,7 @@ class DocumentUploader
 
         // Entregar el resultado como un documento XML.
         $xmlDocument = new XmlDocument();
-        $xmlDocument->loadXML($responseBody);
+        $xmlDocument->loadXML((string) $responseBody);
         return $xmlDocument;
     }
 

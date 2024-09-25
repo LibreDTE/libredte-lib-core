@@ -33,7 +33,9 @@ use libredte\lib\Core\Signature\SignatureGenerator;
 use libredte\lib\Core\Signature\SignatureValidator;
 use libredte\lib\Core\Signature\XmlSignatureNode;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
+use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlException;
 use libredte\lib\Core\Xml\XmlUtils;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -46,7 +48,9 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(CertificateUtils::class)]
 #[CoversClass(PathManager::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
+#[CoversClass(XmlEncoder::class)]
 #[CoversClass(XmlException::class)]
 #[CoversClass(XmlUtils::class)]
 #[CoversClass(XmlSignatureNode::class)]

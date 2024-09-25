@@ -33,7 +33,9 @@ use libredte\lib\Core\Sii\Dte\AutorizacionFolio\Caf;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\CafFaker;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
+use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlUtils;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -48,7 +50,9 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
+#[CoversClass(XmlEncoder::class)]
 #[CoversClass(XmlUtils::class)]
 class CafTest extends TestCase
 {

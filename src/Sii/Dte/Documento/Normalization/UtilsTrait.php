@@ -24,12 +24,21 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
+
 /**
  * Clase con métodos auxiliares para el proceso de normalización de los datos
  * de un documento.
  */
 trait UtilsTrait
 {
+    /**
+     * Entrega el tipo de documento que este "builder" puede construir.
+     *
+     * @return DocumentoTipo
+     */
+    abstract protected function getTipoDocumento(): DocumentoTipo;
+
     /**
      * Redondea valores asociados a un tipo de moneda.
      *

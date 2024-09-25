@@ -36,6 +36,7 @@ use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\SobreEnvio;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
@@ -83,6 +84,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
 #[CoversClass(XmlUtils::class)]
 #[CoversClass(XmlValidator::class)]

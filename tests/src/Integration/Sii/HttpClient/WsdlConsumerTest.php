@@ -41,7 +41,9 @@ use libredte\lib\Core\Sii\HttpClient\WebService\DocumentUploader;
 use libredte\lib\Core\Sii\HttpClient\WebService\DocumentValidator;
 use libredte\lib\Core\Sii\HttpClient\WsdlConsumer;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
+use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlUtils;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -61,7 +63,9 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DocumentValidator::class)]
 #[CoversClass(WsdlConsumer::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
+#[CoversClass(XmlEncoder::class)]
 #[CoversClass(XmlUtils::class)]
 class WsdlConsumerTest extends TestCase
 {

@@ -226,7 +226,7 @@ class WsdlConsumer
         ?int $retry = null
     ): XmlDocument {
         // Revisar si se pasó en $args el valor de $retry.
-        if (is_numeric($args)) {
+        if (is_int($args)) {
             $retry = (int) $args;
             $args = [];
         }

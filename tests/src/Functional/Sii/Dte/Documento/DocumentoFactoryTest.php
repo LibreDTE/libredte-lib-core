@@ -44,6 +44,7 @@ use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTr
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
@@ -68,6 +69,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversTrait(TransporteNormalizationTrait::class)]
 #[CoversTrait(UtilsTrait::class)]
 #[CoversTrait(XmlConverter::class)]
+#[CoversTrait(XmlDecoder::class)]
 #[CoversTrait(XmlDocument::class)]
 class DocumentoFactoryTest extends TestCase
 {

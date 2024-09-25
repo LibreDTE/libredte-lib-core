@@ -67,7 +67,9 @@ use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTra
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Sii\Dte\Documento\SobreEnvio;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
+use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -118,7 +120,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversTrait(UtilsTrait::class)]
 #[CoversClass(SobreEnvio::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
+#[CoversClass(XmlEncoder::class)]
 #[CoversClass(XmlUtils::class)]
 #[CoversClass(XmlValidator::class)]
 class CrearSobreEnvioDocumentosOkTest extends TestCase

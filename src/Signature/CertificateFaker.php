@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Signature;
 
+use OpenSSLAsymmetricKey;
+
 /**
  * Clase que se encarga de generar certificados autofirmados y retornarlos como
  * un string de datos, un arreglo o una instancia de Certificate.
@@ -216,7 +218,7 @@ class CertificateFaker
 
         // Crear clave privada y CSR para el emisor.
         $issuerPrivateKey = openssl_pkey_new();
-        if (!$issuerPrivateKey) {
+        if (!$issuerPrivateKey instanceof OpenSSLAsymmetricKey) {
             throw new CertificateException(
                 'No fue posible generar la llave privada del emisor del certificado.'
             );
@@ -235,7 +237,7 @@ class CertificateFaker
 
         // Crear clave privada y CSR para el sujeto.
         $subjectPrivateKey = openssl_pkey_new();
-        if (!$subjectPrivateKey) {
+        if (!$subjectPrivateKey instanceof OpenSSLAsymmetricKey) {
             throw new CertificateException(
                 'No fue posible generar la llave privada del certificado.'
             );

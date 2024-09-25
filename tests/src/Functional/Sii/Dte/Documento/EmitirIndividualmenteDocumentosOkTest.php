@@ -65,7 +65,9 @@ use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTr
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
+use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -115,7 +117,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversTrait(TransporteNormalizationTrait::class)]
 #[CoversTrait(UtilsTrait::class)]
 #[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
+#[CoversClass(XmlEncoder::class)]
 #[CoversClass(XmlUtils::class)]
 #[CoversClass(XmlValidator::class)]
 class EmitirIndividualmenteDocumentosOkTest extends TestCase

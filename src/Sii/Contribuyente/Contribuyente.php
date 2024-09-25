@@ -144,7 +144,7 @@ class Contribuyente
 
         // Asignar datos pasados de manera individual.
         else {
-            $rut = Rut::format($rut ?? '66666666-6');
+            $rut = Rut::format(is_null($rut) ? '66666666-6' : $rut);
             [$this->rut, $this->dv] = Rut::toArray($rut);
 
             $this->razon_social = $razon_social ?: null;
