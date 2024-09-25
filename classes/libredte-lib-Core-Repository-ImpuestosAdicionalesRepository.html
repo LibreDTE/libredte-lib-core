@@ -280,7 +280,7 @@ información del tag OtrosImp del DTE.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Repository-ImpuestosAdicionalesRepository.html#method_getTipo">getTipo()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: string|false    </span>
 </dt>
 <dd>Indica si el impuesto es adicional o retención.</dd>
 
@@ -402,7 +402,7 @@ información del tag OtrosImp del DTE.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ImpuestosAdicionalesRepository.php"><a href="files/src-repository-impuestosadicionalesrepository.html"><abbr title="src/Repository/ImpuestosAdicionalesRepository.php">ImpuestosAdicionalesRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -457,7 +457,7 @@ información del tag OtrosImp del DTE.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ImpuestosAdicionalesRepository.php"><a href="files/src-repository-impuestosadicionalesrepository.html"><abbr title="src/Repository/ImpuestosAdicionalesRepository.php">ImpuestosAdicionalesRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -513,7 +513,7 @@ información del tag OtrosImp del DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ImpuestosAdicionalesRepository.php"><a href="files/src-repository-impuestosadicionalesrepository.html"><abbr title="src/Repository/ImpuestosAdicionalesRepository.php">ImpuestosAdicionalesRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -568,7 +568,7 @@ información del tag OtrosImp del DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ImpuestosAdicionalesRepository.php"><a href="files/src-repository-impuestosadicionalesrepository.html"><abbr title="src/Repository/ImpuestosAdicionalesRepository.php">ImpuestosAdicionalesRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -576,7 +576,7 @@ información del tag OtrosImp del DTE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getTipo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigo</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getTipo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigo</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|false</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -601,9 +601,10 @@ información del tag OtrosImp del DTE.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type">string|false</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>A: adicional, R: retención y =false no se pudo determinar.</p>
+                <section class="phpdocumentor-description"><p>A: adicional, R: retención o <code class="prettyprint">false</code> si no se pudo
+determinar.</p>
 </section>
 
             </section>

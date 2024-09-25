@@ -2196,6 +2196,11 @@ Search.appendIndex(
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020los\u0020descuentos\u0020y\u0020recargos\u0020de\u0020un\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DescuentosRecargosNormalizationTrait.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DescuentosRecargosNormalizationTrait\u003A\u003AgetTipoDocumento\u0028\u0029",
+            "name": "getTipoDocumento",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020documento\u0020que\u0020este\u0020\u0022builder\u0022\u0020puede\u0020construir.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DescuentosRecargosNormalizationTrait.html#method_getTipoDocumento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DescuentosRecargosNormalizationTrait\u003A\u003AapplyDescuentosRecargosNormalization\u0028\u0029",
             "name": "applyDescuentosRecargosNormalization",
             "summary": "Aplica\u0020los\u0020descuentos\u0020y\u0020recargos\u0020generales\u0020respectivos\u0020a\u0020los\u0020montos\u0020que\ncorrespondan\u0020seg\u00FAn\u0020el\u0020indicador\u0020del\u0020descuento\u0020o\u0020recargo.",
@@ -2205,6 +2210,11 @@ Search.appendIndex(
             "name": "DetalleNormalizationTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020el\u0020detalle\u0020de\u0020los\u0020documentos.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DetalleNormalizationTrait.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DetalleNormalizationTrait\u003A\u003AgetTipoDocumento\u0028\u0029",
+            "name": "getTipoDocumento",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020documento\u0020que\u0020este\u0020\u0022builder\u0022\u0020puede\u0020construir.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DetalleNormalizationTrait.html#method_getTipoDocumento"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DetalleNormalizationTrait\u003A\u003AapplyDetalleNormalization\u0028\u0029",
             "name": "applyDetalleNormalization",
@@ -2291,6 +2301,11 @@ Search.appendIndex(
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020documentos\u0020con\u0020impuesto\u0020adicional\u0020o\u0020retenci\u00F3n.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-ImpuestoAdicionalRetencionNormalizationTrait.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\ImpuestoAdicionalRetencionNormalizationTrait\u003A\u003AgetImpuestosAdicionalesRepository\u0028\u0029",
+            "name": "getImpuestosAdicionalesRepository",
+            "summary": "Entrega\u0020el\u0020repositorio\u0020de\u0020impuestos\u0020adicionales\u0020que\u0020se\u0020pueden\u0020usar\u0020en\u0020un\ndocumento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-ImpuestoAdicionalRetencionNormalizationTrait.html#method_getImpuestosAdicionalesRepository"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\ImpuestoAdicionalRetencionNormalizationTrait\u003A\u003AapplyImpuestoRetenidoNormalization\u0028\u0029",
             "name": "applyImpuestoRetenidoNormalization",
             "summary": "Calcula\u0020los\u0020montos\u0020de\u0020impuestos\u0020adicionales\u0020o\u0020retenciones.",
@@ -2300,6 +2315,16 @@ Search.appendIndex(
             "name": "IvaMntTotalNormalizationTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020el\u0020IVA\u0020y\u0020monto\u0020total\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-IvaMntTotalNormalizationTrait.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\IvaMntTotalNormalizationTrait\u003A\u003AgetTipoDocumento\u0028\u0029",
+            "name": "getTipoDocumento",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020documento\u0020que\u0020este\u0020\u0022builder\u0022\u0020puede\u0020construir.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-IvaMntTotalNormalizationTrait.html#method_getTipoDocumento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\IvaMntTotalNormalizationTrait\u003A\u003AgetImpuestosAdicionalesRepository\u0028\u0029",
+            "name": "getImpuestosAdicionalesRepository",
+            "summary": "Entrega\u0020el\u0020repositorio\u0020de\u0020impuestos\u0020adicionales\u0020que\u0020se\u0020pueden\u0020usar\u0020en\u0020un\ndocumento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-IvaMntTotalNormalizationTrait.html#method_getImpuestosAdicionalesRepository"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\IvaMntTotalNormalizationTrait\u003A\u003AapplyIvaMntTotalNormalization\u0028\u0029",
             "name": "applyIvaMntTotalNormalization",
