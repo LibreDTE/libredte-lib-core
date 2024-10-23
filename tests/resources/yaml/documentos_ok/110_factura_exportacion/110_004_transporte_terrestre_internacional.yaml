@@ -44,12 +44,6 @@ Detalle:
   NmbItem: Sillones
   QtyItem: 2
   PrcItem: 50
-Referencia:
-- TpoDocRef: 33
-  FolioRef: 1
-  FchRef: '2016-01-01'
-  CodRef: 1
-  RazonRef: Anula nota de crédito electrónica
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
