@@ -2,7 +2,9 @@ Encabezado:
   IdDoc:
     TipoDTE: 52
     Folio: 1
+    # TipoDespacho: Tipo de despacho. Corresponde a que la Operación constituye venta. - Largo máx: 1 - Tipo: NÚM.
     TipoDespacho: 1
+    # IndTraslado: Indicador Tipo de traslado de bienes. Sólo para Guías de despacho. - Largo máx: 1 - Tipo: NÚM.
     IndTraslado: 1
   Emisor:
     RUTEmisor: 76192083-9
@@ -17,19 +19,28 @@ Encabezado:
     GiroRecep: Gobierno
     DirRecep: Calle 123
     CmnaRecep: Santiago
+  # Transporte: Área de transporte. Contiene información sobre el transporte.
   Transporte:
+    # Patente: Patente del vehículo de transporte. - Largo máx: 8 - Tipo: ALFA.
     Patente: ABCD12
+    # RUTTrans: RUT del transportista. Con guión y dígito verificador. - Largo máx: 10 - Tipo: ALFA.
     RUTTrans: 2-7
+    # Chofer: Información del chofer.
     Chofer:
+      # RUTChofer: RUT del chofer que realiza el transfporte de mercaderías. Con guión y dígito verificador. - Largo máx: 10 - Tipo: ALFA.
       RUTChofer: 1-9
+      # NombreChofer: Nombre del chofer que realiza el transporte de mercaderías. - Largo máx: 30 - Tipo: ALFA.
       NombreChofer: Pedro
+    # DirDest: Dirección de destino. - Largo máx: 70 - Tipo: ALFA.
     DirDest: Calle 123
+    # CmnaDest: Comuna de destino. - Largo máx: 20 - Tipo: ALFA.
     CmnaDest: Santiago
 Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450
   PrcItem: 70
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

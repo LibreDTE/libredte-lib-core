@@ -20,6 +20,7 @@ Detalle:
   QtyItem: 1
   PrcItem: 45000
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

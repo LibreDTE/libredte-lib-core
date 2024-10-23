@@ -16,17 +16,25 @@ Encabezado:
     DirRecep: Santiago
     CmnaRecep: Santiago
 Detalle:
+  # CdgItem: Corresponde a la inforamción de un ítem.
 - CdgItem:
+    # TpoCodigo: Tipo de codificación utilizada para el ítem. - Largo máx: 10 - Tipo: ALFA.
     TpoCodigo: CPCS
+    # VlrCodigo: Código del producto de acuerdo a tipo de codificación indicada en el campo anterior - Largo máx: 35 - Tipo: ALFA.
     VlrCodigo: 1900
+  # Retenedor: Área Retenedor.
   Retenedor:
+    # IndAgente: Indicador de Agente Retenedor - Largo máx: 1 - Tipo: ALFA.
     IndAgente: R
   NmbItem: Harina
   QtyItem: 2.5
+  # UnmdItem: Unidad de Medida del Ítem - Largo máx: 4 - Tipo: ALFA.
   UnmdItem: TON
   PrcItem: 280000
+  # CodImpAdic: Código de Impuesto o retenciones - Largo máx: 6 - Tipo: ALFA.
   CodImpAdic: 19
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

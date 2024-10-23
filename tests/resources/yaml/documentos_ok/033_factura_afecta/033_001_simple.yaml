@@ -1,25 +1,48 @@
+# Encabezado: Zona de Encabezado. Contiene la identificación del documento, información del emisor,
+#             información del receptor y el detalle de los productos o servicios.
 Encabezado:
+  # IdDoc: Área Identificación del Documento.
   IdDoc:
+    # TipoDTE: Tipo Documento Tributario Electrónico - Largo máx: 2 - Tipo: NÚM.
     TipoDTE: 33
+    # Folio: Folio del documento autorizado por el SII - Largo máx: 10 - Tipo: NÚM.
     Folio: 1
+  # Emisor: Área Identificación del Emisor.
   Emisor:
+    # RUTEmisor: RUT del Emisor con guión y dígito verificador - Largo máx: 10 - Tipo: ALFA.
     RUTEmisor: 76192083-9
+    # RznSoc: Nombre o Razón Social del Emisor - Largo máx: 100 - Tipo: ALFA.
     RznSoc: SASCO SpA
+    # GiroEmis: Giro del negocio del Emisor - Largo máx: 80 - Tipo: ALFA.
     GiroEmis: Tecnología, informática y telecomunicaciones
+    # Acteco: Código de Actividad Económica del Emisor. Se acepta un máximo de 4 códigos de actividad económica, se puede incluir sólo el código correspondiente a la transacción - Largo máx: 6 - Tipo: NÚM.
     Acteco: 726000
+    # DirOrigen: Dirección desde donde se despachan bienes o de la sucursal que emite el documento - Largo máx: 60 - Tipo: ALFA.
     DirOrigen: Santa Cruz
+    # CmnaOrigen: Comuna desde donde se despachan bienes o de la sucursal que emite el documento - Largo máx: 20 - Tipo: ALFA.
     CmnaOrigen: Santa Cruz
+  # Receptor: Área Identificación del Receptor.
   Receptor:
+    # RUTRecep: RUT del cliente, excepto factura que hace referencia al vendedor. Con guión y dígito verificador - Largo máx: 10 - Tipo: ALFA.
     RUTRecep: 60803000-K
+    # RznSocRecep: Nombre o Razón Social del Receptor - Largo máx: 100 - Tipo: ALFA.
     RznSocRecep: Servicio de Impuestos Internos
+    # GiroRecep: Giro del negocio del Receptor - Largo máx: 40 - Tipo: ALFA.
     GiroRecep: Gobierno
+    # DirRecep: Dirección legal del Receptor (Registrada en SII) - Largo máx: 70 - Tipo: ALFA.
     DirRecep: Santiago
+    # CmnaRecep: Comuna del Receptor - Largo máx: 20 - Tipo: ALFA.
     CmnaRecep: Santiago
+# Detalle: Zona de Detalle por Ítem. Cada ítem se enlista con un "guion" (-).
 Detalle:
+  # NmbItem: Nombre del Ítem - Largo máx: 80 - Tipo: ALFA.
 - NmbItem: Conectores RJ45
+  # QtyItem: Cantidad del ítem - Largo máx: 18 - Tipo: NÚM.
   QtyItem: 450
+  # PrcItem: Precio unitario del Ítem - Largo máx: 18 - Tipo: NÚM.
   PrcItem: 70
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

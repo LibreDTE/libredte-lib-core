@@ -29,9 +29,11 @@ Referencia:
 - TpoDocRef: 33
   FolioRef: 1
   FchRef: '2016-01-01'
+  # CodRef: Debe de ser siempre 2, ya que corresponde a 'Corrige Texto Documento de Referencia'.
   CodRef: 2
   RazonRef: Corrige texto
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

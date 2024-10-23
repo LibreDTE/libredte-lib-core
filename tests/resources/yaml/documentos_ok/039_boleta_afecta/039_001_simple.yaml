@@ -9,6 +9,7 @@ Encabezado:
     DirOrigen: Santiago
     CmnaOrigen: Santiago
   Receptor:
+    # RUTRecep: RUT 66666666-6 corresponde a uno genérico.
     RUTRecep: 66666666-6
     RznSocRecep: Sin RUT
     DirRecep: Santiago
@@ -18,6 +19,7 @@ Detalle:
   QtyItem: 1
   PrcItem: 1190
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

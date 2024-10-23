@@ -11,13 +11,17 @@ Encabezado:
     DirOrigen: Santa Cruz
     CmnaOrigen: Santa Cruz
   Receptor:
+    # RUTRecep: El RUT del receptor debe de ser 55555555-5.
     RUTRecep: 55555555-5
     RznSocRecep: Jackie Chan
+    # Extranjero: Información de receptor extranjero
     Extranjero:
+      # Nacionalidad: Corresponde al código de nacionalidad del extranjero.
       Nacionalidad: 225
     GiroRecep: Particular
     DirRecep: Calle 123, Hong Kong, China
   Totales:
+    # TpoMoneda: Tipo de moneda en que se registra la transacción de exportafción. - Largo máx. 15 - Tipo: ALFA.
     TpoMoneda: DOLAR USA
 Detalle:
 - IndExe: 1
@@ -28,6 +32,7 @@ Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

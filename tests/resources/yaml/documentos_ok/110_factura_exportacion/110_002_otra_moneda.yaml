@@ -19,8 +19,11 @@ Encabezado:
     DirRecep: Calle 123, Hong Kong, China
   Totales:
     TpoMoneda: DOLAR USA
+  # OtraMoneda: Área otra moneda. Incluye información de tipo de moneda y tipo de cambio.
   OtraMoneda:
+    # TpoMoneda: Tipo de moneda en que se registra la transacción de exportafción. - Largo máx. 15 - Tipo: ALFA.
     TpoMoneda: PESO CL
+    # TpoCambio: Tipo de cambio. - Largo máx: 10 - Decimales: 4 - Tipo: NÚM.
     TpoCambio: 500
 Detalle:
 - IndExe: 1
@@ -31,6 +34,7 @@ Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

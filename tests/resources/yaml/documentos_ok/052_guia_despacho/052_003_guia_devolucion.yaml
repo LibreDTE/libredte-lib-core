@@ -1,0 +1,44 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 52
+    Folio: 1
+    TipoDespacho: 1
+    # IndTraslado: Código 7 indica Guía de devolución. - Largo máx: 1 - Tipo: NÚM.
+    IndTraslado: 7
+    TermPagoGlosa: DEVOLUCION POR NO CORRESPONDER A LO SOLICITADO SEGUN FACTURA
+  # En las guías de devolución el Receptor del documento que se hace referencia se convierte en el Emisor de la guía de devolución.
+  # y el Emisor del documento que se hace referencia se convierte en el Receptor de la guía de devolución.
+  Emisor:
+    RUTEmisor: 1234567-4
+    RznSoc: Antonio Rosales
+    GiroEmis: Venta al por menor de muebles
+    Acteco: 523330
+    DirOrigen: Calle 432
+    CmnaOrigen: Hong Kong
+  Receptor:
+    RUTRecep: 76192083-9
+    RznSocRecep: SASCO SpA
+    GiroRecep: Tecnología, informática y telecomunicaciones
+    DirRecep: Santa Cruz
+    CiudadRecep: Santa Cruz
+  Transporte:
+    DirDest: Calle 123
+    CmnaDest: Santiago
+Detalle:
+- NmbItem: Impresora
+  QtyItem: 1
+  PrcItem: 31500
+Referencia:
+- TpoDocRef: 33
+  FolioRef: 1
+  FchRef: '2016-01-01'
+  CodRef: 1
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 31500
+        IVA: 5985
+        MntTotal: 37485

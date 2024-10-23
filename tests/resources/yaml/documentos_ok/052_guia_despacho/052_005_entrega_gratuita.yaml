@@ -2,8 +2,9 @@ Encabezado:
   IdDoc:
     TipoDTE: 52
     Folio: 1
-    # IndTraslado: Código 5 indica Traslado interno. - Largo máx: 1 - Tipo: NÚM.
-    IndTraslado: 5
+    TipoDespacho: 1
+    # IndTraslado: Código 4 indica entrega gratuita. - Largo máx: 1 - Tipo: NÚM.
+    IndTraslado: 4
   Emisor:
     RUTEmisor: 76192083-9
     RznSoc: SASCO SpA
@@ -12,22 +13,29 @@ Encabezado:
     DirOrigen: Santa Cruz
     CmnaOrigen: Santa Cruz
   Receptor:
-    RUTRecep: 76192083-9
-    RznSocRecep: SASCO SpA
-    GiroRecep: Servicios integrales de informática
-    DirRecep: Santiago
+    RUTRecep: 1234567-4
+    RznSocRecep: Venta al por menor de muebles
+    GiroRecep: Antonio Rosales
+    DirRecep: Calle 423
     CmnaRecep: Santiago
   Transporte:
     Patente: ABCD12
+    RUTTrans: 2-7
+    Chofer:
+      RUTChofer: 1-9
+      NombreChofer: Pedro
     DirDest: Calle 123
     CmnaDest: Santiago
 Detalle:
-- NmbItem: Impresora
-  QtyItem: 1
+- NmbItem: Conectores RJ45
+  QtyItem: 450
+  PrcItem: 70
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:
       Totales:
-        MntTotal: 0
+        MntNeto: 31500
+        IVA: 5985
+        MntTotal: 37485

@@ -23,8 +23,10 @@ Detalle:
   DscItem: 'DTEs: 33, 56 y 61'
   QtyItem: 1
   PrcItem: 104090
+  # DescuentoPct: Porcentaje de descuento aplicado al ítem - Largo máx: 5 - Tipo: NÚM.
   DescuentoPct: 10
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:

@@ -1,0 +1,60 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 110
+    Folio: 3
+    TipoDespacho: 1
+    # IndServicio: Código 5 indica que es un servicio de transporte terrestre internacional. Tipo: NÚM.
+    IndServicio: 5
+    # FmaPagExp: (Opcional) Forma de pago del importador extranjero indicado en el DUS. Código señalado en la 'Tabla Formas de Pago de Aduanas'. - Largo máx: 2 - Tipo: NÚM.
+    FmaPagExp: 12
+    # FchCancel: Se utiliza si la factura ha sido cancelada antes de la fecha de emisión. Obligatorio cuando en "FmaPagoExp" se indique "anticipo". - Largo máx: 10 - Tipo: ALFA.
+    FchCancel: '2024-03-20'
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    # CiudadOrigen: Ciudad de origen. - Largo máx: 20 - Tipo: ALFA.
+    CiudadOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 55555555-5
+    RznSocRecep: Jackie Chan
+    DirRecep: Calle 432
+    CiudadRecep: Hong Kong
+  Transporte:
+    DirDest: Calle 123, Hong Kong, China
+    # CiudadDest: Ciudad de destino. - Largo máx: 20 - Tipo: ALFA.
+    CiudadDest: Hong Kong
+    # Aduana: Sub-área transporte de aduana.
+    Aduana:
+      # CodModVenta: Corresponde a la vía de transporte donde se envía la mercadería. - Largo máx: 2 - Tipo: NÚM.
+      CodViaTransp: 07
+      # TotBultos: Cantidad total de bultos que ampara el documento. - Largo máx: 18 - Tipo: NÚM.
+      TotBultos: 54
+      # Código del país de receptor extranjero de la mercadería, según tabla de Países aduana. - Largo máx: 3 - Tipo: NÚM.
+      CodPaisRecep: 342
+  Totales:
+    TpoMoneda: DOLAR USA
+  OtraMoneda:
+    TpoMoneda: PESO CL
+    TpoCambio: 500
+Detalle:
+- IndExe: 1
+  NmbItem: Sillones
+  QtyItem: 2
+  PrcItem: 50
+Referencia:
+- TpoDocRef: 33
+  FolioRef: 1
+  FchRef: '2016-01-01'
+  CodRef: 1
+  RazonRef: Anula nota de crédito electrónica
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntExe: 100
+        MntTotal: 100

@@ -21,6 +21,7 @@ Detalle:
   PrcItem: 1000
   CodImpAdic: 24
 
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:
