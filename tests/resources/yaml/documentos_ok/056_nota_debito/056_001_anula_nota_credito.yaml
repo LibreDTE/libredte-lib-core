@@ -28,14 +28,16 @@ Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450
   PrcItem: 70
-# En esta área se encuentra la información del documento que se desea anular. Por cada nota de cŕedito se puede anular un documento.
+# En esta área se encuentra la información del documento que se desea anular.
+# Por cada nota de cŕedito se puede anular un documento.
 Referencia:
 - TpoDocRef: 61
   FolioRef: 1
   FchRef: '2016-01-01'
-  # CodRef: Código de referencia debe de ser '1', ya que corresponde a 'Anula Documento de Referencia'.- Largo máx: 1 - Tipo: NÚM.
+  # CodRef: Código de referencia debe de ser '1', ya que corresponde a 'Anula
+  #         Documento de Referencia' - Largo máx: 1 - Tipo: NÚM
   CodRef: 1
-  # RazonRef: Se explica la razón de la referencia. - Largo máx: 90 - Tipo: ALFA.
+  # RazonRef: Se explica la razón de la referencia - Largo máx: 90 - Tipo: ALFA
   RazonRef: Anula nota de crédito electrónica
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.

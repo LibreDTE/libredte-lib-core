@@ -1,6 +1,6 @@
 Encabezado:
   IdDoc:
-    TipoDTE: 61
+    TipoDTE: 34
     Folio: 1
   Emisor:
     RUTEmisor: 76192083-9
@@ -15,30 +15,20 @@ Encabezado:
     GiroRecep: Gobierno
     DirRecep: Santiago
     CmnaRecep: Santiago
-  Totales:
-    MntNeto: 0
-    TasaIVA: 19
-    IVA: 0
-    MntTotal: 0
 Detalle:
-- NmbItem: Corrige Giro
-  DscItem: DONDE DICE Giro1 DEBE DECIR Giro2
-  QtyItem: 1
-  PrcItem: false
-Referencia:
-- TpoDocRef: 33
-  FolioRef: 1
-  FchRef: '2016-01-01'
-  # CodRef: Debe de ser siempre 2, ya que corresponde a
-  #         'Corrige Texto Documento de Referencia'.
-  CodRef: 2
-  RazonRef: Corrige texto
+- IndExe: 1
+  NmbItem: Horas desarrollo
+  QtyItem: 5
+  PrcItem: 25000
+DscRcgGlobal:
+  TpoMov: D
+  TpoValor: '%'
+  ValorDR: 10
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:
       Totales:
-        MntNeto: 0
-        IVA: 0
-        MntTotal: 0
+        MntExe: 125000
+        MntTotal: 125000

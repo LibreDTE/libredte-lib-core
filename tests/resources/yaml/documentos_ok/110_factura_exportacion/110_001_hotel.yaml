@@ -21,7 +21,8 @@ Encabezado:
     GiroRecep: Particular
     DirRecep: Calle 123, Hong Kong, China
   Totales:
-    # TpoMoneda: Tipo de moneda en que se registra la transacción de exportafción. - Largo máx. 15 - Tipo: ALFA.
+    # TpoMoneda: Tipo de moneda en que se registra la transacción de
+    #            exportafción. - Largo máx. 15 - Tipo: ALFA.
     TpoMoneda: DOLAR USA
 Detalle:
 - IndExe: 1

@@ -27,11 +27,13 @@ Detalle:
 Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
-  # TpoDocRef: Es obligatorio referenciar la factura de exportación que modifica. - Large máx: 3 - Tipo: ALFA.
+  # TpoDocRef: Es obligatorio referenciar la factura de exportación que modifica
+  #            Largo máx: 3 - Tipo: ALFA.
 - TpoDocRef: 110
   FolioRef: 1
   FchRef: '2016-01-01'
-  # CodRef: Debe de ser siempre 1, ya que corresponde a 'Anula Documento de Referencia'.
+  # CodRef: Debe de ser siempre 1, ya que corresponde a
+  #         'Anula Documento de Referencia'.
   CodRef: 1
   RazonRef: Anula factura
 

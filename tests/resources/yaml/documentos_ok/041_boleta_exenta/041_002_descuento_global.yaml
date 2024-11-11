@@ -19,7 +19,9 @@ Detalle:
   QtyItem: 1
   PrcItem: 1000
 DscRcgGlobal:
-  # IndExeDR: Indica si el descuento o recargo afecta a ítems exentos o no afectos a IVA. 1: No afecto o exento de IVA. 2: No facturable. Largo máx: 1 - Tipo: NÚM.
+  # IndExeDR: Indica si el descuento o recargo afecta a ítems exentos o no
+  #           afectos a IVA. 1: No afecto o exento de IVA. 2: No facturable.
+  #           Largo máx: 1 - Tipo: NÚM.
   IndExeDR: 1
   TpoMov: D
   TpoValor: '%'

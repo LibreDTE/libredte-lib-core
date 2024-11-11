@@ -1,6 +1,6 @@
 Encabezado:
   IdDoc:
-    TipoDTE: 111
+    TipoDTE: 112
     Folio: 1
     IndServicio: 4
   Emisor:
@@ -27,13 +27,13 @@ Detalle:
 Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
-- TpoDocRef: 112
+- TpoDocRef: 110
   FolioRef: 1
   FchRef: '2016-01-01'
-  # CodRef: Debe de ser siempre 1, ya que corresponde a
-  #         'Anula Documento de Referencia'.
+  # CodRef: Debe de ser siempre 2, ya que corresponde a
+  #         'Corrige Texto Documento de Referencia'.
   CodRef: 1
-  RazonRef: Anula nota de credito
+  RazonRef: Anula factura
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

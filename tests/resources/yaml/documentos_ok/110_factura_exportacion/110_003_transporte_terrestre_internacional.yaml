@@ -3,11 +3,16 @@ Encabezado:
     TipoDTE: 110
     Folio: 3
     TipoDespacho: 1
-    # IndServicio: Código 5 indica que es un servicio de transporte terrestre internacional. Tipo: NÚM.
+    # IndServicio: Código 5 indica que es un servicio de transporte terrestre
+    #              internacional. Tipo: NÚM.
     IndServicio: 5
-    # FmaPagExp: (Opcional) Forma de pago del importador extranjero indicado en el DUS. Código señalado en la 'Tabla Formas de Pago de Aduanas'. - Largo máx: 2 - Tipo: NÚM.
+    # FmaPagExp: (Opcional) Forma de pago del importador extranjero indicado en
+    #            el DUS. Código señalado en la 'Tabla Formas de Pago de Aduanas'
+    #            Largo máx: 2 - Tipo: NÚM.
     FmaPagExp: 12
-    # FchCancel: Se utiliza si la factura ha sido cancelada antes de la fecha de emisión. Obligatorio cuando en "FmaPagoExp" se indique "anticipo". - Largo máx: 10 - Tipo: ALFA.
+    # FchCancel: Se utiliza si la factura ha sido cancelada antes de la fecha de
+    #            emisión. Obligatorio cuando en "FmaPagoExp" se indique
+    #            "anticipo". - Largo máx: 10 - Tipo: ALFA.
     FchCancel: '2024-03-20'
   Emisor:
     RUTEmisor: 76192083-9
@@ -28,11 +33,14 @@ Encabezado:
     CiudadDest: Hong Kong
     # Aduana: Sub-área transporte de aduana.
     Aduana:
-      # CodModVenta: Corresponde a la vía de transporte donde se envía la mercadería. - Largo máx: 2 - Tipo: NÚM.
+      # CodModVenta: Corresponde a la vía de transporte donde se envía la
+      #              mercadería. - Largo máx: 2 - Tipo: NÚM.
       CodViaTransp: 07
-      # TotBultos: Cantidad total de bultos que ampara el documento. - Largo máx: 18 - Tipo: NÚM.
+      # TotBultos: Cantidad total de bultos que ampara el documento
+      #            Largo máx: 18 - Tipo: NÚM.
       TotBultos: 54
-      # Código del país de receptor extranjero de la mercadería, según tabla de Países aduana. - Largo máx: 3 - Tipo: NÚM.
+      # Código del país de receptor extranjero de la mercadería, según tabla de
+      # Países aduana. - Largo máx: 3 - Tipo: NÚM.
       CodPaisRecep: 342
   Totales:
     TpoMoneda: DOLAR USA

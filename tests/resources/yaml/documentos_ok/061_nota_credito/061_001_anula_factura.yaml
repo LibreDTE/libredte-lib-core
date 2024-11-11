@@ -28,7 +28,8 @@ Referencia:
 - TpoDocRef: 33
   FolioRef: 1
   FchRef: '2016-01-01'
-  # CodRef: Debe de ser siempre 1, ya que corresponde a 'Anula Documento de Referencia'.
+  # CodRef: Debe de ser siempre 1, ya que corresponde a
+  #         'Anula Documento de Referencia'.
   CodRef: 1
   RazonRef: Anula factura
 

@@ -18,9 +18,11 @@ Encabezado:
 Detalle:
   # CdgItem: Corresponde a la inforamción de un ítem.
 - CdgItem:
-    # TpoCodigo: Tipo de codificación utilizada para el ítem. - Largo máx: 10 - Tipo: ALFA.
+    # TpoCodigo: Tipo de codificación utilizada para el ítem. - Largo máx: 10
+    #            Tipo: ALFA.
     TpoCodigo: CPCS
-    # VlrCodigo: Código del producto de acuerdo a tipo de codificación indicada en el campo anterior - Largo máx: 35 - Tipo: ALFA.
+    # VlrCodigo: Código del producto de acuerdo a tipo de codificación indicada
+    #            en el campo anterior - Largo máx: 35 - Tipo: ALFA.
     VlrCodigo: 1900
   # Retenedor: Área Retenedor.
   Retenedor:

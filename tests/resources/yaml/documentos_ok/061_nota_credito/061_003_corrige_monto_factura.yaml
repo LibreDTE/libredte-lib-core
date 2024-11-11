@@ -28,8 +28,9 @@ Referencia:
 - TpoDocRef: 33
   FolioRef: 1
   FchRef: '2016-01-01'
-  # CodRef: Debe de ser siempre 2, ya que corresponde a 'Corrige Texto Documento de Referencia'.
-  CodRef: 2
+  # CodRef: Debe de ser siempre 3, ya que corresponde a
+  #         'Corrige Monto Documento de Referencia'.
+  CodRef: 3
   RazonRef: Corrige monto
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.

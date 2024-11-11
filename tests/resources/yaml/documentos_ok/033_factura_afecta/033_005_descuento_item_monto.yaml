@@ -23,7 +23,8 @@ Detalle:
   DscItem: 'DTEs: 33, 56 y 61'
   QtyItem: 1
   PrcItem: 104097
-  # DescuentoMonto: Monto del descuento aplicado al ítem - Largo máx: 18 - Tipo: NÚM.
+  # DescuentoMonto: Monto del descuento aplicado al ítem - Largo máx: 18
+  #                 Tipo: NÚM.
   DescuentoMonto: 10000
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.

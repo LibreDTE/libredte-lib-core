@@ -3,7 +3,8 @@ Encabezado:
     TipoDTE: 52
     Folio: 1
     TipoDespacho: 1
-    # IndTraslado: Código 2 indica Venta por efectuar. - Largo máx: 1 - Tipo: NÚM.
+    # IndTraslado: Código 2 indica Venta por efectuar. - Largo máx: 1
+    #              Tipo: NÚM.
     IndTraslado: 2
   Emisor:
     RUTEmisor: 76192083-9

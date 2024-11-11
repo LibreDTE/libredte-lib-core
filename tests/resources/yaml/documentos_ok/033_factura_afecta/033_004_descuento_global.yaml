@@ -20,17 +20,22 @@ Detalle:
     TpoCodigo: INT1
     VlrCodigo: dte-cert
   NmbItem: Certificación set básico
-  # DscItem: Descripción adicional del producto o servicio - Largo máx: 1000 - Tipo: ALFA.
+  # DscItem: Descripción adicional del producto o servicio - Largo máx: 1000
+  #          Tipo: ALFA.
   DscItem: 'DTEs: 33, 56 y 61'
   QtyItem: 1
   PrcItem: 104090
 # DscRcgGlobal: Zona de Infromación de descuentos o recargos.
 DscRcgGlobal:
-  # TpoMov: Tipo de Movimiento. D (descuento) o R (recargo) - Largo máx: 1 - Tipo: ALFA.
+  # TpoMov: Tipo de Movimiento. D (descuento) o R (recargo) - Largo máx: 1
+  #         Tipo: ALFA.
   TpoMov: D
-  # TpoValor: Tipo de Valor, ingresar '%' si es Porcentaje o '$' si es monto - Largo máx: 1 - Tipo: ALFA.
+  # TpoValor: Tipo de Valor, ingresar '%' si es Porcentaje o '$' si es monto
+  #           Largo máx: 1 - Tipo: ALFA.
   TpoValor: '%'
-  # ValorDR: Valor del Descuento o Recargo. Corresponde al monto si es tipo de valor Monto o porcentaje si tipo de valor es Porcentaje - Largo máx: 18 - Tipo: NÚM.
+  # ValorDR: Valor del Descuento o Recargo. Corresponde al monto si es tipo de
+  #          valor Monto o porcentaje si tipo de valor es Porcentaje
+  #          Largo máx: 18 - Tipo: NÚM.
   ValorDR: 10
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.

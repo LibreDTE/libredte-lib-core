@@ -3,11 +3,13 @@ Encabezado:
     TipoDTE: 52
     Folio: 1
     TipoDespacho: 1
-    # IndTraslado: Código 7 indica Guía de devolución. - Largo máx: 1 - Tipo: NÚM.
+    # IndTraslado: Código 7 indica Guía de devolución. - Largo máx: 1
+    #              Tipo: NÚM.
     IndTraslado: 7
     TermPagoGlosa: DEVOLUCION POR NO CORRESPONDER A LO SOLICITADO SEGUN FACTURA
-  # En las guías de devolución el Receptor del documento que se hace referencia se convierte en el Emisor de la guía de devolución.
-  # y el Emisor del documento que se hace referencia se convierte en el Receptor de la guía de devolución.
+  # En las guías de devolución el Receptor del documento que se hace referencia
+  # se convierte en el Emisor de la guía de devolución. El Emisor del documento
+  # que se hace referencia se convierte en el Receptor de la guía de devolución.
   Emisor:
     RUTEmisor: 1234567-4
     RznSoc: Antonio Rosales

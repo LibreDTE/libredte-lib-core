@@ -16,7 +16,9 @@ Encabezado:
     DirRecep: Santiago
     CmnaRecep: Santiago
 Detalle:
-  # IndExe: Indicador de facturación/exención. Indica si el producto o servicio es exento o no afecto a impuesto o si ya ha sido facturado - Largo máx: 1 - Tipo: NÚM.
+  # IndExe: Indicador de facturación/exención. Indica si el producto o servicio
+  #         es exento o no afecto a impuesto o si ya ha sido facturado.
+  #         Largo máx: 1 - Tipo: NÚM.
 - IndExe: 1
   NmbItem: Horas desarrollo
   QtyItem: 5

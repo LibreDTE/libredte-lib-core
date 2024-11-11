@@ -4,7 +4,8 @@ Encabezado:
     Folio: 1
     # FmaPago: Forma de pago - Largo máx: 1 - Tipo: NÚM.
     FmaPago: 1
-    # TermPagoCdg: Términos del Pago/glosa. Describe las condiciones del pago del documento - Largo máx: 3 - Tipo: ALFA.
+    # TermPagoCdg: Términos del Pago/glosa. Describe las condiciones del pago
+    #              del documento - Largo máx: 3 - Tipo: ALFA.
     TermPagoGlosa: 'Esto es una observación
       y de varias líneas
       esto es pago contado'

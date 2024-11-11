@@ -2,6 +2,7 @@ Encabezado:
   IdDoc:
     TipoDTE: 33
     Folio: 1
+    FmaPago: 1
   Emisor:
     RUTEmisor: 76192083-9
     RznSoc: SASCO SpA
@@ -13,23 +14,15 @@ Encabezado:
     RUTRecep: 60803000-K
     RznSocRecep: Servicio de Impuestos Internos
     GiroRecep: Gobierno
+    # ContactoRecep: Glosa con nombre y teléfono de contacto de la empresa
+    #                receptora. Largo máx: 80 - Tipo: ALFA.
+    Contacto: Gustavo +56912345678
     DirRecep: Santiago
     CmnaRecep: Santiago
 Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450
   PrcItem: 70
-# Referencia: Zona de Referencia. Contiene la información de documentos de
-#             referencia. Se enlistan con un "guion" (-).
-Referencia:
-  # TpoDocRef: Indica el tipo del documento de referencia, también se ouede usar
-  #            para referenciar documentos no tributarios - Largo máx: 3
-  #            Tipo: ALFA.
-- TpoDocRef: 52
-  # FolioRef: Folio del documento de refencia - Largo máx: 18 - Tipo: NÚM.
-  FolioRef: 1
-  # FchRef: Fecha de documento de referencia - Largo máx: 10 - Tipo: FECHA.
-  FchRef: '2016-01-01'
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

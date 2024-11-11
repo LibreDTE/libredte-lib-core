@@ -1,0 +1,38 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 46
+    Folio: 1
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 59292930-9
+    CdgIntRecep: amazon
+    RznSocRecep: AMAZON WEB SERVICES, INC.
+    Extranjero:
+      Nacionalidad: 225
+    GiroRecep: Servicios de computación en la nube
+    DirRecep: 410 Terry Ave North
+    CmnaRecep: Seattle
+Detalle:
+- NmbItem: Servicio de Infraestructura
+  QtyItem: 1
+  PrcItem: 123973
+  CodImpAdic: 15
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 123973
+        IVA: 23555
+        ImptoReten:
+            - TipoImp: 15
+              TasaImp: 19
+              MontoImp: 23555
+        MntTotal: 123973

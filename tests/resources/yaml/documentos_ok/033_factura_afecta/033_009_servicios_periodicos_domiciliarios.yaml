@@ -2,7 +2,8 @@ Encabezado:
   IdDoc:
     TipoDTE: 33
     Folio: 1
-    # IndServicio: Código 1 corresponde Factura de servicios periódicos domiciliarios.
+    # IndServicio: Código 1 corresponde Factura de servicios periódicos
+    #              domiciliarios.
     IndServicio: 1
     FchVenc: '2024-10-31'
   Emisor:
