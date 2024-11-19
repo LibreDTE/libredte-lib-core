@@ -15,11 +15,6 @@ Encabezado:
     GiroRecep: Gobierno
     DirRecep: Santiago
     CmnaRecep: Santiago
-  Totales:
-    MntNeto: 0
-    TasaIVA: 19
-    IVA: 0
-    MntTotal: 0
 Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450

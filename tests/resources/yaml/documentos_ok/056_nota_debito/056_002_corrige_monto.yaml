@@ -15,15 +15,6 @@ Encabezado:
     GiroRecep: Gobierno
     DirRecep: Santiago
     CmnaRecep: Santiago
-  # Totales: Área de Totales del documento.
-  Totales:
-    MntNeto: 0
-    # TasaIVA: Tasa IVA. - Largo máx: 5 - Tipo: NÚM.
-    TasaIVA: 19
-    # IVA: Monto IVA - Largo máx: 18 - Tipo: NÚM.
-    IVA: 0
-    # MntTotal: Monto total - Largo máx: 18 - Tipo: NÚM.
-    MntTotal: 0
 Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450

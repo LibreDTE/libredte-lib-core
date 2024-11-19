@@ -15,10 +15,15 @@ Encabezado:
     GiroRecep: Gobierno
     DirRecep: Santiago
     CmnaRecep: Santiago
+  # Totales: No debe de modificarse en nota de crédito corrige texto.
   Totales:
+    # MntNeto: Dejar en 0.
     MntNeto: 0
+    # TasaIVA: Dejar en 19.
     TasaIVA: 19
+    # TasaIVA: Dejar en 0.
     IVA: 0
+    # MntTotal: Dejar en 0.
     MntTotal: 0
 Detalle:
 - NmbItem: Corrige Giro
