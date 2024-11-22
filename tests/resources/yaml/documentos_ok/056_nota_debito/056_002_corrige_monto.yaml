@@ -20,7 +20,7 @@ Detalle:
   QtyItem: 450
   PrcItem: 70
 # En esta área se encuentra la información del documento que se desea anular.
-# Por cada nota de cŕedito se puede anular un documento.
+# Por cada nota de débito se puede anular un documento.
 Referencia:
 - TpoDocRef: 61
   FolioRef: 1

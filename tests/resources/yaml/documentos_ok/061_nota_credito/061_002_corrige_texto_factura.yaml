@@ -27,7 +27,6 @@ Encabezado:
     MntTotal: 0
 Detalle:
 - NmbItem: Corrige Giro
-  DscItem: DONDE DICE Giro1 DEBE DECIR Giro2
   QtyItem: 1
   PrcItem: false
 Referencia:
@@ -37,7 +36,7 @@ Referencia:
   # CodRef: Debe de ser siempre 2, ya que corresponde a
   #         'Corrige Texto Documento de Referencia'.
   CodRef: 2
-  RazonRef: Corrige texto
+  RazonRef: DONDE DICE Giro1 DEBE DECIR Giro2
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

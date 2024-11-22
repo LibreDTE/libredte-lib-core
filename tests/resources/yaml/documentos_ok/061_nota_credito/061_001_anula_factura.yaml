@@ -19,6 +19,7 @@ Detalle:
 - NmbItem: Conectores RJ45
   QtyItem: 450
   PrcItem: 70
+# Por cada nota de crédito se puede anular un documento.
 Referencia:
 - TpoDocRef: 33
   FolioRef: 1

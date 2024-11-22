@@ -2,11 +2,13 @@ Encabezado:
   IdDoc:
     TipoDTE: 52
     Folio: 1
-    # TipoDespacho: Tipo de despacho. Corresponde a que la Operación constituye
-    #               venta. - Largo máx: 1 - Tipo: NÚM.
+    # TipoDespacho: Tipo de despacho, indica si el documento acompaña bienes y
+    #               el despacho es por cuenta del vendedor o comprador. No se
+    #               incluye si no acompaña a bienes.- Largo máx: 1 - Tipo: NÚM.
     TipoDespacho: 1
-    # IndTraslado: Indicador Tipo de traslado de bienes. Sólo para Guías de
-    #              despacho. - Largo máx: 1 - Tipo: NÚM.
+    # IndTraslado: Indicador de tipo de traslado de bienes, corresponde valor 1
+    #              cuando constituye venta.
+    #              Largo máx: 1 - Tipo: NÚM.
     IndTraslado: 1
   Emisor:
     RUTEmisor: 76192083-9

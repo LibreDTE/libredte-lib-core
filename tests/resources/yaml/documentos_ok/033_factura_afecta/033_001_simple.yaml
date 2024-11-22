@@ -4,7 +4,7 @@
 Encabezado:
   # IdDoc: Área Identificación del Documento.
   IdDoc:
-    # TipoDTE: Tipo Documento Tributario Electrónico - Largo máx: 2 - Tipo: NÚM.
+    # TipoDTE: Tipo Documento Tributario Electrónico - Largo máx: 3 - Tipo: NÚM.
     TipoDTE: 33
     # Folio: Folio del documento autorizado por el SII.
     #        Largo máx: 10 - Tipo: NÚM.

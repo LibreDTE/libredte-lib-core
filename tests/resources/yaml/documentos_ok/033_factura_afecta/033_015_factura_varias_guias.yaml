@@ -1,0 +1,94 @@
+# Esta factura de varias guías, corresponde cuando son una cantidad máxima de 10
+# guías referenciadas.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 12345
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+  # NmbItem: Debe de referenciar a la guía de despacho.
+  - NmbItem: Guía de Despacho 10
+  # QtyItem: La cantidad debe de ser "1".
+    QtyItem: 1
+  # PrcItem: Corresponde al monto neto de la guía de despacho.
+    PrcItem: 1000
+  - NmbItem: Guía de Despacho 11
+    QtyItem: 1
+    PrcItem: 1500
+  - NmbItem: Guía de Despacho 12
+    QtyItem: 1
+    PrcItem: 1200
+  - NmbItem: Guía de Despacho 13
+    QtyItem: 1
+    PrcItem: 1100
+  - NmbItem: Guía de Despacho 14
+    QtyItem: 1
+    PrcItem: 1300
+  - NmbItem: Guía de Despacho 15
+    QtyItem: 1
+    PrcItem: 1400
+  - NmbItem: Guía de Despacho 16
+    QtyItem: 1
+    PrcItem: 1250
+  - NmbItem: Guía de Despacho 17
+    QtyItem: 1
+    PrcItem: 1150
+  - NmbItem: Guía de Despacho 18
+    QtyItem: 1
+    PrcItem: 1600
+  - NmbItem: Guía de Despacho 19
+    QtyItem: 1
+    PrcItem: 1700
+Referencia:
+  # Se debe de referenciar cada guía de despacho.
+  - TpoDocRef: 52
+    FolioRef: 10
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 11
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 12
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 13
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 14
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 15
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 16
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 17
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 18
+    FchRef: '2024-11-21'
+  - TpoDocRef: 52
+    FolioRef: 19
+    FchRef: '2024-11-21'
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 13200
+        IVA: 2508
+        MntTotal: 15708
