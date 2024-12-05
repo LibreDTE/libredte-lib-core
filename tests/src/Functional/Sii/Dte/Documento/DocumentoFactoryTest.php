@@ -35,19 +35,9 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\DocumentoFactory;
 use libredte\lib\Core\Sii\Dte\Documento\Builder\FacturaAfectaBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoException;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
-use libredte\lib\Core\Xml\XmlConverter;
-use libredte\lib\Core\Xml\XmlDecoder;
-use libredte\lib\Core\Xml\XmlDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(DocumentoFactory::class)]
@@ -60,17 +50,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(AbstractDocumentoBuilder::class)]
 #[CoversClass(FacturaAfectaBuilder::class)]
 #[CoversClass(DocumentoTipo::class)]
-#[CoversTrait(DescuentosRecargosNormalizationTrait::class)]
-#[CoversTrait(DetalleNormalizationTrait::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
-#[CoversTrait(ImpuestoAdicionalRetencionNormalizationTrait::class)]
-#[CoversTrait(IvaMntTotalNormalizationTrait::class)]
-#[CoversTrait(TransporteNormalizationTrait::class)]
-#[CoversTrait(UtilsTrait::class)]
-#[CoversTrait(XmlConverter::class)]
-#[CoversTrait(XmlDecoder::class)]
-#[CoversTrait(XmlDocument::class)]
 class DocumentoFactoryTest extends TestCase
 {
     public function testDocumentoFactoryFromArrayWithoutTipoDTE(): void

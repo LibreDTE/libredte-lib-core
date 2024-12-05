@@ -43,21 +43,14 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\AbstractDocumentoBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\Builder\DocumentoFactory;
 use libredte\lib\Core\Sii\Dte\Documento\Builder\FacturaAfectaBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Sii\Dte\Documento\SobreEnvio;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
@@ -80,14 +73,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentoFactory::class)]
 #[CoversClass(FacturaAfectaBuilder::class)]
 #[CoversClass(DocumentoTipo::class)]
-#[CoversTrait(DescuentosRecargosNormalizationTrait::class)]
-#[CoversTrait(DetalleNormalizationTrait::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
-#[CoversTrait(ImpuestoAdicionalRetencionNormalizationTrait::class)]
-#[CoversTrait(IvaMntTotalNormalizationTrait::class)]
-#[CoversTrait(TransporteNormalizationTrait::class)]
-#[CoversTrait(UtilsTrait::class)]
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDocument::class)]
 #[CoversClass(XmlUtils::class)]

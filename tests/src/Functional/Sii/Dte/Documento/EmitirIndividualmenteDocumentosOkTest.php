@@ -55,15 +55,8 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\NotaCreditoExportacionBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\Builder\NotaDebitoBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\Builder\NotaDebitoExportacionBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DescuentosRecargosNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\DetalleNormalizationTrait;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ExportacionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\ImpuestoAdicionalRetencionNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\IvaMntTotalNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\TransporteNormalizationTrait;
-use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
@@ -71,7 +64,6 @@ use libredte\lib\Core\Xml\XmlEncoder;
 use libredte\lib\Core\Xml\XmlUtils;
 use libredte\lib\Core\Xml\XmlValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
@@ -107,15 +99,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NotaDebitoBuilder::class)]
 #[CoversClass(NotaDebitoExportacionBuilder::class)]
 #[CoversClass(DocumentoTipo::class)]
-#[CoversTrait(DescuentosRecargosNormalizationTrait::class)]
-#[CoversTrait(DetalleNormalizationTrait::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
-#[CoversTrait(ExportacionNormalizationTrait::class)]
-#[CoversTrait(ImpuestoAdicionalRetencionNormalizationTrait::class)]
-#[CoversTrait(IvaMntTotalNormalizationTrait::class)]
-#[CoversTrait(TransporteNormalizationTrait::class)]
-#[CoversTrait(UtilsTrait::class)]
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]

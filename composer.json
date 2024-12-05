@@ -35,6 +35,7 @@
         "illuminate/support": "^11.22",
         "league/csv": "^9.16",
         "maennchen/zipstream-php": "^3.1",
+        "mpdf/mpdf": "^8.2",
         "nesbot/carbon": "^3.8",
         "phpseclib/phpseclib": "^3.0",
         "psr/simple-cache": "^3.0",
@@ -47,7 +48,7 @@
         "ext-xdebug": "*",
         "friendsofphp/php-cs-fixer": "^3.63",
         "phpstan/phpstan": "^1.12",
-        "phpunit/phpunit": "^11.3"
+        "phpunit/phpunit": "^11.4"
     },
     "scripts": {
         "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
