@@ -249,8 +249,7 @@ class DocumentUploader
 
         // Cabeceras HTTP de la solicitud que se hará al SII.
         $headers = [
-            'User-Agent: Mozilla/4.0 (compatible; PROG 1.0; LibreDTE)',
-            'Referer: https://www.libredte.cl',
+            'User-Agent: Mozilla/5.0 (compatible; PROG 1.0; +https://www.libredte.cl)',
             'Cookie: TOKEN=' . $token,
         ];
 

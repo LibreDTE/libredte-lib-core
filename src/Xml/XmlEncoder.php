@@ -88,7 +88,11 @@ class XmlEncoder
             if ($key === '@attributes') {
                 // Solo se agregan atributos si el valor es un arreglo.
                 if (is_array($value)) {
-                    self::nodeAddAttributes($parent, $value);
+                    // En la primera iteración de recursividad se debe revisar
+                    // que $parent sea DOMElement. Y solo en ese caso seguir.
+                    if ($parent instanceof DOMElement) {
+                        self::nodeAddAttributes($parent, $value);
+                    }
                 }
             }
 

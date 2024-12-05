@@ -41,8 +41,7 @@
         "symfony/cache": "^7.1",
         "symfony/filesystem": "^7.1",
         "symfony/mime": "^7.1",
-        "symfony/yaml": "^7.1",
-        "tecnickcom/tcpdf": "^6.7"
+        "symfony/yaml": "^7.1"
     },
     "require-dev": {
         "ext-xdebug": "*",

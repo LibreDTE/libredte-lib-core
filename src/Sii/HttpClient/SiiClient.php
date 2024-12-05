@@ -167,11 +167,6 @@ class SiiClient
      * Entrega una instancia con la implementación de una caché para ser
      * utilizada en la biblioteca.
      *
-     * NOTE: Este método a propósito tiene las clases con su FQCN y no utiliza
-     * los use. Esto es para que PHP no cargue las clases automáticamente a
-     * menos que realmente se vayan a utilizar. Pues en una situación normal,
-     * la caché debería ser inyectada y no usarse las opciones por defecto.
-     *
      * @return CacheInterface Implementación de caché PSR-16.
      */
     private function getCache(): CacheInterface
