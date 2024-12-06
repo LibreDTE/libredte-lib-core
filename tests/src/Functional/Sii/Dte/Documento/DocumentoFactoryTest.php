@@ -37,6 +37,9 @@ use libredte\lib\Core\Sii\Dte\Documento\DocumentoException;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Xml\XmlConverter;
+use libredte\lib\Core\Xml\XmlDecoder;
+use libredte\lib\Core\Xml\XmlDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -52,6 +55,9 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
+#[CoversClass(XmlConverter::class)]
+#[CoversClass(XmlDecoder::class)]
+#[CoversClass(XmlDocument::class)]
 class DocumentoFactoryTest extends TestCase
 {
     public function testDocumentoFactoryFromArrayWithoutTipoDTE(): void
