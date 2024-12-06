@@ -558,7 +558,7 @@ contraseña.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/CertificateFaker.php"><a href="files/src-signature-certificatefaker.html"><abbr title="src/Signature/CertificateFaker.php">CertificateFaker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">290</span>
+    <span class="phpdocumentor-element-found-in__line">293</span>
 
     </aside>
 
@@ -602,7 +602,7 @@ Certificate.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/CertificateFaker.php"><a href="files/src-signature-certificatefaker.html"><abbr title="src/Signature/CertificateFaker.php">CertificateFaker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">275</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -646,7 +646,7 @@ arreglo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/CertificateFaker.php"><a href="files/src-signature-certificatefaker.html"><abbr title="src/Signature/CertificateFaker.php">CertificateFaker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -690,7 +690,7 @@ string.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/CertificateFaker.php"><a href="files/src-signature-certificatefaker.html"><abbr title="src/Signature/CertificateFaker.php">CertificateFaker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">203</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -847,7 +847,7 @@ string.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Signature/CertificateFaker.php"><a href="files/src-signature-certificatefaker.html"><abbr title="src/Signature/CertificateFaker.php">CertificateFaker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -1025,7 +1025,7 @@ string.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setValidity</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validTo</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                    <span class="phpdocumentor-signature__name">setValidity</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$days</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">365</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1034,12 +1034,12 @@ string.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$validTo</span>
+                <span class="phpdocumentor-signature__argument__name">$days</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">365</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Fecha de validez hasta, en formato 'Y-m-d'.
-Si no se proporciona, se establece un año a partir de la fecha actual.</p>
+                    <section class="phpdocumentor-description"><p>Días que el certificado será válido desde la
+fecha actual. Si no se proporciona, tendrá validez de 365 días.</p>
 </section>
 
             </dd>
