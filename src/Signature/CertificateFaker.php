@@ -160,24 +160,13 @@ class CertificateFaker
     /**
      * Configura la validez del certificado.
      *
-     * @param string|null $validTo Fecha de validez hasta, en formato 'Y-m-d'.
-     * Si no se proporciona, se establece un año a partir de la fecha actual.
+     * @param string|null $days Días que el certificado será válido desde la
+     * fecha actual. Si no se proporciona, tendrá validez de 365 días.
      * @return self
      */
-    public function setValidity(string $validTo = null): self
+    public function setValidity(int $days = 365): self
     {
-        $validFrom = (int) date('U');
-
-        if ($validTo === null) {
-            $validTo = date('Y-m-d', strtotime('+1 year', $validFrom));
-        }
-        $validTo = strtotime($validTo);
-
-        $days = (int) (($validTo - $validFrom) / (60 * 60 * 24));
-
         $this->validity = [
-            'from' => $validFrom,
-            'to' => $validTo,
             'days' => $days,
         ];
 
@@ -225,7 +214,7 @@ class CertificateFaker
         }
         $issuerCsr = openssl_csr_new($this->issuer, $issuerPrivateKey);
 
-        // Crear certificado autofirmado para el emisor.
+        // Crear certificado autofirmado para el emisor (CA).
         $issuerCert = openssl_csr_sign(
             $issuerCsr,         // CSR del emisor.
             null,               // Certificado emisor (null indica que es autofirmado).
@@ -234,6 +223,13 @@ class CertificateFaker
             [],                 // Opciones adicionales.
             666                 // Número de serie del certificado.
         );
+
+        // Validar que se haya podido crear el certificado del emisor (CA).
+        if ($issuerCert === false) {
+            throw new CertificateException(
+                'No fue posible generar el certificado del emisor (CA).'
+            );
+        }
 
         // Crear clave privada y CSR para el sujeto.
         $subjectPrivateKey = openssl_pkey_new();
@@ -253,6 +249,13 @@ class CertificateFaker
             [],                 // Opciones adicionales.
             69                  // Número de serie del certificado.
         );
+
+        // Validar que se haya podido crear el certificado del usuario.
+        if ($subjectCert === false) {
+            throw new CertificateException(
+                'No fue posible generar el certificado del usuario.'
+            );
+        }
 
         // Exportar el certificado final en formato PKCS#12.
         openssl_pkcs12_export(

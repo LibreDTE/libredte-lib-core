@@ -127,10 +127,10 @@ class CertificateTest extends TestCase
     public function testIsActiveForExpiredCertificate(): void
     {
         $faker = new CertificateFaker();
-        $faker->setValidity(validTo: date('Y-m-d', strtotime('-1 year')));
         $certificate = $faker->create();
 
-        $this->assertFalse($certificate->isActive());
+        $when = date('Y-m-d', strtotime('+10 year'));
+        $this->assertFalse($certificate->isActive($when));
     }
 
     public function testGetExpirationDays(): void

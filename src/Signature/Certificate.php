@@ -296,7 +296,7 @@ class Certificate
     public function isActive(?string $when = null): bool
     {
         if ($when === null) {
-            $when = date('Y-m-d').'T23:59:59';
+            $when = date('Y-m-d');
         }
 
         if (!isset($when[10])) {
