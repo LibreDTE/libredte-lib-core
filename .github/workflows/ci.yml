@@ -49,13 +49,5 @@ jobs:
           name: tests-coverage-php_${{ matrix.php-version }}.txt
           path: var/tests-coverage.txt
 
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: var/tests-coverage.xml
-          fail_ci_if_error: true
-          verbose: true
-
       - name: Display PHP version
         run: php -v
