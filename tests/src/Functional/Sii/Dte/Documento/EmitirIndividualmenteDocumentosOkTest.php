@@ -57,6 +57,8 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\NotaDebitoExportacionBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Renderer\AbstractRenderer;
+use libredte\lib\Core\Sii\Dte\Documento\Renderer\DocumentoRenderer;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
@@ -101,6 +103,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
+#[CoversClass(DocumentoRenderer::class)]
+#[CoversClass(AbstractRenderer::class)]
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
