@@ -676,6 +676,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020ruta\u0020completa\u0020del\u0020directorio\u0020de\u0020esquemas\u0020XML\u0020o\u0020de\u0020un\nesquema\u0020XML\u0020en\u0020espec\u00EDfico\u0020si\u0020fue\u0020pasado.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#method_getSchemasPath"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003AgetTemplatesPath\u0028\u0029",
+            "name": "getTemplatesPath",
+            "summary": "Obtiene\u0020la\u0020ruta\u0020completa\u0020del\u0020directorio\u0020de\u0020plantillas.",
+            "url": "classes/libredte-lib-Core-Service-PathManager.html#method_getTemplatesPath"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003AgetWsdlPath\u0028\u0029",
             "name": "getWsdlPath",
             "summary": "Obtiene\u0020la\u0020ruta\u0020completa\u0020a\u0020un\u0020archivo\u0020WSDL\u0020en\u0020el\u0020almacenamiento\u0020local.",
@@ -730,6 +735,11 @@ Search.appendIndex(
             "name": "SCHEMAS_PATH",
             "summary": "Ubicaci\u00F3n\u0020de\u0020los\u0020esquemas\u0020XML\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_SCHEMAS_PATH"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003ATEMPLATES_PATH",
+            "name": "TEMPLATES_PATH",
+            "summary": "Ubicaci\u00F3n\u0020de\u0020las\u0020plantillas\u0020dentro\u0020del\u0020directorio\u0020de\u0020recursos.",
+            "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_TEMPLATES_PATH"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Service\\PathManager\u003A\u003AWSDL_PATH",
             "name": "WSDL_PATH",
@@ -1641,6 +1651,16 @@ Search.appendIndex(
             "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_validateSchema"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003AgetHtml\u0028\u0029",
+            "name": "getHtml",
+            "summary": "Genera\u0020el\u0020HTML\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getHtml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003AgetPdf\u0028\u0029",
+            "name": "getPdf",
+            "summary": "Genera\u0020el\u0020PDF\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getPdf"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003A\u0024codigo",
             "name": "codigo",
             "summary": "C\u00F3digo\u0020del\u0020tipo\u0020de\u0020documento\u0020tributario\u0020al\u0020que\u0020est\u00E1\u0020asociada\u0020esta\ninstancia\u0020de\u0020un\u0020documento.",
@@ -2400,6 +2420,96 @@ Search.appendIndex(
             "name": "codigo",
             "summary": "C\u00F3digo\u0020del\u0020tipo\u0020de\u0020documento\u0020tributario\u0020al\u0020que\u0020est\u00E1\u0020asociada\u0020esta\ninstancia\u0020de\u0020un\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-NotaDebitoExportacion.html#property_codigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer",
+            "name": "AbstractRenderer",
+            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020los\u0020renderizadores\u0020de\u0020documentos\u0020tributarios\nelectr\u00F3nicos\u0020\u0028DTE\u0029.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020el\u0020formato\u0020solicitado\u0020\u0028HTML\u0020o\u0020PDF\u0029.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_render"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003AgetDefaultTemplate\u0028\u0029",
+            "name": "getDefaultTemplate",
+            "summary": "Entrega\u0020la\u0020plantilla\u0020por\u0020defecto\u0020asociada\u0020al\u0020renderizador\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_getDefaultTemplate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderHtml\u0028\u0029",
+            "name": "renderHtml",
+            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020formato\u0020HTML.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderHtmlWithTwig\u0028\u0029",
+            "name": "renderHtmlWithTwig",
+            "summary": "Renderiza\u0020una\u0020plantilla\u0020twig\u0020con\u0020ciertos\u0020datos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtmlWithTwig"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderPdf\u0028\u0029",
+            "name": "renderPdf",
+            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020formato\u0020PDF.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderPdf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003A\u0024defaultTemplate",
+            "name": "defaultTemplate",
+            "summary": "Plantilla\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020renderizar\u0020el\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_defaultTemplate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003A\u0024dataProvider",
+            "name": "dataProvider",
+            "summary": "Proveedor\u0020de\u0020datos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_dataProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer",
+            "name": "DocumentoRenderer",
+            "summary": "Renderizador\u0020de\u0020la\u0020representaci\u00F3n\u0020gr\u00E1fica\u0020de\u0020un\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003ArenderFromXml\u0028\u0029",
+            "name": "renderFromXml",
+            "summary": "Renderiza\u0020el\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020en\u0020formato\u0020XML.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromXml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003ArenderFromDocumento\u0028\u0029",
+            "name": "renderFromDocumento",
+            "summary": "Renderiza\u0020el\u0020documento\u0020a\u0020partir\u0020de\u0020la\u0020instancia\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromDocumento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003AgetRenderer\u0028\u0029",
+            "name": "getRenderer",
+            "summary": "Obtener\u0020el\u0020objeto\u0020que\u0020se\u0020encarga\u0020de\u0020la\u0020renderizaci\u00F3n\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A\u0024renderers",
+            "name": "renderers",
+            "summary": "Listado\u0020de\u0020renderizadores\u0020disponibles\u0020\u0028ya\u0020cargados\u0029.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#property_renderers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A\u0024dataProvider",
+            "name": "dataProvider",
+            "summary": "Proveedor\u0020de\u0020datos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#property_dataProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererEstandar",
+            "name": "RendererEstandar",
+            "summary": "Renderizador\u0020de\u0020DTE\u0020usando\u0020la\u0020plantilla\u0020est\u00E1ndar\u0020de\u0020LibreDTE.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererEstandar.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererEstandar\u003A\u003A\u0024defaultTemplate",
+            "name": "defaultTemplate",
+            "summary": "Plantilla\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020renderizar\u0020el\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererEstandar.html#property_defaultTemplate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\SobreEnvio",
             "name": "SobreEnvio",
@@ -3315,6 +3425,11 @@ Search.appendIndex(
             "name": "Normalization",
             "summary": "",
             "url": "namespaces/libredte-lib-core-sii-dte-documento-normalization.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer",
+            "name": "Renderer",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-sii-dte-documento-renderer.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\HttpClient",
             "name": "HttpClient",
