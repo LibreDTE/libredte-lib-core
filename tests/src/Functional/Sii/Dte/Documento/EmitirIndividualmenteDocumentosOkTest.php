@@ -266,13 +266,33 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $documento->validateSchema();
 
         $this->assertTrue(true);
+
+        file_put_contents($file . '.xml', $xml);
+        file_put_contents(
+            $file . '.json',
+            json_encode($documento->getData(), JSON_PRETTY_PRINT)
+        );
+    }
+
+    #[DataProvider('provideDocumentosOk')]
+    public function testCrearHtml(string $file): void
+    {
+        list($documento, $test) = $this->crearDocumento($file);
+        $html = $documento->getHtml();
+
+        $this->assertIsString($html);
+
+        file_put_contents($file . '.html', $html);
     }
 
     #[DataProvider('provideDocumentosOk')]
     public function testCrearPdf(string $file): void
     {
         list($documento, $test) = $this->crearDocumento($file);
+        $pdf = $documento->getPdf();
 
-        $this->markTestIncomplete('Test no implementado.');
+        $this->assertIsString($pdf);
+
+        file_put_contents($file . '.pdf', $pdf);
     }
 }

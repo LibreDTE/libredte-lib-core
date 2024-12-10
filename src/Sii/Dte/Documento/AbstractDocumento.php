@@ -35,6 +35,7 @@ use libredte\lib\Core\Signature\XmlSignatureNode;
 use libredte\lib\Core\Sii\Contribuyente\Contribuyente;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\Caf;
 use libredte\lib\Core\Sii\Dte\AutorizacionFolio\CafException;
+use libredte\lib\Core\Sii\Dte\Documento\Renderer\DocumentoRenderer;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
 use libredte\lib\Core\Xml\XmlException;
@@ -536,5 +537,33 @@ abstract class AbstractDocumento
         $schema = 'DTE_v10.xsd';
         $schemaPath = PathManager::getSchemasPath($schema);
         XmlValidator::validateSchema($this->getXmlDocument(), $schemaPath);
+    }
+
+    /**
+     * Genera el HTML del documento tributario electrónico.
+     *
+     * @param array $options Opciones para generar el HTML.
+     * @return string Código HTML generado.
+     */
+    public function getHtml(array $options = []): string
+    {
+        $options['format'] = 'html';
+        $renderer = new DocumentoRenderer($this->dataProvider);
+
+        return $renderer->renderFromDocumento($this, $options);
+    }
+
+    /**
+     * Genera el PDF del documento tributario electrónico.
+     *
+     * @param array $options Opciones para generar el PDF.
+     * @return string Datos binarios del PDF generado.
+     */
+    public function getPdf(array $options = []): string
+    {
+        $options['format'] = 'pdf';
+        $renderer = new DocumentoRenderer($this->dataProvider);
+
+        return $renderer->renderFromDocumento($this, $options);
     }
 }

@@ -67,6 +67,11 @@ class PathManager
     private const SCHEMAS_PATH = self::RESOURCES_PATH . '/schemas';
 
     /**
+     * Ubicación de las plantillas dentro del directorio de recursos.
+     */
+    private const TEMPLATES_PATH = self::RESOURCES_PATH . '/templates';
+
+    /**
      * Ubicación de los WSDL de API SOAP dentro del directorio de recursos.
      */
     private const WSDL_PATH = self::RESOURCES_PATH . '/wsdl';
@@ -121,6 +126,16 @@ class PathManager
 
         $filepath = sprintf('%s/%s', self::SCHEMAS_PATH, $filename);
         return self::checkFilepath($filepath);
+    }
+
+    /**
+     * Obtiene la ruta completa del directorio de plantillas.
+     *
+     * @return string
+     */
+    public static function getTemplatesPath(): string
+    {
+        return realpath(self::TEMPLATES_PATH);
     }
 
     /**
