@@ -1,8 +1,567 @@
 <html>
+<head>
+    <style>
+        @page {
+            width: 216mm;
+            height: 279mm;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 5px 0;
+            line-height: 0;
+        }
+        .container {
+            width: 100%;
+        }
+        /* Información del emisor */
+        .emisor-info {
+            float: left;
+            width: 60%;
+            text-align: left;
+        }
+        .informacion-dte {
+            float: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            min-height: 15mm;
+            max-height: 40mm;
+            min-width: 55mm;
+            max-width: 80mm;
+            font-size: 12pt;
+            color: rgb(255, 0, 0);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .contenedor-dte {
+            border: 0.7mm solid rgb(255, 0, 0);
+            padding: 12px;
+            box-sizing: border-box:
+        }
+        .contenedor-dte p {
+            font-size: 12pt;
+        }
+        .texto-sii {
+            margin-top: 5px;
+            font-size: 10pt;
+            color: rgb(255, 0, 0);
+        }
+        .clearfix {
+            clear: both;
+        }
+        .label {
+            font-weight: bold;
+            width:25%;
+        }
+        .receptor-info {
+            float: left;
+            width: 70%;
+        }
+        .fechas {
+            float: right;
+            text-align: right;
+        }
+        /* Tablas */
+        .table-detalles {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+            border: 1px solid black;
+        }
+
+        .table-detalles th, td {
+            white-space: nowrap;
+            padding: 2px;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            text-align: center;
+        }
+        .table-detalles th {
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 1px solid black;
+        }
+        .table-detalles thead {
+            background-color: #f2f2f2;
+        }
+        /* Tablas sin bordes */
+        .tabla-receptor {
+            border: none;
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+            font-size: 10pt;
+            table-layout: fixed;
+        }
+        .tabla-receptor td {
+            padding: 2px 5px;
+            border: none;
+            text-align: left;
+            line-height: 1;
+        }
+        .montos-globales {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        /* Tablas sin bordes */
+        .tabla-montos {
+            border: none;
+            width: 50px;
+            font-size: 14px;
+        }
+        .tabla-montos td {
+            white-space: nowrap;
+            font-weight: bold;
+            padding: 2px 5px;
+            border: none;
+            text-align: right;
+        }
+        /* Estilo de montos */
+        .montos {
+            text-align: right;
+            width: 50%;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .montos div {
+            margin-bottom: 5px;
+        }
+        .montos span {
+            display: inline-block;
+            min-width: 100px;
+        }
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 8pt;
+            border-top: 1px solid #000;
+            padding: 5px 0;
+            margin: 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
     <body>
-        <h1>T{{ dte.Encabezado.IdDoc.TipoDTE }}F{{ dte.Encabezado.IdDoc.Folio }}</h1>
-        <ul>
-            <li>{{ dte.Encabezado.Emisor.RUTEmisor }}</li>
-        </ul>
+        <div class="container">
+            {# Información del Emisor #}
+            <div class="emisor-info">
+                {# Logotipo #}
+                {% if dte.logo is not empty %}
+                    <img src="{{ dte.logo }}" alt="Logotipo Emisor" style="max-width: 30mm; height: auto;">
+                {% endif %}
+                {# Razón Social del Emisor #}
+                <p style="color: rgb(0, 64, 128); font-weight: bold; font-size: 14pt;">
+                    {{ dte.Encabezado.Emisor.RznSoc|default(dte.Encabezado.Emisor.RznSocEmisor) }}
+                </p>
+                {# Giro del Emisor #}
+                <p style="color: black; font-weight: bold; font-size: 9pt;">
+                    {{ dte.Encabezado.Emisor.GiroEmis|default(dte.Encabezado.Emisor.GiroEmisor) }}
+                </p>
+                {# Dirección del Emisor #}
+                <p style="color: black;">
+                    {{ [dte.Encabezado.Emisor.DirOrigen, dte.Encabezado.Emisor.CmnaOrigen]|filter(v => v is not empty)|join(', ') }}
+                </p>
+            </div>
+            {# Información del DTE #}
+            <div class="informacion-dte">
+                <div class="contenedor-dte">
+                    <p style="font-size: 15pt;">R.U.T.: {{ dte.Encabezado.Emisor.RUTEmisor }}</p>
+                    <p style="font-size: 12pt;">{{ dte.Encabezado.IdDoc.TipoDTE }}</p>
+                    <p style="font-size: 15pt;">N° {{ dte.Encabezado.IdDoc.Folio }}</p>
+                </div>
+                {# Sucursal SII #}
+                <p class="texto-sii">S.I.I. - {{ dte.Encabezado.Emisor.CmnaOrigen }}</p>
+            </div>
+        </div>
+        <div class="container">
+            {# Información del Receptor #}
+            <div class="receptor-info">
+                <table class="tabla-receptor">
+                    <tbody>
+                        {# Información del Receptor #}
+                        {% if dte.Encabezado.Receptor.RUTRecep != '66666666-6' %}
+                            <tr>
+                                <td class="label">R.U.T.:</td>
+                                <td>{{ dte.Encabezado.Receptor.RUTRecep }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Razón Social #}
+                        {% if dte.Encabezado.Receptor.RznSocRecep is not empty %}
+                            <tr>
+                                <td class="label">Razón Social:</td>
+                                <td>{{ dte.Encabezado.Receptor.RznSocRecep }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Giro #}
+                        {% if dte.Encabezado.Receptor.GiroRecep is not empty %}
+                        <tr>
+                            <td class="label">Giro:</td>
+                            <td>{{ dte.Encabezado.Receptor.GiroRecep }}</td>
+                        </tr>
+                        {% endif %}
+                        {# Dirección #}
+                        {% if dte.Encabezado.Receptor.DirRecep is not empty %}
+                            <tr>
+                                <td class="label">Dirección:</td>
+                                <td>{{ dte.Encabezado.Receptor.DirRecep }}{% if dte.Encabezado.Receptor.CmnaRecep is not empty %}, {{ dte.Encabezado.Receptor.CmnaRecep }}{% endif %}{% if dte.Encabezado.Receptor.CiudadRecep is not empty %}, {{ dte.Encabezado.Receptor.CiudadRecep }}{% endif %}</td>
+                            </tr>
+                        {% endif %}
+                        {# Tipo de Operación #}
+                        {% if dte.Encabezado.IdDoc.IndTraslado is not empty %}
+                            <tr>
+                                <td class="label">Tipo oper.:</td>
+                                <td>{{ dte.Encabezado.IdDoc.IndTraslado }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Traslado #}
+                        {% if dte.Encabezado.Transporte.NombreChofer is not empty %}
+                            <tr>
+                                <td class="label">Traslado:</td>
+                                <td>
+                                    A {{ dte.Encabezado.Transporte.DirDest }}, {{ dte.Encabezado.Transporte.CmnaDest }} por {{ dte.Encabezado.Transporte.RUTTrans }} en vehículo {{ dte.Encabezado.Transporte.Patente }} con chofer {{ dte.Encabezado.Transporte.Chofer.NombreChofer }} ({{ dte.Encabezado.Transporte.Chofer.RUTChofer }})
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {# Transporte #}
+                        {% if dte.Encabezado.Transporte.Aduana.CodViaTransp is not empty %}
+                            <tr>
+                                <td class="label">Traslado:</td>
+                                <td>
+                                    {{ dte.Encabezado.Transporte.Aduana.CodViaTransp }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {# País receptor #}
+                        {% if dte.Encabezado.Transporte.Aduana.CodPaisRecep is not empty %}
+                            <tr>
+                                <td class="label">P. receptor:</td>
+                                <td>
+                                    {{ dte.Encabezado.Transporte.Aduana.CodPaisRecep }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {# Total bultos #}
+                        {% if dte.Encabezado.Transporte.Aduana.TotBultos is not empty %}
+                            <tr>
+                                <td class="label">Total bultos:</td>
+                                <td>{{ dte.Encabezado.Transporte.Aduana.TotBultos }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Contacto #}
+                        {% if dte.Encabezado.Receptor.CorreoRecep is not empty or dte.Encabezado.Receptor.Contacto is not empty %}
+                            <tr>
+                                <td class="label">Contacto:</td>
+                                <td>{{ dte.Encabezado.Receptor.CorreoRecep }}{{ dte.Encabezado.Receptor.Contacto }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Nacionalidad #}
+                        {% if dte.Encabezado.Receptor.Extranjero is not empty %}
+                            <tr>
+                                <td class="label">Nacionalidad:</td>
+                                <td>
+                                    {{ dte.Encabezado.Receptor.Extranjero.Nacionalidad }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {# Cód. recep #}
+                        {% if dte.Encabezado.Receptor.CdgIntRecep is not empty %}
+                            <tr>
+                                <td class="label">Cód. recep.:</td>
+                                <td>
+                                    {{ dte.Encabezado.Receptor.CdgIntRecep }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {# Referencias #}
+                        {% if dte.Referencia is not empty %}
+                            {% for referencia in dte.Referencia %}
+                            <tr>
+                                <td class="label">Referencia:</td>
+                                <td>
+                                    {{ loop.index }} - {{ referencia.TpoDocRef }}{% if referencia.IndGlobal != 1 %} N°{{ referencia.FolioRef }}{% endif %} del {{ referencia.FchRef }}{% if referencia.RazonRef is not empty %}: {{ referencia.RazonRef }}{% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="fechas">
+                {# Fecha de Emisión #}
+                <p><strong>{{ dte.Encabezado.IdDoc.FchEmis }}</strong></p>
+                {# Fecha de Vencimiento #}
+                {% if dte.Encabezado.IdDoc.FchVenc is not empty %}
+                    <p>Vence el {{ dte.Encabezado.IdDoc.FchVenc }}</p>
+                {% endif %}
+                {# Período Desde/Hasta #}
+                {% if dte.Encabezado.IdDoc.PeriodoDesde is not empty and dte.Encabezado.IdDoc.PeriodoHasta is not empty %}
+                    <p>
+                        Período del {{ dte.Encabezado.IdDoc.PeriodoDesde }} al {{ dte.Encabezado.IdDoc.PeriodoHasta }}
+                    </p>
+                {% endif %}
+                {# Fecha de Vencimiento #}
+                {% if dte.Encabezado.IdDoc.FmaPago is not empty %}
+                    <p>Venta: {{ dte.Encabezado.IdDoc.FmaPago }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="container" style="margin-top: 15pt; display: flex; justify-content: space-between;">
+            <table class="table-detalles">
+                {# Encabezados de la Tabla #}
+                <thead>
+                    <tr>
+                        {% set mostrar_codigo = dte.Detalle|filter(detalle => detalle.CdgItem.VlrCodigo is not empty)|length > 0 %}
+                        {% set mostrar_indexe = dte.Detalle|filter(detalle => detalle.IndExe is not empty)|length > 0 %}
+                        {% set mostrar_unidad = dte.Detalle|filter(detalle => detalle.UnmdItem is not empty)|length > 0 %}
+                        {% set mostrar_descuento = dte.Detalle|filter(detalle => detalle.DescuentoMonto is not empty or detalle.DescuentoPct is not empty)|length > 0 %}
+                        {% if mostrar_codigo %}
+                            <th style="width: 10%; text-align: left;">Código</th>
+                        {% endif %}
+                        <th style="width: 62%; text-align: left;">Ítem</th>
+                        {% if mostrar_indexe %}
+                            <th style="width: 10%; text-align: left;">IE</th>
+                        {% endif %}
+                        <th style="width: 12%; text-align: right;">Cant.</th>
+                        {% if mostrar_unidad %}
+                            <th style="width: 10%; text-align: left;">Unidad</th>
+                        {% endif %}
+                        <th style="width: auto; text-align: right;">P. Unitario</th>
+                        {% if mostrar_descuento %}
+                            <th style="width: 10%; text-align: left;">Descuento</th>
+                        {% endif %}
+                        <th style="width: 12%; text-align: right;">Total Ítem</th>
+                    </tr>
+                </thead>
+                {# Cuerpo de la Tabla #}
+                <tbody>
+                    {% set total_monto = 0 %}
+                    {% for detalle in dte.Detalle %}
+                    <tr>
+                        {% if mostrar_codigo %}
+                            <td style="text-align: left;">
+                                {{ detalle.CdgItem.VlrCodigo | default('') }}
+                            </td>
+                        {% endif %}
+                        {# Columna Ítem #}
+                        <td style="text-align: left;">
+                            <div>{{ detalle.NmbItem | default('')}}</div>
+                            {% if detalle.DscItem is not empty %}
+                            <div style="font-size: 6pt;">
+                                {{ detalle.DscItem | default('') }}
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% if mostrar_indexe %}
+                            <td style="text-align: left;">
+                                {% if detalle.IndExe == 1 %}
+                                    EX
+                                {% else %}
+                                    {{ detalle.IndExe | default('') }}
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                        {# Columna Cantidad #}
+                        <td style="text-align: right;">
+                            {{ detalle.QtyItem | default('')}}
+                        </td>
+                        {# Columna Unidad #}
+                        {% if mostrar_unidad %}
+                            <td style="text-align: left;">
+                                {{ detalle.UnmdItem | default('') }}
+                            </td>
+                        {% endif %}
+                        {# Columna Precio Unitario #}
+                        <td style="text-align: right;">
+                            {{ detalle.PrcItem | number_format(0, ',', '.') | default('')  }}
+                        </td>
+                        {# Columna Descuento #}
+                        {% if mostrar_descuento %}
+                            <td style="text-align: right;">
+                                {% if detalle.DescuentoPct is not empty %}
+                                    {{ detalle.DescuentoPct }}%
+                                {% else %}
+                                    {{ detalle.DescuentoMonto | number_format(0, ',', '.') }}
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                        {# Columna Total Ítem #}
+                        <td style="text-align: right;">
+                            {{ detalle.MontoItem | number_format(0, ',', '.') | default('')   }}
+                        </td>
+                    </tr>
+                    {% set total_monto = total_monto + (detalle.MontoItem | default(0)) %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if dte.DscRcgGlobal is not empty %}
+        <div class="container montos-globales">
+            <table class="tabla-montos">
+                <tbody style="text-align: left;">
+                    <tr>
+                        <td class="label">
+                            Subtotal:
+                        </td>
+                        <td>{{ total_monto | number_format(0, ',', '.') }}</td>
+                    </tr>
+                    {# Descuento o Recargo #}
+                    {% for descuento in dte.DscRcgGlobal %}
+                    <tr>
+                        <td class="label">
+                            {{ descuento.TpoMov|trim|upper == "D" ? "Descuento:" : "Recargo:" }}
+                        </td>
+                        <td>{{ descuento.ValorDR }}{{ descuento.TpoValor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        {# Observación #}
+        {% if dte.Encabezado.IdDoc.TermPagoGlosa is not empty %}
+        <div style="font-size: 9pt; bottom: 40mm; align-items: flex-end;">
+            <p>
+                <strong>Observación:</strong>{{ dte.Encabezado.IdDoc.TermPagoGlosa }}
+            </p>
+        </div>
+        {% endif %}
+        <div class="container" style="position: absolute; bottom: 20mm; display: flex; justify-content: space-between; align-items: flex-end;">
+            {# Contenedor del timbre electrónico #}
+            <div style="float: left; width: 48%; text-align: left; min-height: 1px;">
+                {% if dte.timbre is not empty %}
+                    {# Imagen del timbre #}
+                    <img src="{{ dte.timbre }}" alt="Timbre Electrónico" style="width: 65mm; height: auto;">
+                    {# Texto debajo del timbre #}
+                    <p style="margin: 5px 0 0;">
+                        <strong>Timbre Electrónico SII</strong>
+                    </p>
+                    <p>Resolución {{ dte.Caratula.FchResol }}</p>
+                    <p>Verifique documento: libredte.cl/boletas</p>
+                {% endif %}
+            </div>
+            {# Montos #}
+            <div style="width: 48%; float: right">
+                <table class="tabla-montos" style="width: 25px; font-size: 14px;">
+                    <tbody style="text-align: right;">
+                        {# Neto #}
+                        {% if dte.Encabezado.Totales.MntNeto is not empty %}
+                            <tr>
+                                <td>
+                                    Neto $:
+                                </td>
+                                <td style>{{ dte.Encabezado.Totales.MntNeto | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Monto #}
+                        {% if dte.Encabezado.Totales.TpoMoneda is not empty %}
+                            <tr>
+                                <td>
+                                    Moneda:
+                                </td>
+                                <td style>{{ dte.Encabezado.Totales.TpoMoneda }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Exento #}
+                        {% if dte.Encabezado.Totales.MntExe is not empty %}
+                            <tr>
+                                <td>
+                                    Exento $:
+                                </td>
+                                <td style>{{ dte.Encabezado.Totales.MntExe | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# IVA #}
+                        {% if dte.Encabezado.Totales.IVA is not empty %}
+                            <tr>
+                                <td>
+                                    IVA {{ dte.Encabezado.Totales.TasaIVA is not empty ? '(' ~ dte.Encabezado.Totales.TasaIVA ~ '%):' : '$:' }}
+                                </td>
+                                <td style="width: 20px">{{ dte.Encabezado.Totales.IVA | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# IVA no retenido #}
+                        {% if dte.Encabezado.Totales.IVANoRet is not empty %}
+                            <tr>
+                                <td>
+                                    IVA no retenido:
+                                </td>
+                                <td style="width: 20px">{{ dte.Encabezado.Totales.IVANoRet | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# IVA adicional #}
+                        {% if dte.Encabezado.Totales.ImptoReten is not empty %}
+                            {% for impuesto in dte.Encabezado.Totales.ImptoReten %}
+                            <tr>
+                                <td>
+                                    {{ impuesto.TipoImp }} ({{ impuesto.TasaImp }}%):
+                                </td>
+                                <td style="width: 20px;">{{ impuesto.MontoImp | number_format(0, ',', '.') }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {# Total #}
+                        <tr>
+                            <td>
+                                Total $:
+                            </td>
+                            <td style="width: 20px">{{ dte.Encabezado.Totales.MntTotal | number_format(0, ',', '.') }}</td>
+                        </tr>
+                        {# No facturable #}
+                        {% if dte.Encabezado.Totales.MontoNF is not empty %}
+                            <tr>
+                                <td>
+                                    No facturable $:
+                                </td>
+                                <td style>{{ dte.Encabezado.Totales.MontoNF | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Total PESO CL #}
+                        {% if dte.Encabezado.OtraMoneda is not empty %}
+                            {% for moneda in dte.Encabezado.OtraMoneda %}
+                                <tr>
+                                    <td>
+                                        Total {{ moneda.TpoMoneda }}:
+                                    </td>
+                                    <td style>{{ moneda.MntTotOtrMnda | number_format(0, ',', '.') }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {# Monto periodo #}
+                        {% if dte.Encabezado.Totales.MontoPeriodo is not empty %}
+                            <tr>
+                                <td>
+                                    Monto período $:
+                                </td>
+                                <td style>{{ dte.Encabezado.Totales.MontoPeriodo | number_format(0, ',', '.') }}</td>
+                            </tr>
+                        {% endif %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {# Footer #}
+        <footer>
+            Boletas y Facturas con LibreDTE -
+            <a
+                href="https://libredte.cl"
+                style="text-decoration: none; color: inherit;">https://libredte.cl
+            </a>
+        </footer>
     </body>
 </html>
