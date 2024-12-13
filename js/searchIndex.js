@@ -2421,6 +2421,86 @@ Search.appendIndex(
             "summary": "C\u00F3digo\u0020del\u0020tipo\u0020de\u0020documento\u0020tributario\u0020al\u0020que\u0020est\u00E1\u0020asociada\u0020esta\ninstancia\u0020de\u0020un\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-NotaDebitoExportacion.html#property_codigo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser",
+            "name": "DocumentoParser",
+            "summary": "Clase\u0020que\u0020maneja\u0020el\u0020an\u00E1lisis\u0020sint\u00E1ctico\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Ejecuta\u0020el\u0020an\u00E1lisis\u0020sint\u00E1ctico\u0020\u0028parseo\u0029\u0020de\u0020los\u0020datos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#method_parse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003AgetParserInstance\u0028\u0029",
+            "name": "getParserInstance",
+            "summary": "Obtiene\u0020la\u0020instancia\u0020de\u0020un\u0020parser.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#method_getParserInstance"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003AgetParserClass\u0028\u0029",
+            "name": "getParserClass",
+            "summary": "Determina\u0020la\u0020clase\u0020del\u0020parser\u0020que\u0020se\u0020est\u00E1\u0020solicitando.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#method_getParserClass"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003A\u0024defaultParser",
+            "name": "defaultParser",
+            "summary": "Parser\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020analizar\u0020los\u0020datos\u0020si\u0020no\u0020se\nha\u0020especificado\u0020uno\u0020al\u0020llamar\u0020al\u0020m\u00E9todo\u0020DocumentoParser\u003A\u003Aparse\u0028\u0029.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#property_defaultParser"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003A\u0024parsersAlias",
+            "name": "parsersAlias",
+            "summary": "Alias\u0020de\u0020parsers.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#property_parsersAlias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParser\u003A\u003A\u0024parsers",
+            "name": "parsers",
+            "summary": "Listado\u0020de\u0020parsers\u0020instanciados\u0020para\u0020ser\u0020reutilizados.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParser.html#property_parsers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParserException",
+            "name": "DocumentoParserException",
+            "summary": "Excepci\u00F3n\u0020personalizada\u0020para\u0020errores\u0020asociados\u0020al\u0020an\u00E1lisis\u0020sint\u00E1ctico\u0020de\u0020los\ndatos\u0020de\u0020entrada\u0020de\u0020un\u0020documento\u0020tributario\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParserException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParserInterface",
+            "name": "DocumentoParserInterface",
+            "summary": "Interfaz\u0020para\u0020los\u0020parsers\u0020de\u0020datos\u0020de\u0020entrada\u0020de\u0020los\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParserInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\DocumentoParserInterface\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-DocumentoParserInterface.html#method_parse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\JsonParser",
+            "name": "JsonParser",
+            "summary": "Transforma\u0020los\u0020datos\u0020en\u0020formato\u0020JSON\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII\u0020a\u0020un\narreglo\u0020PHP\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-JsonParser.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\JsonParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-JsonParser.html#method_parse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\XmlParser",
+            "name": "XmlParser",
+            "summary": "Transforma\u0020los\u0020datos\u0020en\u0020formato\u0020XML\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII\u0020a\u0020un\narreglo\u0020PHP\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-XmlParser.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\XmlParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-XmlParser.html#method_parse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\YamlParser",
+            "name": "YamlParser",
+            "summary": "Transforma\u0020los\u0020datos\u0020en\u0020formato\u0020YAML\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII\u0020a\u0020un\narreglo\u0020PHP\u0020con\u0020la\u0020estructura\u0020oficial\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-YamlParser.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii\\YamlParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Parser-Sii-YamlParser.html#method_parse"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer",
             "name": "AbstractRenderer",
             "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020los\u0020renderizadores\u0020de\u0020documentos\u0020tributarios\nelectr\u00F3nicos\u0020\u0028DTE\u0029.",
@@ -3425,6 +3505,16 @@ Search.appendIndex(
             "name": "Normalization",
             "summary": "",
             "url": "namespaces/libredte-lib-core-sii-dte-documento-normalization.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser",
+            "name": "Parser",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-sii-dte-documento-parser.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Parser\\Sii",
+            "name": "Sii",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-sii-dte-documento-parser-sii.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer",
             "name": "Renderer",
