@@ -100,9 +100,11 @@ class XmlDocument extends DomDocument
      */
     public function loadXML(string $source, int $options = 0): bool
     {
-        // Si no hay un string XML en el origen entonces se retorna `false`.
+        // Si no hay un string XML en el origen entonces se lanza excepción.
         if (empty($source)) {
-            throw new XmlException('El contenido XML está vacío.');
+            throw new XmlException(
+                'El contenido del XML que se desea cargar está vacío.'
+            );
         }
 
         // Convertir el XML si es necesario.

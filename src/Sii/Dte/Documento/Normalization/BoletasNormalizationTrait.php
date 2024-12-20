@@ -56,6 +56,9 @@ trait BoletasNormalizationTrait
         $data['Encabezado']['Emisor']['CdgVendedor'] = false;
         $data['Encabezado']['Receptor']['GiroRecep'] = false;
         if (!empty($data['Encabezado']['Receptor']['CorreoRecep'])) {
+            if ($data['Referencia'] === false) {
+                $data['Referencia'] = [];
+            }
             $data['Referencia'][] = [
                 'NroLinRef' => !empty($data['Referencia'])
                     ? (count($data['Referencia']) + 1)
