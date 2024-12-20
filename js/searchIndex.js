@@ -2331,6 +2331,11 @@ Search.appendIndex(
             "summary": "Ejecuta\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoValidator.html#method_validate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoValidator\u003A\u003AapplyCoreValidation\u0028\u0029",
+            "name": "applyCoreValidation",
+            "summary": "Valida\u0020los\u0020datos\u0020del\u0020documento\u0020utilizando\u0020funcionalidades\u0020Core.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoValidator.html#method_applyCoreValidation"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoValidator\u003A\u003AapplyProValidation\u0028\u0029",
             "name": "applyProValidation",
             "summary": "Valida\u0020los\u0020datos\u0020del\u0020documento\u0020utilizando\u0020funcionalidades\u0020Pro.",
