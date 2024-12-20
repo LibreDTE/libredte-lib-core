@@ -1776,6 +1776,11 @@ Search.appendIndex(
             "summary": "Sanitizador\u0020de\u0020datos\u0020del\u0020documento\u0020a\u0020construir.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-AbstractDocumentoBuilder.html#property_sanitizer"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\AbstractDocumentoBuilder\u003A\u003A\u0024validator",
+            "name": "validator",
+            "summary": "Validador\u0020de\u0020datos\u0020del\u0020documento\u0020a\u0020construir.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-AbstractDocumentoBuilder.html#property_validator"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\AbstractDocumentoBuilder\u003A\u003A\u0024impuestosAdicionalesRepository",
             "name": "impuestosAdicionalesRepository",
             "summary": "Repositorio\u0020de\u0020impuestos\u0020adicionales.",
@@ -1826,6 +1831,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020de\u0020la\u0020clase.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-DocumentoFactory.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\DocumentoFactory\u003A\u003AgetParser\u0028\u0029",
+            "name": "getParser",
+            "summary": "Entrega\u0020la\u0020instancia\u0020del\u0020parser\u0020para\u0020ser\u0020utilizado\u0020al\u0020crear\u0020el\u0020DTE\u0020a\npartir\u0020de\u0020datos\u0020que\u0020no\u0020son\u0020los\u0020de\u0020un\u0020arreglo\u0020con\u0020el\u0020formato\u0020oficial.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-DocumentoFactory.html#method_getParser"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\DocumentoFactory\u003A\u003AcreateFromArray\u0028\u0029",
             "name": "createFromArray",
             "summary": "Construye\u0020un\u0020documento\u0020tributario\u0020electr\u00F3nico\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020en\nun\u0020arreglo.",
@@ -1860,6 +1870,11 @@ Search.appendIndex(
             "name": "getDocumentoBuilderClass",
             "summary": "Determina\u0020qu\u00E9\u0020\u0022builder\u0022\u0020se\u0020debe\u0020utilizar\u0020seg\u00FAn\u0020el\u0020c\u00F3digo\u0020del\u0020documento\nque\u0020viene\u0020en\u0020los\u0020datos\u0020del\u0020documento\u0020que\u0020se\u0020debe\u0020crear.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-DocumentoFactory.html#method_getDocumentoBuilderClass"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\DocumentoFactory\u003A\u003A\u0024parser",
+            "name": "parser",
+            "summary": "Analizador\u0020sint\u00E1xtico\u0020\u0028parser\u0029\u0020general\u0020para\u0020permitir\u0020la\u0020carga\u0020de\u0020datos\u0020en\ndiferentes\u0020formatos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Builder-DocumentoFactory.html#property_parser"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Builder\\DocumentoFactory\u003A\u003A\u0024builders",
             "name": "builders",
@@ -2283,7 +2298,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoNormalizer\u003A\u003A\u0024documentNormalizationCallback",
             "name": "documentNormalizationCallback",
-            "summary": "Undocumented\u0020variable",
+            "summary": "Callback\u0020con\u0020el\u0020m\u00E9todo\u0020principal\u0020\u0028de\u0020entrada\u0029\u0020para\u0020la\u0020normalizaci\u00F3n\u0020de\u0020un\ncierto\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoNormalizer.html#property_documentNormalizationCallback"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoSanitizer",
@@ -2305,6 +2320,21 @@ Search.appendIndex(
             "name": "applyProSanitization",
             "summary": "Limpia\u0020los\u0020datos\u0020del\u0020documento\u0020utilizando\u0020funcionalidades\u0020Pro.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoSanitizer.html#method_applyProSanitization"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoValidator",
+            "name": "DocumentoValidator",
+            "summary": "Clase\u0020que\u0020maneja\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoValidator.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoValidator\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Ejecuta\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoValidator.html#method_validate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\DocumentoValidator\u003A\u003AapplyProValidation\u0028\u0029",
+            "name": "applyProValidation",
+            "summary": "Valida\u0020los\u0020datos\u0020del\u0020documento\u0020utilizando\u0020funcionalidades\u0020Pro.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Normalization-DocumentoValidator.html#method_applyProValidation"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Normalization\\ExportacionNormalizationTrait",
             "name": "ExportacionNormalizationTrait",
