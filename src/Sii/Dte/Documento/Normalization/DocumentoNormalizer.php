@@ -51,7 +51,11 @@ class DocumentoNormalizer
     private DocumentoTipo $tipoDocumento;
 
     /**
-     * Undocumented variable
+     * Callback con el método principal (de entrada) para la normalización de un
+     * cierto tipo de documento.
+     *
+     * Este callback, por defecto, se define en cada "DocumentoBuilder" en el
+     * método applyDocumentoNormalization().
      *
      * @var ?callable
      */

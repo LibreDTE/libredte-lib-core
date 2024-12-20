@@ -31,6 +31,7 @@ use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoValidator;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\UtilsTrait;
 
 /**
@@ -79,6 +80,13 @@ abstract class AbstractDocumentoBuilder
     private DocumentoSanitizer $sanitizer;
 
     /**
+     * Validador de datos del documento a construir.
+     *
+     * @var DocumentoValidator
+     */
+    private DocumentoValidator $validator;
+
+    /**
      * Repositorio de impuestos adicionales.
      *
      * @var ImpuestosAdicionalesRepository
@@ -110,12 +118,14 @@ abstract class AbstractDocumentoBuilder
         // Obtener el tipo de documento tributario.
         $this->tipoDocumento = $this->documentoBaseForNewBuilds->getTipo();
 
-        // Crear instancias del normalizador y sanitizador.
+        // Crear instancias del normalizador, sanitizador y validador de los
+        // datos de los documentos tributarios electrónicos.
         $this->normalizer = new DocumentoNormalizer(
             $this->tipoDocumento,
             [$this, 'applyDocumentoNormalization']
         );
         $this->sanitizer = new DocumentoSanitizer();
+        $this->validator = new DocumentoValidator();
     }
 
     /**
@@ -140,6 +150,7 @@ abstract class AbstractDocumentoBuilder
         if ($normalize) {
             $data = $this->normalizer->normalize($data);
             $data = $this->sanitizer->sanitize($data);
+            $this->validator->validate($data);
         }
 
         // Crear el documento tributario y asignar sus datos.

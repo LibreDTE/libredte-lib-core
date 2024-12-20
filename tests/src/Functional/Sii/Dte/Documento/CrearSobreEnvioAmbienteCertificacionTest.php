@@ -45,6 +45,7 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\FacturaAfectaBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoValidator;
 use libredte\lib\Core\Sii\Dte\Documento\SobreEnvio;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
@@ -75,6 +76,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
+#[CoversClass(DocumentoValidator::class)]
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDocument::class)]
 #[CoversClass(XmlUtils::class)]

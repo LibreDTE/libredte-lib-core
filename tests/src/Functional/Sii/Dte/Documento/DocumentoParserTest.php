@@ -46,6 +46,7 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\FacturaAfectaBuilder;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoValidator;
 use libredte\lib\Core\Sii\Dte\Documento\Parser\DocumentoParser;
 use libredte\lib\Core\Sii\Dte\Documento\Parser\Sii\JsonParser;
 use libredte\lib\Core\Sii\Dte\Documento\Parser\Sii\XmlParser;
@@ -85,6 +86,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
+#[CoversClass(DocumentoValidator::class)]
 #[CoversClass(DocumentoParser::class)]
 #[CoversClass(JsonParser::class)]
 #[CoversClass(XmlParser::class)]
