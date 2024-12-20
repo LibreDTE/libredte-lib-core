@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Normalization;
 
+use libredte\lib\Core\Helper\Rut;
+
 /**
  * Clase que maneja la validación de los datos de un documento.
  */
@@ -36,7 +38,21 @@ class DocumentoValidator
      */
     public function validate(array $data): void
     {
+        $this->applyCoreValidation($data);
         $this->applyProValidation($data);
+    }
+
+    /**
+     * Valida los datos del documento utilizando funcionalidades Core.
+     *
+     * @param array $data Arreglo con los datos del documento a validar.
+     * @throws UnexpectedValueException
+     */
+    private function applyCoreValidation(array $data): void
+    {
+        // Validar los RUTs.
+        Rut::validate($data['Encabezado']['Emisor']['RUTEmisor']);
+        Rut::validate($data['Encabezado']['Receptor']['RUTRecep']);
     }
 
     /**

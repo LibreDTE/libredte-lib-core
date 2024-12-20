@@ -64,15 +64,13 @@ class DocumentoSanitizer
             );
         }
 
-        // Formatear y validar los RUT.
+        // Formatear los RUT.
         $data['Encabezado']['Emisor']['RUTEmisor'] = Rut::format(
             $data['Encabezado']['Emisor']['RUTEmisor']
         );
         $data['Encabezado']['Receptor']['RUTRecep'] = Rut::format(
             $data['Encabezado']['Receptor']['RUTRecep']
         );
-        Rut::validate($data['Encabezado']['Emisor']['RUTEmisor']);
-        Rut::validate($data['Encabezado']['Receptor']['RUTRecep']);
 
         // Limpiar datos del emisor.
         if (!empty($data['Encabezado']['Emisor']['Acteco'])) {
