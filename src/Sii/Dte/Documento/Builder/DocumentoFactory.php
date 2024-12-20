@@ -28,9 +28,9 @@ use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\DataProviderInterface;
 use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoException;
+use libredte\lib\Core\Sii\Dte\Documento\Parser\DocumentoParser;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDocument;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Fábrica de documentos tributarios electrónicos.
@@ -45,6 +45,14 @@ use Symfony\Component\Yaml\Yaml;
  */
 class DocumentoFactory
 {
+    /**
+     * Analizador sintáxtico (parser) general para permitir la carga de datos en
+     * diferentes formatos.
+     *
+     * @var DocumentoParser
+     */
+    private DocumentoParser $parser;
+
     /**
      * Constructores ("builders") de documentos que están inicializados.
      *
@@ -69,6 +77,21 @@ class DocumentoFactory
     public function __construct(?DataProviderInterface $dataProvider = null)
     {
         $this->dataProvider = $dataProvider ?? new ArrayDataProvider();
+    }
+
+    /**
+     * Entrega la instancia del parser para ser utilizado al crear el DTE a
+     * partir de datos que no son los de un arreglo con el formato oficial.
+     *
+     * @return DocumentoParser
+     */
+    private function getParser(): DocumentoParser
+    {
+        if (!isset($this->parser)) {
+            $this->parser = new DocumentoParser();
+        }
+
+        return $this->parser;
     }
 
     /**
@@ -97,29 +120,9 @@ class DocumentoFactory
      */
     public function createFromXml(string $data): AbstractDocumento
     {
-        $xmlDocument = new XmlDocument();
-        $xmlDocument->loadXML($data);
-        $array = XmlConverter::xmlToArray($xmlDocument);
+        $array = $this->getParser()->parse($data, 'sii.xml');
 
-        // Obtener los datos del documento a generar.
-        $documentoData = $array['DTE']['Documento']
-            ?? $array['DTE']['Exportaciones']
-            ?? $array['DTE']['Liquidacion']
-            ?? null
-        ;
-
-        // Si el XML no tiene los tags válidos se lanza una excepción.
-        if ($documentoData === null) {
-            throw new DocumentoException(
-                'El nodo raíz del XML del documento debe ser el tag "DTE". Dentro de este nodo raíz debe existir un tag "Documento", "Exportaciones" o "Liquidacion". Este segundo nodo es el que debe contener los datos del documento.'
-            );
-        }
-
-        // Quitar los atributos que tenga el tag encontrado.
-        unset($documentoData['@attributes']);
-
-        // Crear el documento a partir de los datos encontrados.
-        return $this->createFromArray($documentoData);
+        return $this->createFromArray($array);
     }
 
     /**
@@ -131,7 +134,7 @@ class DocumentoFactory
      */
     public function createFromYaml(string $data): AbstractDocumento
     {
-        $array = Yaml::parse($data);
+        $array = $this->getParser()->parse($data, 'sii.yaml');
 
         return $this->createFromArray($array);
     }
@@ -145,7 +148,7 @@ class DocumentoFactory
      */
     public function createFromJson(string $data): AbstractDocumento
     {
-        $array = json_decode($data, true);
+        $array = $this->getParser()->parse($data, 'sii.json');
 
         return $this->createFromArray($array);
     }

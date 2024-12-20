@@ -128,9 +128,25 @@ class DocumentoParser
      */
     private function getParserClass(string $parser): string
     {
-        // TODO: Determinar la clase del parser.
-        $class = '';
+        // Determinar nombre del archivo PHP y de la clase.
+        $parts = array_map(function ($part) {
+            return ucfirst(strtolower($part));
+        }, explode('.', $parser));
+        $file = __DIR__ . '/' . implode('/', $parts) . 'Parser.php';
+        $class = implode('\\', $parts) . 'Parser';
 
+        // La clase existe en el namespace actual.
+        if (file_exists($file)) {
+            $class = __NAMESPACE__ . '\\' . $class;
+        }
+        // La clase podría existir en lib-pro.
+        else {
+            $class = str_replace('\\Core\\', '\\Pro\\', __NAMESPACE__)
+                . '\\' . $class
+            ;
+        }
+
+        // Entregar el FQCN de la clase del parser buscado.
         return $class;
     }
 }

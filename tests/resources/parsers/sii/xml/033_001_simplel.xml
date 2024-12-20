@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<DTE>
+  <Documento>
+    <Encabezado>
+      <IdDoc>
+        <TipoDTE>33</TipoDTE>
+        <Folio>1</Folio>
+      </IdDoc>
+      <Emisor>
+        <RUTEmisor>76192083-9</RUTEmisor>
+        <RznSoc>SASCO SpA</RznSoc>
+        <GiroEmis>Tecnología, informática y telecomunicaciones</GiroEmis>
+        <Acteco>726000</Acteco>
+        <DirOrigen>Santa Cruz</DirOrigen>
+        <CmnaOrigen>Santa Cruz</CmnaOrigen>
+      </Emisor>
+      <Receptor>
+        <RUTRecep>60803000-K</RUTRecep>
+        <RznSocRecep>Servicio de Impuestos Internos</RznSocRecep>
+        <GiroRecep>Gobierno</GiroRecep>
+        <DirRecep>Santiago</DirRecep>
+        <CmnaRecep>Santiago</CmnaRecep>
+      </Receptor>
+    </Encabezado>
+    <Detalle>
+      <NmbItem>Conectores RJ45</NmbItem>
+      <QtyItem>450</QtyItem>
+      <PrcItem>70</PrcItem>
+    </Detalle>
+  </Documento>
+</DTE>

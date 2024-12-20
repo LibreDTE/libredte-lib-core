@@ -195,9 +195,11 @@ class Contribuyente
         ) ?: null;
 
         $this->actividad_economica = (
-            $data['actividad_economica']
-            ?? $data['Acteco']
-            ?? null
+            (int) (
+                $data['actividad_economica']
+                ?? $data['Acteco']
+                ?? 0
+            )
         ) ?: null;
 
         $this->telefono = (

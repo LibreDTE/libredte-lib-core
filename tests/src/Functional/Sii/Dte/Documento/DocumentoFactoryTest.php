@@ -37,6 +37,10 @@ use libredte\lib\Core\Sii\Dte\Documento\DocumentoException;
 use libredte\lib\Core\Sii\Dte\Documento\DocumentoTipo;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoNormalizer;
 use libredte\lib\Core\Sii\Dte\Documento\Normalization\DocumentoSanitizer;
+use libredte\lib\Core\Sii\Dte\Documento\Parser\DocumentoParser;
+use libredte\lib\Core\Sii\Dte\Documento\Parser\Sii\JsonParser;
+use libredte\lib\Core\Sii\Dte\Documento\Parser\Sii\XmlParser;
+use libredte\lib\Core\Sii\Dte\Documento\Parser\Sii\YamlParser;
 use libredte\lib\Core\Xml\XmlConverter;
 use libredte\lib\Core\Xml\XmlDecoder;
 use libredte\lib\Core\Xml\XmlDocument;
@@ -55,6 +59,10 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DocumentoTipo::class)]
 #[CoversClass(DocumentoNormalizer::class)]
 #[CoversClass(DocumentoSanitizer::class)]
+#[CoversClass(DocumentoParser::class)]
+#[CoversClass(JsonParser::class)]
+#[CoversClass(XmlParser::class)]
+#[CoversClass(YamlParser::class)]
 #[CoversClass(XmlConverter::class)]
 #[CoversClass(XmlDecoder::class)]
 #[CoversClass(XmlDocument::class)]
