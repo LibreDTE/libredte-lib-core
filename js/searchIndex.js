@@ -2686,15 +2686,15 @@ Search.appendIndex(
             "summary": "Proveedor\u0020de\u0020datos.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#property_dataProvider"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererEstandar",
-            "name": "RendererEstandar",
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\EstandarRenderer",
+            "name": "EstandarRenderer",
             "summary": "Renderizador\u0020de\u0020DTE\u0020usando\u0020la\u0020plantilla\u0020est\u00E1ndar\u0020de\u0020LibreDTE.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererEstandar.html"
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-EstandarRenderer.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererEstandar\u003A\u003A\u0024defaultTemplate",
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\EstandarRenderer\u003A\u003A\u0024defaultTemplate",
             "name": "defaultTemplate",
             "summary": "Plantilla\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020renderizar\u0020el\u0020DTE.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererEstandar.html#property_defaultTemplate"
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-EstandarRenderer.html#property_defaultTemplate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\SobreEnvio",
             "name": "SobreEnvio",
