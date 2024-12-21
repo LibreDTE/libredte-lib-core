@@ -262,6 +262,13 @@ instancia de un documento.</dd>
 <dd>Proveedor de datos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_renderer">$renderer</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\DocumentoRenderer">DocumentoRenderer</abbr></a>            </span>
+</dt>
+<dd>Renderizador del documento tributario.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_xmlDocument">$xmlDocument</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Xml-XmlDocument.html"><abbr title="\libredte\lib\Core\Xml\XmlDocument">XmlDocument</abbr></a>            </span>
@@ -339,6 +346,13 @@ esta instancia de un documento.</dd>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Sii-Contribuyente-Contribuyente.html"><abbr title="\libredte\lib\Core\Sii\Contribuyente\Contribuyente">Contribuyente</abbr></a>    </span>
 </dt>
 <dd>Obtiene el contribuyente emisor del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getEscpos">getEscpos()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Genera el ESCPOS del documento tributario electrónico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getFechaEmision">getFechaEmision()</a>
@@ -431,6 +445,13 @@ esta instancia de un documento.</dd>
 </dt>
 <dd>Carga el XML completo de un documento para crear la instancia del
 documento XML asociada a este documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_render">render()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Método general para el renderizado del documento tributario electrónico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_saveXml">saveXml()</a>
@@ -587,6 +608,43 @@ SII requiere (o sea, como si se hubiesen &quot;normalizado&quot;).</p>
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$dataProvider</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_renderer">
+        $renderer
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_renderer" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">112</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Renderizador del documento tributario.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\DocumentoRenderer">DocumentoRenderer</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$renderer</span>
     </code>
 
     
@@ -771,7 +829,7 @@ esta instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
@@ -818,7 +876,7 @@ esta instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">453</span>
+    <span class="phpdocumentor-element-found-in__line">460</span>
 
     </aside>
 
@@ -900,7 +958,7 @@ electrónica.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
@@ -939,7 +997,7 @@ electrónica.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">153</span>
+    <span class="phpdocumentor-element-found-in__line">160</span>
 
     </aside>
 
@@ -978,7 +1036,7 @@ electrónica.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">331</span>
+    <span class="phpdocumentor-element-found-in__line">338</span>
 
     </aside>
 
@@ -1033,7 +1091,7 @@ específico.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">254</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
@@ -1069,6 +1127,61 @@ emisor.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getEscpos">
+        getEscpos()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getEscpos" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">598</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el ESCPOS del documento tributario electrónico.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getEscpos</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$options</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Opciones para generar el ESCPOS.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Datos binarios del ESCPOS generado.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getFechaEmision">
         getFechaEmision()
         <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getFechaEmision" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1077,7 +1190,7 @@ emisor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">248</span>
 
     </aside>
 
@@ -1119,7 +1232,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -1158,7 +1271,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">548</span>
+    <span class="phpdocumentor-element-found-in__line">572</span>
 
     </aside>
 
@@ -1213,7 +1326,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 
     </aside>
 
@@ -1252,7 +1365,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">307</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -1297,7 +1410,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">562</span>
+    <span class="phpdocumentor-element-found-in__line">585</span>
 
     </aside>
 
@@ -1352,7 +1465,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">274</span>
+    <span class="phpdocumentor-element-found-in__line">281</span>
 
     </aside>
 
@@ -1396,7 +1509,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -1435,7 +1548,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
     </aside>
 
@@ -1474,7 +1587,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">180</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -1515,7 +1628,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">346</span>
+    <span class="phpdocumentor-element-found-in__line">353</span>
 
     </aside>
 
@@ -1554,7 +1667,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">495</span>
+    <span class="phpdocumentor-element-found-in__line">502</span>
 
     </aside>
 
@@ -1610,7 +1723,7 @@ receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -1652,6 +1765,61 @@ documento XML asociada a este documento.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_render">
+        render()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_render" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">555</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Método general para el renderizado del documento tributario electrónico.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">render</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$options</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Opciones para el renderizado del documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Datos del documento renderizado según las opciones.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_saveXml">
         saveXml()
         <a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1660,7 +1828,7 @@ documento XML asociada a este documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">192</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 
     </aside>
 
@@ -1701,7 +1869,7 @@ documento XML asociada a este documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
@@ -1750,7 +1918,7 @@ documento XML asociada a este documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">375</span>
+    <span class="phpdocumentor-element-found-in__line">382</span>
 
     </aside>
 
@@ -1823,7 +1991,7 @@ documento XML asociada a este documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">528</span>
+    <span class="phpdocumentor-element-found-in__line">535</span>
 
     </aside>
 
@@ -1875,7 +2043,7 @@ documento XML asociada a este documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/AbstractDocumento.php"><a href="files/src-sii-dte-documento-abstractdocumento.html"><abbr title="src/Sii/Dte/Documento/AbstractDocumento.php">AbstractDocumento.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">516</span>
+    <span class="phpdocumentor-element-found-in__line">523</span>
 
     </aside>
 
@@ -2029,6 +2197,7 @@ documento XML asociada a este documento.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-FacturaExportacion.html#property_codigo">$codigo</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_data">$data</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_dataProvider">$dataProvider</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_renderer">$renderer</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_xmlDocument">$xmlDocument</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_emisor">$emisor</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_receptor">$receptor</a></li>
@@ -2045,6 +2214,7 @@ documento XML asociada a este documento.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getData">getData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getDetalle">getDetalle()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getEmisor">getEmisor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getEscpos">getEscpos()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getFechaEmision">getFechaEmision()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getFolio">getFolio()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getHtml">getHtml()</a></li>
@@ -2058,6 +2228,7 @@ documento XML asociada a este documento.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getXmlDocument">getXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getXmlSignatureNode">getXmlSignatureNode()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_loadXML">loadXML()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_render">render()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_saveXml">saveXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_setData">setData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_timbrar">timbrar()</a></li>

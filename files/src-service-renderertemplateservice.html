@@ -5,7 +5,7 @@
             <title>LibreDTE</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="./">
+    <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
@@ -169,34 +169,52 @@
 </aside>
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
-                                        <section>
-        <h2>Documentation</h2>
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
+    </ul>
 
-        
-        
+    <article class="phpdocumentor-element -file">
+        <h2 class="phpdocumentor-content__title">RendererTemplateService.php</h2>
+
+            <p class="phpdocumentor-summary">LibreDTE: Biblioteca PHP (Núcleo).</p>
+
+
+    <section class="phpdocumentor-description"><p>Copyright (C) LibreDTE <a href="https://www.libredte.cl">https://www.libredte.cl</a></p>
+<p>Este programa es software libre: usted puede redistribuirlo y/o modificarlo
+bajo los términos de la Licencia Pública General Affero de GNU publicada
+por la Fundación para el Software Libre, ya sea la versión 3 de la Licencia,
+o (a su elección) cualquier versión posterior de la misma.</p>
+<p>Este programa se distribuye con la esperanza de que sea útil, pero SIN
+GARANTÍA ALGUNA; ni siquiera la garantía implícita MERCANTIL o de APTITUD
+PARA UN PROPÓSITO DETERMINADO. Consulte los detalles de la Licencia Pública
+General Affero de GNU para obtener una información más detallada.</p>
+<p>Debería haber recibido una copia de la Licencia Pública General Affero de
+GNU junto a este programa.</p>
+<p>En caso contrario, consulte <a href="http://www.gnu.org/licenses/agpl.html">http://www.gnu.org/licenses/agpl.html</a>.</p>
+</section>
+
+
+
+
+
+
+
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/default.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="files/src-service-renderertemplateservice.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
-<h4 id="packages">
-    Packages
-    <a href="namespaces/default.html#packages" class="headerlink"><i class="fas fa-link"></i></a>
 
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -package"><a href="packages/LibreDTE.html"><abbr title="\LibreDTE">LibreDTE</abbr></a></dt>
-    </dl>
 
-<h4 id="namespaces">
-    Namespaces
-    <a href="namespaces/default.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
 
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte.html"><abbr title="\libredte">libredte</abbr></a></dt>
-    </dl>
+    <h4 id="toc-classes">
+        Classes
+        <a href="files/src-service-renderertemplateservice.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Service-RendererTemplateService.html"><abbr title="\libredte\lib\Core\Service\RendererTemplateService">RendererTemplateService</abbr></a></dt><dd>Servicio de renderización de plantillas.</dd>    </dl>
 
 
 
@@ -210,7 +228,118 @@
         
 
         
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Service/RendererTemplateService.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
+
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('GET', src, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+                            Prism.highlightElement(code);
+                            return;
+                        }
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
+                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
+                    }
+                    modal.classList.add("phpdocumentor-modal__open");
+
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+
+    </article>
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                            
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                                                                        <li><a href="files/src-service-renderertemplateservice.html#toc-classes">Classes</a></li>
+                                                                                                                    </ul>
+            </li>
+
+            
+                    </ul>
     </section>
+
+                </section>
                             </div>
             <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
@@ -224,7 +353,7 @@
     </section>
 </section>
         </div>
-        <a href="index.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/src-service-renderertemplateservice.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

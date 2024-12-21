@@ -254,6 +254,13 @@
 </dt>
 <dd>Plantilla por defecto que se debe utilizar al renderizar el DTE.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_rendererService">$rendererService</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Service-RendererTemplateService.html"><abbr title="\libredte\lib\Core\Service\RendererTemplateService">RendererTemplateService</abbr></a>            </span>
+</dt>
+<dd>Servicio de renderizado de plantillas.</dd>
+
     </dl>
 
 <h4 id="toc-methods">
@@ -277,32 +284,18 @@
 <dd>Renderiza el documento en el formato solicitado (HTML o PDF).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_createData">createData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Crea los datos que se pasarán a la plantilla que se renderizará.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_getDefaultTemplate">getDefaultTemplate()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Entrega la plantilla por defecto asociada al renderizador del DTE.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtml">renderHtml()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Renderiza el documento en formato HTML.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtmlWithTwig">renderHtmlWithTwig()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Renderiza una plantilla twig con ciertos datos.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderPdf">renderPdf()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Renderiza el documento en formato PDF.</dd>
 
     </dl>
 
@@ -334,7 +327,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -391,6 +384,43 @@
     
 
 </article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_rendererService">
+        $rendererService
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_rendererService" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">58</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Servicio de renderizado de plantillas.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Service-RendererTemplateService.html"><abbr title="\libredte\lib\Core\Service\RendererTemplateService">RendererTemplateService</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$rendererService</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
             </section>
 
             <section class="phpdocumentor-methods">
@@ -413,7 +443,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -421,7 +451,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dataProvider</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dataProvider</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-RendererTemplateService.html"><abbr title="\libredte\lib\Core\Service\RendererTemplateService">RendererTemplateService</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rendererService</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -432,6 +462,15 @@
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$dataProvider</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-DataProviderInterface.html"><abbr title="\libredte\lib\Core\Service\DataProviderInterface">DataProviderInterface</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Proveedor de datos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$rendererService</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Service-RendererTemplateService.html"><abbr title="\libredte\lib\Core\Service\RendererTemplateService">RendererTemplateService</abbr></a>|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Proveedor de datos.</p>
@@ -460,7 +499,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -473,9 +512,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Por defecto se renderiza en formato PDF si no se especifica uno.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -518,6 +555,70 @@
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_createData">
+        createData()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_createData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">108</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Crea los datos que se pasarán a la plantilla que se renderizará.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">createData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$documento</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento a renderizar.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$options</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Opciones para el renderizado.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Datos que se pasarán a la plantilla al renderizar.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getDefaultTemplate">
         getDefaultTemplate()
         <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_getDefaultTemplate" class="headerlink"><i class="fas fa-link"></i></a>
@@ -526,14 +627,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Entrega la plantilla por defecto asociada al renderizador del DTE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
+    <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">getDefaultTemplate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
@@ -554,8 +655,8 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si no existe una plantilla por defecto
-asignada en el renderizador.</p>
+                                                 <section class="phpdocumentor-description"><p>Si no existe una plantilla por defecto asignada en
+el renderizador.</p>
 </section>
 
                                     </dd>
@@ -570,195 +671,6 @@ asignada en el renderizador.</p>
                 <section class="phpdocumentor-description"><p>Nombre de la plantilla por defecto.</p>
 </section>
 
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_renderHtml">
-        renderHtml()
-        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtml" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">127</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Renderiza el documento en formato HTML.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">renderHtml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>El renderizado se realiza mediante una plantilla twig.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$documento</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento">AbstractDocumento</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento a renderizar.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Opciones para el renderizado en HTML.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Código HTML del documento renderizado.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_renderHtmlWithTwig">
-        renderHtmlWithTwig()
-        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtmlWithTwig" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">158</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Renderiza una plantilla twig con ciertos datos.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">renderHtmlWithTwig</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$template</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$template</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Plantilla twig a renderizar.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos que se pasarán a la plantilla twig.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Código HTML con el renderizado de la plantilla twig.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_renderPdf">
-        renderPdf()
-        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderPdf" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php"><a href="files/src-sii-dte-documento-renderer-abstractrenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/AbstractRenderer.php">AbstractRenderer.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">177</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Renderiza el documento en formato PDF.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">renderPdf</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$html</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>El renderizado se realiza a partir de un HTML previamente renderizado que
-será pasado a PDF.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$html</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -877,6 +789,7 @@ será pasado a PDF.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_dataProvider">$dataProvider</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererEstandar.html#property_defaultTemplate">$defaultTemplate</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_rendererService">$rendererService</a></li>
                                             </ul>
                 </li>
             
@@ -885,10 +798,8 @@ será pasado a PDF.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_render">render()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_createData">createData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_getDefaultTemplate">getDefaultTemplate()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtml">renderHtml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtmlWithTwig">renderHtmlWithTwig()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderPdf">renderPdf()</a></li>
                                     </ul>
             </li>
                     </ul>

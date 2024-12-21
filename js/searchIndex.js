@@ -751,6 +751,61 @@ Search.appendIndex(
             "summary": "Ubicaci\u00F3n\u0020del\u0020directorio\u0020de\u0020cach\u00E9\u0020dentro\u0020del\u0020directorio\u0020de\u0020datos\nvariables.",
             "url": "classes/libredte-lib-Core-Service-PathManager.html#constant_CACHE_PATH"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService",
+            "name": "RendererTemplateService",
+            "summary": "Servicio\u0020de\u0020renderizaci\u00F3n\u0020de\u0020plantillas.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "Renderiza\u0020una\u0020plantilla\u0020Twig.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method_render"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003ArenderHtml\u0028\u0029",
+            "name": "renderHtml",
+            "summary": "Renderiza\u0020una\u0020plantilla\u0020Twig\u0020en\u0020HTML.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method_renderHtml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003ArenderPdf\u0028\u0029",
+            "name": "renderPdf",
+            "summary": "Renderiza\u0020un\u0020HTML\u0020en\u0020un\u0020documento\u0020PDF.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method_renderPdf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003AresolveTemplate\u0028\u0029",
+            "name": "resolveTemplate",
+            "summary": "Resuelve\u0020la\u0020plantilla\u0020que\u0020se\u0020est\u00E1\u0020solicitando.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method_resolveTemplate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003AaddTemplatesPathPro\u0028\u0029",
+            "name": "addTemplatesPathPro",
+            "summary": "Agrega\u0020el\u0020directorio\u0020de\u0020plantillas\u0020Pro\u0020si\u0020existe.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#method_addTemplatesPathPro"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003A\u0024defaultFormat",
+            "name": "defaultFormat",
+            "summary": "Formato\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#property_defaultFormat"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003A\u0024paths",
+            "name": "paths",
+            "summary": "Rutas\u0020donde\u0020est\u00E1n\u0020las\u0020plantillas.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#property_paths"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003A\u0024filesystemLoader",
+            "name": "filesystemLoader",
+            "summary": "Cargador\u0020de\u0020plantillas\u0020mediante\u0020el\u0020sistema\u0020de\u0020archivos\u0020para\u0020Twig.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#property_filesystemLoader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Service\\RendererTemplateService\u003A\u003A\u0024twig",
+            "name": "twig",
+            "summary": "Renderizador\u0020de\u0020plantillas\u0020HTML\u0020con\u0020Twig.",
+            "url": "classes/libredte-lib-Core-Service-RendererTemplateService.html#property_twig"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Signature\\Certificate",
             "name": "Certificate",
             "summary": "Clase\u0020que\u0020representa\u0020un\u0020certificado\u0020digital.",
@@ -1651,6 +1706,11 @@ Search.appendIndex(
             "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_validateSchema"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "M\u00E9todo\u0020general\u0020para\u0020el\u0020renderizado\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_render"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003AgetHtml\u0028\u0029",
             "name": "getHtml",
             "summary": "Genera\u0020el\u0020HTML\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -1660,6 +1720,11 @@ Search.appendIndex(
             "name": "getPdf",
             "summary": "Genera\u0020el\u0020PDF\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getPdf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003AgetEscpos\u0028\u0029",
+            "name": "getEscpos",
+            "summary": "Genera\u0020el\u0020ESCPOS\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#method_getEscpos"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003A\u0024codigo",
             "name": "codigo",
@@ -1695,6 +1760,11 @@ Search.appendIndex(
             "name": "dataProvider",
             "summary": "Proveedor\u0020de\u0020datos.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_dataProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\AbstractDocumento\u003A\u003A\u0024renderer",
+            "name": "renderer",
+            "summary": "Renderizador\u0020del\u0020documento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-AbstractDocumento.html#property_renderer"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\BoletaAfecta",
             "name": "BoletaAfecta",
@@ -2551,25 +2621,15 @@ Search.appendIndex(
             "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020el\u0020formato\u0020solicitado\u0020\u0028HTML\u0020o\u0020PDF\u0029.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_render"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003AcreateData\u0028\u0029",
+            "name": "createData",
+            "summary": "Crea\u0020los\u0020datos\u0020que\u0020se\u0020pasar\u00E1n\u0020a\u0020la\u0020plantilla\u0020que\u0020se\u0020renderizar\u00E1.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_createData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003AgetDefaultTemplate\u0028\u0029",
             "name": "getDefaultTemplate",
             "summary": "Entrega\u0020la\u0020plantilla\u0020por\u0020defecto\u0020asociada\u0020al\u0020renderizador\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_getDefaultTemplate"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderHtml\u0028\u0029",
-            "name": "renderHtml",
-            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020formato\u0020HTML.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderHtmlWithTwig\u0028\u0029",
-            "name": "renderHtmlWithTwig",
-            "summary": "Renderiza\u0020una\u0020plantilla\u0020twig\u0020con\u0020ciertos\u0020datos.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderHtmlWithTwig"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003ArenderPdf\u0028\u0029",
-            "name": "renderPdf",
-            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020formato\u0020PDF.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#method_renderPdf"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003A\u0024defaultTemplate",
             "name": "defaultTemplate",
@@ -2580,6 +2640,11 @@ Search.appendIndex(
             "name": "dataProvider",
             "summary": "Proveedor\u0020de\u0020datos.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_dataProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\AbstractRenderer\u003A\u003A\u0024rendererService",
+            "name": "rendererService",
+            "summary": "Servicio\u0020de\u0020renderizado\u0020de\u0020plantillas.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html#property_rendererService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer",
             "name": "DocumentoRenderer",
@@ -2593,7 +2658,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003ArenderFromXml\u0028\u0029",
             "name": "renderFromXml",
-            "summary": "Renderiza\u0020el\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020en\u0020formato\u0020XML.",
+            "summary": "Renderiza\u0020el\u0020documento\u0020a\u0020partir\u0020del\u0020DTE\u0020oficial\u0020en\u0020XML.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003ArenderFromDocumento\u0028\u0029",
@@ -2605,6 +2670,11 @@ Search.appendIndex(
             "name": "getRenderer",
             "summary": "Obtener\u0020el\u0020objeto\u0020que\u0020se\u0020encarga\u0020de\u0020la\u0020renderizaci\u00F3n\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A\u0024defaultRenderer",
+            "name": "defaultRenderer",
+            "summary": "Renderizador\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#property_defaultRenderer"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A\u0024renderers",
             "name": "renderers",
