@@ -2666,10 +2666,20 @@ Search.appendIndex(
             "summary": "Renderiza\u0020el\u0020documento\u0020a\u0020partir\u0020de\u0020la\u0020instancia\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromDocumento"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003AgetRenderer\u0028\u0029",
-            "name": "getRenderer",
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003AnormalizeOptions\u0028\u0029",
+            "name": "normalizeOptions",
+            "summary": "Normaliza\u0020las\u0020opciones\u0020para\u0020el\u0020renderizado\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_normalizeOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003AgetRendererInstance\u0028\u0029",
+            "name": "getRendererInstance",
             "summary": "Obtener\u0020el\u0020objeto\u0020que\u0020se\u0020encarga\u0020de\u0020la\u0020renderizaci\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer"
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererInstance"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003AgetRendererClass\u0028\u0029",
+            "name": "getRendererClass",
+            "summary": "Determina\u0020la\u0020clase\u0020del\u0020renderer\u0020que\u0020se\u0020est\u00E1\u0020solicitando.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererClass"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\DocumentoRenderer\u003A\u003A\u0024defaultRenderer",
             "name": "defaultRenderer",

@@ -203,7 +203,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -288,11 +288,25 @@
 <dd>Renderiza el documento a partir del DTE oficial en XML.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer">getRenderer()</a>
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererClass">getRendererClass()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Determina la clase del renderer que se está solicitando.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererInstance">getRendererInstance()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\AbstractRenderer">AbstractRenderer</abbr></a>    </span>
 </dt>
 <dd>Obtener el objeto que se encarga de la renderización del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_normalizeOptions">normalizeOptions()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Normaliza las opciones para el renderizado del documento.</dd>
 
     </dl>
 
@@ -324,7 +338,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -361,7 +375,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -398,7 +412,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -440,7 +454,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -487,7 +501,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -547,7 +561,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -601,15 +615,70 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getRenderer">
-        getRenderer()
-        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getRendererClass">
+        getRendererClass()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererClass" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determina la clase del renderer que se está solicitando.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getRendererClass</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$renderer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$renderer</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nombre del renderer solicitado.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>FQCN de la clase del renderer solicitado.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getRendererInstance">
+        getRendererInstance()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererInstance" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
@@ -617,7 +686,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getRenderer</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$renderer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\AbstractRenderer">AbstractRenderer</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getRendererInstance</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$renderer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\AbstractRenderer">AbstractRenderer</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -641,6 +710,67 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-AbstractRenderer.html"><abbr title="\libredte\lib\Core\Sii\Dte\Documento\Renderer\AbstractRenderer">AbstractRenderer</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeOptions">
+        normalizeOptions()
+        <a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_normalizeOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php"><a href="files/src-sii-dte-documento-renderer-documentorenderer.html"><abbr title="src/Sii/Dte/Documento/Renderer/DocumentoRenderer.php">DocumentoRenderer.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">123</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Normaliza las opciones para el renderizado del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">normalizeOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método:</p>
+<ul>
+<li>Asigna el renderizador por defecto.</li>
+<li>Determina el nombre de la clase si se pasó como código de renderizado.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$options</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Opciones sin normalizar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Opciones normalizadas.</p>
+</section>
+
             </section>
 
 </article>
@@ -769,7 +899,9 @@
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromDocumento">renderFromDocumento()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_renderFromXml">renderFromXml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRenderer">getRenderer()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererClass">getRendererClass()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_getRendererInstance">getRendererInstance()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-DocumentoRenderer.html#method_normalizeOptions">normalizeOptions()</a></li>
                                     </ul>
             </li>
                     </ul>
