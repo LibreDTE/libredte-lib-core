@@ -39,7 +39,7 @@ class DocumentoRenderer
      *
      * @var string
      */
-    private string $defaultRenderer = RendererEstandar::class;
+    private string $defaultRenderer = EstandarRenderer::class;
 
     /**
      * Listado de renderizadores disponibles (ya cargados).

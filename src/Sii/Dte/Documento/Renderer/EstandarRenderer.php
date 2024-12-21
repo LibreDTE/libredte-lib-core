@@ -27,7 +27,7 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Renderer;
 /**
  * Renderizador de DTE usando la plantilla estándar de LibreDTE.
  */
-class RendererEstandar extends AbstractRenderer
+class EstandarRenderer extends AbstractRenderer
 {
     /**
      * Plantilla por defecto que se debe utilizar al renderizar el DTE.
