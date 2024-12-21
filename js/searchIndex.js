@@ -2706,6 +2706,16 @@ Search.appendIndex(
             "summary": "Plantilla\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020renderizar\u0020el\u0020DTE.",
             "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-EstandarRenderer.html#property_defaultTemplate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererInterface",
+            "name": "RendererInterface",
+            "summary": "Interfaz\u0020para\u0020los\u0020renderizadores\u0020de\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\Renderer\\RendererInterface\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "Renderiza\u0020el\u0020documento\u0020en\u0020el\u0020formato\u0020solicitado.",
+            "url": "classes/libredte-lib-Core-Sii-Dte-Documento-Renderer-RendererInterface.html#method_render"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Sii\\Dte\\Documento\\SobreEnvio",
             "name": "SobreEnvio",
             "summary": "Clase\u0020que\u0020representa\u0020un\u0020sobre\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020documentos\u0020al\u0020SII.",
