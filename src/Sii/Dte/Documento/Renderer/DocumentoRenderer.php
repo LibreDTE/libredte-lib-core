@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Renderer;
 
+use Illuminate\Support\Str;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\DataProviderInterface;
 use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
@@ -95,13 +96,11 @@ class DocumentoRenderer
         AbstractDocumento $documento,
         array $options = []
     ): string {
-        // Opciones por defecto para el renderizado.
-        $options = array_merge([
-            'renderer' => $this->defaultRenderer,
-        ], $options);
+        // Nnormalizar las opciones.
+        $options = $this->normalizeOptions($options);
 
         // Crear el renderizador de los datos del DTE.
-        $renderer = $this->getRenderer($options['renderer']);
+        $renderer = $this->getRendererInstance($options['renderer']);
 
         // Renderizar el documento.
         $data = $renderer->render($documento, $options);
@@ -111,12 +110,42 @@ class DocumentoRenderer
     }
 
     /**
+     * Normaliza las opciones para el renderizado del documento.
+     *
+     * Este método:
+     *
+     *   - Asigna el renderizador por defecto.
+     *   - Determina el nombre de la clase si se pasó como código de renderizado.
+     *
+     * @param array $options Opciones sin normalizar.
+     * @return array Opciones normalizadas.
+     */
+    private function normalizeOptions(array $options): array
+    {
+        // Opciones por defecto para el renderizado.
+        $options = array_merge([
+            'renderer' => $this->defaultRenderer,
+        ], $options);
+
+        // Si el renderizador tiene "." es el código del renderizador con el
+        // formato que el renderizador debe utilizar.
+        if (str_contains($options['renderer'], '.')) {
+            $aux = explode('.', $options['renderer']);
+            $options['renderer'] = $this->getRendererClass($aux[0]);
+            $options['format'] = $aux[1];
+        }
+
+        // Entregar las opciones que se normalizaron.
+        return $options;
+    }
+
+    /**
      * Obtener el objeto que se encarga de la renderización del documento.
      *
      * @param string $render Clase del renderizador que se debe utilizar.
      * @return AbstractRenderer
      */
-    private function getRenderer(string $renderer): AbstractRenderer
+    private function getRendererInstance(string $renderer): AbstractRenderer
     {
         // Si no existe el renderizador se crea.
         if (!isset($this->renderers[$renderer])) {
@@ -125,5 +154,32 @@ class DocumentoRenderer
 
         // Entregar el renderizador solicitado.
         return $this->renderers[$renderer];
+    }
+
+    /**
+     * Determina la clase del renderer que se está solicitando.
+     *
+     * @param string $renderer Nombre del renderer solicitado.
+     * @return string FQCN de la clase del renderer solicitado.
+     */
+    private function getRendererClass(string $renderer): string
+    {
+        // Determinar nombre del archivo PHP y de la clase.
+        $class = Str::studly($renderer) . 'Renderer';
+        $file = __DIR__ . '/' . $class . '.php';
+
+        // La clase existe en el namespace actual.
+        if (file_exists($file)) {
+            $class = __NAMESPACE__ . '\\' . $class;
+        }
+        // La clase podría existir en lib-pro.
+        else {
+            $class = str_replace('\\Core\\', '\\Pro\\', __NAMESPACE__)
+                . '\\' . $class
+            ;
+        }
+
+        // Entregar el FQCN de la clase del renderer buscado.
+        return $class;
     }
 }
