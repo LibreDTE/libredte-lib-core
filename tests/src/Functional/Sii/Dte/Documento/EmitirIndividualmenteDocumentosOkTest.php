@@ -30,6 +30,7 @@ use libredte\lib\Core\Repository\DocumentoTipoRepository;
 use libredte\lib\Core\Repository\ImpuestosAdicionalesRepository;
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\PathManager;
+use libredte\lib\Core\Service\RendererTemplateService;
 use libredte\lib\Core\Signature\Certificate;
 use libredte\lib\Core\Signature\CertificateFaker;
 use libredte\lib\Core\Signature\CertificateLoader;
@@ -78,6 +79,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ImpuestosAdicionalesRepository::class)]
 #[CoversClass(ArrayDataProvider::class)]
 #[CoversClass(PathManager::class)]
+#[CoversClass(RendererTemplateService::class)]
 #[CoversClass(Certificate::class)]
 #[CoversClass(CertificateFaker::class)]
 #[CoversClass(CertificateLoader::class)]
