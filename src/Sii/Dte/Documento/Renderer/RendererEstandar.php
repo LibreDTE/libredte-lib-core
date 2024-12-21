@@ -34,5 +34,5 @@ class RendererEstandar extends AbstractRenderer
      *
      * @var string
      */
-    protected $defaultTemplate = 'estandar';
+    protected string $defaultTemplate = 'estandar';
 }
