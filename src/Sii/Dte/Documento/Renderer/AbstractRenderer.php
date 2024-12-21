@@ -34,7 +34,7 @@ use LogicException;
  * Clase abstracta (base) para los renderizadores de documentos tributarios
  * electrónicos (DTE).
  */
-abstract class AbstractRenderer
+abstract class AbstractRenderer implements RendererInterface
 {
     /**
      * Plantilla por defecto que se debe utilizar al renderizar el DTE.

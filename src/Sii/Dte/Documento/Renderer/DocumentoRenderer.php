@@ -143,9 +143,9 @@ class DocumentoRenderer
      * Obtener el objeto que se encarga de la renderización del documento.
      *
      * @param string $render Clase del renderizador que se debe utilizar.
-     * @return AbstractRenderer
+     * @return RendererInterface
      */
-    private function getRendererInstance(string $renderer): AbstractRenderer
+    private function getRendererInstance(string $renderer): RendererInterface
     {
         // Si no existe el renderizador se crea.
         if (!isset($this->renderers[$renderer])) {
