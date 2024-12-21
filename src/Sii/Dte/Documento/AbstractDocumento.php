@@ -419,9 +419,17 @@ abstract class AbstractDocumento
                     'F' => $this->getFolio(),
                     'FE' => $this->getFechaEmision(),
                     'RR' => $this->getReceptor()->getRut(),
-                    'RSR' => $this->getReceptor()->getRazonSocial(),
+                    'RSR' => mb_substr(
+                        $this->getReceptor()->getRazonSocial(),
+                        0,
+                        40
+                    ),
                     'MNT' => $this->getMontoTotal(),
-                    'IT1' => $this->getDetalle(0)['NmbItem'] ?? '',
+                    'IT1' => mb_substr(
+                        $this->getDetalle(0)['NmbItem'] ?? '',
+                        0,
+                        40
+                    ),
                     'CAF' => $caf->getAutorizacion(),
                     'TSTED' => $timestamp,
                 ],

@@ -180,7 +180,7 @@ class CafFaker
                     '@attributes' => ['version' => '1.0'],
                     'DA' => [
                         'RE' => $this->emisor['rut'],
-                        'RS' => $this->emisor['razonSocial'],
+                        'RS' => mb_substr($this->emisor['razonSocial'], 0, 40),
                         'TD' => $this->tipoDocumento,
                         'RNG' => [
                             'D' => $this->rangoFolios['desde'],
