@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Sii\Dte\Documento\Parser;
 
+use Illuminate\Support\Str;
+
 /**
  * Clase que maneja el análisis sintáctico de los datos de un documento.
  *
@@ -130,7 +132,7 @@ class DocumentoParser
     {
         // Determinar nombre del archivo PHP y de la clase.
         $parts = array_map(function ($part) {
-            return ucfirst(strtolower($part));
+            return Str::studly($part);
         }, explode('.', $parser));
         $file = __DIR__ . '/' . implode('/', $parts) . 'Parser.php';
         $class = implode('\\', $parts) . 'Parser';
