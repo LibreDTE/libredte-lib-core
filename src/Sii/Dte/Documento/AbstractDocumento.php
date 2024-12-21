@@ -105,6 +105,13 @@ abstract class AbstractDocumento
     protected DataProviderInterface $dataProvider;
 
     /**
+     * Renderizador del documento tributario.
+     *
+     * @var DocumentoRenderer
+     */
+    protected DocumentoRenderer $renderer;
+
+    /**
      * Constructor de la clase.
      *
      * @param DataProviderInterface|null $dataProvider Proveedor de datos.
@@ -540,6 +547,23 @@ abstract class AbstractDocumento
     }
 
     /**
+     * Método general para el renderizado del documento tributario electrónico.
+     *
+     * @param array $options Opciones para el renderizado del documento.
+     * @return string Datos del documento renderizado según las opciones.
+     */
+    public function render(array $options = []): string
+    {
+        // Si el renderer no está creado se crea.
+        if (!isset($this->renderer)) {
+            $this->renderer = new DocumentoRenderer($this->dataProvider);
+        }
+
+        // Renderizar el documento.
+        return $this->renderer->renderFromDocumento($this, $options);
+    }
+
+    /**
      * Genera el HTML del documento tributario electrónico.
      *
      * @param array $options Opciones para generar el HTML.
@@ -548,9 +572,8 @@ abstract class AbstractDocumento
     public function getHtml(array $options = []): string
     {
         $options['format'] = 'html';
-        $renderer = new DocumentoRenderer($this->dataProvider);
 
-        return $renderer->renderFromDocumento($this, $options);
+        return $this->render($options);
     }
 
     /**
@@ -562,8 +585,20 @@ abstract class AbstractDocumento
     public function getPdf(array $options = []): string
     {
         $options['format'] = 'pdf';
-        $renderer = new DocumentoRenderer($this->dataProvider);
 
-        return $renderer->renderFromDocumento($this, $options);
+        return $this->render($options);
+    }
+
+    /**
+     * Genera el ESCPOS del documento tributario electrónico.
+     *
+     * @param array $options Opciones para generar el ESCPOS.
+     * @return string Datos binarios del ESCPOS generado.
+     */
+    public function getEscpos(array $options = []): string
+    {
+        $options['format'] = 'escpos';
+
+        return $this->render($options);
     }
 }

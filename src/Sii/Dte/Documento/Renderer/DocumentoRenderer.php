@@ -35,6 +35,13 @@ use libredte\lib\Core\Sii\Dte\Documento\Builder\DocumentoFactory;
 class DocumentoRenderer
 {
     /**
+     * Renderizador por defecto que se debe utilizar.
+     *
+     * @var string
+     */
+    private string $defaultRenderer = RendererEstandar::class;
+
+    /**
      * Listado de renderizadores disponibles (ya cargados).
      *
      * @var array
@@ -59,7 +66,9 @@ class DocumentoRenderer
     }
 
     /**
-     * Renderiza el documento a partir de los datos en formato XML.
+     * Renderiza el documento a partir del DTE oficial en XML.
+     *
+     * Este método utiliza un XML completo y real de un DTE.
      *
      * @param string $data Datos en formato XML del DTE.
      * @param array $options Opciones para el renderizado.
@@ -70,7 +79,7 @@ class DocumentoRenderer
         array $options = []
     ): string {
         $factory = new DocumentoFactory($this->dataProvider);
-        $documento = $factory->createFromXml($data);
+        $documento = $factory->loadFromXml($data);
 
         return $this->renderFromDocumento($documento, $options);
     }
@@ -88,7 +97,7 @@ class DocumentoRenderer
     ): string {
         // Opciones por defecto para el renderizado.
         $options = array_merge([
-            'renderer' => RendererEstandar::class,
+            'renderer' => $this->defaultRenderer,
         ], $options);
 
         // Crear el renderizador de los datos del DTE.

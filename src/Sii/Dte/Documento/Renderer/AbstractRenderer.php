@@ -26,13 +26,9 @@ namespace libredte\lib\Core\Sii\Dte\Documento\Renderer;
 
 use libredte\lib\Core\Service\ArrayDataProvider;
 use libredte\lib\Core\Service\DataProviderInterface;
-use libredte\lib\Core\Service\PathManager;
+use libredte\lib\Core\Service\RendererTemplateService;
 use libredte\lib\Core\Sii\Dte\Documento\AbstractDocumento;
 use LogicException;
-use Mpdf\Mpdf;
-use Mpdf\Output\Destination;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 /**
  * Clase abstracta (base) para los renderizadores de documentos tributarios
@@ -45,7 +41,7 @@ abstract class AbstractRenderer
      *
      * @var string
      */
-    protected $defaultTemplate;
+    protected string $defaultTemplate;
 
     /**
      * Proveedor de datos.
@@ -55,19 +51,28 @@ abstract class AbstractRenderer
     protected DataProviderInterface $dataProvider;
 
     /**
+     * Servicio de renderizado de plantillas.
+     *
+     * @var RendererTemplateService
+     */
+    private RendererTemplateService $rendererService;
+
+    /**
      * Constructor de la clase.
      *
      * @param ?DataProviderInterface $dataProvider Proveedor de datos.
+     * @param ?RendererTemplateService $rendererService Proveedor de datos.
      */
-    public function __construct(?DataProviderInterface $dataProvider = null)
-    {
+    public function __construct(
+        ?DataProviderInterface $dataProvider = null,
+        ?RendererTemplateService $rendererService = null
+    ) {
         $this->dataProvider = $dataProvider ?? new ArrayDataProvider();
+        $this->rendererService = $rendererService ?? new RendererTemplateService();
     }
 
     /**
      * Renderiza el documento en el formato solicitado (HTML o PDF).
-     *
-     * Por defecto se renderiza en formato PDF si no se especifica uno.
      *
      * @param AbstractDocumento $documento Documento a renderizar.
      * @param array $options Opciones para el renderizado.
@@ -77,34 +82,57 @@ abstract class AbstractRenderer
         AbstractDocumento $documento,
         array $options = []
     ): string {
-        // Opciones por defecto.
-        $options = array_merge([
-            'format' => 'pdf',
-        ], $options);
-
-        // Renderizar HTML del DTE.
-        $html = $this->renderHtml($documento, $options);
-
-        // Si el formato solicitado es HTML se retorna directamente.
-        if ($options['format'] === 'html') {
-            return $html;
+        // Plantilla que se renderizará.
+        $template = $options['template'] ?? $this->getDefaultTemplate();
+        if ($template[0] !== '/') {
+            $template = 'dte/documento/' . $template;
         }
 
-        // Renderizar el PDF a partir del HTML.
-        $pdf = $this->renderPdf($html, $options);
+        // Datos que se usarán para renderizar.
+        $data = $this->createData($documento, $options);
 
-        // Entregar el contenido del PDF renderizado.
-        return $pdf;
+        // Renderizar el documento.
+        $rendered = $this->rendererService->render($template, $data);
+
+        // Entregar el contenido renderizado del documento.
+        return $rendered;
+    }
+
+    /**
+     * Crea los datos que se pasarán a la plantilla que se renderizará.
+     *
+     * @param AbstractDocumento $documento Documento a renderizar.
+     * @param array $options Opciones para el renderizado.
+     * @return array Datos que se pasarán a la plantilla al renderizar.
+     */
+    protected function createData(
+        AbstractDocumento $documento,
+        array $options = []
+    ): array {
+        // Preparar datos que se usarán para renderizar.
+        $data = [
+            'dte' => $documento->getData(),
+            'options' => [
+                'format' => $options['format'] ?? null,
+                'config' => [
+                    'html' => $options['html'] ?? null,
+                    'pdf' => $options['pdf'] ?? null,
+                ],
+            ]
+        ];
+
+        // Entregar los datos que se pasarán a la plantilla.
+        return $data;
     }
 
     /**
      * Entrega la plantilla por defecto asociada al renderizador del DTE.
      *
      * @return string Nombre de la plantilla por defecto.
-     * @throws LogicException Si no existe una plantilla por defecto
-     * asignada en el renderizador.
+     * @throws LogicException Si no existe una plantilla por defecto asignada en
+     * el renderizador.
      */
-    protected function getDefaultTemplate(): string
+    private function getDefaultTemplate(): string
     {
         if (!isset($this->defaultTemplate)) {
             throw new LogicException(
@@ -113,77 +141,5 @@ abstract class AbstractRenderer
         }
 
         return $this->defaultTemplate;
-    }
-
-    /**
-     * Renderiza el documento en formato HTML.
-     *
-     * El renderizado se realiza mediante una plantilla twig.
-     *
-     * @param AbstractDocumento $documento Documento a renderizar.
-     * @param array $options Opciones para el renderizado en HTML.
-     * @return string Código HTML del documento renderizado.
-     */
-    protected function renderHtml(
-        AbstractDocumento $documento,
-        array $options = []
-    ): string {
-        // Opciones por defecto.
-        $options = array_merge([
-            'template' => $this->getDefaultTemplate(),
-        ], $options);
-
-        // Armar nombre de la plantilla twig.
-        $template = $options['template'] . '.html.twig';
-
-        // Preparar datos que se usarán para renderizar.
-        $data = [
-            'dte' => $documento->getData(),
-        ];
-
-        // Renderizar el HTML usando twig.
-        $html = $this->renderHtmlWithTwig($template, $data);
-
-        // Entregar el HTML renderizado.
-        return $html;
-    }
-
-    /**
-     * Renderiza una plantilla twig con ciertos datos.
-     *
-     * @param string $template Plantilla twig a renderizar.
-     * @param array $data Datos que se pasarán a la plantilla twig.
-     * @return string Código HTML con el renderizado de la plantilla twig.
-     */
-    protected function renderHtmlWithTwig(string $template, array $data): string
-    {
-        // Ubicación de las plantillas twig para los documentos tributarios.
-        $templatesDir = PathManager::getTemplatesPath() . '/dte/documento';
-
-        // Configurar Twig.
-        $loader = new FilesystemLoader($templatesDir);
-        $twig = new Environment($loader);
-
-        // Renderizar la plantilla.
-        return $twig->render($template, $data);
-    }
-
-    /**
-     * Renderiza el documento en formato PDF.
-     *
-     * El renderizado se realiza a partir de un HTML previamente renderizado que
-     * será pasado a PDF.
-     */
-    protected function renderPdf(string $html, array $options): string
-    {
-        // Generar el PDF con mPDF.
-        $mpdf = new Mpdf();
-        $mpdf->WriteHTML($html);
-
-        // Obtener el contenido del PDF.
-        $pdf = $mpdf->Output('', Destination::STRING_RETURN);
-
-        // Entregar el contenido del PDF.
-        return $pdf;
     }
 }
