@@ -1,0 +1,34 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 39
+    Folio: 1
+    # IndMntNeto: Indicador Montos Netos, expresa que el precio unitario y el
+    #             valor de todas las líneas de detalles corresponden a Montos
+    #             Netos (no incluyen IVA). Valor "2": "Líneas de detalle indican
+    #             montos netos".
+    #             Largo máx: 1 - Tipo: NÚM.
+    IndMntNeto: 2
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSocEmisor: SASCO SpA
+    GiroEmisor: Servicios integrales de informática
+    DirOrigen: Santiago
+    CmnaOrigen: Santiago
+  Receptor:
+    RUTRecep: 66666666-6
+    RznSocRecep: Sin RUT
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Producto
+  QtyItem: 1
+  PrcItem: 1190
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 1190
+        IVA: 226
+        MntTotal: 1416
