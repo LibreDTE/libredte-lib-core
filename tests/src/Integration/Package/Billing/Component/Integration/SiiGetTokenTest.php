@@ -32,8 +32,8 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectio
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]

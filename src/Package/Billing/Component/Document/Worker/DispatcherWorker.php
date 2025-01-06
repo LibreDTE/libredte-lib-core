@@ -102,8 +102,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     public function validateSchema(
         DocumentEnvelopeInterface|XmlInterface|string $source
-    ): void
-    {
+    ): void {
         // Obtener el documento XML.
         if ($source instanceof DocumentEnvelopeInterface) {
             $xmlDocument = $source->getXmlDocument();

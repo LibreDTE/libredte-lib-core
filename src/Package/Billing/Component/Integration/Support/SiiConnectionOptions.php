@@ -191,7 +191,7 @@ class SiiConnectionOptions
         $wsdlPath = dirname(__DIR__, 6);
         $filepath = sprintf('%s/%s/%s.wsdl', $wsdlPath, $server, $service);
 
-        return is_readable($filepath) ? realpath($filepath) : null;;
+        return is_readable($filepath) ? realpath($filepath) : null;
     }
 
     /**

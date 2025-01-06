@@ -29,16 +29,16 @@ use Derafu\Lib\Core\Package\Prime\Component\Certificate\Exception\CertificateExc
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentSenderWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]
@@ -51,7 +51,9 @@ use libredte\lib\Tests\TestCase;
 class SiiDocumentSendTest extends TestCase
 {
     private string $xmlDir;
+
     private CertificateInterface $certificate;
+
     private SiiDocumentSenderWorkerInterface $documentSender;
 
     protected function setUp(): void

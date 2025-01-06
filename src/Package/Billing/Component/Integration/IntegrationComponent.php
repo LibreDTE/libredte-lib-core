@@ -26,10 +26,10 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDeliveryCheckerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentValidatorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiTokenManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface;
 
@@ -59,7 +59,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
             'sii_token_manager' => $this->siiTokenManagerWorker,
             'sii_document_sender' => $this->siiDocumentSenderWorker,
             'sii_delivery_checker' => $this->siiDeliveryCheckerWorker,
-            'sii_document_validator' => $this->siiDocumentValidatorWorker
+            'sii_document_validator' => $this->siiDocumentValidatorWorker,
         ];
     }
 

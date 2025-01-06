@@ -60,8 +60,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     public function validate(
         DocumentBagInterface|XmlInterface|string $source
-    ): void
-    {
+    ): void {
         // Asignar la bolsa del DTE a partir de la fuente.
         if (is_string($source)) {
             // Importante: Esto quitará la firma, no sirve para otras
@@ -94,8 +93,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     public function validateSchema(
         DocumentBagInterface|XmlInterface|string $source
-    ): void
-    {
+    ): void {
         // Obtener el documento XML.
         if ($source instanceof DocumentBagInterface) {
             $xmlDocument = $source->getXmlDocument();

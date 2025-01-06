@@ -31,7 +31,7 @@ enum TagXmlDocumento: string
 {
     case DOCUMENTO = 'Documento';
     case LIQUIDACION = 'Liquidacion';
-    CASE EXPORTACIONES = 'Exportaciones';
+    case EXPORTACIONES = 'Exportaciones';
 
     /**
      * Mapa con los códigos del tag XML y su nombre.

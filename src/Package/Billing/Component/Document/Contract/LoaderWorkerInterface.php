@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\LoaderException;
 
 /**

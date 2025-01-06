@@ -70,8 +70,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
     public function create(
         string|array|XmlInterface|DocumentInterface $source,
         bool $normalizeAll = true
-    ): DocumentBagInterface
-    {
+    ): DocumentBagInterface {
         // Asignar (si se pasó) o crear la bolsa.
         $class = $this->documentBagClass;
         $bag = new $class();

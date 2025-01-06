@@ -79,8 +79,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
         int $codigoDocumento,
         int $folioDesde,
         ?int $folioHasta = null
-    ): XmlDocument
-    {
+    ): XmlDocument {
         $array = $this->createArray(
             $emisor,
             $codigoDocumento,
@@ -105,8 +104,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
         int $codigoDocumento,
         int $folioDesde,
         ?int $folioHasta = null
-    ): array
-    {
+    ): array {
         // Si no se indica folio final se creará un CAF con un solo folio.
         if ($folioHasta === null) {
             $folioHasta = $folioDesde;

@@ -30,8 +30,8 @@ use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\SignatureComponen
 use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface;
@@ -44,7 +44,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderExcept
  */
 abstract class AbstractBuilderStrategy extends AbstractStrategy implements BuilderStrategyInterface
 {
-     /**
+    /**
      * Clase del documento que este "builder" construirá.
      *
      * @var string

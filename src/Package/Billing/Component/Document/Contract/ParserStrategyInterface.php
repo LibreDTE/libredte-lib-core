@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
 
 /**
  * Interfaz para las estrategias de los parsers de datos de entrada de los

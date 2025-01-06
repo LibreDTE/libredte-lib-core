@@ -25,15 +25,15 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Integration;
 
 use libredte\lib\Core\Application;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiTokenManagerException;
 use libredte\lib\Core\Package\Billing\BillingPackage;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiTokenManagerException;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]

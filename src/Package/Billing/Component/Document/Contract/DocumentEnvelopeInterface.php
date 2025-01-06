@@ -27,11 +27,11 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use DOMDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
-use DOMDocument;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
 
 /**
  * Interfaz para el sobre (contenedor) de documentos tributarios para el proceso

@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Unit\Package\Billing\Component\TradingParties;
 
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
  * Test funcional para la clase Contribuyente.

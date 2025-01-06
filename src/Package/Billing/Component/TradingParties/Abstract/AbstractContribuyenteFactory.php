@@ -26,7 +26,6 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractFactory;
 use Derafu\Lib\Core\Foundation\Contract\FactoryInterface;
-use LogicException;
 
 /**
  * Clase abstracta para las implementaciones de fábricas de contribuyentes,

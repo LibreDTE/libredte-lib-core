@@ -38,8 +38,8 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDeliveryCh
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]
@@ -54,6 +54,7 @@ use libredte\lib\Tests\TestCase;
 class SiiDeliveryCheckSentStatusTest extends TestCase
 {
     private CertificateInterface $certificate;
+
     private SiiDeliveryCheckerWorkerInterface $deliveryChecker;
 
     protected function setUp(): void

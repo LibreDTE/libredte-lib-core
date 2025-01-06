@@ -46,17 +46,17 @@ use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFa
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
@@ -68,9 +68,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\Abstract
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use libredte\lib\Tests\TestCase;
 
 /**
  * Prueba del parser de datos de entrada para un documento tributario.
@@ -115,9 +115,13 @@ use libredte\lib\Tests\TestCase;
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
+
     private CafFakerWorkerInterface $cafFaker;
+
     private CertificateFakerWorkerInterface $certificateFaker;
+
     private ValidatorWorkerInterface $validator;
+
     private RendererWorkerInterface $renderer;
 
     protected function setUp(): void

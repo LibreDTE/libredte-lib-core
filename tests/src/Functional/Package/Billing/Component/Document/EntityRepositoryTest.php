@@ -49,8 +49,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\TipoDocumentoRepository;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(CategoriaDocumento::class)]

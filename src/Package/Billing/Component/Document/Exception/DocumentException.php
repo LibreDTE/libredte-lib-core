@@ -54,8 +54,7 @@ class DocumentException extends BillingException
         int $code = 0,
         ?Throwable $previous = null,
         ?DocumentBagInterface $documentBag = null
-    )
-    {
+    ) {
         parent::__construct($message, $code, $previous);
         $this->documentBag = $documentBag;
     }

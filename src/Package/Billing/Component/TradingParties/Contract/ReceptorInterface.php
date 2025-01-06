@@ -24,8 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
-use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\CorreoIntercambioDteInfoInterface;
-
 /**
  * Interfaz para una entidad de receptor de documento tributario.
  */

@@ -31,8 +31,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
 use libredte\lib\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]

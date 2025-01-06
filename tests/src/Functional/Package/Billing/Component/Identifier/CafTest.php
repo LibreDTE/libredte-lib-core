@@ -25,24 +25,24 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Identifier;
 
 use libredte\lib\Core\Application;
+use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
-use libredte\lib\Core\Package\Billing\BillingPackage;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
-use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -65,7 +65,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 class CafTest extends TestCase
 {
     private CafFakerWorkerInterface $cafFaker;
+
     private CafLoaderWorkerInterface $cafLoader;
+
     private CafValidatorWorkerInterface $cafValidator;
 
     protected function setUp(): void

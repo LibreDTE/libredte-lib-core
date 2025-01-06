@@ -54,11 +54,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strat
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\GuiaDespachoNormalizerStrategy;
 //use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\LiquidacionFacturaNormalizerStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaExentaSanitizerStrategy;
@@ -68,11 +68,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\GuiaDespachoSanitizerStrategy;
 //use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\LiquidacionFacturaSanitizerStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaExentaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
@@ -81,11 +81,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\GuiaDespachoValidatorStrategy;
 //use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\LiquidacionFacturaValidatorStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
@@ -98,9 +98,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuye
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use libredte\lib\Tests\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
@@ -173,9 +173,13 @@ use Symfony\Component\Yaml\Yaml;
 class EmitirIndividualmenteDocumentosOkTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
+
     private CafFakerWorkerInterface $cafFaker;
+
     private CertificateFakerWorkerInterface $certificateFaker;
+
     private ValidatorWorkerInterface $validator;
+
     private RendererWorkerInterface $renderer;
 
     protected function setUp(): void
@@ -244,7 +248,6 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
             $data['Encabezado']['Emisor']['RUTEmisor'],
             $data['Encabezado']['Emisor']['RznSoc']
                 ?? $data['Encabezado']['Emisor']['RznSocEmisor']
-            ,
         );
 
         // Crear CAF de pruebas para el caso.

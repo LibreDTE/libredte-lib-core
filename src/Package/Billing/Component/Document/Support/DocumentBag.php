@@ -28,11 +28,11 @@ use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInte
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use Derafu\Lib\Core\Support\Store\DataContainer;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
 use stdClass;
