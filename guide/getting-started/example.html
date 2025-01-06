@@ -174,28 +174,41 @@
             <h1>Ejemplo</h1>
 
             
-    <p>El siguiente es un ejemplo básico de cómo generar un DTE en su sobre para subir al SII.</p>
+    <p>El siguiente es un ejemplo básico de cómo generar el XML de un DTE.</p>
 
-            <pre><code class="language-php">$data = [ /* aquí los datos del DTE */ ];
+            <pre><code class="language-php">// Iniciar aplicación.
+$app = libredte_lib();
 
-$emisor = new Contribuyente($data[&#039;Encabezado&#039;][&#039;Emisor&#039;][&#039;RUTEmisor&#039;]);
-$certificate = $emisor-&gt;getFakeCertificate();
-$caf = $emisor-&gt;getFakeCaf();
+// Preparar datos del DTE.
+$data = [ /* aquí los datos del DTE */ ];
 
-$factory = new DocumentoFactory();
-$documento = $factory-&gt;createFromArray($data);
-$documento-&gt;timbrar($caf);
-$documento-&gt;firmar($certificate);
+// Cargar contenido del archivo CAF.
+$caf = $app
+    -&gt;getBillingPackage()
+    -&gt;getIdentifierComponent()
+    -&gt;getCafLoaderWorker()
+    -&gt;load(file_get_contents($cafFile))
+    -&gt;getCaf()
+;
 
-$sobre = new SobreEnvio();
-$sobre-&gt;agregar($documento);
-$sobre-&gt;setCaratula([
-    &#039;FchResol&#039; =&gt; &#039;2019-12-23&#039;,
-    &#039;NroResol&#039; =&gt; 0,
-    &#039;RutEnvia&#039; =&gt; $certificate-&gt;getID(),
-]);
-$xml = $sobre-&gt;firmar($certificate);
-echo $xml, &quot;\n\n&quot;;</code></pre>
+// Cargar el certificado digital.
+$certificate = $app
+    -&gt;getPrimePackage()
+    -&gt;getCertificateComponent()
+    -&gt;getLoaderWorker()
+    -&gt;createFromFile($certificateFile, $certificatePass)
+;
+
+// Crear DTE.
+$document = $app
+    -&gt;getBillingPackage()
+    -&gt;getDocumentComponent()
+    -&gt;bill($data, $caf, $certificate)
+    -&gt;getDocument()
+;
+
+// Mostrar el XML del DTE generado.
+echo $document-&gt;saveXml() , &quot;\n&quot;;</code></pre>
 
             <div class="phpdocumentor-admonition seealso">
                         <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
