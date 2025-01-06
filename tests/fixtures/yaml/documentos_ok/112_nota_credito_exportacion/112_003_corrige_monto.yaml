@@ -31,8 +31,8 @@ Referencia:
   FolioRef: 1
   FchRef: '2016-01-01'
   # CodRef: Debe de ser siempre 3, ya que corresponde a 'Corrige montos'.
-  CodRef: 1
-  RazonRef: Anula factura
+  CodRef: 3
+  RazonRef: Corrige montos
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

@@ -32,8 +32,8 @@ Referencia:
   FchRef: '2016-01-01'
   # CodRef: Debe de ser siempre 2, ya que corresponde a
   #         'Corrige Texto Documento de Referencia'.
-  CodRef: 1
-  RazonRef: Anula factura
+  CodRef: 2
+  RazonRef: Corrige Texto
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

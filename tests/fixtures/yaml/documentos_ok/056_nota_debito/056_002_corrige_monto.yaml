@@ -29,7 +29,7 @@ Referencia:
   #         'Corrige montos'.- Largo máx: 1 - Tipo: NÚM.
   CodRef: 3
   # RazonRef: Se explica la razón de la referencia - Largo máx: 90 - Tipo: ALFA
-  RazonRef: Anula nota de crédito electrónica
+  RazonRef: Corrige monto nota de crédito electrónica
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:

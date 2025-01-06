@@ -1,0 +1,33 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 41
+    Folio: 123
+    IndServicio: 3
+    PeriodoDesde: '2024-11-05'
+    PeriodoHasta: '2024-12-05'
+    FchVenc: '2024-12-10'
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSocEmisor: SASCO SpA
+    GiroEmisor: Empresa de agua potable
+    DirOrigen: Santiago
+    CmnaOrigen: Santiago
+  Receptor:
+    RUTRecep: 66666666-6
+    RznSocRecep: Sin RUT
+    CdgIntRecep: 142
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- IndExe: 1
+  NmbItem: Servicios agua potable
+  QtyItem: 1
+  PrcItem: 24500
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntExe: 24500
+        MntTotal: 24500
