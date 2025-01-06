@@ -17,8 +17,11 @@
     },
     "autoload": {
         "psr-4": {
-            "libredte\\lib\\Core\\": "src/"
-        }
+            "libredte\\lib\\Core\\": "src"
+        },
+        "files": [
+            "app/bootstrap.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -32,18 +35,10 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-soap": "*",
-        "illuminate/support": "^11.22",
-        "league/csv": "^9.16",
-        "maennchen/zipstream-php": "^3.1",
-        "mpdf/mpdf": "^8.2",
-        "nesbot/carbon": "^3.8",
-        "phpseclib/phpseclib": "^3.0",
+        "derafu/derafu-lib-core": "dev-master || dev-main",
         "psr/simple-cache": "^3.0",
         "symfony/cache": "^7.1",
-        "symfony/filesystem": "^7.1",
-        "symfony/mime": "^7.1",
-        "symfony/yaml": "^7.1",
-        "twig/twig": "^3.16"
+        "symfony/filesystem": "^7.1"
     },
     "require-dev": {
         "ext-xdebug": "*",
@@ -54,9 +49,9 @@
     "scripts": {
         "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
         "tests": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml",
-        "tests-unit": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite unit",
-        "tests-functional": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite functional",
-        "tests-integration": "vendor/bin/phpunit --configuration=phpunit.xml --no-coverage --testsuite integration",
+        "tests-unit": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite unit",
+        "tests-functional": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite functional",
+        "tests-integration": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite integration",
         "phpcs-fix": "php-cs-fixer fix -v --config=php-cs-fixer.php .",
         "phpcs-fix-dry-run": "php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php .",
         "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=1G",

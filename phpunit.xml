@@ -56,7 +56,6 @@
     </logging>
     <php>
         <ini name="memory_limit" value="-1" />
-        <env name="LIBREDTE_TESTS_DIR" value="tests" />
         <env name="LIBREDTE_COMPANY" value="76192083-9" />
         <env name="LIBREDTE_ENV_TEST_AUTH_DATE" value="2019-12-23" />
         <env name="LIBREDTE_CERTIFICATE_FILE" value="tests/resources/certificates/fake-certificate.pfx" />

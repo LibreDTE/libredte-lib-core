@@ -1,0 +1,264 @@
+# Configuración de servicios que provee la biblioteca.
+services:
+
+    # Configuración por defecto de los servicios.
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Paquetes.
+    libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface:
+        class: libredte\lib\Core\Package\Billing\BillingPackage
+
+    # Componentes del paquete "billing".
+    libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Book\BookComponent
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent
+    libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\OwnershipTransferComponent
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingPartiesComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\TradingPartiesComponent
+
+    # Workers del componente "billing.document".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.builder.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker
+        arguments:
+            $tipoDocumentoFactory: '@libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface'
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.normalizer.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.parser.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.renderer.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.sanitizer.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.validator.strategy', index_by: 'name' }
+
+    # Workers del componente "billing.identifier".
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker
+        arguments:
+            $emisorFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface'
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
+
+    # Workers del componente "billing.integration".
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiTokenManagerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentSenderWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDeliveryCheckerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDeliveryCheckerWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentValidatorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentValidatorWorker
+
+    # Workers del componente "billing.trading_parties".
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Worker\MandatarioManagerWorker
+        arguments:
+            $mandatarioFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface'
+
+    # Servicios del componente "billing.trading_parties".
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\MandatarioFactory
+
+    # Servicios del componente "billing.document".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
+
+    # Estrategias del worker "billing.document.builder".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaAfectaBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\BoletaAfectaBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaExentaBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\BoletaExentaBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaAfectaBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\FacturaAfectaBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaCompraBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\FacturaCompraBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaExentaBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\FacturaExentaBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaExportacionBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\FacturaExportacionBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\GuiaDespachoBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\GuiaDespachoBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\LiquidacionFacturaBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\LiquidacionFacturaBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaCreditoBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\NotaCreditoBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaCreditoExportacionBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\NotaCreditoExportacionBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaDebitoBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\NotaDebitoBuilderStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaDebitoExportacionBuilderStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\NotaDebitoExportacionBuilderStrategy
+
+    # Estrategias del worker "billing.document.normalizer".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\BoletaAfectaNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\BoletaExentaNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaExentaNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaAfectaNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaCompraNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaCompraNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaExentaNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExentaNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaExportacionNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExportacionNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\GuiaDespachoNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\GuiaDespachoNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\LiquidacionFacturaNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\LiquidacionFacturaNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaCreditoNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaDebitoNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoNormalizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy
+
+    # Estrategias del worker "billing.document.sanitizer".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\BoletaAfectaSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\BoletaExentaSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaExentaSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\FacturaAfectaSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\FacturaCompraSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaCompraSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\FacturaExentaSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExentaSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\FacturaExportacionSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExportacionSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\GuiaDespachoSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\GuiaDespachoSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\LiquidacionFacturaSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\LiquidacionFacturaSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaCreditoSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaDebitoSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoSanitizerStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategy
+
+    # Estrategias del worker "billing.document.validator".
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\BoletaAfectaValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\BoletaExentaValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaExentaValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\FacturaAfectaValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\FacturaCompraValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaCompraValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\FacturaExentaValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExentaValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\FacturaExportacionValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExportacionValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\GuiaDespachoValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\GuiaDespachoValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\LiquidacionFacturaValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\LiquidacionFacturaValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaCreditoValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaCreditoExportacionValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoExportacionValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaDebitoValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaDebitoExportacionValidatorStrategyInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy
+
+    # Estrategias del worker "billing.document.parser".
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form\EstandarParserStrategy: ~
+
+    # Estrategias del worker "billing.document.renderer".
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template\EstandarRendererStrategy: ~
+
+    # Estrategias del worker "billing.document.batch_processor".
+    # TODO.
+
+    # Workers del componente "prime.entity".
+    Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\DatasourceProviderWorkerInterface:
+        class: Derafu\Lib\Core\Package\Prime\Component\Entity\Worker\DatasourceProviderWorker
+        arguments:
+            $sources:
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta:
+                    '%kernel.project_dir%/resources/data/repository/aduana_clausulas_venta.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaFormaPago:
+                    '%kernel.project_dir%/resources/data/repository/aduana_formas_pago.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta:
+                    '%kernel.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais:
+                    '%kernel.project_dir%/resources/data/repository/aduana_paises.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto:
+                    '%kernel.project_dir%/resources/data/repository/aduana_puertos.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTipoBulto:
+                    '%kernel.project_dir%/resources/data/repository/aduana_tipos_bulto.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte:
+                    '%kernel.project_dir%/resources/data/repository/aduana_transportes.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaUnidad:
+                    '%kernel.project_dir%/resources/data/repository/aduana_unidades.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna:
+                    '%kernel.project_dir%/resources/data/repository/comunas.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface:
+                    '%kernel.project_dir%/resources/data/repository/tipos_documento.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago:
+                    '%kernel.project_dir%/resources/data/repository/formas_pago.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPagoExportacion:
+                    '%kernel.project_dir%/resources/data/repository/formas_pago_exportacion.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion:
+                    '%kernel.project_dir%/resources/data/repository/impuestos_adicionales_retenciones.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago:
+                    '%kernel.project_dir%/resources/data/repository/medios_pago.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml:
+                    '%kernel.project_dir%/resources/data/repository/tag_xml.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado:
+                    '%kernel.project_dir%/resources/data/repository/traslados.php'
+
+    # Workers del componente "prime.template".
+    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\RendererWorkerInterface:
+        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\RendererWorker
+        arguments:
+            $paths: '%kernel.project_dir%/resources/templates'

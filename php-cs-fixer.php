@@ -34,7 +34,8 @@ $dir = __DIR__;
 $finder = Finder::create()
     ->in($dir)
     ->name('*.php')
-    ->exclude('vendor');
+    ->exclude('vendor')
+;
 
 return (new Config())
     // Permitir reglas riesgosas que cambian la lógica del código.

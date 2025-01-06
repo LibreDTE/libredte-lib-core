@@ -1,30 +1,42 @@
 Ejemplo
 =======
 
-El siguiente es un ejemplo básico de cómo generar un DTE en su sobre para subir al SII.
+El siguiente es un ejemplo básico de cómo generar el XML de un DTE.
 
 .. code-block:: php
+    // Iniciar aplicación.
+    $app = libredte_lib();
 
+    // Preparar datos del DTE.
     $data = [ /* aquí los datos del DTE */ ];
 
-    $emisor = new Contribuyente($data['Encabezado']['Emisor']['RUTEmisor']);
-    $certificate = $emisor->getFakeCertificate();
-    $caf = $emisor->getFakeCaf();
+    // Cargar contenido del archivo CAF.
+    $caf = $app
+        ->getBillingPackage()
+        ->getIdentifierComponent()
+        ->getCafLoaderWorker()
+        ->load(file_get_contents($cafFile))
+        ->getCaf()
+    ;
 
-    $factory = new DocumentoFactory();
-    $documento = $factory->createFromArray($data);
-    $documento->timbrar($caf);
-    $documento->firmar($certificate);
+    // Cargar el certificado digital.
+    $certificate = $app
+        ->getPrimePackage()
+        ->getCertificateComponent()
+        ->getLoaderWorker()
+        ->createFromFile($certificateFile, $certificatePass)
+    ;
 
-    $sobre = new SobreEnvio();
-    $sobre->agregar($documento);
-    $sobre->setCaratula([
-        'FchResol' => '2019-12-23',
-        'NroResol' => 0,
-        'RutEnvia' => $certificate->getID(),
-    ]);
-    $xml = $sobre->firmar($certificate);
-    echo $xml, "\n\n";
+    // Crear DTE.
+    $document = $app
+        ->getBillingPackage()
+        ->getDocumentComponent()
+        ->bill($data, $caf, $certificate)
+        ->getDocument()
+    ;
+
+    // Mostrar el XML del DTE generado.
+    echo $document->saveXml() , "\n";
 
 .. seealso::
 
