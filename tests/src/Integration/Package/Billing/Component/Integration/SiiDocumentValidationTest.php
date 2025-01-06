@@ -59,7 +59,7 @@ class SiiDocumentValidationTest extends TestCase
 
     protected function setUp(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $app
             ->getBillingPackage()

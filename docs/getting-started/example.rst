@@ -5,7 +5,7 @@ El siguiente es un ejemplo básico de cómo generar el XML de un DTE.
 
 .. code-block:: php
     // Iniciar aplicación.
-    $app = libredte_lib();
+    $app = \libredte\lib\Core\Application::getInstance();
 
     // Preparar datos del DTE.
     $data = [ /* aquí los datos del DTE */ ];

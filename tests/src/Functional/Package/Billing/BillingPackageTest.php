@@ -141,7 +141,7 @@ class BillingPackageTest extends TestCase
         ];
 
         // Generar un CAF falso.
-        $cafFaker = libredte_lib()
+        $cafFaker = Application::getInstance()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafFakerWorker()
@@ -149,7 +149,7 @@ class BillingPackageTest extends TestCase
         $cafBag = $cafFaker->create(new Emisor($RUTEmisor), $TipoDTE, $Folio);
 
         // Generar un certificado falso.
-        $certificateFaker = libredte_lib()
+        $certificateFaker = Application::getInstance()
             ->getPrimePackage()
             ->getCertificateComponent()
             ->getFakerWorker()
@@ -157,7 +157,7 @@ class BillingPackageTest extends TestCase
         $certificate = $certificateFaker->create($RUTEmisor);
 
         // Obtener el biller.
-        $biller = libredte_lib()
+        $biller = Application::getInstance()
             ->getBillingPackage()
             ->getDocumentComponent()
         ;

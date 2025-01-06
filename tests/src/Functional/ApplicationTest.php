@@ -57,7 +57,7 @@ class ApplicationTest extends TestCase
 
     public function testApplicationGetServices(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         foreach ($this->testCases['services'] as $name => $interface) {
             $this->assertInstanceOf($interface, $app->getService($name));
@@ -69,7 +69,7 @@ class ApplicationTest extends TestCase
         $data = '{"Encabezado": {}}';
 
         $parsed =
-            libredte_lib()
+            Application::getInstance()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getParserWorker()

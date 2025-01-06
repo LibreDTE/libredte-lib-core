@@ -81,12 +81,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/derafu/derafu-lib-core.git",
-                "reference": "6f836b9c3eb2f068c72686cac581440c8a98a10d"
+                "reference": "874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/6f836b9c3eb2f068c72686cac581440c8a98a10d",
-                "reference": "6f836b9c3eb2f068c72686cac581440c8a98a10d",
+                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e",
+                "reference": "874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e",
                 "shasum": ""
             },
             "require": {
@@ -120,9 +120,6 @@
             "default-branch": true,
             "type": "library",
             "autoload": {
-                "files": [
-                    "app/bootstrap.php"
-                ],
                 "psr-4": {
                     "Derafu\\Lib\\Core\\": "src"
                 }
@@ -143,7 +140,7 @@
                 "issues": "https://github.com/derafu/derafu-lib-core/issues",
                 "source": "https://github.com/derafu/derafu-lib-core"
             },
-            "time": "2025-01-06T21:45:36+00:00"
+            "time": "2025-01-06T23:01:00+00:00"
         },
         {
             "name": "doctrine/inflector",

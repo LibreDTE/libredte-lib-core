@@ -46,7 +46,7 @@ class SiiGetTokenFakeCertificateTest extends TestCase
 {
     public function testSiiTokenManagerException(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $certificate = $app
             ->getPrimePackage()

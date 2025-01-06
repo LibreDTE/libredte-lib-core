@@ -67,7 +67,7 @@ class EntityRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $this->manager = $app
             ->getPrimePackage()

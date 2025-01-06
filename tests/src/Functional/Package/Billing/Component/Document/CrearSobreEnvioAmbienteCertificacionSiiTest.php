@@ -206,7 +206,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         }
 
         // Iniciar aplicación.
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         // Obtener facturador (componente de documentos).
         $biller = $app

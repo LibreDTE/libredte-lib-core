@@ -18,10 +18,7 @@
     "autoload": {
         "psr-4": {
             "libredte\\lib\\Core\\": "src"
-        },
-        "files": [
-            "app/bootstrap.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

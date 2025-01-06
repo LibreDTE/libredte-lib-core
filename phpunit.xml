@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     backupGlobals="true"
-    bootstrap="vendor/autoload.php"
     cacheDirectory="var/cache/phpunit"
     processIsolation="true"
     executionOrder="depends,defects"

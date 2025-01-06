@@ -46,7 +46,7 @@ class SiiGetTokenTest extends TestCase
 {
     public function testGetTokenOk(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $certificateLoader = $app
             ->getPrimePackage()

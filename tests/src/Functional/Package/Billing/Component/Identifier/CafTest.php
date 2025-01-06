@@ -72,7 +72,7 @@ class CafTest extends TestCase
 
     protected function setUp(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $this->cafFaker = $app
             ->getBillingPackage()

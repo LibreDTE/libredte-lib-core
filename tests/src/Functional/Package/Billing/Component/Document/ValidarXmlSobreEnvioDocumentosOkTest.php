@@ -126,7 +126,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     // Configuración inicial del test.
     protected function setUp(): void
     {
-        $app = libredte_lib();
+        $app = Application::getInstance();
 
         $this->dispatcher = $app
             ->getBillingPackage()

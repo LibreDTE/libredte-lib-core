@@ -36,8 +36,6 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker
-        arguments:
-            $tipoDocumentoFactory: '@libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface'
     libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface:
