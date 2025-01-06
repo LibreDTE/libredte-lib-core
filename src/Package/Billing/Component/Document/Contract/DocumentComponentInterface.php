@@ -59,7 +59,7 @@ interface DocumentComponentInterface extends ComponentInterface
     /**
      * Entrega el worker "billing.document.document_bag_manager".
      *
-     * @return BuilderWorkerInterface
+     * @return DocumentBagManagerWorkerInterface
      */
     public function getDocumentBagManagerWorker(): DocumentBagManagerWorkerInterface;
 

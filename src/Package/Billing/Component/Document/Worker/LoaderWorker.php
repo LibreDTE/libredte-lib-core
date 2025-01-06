@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface;
@@ -39,7 +38,6 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
 {
     public function __construct(
         private ParserWorkerInterface $parserWorker,
-        private XmlComponentInterface $xmlComponent,
         private DocumentBagManagerWorkerInterface $documentBagManager
     ) {
     }

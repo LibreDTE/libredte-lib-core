@@ -118,7 +118,7 @@ class SiiConnectionOptions
      *
      * @return static
      */
-    public function setAmbiente(int $ambiente = Ambiente::PRODUCCION): static
+    public function setAmbiente(Ambiente $ambiente = Ambiente::PRODUCCION): static
     {
         $this->config['ambiente'] = $ambiente;
 

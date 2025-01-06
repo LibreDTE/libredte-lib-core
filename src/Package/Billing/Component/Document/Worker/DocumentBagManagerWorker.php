@@ -35,7 +35,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterf
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException;
@@ -58,7 +57,6 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         private SanitizerWorkerInterface $sanitizerWorker,
         private ValidatorWorkerInterface $validatorWorker,
         private EntityComponentInterface $entityComponent,
-        private TipoDocumentoFactoryInterface $tipoDocumentoFactory,
         private EmisorFactoryInterface $emisorFactory,
         private ReceptorFactoryInterface $receptorFactory
     ) {
@@ -179,10 +177,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Buscar el tipo de documento tributario que se desea construir.
         $codigoTipoDocumento = $bag->getCodigoTipoDocumento();
         $tipoDocumento = $this->entityComponent
-            ->getRepository(
-                TipoDocumentoInterface::class,
-                $this->tipoDocumentoFactory
-            )
+            ->getRepository(TipoDocumentoInterface::class)
             ->find($codigoTipoDocumento)
         ;
 

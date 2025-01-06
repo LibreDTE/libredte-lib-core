@@ -27,7 +27,6 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
-use DOMDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -145,7 +144,7 @@ interface DocumentBagInterface
     /**
      * Asigna el documento XML.
      *
-     * @param XmlInterface|null $document
+     * @param XmlInterface|null $xml
      * @return static
      */
     public function setXmlDocument(?XmlInterface $xml): static;
@@ -153,7 +152,7 @@ interface DocumentBagInterface
     /**
      * Obtiene el documento XML.
      *
-     * @return DOMDocument&XmlInterface|null
+     * @return XmlInterface|null
      */
     public function getXmlDocument(): ?XmlInterface;
 
@@ -205,7 +204,7 @@ interface DocumentBagInterface
     /**
      * Asigna el tipo de documento tributario electrónico.
      *
-     * @param TipoDocumentoInterface|null $document
+     * @param TipoDocumentoInterface|null $documentType
      * @return static
      */
     public function setDocumentType(?TipoDocumentoInterface $documentType): static;

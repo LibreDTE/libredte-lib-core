@@ -26,9 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
@@ -45,9 +43,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     protected string $cafClass = Caf::class;
 
     public function __construct(
-        private XmlComponentInterface $xmlComponent,
         private EmisorFactoryInterface $emisorFactory,
-        private TipoDocumentoFactoryInterface $tipoDocumentoFactory,
         private EntityComponentInterface $entityComponent
     ) {
     }
@@ -77,10 +73,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     {
         // Buscar el tipo de documento tributario que se desea construir.
         $tipoDocumento = $this->entityComponent
-            ->getRepository(
-                TipoDocumentoInterface::class,
-                $this->tipoDocumentoFactory
-            )
+            ->getRepository(TipoDocumentoInterface::class)
             ->find($codigoTipoDocumento)
         ;
 

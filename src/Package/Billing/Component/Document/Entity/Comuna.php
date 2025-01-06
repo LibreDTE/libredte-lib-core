@@ -61,7 +61,6 @@ class Comuna extends Entity
     /**
      * Obtiene la ciudad asociada a la comuna.
      *
-     * @param string $comuna Nombre de la comuna.
      * @return string|false Nombre de la ciudad asociada o `false` si no se
      * encuentra.
      */
@@ -83,7 +82,6 @@ class Comuna extends Entity
      * asume que es un código de sucursal y devuelve un formato de sucursal. Si
      * el argumento es falso o vacío, devuelve 'N.N.' como valor por defecto.
      *
-     * @param mixed $comuna El nombre de la comuna o el código de la sucursal.
      * @return string La dirección regional correspondiente, un formato de
      * sucursal para códigos numéricos, la misma entrada en mayúsculas si no se
      * encuentra en el arreglo, o 'N.N.' si la entrada es falsa o vacía.

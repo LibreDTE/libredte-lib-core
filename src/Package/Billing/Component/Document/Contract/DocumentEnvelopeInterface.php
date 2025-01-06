@@ -27,7 +27,6 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
-use DOMDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
@@ -79,7 +78,7 @@ interface DocumentEnvelopeInterface
     /**
      * Obtiene el documento XML que representa al sobre de documentos.
      *
-     * @return DOMDocument&XmlInterface|null
+     * @return XmlInterface|null
      */
     public function getXmlDocument(): ?XmlInterface;
 

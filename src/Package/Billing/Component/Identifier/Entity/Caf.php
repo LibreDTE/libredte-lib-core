@@ -63,7 +63,7 @@ class Caf implements CafInterface
      * Asocia los valores de los ambientes con las configuraciones
      * correspondientes de conexión al SII (certificación o producción).
      *
-     * @var array<int, int>
+     * @var array<int, Ambiente>
      */
     private const AMBIENTES = [
         self::IDK_CERTIFICACION => Ambiente::CERTIFICACION,

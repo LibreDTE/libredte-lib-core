@@ -28,6 +28,7 @@ use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDocumentSenderException;
+use UnexpectedValueException;
 
 /**
  * Interfaz del worker que envía (sube) los documentos (XML) al SII.

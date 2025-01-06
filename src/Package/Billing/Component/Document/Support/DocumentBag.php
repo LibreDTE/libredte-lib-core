@@ -98,7 +98,7 @@ class DocumentBag implements DocumentBagInterface
      * Se usarán las opciones por defecto en cada worker si no se indican los
      * índices en el arreglo $options.
      *
-     * @param DataContainerInterface|null
+     * @var DataContainerInterface|null
      */
     private ?DataContainerInterface $options;
 
@@ -638,11 +638,13 @@ class DocumentBag implements DocumentBagInterface
      */
     public function withCaf(CafInterface $caf): DocumentBagInterface
     {
-        return new static(
+        $class = static::class;
+
+        return new $class(
             inputData: $this->getInputData(),
             parsedData: $this->getParsedData(),
             normalizedData: $this->getNormalizedData(),
-            options: $this->getOptions() ,
+            options: $this->getOptions(),
             caf: $caf,
             certificate: $this->getCertificate(),
             documentType: $this->getDocumentType(),
@@ -657,11 +659,13 @@ class DocumentBag implements DocumentBagInterface
     public function withCertificate(
         CertificateInterface $certificate
     ): DocumentBagInterface {
-        return new static(
+        $class = static::class;
+
+        return new $class(
             inputData: $this->getInputData(),
             parsedData: $this->getParsedData(),
             normalizedData: $this->getNormalizedData(),
-            options: $this->getOptions() ,
+            options: $this->getOptions(),
             caf: $this->getCaf(),
             certificate: $certificate,
             documentType: $this->getDocumentType(),
@@ -678,7 +682,7 @@ class DocumentBag implements DocumentBagInterface
         return $this->getTipoDocumento()?->getAlias()
             ?? (
                 $this->getTipoDocumento()?->getCodigo()
-                    ? 'documento_' .  $this->getTipoDocumento()?->getCodigo()
+                    ? 'documento_' .  $this->getTipoDocumento()->getCodigo()
                     : null
             )
             ?? $this->getParsedData()['Encabezado']['IdDoc']['TipoDTE']

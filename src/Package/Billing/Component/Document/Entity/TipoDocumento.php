@@ -166,6 +166,23 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     */
 
     /**
+     * Contructor del tipo de documento.
+     *
+     * @param integer|string $codigo
+     * @param string $nombre
+     * @param string|null $nombre_corto
+     */
+    public function __construct(
+        int|string $codigo,
+        string $nombre,
+        ?string $nombre_corto = null
+    ) {
+        $this->codigo = $codigo;
+        $this->nombre = $nombre;
+        $this->nombre_corto = $nombre_corto;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function __toString(): string
@@ -310,7 +327,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
      */
     public function esBoleta(): bool
     {
-        return in_array($this->codigo, [39, 41]);
+        return $this->tipo_sobre === TipoSobre::ENVIO_BOLETA;
     }
 
     /**
@@ -318,7 +335,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
      */
     public function esExportacion(): bool
     {
-        return $this->tag_xml === 'Exportaciones';
+        return $this->tag_xml === TagXmlDocumento::EXPORTACIONES;
     }
 
     /*

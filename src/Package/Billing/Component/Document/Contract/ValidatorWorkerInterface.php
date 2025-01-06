@@ -25,7 +25,9 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorException;
 
 /**

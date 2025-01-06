@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderException;
 
 /**
  * Interfaz base de las estrategias de construcción ("build") de documentos

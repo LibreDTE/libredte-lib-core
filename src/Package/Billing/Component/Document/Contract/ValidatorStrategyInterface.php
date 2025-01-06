@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorException;
 
 /**
  * Interfaz base de las estrategias de validación de documentos
@@ -37,7 +38,7 @@ interface ValidatorStrategyInterface extends StrategyInterface
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a
      * validar.
-     * @return array
+     * @return void
      * @throws ValidatorException
      */
     public function validate(DocumentBagInterface $bag): void;

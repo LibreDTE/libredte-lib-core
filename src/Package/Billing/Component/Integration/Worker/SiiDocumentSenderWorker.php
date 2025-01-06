@@ -28,13 +28,14 @@ use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
 use Derafu\Lib\Core\Helper\Rut;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiTokenManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDocumentSenderException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazyException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;
-use libredte\lib\Core\Sii\HttpClient\SiiLazyException;
 
 /**
  * Clase para el envío de documentos al SII.
@@ -60,7 +61,7 @@ class SiiDocumentSenderWorker extends AbstractWorker implements SiiDocumentSende
      */
     public function sendXml(
         CertificateInterface $certificate,
-        XmlDocument $doc,
+        XmlInterface $doc,
         string $company,
         bool $compress = false,
         ?int $retry = null
@@ -209,7 +210,7 @@ class SiiDocumentSenderWorker extends AbstractWorker implements SiiDocumentSende
      * @param array $data Arreglo con los datos del formulario del SII,
      * incluyendo el archivo XML que se subirá.
      * @param integer $retry
-     * @return XmlDocument Respuesta del SII al enviar el XML.
+     * @return XmlInterface Respuesta del SII al enviar el XML.
      * @throws SiiLazyException Si no se puede obtener el token para enviar
      * el XML al SII o si hubo un problema (error) al enviar el XML al SII.
      */
@@ -217,7 +218,7 @@ class SiiDocumentSenderWorker extends AbstractWorker implements SiiDocumentSende
         CertificateInterface $certificate,
         array $data,
         int $retry
-    ): XmlDocument {
+    ): XmlInterface {
         // URL que se utilizará para subir el XML al SII.
         $url = $this->lazyWorker->getConnectionOptions()->getUrl('/cgi_dte/UPL/DTEUpload');
 

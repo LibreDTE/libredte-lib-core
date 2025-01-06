@@ -49,9 +49,9 @@ interface BuilderWorkerInterface extends WorkerInterface
     public function build(DocumentBagInterface $bag): DocumentInterface;
 
     /**
-     * Crea la instancia del DTE a partir del XmlDocument contenido en DocumentBag.
+     * Crea la instancia del DTE a partir del XmlDocument contenido en la bolsa.
      *
-     * @param DocumentBag $bag
+     * @param DocumentBagInterface $bag
      * @return DocumentInterface
      */
     public function create(DocumentBagInterface $bag): DocumentInterface;

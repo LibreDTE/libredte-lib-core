@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface;
@@ -56,7 +57,7 @@ class SiiWsdlConsumerWorker extends AbstractWorker implements SiiWsdlConsumerWor
      * @param array|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retry Intentos que se realizarán como máximo para
      * obtener respuesta.
-     * @return XmlDocument Documento XML con la respuesta del servicio web.
+     * @return XmlInterface Documento XML con la respuesta del servicio web.
      * @throws SiiWsdlConsumerException En caso de error.
      */
     public function sendRequest(
@@ -64,7 +65,7 @@ class SiiWsdlConsumerWorker extends AbstractWorker implements SiiWsdlConsumerWor
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlDocument {
+    ): XmlInterface {
         // Revisar si se pasó en $args el valor de $retry.
         // @scrutinizer ignore-type-check
         if (is_int($args)) {
@@ -109,7 +110,7 @@ class SiiWsdlConsumerWorker extends AbstractWorker implements SiiWsdlConsumerWor
         // Cambios basados en: http://stackoverflow.com/a/28464354/3333009
         if ($ambiente === Ambiente::CERTIFICACION) {
             $servidor = $this->lazyWorker->getConnectionOptions()->getServidor();
-            $wsdl = $this->lazyWorker->getConnectionOptions()->getWsdlPath($servidor, $servicio);
+            $wsdl = $this->lazyWorker->getConnectionOptions()->getWsdlPath($servicio);
             if ($wsdl !== null) {
                 return $wsdl;
             }
@@ -130,7 +131,7 @@ class SiiWsdlConsumerWorker extends AbstractWorker implements SiiWsdlConsumerWor
      * @param string $function Nombre de la función que se ejecutará,
      * @param array $args Argumentos que se pasarán al servicio web.
      * @param int $retry Intentos que se realizarán como máximo.
-     * @return XmlDocument Documento XML con la respuesta del servicio web.
+     * @return XmlInterface Documento XML con la respuesta del servicio web.
      * @throws SiiWsdlConsumerException En caso de error.
      */
     private function callServiceFunction(
@@ -138,7 +139,7 @@ class SiiWsdlConsumerWorker extends AbstractWorker implements SiiWsdlConsumerWor
         string $function,
         array $args,
         int $retry
-    ): XmlDocument {
+    ): XmlInterface {
         // Definir las opciones para consumir el servicio web.
         $soapClientOptions = $this->createSoapClientOptions();
 

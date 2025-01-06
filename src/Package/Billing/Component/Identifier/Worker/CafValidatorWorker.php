@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafValidatorException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 
@@ -96,7 +97,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         $filename = $idk . '.cer';
         $filepath = dirname(__DIR__, 6) . '/resources/certificates/' . $filename;
 
-        if ($filepath === null) {
+        if (!file_exists($filepath)) {
             throw new CafValidatorException(sprintf(
                 'No fue posible obtener el certificado del SII %s para validar el CAF.',
                 $filename

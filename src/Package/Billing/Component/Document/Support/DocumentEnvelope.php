@@ -83,7 +83,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      * Se usarán las opciones por defecto en cada worker si no se indican los
      * índices en el arreglo $options.
      *
-     * @param DataContainerInterface|null
+     * @var DataContainerInterface|null
      */
     private ?DataContainerInterface $options = null;
 
@@ -392,7 +392,10 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     public function withCertificate(
         CertificateInterface $certificate
     ): DocumentEnvelopeInterface {
-        $envelope = new static();
+        $class = static::class;
+
+        $envelope = new $class();
+
         $envelope->setXmlDocument($this->getXmlDocument());
         $envelope->setDocuments($this->getDocuments());
         $envelope->setOptions($this->getOptions());

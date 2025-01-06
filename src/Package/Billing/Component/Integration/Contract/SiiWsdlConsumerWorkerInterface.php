@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiWsdlConsumerException;
 
 /**
@@ -45,7 +45,7 @@ interface SiiWsdlConsumerWorkerInterface extends WorkerInterface
      * @param array|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retry Intentos que se realizarán como máximo para
      * obtener respuesta.
-     * @return XmlDocument Documento XML con la respuesta del servicio web.
+     * @return XmlInterface Documento XML con la respuesta del servicio web.
      * @throws SiiWsdlConsumerException En caso de error.
      */
     public function sendRequest(
@@ -53,5 +53,5 @@ interface SiiWsdlConsumerWorkerInterface extends WorkerInterface
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlDocument;
+    ): XmlInterface;
 }

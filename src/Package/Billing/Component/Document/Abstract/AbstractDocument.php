@@ -213,15 +213,15 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoTotal(): int|float
     {
-        $monto = $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
+        $monto = (float) $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
 
         // Verificar si el monto es equivalente a un entero.
-        if (floor((float) $monto) == $monto) {
+        if (floor($monto) == $monto) {
             return (int) $monto;
         }
 
         // Entregar como flotante.
-        return (float) $monto;
+        return $monto;
     }
 
     /**
@@ -230,15 +230,15 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getDetalle(?int $index = null): array
     {
         $detalle = $this->xmlDocument->query('//Detalle');
+        if ($detalle === null) {
+            return [];
+        }
 
         if (!isset($detalle[0])) {
             $detalle = [$detalle];
         }
 
-        return $index !== null
-            ? $detalle[$index] ?? []
-            : $detalle ?? []
-        ;
+        return $index !== null ? ($detalle[$index] ?? []) : $detalle;
     }
 
     /**

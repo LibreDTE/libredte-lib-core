@@ -37,7 +37,7 @@ class ImpuestoAdicionalRetencion extends Entity
     /**
      * Obtiene el código del impuesto o retención.
      *
-     * @return string
+     * @return int
      */
     public function getCodigo(): int
     {

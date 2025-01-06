@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
 
 /**
  * Interfaz base de las estrategias de renderizado de documentos tributarios.

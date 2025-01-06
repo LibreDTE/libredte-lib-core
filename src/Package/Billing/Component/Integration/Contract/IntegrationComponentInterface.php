@@ -70,7 +70,7 @@ interface IntegrationComponentInterface extends ComponentInterface
     /**
      * Entrega el worker que valida documentos tributarios en el SII.
      *
-     * @return SiiDeliveryCheckerWorkerInterface
+     * @return SiiDocumentValidatorWorkerInterface
      */
     public function getSiiDocumentValidatorWorker(): SiiDocumentValidatorWorkerInterface;
 }

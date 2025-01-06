@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
@@ -72,14 +72,14 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * @param integer $codigoDocumento
      * @param integer $folioDesde
      * @param integer|null $folioHasta
-     * @return XmlDocument
+     * @return XmlInterface
      */
     protected function createXml(
         EmisorInterface $emisor,
         int $codigoDocumento,
         int $folioDesde,
         ?int $folioHasta = null
-    ): XmlDocument {
+    ): XmlInterface {
         $array = $this->createArray(
             $emisor,
             $codigoDocumento,
