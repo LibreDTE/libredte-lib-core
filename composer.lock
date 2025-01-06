@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "403a91ee39250ef24e64780636005abe",
+    "content-hash": "29c398fc5e9218e789d80e59b0205bc8",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -78,10 +78,16 @@
         {
             "name": "derafu/derafu-lib-core",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../derafu-lib-core",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/derafu/derafu-lib-core.git",
                 "reference": "4f19e1f6dc159eea70f598b7a3348bb477c67c0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/4f19e1f6dc159eea70f598b7a3348bb477c67c0d",
+                "reference": "4f19e1f6dc159eea70f598b7a3348bb477c67c0d",
+                "shasum": ""
             },
             "require": {
                 "ext-json": "*",
@@ -111,40 +117,17 @@
                 "phpstan/phpstan": "^1.12",
                 "phpunit/phpunit": "^11.4"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Derafu\\Lib\\Core\\": "src"
-                },
                 "files": [
                     "app/bootstrap.php"
-                ]
-            },
-            "autoload-dev": {
+                ],
                 "psr-4": {
-                    "Derafu\\Lib\\Tests\\": "tests/src/"
+                    "Derafu\\Lib\\Core\\": "src"
                 }
             },
-            "scripts": {
-                "docs": [
-                    "php tools/phpdocumentor run --config=phpdoc.xml"
-                ],
-                "tests": [
-                    "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml"
-                ],
-                "phpcs-fix": [
-                    "php-cs-fixer fix -v --config=php-cs-fixer.php ."
-                ],
-                "phpcs-fix-dry-run": [
-                    "php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php ."
-                ],
-                "phpstan": [
-                    "phpstan analyse --configuration=phpstan.neon --memory-limit=1G"
-                ],
-                "phpstan-export": [
-                    "phpstan analyse --configuration=phpstan.neon --level 9 --generate-baseline"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0+"
             ],
@@ -160,9 +143,7 @@
                 "issues": "https://github.com/derafu/derafu-lib-core/issues",
                 "source": "https://github.com/derafu/derafu-lib-core"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2025-01-06T19:36:16+00:00"
         },
         {
             "name": "doctrine/inflector",
