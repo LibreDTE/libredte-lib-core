@@ -498,7 +498,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BuilderWorkerInterface\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Crea\u0020la\u0020instancia\u0020del\u0020DTE\u0020a\u0020partir\u0020del\u0020XmlDocument\u0020contenido\u0020en\u0020DocumentBag.",
+            "summary": "Crea\u0020la\u0020instancia\u0020del\u0020DTE\u0020a\u0020partir\u0020del\u0020XmlDocument\u0020contenido\u0020en\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html#method_create"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface",
@@ -2176,6 +2176,11 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020tipos\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Contructor\u0020del\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "\u007B\u0040inheritdoc\u007D",
@@ -3158,7 +3163,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BuilderWorker\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Crea\u0020la\u0020instancia\u0020del\u0020DTE\u0020a\u0020partir\u0020del\u0020XmlDocument\u0020contenido\u0020en\u0020DocumentBag.",
+            "summary": "Crea\u0020la\u0020instancia\u0020del\u0020DTE\u0020a\u0020partir\u0020del\u0020XmlDocument\u0020contenido\u0020en\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#method_create"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BuilderWorker\u003A\u003Abuild\u0028\u0029",
@@ -3361,11 +3366,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_entityComponent"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024tipoDocumentoFactory",
-            "name": "tipoDocumentoFactory",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_tipoDocumentoFactory"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024emisorFactory",
             "name": "emisorFactory",
             "summary": "",
@@ -3395,11 +3395,6 @@ Search.appendIndex(
             "name": "parserWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html#property_parserWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\LoaderWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html#property_xmlComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\LoaderWorker\u003A\u003A\u0024documentBagManager",
             "name": "documentBagManager",
@@ -3616,20 +3611,10 @@ Search.appendIndex(
             "summary": "Clase\u0020para\u0020los\u0020normalizadores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html#method___construct"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Realiza\u0020la\u0020normalizaci\u00F3n\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html#method_normalize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003A\u0024documentBagManager",
-            "name": "documentBagManager",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html#property_documentBagManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\JsonParserStrategy",
             "name": "JsonParserStrategy",
@@ -3846,20 +3831,10 @@ Search.appendIndex(
             "summary": "Clase\u0020para\u0020los\u0020sanitizadores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html#method___construct"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003Asanitize\u0028\u0029",
             "name": "sanitize",
             "summary": "Realiza\u0020la\u0020sanitizaci\u00F3n\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html#method_sanitize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003A\u0024documentBagManager",
-            "name": "documentBagManager",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html#property_documentBagManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Validator\\Strategy\\BoletaAfectaValidatorStrategy",
             "name": "BoletaAfectaValidatorStrategy",
@@ -4571,20 +4546,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_cafClass"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_xmlComponent"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024emisorFactory",
             "name": "emisorFactory",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_emisorFactory"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024tipoDocumentoFactory",
-            "name": "tipoDocumentoFactory",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_tipoDocumentoFactory"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024entityComponent",
             "name": "entityComponent",
