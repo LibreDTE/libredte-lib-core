@@ -185,17 +185,17 @@
 
     <article class="phpdocumentor-element -trait">
         <h2 class="phpdocumentor-content__title">
-    DocumentNormalizerTrait
+    NormalizeDescuentosRecargosTrait
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-documentnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-normalizedescuentosrecargostrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php">NormalizeDescuentosRecargosTrait.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Reglas de normalización generales para todos los documentos tributarios.</p>
+            <p class="phpdocumentor-summary">Reglas de normalización para los descuentos y recargos de un documento.</p>
 
 
 
@@ -207,7 +207,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -222,25 +222,17 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument">postNormalizeDocument()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#method_normalizeDescuentosRecargos">normalizeDescuentosRecargos()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Aplica la normalización final de los datos de un documento tributario
-electrónico.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument">preNormalizeDocument()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Aplica la normalización inicial de los datos de un documento tributario
-electrónico.</dd>
+<dd>Aplica los descuentos y recargos generales respectivos a los montos que
+correspondan según el indicador del descuento o recargo.</dd>
 
     </dl>
 
@@ -254,7 +246,7 @@ electrónico.</dd>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -263,32 +255,29 @@ electrónico.</dd>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_postNormalizeDocument">
-        postNormalizeDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeDescuentosRecargos">
+        normalizeDescuentosRecargos()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#method_normalizeDescuentosRecargos" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-documentnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-normalizedescuentosrecargostrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php">NormalizeDescuentosRecargosTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">183</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Aplica la normalización final de los datos de un documento tributario
-electrónico.</p>
+        <p class="phpdocumentor-summary">Aplica los descuentos y recargos generales respectivos a los montos que
+correspondan según el indicador del descuento o recargo.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">postNormalizeDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">normalizeDescuentosRecargos</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Esta normalización se ejecuta después de ejecutar la normalización
-específica del tipo de documento tributario.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -303,57 +292,23 @@ específica del tipo de documento tributario.</p>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#method_normalizeDescuentosRecargos#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_preNormalizeDocument">
-        preNormalizeDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-documentnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">45</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Aplica la normalización inicial de los datos de un documento tributario
-electrónico.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">preNormalizeDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Esta normalización se debe ejecutar antes de ejecutar la normalización
-específica del tipo de documento tributario.</p>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">todo</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Revisar si existen casos de boletas afectas con algún item exento
+donde el descuento se podría estar aplicando mal.</p>
 </section>
 
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
+                                    </dd>
+                                            </dl>
 
     
 
@@ -365,7 +320,7 @@ específica del tipo de documento tributario.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -464,14 +419,13 @@ específica del tipo de documento tributario.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
                                                 <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument">postNormalizeDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument">preNormalizeDocument()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#method_normalizeDescuentosRecargos">normalizeDescuentosRecargos()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -491,7 +445,7 @@ específica del tipo de documento tributario.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

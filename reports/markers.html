@@ -193,23 +193,23 @@
                                 <td class="phpdocumentor-cell">1</td>
                             </tr>
                                                                                                 <tr>
-                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/LiquidacionFacturaNormalizerStrategy.php">src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/LiquidacionFacturaNormalizerStrategy.php</a></td>
-                                <td class="phpdocumentor-cell">2</td>
-                            </tr>
-                                                                                                <tr>
-                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php</a></td>
-                                <td class="phpdocumentor-cell">1</td>
-                            </tr>
-                                                                                                <tr>
-                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php</a></td>
-                                <td class="phpdocumentor-cell">1</td>
-                            </tr>
-                                                                                                <tr>
-                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php</a></td>
+                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php</a></td>
                                 <td class="phpdocumentor-cell">4</td>
                             </tr>
                                                                                                 <tr>
-                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php</a></td>
+                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php</a></td>
+                                <td class="phpdocumentor-cell">2</td>
+                            </tr>
+                                                                                                <tr>
+                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php</a></td>
+                                <td class="phpdocumentor-cell">1</td>
+                            </tr>
+                                                                                                <tr>
+                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDetalleTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDetalleTrait.php</a></td>
+                                <td class="phpdocumentor-cell">1</td>
+                            </tr>
+                                                                                                <tr>
+                                <td class="phpdocumentor-cell"><a href="reports/markers.html#src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeIvaMntTotalTrait.php">src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeIvaMntTotalTrait.php</a></td>
                                 <td class="phpdocumentor-cell">1</td>
                             </tr>
                                                                                                 <tr>
@@ -281,8 +281,8 @@
                         </tr>
                                         </tbody>
                 </table>
-                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/LiquidacionFacturaNormalizerStrategy.php"></a>
-                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/LiquidacionFacturaNormalizerStrategy.php">LiquidacionFacturaNormalizerStrategy.php</abbr></h3>
+                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php"></a>
+                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">NormalizeDataPostDocumentNormalizationJob.php</abbr></h3>
                 <table>
                     <thead>
                     <tr>
@@ -294,18 +294,70 @@
                     <tbody>
                                             <tr>
                             <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">37</td>
+                            <td class="phpdocumentor-cell">115</td>
+                            <td class="phpdocumentor-cell">Implementar cálculo de MntFaeCarneOtrMnda.</td>
+                        </tr>
+                                            <tr>
+                            <td class="phpdocumentor-cell">TODO</td>
+                            <td class="phpdocumentor-cell">119</td>
+                            <td class="phpdocumentor-cell">Implementar cálculo de MntMargComOtrMnda.</td>
+                        </tr>
+                                            <tr>
+                            <td class="phpdocumentor-cell">TODO</td>
+                            <td class="phpdocumentor-cell">123</td>
+                            <td class="phpdocumentor-cell">Implementar cálculo de ImpRetOtrMnda.</td>
+                        </tr>
+                                            <tr>
+                            <td class="phpdocumentor-cell">TODO</td>
+                            <td class="phpdocumentor-cell">146</td>
+                            <td class="phpdocumentor-cell">Agregar el total de impuesto retenido de ImpRetOtrMnda.</td>
+                        </tr>
+                                        </tbody>
+                </table>
+                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php"></a>
+                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">NormalizeLiquidacionFacturaJob.php</abbr></h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="phpdocumentor-heading">Type</th>
+                        <th class="phpdocumentor-heading">Line</th>
+                        <th class="phpdocumentor-heading">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td class="phpdocumentor-cell">TODO</td>
+                            <td class="phpdocumentor-cell">38</td>
                             <td class="phpdocumentor-cell">Agregar los traits que usa este normalizador.</td>
                         </tr>
                                             <tr>
                             <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">46</td>
+                            <td class="phpdocumentor-cell">52</td>
                             <td class="phpdocumentor-cell">Implementar la normalización de los datos en $data.</td>
                         </tr>
                                         </tbody>
                 </table>
-                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php"></a>
-                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php">DescuentosRecargosNormalizerTrait.php</abbr></h3>
+                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php"></a>
+                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDescuentosRecargosTrait.php">NormalizeDescuentosRecargosTrait.php</abbr></h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="phpdocumentor-heading">Type</th>
+                        <th class="phpdocumentor-heading">Line</th>
+                        <th class="phpdocumentor-heading">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td class="phpdocumentor-cell">TODO</td>
+                            <td class="phpdocumentor-cell">44</td>
+                            <td class="phpdocumentor-cell">Revisar si existen casos de boletas afectas con algún item exento
+donde el descuento se podría estar aplicando mal.</td>
+                        </tr>
+                                        </tbody>
+                </table>
+                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDetalleTrait.php"></a>
+                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeDetalleTrait.php">NormalizeDetalleTrait.php</abbr></h3>
                 <table>
                     <thead>
                     <tr>
@@ -318,32 +370,13 @@
                                             <tr>
                             <td class="phpdocumentor-cell">TODO</td>
                             <td class="phpdocumentor-cell">43</td>
-                            <td class="phpdocumentor-cell">Revisar si existen casos de boletas afectas con algún item exento
-donde el descuento se podría estar aplicando mal.</td>
-                        </tr>
-                                        </tbody>
-                </table>
-                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php"></a>
-                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php">DetalleNormalizerTrait.php</abbr></h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th class="phpdocumentor-heading">Type</th>
-                        <th class="phpdocumentor-heading">Line</th>
-                        <th class="phpdocumentor-heading">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                                            <tr>
-                            <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">42</td>
                             <td class="phpdocumentor-cell">Revisar cómo se aplican descuentos y recargos. ¿Debería ser un
 porcentaje del monto original?.</td>
                         </tr>
                                         </tbody>
                 </table>
-                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"></a>
-                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></h3>
+                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeIvaMntTotalTrait.php"></a>
+                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/NormalizeIvaMntTotalTrait.php">NormalizeIvaMntTotalTrait.php</abbr></h3>
                 <table>
                     <thead>
                     <tr>
@@ -355,40 +388,7 @@ porcentaje del monto original?.</td>
                     <tbody>
                                             <tr>
                             <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">251</td>
-                            <td class="phpdocumentor-cell">Implementar cálculo de MntFaeCarneOtrMnda.</td>
-                        </tr>
-                                            <tr>
-                            <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">255</td>
-                            <td class="phpdocumentor-cell">Implementar cálculo de MntMargComOtrMnda.</td>
-                        </tr>
-                                            <tr>
-                            <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">259</td>
-                            <td class="phpdocumentor-cell">Implementar cálculo de ImpRetOtrMnda.</td>
-                        </tr>
-                                            <tr>
-                            <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">282</td>
-                            <td class="phpdocumentor-cell">Agregar el total de impuesto retenido de ImpRetOtrMnda.</td>
-                        </tr>
-                                        </tbody>
-                </table>
-                            <a id="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php"></a>
-                <h3><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php">IvaMntTotalNormalizerTrait.php</abbr></h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th class="phpdocumentor-heading">Type</th>
-                        <th class="phpdocumentor-heading">Line</th>
-                        <th class="phpdocumentor-heading">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                                            <tr>
-                            <td class="phpdocumentor-cell">TODO</td>
-                            <td class="phpdocumentor-cell">52</td>
+                            <td class="phpdocumentor-cell">53</td>
                             <td class="phpdocumentor-cell">Revisar si los WARNING de la descripción del método realmente son
 un problema y, si lo son, corregirlos.</td>
                         </tr>

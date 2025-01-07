@@ -180,22 +180,38 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html">Worker</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer.html">Normalizer</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-trait.html">Trait</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-helper.html">Helper</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -trait">
+    <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ImpuestoAdicionalRetencionNormalizerTrait
+    Utils
+
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    
+    
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-impuestoadicionalretencionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php">ImpuestoAdicionalRetencionNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php"><a href="files/src-package-billing-component-document-worker-normalizer-helper-utils.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php">Utils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Reglas de normalización para documentos con impuesto adicional o retención.</p>
+            <p class="phpdocumentor-summary">Utilidades que pueden ser usadas en diferentes procesos de normalización y
+son independientes del resto del documento.</p>
 
 
 
@@ -207,7 +223,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -222,19 +238,25 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion">normalizeImpuestoAdicionalRetencion()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_calcularNetoIVA">calcularNetoIVA()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Calcula los montos de impuestos adicionales o retenciones.</dd>
+<dd>Obtiene el monto neto y el IVA de ese neto a partir de un monto total.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_round">round()</a>
+    <span>
+                                &nbsp;: int|float    </span>
+</dt>
+<dd>Redondea valores asociados a un tipo de moneda.</dd>
 
     </dl>
-
 
 
 
@@ -245,45 +267,63 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="phpdocumentor-element
             -method
-            -protected
-                                                        "
+            -public
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_normalizeImpuestoAdicionalRetencion">
-        normalizeImpuestoAdicionalRetencion()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_calcularNetoIVA">
+        calcularNetoIVA()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_calcularNetoIVA" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-impuestoadicionalretencionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php">ImpuestoAdicionalRetencionNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php"><a href="files/src-package-billing-component-document-worker-normalizer-helper-utils.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php">Utils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Calcula los montos de impuestos adicionales o retenciones.</p>
+        <p class="phpdocumentor-summary">Obtiene el monto neto y el IVA de ese neto a partir de un monto total.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeImpuestoAdicionalRetencion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">calcularNetoIVA</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$total</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|float|false&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tasa</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>NOTE: El IVA obtenido puede no ser el NETO * (TASA / 100). Se calcula el
+monto neto y luego se obtiene el IVA haciendo la resta entre el total y
+el neto. Hay casos de borde que generan problemas como:</p>
+<ul>
+<li>BRUTO:   680 =&gt; NETO:   571 e IVA:   108 =&gt; TOTAL:   679</li>
+<li>BRUTO: 86710 =&gt; NETO: 72866 e IVA: 13845 =&gt; TOTAL: 86711</li>
+</ul>
+<p>Estos casos son &quot;normales&quot;, pues por aproximaciones &quot;no da&quot;.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$total</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
+                    <section class="phpdocumentor-description"><p>Total que representa el monto neto más el IVA.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tasa</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|float|false</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tasa del IVA o <code class="prettyprint">false</code> si no corresponde.</p>
 </section>
 
             </dd>
@@ -293,7 +333,93 @@
 
     
 
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Arreglo con el neto y el IVA en índices 0 y 1.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_round">
+        round()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_round" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php"><a href="files/src-package-billing-component-document-worker-normalizer-helper-utils.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php">Utils.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Redondea valores asociados a un tipo de moneda.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">round</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$amount</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null|false&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currency</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decimals</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">4</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
     
+        <section class="phpdocumentor-description"><p>Si los valores son en pesos chilenos se redondea sin decimales. Si los
+valores están en otro tipo de moneda se mantienen los decimales, por
+defecto se mantienen 4 decimales.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$amount</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|float</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Valor que se desea redondear.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currency</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null|false</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>La moneda en la que está el valor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$decimals</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">4</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Cantidad de decimales a mantener cuando la moneda
+no es peso chileno.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|float</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Valor redondeado según la moneda y decimales a usar.</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
@@ -301,7 +427,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Helper/Utils.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -400,13 +526,16 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
-                                                <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion">normalizeImpuestoAdicionalRetencion()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_calcularNetoIVA">calcularNetoIVA()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_round">round()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -426,7 +555,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -180,22 +180,43 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html">Worker</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer.html">Normalizer</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-trait.html">Trait</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-job.html">Job</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -trait">
+    <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ExportacionNormalizerTrait
+    NormalizeLiquidacionFacturaJob
+
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractJob">AbstractJob</abbr>
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr>                    </span>
+    
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-exportacionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php">ExportacionNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizeliquidacionfacturajob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">NormalizeLiquidacionFacturaJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Reglas de normalización para documentos de exportación.</p>
+            <p class="phpdocumentor-summary">Normalizador del documento liquidación de factura.</p>
 
 
 
@@ -207,70 +228,182 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
 
 
 
 
 
 
-
-<h4 id="toc-methods">
-    Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion">normalizeExportacion()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_entityComponent">$entityComponent</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
+</dt>
+
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method___construct">__construct()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method_execute">execute()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Normaliza los datos de exportación de un documento.</dd>
+<dd>{@inheritdoc}</dd>
 
     </dl>
 
 
 
-
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
+        $entityComponent
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizeliquidacionfacturajob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">NormalizeLiquidacionFacturaJob.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$entityComponent</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="phpdocumentor-element
             -method
-            -protected
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_normalizeExportacion">
-        normalizeExportacion()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-exportacionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php">ExportacionNormalizerTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizeliquidacionfacturajob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">NormalizeLiquidacionFacturaJob.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Normaliza los datos de exportación de un documento.</p>
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_execute">
+        execute()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method_execute" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizeliquidacionfacturajob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php">NormalizeLiquidacionFacturaJob.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritdoc}</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeExportacion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">execute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -283,9 +416,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -301,7 +432,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeLiquidacionFacturaJob.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -400,13 +531,23 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
-                                                <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_entityComponent">$entityComponent</a></li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion">normalizeExportacion()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method_execute">execute()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -426,7 +567,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

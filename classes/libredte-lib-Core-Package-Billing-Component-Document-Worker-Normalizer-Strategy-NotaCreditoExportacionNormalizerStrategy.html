@@ -202,9 +202,6 @@
             implements
                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategyInterface">NotaCreditoExportacionNormalizerStrategyInterface</abbr></a>                    </span>
     
-            <span class="phpdocumentor-element__extends">
-            uses
-                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\ExportacionNormalizerTrait">ExportacionNormalizerTrait</abbr></a>,                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DetalleNormalizerTrait">DetalleNormalizerTrait</abbr></a>,                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DescuentosRecargosNormalizerTrait">DescuentosRecargosNormalizerTrait</abbr></a>,                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\ImpuestoAdicionalRetencionNormalizerTrait">ImpuestoAdicionalRetencionNormalizerTrait</abbr></a>,                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\IvaMntTotalNormalizerTrait">IvaMntTotalNormalizerTrait</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -215,7 +212,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -258,9 +255,21 @@ exportación.</dd>    </dl>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_entityComponent">$entityComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob">$normalizeDataPostDocumentNormalizationJob</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob">$normalizeDataPreDocumentNormalizationJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeNotaCreditoExportacionJob">$normalizeNotaCreditoExportacionJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob">NormalizeNotaCreditoExportacionJob</abbr></a>            </span>
 </dt>
 
     </dl>
@@ -272,7 +281,7 @@ exportación.</dd>    </dl>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
@@ -285,78 +294,11 @@ exportación.</dd>    </dl>
 <dd>Normaliza los datos de un documento tributario electrónico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_calcularNetoIVA">calcularNetoIVA()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Obtiene el monto neto y el IVA de ese neto a partir de un monto total.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html#method_normalizeDescuentosRecargos">normalizeDescuentosRecargos()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Aplica los descuentos y recargos generales respectivos a los montos que
-correspondan según el indicador del descuento o recargo.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html#method_normalizeDetalle">normalizeDetalle()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Normaliza los detalles del documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method_normalizeDocument">normalizeDocument()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Normalización personalizada de cada estrategia.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion">normalizeExportacion()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Normaliza los datos de exportación de un documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion">normalizeImpuestoAdicionalRetencion()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Calcula los montos de impuestos adicionales o retenciones.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html#method_normalizeIvaMntTotal">normalizeIvaMntTotal()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Calcula el monto del IVA y el monto total del documento a partir del
-monto neto y la tasa de IVA si es que existe.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument">postNormalizeDocument()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Aplica la normalización final de los datos de un documento tributario
-electrónico.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument">preNormalizeDocument()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Aplica la normalización inicial de los datos de un documento tributario
-electrónico.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_round">round()</a>
-    <span>
-                                &nbsp;: int|float    </span>
-</dt>
-<dd>Redondea valores asociados a un tipo de moneda.</dd>
 
     </dl>
 
@@ -378,15 +320,87 @@ electrónico.</dd>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
-        $entityComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_normalizeDataPostDocumentNormalizationJob">
+        $normalizeDataPostDocumentNormalizationJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$normalizeDataPostDocumentNormalizationJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_normalizeDataPreDocumentNormalizationJob">
+        $normalizeDataPreDocumentNormalizationJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$normalizeDataPreDocumentNormalizationJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_normalizeNotaCreditoExportacionJob">
+        $normalizeNotaCreditoExportacionJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeNotaCreditoExportacionJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">42</span>
 
@@ -395,9 +409,9 @@ electrónico.</dd>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$entityComponent</span>
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob">NormalizeNotaCreditoExportacionJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$normalizeNotaCreditoExportacionJob</span>
     </code>
 
     
@@ -423,20 +437,20 @@ electrónico.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeDataPreDocumentNormalizationJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeDataPostDocumentNormalizationJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob">NormalizeNotaCreditoExportacionJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeNotaCreditoExportacionJob</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -445,8 +459,22 @@ electrónico.</dd>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$normalizeDataPreDocumentNormalizationJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$normalizeDataPostDocumentNormalizationJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$normalizeNotaCreditoExportacionJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob">NormalizeNotaCreditoExportacionJob</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -473,7 +501,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -517,208 +545,6 @@ normalizar.</p>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_calcularNetoIVA">
-        calcularNetoIVA()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_calcularNetoIVA" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">118</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Obtiene el monto neto y el IVA de ese neto a partir de un monto total.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">calcularNetoIVA</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$total</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|float|false&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tasa</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>NOTE: El IVA obtenido puede no ser el NETO * (TASA / 100). Se calcula el
-monto neto y luego se obtiene el IVA haciendo la resta entre el total y
-el neto. Hay casos de borde que generan problemas como:</p>
-<ul>
-<li>BRUTO:   680 =&gt; NETO:   571 e IVA:   108 =&gt; TOTAL:   679</li>
-<li>BRUTO: 86710 =&gt; NETO: 72866 e IVA: 13845 =&gt; TOTAL: 86711</li>
-</ul>
-<p>Estos casos son &quot;normales&quot;, pues por aproximaciones &quot;no da&quot;.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$total</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Total que representa el monto neto más el IVA.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tasa</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|float|false</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Tasa del IVA o <code class="prettyprint">false</code> si no corresponde.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo con el neto y el IVA en índices 0 y 1.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_normalizeDescuentosRecargos">
-        normalizeDescuentosRecargos()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html#method_normalizeDescuentosRecargos" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-descuentosrecargosnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DescuentosRecargosNormalizerTrait.php">DescuentosRecargosNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Aplica los descuentos y recargos generales respectivos a los montos que
-correspondan según el indicador del descuento o recargo.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeDescuentosRecargos</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html#method_normalizeDescuentosRecargos#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">todo</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Revisar si existen casos de boletas afectas con algún item exento
-donde el descuento se podría estar aplicando mal.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_normalizeDetalle">
-        normalizeDetalle()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html#method_normalizeDetalle" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-detallenormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DetalleNormalizerTrait.php">DetalleNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Normaliza los detalles del documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html#method_normalizeDetalle#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">todo</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Revisar cómo se aplican descuentos y recargos. ¿Debería ser un
-porcentaje del monto original?.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_normalizeDocument">
         normalizeDocument()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method_normalizeDocument" class="headerlink"><i class="fas fa-link"></i></a>
@@ -727,7 +553,7 @@ porcentaje del monto original?.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php"><a href="files/src-package-billing-component-document-worker-normalizer-strategy-notacreditoexportacionnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Strategy/NotaCreditoExportacionNormalizerStrategy.php">NotaCreditoExportacionNormalizerStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -757,352 +583,6 @@ porcentaje del monto original?.</p>
     
 
     
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_normalizeExportacion">
-        normalizeExportacion()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-exportacionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ExportacionNormalizerTrait.php">ExportacionNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">40</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Normaliza los datos de exportación de un documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeExportacion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_normalizeImpuestoAdicionalRetencion">
-        normalizeImpuestoAdicionalRetencion()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-impuestoadicionalretencionnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/ImpuestoAdicionalRetencionNormalizerTrait.php">ImpuestoAdicionalRetencionNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">41</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Calcula los montos de impuestos adicionales o retenciones.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeImpuestoAdicionalRetencion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_normalizeIvaMntTotal">
-        normalizeIvaMntTotal()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html#method_normalizeIvaMntTotal" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-ivamnttotalnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/IvaMntTotalNormalizerTrait.php">IvaMntTotalNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">52</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Calcula el monto del IVA y el monto total del documento a partir del
-monto neto y la tasa de IVA si es que existe.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizeIvaMntTotal</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>WARNING: Si es una boleta y tiene impuestos adicionales, no se
-consideran los casos de esos impuestos adicionales. Se deberán indicar
-los campos de MntNeto e IVA y no usar esta parte de la normalización.</p>
-<p>WARNING: Si el valor IndMntNeto es 2 indica que los montos de las líneas
-son netos en cuyo caso no aplica el cálculo de neto e IVA a partir del
-total y deberá venir informado de otra forma (aun no definido).</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html#method_normalizeIvaMntTotal#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">todo</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>Revisar si los WARNING de la descripción del método realmente son
-un problema y, si lo son, corregirlos.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_postNormalizeDocument">
-        postNormalizeDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-documentnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">183</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Aplica la normalización final de los datos de un documento tributario
-electrónico.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">postNormalizeDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Esta normalización se ejecuta después de ejecutar la normalización
-específica del tipo de documento tributario.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_preNormalizeDocument">
-        preNormalizeDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php"><a href="files/src-package-billing-component-document-worker-normalizer-trait-documentnormalizertrait.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Trait/DocumentNormalizerTrait.php">DocumentNormalizerTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">45</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Aplica la normalización inicial de los datos de un documento tributario
-electrónico.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">preNormalizeDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Esta normalización se debe ejecutar antes de ejecutar la normalización
-específica del tipo de documento tributario.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$bag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos a normalizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_round">
-        round()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_round" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">91</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Redondea valores asociados a un tipo de moneda.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">round</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$amount</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null|false&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currency</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decimals</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">4</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Si los valores son en pesos chilenos se redondea sin decimales. Si los
-valores están en otro tipo de moneda se mantienen los decimales, por
-defecto se mantienen 4 decimales.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$amount</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Valor que se desea redondear.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$currency</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null|false</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>La moneda en la que está el valor.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$decimals</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">4</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Cantidad de decimales a mantener cuando la moneda
-no es peso chileno.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|float</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Valor redondeado según la moneda y decimales a usar.</p>
-</section>
-
-            </section>
-
 </article>
             </section>
 
@@ -1217,25 +697,18 @@ no es peso chileno.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_entityComponent">$entityComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob">$normalizeDataPostDocumentNormalizationJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob">$normalizeDataPreDocumentNormalizationJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeNotaCreditoExportacionJob">$normalizeNotaCreditoExportacionJob</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_normalize">normalize()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_calcularNetoIVA">calcularNetoIVA()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html#method_normalizeDescuentosRecargos">normalizeDescuentosRecargos()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html#method_normalizeDetalle">normalizeDetalle()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method_normalizeDocument">normalizeDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion">normalizeExportacion()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion">normalizeImpuestoAdicionalRetencion()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html#method_normalizeIvaMntTotal">normalizeIvaMntTotal()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument">postNormalizeDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument">preNormalizeDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_round">round()</a></li>
                                     </ul>
             </li>
                     </ul>

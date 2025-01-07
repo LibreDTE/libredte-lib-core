@@ -311,11 +311,6 @@ Search.appendIndex(
             "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020las\u0020estrategias\u0020de\u0020normalizaci\u00F3n\u0020de\ndocumentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method___construct"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Normaliza\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -326,20 +321,15 @@ Search.appendIndex(
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_normalizeDocument"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003Around\u0028\u0029",
-            "name": "round",
-            "summary": "Redondea\u0020valores\u0020asociados\u0020a\u0020un\u0020tipo\u0020de\u0020moneda.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_round"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003AcalcularNetoIVA\u0028\u0029",
-            "name": "calcularNetoIVA",
-            "summary": "Obtiene\u0020el\u0020monto\u0020neto\u0020y\u0020el\u0020IVA\u0020de\u0020ese\u0020neto\u0020a\u0020partir\u0020de\u0020un\u0020monto\u0020total.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#method_calcularNetoIVA"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy",
             "name": "AbstractRendererStrategy",
@@ -3491,210 +3481,710 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html#property_documentBagManager"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Helper\\Utils",
+            "name": "Utils",
+            "summary": "Utilidades\u0020que\u0020pueden\u0020ser\u0020usadas\u0020en\u0020diferentes\u0020procesos\u0020de\u0020normalizaci\u00F3n\u0020y\nson\u0020independientes\u0020del\u0020resto\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Helper\\Utils\u003A\u003Around\u0028\u0029",
+            "name": "round",
+            "summary": "Redondea\u0020valores\u0020asociados\u0020a\u0020un\u0020tipo\u0020de\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_round"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Helper\\Utils\u003A\u003AcalcularNetoIVA\u0028\u0029",
+            "name": "calcularNetoIVA",
+            "summary": "Obtiene\u0020el\u0020monto\u0020neto\u0020y\u0020el\u0020IVA\u0020de\u0020ese\u0020neto\u0020a\u0020partir\u0020de\u0020un\u0020monto\u0020total.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Helper-Utils.html#method_calcularNetoIVA"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob",
+            "name": "NormalizeBoletaAfectaJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020boleta\u0020afecta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob",
+            "name": "NormalizeBoletaExentaJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020boleta\u0020exenta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPostDocumentNormalizationJob",
+            "name": "NormalizeDataPostDocumentNormalizationJob",
+            "summary": "Trabajo\u0020con\u0020reglas\u0020de\u0020normalizaci\u00F3n\u0020generales\u0020para\u0020el\u0020final\u0020de\u0020todos\u0020los\ndocumentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPostDocumentNormalizationJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020final\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob",
+            "name": "NormalizeDataPreDocumentNormalizationJob",
+            "summary": "Trabajo\u0020con\u0020reglas\u0020de\u0020normalizaci\u00F3n\u0020generales\u0020para\u0020el\u0020inicio\u0020de\u0020todos\u0020los\ndocumentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020inicial\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob",
+            "name": "NormalizeFacturaAfectaJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020afecta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob",
+            "name": "NormalizeFacturaCompraJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020de\u0020compra.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob",
+            "name": "NormalizeFacturaExentaJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020exenta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob",
+            "name": "NormalizeFacturaExportacionJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020de\u0020exportaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob",
+            "name": "NormalizeGuiaDespachoJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020gu\u00EDa\u0020de\u0020despacho.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob",
+            "name": "NormalizeLiquidacionFacturaJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020liquidaci\u00F3n\u0020de\u0020factura.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob",
+            "name": "NormalizeNotaCreditoExportacionJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020cr\u00E9dito\u0020de\u0020exportaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob",
+            "name": "NormalizeNotaCreditoJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020cr\u00E9dito.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob",
+            "name": "NormalizeNotaDebitoExportacionJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020d\u00E9bito\u0020de\u0020exportaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob",
+            "name": "NormalizeNotaDebitoJob",
+            "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020d\u00E9bito.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_entityComponent"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy",
             "name": "BoletaAfectaNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020boleta\u0020afecta.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeBoletaAfectaJob",
+            "name": "normalizeBoletaAfectaJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaAfectaNormalizerStrategy.html#property_normalizeBoletaAfectaJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy",
             "name": "BoletaExentaNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020boleta\u0020exenta.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaExentaNormalizerStrategy\u003A\u003A\u0024normalizeBoletaExentaJob",
+            "name": "normalizeBoletaExentaJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-BoletaExentaNormalizerStrategy.html#property_normalizeBoletaExentaJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy",
             "name": "FacturaAfectaNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020afecta.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaAfectaNormalizerStrategy\u003A\u003A\u0024normalizeFacturaAfectaJob",
+            "name": "normalizeFacturaAfectaJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaAfectaNormalizerStrategy.html#property_normalizeFacturaAfectaJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy",
             "name": "FacturaCompraNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020de\u0020compra.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaCompraNormalizerStrategy\u003A\u003A\u0024normalizeFacturaCompraJob",
+            "name": "normalizeFacturaCompraJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaCompraNormalizerStrategy.html#property_normalizeFacturaCompraJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy",
             "name": "FacturaExentaNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020exenta.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExentaNormalizerStrategy\u003A\u003A\u0024normalizeFacturaExentaJob",
+            "name": "normalizeFacturaExentaJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExentaNormalizerStrategy.html#property_normalizeFacturaExentaJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy",
             "name": "FacturaExportacionNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020factura\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\FacturaExportacionNormalizerStrategy\u003A\u003A\u0024normalizeFacturaExportacionJob",
+            "name": "normalizeFacturaExportacionJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-FacturaExportacionNormalizerStrategy.html#property_normalizeFacturaExportacionJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy",
             "name": "GuiaDespachoNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020gu\u00EDa\u0020de\u0020despacho.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\GuiaDespachoNormalizerStrategy\u003A\u003A\u0024normalizeGuiaDespachoJob",
+            "name": "normalizeGuiaDespachoJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-GuiaDespachoNormalizerStrategy.html#property_normalizeGuiaDespachoJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy",
             "name": "LiquidacionFacturaNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020liquidaci\u00F3n\u0020de\u0020factura.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\LiquidacionFacturaNormalizerStrategy\u003A\u003A\u0024normalizeLiquidacionFacturaJob",
+            "name": "normalizeLiquidacionFacturaJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-LiquidacionFacturaNormalizerStrategy.html#property_normalizeLiquidacionFacturaJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy",
             "name": "NotaCreditoExportacionNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020cr\u00E9dito\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeNotaCreditoExportacionJob",
+            "name": "normalizeNotaCreditoExportacionJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoExportacionNormalizerStrategy.html#property_normalizeNotaCreditoExportacionJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy",
             "name": "NotaCreditoNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020cr\u00E9dito.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaCreditoNormalizerStrategy\u003A\u003A\u0024normalizeNotaCreditoJob",
+            "name": "normalizeNotaCreditoJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaCreditoNormalizerStrategy.html#property_normalizeNotaCreditoJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy",
             "name": "NotaDebitoExportacionNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020d\u00E9bito\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html#method_normalizeDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoExportacionNormalizerStrategy\u003A\u003A\u0024normalizeNotaDebitoExportacionJob",
+            "name": "normalizeNotaDebitoExportacionJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoExportacionNormalizerStrategy.html#property_normalizeNotaDebitoExportacionJob"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy",
             "name": "NotaDebitoNormalizerStrategy",
             "summary": "Normalizador\u0020del\u0020documento\u0020nota\u0020de\u0020d\u00E9bito.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy\u003A\u003AnormalizeDocument\u0028\u0029",
             "name": "normalizeDocument",
             "summary": "Normalizaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html#method_normalizeDocument"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\BoletasNormalizerTrait",
-            "name": "BoletasNormalizerTrait",
-            "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020boletas.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-BoletasNormalizerTrait.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy\u003A\u003A\u0024normalizeDataPreDocumentNormalizationJob",
+            "name": "normalizeDataPreDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\BoletasNormalizerTrait\u003A\u003AnormalizeBoletas\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy\u003A\u003A\u0024normalizeDataPostDocumentNormalizationJob",
+            "name": "normalizeDataPostDocumentNormalizationJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\NotaDebitoNormalizerStrategy\u003A\u003A\u0024normalizeNotaDebitoJob",
+            "name": "normalizeNotaDebitoJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Strategy-NotaDebitoNormalizerStrategy.html#property_normalizeNotaDebitoJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeBoletasTrait",
+            "name": "NormalizeBoletasTrait",
+            "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020boletas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeBoletasTrait.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeBoletasTrait\u003A\u003AnormalizeBoletas\u0028\u0029",
             "name": "normalizeBoletas",
             "summary": "Normaliza\u0020las\u0020boletas\u0020electr\u00F3nicas.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-BoletasNormalizerTrait.html#method_normalizeBoletas"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeBoletasTrait.html#method_normalizeBoletas"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DescuentosRecargosNormalizerTrait",
-            "name": "DescuentosRecargosNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeDescuentosRecargosTrait",
+            "name": "NormalizeDescuentosRecargosTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020los\u0020descuentos\u0020y\u0020recargos\u0020de\u0020un\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DescuentosRecargosNormalizerTrait\u003A\u003AnormalizeDescuentosRecargos\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeDescuentosRecargosTrait\u003A\u003AnormalizeDescuentosRecargos\u0028\u0029",
             "name": "normalizeDescuentosRecargos",
             "summary": "Aplica\u0020los\u0020descuentos\u0020y\u0020recargos\u0020generales\u0020respectivos\u0020a\u0020los\u0020montos\u0020que\ncorrespondan\u0020seg\u00FAn\u0020el\u0020indicador\u0020del\u0020descuento\u0020o\u0020recargo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DescuentosRecargosNormalizerTrait.html#method_normalizeDescuentosRecargos"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDescuentosRecargosTrait.html#method_normalizeDescuentosRecargos"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DetalleNormalizerTrait",
-            "name": "DetalleNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeDetalleTrait",
+            "name": "NormalizeDetalleTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020el\u0020detalle\u0020de\u0020los\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDetalleTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DetalleNormalizerTrait\u003A\u003AnormalizeDetalle\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeDetalleTrait\u003A\u003AnormalizeDetalle\u0028\u0029",
             "name": "normalizeDetalle",
             "summary": "Normaliza\u0020los\u0020detalles\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DetalleNormalizerTrait.html#method_normalizeDetalle"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDetalleTrait.html#method_normalizeDetalle"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DocumentNormalizerTrait",
-            "name": "DocumentNormalizerTrait",
-            "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020generales\u0020para\u0020todos\u0020los\u0020documentos\u0020tributarios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DocumentNormalizerTrait\u003A\u003ApreNormalizeDocument\u0028\u0029",
-            "name": "preNormalizeDocument",
-            "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020inicial\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_preNormalizeDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\DocumentNormalizerTrait\u003A\u003ApostNormalizeDocument\u0028\u0029",
-            "name": "postNormalizeDocument",
-            "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020final\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-DocumentNormalizerTrait.html#method_postNormalizeDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\ExportacionNormalizerTrait",
-            "name": "ExportacionNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeExportacionTrait",
+            "name": "NormalizeExportacionTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020documentos\u0020de\u0020exportaci\u00F3n.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeExportacionTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\ExportacionNormalizerTrait\u003A\u003AnormalizeExportacion\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeExportacionTrait\u003A\u003AnormalizeExportacion\u0028\u0029",
             "name": "normalizeExportacion",
             "summary": "Normaliza\u0020los\u0020datos\u0020de\u0020exportaci\u00F3n\u0020de\u0020un\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ExportacionNormalizerTrait.html#method_normalizeExportacion"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeExportacionTrait.html#method_normalizeExportacion"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\ImpuestoAdicionalRetencionNormalizerTrait",
-            "name": "ImpuestoAdicionalRetencionNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeImpuestoAdicionalRetencionTrait",
+            "name": "NormalizeImpuestoAdicionalRetencionTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020documentos\u0020con\u0020impuesto\u0020adicional\u0020o\u0020retenci\u00F3n.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeImpuestoAdicionalRetencionTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\ImpuestoAdicionalRetencionNormalizerTrait\u003A\u003AnormalizeImpuestoAdicionalRetencion\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeImpuestoAdicionalRetencionTrait\u003A\u003AnormalizeImpuestoAdicionalRetencion\u0028\u0029",
             "name": "normalizeImpuestoAdicionalRetencion",
             "summary": "Calcula\u0020los\u0020montos\u0020de\u0020impuestos\u0020adicionales\u0020o\u0020retenciones.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-ImpuestoAdicionalRetencionNormalizerTrait.html#method_normalizeImpuestoAdicionalRetencion"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeImpuestoAdicionalRetencionTrait.html#method_normalizeImpuestoAdicionalRetencion"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\IvaMntTotalNormalizerTrait",
-            "name": "IvaMntTotalNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeIvaMntTotalTrait",
+            "name": "NormalizeIvaMntTotalTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020el\u0020IVA\u0020y\u0020monto\u0020total\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeIvaMntTotalTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\IvaMntTotalNormalizerTrait\u003A\u003AnormalizeIvaMntTotal\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeIvaMntTotalTrait\u003A\u003AnormalizeIvaMntTotal\u0028\u0029",
             "name": "normalizeIvaMntTotal",
             "summary": "Calcula\u0020el\u0020monto\u0020del\u0020IVA\u0020y\u0020el\u0020monto\u0020total\u0020del\u0020documento\u0020a\u0020partir\u0020del\nmonto\u0020neto\u0020y\u0020la\u0020tasa\u0020de\u0020IVA\u0020si\u0020es\u0020que\u0020existe.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-IvaMntTotalNormalizerTrait.html#method_normalizeIvaMntTotal"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeIvaMntTotalTrait.html#method_normalizeIvaMntTotal"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\TransporteNormalizerTrait",
-            "name": "TransporteNormalizerTrait",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeTransporteTrait",
+            "name": "NormalizeTransporteTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020datos\u0020de\u0020transporte.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-TransporteNormalizerTrait.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeTransporteTrait.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\TransporteNormalizerTrait\u003A\u003AnormalizeTransporte\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeTransporteTrait\u003A\u003AnormalizeTransporte\u0028\u0029",
             "name": "normalizeTransporte",
             "summary": "Normaliza\u0020los\u0020datos\u0020de\u0020transporte.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-TransporteNormalizerTrait.html#method_normalizeTransporte"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeTransporteTrait.html#method_normalizeTransporte"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker",
             "name": "NormalizerWorker",
@@ -6201,15 +6691,25 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-builder.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy",
-            "name": "Strategy",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Helper",
+            "name": "Helper",
             "summary": "",
-            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-strategy.html"
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-helper.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer",
             "name": "Normalizer",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy",
+            "name": "Strategy",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer-strategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait",
             "name": "Trait",
