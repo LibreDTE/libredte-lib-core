@@ -24,59 +24,30 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
-use Derafu\Lib\Core\Helper\Arr;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaCompraNormalizerStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DescuentosRecargosNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DetalleNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\ImpuestoAdicionalRetencionNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\IvaMntTotalNormalizerTrait;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaCompraJob;
 
 /**
  * Normalizador del documento factura de compra.
  */
 class FacturaCompraNormalizerStrategy extends AbstractNormalizerStrategy implements FacturaCompraNormalizerStrategyInterface
 {
-    // Traits usados por este normalizador.
-    use DetalleNormalizerTrait;
-    use DescuentosRecargosNormalizerTrait;
-    use ImpuestoAdicionalRetencionNormalizerTrait;
-    use IvaMntTotalNormalizerTrait;
+    public function __construct(
+        protected NormalizeDataPreDocumentNormalizationJob $normalizeDataPreDocumentNormalizationJob,
+        protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob,
+        private NormalizeFacturaCompraJob $normalizeFacturaCompraJob
+    ) {
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
-
-        // Completar con nodos por defecto.
-        $data = Arr::mergeRecursiveDistinct([
-            'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
-                'Totales' => [
-                    'MntNeto' => 0,
-                    'MntExe' => false,
-                    'TasaIVA' => $bag->getTipoDocumento()->getDefaultTasaIVA(),
-                    'IVA' => 0,
-                    'ImptoReten' => false,
-                    'IVANoRet' => false,
-                    'MntTotal' => 0,
-                ],
-            ],
-        ], $data);
-
-        // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
-
-        // Normalizar datos.
-        $this->normalizeDetalle($bag);
-        $this->normalizeDescuentosRecargos($bag);
-        $this->normalizeImpuestoAdicionalRetencion($bag);
-        $this->normalizeIvaMntTotal($bag);
+        $this->normalizeFacturaCompraJob->execute($bag);
     }
 }

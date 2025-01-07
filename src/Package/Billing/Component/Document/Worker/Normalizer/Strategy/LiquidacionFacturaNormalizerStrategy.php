@@ -27,25 +27,27 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\LiquidacionFacturaNormalizerStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeLiquidacionFacturaJob;
 
 /**
  * Normalizador del documento liquidación de factura.
  */
 class LiquidacionFacturaNormalizerStrategy extends AbstractNormalizerStrategy implements LiquidacionFacturaNormalizerStrategyInterface
 {
-    // Traits usados por este normalizador.
-    // TODO: Agregar los traits que usa este normalizador.
+    public function __construct(
+        protected NormalizeDataPreDocumentNormalizationJob $normalizeDataPreDocumentNormalizationJob,
+        protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob,
+        private NormalizeLiquidacionFacturaJob $normalizeLiquidacionFacturaJob
+    ) {
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
-
-        // TODO: Implementar la normalización de los datos en $data.
-
-        // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
+        $this->normalizeLiquidacionFacturaJob->execute($bag);
     }
 }

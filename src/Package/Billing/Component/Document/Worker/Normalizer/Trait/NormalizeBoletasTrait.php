@@ -29,7 +29,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInt
 /**
  * Reglas de normalización para boletas.
  */
-trait BoletasNormalizerTrait
+trait NormalizeBoletasTrait
 {
     /**
      * Normaliza las boletas electrónicas.

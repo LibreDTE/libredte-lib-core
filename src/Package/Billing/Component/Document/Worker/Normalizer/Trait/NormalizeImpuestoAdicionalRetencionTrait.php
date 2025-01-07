@@ -30,7 +30,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdiciona
 /**
  * Reglas de normalización para documentos con impuesto adicional o retención.
  */
-trait ImpuestoAdicionalRetencionNormalizerTrait
+trait NormalizeImpuestoAdicionalRetencionTrait
 {
     /**
      * Calcula los montos de impuestos adicionales o retenciones.

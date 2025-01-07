@@ -25,11 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
 /**
  * Reglas de normalización para los descuentos y recargos de un documento.
  */
-trait DescuentosRecargosNormalizerTrait
+trait NormalizeDescuentosRecargosTrait
 {
     /**
      * Aplica los descuentos y recargos generales respectivos a los montos que
@@ -85,14 +86,14 @@ trait DescuentosRecargosNormalizerTrait
 
                 // Calcular valor del descuento o recargo.
                 if ($dr['TpoValor'] === '$') {
-                    $dr['ValorDR'] = $this->round(
+                    $dr['ValorDR'] = Utils::round(
                         $dr['ValorDR'],
                         $data['Encabezado']['Totales']['TpoMoneda'],
                         2
                     );
                 }
                 $valor = $dr['TpoValor'] === '%'
-                    ? $this->round(
+                    ? Utils::round(
                         ($dr['ValorDR'] / 100) * $data['Encabezado']['Totales'][$monto],
                         $data['Encabezado']['Totales']['TpoMoneda']
                     )
@@ -108,7 +109,7 @@ trait DescuentosRecargosNormalizerTrait
                 elseif ($dr['TpoMov'] === 'R') {
                     $data['Encabezado']['Totales'][$monto] += $valor;
                 }
-                $data['Encabezado']['Totales'][$monto] = $this->round(
+                $data['Encabezado']['Totales'][$monto] = Utils::round(
                     $data['Encabezado']['Totales'][$monto],
                     $data['Encabezado']['Totales']['TpoMoneda']
                 );

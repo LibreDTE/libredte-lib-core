@@ -26,11 +26,12 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer
 
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
 /**
  * Reglas de normalización para el IVA y monto total del documento.
  */
-trait IvaMntTotalNormalizerTrait
+trait NormalizeIvaMntTotalTrait
 {
     /**
      * Calcula el monto del IVA y el monto total del documento a partir del
@@ -75,7 +76,7 @@ trait IvaMntTotalNormalizerTrait
                 list(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['IVA']
-                ) = $this->calcularNetoIVA(
+                ) = Utils::calcularNetoIVA(
                     $total,
                     $data['Encabezado']['Totales']['TasaIVA']
                         ?? $bag->getTipoDocumento()->getDefaultTasaIVA()
@@ -89,7 +90,7 @@ trait IvaMntTotalNormalizerTrait
                 list(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['IVA']
-                ) = $this->calcularNetoIVA(
+                ) = Utils::calcularNetoIVA(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['TasaIVA']
                 );

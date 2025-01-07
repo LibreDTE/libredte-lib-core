@@ -29,7 +29,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInt
 /**
  * Reglas de normalización para datos de transporte.
  */
-trait TransporteNormalizerTrait
+trait NormalizeTransporteTrait
 {
     /**
      * Normaliza los datos de transporte.

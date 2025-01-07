@@ -24,59 +24,30 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
-use Derafu\Lib\Core\Helper\Arr;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\BoletaAfectaNormalizerStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\BoletasNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DescuentosRecargosNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DetalleNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\IvaMntTotalNormalizerTrait;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 
 /**
  * Normalizador del documento boleta afecta.
  */
 class BoletaAfectaNormalizerStrategy extends AbstractNormalizerStrategy implements BoletaAfectaNormalizerStrategyInterface
 {
-    // Traits usados por este normalizador.
-    use BoletasNormalizerTrait;
-    use DetalleNormalizerTrait;
-    use DescuentosRecargosNormalizerTrait;
-    use IvaMntTotalNormalizerTrait;
+    public function __construct(
+        protected NormalizeDataPreDocumentNormalizationJob $normalizeDataPreDocumentNormalizationJob,
+        protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob,
+        private NormalizeBoletaAfectaJob $normalizeBoletaAfectaJob
+    ) {
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
-
-        // Completar con nodos por defecto.
-        $data = Arr::mergeRecursiveDistinct([
-            'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => [
-                    'RUTEmisor' => false,
-                    'RznSocEmisor' => false,
-                    'GiroEmisor' => false,
-                ],
-                'Receptor' => false,
-                'Totales' => [
-                    'MntNeto' => false,
-                    'MntExe' => false,
-                    'IVA' => false,
-                    'MntTotal' => 0,
-                ],
-            ],
-        ], $data);
-
-        // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
-
-        // Normalizar datos.
-        $this->normalizeBoletas($bag);
-        $this->normalizeDetalle($bag);
-        $this->normalizeDescuentosRecargos($bag);
-        $this->normalizeIvaMntTotal($bag);
+        $this->normalizeBoletaAfectaJob->execute($bag);
     }
 }

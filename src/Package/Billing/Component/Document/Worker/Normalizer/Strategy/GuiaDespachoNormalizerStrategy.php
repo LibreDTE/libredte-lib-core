@@ -24,97 +24,30 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
-use Derafu\Lib\Core\Helper\Arr;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\GuiaDespachoNormalizerStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DescuentosRecargosNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DetalleNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\ImpuestoAdicionalRetencionNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\IvaMntTotalNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\TransporteNormalizerTrait;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeGuiaDespachoJob;
 
 /**
  * Normalizador del documento guía de despacho.
  */
 class GuiaDespachoNormalizerStrategy extends AbstractNormalizerStrategy implements GuiaDespachoNormalizerStrategyInterface
 {
-    // Traits usados por este normalizador.
-    use DetalleNormalizerTrait;
-    use DescuentosRecargosNormalizerTrait;
-    use ImpuestoAdicionalRetencionNormalizerTrait;
-    use IvaMntTotalNormalizerTrait;
-    use TransporteNormalizerTrait;
+    public function __construct(
+        protected NormalizeDataPreDocumentNormalizationJob $normalizeDataPreDocumentNormalizationJob,
+        protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob,
+        private NormalizeGuiaDespachoJob $normalizeGuiaDespachoJob
+    ) {
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
-
-        // Completar con nodos por defecto.
-        $data = Arr::mergeRecursiveDistinct([
-            'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
-                'Transporte' => false,
-                'Totales' => [
-                    'MntNeto' => 0,
-                    'MntExe' => false,
-                    'TasaIVA' => $bag->getTipoDocumento()->getDefaultTasaIVA(),
-                    'IVA' => 0,
-                    'ImptoReten' => false,
-                    'CredEC' => false,
-                    'MntTotal' => 0,
-                ],
-            ],
-        ], $data);
-
-        // Si es traslado interno se copia el emisor en el receptor solo si el
-        // receptor no está definido o bien si el receptor tiene RUT diferente
-        // al emisor.
-        if ($data['Encabezado']['IdDoc']['IndTraslado'] == 5) {
-            if (
-                !$data['Encabezado']['Receptor']
-                || $data['Encabezado']['Receptor']['RUTRecep']
-                    != $data['Encabezado']['Emisor']['RUTEmisor']
-            ) {
-                $data['Encabezado']['Receptor'] = [];
-                $cols = [
-                    'RUTEmisor' => 'RUTRecep',
-                    'RznSoc' => 'RznSocRecep',
-                    'GiroEmis' => 'GiroRecep',
-                    'Telefono' => 'Contacto',
-                    'CorreoEmisor' => 'CorreoRecep',
-                    'DirOrigen' => 'DirRecep',
-                    'CmnaOrigen' => 'CmnaRecep',
-                ];
-                foreach ($cols as $emisor => $receptor) {
-                    if (!empty($data['Encabezado']['Emisor'][$emisor])) {
-                        $data['Encabezado']['Receptor'][$receptor] =
-                            $data['Encabezado']['Emisor'][$emisor]
-                        ;
-                    }
-                }
-                if (!empty($data['Encabezado']['Receptor']['GiroRecep'])) {
-                    $data['Encabezado']['Receptor']['GiroRecep'] =
-                        mb_substr($data['Encabezado']['Receptor']['GiroRecep'], 0, 40)
-                    ;
-                }
-            }
-        }
-
-        // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
-
-        // Normalizar datos.
-        $this->normalizeDetalle($bag);
-        $this->normalizeDescuentosRecargos($bag);
-        $this->normalizeImpuestoAdicionalRetencion($bag);
-        $this->normalizeIvaMntTotal($bag);
-        $this->normalizeTransporte($bag);
+        $this->normalizeGuiaDespachoJob->execute($bag);
     }
 }

@@ -46,6 +46,21 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdic
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaCompraJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExentaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeGuiaDespachoJob;
+//use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeLiquidacionFacturaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaExentaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
@@ -121,6 +136,21 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(DocumentBagManagerWorker::class)]
 #[CoversClass(NormalizerWorker::class)]
+#[CoversClass(NormalizationUtils::class)]
+#[CoversClass(NormalizeBoletaAfectaJob::class)]
+#[CoversClass(NormalizeBoletaExentaJob::class)]
+#[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
+#[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
+#[CoversClass(NormalizeFacturaAfectaJob::class)]
+#[CoversClass(NormalizeFacturaCompraJob::class)]
+#[CoversClass(NormalizeFacturaExentaJob::class)]
+#[CoversClass(NormalizeFacturaExportacionJob::class)]
+#[CoversClass(NormalizeGuiaDespachoJob::class)]
+//#[CoversClass(NormalizeLiquidacionFacturaJob::class)]
+#[CoversClass(NormalizeNotaCreditoExportacionJob::class)]
+#[CoversClass(NormalizeNotaCreditoJob::class)]
+#[CoversClass(NormalizeNotaDebitoExportacionJob::class)]
+#[CoversClass(NormalizeNotaDebitoJob::class)]
 #[CoversClass(FacturaAfectaNormalizerStrategy::class)]
 #[CoversClass(FacturaExentaNormalizerStrategy::class)]
 #[CoversClass(BoletaAfectaNormalizerStrategy::class)]

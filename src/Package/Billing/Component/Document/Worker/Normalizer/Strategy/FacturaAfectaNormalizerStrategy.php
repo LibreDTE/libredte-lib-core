@@ -24,65 +24,30 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
-use Derafu\Lib\Core\Helper\Arr;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaAfectaNormalizerStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DescuentosRecargosNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\DetalleNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\ImpuestoAdicionalRetencionNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\IvaMntTotalNormalizerTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\TransporteNormalizerTrait;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
 
 /**
  * Normalizador del documento factura afecta.
  */
 class FacturaAfectaNormalizerStrategy extends AbstractNormalizerStrategy implements FacturaAfectaNormalizerStrategyInterface
 {
-    // Traits usados por este normalizador.
-    use DetalleNormalizerTrait;
-    use DescuentosRecargosNormalizerTrait;
-    use ImpuestoAdicionalRetencionNormalizerTrait;
-    use IvaMntTotalNormalizerTrait;
-    use TransporteNormalizerTrait;
+    public function __construct(
+        protected NormalizeDataPreDocumentNormalizationJob $normalizeDataPreDocumentNormalizationJob,
+        protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob,
+        private NormalizeFacturaAfectaJob $normalizeFacturaAfectaJob
+    ) {
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
-
-        // Completar con campos por defecto.
-        $data = Arr::mergeRecursiveDistinct([
-            'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'RUTMandante' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
-                'Transporte' => false,
-                'Totales' => [
-                    'MntNeto' => 0,
-                    'MntExe' => false,
-                    'TasaIVA' => $bag->getTipoDocumento()->getDefaultTasaIVA(),
-                    'IVA' => 0,
-                    'ImptoReten' => false,
-                    'CredEC' => false,
-                    'MntTotal' => 0,
-                ],
-                'OtraMoneda' => false,
-            ],
-        ], $data);
-
-        // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
-
-        // Normalizar datos.
-        $this->normalizeDetalle($bag);
-        $this->normalizeDescuentosRecargos($bag);
-        $this->normalizeImpuestoAdicionalRetencion($bag);
-        $this->normalizeIvaMntTotal($bag);
-        $this->normalizeTransporte($bag);
+        $this->normalizeFacturaAfectaJob->execute($bag);
     }
 }

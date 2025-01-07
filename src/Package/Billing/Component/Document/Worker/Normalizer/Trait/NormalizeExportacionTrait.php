@@ -29,7 +29,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInt
 /**
  * Reglas de normalización para documentos de exportación.
  */
-trait ExportacionNormalizerTrait
+trait NormalizeExportacionTrait
 {
     /**
      * Normaliza los datos de exportación de un documento.

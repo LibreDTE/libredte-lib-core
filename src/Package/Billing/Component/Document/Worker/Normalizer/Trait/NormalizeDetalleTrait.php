@@ -25,11 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
 /**
  * Reglas de normalización para el detalle de los documentos.
  */
-trait DetalleNormalizerTrait
+trait NormalizeDetalleTrait
 {
     /**
      * Normaliza los detalles del documento.
@@ -127,7 +128,7 @@ trait DetalleNormalizerTrait
                     $d['QtyItem'] = 1;
                 }
                 if (empty($d['MontoItem'])) {
-                    $d['MontoItem'] = $this->round(
+                    $d['MontoItem'] = Utils::round(
                         (float) $d['QtyItem'] * (float)$d['PrcItem'],
                         $data['Encabezado']['Totales']['TpoMoneda']
                     );
@@ -149,7 +150,7 @@ trait DetalleNormalizerTrait
                     $d['MontoItem'] += $d['RecargoMonto'];
 
                     // Aproximar monto del item.
-                    $d['MontoItem'] = $this->round(
+                    $d['MontoItem'] = Utils::round(
                         $d['MontoItem'],
                         $data['Encabezado']['Totales']['TpoMoneda']
                     );
