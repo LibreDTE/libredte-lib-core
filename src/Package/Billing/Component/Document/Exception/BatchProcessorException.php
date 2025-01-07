@@ -24,9 +24,47 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Exception;
 
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
+use Throwable;
+
 /**
  * Excepción para el worker "billing.document.batch_processor".
  */
 class BatchProcessorException extends DocumentException
 {
+    /**
+     * Contenedor del lote de documentos que se estaba manipulando cuando se
+     * generó la excepción.
+     *
+     * @var DocumentBatchInterface|null
+     */
+    protected ?DocumentBatchInterface $documentBatch = null;
+
+    /**
+     * Constructor de la excepción.
+     *
+     * @param string $message
+     * @param integer $code
+     * @param Throwable|null $previous
+     * @param DocumentBatchInterface|null $documentBatch
+     */
+    public function __construct(
+        string $message = '',
+        int $code = 0,
+        ?Throwable $previous = null,
+        ?DocumentBatchInterface $documentBatch = null
+    ) {
+        parent::__construct($message, $code, $previous);
+        $this->documentBatch = $documentBatch;
+    }
+
+    /**
+     * Entrega, si está asignado, el contenedor del lote documentos.
+     *
+     * @return DocumentBatchInterface|null
+     */
+    public function getDocumentBatch(): ?DocumentBatchInterface
+    {
+        return $this->documentBatch;
+    }
 }

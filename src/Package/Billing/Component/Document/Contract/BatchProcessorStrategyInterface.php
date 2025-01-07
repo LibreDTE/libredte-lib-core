@@ -24,32 +24,20 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 
 /**
- * Interfaz para el contenedor de varios documentos que se procesarán en lote.
+ * Interfaz para las estrategias de los procesadores de documentos en lote.
  */
-interface DocumentBatchInterface
+interface BatchProcessorStrategyInterface extends StrategyInterface
 {
     /**
-     * Entrega la ruta del archivo con documentos que se debe procesar.
+     * Procesa masivamente documentos tributarios electrónicos.
      *
-     * @return string
+     * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
+     * @return DocumentInterface[]
+     * @throws BatchProcessorException
      */
-    public function getFile(): string;
-
-    /**
-     * Asigna las opciones del procesamiento en lote de documentos.
-     *
-     * @param array|DataContainerInterface|null $options
-     * @return static
-     */
-    public function setOptions(array|DataContainerInterface|null $options): static;
-
-    /**
-     * Obtiene las opciones del procesamiento en lote de documentos.
-     *
-     * @return DataContainerInterface|null
-     */
-    public function getOptions(): ?DataContainerInterface;
+    public function process(DocumentBatchInterface $batch): array;
 }

@@ -25,8 +25,11 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
+use Throwable;
 
 /**
  * Clase para los procesadores de documentos en lote.
@@ -36,8 +39,33 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * {@inheritdoc}
      */
-    public function process(DocumentBatchInterface $batch): void
+    protected array $optionsSchema = [
+        'strategy' => [
+            'types' => 'string',
+            'default' => 'spreadsheet.csv',
+        ],
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function process(DocumentBatchInterface $batch): array
     {
-        // TODO: Implementar estrategias de procesamiento masivo.
+        $options = $this->resolveOptions($batch->getOptions()->all());
+        $strategy = $this->getStrategy($options->get('strategy'));
+        $strategy->setOptions($options);
+
+        assert($strategy instanceof BatchProcessorStrategyInterface);
+
+        try {
+            $documents = $strategy->process($batch);
+        } catch (Throwable $e) {
+            throw new BatchProcessorException(
+                message: $e->getMessage(),
+                documentBatch: $batch
+            );
+        }
+
+        return $documents;
     }
 }

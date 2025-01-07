@@ -22,34 +22,26 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet;
 
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 
 /**
- * Interfaz para el contenedor de varios documentos que se procesarán en lote.
+ * Estrategia "billing.document.batch_processor.strategy:spreadsheet.csv".
+ *
+ * Procesa en lote los documentos tributarios de un archivo CSV con el formato
+ * estándar de LibreDTE.
  */
-interface DocumentBatchInterface
+class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcessorStrategyInterface
 {
     /**
-     * Entrega la ruta del archivo con documentos que se debe procesar.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getFile(): string;
-
-    /**
-     * Asigna las opciones del procesamiento en lote de documentos.
-     *
-     * @param array|DataContainerInterface|null $options
-     * @return static
-     */
-    public function setOptions(array|DataContainerInterface|null $options): static;
-
-    /**
-     * Obtiene las opciones del procesamiento en lote de documentos.
-     *
-     * @return DataContainerInterface|null
-     */
-    public function getOptions(): ?DataContainerInterface;
+    public function process(DocumentBatchInterface $batch): array
+    {
+        // TODO: Procesar el archivo CSV que viene en $batch->getFile().
+        return [];
+    }
 }

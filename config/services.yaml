@@ -28,6 +28,8 @@ services:
     # Workers del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.document.batch_processor.strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker
         arguments:
@@ -215,7 +217,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template\EstandarRendererStrategy: ~
 
     # Estrategias del worker "billing.document.batch_processor".
-    # TODO.
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy: ~
 
     # Workers del componente "prime.entity".
     Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\DatasourceProviderWorkerInterface:
