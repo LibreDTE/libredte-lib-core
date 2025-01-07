@@ -401,6 +401,16 @@ Search.appendIndex(
             "summary": "Validaci\u00F3n\u0020personalizada\u0020de\u0020cada\u0020estrategia.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractValidatorStrategy.html#method_validateDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorStrategyInterface",
+            "name": "BatchProcessorStrategyInterface",
+            "summary": "Interfaz\u0020para\u0020las\u0020estrategias\u0020de\u0020los\u0020procesadores\u0020de\u0020documentos\u0020en\u0020lote.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorStrategyInterface\u003A\u003Aprocess\u0028\u0029",
+            "name": "process",
+            "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html#method_process"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorWorkerInterface",
             "name": "BatchProcessorWorkerInterface",
             "summary": "Interfaz\u0020para\u0020los\u0020procesadores\u0020de\u0020documentos\u0020en\u0020lote.",
@@ -810,6 +820,21 @@ Search.appendIndex(
             "name": "DocumentBatchInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020contenedor\u0020de\u0020varios\u0020documentos\u0020que\u0020se\u0020procesar\u00E1n\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AgetFile\u0028\u0029",
+            "name": "getFile",
+            "summary": "Entrega\u0020la\u0020ruta\u0020del\u0020archivo\u0020con\u0020documentos\u0020que\u0020se\u0020debe\u0020procesar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getFile"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AsetOptions\u0028\u0029",
+            "name": "setOptions",
+            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_setOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getOptions"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface",
             "name": "DocumentComponentInterface",
@@ -2421,6 +2446,21 @@ Search.appendIndex(
             "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.batch_processor\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\BatchProcessorException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020excepci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\BatchProcessorException\u003A\u003AgetDocumentBatch\u0028\u0029",
+            "name": "getDocumentBatch",
+            "summary": "Entrega,\u0020si\u0020est\u00E1\u0020asignado,\u0020el\u0020contenedor\u0020del\u0020lote\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html#method_getDocumentBatch"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\BatchProcessorException\u003A\u003A\u0024documentBatch",
+            "name": "documentBatch",
+            "summary": "Contenedor\u0020del\u0020lote\u0020de\u0020documentos\u0020que\u0020se\u0020estaba\u0020manipulando\u0020cuando\u0020se\ngener\u00F3\u0020la\u0020excepci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html#property_documentBatch"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\BuilderException",
             "name": "BuilderException",
             "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.builder\u0022.",
@@ -2846,6 +2886,41 @@ Search.appendIndex(
             "summary": "Contenedor\u0020de\u0020datos\u0020para\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetFile\u0028\u0029",
+            "name": "getFile",
+            "summary": "Entrega\u0020la\u0020ruta\u0020del\u0020archivo\u0020con\u0020documentos\u0020que\u0020se\u0020debe\u0020procesar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AsetOptions\u0028\u0029",
+            "name": "setOptions",
+            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "Ruta\u0020al\u0020archivo\u0020que\u0020contiene\u0020el\u0020lote\u0020de\u0020documentos\u0020que\u0020se\u0020deben\u0020procesar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024options",
+            "name": "options",
+            "summary": "Opciones\u0020para\u0020los\u0020workers\u0020asociados\u0020al\u0020procesamiento\u0020en\u0020lote\u0020de\ndocumentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_options"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020lote\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_optionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope",
             "name": "DocumentEnvelope",
             "summary": "Contenedor\u0020de\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
@@ -3021,6 +3096,16 @@ Search.appendIndex(
             "summary": "Datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_caratula"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy",
+            "name": "CsvBatchProcessorStrategy",
+            "summary": "Estrategia\u0020\u0022billing.document.batch_processor.strategy\u003Aspreadsheet.csv\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003Aprocess\u0028\u0029",
+            "name": "process",
+            "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_process"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker",
             "name": "BatchProcessorWorker",
             "summary": "Clase\u0020para\u0020los\u0020procesadores\u0020de\u0020documentos\u0020en\u0020lote.",
@@ -3030,6 +3115,11 @@ Search.appendIndex(
             "name": "process",
             "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_process"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_optionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Builder\\Strategy\\BoletaAfectaBuilderStrategy",
             "name": "BoletaAfectaBuilderStrategy",
@@ -6080,6 +6170,21 @@ Search.appendIndex(
             "name": "Support",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-document-support.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet",
+            "name": "Spreadsheet",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy",
+            "name": "Strategy",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-batchprocessor-strategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor",
+            "name": "BatchProcessor",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-batchprocessor.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker",
             "name": "Worker",
