@@ -81,12 +81,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/derafu/derafu-lib-core.git",
-                "reference": "874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e"
+                "reference": "6d6d36bdce1d9571c579093f996d9bdd6e1d27cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e",
-                "reference": "874b10f1bf136cd17c8fbac5f3c4ef60c3525d8e",
+                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/6d6d36bdce1d9571c579093f996d9bdd6e1d27cf",
+                "reference": "6d6d36bdce1d9571c579093f996d9bdd6e1d27cf",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +140,7 @@
                 "issues": "https://github.com/derafu/derafu-lib-core/issues",
                 "source": "https://github.com/derafu/derafu-lib-core"
             },
-            "time": "2025-01-06T23:01:00+00:00"
+            "time": "2025-01-08T15:41:33+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1011,12 +1011,12 @@
             "version": "3.8.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/briannesbitt/Carbon.git",
+                "url": "https://github.com/CarbonPHP/carbon.git",
                 "reference": "129700ed449b1f02d70272d2ac802357c8c30c58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/129700ed449b1f02d70272d2ac802357c8c30c58",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/129700ed449b1f02d70272d2ac802357c8c30c58",
                 "reference": "129700ed449b1f02d70272d2ac802357c8c30c58",
                 "shasum": ""
             },
@@ -4426,16 +4426,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.66.1",
+            "version": "v3.67.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "cde186799d8e92960c5a00c96e6214bf7f5547a9"
+                "reference": "0ad34c75d1172f7d30320460e803887981830cbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/cde186799d8e92960c5a00c96e6214bf7f5547a9",
-                "reference": "cde186799d8e92960c5a00c96e6214bf7f5547a9",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/0ad34c75d1172f7d30320460e803887981830cbf",
+                "reference": "0ad34c75d1172f7d30320460e803887981830cbf",
                 "shasum": ""
             },
             "require": {
@@ -4517,7 +4517,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.66.1"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.67.0"
             },
             "funding": [
                 {
@@ -4525,7 +4525,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-05T14:43:25+00:00"
+            "time": "2025-01-08T10:17:40+00:00"
         },
         {
             "name": "nikic/php-parser",
