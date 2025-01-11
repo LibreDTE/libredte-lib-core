@@ -40,9 +40,12 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorker
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -92,6 +95,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(TagXmlDocumento::class)]
 #[CoversClass(TipoDocumento::class)]
 #[CoversClass(TipoDocumentoFactory::class)]
+#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(DocumentBag::class)]
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(DocumentBagManagerWorker::class)]
@@ -120,6 +124,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
+#[CoversClass(Comuna::class)]
+#[CoversClass(ComunaRepository::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
@@ -216,7 +222,14 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $data = file_get_contents($file);
         $bag = new DocumentBag(
             inputData: $data,
-            options: new DataContainer(['parser' => ['strategy' => $format]])
+            options: new DataContainer([
+                'parser' => [
+                    'strategy' => $format,
+                ],
+                'renderer' => [
+                    'format' => 'html',
+                ],
+            ])
         );
         $this->builder->build($bag);
 

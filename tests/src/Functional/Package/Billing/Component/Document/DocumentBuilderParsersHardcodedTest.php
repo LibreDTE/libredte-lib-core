@@ -142,7 +142,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testDocumentoFactoryFromArrayWrongIntTipoDTE(): void
     {
         $this->expectException(StrategyException::class);
-        $this->expectExceptionMessage('No se encontró la estrategia default.documento_35 en el worker Billing Document Builder (billing.document.builder).');
+        $this->expectExceptionMessage('No se encontró la estrategia documento_35 en el worker Billing Document Builder (billing.document.builder).');
 
         $data = [
             'Encabezado' => [
@@ -160,7 +160,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testDocumentoFactoryFromArrayWrongStringTipoDTE(): void
     {
         $this->expectException(StrategyException::class);
-        $this->expectExceptionMessage('No se encontró la estrategia default.factura en el worker Billing Document Builder (billing.document.builder).');
+        $this->expectExceptionMessage('No se encontró la estrategia factura en el worker Billing Document Builder (billing.document.builder).');
 
         $data = [
             'Encabezado' => [

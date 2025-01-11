@@ -179,12 +179,12 @@
             {# Información del DTE #}
             <div class="informacion-dte">
                 <div class="contenedor-dte">
-                    <p style="font-size: 15pt;">R.U.T.: {{ document.Encabezado.Emisor.RUTEmisor }}</p>
-                    <p style="font-size: 12pt;">{{ document.Encabezado.IdDoc.TipoDTE }}</p>
+                    <p style="font-size: 15pt;">R.U.T.: {{ document.Encabezado.Emisor.RUTEmisor | formatme('billing_document.RUTEmisor') }}</p>
+                    <p style="font-size: 12pt;">{{ document.Encabezado.IdDoc.TipoDTE | formatme('billing_document.TipoDTE') }}</p>
                     <p style="font-size: 15pt;">N° {{ document.Encabezado.IdDoc.Folio }}</p>
                 </div>
                 {# Sucursal SII #}
-                <p class="texto-sii">S.I.I. - {{ document.Encabezado.Emisor.CmnaOrigen }}</p>
+                <p class="texto-sii">S.I.I. - {{ document.Encabezado.Emisor.CmnaOrigen | formatme('billing_document.CdgSIISucur') }}</p>
             </div>
         </div>
         <div class="container">
@@ -196,7 +196,7 @@
                         {% if document.Encabezado.Receptor.RUTRecep != '66666666-6' %}
                             <tr>
                                 <td class="label">R.U.T.:</td>
-                                <td>{{ document.Encabezado.Receptor.RUTRecep }}</td>
+                                <td>{{ document.Encabezado.Receptor.RUTRecep | formatme('billing_document.RUTRecep') }}</td>
                             </tr>
                         {% endif %}
                         {# Razón Social #}
@@ -224,7 +224,7 @@
                         {% if document.Encabezado.IdDoc.IndTraslado is not empty %}
                             <tr>
                                 <td class="label">Tipo oper.:</td>
-                                <td>{{ document.Encabezado.IdDoc.IndTraslado }}</td>
+                                <td>{{ document.Encabezado.IdDoc.IndTraslado | formatme('billing_document.IndTraslado') }}</td>
                             </tr>
                         {% endif %}
                         {# Traslado #}
@@ -232,7 +232,7 @@
                             <tr>
                                 <td class="label">Traslado:</td>
                                 <td>
-                                    A {{ document.Encabezado.Transporte.DirDest }}, {{ document.Encabezado.Transporte.CmnaDest }} por {{ document.Encabezado.Transporte.RUTTrans }} en vehículo {{ document.Encabezado.Transporte.Patente }} con chofer {{ document.Encabezado.Transporte.Chofer.NombreChofer }} ({{ document.Encabezado.Transporte.Chofer.RUTChofer }})
+                                    A {{ document.Encabezado.Transporte.DirDest }}, {{ document.Encabezado.Transporte.CmnaDest }} por {{ document.Encabezado.Transporte.RUTTrans | formatme('billing_document.RUTTrans') }} en vehículo {{ document.Encabezado.Transporte.Patente }} con chofer {{ document.Encabezado.Transporte.Chofer.NombreChofer }} ({{ document.Encabezado.Transporte.Chofer.RUTChofer | formatme('billing_document.RUTChofer') }})
                                 </td>
                             </tr>
                         {% endif %}
@@ -241,7 +241,7 @@
                             <tr>
                                 <td class="label">Traslado:</td>
                                 <td>
-                                    {{ document.Encabezado.Transporte.Aduana.CodViaTransp }}
+                                    {{ document.Encabezado.Transporte.Aduana.CodViaTransp | formatme('billing_document.CodViaTransp') }}
                                 </td>
                             </tr>
                         {% endif %}
@@ -250,7 +250,7 @@
                             <tr>
                                 <td class="label">P. receptor:</td>
                                 <td>
-                                    {{ document.Encabezado.Transporte.Aduana.CodPaisRecep }}
+                                    {{ document.Encabezado.Transporte.Aduana.CodPaisRecep | formatme('billing_document.CodPaisRecep') }}
                                 </td>
                             </tr>
                         {% endif %}
@@ -273,7 +273,7 @@
                             <tr>
                                 <td class="label">Nacionalidad:</td>
                                 <td>
-                                    {{ document.Encabezado.Receptor.Extranjero.Nacionalidad }}
+                                    {{ document.Encabezado.Receptor.Extranjero.Nacionalidad | formatme('billing_document.Nacionalidad') }}
                                 </td>
                             </tr>
                         {% endif %}
@@ -292,7 +292,7 @@
                             <tr>
                                 <td class="label">Referencia:</td>
                                 <td>
-                                    {{ loop.index }} - {{ referencia.TpoDocRef }}{% if referencia.IndGlobal != 1 %} N°{{ referencia.FolioRef }}{% endif %} del {{ referencia.FchRef }}{% if referencia.RazonRef is not empty %}: {{ referencia.RazonRef }}{% endif %}
+                                    {{ loop.index }} - {{ referencia.TpoDocRef | formatme('billing_document.TpoDocRef') }}{% if referencia.IndGlobal != 1 %} N°{{ referencia.FolioRef }}{% endif %} del {{ referencia.FchRef | formatme('billing_document.FchRef') }}{% if referencia.RazonRef is not empty %}: {{ referencia.RazonRef }}{% endif %}
                                 </td>
                             </tr>
                             {% endfor %}
@@ -303,20 +303,20 @@
             </div>
             <div class="fechas">
                 {# Fecha de Emisión #}
-                <p><strong>{{ document.Encabezado.IdDoc.FchEmis }}</strong></p>
+                <p><strong>{{ document.Encabezado.IdDoc.FchEmis | formatme('billing_document.FchEmis')  }}</strong></p>
                 {# Fecha de Vencimiento #}
                 {% if document.Encabezado.IdDoc.FchVenc is not empty %}
-                    <p>Vence el {{ document.Encabezado.IdDoc.FchVenc }}</p>
+                    <p>Vence el {{ document.Encabezado.IdDoc.FchVenc | formatme('billing_document.FchVenc')  }}</p>
                 {% endif %}
                 {# Período Desde/Hasta #}
                 {% if document.Encabezado.IdDoc.PeriodoDesde is not empty and document.Encabezado.IdDoc.PeriodoHasta is not empty %}
                     <p>
-                        Período del {{ document.Encabezado.IdDoc.PeriodoDesde }} al {{ document.Encabezado.IdDoc.PeriodoHasta }}
+                        Período del {{ document.Encabezado.IdDoc.PeriodoDesde | formatme('billing_document.PeriodoDesde')  }} al {{ document.Encabezado.IdDoc.PeriodoHasta | formatme('billing_document.PeriodoHasta')  }}
                     </p>
                 {% endif %}
                 {# Fecha de Vencimiento #}
                 {% if document.Encabezado.IdDoc.FmaPago is not empty %}
-                    <p>Venta: {{ document.Encabezado.IdDoc.FmaPago }}</p>
+                    <p>Venta: {{ document.Encabezado.IdDoc.FmaPago | formatme('billing_document.FmaPago') }}</p>
                 {% endif %}
             </div>
         </div>
@@ -450,7 +450,7 @@
                     <p style="margin: 5px 0 0;">
                         <strong>Timbre Electrónico SII</strong>
                     </p>
-                    <p>Resolución {{ document.Caratula.FchResol }}</p>
+                    <p>Resolución {{ document.Caratula.FchResol | formatme('billing_document.FchResol') }}</p>
                     <p>Verifique documento: libredte.cl/boletas</p>
                 {% endif %}
             </div>
@@ -558,10 +558,7 @@
         {# Footer #}
         <footer>
             Boletas y Facturas con LibreDTE -
-            <a
-                href="https://libredte.cl"
-                style="text-decoration: none; color: inherit;">https://libredte.cl
-            </a>
+            <a href="https://libredte.cl" style="text-decoration: none; color: inherit;">https://www.libredte.cl</a>
         </footer>
     </body>
 </html>

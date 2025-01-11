@@ -102,6 +102,7 @@ services:
     # Servicios del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
+    libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler: ~
 
     # Estrategias del worker "billing.document.builder".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaAfectaBuilderStrategyInterface:
@@ -273,8 +274,21 @@ services:
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado:
                     '%kernel.project_dir%/resources/data/repository/traslados.php'
 
-    # Workers del componente "prime.template".
-    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\RendererWorkerInterface:
-        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\RendererWorker
+    # Estrategias del worker "prime.template.renderer".
+    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\HtmlRendererStrategyInterface:
+        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\TwigRendererStrategy
         arguments:
             $paths: '%kernel.project_dir%/resources/templates'
+            $extensions:
+                - '@Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension'
+    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\PdfRendererStrategyInterface:
+        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\PdfRendererStrategy
+
+    # Servicios del componente "prime.template".
+    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataFormatterInterface:
+        class: Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatter
+        public: true
+        arguments:
+            $handlers:
+                billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler'
+    Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension: ~
