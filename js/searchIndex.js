@@ -2596,6 +2596,46 @@ Search.appendIndex(
             "summary": "Busca\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020su\u0020interfaz.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-TipoDocumentoRepository.html#method_findByInterface"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler",
+            "name": "TemplateDataHandler",
+            "summary": "Servicio\u0020para\u0020traducir\u0020los\u0020datos\u0020de\u0020los\u0020documentos\u0020a\u0020su\u0020representaci\u00F3n\u0020para\nser\u0020utilizada\u0020en\u0020la\u0020renderizaci\u00F3n\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020handler.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003Ahandle\u0028\u0029",
+            "name": "handle",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_handle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003AgetHandler\u0028\u0029",
+            "name": "getHandler",
+            "summary": "Obtiene\u0020el\u0020handler\u0020de\u0020un\u0020campo\u0020a\u0020partir\u0020de\u0020su\u0020ID.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_getHandler"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003AcreateHandlers\u0028\u0029",
+            "name": "createHandlers",
+            "summary": "Mapa\u0020de\u0020campos\u0020a\u0020handlers\u0020para\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_createHandlers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A\u0024handlers",
+            "name": "handlers",
+            "summary": "Mapa\u0020de\u0020handlers.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_handlers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A\u0024handler",
+            "name": "handler",
+            "summary": "Handler\u0020por\u0020defecto\u0020para\u0020manejar\u0020los\u0020casos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_handler"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_entityComponent"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag",
             "name": "DocumentBag",
             "summary": "Contenedor\u0020de\u0020datos\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -6655,6 +6695,11 @@ Search.appendIndex(
             "name": "Repository",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-document-repository.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service",
+            "name": "Service",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-service.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support",
             "name": "Support",
