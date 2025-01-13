@@ -1486,6 +1486,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020tipo\u0020del\u0020sobre\u0020de\u0020documentos\u0020que\u0020se\u0020debe\u0020utilizar\u0020cuando\u0020se\nrequiera\u0020realizar\u0020el\u0020env\u00EDo\u0020de\u0020este\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getTipoSobre"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AesGuiaDespacho\u0028\u0029",
+            "name": "esGuiaDespacho",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020tipo\u0020gu\u00EDa\u0020de\u0020despacho.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_esGuiaDespacho"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AesBoleta\u0028\u0029",
             "name": "esBoleta",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020tipo\u0020boleta.",
@@ -1741,20 +1746,40 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020una\u0020cl\u00E1usula\u0020de\u0020venta\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaClausulaVenta.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaClausulaVenta\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaClausulaVenta.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaFormaPago",
             "name": "AduanaFormaPago",
             "summary": "Entidad\u0020de\u0020una\u0020forma\u0020de\u0020pago\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaFormaPago.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaFormaPago\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaFormaPago.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaModalidadVenta",
             "name": "AduanaModalidadVenta",
             "summary": "Entidad\u0020de\u0020modalidad\u0020de\u0020venta\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaModalidadVenta.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaModalidadVenta\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaModalidadVenta.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda",
             "name": "AduanaMoneda",
             "summary": "Entidad\u0020de\u0020una\u0020moneda\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003AgetCodigoISO\u0028\u0029",
             "name": "getCodigoISO",
@@ -1771,25 +1796,50 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020pa\u00EDs\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPais.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPais\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPais.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPuerto",
             "name": "AduanaPuerto",
             "summary": "Entidad\u0020de\u0020puerto\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPuerto.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPuerto\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPuerto.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaTipoBulto",
             "name": "AduanaTipoBulto",
             "summary": "Entidad\u0020de\u0020tipo\u0020de\u0020bulto\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaTipoBulto.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaTipoBulto\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaTipoBulto.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaTransporte",
             "name": "AduanaTransporte",
             "summary": "Entidad\u0020de\u0020transporte\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaTransporte.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaTransporte\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaTransporte.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaUnidad",
             "name": "AduanaUnidad",
             "summary": "Entidad\u0020de\u0020una\u0020unidad\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaUnidad.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaUnidad\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaUnidad.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\CategoriaDocumento",
             "name": "CategoriaDocumento",
@@ -1915,6 +1965,11 @@ Search.appendIndex(
             "name": "Comuna",
             "summary": "Entidad\u0020de\u0020comuna.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Comuna.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Comuna\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Comuna.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Comuna\u003A\u003AgetCodigo\u0028\u0029",
             "name": "getCodigo",
@@ -2061,15 +2116,30 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020una\u0020forma\u0020de\u0020pago.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-FormaPago.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\FormaPago\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-FormaPago.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\FormaPagoExportacion",
             "name": "FormaPagoExportacion",
             "summary": "Entidad\u0020de\u0020una\u0020forma\u0020de\u0020pago\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-FormaPagoExportacion.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\FormaPagoExportacion\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-FormaPagoExportacion.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\ImpuestoAdicionalRetencion",
             "name": "ImpuestoAdicionalRetencion",
             "summary": "Entidad\u0020de\u0020impuesto\u0020adicional\u0020y\u0020retenci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-ImpuestoAdicionalRetencion.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\ImpuestoAdicionalRetencion\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-ImpuestoAdicionalRetencion.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\ImpuestoAdicionalRetencion\u003A\u003AgetCodigo\u0028\u0029",
             "name": "getCodigo",
@@ -2096,6 +2166,11 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020medio\u0020de\u0020pago.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-MedioPago.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\MedioPago\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-MedioPago.html#method___toString"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda",
             "name": "Moneda",
             "summary": "Monedas\u0020reconocidas\u0020en\u0020la\u0020aplicaci\u00F3n.",
@@ -2105,6 +2180,11 @@ Search.appendIndex(
             "name": "getDecimales",
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020decimales\u0020de\u0020la\u0020moneda.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#method_getDecimales"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AgetSimbolo\u0028\u0029",
+            "name": "getSimbolo",
+            "summary": "Entrega\u0020el\u0020s\u00EDmbolo\u0020de\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#method_getSimbolo"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACLP",
             "name": "CLP",
@@ -2476,6 +2556,16 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020etiqueta\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TagXml.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TagXml\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TagXml.html#method___toString"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TagXml\u003A\u003AgetEntity\u0028\u0029",
+            "name": "getEntity",
+            "summary": "Entrega\u0020la\u0020entidad\u0020asociada\u0020al\u0020tag\u0020XML\u0020si\u0020existe\u0020una.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TagXml.html#method_getEntity"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TagXmlDocumento",
             "name": "TagXmlDocumento",
             "summary": "Entidad\u0020del\u0020Tag\u0020XML\u0020donde\u0020va\u0020el\u0020documento\u0020\u0028tag\u0020DTE\u0029\u0020como\u0020enum.",
@@ -2596,6 +2686,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020tipo\u0020del\u0020sobre\u0020de\u0020documentos\u0020que\u0020se\u0020debe\u0020utilizar\u0020cuando\u0020se\nrequiera\u0020realizar\u0020el\u0020env\u00EDo\u0020de\u0020este\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_getTipoSobre"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AesGuiaDespacho\u0028\u0029",
+            "name": "esGuiaDespacho",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020tipo\u0020gu\u00EDa\u0020de\u0020despacho.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_esGuiaDespacho"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AesBoleta\u0028\u0029",
             "name": "esBoleta",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020tipo\u0020boleta.",
@@ -2610,6 +2705,11 @@ Search.appendIndex(
             "name": "esExento",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020exento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_esExento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequiereAcuseRecibo\u0028\u0029",
+            "name": "requiereAcuseRecibo",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_requiereAcuseRecibo"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequiereTpoTranVenta\u0028\u0029",
             "name": "requiereTpoTranVenta",
@@ -2755,6 +2855,11 @@ Search.appendIndex(
             "name": "Traslado",
             "summary": "Entidad\u0020de\u0020traslados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Traslado.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Traslado\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Traslado.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\BatchProcessorException",
             "name": "BatchProcessorException",
@@ -6406,6 +6511,16 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020una\u0020entidad\u0020de\u0020emisor\u0020de\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetLogo\u0028\u0029",
+            "name": "setLogo",
+            "summary": "Asigna\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setLogo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetLogo\u0028\u0029",
+            "name": "getLogo",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getLogo"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\MandatarioFactoryInterface",
             "name": "MandatarioFactoryInterface",
             "summary": "Interfaz\u0020para\u0020la\u0020f\u00E1brica\u0020de\u0020una\u0020entidad\u0020de\u0020mandatario.",
@@ -6631,10 +6746,25 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020ambiente,\u0020fecha\u0020y\u0020n\u00FAmero\u0020de\u0020resoluci\u00F3n\u0020que\u0020autoriza\u0020al\ncontribuyente\u0020a\u0020ser\u0020facturador\u0020electr\u00F3nico\u0020en\u0020dicho\u0020ambiente\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getAutorizacionDte"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetLogo\u0028\u0029",
+            "name": "setLogo",
+            "summary": "Asigna\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setLogo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetLogo\u0028\u0029",
+            "name": "getLogo",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getLogo"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024autorizacionDte",
             "name": "autorizacionDte",
             "summary": "Informaci\u00F3n\u0020de\u0020la\u0020autorizaci\u00F3n\u0020que\u0020da\u0020el\u0020SII\u0020para\u0020ser\u0020emisor\u0020de\ndocumentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_autorizacionDte"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024logo",
+            "name": "logo",
+            "summary": "Logo\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_logo"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Mandatario",
             "name": "Mandatario",

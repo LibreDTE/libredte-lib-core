@@ -275,7 +275,7 @@ tributario.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagManagerWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-documentbagmanagerworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagManagerWorkerInterface.php">DocumentBagManagerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -291,14 +291,17 @@ tributario.</p>
         <section class="phpdocumentor-description"><p>Se pueden pasar diferentes tipos de datos de origen:</p>
 <ul>
 <li>
-<code class="prettyprint">string</code>: Datos de entrada para ser parseados. Debe empezar con el
-prefijo <code class="prettyprint">parser.strategy.xyz:</code> para que los datos sean parseados.</li>
+<code class="prettyprint">string</code>: Datos de entrada para ser parseados y normalizados. Debe
+empezar con el prefijo <code class="prettyprint">parser.strategy.xyz:</code> para que los datos sean
+parseados.</li>
 <li>
-<code class="prettyprint">array</code>: Datos parseados desde los datos de entrada.</li>
+<code class="prettyprint">array</code>: Datos ya normalizados.</li>
 <li>
-<code class="prettyprint">XmlInterface</code>: Una instancia del documento XML.</li>
+<code class="prettyprint">XmlInterface</code>: Una instancia del documento XML con sus datos
+normalizado.</li>
 <li>
-<code class="prettyprint">DocumentInterface</code>: Una instancia del documento tributario.</li>
+<code class="prettyprint">DocumentInterface</code>: Una instancia del documento tributario con sus
+datos normalizados.</li>
 </ul>
 </section>
 
@@ -364,7 +367,7 @@ de la bolsa al crearla o solo los mínimos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagManagerWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-documentbagmanagerworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagManagerWorkerInterface.php">DocumentBagManagerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
