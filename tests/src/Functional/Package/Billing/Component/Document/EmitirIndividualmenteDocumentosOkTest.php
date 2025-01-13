@@ -38,11 +38,15 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterf
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
@@ -207,6 +211,10 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(Emisor::class)]
+#[CoversClass(AduanaPais::class)]
+#[CoversClass(AduanaTransporte::class)]
+#[CoversClass(FormaPago::class)]
+#[CoversClass(Traslado::class)]
 class EmitirIndividualmenteDocumentosOkTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
