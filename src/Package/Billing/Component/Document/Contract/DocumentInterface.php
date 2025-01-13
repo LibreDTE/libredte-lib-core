@@ -147,6 +147,13 @@ interface DocumentInterface extends EntityInterface
     public function getMontoTotal(): int|float;
 
     /**
+     * Entrega la moneda asociada al documento.
+     *
+     * @return string
+     */
+    public function getMoneda(): string;
+
+    /**
      * Entrega el detalle del documento.
      *
      * Se puede solicitar todo el detalle o el detalle de una línea en

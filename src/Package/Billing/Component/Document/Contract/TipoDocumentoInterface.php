@@ -175,6 +175,13 @@ interface TipoDocumentoInterface extends EntityInterface
      */
     public function esExportacion(): bool;
 
+    /**
+     * Indica si el documento es exento.
+     *
+     * @return boolean
+     */
+    public function esExento(): bool;
+
     /*
     |--------------------------------------------------------------------------
     | Métodos que indican que campos son requeridos según el tipo de documento.

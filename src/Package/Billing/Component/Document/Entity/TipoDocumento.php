@@ -338,6 +338,14 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
         return $this->tag_xml === TagXmlDocumento::EXPORTACIONES;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function esExento(): bool
+    {
+        return $this->esExportacion() || in_array($this->codigo, [34, 41]);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Métodos que indican que campos son requeridos según el tipo de documento.

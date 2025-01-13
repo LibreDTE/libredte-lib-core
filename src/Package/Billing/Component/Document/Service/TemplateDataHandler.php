@@ -31,10 +31,12 @@ use Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterfa
 use Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataHandler;
 use Derafu\Lib\Core\Support\Store\Contract\RepositoryInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\Moneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
@@ -174,9 +176,7 @@ class TemplateDataHandler implements DataHandlerInterface
             },
             'PeriodoHasta' => 'alias:PeriodoDesde',
             // Solo año de una fecha.
-            'FchResol' => function (string $fecha) {
-                return explode('-', $fecha, 2)[0];
-            },
+            'FchResol' => fn (string $fecha) => explode('-', $fecha, 2)[0],
             // Datos de Aduana.
             'Aduana' => function (string $tagXmlAndValue) {
                 [$tagXml, $value] = explode(':', $tagXmlAndValue);
@@ -217,7 +217,22 @@ class TemplateDataHandler implements DataHandlerInterface
                 $pdf417 = new TCPDF2DBarcode($timbre, 'PDF417,,5');
                 $png = $pdf417->getBarcodePngData(1, 1, [0,0,0]);
                 return 'data:image/png;base64,' . base64_encode($png);
-            }
+            },
+            // Montos sin decimales.
+            'Number' => function (int|float|string $num) {
+                $num = round((float) $num);
+                return number_format($num, 0, ',', '.');
+            },
+            // Montos según moneda.
+            'MontoMoneda' => function (string $value) {
+                [$codigo, $num] = explode(':', $value);
+                $result = $this->entityComponent->getRepository(
+                    AduanaMoneda::class
+                )->findBy(['glosa' => $codigo]);
+                $moneda = ($result[0] ?? null)->getMoneda() ?? Moneda::XXX;
+                $num = round((float) $num, $moneda->getDecimales());
+                return number_format($num, $moneda->getDecimales(), ',', '.');
+            },
         ];
     }
 }

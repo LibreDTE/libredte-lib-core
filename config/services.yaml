@@ -247,6 +247,8 @@ services:
                     '%kernel.project_dir%/resources/data/repository/aduana_formas_pago.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta:
                     '%kernel.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
+                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda:
+                    '%kernel.project_dir%/resources/data/repository/aduana_moneda.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais:
                     '%kernel.project_dir%/resources/data/repository/aduana_paises.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto:

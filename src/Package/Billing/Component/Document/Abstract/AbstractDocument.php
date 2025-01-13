@@ -228,6 +228,16 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritdoc}
      */
+    public function getMoneda(): string
+    {
+        $moneda = $this->query('//Encabezado/Totales/TpoMoneda') ?? 'PESO CL';
+
+        return (string) $moneda;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getDetalle(?int $index = null): array
     {
         $detalle = $this->xmlDocument->query('//Detalle');
