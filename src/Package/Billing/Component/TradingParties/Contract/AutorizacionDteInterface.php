@@ -53,4 +53,11 @@ interface AutorizacionDteInterface
      * @return Ambiente
      */
     public function getAmbiente(): Ambiente;
+
+    /**
+     * Entrega un arreglo con los índices: FchResol y NroResol.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

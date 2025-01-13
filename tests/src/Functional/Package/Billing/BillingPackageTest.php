@@ -95,6 +95,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(ValidatorWorker::class)]
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
+#[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Caf::class)]

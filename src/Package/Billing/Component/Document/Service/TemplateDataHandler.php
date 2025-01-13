@@ -35,8 +35,10 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use TCPDF2DBarcode;
 
 /**
  * Servicio para traducir los datos de los documentos a su representación para
@@ -135,31 +137,68 @@ class TemplateDataHandler implements DataHandlerInterface
     private function createHandlers(): array
     {
         return [
-            'RUTEmisor' => fn (string $rut) => Rut::formatFull($rut),
-            'RUTRecep' => 'alias:RUTEmisor',
-            'RUTTrans' => 'alias:RUTEmisor',
-            'RUTChofer' => 'alias:RUTEmisor',
+            // Tipos de documento.
             'TipoDTE' => $this->entityComponent->getRepository(
                 TipoDocumentoInterface::class
             ),
             'TpoDocRef' => 'alias:TipoDTE',
+            // RUT.
+            'RUTEmisor' => fn (string $rut) => Rut::formatFull($rut),
+            'RUTRecep' => 'alias:RUTEmisor',
+            'RUTSolicita' => 'alias:RUTEmisor',
+            'RUTTrans' => 'alias:RUTEmisor',
+            'RUTChofer' => 'alias:RUTEmisor',
+            // Comuna.
             'CdgSIISucur' => fn (string $comuna) =>
                 $this->entityComponent->getRepository(
                     Comuna::class
                 )->find($comuna)->getDireccionRegional()
             ,
+            'CiudadOrigen' => fn (string $comuna) =>
+                $this->entityComponent->getRepository(
+                    Comuna::class
+                )->find($comuna)->getCiudad()
+            ,
+            'CiudadRecep' => 'alias:CiudadOrigen',
+            // Fechas largas.
             'FchEmis' => function (string $fecha) {
                 $timestamp = strtotime($fecha);
                 return date('d/m/Y', $timestamp); // TODO: Formato largo.
             },
             'FchRef' => 'alias:FchEmis',
             'FchVenc' => 'alias:FchEmis',
+            // Fechas cortas.
             'PeriodoDesde' => function (string $fecha) {
                 $timestamp = strtotime($fecha);
                 return date('d/m/Y', $timestamp);
             },
             'PeriodoHasta' => 'alias:PeriodoDesde',
-            'FchResol' => 'alias:PeriodoDesde',
+            // Solo año de una fecha.
+            'FchResol' => function (string $fecha) {
+                return explode('-', $fecha, 2)[0];
+            },
+            // Datos de Aduana.
+            'Aduana' => function (string $tagXmlAndValue) {
+                [$tagXml, $value] = explode(':', $tagXmlAndValue);
+                $xmlTagEntity = $this->entityComponent->getRepository(
+                    TagXml::class
+                )->find($tagXml);
+                $name = $xmlTagEntity->getGlosa();
+                $entityClass = $xmlTagEntity->getEntity();
+                if ($entityClass) {
+                    $description = $this->entityComponent->getRepository(
+                        $entityClass
+                    )->find($value)->getGlosa();
+                } else {
+                    $description = $this->handle($tagXml, $value);
+                }
+                if ($name && !in_array($description, [false, null, ''], true)) {
+                    return $name . ': ' . $description;
+                }
+                return '';
+            },
+            // Otros datos que se mapean de un código a su glosa usando un
+            // repositorio.
             'FmaPago' => $this->entityComponent->getRepository(
                 FormaPago::class
             ),
@@ -173,6 +212,12 @@ class TemplateDataHandler implements DataHandlerInterface
             'CodViaTransp' => $this->entityComponent->getRepository(
                 AduanaTransporte::class
             ),
+            //  Timbre Electrónico del Documento (TED).
+            'TED' => function (string $timbre) {
+                $pdf417 = new TCPDF2DBarcode($timbre, 'PDF417,,5');
+                $png = $pdf417->getBarcodePngData(1, 1, [0,0,0]);
+                return 'data:image/png;base64,' . base64_encode($png);
+            }
         ];
     }
 }

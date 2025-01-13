@@ -28,6 +28,7 @@ use Derafu\Lib\Core\Helper\Arr;
 use Derafu\Lib\Core\Helper\Selector;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
 use LogicException;
@@ -121,7 +122,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getId(): string
     {
         return sprintf(
-            'LibreDTE_%s_T%dF%d',
+            '%sT%dF%d',
             $this->getRutEmisor(),
             $this->getCodigo(),
             $this->getFolio()
@@ -277,17 +278,13 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritdoc}
      */
-    public function get(string $selector): mixed
+    public function getTED(): ?string
     {
-        return Selector::get($this->getDatos(), $selector);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function query(string $query, array $params = []): string|array|null
-    {
-        return $this->xmlDocument->query($query, $params);
+        try {
+            return $this->getXmlDocument()->C14NWithIsoEncodingFlattened('//TED');
+        } catch (XmlException $e) {
+            return null;
+        }
     }
 
     /**
@@ -324,5 +321,21 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get(string $selector): mixed
+    {
+        return Selector::get($this->getDatos(), $selector);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function query(string $query, array $params = []): string|array|null
+    {
+        return $this->xmlDocument->query($query, $params);
     }
 }

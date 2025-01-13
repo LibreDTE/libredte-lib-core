@@ -40,6 +40,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * {@inheritdoc}
      */
     protected array $optionsSchema = [
+        '__allowUndefinedKeys' => true,
         'strategy' => [
             'types' => 'string',
             'default' => 'spreadsheet.csv',

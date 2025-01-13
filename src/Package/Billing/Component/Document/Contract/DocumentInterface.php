@@ -169,19 +169,11 @@ interface DocumentInterface extends EntityInterface
     public function getDatos(): array;
 
     /**
-     * Obtiene un elemento del DTE utilizando un selector.
+     * Entrega el nodo TED aplanado y listo para ser usado en el PDF417.
      *
-     * @param string $selector Selector del elemento que se desea obtener.
+     * @return string|null
      */
-    public function get(string $selector): mixed;
-
-    /**
-     * Realiza una consulta XPath al XML del DTE.
-     *
-     * @param string $query Consulta XPath con marcadores nombrados (ej.: ":param").
-     * @param array $params Arreglo de parámetros en formato ['param' => 'value'].
-     */
-    public function query(string $query, array $params = []): string|array|null;
+    public function getTED(): ?string;
 
     /**
      * Entrega un arreglo con una plantilla con la estructura del TED.
@@ -199,4 +191,19 @@ interface DocumentInterface extends EntityInterface
      * @return array
      */
     public function getPlantillaTED(): array;
+
+    /**
+     * Obtiene un elemento del DTE utilizando un selector.
+     *
+     * @param string $selector Selector del elemento que se desea obtener.
+     */
+    public function get(string $selector): mixed;
+
+    /**
+     * Realiza una consulta XPath al XML del DTE.
+     *
+     * @param string $query Consulta XPath con marcadores nombrados (ej.: ":param").
+     * @param array $params Arreglo de parámetros en formato ['param' => 'value'].
+     */
+    public function query(string $query, array $params = []): string|array|null;
 }

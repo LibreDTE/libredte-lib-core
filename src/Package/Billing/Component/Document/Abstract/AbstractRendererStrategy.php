@@ -31,7 +31,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrate
 
 /**
  * Clase abstracta (base) para las estrategias de renderizado de documentos
- * tributarios.
+ * tributarios utilizando plantillas.
  */
 abstract class AbstractRendererStrategy extends AbstractStrategy implements RendererStrategyInterface
 {
@@ -67,6 +67,11 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
         // Preparar datos que se usarán para renderizar.
         $data = [
             'document' => $bag->getDocument()->getDatos(),
+            'document_stamp' => $bag->getDocument()->getTED(),
+            'document_auth' => $bag->getEmisor()
+                ->getAutorizacionDte()
+                ?->toArray()
+            ,
             'options' => [
                 'template' => $options->get('template'),
                 'filepath' => null,

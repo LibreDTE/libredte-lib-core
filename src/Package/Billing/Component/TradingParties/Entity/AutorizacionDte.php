@@ -73,4 +73,15 @@ class AutorizacionDte implements AutorizacionDteInterface
             : Ambiente::CERTIFICACION
         ;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'FchResol' => $this->getFechaResolucion(),
+            'NroResol' => $this->getNumeroResolucion(),
+        ];
+    }
 }

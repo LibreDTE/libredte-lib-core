@@ -206,6 +206,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(TemplateDataHandler::class)]
+#[CoversClass(Emisor::class)]
 class EmitirIndividualmenteDocumentosOkTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

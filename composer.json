@@ -35,7 +35,8 @@
         "derafu/derafu-lib-core": "dev-master || dev-main",
         "psr/simple-cache": "^3.0",
         "symfony/cache": "^7.1",
-        "symfony/filesystem": "^7.1"
+        "symfony/filesystem": "^7.1",
+        "tecnickcom/tcpdf": "^6.8"
     },
     "require-dev": {
         "ext-xdebug": "*",

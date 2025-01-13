@@ -73,6 +73,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Tests\TestCase;
@@ -118,6 +119,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(NormalizationUtils::class)]
