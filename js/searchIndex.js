@@ -266,6 +266,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMontoTotal"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetMoneda\u0028\u0029",
+            "name": "getMoneda",
+            "summary": "Entrega\u0020la\u0020moneda\u0020asociada\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMoneda"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetDetalle\u0028\u0029",
             "name": "getDetalle",
             "summary": "Entrega\u0020el\u0020detalle\u0020del\u0020documento.",
@@ -1091,6 +1096,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoTotal"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetMoneda\u0028\u0029",
+            "name": "getMoneda",
+            "summary": "Entrega\u0020la\u0020moneda\u0020asociada\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetDetalle\u0028\u0029",
             "name": "getDetalle",
             "summary": "Entrega\u0020el\u0020detalle\u0020del\u0020documento.",
@@ -1486,6 +1496,11 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_esExportacion"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AesExento\u0028\u0029",
+            "name": "esExento",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020exento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_esExento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003ArequiereTpoTranVenta\u0028\u0029",
             "name": "requiereTpoTranVenta",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020requiere\u0020el\u0020tag\u0020\u0022TpoTranVenta\u0022\u0020en\u0020el\u0020XML.",
@@ -1735,6 +1750,21 @@ Search.appendIndex(
             "name": "AduanaModalidadVenta",
             "summary": "Entidad\u0020de\u0020modalidad\u0020de\u0020venta\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaModalidadVenta.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda",
+            "name": "AduanaMoneda",
+            "summary": "Entidad\u0020de\u0020una\u0020moneda\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003AgetCodigoISO\u0028\u0029",
+            "name": "getCodigoISO",
+            "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020ISO\u00204217\u0020asociado\u0020a\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method_getCodigoISO"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003AgetMoneda\u0028\u0029",
+            "name": "getMoneda",
+            "summary": "Obtiene\u0020la\u0020instancia\u0020de\u0020la\u0020moneda\u0020asociada\u0020a\u0020la\u0020moneda\u0020de\u0020aduaba.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method_getMoneda"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPais",
             "name": "AduanaPais",
@@ -2066,6 +2096,286 @@ Search.appendIndex(
             "summary": "Entidad\u0020de\u0020medio\u0020de\u0020pago.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-MedioPago.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda",
+            "name": "Moneda",
+            "summary": "Monedas\u0020reconocidas\u0020en\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AgetDecimales\u0028\u0029",
+            "name": "getDecimales",
+            "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020decimales\u0020de\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#method_getDecimales"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACLP",
+            "name": "CLP",
+            "summary": "Pesos\u0020chilenos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CLP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACLF",
+            "name": "CLF",
+            "summary": "Unidad\u0020de\u0020Fomento\u0020de\u0020Chile\u0020\u0028UF\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CLF"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AUTM",
+            "name": "UTM",
+            "summary": "Unidad\u0020Tributaria\u0020Mensual\u0020de\u0020Chile.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_UTM"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AUTA",
+            "name": "UTA",
+            "summary": "Unidad\u0020Tributaria\u0020Anual\u0020de\u0020Chile.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_UTA"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AUSD",
+            "name": "USD",
+            "summary": "D\u00F3lar\u0020de\u0020Estados\u0020Unidos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_USD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AEUR",
+            "name": "EUR",
+            "summary": "Euro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_EUR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ABTC",
+            "name": "BTC",
+            "summary": "I\u0020love\u0020Bitcoin\u0020\u003C3",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_BTC"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AARS",
+            "name": "ARS",
+            "summary": "Peso\u0020argentino.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_ARS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AGBP",
+            "name": "GBP",
+            "summary": "Libra\u0020esterlina.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_GBP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ASEK",
+            "name": "SEK",
+            "summary": "Corona\u0020sueca.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_SEK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AHKD",
+            "name": "HKD",
+            "summary": "D\u00F3lar\u0020de\u0020Hong\u0020Kong.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_HKD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AZAR",
+            "name": "ZAR",
+            "summary": "Rand\u0020sudafricano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_ZAR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACOP",
+            "name": "COP",
+            "summary": "Peso\u0020colombiano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_COP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AMXN",
+            "name": "MXN",
+            "summary": "Peso\u0020mexicano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_MXN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AVES",
+            "name": "VES",
+            "summary": "Bol\u00EDvar\u0020venezolano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_VES"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ASGD",
+            "name": "SGD",
+            "summary": "D\u00F3lar\u0020de\u0020Singapur.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_SGD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AINR",
+            "name": "INR",
+            "summary": "Rupia\u0020india.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_INR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ATWD",
+            "name": "TWD",
+            "summary": "Nuevo\u0020d\u00F3lar\u0020taiwan\u00E9s.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_TWD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AAED",
+            "name": "AED",
+            "summary": "Dirham\u0020de\u0020Emiratos\u0020\u00C1rabes\u0020Unidos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_AED"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AKRW",
+            "name": "KRW",
+            "summary": "Won\u0020surcoreano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_KRW"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APLN",
+            "name": "PLN",
+            "summary": "Zloty\u0020polaco.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PLN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACZK",
+            "name": "CZK",
+            "summary": "Corona\u0020checa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CZK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AHUF",
+            "name": "HUF",
+            "summary": "Forint\u0020h\u00FAngaro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_HUF"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ATHB",
+            "name": "THB",
+            "summary": "Baht\u0020tailand\u00E9s.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_THB"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ATRY",
+            "name": "TRY",
+            "summary": "Lira\u0020turca.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_TRY"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AMYR",
+            "name": "MYR",
+            "summary": "Ringgit\u0020malayo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_MYR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ARUB",
+            "name": "RUB",
+            "summary": "Rublo\u0020ruso.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_RUB"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AIDR",
+            "name": "IDR",
+            "summary": "Rupia\u0020indonesia.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_IDR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AUAH",
+            "name": "UAH",
+            "summary": "Grivna\u0020ucraniana.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_UAH"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AILS",
+            "name": "ILS",
+            "summary": "Shekel\u0020israel\u00ED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_ILS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APHP",
+            "name": "PHP",
+            "summary": "Peso\u0020filipino.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PHP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ASAR",
+            "name": "SAR",
+            "summary": "Riyal\u0020saud\u00ED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_SAR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APKR",
+            "name": "PKR",
+            "summary": "Rupia\u0020pakistan\u00ED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PKR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AVND",
+            "name": "VND",
+            "summary": "Dong\u0020vietnamita.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_VND"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AEGP",
+            "name": "EGP",
+            "summary": "Libra\u0020egipcia.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_EGP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ARON",
+            "name": "RON",
+            "summary": "Leu\u0020rumano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_RON"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AISK",
+            "name": "ISK",
+            "summary": "Corona\u0020islandesa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_ISK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AIRR",
+            "name": "IRR",
+            "summary": "Rial\u0020iran\u00ED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_IRR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACRC",
+            "name": "CRC",
+            "summary": "Col\u00F3n\u0020costarricense.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CRC"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APAB",
+            "name": "PAB",
+            "summary": "Balboa\u0020paname\u00F1o.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PAB"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APYG",
+            "name": "PYG",
+            "summary": "Guaran\u00ED\u0020paraguayo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PYG"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003APEN",
+            "name": "PEN",
+            "summary": "Sol\u0020peruano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_PEN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AUYU",
+            "name": "UYU",
+            "summary": "Peso\u0020uruguayo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_UYU"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AAUD",
+            "name": "AUD",
+            "summary": "D\u00F3lar\u0020australiano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_AUD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ABOB",
+            "name": "BOB",
+            "summary": "Boliviano.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_BOB"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACNY",
+            "name": "CNY",
+            "summary": "Yuan\u0020chino.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CNY"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ABRL",
+            "name": "BRL",
+            "summary": "Real\u0020brasile\u00F1o.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_BRL"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ADKK",
+            "name": "DKK",
+            "summary": "Corona\u0020danesa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_DKK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACAD",
+            "name": "CAD",
+            "summary": "D\u00F3lar\u0020canadiense.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CAD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AJPY",
+            "name": "JPY",
+            "summary": "Yen\u0020japon\u00E9s.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_JPY"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ACHF",
+            "name": "CHF",
+            "summary": "Franco\u0020suizo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_CHF"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ANOK",
+            "name": "NOK",
+            "summary": "Corona\u0020noruega.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_NOK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003ANZD",
+            "name": "NZD",
+            "summary": "D\u00F3lar\u0020neozeland\u00E9s.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_NZD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Moneda\u003A\u003AXXX",
+            "name": "XXX",
+            "summary": "Monedas\u0020no\u0020especificadas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-Moneda.html#enumcase_XXX"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\OperacionDocumento",
             "name": "OperacionDocumento",
             "summary": "Entidad\u0020de\u0020la\u0020operaci\u00F3n\u0020de\u0020los\u0020documento\u0020en\u0020libros\u0020como\u0020enum.",
@@ -2295,6 +2605,11 @@ Search.appendIndex(
             "name": "esExportacion",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020de\u0020exportaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_esExportacion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AesExento\u0028\u0029",
+            "name": "esExento",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020exento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_esExento"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequiereTpoTranVenta\u0028\u0029",
             "name": "requiereTpoTranVenta",
