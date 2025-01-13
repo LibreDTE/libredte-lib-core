@@ -276,6 +276,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDatos"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetTED\u0028\u0029",
+            "name": "getTED",
+            "summary": "Entrega\u0020el\u0020nodo\u0020TED\u0020aplanado\u0020y\u0020listo\u0020para\u0020ser\u0020usado\u0020en\u0020el\u0020PDF417.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTED"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetPlantillaTED\u0028\u0029",
+            "name": "getPlantillaTED",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getPlantillaTED"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Obtiene\u0020un\u0020elemento\u0020del\u0020DTE\u0020utilizando\u0020un\u0020selector.",
@@ -285,11 +295,6 @@ Search.appendIndex(
             "name": "query",
             "summary": "Realiza\u0020una\u0020consulta\u0020XPath\u0020al\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_query"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetPlantillaTED\u0028\u0029",
-            "name": "getPlantillaTED",
-            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getPlantillaTED"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003A\u0024tipoDocumento",
             "name": "tipoDocumento",
@@ -333,7 +338,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy",
             "name": "AbstractRendererStrategy",
-            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020las\u0020estrategias\u0020de\u0020renderizado\u0020de\u0020documentos\ntributarios.",
+            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020las\u0020estrategias\u0020de\u0020renderizado\u0020de\u0020documentos\ntributarios\u0020utilizando\u0020plantillas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003A__construct\u0028\u0029",
@@ -1096,6 +1101,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDatos"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetTED\u0028\u0029",
+            "name": "getTED",
+            "summary": "Entrega\u0020el\u0020nodo\u0020TED\u0020aplanado\u0020y\u0020listo\u0020para\u0020ser\u0020usado\u0020en\u0020el\u0020PDF417.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetPlantillaTED\u0028\u0029",
+            "name": "getPlantillaTED",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getPlantillaTED"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Obtiene\u0020un\u0020elemento\u0020del\u0020DTE\u0020utilizando\u0020un\u0020selector.",
@@ -1105,11 +1120,6 @@ Search.appendIndex(
             "name": "query",
             "summary": "Realiza\u0020una\u0020consulta\u0020XPath\u0020al\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_query"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetPlantillaTED\u0028\u0029",
-            "name": "getPlantillaTED",
-            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getPlantillaTED"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\LoaderWorkerInterface",
             "name": "LoaderWorkerInterface",
@@ -5991,6 +6001,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020ambiente\u0020para\u0020el\u0020que\u0020esta\u0020autorizaci\u00F3n\u0020es\u0020v\u00E1lida.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-AutorizacionDteInterface.html#method_getAmbiente"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\AutorizacionDteInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020FchResol\u0020y\u0020NroResol.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-AutorizacionDteInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteFactoryInterface",
             "name": "ContribuyenteFactoryInterface",
             "summary": "Interfaz\u0020para\u0020la\u0020f\u00E1brica\u0020de\u0020una\u0020entidad\u0020de\u0020contribuyente.",
@@ -6175,6 +6190,11 @@ Search.appendIndex(
             "name": "getAmbiente",
             "summary": "Obtiene\u0020el\u0020ambiente\u0020para\u0020el\u0020que\u0020esta\u0020autorizaci\u00F3n\u0020es\u0020v\u00E1lida.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-AutorizacionDte.html#method_getAmbiente"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\AutorizacionDte\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020FchResol\u0020y\u0020NroResol.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-AutorizacionDte.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\AutorizacionDte\u003A\u003A\u0024fechaResolucion",
             "name": "fechaResolucion",
