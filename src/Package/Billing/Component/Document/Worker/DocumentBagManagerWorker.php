@@ -74,6 +74,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         $bag = new $class();
 
         // Si los datos vienen como string se deben parsear para asignar.
+        // Además se normalizarán.
         if (is_string($source)) {
             $aux = explode(':', $source, 1);
             $parserStrategy = str_replace('parser.strategy.', '', $aux[0]);
@@ -85,20 +86,20 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
             $parser->parse($bag);
         }
 
-        // Si los datos vienen como arreglo son los datos parseados.
+        // Si los datos vienen como arreglo son los datos normalizados.
         if (is_array($source)) {
-            $bag->setParsedData($source);
+            $bag->setNormalizedData($source);
         }
 
         // Si los datos vienen como documento XML es un XML cargado desde un
-        // string XML (carga realizada por LoaderWorker).
+        // string XML (carga realizada por LoaderWorker). Ya viene normalizado.
         if ($source instanceof XmlInterface) {
             $bag->setXmlDocument($source);
         }
 
         // Si los datos vienen como documento tributario entonces es un
         // documento que ya está creado. Puede estar o no timbrado y firmado,
-        // eso no se determina ni valida acá.
+        // eso no se determina ni valida acá. Si debe estará normalizado.
         if ($source instanceof DocumentInterface) {
             $bag->setDocument($source);
         }

@@ -260,7 +260,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         // Si los datos del DTE no están determinados se crean de una manera
         // estandarizada compatible con los datos de entrada normalizados.
         if (!isset($this->datos)) {
-            $array = $this->xmlDocument->query('/');
+            $array = $this->xmlDocument->toArray();
 
             $array = $array['DTE']['Documento']
                 ?? $array['DTE']['Exportaciones']

@@ -47,6 +47,13 @@ class Emisor extends Contribuyente implements EmisorInterface
     private ?AutorizacionDteInterface $autorizacionDte = null;
 
     /**
+     * Logo del emisor.
+     *
+     * @var string|null
+     */
+    private ?string $logo = null;
+
+    /**
      * {@inheritdoc}
      */
     public function setAutorizacionDte(AutorizacionDteInterface $autorizacionDte): static
@@ -62,5 +69,23 @@ class Emisor extends Contribuyente implements EmisorInterface
     public function getAutorizacionDte(): ?AutorizacionDteInterface
     {
         return $this->autorizacionDte;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLogo(string $logo): static
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLogo(): ?string
+    {
+        return $this->logo;
     }
 }

@@ -325,6 +325,14 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     /**
      * {@inheritdoc}
      */
+    public function esGuiaDespacho(): bool
+    {
+        return (int) $this->codigo === 52;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function esBoleta(): bool
     {
         return $this->tipo_sobre === TipoSobre::ENVIO_BOLETA;
@@ -351,6 +359,15 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     | Métodos que indican que campos son requeridos según el tipo de documento.
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * {@inheritdoc}
+     */
+    public function requiereAcuseRecibo(): bool
+    {
+        // Boletas, notas de crédito y notas de débito no usan acuse de recibo.
+        return !in_array($this->codigo, [39, 41, 56, 61, 110, 111, 112]);
+    }
 
     /**
      * {@inheritdoc}

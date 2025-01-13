@@ -35,6 +35,14 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdic
 class ImpuestoAdicionalRetencion extends Entity
 {
     /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+        return $this->getAttribute('glosa');
+    }
+
+    /**
      * Obtiene el código del impuesto o retención.
      *
      * @return int

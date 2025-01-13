@@ -364,6 +364,68 @@ enum Moneda: string
     ];
 
     /**
+     * Símbolos de las monedas reconocidas.
+     *
+     * @var array
+     */
+    private const SIMBOLOS = [
+        self::CLP->value => '$',
+        self::CLF->value => 'UF',
+        self::UTM->value => 'UTM',
+        self::UTA->value => 'UTA',
+        self::USD->value => '$',
+        self::EUR->value => '€',
+        self::BTC->value => '₿',
+        self::ARS->value => '$',
+        self::GBP->value => '£',
+        self::SEK->value => 'kr',
+        self::HKD->value => 'HK$',
+        self::ZAR->value => 'R',
+        self::COP->value => '$',
+        self::MXN->value => '$',
+        self::VES->value => 'Bs.',
+        self::SGD->value => 'S$',
+        self::INR->value => '₹',
+        self::TWD->value => 'NT$',
+        self::AED->value => 'د.إ',
+        self::KRW->value => '₩',
+        self::PLN->value => 'zł',
+        self::CZK->value => 'Kč',
+        self::HUF->value => 'Ft',
+        self::THB->value => '฿',
+        self::TRY->value => '₺',
+        self::MYR->value => 'RM',
+        self::RUB->value => '₽',
+        self::IDR->value => 'Rp',
+        self::UAH->value => '₴',
+        self::ILS->value => '₪',
+        self::PHP->value => '₱',
+        self::SAR->value => '﷼',
+        self::PKR->value => '₨',
+        self::VND->value => '₫',
+        self::EGP->value => '£',
+        self::RON->value => 'lei',
+        self::ISK->value => 'kr',
+        self::IRR->value => '﷼',
+        self::CRC->value => '₡',
+        self::PAB->value => 'B/.',
+        self::PYG->value => '₲',
+        self::PEN->value => 'S/',
+        self::UYU->value => '$U',
+        self::AUD->value => 'A$',
+        self::BOB->value => 'Bs.',
+        self::CNY->value => '¥',
+        self::BRL->value => 'R$',
+        self::DKK->value => 'kr',
+        self::CAD->value => 'C$',
+        self::JPY->value => '¥',
+        self::CHF->value => 'CHF',
+        self::NOK->value => 'kr',
+        self::NZD->value => 'NZ$',
+        self::XXX->value => '',
+    ];
+
+    /**
      * Entrega la cantidad de decimales de la moneda.
      *
      * @return int
@@ -371,5 +433,15 @@ enum Moneda: string
     public function getDecimales(): int
     {
         return self::DECIMALES[$this->value];
+    }
+
+    /**
+     * Entrega el símbolo de la moneda.
+     *
+     * @return string
+     */
+    public function getSimbolo(): string
+    {
+        return self::SIMBOLOS[$this->value];
     }
 }

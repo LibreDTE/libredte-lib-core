@@ -31,4 +31,28 @@ use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
  */
 class TagXml extends Entity
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+        return $this->getAttribute('glosa');
+    }
+
+    /**
+     * Entrega la entidad asociada al tag XML si existe una.
+     *
+     * La entidad estará disponible cuando exista un repositorio asociado que
+     * maneje el tag XML (sus glosas).
+     *
+     * @return string|null
+     */
+    public function getEntity(): ?string
+    {
+        if (!$this->hasAttribute('entity')) {
+            return null;
+        }
+
+        return $this->getAttribute('entity');
+    }
 }

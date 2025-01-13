@@ -162,6 +162,13 @@ interface TipoDocumentoInterface extends EntityInterface
     */
 
     /**
+     * Indica si el documento es de tipo guía de despacho.
+     *
+     * @return boolean
+     */
+    public function esGuiaDespacho(): bool;
+
+    /**
      * Indica si el documento es de tipo boleta.
      *
      * @return boolean

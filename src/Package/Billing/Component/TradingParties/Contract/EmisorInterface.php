@@ -29,4 +29,18 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
  */
 interface EmisorInterface extends ContribuyenteInterface, AutorizacionDteInfoInterface, CorreoIntercambioDteInfoInterface
 {
+    /**
+     * Asigna los datos del logo del emisor.
+     *
+     * @param string $logo
+     * @return static
+     */
+    public function setLogo(string $logo): static;
+
+    /**
+     * Obtiene los datos del logo del emisor.
+     *
+     * @return string|null
+     */
+    public function getLogo(): ?string;
 }

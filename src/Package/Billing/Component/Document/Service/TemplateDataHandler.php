@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
 use Closure;
+use Derafu\Lib\Core\Helper\Date;
 use Derafu\Lib\Core\Helper\Rut;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterface;
@@ -36,6 +37,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Moneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
@@ -163,10 +166,7 @@ class TemplateDataHandler implements DataHandlerInterface
             ,
             'CiudadRecep' => 'alias:CiudadOrigen',
             // Fechas largas.
-            'FchEmis' => function (string $fecha) {
-                $timestamp = strtotime($fecha);
-                return date('d/m/Y', $timestamp); // TODO: Formato largo.
-            },
+            'FchEmis' => fn (string $fecha) => Date::formatSpanish($fecha),
             'FchRef' => 'alias:FchEmis',
             'FchVenc' => 'alias:FchEmis',
             // Fechas cortas.
@@ -175,6 +175,7 @@ class TemplateDataHandler implements DataHandlerInterface
                 return date('d/m/Y', $timestamp);
             },
             'PeriodoHasta' => 'alias:PeriodoDesde',
+            'FchPago' => 'alias:PeriodoDesde',
             // Solo año de una fecha.
             'FchResol' => fn (string $fecha) => explode('-', $fecha, 2)[0],
             // Datos de Aduana.
@@ -197,8 +198,15 @@ class TemplateDataHandler implements DataHandlerInterface
                 }
                 return '';
             },
+            'TotItems' => 'alias:Number',
             // Otros datos que se mapean de un código a su glosa usando un
             // repositorio.
+            'TipoImp' => $this->entityComponent->getRepository(
+                ImpuestoAdicionalRetencion::class
+            ),
+            'MedioPago' => $this->entityComponent->getRepository(
+                MedioPago::class
+            ),
             'FmaPago' => $this->entityComponent->getRepository(
                 FormaPago::class
             ),

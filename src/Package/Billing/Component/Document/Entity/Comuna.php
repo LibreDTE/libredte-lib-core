@@ -35,6 +35,14 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaReposi
 class Comuna extends Entity
 {
     /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+        return $this->getAttribute('nombre');
+    }
+
+    /**
      * Obtiene el código de la comuna.
      *
      * @return string

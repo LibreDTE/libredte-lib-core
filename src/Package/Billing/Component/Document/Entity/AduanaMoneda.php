@@ -32,6 +32,14 @@ use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
 class AduanaMoneda extends Entity
 {
     /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+        return $this->getAttribute('glosa');
+    }
+
+    /**
      * Entrega el código ISO 4217 asociado a la moneda.
      *
      * @return string

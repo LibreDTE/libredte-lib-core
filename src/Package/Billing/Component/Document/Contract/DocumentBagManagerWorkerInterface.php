@@ -39,11 +39,14 @@ interface DocumentBagManagerWorkerInterface extends WorkerInterface
      *
      * Se pueden pasar diferentes tipos de datos de origen:
      *
-     *   - `string`: Datos de entrada para ser parseados. Debe empezar con el
-     *     prefijo `parser.strategy.xyz:` para que los datos sean parseados.
-     *   - `array`: Datos parseados desde los datos de entrada.
-     *   - `XmlInterface`: Una instancia del documento XML.
-     *   - `DocumentInterface`: Una instancia del documento tributario.
+     *   - `string`: Datos de entrada para ser parseados y normalizados. Debe
+     *     empezar con el prefijo `parser.strategy.xyz:` para que los datos sean
+     *     parseados.
+     *   - `array`: Datos ya normalizados.
+     *   - `XmlInterface`: Una instancia del documento XML con sus datos
+     *     normalizado.
+     *   - `DocumentInterface`: Una instancia del documento tributario con sus
+     *     datos normalizados.
      *
      * @param string|array|XmlInterface|DocumentInterface $source Datos de origen.
      * @param bool $normalizeAll Indica si se deben normalizar todos los datos

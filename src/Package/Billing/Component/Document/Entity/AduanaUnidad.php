@@ -31,4 +31,11 @@ use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
  */
 class AduanaUnidad extends Entity
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString(): string
+    {
+        return $this->getAttribute('glosa');
+    }
 }
