@@ -279,7 +279,7 @@ permiten al consumir un servicio web del SII.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getAmbiente">getAmbiente()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a>    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a>    </span>
 </dt>
 <dd>Entrega el ambiente que está configurado para realizar las conexiones al
 Servicio de Impuestos Internos.</dd>
@@ -443,11 +443,11 @@ permiten al consumir un servicio web del SII.</p>
     <span class="phpdocumentor-signature__name">$config</span>
      = <span class="phpdocumentor-signature__default-value">[
     // Por defecto nos conectamos a los servidores de producción.
-    &#039;ambiente&#039; =&gt; \libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente::PRODUCCION,
+    &#039;ambiente&#039; =&gt; \libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente::PRODUCCION,
     // Por defecto se asignan los servidores estándars de documentos
     // tributarios electrónicos (DTE) para producción (palena) y
     // certificación/pruebas (maullin).
-    &#039;servidores&#039; =&gt; [&#039;default&#039; =&gt; [\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente::PRODUCCION-&gt;value =&gt; &#039;palena&#039;, \libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente::CERTIFICACION-&gt;value =&gt; &#039;maullin&#039;], &#039;www4&#039; =&gt; [\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente::PRODUCCION-&gt;value =&gt; &#039;www4&#039;, \libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente::CERTIFICACION-&gt;value =&gt; &#039;www4c&#039;]],
+    &#039;servidores&#039; =&gt; [&#039;default&#039; =&gt; [\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente::PRODUCCION-&gt;value =&gt; &#039;palena&#039;, \libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente::CERTIFICACION-&gt;value =&gt; &#039;maullin&#039;], &#039;www4&#039; =&gt; [\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente::PRODUCCION-&gt;value =&gt; &#039;www4&#039;, \libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente::CERTIFICACION-&gt;value =&gt; &#039;www4c&#039;]],
     // URL de los WSDL de diferentes servicios del SII. Se define una regla
     // comodín &quot;*&quot; y otras específicas para ciertos servicios que tienen el
     // WSDL en otra ruta.
@@ -553,7 +553,7 @@ Servicio de Impuestos Internos.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getAmbiente</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getAmbiente</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -566,7 +566,7 @@ Servicio de Impuestos Internos.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Ambiente que se utilizará en la conexión.</p>
 </section>
@@ -946,7 +946,7 @@ Servicio de Impuestos Internos.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setAmbiente</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ambiente</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setAmbiente</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ambiente</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -956,7 +956,7 @@ Servicio de Impuestos Internos.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$ambiente</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a></span>
                  = <span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -996,7 +996,7 @@ para las consultas al SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setServidor</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$servidor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;palena&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ambiente</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipo</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;default&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setServidor</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$servidor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;palena&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ambiente</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipo</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;default&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1016,7 +1016,7 @@ certificación o palena para producción.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$ambiente</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Entity-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente">Ambiente</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente">Ambiente</abbr></a></span>
                  = <span class="phpdocumentor-signature__argument__default-value">Ambiente::PRODUCCION</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Permite definir si se está cambiando el servidor de
