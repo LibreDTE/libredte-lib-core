@@ -39,9 +39,9 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\Moneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\Moneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
 use TCPDF2DBarcode;
 

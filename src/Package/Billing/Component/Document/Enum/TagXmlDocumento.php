@@ -22,43 +22,43 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Enum;
 
 /**
- * Entidad de la categoría de documentos como enum.
+ * Enum del Tag XML donde va el documento (tag DTE).
  */
-enum CategoriaDocumento: string
+enum TagXmlDocumento: string
 {
-    case TRIBUTARIO = 'T';
-    case INFORMATIVO = 'I';
-    case REFERENCIA = 'R';
+    case DOCUMENTO = 'Documento';
+    case LIQUIDACION = 'Liquidacion';
+    case EXPORTACIONES = 'Exportaciones';
 
     /**
-     * Mapa con los códigos de la categoría y su nombre.
+     * Mapa con los códigos del tag XML y su nombre.
      */
-    private const NOMBRES = [
-        self::TRIBUTARIO->value => 'Tributario oficial del SII.',
-        self::INFORMATIVO->value => 'Informativo oficial del SII.',
-        self::REFERENCIA->value => 'Referencia no oficial del SII.',
+    private const DESCRIPCIONES = [
+        self::DOCUMENTO->value => 'Documento (todo menos DTE 43, 110, 111 ni 112)',
+        self::LIQUIDACION->value => 'Liquidacion (DTE 43)',
+        self::EXPORTACIONES->value => 'Exportaciones (DTE 110, 111 y 112)',
     ];
 
     /**
-     * Entrega el código de la categoría.
-     *
-     * @return string
-     */
-    public function getCodigo(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * Entrega el nombre de la categoría.
+     * Entrega el nombre del tag XML.
      *
      * @return string
      */
     public function getNombre(): string
     {
-        return self::NOMBRES[$this->value];
+        return $this->value;
+    }
+
+    /**
+     * Entrega la descripción del tag XML.
+     *
+     * @return string
+     */
+    public function getDescripcion(): string
+    {
+        return self::DESCRIPCIONES[$this->value];
     }
 }

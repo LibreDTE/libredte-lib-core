@@ -26,8 +26,8 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Identifier;
 
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;

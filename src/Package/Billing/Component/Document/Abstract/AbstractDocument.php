@@ -30,7 +30,7 @@ use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use LogicException;
 
 /**

@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 
 /**
  * Interfaz para las entidades que representan documentos tributarios.

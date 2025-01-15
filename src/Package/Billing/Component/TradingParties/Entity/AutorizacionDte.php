@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Entity;
 
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 
 /**

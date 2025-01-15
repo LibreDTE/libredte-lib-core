@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Entity\Document;
 
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\BoletaAfectaInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 
 /**
  * Clase que representa una boleta afecta electrónica.

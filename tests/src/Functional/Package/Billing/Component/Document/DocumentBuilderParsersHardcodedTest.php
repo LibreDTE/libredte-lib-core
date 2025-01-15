@@ -35,9 +35,9 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSaniti
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;

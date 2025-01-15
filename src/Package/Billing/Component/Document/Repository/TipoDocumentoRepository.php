@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Repository;
 
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Repository\Repository;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CategoriaDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 
 /**
  * Repositorio para trabajar con los tipos de documentos.

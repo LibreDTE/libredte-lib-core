@@ -30,7 +30,7 @@ use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 
 /**
  * Entidad que representa un Código de Autorización de Folios (CAF).

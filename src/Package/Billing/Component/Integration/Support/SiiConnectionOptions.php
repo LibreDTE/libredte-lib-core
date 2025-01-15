@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support;
 
 use Derafu\Lib\Core\Helper\Arr;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 
 /**
  * Clase para administrar todos los parámetros o configuraciones de la conexión

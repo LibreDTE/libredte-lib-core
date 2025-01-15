@@ -22,10 +22,10 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Enum;
 
 /**
- * Monedas reconocidas en la aplicación.
+ * Enum con las monedas reconocidas en la aplicación.
  */
 enum Moneda: string
 {

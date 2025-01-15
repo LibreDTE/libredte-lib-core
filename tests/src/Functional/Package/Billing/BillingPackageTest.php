@@ -33,10 +33,10 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRender
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;

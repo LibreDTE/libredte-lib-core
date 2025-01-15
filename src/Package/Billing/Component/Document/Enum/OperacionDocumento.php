@@ -22,10 +22,10 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Enum;
 
 /**
- * Entidad de la operación de los documento en libros como enum.
+ * Enum de la operación de los documentos en libros.
  */
 enum OperacionDocumento: string
 {

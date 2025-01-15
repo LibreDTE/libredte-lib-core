@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\Moneda;
 
 /**
  * Entidad de una moneda de aduana (documentos de exportación).

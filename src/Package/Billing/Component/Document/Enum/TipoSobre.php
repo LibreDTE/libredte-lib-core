@@ -22,10 +22,10 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Enum;
 
 /**
- * Entidad del Tag XML donde va el documento (tag DTE) como enum.
+ * Enum del Tag XML donde va el documento (tag DTE).
  */
 enum TipoSobre: int
 {

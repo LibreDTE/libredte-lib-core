@@ -31,7 +31,7 @@ use Derafu\Lib\Core\Support\Store\DataContainer;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;

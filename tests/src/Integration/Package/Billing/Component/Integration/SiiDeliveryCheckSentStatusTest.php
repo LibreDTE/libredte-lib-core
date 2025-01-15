@@ -30,7 +30,7 @@ use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDeliveryCheckerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Response\SiiDocumentSentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;

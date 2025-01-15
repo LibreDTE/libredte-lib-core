@@ -22,43 +22,20 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Integration\Enum;
 
 /**
- * Entidad del Tag XML donde va el documento (tag DTE) como enum.
+ * Enum del ambiente del SII para el envío de los DTE.
  */
-enum TagXmlDocumento: string
+enum Ambiente: int
 {
-    case DOCUMENTO = 'Documento';
-    case LIQUIDACION = 'Liquidacion';
-    case EXPORTACIONES = 'Exportaciones';
+    /**
+     * Ambiente de producción de facturación en el SII.
+     */
+    case PRODUCCION = 0;
 
     /**
-     * Mapa con los códigos del tag XML y su nombre.
+     * Ambiente de certificación/pruebas de facturación en el SII.
      */
-    private const DESCRIPCIONES = [
-        self::DOCUMENTO->value => 'Documento (todo menos DTE 43, 110, 111 ni 112)',
-        self::LIQUIDACION->value => 'Liquidacion (DTE 43)',
-        self::EXPORTACIONES->value => 'Exportaciones (DTE 110, 111 y 112)',
-    ];
-
-    /**
-     * Entrega el nombre del tag XML.
-     *
-     * @return string
-     */
-    public function getNombre(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * Entrega la descripción del tag XML.
-     *
-     * @return string
-     */
-    public function getDescripcion(): string
-    {
-        return self::DESCRIPCIONES[$this->value];
-    }
+    case CERTIFICACION = 1;
 }

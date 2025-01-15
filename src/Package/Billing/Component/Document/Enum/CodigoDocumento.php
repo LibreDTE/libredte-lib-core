@@ -22,7 +22,7 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Document\Enum;
 
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\BoletaAfectaInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\BoletaExentaInterface;
@@ -38,7 +38,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\NotaD
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\NotaDebitoInterface;
 
 /**
- * Entidad del código de los documentos como enum.
+ * Enum del código de los documentos tributarios electrónicos.
  */
 enum CodigoDocumento: int
 {

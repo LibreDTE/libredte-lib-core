@@ -29,7 +29,7 @@ use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiWsdlConsumerException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;
 use SoapClient;

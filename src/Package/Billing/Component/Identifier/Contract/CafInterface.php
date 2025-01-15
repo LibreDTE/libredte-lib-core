@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 
 /**
  * Interfaz para la entidad que representa archivos CAF.

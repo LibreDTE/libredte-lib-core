@@ -27,6 +27,10 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping as DEM;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\TipoDocumentoRepository;
 
 /**

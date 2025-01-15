@@ -32,11 +32,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormal
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\SobreEnvio;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentEnvelope;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;

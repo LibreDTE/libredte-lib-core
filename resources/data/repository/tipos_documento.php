@@ -22,11 +22,11 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CategoriaDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\CodigoDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\OperacionDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXmlDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 
 return [
     // Documentos tributarios oficiales del SII.

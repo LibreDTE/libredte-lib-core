@@ -30,7 +30,7 @@ use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Entity\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentSenderWorker;
