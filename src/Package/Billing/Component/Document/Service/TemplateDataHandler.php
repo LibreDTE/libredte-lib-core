@@ -24,13 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
-use Closure;
 use Derafu\Lib\Core\Helper\Date;
 use Derafu\Lib\Core\Helper\Rut;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
+use Derafu\Lib\Core\Package\Prime\Component\Template\Abstract\AbstractTemplateDataHandler;
 use Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataHandler;
-use Derafu\Lib\Core\Support\Store\Contract\RepositoryInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
@@ -42,96 +40,22 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\Moneda;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
 use TCPDF2DBarcode;
 
 /**
  * Servicio para traducir los datos de los documentos a su representación para
  * ser utilizada en la renderización del documento.
  */
-class TemplateDataHandler implements DataHandlerInterface
+class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHandlerInterface
 {
-    /**
-     * Mapa de handlers.
-     *
-     * @var array
-     */
-    private array $handlers;
-
-    /**
-     * Handler por defecto para manejar los casos.
-     *
-     * @var DataHandlerInterface
-     */
-    private DataHandlerInterface $handler;
-
     /**
      * Constructor del handler.
      *
      * @param EntityComponentInterface $entityComponent
-     * @param DataHandlerInterface|null $handler
      */
     public function __construct(
-        private EntityComponentInterface $entityComponent,
-        DataHandlerInterface $handler = null
+        private EntityComponentInterface $entityComponent
     ) {
-        $this->handler = $handler ?? new DataHandler();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function handle(string $id, mixed $data): string
-    {
-        // Si no hay valor asignado en los datos se entrega un string vacio.
-        if (!$data) {
-            return '';
-        }
-
-        // Buscar el handler.
-        $handler = $this->getHandler($id);
-
-        // Ejecutar el handler sobre los datos para formatearlos.
-        assert($this->handler instanceof DataHandler);
-        return $this->handler->handle($id, $data, $handler);
-    }
-
-    /**
-     * Obtiene el handler de un campo a partir de su ID.
-     *
-     * @param string $id
-     * @return Closure|RepositoryInterface
-     */
-    private function getHandler(string $id): Closure|RepositoryInterface
-    {
-        if (!isset($this->handlers)) {
-            $this->handlers = $this->createHandlers();
-        }
-
-        if (!isset($this->handlers[$id])) {
-            throw new RendererException(sprintf(
-                'El formato para %s no está definido. Los disponibles son: %s.',
-                $id,
-                implode(', ', array_keys($this->handlers))
-            ));
-        }
-
-        if (is_string($this->handlers[$id]) && str_starts_with($this->handlers[$id], 'alias:')) {
-            [$alias, $handler] = explode(':', $this->handlers[$id], 2);
-
-            if (!isset($this->handlers[$handler])) {
-                throw new RendererException(sprintf(
-                    'El alias %s del formato para %s no está definido. Los disponibles son: %s.',
-                    $handler,
-                    $id,
-                    implode(', ', array_keys($this->handlers))
-                ));
-            }
-
-            return $this->handlers[$handler];
-        }
-
-        return $this->handlers[$id];
     }
 
     /**
@@ -139,7 +63,7 @@ class TemplateDataHandler implements DataHandlerInterface
      *
      * @return array
      */
-    private function createHandlers(): array
+    protected function createHandlers(): array
     {
         return [
             // Tipos de documento.
