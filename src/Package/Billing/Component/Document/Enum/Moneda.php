@@ -302,9 +302,35 @@ enum Moneda: string
     case XXX = 'XXX';
 
     /**
+     * Glosas para las monedas.
+     *
+     * Si una glosa no está definida se entregará $name.
+     *
+     * @var array<string, string>
+     */
+    private const GLOSAS = [
+        self::CLP->value => 'Peso chileno',
+        self::CLF->value => 'Unidad de fomento de Chile',
+        self::UTM->value => 'Unidad tributaria mensual de Chile',
+        self::UTA->value => 'Unidad tributaria anual de Chile',
+        self::USD->value => 'Dólar estadounidense',
+        self::EUR->value => 'Euro',
+        self::BTC->value => 'Bitcoin',
+    ];
+
+    /**
+     * Decimales por defecto de las monedas que no los especifican.
+     *
+     * @var int
+     */
+    private const DEFAULT_DECIMALES = 2;
+
+    /**
      * Cantidad de decimales que cada moneda puede tener.
      *
-     * @var array
+     * Si un decimal no está definido se entregará self::DEFAULT_DECIMALES
+     *
+     * @var array<string, int>
      */
     private const DECIMALES = [
         self::CLP->value => 0,
@@ -366,7 +392,7 @@ enum Moneda: string
     /**
      * Símbolos de las monedas reconocidas.
      *
-     * @var array
+     * @var array<string, string>
      */
     private const SIMBOLOS = [
         self::CLP->value => '$',
@@ -426,13 +452,23 @@ enum Moneda: string
     ];
 
     /**
+     * Entrega la glosa de la moneda.
+     *
+     * @return string
+     */
+    public function getGlosa(): string
+    {
+        return self::GLOSAS[$this->value] ?? $this->name;
+    }
+
+    /**
      * Entrega la cantidad de decimales de la moneda.
      *
      * @return int
      */
     public function getDecimales(): int
     {
-        return self::DECIMALES[$this->value];
+        return self::DECIMALES[$this->value] ?? self::DEFAULT_DECIMALES;
     }
 
     /**
