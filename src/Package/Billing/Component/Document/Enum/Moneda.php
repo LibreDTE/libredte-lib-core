@@ -319,74 +319,22 @@ enum Moneda: string
     ];
 
     /**
-     * Decimales por defecto de las monedas que no los especifican.
-     *
-     * @var int
-     */
-    private const DEFAULT_DECIMALES = 2;
-
-    /**
      * Cantidad de decimales que cada moneda puede tener.
      *
-     * Si un decimal no está definido se entregará self::DEFAULT_DECIMALES
+     * Si un decimal no está definido se entregará "2" por defecto.
      *
      * @var array<string, int>
      */
     private const DECIMALES = [
         self::CLP->value => 0,
-        self::CLF->value => 2,
         self::UTM->value => 0,
         self::UTA->value => 0,
-        self::USD->value => 2,
-        self::EUR->value => 2,
         self::BTC->value => 8,
-        self::ARS->value => 2,
-        self::GBP->value => 2,
-        self::SEK->value => 2,
-        self::HKD->value => 2,
-        self::ZAR->value => 2,
-        self::COP->value => 2,
-        self::MXN->value => 2,
-        self::VES->value => 2,
-        self::SGD->value => 2,
-        self::INR->value => 2,
-        self::TWD->value => 2,
-        self::AED->value => 2,
         self::KRW->value => 0,
-        self::PLN->value => 2,
-        self::CZK->value => 2,
-        self::HUF->value => 2,
-        self::THB->value => 2,
-        self::TRY->value => 2,
-        self::MYR->value => 2,
-        self::RUB->value => 2,
-        self::IDR->value => 2,
-        self::UAH->value => 2,
-        self::ILS->value => 2,
-        self::PHP->value => 2,
-        self::SAR->value => 2,
-        self::PKR->value => 2,
         self::VND->value => 0,
-        self::EGP->value => 2,
-        self::RON->value => 2,
         self::ISK->value => 0,
-        self::IRR->value => 2,
-        self::CRC->value => 2,
-        self::PAB->value => 2,
         self::PYG->value => 0,
-        self::PEN->value => 2,
-        self::UYU->value => 2,
-        self::AUD->value => 2,
-        self::BOB->value => 2,
-        self::CNY->value => 2,
-        self::BRL->value => 2,
-        self::DKK->value => 2,
-        self::CAD->value => 2,
         self::JPY->value => 0,
-        self::CHF->value => 2,
-        self::NOK->value => 2,
-        self::NZD->value => 2,
-        self::XXX->value => 2,
     ];
 
     /**
@@ -452,6 +400,34 @@ enum Moneda: string
     ];
 
     /**
+     * Separadores decimal de las monedas.
+     *
+     * Si no está definido el separador se entregará "." por defecto.
+     *
+     * @var array <string, string>
+     */
+    private const SEPARADORES_DECIMAL = [
+        self::CLP->value => ',',
+        self::CLF->value => ',',
+        self::UTM->value => ',',
+        self::UTA->value => ',',
+    ];
+
+    /**
+     * Separadores de miles de las monedas.
+     *
+     * Si no está definido el separador se entregará "," por defecto.
+     *
+     * @var array <string, string>
+     */
+    private const SEPARADORES_MILES = [
+        self::CLP->value => '.',
+        self::CLF->value => '.',
+        self::UTM->value => '.',
+        self::UTA->value => '.',
+    ];
+
+    /**
      * Entrega la glosa de la moneda.
      *
      * @return string
@@ -468,7 +444,7 @@ enum Moneda: string
      */
     public function getDecimales(): int
     {
-        return self::DECIMALES[$this->value] ?? self::DEFAULT_DECIMALES;
+        return self::DECIMALES[$this->value] ?? 2;
     }
 
     /**
@@ -479,5 +455,25 @@ enum Moneda: string
     public function getSimbolo(): string
     {
         return self::SIMBOLOS[$this->value];
+    }
+
+    /**
+     * Entrega el separador decimal que usa la moneda.
+     *
+     * @return string
+     */
+    public function getSeparadorDecimal(): string
+    {
+        return self::SEPARADORES_DECIMAL[$this->value] ?? '.';
+    }
+
+    /**
+     * Entrega el separado de miles que usa la moneda.
+     *
+     * @return string
+     */
+    public function getSeparadorMiles(): string
+    {
+        return self::SEPARADORES_MILES[$this->value] ?? ',';
     }
 }
