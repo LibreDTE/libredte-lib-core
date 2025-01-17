@@ -213,7 +213,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -252,6 +252,19 @@ documentos tributarios.</dd>    </dl>
 
 
 
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent">$entityComponent</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
+</dt>
+
+    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -260,11 +273,115 @@ documentos tributarios.</dd>    </dl>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method___construct">__construct()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_parse">parse()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Realiza la transformación de los datos del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addAdditionalTaxes">addAdditionalTaxes()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega información de impuestos adicionales al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addConstructionCompany">addConstructionCompany()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Marca el DTE como perteneciente a una empresa constructora.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addDetails">addDetails()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Agrega detalles al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addExportData">addExportData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega información de exportación al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addGlobalDiscounts">addGlobalDiscounts()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Agrega descuentos globales al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addReferences">addReferences()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega referencias al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addScheduledPayment">addScheduledPayment()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega información de pagos programados al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addServiceIndicator">addServiceIndicator()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega el indicador de servicio al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addTransferData">addTransferData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Agrega datos de traslado al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData">decodeData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Decodifica datos JSON o los retorna directamente si ya son un arreglo.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax">getTax()</a>
+    <span>
+                                &nbsp;: float|null    </span>
+</dt>
+<dd>Obtiene la tasa de impuesto predeterminada para un tipo de documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData">processDTEData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Procesa los datos de un DTE y los agrega a la estructura proporcionada.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_setInitialDTE">setInitialDTE()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Crea la estructura inicial del DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData">validateMinimalData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida los datos mínimos requeridos para procesar el documento.</dd>
 
     </dl>
 
@@ -273,6 +390,49 @@ documentos tributarios.</dd>    </dl>
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
+        $entityComponent
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$entityComponent</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -280,6 +440,50 @@ documentos tributarios.</dd>    </dl>
             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -294,7 +498,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -334,6 +538,998 @@ documentos tributarios.</dd>    </dl>
 
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addAdditionalTaxes">
+        addAdditionalTaxes()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addAdditionalTaxes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">686</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega información de impuestos adicionales al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addAdditionalTaxes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Identifica impuestos adicionales en los detalles del documento (<code class="prettyprint">Detalle</code>)
+y los agrega a los totales (<code class="prettyprint">Totales</code>) del DTE con su código y tasa.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Busca impuestos únicos en los ítems (<code class="prettyprint">CodImpAdic</code>).</li>
+<li>Obtiene la tasa de cada impuesto de los datos de entrada.</li>
+<li>Si hay impuestos adicionales, los agrega en <code class="prettyprint">ImptoReten</code>.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos con tasas de impuestos adicionales.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE para agregar los impuestos.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addConstructionCompany">
+        addConstructionCompany()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addConstructionCompany" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">733</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Marca el DTE como perteneciente a una empresa constructora.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addConstructionCompany</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Verifica si el emisor es una empresa constructora. Si se cumplen las
+condiciones, añade la clave <code class="prettyprint">CredEC</code> en los totales del DTE, indicando
+derecho a un crédito del 65%.</p>
+<p>Condiciones:</p>
+<ul>
+<li>La configuración <code class="prettyprint">constructora</code> debe estar habilitada en los datos.</li>
+<li>El tipo de documento (<code class="prettyprint">TipoDTE</code>) debe ser factura, guía o nota.</li>
+<li>El campo <code class="prettyprint">CredEC</code> debe estar presente en los datos de entrada.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos que incluyen configuración del emisor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE donde se marcará <code class="prettyprint">CredEC</code>.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addDetails">
+        addDetails()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addDetails" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">551</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega detalles al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addDetails</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Procesa y agrega los detalles del documento, como información de los ítems,
+precios, impuestos, descuentos, entre otros. Clasifica los ítems en afectos
+o exentos según sus características.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Procesa cada ítem verificando códigos, impuestos y descuentos.</li>
+<li>Si el documento es una boleta (<code class="prettyprint">TipoDTE == 39</code>), ajusta precios y
+descuentos incluyendo el IVA.</li>
+<li>Valida que las boletas no contengan impuestos adicionales.</li>
+<li>Clasifica los ítems como afectos o exentos.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos que incluyen los detalles de los ítems.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE donde se agregarán los detalles.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addDetails#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si se detectan impuestos adicionales en una boleta.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Arreglo con:</p>
+<ul>
+<li>El número de ítems afectos.</li>
+<li>El número de ítems exentos.</li>
+</ul>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addExportData">
+        addExportData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addExportData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">509</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega información de exportación al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addExportData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Verifica si el tipo de documento es de exportación
+(<code class="prettyprint">TipoDTE</code> 110, 111 o 112).
+Si corresponde, añade datos como la identificación del receptor
+extranjero, moneda y tipo de cambio.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Añade el número de identificación (<code class="prettyprint">NumId</code>) y nacionalidad del receptor.</li>
+<li>Establece el tipo de moneda (<code class="prettyprint">TpoMoneda</code>) y, si aplica, el tipo de cambio
+(<code class="prettyprint">TpoCambio</code>).</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos que incluyen información de exportación.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE donde se agregarán los datos.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addGlobalDiscounts">
+        addGlobalDiscounts()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addGlobalDiscounts" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">768</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega descuentos globales al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addGlobalDiscounts</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$n_itemAfecto</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$n_itemExento</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Procesa los descuentos globales definidos en los datos de entrada y
+los aplica a ítems afectos, exentos o ambos. En boletas (<code class="prettyprint">TipoDTE == 39</code>),
+ajusta valores en moneda para incluir el IVA.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Valida el tipo (<code class="prettyprint">TpoValor_global</code>) y el monto (<code class="prettyprint">ValorDR_global</code>) del
+descuento.</li>
+<li>Aplica descuentos globales a ítems afectos, exentos o ambos.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos con información del descuento global.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE para agregar los descuentos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$n_itemAfecto</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de ítems afectos en el documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$n_itemExento</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de ítems exentos en el documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Estructura del DTE actualizada con los descuentos globales.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addReferences">
+        addReferences()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addReferences" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">836</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega referencias al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addReferences</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Procesa las referencias de los datos de entrada y las incluye en el DTE.
+Cada referencia contiene información como tipo de documento, folio, fecha,
+código de referencia y razón de referencia.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Recorre las referencias en los datos de entrada.</li>
+<li>Si el folio es <code class="prettyprint">0</code>, se marca como referencia global (<code class="prettyprint">IndGlobal == 1</code>).</li>
+<li>Añade las referencias procesadas al arreglo <code class="prettyprint">Referencia</code> del DTE.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos con información de las referencias.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Estructura del DTE donde se agregarán las referencias.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addScheduledPayment">
+        addScheduledPayment()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addScheduledPayment" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">350</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega información de pagos programados al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addScheduledPayment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método verifica si la forma de pago es una venta a crédito
+(<code class="prettyprint">FmaPago == 2</code>) y, si no es una boleta, añade información de los
+pagos programados al DTE.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Si no hay pagos definidos, usa la fecha de vencimiento (<code class="prettyprint">FchVenc</code>) y
+añade una glosa indicando que la fecha de pago es igual al vencimiento.</li>
+<li>Si hay pagos definidos, procesa las fechas, montos y glosas de los pagos.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de entrada que incluyen información de pagos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Arreglo del DTE en el cual se agregarán los pagos.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addServiceIndicator">
+        addServiceIndicator()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addServiceIndicator" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">455</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega el indicador de servicio al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addServiceIndicator</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Procesa <code class="prettyprint">IndServicio</code> para determinar si debe incluirse en el DTE,
+ajustándolo según el tipo de documento (<code class="prettyprint">TipoDTE</code>) y validando su valor.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Si el DTE es una boleta (39 o 41), invierte los valores 1 y 2 de <code class="prettyprint">IndServicio</code>.</li>
+<li>Valida el valor de <code class="prettyprint">IndServicio</code> según el tipo de documento (<code class="prettyprint">TipoDTE</code>).</li>
+<li>Asigna el indicador de servicio al DTE solo si el valor es válido.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de entrada que incluyen el indicador de servicio.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Arreglo del DTE al cual se agregará el indicador.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addTransferData">
+        addTransferData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addTransferData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">401</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Agrega datos de traslado al DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addTransferData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Verifica si el documento es una guía de despacho (<code class="prettyprint">TipoDTE == 52</code>).
+Si es así, añade detalles de traslado, como patente, transportista,
+chofer y destino.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Si se especifica <code class="prettyprint">IndTraslado</code>, este se agrega al DTE.</li>
+<li>Si hay información de transporte (patente, transportista, chofer o destino),
+esta se incluye en la sección de transporte del DTE.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de entrada que incluyen información de traslado.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Arreglo del DTE al cual se agregará la información.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_decodeData">
+        decodeData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">83</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Decodifica datos JSON o los retorna directamente si ya son un arreglo.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">decodeData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Verifica si los datos son una cadena JSON y los decodifica a un arreglo
+asociativo. Si los datos ya son un arreglo, los retorna sin cambios.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos a procesar. Puede ser JSON o un arreglo.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si la cadena JSON proporcionada no es válida.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Datos decodificados como arreglo asociativo.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTax">
+        getTax()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">878</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene la tasa de impuesto predeterminada para un tipo de documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getTax</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentType</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método consulta el repositorio de tipos de documentos para obtener
+la tasa de IVA predeterminada asociada al tipo de documento especificado.</p>
+<p>Comportamiento:</p>
+<ul>
+<li>Si no se encuentra el tipo de documento, retorna <code class="prettyprint">null</code>.</li>
+<li>Si se encuentra, retorna la tasa predeterminada de IVA.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$documentType</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>ID del tipo de documento a consultar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">float|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La tasa de IVA predeterminada o <code class="prettyprint">null</code> si no se encuentra.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_processDTEData">
+        processDTEData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Procesa los datos de un DTE y los agrega a la estructura proporcionada.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">processDTEData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método realiza diversas operaciones sobre los datos del DTE, como la
+adición de pagos programados, datos de traslado, detalles y referencias.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos del DTE a procesar.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Referencia al arreglo del DTE donde se agregarán los datos.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setInitialDTE">
+        setInitialDTE()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_setInitialDTE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">221</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Crea la estructura inicial del DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">setInitialDTE</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método genera un arreglo con la estructura inicial del DTE, incluyendo
+información del encabezado, emisor, receptor y otros datos generales que se
+requieren para procesar el documento.</p>
+<p>Estructura del DTE:</p>
+<ul>
+<li>Encabezado:
+<ul>
+<li>IdDoc: Información del documento, como tipo y folio.</li>
+<li>Emisor: Detalles del emisor, como RUT y dirección.</li>
+<li>Receptor: Detalles del receptor, como RUT y razón social.</li>
+<li>RUTSolicita: Información del solicitante, si aplica.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de entrada para generar la estructura del DTE.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dte</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Referencia donde se almacenará la estructura generada.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateMinimalData">
+        validateMinimalData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">159</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida los datos mínimos requeridos para procesar el documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">validateMinimalData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método verifica que se proporcionen los datos mínimos necesarios
+para generar el documento. Si falta algún dato obligatorio, lanza
+una excepción.</p>
+<p>Reglas de validación:</p>
+<ul>
+<li>Si los datos están vacíos, no se permite acceso directo.</li>
+<li>El tipo de documento (<code class="prettyprint">TpoDoc</code>) es obligatorio.</li>
+<li>Los campos mínimos varían según el tipo de documento.</li>
+</ul>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos del formulario enviados para procesar el documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si falta algún dato obligatorio o el acceso es directo.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
 </article>
             </section>
 
@@ -440,15 +1636,37 @@ documentos tributarios.</dd>    </dl>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent">$entityComponent</a></li>
+                                            </ul>
+                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_parse">parse()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addAdditionalTaxes">addAdditionalTaxes()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addConstructionCompany">addConstructionCompany()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addDetails">addDetails()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addExportData">addExportData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addGlobalDiscounts">addGlobalDiscounts()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addReferences">addReferences()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addScheduledPayment">addScheduledPayment()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addServiceIndicator">addServiceIndicator()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addTransferData">addTransferData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData">decodeData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax">getTax()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData">processDTEData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_setInitialDTE">setInitialDTE()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData">validateMinimalData()</a></li>
                                     </ul>
             </li>
                     </ul>

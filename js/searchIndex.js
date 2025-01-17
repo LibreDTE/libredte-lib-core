@@ -1786,6 +1786,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020ISO\u00204217\u0020asociado\u0020a\u0020la\u0020moneda.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method_getCodigoISO"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003AgetGlosa\u0028\u0029",
+            "name": "getGlosa",
+            "summary": "Entrega\u0020la\u0020glosa\u0020de\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method_getGlosa"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaMoneda\u003A\u003AgetMoneda\u0028\u0029",
             "name": "getMoneda",
             "summary": "Obtiene\u0020la\u0020instancia\u0020de\u0020la\u0020moneda\u0020asociada\u0020a\u0020la\u0020moneda\u0020de\u0020aduaba.",
@@ -3546,10 +3551,50 @@ Search.appendIndex(
             "summary": "Estrategia\u0020\u0022billing.document.batch_processor.strategy\u003Aspreadsheet.csv\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003Aprocess\u0028\u0029",
             "name": "process",
             "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_process"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AcreateDocument\u0028\u0029",
+            "name": "createDocument",
+            "summary": "Crea\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020proporcionados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AsetInitialDTE\u0028\u0029",
+            "name": "setInitialDTE",
+            "summary": "Genera\u0020la\u0020estructura\u0020inicial\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_setInitialDTE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AaddItem\u0028\u0029",
+            "name": "addItem",
+            "summary": "Agrega\u0020un\u0020\u00EDtem\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AaddTransport\u0028\u0029",
+            "name": "addTransport",
+            "summary": "Agrega\u0020informaci\u00F3n\u0020de\u0020transporte\u0020a\u0020un\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addTransport"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AaddReference\u0028\u0029",
+            "name": "addReference",
+            "summary": "Agrega\u0020una\u0020referencia\u0020a\u0020un\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AgetCurrency\u0028\u0029",
+            "name": "getCurrency",
+            "summary": "Obtiene\u0020la\u0020glosa\u0020de\u0020una\u0020moneda\u0020a\u0020partir\u0020de\u0020su\u0020c\u00F3digo\u0020ISO.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_getCurrency"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_entityComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker",
             "name": "BatchProcessorWorker",
@@ -4696,10 +4741,90 @@ Search.appendIndex(
             "summary": "Estrategia\u0020\u0022billing.document.parser.strategy\u003Aform.estandar\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003Aparse\u0028\u0029",
             "name": "parse",
             "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_parse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AdecodeData\u0028\u0029",
+            "name": "decodeData",
+            "summary": "Decodifica\u0020datos\u0020JSON\u0020o\u0020los\u0020retorna\u0020directamente\u0020si\u0020ya\u0020son\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AprocessDTEData\u0028\u0029",
+            "name": "processDTEData",
+            "summary": "Procesa\u0020los\u0020datos\u0020de\u0020un\u0020DTE\u0020y\u0020los\u0020agrega\u0020a\u0020la\u0020estructura\u0020proporcionada.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AvalidateMinimalData\u0028\u0029",
+            "name": "validateMinimalData",
+            "summary": "Valida\u0020los\u0020datos\u0020m\u00EDnimos\u0020requeridos\u0020para\u0020procesar\u0020el\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AsetInitialDTE\u0028\u0029",
+            "name": "setInitialDTE",
+            "summary": "Crea\u0020la\u0020estructura\u0020inicial\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_setInitialDTE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddScheduledPayment\u0028\u0029",
+            "name": "addScheduledPayment",
+            "summary": "Agrega\u0020informaci\u00F3n\u0020de\u0020pagos\u0020programados\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addScheduledPayment"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddTransferData\u0028\u0029",
+            "name": "addTransferData",
+            "summary": "Agrega\u0020datos\u0020de\u0020traslado\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addTransferData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddServiceIndicator\u0028\u0029",
+            "name": "addServiceIndicator",
+            "summary": "Agrega\u0020el\u0020indicador\u0020de\u0020servicio\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addServiceIndicator"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddExportData\u0028\u0029",
+            "name": "addExportData",
+            "summary": "Agrega\u0020informaci\u00F3n\u0020de\u0020exportaci\u00F3n\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addExportData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddDetails\u0028\u0029",
+            "name": "addDetails",
+            "summary": "Agrega\u0020detalles\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addDetails"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddAdditionalTaxes\u0028\u0029",
+            "name": "addAdditionalTaxes",
+            "summary": "Agrega\u0020informaci\u00F3n\u0020de\u0020impuestos\u0020adicionales\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addAdditionalTaxes"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddConstructionCompany\u0028\u0029",
+            "name": "addConstructionCompany",
+            "summary": "Marca\u0020el\u0020DTE\u0020como\u0020perteneciente\u0020a\u0020una\u0020empresa\u0020constructora.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addConstructionCompany"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddGlobalDiscounts\u0028\u0029",
+            "name": "addGlobalDiscounts",
+            "summary": "Agrega\u0020descuentos\u0020globales\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addGlobalDiscounts"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AaddReferences\u0028\u0029",
+            "name": "addReferences",
+            "summary": "Agrega\u0020referencias\u0020al\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addReferences"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AgetTax\u0028\u0029",
+            "name": "getTax",
+            "summary": "Obtiene\u0020la\u0020tasa\u0020de\u0020impuesto\u0020predeterminada\u0020para\u0020un\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A\u0024entityComponent",
+            "name": "entityComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker",
             "name": "ParserWorker",
