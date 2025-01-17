@@ -27,6 +27,7 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBatch;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker;
@@ -36,6 +37,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(Application::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(DocumentComponent::class)]
+#[CoversClass(AduanaMoneda::class)]
 #[CoversClass(DocumentBatch::class)]
 #[CoversClass(BatchProcessorWorker::class)]
 #[CoversClass(CsvBatchProcessorStrategy::class)]

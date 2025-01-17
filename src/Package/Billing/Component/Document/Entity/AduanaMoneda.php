@@ -51,6 +51,16 @@ class AduanaMoneda extends Entity
     }
 
     /**
+     * Entrega la glosa de la moneda.
+     *
+     * @return string
+     */
+    public function getGlosa(): string
+    {
+        return $this->getAttribute('glosa');
+    }
+
+    /**
      * Obtiene la instancia de la moneda asociada a la moneda de aduaba.
      *
      * Si la moneda no fue encontrada en las monedas soportadas se devolverá la

@@ -50,18 +50,23 @@ use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form\EstandarParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
@@ -102,15 +107,19 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(DocumentBagManagerWorker::class)]
 #[CoversClass(NormalizerWorker::class)]
 #[CoversClass(FacturaAfectaNormalizerStrategy::class)]
+#[CoversClass(BoletaAfectaNormalizerStrategy::class)]
 #[CoversClass(ParserWorker::class)]
 #[CoversClass(JsonParserStrategy::class)]
 #[CoversClass(XmlParserStrategy::class)]
 #[CoversClass(YamlParserStrategy::class)]
+#[CoversClass(EstandarParserStrategy::class)]
 #[CoversClass(RendererWorker::class)]
 #[CoversClass(SanitizerWorker::class)]
 #[CoversClass(FacturaAfectaSanitizerStrategy::class)]
+#[CoversClass(BoletaAfectaSanitizerStrategy::class)]
 #[CoversClass(ValidatorWorker::class)]
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
+#[CoversClass(BoletaAfectaValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
 #[CoversClass(CafBag::class)]
@@ -126,6 +135,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
+#[CoversClass(NormalizeBoletaAfectaJob::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
