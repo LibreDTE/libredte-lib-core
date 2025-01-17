@@ -2501,6 +2501,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020s\u00EDmbolo\u0020de\u0020la\u0020moneda.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-Moneda.html#method_getSimbolo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\Moneda\u003A\u003AgetSeparadorDecimal\u0028\u0029",
+            "name": "getSeparadorDecimal",
+            "summary": "Entrega\u0020el\u0020separador\u0020decimal\u0020que\u0020usa\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-Moneda.html#method_getSeparadorDecimal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\Moneda\u003A\u003AgetSeparadorMiles\u0028\u0029",
+            "name": "getSeparadorMiles",
+            "summary": "Entrega\u0020el\u0020separado\u0020de\u0020miles\u0020que\u0020usa\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-Moneda.html#method_getSeparadorMiles"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\Moneda\u003A\u003ACLP",
             "name": "CLP",
             "summary": "Pesos\u0020chilenos.",
