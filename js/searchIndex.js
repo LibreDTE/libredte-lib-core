@@ -2481,6 +2481,11 @@ Search.appendIndex(
             "summary": "Enum\u0020con\u0020las\u0020monedas\u0020reconocidas\u0020en\u0020la\u0020aplicaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-Moneda.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\Moneda\u003A\u003AgetGlosa\u0028\u0029",
+            "name": "getGlosa",
+            "summary": "Entrega\u0020la\u0020glosa\u0020de\u0020la\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-Moneda.html#method_getGlosa"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\Moneda\u003A\u003AgetDecimales\u0028\u0029",
             "name": "getDecimales",
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020decimales\u0020de\u0020la\u0020moneda.",
