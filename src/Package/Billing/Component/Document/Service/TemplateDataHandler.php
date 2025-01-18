@@ -163,7 +163,12 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
                 )->findBy(['glosa' => $codigo]);
                 $moneda = ($result[0] ?? null)->getMoneda() ?? Moneda::XXX;
                 $num = round((float) $num, $moneda->getDecimales());
-                return number_format($num, $moneda->getDecimales(), ',', '.');
+                return number_format(
+                    $num,
+                    $moneda->getDecimales(),
+                    $moneda->getSeparadorDecimal(),
+                    $moneda->getSeparadorMiles(),
+                );
             },
         ];
     }
