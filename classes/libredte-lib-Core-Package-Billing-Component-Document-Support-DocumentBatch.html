@@ -207,7 +207,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -259,6 +259,20 @@ de manera sencilla y, sobre todo, extensible.</p>
 <dd>Reglas de esquema de las opciones del lote de documentos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate">$certificate</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null            </span>
+</dt>
+<dd>Certificado digital (firma electrónica) para la firma del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_emisor">$emisor</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null            </span>
+</dt>
+<dd>Emisor del documento tributario.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file">$file</a>
     <span>
                         &nbsp;: string            </span>
@@ -286,6 +300,21 @@ documentos.</dd>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Constructor del lote.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getCertificate">getCertificate()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
+</dt>
+<dd>Obtiene el certificado para firmar el documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getEmisor">getEmisor()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null    </span>
+</dt>
+<dd>Obtiene el emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile">getFile()</a>
@@ -300,6 +329,20 @@ documentos.</dd>
                                 &nbsp;: <abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|null    </span>
 </dt>
 <dd>Obtiene las opciones del procesamiento en lote de documentos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate">setCertificate()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el certificado para firmar el documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setEmisor">setEmisor()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setOptions">setOptions()</a>
@@ -338,7 +381,7 @@ documentos.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -371,6 +414,80 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_certificate">
+        $certificate
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">124</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Certificado digital (firma electrónica) para la firma del documento.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$certificate</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_emisor">
+        $emisor
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_emisor" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">117</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Emisor del documento tributario.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__name">$emisor</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_file">
         $file
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file" class="headerlink"><i class="fas fa-link"></i></a>
@@ -381,7 +498,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -418,7 +535,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -481,11 +598,12 @@ documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">110</span>
+    <span class="phpdocumentor-element-found-in__line">132</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor del lote.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -524,6 +642,84 @@ documentos.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getCertificate">
+        getCertificate()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getCertificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">205</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el certificado para firmar el documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getEmisor">
+        getEmisor()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getEmisor" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">187</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el emisor del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getEmisor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getFile">
         getFile()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile" class="headerlink"><i class="fas fa-link"></i></a>
@@ -532,7 +728,7 @@ documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
@@ -571,7 +767,7 @@ documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
@@ -602,6 +798,104 @@ documentos.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setCertificate">
+        setCertificate()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">195</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el certificado para firmar el documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$certificate</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setEmisor">
+        setEmisor()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setEmisor" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">177</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el emisor del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setEmisor</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$emisor</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setOptions">
         setOptions()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setOptions" class="headerlink"><i class="fas fa-link"></i></a>
@@ -610,7 +904,7 @@ documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -759,6 +1053,8 @@ documentos.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_optionsSchema">$optionsSchema</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate">$certificate</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_emisor">$emisor</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file">$file</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_options">$options</a></li>
                                             </ul>
@@ -768,8 +1064,12 @@ documentos.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getCertificate">getCertificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getEmisor">getEmisor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile">getFile()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getOptions">getOptions()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate">setCertificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setEmisor">setEmisor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setOptions">setOptions()</a></li>
                                     </ul>
             </li>

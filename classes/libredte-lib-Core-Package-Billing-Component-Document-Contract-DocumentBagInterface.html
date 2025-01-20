@@ -300,6 +300,13 @@
 <dd>Obtiene el emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getFolio">getFolio()</a>
+    <span>
+                                &nbsp;: int|string|null    </span>
+</dt>
+<dd>Obtiene el folio del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getId">getId()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -432,6 +439,13 @@
 <dd>Asigna el emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setFolio">setFolio()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el folio numérico al documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setInputData">setInputData()</a>
     <span>
                                 &nbsp;: static    </span>
@@ -527,7 +541,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">341</span>
+    <span class="phpdocumentor-element-found-in__line">369</span>
 
     </aside>
 
@@ -918,6 +932,52 @@ Si está disponible además se agrega el timbre.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getFolio">
+        getFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getFolio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">335</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el folio del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getFolio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Cuando el folio es un entero se asume que es un folio oficial del SII.</p>
+<p>Cuando es un folio alfanumérico (string) se asume que es un folio de una
+cotización de LibreDTE.</p>
+<p>Cuando el folio no existe (es <code class="prettyprint">false</code> o <code class="prettyprint">0</code>) se entregará <code class="prettyprint">null</code>.</p>
+<p>El folio puede provenir del documento normalizado (si existe) o del
+documento parseado (si aun no se normaliza).</p>
+</section>
+
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|string|null</span>
             </section>
 
 </article>
@@ -1734,6 +1794,58 @@ Si está disponible además se agrega el timbre.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setFolio">
+        setFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setFolio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">318</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el folio numérico al documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setFolio</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folio</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El folio se asignará a los datos normalizados si existen o bien a los
+datos parseados si aun no se normaliza.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$folio</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setInputData">
         setInputData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setInputData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2152,7 +2264,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">347</span>
 
     </aside>
 
@@ -2205,7 +2317,7 @@ y tener una nueva bolsa sin el DTE para volver a construir y timbrar.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">332</span>
+    <span class="phpdocumentor-element-found-in__line">360</span>
 
     </aside>
 
@@ -2367,6 +2479,7 @@ construir y firmar.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentType">getDocumentType()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentTypeId">getDocumentTypeId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getEmisor">getEmisor()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getFolio">getFolio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getId">getId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getInputData">getInputData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData">getNormalizedData()</a></li>
@@ -2386,6 +2499,7 @@ construir y firmar.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setDocument">setDocument()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setDocumentType">setDocumentType()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setEmisor">setEmisor()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setFolio">setFolio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setInputData">setInputData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setNormalizedData">setNormalizedData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setOptions">setOptions()</a></li>

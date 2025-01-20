@@ -177,16 +177,14 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer.html">OwnershipTransfer</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier.html">Identifier</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier-service.html">Service</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    OwnershipTransferComponent
+    FakeCafProvider
 
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractComponent">AbstractComponent</abbr>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -197,7 +195,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferComponentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface">OwnershipTransferComponentInterface</abbr></a>                    </span>
+                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a>                    </span>
     
     </h2>
 
@@ -207,15 +205,19 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Componente &quot;billing.ownership_transfer&quot;.</p>
+            <p class="phpdocumentor-summary">Implementación de un proveedor de archivos CAF falsos.</p>
 
 
+    <section class="phpdocumentor-description"><p>Esta implementación es solo para pruebas de LibreDTE. Cada aplicación deberá
+implementar un servicio real de CafProviderInterface para que sea inyectado
+donde sea necesario (ej: en emisión masiva).</p>
+</section>
 
 
 
@@ -225,7 +227,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -233,36 +235,58 @@
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferComponentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface">OwnershipTransferComponentInterface</abbr></a></dt><dd>Interfaz para `OwnershipTransferComponent`.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a></dt><dd>Interfaz para el servicio provee el CAF con el folio que se debe asignar al
+emitir un documento tributario.</dd>    </dl>
 
 
 
 
 
 
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker">$cafFakerWorker</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios">$folios</a>
+    <span>
+                        &nbsp;: array&lt;int, array&lt;int, int&gt;&gt;            </span>
+</dt>
+<dd>Historial de folios asignados.</dd>
+
+    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Constructor con dependencias del servicio.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method_getWorkers">getWorkers()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_getFolio">getFolio()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a>    </span>
 </dt>
-<dd>{@inheritDoc}</dd>
+<dd>Provee un CAF para el emisor y tipo de documento solicitado.</dd>
 
     </dl>
 
@@ -271,11 +295,98 @@
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_cafFakerWorker">
+        $cafFakerWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$cafFakerWorker</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_folios">
+        $folios
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Historial de folios asignados.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;int, array&lt;int, int&gt;&gt;</span>
+    <span class="phpdocumentor-signature__name">$folios</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+        <section class="phpdocumentor-description"><p>Permite entregar siempre folios diferentes para los emisores y tipos de
+documentos. Así se evitan problemas de repetir folios. Esto es lo que
+realmente debería implementar la aplicación que use LibreDTE: un control
+de la asignación de folios.</p>
+<p>El arreglo guardará por cada emisor y tipo de documento el último folio
+que fue entregado.</p>
+</section>
+
+    
+    
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -286,26 +397,37 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor con dependencias del servicio.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafFakerWorker</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$cafFakerWorker</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
     
@@ -318,36 +440,70 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getWorkers">
-        getWorkers()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method_getWorkers" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getFolio">
+        getFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_getFolio" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+        <p class="phpdocumentor-summary">Provee un CAF para el emisor y tipo de documento solicitado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getWorkers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getFolio</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipoDocumento</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folio</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$emisor</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Emisor para el que se busca un CAF.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tipoDocumento</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento a buscar su CAF.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$folio</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Permite indicar si se quiere un folio específico.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Bolsa con los datos del CAF encontrado.</p>
+</section>
+
             </section>
 
 </article>
@@ -357,7 +513,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -456,16 +612,24 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker">$cafFakerWorker</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios">$folios</a></li>
+                                            </ul>
+                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method_getWorkers">getWorkers()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_getFolio">getFolio()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -485,7 +649,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

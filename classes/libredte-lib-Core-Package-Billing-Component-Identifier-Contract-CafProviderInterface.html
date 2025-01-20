@@ -177,16 +177,13 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-contract.html">Contract</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier.html">Identifier</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier-contract.html">Contract</a></li>
     </ul>
 
     <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    BatchProcessorWorkerInterface
-            <span class="phpdocumentor-element__extends">
-            extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+    CafProviderInterface
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -196,15 +193,20 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/BatchProcessorWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-batchprocessorworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/BatchProcessorWorkerInterface.php">BatchProcessorWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafProviderInterface.php"><a href="files/src-package-billing-component-identifier-contract-cafproviderinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafProviderInterface.php">CafProviderInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Interfaz para los procesadores de documentos en lote.</p>
+            <p class="phpdocumentor-summary">Interfaz para el servicio provee el CAF con el folio que se debe asignar al
+emitir un documento tributario.</p>
 
 
+    <section class="phpdocumentor-description"><p>Este proveedor permite que una aplicación entregue el CAF desde cualquier
+fuente. Incluso que pueda proveer CAF falsos como la implementación que viene
+por defecto en LibreDTE.</p>
+</section>
 
 
 
@@ -214,7 +216,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -229,16 +231,16 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#method_process">process()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_getFolio">getFolio()</a>
     <span>
-                                &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a>    </span>
 </dt>
-<dd>Procesa masivamente documentos tributarios electrónicos.</dd>
+<dd>Provee un CAF para el emisor y tipo de documento solicitado.</dd>
 
     </dl>
 
@@ -250,7 +252,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -259,63 +261,72 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_process">
-        process()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#method_process" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getFolio">
+        getFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_getFolio" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/BatchProcessorWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-batchprocessorworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/BatchProcessorWorkerInterface.php">BatchProcessorWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafProviderInterface.php"><a href="files/src-package-billing-component-identifier-contract-cafproviderinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafProviderInterface.php">CafProviderInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Procesa masivamente documentos tributarios electrónicos.</p>
+        <p class="phpdocumentor-summary">Provee un CAF para el emisor y tipo de documento solicitado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getFolio</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipoDocumento</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folio</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Opcionalmente se puede indicar el folio que se desea utilizar.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$batch</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$emisor</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Contenedor del lote a procesar.</p>
+                    <section class="phpdocumentor-description"><p>Emisor para el que se busca un CAF.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tipoDocumento</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento a buscar su CAF.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$folio</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Permite indicar si se quiere un folio específico.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#method_process#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
-                                                            
-                                             
-                                    </dd>
-                                            </dl>
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Bolsa con los datos del CAF encontrado.</p>
+</section>
+
             </section>
 
 </article>
@@ -325,7 +336,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Contract/BatchProcessorWorkerInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Identifier/Contract/CafProviderInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -424,14 +435,14 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#toc-constants">Constants</a></li>
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#toc-methods">Methods</a></li>
+                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#toc-constants">Constants</a></li>
+                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#toc-methods">Methods</a></li>
                 </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#method_process">process()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_getFolio">getFolio()</a></li>
                                             </ul>
                 </li>
             
@@ -452,7 +463,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

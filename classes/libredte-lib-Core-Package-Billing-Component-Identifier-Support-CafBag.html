@@ -207,7 +207,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -264,6 +264,13 @@ manera sencilla y, sobre todo, extensible.</p>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_foliosDisponibles">$foliosDisponibles</a>
+    <span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
+</dt>
+<dd>Listado de folios disponibles en el CAF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_tipoDocumento">$tipoDocumento</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>            </span>
@@ -282,6 +289,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Constructor de la bolsa del CAF.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getCaf">getCaf()</a>
@@ -298,11 +306,39 @@ manera sencilla y, sobre todo, extensible.</p>
 <dd>Obtiene el contribuyente emisor del CAF.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getFoliosDisponibles">getFoliosDisponibles()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Obtiene el listado de folios disponibles del CAF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getSiguienteFolio">getSiguienteFolio()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el siguiente folio disponible que se puede utilizar en el CAF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getTipoDocumento">getTipoDocumento()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>    </span>
 </dt>
 <dd>Obtiene el tipo de documento del CAF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_setFoliosDisponibles">setFoliosDisponibles()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el listado de folios disponibles en el CAF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_ensureFoliosDisponibles">ensureFoliosDisponibles()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Asegura que existan folios disponibles asignados.</dd>
 
     </dl>
 
@@ -334,7 +370,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -370,7 +406,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -394,6 +430,45 @@ manera sencilla y, sobre todo, extensible.</p>
             phpdocumentor-element
             -property
             -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_foliosDisponibles">
+        $foliosDisponibles
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_foliosDisponibles" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Listado de folios disponibles en el CAF.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$foliosDisponibles</span>
+    </code>
+
+        <section class="phpdocumentor-description"><p>Estos son los folios que se pueden usar.</p>
+</section>
+
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
                                                 -read-only        "
 >
     <h4 class="phpdocumentor-element__name" id="property_tipoDocumento">
@@ -406,7 +481,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -447,11 +522,12 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor de la bolsa del CAF.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$caf</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipoDocumento</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -505,7 +581,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -544,7 +620,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -575,6 +651,84 @@ manera sencilla y, sobre todo, extensible.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getFoliosDisponibles">
+        getFoliosDisponibles()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getFoliosDisponibles" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">101</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el listado de folios disponibles del CAF.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getFoliosDisponibles</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSiguienteFolio">
+        getSiguienteFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getSiguienteFolio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">111</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el siguiente folio disponible que se puede utilizar en el CAF.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSiguienteFolio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getTipoDocumento">
         getTipoDocumento()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getTipoDocumento" class="headerlink"><i class="fas fa-link"></i></a>
@@ -583,7 +737,7 @@ manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -607,6 +761,92 @@ manera sencilla y, sobre todo, extensible.</p>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a></span>
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setFoliosDisponibles">
+        setFoliosDisponibles()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_setFoliosDisponibles" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">91</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el listado de folios disponibles en el CAF.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setFoliosDisponibles</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$foliosDisponibles</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$foliosDisponibles</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_ensureFoliosDisponibles">
+        ensureFoliosDisponibles()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_ensureFoliosDisponibles" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafBag.php"><a href="files/src-package-billing-component-identifier-support-cafbag.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafBag.php">CafBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">137</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asegura que existan folios disponibles asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">ensureFoliosDisponibles</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Si no existen asignados se asignan según el rango del CAF.</p>
+</section>
+
+    
+    
+
+    
+
+    
 </article>
             </section>
 
@@ -723,6 +963,7 @@ manera sencilla y, sobre todo, extensible.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_caf">$caf</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_emisor">$emisor</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_foliosDisponibles">$foliosDisponibles</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_tipoDocumento">$tipoDocumento</a></li>
                                             </ul>
                 </li>
@@ -733,7 +974,11 @@ manera sencilla y, sobre todo, extensible.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getCaf">getCaf()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getEmisor">getEmisor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getFoliosDisponibles">getFoliosDisponibles()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getSiguienteFolio">getSiguienteFolio()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getTipoDocumento">getTipoDocumento()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_setFoliosDisponibles">setFoliosDisponibles()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_ensureFoliosDisponibles">ensureFoliosDisponibles()</a></li>
                                     </ul>
             </li>
                     </ul>
