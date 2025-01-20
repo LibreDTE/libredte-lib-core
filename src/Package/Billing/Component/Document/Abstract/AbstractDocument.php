@@ -271,8 +271,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             unset($array['TED'], $array['TmstFirma']);
 
             $arrayRequired = [
-                'Detalle',
                 'Encabezado.Totales.ImptoReten',
+                'Detalle',
+                'DscRcgGlobal',
+                'Referencia',
             ];
             foreach ($arrayRequired as $path) {
                 Arr::ensureArrayAtPath($array, $path);

@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
+use Derafu\Lib\Core\Enum\Currency;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
-use libredte\lib\Core\Package\Billing\Component\Document\Enum\Moneda;
 
 /**
  * Entidad de una moneda de aduana (documentos de exportación).
@@ -56,16 +56,16 @@ class AduanaMoneda extends Entity
      * Si la moneda no fue encontrada en las monedas soportadas se devolverá la
      * moneda ISO 4217 XXX.
      *
-     * @return Moneda
+     * @return Currency
      */
-    public function getMoneda(): Moneda
+    public function getCurrency(): Currency
     {
-        $moneda = Moneda::tryFrom($this->getCodigoISO());
+        $moneda = Currency::tryFrom($this->getCodigoISO());
 
         if ($moneda !== null) {
             return $moneda;
         }
 
-        return Moneda::XXX;
+        return Currency::XXX;
     }
 }

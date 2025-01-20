@@ -81,12 +81,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/derafu/derafu-lib-core.git",
-                "reference": "4a097407992e4b7e39672d9c9d83927614fac817"
+                "reference": "1a9fa42653980a3883ebc80b5c31642d41d4ebe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/4a097407992e4b7e39672d9c9d83927614fac817",
-                "reference": "4a097407992e4b7e39672d9c9d83927614fac817",
+                "url": "https://api.github.com/repos/derafu/derafu-lib-core/zipball/1a9fa42653980a3883ebc80b5c31642d41d4ebe0",
+                "reference": "1a9fa42653980a3883ebc80b5c31642d41d4ebe0",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "issues": "https://github.com/derafu/derafu-lib-core/issues",
                 "source": "https://github.com/derafu/derafu-lib-core"
             },
-            "time": "2025-01-17T18:20:49+00:00"
+            "time": "2025-01-20T22:17:47+00:00"
         },
         {
             "name": "doctrine/collections",

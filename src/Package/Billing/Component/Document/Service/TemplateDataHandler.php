@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
+use Derafu\Lib\Core\Enum\Currency;
 use Derafu\Lib\Core\Helper\Date;
 use Derafu\Lib\Core\Helper\Rut;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
@@ -39,7 +40,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdiciona
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
-use libredte\lib\Core\Package\Billing\Component\Document\Enum\Moneda;
 use TCPDF2DBarcode;
 
 /**
@@ -150,7 +150,7 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
                 $png = $pdf417->getBarcodePngData(1, 1, [0,0,0]);
                 return 'data:image/png;base64,' . base64_encode($png);
             },
-            // Montos sin decimales.
+            // Montos sin decimales y formato de Chile en separadores.
             'Number' => function (int|float|string $num) {
                 $num = round((float) $num);
                 return number_format($num, 0, ',', '.');
@@ -161,14 +161,8 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
                 $result = $this->entityComponent->getRepository(
                     AduanaMoneda::class
                 )->findBy(['glosa' => $codigo]);
-                $moneda = ($result[0] ?? null)->getMoneda() ?? Moneda::XXX;
-                $num = round((float) $num, $moneda->getDecimales());
-                return number_format(
-                    $num,
-                    $moneda->getDecimales(),
-                    $moneda->getSeparadorDecimal(),
-                    $moneda->getSeparadorMiles(),
-                );
+                $moneda = ($result[0] ?? null)?->getCurrency() ?? Currency::XXX;
+                return $moneda->format((float) $num);
             },
         ];
     }
