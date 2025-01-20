@@ -44,7 +44,7 @@ class BoletaExentaNormalizerStrategy extends AbstractNormalizerStrategy implemen
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {

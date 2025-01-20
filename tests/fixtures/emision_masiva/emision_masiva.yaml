@@ -1,0 +1,23 @@
+# Cantidad de documentos que el archivo de emisión masiva debe generar.
+cantidad: 10
+
+# Listado de documentos con sus valores esperados en notación ".".
+# El orden de los documentos debe ser el mismo del archivo de emisión.
+documentos:
+  - Encabezado.IdDoc.Folio: 1
+    Encabezado.Receptor.RUTRecep: '77888999-4'
+    Encabezado.Totales.IVA: 570
+    Encabezado.Totales.MntTotal: 103570
+  - Encabezado.IdDoc.FchEmis: '2017-03-25'
+    Encabezado.IdDoc.FchVenc: '2017-03-31'
+    Encabezado.Totales.IVA: 5890
+    Encabezado.Totales.MntTotal: 36890
+  - Encabezado.Totales.MntTotal: 30000
+  - Encabezado.Totales.MntTotal: 6000 # En boletas el precio del item ya va con IVA.
+  - Encabezado.Totales.MntTotal: 380
+  - Encabezado.Totales.MntTotal: 100
+  - Encabezado.Totales.MntTotal: 50
+  - Encabezado.Totales.MntTotal: 30000
+  - Encabezado.Totales.MntTotal: 59500
+  - Encabezado.Totales.IVA: 19000
+    Encabezado.Totales.MntTotal: 100000

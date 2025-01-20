@@ -37,7 +37,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\SanitizerExce
 abstract class AbstractSanitizerStrategy extends AbstractStrategy implements SanitizerStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function sanitize(DocumentBagInterface $bag): array
     {

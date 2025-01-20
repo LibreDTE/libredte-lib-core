@@ -41,7 +41,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function render(DocumentBagInterface $bag): string
     {

@@ -44,7 +44,7 @@ class FacturaExportacionNormalizerStrategy extends AbstractNormalizerStrategy im
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {

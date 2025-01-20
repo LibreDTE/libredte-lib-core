@@ -49,7 +49,7 @@ class SiiDeliveryCheckerWorker extends AbstractWorker implements SiiDeliveryChec
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function checkSentStatus(
         CertificateInterface $certificate,
@@ -95,7 +95,7 @@ class SiiDeliveryCheckerWorker extends AbstractWorker implements SiiDeliveryChec
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function requestSentStatusByEmail(
         CertificateInterface $certificate,

@@ -1,13 +1,13 @@
 TipoDTE;Folio;FchEmis;FchVenc;RUTRecep;RznSocRecep;GiroRecep;Telefono;CorreoRecep;DirRecep;CmnaRecep;CdgItem;IndExe;NmbItem;DscItem;QtyItem;UnmdItem;PrcItem;Descuento;TermPagoGlosa;PeriodoDesde;PeriodoHasta;Patente;RUTTrans;RUTChofer;NombreChofer;DirDest;CmnaDest;TpoDocRef;FolioRef;FchRef;CodRef;RazonRef;Moneda;NumId;DscGlobal;Nombre PDF;Forma de Pago;CodImpAdic
-33;1;;;77888999-0;Empresa 1;Giro 1;+56 2 22334455;sasco@empresa1.cl;Calle 123;Santiago;hosting1;;Servicio web;;1;;6000;50%;Obs1;;;;;;;;;;;;;;;;;;;
+33;1;;;77888999-4;Empresa 1;Giro 1;+56 2 22334455;sasco@empresa1.cl;Calle 123;Santiago;hosting1;;Servicio web;;1;;6000;50%;Obs1;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;1;Asesoría;FE;10;hr;10000;;;;;;;;;;;;;;;;;;;;;
-33;2;2017-03-25;2017-03-31;55777888-9;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;dte-plus;;Facturación;Marzo 2017;1;;30000;5000;Obs2;2018-05-01;2018-05-31;;;;;;;;;;;;;;;;;
+33;2;2017-03-25;2017-03-31;55777888-8;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;dte-plus;;Facturación;Marzo 2017;1;;30000;5000;Obs2;2018-05-01;2018-05-31;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;hosting1;;Servicio web;;1;;6000;;;;;;;;;;;;;;;;;;;;;
-34;3;;2017-03-31;55666777-8;Empresa 3;Giro 3;;;Calle 123, of A;Santiago;dte-plus;1;Facturación;;1;;30000;;;;;;;;;;;;;;;;;;;;;
-39;4;;;11222333-4;Persona natural;;;;;;hosting1;;Servicio web;;1;;6000;;Obs3;;;;;;;;;;;;;;;;;;;
+34;3;;2017-03-31;55666777-2;Empresa 3;Giro 3;;;Calle 123, of A;Santiago;dte-plus;1;Facturación;;1;;30000;;;;;;;;;;;;;;;;;;;;;
+39;4;;;11222333-9;Persona natural;;;;;;hosting1;;Servicio web;;1;;6000;;Obs3;;;;;;;;;;;;;;;;;;;
 110;1;2020-01-14;;55555555-5;Jackie Chan;Extranjero;+1 2345 9874;receptor@example.com;123 Street, Beijing, China;Santiago;hosting1;1;Servicio web;;1;;500;20%;Nota del DTE;;;;;;;;;;;;;;;ABC1234;20;;;
 110;2;2020-01-14;;55555555-5;Jackie Chan;Extranjero;+1 2345 9874;receptor@example.com;123 Street, Beijing, China;Santiago;hosting1;1;Servicio web;;1;;200;;Nota del DTE;;;;;;;;;;;;;;EUR;;50%;;;
-110;2;2020-01-14;;55555555-5;Jackie Chan;Extranjero;+1 2345 9874;receptor@example.com;123 Street, Beijing, China;Santiago;hosting1;1;Servicio web;;1;;50.6;;Nota del DTE;;;;;;;;;;;;;;USD;EFH123;0.6;;;
-61;1;2021-03-03;;55777888-9;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;dte-plus;;Servicio Plus;;1;;25210;;;;;;;;;;;33;831;2021-03-01;1;Sin uso;;;;;;
-52;1;2021-03-03;;55777888-9;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;;;Mesa;;1;;50000;;;;;ABCD12;;;Jorge;Dir Despacho;Santa Cruz;;;;;;;;;;;
+110;3;2020-01-14;;55555555-5;Jackie Chan;Extranjero;+1 2345 9874;receptor@example.com;123 Street, Beijing, China;Santiago;hosting1;1;Servicio web;;1;;50.6;;Nota del DTE;;;;;;;;;;;;;;USD;EFH123;0.6;;;
+61;1;2021-03-03;;55777888-8;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;dte-plus;;Servicio Plus;;1;;25210;;;;;;;;;;;33;831;2021-03-01;1;Sin uso;;;;;;
+52;1;2021-03-03;;55777888-8;Empresa 2;Giro 2;;contacto@empresa2.cl;Calle 1234;Santa Cruz;;;Mesa;;1;;50000;;;;;ABCD12;;;Jorge;Dir Despacho;Santa Cruz;;;;;;;;;;;
 46;1;;;59224080-7;Google LLC;Tecnología e informática en la nube;;;1600 Amphitheatre Pkwy (94043);Mountain View;;;Arriendo de Software as a Service (SaaS).;Google Workspace: aplicación web con funciones de Suite Ofimática, como Gmail, Meet, Drive, Docs, entre otros.;1;;100000;;;;;;;;;;;;;;;;;;;;;15

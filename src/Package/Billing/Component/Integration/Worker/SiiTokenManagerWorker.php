@@ -115,7 +115,7 @@ class SiiTokenManagerWorker extends AbstractWorker implements SiiTokenManagerWor
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getToken(CertificateInterface $certificate): string
     {

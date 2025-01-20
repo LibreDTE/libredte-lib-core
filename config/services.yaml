@@ -236,6 +236,10 @@ services:
     # Estrategias del worker "billing.document.batch_processor".
     libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy: ~
 
+    # Servicios del componente "billing.identifier"
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
+
     # Workers del componente "prime.entity".
     Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\DatasourceProviderWorkerInterface:
         class: Derafu\Lib\Core\Package\Prime\Component\Entity\Worker\DatasourceProviderWorker
@@ -249,8 +253,6 @@ services:
                     '%kernel.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda:
                     '%kernel.project_dir%/resources/data/repository/aduana_moneda.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento:
-                    '%kernel.project_dir%/resources/data/repository/tipos_documento.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais:
                     '%kernel.project_dir%/resources/data/repository/aduana_paises.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto:

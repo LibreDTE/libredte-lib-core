@@ -37,6 +37,42 @@ class Emisor extends Contribuyente implements EmisorInterface
     use CorreoIntercambioDteInfoTrait;
 
     /**
+     * Código de la sucursal del emisor en el SII.
+     *
+     * Nota: La casa matriz también tiene código de sucursal asignado por SII.
+     *
+     * @var int|null
+     */
+    private ?int $sucursal = null;
+
+    /**
+     * Nombre o código del vendedor que está representando al emisor.
+     *
+     * @var string|null
+     */
+    private ?string $vendedor = null;
+
+    /**
+     * Entrega el código de la sucursal asignado por el SII al emisor.
+     *
+     * @return integer|null
+     */
+    public function getSucursal(): ?int
+    {
+        return $this->sucursal;
+    }
+
+    /**
+     * Entrega el nombre o código del vendedor que está representando al emisor.
+     *
+     * @return string|null
+     */
+    public function getVendedor(): ?string
+    {
+        return $this->vendedor;
+    }
+
+    /**
      * Información de la autorización que da el SII para ser emisor de
      * documentos tributarios electrónicos.
      *
@@ -54,7 +90,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     private ?string $logo = null;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setAutorizacionDte(AutorizacionDteInterface $autorizacionDte): static
     {
@@ -64,7 +100,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAutorizacionDte(): ?AutorizacionDteInterface
     {
@@ -72,7 +108,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setLogo(string $logo): static
     {
@@ -82,7 +118,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getLogo(): ?string
     {

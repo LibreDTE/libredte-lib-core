@@ -50,7 +50,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(DocumentBagInterface $bag): DocumentInterface
     {
@@ -68,7 +68,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function build(DocumentBagInterface $bag): DocumentInterface
     {

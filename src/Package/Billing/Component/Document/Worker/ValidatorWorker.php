@@ -56,7 +56,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validate(
         DocumentBagInterface|XmlInterface|string $source
@@ -89,7 +89,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validateSchema(
         DocumentBagInterface|XmlInterface|string $source
@@ -125,7 +125,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validateSignature(
         DocumentBagInterface|XmlInterface|string $source

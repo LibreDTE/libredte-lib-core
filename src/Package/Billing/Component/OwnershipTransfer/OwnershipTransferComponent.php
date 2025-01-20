@@ -38,7 +38,7 @@ class OwnershipTransferComponent extends AbstractComponent implements OwnershipT
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {

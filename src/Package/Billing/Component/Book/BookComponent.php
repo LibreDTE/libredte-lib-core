@@ -38,7 +38,7 @@ class BookComponent extends AbstractComponent implements BookComponentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {

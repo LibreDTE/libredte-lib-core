@@ -85,7 +85,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __toString(): string
     {
@@ -93,7 +93,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocument(): XmlInterface
     {
@@ -101,7 +101,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function saveXml(): string
     {
@@ -109,7 +109,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXml(): string
     {
@@ -117,12 +117,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getId(): string
     {
         return sprintf(
-            '%sT%dF%d',
+            '%sT%03dF%09d',
             $this->getRutEmisor(),
             $this->getCodigo(),
             $this->getFolio()
@@ -130,7 +130,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCodigo(): int
     {
@@ -138,7 +138,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFolio(): int
     {
@@ -146,7 +146,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTipoDocumento(): CodigoDocumento
     {
@@ -154,7 +154,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmisor(): array
     {
@@ -162,7 +162,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRutEmisor(): string
     {
@@ -170,7 +170,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getReceptor(): array
     {
@@ -178,7 +178,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRutReceptor(): string
     {
@@ -186,7 +186,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRazonSocialReceptor(): string
     {
@@ -194,7 +194,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFechaEmision(): string
     {
@@ -202,7 +202,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTotales(): array
     {
@@ -210,7 +210,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMontoTotal(): int|float
     {
@@ -226,7 +226,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMoneda(): string
     {
@@ -236,7 +236,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDetalle(?int $index = null): array
     {
@@ -253,7 +253,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDatos(): array
     {
@@ -286,7 +286,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTED(): ?string
     {
@@ -298,7 +298,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getPlantillaTED(): array
     {
@@ -334,7 +334,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function get(string $selector): mixed
     {
@@ -342,7 +342,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function query(string $query, array $params = []): string|array|null
     {

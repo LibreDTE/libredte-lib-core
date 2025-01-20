@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 class ComunaRepository extends Repository
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find($id, $lockMode = null, $lockVersion = null): Comuna
     {

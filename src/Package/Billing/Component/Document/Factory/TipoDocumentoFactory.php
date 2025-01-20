@@ -43,7 +43,7 @@ class TipoDocumentoFactory extends AbstractFactory implements TipoDocumentoFacto
     private string $class = TipoDocumento::class;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(array $data): TipoDocumentoInterface
     {

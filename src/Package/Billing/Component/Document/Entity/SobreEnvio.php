@@ -54,7 +54,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __toString(): string
     {
@@ -62,7 +62,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocument(): XmlInterface
     {
@@ -70,7 +70,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function saveXml(): string
     {
@@ -78,7 +78,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getId(): string
     {
@@ -86,7 +86,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRutEmisor(): string
     {
@@ -94,7 +94,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRunMandatario(): string
     {
@@ -102,7 +102,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRutReceptor(): string
     {
@@ -110,7 +110,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAutorizacionDte(): AutorizacionDteInterface
     {
@@ -121,7 +121,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFechaFirma(): string
     {
@@ -129,7 +129,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getResumen(): array
     {
@@ -139,7 +139,7 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocumentos(): array
     {

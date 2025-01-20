@@ -27,8 +27,12 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface;
 use Throwable;
 
 /**
@@ -37,7 +41,7 @@ use Throwable;
 class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,
@@ -45,16 +49,117 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             'types' => 'string',
             'default' => 'spreadsheet.csv',
         ],
+        'complete' => [
+            'types' => 'bool',
+            'default' => true,
+        ],
+        'stamp' => [
+            'types' => 'bool',
+            'default' => true,
+        ],
     ];
 
     /**
-     * {@inheritdoc}
+     * Constructor del worker y sus dependencias.
+     *
+     * @param CafProviderInterface $cafProvider
+     * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
+     * @param BuilderWorkerInterface $builderWorker
+     * @param array $jobs
+     * @param array $handlers
+     * @param array $strategies
+     */
+    public function __construct(
+        private CafProviderInterface $cafProvider,
+        private DocumentBagManagerWorkerInterface $documentBagManagerWorker,
+        private BuilderWorkerInterface $builderWorker,
+        iterable $jobs = [],
+        iterable $handlers = [],
+        iterable $strategies = []
+    ) {
+        parent::__construct($jobs, $handlers, $strategies);
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function process(DocumentBatchInterface $batch): array
     {
-        $options = $this->resolveOptions($batch->getOptions()->all());
-        $strategy = $this->getStrategy($options->get('strategy'));
-        $strategy->setOptions($options);
+        $emisor = $batch->getEmisor();
+
+        // Cargar documentos desde el archivo.
+        $parsedDocuments = $this->loadDocumentsFromFile($batch);
+
+        // Crear la bolsa de cada documento.
+        $documentBags = [];
+        foreach ($parsedDocuments as $parsedData) {
+            $documentBag = new DocumentBag();
+            $documentBag->setEmisor($emisor);
+
+            // Completar el documento si así se solicitó.
+            if ($this->getOptions()->get('complete')) {
+                $parsedData = $this->completeParsedData(
+                    $batch,
+                    $parsedData
+                );
+            }
+
+            // Asignar documento parseado desde el archivo masivo.
+            $documentBag->setParsedData($parsedData);
+
+            // Normalizar lo básico de la bolsa del documento.
+            // Esto es para poder tener el tipo de documento de los datos
+            // parseados.
+            $this->documentBagManagerWorker->normalize($documentBag);
+
+            // Solicitar CAF al proveedor y asignar certificado si se solicitó.
+            if ($this->getOptions()->get('stamp')) {
+                // Buscar folio del documento (si existe) y obtener el CAF que
+                // tiene ese folio.
+                $folio = $documentBag->getFolio();
+                $folio = is_int($folio) ? $folio : null;
+                $cafBag = $this->cafProvider->getFolio(
+                    $emisor,
+                    $documentBag->getTipoDocumento(),
+                    $folio
+                );
+
+                // Si no había un folio en el documento se deberá asignar el
+                // siguiente folio del CAF a los datos de la bolsa del
+                // documento.
+                if ($folio === null) {
+                    $siguienteFolio = $cafBag->getSiguienteFolio();
+                    $documentBag->setFolio($siguienteFolio);
+                }
+
+                // Asignar CAF y certificado a la bolsa del documento.
+                $documentBag->setCaf($cafBag->getCaf());
+                $documentBag->setCertificate($batch->getCertificate());
+            }
+
+            // Construir el documento a partir de los datos de la bolsa.
+            $this->builderWorker->build($documentBag);
+
+            // Agregar la bolsa al listado de bolsas que se generaron a partir
+            // del archivo de emisión masiva.
+            $documentBags[] = $documentBag;
+        }
+
+        // Entregar las bolsas de documentos.
+        return $documentBags;
+    }
+
+    /**
+     * Carga los documentos desde el archivo según la estrategia de
+     * procesamiento en lote que se haya solicitado.
+     *
+     * @param DocumentBatchInterface $batch
+     * @return array
+     */
+    private function loadDocumentsFromFile(DocumentBatchInterface $batch): array
+    {
+        $strategy = $this->getStrategy($this->getOptions()->get('strategy'));
+        $strategy->setOptions($this->getOptions());
 
         assert($strategy instanceof BatchProcessorStrategyInterface);
 
@@ -68,5 +173,62 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         }
 
         return $documents;
+    }
+
+    /**
+     * Completa los datos del documento parseado desde el archivo masivo.
+     *
+     * @param DocumentBatchInterface $batch
+     * @param array $data
+     * @return array
+     */
+    private function completeParsedData(
+        DocumentBatchInterface $batch,
+        array $data
+    ): array {
+        $emisor = $batch->getEmisor();
+
+        $data['Encabezado']['Emisor']['RUTEmisor'] =
+            ($data['Encabezado']['Emisor']['RUTEmisor'] ?? false)
+            ?: $emisor->getRut()
+        ;
+        $data['Encabezado']['Emisor']['RznSoc'] =
+            ($data['Encabezado']['Emisor']['RznSoc'] ?? false)
+            ?: $emisor->getRazonSocial()
+        ;
+        $data['Encabezado']['Emisor']['GiroEmis'] =
+            ($data['Encabezado']['Emisor']['GiroEmis'] ?? false)
+            ?: ($emisor->getGiro() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['Telefono'] =
+            ($data['Encabezado']['Emisor']['Telefono'] ?? false)
+            ?: ($emisor->getTelefono() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['CorreoEmisor'] =
+            ($data['Encabezado']['Emisor']['CorreoEmisor'] ?? false)
+            ?: ($emisor->getEmail() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['Acteco'] =
+            ($data['Encabezado']['Emisor']['Acteco'] ?? false)
+            ?: ($emisor->getActividadEconomica() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['DirOrigen'] =
+            ($data['Encabezado']['Emisor']['DirOrigen'] ?? false)
+            ?: ($emisor->getDireccion() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['CmnaOrigen'] =
+            ($data['Encabezado']['Emisor']['CmnaOrigen'] ?? false)
+            ?: ($emisor->getComuna() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['CdgSIISucur'] =
+            ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? false)
+            ?: ($emisor->getSucursal() ?? false)
+        ;
+        $data['Encabezado']['Emisor']['CdgVendedor'] =
+            ($data['Encabezado']['Emisor']['CdgVendedor'] ?? false)
+            ?: ($emisor->getVendedor() ?? false)
+        ;
+
+        return $data;
     }
 }

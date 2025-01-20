@@ -44,7 +44,7 @@ class NotaDebitoExportacionNormalizerStrategy extends AbstractNormalizerStrategy
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {

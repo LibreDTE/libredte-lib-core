@@ -53,7 +53,7 @@ class SiiDocumentValidatorWorker extends AbstractWorker implements SiiDocumentVa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validate(
         CertificateInterface $certificate,
@@ -126,7 +126,7 @@ class SiiDocumentValidatorWorker extends AbstractWorker implements SiiDocumentVa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validateSignature(
         CertificateInterface $certificate,

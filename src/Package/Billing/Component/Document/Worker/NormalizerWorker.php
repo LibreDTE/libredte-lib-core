@@ -36,7 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerExc
 class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function normalize(DocumentBagInterface $bag): array
     {

@@ -48,7 +48,7 @@ class AutorizacionDte implements AutorizacionDteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFechaResolucion(): string
     {
@@ -56,7 +56,7 @@ class AutorizacionDte implements AutorizacionDteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNumeroResolucion(): int
     {
@@ -64,7 +64,7 @@ class AutorizacionDte implements AutorizacionDteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAmbiente(): Ambiente
     {
@@ -75,7 +75,7 @@ class AutorizacionDte implements AutorizacionDteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function toArray(): array
     {

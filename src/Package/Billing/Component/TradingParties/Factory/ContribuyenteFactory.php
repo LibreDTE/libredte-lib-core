@@ -44,7 +44,7 @@ class ContribuyenteFactory extends AbstractContribuyenteFactory implements Contr
     protected string $class = Contribuyente::class;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(array $data): ContribuyenteInterface
     {

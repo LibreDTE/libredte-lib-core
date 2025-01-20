@@ -44,7 +44,7 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
     private string $class = Emisor::class;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(array $data): EmisorInterface
     {

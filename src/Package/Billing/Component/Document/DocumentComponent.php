@@ -68,7 +68,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {
@@ -87,7 +87,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBatchProcessorWorker(): BatchProcessorWorkerInterface
     {
@@ -95,7 +95,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBuilderWorker(): BuilderWorkerInterface
     {
@@ -103,7 +103,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDispatcherWorker(): DispatcherWorkerInterface
     {
@@ -111,7 +111,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocumentBagManagerWorker(): DocumentBagManagerWorkerInterface
     {
@@ -119,7 +119,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getLoaderWorker(): LoaderWorkerInterface
     {
@@ -127,7 +127,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNormalizerWorker(): NormalizerWorkerInterface
     {
@@ -135,7 +135,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getParserWorker(): ParserWorkerInterface
     {
@@ -143,7 +143,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRendererWorker(): RendererWorkerInterface
     {
@@ -151,7 +151,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSanitizerWorker(): SanitizerWorkerInterface
     {
@@ -159,7 +159,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getValidatorWorker(): ValidatorWorkerInterface
     {
@@ -167,7 +167,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function bill(
         string|array|stdClass $data,

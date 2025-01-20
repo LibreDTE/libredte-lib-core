@@ -136,7 +136,15 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     */
+    public function getRutAsInt(): int
+    {
+        return $this->rut;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getRut(): string
     {
@@ -144,7 +152,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRazonSocial(): string
     {
@@ -152,7 +160,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getGiro(): ?string
     {
@@ -160,7 +168,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getActividadEconomica(): ?int
     {
@@ -168,7 +176,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTelefono(): ?string
     {
@@ -176,7 +184,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmail(): ?string
     {
@@ -184,7 +192,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDireccion(): ?string
     {
@@ -192,7 +200,7 @@ class Contribuyente implements ContribuyenteInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getComuna(): ?string
     {

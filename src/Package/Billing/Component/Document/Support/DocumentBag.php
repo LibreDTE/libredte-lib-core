@@ -35,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentExcep
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
+use LogicException;
 use stdClass;
 
 /**
@@ -254,7 +255,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setInputData(string|array|stdClass|null $inputData): static
     {
@@ -274,7 +275,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getInputData(): ?string
     {
@@ -282,7 +283,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setParsedData(?array $parsedData): static
     {
@@ -292,7 +293,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getParsedData(): ?array
     {
@@ -300,7 +301,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setNormalizedData(?array $normalizedData): static
     {
@@ -310,7 +311,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNormalizedData(): ?array
     {
@@ -318,7 +319,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setOptions(array|DataContainerInterface|null $options): static
     {
@@ -336,7 +337,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOptions(): ?DataContainerInterface
     {
@@ -344,7 +345,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getParserOptions(): array
     {
@@ -352,7 +353,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBuilderOptions(): array
     {
@@ -360,7 +361,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNormalizerOptions(): array
     {
@@ -368,7 +369,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSanitizerOptions(): array
     {
@@ -376,7 +377,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getValidatorOptions(): array
     {
@@ -384,7 +385,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRendererOptions(): array
     {
@@ -392,7 +393,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setXmlDocument(?XmlInterface $xmlDocument): static
     {
@@ -402,7 +403,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocument(): ?XmlInterface
     {
@@ -410,7 +411,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setCaf(?CafInterface $caf): static
     {
@@ -420,7 +421,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCaf(): ?CafInterface
     {
@@ -428,7 +429,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setCertificate(?CertificateInterface $certificate): static
     {
@@ -438,7 +439,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCertificate(): ?CertificateInterface
     {
@@ -446,7 +447,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setDocument(?DocumentInterface $document): static
     {
@@ -456,7 +457,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocument(): ?DocumentInterface
     {
@@ -464,7 +465,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setDocumentType(?TipoDocumentoInterface $documentType): static
     {
@@ -474,7 +475,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setTipoDocumento(?TipoDocumentoInterface $tipoDocumento): static
     {
@@ -482,7 +483,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocumentType(): ?TipoDocumentoInterface
     {
@@ -490,7 +491,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTipoDocumento(): ?TipoDocumentoInterface
     {
@@ -498,7 +499,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocumentTypeId(): ?int
     {
@@ -519,7 +520,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCodigoTipoDocumento(): ?int
     {
@@ -527,7 +528,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setEmisor(?EmisorInterface $emisor): static
     {
@@ -537,7 +538,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmisor(): ?EmisorInterface
     {
@@ -545,7 +546,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setReceptor(?ReceptorInterface $receptor): static
     {
@@ -555,7 +556,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getReceptor(): ?ReceptorInterface
     {
@@ -563,7 +564,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setTimbre(?array $timbre): static
     {
@@ -573,7 +574,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTimbre(): ?array
     {
@@ -581,7 +582,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getData(): ?array
     {
@@ -621,20 +622,75 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getId(): string
     {
-        return sprintf(
-            'LibreDTE_%s_T%dF%d',
-            $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
-            $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
-            $this->getNormalizedData()['Encabezado']['IdDoc']['Folio']
-        );
+        $folio = $this->getFolio();
+
+        if (is_int($folio)) {
+            return sprintf(
+                'LibreDTE_%s_T%03dF%09d',
+                $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
+                $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
+                $folio
+            );
+        } else {
+            return sprintf(
+                'LibreDTE_%s_%03d-%s',
+                $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
+                $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
+                $folio
+            );
+        }
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     */
+    public function setFolio(int $folio): static
+    {
+        if ($this->getXmlDocument()) {
+            throw new LogicException(
+                'No es posible asignar el folio si ya se generó el documento XML.'
+            );
+        }
+
+        $data = $this->getNormalizedData() ?? $this->getParsedData();
+
+        if ($data === null) {
+            throw new LogicException(
+                'No es posible asignar el folio si no existen datos normalizados o parseados.'
+            );
+        }
+
+        $data['Encabezado']['IdDoc']['Folio'] = $folio;
+
+        if ($this->getNormalizedData()) {
+            return $this->setNormalizedData($data);
+        }
+
+        return $this->setParsedData($data);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFolio(): int|string|null
+    {
+        $data = $this->getNormalizedData() ?? $this->getParsedData();
+
+        $folio = $data['Encabezado']['IdDoc']['Folio'];
+
+        if (!$folio) {
+            return null;
+        }
+
+        return is_numeric($folio) ? (int) $folio : (string) $folio;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function withCaf(CafInterface $caf): DocumentBagInterface
     {
@@ -654,7 +710,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function withCertificate(
         CertificateInterface $certificate
@@ -675,7 +731,7 @@ class DocumentBag implements DocumentBagInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAlias(): string
     {

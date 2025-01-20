@@ -30,6 +30,13 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 interface ContribuyenteInterface
 {
     /**
+     * Devuelve solo la parte numérica del RUT del contribuyente.
+     *
+     * @return integer Parte numérica del RUT del contribuyente.
+     */
+    public function getRutAsInt(): int;
+
+    /**
      * Devuelve el RUT completo (incluyendo el DV) del contribuyente.
      *
      * @return string RUT completo del contribuyente.

@@ -59,7 +59,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function normalize(
         DocumentEnvelopeInterface $envelope
@@ -76,7 +76,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function loadXml(string $xml): DocumentEnvelopeInterface
     {
@@ -89,7 +89,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validate(
         DocumentEnvelopeInterface|XmlInterface|string $source
@@ -98,7 +98,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validateSchema(
         DocumentEnvelopeInterface|XmlInterface|string $source
@@ -126,7 +126,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validateSignature(
         DocumentEnvelopeInterface|XmlInterface|string $source

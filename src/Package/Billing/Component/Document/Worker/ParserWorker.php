@@ -37,7 +37,7 @@ use Throwable;
 class ParserWorker extends AbstractWorker implements ParserWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected array $optionsSchema = [
         'strategy' => [
@@ -47,7 +47,7 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function parse(DocumentBagInterface $bag): array
     {

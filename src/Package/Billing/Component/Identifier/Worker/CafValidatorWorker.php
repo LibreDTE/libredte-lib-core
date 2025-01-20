@@ -37,7 +37,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validate(CafInterface $caf): void
     {

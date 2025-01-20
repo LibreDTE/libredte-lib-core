@@ -4,8 +4,8 @@
     "FchEmis": "2025-01-13",
     "FmaPago": "",
     "FchVenc": "2025-01-13",
-    "RUTEmisor": 19550156,
-    "CdgVendedor": "nicolas",
+    "RUTEmisor": 1000000,
+    "CdgVendedor": "nc",
     "CdgSIISucur": 0,
     "Acteco": 620100,
     "GiroEmis": "Actividades de programación informática",
@@ -13,7 +13,7 @@
     "dte_referencia_defecto": 0,
     "RznSocRecep": "SASCO SpA",
     "GiroRecep": "Tecnología, Informática y Telecomunicaci",
-    "DirRecep": "Daniel Barros Grez 191",
+    "DirRecep": "DBG",
     "CmnaRecep": "06310",
     "CorreoRecep": "",
     "Contacto": "",
@@ -53,4 +53,4 @@
     "TpoTranVenta": "",
     "TpoTranCompra": "",
     "submit": ""
-  }
+}

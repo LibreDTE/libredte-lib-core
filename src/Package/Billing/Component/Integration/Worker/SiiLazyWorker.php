@@ -41,7 +41,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     private SiiConnectionOptions $connectionOptions;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getConnectionOptions(): SiiConnectionOptions
     {

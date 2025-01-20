@@ -44,7 +44,7 @@ class FacturaCompraNormalizerStrategy extends AbstractNormalizerStrategy impleme
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {

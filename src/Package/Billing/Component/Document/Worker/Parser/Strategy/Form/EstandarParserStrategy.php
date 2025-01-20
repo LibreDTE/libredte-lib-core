@@ -27,7 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Str
 use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
 use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
 
 /**
@@ -878,7 +878,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
     private function getTax(int $documentType): ?float
     {
         $result = $this->entityComponent
-            ->getRepository(TipoDocumento::class)
+            ->getRepository(TipoDocumentoInterface::class)
             ->find($documentType);
         // Retornar null si no se encuentra ningún resultado.
         if (empty($result)) {

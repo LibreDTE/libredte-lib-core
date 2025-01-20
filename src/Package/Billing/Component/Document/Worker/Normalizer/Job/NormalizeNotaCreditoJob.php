@@ -51,7 +51,7 @@ class NormalizeNotaCreditoJob extends AbstractJob implements JobInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function execute(DocumentBagInterface $bag): void
     {

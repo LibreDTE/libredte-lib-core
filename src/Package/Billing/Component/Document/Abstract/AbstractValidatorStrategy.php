@@ -36,7 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorStrat
 abstract class AbstractValidatorStrategy extends AbstractStrategy implements ValidatorStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function validate(DocumentBagInterface $bag): void
     {

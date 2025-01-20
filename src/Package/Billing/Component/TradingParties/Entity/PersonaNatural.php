@@ -86,7 +86,7 @@ class PersonaNatural implements PersonaNaturalInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getRun(): string
     {
@@ -94,7 +94,7 @@ class PersonaNatural implements PersonaNaturalInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNombre(): string
     {
@@ -102,7 +102,7 @@ class PersonaNatural implements PersonaNaturalInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmail(): ?string
     {

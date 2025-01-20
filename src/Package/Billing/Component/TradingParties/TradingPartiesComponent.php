@@ -39,7 +39,7 @@ class TradingPartiesComponent extends AbstractComponent implements TradingPartie
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {
@@ -49,7 +49,7 @@ class TradingPartiesComponent extends AbstractComponent implements TradingPartie
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMandatarioManagerWorker(): MandatarioManagerWorkerInterface
     {

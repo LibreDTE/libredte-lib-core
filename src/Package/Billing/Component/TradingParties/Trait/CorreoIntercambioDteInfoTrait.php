@@ -37,7 +37,7 @@ trait CorreoIntercambioDteInfoTrait
     protected ?string $correoIntercambioDte = null;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setCorreoIntercambioDte(string $correoIntercambioDte): static
     {
@@ -47,7 +47,7 @@ trait CorreoIntercambioDteInfoTrait
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCorreoIntercambioDte(): ?string
     {

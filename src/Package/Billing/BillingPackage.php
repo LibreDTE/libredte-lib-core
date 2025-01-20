@@ -49,7 +49,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getComponents(): array
     {
@@ -64,7 +64,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBookComponent(): BookComponentInterface
     {
@@ -72,7 +72,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocumentComponent(): DocumentComponentInterface
     {
@@ -80,7 +80,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getIdentifierComponent(): IdentifierComponentInterface
     {
@@ -88,7 +88,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getIntegrationComponent(): IntegrationComponentInterface
     {
@@ -96,7 +96,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOwnershipTransferComponent(): OwnershipTransferComponentInterface
     {
@@ -104,7 +104,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTradingPartiesComponent(): TradingPartiesComponentInterface
     {

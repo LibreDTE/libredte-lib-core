@@ -34,7 +34,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Stra
 class FacturaExportacionSanitizerStrategy extends AbstractSanitizerStrategy implements FacturaExportacionSanitizerStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function sanitizeDocument(DocumentBagInterface $bag): void
     {

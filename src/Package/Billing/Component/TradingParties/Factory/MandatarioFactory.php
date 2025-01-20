@@ -45,7 +45,7 @@ class MandatarioFactory extends AbstractFactory implements MandatarioFactoryInte
     private string $class = Mandatario::class;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(array $data): MandatarioInterface
     {

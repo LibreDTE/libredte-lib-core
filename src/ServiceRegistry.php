@@ -33,14 +33,14 @@ use Derafu\Lib\Core\Foundation\ServiceRegistry as DerafuServiceRegistry;
 class ServiceRegistry extends AbstractServiceRegistry
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $registries = [
         DerafuServiceRegistry::class,
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected string $configPath = __DIR__ . '/../config';
 }

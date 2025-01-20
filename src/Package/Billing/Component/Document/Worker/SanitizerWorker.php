@@ -36,7 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\SanitizerExce
 class SanitizerWorker extends AbstractWorker implements SanitizerWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function sanitize(DocumentBagInterface $bag): array
     {

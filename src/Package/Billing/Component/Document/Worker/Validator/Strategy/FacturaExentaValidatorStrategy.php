@@ -34,7 +34,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Stra
 class FacturaExentaValidatorStrategy extends AbstractValidatorStrategy implements FacturaExentaValidatorStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function validateDocument(DocumentBagInterface $bag): void
     {

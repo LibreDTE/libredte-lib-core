@@ -43,7 +43,7 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function loadXml(string $xml): DocumentBagInterface
     {

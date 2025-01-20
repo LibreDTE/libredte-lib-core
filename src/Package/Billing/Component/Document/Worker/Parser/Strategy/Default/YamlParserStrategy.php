@@ -34,7 +34,7 @@ use Symfony\Component\Yaml\Yaml;
 class YamlParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function parse(string $data): array
     {

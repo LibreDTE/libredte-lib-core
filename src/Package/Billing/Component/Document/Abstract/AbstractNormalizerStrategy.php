@@ -41,7 +41,7 @@ abstract class AbstractNormalizerStrategy extends AbstractStrategy implements No
     protected NormalizeDataPostDocumentNormalizationJob $normalizeDataPostDocumentNormalizationJob;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function normalize(DocumentBagInterface $bag): array
     {

@@ -37,7 +37,7 @@ use Throwable;
 class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,
@@ -48,7 +48,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function render(DocumentBagInterface $bag): string
     {

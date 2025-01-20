@@ -44,7 +44,7 @@ class NotaCreditoNormalizerStrategy extends AbstractNormalizerStrategy implement
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function normalizeDocument(DocumentBagInterface $bag): void
     {

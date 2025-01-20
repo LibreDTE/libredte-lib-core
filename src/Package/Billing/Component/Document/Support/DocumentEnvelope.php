@@ -142,7 +142,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     private ?array $caratula = null;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getId(): string
     {
@@ -150,7 +150,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTipoSobre(): TipoSobre
     {
@@ -158,7 +158,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setSobreEnvio(SobreEnvioInterface $sobre_envio): static
     {
@@ -168,7 +168,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSobreEnvio(): ?SobreEnvioInterface
     {
@@ -176,7 +176,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setXmlDocument(?XmlInterface $xmlDocument): static
     {
@@ -186,7 +186,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocument(): ?XmlInterface
     {
@@ -194,7 +194,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setDocuments(array $documents): static
     {
@@ -206,7 +206,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDocuments(): ?array
     {
@@ -214,7 +214,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function addDocument(?DocumentBagInterface $document): static
     {
@@ -263,7 +263,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setOptions(array|DataContainerInterface|null $options): static
     {
@@ -281,7 +281,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOptions(): ?DataContainerInterface
     {
@@ -289,7 +289,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDispatcherOptions(): array
     {
@@ -297,7 +297,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setEmisor(?EmisorInterface $emisor): static
     {
@@ -307,7 +307,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmisor(): ?EmisorInterface
     {
@@ -315,7 +315,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setMandatario(?MandatarioInterface $mandatario): static
     {
@@ -325,7 +325,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMandatario(): ?MandatarioInterface
     {
@@ -333,7 +333,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setReceptor(?ReceptorInterface $receptor): static
     {
@@ -343,7 +343,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getReceptor(): ?ReceptorInterface
     {
@@ -351,7 +351,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setCertificate(?CertificateInterface $certificate): static
     {
@@ -361,7 +361,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCertificate(): ?CertificateInterface
     {
@@ -369,7 +369,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setCaratula(array $caratula): static
     {
@@ -379,7 +379,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCaratula(): ?array
     {
@@ -387,7 +387,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function withCertificate(
         CertificateInterface $certificate

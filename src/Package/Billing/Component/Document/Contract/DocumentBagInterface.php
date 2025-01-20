@@ -307,6 +307,34 @@ interface DocumentBagInterface
     public function getId(): string;
 
     /**
+     * Asigna el folio numérico al documento.
+     *
+     * El folio se asignará a los datos normalizados si existen o bien a los
+     * datos parseados si aun no se normaliza.
+     *
+     * @param int $folio
+     * @return static
+     */
+    public function setFolio(int $folio): static;
+
+    /**
+     * Obtiene el folio del documento.
+     *
+     * Cuando el folio es un entero se asume que es un folio oficial del SII.
+     *
+     * Cuando es un folio alfanumérico (string) se asume que es un folio de una
+     * cotización de LibreDTE.
+     *
+     * Cuando el folio no existe (es `false` o `0`) se entregará `null`.
+     *
+     * El folio puede provenir del documento normalizado (si existe) o del
+     * documento parseado (si aun no se normaliza).
+     *
+     * @return int|string|null
+     */
+    public function getFolio(): int|string|null;
+
+    /**
      * Retorna una nueva bolsa con los datos del DTE e incluye un archivo CAF.
      *
      * Las bolsas no se pueden reutilizar una vez se normalizaron, porque ya se

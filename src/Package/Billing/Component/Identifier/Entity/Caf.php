@@ -109,7 +109,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXmlDocument(): XmlInterface
     {
@@ -117,7 +117,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getXml(): string
     {
@@ -125,7 +125,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getId(): string
     {
@@ -138,7 +138,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getEmisor(): array
     {
@@ -149,7 +149,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTipoDocumento(): int
     {
@@ -157,7 +157,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFolioDesde(): int
     {
@@ -165,7 +165,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFolioHasta(): int
     {
@@ -173,7 +173,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCantidadFolios(): int
     {
@@ -184,7 +184,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function enRango(int $folio): bool
     {
@@ -192,7 +192,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFechaAutorizacion(): string
     {
@@ -200,7 +200,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFechaVencimiento(): ?string
     {
@@ -221,7 +221,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getMesesAutorizacion(): float
     {
@@ -238,7 +238,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function vigente(?string $timestamp = null): bool
     {
@@ -258,7 +258,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function vence(): bool
     {
@@ -268,7 +268,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getIdk(): int
     {
@@ -276,7 +276,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAmbiente(): ?Ambiente
     {
@@ -286,7 +286,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCertificacion(): ?int
     {
@@ -294,7 +294,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAutorizacion(): array
     {
@@ -302,7 +302,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getPublicKey(): string
     {
@@ -310,7 +310,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getPrivateKey(): string
     {
@@ -318,7 +318,7 @@ class Caf implements CafInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFirma(): string
     {

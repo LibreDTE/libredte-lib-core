@@ -44,7 +44,7 @@ class ReceptorFactory extends AbstractContribuyenteFactory implements ReceptorFa
     private string $class = Receptor::class;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(array $data): ReceptorInterface
     {

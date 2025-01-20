@@ -53,7 +53,7 @@ class XmlParserStrategy extends AbstractStrategy implements ParserStrategyInterf
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function parse(string $data): array
     {

@@ -47,7 +47,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function process(DocumentBatchInterface $batch): array
     {
@@ -270,11 +270,11 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
         return [
             'Encabezado' => [
                 'IdDoc' => [
-                    'TipoDTE' => (int)$datos[0],
-                    'Folio' => (int)$datos[1],
+                    'TipoDTE' => (int) $datos[0],
+                    'Folio' => (int) $datos[1],
                     'FchEmis' => (
                         !empty($datos[2]) && Date::validateAndConvert($datos[2], 'Y-m-d') !== null
-                    ) ? $datos[2] : false,
+                    ) ? $datos[2] : date('Y-m-d'),
                     'TpoTranCompra' => false,
                     'TpoTranVenta' => false,
                     'FmaPago' => false,

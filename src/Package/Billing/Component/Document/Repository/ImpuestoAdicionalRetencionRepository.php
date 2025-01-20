@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdiciona
 class ImpuestoAdicionalRetencionRepository extends Repository
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function find($id, $lockMode = null, $lockVersion = null): ImpuestoAdicionalRetencion
     {

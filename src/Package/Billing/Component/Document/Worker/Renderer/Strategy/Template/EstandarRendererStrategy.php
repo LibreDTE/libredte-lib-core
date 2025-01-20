@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrate
 class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,

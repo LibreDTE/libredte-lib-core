@@ -43,7 +43,7 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createFromCertificate(
         CertificateInterface $certificate
@@ -56,7 +56,7 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function createFakeCertificate(
         MandatarioInterface $mandatario

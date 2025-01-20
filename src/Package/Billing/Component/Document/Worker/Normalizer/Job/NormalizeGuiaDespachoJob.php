@@ -53,7 +53,7 @@ class NormalizeGuiaDespachoJob extends AbstractJob implements JobInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function execute(DocumentBagInterface $bag): void
     {

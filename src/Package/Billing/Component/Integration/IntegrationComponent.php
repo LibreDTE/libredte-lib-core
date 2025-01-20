@@ -49,7 +49,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {
@@ -64,7 +64,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiLazyWorker(): SiiLazyWorkerInterface
     {
@@ -72,7 +72,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiWsdlConsumerWorker(): SiiWsdlConsumerWorkerInterface
     {
@@ -80,7 +80,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiTokenManagerWorker(): SiiTokenManagerWorkerInterface
     {
@@ -88,7 +88,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiDocumentSenderWorker(): SiiDocumentSenderWorkerInterface
     {
@@ -96,7 +96,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiDeliveryCheckerWorker(): SiiDeliveryCheckerWorkerInterface
     {
@@ -104,7 +104,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getSiiDocumentValidatorWorker(): SiiDocumentValidatorWorkerInterface
     {

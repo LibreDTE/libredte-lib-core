@@ -24,9 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
+use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use Derafu\Lib\Core\Support\Store\DataContainer;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
  * Contenedor de datos para procesamiento en lote de documentos tributarios.
@@ -107,6 +109,26 @@ class DocumentBatch implements DocumentBatchInterface
         ],
     ];
 
+    /**
+     * Emisor del documento tributario.
+     *
+     * @var EmisorInterface|null
+     */
+    private ?EmisorInterface $emisor = null;
+
+    /**
+     * Certificado digital (firma electrónica) para la firma del documento.
+     *
+     * @var CertificateInterface|null
+     */
+    private ?CertificateInterface $certificate;
+
+    /**
+     * Constructor del lote.
+     *
+     * @param string $file
+     * @param array|DataContainerInterface|null $options
+     */
     public function __construct(
         string $file,
         array|DataContainerInterface|null $options = null
@@ -116,7 +138,7 @@ class DocumentBatch implements DocumentBatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getFile(): string
     {
@@ -124,7 +146,7 @@ class DocumentBatch implements DocumentBatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function setOptions(array|DataContainerInterface|null $options): static
     {
@@ -142,10 +164,46 @@ class DocumentBatch implements DocumentBatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOptions(): ?DataContainerInterface
     {
         return $this->options;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmisor(?EmisorInterface $emisor): static
+    {
+        $this->emisor = $emisor;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEmisor(): ?EmisorInterface
+    {
+        return $this->emisor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCertificate(?CertificateInterface $certificate): static
+    {
+        $this->certificate = $certificate;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCertificate(): ?CertificateInterface
+    {
+        return $this->certificate;
     }
 }

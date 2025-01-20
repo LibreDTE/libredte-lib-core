@@ -5,6 +5,8 @@
 /build/
 /tests/env-tests
 /tests/fixtures/caf/*.xml
+/tests/fixtures/emision_masiva/*.xml
+/tests/fixtures/emision_masiva/*.pdf
 /tests/fixtures/xml/upload/*.xml
 /tests/fixtures/yaml/documentos_ok/*/*.xml
 /tests/fixtures/yaml/documentos_ok/*/*.html

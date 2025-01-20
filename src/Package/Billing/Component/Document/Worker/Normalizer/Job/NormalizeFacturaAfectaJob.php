@@ -53,7 +53,7 @@ class NormalizeFacturaAfectaJob extends AbstractJob implements JobInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function execute(DocumentBagInterface $bag): void
     {

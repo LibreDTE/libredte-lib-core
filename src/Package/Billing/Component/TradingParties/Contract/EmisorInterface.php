@@ -30,6 +30,20 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 interface EmisorInterface extends ContribuyenteInterface, AutorizacionDteInfoInterface, CorreoIntercambioDteInfoInterface
 {
     /**
+     * Entrega el código de la sucursal asignado por el SII al emisor.
+     *
+     * @return integer|null
+     */
+    public function getSucursal(): ?int;
+
+    /**
+     * Entrega el nombre o código del vendedor que está representando al emisor.
+     *
+     * @return string|null
+     */
+    public function getVendedor(): ?string;
+
+    /**
      * Asigna los datos del logo del emisor.
      *
      * @param string $logo

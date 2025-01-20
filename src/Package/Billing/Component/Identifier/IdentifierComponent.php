@@ -43,7 +43,7 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getWorkers(): array
     {
@@ -55,7 +55,7 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCafFakerWorker(): CafFakerWorkerInterface
     {
@@ -63,7 +63,7 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCafLoaderWorker(): CafLoaderWorkerInterface
     {
@@ -71,7 +71,7 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCafValidatorWorker(): CafValidatorWorkerInterface
     {

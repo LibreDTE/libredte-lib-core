@@ -57,7 +57,7 @@ class SiiDocumentSenderWorker extends AbstractWorker implements SiiDocumentSende
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function sendXml(
         CertificateInterface $certificate,

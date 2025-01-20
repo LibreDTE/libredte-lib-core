@@ -47,7 +47,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(
         EmisorInterface $emisor,

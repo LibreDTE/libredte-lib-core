@@ -28,50 +28,28 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoI
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
- * Interfaz para la bolsa con los datos del CAF.
+ * Interfaz para el servicio provee el CAF con el folio que se debe asignar al
+ * emitir un documento tributario.
+ *
+ * Este proveedor permite que una aplicación entregue el CAF desde cualquier
+ * fuente. Incluso que pueda proveer CAF falsos como la implementación que viene
+ * por defecto en LibreDTE.
  */
-interface CafBagInterface
+interface CafProviderInterface
 {
     /**
-     * Obtiene el CAF.
+     * Provee un CAF para el emisor y tipo de documento solicitado.
      *
-     * @return CafInterface
-     */
-    public function getCaf(): CafInterface;
-
-    /**
-     * Obtiene el contribuyente emisor del CAF.
+     * Opcionalmente se puede indicar el folio que se desea utilizar.
      *
-     * @return EmisorInterface
+     * @param EmisorInterface $emisor Emisor para el que se busca un CAF.
+     * @param TipoDocumentoInterface $tipoDocumento Documento a buscar su CAF.
+     * @param int|null $folio Permite indicar si se quiere un folio específico.
+     * @return CafBagInterface Bolsa con los datos del CAF encontrado.
      */
-    public function getEmisor(): EmisorInterface;
-
-    /**
-     * Obtiene el tipo de documento del CAF.
-     *
-     * @return TipoDocumentoInterface
-     */
-    public function getTipoDocumento(): TipoDocumentoInterface;
-
-    /**
-     * Asigna el listado de folios disponibles en el CAF.
-     *
-     * @param array $foliosDisponibles
-     * @return static
-     */
-    public function setFoliosDisponibles(array $foliosDisponibles): static;
-
-    /**
-     * Obtiene el listado de folios disponibles del CAF.
-     *
-     * @return array
-     */
-    public function getFoliosDisponibles(): array;
-
-    /**
-     * Entrega el siguiente folio disponible que se puede utilizar en el CAF.
-     *
-     * @return int
-     */
-    public function getSiguienteFolio(): int;
+    public function getFolio(
+        EmisorInterface $emisor,
+        TipoDocumentoInterface $tipoDocumento,
+        ?int $folio = null
+    ): CafBagInterface;
 }

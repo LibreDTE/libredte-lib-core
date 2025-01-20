@@ -36,7 +36,7 @@ interface BatchProcessorWorkerInterface extends WorkerInterface
      * Procesa masivamente documentos tributarios electrónicos.
      *
      * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
-     * @return DocumentInterface[]
+     * @return DocumentBagInterface[]
      * @throws BatchProcessorException
      */
     public function process(DocumentBatchInterface $batch): array;

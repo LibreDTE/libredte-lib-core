@@ -187,7 +187,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __toString(): string
     {
@@ -201,7 +201,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     */
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCodigo(): int|string
     {
@@ -209,7 +209,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNombre(): string
     {
@@ -217,7 +217,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getNombreCorto(): string
     {
@@ -225,7 +225,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getCategoria(): ?CategoriaDocumento
     {
@@ -233,7 +233,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esElectronico(): ?bool
     {
@@ -241,7 +241,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function seEnviaAlSii(): ?bool
     {
@@ -249,7 +249,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function disponibleEnCompras(): ?bool
     {
@@ -257,7 +257,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function disponibleEnVentas(): ?bool
     {
@@ -265,7 +265,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getOperacion(): ?OperacionDocumento
     {
@@ -273,7 +273,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esCedible(): bool
     {
@@ -281,7 +281,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTagXml(): ?TagXmlDocumento
     {
@@ -289,7 +289,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function estaDisponible(): bool
     {
@@ -297,7 +297,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getAlias(): ?string
     {
@@ -305,7 +305,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getInterface(): ?string
     {
@@ -313,7 +313,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getTipoSobre(): ?TipoSobre
     {
@@ -327,7 +327,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     */
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esGuiaDespacho(): bool
     {
@@ -335,7 +335,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esBoleta(): bool
     {
@@ -343,7 +343,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esExportacion(): bool
     {
@@ -351,7 +351,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function esExento(): bool
     {
@@ -365,7 +365,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     */
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function requiereAcuseRecibo(): bool
     {
@@ -374,7 +374,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function requiereTpoTranVenta(): bool
     {
@@ -388,7 +388,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     */
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDefaultTasaIVA(): float|false
     {
@@ -398,7 +398,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDefaultCredEC(): float|false
     {
@@ -406,7 +406,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getDefaultIndServicio(): int|false
     {

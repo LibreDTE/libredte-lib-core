@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategy
 class JsonParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function parse(string $data): array
     {

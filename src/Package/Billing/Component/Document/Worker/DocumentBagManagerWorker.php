@@ -63,7 +63,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function create(
         string|array|XmlInterface|DocumentInterface $source,
@@ -112,7 +112,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function normalize(
         DocumentBagInterface $bag,

@@ -49,7 +49,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function load(string|XmlInterface $xml): CafBagInterface
     {
