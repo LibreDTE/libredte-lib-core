@@ -62,7 +62,8 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
         } catch (Throwable $e) {
             throw new ParserException(
                 message: $e->getMessage(),
-                documentBag: $bag
+                documentBag: $bag,
+                previous: $e
             );
         }
 

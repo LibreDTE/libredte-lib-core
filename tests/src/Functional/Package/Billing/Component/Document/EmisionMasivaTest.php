@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Lib\Core\Common\Exception\Exception;
 use Derafu\Lib\Core\Helper\Arr;
+use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
@@ -96,6 +98,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuye
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Tests\TestCase;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -171,6 +175,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(FakeEmisorProvider::class)]
+#[CoversClass(FakeReceptorProvider::class)]
 class EmisionMasivaTest extends TestCase
 {
     public function testCargarDocumentosDesdeArchivoCsv(): void
@@ -244,12 +250,24 @@ class EmisionMasivaTest extends TestCase
                 $xml
             );
 
-            // Validar documento.
+            // Validar esquema del documento.
             try {
-                $validator->validateSchema($documentBag);
-            } catch (XmlException $e) {
+                $validator->validateSchema($xml);
+            } catch (Exception $e) {
                 throw new XmlException(sprintf(
                     'La validación del XML del documento %d (%s) falló: %s',
+                    $i + 1,
+                    $documentBag->getId(),
+                    $e->getMessage()
+                ));
+            }
+
+            // Validar firma del documento.
+            try {
+                $validator->validateSignature($xml);
+            } catch (Exception $e) {
+                throw new SignatureException(sprintf(
+                    'La validación de la firma del documento %d (%s) falló: %s',
                     $i + 1,
                     $documentBag->getId(),
                     $e->getMessage()

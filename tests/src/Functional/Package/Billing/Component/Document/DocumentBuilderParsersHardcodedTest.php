@@ -57,8 +57,12 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
@@ -94,6 +98,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
+#[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
+#[CoversClass(FakeEmisorProvider::class)]
+#[CoversClass(FakeReceptorProvider::class)]
 class DocumentBuilderParsersHardcodedTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

@@ -41,6 +41,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
  */
 class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcessorStrategyInterface
 {
+    /**
+     * Constructor de la estrategia con sus dependencias.
+     *
+     * @param EntityComponentInterface $entityComponent
+     */
     public function __construct(
         private EntityComponentInterface $entityComponent
     ) {
@@ -72,24 +77,30 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
                 // detalles al documento actual.
                 if (!empty($datos[$i][13])) {
                     $datosItem = array_merge(
-                        // Datos originales del item (vienen juntos en el archivo).
+                        // Datos originales del item (vienen juntos en el
+                        // archivo).
                         array_slice($datos[$i], 11, 8),
-                        // Datos adicionales del item (vienen después del
-                        // item, "al final", porque se añadieron después de
-                        // los previos al archivo)
+
+                        // Datos adicionales del item (vienen después del item,
+                        // "al final", porque se añadieron después de los
+                        // previos al archivo).
                         [
                             // CodImpAdic.
                             !empty($datos[$i][38]) ? $datos[$i][38] : null,
                         ]
                     );
+
                     $this->addItem($documento, $datosItem);
                 }
+
                 // Agregar referencias al documento.
                 $this->addReference($documento, array_slice($datos[$i], 28, 5));
             }
         }
+
         // Agregar el último documento procesado al listado.
         $documentos[] = $documento;
+
         return $documentos;
     }
 
@@ -97,30 +108,29 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * Crea un documento a partir de los datos proporcionados.
      *
      * Verifica los datos mínimos requeridos y genera la estructura base.
+     *
      * También agrega ítems, transporte y referencias al documento.
      *
      * @param array $datos Datos para crear el documento. Los índices corresponden a:
-     *  - 0: Tipo de documento (obligatorio).
-     *  - 1: Folio del documento (obligatorio).
-     *  - 2: Fecha de emisión (opcional).
-     *  - 3: Fecha de vencimiento (opcional).
-     *  - 4: RUT del receptor (obligatorio).
-     *  - 5: Razón social del receptor (obligatoria si no es boleta).
-     *  - 6: Giro del receptor (obligatorio si no es boleta).
-     *  - 7: Contacto del receptor (opcional).
-     *  - 8: Correo del receptor (opcional, validado si se proporciona).
-     *  - 9: Dirección del receptor (obligatoria si no es boleta).
-     *  - 10: Comuna del receptor (obligatoria si no es boleta).
-     *  - 33: Tipo de moneda (opcional, por defecto USD si aplica).
-     *  - 34: Número de identificación del receptor extranjero (opcional).
-     *  - 35: Descuento global (opcional, porcentaje o monto).
-     *  - 36: Nombre del PDF (opcional).
-     *  - 37: Forma de pago (opcional, 1, 2 o 3).
-     *  - 38: Código de impuesto adicional (opcional).
-     *
-     * @throws BatchProcessorException Si faltan datos mínimos o son inválidos.
-     *
+     *   - 0: Tipo de documento (obligatorio).
+     *   - 1: Folio del documento (obligatorio).
+     *   - 2: Fecha de emisión (opcional).
+     *   - 3: Fecha de vencimiento (opcional).
+     *   - 4: RUT del receptor (obligatorio).
+     *   - 5: Razón social del receptor (obligatoria si no es boleta).
+     *   - 6: Giro del receptor (obligatorio si no es boleta).
+     *   - 7: Contacto del receptor (opcional).
+     *   - 8: Correo del receptor (opcional, validado si se proporciona).
+     *   - 9: Dirección del receptor (obligatoria si no es boleta).
+     *   - 10: Comuna del receptor (obligatoria si no es boleta).
+     *   - 33: Tipo de moneda (opcional, por defecto USD si aplica).
+     *   - 34: Número de identificación del receptor extranjero (opcional).
+     *   - 35: Descuento global (opcional, porcentaje o monto).
+     *   - 36: Nombre del PDF (opcional).
+     *   - 37: Forma de pago (opcional, 1, 2 o 3).
+     *   - 38: Código de impuesto adicional (opcional).
      * @return array Estructura del documento generado.
+     * @throws BatchProcessorException Si faltan datos mínimos o son inválidos.
      */
     private function createDocument(array $datos): array
     {
@@ -135,7 +145,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
             throw new BatchProcessorException('Falta RUT del receptor.');
         }
 
-        // verificar datos si no es boleta
+        // Verificar datos si no es boleta.
         if (!in_array($datos[0], [39, 41])) {
             if (empty($datos[5])) {
                 throw new BatchProcessorException(
@@ -179,7 +189,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
 
         // Manejar tipos de moneda para documentos de exportación.
         if (in_array($documento['Encabezado']['IdDoc']['TipoDTE'], [110,111,112])) {
-            // agregar moneda
+            // Agregar moneda.
             if (empty($datos[33])) {
                 $datos[33] = 'USD';
             }
@@ -193,7 +203,8 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
                 );
             }
             $documento['Encabezado']['Totales']['TpoMoneda'] = $moneda;
-            // agregar ID del receptor
+
+            // Agregar ID del receptor.
             if (!empty($datos[34])) {
                 $documento['Encabezado']['Receptor']['Extranjero']['NumId'] = mb_substr(
                     trim($datos[34]),
@@ -228,19 +239,20 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
 
         // Procesar forma de pago.
         if (!empty($datos[37])) {
-            if (!in_array($datos[37], [1,2,3])) {
+            if (!in_array($datos[37], [1, 2, 3])) {
                 throw new BatchProcessorException(sprintf(
                     'Forma de pago de código %s es incorrecta, debe ser: 1 (contado), 2 (crédito) o 3 (sin costo).',
                     $datos[37]
                 ));
             }
-            $documento['Encabezado']['IdDoc']['FmaPago'] = (int)$datos[37];
+            $documento['Encabezado']['IdDoc']['FmaPago'] = (int) $datos[37];
         }
 
         // Agregar ítems, transporte y referencias.
         $datosItem = array_merge(
             // Datos originales del item (vienen juntos en el archivo).
             array_slice($datos, 11, 8),
+
             // Datos adicionales del item (vienen después del item, "al final",
             // porque se añadieron después de los previos al archivo)
             [
@@ -248,9 +260,11 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
                 !empty($datos[38]) ? $datos[38] : null,
             ]
         );
+
         $this->addItem($documento, $datosItem);
         $this->addTransport($documento, array_slice($datos, 22, 6));
         $this->addReference($documento, array_slice($datos, 28, 5));
+
         return $documento;
     }
 
@@ -258,11 +272,11 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * Genera la estructura inicial del DTE.
      *
      * Este método crea un arreglo con la estructura base del DTE, incluyendo
-     * encabezado, emisor, receptor y detalles. Configura valores predeterminados
-     * para los campos opcionales y procesa algunos datos de entrada.
+     * encabezado, emisor, receptor y detalles. Configura valores
+     * predeterminados para los campos opcionales y procesa algunos datos de
+     * entrada.
      *
      * @param array $datos Datos de entrada para generar la estructura del DTE.
-     *
      * @return array Arreglo con la estructura inicial del DTE.
      */
     private function setInitialDTE(array $datos): array
@@ -343,21 +357,19 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * que los campos mínimos estén presentes y ajusta la longitud de los datos.
      *
      * @param array &$documento Documento al que se agregará el ítem. Modificado
-     *                          directamente.
+     * directamente.
      * @param array $item  Datos del ítem. Los índices corresponden a:
-     *               - 0: Código del ítem (opcional).
-     *               - 1: Indicador de exención (opcional).
-     *               - 2: Nombre del ítem (obligatorio).
-     *               - 3: Descripción del ítem (opcional).
-     *               - 4: Cantidad del ítem (obligatorio).
-     *               - 5: Unidad de medida (opcional).
-     *               - 6: Precio del ítem (obligatorio).
-     *               - 7: Descuento (opcional, porcentaje o monto).
-     *               - 8: Código de impuesto adicional (opcional).
-     *
-     * @throws BatchProcessorException Si faltan datos obligatorios.
-     *
+     *   - 0: Código del ítem (opcional).
+     *   - 1: Indicador de exención (opcional).
+     *   - 2: Nombre del ítem (obligatorio).
+     *   - 3: Descripción del ítem (opcional).
+     *   - 4: Cantidad del ítem (obligatorio).
+     *   - 5: Unidad de medida (opcional).
+     *   - 6: Precio del ítem (obligatorio).
+     *   - 7: Descuento (opcional, porcentaje o monto).
+     *   - 8: Código de impuesto adicional (opcional).
      * @return void
+     * @throws BatchProcessorException Si faltan datos obligatorios.
      */
     private function addItem(array &$documento, array $item): void
     {
@@ -435,15 +447,14 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * patente, transportista, chofer y destino.
      *
      * @param array &$documento Documento al que se agregará la información de
-     *                          transporte. Se pasa por referencia para modificarlo.
+     * transporte. Se pasa por referencia para modificarlo.
      * @param array $transporte Datos de transporte a procesar. Los índices son:
-     *               - 0: Patente del vehículo (opcional).
-     *               - 1: RUT del transportista (opcional).
-     *               - 2: RUT del chofer (opcional).
-     *               - 3: Nombre del chofer (opcional).
-     *               - 4: Dirección del destino (opcional).
-     *               - 5: Comuna del destino (opcional).
-     *
+     *   - 0: Patente del vehículo (opcional).
+     *   - 1: RUT del transportista (opcional).
+     *   - 2: RUT del chofer (opcional).
+     *   - 3: Nombre del chofer (opcional).
+     *   - 4: Dirección del destino (opcional).
+     *   - 5: Comuna del destino (opcional).
      * @return void Modifica el documento directamente.
      */
     private function addTransport(array &$documento, array $transporte): void
@@ -460,7 +471,8 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
             return;
         }
 
-        // Procesar cada dato de transporte y agregarlo al documento si está presente.
+        // Procesar cada dato de transporte y agregarlo al documento si está
+        // presente.
         if ($transporte[0]) {
             $documento['Encabezado']['Transporte']['Patente'] = mb_substr(
                 trim($transporte[0]),
@@ -476,16 +488,20 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
             );
         }
         if ($transporte[2] && $transporte[3]) {
-            $documento['Encabezado']['Transporte']['Chofer']['RUTChofer'] = mb_substr(
-                str_replace('.', '', trim($transporte[2])),
-                0,
-                10
-            );
-            $documento['Encabezado']['Transporte']['Chofer']['NombreChofer'] = mb_substr(
-                trim($transporte[3]),
-                0,
-                30
-            );
+            $documento['Encabezado']['Transporte']['Chofer']['RUTChofer'] =
+                mb_substr(
+                    str_replace('.', '', trim($transporte[2])),
+                    0,
+                    10
+                )
+            ;
+            $documento['Encabezado']['Transporte']['Chofer']['NombreChofer'] =
+                mb_substr(
+                    trim($transporte[3]),
+                    0,
+                    30
+                )
+            ;
         }
         if ($transporte[4]) {
             $documento['Encabezado']['Transporte']['DirDest'] = mb_substr(
@@ -507,21 +523,21 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * Agrega una referencia a un documento.
      *
      * Procesa los datos de referencia y los agrega al arreglo `Referencia`
-     * dentro del documento. Valida los campos obligatorios y ajusta su
-     * longitud si es necesario.
+     * dentro del documento. Valida los campos obligatorios y ajusta su longitud
+     * si es necesario.
      *
      * @param array &$documento Documento al que se agregará la referencia.
-     *                          Se pasa por referencia para modificarlo.
-     * @param array $referencia Datos de la referencia a agregar. Los índices deben ser:
-     *    - 0: Tipo del documento referenciado (obligatorio).
-     *    - 1: Folio del documento referenciado (obligatorio).
-     *    - 2: Fecha del documento en formato AAAA-MM-DD (obligatorio).
-     *    - 3: Código de referencia (opcional).
-     *    - 4: Razón de la referencia (opcional).
-     *
-     * @throws BatchProcessorException Si algún campo obligatorio está vacío o no es válido.
-     *
+     * Se pasa por referencia para modificarlo.
+     * @param array $referencia Datos de la referencia a agregar. Los índices
+     * deben ser:
+     *   - 0: Tipo del documento referenciado (obligatorio).
+     *   - 1: Folio del documento referenciado (obligatorio).
+     *   - 2: Fecha del documento en formato AAAA-MM-DD (obligatorio).
+     *   - 3: Código de referencia (opcional).
+     *   - 4: Razón de la referencia (opcional).
      * @return void Modifica el documento directamente.
+     * @throws BatchProcessorException Si algún campo obligatorio está vacío o
+     * no es válido.
      */
     private function addReference(array &$documento, array $referencia): void
     {
@@ -548,14 +564,17 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
         }
         $Referencia['FolioRef'] = mb_substr(trim($referencia[1]), 0, 18);
 
-        if (empty($referencia[2])  && Date::validateAndConvert($referencia[2], 'Y-m-d') !== null) {
+        if (
+            empty($referencia[2])
+            && Date::validateAndConvert($referencia[2], 'Y-m-d') !== null
+        ) {
             throw new BatchProcessorException(
                 'Fecha del documento de referencia debe ser en formato AAAA-MM-DD.'
             );
         }
         $Referencia['FchRef'] = $referencia[2];
         if (!empty($referencia[3])) {
-            $Referencia['CodRef'] = (int)$referencia[3];
+            $Referencia['CodRef'] = (int) $referencia[3];
         }
         if (!empty($referencia[4])) {
             $Referencia['RazonRef'] = mb_substr(trim($referencia[4]), 0, 90);
@@ -566,17 +585,16 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     /**
      * Obtiene la glosa de una moneda a partir de su código ISO.
      *
-     * Este método busca en el repositorio de la entidad `AduanaMoneda`
-     * un registro que coincida con el código ISO proporcionado.
-     * Si encuentra un resultado, devuelve la glosa asociada; de lo
-     * contrario, retorna `null`.
+     * Este método busca en el repositorio de la entidad `AduanaMoneda` un
+     * registro que coincida con el código ISO proporcionado. Si encuentra un
+     * resultado, devuelve la glosa asociada; de lo contrario, retorna `null`.
      *
      * @param string $moneda Código ISO de la moneda que se desea buscar.
-     *
      * @return string|null La glosa de la moneda o `null` si no existe.
      */
     private function getCurrency(string $moneda): ?string
     {
+        // Buscar la moneda a través del repositorio.
         $result = $this->entityComponent
             ->getRepository(AduanaMoneda::class)
             ->findBy([

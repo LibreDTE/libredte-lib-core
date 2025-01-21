@@ -656,21 +656,26 @@ class DocumentBag implements DocumentBagInterface
             );
         }
 
-        $data = $this->getNormalizedData() ?? $this->getParsedData();
+        $parsedData = $this->getParsedData();
+        $normalizedData = $this->getNormalizedData();
 
-        if ($data === null) {
+        if ($parsedData === null && $normalizedData === null) {
             throw new LogicException(
-                'No es posible asignar el folio si no existen datos normalizados o parseados.'
+                'No es posible asignar el folio si no existen datos parseados o normalizados.'
             );
         }
 
-        $data['Encabezado']['IdDoc']['Folio'] = $folio;
-
-        if ($this->getNormalizedData()) {
-            return $this->setNormalizedData($data);
+        if ($parsedData !== null) {
+            $parsedData['Encabezado']['IdDoc']['Folio'] = $folio;
+            $this->setParsedData($parsedData);
         }
 
-        return $this->setParsedData($data);
+        if ($normalizedData !== null) {
+            $normalizedData['Encabezado']['IdDoc']['Folio'] = $folio;
+            $this->setNormalizedData($normalizedData);
+        }
+
+        return $this;
     }
 
     /**

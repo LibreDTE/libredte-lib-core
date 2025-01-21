@@ -69,6 +69,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuye
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
@@ -117,6 +119,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(TemplateDataHandler::class)]
+#[CoversClass(FakeEmisorProvider::class)]
+#[CoversClass(FakeReceptorProvider::class)]
 class BillingPackageTest extends TestCase
 {
     public function testBillingPackageBillerBill(): void

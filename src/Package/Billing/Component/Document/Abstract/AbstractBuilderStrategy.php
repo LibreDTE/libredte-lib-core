@@ -61,7 +61,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function create(XmlInterface $xmlDocument): DocumentInterface
     {
@@ -72,7 +72,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function build(DocumentBagInterface $bag): DocumentInterface
     {

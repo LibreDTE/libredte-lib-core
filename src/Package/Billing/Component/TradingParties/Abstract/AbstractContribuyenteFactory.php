@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractFactory;
 use Derafu\Lib\Core\Foundation\Contract\FactoryInterface;
+use Derafu\Lib\Core\Helper\Rut;
 
 /**
  * Clase abstracta para las implementaciones de fábricas de contribuyentes,
@@ -50,6 +51,10 @@ abstract class AbstractContribuyenteFactory extends AbstractFactory implements F
             ?? $data['RUTRecep']
             ?? null
         ) ?: '66666666-6';
+
+        if (is_int($normalized['rut'])) {
+            $normalized['rut'] = Rut::addDv($normalized['rut']);
+        }
 
         $normalized['razon_social'] = (
             $data['razon_social']

@@ -394,7 +394,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     {
         $TasaIVA = 19;
 
-        return !in_array($this->codigo, [41, 110, 111, 112]) ? $TasaIVA : false;
+        return !in_array($this->codigo, [34, 41, 110, 111, 112]) ? $TasaIVA : false;
     }
 
     /**

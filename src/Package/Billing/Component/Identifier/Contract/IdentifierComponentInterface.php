@@ -46,6 +46,13 @@ interface IdentifierComponentInterface extends ComponentInterface
     public function getCafLoaderWorker(): CafLoaderWorkerInterface;
 
     /**
+     * Obtiene el worker "billing.identifier.caf_provider".
+     *
+     * @return CafProviderWorkerInterface
+     */
+    public function getCafProviderWorker(): CafProviderWorkerInterface;
+
+    /**
      * Obtiene el worker "billing.identifier.caf_validator".
      *
      * @return CafValidatorWorkerInterface

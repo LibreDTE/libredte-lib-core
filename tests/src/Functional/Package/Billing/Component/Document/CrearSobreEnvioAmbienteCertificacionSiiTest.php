@@ -109,6 +109,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\PersonaNatural;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -200,6 +202,8 @@ use Throwable;
 #[CoversClass(PersonaNatural::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(ReceptorFactory::class)]
+#[CoversClass(FakeEmisorProvider::class)]
+#[CoversClass(FakeReceptorProvider::class)]
 class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 {
     public static function provideDocumentosOk(): array

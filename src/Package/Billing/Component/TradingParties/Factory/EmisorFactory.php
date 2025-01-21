@@ -54,4 +54,28 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
 
         return Factory::create($data, $this->class);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function normalizeData(array $data): array
+    {
+        $normalized = parent::normalizeData($data);
+
+        $normalized['codigo_sucursal'] = (
+            (int) (
+                $data['codigo_sucursal']
+                ?? $data['CdgSIISucur']
+                ?? false
+            )
+        ) ?: null;
+
+        $normalized['vendedor'] = (
+            $data['vendedor']
+            ?? $data['CdgVendedor']
+            ?? null
+        ) ?: null;
+
+        return $normalized;
+    }
 }

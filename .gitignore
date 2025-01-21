@@ -7,6 +7,10 @@
 /tests/fixtures/caf/*.xml
 /tests/fixtures/emision_masiva/*.xml
 /tests/fixtures/emision_masiva/*.pdf
+/tests/fixtures/parsers/*/*/*.json.xml
+/tests/fixtures/parsers/*/*/*.xml.xml
+/tests/fixtures/parsers/*/*/*.yaml.xml
+/tests/fixtures/parsers/*/*/*.pdf
 /tests/fixtures/xml/upload/*.xml
 /tests/fixtures/yaml/documentos_ok/*/*.xml
 /tests/fixtures/yaml/documentos_ok/*/*.html

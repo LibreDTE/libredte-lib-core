@@ -34,7 +34,7 @@ interface EmisorInterface extends ContribuyenteInterface, AutorizacionDteInfoInt
      *
      * @return integer|null
      */
-    public function getSucursal(): ?int;
+    public function getCodigoSucursal(): ?int;
 
     /**
      * Entrega el nombre o código del vendedor que está representando al emisor.

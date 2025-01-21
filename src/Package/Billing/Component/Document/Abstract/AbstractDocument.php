@@ -122,7 +122,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getId(): string
     {
         return sprintf(
-            '%sT%03dF%09d',
+            '%s_T%03dF%09d',
             $this->getRutEmisor(),
             $this->getCodigo(),
             $this->getFolio()

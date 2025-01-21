@@ -1,0 +1,76 @@
+lista_precios: 0
+TpoDoc: 61
+FchEmis: '2025-01-17'
+FmaPago: ''
+FchVenc: '2025-01-17'
+IndServicio: ''
+PeriodoDesde: ''
+PeriodoHasta: ''
+RUTEmisor: 76192083
+CdgVendedor: vl
+CdgSIISucur: 0
+Acteco: 726000
+GiroEmis: Tecnología, Informática y Telecomunicaciones
+RUTRecep: 60.803.000-K
+dte_referencia_defecto: 0
+RznSocRecep: Servicio de Impuestos Internos
+GiroRecep: Gobierno
+DirRecep: Santiago
+CmnaRecep: '06310'
+CorreoRecep: esteban@sasco.cl
+Contacto: ''
+CdgIntRecep: ''
+RUTSolicita: ''
+IndTraslado: 1
+DirDest: ''
+CmnaDest: ''
+RUTTrans: ''
+Patente: ''
+RUTChofer: ''
+NombreChofer: ''
+NumId: ''
+TpoCambio: ''
+VlrCodigo: []
+NmbItem:
+  - Prueba
+DscItem:
+  - ''
+IndExe:
+  - 0
+QtyItem:
+  - 1
+UnmdItem:
+  - ''
+PrcItem:
+  - 5000
+ValorDR:
+  - 0
+TpoValor:
+  - '%'
+subtotal:
+  - 5000
+FchRef:
+  - '2025-01-17'
+TpoDocRef:
+  - 33
+FolioRef:
+  - 1
+CodRef:
+  - 3
+RazonRef:
+  - Corrige monto de factura
+ValorDR_global: 0
+TpoValor_global: '%'
+neto: 5000
+exento: 0
+tasa: 19
+iva: 950
+total: 5950
+TermPagoGlosa: ''
+MedioPago: ''
+BcoPago: ''
+TpoCtaPago: ''
+NumCtaPago: ''
+TpoTranVenta: ''
+TpoTranCompra: ''
+submit: ''

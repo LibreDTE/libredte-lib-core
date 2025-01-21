@@ -118,7 +118,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
                 // tiene ese folio.
                 $folio = $documentBag->getFolio();
                 $folio = is_int($folio) ? $folio : null;
-                $cafBag = $this->cafProvider->getFolio(
+                $cafBag = $this->cafProvider->retrieve(
                     $emisor,
                     $documentBag->getTipoDocumento(),
                     $folio
@@ -222,7 +222,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         ;
         $data['Encabezado']['Emisor']['CdgSIISucur'] =
             ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? false)
-            ?: ($emisor->getSucursal() ?? false)
+            ?: ($emisor->getCodigoSucursal() ?? false)
         ;
         $data['Encabezado']['Emisor']['CdgVendedor'] =
             ($data['Encabezado']['Emisor']['CdgVendedor'] ?? false)

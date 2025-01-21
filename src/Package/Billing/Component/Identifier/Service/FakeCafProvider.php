@@ -67,7 +67,7 @@ class FakeCafProvider implements CafProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getFolio(
+    public function retrieve(
         EmisorInterface $emisor,
         TipoDocumentoInterface $tipoDocumento,
         ?int $folio = null

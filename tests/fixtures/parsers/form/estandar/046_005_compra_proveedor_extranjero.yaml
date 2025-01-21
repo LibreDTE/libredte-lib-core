@@ -1,0 +1,67 @@
+lista_precios: 0
+TpoDoc: 46
+FchEmis: '2025-01-21'
+FmaPago: ''
+FchVenc: '2025-01-21'
+IndServicio: ''
+PeriodoDesde: ''
+PeriodoHasta: ''
+RUTEmisor: 76192083
+CdgVendedor: vl
+CdgSIISucur: 0
+Acteco: 726000
+GiroEmis: Tecnología, Informática y Telecomunicaciones
+RUTRecep: 59.292.930-9
+dte_referencia_defecto: 0
+RznSocRecep: AMAZON WEB SERVICES, INC.
+GiroRecep: Servicios de computación en la nube
+DirRecep: 410 Terry Ave North
+CmnaRecep: 13101
+CorreoRecep: ''
+Contacto: ''
+CdgIntRecep: ''
+RUTSolicita: ''
+IndTraslado: 1
+DirDest: ''
+CmnaDest: ''
+RUTTrans: ''
+Patente: ''
+RUTChofer: ''
+NombreChofer: ''
+NumId: ''
+TpoCambio: ''
+VlrCodigo: []
+NmbItem:
+  - Prueba
+DscItem: []
+IndExe:
+  - 0
+QtyItem:
+  - 1
+UnmdItem:
+  - ''
+PrcItem:
+  - 30000
+ValorDR:
+  - 0
+TpoValor:
+  - '%'
+CodImpAdic:
+  - 15
+subtotal:
+  - 30000
+impuesto_adicional_tipo_15: R
+impuesto_adicional_tasa_15: 19
+neto: 30000
+exento: 0
+tasa: 19
+iva: 5700
+total: 30000
+TermPagoGlosa: ''
+MedioPago: ''
+BcoPago: ''
+TpoCtaPago: ''
+NumCtaPago: ''
+TpoTranVenta: ''
+TpoTranCompra: ''
+submit: ''

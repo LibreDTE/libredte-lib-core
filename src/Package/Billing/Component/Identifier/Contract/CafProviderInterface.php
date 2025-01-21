@@ -47,7 +47,7 @@ interface CafProviderInterface
      * @param int|null $folio Permite indicar si se quiere un folio específico.
      * @return CafBagInterface Bolsa con los datos del CAF encontrado.
      */
-    public function getFolio(
+    public function retrieve(
         EmisorInterface $emisor,
         TipoDocumentoInterface $tipoDocumento,
         ?int $folio = null

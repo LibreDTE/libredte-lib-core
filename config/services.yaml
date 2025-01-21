@@ -68,6 +68,8 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker
         arguments:
             $emisorFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface'
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
@@ -98,6 +100,10 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\MandatarioFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider
 
     # Servicios del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:

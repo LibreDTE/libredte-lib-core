@@ -43,7 +43,7 @@ class Emisor extends Contribuyente implements EmisorInterface
      *
      * @var int|null
      */
-    private ?int $sucursal = null;
+    private ?int $codigo_sucursal = null;
 
     /**
      * Nombre o código del vendedor que está representando al emisor.
@@ -57,9 +57,9 @@ class Emisor extends Contribuyente implements EmisorInterface
      *
      * @return integer|null
      */
-    public function getSucursal(): ?int
+    public function getCodigoSucursal(): ?int
     {
-        return $this->sucursal;
+        return $this->codigo_sucursal;
     }
 
     /**

@@ -39,23 +39,46 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterf
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaCompraJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExentaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeGuiaDespachoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaExentaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaCompraNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExentaNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExportacionNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\GuiaDespachoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy;
@@ -64,23 +87,45 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaExentaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaCompraSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExentaSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExportacionSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\GuiaDespachoSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaExentaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaCompraValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExentaValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExportacionValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\GuiaDespachoValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoExportacionValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -138,11 +183,56 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NormalizeBoletaAfectaJob::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
+#[CoversClass(FakeCafProvider::class)]
+#[CoversClass(CafProviderWorker::class)]
+#[CoversClass(FakeEmisorProvider::class)]
+#[CoversClass(FakeReceptorProvider::class)]
+#[CoversClass(ImpuestoAdicionalRetencion::class)]
+#[CoversClass(ImpuestoAdicionalRetencionRepository::class)]
+#[CoversClass(FormaPago::class)]
+#[CoversClass(NormalizeFacturaExentaJob::class)]
+#[CoversClass(FacturaExentaNormalizerStrategy::class)]
+#[CoversClass(FacturaExentaSanitizerStrategy::class)]
+#[CoversClass(FacturaExentaValidatorStrategy::class)]
+#[CoversClass(NormalizeBoletaExentaJob::class)]
+#[CoversClass(BoletaExentaNormalizerStrategy::class)]
+#[CoversClass(BoletaExentaSanitizerStrategy::class)]
+#[CoversClass(BoletaExentaValidatorStrategy::class)]
+#[CoversClass(NormalizeFacturaCompraJob::class)]
+#[CoversClass(FacturaCompraNormalizerStrategy::class)]
+#[CoversClass(FacturaCompraSanitizerStrategy::class)]
+#[CoversClass(FacturaCompraValidatorStrategy::class)]
+#[CoversClass(Traslado::class)]
+#[CoversClass(NormalizeGuiaDespachoJob::class)]
+#[CoversClass(GuiaDespachoNormalizerStrategy::class)]
+#[CoversClass(GuiaDespachoSanitizerStrategy::class)]
+#[CoversClass(GuiaDespachoValidatorStrategy::class)]
+#[CoversClass(NormalizeNotaDebitoJob::class)]
+#[CoversClass(NotaDebitoNormalizerStrategy::class)]
+#[CoversClass(NotaDebitoSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoValidatorStrategy::class)]
+#[CoversClass(NormalizeNotaCreditoJob::class)]
+#[CoversClass(NotaCreditoNormalizerStrategy::class)]
+#[CoversClass(NotaCreditoSanitizerStrategy::class)]
+#[CoversClass(NotaCreditoValidatorStrategy::class)]
+#[CoversClass(AduanaPais::class)]
+#[CoversClass(NormalizeFacturaExportacionJob::class)]
+#[CoversClass(FacturaExportacionNormalizerStrategy::class)]
+#[CoversClass(FacturaExportacionSanitizerStrategy::class)]
+#[CoversClass(FacturaExportacionValidatorStrategy::class)]
+#[CoversClass(NormalizeNotaDebitoExportacionJob::class)]
+#[CoversClass(NotaDebitoExportacionNormalizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionValidatorStrategy::class)]
+#[CoversClass(NormalizeNotaCreditoExportacionJob::class)]
+#[CoversClass(NotaCreditoExportacionNormalizerStrategy::class)]
+#[CoversClass(NotaCreditoExportacionSanitizerStrategy::class)]
+#[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
 
-    private CafFakerWorkerInterface $cafFaker;
+    private CafProviderWorkerInterface $cafProvider;
 
     private CertificateFakerWorkerInterface $certificateFaker;
 
@@ -160,10 +250,10 @@ class DocumentBuilderParsersFixturesTest extends TestCase
             ->getBuilderWorker()
         ;
 
-        $this->cafFaker = $app
+        $this->cafProvider = $app
             ->getBillingPackage()
             ->getIdentifierComponent()
-            ->getCafFakerWorker()
+            ->getCafProviderWorker()
         ;
 
         $this->certificateFaker = $app
@@ -205,9 +295,22 @@ class DocumentBuilderParsersFixturesTest extends TestCase
                 }
                 $formatDir = $parserDir . '/' . $format;
                 foreach (scandir($formatDir) as $inputFile) {
+                    // Revisar si se debe agregar el archivo.
+                    $addFile = true;
                     if ($inputFile === '.' || $inputFile === '..') {
+                        $addFile = false;
+                    }
+                    foreach (['.json.xml', '.xml.xml', '.yaml.xml', '.pdf'] as $ext) {
+                        if (str_ends_with($inputFile, $ext)) {
+                            $addFile = false;
+                            break;
+                        }
+                    }
+                    if (!$addFile) {
                         continue;
                     }
+
+                    // Agregar el archivo.
                     $inputFilePath = $formatDir . '/' . $inputFile;
                     $id = sprintf(
                         '%s.%s:%s',
@@ -239,7 +342,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
                     'strategy' => $format,
                 ],
                 'renderer' => [
-                    'format' => 'html',
+                    'format' => 'pdf',
                 ],
             ])
         );
@@ -250,19 +353,20 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $this->assertIsArray($parsedData);
         $this->assertNotEmpty($parsedData);
 
-        // Crear un documento en base a los datos parseados.
+        // Validar el documento en base a los datos parseados.
         $document = $bag->getDocument();
         $this->assertInstanceOf(DocumentInterface::class, $document);
 
         // Crear CAF de pruebas y armar una nueva bolsa que incluya el CAF.
         // Al usar build() se timbrará el documento previamente normalizado.
-        $cafBag = $this->cafFaker->create(
+        $cafBag = $this->cafProvider->retrieve(
             $bag->getEmisor(),
-            $document->getCodigo(),
-            $document->getFolio()
+            $bag->getTipoDocumento(),
+            $bag->getFolio()
         );
         $caf = $cafBag->getCaf();
         $bag = $bag->withCaf($caf); // withCaf() retorna una nueva DocumentBag.
+        $bag->setFolio($bag->getFolio() ?? $cafBag->getSiguienteFolio());
         $this->builder->build($bag);
 
         // Crear certificado de pruebas y armar una nueva bolsa que incluya el
@@ -272,15 +376,19 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $bag = $bag->withCertificate($certificate); // withCertificate() retorna una nueva DocumentBag.
         $this->builder->build($bag);
 
-        // Validar esquema del XML generado y la firma.
+        // Guardar el XML.
         $xml = $bag->getDocument()->saveXml();
+        file_put_contents($file . '.xml', $xml);
+
+        // Validar esquema del XML generado y la firma.
         $this->validator->validateSchema($xml);
         $this->validator->validateSignature($xml);
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar.
-        $rendered = $this->renderer->render($bag);
-        $this->assertNotEmpty($rendered);
-        $this->assertIsString($rendered);
+        $pdf = $this->renderer->render($bag);
+        $this->assertNotEmpty($pdf);
+        $this->assertIsString($pdf);
+        file_put_contents($file . '.pdf', $pdf);
     }
 }
