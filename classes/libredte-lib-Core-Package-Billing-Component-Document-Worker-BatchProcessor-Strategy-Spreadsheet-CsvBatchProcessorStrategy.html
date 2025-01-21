@@ -276,6 +276,7 @@ estándar de LibreDTE.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Constructor de la estrategia con sus dependencias.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_process">process()</a>
@@ -356,7 +357,7 @@ estándar de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -397,11 +398,12 @@ estándar de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor de la estrategia con sus dependencias.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -441,7 +443,7 @@ estándar de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -492,7 +494,7 @@ estándar de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">362</span>
+    <span class="phpdocumentor-element-found-in__line">374</span>
 
     </aside>
 
@@ -580,7 +582,7 @@ directamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">526</span>
+    <span class="phpdocumentor-element-found-in__line">542</span>
 
     </aside>
 
@@ -594,8 +596,8 @@ directamente.</p>
         </div>
     
         <section class="phpdocumentor-description"><p>Procesa los datos de referencia y los agrega al arreglo <code class="prettyprint">Referencia</code>
-dentro del documento. Valida los campos obligatorios y ajusta su
-longitud si es necesario.</p>
+dentro del documento. Valida los campos obligatorios y ajusta su longitud
+si es necesario.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -615,7 +617,8 @@ Se pasa por referencia para modificarlo.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de la referencia a agregar. Los índices deben ser:</p>
+                    <section class="phpdocumentor-description"><p>Datos de la referencia a agregar. Los índices
+deben ser:</p>
 <ul>
 <li>0: Tipo del documento referenciado (obligatorio).</li>
 <li>1: Folio del documento referenciado (obligatorio).</li>
@@ -641,7 +644,8 @@ Se pasa por referencia para modificarlo.</p>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si algún campo obligatorio está vacío o no es válido.</p>
+                                                 <section class="phpdocumentor-description"><p>Si algún campo obligatorio está vacío o
+no es válido.</p>
 </section>
 
                                     </dd>
@@ -673,7 +677,7 @@ Se pasa por referencia para modificarlo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">449</span>
+    <span class="phpdocumentor-element-found-in__line">460</span>
 
     </aside>
 
@@ -750,7 +754,7 @@ transporte. Se pasa por referencia para modificarlo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -763,8 +767,8 @@ transporte. Se pasa por referencia para modificarlo.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Verifica los datos mínimos requeridos y genera la estructura base.
-También agrega ítems, transporte y referencias al documento.</p>
+        <section class="phpdocumentor-description"><p>Verifica los datos mínimos requeridos y genera la estructura base.</p>
+<p>También agrega ítems, transporte y referencias al documento.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -844,7 +848,7 @@ También agrega ítems, transporte y referencias al documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">578</span>
+    <span class="phpdocumentor-element-found-in__line">595</span>
 
     </aside>
 
@@ -857,10 +861,9 @@ También agrega ítems, transporte y referencias al documento.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Este método busca en el repositorio de la entidad <code class="prettyprint">AduanaMoneda</code>
-un registro que coincida con el código ISO proporcionado.
-Si encuentra un resultado, devuelve la glosa asociada; de lo
-contrario, retorna <code class="prettyprint">null</code>.</p>
+        <section class="phpdocumentor-description"><p>Este método busca en el repositorio de la entidad <code class="prettyprint">AduanaMoneda</code> un
+registro que coincida con el código ISO proporcionado. Si encuentra un
+resultado, devuelve la glosa asociada; de lo contrario, retorna <code class="prettyprint">null</code>.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -904,7 +907,7 @@ contrario, retorna <code class="prettyprint">null</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">268</span>
+    <span class="phpdocumentor-element-found-in__line">282</span>
 
     </aside>
 
@@ -918,8 +921,9 @@ contrario, retorna <code class="prettyprint">null</code>.</p>
         </div>
     
         <section class="phpdocumentor-description"><p>Este método crea un arreglo con la estructura base del DTE, incluyendo
-encabezado, emisor, receptor y detalles. Configura valores predeterminados
-para los campos opcionales y procesa algunos datos de entrada.</p>
+encabezado, emisor, receptor y detalles. Configura valores
+predeterminados para los campos opcionales y procesa algunos datos de
+entrada.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>

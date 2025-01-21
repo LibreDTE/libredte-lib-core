@@ -333,18 +333,18 @@
 documentos tributarios electrónicos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_codigo_sucursal">$codigo_sucursal</a>
+    <span>
+                        &nbsp;: int|null            </span>
+</dt>
+<dd>Código de la sucursal del emisor en el SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_logo">$logo</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
 <dd>Logo del emisor.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_sucursal">$sucursal</a>
-    <span>
-                        &nbsp;: int|null            </span>
-</dt>
-<dd>Código de la sucursal del emisor en el SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_vendedor">$vendedor</a>
@@ -382,6 +382,13 @@ documentos tributarios electrónicos.</dd>
 </dt>
 <dd>Obtiene el ambiente, fecha y número de resolución que autoriza al
 contribuyente a ser facturador electrónico en dicho ambiente del SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getCodigoSucursal">getCodigoSucursal()</a>
+    <span>
+                                &nbsp;: int|null    </span>
+</dt>
+<dd>Entrega el código de la sucursal asignado por el SII al emisor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna">getComuna()</a>
@@ -445,13 +452,6 @@ contribuyente a ser facturador electrónico en dicho ambiente del SII.</dd>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Devuelve solo la parte numérica del RUT del contribuyente.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getSucursal">getSucursal()</a>
-    <span>
-                                &nbsp;: int|null    </span>
-</dt>
-<dd>Entrega el código de la sucursal asignado por el SII al emisor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getTelefono">getTelefono()</a>
@@ -919,6 +919,45 @@ documentos tributarios electrónicos.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_codigo_sucursal">
+        $codigo_sucursal
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_codigo_sucursal" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php"><a href="files/src-package-billing-component-tradingparties-entity-emisor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php">Emisor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Código de la sucursal del emisor en el SII.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int|null</span>
+    <span class="phpdocumentor-signature__name">$codigo_sucursal</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+        <section class="phpdocumentor-description"><p>Nota: La casa matriz también tiene código de sucursal asignado por SII.</p>
+</section>
+
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_logo">
         $logo
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_logo" class="headerlink"><i class="fas fa-link"></i></a>
@@ -943,45 +982,6 @@ documentos tributarios electrónicos.</p>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_sucursal">
-        $sucursal
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_sucursal" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php"><a href="files/src-package-billing-component-tradingparties-entity-emisor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php">Emisor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">46</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Código de la sucursal del emisor en el SII.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$sucursal</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
-
-        <section class="phpdocumentor-description"><p>Nota: La casa matriz también tiene código de sucursal asignado por SII.</p>
-</section>
-
     
     
 
@@ -1228,6 +1228,45 @@ contribuyente a ser facturador electrónico en dicho ambiente del SII.</p>
 no está definida.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCodigoSucursal">
+        getCodigoSucursal()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getCodigoSucursal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php"><a href="files/src-package-billing-component-tradingparties-entity-emisor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php">Emisor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el código de la sucursal asignado por el SII al emisor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCodigoSucursal</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -1616,45 +1655,6 @@ no está definida.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSucursal">
-        getSucursal()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getSucursal" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php"><a href="files/src-package-billing-component-tradingparties-entity-emisor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Emisor.php">Emisor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">60</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Entrega el código de la sucursal asignado por el SII al emisor.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSucursal</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|null</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getTelefono">
         getTelefono()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getTelefono" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2005,8 +2005,8 @@ contribuyente a ser facturador electrónico en dicho ambiente del SII.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_rut">$rut</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefono">$telefono</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_autorizacionDte">$autorizacionDte</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_codigo_sucursal">$codigo_sucursal</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_logo">$logo</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_sucursal">$sucursal</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_vendedor">$vendedor</a></li>
                                             </ul>
                 </li>
@@ -2017,6 +2017,7 @@ contribuyente a ser facturador electrónico en dicho ambiente del SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getActividadEconomica">getActividadEconomica()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getAutorizacionDte">getAutorizacionDte()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getCodigoSucursal">getCodigoSucursal()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna">getComuna()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#method_getCorreoIntercambioDte">getCorreoIntercambioDte()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getDireccion">getDireccion()</a></li>
@@ -2026,7 +2027,6 @@ contribuyente a ser facturador electrónico en dicho ambiente del SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRazonSocial">getRazonSocial()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRut">getRut()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRutAsInt">getRutAsInt()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getSucursal">getSucursal()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getTelefono">getTelefono()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getVendedor">getVendedor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setAutorizacionDte">setAutorizacionDte()</a></li>

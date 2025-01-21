@@ -3328,7 +3328,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020de\u0020la\u0020estrategia\u0020con\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003Aprocess\u0028\u0029",
@@ -3856,10 +3856,70 @@ Search.appendIndex(
             "summary": "Trabajo\u0020con\u0020reglas\u0020de\u0020normalizaci\u00F3n\u0020generales\u0020para\u0020el\u0020inicio\u0020de\u0020todos\u0020los\ndocumentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020trabajo\u0020con\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
             "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020inicial\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeDefaultTags\u0028\u0029",
+            "name": "normalizeDefaultTags",
+            "summary": "Completar\u0020con\u0020campos\u0020por\u0020defecto.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeDefaultTags"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeIdDocFechas\u0028\u0029",
+            "name": "normalizeIdDocFechas",
+            "summary": "Si\u0020alguna\u0020de\u0020las\u0020fechas\u0020de\u0020la\u0020identificaci\u00F3n\u0020del\u0020documento\u0020se\u0020pas\u00F3\u0020como\nentero\u0020es\u0020un\u0020timestamp\u0020y\u0020se\u0020convierte\u0020a\u0020string.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeIdDocFechas"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeDescuentosRecargosGlobales\u0028\u0029",
+            "name": "normalizeDescuentosRecargosGlobales",
+            "summary": "Si\u0020existe\u0020descuento\u0020o\u0020recargo\u0020global\u0020se\u0020normalizan.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeDescuentosRecargosGlobales"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeReferencias\u0028\u0029",
+            "name": "normalizeReferencias",
+            "summary": "Si\u0020existe\u0020una\u0020o\u0020m\u00E1s\u0020referencias\u0020se\u0020normalizan.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeReferencias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeTpoTranVenta\u0028\u0029",
+            "name": "normalizeTpoTranVenta",
+            "summary": "Asegura\u0020que\u0020exista\u0020TpoTranVenta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeTpoTranVenta"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeEmisor\u0028\u0029",
+            "name": "normalizeEmisor",
+            "summary": "Normaliza\u0020los\u0020datos\u0020del\u0020emisor\u0020completando\u0020los\u0020datos\u0020requeridos\u0020que\npuedan\u0020faltar\u0020usando\u0020un\u0020proveedor\u0020de\u0020datos\u0020de\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeReceptor\u0028\u0029",
+            "name": "normalizeReceptor",
+            "summary": "Normaliza\u0020los\u0020datos\u0020del\u0020receptor\u0020completando\u0020los\u0020datos\u0020requeridos\u0020que\npuedan\u0020faltar\u0020usando\u0020un\u0020proveedor\u0020de\u0020datos\u0020de\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeReceptor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A\u0024emisorProvider",
+            "name": "emisorProvider",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#property_emisorProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A\u0024receptorProvider",
+            "name": "receptorProvider",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#property_receptorProvider"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A\u0024emisorFactory",
+            "name": "emisorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#property_emisorFactory"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A\u0024receptorFactory",
+            "name": "receptorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#property_receptorFactory"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob",
             "name": "NormalizeFacturaAfectaJob",
@@ -4548,7 +4608,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020de\u0020la\u0020estrategia\u0020con\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003Aparse\u0028\u0029",
@@ -4558,7 +4618,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AdecodeData\u0028\u0029",
             "name": "decodeData",
-            "summary": "Decodifica\u0020datos\u0020JSON\u0020o\u0020los\u0020retorna\u0020directamente\u0020si\u0020ya\u0020son\u0020un\u0020arreglo.",
+            "summary": "Decodifica\u0020datos\u0020YAML\u0020o\u0020los\u0020retorna\u0020directamente\u0020si\u0020ya\u0020son\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AprocessDTEData\u0028\u0029",
@@ -5131,10 +5191,20 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020el\u0020servicio\u0020provee\u0020el\u0020CAF\u0020con\u0020el\u0020folio\u0020que\u0020se\u0020debe\u0020asignar\u0020al\nemitir\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderInterface\u003A\u003AgetFolio\u0028\u0029",
-            "name": "getFolio",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderInterface\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
             "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_getFolio"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderWorkerInterface",
+            "name": "CafProviderWorkerInterface",
+            "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020provee\u0020de\u0020CAF\u0020a\u0020la\u0020biblioteca.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderWorkerInterface\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderWorkerInterface.html#method_retrieve"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafValidatorWorkerInterface",
             "name": "CafValidatorWorkerInterface",
@@ -5160,6 +5230,11 @@ Search.appendIndex(
             "name": "getCafLoaderWorker",
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_loader\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-IdentifierComponentInterface.html#method_getCafLoaderWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\IdentifierComponentInterface\u003A\u003AgetCafProviderWorker\u0028\u0029",
+            "name": "getCafProviderWorker",
+            "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_provider\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-IdentifierComponentInterface.html#method_getCafProviderWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\IdentifierComponentInterface\u003A\u003AgetCafValidatorWorker\u0028\u0029",
             "name": "getCafValidatorWorker",
@@ -5351,6 +5426,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_loader\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#method_getCafLoaderWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003AgetCafProviderWorker\u0028\u0029",
+            "name": "getCafProviderWorker",
+            "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_provider\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#method_getCafProviderWorker"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003AgetCafValidatorWorker\u0028\u0029",
             "name": "getCafValidatorWorker",
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_validator\u0022.",
@@ -5365,6 +5445,11 @@ Search.appendIndex(
             "name": "cafLoader",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#property_cafLoader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003A\u0024cafProvider",
+            "name": "cafProvider",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#property_cafProvider"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003A\u0024cafValidator",
             "name": "cafValidator",
@@ -5381,10 +5466,10 @@ Search.appendIndex(
             "summary": "Constructor\u0020con\u0020dependencias\u0020del\u0020servicio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003AgetFolio\u0028\u0029",
-            "name": "getFolio",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
             "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_getFolio"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_retrieve"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003A\u0024folios",
             "name": "folios",
@@ -5595,6 +5680,26 @@ Search.appendIndex(
             "name": "entityComponent",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_entityComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker",
+            "name": "CafProviderWorker",
+            "summary": "Worker\u0020que\u0020permite\u0020provee\u0020folios\u0020\u0028archivos\u0020CAF\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020worker\u0020con\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003A\u0024cafProvider",
+            "name": "cafProvider",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#property_cafProvider"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafValidatorWorker",
             "name": "CafValidatorWorker",
@@ -6506,10 +6611,10 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020una\u0020entidad\u0020de\u0020emisor\u0020de\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetSucursal\u0028\u0029",
-            "name": "getSucursal",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetCodigoSucursal\u0028\u0029",
+            "name": "getCodigoSucursal",
             "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getSucursal"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getCodigoSucursal"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetVendedor\u0028\u0029",
             "name": "getVendedor",
@@ -6525,6 +6630,16 @@ Search.appendIndex(
             "name": "getLogo",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getLogo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorProviderInterface",
+            "name": "EmisorProviderInterface",
+            "summary": "Interfaz\u0020para\u0020el\u0020proveedor\u0020de\u0020datos\u0020de\u0020un\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorProviderInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorProviderInterface\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020emisor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorProviderInterface.html#method_retrieve"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\MandatarioFactoryInterface",
             "name": "MandatarioFactoryInterface",
@@ -6590,6 +6705,16 @@ Search.appendIndex(
             "name": "ReceptorInterface",
             "summary": "Interfaz\u0020para\u0020una\u0020entidad\u0020de\u0020receptor\u0020de\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorProviderInterface",
+            "name": "ReceptorProviderInterface",
+            "summary": "Interfaz\u0020para\u0020el\u0020proveedor\u0020de\u0020datos\u0020de\u0020un\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorProviderInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorProviderInterface\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020receptor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorProviderInterface.html#method_retrieve"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\TradingPartiesComponentInterface",
             "name": "TradingPartiesComponentInterface",
@@ -6746,10 +6871,10 @@ Search.appendIndex(
             "summary": "Clase\u0020para\u0020representar\u0020un\u0020emisor\u0020de\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetSucursal\u0028\u0029",
-            "name": "getSucursal",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetCodigoSucursal\u0028\u0029",
+            "name": "getCodigoSucursal",
             "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getSucursal"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getCodigoSucursal"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetVendedor\u0028\u0029",
             "name": "getVendedor",
@@ -6776,10 +6901,10 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getLogo"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024sucursal",
-            "name": "sucursal",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024codigo_sucursal",
+            "name": "codigo_sucursal",
             "summary": "C\u00F3digo\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_sucursal"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_codigo_sucursal"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024vendedor",
             "name": "vendedor",
@@ -6881,6 +7006,11 @@ Search.appendIndex(
             "summary": "Crea\u0020una\u0020entidad\u0020de\u0020emisor\u0020a\u0020partir\u0020de\u0020sus\u0020datos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-EmisorFactory.html#method_create"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Factory\\EmisorFactory\u003A\u003AnormalizeData\u0028\u0029",
+            "name": "normalizeData",
+            "summary": "Normaliza\u0020los\u0020datos\u0020del\u0020contribuyente\u0020que\u0020podr\u00EDan\u0020venir\u0020en\u0020diferentes\n\u00EDndices.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-EmisorFactory.html#method_normalizeData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Factory\\EmisorFactory\u003A\u003A\u0024class",
             "name": "class",
             "summary": "Clase\u0020de\u0020la\u0020entidad\u0020de\u0020los\u0020emisores.",
@@ -6920,6 +7050,46 @@ Search.appendIndex(
             "name": "class",
             "summary": "Clase\u0020de\u0020la\u0020entidad\u0020de\u0020los\u0020receptores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-ReceptorFactory.html#property_class"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeEmisorProvider",
+            "name": "FakeEmisorProvider",
+            "summary": "Proveedor\u0020falso\u0020de\u0020datos\u0020de\u0020un\u0020emisor\u0020para\u0020pruebas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeEmisorProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeEmisorProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020servicio\u0020y\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeEmisorProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeEmisorProvider\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020emisor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeEmisorProvider.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeEmisorProvider\u003A\u003A\u0024emisorFactory",
+            "name": "emisorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeEmisorProvider.html#property_emisorFactory"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeReceptorProvider",
+            "name": "FakeReceptorProvider",
+            "summary": "Proveedor\u0020falso\u0020de\u0020datos\u0020de\u0020un\u0020receptor\u0020para\u0020pruebas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeReceptorProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeReceptorProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020servicio\u0020y\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeReceptorProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeReceptorProvider\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020receptor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeReceptorProvider.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeReceptorProvider\u003A\u003A\u0024receptorFactory",
+            "name": "receptorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeReceptorProvider.html#property_receptorFactory"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\TradingPartiesComponent",
             "name": "TradingPartiesComponent",
@@ -7430,6 +7600,11 @@ Search.appendIndex(
             "name": "Factory",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-tradingparties-factory.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service",
+            "name": "Service",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-tradingparties-service.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties",
             "name": "TradingParties",
