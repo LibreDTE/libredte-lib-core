@@ -37,7 +37,9 @@ use Throwable;
 class ParserWorker extends AbstractWorker implements ParserWorkerInterface
 {
     /**
-     * {@inheritDoc}
+     * Esquema de las opciones.
+     *
+     * @var array<string,array|bool>
      */
     protected array $optionsSchema = [
         'strategy' => [

@@ -22,30 +22,28 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
+use Derafu\Lib\Core\Foundation\Contract\HandlerInterface;
 
 /**
- * Renderizador de DTE usando la plantilla estándar de LibreDTE.
+ * Interfaz para los handlers del intercambio.
+ *
+ * Se usa tanto para los handler de los workers de Receiver como de Sender.
  */
-class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
+interface ExchangeHandlerInterface extends HandlerInterface
 {
     /**
-     * Esquema de las opciones.
+     * Procesa una bolsa de intercambio, sus sobres y documentos.
      *
-     * @var array<string,array|bool>
+     * Este método determinará "qué" sobres de la bolsa debe transportar, y si
+     * es posible transportarlos los pasará a las estrategias que correspondan
+     * para que realicen el intercambio.
+     *
+     * @param ExchangeBagInterface $bag Bolsa con los sobres, si corresponde, y
+     * las opciones para realizar el intercambio de documentos.
+     * @return ExchangeResultInterface[] Los resultados de procesar los sobres
+     * de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.
      */
-    protected array $optionsSchema = [
-        '__allowUndefinedKeys' => true,
-        'template' => [
-            'types' => 'string',
-            'default' => 'estandar',
-        ],
-        'format' => [
-            'types' => 'string',
-            'default' => 'pdf',
-        ],
-    ];
+    public function handle(ExchangeBagInterface $bag): array;
 }

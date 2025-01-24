@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Contract;
 use Derafu\Lib\Core\Foundation\Contract\PackageInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface;
@@ -50,6 +51,13 @@ interface BillingPackageInterface extends PackageInterface
      * @return DocumentComponentInterface
      */
     public function getDocumentComponent(): DocumentComponentInterface;
+
+    /**
+     * Entrega el componente "billing.exchange".
+     *
+     * @return ExchangeComponentInterface
+     */
+    public function getExchangeComponent(): ExchangeComponentInterface;
 
     /**
      * Entrega el componente "billing.identifier".

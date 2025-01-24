@@ -13,9 +13,10 @@ build:
               format: clover
       environment:
         php:
-          version: 8.2.1
+          version: 8.3.16
           pecl_extensions:
             - xdebug
+            - imap
   dependencies:
     before:
       - composer install --no-progress --prefer-dist

@@ -41,7 +41,9 @@ use Throwable;
 class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorkerInterface
 {
     /**
-     * {@inheritDoc}
+     * Esquema de las opciones.
+     *
+     * @var array<string,array|bool>
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,
@@ -144,6 +146,9 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             // del archivo de emisión masiva.
             $documentBags[] = $documentBag;
         }
+
+        // Asignar bolsas con los documentos al lote procesado.
+        $batch->setDocumentBags($documentBags);
 
         // Entregar las bolsas de documentos.
         return $documentBags;

@@ -22,30 +22,45 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template;
-
-use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 /**
- * Renderizador de DTE usando la plantilla estándar de LibreDTE.
+ * Interfaz para la clase que representa un archivo adjunto de un documento.
  */
-class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
+interface AttachmentInterface
 {
     /**
-     * Esquema de las opciones.
+     * Obtiene el nombre del archivo.
      *
-     * @var array<string,array|bool>
+     * @return string|null
      */
-    protected array $optionsSchema = [
-        '__allowUndefinedKeys' => true,
-        'template' => [
-            'types' => 'string',
-            'default' => 'estandar',
-        ],
-        'format' => [
-            'types' => 'string',
-            'default' => 'pdf',
-        ],
-    ];
+    public function getFilename(): ?string;
+
+    /**
+     * Obtiene los datos del archivo.
+     *
+     * @return string
+     */
+    public function getBody(): string;
+
+    /**
+     * Obtiene el tipo del archivo.
+     *
+     * @return string
+     */
+    public function getContentType(): string;
+
+    /**
+     * Obtiene el tamaño del archivo.
+     *
+     * @return int
+     */
+    public function getSize(): int;
+
+    /**
+     * Obtiene un arreglo con todos los atributos del archivo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

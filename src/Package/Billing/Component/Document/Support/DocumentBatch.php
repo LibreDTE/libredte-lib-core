@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use Derafu\Lib\Core\Support\Store\DataContainer;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
@@ -124,6 +125,13 @@ class DocumentBatch implements DocumentBatchInterface
     private ?CertificateInterface $certificate;
 
     /**
+     * Listado de bolsas con los documentos procesados.
+     *
+     * @var DocumentBagInterface[]
+     */
+    private array $documentBags = [];
+
+    /**
      * Constructor del lote.
      *
      * @param string $file
@@ -205,5 +213,23 @@ class DocumentBatch implements DocumentBatchInterface
     public function getCertificate(): ?CertificateInterface
     {
         return $this->certificate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDocumentBags(array $bags): static
+    {
+        $this->documentBags = $bags;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentBags(): array
+    {
+        return $this->documentBags;
     }
 }

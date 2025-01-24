@@ -84,4 +84,19 @@ interface DocumentBatchInterface
      * @return CertificateInterface|null
      */
     public function getCertificate(): ?CertificateInterface;
+
+    /**
+     * Asigna el listado de bolsas con documentos procesados en lote.
+     *
+     * @param DocumentBagInterface[] $bags
+     * @return static
+     */
+    public function setDocumentBags(array $bags): static;
+
+    /**
+     * Obtiene el listado de bolsas con documentos procesados en lote.
+     *
+     * @return DocumentBagInterface[]
+     */
+    public function getDocumentBags(): array;
 }

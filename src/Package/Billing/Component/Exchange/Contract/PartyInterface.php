@@ -22,30 +22,40 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
+use Symfony\Component\Mime\Address;
 
 /**
- * Renderizador de DTE usando la plantilla estándar de LibreDTE.
+ * Interfaz base para los participantes del intercambio.
  */
-class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
+interface PartyInterface
 {
     /**
-     * Esquema de las opciones.
-     *
-     * @var array<string,array|bool>
+     * Identificador único del participante.
      */
-    protected array $optionsSchema = [
-        '__allowUndefinedKeys' => true,
-        'template' => [
-            'types' => 'string',
-            'default' => 'estandar',
-        ],
-        'format' => [
-            'types' => 'string',
-            'default' => 'pdf',
-        ],
-    ];
+    public function getIdentifier(): PartyIdentifierInterface;
+
+    /**
+     * Agrega un punto de recepción de documentos al participante.
+     *
+     * @param PartyEndpointInterface $endpoint
+     * @return static
+     */
+    public function addEndpoint(PartyEndpointInterface $endpoint): static;
+
+    /**
+     * Puntos de recepción de documentos soportados por el participante.
+     *
+     * @return PartyEndpointInterface[]
+     */
+    public function getEndpoints(): array;
+
+    /**
+     * Obtiene las direcciones de correo electrónico registradas como puntos de
+     * recepción de documentos del participante.
+     *
+     * @return Address[]
+     */
+    public function getEmails(): array;
 }

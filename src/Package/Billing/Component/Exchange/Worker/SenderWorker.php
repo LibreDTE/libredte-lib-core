@@ -22,19 +22,19 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\ExchangeException;
 use Throwable;
 
 /**
- * Clase para los renderizadores.
+ * Worker "billing.exchange.sender".
  */
-class RendererWorker extends AbstractWorker implements RendererWorkerInterface
+class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterface
 {
     /**
      * Esquema de las opciones.
@@ -42,34 +42,36 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
      * @var array<string,array|bool>
      */
     protected array $optionsSchema = [
-        '__allowUndefinedKeys' => true,
         'strategy' => [
             'types' => 'string',
-            'default' => 'template.estandar',
+            'default' => 'email.smtp',
+        ],
+        'transport' => [
+            'types' => 'array',
+            'default' => [],
         ],
     ];
 
     /**
      * {@inheritDoc}
      */
-    public function render(DocumentBagInterface $bag): string
+    public function send(ExchangeBagInterface $bag): array
     {
-        $options = $this->resolveOptions($bag->getRendererOptions());
+        $options = $this->resolveOptions($bag->getOptions()->all());
+        $bag->setOptions($options);
         $strategy = $this->getStrategy($options->get('strategy'));
-        $strategy->setOptions($options);
 
-        assert($strategy instanceof RendererStrategyInterface);
+        assert($strategy instanceof SenderStrategyInterface);
 
         try {
-            $renderedData = $strategy->render($bag);
+            $results = $strategy->send($bag);
         } catch (Throwable $e) {
-            throw new RendererException(
+            throw new ExchangeException(
                 message: $e->getMessage(),
-                documentBag: $bag,
                 previous: $e
             );
         }
 
-        return $renderedData;
+        return $results;
     }
 }

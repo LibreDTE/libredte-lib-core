@@ -11,3 +11,7 @@
 # Certificado digital.
 export LIBREDTE_CERTIFICATE_FILE=""
 export LIBREDTE_CERTIFICATE_PASS=""
+
+# Correo electrónico (los tests usan una cuenta de Gmail).
+export MAIL_USERNAME=""
+export MAIL_PASSWORD=""

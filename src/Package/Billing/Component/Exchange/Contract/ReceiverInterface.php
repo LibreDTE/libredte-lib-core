@@ -22,30 +22,11 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template;
-
-use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 /**
- * Renderizador de DTE usando la plantilla estándar de LibreDTE.
+ * Interfaz para el que recibe el intercambio del sobre.
  */
-class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
+interface ReceiverInterface extends PartyInterface
 {
-    /**
-     * Esquema de las opciones.
-     *
-     * @var array<string,array|bool>
-     */
-    protected array $optionsSchema = [
-        '__allowUndefinedKeys' => true,
-        'template' => [
-            'types' => 'string',
-            'default' => 'estandar',
-        ],
-        'format' => [
-            'types' => 'string',
-            'default' => 'pdf',
-        ],
-    ];
 }

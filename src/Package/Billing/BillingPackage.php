@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing;
 use Derafu\Lib\Core\Foundation\Abstract\AbstractPackage;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface;
@@ -41,6 +42,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     public function __construct(
         private BookComponentInterface $bookComponent,
         private DocumentComponentInterface $documentComponent,
+        private ExchangeComponentInterface $exchangeComponent,
         private IdentifierComponentInterface $identifierComponent,
         private IntegrationComponentInterface $integrationComponent,
         private OwnershipTransferComponentInterface $ownershipTransferComponent,
@@ -56,6 +58,7 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
         return [
             'book' => $this->bookComponent,
             'document' => $this->documentComponent,
+            'exchange' => $this->exchangeComponent,
             'identifier' => $this->identifierComponent,
             'integration' => $this->integrationComponent,
             'ownership_transfer' => $this->ownershipTransferComponent,
@@ -77,6 +80,14 @@ class BillingPackage extends AbstractPackage implements BillingPackageInterface
     public function getDocumentComponent(): DocumentComponentInterface
     {
         return $this->documentComponent;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExchangeComponent(): ExchangeComponentInterface
+    {
+        return $this->exchangeComponent;
     }
 
     /**

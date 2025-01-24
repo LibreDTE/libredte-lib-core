@@ -16,6 +16,8 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Book\BookComponent
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\ExchangeComponent
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface:
@@ -60,6 +62,18 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker
         arguments:
             $strategies: !tagged_iterator { tag: 'billing.document.validator.strategy', index_by: 'name' }
+
+    # Workers del componente "billing.exchange".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker
+        arguments:
+            $handlers: !tagged_iterator { tag: 'billing.exchange.receiver.handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.receiver.strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker
+        arguments:
+            $handlers: !tagged_iterator { tag: 'billing.exchange.sender.handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.sender.strategy', index_by: 'name' }
 
     # Workers del componente "billing.identifier".
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
@@ -241,6 +255,31 @@ services:
 
     # Estrategias del worker "billing.document.batch_processor".
     libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy: ~
+
+    # Handlers del  worker "billing.exchange.receiver".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler\EmailReceiverHandler:
+        arguments:
+            $strategies:
+                email.imap: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy'
+
+    # Handlers del worker "billing.exchange.sender".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler\EmailSenderHandler:
+        arguments:
+            $strategies:
+                email.smtp: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email\SmtpSenderStrategy'
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler\SiiSenderHandler:
+        arguments:
+            $strategies:
+                sii.dte: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy'
+                sii.boleta: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy'
+
+    # Estrategias del worker "billing.exchange.receiver".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy: ~
+
+    # Estrategias del worker "billing.exchange.sender".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email\SmtpSenderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy: ~
 
     # Servicios del componente "billing.identifier"
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
