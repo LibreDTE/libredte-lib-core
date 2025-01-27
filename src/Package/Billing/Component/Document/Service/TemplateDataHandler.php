@@ -161,8 +161,8 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
                 $result = $this->entityComponent->getRepository(
                     AduanaMoneda::class
                 )->findBy(['glosa' => $codigo]);
-                $moneda = ($result[0] ?? null)?->getCurrency() ?? Currency::XXX;
-                return $moneda->format((float) $num);
+                $currency = ($result[0] ?? null)?->getCurrency() ?? Currency::XXX;
+                return $currency->format((float) $num);
             },
         ];
     }
