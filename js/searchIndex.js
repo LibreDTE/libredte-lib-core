@@ -646,6 +646,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetLibredteData\u0028\u0029",
+            "name": "setLibredteData",
+            "summary": "Asigna\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setLibredteData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetLibredteData\u0028\u0029",
+            "name": "getLibredteData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetOptions\u0028\u0029",
             "name": "setOptions",
             "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020documento.",
@@ -790,6 +800,26 @@ Search.appendIndex(
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentData\u0028\u0029",
+            "name": "getDocumentData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentExtra\u0028\u0029",
+            "name": "getDocumentExtra",
+            "summary": "Obtiene\u0020los\u0020datos\u0020extras\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentExtra"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentStamp\u0028\u0029",
+            "name": "getDocumentStamp",
+            "summary": "Obtiene\u0020el\u0020timbre\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentStamp"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentAuth\u0028\u0029",
+            "name": "getDocumentAuth",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020autorizaci\u00F3n\u0020del\u0020emisor\u0020para\u0020emitir\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentAuth"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
@@ -2851,6 +2881,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetLibredteData\u0028\u0029",
+            "name": "setLibredteData",
+            "summary": "Asigna\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_setLibredteData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetLibredteData\u0028\u0029",
+            "name": "getLibredteData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetOptions\u0028\u0029",
             "name": "setOptions",
             "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020documento.",
@@ -2996,6 +3036,26 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentData\u0028\u0029",
+            "name": "getDocumentData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentExtra\u0028\u0029",
+            "name": "getDocumentExtra",
+            "summary": "Obtiene\u0020los\u0020datos\u0020extras\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentExtra"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentStamp\u0028\u0029",
+            "name": "getDocumentStamp",
+            "summary": "Obtiene\u0020el\u0020timbre\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentStamp"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentAuth\u0028\u0029",
+            "name": "getDocumentAuth",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020autorizaci\u00F3n\u0020del\u0020emisor\u0020para\u0020emitir\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentAuth"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
             "summary": "Entrega\u0020el\u0020ID\u0020del\u0020documento.",
@@ -3040,6 +3100,11 @@ Search.appendIndex(
             "name": "normalizedData",
             "summary": "Datos\u0020normalizados\u0020del\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_normalizedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024libredteData",
+            "name": "libredteData",
+            "summary": "Datos\u0020de\u0020LibreDTE\u0020asociados\u0020al\u0020documento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_libredteData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024options",
             "name": "options",
@@ -3885,6 +3950,16 @@ Search.appendIndex(
             "name": "execute",
             "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020final\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPostDocumentNormalizationJob\u003A\u003AnormalizeIdDocMntPagos\u0028\u0029",
+            "name": "normalizeIdDocMntPagos",
+            "summary": "Normalizar\u0020montos\u0020de\u0020pagos\u0020programados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html#method_normalizeIdDocMntPagos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPostDocumentNormalizationJob\u003A\u003AnormalizeOtraMoneda\u0028\u0029",
+            "name": "normalizeOtraMoneda",
+            "summary": "Si\u0020existe\u0020OtraMoneda\u0020se\u0020verifican\u0020los\u0020tipos\u0020de\u0020cambio\u0020y\u0020totales.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html#method_normalizeOtraMoneda"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob",
             "name": "NormalizeDataPreDocumentNormalizationJob",

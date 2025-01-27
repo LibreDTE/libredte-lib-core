@@ -279,6 +279,35 @@
 <dd>Obtiene el documento tributario electrónico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentAuth">getDocumentAuth()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+<dd>Obtiene los datos de la autorización del emisor para emitir DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentData">getDocumentData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+<dd>Obtiene los datos del documento agregando los datos específicos de
+LibreDTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentExtra">getDocumentExtra()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+<dd>Obtiene los datos extras del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentStamp">getDocumentStamp()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene el timbre del DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentType">getDocumentType()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>|null    </span>
@@ -319,6 +348,14 @@
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Obtiene los datos de entrada del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData">getLibredteData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+<dd>Obtiene los datos de LibreDTE que están asociados al documento pero no
+son parte de la estructura oficial que utiliza el SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData">getNormalizedData()</a>
@@ -453,6 +490,14 @@
 <dd>Asignar los datos de entrada del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setLibredteData">setLibredteData()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna los datos de LibreDTE que están asociados al documento pero no
+son parte de la estructura oficial que utiliza el SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setNormalizedData">setNormalizedData()</a>
     <span>
                                 &nbsp;: static    </span>
@@ -541,7 +586,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">369</span>
+    <span class="phpdocumentor-element-found-in__line">430</span>
 
     </aside>
 
@@ -580,7 +625,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
     </aside>
 
@@ -619,7 +664,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">172</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -658,7 +703,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -697,7 +742,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">256</span>
 
     </aside>
 
@@ -750,7 +795,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">321</span>
 
     </aside>
 
@@ -766,6 +811,9 @@
         <section class="phpdocumentor-description"><p>Los datos se arman en un nodo DTE con los datos normalizados.
 Si está disponible además se agrega el timbre.</p>
 <p>Estos datos no incluyen la firma electrónica.</p>
+<p>Tampoco se incluyen datos específicos de LibreDTE. Si se necesitan los
+datos del documento completo, con los datos específicos de LibreDTE, usar
+el método getDocumentData().</p>
 </section>
 
     
@@ -793,7 +841,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">219</span>
 
     </aside>
 
@@ -824,6 +872,173 @@ Si está disponible además se agrega el timbre.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getDocumentAuth">
+        getDocumentAuth()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentAuth" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">361</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos de la autorización del emisor para emitir DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDocumentAuth</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDocumentData">
+        getDocumentData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">335</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos del documento agregando los datos específicos de
+LibreDTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDocumentData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Si se quieren solo los datos del documento, sin los agregados de LibreDTE
+se deben extrar directamente del DTE.</p>
+<p>Por otro lado, si se quieren los datos normalizados preparados para firma
+se debe utilizar getData().</p>
+</section>
+
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDocumentExtra">
+        getDocumentExtra()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentExtra" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">347</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos extras del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDocumentExtra</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Esto entregará todos los datos extras del documento menos aquellos que
+son parte de los datos que se agregan a la estructura de datos del
+documento tributario para completar tags entre diferentes tipos de
+documentos. O sea, todo lo extra, menos el índice <code class="prettyprint">dte</code>.</p>
+</section>
+
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDocumentStamp">
+        getDocumentStamp()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentStamp" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">354</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el timbre del DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDocumentStamp</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getDocumentType">
         getDocumentType()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentType" class="headerlink"><i class="fas fa-link"></i></a>
@@ -832,7 +1047,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">222</span>
+    <span class="phpdocumentor-element-found-in__line">239</span>
 
     </aside>
 
@@ -871,7 +1086,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">234</span>
+    <span class="phpdocumentor-element-found-in__line">251</span>
 
     </aside>
 
@@ -910,7 +1125,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">254</span>
+    <span class="phpdocumentor-element-found-in__line">271</span>
 
     </aside>
 
@@ -949,7 +1164,7 @@ Si está disponible además se agrega el timbre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">335</span>
+    <span class="phpdocumentor-element-found-in__line">396</span>
 
     </aside>
 
@@ -995,7 +1210,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">307</span>
+    <span class="phpdocumentor-element-found-in__line">368</span>
 
     </aside>
 
@@ -1065,6 +1280,46 @@ documento parseado (si aun no se normaliza).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getLibredteData">
+        getLibredteData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">102</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos de LibreDTE que están asociados al documento pero no
+son parte de la estructura oficial que utiliza el SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLibredteData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getNormalizedData">
         getNormalizedData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1112,7 +1367,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
@@ -1151,7 +1406,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -1229,7 +1484,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
@@ -1268,7 +1523,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">269</span>
+    <span class="phpdocumentor-element-found-in__line">286</span>
 
     </aside>
 
@@ -1307,7 +1562,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -1346,7 +1601,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -1385,7 +1640,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">288</span>
+    <span class="phpdocumentor-element-found-in__line">305</span>
 
     </aside>
 
@@ -1426,7 +1681,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">227</span>
+    <span class="phpdocumentor-element-found-in__line">244</span>
 
     </aside>
 
@@ -1479,7 +1734,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -1518,7 +1773,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">157</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -1557,7 +1812,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -1606,7 +1861,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">180</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
@@ -1655,7 +1910,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">195</span>
+    <span class="phpdocumentor-element-found-in__line">212</span>
 
     </aside>
 
@@ -1704,7 +1959,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">210</span>
+    <span class="phpdocumentor-element-found-in__line">227</span>
 
     </aside>
 
@@ -1753,7 +2008,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">247</span>
+    <span class="phpdocumentor-element-found-in__line">264</span>
 
     </aside>
 
@@ -1802,7 +2057,7 @@ documento parseado (si aun no se normaliza).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">318</span>
+    <span class="phpdocumentor-element-found-in__line">379</span>
 
     </aside>
 
@@ -1897,6 +2152,56 @@ datos parseados si aun no se normaliza.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setLibredteData">
+        setLibredteData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setLibredteData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna los datos de LibreDTE que están asociados al documento pero no
+son parte de la estructura oficial que utiliza el SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setLibredteData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$libredteData</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$libredteData</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setNormalizedData">
         setNormalizedData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setNormalizedData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1954,7 +2259,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -2052,7 +2357,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">262</span>
+    <span class="phpdocumentor-element-found-in__line">279</span>
 
     </aside>
 
@@ -2101,7 +2406,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">279</span>
+    <span class="phpdocumentor-element-found-in__line">296</span>
 
     </aside>
 
@@ -2152,7 +2457,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">215</span>
+    <span class="phpdocumentor-element-found-in__line">232</span>
 
     </aside>
 
@@ -2215,7 +2520,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
@@ -2264,7 +2569,7 @@ datos parseados si aun no se normaliza.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">347</span>
+    <span class="phpdocumentor-element-found-in__line">408</span>
 
     </aside>
 
@@ -2317,7 +2622,7 @@ y tener una nueva bolsa sin el DTE para volver a construir y timbrar.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php"><a href="files/src-package-billing-component-document-contract-documentbaginterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentBagInterface.php">DocumentBagInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">360</span>
+    <span class="phpdocumentor-element-found-in__line">421</span>
 
     </aside>
 
@@ -2476,12 +2781,17 @@ construir y firmar.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getCodigoTipoDocumento">getCodigoTipoDocumento()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getData">getData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocument">getDocument()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentAuth">getDocumentAuth()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentData">getDocumentData()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentExtra">getDocumentExtra()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentStamp">getDocumentStamp()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentType">getDocumentType()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentTypeId">getDocumentTypeId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getEmisor">getEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getFolio">getFolio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getId">getId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getInputData">getInputData()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData">getLibredteData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData">getNormalizedData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizerOptions">getNormalizerOptions()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getOptions">getOptions()</a></li>
@@ -2501,6 +2811,7 @@ construir y firmar.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setEmisor">setEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setFolio">setFolio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setInputData">setInputData()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setLibredteData">setLibredteData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setNormalizedData">setNormalizedData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setOptions">setOptions()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setParsedData">setParsedData()</a></li>
