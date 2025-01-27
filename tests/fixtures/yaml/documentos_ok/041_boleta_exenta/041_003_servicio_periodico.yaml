@@ -10,8 +10,8 @@ Encabezado:
     RUTEmisor: 76192083-9
     RznSocEmisor: SASCO SpA
     GiroEmisor: Empresa de agua potable
-    DirOrigen: Santiago
-    CmnaOrigen: Santiago
+    DirOrigen: DBG
+    CmnaOrigen: Santa Cruz
   Receptor:
     RUTRecep: 66666666-6
     RznSocRecep: Sin RUT

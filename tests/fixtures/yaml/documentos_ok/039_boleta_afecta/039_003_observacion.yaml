@@ -2,12 +2,6 @@ Encabezado:
   IdDoc:
     TipoDTE: 39
     Folio: 1
-    # IndMntNeto: Indicador Montos Netos, expresa que el precio unitario y el
-    #             valor de todas las líneas de detalles corresponden a Montos
-    #             Netos (no incluyen IVA). Valor "2": "Líneas de detalle indican
-    #             montos netos".
-    #             Largo máx: 1 - Tipo: NÚM.
-    IndMntNeto: 2
   Emisor:
     RUTEmisor: 76192083-9
     RznSocEmisor: SASCO SpA
@@ -24,13 +18,19 @@ Detalle:
   QtyItem: 1
   PrcItem: 1190
 
+# Observación en boleta usando de datos específicos de LibreDTE.
+LibreDTE:
+  extra:
+    dte:
+      Encabezado:
+        IdDoc:
+          TermPagoGlosa: "Observación en una boleta."
+
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
   ExpectedValues:
     Encabezado:
       Totales:
-        MntNeto: 1190
-        IVA: 226
-        MntTotal: 1416
-
-# Este caso falla porque IndMntNeto = 2 no está soportado por LibreDTE.
+        MntNeto: 1000
+        IVA: 190
+        MntTotal: 1190

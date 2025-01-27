@@ -84,7 +84,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         $strategy = $this->getStrategy($bag->getTipoDocumento()->getAlias());
         assert($strategy instanceof ValidatorStrategyInterface);
 
-        // Sanitizar el documento usando la estrategia.
+        // Validar el documento usando la estrategia.
         $strategy->validate($bag);
     }
 

@@ -85,6 +85,23 @@ interface DocumentBagInterface
     public function getNormalizedData(): ?array;
 
     /**
+     * Asigna los datos de LibreDTE que están asociados al documento pero no
+     * son parte de la estructura oficial que utiliza el SII.
+     *
+     * @param array|null $libredteData
+     * @return static
+     */
+    public function setLibredteData(?array $libredteData): static;
+
+    /**
+     * Obtiene los datos de LibreDTE que están asociados al documento pero no
+     * son parte de la estructura oficial que utiliza el SII.
+     *
+     * @return array|null
+     */
+    public function getLibredteData(): ?array;
+
+    /**
      * Asigna las opciones del documento.
      *
      * @param array|DataContainerInterface|null $options
@@ -295,9 +312,53 @@ interface DocumentBagInterface
      *
      * Estos datos no incluyen la firma electrónica.
      *
+     * Tampoco se incluyen datos específicos de LibreDTE. Si se necesitan los
+     * datos del documento completo, con los datos específicos de LibreDTE, usar
+     * el método getDocumentData().
+     *
      * @return array|null
      */
     public function getData(): ?array;
+
+    /**
+     * Obtiene los datos del documento agregando los datos específicos de
+     * LibreDTE.
+     *
+     * Si se quieren solo los datos del documento, sin los agregados de LibreDTE
+     * se deben extrar directamente del DTE.
+     *
+     * Por otro lado, si se quieren los datos normalizados preparados para firma
+     * se debe utilizar getData().
+     *
+     * @return array|null
+     */
+    public function getDocumentData(): ?array;
+
+    /**
+     * Obtiene los datos extras del documento.
+     *
+     * Esto entregará todos los datos extras del documento menos aquellos que
+     * son parte de los datos que se agregan a la estructura de datos del
+     * documento tributario para completar tags entre diferentes tipos de
+     * documentos. O sea, todo lo extra, menos el índice `dte`.
+     *
+     * @return array|null
+     */
+    public function getDocumentExtra(): ?array;
+
+    /**
+     * Obtiene el timbre del DTE.
+     *
+     * @return string|null
+     */
+    public function getDocumentStamp(): ?string;
+
+    /**
+     * Obtiene los datos de la autorización del emisor para emitir DTE.
+     *
+     * @return array|null
+     */
+    public function getDocumentAuth(): ?array;
 
     /**
      * Entrega el ID del documento.

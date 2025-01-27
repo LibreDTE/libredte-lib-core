@@ -5,9 +5,9 @@ Encabezado:
   Emisor:
     RUTEmisor: 76192083-9
     RznSocEmisor: SASCO SpA
-    GiroEmisor: Servicios integrales de informática
-    DirOrigen: Santiago
-    CmnaOrigen: Santiago
+    GiroEmisor: Tecnología, Informática y Telecomunicaciones
+    DirOrigen: DBG
+    CmnaOrigen: Santa Cruz
   Receptor:
     # RUTRecep: RUT 66666666-6 corresponde a uno genérico.
     RUTRecep: 66666666-6

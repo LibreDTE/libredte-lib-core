@@ -66,12 +66,10 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
 
         // Preparar datos que se usarán para renderizar.
         $data = [
-            'document' => $bag->getDocument()->getDatos(),
-            'document_stamp' => $bag->getDocument()->getTED(),
-            'document_auth' => $bag->getEmisor()
-                ->getAutorizacionDte()
-                ?->toArray()
-            ,
+            'document' => $bag->getDocumentData(),
+            'document_extra' => $bag->getDocumentExtra(),
+            'document_stamp' => $bag->getDocumentStamp(),
+            'document_auth' => $bag->getDocumentAuth(),
             'options' => [
                 'template' => $options->get('template'),
                 'filepath' => null,

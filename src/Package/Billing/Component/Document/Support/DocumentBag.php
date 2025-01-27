@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
+use Derafu\Lib\Core\Helper\Arr;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
@@ -60,7 +61,7 @@ class DocumentBag implements DocumentBagInterface
      * Datos de entrada procesados (parseados).
      *
      * Están en el formato estándar de LibreDTE. Que es básicamente el oficial
-     * del SII. Con algunas extensiones, como los datos "extras".
+     * del SII.
      *
      * Estos son los datos que se usarán para construir el documento. Estos
      * datos no están normaliados, solo parseados.
@@ -83,6 +84,21 @@ class DocumentBag implements DocumentBagInterface
      * @var array|null
      */
     private ?array $normalizedData;
+
+    /**
+     * Datos de LibreDTE asociados al documento tributario.
+     *
+     * Estos son datos que LibreDTE utiliza asociados al documento pero no son
+     * parte de la estructura oficial que utiliza el SII.
+     *
+     * Por ejemplo se puede incluir:
+     *
+     *   - Tags de facturas en PDF de boletas. Ejemplo: TermPagoGlosa.
+     *   - Datos adicionales para los PDF. Ejemplo: historial.
+     *
+     * @var array|null
+     */
+    private ?array $libredteData;
 
     /**
      * Opciones para los workers asociados al documento.
@@ -217,6 +233,7 @@ class DocumentBag implements DocumentBagInterface
      * @param string|array|stdClass|null $inputData
      * @param array|null $parsedData
      * @param array|null $normalizedData
+     * @param array|null $libredteData
      * @param array|DataContainerInterface|null $options
      * @param XmlInterface|null $xmlDocument
      * @param CafInterface|null $caf
@@ -230,6 +247,7 @@ class DocumentBag implements DocumentBagInterface
         string|array|stdClass $inputData = null,
         array $parsedData = null,
         array $normalizedData = null,
+        array $libredteData = null,
         array|DataContainerInterface $options = null,
         XmlInterface $xmlDocument = null,
         CafInterface $caf = null,
@@ -243,6 +261,7 @@ class DocumentBag implements DocumentBagInterface
             ->setInputData($inputData)
             ->setParsedData($parsedData)
             ->setNormalizedData($normalizedData)
+            ->setLibredteData($libredteData)
             ->setOptions($options)
             ->setXmlDocument($xmlDocument)
             ->setCaf($caf)
@@ -316,6 +335,24 @@ class DocumentBag implements DocumentBagInterface
     public function getNormalizedData(): ?array
     {
         return $this->normalizedData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLibredteData(?array $libredteData): static
+    {
+        $this->libredteData = $libredteData;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLibredteData(): ?array
+    {
+        return $this->libredteData;
     }
 
     /**
@@ -624,6 +661,61 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getDocumentData(): ?array
+    {
+        if (!isset($this->document)) {
+            return null;
+        }
+
+        $documentData = $this->document->getDatos();
+        $documentExtra = $this->libredteData['extra']['dte'] ?? null;
+
+        if (empty($documentExtra)) {
+            return $documentData;
+        }
+
+        return Arr::mergeRecursiveDistinct($documentData, $documentExtra);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentExtra(): ?array
+    {
+        if (!isset($this->document)) {
+            return null;
+        }
+
+        $extra = $this->libredteData['extra'] ?? null;
+
+        if (empty($extra)) {
+            return null;
+        }
+
+        unset($extra['dte']);
+
+        return $extra;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentStamp(): ?string
+    {
+        return $this->document?->getTED();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentAuth(): ?array
+    {
+        return $this->emisor?->getAutorizacionDte()?->toArray();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId(): string
     {
         $folio = $this->getFolio();
@@ -705,6 +797,7 @@ class DocumentBag implements DocumentBagInterface
             inputData: $this->getInputData(),
             parsedData: $this->getParsedData(),
             normalizedData: $this->getNormalizedData(),
+            libredteData: $this->getLibredteData(),
             options: $this->getOptions(),
             caf: $caf,
             certificate: $this->getCertificate(),
@@ -726,6 +819,7 @@ class DocumentBag implements DocumentBagInterface
             inputData: $this->getInputData(),
             parsedData: $this->getParsedData(),
             normalizedData: $this->getNormalizedData(),
+            libredteData: $this->getLibredteData(),
             options: $this->getOptions(),
             caf: $this->getCaf(),
             certificate: $certificate,
