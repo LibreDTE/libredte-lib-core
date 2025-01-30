@@ -38,6 +38,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPagoExportacion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use TCPDF2DBarcode;
@@ -93,6 +94,7 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             'FchEmis' => fn (string $fecha) => Date::formatSpanish($fecha),
             'FchRef' => 'alias:FchEmis',
             'FchVenc' => 'alias:FchEmis',
+            'FchCancel' => 'alias:FchEmis',
             // Fechas cortas.
             'PeriodoDesde' => function (string $fecha) {
                 $timestamp = strtotime($fecha);
@@ -133,6 +135,9 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             ),
             'FmaPago' => $this->entityComponent->getRepository(
                 FormaPago::class
+            ),
+            'FmaPagExp' => $this->entityComponent->getRepository(
+                FormaPagoExportacion::class
             ),
             'Nacionalidad' => $this->entityComponent->getRepository(
                 AduanaPais::class
