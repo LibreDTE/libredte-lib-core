@@ -90,16 +90,6 @@ services:
     # Workers del componente "billing.integration".
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiWsdlConsumerWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiTokenManagerWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiTokenManagerWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentSenderWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDeliveryCheckerWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDeliveryCheckerWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentValidatorWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDocumentValidatorWorker
 
     # Workers del componente "billing.trading_parties".
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
@@ -284,6 +274,15 @@ services:
     # Servicios del componente "billing.identifier"
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
+
+    # Trabajos del worker "billing.integration.sii_lazy"
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob: ~
 
     # Workers del componente "prime.entity".
     Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\DatasourceProviderWorkerInterface:

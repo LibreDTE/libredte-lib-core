@@ -30,7 +30,7 @@ use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 
 /**
  * Entidad que representa un Código de Autorización de Folios (CAF).
@@ -63,11 +63,11 @@ class Caf implements CafInterface
      * Asocia los valores de los ambientes con las configuraciones
      * correspondientes de conexión al SII (certificación o producción).
      *
-     * @var array<int, Ambiente>
+     * @var array<int, SiiAmbiente>
      */
     private const AMBIENTES = [
-        self::IDK_CERTIFICACION => Ambiente::CERTIFICACION,
-        self::IDK_PRODUCCION => Ambiente::PRODUCCION,
+        self::IDK_CERTIFICACION => SiiAmbiente::CERTIFICACION,
+        self::IDK_PRODUCCION => SiiAmbiente::PRODUCCION,
     ];
 
     /**
@@ -278,7 +278,7 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function getAmbiente(): ?Ambiente
+    public function getAmbiente(): ?SiiAmbiente
     {
         $idk = $this->getIDK();
 

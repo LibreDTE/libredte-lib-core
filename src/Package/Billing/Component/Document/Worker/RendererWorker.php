@@ -56,7 +56,6 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     {
         $options = $this->resolveOptions($bag->getRendererOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
-        $strategy->setOptions($options);
 
         assert($strategy instanceof RendererStrategyInterface);
 

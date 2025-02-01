@@ -55,7 +55,6 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
     {
         $options = $this->resolveOptions($bag->getParserOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
-        $strategy->setOptions($options);
 
         assert($strategy instanceof ParserStrategyInterface);
 

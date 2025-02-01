@@ -190,12 +190,19 @@ class ExchangeDocumentSendEmailTest extends TestCase
 
         // Crear el documento.
         // No se firma ni se timbra pues no es relevante para este envío.
-        $documentBag = new DocumentBag($data);
+        $documentBag = new DocumentBag(
+            inputData: $data,
+            options: [
+                'renderer' => [
+                    'format' => 'pdf',
+                ],
+            ]
+        );
         $this->builder->build($documentBag);
         $xml = $documentBag->getDocument()->saveXml();
 
         // Renderizar el documento en PDF.
-        $pdf = $this->renderer->setOptions(['format' => 'pdf'])->render($documentBag);
+        $pdf = $this->renderer->render($documentBag);
 
         // Correo de intercambio para el emisor y receptor.
         $documentBag->getEmisor()->setCorreoIntercambioDte($username);

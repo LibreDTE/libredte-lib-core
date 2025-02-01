@@ -353,14 +353,16 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar en HTML.
-        $html = $this->renderer->setOptions(['format' => 'html'])->render($bag);
+        $bag->getOptions()->set('renderer.format', 'html');
+        $html = $this->renderer->render($bag);
         $this->assertNotEmpty($html);
         $this->assertIsString($html);
         file_put_contents($file . '.html', $html);
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar en PDF.
-        $pdf = $this->renderer->setOptions(['format' => 'pdf'])->render($bag);
+        $bag->getOptions()->set('renderer.format', 'pdf');
+        $pdf = $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
         $this->assertIsString($pdf);
         file_put_contents($file . '.pdf', $pdf);

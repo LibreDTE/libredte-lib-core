@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
+use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
-use Derafu\Lib\Core\Support\Store\DataContainer;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -39,36 +39,10 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResult
  */
 class ExchangeBag implements ExchangeBagInterface
 {
-    /**
-     * Listado de sobres que se están intercambiando en este lote.
-     *
-     * @var array<string, EnvelopeInterface>
-     */
-    private array $envelopes = [];
-
-    /**
-     * Opciones para los workers y, especialmente, las estrategias asociadas al
-     * proceso de intercambio de documentos.
-     *
-     * Se usarán las opciones por defecto en cada worker si no se indican los
-     * índices en el arreglo $options.
-     *
-     * @var DataContainerInterface
-     */
-    private DataContainerInterface $options;
-
-    /**
-     * Listado con los resultados del intercambio.
-     *
-     * @var array<string, ExchangeResultInterface>
-     */
-    private array $results = [];
+    use OptionsAwareTrait;
 
     /**
      * Reglas de esquema de las opciones del intercambio de documentos.
-     *
-     * El formato del esquema es el utilizado por
-     * Symfony\Component\OptionsResolver\OptionsResolver.
      *
      * Acá solo se indicarán los índices que deben pueden existir en las
      * opciones. No se define el esquema de cada opción pues cada clase que
@@ -85,6 +59,20 @@ class ExchangeBag implements ExchangeBagInterface
             'default' => [],
         ],
     ];
+
+    /**
+     * Listado de sobres que se están intercambiando en este lote.
+     *
+     * @var array<string, EnvelopeInterface>
+     */
+    private array $envelopes = [];
+
+    /**
+     * Listado con los resultados del intercambio.
+     *
+     * @var array<string, ExchangeResultInterface>
+     */
+    private array $results = [];
 
     /**
      * Constructor de la bolsa de intercambio.
@@ -120,28 +108,6 @@ class ExchangeBag implements ExchangeBagInterface
     public function hasEnvelopes(): bool
     {
         return !empty($this->envelopes);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setOptions(DataContainerInterface|array $options): static
-    {
-        if (is_array($options)) {
-            $options = new DataContainer($options, $this->optionsSchema);
-        }
-
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOptions(): DataContainerInterface
-    {
-        return $this->options;
     }
 
     /**

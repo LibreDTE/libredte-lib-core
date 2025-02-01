@@ -73,10 +73,14 @@ class ApplicationTest extends TestCase
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getParserWorker()
-            ->setOptions([
-                'strategy' => 'json',
-            ])
-            ->parse(new DocumentBag($data))
+            ->parse(new DocumentBag(
+                inputData: $data,
+                options: [
+                    'parser' => [
+                        'strategy' => 'json',
+                    ],
+                ]
+            ))
         ;
 
         $this->assertNotEmpty($parsed);

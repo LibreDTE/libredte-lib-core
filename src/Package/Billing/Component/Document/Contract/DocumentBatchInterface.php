@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
+use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
  * Interfaz para el contenedor de varios documentos que se procesarán en lote.
  */
-interface DocumentBatchInterface
+interface DocumentBatchInterface extends OptionsAwareInterface
 {
     /**
      * Entrega la ruta del archivo con documentos que se debe procesar.
@@ -39,21 +39,6 @@ interface DocumentBatchInterface
      * @return string
      */
     public function getFile(): string;
-
-    /**
-     * Asigna las opciones del procesamiento en lote de documentos.
-     *
-     * @param array|DataContainerInterface|null $options
-     * @return static
-     */
-    public function setOptions(array|DataContainerInterface|null $options): static;
-
-    /**
-     * Obtiene las opciones del procesamiento en lote de documentos.
-     *
-     * @return DataContainerInterface|null
-     */
-    public function getOptions(): ?DataContainerInterface;
 
     /**
      * Asigna el emisor del documento.

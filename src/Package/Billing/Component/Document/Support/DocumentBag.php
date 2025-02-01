@@ -24,11 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
+use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
 use Derafu\Lib\Core\Helper\Arr;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
 use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
-use Derafu\Lib\Core\Support\Store\DataContainer;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
@@ -47,6 +47,44 @@ use stdClass;
  */
 class DocumentBag implements DocumentBagInterface
 {
+    use OptionsAwareTrait;
+
+    /**
+     * Reglas de esquema de las opciones del documento.
+     *
+     * Acá solo se indicarán los índices que deben pueden existir en las
+     * opciones. No se define el esquema de cada opción pues cada clase que
+     * utilice estas opciones deberá resolver y validar sus propias opciones.
+     *
+     * @var array
+     */
+    protected array $optionsSchema = [
+        'builder' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+        'normalizer' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+        'parser' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+        'renderer' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+        'sanitizer' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+        'validator' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+    ];
+
     /**
      * Datos originales de entrada que se utilizarán para construir el
      * documento tributario.
@@ -99,64 +137,6 @@ class DocumentBag implements DocumentBagInterface
      * @var array|null
      */
     private ?array $libredteData;
-
-    /**
-     * Opciones para los workers asociados al documento.
-     *
-     * Se definen los siguientes índices para las opciones:
-     *
-     *   - `builder`: Opciones para los constructores.
-     *   - `normalizer`: Opciones para los normalizadores.
-     *   - `parser`: Opciones para los analizadores sintácticos.
-     *   - `renderer`: Opciones para los renderizadores.
-     *   - `sanitizer`: Opciones para los sanitizadores.
-     *   - `validator`: Opciones para los validadores.
-     *
-     * Se usarán las opciones por defecto en cada worker si no se indican los
-     * índices en el arreglo $options.
-     *
-     * @var DataContainerInterface|null
-     */
-    private ?DataContainerInterface $options;
-
-    /**
-     * Reglas de esquema de las opciones del documento.
-     *
-     * El formato del esquema es el utilizado por
-     * Symfony\Component\OptionsResolver\OptionsResolver.
-     *
-     * Acá solo se indicarán los índices que deben pueden existir en las
-     * opciones. No se define el esquema de cada opción pues cada clase que
-     * utilice estas opciones deberá resolver y validar sus propias opciones.
-     *
-     * @var array
-     */
-    protected array $optionsSchema = [
-        'builder' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-        'normalizer' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-        'parser' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-        'renderer' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-        'sanitizer' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-        'validator' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-    ];
 
     /**
      * Instancia del documento XML asociada al DTE.
@@ -234,7 +214,7 @@ class DocumentBag implements DocumentBagInterface
      * @param array|null $parsedData
      * @param array|null $normalizedData
      * @param array|null $libredteData
-     * @param array|DataContainerInterface|null $options
+     * @param array|DataContainerInterface $options
      * @param XmlInterface|null $xmlDocument
      * @param CafInterface|null $caf
      * @param CertificateInterface|null $certificate
@@ -248,7 +228,7 @@ class DocumentBag implements DocumentBagInterface
         array $parsedData = null,
         array $normalizedData = null,
         array $libredteData = null,
-        array|DataContainerInterface $options = null,
+        array|DataContainerInterface $options = [],
         XmlInterface $xmlDocument = null,
         CafInterface $caf = null,
         CertificateInterface $certificate = null,
@@ -358,35 +338,9 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
-    public function setOptions(array|DataContainerInterface|null $options): static
-    {
-        if ($options === null) {
-            $options = [];
-        }
-
-        if (is_array($options)) {
-            $options = new DataContainer($options, $this->optionsSchema);
-        }
-
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOptions(): ?DataContainerInterface
-    {
-        return $this->options;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getParserOptions(): array
     {
-        return (array) $this->options?->get('parser');
+        return (array) $this->getOptions()->get('parser');
     }
 
     /**
@@ -394,7 +348,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getBuilderOptions(): array
     {
-        return (array) $this->options?->get('builder');
+        return (array) $this->getOptions()->get('builder');
     }
 
     /**
@@ -402,7 +356,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getNormalizerOptions(): array
     {
-        return (array) $this->options?->get('normalizer');
+        return (array) $this->getOptions()->get('normalizer');
     }
 
     /**
@@ -410,7 +364,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getSanitizerOptions(): array
     {
-        return (array) $this->options?->get('sanitizer');
+        return (array) $this->getOptions()->get('sanitizer');
     }
 
     /**
@@ -418,7 +372,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getValidatorOptions(): array
     {
-        return (array) $this->options?->get('validator');
+        return (array) $this->getOptions()->get('validator');
     }
 
     /**
@@ -426,7 +380,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getRendererOptions(): array
     {
-        return (array) $this->options?->get('renderer');
+        return (array) $this->getOptions()->get('renderer');
     }
 
     /**

@@ -26,12 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration;
 
 use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDeliveryCheckerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentSenderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDocumentValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiTokenManagerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlConsumerWorkerInterface;
 
 /**
  * Componente "billing.integration".
@@ -39,12 +34,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiWsdlCons
 class IntegrationComponent extends AbstractComponent implements IntegrationComponentInterface
 {
     public function __construct(
-        private SiiLazyWorkerInterface $siiLazyWorker,
-        private SiiWsdlConsumerWorkerInterface $siiWsdlConsumerWorker,
-        private SiiTokenManagerWorkerInterface $siiTokenManagerWorker,
-        private SiiDocumentSenderWorkerInterface $siiDocumentSenderWorker,
-        private SiiDeliveryCheckerWorkerInterface $siiDeliveryCheckerWorker,
-        private SiiDocumentValidatorWorkerInterface $siiDocumentValidatorWorker
+        private SiiLazyWorkerInterface $siiLazyWorker
     ) {
     }
 
@@ -55,11 +45,6 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     {
         return [
             'sii_lazy' => $this->siiLazyWorker,
-            'sii_wsdl_consumer' => $this->siiWsdlConsumerWorker,
-            'sii_token_manager' => $this->siiTokenManagerWorker,
-            'sii_document_sender' => $this->siiDocumentSenderWorker,
-            'sii_delivery_checker' => $this->siiDeliveryCheckerWorker,
-            'sii_document_validator' => $this->siiDocumentValidatorWorker,
         ];
     }
 
@@ -69,45 +54,5 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     public function getSiiLazyWorker(): SiiLazyWorkerInterface
     {
         return $this->siiLazyWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSiiWsdlConsumerWorker(): SiiWsdlConsumerWorkerInterface
-    {
-        return $this->siiWsdlConsumerWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSiiTokenManagerWorker(): SiiTokenManagerWorkerInterface
-    {
-        return $this->siiTokenManagerWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSiiDocumentSenderWorker(): SiiDocumentSenderWorkerInterface
-    {
-        return $this->siiDocumentSenderWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSiiDeliveryCheckerWorker(): SiiDeliveryCheckerWorkerInterface
-    {
-        return $this->siiDeliveryCheckerWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSiiDocumentValidatorWorker(): SiiDocumentValidatorWorkerInterface
-    {
-        return $this->siiDocumentValidatorWorker;
     }
 }

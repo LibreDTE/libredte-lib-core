@@ -24,10 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
+use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
-use Derafu\Lib\Core\Support\Store\DataContainer;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
@@ -45,6 +44,24 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
  */
 class DocumentEnvelope implements DocumentEnvelopeInterface
 {
+    use OptionsAwareTrait;
+
+    /**
+     * Reglas de esquema de las opciones del documento.
+     *
+     * Acá solo se indicarán los índices que deben pueden existir en las
+     * opciones. No se define el esquema de cada opción pues cada clase que
+     * utilice estas opciones deberá resolver y validar sus propias opciones.
+     *
+     * @var array
+     */
+    protected array $optionsSchema = [
+        'dispatcher' => [
+            'types' => 'array',
+            'default' => [],
+        ],
+    ];
+
     /**
      * Tipo del sobre de documentos.
      *
@@ -72,39 +89,6 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      * @var DocumentBagInterface[]|null
      */
     private ?array $documents = null;
-
-    /**
-     * Opciones para los workers asociados al documento.
-     *
-     * Se definen los siguientes índices para las opciones:
-     *
-     *   - `dispatcher`: Opciones para el despachador del sobre.
-     *
-     * Se usarán las opciones por defecto en cada worker si no se indican los
-     * índices en el arreglo $options.
-     *
-     * @var DataContainerInterface|null
-     */
-    private ?DataContainerInterface $options = null;
-
-    /**
-     * Reglas de esquema de las opciones del documento.
-     *
-     * El formato del esquema es el utilizado por
-     * Symfony\Component\OptionsResolver\OptionsResolver.
-     *
-     * Acá solo se indicarán los índices que deben pueden existir en las
-     * opciones. No se define el esquema de cada opción pues cada clase que
-     * utilice estas opciones deberá resolver y validar sus propias opciones.
-     *
-     * @var array
-     */
-    protected array $optionsSchema = [
-        'dispatcher' => [
-            'types' => 'array',
-            'default' => [],
-        ],
-    ];
 
     /**
      * Emisor del sobre de documentos.
@@ -265,35 +249,9 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
-    public function setOptions(array|DataContainerInterface|null $options): static
-    {
-        if ($options === null) {
-            $options = [];
-        }
-
-        if (is_array($options)) {
-            $options = new DataContainer($options, $this->optionsSchema);
-        }
-
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOptions(): ?DataContainerInterface
-    {
-        return $this->options;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getDispatcherOptions(): array
     {
-        return (array) $this->options?->get('dispatcher');
+        return (array) $this->getOptions()->get('dispatcher');
     }
 
     /**

@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Entity;
 
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 
 /**
@@ -39,7 +39,7 @@ class AutorizacionDte implements AutorizacionDteInterface
      * Constructor de la entidad.
      *
      * @param string $fechaResolucion Fecha asignada por SII a la resolución.
-     * @param integer $numeroResolucion Número de resolución.
+     * @param int $numeroResolucion Número de resolución.
      */
     public function __construct(
         private string $fechaResolucion,
@@ -66,11 +66,11 @@ class AutorizacionDte implements AutorizacionDteInterface
     /**
      * {@inheritDoc}
      */
-    public function getAmbiente(): Ambiente
+    public function getAmbiente(): SiiAmbiente
     {
         return $this->numeroResolucion === 0
-            ? Ambiente::PRODUCCION
-            : Ambiente::CERTIFICACION
+            ? SiiAmbiente::PRODUCCION
+            : SiiAmbiente::CERTIFICACION
         ;
     }
 

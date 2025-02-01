@@ -214,9 +214,8 @@ class BillingPackageTest extends TestCase
         $biller->getValidatorWorker()->validateSignature($xml);
 
         // Renderizar el documento cargado en la nueva bolsa.
-        $renderer = $biller->getRendererWorker()->setOptions([
-            'format' => 'html',
-        ]);
+        $renderer = $biller->getRendererWorker();
+        $newBag->getOptions()->set('renderer.format', 'html');
         $renderedData = $renderer->render($newBag);
         $this->assertNotEmpty($renderedData);
         $this->assertIsString($renderedData);

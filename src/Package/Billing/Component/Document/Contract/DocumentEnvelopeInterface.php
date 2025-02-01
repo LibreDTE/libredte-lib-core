@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
+use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
@@ -36,7 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
  * Interfaz para el sobre (contenedor) de documentos tributarios para el proceso
  * de envío al SII e intercambio entre contribuyentes.
  */
-interface DocumentEnvelopeInterface
+interface DocumentEnvelopeInterface extends OptionsAwareInterface
 {
     /**
      * Entrega el identificador del sobre de documentos.
@@ -104,21 +104,6 @@ interface DocumentEnvelopeInterface
      * @return static
      */
     public function addDocument(DocumentBagInterface $document): static;
-
-    /**
-     * Asigna las opciones del sobre de documentos.
-     *
-     * @param array|DataContainerInterface|null $options
-     * @return static
-     */
-    public function setOptions(array|DataContainerInterface|null $options): static;
-
-    /**
-     * Obtiene las opciones del sobre de documentos.
-     *
-     * @return DataContainerInterface|null
-     */
-    public function getOptions(): ?DataContainerInterface;
 
     /**
      * Obtiene las opciones del despachador del sobre de documentos al SII.

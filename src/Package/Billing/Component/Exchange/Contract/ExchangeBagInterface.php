@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
 
 /**
  * Interfaz que almacena sobres, y sus documentos, más los datos para enviar o
@@ -32,7 +32,7 @@ use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
  *
  * Contiene los sobres y todas las opciones necesarias para el intercambio.
  */
-interface ExchangeBagInterface
+interface ExchangeBagInterface extends OptionsAwareInterface
 {
     /**
      * Agrega un sobre a la bolsa.
@@ -55,21 +55,6 @@ interface ExchangeBagInterface
      * @return bool
      */
     public function hasEnvelopes(): bool;
-
-    /**
-     * Asigna las opciones para el transporte de los sobres de la bolsa.
-     *
-     * @param DataContainerInterface|array $options
-     * @return static
-     */
-    public function setOptions(DataContainerInterface|array $options): static;
-
-    /**
-     * Obtiene las opciones para el transporte de los sobres de la bolsa.
-     *
-     * @return DataContainerInterface
-     */
-    public function getOptions(): DataContainerInterface;
 
     /**
      * Obtiene los resultados del proceso de intercambio.

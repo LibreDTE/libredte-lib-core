@@ -132,7 +132,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     /**
      * Indica si el documento está disponible para ser emitido en LibreDTE.
      *
-     * @var boolean
+     * @var bool
      */
     private bool $disponible = false;
 
@@ -172,7 +172,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
     /**
      * Contructor del tipo de documento.
      *
-     * @param integer|string $codigo
+     * @param int|string $codigo
      * @param string $nombre
      * @param string|null $nombre_corto
      */

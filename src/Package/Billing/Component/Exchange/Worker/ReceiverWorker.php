@@ -57,8 +57,7 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
      */
     public function receive(ExchangeBagInterface $bag): array
     {
-        $options = $this->resolveOptions($bag->getOptions()->all());
-        $bag->setOptions($options);
+        $options = $this->resolveOptions($bag->getOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
 
         assert($strategy instanceof ReceiverStrategyInterface);

@@ -44,7 +44,7 @@ class BatchProcessorException extends DocumentException
      * Constructor de la excepción.
      *
      * @param string $message
-     * @param integer $code
+     * @param int $code
      * @param Throwable|null $previous
      * @param DocumentBatchInterface|null $documentBatch
      */

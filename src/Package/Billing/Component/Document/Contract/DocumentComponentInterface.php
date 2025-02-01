@@ -115,13 +115,13 @@ interface DocumentComponentInterface extends ComponentInterface
      * @param string|array|stdClass $data
      * @param string|CafInterface|null $caf
      * @param string|array|CertificateInterface|null $certificate
-     * @param array|DataContainerInterface|null $options
+     * @param array|DataContainerInterface $options
      * @return DocumentBagInterface
      */
     public function bill(
         string|array|stdClass $data,
         string|CafInterface $caf = null,
         string|array|CertificateInterface $certificate = null,
-        array|DataContainerInterface $options = null
+        array|DataContainerInterface $options = []
     ): DocumentBagInterface;
 }

@@ -80,10 +80,8 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
             $parserStrategy = str_replace('parser.strategy.', '', $aux[0]);
             $inputData = $aux[1] ?? '';
             $bag->setInputData($inputData);
-            $parser = $this->parserWorker->setOptions([
-                'strategy' => $parserStrategy,
-            ]);
-            $parser->parse($bag);
+            $bag->getOptions()->set('parser.strategy', $parserStrategy);
+            $$this->parserWorker->parse($bag);
         }
 
         // Si los datos vienen como arreglo son los datos normalizados.
@@ -155,8 +153,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         }
 
         // Parsear los datos.
-        $parser = $this->parserWorker->setOptions($bag->getParserOptions());
-        $parser->parse($bag);
+        $this->parserWorker->parse($bag);
     }
 
     /**

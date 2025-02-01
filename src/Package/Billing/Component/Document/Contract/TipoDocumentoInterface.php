@@ -70,28 +70,28 @@ interface TipoDocumentoInterface extends EntityInterface
     /**
      * Indica si el documento es electrónico o no.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function esElectronico(): ?bool;
 
     /**
      * Indica si un documento que es electrónico se debe enviar al SII.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function seEnviaAlSii(): ?bool;
 
     /**
      * Indica si el documento puede ser utilizado en compras de la empresa.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function disponibleEnCompras(): ?bool;
 
     /**
      * Indica si el documento puede ser utilizado en ventas de la empresa.
      *
-     * @return boolean|null
+     * @return bool|null
      */
     public function disponibleEnVentas(): ?bool;
 
@@ -128,7 +128,7 @@ interface TipoDocumentoInterface extends EntityInterface
     /**
      * Indica si el documento está disponible en LibreDTE para ser usado.
      *
-     * @return boolean
+     * @return bool
      */
     public function estaDisponible(): bool;
 
@@ -164,28 +164,28 @@ interface TipoDocumentoInterface extends EntityInterface
     /**
      * Indica si el documento es de tipo guía de despacho.
      *
-     * @return boolean
+     * @return bool
      */
     public function esGuiaDespacho(): bool;
 
     /**
      * Indica si el documento es de tipo boleta.
      *
-     * @return boolean
+     * @return bool
      */
     public function esBoleta(): bool;
 
     /**
      * Indica si el documento es de exportación.
      *
-     * @return boolean
+     * @return bool
      */
     public function esExportacion(): bool;
 
     /**
      * Indica si el documento es exento.
      *
-     * @return boolean
+     * @return bool
      */
     public function esExento(): bool;
 
@@ -198,7 +198,7 @@ interface TipoDocumentoInterface extends EntityInterface
     /**
      * Indica si el documento requiere el tag "TpoTranVenta" en el XML.
      *
-     * @return boolean
+     * @return bool
      */
     public function requiereTpoTranVenta(): bool;
 

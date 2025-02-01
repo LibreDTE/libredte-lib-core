@@ -32,45 +32,9 @@ use Derafu\Lib\Core\Foundation\Contract\ComponentInterface;
 interface IntegrationComponentInterface extends ComponentInterface
 {
     /**
-     * Entrega el worker que permite realizar acciones en el SII.
+     * Entrega el worker que "realiza" las acciones en el SII.
      *
      * @return SiiLazyWorkerInterface
      */
     public function getSiiLazyWorker(): SiiLazyWorkerInterface;
-
-    /**
-     * Entrega el worker que consume servicios web usando WSDL en el SII.
-     *
-     * @return SiiWsdlConsumerWorkerInterface
-     */
-    public function getSiiWsdlConsumerWorker(): SiiWsdlConsumerWorkerInterface;
-
-    /**
-     * Entrega el worker que administra la vida del token de la sesión en la API
-     * del SII.
-     *
-     * @return SiiTokenManagerWorkerInterface
-     */
-    public function getSiiTokenManagerWorker(): SiiTokenManagerWorkerInterface;
-
-    /**
-     * Entrega el worker que realiza el envío del documento en XML al SII.
-     *
-     * @return SiiDocumentSenderWorkerInterface
-     */
-    public function getSiiDocumentSenderWorker(): SiiDocumentSenderWorkerInterface;
-
-    /**
-     * Entrega el worker que consulta el estado de un envío de XML al SII.
-     *
-     * @return SiiDeliveryCheckerWorkerInterface
-     */
-    public function getSiiDeliveryCheckerWorker(): SiiDeliveryCheckerWorkerInterface;
-
-    /**
-     * Entrega el worker que valida documentos tributarios en el SII.
-     *
-     * @return SiiDocumentValidatorWorkerInterface
-     */
-    public function getSiiDocumentValidatorWorker(): SiiDocumentValidatorWorkerInterface;
 }

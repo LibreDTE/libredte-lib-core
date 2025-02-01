@@ -159,7 +159,7 @@ interface DocumentInterface extends EntityInterface
      * Se puede solicitar todo el detalle o el detalle de una línea en
      * específico.
      *
-     * @param integer|null $index Índice de la línea de detalle solicitada o
+     * @param int|null $index Índice de la línea de detalle solicitada o
      * `null` (por defecto) para obtener todas las líneas.
      * @return array
      */

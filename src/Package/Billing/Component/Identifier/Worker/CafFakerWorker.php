@@ -69,9 +69,9 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * Crea un CAF falso y lo entrega como un documento XML.
      *
      * @param EmisorInterface $emisor
-     * @param integer $codigoDocumento
-     * @param integer $folioDesde
-     * @param integer|null $folioHasta
+     * @param int $codigoDocumento
+     * @param int $folioDesde
+     * @param int|null $folioHasta
      * @return XmlInterface
      */
     protected function createXml(
@@ -94,9 +94,9 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * Crea un CAF falso y lo entrega como arreglo.
      *
      * @param EmisorInterface $emisor
-     * @param integer $codigoDocumento
-     * @param integer $folioDesde
-     * @param integer|null $folioHasta
+     * @param int $codigoDocumento
+     * @param int $folioDesde
+     * @param int|null $folioHasta
      * @return array
      */
     protected function createArray(

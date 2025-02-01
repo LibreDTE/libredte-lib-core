@@ -88,6 +88,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     public function process(DocumentBatchInterface $batch): array
     {
         $emisor = $batch->getEmisor();
+        $options = $this->resolveOptions($batch->getOptions());
 
         // Cargar documentos desde el archivo.
         $parsedDocuments = $this->loadDocumentsFromFile($batch);
@@ -99,7 +100,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $documentBag->setEmisor($emisor);
 
             // Completar el documento si así se solicitó.
-            if ($this->getOptions()->get('complete')) {
+            if ($options->get('complete')) {
                 $parsedData = $this->completeParsedData(
                     $batch,
                     $parsedData
@@ -115,7 +116,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $this->documentBagManagerWorker->normalize($documentBag);
 
             // Solicitar CAF al proveedor y asignar certificado si se solicitó.
-            if ($this->getOptions()->get('stamp')) {
+            if ($options->get('stamp')) {
                 // Buscar folio del documento (si existe) y obtener el CAF que
                 // tiene ese folio.
                 $folio = $documentBag->getFolio();
@@ -163,8 +164,8 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      */
     private function loadDocumentsFromFile(DocumentBatchInterface $batch): array
     {
-        $strategy = $this->getStrategy($this->getOptions()->get('strategy'));
-        $strategy->setOptions($this->getOptions());
+        $options = $this->resolveOptions($batch->getOptions());
+        $strategy = $this->getStrategy($options->get('strategy'));
 
         assert($strategy instanceof BatchProcessorStrategyInterface);
 

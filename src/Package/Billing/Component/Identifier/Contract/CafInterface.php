@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\Ambiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 
 /**
  * Interfaz para la entidad que representa archivos CAF.
@@ -95,8 +95,8 @@ interface CafInterface
      * NOTE: Esta validación NO verifica si el folio ya fue usado, solo si está
      * dentro del rango de folios disponibles en el CAF.
      *
-     * @param integer $folio
-     * @return boolean
+     * @param int $folio
+     * @return bool
      */
     public function enRango(int $folio): bool;
 
@@ -154,17 +154,17 @@ interface CafInterface
      *
      *   - `null`: no hay ambiente, pues el Caf es falso y tiene IDK CafFaker::IDK
      *
-     * @return Ambiente|null
+     * @return SiiAmbiente|null
      */
-    public function getAmbiente(): ?Ambiente;
+    public function getAmbiente(): ?SiiAmbiente;
 
     /**
      * Indica si el CAF es de certificación o producción.
      *
      * El resultado puede ser:
      *
-     *   - Ambiente::CERTIFICACION->value es CAF de certificación.
-     *   - Ambiente::PRODUCCION->value es CAF de producción.
+     *   - SiiAmbiente::CERTIFICACION->value es CAF de certificación.
+     *   - SiiAmbiente::PRODUCCION->value es CAF de producción.
      *   - `null`: indicando que el Caf es falso y tiene IDK CafFaker::IDK
      *
      * @return int|null

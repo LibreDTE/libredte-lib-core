@@ -173,7 +173,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
         string|array|stdClass $data,
         string|CafInterface $caf = null,
         string|array|CertificateInterface $certificate = null,
-        array|DataContainerInterface $options = null
+        array|DataContainerInterface $options = []
     ): DocumentBagInterface {
         // Si el CAF es un string se debe construir el CAF.
         if (is_string($caf)) {

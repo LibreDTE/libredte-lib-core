@@ -57,8 +57,7 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
      */
     public function send(ExchangeBagInterface $bag): array
     {
-        $options = $this->resolveOptions($bag->getOptions()->all());
-        $bag->setOptions($options);
+        $options = $this->resolveOptions($bag->getOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
 
         assert($strategy instanceof SenderStrategyInterface);

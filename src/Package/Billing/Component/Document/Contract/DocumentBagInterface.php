@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
+use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
 use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -35,7 +35,7 @@ use stdClass;
 /**
  * Interfaz para el contenedor de un documento.
  */
-interface DocumentBagInterface
+interface DocumentBagInterface extends OptionsAwareInterface
 {
     /**
      * Asignar los datos de entrada del documento.
@@ -100,21 +100,6 @@ interface DocumentBagInterface
      * @return array|null
      */
     public function getLibredteData(): ?array;
-
-    /**
-     * Asigna las opciones del documento.
-     *
-     * @param array|DataContainerInterface|null $options
-     * @return static
-     */
-    public function setOptions(array|DataContainerInterface|null $options): static;
-
-    /**
-     * Obtiene las opciones del documento.
-     *
-     * @return DataContainerInterface|null
-     */
-    public function getOptions(): ?DataContainerInterface;
 
     /**
      * Obtiene las opciones del procesador (parser) del documento.
