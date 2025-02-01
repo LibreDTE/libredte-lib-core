@@ -210,11 +210,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Clase del lazy worker del SII</p>
+            <p class="phpdocumentor-summary">Clase del lazy worker del SII.</p>
 
 
 
@@ -252,11 +252,46 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_connectionOptions">$connectionOptions</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_authenticateJob">$authenticateJob</a>
     <span>
-                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions">SiiConnectionOptions</abbr></a>            </span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a>            </span>
 </dt>
-<dd>Configuración de la conexión al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_checkXmlDocumentSentStatusJob">$checkXmlDocumentSentStatusJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob">CheckXmlDocumentSentStatusJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_consumeWebserviceJob">$consumeWebserviceJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_requestXmlDocumentSentStatusByEmailJob">$requestXmlDocumentSentStatusByEmailJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob">RequestXmlDocumentSentStatusByEmailJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_sendXmlDocumentJob">$sendXmlDocumentJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob">SendXmlDocumentJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentJob">$validateDocumentJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob">ValidateDocumentJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentSignatureJob">$validateDocumentSignatureJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob">ValidateDocumentSignatureJob</abbr></a>            </span>
+</dt>
 
     </dl>
 
@@ -267,11 +302,60 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_getConnectionOptions">getConnectionOptions()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions">SiiConnectionOptions</abbr></a>    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Entrega las opciones para la conexión que se debe realizar al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_authenticate">authenticate()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene un token de autenticación asociado al certificado digital.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_checkXmlDocumentSentStatus">checkXmlDocumentSentStatus()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiCheckXmlDocumentSentStatusResponse">SiiCheckXmlDocumentSentStatusResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el estado actualizado del envío de un documento XML al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_consumeWebservice">consumeWebservice()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>    </span>
+</dt>
+<dd>Realiza una solicitud a un servicio web del SII mediante el uso de WSDL.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_requestXmlDocumentSentStatusByEmail">requestXmlDocumentSentStatusByEmail()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRequestXmlDocumentSentStatusByEmailResponse">SiiRequestXmlDocumentSentStatusByEmailResponse</abbr></a>    </span>
+</dt>
+<dd>Solicita al SII que le envíe el estado del DTE mediente correo
+electrónico.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_sendXmlDocument">sendXmlDocument()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Realiza el envío de un documento XML al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocument">validateDocument()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentResponse">SiiValidateDocumentResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el estado de un documento en el SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocumentSignature">validateDocumentSignature()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentSignatureResponse">SiiValidateDocumentSignatureResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el estado avanzado de un documento en el SII.</dd>
 
     </dl>
 
@@ -293,9 +377,9 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_connectionOptions">
-        $connectionOptions
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_connectionOptions" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_authenticateJob">
+        $authenticateJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_authenticateJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
@@ -303,17 +387,232 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Configuración de la conexión al SII.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions">SiiConnectionOptions</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$connectionOptions</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$authenticateJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_checkXmlDocumentSentStatusJob">
+        $checkXmlDocumentSentStatusJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_checkXmlDocumentSentStatusJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob">CheckXmlDocumentSentStatusJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$checkXmlDocumentSentStatusJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_consumeWebserviceJob">
+        $consumeWebserviceJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_consumeWebserviceJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$consumeWebserviceJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_requestXmlDocumentSentStatusByEmailJob">
+        $requestXmlDocumentSentStatusByEmailJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_requestXmlDocumentSentStatusByEmailJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob">RequestXmlDocumentSentStatusByEmailJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$requestXmlDocumentSentStatusByEmailJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_sendXmlDocumentJob">
+        $sendXmlDocumentJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_sendXmlDocumentJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">53</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob">SendXmlDocumentJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$sendXmlDocumentJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_validateDocumentJob">
+        $validateDocumentJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob">ValidateDocumentJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$validateDocumentJob</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_validateDocumentSignatureJob">
+        $validateDocumentSignatureJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentSignatureJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob">ValidateDocumentSignatureJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$validateDocumentSignatureJob</span>
     </code>
 
     
@@ -337,36 +636,680 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getConnectionOptions">
-        getConnectionOptions()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_getConnectionOptions" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega las opciones para la conexión que se debe realizar al SII.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getConnectionOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions">SiiConnectionOptions</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$authenticateJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob">CheckXmlDocumentSentStatusJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$checkXmlDocumentSentStatusJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$consumeWebserviceJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob">RequestXmlDocumentSentStatusByEmailJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$requestXmlDocumentSentStatusByEmailJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob">SendXmlDocumentJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sendXmlDocumentJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob">ValidateDocumentJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validateDocumentJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob">ValidateDocumentSignatureJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validateDocumentSignatureJob</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$authenticateJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$checkXmlDocumentSentStatusJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob">CheckXmlDocumentSentStatusJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$consumeWebserviceJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$requestXmlDocumentSentStatusByEmailJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob">RequestXmlDocumentSentStatusByEmailJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$sendXmlDocumentJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob">SendXmlDocumentJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$validateDocumentJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob">ValidateDocumentJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$validateDocumentSignatureJob</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob">ValidateDocumentSignatureJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_authenticate">
+        authenticate()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_authenticate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">178</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un token de autenticación asociado al certificado digital.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">authenticate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiConnectionOptions">SiiConnectionOptions</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El token asociado al certificado digital de la solicitud.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_checkXmlDocumentSentStatus">
+        checkXmlDocumentSentStatus()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_checkXmlDocumentSentStatus" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">81</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el estado actualizado del envío de un documento XML al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">checkXmlDocumentSentStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$trackId</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiCheckXmlDocumentSentStatusResponse">SiiCheckXmlDocumentSentStatusResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$trackId</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de seguimiento asignado al envío del XML.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$company</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del XML que se envió.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiCheckXmlDocumentSentStatusResponse">SiiCheckXmlDocumentSentStatusResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_consumeWebservice">
+        consumeWebservice()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_consumeWebservice" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">159</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Realiza una solicitud a un servicio web del SII mediante el uso de WSDL.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">consumeWebservice</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$service</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$function</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$args</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$service</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nombre del servicio del SII que se consumirá.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$function</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nombre de la función que se ejecutará en el
+servicio web del SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$args</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Argumentos que se pasarán al servicio web.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$retry</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Intentos que se realizarán como máximo para
+obtener respuesta.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Documento XML con la respuesta del servicio web.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_requestXmlDocumentSentStatusByEmail">
+        requestXmlDocumentSentStatusByEmail()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_requestXmlDocumentSentStatusByEmail" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">96</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Solicita al SII que le envíe el estado del DTE mediente correo
+electrónico.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requestXmlDocumentSentStatusByEmail</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$trackId</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRequestXmlDocumentSentStatusByEmailResponse">SiiRequestXmlDocumentSentStatusByEmailResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$trackId</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de seguimiento asignado al envío del XML.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$company</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRequestXmlDocumentSentStatusByEmailResponse">SiiRequestXmlDocumentSentStatusByEmailResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_sendXmlDocument">
+        sendXmlDocument()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_sendXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">62</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Realiza el envío de un documento XML al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">sendXmlDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$doc</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Documento XML que se desea enviar al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$company</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del XML.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$compress</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Indica si se debe enviar comprimido el XML.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$retry</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Intentos que se realizarán como máximo al enviar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Número de seguimiento (Track ID) del envío del XML al SII.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateDocument">
+        validateDocument()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">111</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el estado de un documento en el SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$total</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recipient</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentResponse">SiiValidateDocumentResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$company</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$document</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento tributario electrónico.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$number</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Folio del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$date</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Fecha de emisión del documento, formato: AAAA-MM-DD.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$total</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Total del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$recipient</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT del receptor del documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentResponse">SiiValidateDocumentResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateDocumentSignature">
+        validateDocumentSignature()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocumentSignature" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php"><a href="files/src-package-billing-component-integration-worker-siilazyworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazyWorker.php">SiiLazyWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">134</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el estado avanzado de un documento en el SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateDocumentSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$date</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$total</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recipient</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signature</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentSignatureResponse">SiiValidateDocumentSignatureResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$company</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$document</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento tributario electrónico.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$number</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Folio del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$date</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Fecha de emisión del documento, formato: AAAA-MM-DD.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$total</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Total del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$recipient</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT del receptor del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$signature</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tag DTE/Signature/SignatureValue del XML.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentSignatureResponse">SiiValidateDocumentSignatureResponse</abbr></a></span>
             </section>
 
 </article>
@@ -483,14 +1426,27 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_connectionOptions">$connectionOptions</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_authenticateJob">$authenticateJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_checkXmlDocumentSentStatusJob">$checkXmlDocumentSentStatusJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_consumeWebserviceJob">$consumeWebserviceJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_requestXmlDocumentSentStatusByEmailJob">$requestXmlDocumentSentStatusByEmailJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_sendXmlDocumentJob">$sendXmlDocumentJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentJob">$validateDocumentJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentSignatureJob">$validateDocumentSignatureJob</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_getConnectionOptions">getConnectionOptions()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_authenticate">authenticate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_checkXmlDocumentSentStatus">checkXmlDocumentSentStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_consumeWebservice">consumeWebservice()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_requestXmlDocumentSentStatusByEmail">requestXmlDocumentSentStatusByEmail()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_sendXmlDocument">sendXmlDocument()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocument">validateDocument()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocumentSignature">validateDocumentSignature()</a></li>
                                     </ul>
             </li>
                     </ul>

@@ -197,6 +197,9 @@
             implements
                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <abbr title="\Derafu\Lib\Core\Common\Trait\OptionsAwareTrait">OptionsAwareTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -268,14 +271,6 @@ recibir durante el proceso de intercambio de documentos electrónicos.</dd>    <
 <dd>Listado de sobres que se están intercambiando en este lote.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_options">$options</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>            </span>
-</dt>
-<dd>Opciones para los workers y, especialmente, las estrategias asociadas al
-proceso de intercambio de documentos.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_results">$results</a>
     <span>
                         &nbsp;: array&lt;string, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a>&gt;            </span>
@@ -319,13 +314,6 @@ proceso de intercambio de documentos.</dd>
 <dd>Obtiene el listado de sobres que la bolsa tiene.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getOptions">getOptions()</a>
-    <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>    </span>
-</dt>
-<dd>Obtiene las opciones para el transporte de los sobres de la bolsa.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getResults">getResults()</a>
     <span>
                                 &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a>&gt;    </span>
@@ -338,13 +326,6 @@ proceso de intercambio de documentos.</dd>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Indica si la bolsa tiene o no sobres dentro.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_setOptions">setOptions()</a>
-    <span>
-                                &nbsp;: static    </span>
-</dt>
-<dd>Asigna las opciones para el transporte de los sobres de la bolsa.</dd>
 
     </dl>
 
@@ -376,7 +357,7 @@ proceso de intercambio de documentos.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -389,9 +370,7 @@ proceso de intercambio de documentos.</dd>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;], &#039;transport&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []]]</span></code>
 
-        <section class="phpdocumentor-description"><p>El formato del esquema es el utilizado por
-Symfony\Component\OptionsResolver\OptionsResolver.</p>
-<p>Acá solo se indicarán los índices que deben pueden existir en las
+        <section class="phpdocumentor-description"><p>Acá solo se indicarán los índices que deben pueden existir en las
 opciones. No se define el esquema de cada opción pues cada clase que
 utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 </section>
@@ -419,7 +398,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -446,47 +425,6 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_options">
-        $options
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_options" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">58</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Opciones para los workers y, especialmente, las estrategias asociadas al
-proceso de intercambio de documentos.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$options</span>
-    </code>
-
-        <section class="phpdocumentor-description"><p>Se usarán las opciones por defecto en cada worker si no se indican los
-índices en el arreglo $options.</p>
-</section>
-
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_results">
         $results
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_results" class="headerlink"><i class="fas fa-link"></i></a>
@@ -497,7 +435,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -539,7 +477,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
@@ -584,7 +522,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -633,7 +571,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
@@ -682,7 +620,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -713,45 +651,6 @@ proceso de intercambio de documentos.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getOptions">
-        getOptions()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getOptions" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">142</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Obtiene las opciones para el transporte de los sobres de la bolsa.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getResults">
         getResults()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getResults" class="headerlink"><i class="fas fa-link"></i></a>
@@ -760,7 +659,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -799,7 +698,7 @@ proceso de intercambio de documentos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -821,55 +720,6 @@ proceso de intercambio de documentos.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setOptions">
-        setOptions()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_setOptions" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php"><a href="files/src-package-billing-component-exchange-support-exchangebag.html"><abbr title="src/Package/Billing/Component/Exchange/Support/ExchangeBag.php">ExchangeBag.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">128</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Asigna las opciones para el transporte de los sobres de la bolsa.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -988,7 +838,6 @@ proceso de intercambio de documentos.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_optionsSchema">$optionsSchema</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_envelopes">$envelopes</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_options">$options</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_results">$results</a></li>
                                             </ul>
                 </li>
@@ -1000,10 +849,8 @@ proceso de intercambio de documentos.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_addEnvelope">addEnvelope()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_addResult">addResult()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getEnvelopes">getEnvelopes()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getOptions">getOptions()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getResults">getResults()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_hasEnvelopes">hasEnvelopes()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_setOptions">setOptions()</a></li>
                                     </ul>
             </li>
                     </ul>

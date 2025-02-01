@@ -656,16 +656,6 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetParserOptions\u0028\u0029",
             "name": "getParserOptions",
             "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesador\u0020\u0028parser\u0029\u0020del\u0020documento.",
@@ -876,16 +866,6 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020ruta\u0020del\u0020archivo\u0020con\u0020documentos\u0020que\u0020se\u0020debe\u0020procesar.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getFile"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AsetEmisor\u0028\u0029",
             "name": "setEmisor",
             "summary": "Asigna\u0020el\u0020emisor\u0020del\u0020documento.",
@@ -1025,16 +1005,6 @@ Search.appendIndex(
             "name": "addDocument",
             "summary": "Agrega\u0020un\u0020nuevo\u0020documento\u0020al\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_addDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020sobre\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020sobre\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getOptions"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AgetDispatcherOptions\u0028\u0029",
             "name": "getDispatcherOptions",
@@ -2891,16 +2861,6 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetParserOptions\u0028\u0029",
             "name": "getParserOptions",
             "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesador\u0020\u0028parser\u0029\u0020del\u0020documento.",
@@ -3086,6 +3046,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020que\u0020contiene\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getAlias"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_optionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024inputData",
             "name": "inputData",
             "summary": "Datos\u0020originales\u0020de\u0020entrada\u0020que\u0020se\u0020utilizar\u00E1n\u0020para\u0020construir\u0020el\ndocumento\u0020tributario.",
@@ -3105,16 +3070,6 @@ Search.appendIndex(
             "name": "libredteData",
             "summary": "Datos\u0020de\u0020LibreDTE\u0020asociados\u0020al\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_libredteData"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024options",
-            "name": "options",
-            "summary": "Opciones\u0020para\u0020los\u0020workers\u0020asociados\u0020al\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_options"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024optionsSchema",
-            "name": "optionsSchema",
-            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_optionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024xmlDocument",
             "name": "xmlDocument",
@@ -3176,16 +3131,6 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020ruta\u0020del\u0020archivo\u0020con\u0020documentos\u0020que\u0020se\u0020debe\u0020procesar.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AsetEmisor\u0028\u0029",
             "name": "setEmisor",
             "summary": "Asigna\u0020el\u0020emisor\u0020del\u0020documento.",
@@ -3216,20 +3161,15 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020bolsas\u0020con\u0020documentos\u0020procesados\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getDocumentBags"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024file",
-            "name": "file",
-            "summary": "Ruta\u0020al\u0020archivo\u0020que\u0020contiene\u0020el\u0020lote\u0020de\u0020documentos\u0020que\u0020se\u0020deben\u0020procesar.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024options",
-            "name": "options",
-            "summary": "Opciones\u0020para\u0020los\u0020workers\u0020asociados\u0020al\u0020procesamiento\u0020en\u0020lote\u0020de\ndocumentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_options"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
             "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020lote\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_optionsSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "Ruta\u0020al\u0020archivo\u0020que\u0020contiene\u0020el\u0020lote\u0020de\u0020documentos\u0020que\u0020se\u0020deben\u0020procesar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024emisor",
             "name": "emisor",
@@ -3296,16 +3236,6 @@ Search.appendIndex(
             "summary": "Agrega\u0020un\u0020nuevo\u0020documento\u0020al\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_addDocument"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020del\u0020sobre\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020sobre\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AgetDispatcherOptions\u0028\u0029",
             "name": "getDispatcherOptions",
             "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020despachador\u0020del\u0020sobre\u0020de\u0020documentos\u0020al\u0020SII.",
@@ -3366,6 +3296,11 @@ Search.appendIndex(
             "summary": "Retorna\u0020una\u0020nueva\u0020sobre\u0020con\u0020los\u0020datos\u0020del\u0020sobre\u0020actual\u0020e\u0020incluye\u0020un\ncertificado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_withCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_optionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024tipo_sobre",
             "name": "tipo_sobre",
             "summary": "Tipo\u0020del\u0020sobre\u0020de\u0020documentos.",
@@ -3385,16 +3320,6 @@ Search.appendIndex(
             "name": "documents",
             "summary": "Lista\u0020de\u0020bolsas\u0020de\u0020documentos\u0020tributarios\u0020que\u0020este\u0020sobre\u0020contendr\u00E1.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_documents"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024options",
-            "name": "options",
-            "summary": "Opciones\u0020para\u0020los\u0020workers\u0020asociados\u0020al\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_options"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024optionsSchema",
-            "name": "optionsSchema",
-            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_optionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024emisor",
             "name": "emisor",
@@ -5421,16 +5346,6 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020la\u0020bolsa\u0020tiene\u0020o\u0020no\u0020sobres\u0020dentro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html#method_hasEnvelopes"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeBagInterface\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020para\u0020el\u0020transporte\u0020de\u0020los\u0020sobres\u0020de\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeBagInterface\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020para\u0020el\u0020transporte\u0020de\u0020los\u0020sobres\u0020de\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeBagInterface\u003A\u003AgetResults\u0028\u0029",
             "name": "getResults",
             "summary": "Obtiene\u0020los\u0020resultados\u0020del\u0020proceso\u0020de\u0020intercambio.",
@@ -6321,16 +6236,6 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020la\u0020bolsa\u0020tiene\u0020o\u0020no\u0020sobres\u0020dentro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_hasEnvelopes"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AsetOptions\u0028\u0029",
-            "name": "setOptions",
-            "summary": "Asigna\u0020las\u0020opciones\u0020para\u0020el\u0020transporte\u0020de\u0020los\u0020sobres\u0020de\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_setOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020para\u0020el\u0020transporte\u0020de\u0020los\u0020sobres\u0020de\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AgetResults\u0028\u0029",
             "name": "getResults",
             "summary": "Obtiene\u0020los\u0020resultados\u0020del\u0020proceso\u0020de\u0020intercambio.",
@@ -6341,25 +6246,20 @@ Search.appendIndex(
             "summary": "Agrega\u0020un\u0020resultado\u0020del\u0020proceso\u0020de\u0020intercambio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_addResult"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020intercambio\u0020de\u0020documentos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_optionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024envelopes",
             "name": "envelopes",
             "summary": "Listado\u0020de\u0020sobres\u0020que\u0020se\u0020est\u00E1n\u0020intercambiando\u0020en\u0020este\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_envelopes"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024options",
-            "name": "options",
-            "summary": "Opciones\u0020para\u0020los\u0020workers\u0020y,\u0020especialmente,\u0020las\u0020estrategias\u0020asociadas\u0020al\nproceso\u0020de\u0020intercambio\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_options"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024results",
             "name": "results",
             "summary": "Listado\u0020con\u0020los\u0020resultados\u0020del\u0020intercambio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_results"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024optionsSchema",
-            "name": "optionsSchema",
-            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020intercambio\u0020de\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#property_optionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeResult",
             "name": "ExchangeResult",
@@ -7443,153 +7343,203 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiLazyWorker\u0028\u0029",
             "name": "getSiiLazyWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020permite\u0020realizar\u0020acciones\u0020en\u0020el\u0020SII.",
+            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020\u0022realiza\u0022\u0020las\u0020acciones\u0020en\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiLazyWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiWsdlConsumerWorker\u0028\u0029",
-            "name": "getSiiWsdlConsumerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020consume\u0020servicios\u0020web\u0020usando\u0020WSDL\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiWsdlConsumerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiTokenManagerWorker\u0028\u0029",
-            "name": "getSiiTokenManagerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020administra\u0020la\u0020vida\u0020del\u0020token\u0020de\u0020la\u0020sesi\u00F3n\u0020en\u0020la\u0020API\ndel\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiTokenManagerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiDocumentSenderWorker\u0028\u0029",
-            "name": "getSiiDocumentSenderWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020realiza\u0020el\u0020env\u00EDo\u0020del\u0020documento\u0020en\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDocumentSenderWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiDeliveryCheckerWorker\u0028\u0029",
-            "name": "getSiiDeliveryCheckerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020consulta\u0020el\u0020estado\u0020de\u0020un\u0020env\u00EDo\u0020de\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDeliveryCheckerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiDocumentValidatorWorker\u0028\u0029",
-            "name": "getSiiDocumentValidatorWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020valida\u0020documentos\u0020tributarios\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDocumentValidatorWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDeliveryCheckerWorkerInterface",
-            "name": "SiiDeliveryCheckerWorkerInterface",
-            "summary": "Interfaz\u0020del\u0020worker\u0020que\u0020valida\u0020documentos\u0020\u0028XML\u0029\u0020enviados\u0020\u0028subidos\u0029\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDeliveryCheckerWorkerInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDeliveryCheckerWorkerInterface\u003A\u003AcheckSentStatus\u0028\u0029",
-            "name": "checkSentStatus",
-            "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDeliveryCheckerWorkerInterface.html#method_checkSentStatus"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDeliveryCheckerWorkerInterface\u003A\u003ArequestSentStatusByEmail\u0028\u0029",
-            "name": "requestSentStatusByEmail",
-            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDeliveryCheckerWorkerInterface.html#method_requestSentStatusByEmail"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDocumentSenderWorkerInterface",
-            "name": "SiiDocumentSenderWorkerInterface",
-            "summary": "Interfaz\u0020del\u0020worker\u0020que\u0020env\u00EDa\u0020\u0028sube\u0029\u0020los\u0020documentos\u0020\u0028XML\u0029\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDocumentSenderWorkerInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDocumentSenderWorkerInterface\u003A\u003AsendXml\u0028\u0029",
-            "name": "sendXml",
-            "summary": "Realiza\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDocumentSenderWorkerInterface.html#method_sendXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDocumentValidatorWorkerInterface",
-            "name": "SiiDocumentValidatorWorkerInterface",
-            "summary": "Interfaz\u0020del\u0020worker\u0020que\u0020permite\u0020validar\u0020documentos\u0020tributarios\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDocumentValidatorWorkerInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDocumentValidatorWorkerInterface\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDocumentValidatorWorkerInterface.html#method_validate"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDocumentValidatorWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
-            "name": "validateSignature",
-            "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDocumentValidatorWorkerInterface.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface",
             "name": "SiiLazyWorkerInterface",
             "summary": "Interfaz\u0020del\u0020lazy\u0020worker\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AgetConnectionOptions\u0028\u0029",
-            "name": "getConnectionOptions",
-            "summary": "Entrega\u0020las\u0020opciones\u0020para\u0020la\u0020conexi\u00F3n\u0020que\u0020se\u0020debe\u0020realizar\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_getConnectionOptions"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AsendXmlDocument\u0028\u0029",
+            "name": "sendXmlDocument",
+            "summary": "Realiza\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_sendXmlDocument"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiTokenManagerWorkerInterface",
-            "name": "SiiTokenManagerWorkerInterface",
-            "summary": "Interfaz\u0020del\u0020worker\u0020que\u0020administra\u0020el\u0020token\u0020de\u0020la\u0020sesi\u00F3n\u0020mediante\u0020API\u0020en\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiTokenManagerWorkerInterface.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AcheckXmlDocumentSentStatus\u0028\u0029",
+            "name": "checkXmlDocumentSentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_checkXmlDocumentSentStatus"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiTokenManagerWorkerInterface\u003A\u003AgetToken\u0028\u0029",
-            "name": "getToken",
-            "summary": "Obtiene\u0020un\u0020token\u0020de\u0020autenticaci\u00F3n\u0020asociado\u0020al\u0020certificado\u0020digital.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiTokenManagerWorkerInterface.html#method_getToken"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003ArequestXmlDocumentSentStatusByEmail\u0028\u0029",
+            "name": "requestXmlDocumentSentStatusByEmail",
+            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_requestXmlDocumentSentStatusByEmail"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiWsdlConsumerWorkerInterface",
-            "name": "SiiWsdlConsumerWorkerInterface",
-            "summary": "Interfaz\u0020del\u0020worker\u0020que\u0020consume\u0020servicios\u0020web\u0020mediante\u0020WSDL\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiWsdlConsumerWorkerInterface.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AvalidateDocument\u0028\u0029",
+            "name": "validateDocument",
+            "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_validateDocument"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiWsdlConsumerWorkerInterface\u003A\u003AsendRequest\u0028\u0029",
-            "name": "sendRequest",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AvalidateDocumentSignature\u0028\u0029",
+            "name": "validateDocumentSignature",
+            "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_validateDocumentSignature"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003AconsumeWebservice\u0028\u0029",
+            "name": "consumeWebservice",
             "summary": "Realiza\u0020una\u0020solicitud\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020el\u0020uso\u0020de\u0020WSDL.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiWsdlConsumerWorkerInterface.html#method_sendRequest"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_consumeWebservice"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\Ambiente",
-            "name": "Ambiente",
-            "summary": "Enum\u0020del\u0020ambiente\u0020del\u0020SII\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020los\u0020DTE.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiLazyWorkerInterface\u003A\u003Aauthenticate\u0028\u0029",
+            "name": "authenticate",
+            "summary": "Obtiene\u0020un\u0020token\u0020de\u0020autenticaci\u00F3n\u0020asociado\u0020al\u0020certificado\u0020digital.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html#method_authenticate"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\Ambiente\u003A\u003APRODUCCION",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface",
+            "name": "SiiRequestInterface",
+            "summary": "Interfaz\u0020para\u0020una\u0020solicitud\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetAmbiente\u0028\u0029",
+            "name": "getAmbiente",
+            "summary": "Entrega\u0020el\u0020ambiente\u0020que\u0020est\u00E1\u0020configurado\u0020para\u0020realizar\u0020las\u0020conexiones\u0020al\nServicio\u0020de\u0020Impuestos\u0020Internos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getAmbiente"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetReintentos\u0028\u0029",
+            "name": "getReintentos",
+            "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020reintentos\u0020que\u0020se\u0020deben\u0020realizar\u0020al\u0020hacer\u0020una\nconsulta\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getReintentos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetVerificarSsl\u0028\u0029",
+            "name": "getVerificarSsl",
+            "summary": "Indica\u0020si\u0020se\u0020est\u00E1\u0020o\u0020no\u0020verificando\u0020el\u0020SSL\u0020en\u0020las\u0020conexiones\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerificarSsl"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTokenDefaultCache\u0028\u0029",
+            "name": "getTokenDefaultCache",
+            "summary": "Indica\u0020cu\u00E1l\u0020es\u0020la\u0020cach\u00E9\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020realizar\u0020la\nconsulta\u0020al\u0020SII\u0020en\u0020la\u0020gesti\u00F3n\u0020de\u0020tokens.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenDefaultCache"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTokenKey\u0028\u0029",
+            "name": "getTokenKey",
+            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenKey"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTokenTtl\u0028\u0029",
+            "name": "getTokenTtl",
+            "summary": "Obtiene\u0020el\u0020TTL\u0020del\u0020token\u0020solicitado\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenTtl"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetCertificate\u0028\u0029",
+            "name": "getCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020digital\u0020asociado\u0020a\u0020la\u0020solicitud.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiResponseInterface",
+            "name": "SiiResponseInterface",
+            "summary": "Interfaz\u0020para\u0020una\u0020respuesta\u0020desde\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiResponseInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente",
+            "name": "SiiAmbiente",
+            "summary": "Enum\u0020del\u0020ambiente\u0020del\u0020SII\u0020cuando\u0020est\u00E1\u0020disponible\u0020m\u00E1s\u0020de\u0020uno.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003AisCertificacion\u0028\u0029",
+            "name": "isCertificacion",
+            "summary": "Indica\u0020si\u0020el\u0020ambiente\u0020es\u0020el\u0020de\u0020certificaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#method_isCertificacion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003AgetServidor\u0028\u0029",
+            "name": "getServidor",
+            "summary": "Entrega\u0020el\u0020servidor\u0020del\u0020SII\u0020seg\u00FAn\u0020el\u0020tipo\u0020solicitado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#method_getServidor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003AgetWsdl\u0028\u0029",
+            "name": "getWsdl",
+            "summary": "Entrega\u0020la\u0020URL\u0020de\u0020un\u0020WSDL\u0020seg\u00FAn\u0020su\u0020servicio.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#method_getWsdl"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003AgetWsdlPath\u0028\u0029",
+            "name": "getWsdlPath",
+            "summary": "Obtiene\u0020la\u0020ruta\u0020completa\u0020a\u0020un\u0020archivo\u0020WSDL.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#method_getWsdlPath"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003AgetUrl\u0028\u0029",
+            "name": "getUrl",
+            "summary": "M\u00E9todo\u0020que\u0020entrega\u0020la\u0020URL\u0020de\u0020un\u0020recurso\u0020en\u0020el\u0020SII\u0020seg\u00FAn\u0020el\u0020ambiente\u0020que\nse\u0020est\u00E9\u0020usando.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#method_getUrl"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003APRODUCCION",
             "name": "PRODUCCION",
-            "summary": "Ambiente\u0020de\u0020producci\u00F3n\u0020de\u0020facturaci\u00F3n\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html#enumcase_PRODUCCION"
+            "summary": "Ambiente\u0020de\u0020producci\u00F3n\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#enumcase_PRODUCCION"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\Ambiente\u003A\u003ACERTIFICACION",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente\u003A\u003ACERTIFICACION",
             "name": "CERTIFICACION",
-            "summary": "Ambiente\u0020de\u0020certificaci\u00F3n\/pruebas\u0020de\u0020facturaci\u00F3n\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-Ambiente.html#enumcase_CERTIFICACION"
+            "summary": "Ambiente\u0020de\u0020certificaci\u00F3n\/pruebas\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html#enumcase_CERTIFICACION"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\IntegrationException",
             "name": "IntegrationException",
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020componente\u0020\u0022billing.integration\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-IntegrationException.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiAuthenticateException",
+            "name": "SiiAuthenticateException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020en\u0020la\u0020gesti\u00F3n\u0020del\u0020token\u0020de\u0020la\u0020API\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiAuthenticateException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiCheckXmlDocumentSentStatusException",
+            "name": "SiiCheckXmlDocumentSentStatusException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consultar\u0020el\u0020estado\u0020de\u0020los\u0020env\u00EDos\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiCheckXmlDocumentSentStatusException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiConsumeWebserviceException",
+            "name": "SiiConsumeWebserviceException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consumir\u0020la\u0020API\u0020del\u0020SII\u0020mediante\u0020WSDL.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiConsumeWebserviceException.html"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException",
             "name": "SiiLazyException",
             "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020del\u0020lazy\u0020worker\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiDeliveryCheckerException",
-            "name": "SiiDeliveryCheckerException",
-            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consultar\u0020el\u0020estado\u0020de\u0020los\u0020env\u00EDos\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDeliveryCheckerException.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020excepci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiDocumentSenderException",
-            "name": "SiiDocumentSenderException",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException\u003A\u003AgetRequest\u0028\u0029",
+            "name": "getRequest",
+            "summary": "Entrega,\u0020si\u0020est\u00E1\u0020asignada,\u0020la\u0020solicitud\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html#method_getRequest"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException\u003A\u003AgetResponse\u0028\u0029",
+            "name": "getResponse",
+            "summary": "Entrega,\u0020si\u0020est\u00E1\u0020asignada,\u0020la\u0020solicitud\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html#method_getResponse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException\u003A\u003A\u0024request",
+            "name": "request",
+            "summary": "Solicitud\u0020realizada\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html#property_request"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiLazyException\u003A\u003A\u0024response",
+            "name": "response",
+            "summary": "Respuesta\u0020obtenida\u0020desde\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazyException.html#property_response"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRequestXmlDocumentSentStatusByEmailException",
+            "name": "SiiRequestXmlDocumentSentStatusByEmailException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020solicitar\u0020el\u0020estado\u0020de\u0020los\u0020env\u00EDos\u0020al\u0020SII\u0020mediante\ncorreo\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRequestXmlDocumentSentStatusByEmailException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiSendXmlDocumentException",
+            "name": "SiiSendXmlDocumentException",
             "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020realizar\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDocumentSenderException.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiSendXmlDocumentException.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiDocumentValidatorException",
-            "name": "SiiDocumentValidatorException",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiValidateDocumentException",
+            "name": "SiiValidateDocumentException",
             "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020realizar\u0020la\u0020validaci\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDocumentValidatorException.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiValidateDocumentException.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiTokenManagerException",
-            "name": "SiiTokenManagerException",
-            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020en\u0020la\u0020gesti\u00F3n\u0020del\u0020token\u0020de\u0020la\u0020API\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiTokenManagerException.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiWsdlConsumerException",
-            "name": "SiiWsdlConsumerException",
-            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consumir\u0020la\u0020API\u0020del\u0020SII\u0020mediante\u0020WSDL.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiWsdlConsumerException.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiValidateDocumentSignatureException",
+            "name": "SiiValidateDocumentSignatureException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020realizar\u0020la\u0020validaci\u00F3n\u0020la\u0020firma\u0020electr\u00F3nica\u0020de\u0020un\ndocumento\u0020en\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiValidateDocumentSignatureException.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent",
             "name": "IntegrationComponent",
@@ -7608,503 +7558,523 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiLazyWorker\u0028\u0029",
             "name": "getSiiLazyWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020permite\u0020realizar\u0020acciones\u0020en\u0020el\u0020SII.",
+            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020\u0022realiza\u0022\u0020las\u0020acciones\u0020en\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiLazyWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiWsdlConsumerWorker\u0028\u0029",
-            "name": "getSiiWsdlConsumerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020consume\u0020servicios\u0020web\u0020usando\u0020WSDL\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiWsdlConsumerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiTokenManagerWorker\u0028\u0029",
-            "name": "getSiiTokenManagerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020administra\u0020la\u0020vida\u0020del\u0020token\u0020de\u0020la\u0020sesi\u00F3n\u0020en\u0020la\u0020API\ndel\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiTokenManagerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiDocumentSenderWorker\u0028\u0029",
-            "name": "getSiiDocumentSenderWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020realiza\u0020el\u0020env\u00EDo\u0020del\u0020documento\u0020en\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiDocumentSenderWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiDeliveryCheckerWorker\u0028\u0029",
-            "name": "getSiiDeliveryCheckerWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020consulta\u0020el\u0020estado\u0020de\u0020un\u0020env\u00EDo\u0020de\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiDeliveryCheckerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiDocumentValidatorWorker\u0028\u0029",
-            "name": "getSiiDocumentValidatorWorker",
-            "summary": "Entrega\u0020el\u0020worker\u0020que\u0020valida\u0020documentos\u0020tributarios\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiDocumentValidatorWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiLazyWorker",
             "name": "siiLazyWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiLazyWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiWsdlConsumerWorker",
-            "name": "siiWsdlConsumerWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiWsdlConsumerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiTokenManagerWorker",
-            "name": "siiTokenManagerWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiTokenManagerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiDocumentSenderWorker",
-            "name": "siiDocumentSenderWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiDocumentSenderWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiDeliveryCheckerWorker",
-            "name": "siiDeliveryCheckerWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiDeliveryCheckerWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiDocumentValidatorWorker",
-            "name": "siiDocumentValidatorWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiDocumentValidatorWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentRequestSentStatusByEmailResponse",
-            "name": "SiiDocumentRequestSentStatusByEmailResponse",
-            "summary": "Respuesta\u0020de\u0020la\u0020solicitud\u0020de\u0020correo\u0020de\u0020estado\u0020de\u0020un\u0020documento\u0020subido\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentRequestSentStatusByEmailResponse.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentRequestSentStatusByEmailResponse\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentRequestSentStatusByEmailResponse.html#method_getData"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentRequestSentStatusByEmailResponse\u003A\u003AparseEstado\u0028\u0029",
-            "name": "parseEstado",
-            "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentRequestSentStatusByEmailResponse.html#method_parseEstado"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentRequestSentStatusByEmailResponse\u003A\u003ASTATUSES",
-            "name": "STATUSES",
-            "summary": "Estados\u0020de\u0020salida\u0020y\u0020error.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentRequestSentStatusByEmailResponse.html#constant_STATUSES"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse",
-            "name": "SiiDocumentSentResponse",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse",
+            "name": "SiiCheckXmlDocumentSentStatusResponse",
             "summary": "Respuesta\u0020de\u0020la\u0020consulta\u0020de\u0020estado\u0020de\u0020un\u0020documento\u0020subido\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AgetData\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_getData"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_getData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AgetReviewStatus\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewStatus\u0028\u0029",
             "name": "getReviewStatus",
             "summary": "Devuelve\u0020el\u0020estado\u0020de\u0020revisi\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_getReviewStatus"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_getReviewStatus"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AgetReviewDetail\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewDetail\u0028\u0029",
             "name": "getReviewDetail",
             "summary": "Devuelve\u0020el\u0020detalle\u0020de\u0020la\u0020revisi\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_getReviewDetail"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_getReviewDetail"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AallDocumentsAreAccepted\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AallDocumentsAreAccepted\u0028\u0029",
             "name": "allDocumentsAreAccepted",
             "summary": "Verifica\u0020si\u0020todos\u0020los\u0020documentos\u0020fueron\u0020aceptados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_allDocumentsAreAccepted"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_allDocumentsAreAccepted"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AhasRejectedDocuments\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AhasRejectedDocuments\u0028\u0029",
             "name": "hasRejectedDocuments",
             "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020rechazados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_hasRejectedDocuments"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_hasRejectedDocuments"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AhasRepairsDocuments\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AhasRepairsDocuments\u0028\u0029",
             "name": "hasRepairsDocuments",
             "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020con\u0020reparos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_hasRepairsDocuments"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_hasRepairsDocuments"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AparseEstado\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AparseEstado\u0028\u0029",
             "name": "parseEstado",
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_parseEstado"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_parseEstado"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AparseDocumentos\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AparseDocumentos\u0028\u0029",
             "name": "parseDocumentos",
             "summary": "Parsea\u0020los\u0020documentos\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_parseDocumentos"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_parseDocumentos"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AcalculateResume\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AcalculateResume\u0028\u0029",
             "name": "calculateResume",
             "summary": "Calcula\u0020el\u0020resumen\u0020de\u0020los\u0020documentos\u0020procesados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#method_calculateResume"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_calculateResume"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003ASTATUSES",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#constant_STATUSES"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#constant_STATUSES"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentSentResponse\u003A\u003AERRORS",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AERRORS",
             "name": "ERRORS",
             "summary": "Estados\u0020de\u0020salida\u0020por\u0020ERROR.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentSentResponse.html#constant_ERRORS"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#constant_ERRORS"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationResponse",
-            "name": "SiiDocumentValidationResponse",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse",
+            "name": "SiiRequestXmlDocumentSentStatusByEmailResponse",
+            "summary": "Respuesta\u0020de\u0020la\u0020solicitud\u0020de\u0020correo\u0020de\u0020estado\u0020de\u0020un\u0020documento\u0020subido\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003AparseEstado\u0028\u0029",
+            "name": "parseEstado",
+            "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#method_parseEstado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003ASTATUSES",
+            "name": "STATUSES",
+            "summary": "Estados\u0020de\u0020salida\u0020y\u0020error.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#constant_STATUSES"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse",
+            "name": "SiiValidateDocumentResponse",
             "summary": "Respuesta\u0020con\u0020el\u0020estado\u0020de\u0020un\u0020DTE\u0020aceptado\u0020por\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationResponse.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationResponse\u003A\u003AgetData\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationResponse.html#method_getData"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#method_getData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationResponse\u003A\u003AparseEstado\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003AparseEstado\u0028\u0029",
             "name": "parseEstado",
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationResponse.html#method_parseEstado"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#method_parseEstado"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationResponse\u003A\u003ASTATUSES",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationResponse.html#constant_STATUSES"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#constant_STATUSES"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationResponse\u003A\u003AERRORS",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003AERRORS",
             "name": "ERRORS",
             "summary": "Estados\u0020de\u0020salida\u0020por\u0020ERROR.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationResponse.html#constant_ERRORS"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#constant_ERRORS"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationSignatureResponse",
-            "name": "SiiDocumentValidationSignatureResponse",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse",
+            "name": "SiiValidateDocumentSignatureResponse",
             "summary": "Respuesta\u0020con\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020DTE\u0020aceptado\u0020por\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationSignatureResponse.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationSignatureResponse\u003A\u003AgetData\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationSignatureResponse.html#method_getData"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#method_getData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationSignatureResponse\u003A\u003AparseEstado\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003AparseEstado\u0028\u0029",
             "name": "parseEstado",
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationSignatureResponse.html#method_parseEstado"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#method_parseEstado"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationSignatureResponse\u003A\u003ASTATUSES",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationSignatureResponse.html#constant_STATUSES"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#constant_STATUSES"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response\\SiiDocumentValidationSignatureResponse\u003A\u003AERRORS",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003AERRORS",
             "name": "ERRORS",
             "summary": "Estados\u0020de\u0020salida\u0020por\u0020ERROR.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Response-SiiDocumentValidationSignatureResponse.html#constant_ERRORS"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#constant_ERRORS"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions",
-            "name": "SiiConnectionOptions",
-            "summary": "Clase\u0020para\u0020administrar\u0020todos\u0020los\u0020par\u00E1metros\u0020o\u0020configuraciones\u0020de\u0020la\u0020conexi\u00F3n\nal\u0020sitio\u0020web\u0020del\u0020SII\u0020\u0028Servicio\u0020de\u0020Impuestos\u0020Internos\u0029\u0020de\u0020Chile.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest",
+            "name": "SiiRequest",
+            "summary": "Clase\u0020para\u0020administrar\u0020la\u0020solicitud\u0020al\u0020sitio\u0020web\u0020del\u0020SII\u0020de\u0020Chile.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020de\u0020la\u0020configuraci\u00F3n\u0020de\u0020conexi\u00F3n.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetAmbiente\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetAmbiente\u0028\u0029",
             "name": "getAmbiente",
             "summary": "Entrega\u0020el\u0020ambiente\u0020que\u0020est\u00E1\u0020configurado\u0020para\u0020realizar\u0020las\u0020conexiones\u0020al\nServicio\u0020de\u0020Impuestos\u0020Internos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getAmbiente"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getAmbiente"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AsetAmbiente\u0028\u0029",
-            "name": "setAmbiente",
-            "summary": "Permite\u0020asignar\u0020el\u0020ambiente\u0020que\u0020se\u0020debe\u0020usar\u0020con\u0020las\u0020conexiones\u0020al\nServicio\u0020de\u0020Impuestos\u0020Internos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_setAmbiente"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetServidor\u0028\u0029",
-            "name": "getServidor",
-            "summary": "Entrega\u0020el\u0020servidor\u0020del\u0020SII\u0020seg\u00FAn\u0020el\u0020tipo\u0020solicitado\u0020y\u0020ambiente.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getServidor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AsetServidor\u0028\u0029",
-            "name": "setServidor",
-            "summary": "M\u00E9todo\u0020que\u0020permite\u0020asignar\u0020el\u0020nombre\u0020del\u0020servidor\u0020del\u0020SII\u0020que\u0020se\u0020usar\u00E1\npara\u0020las\u0020consultas\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_setServidor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetWsdl\u0028\u0029",
-            "name": "getWsdl",
-            "summary": "Entrega\u0020la\u0020URL\u0020de\u0020un\u0020WSDL\u0020seg\u00FAn\u0020su\u0020servicio.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getWsdl"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetWsdlPath\u0028\u0029",
-            "name": "getWsdlPath",
-            "summary": "Obtiene\u0020la\u0020ruta\u0020completa\u0020a\u0020un\u0020archivo\u0020WSDL.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getWsdlPath"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetReintentos\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetReintentos\u0028\u0029",
             "name": "getReintentos",
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020reintentos\u0020que\u0020se\u0020deben\u0020realizar\u0020al\u0020hacer\u0020una\nconsulta\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getReintentos"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getReintentos"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AsetVerificarSsl\u0028\u0029",
-            "name": "setVerificarSsl",
-            "summary": "M\u00E9todo\u0020que\u0020permite\u0020indicar\u0020si\u0020se\u0020debe\u0020o\u0020no\u0020verificar\u0020el\u0020certificado\u0020SSL\ndel\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_setVerificarSsl"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetVerificarSsl\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetVerificarSsl\u0028\u0029",
             "name": "getVerificarSsl",
-            "summary": "M\u00E9todo\u0020que\u0020indica\u0020si\u0020se\u0020est\u00E1\u0020o\u0020no\u0020verificando\u0020el\u0020SSL\u0020en\u0020las\u0020conexiones\nal\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getVerificarSsl"
+            "summary": "Indica\u0020si\u0020se\u0020est\u00E1\u0020o\u0020no\u0020verificando\u0020el\u0020SSL\u0020en\u0020las\u0020conexiones\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getVerificarSsl"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetUrl\u0028\u0029",
-            "name": "getUrl",
-            "summary": "M\u00E9todo\u0020que\u0020entrega\u0020la\u0020URL\u0020de\u0020un\u0020recurso\u0020en\u0020el\u0020SII\u0020seg\u00FAn\u0020el\u0020ambiente\u0020que\nse\u0020est\u00E9\u0020usando.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getUrl"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTokenDefaultCache\u0028\u0029",
+            "name": "getTokenDefaultCache",
+            "summary": "Indica\u0020cu\u00E1l\u0020es\u0020la\u0020cach\u00E9\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar\u0020al\u0020realizar\u0020la\nconsulta\u0020al\u0020SII\u0020en\u0020la\u0020gesti\u00F3n\u0020de\u0020tokens.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenDefaultCache"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AgetDefaultCache\u0028\u0029",
-            "name": "getDefaultCache",
-            "summary": "Indica\u0020cu\u00E1l\u0020es\u0020la\u0020cach\u00E9\u0020por\u0020defecto\u0020que\u0020se\u0020debe\u0020utilizar.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#method_getDefaultCache"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTokenKey\u0028\u0029",
+            "name": "getTokenKey",
+            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenKey"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003AREINTENTOS",
-            "name": "REINTENTOS",
-            "summary": "Constante\u0020para\u0020indicar\u0020los\u0020reintentos\u0020por\u0020defecto,\u0020y\u0020m\u00E1ximos,\u0020que\u0020se\npermiten\u0020al\u0020consumir\u0020un\u0020servicio\u0020web\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#constant_REINTENTOS"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTokenTtl\u0028\u0029",
+            "name": "getTokenTtl",
+            "summary": "Obtiene\u0020el\u0020TTL\u0020del\u0020token\u0020solicitado\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenTtl"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiConnectionOptions\u003A\u003A\u0024config",
-            "name": "config",
-            "summary": "Configuraci\u00F3n\u0020por\u0020defecto\u0020de\u0020la\u0020conexi\u00F3n\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiConnectionOptions.html#property_config"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetCertificate\u0028\u0029",
+            "name": "getCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020digital\u0020asociado\u0020a\u0020la\u0020solicitud.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getCertificate"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker",
-            "name": "SiiDeliveryCheckerWorker",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020de\u0020la\u0020solicitud\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#property_optionsSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003A\u0024certificate",
+            "name": "certificate",
+            "summary": "Certificado\u0020digital\u0020que\u0020se\u0020utilizar\u00E1\u0020en\u0020las\u0020consultas\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#property_certificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiResponse",
+            "name": "SiiResponse",
+            "summary": "Clase\u0020para\u0020administrar\u0020la\u0020respuesta\u0020del\u0020sitio\u0020web\u0020del\u0020SII\u0020de\u0020Chile.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob",
+            "name": "AuthenticateJob",
+            "summary": "Clase\u0020para\u0020gestionar\u0020las\u0020solicitudes\u0020de\u0020token\u0020para\u0020autenticaci\u00F3n\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020y\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003Aauthenticate\u0028\u0029",
+            "name": "authenticate",
+            "summary": "Obtiene\u0020un\u0020token\u0020de\u0020autenticaci\u00F3n\u0020asociado\u0020al\u0020certificado\u0020digital.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_authenticate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003AgetTokenFromSii\u0028\u0029",
+            "name": "getTokenFromSii",
+            "summary": "M\u00E9todo\u0020para\u0020obtener\u0020el\u0020token\u0020de\u0020la\u0020sesi\u00F3n\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_getTokenFromSii"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003AgetSeedFromSii\u0028\u0029",
+            "name": "getSeedFromSii",
+            "summary": "Obtiene\u0020una\u0020semilla\u0020desde\u0020el\u0020SII\u0020para\u0020luego\u0020usarla\u0020en\u0020la\u0020obtenci\u00F3n\u0020del\ntoken\u0020para\u0020la\u0020autenticaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_getSeedFromSii"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003AgetCache\u0028\u0029",
+            "name": "getCache",
+            "summary": "Entrega\u0020una\u0020instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020una\u0020cach\u00E9\u0020para\u0020ser\nutilizada\u0020en\u0020la\u0020biblioteca.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_getCache"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024signatureComponent",
+            "name": "signatureComponent",
+            "summary": "Componente\u0020para\u0020firma\u0020electr\u00F3nica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_signatureComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024xmlComponent",
+            "name": "xmlComponent",
+            "summary": "Componente\u0020para\u0020manejo\u0020de\u0020documentos\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_xmlComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
+            "summary": "Trabajo\u0020que\u0020realiza\u0020consultas\u0020a\u0020la\u0020API\u0020SOAP\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_consumeWebserviceJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024cache",
+            "name": "cache",
+            "summary": "Instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020la\u0020cach\u00E9\u0020que\u0020se\u0020utilizar\u00E1\u0020para\u0020el\nalmacenamiento\u0020de\u0020los\u0020tokens.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_cache"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob",
+            "name": "CheckXmlDocumentSentStatusJob",
             "summary": "Clase\u0020para\u0020realizar\u0020las\u0020consultas\u0020de\u0020validaci\u00F3n\u0020de\u0020documentos\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003AcheckSentStatus\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003AcheckSentStatus\u0028\u0029",
             "name": "checkSentStatus",
             "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#method_checkSentStatus"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#method_checkSentStatus"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003ArequestSentStatusByEmail\u0028\u0029",
-            "name": "requestSentStatusByEmail",
-            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#method_requestSentStatusByEmail"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003A\u0024tokenManager",
-            "name": "tokenManager",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#property_tokenManager"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_authenticateJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003A\u0024wsdlConsumer",
-            "name": "wsdlConsumer",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#property_wsdlConsumer"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDeliveryCheckerWorker\u003A\u003A\u0024xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A\u0024xmlComponent",
             "name": "xmlComponent",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDeliveryCheckerWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_xmlComponent"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker",
-            "name": "SiiDocumentSenderWorker",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob",
+            "name": "ConsumeWebserviceJob",
+            "summary": "Clase\u0020para\u0020consumir\u0020los\u0020servicios\u0020web\u0020SOAP\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob\u003A\u003AsendRequest\u0028\u0029",
+            "name": "sendRequest",
+            "summary": "Realiza\u0020una\u0020solicitud\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020el\u0020uso\u0020de\u0020WSDL.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html#method_sendRequest"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob\u003A\u003AgetWsdlUri\u0028\u0029",
+            "name": "getWsdlUri",
+            "summary": "M\u00E9todo\u0020para\u0020obtener\u0020el\u0020XML\u0020del\u0020WSDL\u0020\u0028Web\u0020Services\u0020Description\u0020Language\u0029\ndel\u0020servicio\u0020del\u0020SII\u0020que\u0020se\u0020desea\u0020consumir.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html#method_getWsdlUri"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob\u003A\u003AcallServiceFunction\u0028\u0029",
+            "name": "callServiceFunction",
+            "summary": "Ejecuta\u0020una\u0020funci\u00F3n\u0020en\u0020un\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020el\u0020uso\u0020de\u0020WSDL.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html#method_callServiceFunction"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob\u003A\u003AcreateSoapClientOptions\u0028\u0029",
+            "name": "createSoapClientOptions",
+            "summary": "Define\u0020las\u0020opciones\u0020para\u0020consumir\u0020el\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020SOAP.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html#method_createSoapClientOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob",
+            "name": "RequestXmlDocumentSentStatusByEmailJob",
+            "summary": "Clase\u0020para\u0020realizar\u0020las\u0020consultas\u0020de\u0020validaci\u00F3n\u0020de\u0020documentos\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003ArequestEmail\u0028\u0029",
+            "name": "requestEmail",
+            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#method_requestEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_authenticateJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_consumeWebserviceJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A\u0024xmlComponent",
+            "name": "xmlComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_xmlComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob",
+            "name": "SendXmlDocumentJob",
             "summary": "Clase\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020documentos\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020del\u0020worker.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003AsendXml\u0028\u0029",
-            "name": "sendXml",
-            "summary": "Realiza\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020XML\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method_sendXml"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003Asend\u0028\u0029",
+            "name": "send",
+            "summary": "Realiza\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_send"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003AvalidateUploadXmlResponse\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003AvalidateUploadXmlResponse\u0028\u0029",
             "name": "validateUploadXmlResponse",
             "summary": "Valida\u0020la\u0020respuesta\u0020recibida\u0020desde\u0020el\u0020SII\u0020al\u0020enviar\u0020un\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method_validateUploadXmlResponse"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003AuploadXml\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003AuploadXml\u0028\u0029",
             "name": "uploadXml",
             "summary": "Sube\u0020el\u0020archivo\u0020XML\u0020al\u0020SII\u0020y\u0020retorna\u0020la\u0020respuesta\u0020de\u0020este.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method_uploadXml"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_uploadXml"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003AcreateXmlFile\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003AcreateXmlFile\u0028\u0029",
             "name": "createXmlFile",
             "summary": "Guarda\u0020el\u0020XML\u0020en\u0020un\u0020archivo\u0020temporal\u0020y,\u0020si\u0020es\u0020necesario,\u0020lo\u0020comprime.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method_createXmlFile"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_createXmlFile"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003AgetXmlFilePath\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003AgetXmlFilePath\u0028\u0029",
             "name": "getXmlFilePath",
             "summary": "Obtiene\u0020un\u0020nombre\u0020\u00FAnico\u0020para\u0020el\u0020archivo\u0020del\u0020XML\u0020que\u0020se\u0020desea\u0020crear.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#method_getXmlFilePath"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_getXmlFilePath"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003A\u0024lazyWorker",
-            "name": "lazyWorker",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#property_lazyWorker"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_authenticateJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003A\u0024tokenManager",
-            "name": "tokenManager",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#property_tokenManager"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentSenderWorker\u003A\u003A\u0024xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003A\u0024xmlComponent",
             "name": "xmlComponent",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentSenderWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlComponent"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker",
-            "name": "SiiDocumentValidatorWorker",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob",
+            "name": "ValidateDocumentJob",
             "summary": "Clase\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020documentos\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003Avalidate\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
             "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#method_validate"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#method_validate"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003AvalidateSignature\u0028\u0029",
-            "name": "validateSignature",
-            "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#method_validateSignature"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003A\u0024tokenManager",
-            "name": "tokenManager",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#property_tokenManager"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_authenticateJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003A\u0024wsdlConsumer",
-            "name": "wsdlConsumer",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#property_wsdlConsumer"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDocumentValidatorWorker\u003A\u003A\u0024xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A\u0024xmlComponent",
             "name": "xmlComponent",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDocumentValidatorWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_xmlComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob",
+            "name": "ValidateDocumentSignatureJob",
+            "summary": "Clase\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020documentos\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#method_validate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_authenticateJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_consumeWebserviceJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A\u0024xmlComponent",
+            "name": "xmlComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_xmlComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker",
             "name": "SiiLazyWorker",
-            "summary": "Clase\u0020del\u0020lazy\u0020worker\u0020del\u0020SII",
+            "summary": "Clase\u0020del\u0020lazy\u0020worker\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AgetConnectionOptions\u0028\u0029",
-            "name": "getConnectionOptions",
-            "summary": "Entrega\u0020las\u0020opciones\u0020para\u0020la\u0020conexi\u00F3n\u0020que\u0020se\u0020debe\u0020realizar\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_getConnectionOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024connectionOptions",
-            "name": "connectionOptions",
-            "summary": "Configuraci\u00F3n\u0020de\u0020la\u0020conexi\u00F3n\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_connectionOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker",
-            "name": "SiiTokenManagerWorker",
-            "summary": "Clase\u0020para\u0020gestionar\u0020las\u0020solicitudes\u0020de\u0020token\u0020para\u0020autenticaci\u00F3n\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020del\u0020TokenManager\u0020para\u0020inyectar\u0020la\u0020implementaci\u00F3n\u0020de\u0020cach\u00E9\u0020y\nel\u0020cliente\u0020de\u0020los\u0020servicios\u0020web\u0020SOAP\u0020del\u0020SII\u0020para\u0020obtener\u0020un\u0020token.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003AgetToken\u0028\u0029",
-            "name": "getToken",
-            "summary": "Obtiene\u0020un\u0020token\u0020de\u0020autenticaci\u00F3n\u0020asociado\u0020al\u0020certificado\u0020digital.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#method_getToken"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003AgetTokenFromSii\u0028\u0029",
-            "name": "getTokenFromSii",
-            "summary": "M\u00E9todo\u0020para\u0020obtener\u0020el\u0020token\u0020de\u0020la\u0020sesi\u00F3n\u0020en\u0020el\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#method_getTokenFromSii"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003AgetSeedFromSii\u0028\u0029",
-            "name": "getSeedFromSii",
-            "summary": "Obtiene\u0020una\u0020semilla\u0020desde\u0020el\u0020SII\u0020para\u0020luego\u0020usarla\u0020en\u0020la\u0020obtenci\u00F3n\u0020del\ntoken\u0020para\u0020la\u0020autenticaci\u00F3n.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#method_getSeedFromSii"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003AgetCache\u0028\u0029",
-            "name": "getCache",
-            "summary": "Entrega\u0020una\u0020instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020una\u0020cach\u00E9\u0020para\u0020ser\nutilizada\u0020en\u0020la\u0020biblioteca.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#method_getCache"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003ATOKEN_TTL",
-            "name": "TOKEN_TTL",
-            "summary": "Tiempo\u0020en\u0020segundos\u0020que\u0020el\u0020token\u0020es\u0020v\u00E1lido\u0020desde\u0020que\u0020se\u0020solicit\u00F3.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#constant_TOKEN_TTL"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003ATOKEN_KEY",
-            "name": "TOKEN_KEY",
-            "summary": "Formato\u0020de\u0020la\u0020clave\u0020en\u0020cach\u00E9\u0020para\u0020guardar\u0020el\u0020token\u0020asociado\u0020a\u0020un\ncertificado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#constant_TOKEN_KEY"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A\u0024lazyWorker",
-            "name": "lazyWorker",
-            "summary": "Lazy\u0020worker\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#property_lazyWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A\u0024signatureComponent",
-            "name": "signatureComponent",
-            "summary": "Componente\u0020para\u0020firma\u0020electr\u00F3nica.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#property_signatureComponent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
-            "summary": "Componente\u0020para\u0020manejo\u0020de\u0020documentos\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#property_xmlComponent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A\u0024wsdlConsumer",
-            "name": "wsdlConsumer",
-            "summary": "Cliente\u0020de\u0020la\u0020API\u0020SOAP\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#property_wsdlConsumer"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiTokenManagerWorker\u003A\u003A\u0024cache",
-            "name": "cache",
-            "summary": "Instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020la\u0020cach\u00E9\u0020que\u0020se\u0020utilizar\u00E1\u0020para\u0020el\nalmacenamiento\u0020de\u0020los\u0020tokens.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiTokenManagerWorker.html#property_cache"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker",
-            "name": "SiiWsdlConsumerWorker",
-            "summary": "Clase\u0020para\u0020consumir\u0020los\u0020servicios\u0020web\u0020SOAP\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003AsendRequest\u0028\u0029",
-            "name": "sendRequest",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AsendXmlDocument\u0028\u0029",
+            "name": "sendXmlDocument",
+            "summary": "Realiza\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_sendXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AcheckXmlDocumentSentStatus\u0028\u0029",
+            "name": "checkXmlDocumentSentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020documento\u0020XML\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_checkXmlDocumentSentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003ArequestXmlDocumentSentStatusByEmail\u0028\u0029",
+            "name": "requestXmlDocumentSentStatusByEmail",
+            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_requestXmlDocumentSentStatusByEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AvalidateDocument\u0028\u0029",
+            "name": "validateDocument",
+            "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AvalidateDocumentSignature\u0028\u0029",
+            "name": "validateDocumentSignature",
+            "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_validateDocumentSignature"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003AconsumeWebservice\u0028\u0029",
+            "name": "consumeWebservice",
             "summary": "Realiza\u0020una\u0020solicitud\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020el\u0020uso\u0020de\u0020WSDL.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#method_sendRequest"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_consumeWebservice"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003AgetWsdlUri\u0028\u0029",
-            "name": "getWsdlUri",
-            "summary": "M\u00E9todo\u0020para\u0020obtener\u0020el\u0020XML\u0020del\u0020WSDL\u0020\u0028Web\u0020Services\u0020Description\u0020Language\u0029\ndel\u0020servicio\u0020del\u0020SII\u0020que\u0020se\u0020desea\u0020consumir.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#method_getWsdlUri"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003Aauthenticate\u0028\u0029",
+            "name": "authenticate",
+            "summary": "Obtiene\u0020un\u0020token\u0020de\u0020autenticaci\u00F3n\u0020asociado\u0020al\u0020certificado\u0020digital.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#method_authenticate"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003AcallServiceFunction\u0028\u0029",
-            "name": "callServiceFunction",
-            "summary": "Ejecuta\u0020una\u0020funci\u00F3n\u0020en\u0020un\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020el\u0020uso\u0020de\u0020WSDL.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#method_callServiceFunction"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003AcreateSoapClientOptions\u0028\u0029",
-            "name": "createSoapClientOptions",
-            "summary": "Define\u0020las\u0020opciones\u0020para\u0020consumir\u0020el\u0020servicio\u0020web\u0020del\u0020SII\u0020mediante\u0020SOAP.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#method_createSoapClientOptions"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiWsdlConsumerWorker\u003A\u003A\u0024lazyWorker",
-            "name": "lazyWorker",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024authenticateJob",
+            "name": "authenticateJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiWsdlConsumerWorker.html#property_lazyWorker"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_authenticateJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024checkXmlDocumentSentStatusJob",
+            "name": "checkXmlDocumentSentStatusJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_checkXmlDocumentSentStatusJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_consumeWebserviceJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024requestXmlDocumentSentStatusByEmailJob",
+            "name": "requestXmlDocumentSentStatusByEmailJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_requestXmlDocumentSentStatusByEmailJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024sendXmlDocumentJob",
+            "name": "sendXmlDocumentJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_sendXmlDocumentJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024validateDocumentJob",
+            "name": "validateDocumentJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker\u003A\u003A\u0024validateDocumentSignatureJob",
+            "name": "validateDocumentSignatureJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazyWorker.html#property_validateDocumentSignatureJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferComponentInterface",
             "name": "OwnershipTransferComponentInterface",
@@ -9296,15 +9266,25 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Response",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response",
             "name": "Response",
             "summary": "",
-            "url": "namespaces/libredte-lib-core-package-billing-component-integration-response.html"
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-support-response.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support",
             "name": "Support",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-support.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siilazy-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy",
+            "name": "SiiLazy",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siilazy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker",
             "name": "Worker",
