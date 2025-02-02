@@ -196,6 +196,13 @@ interface TipoDocumentoInterface extends EntityInterface
     */
 
     /**
+     * Indica si el documento requiere o no acuse de recibo la versión impresa.
+     *
+     * @return bool
+     */
+    public function requiereAcuseRecibo(): bool;
+
+    /**
      * Indica si el documento requiere el tag "TpoTranVenta" en el XML.
      *
      * @return bool
