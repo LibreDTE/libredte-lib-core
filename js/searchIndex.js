@@ -1556,6 +1556,11 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020exento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_esExento"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003ArequiereAcuseRecibo\u0028\u0029",
+            "name": "requiereAcuseRecibo",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020requiere\u0020o\u0020no\u0020acuse\u0020de\u0020recibo\u0020la\u0020versi\u00F3n\u0020impresa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_requiereAcuseRecibo"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003ArequiereTpoTranVenta\u0028\u0029",
             "name": "requiereTpoTranVenta",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020requiere\u0020el\u0020tag\u0020\u0022TpoTranVenta\u0022\u0020en\u0020el\u0020XML.",
@@ -2298,7 +2303,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequiereAcuseRecibo\u0028\u0029",
             "name": "requiereAcuseRecibo",
-            "summary": "\u007B\u0040inheritDoc\u007D",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020requiere\u0020o\u0020no\u0020acuse\u0020de\u0020recibo\u0020la\u0020versi\u00F3n\u0020impresa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_requiereAcuseRecibo"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequiereTpoTranVenta\u0028\u0029",
