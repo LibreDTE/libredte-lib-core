@@ -896,11 +896,6 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020bolsas\u0020con\u0020documentos\u0020procesados\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getDocumentBags"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AgetBatchProcessorOptions\u0028\u0029",
-            "name": "getBatchProcessorOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesador\u0020del\u0020lote\u0020de\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getBatchProcessorOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface",
             "name": "DocumentComponentInterface",
             "summary": "Interfaz\u0020para\u0020\u0060DocumentComponent\u0060.",
@@ -3171,11 +3166,6 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020bolsas\u0020con\u0020documentos\u0020procesados\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getDocumentBags"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetBatchProcessorOptions\u0028\u0029",
-            "name": "getBatchProcessorOptions",
-            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesador\u0020del\u0020lote\u0020de\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getBatchProcessorOptions"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
             "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020lote\u0020de\u0020documentos.",
@@ -3410,66 +3400,6 @@ Search.appendIndex(
             "name": "entityComponent",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_entityComponent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy",
-            "name": "XlsxBatchProcessorStrategy",
-            "summary": "Estrategia\u0020\u0022billing.document.batch_processor.strategy\u003Aspreadsheet.xlsx\u0022.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020de\u0020la\u0020estrategia\u0020con\u0020sus\u0020dependencias.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003Aprocess\u0028\u0029",
-            "name": "process",
-            "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_process"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AcreateDocument\u0028\u0029",
-            "name": "createDocument",
-            "summary": "Crea\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020proporcionados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_createDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AsetInitialDTE\u0028\u0029",
-            "name": "setInitialDTE",
-            "summary": "Genera\u0020la\u0020estructura\u0020inicial\u0020del\u0020DTE.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_setInitialDTE"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AaddItem\u0028\u0029",
-            "name": "addItem",
-            "summary": "Agrega\u0020un\u0020\u00EDtem\u0020al\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_addItem"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AaddTransport\u0028\u0029",
-            "name": "addTransport",
-            "summary": "Agrega\u0020informaci\u00F3n\u0020de\u0020transporte\u0020a\u0020un\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_addTransport"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AaddReference\u0028\u0029",
-            "name": "addReference",
-            "summary": "Agrega\u0020una\u0020referencia\u0020a\u0020un\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_addReference"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AgetCurrency\u0028\u0029",
-            "name": "getCurrency",
-            "summary": "Obtiene\u0020la\u0020glosa\u0020de\u0020una\u0020moneda\u0020a\u0020partir\u0020de\u0020su\u0020c\u00F3digo\u0020ISO.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_getCurrency"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AnormalizeDate\u0028\u0029",
-            "name": "normalizeDate",
-            "summary": "Normaliza\u0020una\u0020fecha\u0020al\u0020formato\u0020\u0060Y\u002Dm\u002Dd\u0060.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_normalizeDate"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003AvalidateField\u0028\u0029",
-            "name": "validateField",
-            "summary": "Valida\u0020que\u0020un\u0020campo\u0020en\u0020el\u0020array\u0020de\u0020datos\u0020no\u0020est\u00E9\u0020vac\u00EDo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#method_validateField"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\XlsxBatchProcessorStrategy\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-XlsxBatchProcessorStrategy.html#property_entityComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker",
             "name": "BatchProcessorWorker",
