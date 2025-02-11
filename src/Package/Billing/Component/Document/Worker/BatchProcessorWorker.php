@@ -164,7 +164,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      */
     private function loadDocumentsFromFile(DocumentBatchInterface $batch): array
     {
-        $options = $this->resolveOptions($batch->getOptions());
+        $options = $this->resolveOptions($batch->getBatchProcessorOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
 
         assert($strategy instanceof BatchProcessorStrategyInterface);

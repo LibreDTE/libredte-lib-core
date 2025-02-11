@@ -184,4 +184,12 @@ class DocumentBatch implements DocumentBatchInterface
     {
         return $this->documentBags;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBatchProcessorOptions(): array
+    {
+        return (array) $this->getOptions()->get('batch_processor');
+    }
 }

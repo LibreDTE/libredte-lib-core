@@ -84,4 +84,11 @@ interface DocumentBatchInterface extends OptionsAwareInterface
      * @return DocumentBagInterface[]
      */
     public function getDocumentBags(): array;
+
+    /**
+     * Obtiene las opciones del procesamiento en lote.
+     *
+     * @return array Opciones del batch processor.
+     */
+    public function getBatchProcessorOptions(): array;
 }
