@@ -896,6 +896,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020bolsas\u0020con\u0020documentos\u0020procesados\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getDocumentBags"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AgetBatchProcessorOptions\u0028\u0029",
+            "name": "getBatchProcessorOptions",
+            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getBatchProcessorOptions"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface",
             "name": "DocumentComponentInterface",
             "summary": "Interfaz\u0020para\u0020\u0060DocumentComponent\u0060.",
@@ -3165,6 +3170,11 @@ Search.appendIndex(
             "name": "getDocumentBags",
             "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020bolsas\u0020con\u0020documentos\u0020procesados\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getDocumentBags"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetBatchProcessorOptions\u0028\u0029",
+            "name": "getBatchProcessorOptions",
+            "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020procesamiento\u0020en\u0020lote.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getBatchProcessorOptions"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
