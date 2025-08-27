@@ -2851,40 +2851,10 @@ Search.appendIndex(
             "summary": "Constructor\u0020del\u0020handler.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003Ahandle\u0028\u0029",
-            "name": "handle",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_handle"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetSupportedFormats\u0028\u0029",
-            "name": "getSupportedFormats",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getSupportedFormats"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetHandlers\u0028\u0029",
-            "name": "getHandlers",
-            "summary": "Retorna\u0020el\u0020mapa\u0020de\u0020handlers\u0020para\u0020formatos\u0020de\u0020los\u0020datos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getHandlers"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AcreateHandlers\u0028\u0029",
             "name": "createHandlers",
             "summary": "Mapa\u0020de\u0020campos\u0020a\u0020handlers\u0020para\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_createHandlers"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetGenericHandler\u0028\u0029",
-            "name": "getGenericHandler",
-            "summary": "Returns\u0020the\u0020generic\u0020handler.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getGenericHandler"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024handlers",
-            "name": "handlers",
-            "summary": "Mapa\u0020de\u0020handlers\u0020para\u0020formatos\u0020de\u0020los\u0020datos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_handlers"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024genericHandler",
-            "name": "genericHandler",
-            "summary": "Generic\u0020handler\u0020when\u0020the\u0020handler\u0020is\u0020not\u0020an\u0020HandlerFormatterInterface\u0020and\ncannot\u0020be\u0020resolved.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_genericHandler"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024repositoryManager",
             "name": "repositoryManager",
