@@ -30,8 +30,7 @@ if (!function_exists('libredte_lib')) {
     function libredte_lib(
         string|EnvironmentInterface $environment = 'prod',
         bool $debug = false
-    ): Application
-    {
+    ): Application {
         return Application::getInstance($environment, $debug);
     }
 }
