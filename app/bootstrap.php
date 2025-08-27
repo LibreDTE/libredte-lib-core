@@ -22,12 +22,16 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
+use Derafu\Kernel\Contract\EnvironmentInterface;
 use libredte\lib\Core\Application;
 
-// Función global para el acceso al contenedor de servicios de la biblioteca.
+// Función global para el acceso a los servicios de la biblioteca.
 if (!function_exists('libredte_lib')) {
-    function libredte_lib(string|array|null $config = null): Application
+    function libredte_lib(
+        string|EnvironmentInterface $environment = 'prod',
+        bool $debug = false
+    ): Application
     {
-        return Application::getInstance($config);
+        return Application::getInstance($environment, $debug);
     }
 }

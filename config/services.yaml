@@ -338,25 +338,6 @@ services:
                     idAttribute: codigo
                     nameAttribute: glosa
 
-    # # Estrategias del worker "prime.template.renderer".
-    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\HtmlRendererStrategyInterface:
-    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\TwigRendererStrategy
-    #     arguments:
-    #         $paths: '%kernel.project_dir%/resources/templates'
-    #         $extensions:
-    #             - '@Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension'
-    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\PdfRendererStrategyInterface:
-    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\PdfRendererStrategy
-
-    # # Servicios del componente "prime.template".
-    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataFormatterInterface:
-    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatter
-    #     public: true
-    #     arguments:
-    #         $handlers:
-    #             billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler'
-    # Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension: ~
-
     # Derafu XML.
     Derafu\Xml\Contract\XmlServiceInterface:
         class: Derafu\Xml\Service\XmlService

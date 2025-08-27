@@ -13,7 +13,7 @@ build:
               format: clover
       environment:
         php:
-          version: 8.3.16
+          version: 8.4
           pecl_extensions:
             - xdebug
             - imap
