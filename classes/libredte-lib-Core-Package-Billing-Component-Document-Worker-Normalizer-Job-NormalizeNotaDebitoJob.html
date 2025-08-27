@@ -188,7 +188,7 @@
     NormalizeNotaDebitoJob
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractJob">AbstractJob</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractJob">AbstractJob</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -200,7 +200,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr>                    </span>
     
             <span class="phpdocumentor-element__extends">
             uses
@@ -226,6 +226,29 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Job">Job</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;normalize_nota_debito&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $worker: &#039;normalizer&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -243,7 +266,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
 
 
 
@@ -257,9 +280,9 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_entityComponent">$entityComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_repositoryManager">$repositoryManager</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>            </span>
 </dt>
 
     </dl>
@@ -331,32 +354,34 @@ monto neto y la tasa de IVA si es que existe.</dd>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
-        $entityComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_repositoryManager">
+        $repositoryManager
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_repositoryManager" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizenotadebitojob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php">NormalizeNotaDebitoJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$entityComponent</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$repositoryManager</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -384,14 +409,14 @@ monto neto y la tasa de IVA si es que existe.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizenotadebitojob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php">NormalizeNotaDebitoJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -400,8 +425,8 @@ monto neto y la tasa de IVA si es que existe.</dd>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$repositoryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -428,7 +453,7 @@ monto neto y la tasa de IVA si es que existe.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizenotadebitojob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeNotaDebitoJob.php">NormalizeNotaDebitoJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -745,6 +770,8 @@ un problema y, si lo son, corregirlos.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -820,7 +847,7 @@ un problema y, si lo son, corregirlos.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_entityComponent">$entityComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_repositoryManager">$repositoryManager</a></li>
                                             </ul>
                 </li>
             

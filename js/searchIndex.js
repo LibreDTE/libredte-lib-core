@@ -6,10 +6,50 @@ Search.appendIndex(
             "summary": "Clase\u0020principal\u0020de\u0020la\u0020aplicaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Application.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetBillingPackage\u0028\u0029",
-            "name": "getBillingPackage",
-            "summary": "Entrega\u0020el\u0020paquete\u0020\u0022billing\u0022.",
-            "url": "classes/libredte-lib-Core-Application.html#method_getBillingPackage"
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003Aconfigure\u0028\u0029",
+            "name": "configure",
+            "summary": "Configura\u0020el\u0020contenedor\u0020de\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Application.html#method_configure"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetPackageRegistry\u0028\u0029",
+            "name": "getPackageRegistry",
+            "summary": "Entrega\u0020el\u0020registro\u0020de\u0020paquetes\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#method_getPackageRegistry"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetService\u0028\u0029",
+            "name": "getService",
+            "summary": "Entrega\u0020un\u0020servicio\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#method_getService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetInstance\u0028\u0029",
+            "name": "getInstance",
+            "summary": "Entrega\u0020la\u0020instancia\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#method_getInstance"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003ACONFIG_FILES",
+            "name": "CONFIG_FILES",
+            "summary": "Archivos\u0020de\u0020configuraci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003ACONFIG_LOADERS",
+            "name": "CONFIG_LOADERS",
+            "summary": "Cargadores\u0020de\u0020archivos\u0020de\u0020configuraci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003A\u0024instance",
+            "name": "instance",
+            "summary": "Instancia\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Application.html#property_instance"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Contract\\ApplicationInterface",
+            "name": "ApplicationInterface",
+            "summary": "Interfaz\u0020que\u0020define\u0020los\u0020m\u00E9todos\u0020que\u0020debe\u0020implementar\u0020la\u0020aplicaci\u00F3n\u0020de\nLibreDTE.",
+            "url": "classes/libredte-lib-Core-Contract-ApplicationInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Contract\\ApplicationInterface\u003A\u003AgetPackageRegistry\u0028\u0029",
+            "name": "getPackageRegistry",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Contract-ApplicationInterface.html#method_getPackageRegistry"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Exception\\Exception",
             "name": "Exception",
@@ -176,15 +216,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractBuilderStrategy.html#property_validatorWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractBuilderStrategy\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractBuilderStrategy\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractBuilderStrategy.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractBuilderStrategy.html#property_xmlService"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractBuilderStrategy\u003A\u003A\u0024signatureComponent",
-            "name": "signatureComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractBuilderStrategy\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractBuilderStrategy.html#property_signatureComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractBuilderStrategy.html#property_signatureService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument",
             "name": "AbstractDocument",
@@ -366,15 +406,15 @@ Search.appendIndex(
             "summary": "Realiza\u0020el\u0020renderizado\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_render"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003AcreateData\u0028\u0029",
-            "name": "createData",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003AcreateDataAndOptions\u0028\u0029",
+            "name": "createDataAndOptions",
             "summary": "Crea\u0020los\u0020datos\u0020que\u0020se\u0020pasar\u00E1n\u0020a\u0020la\u0020plantilla\u0020que\u0020se\u0020renderizar\u00E1.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createData"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003A\u0024templateComponent",
-            "name": "templateComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003A\u0024renderer",
+            "name": "renderer",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_templateComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_renderer"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractSanitizerStrategy",
             "name": "AbstractSanitizerStrategy",
@@ -398,7 +438,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractValidatorStrategy",
             "name": "AbstractValidatorStrategy",
-            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020las\u0020estrategias\u0020de\u0020validaci\u00F3n\u0020de\ndocumentos\u0020tributarios.",
+            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020para\u0020las\u0020estrategias\u0020de\u0020validaci\u00F3n\u0020de\u0020documentos\ntributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractValidatorStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractValidatorStrategy\u003A\u003Avalidate\u0028\u0029",
@@ -2801,25 +2841,55 @@ Search.appendIndex(
             "summary": "Busca\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020su\u0020interfaz.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-TipoDocumentoRepository.html#method_findByInterface"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler",
-            "name": "TemplateDataHandler",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter",
+            "name": "TemplateDataFormatter",
             "summary": "Servicio\u0020para\u0020traducir\u0020los\u0020datos\u0020de\u0020los\u0020documentos\u0020a\u0020su\u0020representaci\u00F3n\u0020para\nser\u0020utilizada\u0020en\u0020la\u0020renderizaci\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020del\u0020handler.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method___construct"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003AcreateHandlers\u0028\u0029",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003Ahandle\u0028\u0029",
+            "name": "handle",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_handle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetSupportedFormats\u0028\u0029",
+            "name": "getSupportedFormats",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getSupportedFormats"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetHandlers\u0028\u0029",
+            "name": "getHandlers",
+            "summary": "Retorna\u0020el\u0020mapa\u0020de\u0020handlers\u0020para\u0020formatos\u0020de\u0020los\u0020datos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getHandlers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AcreateHandlers\u0028\u0029",
             "name": "createHandlers",
             "summary": "Mapa\u0020de\u0020campos\u0020a\u0020handlers\u0020para\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_createHandlers"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_createHandlers"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataHandler\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AgetGenericHandler\u0028\u0029",
+            "name": "getGenericHandler",
+            "summary": "Returns\u0020the\u0020generic\u0020handler.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_getGenericHandler"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024handlers",
+            "name": "handlers",
+            "summary": "Mapa\u0020de\u0020handlers\u0020para\u0020formatos\u0020de\u0020los\u0020datos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_handlers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024genericHandler",
+            "name": "genericHandler",
+            "summary": "Generic\u0020handler\u0020when\u0020the\u0020handler\u0020is\u0020not\u0020an\u0020HandlerFormatterInterface\u0020and\ncannot\u0020be\u0020resolved.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_genericHandler"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag",
             "name": "DocumentBag",
@@ -3406,10 +3476,10 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020glosa\u0020de\u0020una\u0020moneda\u0020a\u0020partir\u0020de\u0020su\u0020c\u00F3digo\u0020ISO.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_getCurrency"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker",
             "name": "BatchProcessorWorker",
@@ -3681,15 +3751,15 @@ Search.appendIndex(
             "summary": "Firma\u0020el\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_sign"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_xmlService"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024signatureComponent",
-            "name": "signatureComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_signatureComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_signatureService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024documentBagManagerWorker",
             "name": "documentBagManagerWorker",
@@ -3756,10 +3826,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_documentBagClass"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024builderWorker",
             "name": "builderWorker",
@@ -3786,10 +3856,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_validatorWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003A\u0024emisorFactory",
             "name": "emisorFactory",
@@ -3856,10 +3926,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaAfectaJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaAfectaJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob",
             "name": "NormalizeBoletaExentaJob",
@@ -3876,10 +3946,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeBoletaExentaJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeBoletaExentaJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPostDocumentNormalizationJob",
             "name": "NormalizeDataPostDocumentNormalizationJob",
@@ -3986,10 +4056,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaAfectaJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaAfectaJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob",
             "name": "NormalizeFacturaCompraJob",
@@ -4006,10 +4076,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaCompraJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaCompraJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob",
             "name": "NormalizeFacturaExentaJob",
@@ -4026,10 +4096,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExentaJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExentaJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob",
             "name": "NormalizeFacturaExportacionJob",
@@ -4046,10 +4116,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeFacturaExportacionJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeFacturaExportacionJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob",
             "name": "NormalizeGuiaDespachoJob",
@@ -4066,10 +4136,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeGuiaDespachoJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeGuiaDespachoJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob",
             "name": "NormalizeLiquidacionFacturaJob",
@@ -4086,10 +4156,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeLiquidacionFacturaJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeLiquidacionFacturaJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob",
             "name": "NormalizeNotaCreditoExportacionJob",
@@ -4106,10 +4176,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoExportacionJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoExportacionJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob",
             "name": "NormalizeNotaCreditoJob",
@@ -4126,10 +4196,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaCreditoJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaCreditoJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob",
             "name": "NormalizeNotaDebitoExportacionJob",
@@ -4146,10 +4216,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoExportacionJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoExportacionJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob",
             "name": "NormalizeNotaDebitoJob",
@@ -4166,10 +4236,10 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#method_execute"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeNotaDebitoJob\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeNotaDebitoJob.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Strategy\\BoletaAfectaNormalizerStrategy",
             "name": "BoletaAfectaNormalizerStrategy",
@@ -4606,6 +4676,11 @@ Search.appendIndex(
             "summary": "Clase\u0020para\u0020los\u0020normalizadores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Realiza\u0020la\u0020normalizaci\u00F3n\u0020del\u0020documento.",
@@ -4613,7 +4688,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\JsonParserStrategy",
             "name": "JsonParserStrategy",
-            "summary": "Estrategia\u0020\u0022billing.document.parser.strategy\u003Adefault.json\u0022.",
+            "summary": "Estrategia\u0020\u0022billing.document.parser\u0023strategy\u003Adefault.json\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-JsonParserStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\JsonParserStrategy\u003A\u003Aparse\u0028\u0029",
@@ -4623,7 +4698,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\XmlParserStrategy",
             "name": "XmlParserStrategy",
-            "summary": "Estrategia\u0020\u0022billing.document.parser.strategy\u003Adefault.xml\u0022.",
+            "summary": "Estrategia\u0020\u0022billing.document.parser\u0023strategy\u003Adefault.xml\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\XmlParserStrategy\u003A\u003A__construct\u0028\u0029",
@@ -4636,14 +4711,14 @@ Search.appendIndex(
             "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html#method_parse"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\XmlParserStrategy\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
-            "summary": "Componente\u0020\u0022prime.xml\u0022\u0020para\u0020decodifaci\u00F3n\u0020de\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html#property_xmlComponent"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\XmlParserStrategy\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\YamlParserStrategy",
             "name": "YamlParserStrategy",
-            "summary": "Estrategia\u0020\u0022billing.document.parser.strategy\u003Adefault.yaml\u0022.",
+            "summary": "Estrategia\u0020\u0022billing.document.parser\u0023strategy\u003Adefault.yaml\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-YamlParserStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Default\\YamlParserStrategy\u003A\u003Aparse\u0028\u0029",
@@ -4653,7 +4728,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy",
             "name": "EstandarParserStrategy",
-            "summary": "Estrategia\u0020\u0022billing.document.parser.strategy\u003Aform.estandar\u0022.",
+            "summary": "Estrategia\u0020\u0022billing.document.parser\u0023strategy\u003Aform.estandar\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A__construct\u0028\u0029",
@@ -4736,15 +4811,20 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020tasa\u0020de\u0020impuesto\u0020predeterminada\u0020para\u0020un\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker",
             "name": "ParserWorker",
             "summary": "Clase\u0020para\u0020los\u0020parsers\u0020de\u0020datos\u0020de\u0020entrada\u0020de\u0020los\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003Aparse\u0028\u0029",
             "name": "parse",
@@ -4770,6 +4850,11 @@ Search.appendIndex(
             "name": "RendererWorker",
             "summary": "Clase\u0020para\u0020los\u0020renderizadores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003Arender\u0028\u0029",
             "name": "render",
@@ -4905,6 +4990,11 @@ Search.appendIndex(
             "name": "SanitizerWorker",
             "summary": "Clase\u0020para\u0020los\u0020sanitizadores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003Asanitize\u0028\u0029",
             "name": "sanitize",
@@ -5061,15 +5151,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_documentBagManager"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_xmlService"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024signatureComponent",
-            "name": "signatureComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_signatureComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_signatureService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeWorker",
             "name": "AbstractExchangeWorker",
@@ -6446,15 +6536,20 @@ Search.appendIndex(
             "summary": "Resuelve\u0020y\u0020entrega\u0020los\u0020datos\u0020de\u0020transporte.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Receiver-Strategy-Email-ImapReceiverStrategy.html#method_resolveTransportOptions"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Receiver\\Strategy\\Email\\ImapReceiverStrategy\u003A\u003A\u0024mailComponent",
-            "name": "mailComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Receiver\\Strategy\\Email\\ImapReceiverStrategy\u003A\u003A\u0024mailPackage",
+            "name": "mailPackage",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Receiver-Strategy-Email-ImapReceiverStrategy.html#property_mailComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Receiver-Strategy-Email-ImapReceiverStrategy.html#property_mailPackage"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker",
             "name": "ReceiverWorker",
             "summary": "Worker\u0020\u0022billing.exchange.receiver\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003Areceive\u0028\u0029",
             "name": "receive",
@@ -6536,14 +6631,14 @@ Search.appendIndex(
             "summary": "Resuelve\u0020y\u0020entrega\u0020los\u0020datos\u0020de\u0020los\u0020receptores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_resolveRecipients"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003A\u0024mailComponentInterface",
-            "name": "mailComponentInterface",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003A\u0024mailPackage",
+            "name": "mailPackage",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#property_mailComponentInterface"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#property_mailPackage"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy",
             "name": "BoletaSenderStrategy",
-            "summary": "Env\u00EDo\u0020de\u0020boletas\u0020al\u0020SII\u0020usando.",
+            "summary": "Env\u00EDo\u0020de\u0020boletas\u0020al\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy\u003A\u003Asend\u0028\u0029",
@@ -6585,6 +6680,11 @@ Search.appendIndex(
             "name": "SenderWorker",
             "summary": "Worker\u0020\u0022billing.exchange.sender\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003Asend\u0028\u0029",
             "name": "send",
@@ -7211,10 +7311,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafFakerClass"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024cafLoader",
             "name": "cafLoader",
@@ -7251,10 +7351,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_emisorFactory"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024entityComponent",
-            "name": "entityComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_entityComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker",
             "name": "CafProviderWorker",
@@ -7801,25 +7901,25 @@ Search.appendIndex(
             "summary": "Entrega\u0020una\u0020instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020una\u0020cach\u00E9\u0020para\u0020ser\nutilizada\u0020en\u0020la\u0020biblioteca.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_getCache"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024signatureComponent",
-            "name": "signatureComponent",
-            "summary": "Componente\u0020para\u0020firma\u0020electr\u00F3nica.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_signatureComponent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
-            "summary": "Componente\u0020para\u0020manejo\u0020de\u0020documentos\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_xmlComponent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024consumeWebserviceJob",
-            "name": "consumeWebserviceJob",
-            "summary": "Trabajo\u0020que\u0020realiza\u0020consultas\u0020a\u0020la\u0020API\u0020SOAP\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_consumeWebserviceJob"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024cache",
             "name": "cache",
             "summary": "Instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020la\u0020cach\u00E9\u0020que\u0020se\u0020utilizar\u00E1\u0020para\u0020el\nalmacenamiento\u0020de\u0020los\u0020tokens.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_cache"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_signatureService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_xmlService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024consumeWebserviceJob",
+            "name": "consumeWebserviceJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_consumeWebserviceJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob",
             "name": "CheckXmlDocumentSentStatusJob",
@@ -7846,10 +7946,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\CheckXmlDocumentSentStatusJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-CheckXmlDocumentSentStatusJob.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ConsumeWebserviceJob",
             "name": "ConsumeWebserviceJob",
@@ -7901,10 +8001,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\RequestXmlDocumentSentStatusByEmailJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-RequestXmlDocumentSentStatusByEmailJob.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob",
             "name": "SendXmlDocumentJob",
@@ -7946,10 +8046,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_authenticateJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\SendXmlDocumentJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob",
             "name": "ValidateDocumentJob",
@@ -7976,10 +8076,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentJob.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob",
             "name": "ValidateDocumentSignatureJob",
@@ -8006,10 +8106,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_consumeWebserviceJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A\u0024xmlComponent",
-            "name": "xmlComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\ValidateDocumentSignatureJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_xmlComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ValidateDocumentSignatureJob.html#property_xmlService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazyWorker",
             "name": "SiiLazyWorker",
@@ -8806,10 +8906,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Worker-MandatarioManagerWorker.html#property_mandatarioFactory"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Worker\\MandatarioManagerWorker\u003A\u003A\u0024certificateComponent",
-            "name": "certificateComponent",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Worker\\MandatarioManagerWorker\u003A\u003A\u0024certificateFaker",
+            "name": "certificateFaker",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Worker-MandatarioManagerWorker.html#property_certificateComponent"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Worker-MandatarioManagerWorker.html#property_certificateFaker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Contract\\BillingPackageInterface",
             "name": "BillingPackageInterface",
@@ -8856,20 +8956,15 @@ Search.appendIndex(
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020paquete\u0020\u0022billing\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Exception-BillingException.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\ServiceRegistry",
-            "name": "ServiceRegistry",
-            "summary": "Registro\u0020de\u0020servicios\u0020de\u0020la\u0020aplicaci\u00F3n.",
-            "url": "classes/libredte-lib-Core-ServiceRegistry.html"
+            "fqsen": "\\libredte\\lib\\Core\\PackageRegistry",
+            "name": "PackageRegistry",
+            "summary": "Registro\u0020de\u0020paquetes\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "url": "classes/libredte-lib-Core-PackageRegistry.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\ServiceRegistry\u003A\u003A\u0024registries",
-            "name": "registries",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-ServiceRegistry.html#property_registries"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\ServiceRegistry\u003A\u003A\u0024configPath",
-            "name": "configPath",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-ServiceRegistry.html#property_configPath"
+            "fqsen": "\\libredte\\lib\\Core\\PackageRegistry\u003A\u003AgetBillingPackage\u0028\u0029",
+            "name": "getBillingPackage",
+            "summary": "Entrega\u0020el\u0020paquete\u0020\u0022billing\u0022.",
+            "url": "classes/libredte-lib-Core-PackageRegistry.html#method_getBillingPackage"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -8890,6 +8985,11 @@ Search.appendIndex(
             "name": "libredte",
             "summary": "",
             "url": "namespaces/libredte.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Contract",
+            "name": "Contract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-contract.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Exception",
             "name": "Exception",

@@ -186,7 +186,7 @@
     AbstractSenderHandler
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractHandler">AbstractHandler</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractHandler">AbstractHandler</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -323,14 +323,14 @@ válida.</dd>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_senderWorker">
         $senderWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractSenderHandler.html#property_senderWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractSenderHandler.php"><a href="files/src-package-billing-component-exchange-abstract-abstractsenderhandler.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractSenderHandler.php">AbstractSenderHandler.php</abbr></a></abbr>
@@ -342,13 +342,15 @@ válida.</dd>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-SenderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface">SenderWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-SenderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface">SenderWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$senderWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -673,6 +675,8 @@ válida.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

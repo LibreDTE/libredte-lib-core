@@ -208,14 +208,12 @@
 
             <p class="phpdocumentor-summary">Enum del Tag XML donde va el documento (tag DTE).</p>
 
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoSobre.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -303,7 +301,6 @@ tener.</dd>
 <dd>Indica si el sobre es de boletas.</dd>
 
     </dl>
-
 
 
 
@@ -657,6 +654,8 @@ tener.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

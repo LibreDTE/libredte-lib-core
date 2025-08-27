@@ -352,7 +352,7 @@ construir.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -362,7 +362,7 @@ construir.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$xmlDocument</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -417,6 +417,8 @@ construir.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

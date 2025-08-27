@@ -204,8 +204,8 @@ documentos tributarios.</dd>            <dt class="phpdocumentor-table-of-conten
 electrónico.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy">AbstractNormalizerStrategy</abbr></a></dt><dd>Clase abstracta (base) para las estrategias de normalización de
 documentos tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy">AbstractRendererStrategy</abbr></a></dt><dd>Clase abstracta (base) para las estrategias de renderizado de documentos
 tributarios utilizando plantillas.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSanitizerStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy">AbstractSanitizerStrategy</abbr></a></dt><dd>Clase abstracta (base) para las estrategias de sanitización de documentos
-tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractValidatorStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy">AbstractValidatorStrategy</abbr></a></dt><dd>Clase abstracta (base) para las estrategias de validación de
-documentos tributarios.</dd>    </dl>
+tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractValidatorStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy">AbstractValidatorStrategy</abbr></a></dt><dd>Clase abstracta (base) para las estrategias de validación de documentos
+tributarios.</dd>    </dl>
 
 
 
@@ -253,6 +253,8 @@ documentos tributarios.</dd>    </dl>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

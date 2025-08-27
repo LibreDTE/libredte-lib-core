@@ -186,7 +186,7 @@
     BuilderWorkerInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>,                             <abbr title="\Derafu\Backbone\Contract\StrategiesAwareInterface">StrategiesAwareInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -198,7 +198,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-builderworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php">BuilderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -274,7 +274,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-builderworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php">BuilderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -348,7 +348,7 @@ construir.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-builderworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/BuilderWorkerInterface.php">BuilderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -421,6 +421,8 @@ construir.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

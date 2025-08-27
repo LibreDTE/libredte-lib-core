@@ -186,7 +186,7 @@
     AbstractReceiverHandler
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractHandler">AbstractHandler</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractHandler">AbstractHandler</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -314,14 +314,14 @@ la bolsa que se ha pasado.</dd>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_receiverWorker">
         $receiverWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractReceiverHandler.html#property_receiverWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractReceiverHandler.php"><a href="files/src-package-billing-component-exchange-abstract-abstractreceiverhandler.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractReceiverHandler.php">AbstractReceiverHandler.php</abbr></a></abbr>
@@ -333,13 +333,15 @@ la bolsa que se ha pasado.</dd>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ReceiverWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface">ReceiverWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ReceiverWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface">ReceiverWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$receiverWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -613,6 +615,8 @@ estrategia la puede procesar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

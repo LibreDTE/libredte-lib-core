@@ -186,7 +186,7 @@
     DocumentBagManagerWorkerInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -283,24 +283,20 @@ tributario.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeAll</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeAll</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
         <section class="phpdocumentor-description"><p>Se pueden pasar diferentes tipos de datos de origen:</p>
 <ul>
-<li>
-<code class="prettyprint">string</code>: Datos de entrada para ser parseados y normalizados. Debe
+<li><code class="prettyprint">string</code>: Datos de entrada para ser parseados y normalizados. Debe
 empezar con el prefijo <code class="prettyprint">parser.strategy.xyz:</code> para que los datos sean
 parseados.</li>
-<li>
-<code class="prettyprint">array</code>: Datos ya normalizados.</li>
-<li>
-<code class="prettyprint">XmlInterface</code>: Una instancia del documento XML con sus datos
+<li><code class="prettyprint">array</code>: Datos ya normalizados.</li>
+<li><code class="prettyprint">XmlDocumentInterface</code>: Una instancia del documento XML con sus datos
 normalizado.</li>
-<li>
-<code class="prettyprint">DocumentInterface</code>: Una instancia del documento tributario con sus
+<li><code class="prettyprint">DocumentInterface</code>: Una instancia del documento tributario con sus
 datos normalizados.</li>
 </ul>
 </section>
@@ -309,7 +305,7 @@ datos normalizados.</li>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Datos de origen.</p>
@@ -453,6 +449,8 @@ solo la de la asignación del tipo de documento.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

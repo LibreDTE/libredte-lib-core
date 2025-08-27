@@ -184,6 +184,7 @@ $data = [ /* aquí los datos del DTE */ ];
 
 // Cargar contenido del archivo CAF.
 $caf = $app
+    -&gt;getPackageRegistry()
     -&gt;getBillingPackage()
     -&gt;getIdentifierComponent()
     -&gt;getCafLoaderWorker()
@@ -192,15 +193,12 @@ $caf = $app
 ;
 
 // Cargar el certificado digital.
-$certificate = $app
-    -&gt;getPrimePackage()
-    -&gt;getCertificateComponent()
-    -&gt;getLoaderWorker()
-    -&gt;createFromFile($certificateFile, $certificatePass)
-;
+$certificateLoader = new CertificateLoader();
+$certificate = $certificateLoader-&gt;loadFromFile($certificateFile, $certificatePass);
 
 // Crear DTE.
 $document = $app
+    -&gt;getPackageRegistry()
     -&gt;getBillingPackage()
     -&gt;getDocumentComponent()
     -&gt;bill($data, $caf, $certificate)

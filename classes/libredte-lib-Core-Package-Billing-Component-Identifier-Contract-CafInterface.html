@@ -360,7 +360,7 @@ del CAF.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_getXmlDocument">getXmlDocument()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
 <dd>Obtiene el documento XML.</dd>
 
@@ -473,8 +473,7 @@ dentro del rango de folios disponibles en el CAF.</p>
     
         <section class="phpdocumentor-description"><p>El resultado puede ser:</p>
 <ul>
-<li>
-<code class="prettyprint">null</code>: no hay ambiente, pues el Caf es falso y tiene IDK CafFaker::IDK</li>
+<li><code class="prettyprint">null</code>: no hay ambiente, pues el Caf es falso y tiene IDK CafFaker::IDK</li>
 </ul>
 </section>
 
@@ -602,8 +601,7 @@ dentro del rango de folios disponibles en el CAF.</p>
 <ul>
 <li>SiiAmbiente::CERTIFICACION-&gt;value es CAF de certificación.</li>
 <li>SiiAmbiente::PRODUCCION-&gt;value es CAF de producción.</li>
-<li>
-<code class="prettyprint">null</code>: indicando que el Caf es falso y tiene IDK CafFaker::IDK</li>
+<li><code class="prettyprint">null</code>: indicando que el Caf es falso y tiene IDK CafFaker::IDK</li>
 </ul>
 </section>
 
@@ -1196,7 +1194,7 @@ si no aplica.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1209,7 +1207,7 @@ si no aplica.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
             </section>
 
 </article>
@@ -1352,6 +1350,8 @@ actual.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

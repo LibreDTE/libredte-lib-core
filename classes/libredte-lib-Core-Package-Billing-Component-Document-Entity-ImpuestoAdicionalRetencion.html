@@ -186,7 +186,7 @@
     ImpuestoAdicionalRetencion
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity">Entity</abbr>
+        extends <abbr title="\Derafu\Repository\Entity">Entity</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -225,7 +225,7 @@
         </h5>
                     <dl class="phpdocumentor-argument-list">
     <dt class="phpdocumentor-argument-list__entry">
-        #[<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping\Entity">Entity</abbr>]
+        #[<abbr title="\Derafu\Repository\Mapping\Entity">Entity</abbr>]
     </dt>
         <dd class="phpdocumentor-argument-list__entry">
         $repositoryClass: \libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository::class
@@ -551,6 +551,8 @@ determinar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

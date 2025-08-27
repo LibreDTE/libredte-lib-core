@@ -199,7 +199,7 @@
     
             <span class="phpdocumentor-element__extends">
             uses
-                            <abbr title="\Derafu\Lib\Core\Common\Trait\OptionsAwareTrait">OptionsAwareTrait</abbr>                    </span>
+                            <abbr title="\Derafu\Config\Trait\OptionsAwareTrait">OptionsAwareTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -264,7 +264,7 @@ de manera sencilla y, sobre todo, extensible.</p>
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate">$certificate</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null            </span>
+                        &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null            </span>
 </dt>
 <dd>Certificado digital (firma electrónica) para la firma del documento.</dd>
 
@@ -314,7 +314,7 @@ de manera sencilla y, sobre todo, extensible.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getCertificate">getCertificate()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
+                                &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
 </dt>
 <dd>Obtiene el certificado para firmar el documento.</dd>
 
@@ -378,14 +378,14 @@ de manera sencilla y, sobre todo, extensible.</p>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_optionsSchema">
         $optionsSchema
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_optionsSchema" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
@@ -398,8 +398,8 @@ de manera sencilla y, sobre todo, extensible.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;batch_processor&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;builder&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;normalizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;parser&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;renderer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;sanitizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;validator&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []]]</span></code>
 
@@ -413,20 +413,22 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_certificate">
         $certificate
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
@@ -439,13 +441,15 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
     <span class="phpdocumentor-signature__name">$certificate</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -456,14 +460,14 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_documentBags">
         $documentBags
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_documentBags" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
@@ -476,13 +480,15 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span>
     <span class="phpdocumentor-signature__name">$documentBags</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
     
+    
+
     
 
     
@@ -493,14 +499,14 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_emisor">
         $emisor
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_emisor" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
@@ -513,13 +519,15 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$emisor</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
+    
+
     
 
     
@@ -530,14 +538,14 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_file">
         $file
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
@@ -550,13 +558,15 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$file</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -592,7 +602,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -609,7 +619,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -687,7 +697,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -700,7 +710,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
             </section>
 
 </article>
@@ -843,7 +853,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -853,7 +863,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$certificate</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1006,6 +1016,8 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

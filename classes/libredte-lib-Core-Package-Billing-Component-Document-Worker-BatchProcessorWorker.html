@@ -186,7 +186,7 @@
     BatchProcessorWorker
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractWorker">AbstractWorker</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractWorker">AbstractWorker</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -200,6 +200,9 @@
             implements
                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface">BatchProcessorWorkerInterface</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <abbr title="\Derafu\Backbone\Trait\StrategiesAwareTrait">StrategiesAwareTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -210,7 +213,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -221,6 +224,26 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Worker">Worker</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;batch_processor&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -331,19 +354,19 @@ procesamiento en lote que se haya solicitado.</dd>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_optionsSchema">
         $optionsSchema
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_optionsSchema" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -351,8 +374,8 @@ procesamiento en lote que se haya solicitado.</dd>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;spreadsheet.csv&#039;], &#039;complete&#039; =&gt; [&#039;types&#039; =&gt; &#039;bool&#039;, &#039;default&#039; =&gt; true], &#039;stamp&#039; =&gt; [&#039;types&#039; =&gt; &#039;bool&#039;, &#039;default&#039; =&gt; true]]</span></code>
 
@@ -362,33 +385,35 @@ procesamiento en lote que se haya solicitado.</dd>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_builderWorker">
         $builderWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_builderWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$builderWorker</span>
     </code>
 
@@ -398,33 +423,35 @@ procesamiento en lote que se haya solicitado.</dd>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_cafProvider">
         $cafProvider
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_cafProvider" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$cafProvider</span>
     </code>
 
@@ -434,38 +461,42 @@ procesamiento en lote que se haya solicitado.</dd>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_documentBagManagerWorker">
         $documentBagManagerWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_documentBagManagerWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$documentBagManagerWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -493,7 +524,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -501,7 +532,7 @@ procesamiento en lote que se haya solicitado.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafProvider</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentBagManagerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builderWorker</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobs</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handlers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategies</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafProvider</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentBagManagerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builderWorker</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobs</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handlers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategies</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -532,21 +563,21 @@ procesamiento en lote que se haya solicitado.</dd>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$jobs</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$handlers</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$strategies</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">iterable&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -573,7 +604,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -624,7 +655,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
@@ -680,7 +711,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -754,6 +785,8 @@ procesamiento en lote que se haya solicitado.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

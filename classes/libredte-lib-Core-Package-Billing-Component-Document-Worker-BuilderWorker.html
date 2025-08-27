@@ -186,7 +186,7 @@
     BuilderWorker
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractWorker">AbstractWorker</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractWorker">AbstractWorker</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -200,6 +200,9 @@
             implements
                             <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <abbr title="\Derafu\Backbone\Trait\StrategiesAwareTrait">StrategiesAwareTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -210,7 +213,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -221,6 +224,26 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Worker">Worker</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;builder&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -303,32 +326,34 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_documentBagManager">
         $documentBagManager
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#property_documentBagManager" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$documentBagManager</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -356,7 +381,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -421,7 +446,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
@@ -473,7 +498,7 @@ construir.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -546,6 +571,8 @@ construir.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

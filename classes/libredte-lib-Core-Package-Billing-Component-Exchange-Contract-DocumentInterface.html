@@ -276,7 +276,7 @@ sobre.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentInterface.html#method_getMetadata">getMetadata()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Support\Store\Contract\BagInterface">BagInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Container\Contract\BagInterface">BagInterface</abbr>    </span>
 </dt>
 <dd>Obtiene los metadatos del documento.</dd>
 
@@ -592,7 +592,7 @@ sobre.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getMetadata</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\BagInterface">BagInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getMetadata</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Container\Contract\BagInterface">BagInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -608,7 +608,7 @@ transporte usado para el intercambio.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\BagInterface">BagInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Container\Contract\BagInterface">BagInterface</abbr></span>
             </section>
 
 </article>
@@ -673,7 +673,7 @@ transporte usado para el intercambio.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setMetadata</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\BagInterface">BagInterface</abbr>|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$metadata</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setMetadata</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Container\Contract\BagInterface">BagInterface</abbr>|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$metadata</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -683,7 +683,7 @@ transporte usado para el intercambio.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$metadata</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Support\Store\Contract\BagInterface">BagInterface</abbr>|array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Container\Contract\BagInterface">BagInterface</abbr>|array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -738,6 +738,8 @@ transporte usado para el intercambio.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

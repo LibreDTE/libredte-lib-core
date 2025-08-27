@@ -181,7 +181,7 @@
     Application
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Application">Application</abbr>
+        extends <abbr title="\Derafu\Kernel\MicroKernel">MicroKernel</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -191,10 +191,15 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html"><abbr title="\libredte\lib\Core\Contract\ApplicationInterface">ApplicationInterface</abbr></a>                    </span>
     
     </h2>
 
 <div class="phpdocumentor-label-line">
+
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
 
 
 </div>
@@ -202,7 +207,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -224,12 +229,55 @@
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/libredte-lib-Core-Application.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html"><abbr title="\libredte\lib\Core\Contract\ApplicationInterface">ApplicationInterface</abbr></a></dt><dd>Interfaz que define los métodos que debe implementar la aplicación de
+LibreDTE.</dd>    </dl>
 
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/libredte-lib-Core-Application.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -protected">
+    <a class="" href="classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES">CONFIG_FILES</a>
+    <span>
+        &nbsp;= [&#039;services.yaml&#039; =&gt; &#039;yaml&#039;]                            </span>
+</dt>
+<dd>Archivos de configuración.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -protected">
+    <a class="" href="classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS">CONFIG_LOADERS</a>
+    <span>
+        &nbsp;= [\Symfony\Component\DependencyInjection\Loader\PhpFileLoader::class, \Symfony\Component\DependencyInjection\Loader\YamlFileLoader::class]                            </span>
+</dt>
+<dd>Cargadores de archivos de configuración.</dd>
+
+    </dl>
 
 
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Application.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Application.html#property_instance">$instance</a>
+    <span>
+                        &nbsp;: self            </span>
+</dt>
+<dd>Instancia de la aplicación.</dd>
+
+    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -238,19 +286,157 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Application.html#method_getBillingPackage">getBillingPackage()</a>
+    <a class="" href="classes/libredte-lib-Core-Application.html#method_getInstance">getInstance()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a>    </span>
+                                &nbsp;: self    </span>
 </dt>
-<dd>Entrega el paquete &quot;billing&quot;.</dd>
+<dd>Entrega la instancia de la aplicación.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Application.html#method_getPackageRegistry">getPackageRegistry()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-PackageRegistry.html"><abbr title="\libredte\lib\Core\PackageRegistry">PackageRegistry</abbr></a>    </span>
+</dt>
+<dd>Entrega el registro de paquetes de la aplicación.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Application.html#method_getService">getService()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Entrega un servicio de la aplicación.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Application.html#method_configure">configure()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Configura el contenedor de dependencias.</dd>
 
     </dl>
 
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/libredte-lib-Core-Application.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -protected ">
+    <h4 class="phpdocumentor-element__name" id="constant_CONFIG_FILES">
+        CONFIG_FILES
+        <a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Archivos de configuración.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">array&lt;string, string&gt;</span>
+    <span class="phpdocumentor-signature__name">CONFIG_FILES</span>
+    = <span class="phpdocumentor-signature__default-value">[&#039;services.yaml&#039; =&gt; &#039;yaml&#039;]</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -protected ">
+    <h4 class="phpdocumentor-element__name" id="constant_CONFIG_LOADERS">
+        CONFIG_LOADERS
+        <a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">64</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Cargadores de archivos de configuración.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, class-string&gt;</span>
+    <span class="phpdocumentor-signature__name">CONFIG_LOADERS</span>
+    = <span class="phpdocumentor-signature__default-value">[\Symfony\Component\DependencyInjection\Loader\PhpFileLoader::class, \Symfony\Component\DependencyInjection\Loader\YamlFileLoader::class]</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+            </section>
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Application.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+            -static                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_instance">
+        $instance
+        <a href="classes/libredte-lib-Core-Application.html#property_instance" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Instancia de la aplicación.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">self</span>
+    <span class="phpdocumentor-signature__name">$instance</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -262,25 +448,88 @@
         class="phpdocumentor-element
             -method
             -public
-                                                        "
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getBillingPackage">
-        getBillingPackage()
-        <a href="classes/libredte-lib-Core-Application.html#method_getBillingPackage" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getInstance">
+        getInstance()
+        <a href="classes/libredte-lib-Core-Application.html#method_getInstance" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el paquete &quot;billing&quot;.</p>
+        <p class="phpdocumentor-summary">Entrega la instancia de la aplicación.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getBillingPackage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getInstance</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|<abbr title="\Derafu\Kernel\Contract\EnvironmentInterface">EnvironmentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$environment</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;dev&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$debug</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Este método se asegura de entregar una única instancia de la aplicación
+mediante el patrón singleton.</p>
+<p>Al utilizar inyección de dependencias y registrar la aplicación de
+LibreDTE en un contenedor de dependencias no será necesario, ni
+recomendado, utilizar este método. En ese caso se debe utilizar solo el
+contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$environment</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|<abbr title="\Derafu\Kernel\Contract\EnvironmentInterface">EnvironmentInterface</abbr></span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;dev&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$debug</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getPackageRegistry">
+        getPackageRegistry()
+        <a href="classes/libredte-lib-Core-Application.html#method_getPackageRegistry" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">96</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el registro de paquetes de la aplicación.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getPackageRegistry</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-PackageRegistry.html"><abbr title="\libredte\lib\Core\PackageRegistry">PackageRegistry</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -293,9 +542,106 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-PackageRegistry.html"><abbr title="\libredte\lib\Core\PackageRegistry">PackageRegistry</abbr></a></span>
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getService">
+        getService()
+        <a href="classes/libredte-lib-Core-Application.html#method_getService" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">107</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega un servicio de la aplicación.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getService</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_configure">
+        configure()
+        <a href="classes/libredte-lib-Core-Application.html#method_configure" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">75</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Configura el contenedor de dependencias.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">configure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator">ContainerConfigurator</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$configurator</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\DependencyInjection\ContainerBuilder">ContainerBuilder</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$container</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$configurator</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator">ContainerConfigurator</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$container</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Symfony\Component\DependencyInjection\ContainerBuilder">ContainerBuilder</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
 </article>
             </section>
 
@@ -335,6 +681,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -402,15 +750,33 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Application.html#toc-methods">Methods</a></li>
+                                        <li><a href="classes/libredte-lib-Core-Application.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Application.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Application.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES">CONFIG_FILES</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS">CONFIG_LOADERS</a></li>
+                                            </ul>
+                </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Application.html#property_instance">$instance</a></li>
+                                            </ul>
+                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getBillingPackage">getBillingPackage()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getInstance">getInstance()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getPackageRegistry">getPackageRegistry()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getService">getService()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_configure">configure()</a></li>
                                     </ul>
             </li>
                     </ul>

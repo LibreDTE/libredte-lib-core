@@ -185,7 +185,7 @@
     OwnershipTransferComponent
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractComponent">AbstractComponent</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractComponent">AbstractComponent</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -209,7 +209,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -220,6 +220,23 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Component">Component</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;ownership_transfer&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -292,7 +309,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -326,7 +343,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php"><a href="files/src-package-billing-component-ownershiptransfer-ownershiptransfercomponent.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/OwnershipTransferComponent.php">OwnershipTransferComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -389,6 +406,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

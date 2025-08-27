@@ -188,7 +188,7 @@
     SendXmlDocumentJob
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractJob">AbstractJob</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractJob">AbstractJob</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -200,7 +200,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr>                    </span>
     
     </h2>
 
@@ -212,7 +212,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -223,6 +223,29 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Job">Job</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;send_xml_document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $worker: &#039;sii_lazy&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;integration&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -240,7 +263,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
 
 
 
@@ -260,9 +283,9 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlComponent">$xmlComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlService">$xmlService</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>            </span>
 </dt>
 
     </dl>
@@ -304,7 +327,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#method_uploadXml">uploadXml()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
 <dd>Sube el archivo XML al SII y retorna la respuesta de este.</dd>
 
@@ -333,32 +356,34 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_authenticateJob">
         $authenticateJob
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_authenticateJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a></span>
     <span class="phpdocumentor-signature__name">$authenticateJob</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -369,32 +394,34 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_xmlComponent">
-        $xmlComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_xmlService">
+        $xmlService
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlService" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$xmlComponent</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$xmlService</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -422,7 +449,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -430,7 +457,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$authenticateJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob">AuthenticateJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$authenticateJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -446,8 +473,8 @@
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$xmlComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$xmlService</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -474,7 +501,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -482,7 +509,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">send</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">send</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -501,7 +528,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$doc</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Documento XML que se desea enviar al SII.</p>
@@ -592,7 +619,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">299</span>
 
     </aside>
 
@@ -656,7 +683,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">339</span>
+    <span class="phpdocumentor-element-found-in__line">341</span>
 
     </aside>
 
@@ -711,7 +738,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">219</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
@@ -719,7 +746,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">uploadXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">uploadXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -785,7 +812,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Respuesta del SII al enviar el XML.</p>
 </section>
@@ -807,7 +834,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
     </aside>
 
@@ -904,6 +931,8 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -980,7 +1009,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_authenticateJob">$authenticateJob</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlComponent">$xmlComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-SendXmlDocumentJob.html#property_xmlService">$xmlService</a></li>
                                             </ul>
                 </li>
             

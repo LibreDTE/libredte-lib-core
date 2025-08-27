@@ -188,7 +188,7 @@
     NormalizeDataPostDocumentNormalizationJob
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractJob">AbstractJob</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractJob">AbstractJob</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -200,7 +200,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr>                    </span>
     
     </h2>
 
@@ -212,7 +212,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizedatapostdocumentnormalizationjob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">NormalizeDataPostDocumentNormalizationJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -224,6 +224,29 @@ documentos tributarios.</p>
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Job">Job</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;normalize_data_post_document_normalization&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $worker: &#039;normalizer&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -241,7 +264,7 @@ documentos tributarios.</p>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr></dt>    </dl>
 
 
 
@@ -305,7 +328,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizedatapostdocumentnormalizationjob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">NormalizeDataPostDocumentNormalizationJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -356,7 +379,7 @@ específica del tipo de documento tributario.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizedatapostdocumentnormalizationjob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">NormalizeDataPostDocumentNormalizationJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -401,7 +424,7 @@ específica del tipo de documento tributario.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php"><a href="files/src-package-billing-component-document-worker-normalizer-job-normalizedatapostdocumentnormalizationjob.html"><abbr title="src/Package/Billing/Component/Document/Worker/Normalizer/Job/NormalizeDataPostDocumentNormalizationJob.php">NormalizeDataPostDocumentNormalizationJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -470,6 +493,8 @@ específica del tipo de documento tributario.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

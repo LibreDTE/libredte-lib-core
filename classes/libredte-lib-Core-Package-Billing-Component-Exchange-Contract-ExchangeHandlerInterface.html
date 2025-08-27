@@ -186,7 +186,7 @@
     ExchangeHandlerInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\HandlerInterface">HandlerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\HandlerInterface">HandlerInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -354,6 +354,8 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

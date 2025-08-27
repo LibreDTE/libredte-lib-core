@@ -186,7 +186,7 @@
     AbstractNormalizerStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -307,14 +307,14 @@ tributarios.</dd>    </dl>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_normalizeDataPostDocumentNormalizationJob">
         $normalizeDataPostDocumentNormalizationJob
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_normalizeDataPostDocumentNormalizationJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
@@ -326,13 +326,15 @@ tributarios.</dd>    </dl>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPostDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob">NormalizeDataPostDocumentNormalizationJob</abbr></a></span>
     <span class="phpdocumentor-signature__name">$normalizeDataPostDocumentNormalizationJob</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -343,14 +345,14 @@ tributarios.</dd>    </dl>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_normalizeDataPreDocumentNormalizationJob">
         $normalizeDataPreDocumentNormalizationJob
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractNormalizerStrategy.html#property_normalizeDataPreDocumentNormalizationJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractnormalizerstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractNormalizerStrategy.php">AbstractNormalizerStrategy.php</abbr></a></abbr>
@@ -362,13 +364,15 @@ tributarios.</dd>    </dl>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob">NormalizeDataPreDocumentNormalizationJob</abbr></a></span>
     <span class="phpdocumentor-signature__name">$normalizeDataPreDocumentNormalizationJob</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -517,6 +521,8 @@ normalizar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

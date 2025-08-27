@@ -306,14 +306,14 @@ emitir un documento tributario.</dd>    </dl>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_cafFakerWorker">
         $cafFakerWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
@@ -325,13 +325,15 @@ emitir un documento tributario.</dd>    </dl>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$cafFakerWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -342,14 +344,14 @@ emitir un documento tributario.</dd>    </dl>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_folios">
         $folios
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
@@ -362,8 +364,8 @@ emitir un documento tributario.</dd>    </dl>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;int, array&lt;int, int&gt;&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;int, array&lt;int, int&gt;&gt;</span>
     <span class="phpdocumentor-signature__name">$folios</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
@@ -376,6 +378,8 @@ que fue entregado.</p>
 </section>
 
     
+    
+
     
 
     
@@ -545,6 +549,8 @@ que fue entregado.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

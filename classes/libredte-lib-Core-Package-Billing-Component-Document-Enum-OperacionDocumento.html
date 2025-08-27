@@ -208,14 +208,12 @@
 
             <p class="phpdocumentor-summary">Enum de la operación de los documentos en libros.</p>
 
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-OperacionDocumento.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -271,7 +269,6 @@
 <dd>Entrega el nombre de la operación.</dd>
 
     </dl>
-
 
 
 
@@ -459,6 +456,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

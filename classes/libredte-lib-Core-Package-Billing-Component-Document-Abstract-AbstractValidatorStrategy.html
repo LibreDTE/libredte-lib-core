@@ -186,7 +186,7 @@
     AbstractValidatorStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -216,8 +216,8 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">Clase abstracta (base) para las estrategias de validación de
-documentos tributarios.</p>
+            <p class="phpdocumentor-summary">Clase abstracta (base) para las estrategias de validación de documentos
+tributarios.</p>
 
 
 
@@ -415,6 +415,8 @@ validar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -186,7 +186,7 @@
     MandatarioManagerWorkerInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -236,7 +236,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioManagerWorkerInterface.html#method_createFakeCertificate">createFakeCertificate()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>    </span>
 </dt>
 <dd>Genera y devuelve un certificado ficticio para el mandatario.</dd>
 
@@ -282,7 +282,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">createFakeCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mandatario</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">createFakeCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mandatario</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -305,7 +305,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Certificado ficticio del mandatario.</p>
 </section>
@@ -335,7 +335,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">createFromCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">createFromCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -345,7 +345,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$certificate</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -400,6 +400,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -192,6 +192,7 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-contract.html"><abbr title="\libredte\lib\Core\Contract">Contract</abbr></a></dt>
             <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-exception.html"><abbr title="\libredte\lib\Core\Exception">Exception</abbr></a></dt>
             <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package.html"><abbr title="\libredte\lib\Core\Package">Package</abbr></a></dt>
     </dl>
@@ -203,7 +204,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Application.html"><abbr title="\libredte\lib\Core\Application">Application</abbr></a></dt><dd>Clase principal de la aplicación.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-ServiceRegistry.html"><abbr title="\libredte\lib\Core\ServiceRegistry">ServiceRegistry</abbr></a></dt><dd>Registro de servicios de la aplicación.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Application.html"><abbr title="\libredte\lib\Core\Application">Application</abbr></a></dt><dd>Clase principal de la aplicación.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-PackageRegistry.html"><abbr title="\libredte\lib\Core\PackageRegistry">PackageRegistry</abbr></a></dt><dd>Registro de paquetes de la aplicación.</dd>    </dl>
 
 
 
@@ -251,6 +252,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -297,14 +297,14 @@ los datos que falten de un emisor al emitir un documento.</p>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_emisorFactory">
         $emisorFactory
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-FakeEmisorProvider.html#property_emisorFactory" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Service/FakeEmisorProvider.php"><a href="files/src-package-billing-component-tradingparties-service-fakeemisorprovider.html"><abbr title="src/Package/Billing/Component/TradingParties/Service/FakeEmisorProvider.php">FakeEmisorProvider.php</abbr></a></abbr>
@@ -316,13 +316,15 @@ los datos que falten de un emisor al emitir un documento.</p>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$emisorFactory</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -477,6 +479,8 @@ con los datos actualizados si se encontraron.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

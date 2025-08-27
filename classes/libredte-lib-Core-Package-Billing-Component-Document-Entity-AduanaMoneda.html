@@ -186,7 +186,7 @@
     AduanaMoneda
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity">Entity</abbr>
+        extends <abbr title="\Derafu\Repository\Entity">Entity</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -259,7 +259,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaMoneda.html#method_getCurrency">getCurrency()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Enum\Currency">Currency</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Enum\Currency">Currency</abbr>    </span>
 </dt>
 <dd>Obtiene la instancia de la moneda asociada a la moneda de aduaba.</dd>
 
@@ -377,7 +377,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCurrency</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Enum\Currency">Currency</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getCurrency</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Enum\Currency">Currency</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -393,7 +393,7 @@ moneda ISO 4217 XXX.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Enum\Currency">Currency</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Enum\Currency">Currency</abbr></span>
             </section>
 
 </article>
@@ -435,6 +435,8 @@ moneda ISO 4217 XXX.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

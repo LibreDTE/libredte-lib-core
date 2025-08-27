@@ -245,27 +245,6 @@
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-Receiver.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_endpoints">$endpoints</a>
-    <span>
-                        &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyEndpointInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\PartyEndpointInterface">PartyEndpointInterface</abbr></a>&gt;            </span>
-</dt>
-<dd>Listado de puntos de recepción de documentos del participante.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_identifier">$identifier</a>
-    <span>
-                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyIdentifierInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\PartyIdentifierInterface">PartyIdentifierInterface</abbr></a>            </span>
-</dt>
-<dd>Identificador único del participante.</dd>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -316,87 +295,6 @@ recepción de documentos del participante.</dd>
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-Receiver.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_endpoints">
-        $endpoints
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_endpoints" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractParty.php"><a href="files/src-package-billing-component-exchange-abstract-abstractparty.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractParty.php">AbstractParty.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">49</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Listado de puntos de recepción de documentos del participante.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyEndpointInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\PartyEndpointInterface">PartyEndpointInterface</abbr></a>&gt;</span>
-    <span class="phpdocumentor-signature__name">$endpoints</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_identifier">
-        $identifier
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_identifier" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractParty.php"><a href="files/src-package-billing-component-exchange-abstract-abstractparty.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractParty.php">AbstractParty.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Identificador único del participante.</p>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyIdentifierInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\PartyIdentifierInterface">PartyIdentifierInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$identifier</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -661,6 +559,8 @@ recepción de documentos del participante.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -728,18 +628,10 @@ recepción de documentos del participante.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-Receiver.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-Receiver.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-Receiver.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_endpoints">$endpoints</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#property_identifier">$identifier</a></li>
-                                            </ul>
-                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>

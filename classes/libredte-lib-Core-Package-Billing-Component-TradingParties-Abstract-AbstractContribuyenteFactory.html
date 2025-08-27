@@ -185,9 +185,6 @@
         <h2 class="phpdocumentor-content__title">
     AbstractContribuyenteFactory
 
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractFactory">AbstractFactory</abbr>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -196,9 +193,6 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\FactoryInterface">FactoryInterface</abbr>                    </span>
     
     </h2>
 
@@ -212,7 +206,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Abstract/AbstractContribuyenteFactory.php"><a href="files/src-package-billing-component-tradingparties-abstract-abstractcontribuyentefactory.html"><abbr title="src/Package/Billing/Component/TradingParties/Abstract/AbstractContribuyenteFactory.php">AbstractContribuyenteFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -235,13 +229,6 @@ emisores y receptores de documentos tributarios.</p>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Abstract-AbstractContribuyenteFactory.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\FactoryInterface">FactoryInterface</abbr></dt>    </dl>
 
 
 
@@ -291,7 +278,7 @@ emisores y receptores de documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Abstract/AbstractContribuyenteFactory.php"><a href="files/src-package-billing-component-tradingparties-abstract-abstractcontribuyentefactory.html"><abbr title="src/Package/Billing/Component/TradingParties/Abstract/AbstractContribuyenteFactory.php">AbstractContribuyenteFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -365,6 +352,8 @@ emisores y receptores de documentos tributarios.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

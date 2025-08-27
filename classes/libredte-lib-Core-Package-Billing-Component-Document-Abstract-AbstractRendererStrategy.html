@@ -186,7 +186,7 @@
     AbstractRendererStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -255,9 +255,9 @@ tributarios utilizando plantillas.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_templateComponent">$templateComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_renderer">$renderer</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\TemplateComponentInterface">TemplateComponentInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Derafu\Renderer\Contract\RendererInterface">RendererInterface</abbr>            </span>
 </dt>
 
     </dl>
@@ -282,7 +282,7 @@ tributarios utilizando plantillas.</p>
 <dd>Realiza el renderizado del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createData">createData()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions">createDataAndOptions()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -306,14 +306,14 @@ tributarios utilizando plantillas.</p>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_templateComponent">
-        $templateComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_templateComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_renderer">
+        $renderer
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_renderer" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractrendererstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php">AbstractRendererStrategy.php</abbr></a></abbr>
@@ -325,13 +325,15 @@ tributarios utilizando plantillas.</p>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\TemplateComponentInterface">TemplateComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$templateComponent</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Renderer\Contract\RendererInterface">RendererInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$renderer</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -366,7 +368,7 @@ tributarios utilizando plantillas.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\TemplateComponentInterface">TemplateComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$templateComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Renderer\Contract\RendererInterface">RendererInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$renderer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -375,8 +377,8 @@ tributarios utilizando plantillas.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$templateComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\TemplateComponentInterface">TemplateComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$renderer</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Renderer\Contract\RendererInterface">RendererInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -451,15 +453,15 @@ renderizar.</p>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_createData">
-        createData()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createData" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_createDataAndOptions">
+        createDataAndOptions()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractrendererstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php">AbstractRendererStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -467,7 +469,7 @@ renderizar.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">createDataAndOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -539,6 +541,8 @@ renderizar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -614,7 +618,7 @@ renderizar.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_templateComponent">$templateComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_renderer">$renderer</a></li>
                                             </ul>
                 </li>
             
@@ -623,7 +627,7 @@ renderizar.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_render">render()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createData">createData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions">createDataAndOptions()</a></li>
                                     </ul>
             </li>
                     </ul>

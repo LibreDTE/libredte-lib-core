@@ -283,7 +283,7 @@ o intercambio entre contribuyentes.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SobreEnvioInterface.html#method_getXmlDocument">getXmlDocument()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
 <dd>Entrega el documento XML asociado al sobre de documentos.</dd>
 
@@ -612,7 +612,7 @@ cada tipo.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -625,7 +625,7 @@ cada tipo.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
             </section>
 
 </article>
@@ -708,7 +708,7 @@ cada tipo.</p>
                     <span class="phpdocumentor-tag__name">see</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface::saveXml()">XmlInterface::saveXml()</abbr></span>
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface::saveXml()">XmlDocumentInterface::saveXml()</abbr></span>
                                         
                                              
                                     </dd>
@@ -760,6 +760,8 @@ cada tipo.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

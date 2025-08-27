@@ -186,7 +186,7 @@
     Comuna
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity">Entity</abbr>
+        extends <abbr title="\Derafu\Repository\Entity">Entity</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -225,7 +225,7 @@
         </h5>
                     <dl class="phpdocumentor-argument-list">
     <dt class="phpdocumentor-argument-list__entry">
-        #[<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping\Entity">Entity</abbr>]
+        #[<abbr title="\Derafu\Repository\Mapping\Entity">Entity</abbr>]
     </dt>
         <dd class="phpdocumentor-argument-list__entry">
         $repositoryClass: \libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository::class
@@ -441,7 +441,7 @@ encuentra.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Entity/Comuna.php"><a href="files/src-package-billing-component-document-entity-comuna.html"><abbr title="src/Package/Billing/Component/Document/Entity/Comuna.php">Comuna.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -454,11 +454,12 @@ encuentra.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Si el argumento es una cadena no numérica, intenta encontrar una dirección
-regional correspondiente en el arreglo de direcciones. Si no se encuentra,
-devuelve la cadena original en mayúsculas. Si el argumento es numérico,
-asume que es un código de sucursal y devuelve un formato de sucursal. Si
-el argumento es falso o vacío, devuelve 'N.N.' como valor por defecto.</p>
+        <section class="phpdocumentor-description"><p>Si el argumento es una cadena no numérica, intenta encontrar una
+dirección regional correspondiente en el arreglo de direcciones. Si no se
+encuentra, devuelve la cadena original en mayúsculas. Si el argumento es
+numérico, asume que es un código de sucursal y devuelve un formato de
+sucursal. Si el argumento es falso o vacío, devuelve 'N.N.' como valor
+por defecto.</p>
 </section>
 
     
@@ -555,6 +556,8 @@ encuentra en el arreglo, o 'N.N.' si la entrada es falsa o vacía.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

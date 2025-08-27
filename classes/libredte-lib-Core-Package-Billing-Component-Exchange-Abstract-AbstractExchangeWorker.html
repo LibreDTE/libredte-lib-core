@@ -186,7 +186,7 @@
     AbstractExchangeWorker
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractWorker">AbstractWorker</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractWorker">AbstractWorker</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -198,7 +198,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
     
     </h2>
 
@@ -240,7 +240,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr></dt>    </dl>
 
 
 
@@ -362,6 +362,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

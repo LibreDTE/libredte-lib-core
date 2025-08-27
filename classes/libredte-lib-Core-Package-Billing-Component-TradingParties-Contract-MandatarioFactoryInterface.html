@@ -184,9 +184,6 @@
     <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
     MandatarioFactoryInterface
-            <span class="phpdocumentor-element__extends">
-            extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\FactoryInterface">FactoryInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -198,7 +195,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Contract/MandatarioFactoryInterface.php"><a href="files/src-package-billing-component-tradingparties-contract-mandatariofactoryinterface.html"><abbr title="src/Package/Billing/Component/TradingParties/Contract/MandatarioFactoryInterface.php">MandatarioFactoryInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -267,7 +264,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Contract/MandatarioFactoryInterface.php"><a href="files/src-package-billing-component-tradingparties-contract-mandatariofactoryinterface.html"><abbr title="src/Package/Billing/Component/TradingParties/Contract/MandatarioFactoryInterface.php">MandatarioFactoryInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -340,6 +337,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -189,7 +189,7 @@
     EstandarParserStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -213,11 +213,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Estrategia &quot;billing.document.parser.strategy:form.estandar&quot;.</p>
+            <p class="phpdocumentor-summary">Estrategia &quot;billing.document.parser#strategy:form.estandar&quot;.</p>
 
 
     <section class="phpdocumentor-description"><p>Transforma los datos recibidos a través de un formulario de la vista estándar
@@ -227,6 +227,29 @@ de emisión de DTE a un arreglo PHP con la estructura oficial del SII.</p>
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Strategy">Strategy</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;form.estandar&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $worker: &#039;parser&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -259,9 +282,9 @@ documentos tributarios.</dd>    </dl>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent">$entityComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_repositoryManager">$repositoryManager</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>            </span>
 </dt>
 
     </dl>
@@ -402,32 +425,34 @@ documentos tributarios.</dd>    </dl>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
-        $entityComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_repositoryManager">
+        $repositoryManager
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_repositoryManager" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$entityComponent</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$repositoryManager</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -455,7 +480,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -463,7 +488,7 @@ documentos tributarios.</dd>    </dl>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -472,8 +497,8 @@ documentos tributarios.</dd>    </dl>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$repositoryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -500,7 +525,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -555,7 +580,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">757</span>
+    <span class="phpdocumentor-element-found-in__line">759</span>
 
     </aside>
 
@@ -621,7 +646,7 @@ y tasa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">806</span>
+    <span class="phpdocumentor-element-found-in__line">808</span>
 
     </aside>
 
@@ -687,7 +712,7 @@ derecho a un crédito del 65%.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">630</span>
+    <span class="phpdocumentor-element-found-in__line">632</span>
 
     </aside>
 
@@ -785,7 +810,7 @@ boleta.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">578</span>
+    <span class="phpdocumentor-element-found-in__line">580</span>
 
     </aside>
 
@@ -853,7 +878,7 @@ cambio (<code class="prettyprint">TpoCambio</code>).</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">845</span>
+    <span class="phpdocumentor-element-found-in__line">847</span>
 
     </aside>
 
@@ -938,7 +963,7 @@ descuento.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">914</span>
+    <span class="phpdocumentor-element-found-in__line">916</span>
 
     </aside>
 
@@ -1005,7 +1030,7 @@ fecha, código de referencia y razón de referencia.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">401</span>
+    <span class="phpdocumentor-element-found-in__line">403</span>
 
     </aside>
 
@@ -1073,7 +1098,7 @@ pagos.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">516</span>
+    <span class="phpdocumentor-element-found-in__line">518</span>
 
     </aside>
 
@@ -1141,7 +1166,7 @@ servicio.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">453</span>
+    <span class="phpdocumentor-element-found-in__line">455</span>
 
     </aside>
 
@@ -1207,7 +1232,7 @@ destino), esta se incluye en la sección de transporte del DTE.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -1282,7 +1307,7 @@ asociativo. Si los datos ya son un arreglo, los retorna sin cambios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">963</span>
+    <span class="phpdocumentor-element-found-in__line">965</span>
 
     </aside>
 
@@ -1362,7 +1387,7 @@ la tasa de IVA predeterminada asociada al tipo de documento especificado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
@@ -1422,7 +1447,7 @@ datos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">233</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
@@ -1493,7 +1518,7 @@ generales que se requieren para procesar el documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
     </aside>
 
@@ -1593,6 +1618,8 @@ directo.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -1668,7 +1695,7 @@ directo.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_entityComponent">$entityComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#property_repositoryManager">$repositoryManager</a></li>
                                             </ul>
                 </li>
             

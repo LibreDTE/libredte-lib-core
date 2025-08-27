@@ -202,7 +202,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy">BoletaSenderStrategy</abbr></a></dt><dd>Envío de boletas al SII usando.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy">DteSenderStrategy</abbr></a></dt><dd>Envío de documentos tributarios (excepto boletas) al SII.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy">BoletaSenderStrategy</abbr></a></dt><dd>Envío de boletas al SII.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy">DteSenderStrategy</abbr></a></dt><dd>Envío de documentos tributarios (excepto boletas) al SII.</dd>    </dl>
 
 
 
@@ -250,6 +250,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -202,7 +202,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-JsonParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy">JsonParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser.strategy:default.json&quot;.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy">XmlParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser.strategy:default.xml&quot;.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-YamlParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy">YamlParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser.strategy:default.yaml&quot;.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-JsonParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy">JsonParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser#strategy:default.json&quot;.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-XmlParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy">XmlParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser#strategy:default.xml&quot;.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Default-YamlParserStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy">YamlParserStrategy</abbr></a></dt><dd>Estrategia &quot;billing.document.parser#strategy:default.yaml&quot;.</dd>    </dl>
 
 
 
@@ -250,6 +250,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

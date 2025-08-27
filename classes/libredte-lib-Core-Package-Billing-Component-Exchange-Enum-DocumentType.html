@@ -208,8 +208,8 @@
 
             <p class="phpdocumentor-summary">Define los tipos de documentos que se pueden intercambiar con LibreDTE.</p>
 
-
-    <section class="phpdocumentor-description"><p>Este enum lista los tipos de documentos que se pueden intercambiar en los
+        
+            <section class="phpdocumentor-description"><p>Este enum lista los tipos de documentos que se pueden intercambiar en los
 sobres. Como un sobre debe contener documentos del mismo tipo, este atributo
 se asigna al sobre, no al documento.</p>
 <p>Cada tipo de documento tiene una relación específica con uno o más procesos
@@ -230,7 +230,7 @@ el futuro si surgen nuevas necesidades o regulaciones.</p>
 <p>Para la definición de las URN se utilizó RFC 4198.</p>
 </section>
 
-
+        
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Enum-DocumentType.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
@@ -247,9 +247,7 @@ el futuro si surgen nuevas necesidades o regulaciones.</p>
                                             </dl>
 
 
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Enum-DocumentType.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -441,7 +439,6 @@ utilizado en la sección de referencias de un DTE.</dd>
 <dd>Intenta obtener un tipo de documento a partir de un código DTE chileno.</dd>
 
     </dl>
-
 
 
 
@@ -1279,6 +1276,8 @@ si no existe un mapeo.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

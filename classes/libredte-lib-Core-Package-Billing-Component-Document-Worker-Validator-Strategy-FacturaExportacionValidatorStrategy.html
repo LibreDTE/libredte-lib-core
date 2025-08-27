@@ -212,7 +212,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Validator/Strategy/FacturaExportacionValidatorStrategy.php"><a href="files/src-package-billing-component-document-worker-validator-strategy-facturaexportacionvalidatorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Validator/Strategy/FacturaExportacionValidatorStrategy.php">FacturaExportacionValidatorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -223,6 +223,29 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Validator-Strategy-FacturaExportacionValidatorStrategy.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Strategy">Strategy</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;factura_exportacion&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $worker: &#039;validator&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -344,7 +367,7 @@ validar.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Validator/Strategy/FacturaExportacionValidatorStrategy.php"><a href="files/src-package-billing-component-document-worker-validator-strategy-facturaexportacionvalidatorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Validator/Strategy/FacturaExportacionValidatorStrategy.php">FacturaExportacionValidatorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -413,6 +436,8 @@ validar.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

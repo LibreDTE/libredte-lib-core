@@ -186,7 +186,7 @@
     ReceiverWorkerInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Foundation\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>,                             <abbr title="\Derafu\Backbone\Contract\HandlersAwareInterface">HandlersAwareInterface</abbr>,                             <abbr title="\Derafu\Backbone\Contract\StrategiesAwareInterface">StrategiesAwareInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -198,7 +198,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-receiverworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php">ReceiverWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -275,7 +275,7 @@ estrategia definida en la bolsa.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-receiverworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php">ReceiverWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -339,7 +339,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-receiverworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ReceiverWorkerInterface.php">ReceiverWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -421,6 +421,8 @@ resultado contiene un sobre con el estado de la recepción.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

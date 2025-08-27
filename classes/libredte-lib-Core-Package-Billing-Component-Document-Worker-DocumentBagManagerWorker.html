@@ -186,7 +186,7 @@
     DocumentBagManagerWorker
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Foundation\Abstract\AbstractWorker">AbstractWorker</abbr>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractWorker">AbstractWorker</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -210,7 +210,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -221,6 +221,26 @@
 
 
 
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Worker">Worker</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;document_bag_manager&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $component: &#039;document&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;billing&#039;
+    </dd>
+    </dl>
+            </section>
 
 
 
@@ -271,12 +291,6 @@ tributario.</dd>    </dl>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_entityComponent">$entityComponent</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_normalizerWorker">$normalizerWorker</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-NormalizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface">NormalizerWorkerInterface</abbr></a>            </span>
@@ -295,6 +309,12 @@ tributario.</dd>    </dl>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_repositoryManager">$repositoryManager</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_sanitizerWorker">$sanitizerWorker</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SanitizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface">SanitizerWorkerInterface</abbr></a>            </span>
@@ -307,9 +327,9 @@ tributario.</dd>    </dl>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlComponent">$xmlComponent</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlService">$xmlService</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>            </span>
 </dt>
 
     </dl>
@@ -414,27 +434,27 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_documentBagClass">
         $documentBagClass
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_documentBagClass" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$documentBagClass</span>
      = <span class="phpdocumentor-signature__default-value">\libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag::class</span></code>
 
@@ -444,128 +464,22 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_builderWorker">
         $builderWorker
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_builderWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">54</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$builderWorker</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_emisorFactory">
-        $emisorFactory
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_emisorFactory" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">60</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$emisorFactory</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
-        $entityComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">59</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$entityComponent</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_normalizerWorker">
-        $normalizerWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_normalizerWorker" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
@@ -577,13 +491,15 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-NormalizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface">NormalizerWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$normalizerWorker</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$builderWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -594,32 +510,34 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_parserWorker">
-        $parserWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_parserWorker" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_emisorFactory">
+        $emisorFactory
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_emisorFactory" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ParserWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface">ParserWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$parserWorker</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$emisorFactory</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -630,86 +548,14 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_receptorFactory">
-        $receptorFactory
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_receptorFactory" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_normalizerWorker">
+        $normalizerWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_normalizerWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface">ReceptorFactoryInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$receptorFactory</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_sanitizerWorker">
-        $sanitizerWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_sanitizerWorker" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">57</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SanitizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface">SanitizerWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$sanitizerWorker</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_validatorWorker">
-        $validatorWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_validatorWorker" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
@@ -721,13 +567,15 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface">ValidatorWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$validatorWorker</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-NormalizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface">NormalizerWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$normalizerWorker</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -738,32 +586,224 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
-    <h4 class="phpdocumentor-element__name" id="property_xmlComponent">
-        $xmlComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlComponent" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_parserWorker">
+        $parserWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_parserWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$xmlComponent</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ParserWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface">ParserWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$parserWorker</span>
     </code>
 
     
     
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_receptorFactory">
+        $receptorFactory
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_receptorFactory" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface">ReceptorFactoryInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$receptorFactory</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_repositoryManager">
+        $repositoryManager
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_repositoryManager" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">61</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$repositoryManager</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_sanitizerWorker">
+        $sanitizerWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_sanitizerWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">59</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SanitizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface">SanitizerWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$sanitizerWorker</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_validatorWorker">
+        $validatorWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_validatorWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface">ValidatorWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$validatorWorker</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_xmlService">
+        $xmlService
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlService" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$xmlService</span>
+    </code>
+
+    
+    
+    
+
     
 
     
@@ -791,14 +831,14 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlComponent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builderWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ParserWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface">ParserWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parserWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-NormalizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface">NormalizerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SanitizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface">SanitizerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sanitizerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface">ValidatorWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validatorWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisorFactory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface">ReceptorFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receptorFactory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BuilderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface">BuilderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builderWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ParserWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface">ParserWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parserWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-NormalizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface">NormalizerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SanitizerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface">SanitizerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sanitizerWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface">ValidatorWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validatorWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryManager</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface">EmisorFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisorFactory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorFactoryInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface">ReceptorFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receptorFactory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -807,8 +847,8 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$xmlComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface">XmlComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$xmlService</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -849,8 +889,8 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$repositoryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -891,7 +931,7 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
@@ -899,7 +939,7 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeAll</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizeAll</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -909,7 +949,7 @@ normalizados para poder determinarlo y no está asignado previamente.</dd>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Datos de origen.</p>
@@ -952,7 +992,7 @@ de la bolsa al crearla o solo los mínimos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -1011,7 +1051,7 @@ solo la de la asignación del tipo de documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">304</span>
+    <span class="phpdocumentor-element-found-in__line">306</span>
 
     </aside>
 
@@ -1059,7 +1099,7 @@ para poder crearlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">329</span>
+    <span class="phpdocumentor-element-found-in__line">331</span>
 
     </aside>
 
@@ -1110,7 +1150,7 @@ $bag-&gt;getNormalizedData() o $bag-&gt;getParsedData().</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">207</span>
 
     </aside>
 
@@ -1160,7 +1200,7 @@ o un DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
@@ -1210,7 +1250,7 @@ indicar en las opciones de la bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">382</span>
+    <span class="phpdocumentor-element-found-in__line">384</span>
 
     </aside>
 
@@ -1259,7 +1299,7 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
     </aside>
 
@@ -1307,7 +1347,7 @@ poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">260</span>
+    <span class="phpdocumentor-element-found-in__line">262</span>
 
     </aside>
 
@@ -1380,6 +1420,8 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -1458,13 +1500,13 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_documentBagClass">$documentBagClass</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_builderWorker">$builderWorker</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_emisorFactory">$emisorFactory</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_entityComponent">$entityComponent</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_normalizerWorker">$normalizerWorker</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_parserWorker">$parserWorker</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_receptorFactory">$receptorFactory</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_repositoryManager">$repositoryManager</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_sanitizerWorker">$sanitizerWorker</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_validatorWorker">$validatorWorker</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlComponent">$xmlComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_xmlService">$xmlService</a></li>
                                             </ul>
                 </li>
             

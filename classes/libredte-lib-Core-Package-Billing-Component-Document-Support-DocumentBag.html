@@ -199,7 +199,7 @@
     
             <span class="phpdocumentor-element__extends">
             uses
-                            <abbr title="\Derafu\Lib\Core\Common\Trait\OptionsAwareTrait">OptionsAwareTrait</abbr>                    </span>
+                            <abbr title="\Derafu\Config\Trait\OptionsAwareTrait">OptionsAwareTrait</abbr>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -210,7 +210,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -272,7 +272,7 @@ Electrónico (DTE) que se generará.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_certificate">$certificate</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null            </span>
+                        &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null            </span>
 </dt>
 <dd>Certificado digital (firma electrónica) para la firma del documento.</dd>
 
@@ -352,7 +352,7 @@ documento tributario.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_xmlDocument">$xmlDocument</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null            </span>
+                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null            </span>
 </dt>
 <dd>Instancia del documento XML asociada al DTE.</dd>
 
@@ -395,7 +395,7 @@ documento tributario.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getCertificate">getCertificate()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
+                                &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
 </dt>
 <dd>Obtiene el certificado para firmar el documento.</dd>
 
@@ -570,7 +570,7 @@ son parte de la estructura oficial que utiliza el SII.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getXmlDocument">getXmlDocument()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null    </span>
+                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null    </span>
 </dt>
 <dd>Obtiene el documento XML.</dd>
 
@@ -704,19 +704,19 @@ son parte de la estructura oficial que utiliza el SII.</dd>
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_optionsSchema">
         $optionsSchema
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_optionsSchema" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -724,8 +724,8 @@ son parte de la estructura oficial que utiliza el SII.</dd>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;builder&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;normalizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;parser&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;renderer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;sanitizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;validator&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []]]</span></code>
 
@@ -739,25 +739,27 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_caf">
         $caf
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_caf" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
     </aside>
 
@@ -766,8 +768,8 @@ Electrónico (DTE) que se generará.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$caf</span>
     </code>
 
@@ -777,25 +779,27 @@ Electrónico (DTE) que se generará.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_certificate">
         $certificate
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_certificate" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">161</span>
+    <span class="phpdocumentor-element-found-in__line">160</span>
 
     </aside>
 
@@ -803,8 +807,8 @@ Electrónico (DTE) que se generará.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
     <span class="phpdocumentor-signature__name">$certificate</span>
     </code>
 
@@ -814,25 +818,27 @@ Electrónico (DTE) que se generará.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_data">
         $data
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_data" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -841,8 +847,8 @@ si existen en la bolsa.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$data</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -852,25 +858,27 @@ si existen en la bolsa.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_document">
         $document
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_document" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
@@ -878,8 +886,8 @@ si existen en la bolsa.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$document</span>
     </code>
 
@@ -889,25 +897,27 @@ si existen en la bolsa.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_documentType">
         $documentType
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_documentType" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
@@ -916,8 +926,8 @@ en esta bolsa.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$documentType</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -927,25 +937,27 @@ en esta bolsa.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_emisor">
         $emisor
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_emisor" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">183</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -953,8 +965,8 @@ en esta bolsa.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$emisor</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -964,25 +976,27 @@ en esta bolsa.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_inputData">
         $inputData
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_inputData" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -991,8 +1005,8 @@ documento tributario.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$inputData</span>
     </code>
 
@@ -1004,25 +1018,27 @@ documento tributario.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_libredteData">
         $libredteData
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_libredteData" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
@@ -1030,8 +1046,8 @@ documento tributario.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$libredteData</span>
     </code>
 
@@ -1049,25 +1065,27 @@ parte de la estructura oficial que utiliza el SII.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_normalizedData">
         $normalizedData
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_normalizedData" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">123</span>
 
     </aside>
 
@@ -1075,8 +1093,8 @@ parte de la estructura oficial que utiliza el SII.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$normalizedData</span>
     </code>
 
@@ -1092,25 +1110,27 @@ mismo que $parsedData pues no se tocarán los datos de entrada procesados.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_parsedData">
         $parsedData
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_parsedData" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -1118,8 +1138,8 @@ mismo que $parsedData pues no se tocarán los datos de entrada procesados.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$parsedData</span>
     </code>
 
@@ -1134,25 +1154,27 @@ datos no están normaliados, solo parseados.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_receptor">
         $receptor
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_receptor" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">190</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -1160,8 +1182,8 @@ datos no están normaliados, solo parseados.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a>|null</span>
     <span class="phpdocumentor-signature__name">$receptor</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -1171,25 +1193,27 @@ datos no están normaliados, solo parseados.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_timbre">
         $timbre
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_timbre" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
@@ -1197,8 +1221,8 @@ datos no están normaliados, solo parseados.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
     <span class="phpdocumentor-signature__name">$timbre</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -1208,25 +1232,27 @@ datos no están normaliados, solo parseados.</p>
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_xmlDocument">
         $xmlDocument
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_xmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">146</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -1234,13 +1260,15 @@ datos no están normaliados, solo parseados.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null</span>
     <span class="phpdocumentor-signature__name">$xmlDocument</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -1268,7 +1296,7 @@ datos no están normaliados, solo parseados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
@@ -1276,7 +1304,7 @@ datos no están normaliados, solo parseados.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\stdClass">stdClass</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parsedData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizedData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$libredteData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$caf</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receptor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;|<abbr title="\stdClass">stdClass</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parsedData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$normalizedData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$libredteData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$caf</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receptor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1317,14 +1345,14 @@ los normalizan y asignan al contenedor.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$options</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface">DataContainerInterface</abbr></span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr></span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$xmlDocument</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1338,7 +1366,7 @@ los normalizan y asignan al contenedor.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$certificate</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1393,7 +1421,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">789</span>
+    <span class="phpdocumentor-element-found-in__line">788</span>
 
     </aside>
 
@@ -1432,7 +1460,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">349</span>
+    <span class="phpdocumentor-element-found-in__line">348</span>
 
     </aside>
 
@@ -1471,7 +1499,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">417</span>
+    <span class="phpdocumentor-element-found-in__line">416</span>
 
     </aside>
 
@@ -1510,7 +1538,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">435</span>
+    <span class="phpdocumentor-element-found-in__line">434</span>
 
     </aside>
 
@@ -1518,7 +1546,7 @@ los normalizan y asignan al contenedor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1531,7 +1559,7 @@ los normalizan y asignan al contenedor.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
             </section>
 
 </article>
@@ -1549,7 +1577,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">516</span>
+    <span class="phpdocumentor-element-found-in__line">515</span>
 
     </aside>
 
@@ -1587,7 +1615,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">578</span>
+    <span class="phpdocumentor-element-found-in__line">577</span>
 
     </aside>
 
@@ -1626,7 +1654,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">453</span>
+    <span class="phpdocumentor-element-found-in__line">452</span>
 
     </aside>
 
@@ -1665,7 +1693,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">665</span>
+    <span class="phpdocumentor-element-found-in__line">664</span>
 
     </aside>
 
@@ -1704,7 +1732,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">618</span>
+    <span class="phpdocumentor-element-found-in__line">617</span>
 
     </aside>
 
@@ -1744,7 +1772,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">637</span>
+    <span class="phpdocumentor-element-found-in__line">636</span>
 
     </aside>
 
@@ -1783,7 +1811,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">657</span>
+    <span class="phpdocumentor-element-found-in__line">656</span>
 
     </aside>
 
@@ -1822,7 +1850,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">479</span>
+    <span class="phpdocumentor-element-found-in__line">478</span>
 
     </aside>
 
@@ -1861,7 +1889,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">495</span>
+    <span class="phpdocumentor-element-found-in__line">494</span>
 
     </aside>
 
@@ -1900,7 +1928,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">534</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
@@ -1939,7 +1967,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">730</span>
+    <span class="phpdocumentor-element-found-in__line">729</span>
 
     </aside>
 
@@ -1978,7 +2006,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">673</span>
+    <span class="phpdocumentor-element-found-in__line">672</span>
 
     </aside>
 
@@ -2017,7 +2045,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">279</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -2056,7 +2084,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">333</span>
+    <span class="phpdocumentor-element-found-in__line">332</span>
 
     </aside>
 
@@ -2096,7 +2124,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">315</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -2135,7 +2163,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">357</span>
+    <span class="phpdocumentor-element-found-in__line">356</span>
 
     </aside>
 
@@ -2174,7 +2202,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">296</span>
 
     </aside>
 
@@ -2213,7 +2241,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">341</span>
+    <span class="phpdocumentor-element-found-in__line">340</span>
 
     </aside>
 
@@ -2252,7 +2280,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">552</span>
+    <span class="phpdocumentor-element-found-in__line">551</span>
 
     </aside>
 
@@ -2291,7 +2319,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">381</span>
+    <span class="phpdocumentor-element-found-in__line">380</span>
 
     </aside>
 
@@ -2330,7 +2358,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">365</span>
+    <span class="phpdocumentor-element-found-in__line">364</span>
 
     </aside>
 
@@ -2369,7 +2397,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">570</span>
+    <span class="phpdocumentor-element-found-in__line">569</span>
 
     </aside>
 
@@ -2408,7 +2436,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">487</span>
+    <span class="phpdocumentor-element-found-in__line">486</span>
 
     </aside>
 
@@ -2446,7 +2474,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">372</span>
 
     </aside>
 
@@ -2485,7 +2513,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">399</span>
+    <span class="phpdocumentor-element-found-in__line">398</span>
 
     </aside>
 
@@ -2493,7 +2521,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getXmlDocument</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2506,7 +2534,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null</span>
             </section>
 
 </article>
@@ -2524,7 +2552,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">406</span>
 
     </aside>
 
@@ -2573,7 +2601,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">425</span>
+    <span class="phpdocumentor-element-found-in__line">424</span>
 
     </aside>
 
@@ -2581,7 +2609,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2591,7 +2619,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$certificate</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -2622,7 +2650,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">443</span>
+    <span class="phpdocumentor-element-found-in__line">442</span>
 
     </aside>
 
@@ -2671,7 +2699,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">461</span>
+    <span class="phpdocumentor-element-found-in__line">460</span>
 
     </aside>
 
@@ -2720,7 +2748,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">524</span>
+    <span class="phpdocumentor-element-found-in__line">523</span>
 
     </aside>
 
@@ -2769,7 +2797,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">697</span>
+    <span class="phpdocumentor-element-found-in__line">696</span>
 
     </aside>
 
@@ -2818,7 +2846,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">258</span>
 
     </aside>
 
@@ -2867,7 +2895,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">323</span>
+    <span class="phpdocumentor-element-found-in__line">322</span>
 
     </aside>
 
@@ -2917,7 +2945,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">305</span>
+    <span class="phpdocumentor-element-found-in__line">304</span>
 
     </aside>
 
@@ -2966,7 +2994,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">287</span>
+    <span class="phpdocumentor-element-found-in__line">286</span>
 
     </aside>
 
@@ -3015,7 +3043,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">542</span>
+    <span class="phpdocumentor-element-found-in__line">541</span>
 
     </aside>
 
@@ -3064,7 +3092,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">560</span>
+    <span class="phpdocumentor-element-found-in__line">559</span>
 
     </aside>
 
@@ -3113,7 +3141,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">471</span>
+    <span class="phpdocumentor-element-found-in__line">470</span>
 
     </aside>
 
@@ -3161,7 +3189,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">389</span>
+    <span class="phpdocumentor-element-found-in__line">388</span>
 
     </aside>
 
@@ -3169,7 +3197,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setXmlDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setXmlDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -3179,7 +3207,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$xmlDocument</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface">XmlInterface</abbr>|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -3210,7 +3238,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">746</span>
+    <span class="phpdocumentor-element-found-in__line">745</span>
 
     </aside>
 
@@ -3259,7 +3287,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">767</span>
+    <span class="phpdocumentor-element-found-in__line">766</span>
 
     </aside>
 
@@ -3267,7 +3295,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">withCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">withCertificate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -3277,7 +3305,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$certificate</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -3332,6 +3360,8 @@ son parte de la estructura oficial que utiliza el SII.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

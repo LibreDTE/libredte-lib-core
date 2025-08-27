@@ -209,11 +209,11 @@
             <p class="phpdocumentor-summary">Define la lista de procesos comerciales para los que se pueden intercambiar
 documentos.</p>
 
-
-    <section class="phpdocumentor-description"><p>Para la definición de las URN se utilizó RFC 4198.</p>
+        
+            <section class="phpdocumentor-description"><p>Para la definición de las URN se utilizó RFC 4198.</p>
 </section>
 
-
+        
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Enum-ProcessType.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
@@ -230,9 +230,7 @@ documentos.</p>
                                             </dl>
 
 
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Enum-ProcessType.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -339,7 +337,6 @@ documentos.</p>
 <dd>Obtiene el ID del tipo de proceso.</dd>
 
     </dl>
-
 
 
 
@@ -782,6 +779,8 @@ ventas o cualquier documento exigido por la entidad fiscal.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

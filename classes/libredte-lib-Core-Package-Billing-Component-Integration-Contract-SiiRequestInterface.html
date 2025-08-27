@@ -186,7 +186,7 @@
     SiiRequestInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Lib\Core\Common\Contract\OptionsAwareInterface">OptionsAwareInterface</abbr>                    </span>
+                            <abbr title="\Derafu\Config\Contract\OptionsAwareInterface">OptionsAwareInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -244,7 +244,7 @@ Servicio de Impuestos Internos.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getCertificate">getCertificate()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
+                                &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
 </dt>
 <dd>Obtiene el certificado digital asociado a la solicitud.</dd>
 
@@ -365,7 +365,7 @@ Servicio de Impuestos Internos.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getCertificate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -378,7 +378,7 @@ Servicio de Impuestos Internos.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
             </section>
 
 </article>
@@ -636,6 +636,8 @@ digital asignado.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

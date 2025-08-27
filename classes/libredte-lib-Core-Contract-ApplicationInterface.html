@@ -174,50 +174,36 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-service.html">Service</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-contract.html">Contract</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -class">
+    <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    TemplateDataHandler
-
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Abstract\AbstractTemplateDataHandler">AbstractTemplateDataHandler</abbr>
-    </span>
-    
-            <div class="phpdocumentor-element__package">
-            in package
+    ApplicationInterface
+                <div class="phpdocumentor-element__package">
+            in
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
                             </ul>
         </div>
-    
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterface">DataHandlerInterface</abbr>                    </span>
-    
     </h2>
 
-<div class="phpdocumentor-label-line">
-
-
-</div>
-
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php"><a href="files/src-package-billing-component-document-service-templatedatahandler.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php">TemplateDataHandler.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/ApplicationInterface.php"><a href="files/src-contract-applicationinterface.html"><abbr title="src/Contract/ApplicationInterface.php">ApplicationInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Servicio para traducir los datos de los documentos a su representación para
-ser utilizada en la renderización del documento.</p>
+            <p class="phpdocumentor-summary">Interfaz que define los métodos que debe implementar la aplicación de
+LibreDTE.</p>
 
 
+    <section class="phpdocumentor-description"><p>Esta interfaz es la mínima que se requiere. Donde cada aplicación deberá
+implementar su propia versión de la clase Application. Por defecto la
+biblioteca define una implementación de esta interfaz básica, pero que
+permite usar todas las funcionalidades incluídas en la biblioteca.</p>
+</section>
 
 
 
@@ -227,114 +213,42 @@ ser utilizada en la renderización del documento.</p>
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterface">DataHandlerInterface</abbr></dt>    </dl>
 
 
 
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_entityComponent">$entityComponent</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>            </span>
-</dt>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#method_getPackageRegistry">getPackageRegistry()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: <abbr title="\Derafu\Backbone\Contract\PackageRegistryInterface">PackageRegistryInterface</abbr>    </span>
 </dt>
-<dd>Constructor del handler.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_createHandlers">createHandlers()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Mapa de campos a handlers para los documentos tributarios electrónicos.</dd>
 
     </dl>
 
 
 
-        
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_entityComponent">
-        $entityComponent
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_entityComponent" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php"><a href="files/src-package-billing-component-document-service-templatedatahandler.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php">TemplateDataHandler.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">58</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$entityComponent</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -343,68 +257,22 @@ ser utilizada en la renderización del documento.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getPackageRegistry">
+        getPackageRegistry()
+        <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#method_getPackageRegistry" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php"><a href="files/src-package-billing-component-document-service-templatedatahandler.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php">TemplateDataHandler.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/ApplicationInterface.php"><a href="files/src-contract-applicationinterface.html"><abbr title="src/Contract/ApplicationInterface.php">ApplicationInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructor del handler.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$entityComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$entityComponent</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface">EntityComponentInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createHandlers">
-        createHandlers()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_createHandlers" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php"><a href="files/src-package-billing-component-document-service-templatedatahandler.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataHandler.php">TemplateDataHandler.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">67</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Mapa de campos a handlers para los documentos tributarios electrónicos.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createHandlers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getPackageRegistry</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Backbone\Contract\PackageRegistryInterface">PackageRegistryInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -417,7 +285,7 @@ ser utilizada en la renderización del documento.</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Backbone\Contract\PackageRegistryInterface">PackageRegistryInterface</abbr></span>
             </section>
 
 </article>
@@ -427,7 +295,7 @@ ser utilizada en la renderización del documento.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Document/Service/TemplateDataHandler.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Contract/ApplicationInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -459,6 +327,8 @@ ser utilizada en la renderización del documento.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -518,7 +388,7 @@ ser utilizada en la renderización del documento.</p>
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                                
+                            
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -526,25 +396,17 @@ ser utilizada en la renderización del documento.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#toc-methods">Methods</a></li>
-                                    </ul>
+                    <li><a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#toc-constants">Constants</a></li>
+                    <li><a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#toc-methods">Methods</a></li>
+                </ul>
             </li>
-            
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#property_entityComponent">$entityComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#method_getPackageRegistry">getPackageRegistry()</a></li>
                                             </ul>
                 </li>
             
-                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
-            <li>
-                <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#method_createHandlers">createHandlers()</a></li>
-                                    </ul>
-            </li>
                     </ul>
     </section>
 
@@ -562,7 +424,7 @@ ser utilizada en la renderización del documento.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataHandler.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Contract-ApplicationInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
