@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\ComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Backbone\Contract\ComponentInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use stdClass;
 
@@ -115,13 +115,13 @@ interface DocumentComponentInterface extends ComponentInterface
      * @param string|array|stdClass $data
      * @param string|CafInterface|null $caf
      * @param string|array|CertificateInterface|null $certificate
-     * @param array|DataContainerInterface $options
+     * @param array|OptionsInterface $options
      * @return DocumentBagInterface
      */
     public function bill(
         string|array|stdClass $data,
-        string|CafInterface $caf = null,
-        string|array|CertificateInterface $certificate = null,
-        array|DataContainerInterface $options = []
+        string|CafInterface|null $caf = null,
+        string|array|CertificateInterface|null $certificate = null,
+        array|OptionsInterface $options = []
     ): DocumentBagInterface;
 }

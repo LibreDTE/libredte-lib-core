@@ -24,8 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping as DEM;
+use Derafu\Repository\Mapping as DRM;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
@@ -36,8 +35,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\TipoDocument
 /**
  * Entidad de tipos de documentos tributarios.
  */
-#[DEM\Entity(repositoryClass: TipoDocumentoRepository::class)]
-class TipoDocumento extends Entity implements TipoDocumentoInterface
+#[DRM\Entity(repositoryClass: TipoDocumentoRepository::class)]
+class TipoDocumento implements TipoDocumentoInterface
 {
     /**
      * Código asignado al tipo de documento.
@@ -191,7 +190,7 @@ class TipoDocumento extends Entity implements TipoDocumentoInterface
      */
     public function __toString(): string
     {
-        return $this->nombre;
+        return $this->getNombre();
     }
 
     /*

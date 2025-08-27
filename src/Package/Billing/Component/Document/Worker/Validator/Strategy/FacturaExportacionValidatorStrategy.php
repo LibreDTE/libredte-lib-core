@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\FacturaExportacionValidatorStrategyInterface;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Stra
 /**
  * Validador del documento factura de exportación.
  */
+#[Strategy(name: 'factura_exportacion', worker: 'validator', component: 'document', package: 'billing')]
 class FacturaExportacionValidatorStrategy extends AbstractValidatorStrategy implements FacturaExportacionValidatorStrategyInterface
 {
     /**

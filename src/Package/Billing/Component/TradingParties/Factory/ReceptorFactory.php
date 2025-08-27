@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
-use Derafu\Lib\Core\Helper\Factory;
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Support\Factory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;

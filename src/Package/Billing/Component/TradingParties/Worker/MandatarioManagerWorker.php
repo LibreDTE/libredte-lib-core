@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Certificate\Contract\CertificateFakerInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface;
@@ -34,11 +35,12 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Mandatar
 /**
  * Clase para el worker que administra los mandatarios.
  */
+#[Worker(name: 'mandatario_manager', component: 'trading_parties', package: 'billing')]
 class MandatarioManagerWorker extends AbstractWorker implements MandatarioManagerWorkerInterface
 {
     public function __construct(
         private MandatarioFactoryInterface $mandatarioFactory,
-        private CertificateComponentInterface $certificateComponent
+        private CertificateFakerInterface $certificateFaker
     ) {
     }
 
@@ -61,9 +63,7 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
     public function createFakeCertificate(
         MandatarioInterface $mandatario
     ): CertificateInterface {
-        $faker = $this->certificateComponent->getFakerWorker();
-
-        return $faker->create(
+        return $this->certificateFaker->createFake(
             id: $mandatario->getRun(),
             name: $mandatario->getNombre(),
             email: $mandatario->getEmail()

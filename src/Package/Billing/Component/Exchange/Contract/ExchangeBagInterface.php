@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
+use Derafu\Config\Contract\OptionsAwareInterface;
 
 /**
  * Interfaz que almacena sobres, y sus documentos, más los datos para enviar o

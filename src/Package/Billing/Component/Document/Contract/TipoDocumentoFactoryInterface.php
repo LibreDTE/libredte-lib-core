@@ -24,12 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\FactoryInterface;
-
 /**
  * Interfaz para la fábrica de una entidad de tipo de documento.
  */
-interface TipoDocumentoFactoryInterface extends FactoryInterface
+interface TipoDocumentoFactoryInterface
 {
     /**
      * Crea una entidad de tipo de documento a partir de sus datos.

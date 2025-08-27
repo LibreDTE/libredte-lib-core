@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Integration;
 
+use Derafu\Certificate\Service\CertificateFaker;
+use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
@@ -34,10 +36,12 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(IntegrationComponent::class)]
 #[CoversClass(SiiRequest::class)]
@@ -52,17 +56,15 @@ class SiiAuthenticateFakeCertificateTest extends TestCase
     {
         $app = Application::getInstance();
 
-        $certificate = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getFakerWorker()
-            ->create()
-        ;
+        // Generar un certificado falso.
+        $certificateFaker = new CertificateFaker(new CertificateLoader());
+        $certificate = $certificateFaker->createFake();
 
         // Debe fallar la solicitud de token porque el certificado no es válido.
         $this->expectException(SiiAuthenticateException::class);
 
         $token = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIntegrationComponent()
             ->getSiiLazyWorker()

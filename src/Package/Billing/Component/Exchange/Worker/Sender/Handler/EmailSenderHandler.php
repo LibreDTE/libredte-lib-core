@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler;
 
+use Derafu\Backbone\Attribute\Handler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractSenderHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
@@ -35,6 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
  * El envío por correo solo se realiza si corresponde enviar lo que la bolsa con
  * los sobres tiene y solo si están los datos/opciones para hacerlo por correo.
  */
+#[Handler(name: 'email_sender', worker: 'sender', component: 'exchange', package: 'billing')]
 class EmailSenderHandler extends AbstractSenderHandler implements ExchangeHandlerInterface
 {
     /**

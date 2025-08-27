@@ -24,11 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
-use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
-use Derafu\Lib\Core\Helper\Arr;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Config\Trait\OptionsAwareTrait;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
@@ -141,9 +140,9 @@ class DocumentBag implements DocumentBagInterface
     /**
      * Instancia del documento XML asociada al DTE.
      *
-     * @var XmlInterface|null
+     * @var XmlDocumentInterface|null
      */
-    private ?XmlInterface $xmlDocument;
+    private ?XmlDocumentInterface $xmlDocument;
 
     /**
      * Código de Asignación de Folios (CAF) para timbrar el Documento Tributario
@@ -214,8 +213,8 @@ class DocumentBag implements DocumentBagInterface
      * @param array|null $parsedData
      * @param array|null $normalizedData
      * @param array|null $libredteData
-     * @param array|DataContainerInterface $options
-     * @param XmlInterface|null $xmlDocument
+     * @param array|OptionsInterface $options
+     * @param XmlDocumentInterface|null $xmlDocument
      * @param CafInterface|null $caf
      * @param CertificateInterface|null $certificate
      * @param DocumentInterface|null $document
@@ -224,25 +223,25 @@ class DocumentBag implements DocumentBagInterface
      * @param ReceptorInterface|null $receptor
      */
     public function __construct(
-        string|array|stdClass $inputData = null,
-        array $parsedData = null,
-        array $normalizedData = null,
-        array $libredteData = null,
-        array|DataContainerInterface $options = [],
-        XmlInterface $xmlDocument = null,
-        CafInterface $caf = null,
-        CertificateInterface $certificate = null,
-        DocumentInterface $document = null,
-        TipoDocumentoInterface $documentType = null,
-        EmisorInterface $emisor = null,
-        ReceptorInterface $receptor = null
+        string|array|stdClass|null $inputData = null,
+        array|null $parsedData = null,
+        array|null $normalizedData = null,
+        array|null $libredteData = null,
+        array|OptionsInterface|null $options = null,
+        XmlDocumentInterface|null $xmlDocument = null,
+        CafInterface|null $caf = null,
+        CertificateInterface|null $certificate = null,
+        DocumentInterface|null $document = null,
+        TipoDocumentoInterface|null $documentType = null,
+        EmisorInterface|null $emisor = null,
+        ReceptorInterface|null $receptor = null
     ) {
         $this
             ->setInputData($inputData)
             ->setParsedData($parsedData)
             ->setNormalizedData($normalizedData)
             ->setLibredteData($libredteData)
-            ->setOptions($options)
+            ->setOptions($options ?? [])
             ->setXmlDocument($xmlDocument)
             ->setCaf($caf)
             ->setCertificate($certificate)
@@ -340,7 +339,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getParserOptions(): array
     {
-        return (array) $this->getOptions()->get('parser');
+        return $this->getOptions()->get('parser')?->all() ?? [];
     }
 
     /**
@@ -348,7 +347,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getBuilderOptions(): array
     {
-        return (array) $this->getOptions()->get('builder');
+        return $this->getOptions()->get('builder')?->all() ?? [];
     }
 
     /**
@@ -356,7 +355,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getNormalizerOptions(): array
     {
-        return (array) $this->getOptions()->get('normalizer');
+        return $this->getOptions()->get('normalizer')?->all() ?? [];
     }
 
     /**
@@ -364,7 +363,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getSanitizerOptions(): array
     {
-        return (array) $this->getOptions()->get('sanitizer');
+        return $this->getOptions()->get('sanitizer')?->all() ?? [];
     }
 
     /**
@@ -372,7 +371,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getValidatorOptions(): array
     {
-        return (array) $this->getOptions()->get('validator');
+        return $this->getOptions()->get('validator')?->all() ?? [];
     }
 
     /**
@@ -380,13 +379,13 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getRendererOptions(): array
     {
-        return (array) $this->getOptions()->get('renderer');
+        return $this->getOptions()->get('renderer')?->all() ?? [];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setXmlDocument(?XmlInterface $xmlDocument): static
+    public function setXmlDocument(?XmlDocumentInterface $xmlDocument): static
     {
         $this->xmlDocument = $xmlDocument;
 
@@ -396,7 +395,7 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
-    public function getXmlDocument(): ?XmlInterface
+    public function getXmlDocument(): ?XmlDocumentInterface
     {
         return $this->xmlDocument;
     }
@@ -628,7 +627,7 @@ class DocumentBag implements DocumentBagInterface
             return $documentData;
         }
 
-        return Arr::mergeRecursiveDistinct($documentData, $documentExtra);
+        return array_replace_recursive($documentData, $documentExtra);
     }
 
     /**

@@ -25,11 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use DateTime;
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\SignatureComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface;
@@ -41,21 +42,18 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario
 /**
  * Clase para la gestión de sobres de documentos (para envíos/transferencias).
  */
+#[Worker(name: 'dispatcher', component: 'document', package: 'billing')]
 class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterface
 {
     public function __construct(
-        private XmlComponentInterface $xmlComponent,
-        private SignatureComponentInterface $signatureComponent,
+        private XmlServiceInterface $xmlService,
+        private SignatureServiceInterface $signatureService,
         private DocumentBagManagerWorkerInterface $documentBagManagerWorker,
         iterable $jobs = [],
-        iterable $handlers = [],
-        iterable $strategies = []
+        iterable $handlers = []
     ) {
-        parent::__construct(
-            jobs: $jobs,
-            handlers: $handlers,
-            strategies: $strategies
-        );
+        $this->setJobs($jobs);
+        $this->setHandlers($handlers);
     }
 
     /**
@@ -92,7 +90,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     public function validate(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void {
         // TODO: Agregar validaciones del sobre.
     }
@@ -101,12 +99,12 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     public function validateSchema(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void {
         // Obtener el documento XML.
         if ($source instanceof DocumentEnvelopeInterface) {
             $xmlDocument = $source->getXmlDocument();
-        } elseif ($source instanceof XmlInterface) {
+        } elseif ($source instanceof XmlDocumentInterface) {
             $xmlDocument = $source;
         } else {
             $xmlDocument = new XmlDocument();
@@ -119,7 +117,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             dirname(__DIR__, 6),
             $xmlDocument->getSchema()
         );
-        $this->xmlComponent->getValidatorWorker()->validateSchema(
+        $this->xmlService->validate(
             $xmlDocument,
             $schema
         );
@@ -129,14 +127,14 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     public function validateSignature(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void {
         $xml = $source instanceof DocumentEnvelopeInterface
             ? $source->getXmlDocument()
             : $source
         ;
 
-        $this->signatureComponent->getValidatorWorker()->validateXml($xml);
+        $this->signatureService->validateXml($xml);
     }
 
     /**
@@ -289,7 +287,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         }
 
         // Crear el documento XML del sobre (estructura base, sin DTE).
-        $xmlDocument = $this->xmlComponent->getEncoderWorker()->encode($data);
+        $xmlDocument = $this->xmlService->encode($data);
 
         // Agregar los DTE dentro de SetDTE reemplazando el tag vacio DTE.
         $xmlBaseSobre = $xmlDocument->saveXML();
@@ -383,7 +381,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $xmlDocument = $envelope->getXmlDocument();
 
         // Firmar el documento XML del sobre y retornar el XML firmado.
-        $xmlSigned = $this->signatureComponent->getGeneratorWorker()->signXml(
+        $xmlSigned = $this->signatureService->signXml(
             $xmlDocument,
             $certificate,
             $envelope->getId()

@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\HandlerInterface;
 
 /**
  * Interfaz para los handlers del intercambio.

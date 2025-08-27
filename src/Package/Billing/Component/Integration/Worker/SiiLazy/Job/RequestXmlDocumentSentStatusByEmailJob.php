@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Helper\Rut;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRequestXmlDocumentSentStatusByEmailException;
@@ -36,12 +37,13 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 /**
  * Clase para realizar las consultas de validación de documentos al SII.
  */
+#[Job(name: 'request_xml_document_sent_status_by_email', worker: 'sii_lazy', component: 'integration', package: 'billing')]
 class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobInterface
 {
     public function __construct(
         private AuthenticateJob $authenticateJob,
         private ConsumeWebserviceJob $consumeWebserviceJob,
-        private XmlComponentInterface $xmlComponent
+        private XmlServiceInterface $xmlService
     ) {
     }
 
@@ -101,7 +103,7 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
         }
 
         // Armar estado del XML enviado.
-        $responseData = $this->xmlComponent->getDecoderWorker()->decode(
+        $responseData = $this->xmlService->decode(
             $xmlResponse
         );
 

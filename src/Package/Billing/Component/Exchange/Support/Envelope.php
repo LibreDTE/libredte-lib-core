@@ -26,9 +26,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Derafu\Lib\Core\Helper\Str;
-use Derafu\Lib\Core\Support\Store\Bag;
-use Derafu\Lib\Core\Support\Store\Contract\BagInterface;
+use Derafu\Container\Bag;
+use Derafu\Container\Contract\BagInterface;
+use Derafu\Support\Str;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverInterface;

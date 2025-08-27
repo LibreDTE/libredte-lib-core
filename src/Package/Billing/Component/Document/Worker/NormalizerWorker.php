@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface;
@@ -33,8 +35,17 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerExc
 /**
  * Clase para los normalizadores.
  */
+#[Worker(name: 'normalizer', component: 'document', package: 'billing')]
 class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterface
 {
+    use StrategiesAwareTrait;
+
+    public function __construct(
+        iterable $strategies = []
+    ) {
+        $this->setStrategies($strategies);
+    }
+
     /**
      * {@inheritDoc}
      */

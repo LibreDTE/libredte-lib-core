@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiConsumeWebserviceException;
 use SoapClient;
@@ -36,6 +37,7 @@ use SoapFault;
 /**
  * Clase para consumir los servicios web SOAP del SII.
  */
+#[Job(name: 'consume_webservice', worker: 'sii_lazy', component: 'integration', package: 'billing')]
 class ConsumeWebserviceJob extends AbstractJob implements JobInterface
 {
     /**
@@ -51,7 +53,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param array|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retry Intentos que se realizarán como máximo para
      * obtener respuesta.
-     * @return XmlInterface Documento XML con la respuesta del servicio web.
+     * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
      * @throws SiiConsumeWebserviceException En caso de error.
      */
     public function sendRequest(
@@ -60,7 +62,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlInterface {
+    ): XmlDocumentInterface {
         // Revisar si se pasó en $args el valor de $retry.
         // @scrutinizer ignore-type-check
         if (is_int($args)) {
@@ -133,7 +135,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param array $args Argumentos que se pasarán al servicio web.
      * @param array $soapClientOptions Opciones del cliente SOAP.
      * @param int $retry Intentos que se realizarán como máximo.
-     * @return XmlInterface Documento XML con la respuesta del servicio web.
+     * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
      * @throws SiiConsumeWebserviceException En caso de error.
      */
     private function callServiceFunction(
@@ -142,7 +144,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         array $args,
         array $soapClientOptions,
         int $retry
-    ): XmlInterface {
+    ): XmlDocumentInterface {
         // Preparar cliente SOAP.
         try {
             $soap = new SoapClient($wsdl, $soapClientOptions);

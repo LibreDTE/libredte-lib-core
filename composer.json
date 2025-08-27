@@ -26,17 +26,34 @@
         }
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-soap": "*",
-        "derafu/derafu-lib-core": "dev-master || dev-main",
         "psr/simple-cache": "^3.0",
         "symfony/cache": "^7.1",
         "symfony/filesystem": "^7.1",
-        "tecnickcom/tcpdf": "^6.8"
+        "tecnickcom/tcpdf": "^6.8",
+        "derafu/backbone": "dev-main",
+        "derafu/kernel": "dev-main",
+        "derafu/certificate": "dev-main",
+        "derafu/xml": "dev-main",
+        "derafu/signature": "dev-main",
+        "derafu/config": "dev-main",
+        "derafu/repository": "dev-main",
+        "derafu/enum": "dev-main",
+        "derafu/selector": "dev-main",
+        "derafu/l10n-cl-rut": "^1.0",
+        "derafu/l10n-cl-enum": "dev-main",
+        "derafu/mail": "dev-main",
+        "symfony/mime": "^7.3",
+        "symfony/mailer": "^7.3",
+        "derafu/renderer": "dev-main",
+        "league/csv": "^9.24",
+        "nesbot/carbon": "^3.10",
+        "mpdf/mpdf": "^8.2"
     },
     "require-dev": {
         "ext-xdebug": "*",
@@ -50,9 +67,11 @@
         "tests-unit": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite unit",
         "tests-functional": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite functional",
         "tests-integration": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml --testsuite integration",
-        "phpcs-fix": "php-cs-fixer fix -v --config=php-cs-fixer.php .",
-        "phpcs-fix-dry-run": "php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php .",
-        "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=1G",
-        "phpstan-export": "phpstan analyse --configuration=phpstan.neon --level 9 --generate-baseline"
-    }
+        "phpcs-fix": "vendor/bin/php-cs-fixer fix -v --config=php-cs-fixer.php",
+        "phpcs": "vendor/bin/php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php",
+        "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1G",
+        "phpstan-export": "vendor/bin/phpstan analyse --configuration=phpstan.neon --level 9 --generate-baseline"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -24,8 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\ValidatorWorkerInterface as SignatureValidatorWorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
+use Derafu\Signature\Contract\SignatureValidatorInterface;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Signature\Service\SignatureGenerator;
+use Derafu\Signature\Service\SignatureValidator;
+use Derafu\Xml\Service\XmlDecoder;
+use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Service\XmlService;
+use Derafu\Xml\Service\XmlValidator;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -48,6 +54,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\Abstract
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -93,6 +100,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
  * electrónica de Derafu.
  */
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -121,7 +129,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     private ValidatorWorkerInterface $validator;
 
     // Worker del componente signature para la validación de firmas.
-    private SignatureValidatorWorkerInterface $signatureValidator;
+    private SignatureValidatorInterface $signatureValidator;
 
     // Configuración inicial del test.
     protected function setUp(): void
@@ -129,22 +137,28 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $app = Application::getInstance();
 
         $this->dispatcher = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getDispatcherWorker()
         ;
 
         $this->validator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
         ;
 
-        $this->signatureValidator = $app
-            ->getPrimePackage()
-            ->getSignatureComponent()
-            ->getValidatorWorker()
-        ;
+        $xmlService = new XmlService(
+            new XmlEncoder(),
+            new XmlDecoder(),
+            new XmlValidator()
+        );
+        $this->signatureValidator = new SignatureValidator(
+            new SignatureGenerator($xmlService),
+            $xmlService
+        );
     }
 
     // Proveedor de los documentos XML con los casos de prueba que se deben

@@ -24,13 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
 
 /**
  * Interfaz para los renderizadores.
  */
-interface RendererWorkerInterface extends WorkerInterface
+interface RendererWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
      * Realiza el renderizado del documento.

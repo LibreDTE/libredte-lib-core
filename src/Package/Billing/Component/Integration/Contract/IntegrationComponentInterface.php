@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\ComponentInterface;
+use Derafu\Backbone\Contract\ComponentInterface;
 
 /**
  * Interfaz para `IntegrationComponent`.

@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorIn
 /**
  * Worker que permite provee folios (archivos CAF).
  */
+#[Worker(name: 'caf_provider', component: 'identifier', package: 'billing')]
 class CafProviderWorker extends AbstractWorker implements CafProviderWorkerInterface
 {
     /**

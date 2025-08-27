@@ -24,8 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Factory;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractFactory;
-use Derafu\Lib\Core\Helper\Factory;
+use Derafu\Support\Factory;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
@@ -33,7 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 /**
  * Fábrica de una entidad de tipo de documento tributario.
  */
-class TipoDocumentoFactory extends AbstractFactory implements TipoDocumentoFactoryInterface
+class TipoDocumentoFactory implements TipoDocumentoFactoryInterface
 {
     /**
      * Clase de la entidad de los tipos de documento.

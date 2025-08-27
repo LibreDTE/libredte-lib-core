@@ -24,14 +24,16 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
  * Trabajo con reglas de normalización generales para el final de todos los
  * documentos tributarios.
  */
+#[Job(name: 'normalize_data_post_document_normalization', worker: 'normalizer', component: 'document', package: 'billing')]
 class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements JobInterface
 {
     /**

@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Package\Prime\Component\Template\Contract\TemplateComponentInterface;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Renderer\Contract\RendererInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 
@@ -36,7 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrate
 abstract class AbstractRendererStrategy extends AbstractStrategy implements RendererStrategyInterface
 {
     public function __construct(
-        private TemplateComponentInterface $templateComponent
+        private RendererInterface $renderer
     ) {
     }
 
@@ -45,11 +45,12 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
      */
     public function render(DocumentBagInterface $bag): string
     {
-        $data = $this->createData($bag);
+        [$data, $options] = $this->createDataAndOptions($bag);
 
-        return $this->templateComponent->render(
-            $data['options']['filepath'],
-            $data
+        return $this->renderer->render(
+            $options['filepath'],
+            $data,
+            $options
         );
     }
 
@@ -60,7 +61,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
      * renderizar.
      * @return array Datos que se pasarán a la plantilla al renderizar.
      */
-    protected function createData(DocumentBagInterface $bag): array
+    protected function createDataAndOptions(DocumentBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getRendererOptions());
 
@@ -70,27 +71,28 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
             'document_extra' => $bag->getDocumentExtra(),
             'document_stamp' => $bag->getDocumentStamp(),
             'document_auth' => $bag->getDocumentAuth(),
-            'options' => [
-                'template' => $options->get('template'),
-                'filepath' => null,
-                'format' => $options->get('format'),
-                'config' => [
-                    'html' => $options->get('html', []),
-                    'pdf' => $options->get('pdf', []),
-                ],
+        ];
+
+        $options = [
+            'template' => $options->get('template'),
+            'filepath' => null,
+            'format' => $options->get('format'),
+            'config' => [
+                'html' => $options->get('html', [])->all(),
+                'pdf' => $options->get('pdf', [])->all(),
             ],
         ];
 
         // Asignar la ubicación de la plantilla.
-        if ($data['options']['template'][0] === '/') {
-            $data['options']['filepath'] = $data['options']['template'];
-            $data['options']['template'] = basename($data['options']['template']);
+        if ($options['template'][0] === '/') {
+            $options['filepath'] = $options['template'];
+            $options['template'] = basename($options['template']);
         } else {
             $base = 'billing/document/renderer/';
-            $data['options']['filepath'] = $base . $data['options']['template'];
+            $options['filepath'] = $base . $options['template'];
         }
 
-        // Entregar los datos que se pasarán a la plantilla.
-        return $data;
+        // Entregar los datos que se pasarán a la plantilla y las opciones.
+        return [$data, $options];
     }
 }

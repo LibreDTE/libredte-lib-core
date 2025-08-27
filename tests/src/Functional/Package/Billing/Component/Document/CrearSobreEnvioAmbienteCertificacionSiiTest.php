@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -111,6 +112,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -118,6 +120,7 @@ use Symfony\Component\Yaml\Yaml;
 use Throwable;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -244,6 +247,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Obtener facturador (componente de documentos).
         $biller = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
         ;
@@ -251,14 +255,11 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         // Tratar de cargar el certificado digital. Si no se logra cargar el
         // test se marcará como "saltado".
         try {
-            $certificate = $app
-                ->getPrimePackage()
-                ->getCertificateComponent()
-                ->getLoaderWorker()
-                ->createFromFile(
-                    getenv('LIBREDTE_CERTIFICATE_FILE'),
-                    getenv('LIBREDTE_CERTIFICATE_PASS')
-                )
+            $certificateLoader = new CertificateLoader();
+            $certificate = $certificateLoader->loadFromFile(
+                getenv('LIBREDTE_CERTIFICATE_FILE'),
+                getenv('LIBREDTE_CERTIFICATE_PASS')
+            )
             ;
         } catch (Throwable $e) {
             $this->markTestSkipped($e->getMessage());
@@ -266,6 +267,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Cargar contenido del archivo CAF.
         $cafLoader = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafLoaderWorker()
@@ -298,6 +300,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Validar esquema y firma del documento.
         $validator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
@@ -312,6 +315,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Crear sobre, agregar documento y asignar carátula.
         $dispatcher = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getDispatcherWorker()

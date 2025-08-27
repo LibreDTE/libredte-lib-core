@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 
 /**
@@ -36,15 +36,15 @@ interface SobreEnvioInterface
     /**
      * Entrega el documento XML asociado al sobre de documentos.
      *
-     * @return XmlInterface
+     * @return XmlDocumentInterface
      */
-    public function getXmlDocument(): XmlInterface;
+    public function getXmlDocument(): XmlDocumentInterface;
 
     /**
      * Genera el documentto XML como string incluyendo encabezado.
      *
      * @return string
-     * @see XmlInterface::saveXml()
+     * @see XmlDocumentInterface::saveXml()
      */
     public function saveXml(): string;
 

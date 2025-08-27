@@ -43,11 +43,13 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\Abstract
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(CodigoDocumento::class)]
 #[CoversClass(TipoDocumento::class)]
@@ -75,18 +77,21 @@ class CafTest extends TestCase
         $app = Application::getInstance();
 
         $this->cafFaker = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafFakerWorker()
         ;
 
         $this->cafLoader = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafLoaderWorker()
         ;
 
         $this->cafValidator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafValidatorWorker()

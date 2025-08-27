@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
@@ -38,17 +38,17 @@ class SobreEnvio implements SobreEnvioInterface
     /**
      * Instancia del documento XML asociado a los datos.
      *
-     * @var XmlInterface
+     * @var XmlDocumentInterface
      */
-    protected readonly XmlInterface $xmlDocument;
+    protected readonly XmlDocumentInterface $xmlDocument;
 
     /**
      * Constructor del sobre de documentos tributarios para su envío.
      *
-     * @param XmlInterface $xmlDocument
+     * @param XmlDocumentInterface $xmlDocument
      * @return void
      */
-    public function __construct(XmlInterface $xmlDocument)
+    public function __construct(XmlDocumentInterface $xmlDocument)
     {
         $this->xmlDocument = $xmlDocument;
     }
@@ -64,7 +64,7 @@ class SobreEnvio implements SobreEnvioInterface
     /**
      * {@inheritDoc}
      */
-    public function getXmlDocument(): XmlInterface
+    public function getXmlDocument(): XmlDocumentInterface
     {
         return $this->xmlDocument;
     }

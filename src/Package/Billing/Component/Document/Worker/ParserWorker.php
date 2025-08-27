@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface;
@@ -34,8 +36,17 @@ use Throwable;
 /**
  * Clase para los parsers de datos de entrada de los documentos tributarios.
  */
+#[Worker(name: 'parser', component: 'document', package: 'billing')]
 class ParserWorker extends AbstractWorker implements ParserWorkerInterface
 {
+    use StrategiesAwareTrait;
+
+    public function __construct(
+        iterable $strategies = []
+    ) {
+        $this->setStrategies($strategies);
+    }
+
     /**
      * Esquema de las opciones.
      *

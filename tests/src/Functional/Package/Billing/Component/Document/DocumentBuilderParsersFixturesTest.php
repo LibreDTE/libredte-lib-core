@@ -24,8 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\FakerWorkerInterface as CertificateFakerWorkerInterface;
-use Derafu\Lib\Core\Support\Store\DataContainer;
+use Derafu\Certificate\Contract\CertificateFakerInterface;
+use Derafu\Certificate\Service\CertificateFaker;
+use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Config\Options;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -50,7 +52,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
-use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -126,6 +128,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -134,6 +137,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
  * Prueba del parser de datos de entrada para un documento tributario.
  */
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -146,7 +150,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(TagXmlDocumento::class)]
 #[CoversClass(TipoDocumento::class)]
 #[CoversClass(TipoDocumentoFactory::class)]
-#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(DocumentBag::class)]
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(DocumentBagManagerWorker::class)]
@@ -228,13 +231,14 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NotaCreditoExportacionNormalizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionSanitizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
+#[CoversClass(TemplateDataFormatter::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
 
     private CafProviderWorkerInterface $cafProvider;
 
-    private CertificateFakerWorkerInterface $certificateFaker;
+    private CertificateFakerInterface $certificateFaker;
 
     private ValidatorWorkerInterface $validator;
 
@@ -245,30 +249,30 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $app = Application::getInstance();
 
         $this->builder = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getBuilderWorker()
         ;
 
         $this->cafProvider = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafProviderWorker()
         ;
 
-        $this->certificateFaker = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getFakerWorker()
-        ;
+        $this->certificateFaker = new CertificateFaker(new CertificateLoader());
 
         $this->validator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
         ;
 
         $this->renderer = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getRendererWorker()
@@ -337,7 +341,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $data = file_get_contents($file);
         $bag = new DocumentBag(
             inputData: $data,
-            options: new DataContainer([
+            options: new Options([
                 'parser' => [
                     'strategy' => $format,
                 ],
@@ -372,7 +376,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         // Crear certificado de pruebas y armar una nueva bolsa que incluya el
         // certificado.
         // Al usar build() se firmará el documento previamente timbrado.
-        $certificate = $this->certificateFaker->create();
+        $certificate = $this->certificateFaker->createFake(id: $bag->getEmisor()->getRUT());
         $bag = $bag->withCertificate($certificate); // withCertificate() retorna una nueva DocumentBag.
         $this->builder->build($bag);
 

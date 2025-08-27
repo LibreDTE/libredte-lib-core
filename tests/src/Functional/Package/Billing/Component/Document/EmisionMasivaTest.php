@@ -24,10 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Common\Exception\Exception;
-use Derafu\Lib\Core\Helper\Arr;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
+use Derafu\Certificate\Service\CertificateFaker;
+use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Support\Arr;
+use Derafu\Xml\Exception\XmlException;
+use Exception;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -45,7 +47,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
-use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBatch;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy;
@@ -100,12 +102,14 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(DocumentComponent::class)]
 #[CoversClass(AduanaMoneda::class)]
@@ -173,10 +177,10 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(RendererWorker::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
+#[CoversClass(TemplateDataFormatter::class)]
 class EmisionMasivaTest extends TestCase
 {
     public function testCargarDocumentosDesdeArchivoCsv(): void
@@ -184,12 +188,14 @@ class EmisionMasivaTest extends TestCase
         $app = Application::getInstance();
 
         $renderer = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getRendererWorker()
         ;
 
         $validator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
@@ -209,18 +215,16 @@ class EmisionMasivaTest extends TestCase
             comuna: 'Santa Cruz'
         );
 
-        $certificate = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getFakerWorker()
-            ->create()
-        ;
+        // Generar un certificado falso.
+        $certificateFaker = new CertificateFaker(new CertificateLoader());
+        $certificate = $certificateFaker->createFake(id: $emisor->getRUT());
 
         $batch = new DocumentBatch($file);
         $batch->setEmisor($emisor);
         $batch->setCertificate($certificate);
 
         $documentsBag = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getBatchProcessorWorker()

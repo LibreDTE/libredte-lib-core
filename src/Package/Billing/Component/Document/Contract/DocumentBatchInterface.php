@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsAwareInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**

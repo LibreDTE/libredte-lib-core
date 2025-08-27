@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\PackageInterface;
+use Derafu\Backbone\Contract\PackageInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;

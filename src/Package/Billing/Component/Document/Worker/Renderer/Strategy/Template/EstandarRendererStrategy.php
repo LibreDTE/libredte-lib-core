@@ -24,12 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 
 /**
  * Renderizador de DTE usando la plantilla estándar de LibreDTE.
  */
+#[Strategy(name: 'template.estandar', worker: 'renderer', component: 'document', package: 'billing')]
 class EstandarRendererStrategy extends AbstractRendererStrategy implements RendererStrategyInterface
 {
     /**

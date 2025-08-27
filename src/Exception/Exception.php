@@ -24,11 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Exception;
 
-use Derafu\Lib\Core\Common\Exception\Exception as DerafuException;
+use Exception as BaseException;
 
 /**
  * Excepción general de la aplicación.
  */
-class Exception extends DerafuException
+class Exception extends BaseException
 {
 }

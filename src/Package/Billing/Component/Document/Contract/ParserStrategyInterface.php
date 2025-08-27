@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 
 /**
  * Interfaz para las estrategias de los parsers de datos de entrada de los

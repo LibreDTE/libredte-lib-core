@@ -24,7 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
@@ -33,7 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 /**
  * Interfaz para la entidad de tipo de documento tributario.
  */
-interface TipoDocumentoInterface extends EntityInterface
+interface TipoDocumentoInterface
 {
     /*
     |--------------------------------------------------------------------------

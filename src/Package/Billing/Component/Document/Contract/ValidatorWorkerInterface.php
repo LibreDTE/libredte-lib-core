@@ -24,47 +24,48 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorException;
 
 /**
  * Interfaz para los validadores de documentos.
  */
-interface ValidatorWorkerInterface extends WorkerInterface
+interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
      * Realiza la validación del documento.
      *
-     * @param DocumentBagInterface|XmlInterface|string $source
+     * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws ValidatorException
      */
     public function validate(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void;
 
     /**
      * Valida el esquema del XML del DTE.
      *
-     * @param DocumentBagInterface|XmlInterface|string $source
+     * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws XmlException Si la validación del esquema falla.
      */
     public function validateSchema(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void;
 
     /**
      * Valida la firma electrónica del documento XML del DTE.
      *
-     * @param DocumentBagInterface|XmlInterface|string $source
+     * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws SignatureException Si la validación de la firma falla.
      */
     public function validateSignature(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void;
 }

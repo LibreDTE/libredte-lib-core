@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
@@ -36,12 +37,13 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorIn
 /**
  * Worker que permite crear CAF falsos (usando CafFaker) para pruebas.
  */
+#[Worker(name: 'caf_faker', component: 'identifier', package: 'billing')]
 class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
 {
     protected string $cafFakerClass = CafFaker::class;
 
     public function __construct(
-        private XmlComponentInterface $xmlComponent,
+        private XmlServiceInterface $xmlService,
         private CafLoaderWorkerInterface $cafLoader
     ) {
     }
@@ -72,14 +74,14 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * @param int $codigoDocumento
      * @param int $folioDesde
      * @param int|null $folioHasta
-     * @return XmlInterface
+     * @return XmlDocumentInterface
      */
     protected function createXml(
         EmisorInterface $emisor,
         int $codigoDocumento,
         int $folioDesde,
         ?int $folioHasta = null
-    ): XmlInterface {
+    ): XmlDocumentInterface {
         $array = $this->createArray(
             $emisor,
             $codigoDocumento,
@@ -87,7 +89,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
             $folioHasta
         );
 
-        return $this->xmlComponent->getEncoderWorker()->encode($array);
+        return $this->xmlService->encode($array);
     }
 
     /**

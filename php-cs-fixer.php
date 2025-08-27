@@ -33,8 +33,7 @@ $dir = __DIR__;
 
 $finder = Finder::create()
     ->in($dir)
-    ->name('*.php')
-    ->exclude('vendor')
+    ->exclude('var')
 ;
 
 return (new Config())

@@ -24,15 +24,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractFactory;
-use Derafu\Lib\Core\Foundation\Contract\FactoryInterface;
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\L10n\Cl\Rut\Rut;
 
 /**
  * Clase abstracta para las implementaciones de fábricas de contribuyentes,
  * emisores y receptores de documentos tributarios.
  */
-abstract class AbstractContribuyenteFactory extends AbstractFactory implements FactoryInterface
+abstract class AbstractContribuyenteFactory
 {
     /**
      * Normaliza los datos del contribuyente que podrían venir en diferentes

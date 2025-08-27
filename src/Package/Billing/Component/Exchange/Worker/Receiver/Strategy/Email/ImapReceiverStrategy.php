@@ -25,12 +25,13 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email;
 
 use DateTimeImmutable;
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Helper\Str;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Contract\EnvelopeInterface as MailEnvelopeInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Contract\MailComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Contract\MessageInterface as MailMessageInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Support\Postman as MailPostman;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Mail\Contract\MailPackageInterface;
+use Derafu\Mail\Model\Contract\EnvelopeInterface as MailEnvelopeInterface;
+use Derafu\Mail\Model\Contract\MessageInterface as MailMessageInterface;
+use Derafu\Mail\Model\Postman as MailPostman;
+use Derafu\Support\Str;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverStrategyInterface;
@@ -48,14 +49,15 @@ use Symfony\Component\Mime\Email as SymfonyEmail;
 /**
  * Recepción de documentos usando la estrategia IMAP de correo electrónico.
  */
+#[Strategy(name: 'email.imap', worker: 'receiver', component: 'exchange', package: 'billing')]
 class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyInterface
 {
     /**
      * Constructor y sus dependencias.
      *
-     * @param MailComponentInterface $mailComponent
+     * @param MailPackageInterface $mailPackage
      */
-    public function __construct(private MailComponentInterface $mailComponent)
+    public function __construct(private MailPackageInterface $mailPackage)
     {
     }
 
@@ -71,15 +73,19 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         ]);
 
         // Obtener los sobres con los correos electrónicos.
-        $mailEnvelopes = $this->mailComponent->receive($postman);
+        $mailEnvelopes = $this->mailPackage
+            ->getExchangeComponent()
+            ->getReceiverWorker()
+            ->receive($postman)
+        ;
 
         // Iterar los sobres para armar los sobres de intercambio con los
         // documentos que se hayan encontrado en los mensajes.
         foreach ($mailEnvelopes as $mailEnvelope) {
             assert($mailEnvelope instanceof SymfonyEnvelope);
 
-            // Iterar cada mensaje del sobre. La implementación de MailComponent
-            // que viene por defecto en Derafu entrega solo un mensaje por cada
+            // Iterar cada mensaje del sobre. La implementación de MailPackage
+            // que viene por defecto en Derafu, entrega solo un mensaje por cada
             // sobre. Sin embargo, cada mensaje podría tener múltiples adjuntos,
             // pues eso lo decide quien envía el correo.
             foreach ($mailEnvelope->getMessages() as $message) {

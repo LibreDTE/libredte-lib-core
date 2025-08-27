@@ -24,8 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
@@ -33,20 +34,21 @@ use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Estrategia "billing.document.parser.strategy:form.estandar".
+ * Estrategia "billing.document.parser#strategy:form.estandar".
  *
  * Transforma los datos recibidos a través de un formulario de la vista estándar
  * de emisión de DTE a un arreglo PHP con la estructura oficial del SII.
  */
+#[Strategy(name: 'form.estandar', worker: 'parser', component: 'document', package: 'billing')]
 class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**
      * Constructor de la estrategia con sus dependencias.
      *
-     * @param EntityComponentInterface $entityComponent
+     * @param RepositoryManagerInterface $repositoryManager
      */
     public function __construct(
-        private EntityComponentInterface $entityComponent
+        private RepositoryManagerInterface $repositoryManager
     ) {
     }
 
@@ -963,7 +965,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
     private function getTax(int $documentType): float|false
     {
         // Buscar el documento en el repositorio.
-        $result = $this->entityComponent
+        $result = $this->repositoryManager
             ->getRepository(TipoDocumentoInterface::class)
             ->find($documentType)
         ;

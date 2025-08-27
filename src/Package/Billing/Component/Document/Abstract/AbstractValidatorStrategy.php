@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\L10n\Cl\Rut\Rut;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorStrategyInterface;
 
 /**
- * Clase abstracta (base) para las estrategias de validación de
- * documentos tributarios.
+ * Clase abstracta (base) para las estrategias de validación de documentos
+ * tributarios.
  */
 abstract class AbstractValidatorStrategy extends AbstractStrategy implements ValidatorStrategyInterface
 {
@@ -42,7 +42,7 @@ abstract class AbstractValidatorStrategy extends AbstractStrategy implements Val
     {
         $data = $bag->getNormalizedData();
 
-        // Validar los RUTs.
+        // Validar el del Emisor y Receptor.
         Rut::validate($data['Encabezado']['Emisor']['RUTEmisor']);
         Rut::validate($data['Encabezado']['Receptor']['RUTRecep']);
 

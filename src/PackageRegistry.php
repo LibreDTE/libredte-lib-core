@@ -22,23 +22,29 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy;
+namespace libredte\lib\Core;
 
-use Derafu\Backbone\Attribute\Strategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaCreditoExportacionValidatorStrategyInterface;
+use Derafu\Backbone\Contract\PackageRegistryInterface;
+use Derafu\Backbone\Trait\PackageRegistryTrait;
+use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
 
 /**
- * Validador del documento nota de crédito de exportación.
+ * Registro de paquetes de la aplicación.
  */
-#[Strategy(name: 'nota_credito_exportacion', worker: 'validator', component: 'document', package: 'billing')]
-class NotaCreditoExportacionValidatorStrategy extends AbstractValidatorStrategy implements NotaCreditoExportacionValidatorStrategyInterface
+class PackageRegistry implements PackageRegistryInterface
 {
+    use PackageRegistryTrait;
+
     /**
-     * {@inheritDoc}
+     * Entrega el paquete "billing".
+     *
+     * @return BillingPackageInterface
      */
-    protected function validateDocument(DocumentBagInterface $bag): void
+    public function getBillingPackage(): BillingPackageInterface
     {
+        $package = $this->getPackage('billing');
+        assert($package instanceof BillingPackageInterface);
+
+        return $package;
     }
 }

@@ -24,13 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
 
 /**
  * Interfaz para los parsers de datos de entrada de los documentos tributarios.
  */
-interface ParserWorkerInterface extends WorkerInterface
+interface ParserWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
      * Realiza la transformación de los datos del documento.

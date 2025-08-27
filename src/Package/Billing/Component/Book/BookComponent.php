@@ -24,12 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
 
 /**
  * Componente "billing.book".
  */
+#[Component(name: 'book', package: 'billing')]
 class BookComponent extends AbstractComponent implements BookComponentInterface
 {
     public function __construct(

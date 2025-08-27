@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiAuthenticateException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiCheckXmlDocumentSentStatusException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiConsumeWebserviceException;
@@ -48,7 +48,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * Realiza el envío de un documento XML al SII.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param XmlInterface $doc Documento XML que se desea enviar al SII.
+     * @param XmlDocumentInterface $doc Documento XML que se desea enviar al SII.
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
@@ -58,7 +58,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      */
     public function sendXmlDocument(
         SiiRequestInterface $request,
-        XmlInterface $doc,
+        XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
         ?int $retry = null
@@ -187,7 +187,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param array|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retry Intentos que se realizarán como máximo para
      * obtener respuesta.
-     * @return XmlInterface Documento XML con la respuesta del servicio web.
+     * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
      * @throws SiiConsumeWebserviceException En caso de error.
      */
     public function consumeWebservice(
@@ -196,7 +196,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlInterface;
+    ): XmlDocumentInterface;
 
     /**
      * Obtiene un token de autenticación asociado al certificado digital.

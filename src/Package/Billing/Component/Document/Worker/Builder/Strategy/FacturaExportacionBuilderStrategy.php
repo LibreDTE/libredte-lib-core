@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaExportacionBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\FacturaExportacion;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\Factura
 /**
  * Constructor ("builder") del documento factura de exportación.
  */
+#[Strategy(name: 'factura_exportacion', worker: 'builder', component: 'document', package: 'billing')]
 class FacturaExportacionBuilderStrategy extends AbstractBuilderStrategy implements FacturaExportacionBuilderStrategyInterface
 {
     /**

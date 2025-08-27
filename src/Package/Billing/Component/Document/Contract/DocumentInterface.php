@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Repository\Contract\EntityInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 
 /**
@@ -36,15 +36,15 @@ interface DocumentInterface extends EntityInterface
     /**
      * Entrega el documento XML asociado al DTE.
      *
-     * @return XmlInterface
+     * @return XmlDocumentInterface
      */
-    public function getXmlDocument(): XmlInterface;
+    public function getXmlDocument(): XmlDocumentInterface;
 
     /**
      * Genera el documentto XML como string incluyendo encabezado.
      *
      * @return string
-     * @see XmlInterface::saveXml()
+     * @see XmlDocumentInterface::saveXml()
      */
     public function saveXml(): string;
 
@@ -53,7 +53,7 @@ interface DocumentInterface extends EntityInterface
      * al inicio y final.
      *
      * @return string
-     * @see XmlInterface::getXml()
+     * @see XmlDocumentInterface::getXml()
      */
     public function getXml(): string;
 

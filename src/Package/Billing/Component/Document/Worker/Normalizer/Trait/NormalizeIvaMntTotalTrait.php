@@ -142,7 +142,7 @@ trait NormalizeIvaMntTotalTrait
         if (!empty($data['Encabezado']['Totales']['ImptoReten'])) {
             foreach ($data['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
                 $tipo = $this
-                    ->entityComponent
+                    ->repositoryManager
                     ->getRepository(ImpuestoAdicionalRetencion::class)
                     ->find($ImptoReten['TipoImp'])
                     ->getTipo()

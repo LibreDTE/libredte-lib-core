@@ -24,12 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Backbone\Contract\HandlersAwareInterface;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 
 /**
  * Interfaz para el worker "billing.exchange.sender".
  */
-interface SenderWorkerInterface extends WorkerInterface
+interface SenderWorkerInterface extends WorkerInterface, HandlersAwareInterface, StrategiesAwareInterface
 {
     /**
      * Envía documentos a través del proceso de intercambio mediante la

@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaDebitoSanitizerStrategyInterface;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Stra
 /**
  * Sanitizador del documento nota de débito.
  */
+#[Strategy(name: 'nota_debito', worker: 'sanitizer', component: 'document', package: 'billing')]
 class NotaDebitoSanitizerStrategy extends AbstractSanitizerStrategy implements NotaDebitoSanitizerStrategyInterface
 {
     /**

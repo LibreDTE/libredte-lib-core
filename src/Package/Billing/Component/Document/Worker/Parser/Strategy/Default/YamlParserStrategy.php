@@ -24,13 +24,15 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Estrategia "billing.document.parser.strategy:default.yaml".
+ * Estrategia "billing.document.parser#strategy:default.yaml".
  */
+#[Strategy(name: 'default.yaml', worker: 'parser', component: 'document', package: 'billing')]
 class YamlParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**

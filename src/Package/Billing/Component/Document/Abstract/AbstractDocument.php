@@ -24,11 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
-use Derafu\Lib\Core\Helper\Arr;
-use Derafu\Lib\Core\Helper\Selector;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
+use Derafu\Repository\Entity;
+use Derafu\Selector\Selector;
+use Derafu\Support\Arr;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use LogicException;
@@ -50,9 +50,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * Instancia del documento XML asociado a los datos.
      *
-     * @var XmlInterface
+     * @var XmlDocumentInterface
      */
-    protected readonly XmlInterface $xmlDocument;
+    protected readonly XmlDocumentInterface $xmlDocument;
 
     /**
      * Datos del documento tributario estandarizados.
@@ -64,10 +64,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * Constructor del documento tributario.
      *
-     * @param XmlInterface $xmlDocument
+     * @param XmlDocumentInterface $xmlDocument
      * @return void
      */
-    public function __construct(XmlInterface $xmlDocument)
+    public function __construct(XmlDocumentInterface $xmlDocument)
     {
         $this->xmlDocument = $xmlDocument;
 
@@ -95,7 +95,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getXmlDocument(): XmlInterface
+    public function getXmlDocument(): XmlDocumentInterface
     {
         return $this->xmlDocument;
     }
@@ -280,7 +280,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 Arr::ensureArrayAtPath($array, $path);
             }
 
-            $this->datos = Arr::autoCastRecursive($array);
+            $this->datos = Arr::cast($array);
         }
 
         // Entregar los datos del DTE.
@@ -293,7 +293,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getTED(): ?string
     {
         try {
-            return $this->getXmlDocument()->C14NWithIsoEncodingFlattened('//TED');
+            return $this->getXmlDocument()->C14NWithIso88591EncodingFlattened('//TED');
         } catch (XmlException $e) {
             return null;
         }

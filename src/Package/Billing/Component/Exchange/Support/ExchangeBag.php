@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
-use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -79,7 +79,7 @@ class ExchangeBag implements ExchangeBagInterface
      *
      * @param array $options
      */
-    public function __construct(DataContainerInterface|array $options = [])
+    public function __construct(OptionsInterface|array $options = [])
     {
         $this->setOptions($options);
     }

@@ -24,12 +24,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Helper\Rut;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazyException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiSendXmlDocumentException;
@@ -38,17 +39,18 @@ use UnexpectedValueException;
 /**
  * Clase para el envío de documentos al SII.
  */
+#[Job(name: 'send_xml_document', worker: 'sii_lazy', component: 'integration', package: 'billing')]
 class SendXmlDocumentJob extends AbstractJob implements JobInterface
 {
     /**
      * Constructor del worker.
      *
      * @param AuthenticateJob $authenticateJob
-     * @param XmlComponentInterface $xmlComponent
+     * @param XmlServiceInterface $xmlService
      */
     public function __construct(
         private AuthenticateJob $authenticateJob,
-        private XmlComponentInterface $xmlComponent
+        private XmlServiceInterface $xmlService
     ) {
     }
 
@@ -56,7 +58,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * Realiza el envío de un documento XML al SII.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param XmlInterface $doc Documento XML que se desea enviar al SII.
+     * @param XmlDocumentInterface $doc Documento XML que se desea enviar al SII.
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
@@ -66,7 +68,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      */
     public function send(
         SiiRequestInterface $request,
-        XmlInterface $doc,
+        XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
         ?int $retry = null
@@ -110,7 +112,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         unlink($filepath);
 
         // Procesar respuesta recibida desde el SII.
-        $response = $this->xmlComponent->getDecoderWorker()->decode($xmlResponse);
+        $response = $this->xmlService->decode($xmlResponse);
         $this->validateUploadXmlResponse($request, $response);
 
         // Entregar el número de seguimiendo (Track ID) del envío al SII.
@@ -212,7 +214,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param array $data Arreglo con los datos del formulario del SII,
      * incluyendo el archivo XML que se subirá.
      * @param int $retry
-     * @return XmlInterface Respuesta del SII al enviar el XML.
+     * @return XmlDocumentInterface Respuesta del SII al enviar el XML.
      * @throws SiiLazyException Si no se puede obtener el token para enviar
      * el XML al SII o si hubo un problema (error) al enviar el XML al SII.
      */
@@ -220,7 +222,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         SiiRequestInterface $request,
         array $data,
         int $retry
-    ): XmlInterface {
+    ): XmlDocumentInterface {
         // URL que se utilizará para subir el XML al SII.
         $url = $request->getAmbiente()->getUrl('/cgi_dte/UPL/DTEUpload');
 

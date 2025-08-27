@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierCo
 /**
  * Componente "billing.identifier".
  */
+#[Component(name: 'identifier', package: 'billing')]
 class IdentifierComponent extends AbstractComponent implements IdentifierComponentInterface
 {
     public function __construct(

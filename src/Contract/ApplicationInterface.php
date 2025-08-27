@@ -22,25 +22,20 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core;
+namespace libredte\lib\Core\Contract;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractServiceRegistry;
-use Derafu\Lib\Core\Foundation\ServiceRegistry as DerafuServiceRegistry;
+use Derafu\Backbone\Contract\PackageRegistryInterface;
 
 /**
- * Registro de servicios de la aplicación.
+ * Interfaz que define los métodos que debe implementar la aplicación de
+ * LibreDTE.
+ *
+ * Esta interfaz es la mínima que se requiere. Donde cada aplicación deberá
+ * implementar su propia versión de la clase Application. Por defecto la
+ * biblioteca define una implementación de esta interfaz básica, pero que
+ * permite usar todas las funcionalidades incluídas en la biblioteca.
  */
-class ServiceRegistry extends AbstractServiceRegistry
+interface ApplicationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    protected $registries = [
-        DerafuServiceRegistry::class,
-    ];
-
-    /**
-     * {@inheritDoc}
-     */
-    protected string $configPath = __DIR__ . '/../config';
+    public function getPackageRegistry(): PackageRegistryInterface;
 }

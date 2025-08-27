@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
 
 /**
  * Interfaz para el worker que administra los mandatarios.

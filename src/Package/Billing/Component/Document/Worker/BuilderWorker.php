@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
@@ -34,19 +36,20 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterf
 /**
  * Clase para los constructores de documentos.
  */
+#[Worker(name: 'builder', component: 'document', package: 'billing')]
 class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
 {
+    use StrategiesAwareTrait;
+
     public function __construct(
         private DocumentBagManagerWorkerInterface $documentBagManager,
         iterable $jobs = [],
         iterable $handlers = [],
         iterable $strategies = []
     ) {
-        parent::__construct(
-            jobs: $jobs,
-            handlers: $handlers,
-            strategies: $strategies
-        );
+        $this->setJobs($jobs);
+        $this->setHandlers($handlers);
+        $this->setStrategies($strategies);
     }
 
     /**

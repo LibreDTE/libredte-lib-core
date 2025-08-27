@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler;
 
+use Derafu\Backbone\Attribute\Handler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractReceiverHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
@@ -35,6 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandle
  * La recepción por correo solo se realiza si en la bolsa están los
  * datos/opciones para poder ejecutar una estrategia de recepción de correo.
  */
+#[Handler(name: 'email_receiver', worker: 'receiver', component: 'exchange', package: 'billing')]
 class EmailReceiverHandler extends AbstractReceiverHandler implements ExchangeHandlerInterface
 {
     /**

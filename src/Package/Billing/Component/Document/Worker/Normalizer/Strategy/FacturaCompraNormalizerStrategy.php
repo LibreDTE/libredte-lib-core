@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaCompraNormalizerStrategyInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 /**
  * Normalizador del documento factura de compra.
  */
+#[Strategy(name: 'factura_compra', worker: 'normalizer', component: 'document', package: 'billing')]
 class FacturaCompraNormalizerStrategy extends AbstractNormalizerStrategy implements FacturaCompraNormalizerStrategyInterface
 {
     public function __construct(

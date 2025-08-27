@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\L10n\Cl\Rut\Rut;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\SanitizerException;

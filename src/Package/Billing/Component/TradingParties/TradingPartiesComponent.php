@@ -24,13 +24,15 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingPartiesComponentInterface;
 
 /**
  * Componente "billing.trading_parties".
  */
+#[Component(name: 'trading_parties', package: 'billing')]
 class TradingPartiesComponent extends AbstractComponent implements TradingPartiesComponentInterface
 {
     public function __construct(

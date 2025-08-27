@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface;
@@ -50,6 +51,7 @@ use stdClass;
  * Este componente se encarga de la creación, manipulación y renderización de
  * los documentos tributarios.
  */
+#[Component(name: 'document', package: 'billing')]
 class DocumentComponent extends AbstractComponent implements DocumentComponentInterface
 {
     public function __construct(
@@ -171,9 +173,9 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
      */
     public function bill(
         string|array|stdClass $data,
-        string|CafInterface $caf = null,
-        string|array|CertificateInterface $certificate = null,
-        array|DataContainerInterface $options = []
+        string|CafInterface|null $caf = null,
+        string|array|CertificateInterface|null $certificate = null,
+        array|OptionsInterface $options = []
     ): DocumentBagInterface {
         // Si el CAF es un string se debe construir el CAF.
         if (is_string($caf)) {

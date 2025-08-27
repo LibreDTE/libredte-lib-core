@@ -24,12 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 
 /**
- * Estrategia "billing.document.parser.strategy:default.json".
+ * Estrategia "billing.document.parser#strategy:default.json".
  */
+#[Strategy(name: 'default.json', worker: 'parser', component: 'document', package: 'billing')]
 class JsonParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**

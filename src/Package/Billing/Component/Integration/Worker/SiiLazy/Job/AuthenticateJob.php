@@ -24,11 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\SignatureComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiAuthenticateException;
 use LogicException;
@@ -40,29 +41,9 @@ use Symfony\Component\Cache\Psr16Cache;
 /**
  * Clase para gestionar las solicitudes de token para autenticación al SII.
  */
+#[Job(name: 'authenticate', worker: 'sii_lazy', component: 'integration', package: 'billing')]
 class AuthenticateJob extends AbstractJob implements JobInterface
 {
-    /**
-     * Componente para firma electrónica.
-     *
-     * @var SignatureComponentInterface
-     */
-    private SignatureComponentInterface $signatureComponent;
-
-    /**
-     * Componente para manejo de documentos XML.
-     *
-     * @var XmlComponentInterface
-     */
-    private XmlComponentInterface $xmlComponent;
-
-    /**
-     * Trabajo que realiza consultas a la API SOAP del SII.
-     *
-     * @var ConsumeWebserviceJob
-     */
-    private ConsumeWebserviceJob $consumeWebserviceJob;
-
     /**
      * Instancia con la implementación de la caché que se utilizará para el
      * almacenamiento de los tokens.
@@ -73,16 +54,21 @@ class AuthenticateJob extends AbstractJob implements JobInterface
 
     /**
      * Constructor y sus dependencias.
+     *
+     * @param SignatureServiceInterface $signatureService Servicio para firma
+     * electrónica.
+     * @param XmlServiceInterface $xmlService Servicio para manejo de documentos
+     * XML.
+     * @param ConsumeWebserviceJob $consumeWebserviceJob Trabajo que realiza
+     * consultas a la API SOAP del SII.
+     * @param CacheInterface $cache
      */
     public function __construct(
-        SignatureComponentInterface $signatureComponent,
-        XmlComponentInterface $xmlComponent,
-        ConsumeWebserviceJob $consumeWebserviceJob,
+        private SignatureServiceInterface $signatureService,
+        private XmlServiceInterface $xmlService,
+        private ConsumeWebserviceJob $consumeWebserviceJob,
         ?CacheInterface $cache = null
     ) {
-        $this->signatureComponent = $signatureComponent;
-        $this->xmlComponent = $xmlComponent;
-        $this->consumeWebserviceJob = $consumeWebserviceJob;
         if ($cache !== null) {
             $this->cache = $cache;
         }
@@ -150,7 +136,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
 
         // Crear solicitud del token con la semilla, parámetro getTokenRequest
         // de la función getToken() en el servicio web GetTokenFromSeed.
-        $xmlRequest = $this->xmlComponent->getEncoderWorker()->encode([
+        $xmlRequest = $this->xmlService->encode([
             'getToken' => [
                 'item' => [
                     'Semilla' => $semilla,
@@ -160,7 +146,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
 
         // Firmar el XML de la solicitud del token.
         try {
-            $xmlRequestSigned = $this->signatureComponent->getGeneratorWorker()->signXml(
+            $xmlRequestSigned = $this->signatureService->signXml(
                 $xmlRequest,
                 $request->getCertificate()
             );
@@ -180,7 +166,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         );
 
         // Extraer respuesta de la solicitud del token.
-        $response = $this->xmlComponent->getDecoderWorker()->decode($xmlResponse);
+        $response = $this->xmlService->decode($xmlResponse);
         $estado = $response['SII:RESPUESTA']['SII:RESP_HDR']['ESTADO'] ?? null;
         $token = $response['SII:RESPUESTA']['SII:RESP_BODY']['TOKEN'] ?? null;
 
@@ -223,7 +209,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
             'CrSeed',
             'getSeed'
         );
-        $response = $this->xmlComponent->getDecoderWorker()->decode($xmlResponse);
+        $response = $this->xmlService->decode($xmlResponse);
         $estado = $response['SII:RESPUESTA']['SII:RESP_HDR']['ESTADO'] ?? null;
         $semilla = $response['SII:RESPUESTA']['SII:RESP_BODY']['SEMILLA'] ?? null;
 

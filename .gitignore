@@ -20,3 +20,4 @@
 /var/
 /vendor/
 /ast.dump
+/composer.lock

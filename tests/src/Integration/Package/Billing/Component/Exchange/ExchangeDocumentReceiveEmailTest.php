@@ -40,10 +40,12 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeResult;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler\EmailReceiverHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractExchangeWorker::class)]
 #[CoversClass(AbstractReceiverHandler::class)]
@@ -67,12 +69,13 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
         $app = Application::getInstance();
 
         $this->exchange = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getExchangeComponent()
         ;
     }
 
-    public function testSendOneDocumentInOneEnvelope(): void
+    public function testReceiveOneDocumentInOneEnvelope(): void
     {
         $username = getenv('MAIL_USERNAME');
         $password = getenv('MAIL_PASSWORD');

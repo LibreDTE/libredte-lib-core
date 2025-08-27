@@ -24,8 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Integration\Package\Billing\Component\Integration;
 
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Exception\CertificateException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Certificate\Exception\CertificateException;
+use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
@@ -37,10 +38,12 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\A
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(IntegrationComponent::class)]
 #[CoversClass(SiiRequest::class)]
@@ -61,13 +64,10 @@ class SiiSendXmlDocumentTest extends TestCase
     {
         $app = Application::getInstance();
 
-        $certificateLoader = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getLoaderWorker()
-        ;
+        $certificateLoader = new CertificateLoader();
 
         $this->siiLazyWorker = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIntegrationComponent()
             ->getSiiLazyWorker()
@@ -75,7 +75,7 @@ class SiiSendXmlDocumentTest extends TestCase
 
         // Cargar certificado digital.
         try {
-            $certificate = $certificateLoader->createFromFile(
+            $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
                 getenv('LIBREDTE_CERTIFICATE_PASS'),
             );

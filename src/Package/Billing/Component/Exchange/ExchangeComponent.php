@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface;
@@ -33,6 +34,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerIn
 /**
  * Componente "billing.exchange".
  */
+#[Component(name: 'exchange', package: 'billing')]
 class ExchangeComponent extends AbstractComponent implements ExchangeComponentInterface
 {
     /**

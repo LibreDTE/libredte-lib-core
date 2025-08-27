@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\LiquidacionFacturaBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\LiquidacionFactura;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\Liquida
 /**
  * Constructor ("builder") del documento liquidación de factura.
  */
+#[Strategy(name: 'liquidacion_factura', worker: 'builder', component: 'document', package: 'billing')]
 class LiquidacionFacturaBuilderStrategy extends AbstractBuilderStrategy implements LiquidacionFacturaBuilderStrategyInterface
 {
     /**

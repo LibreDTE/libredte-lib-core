@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Exception\XmlException;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
 
 /**
@@ -60,33 +60,33 @@ interface DispatcherWorkerInterface extends WorkerInterface
     /**
      * Realiza la validación del sobre de documentos tributarios.
      *
-     * @param DocumentEnvelopeInterface|XmlInterface|string $source
+     * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws DispatcherException
      */
     public function validate(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void;
 
     /**
      * Valida el esquema del XML del sobre de documentos tributarios.
      *
-     * @param DocumentEnvelopeInterface|XmlInterface|string $source
+     * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws XmlException Si la validación del esquema falla.
      */
     public function validateSchema(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void;
 
     /**
      * Valida la firma electrónica del sobre de documentos tributarios.
      *
-     * @param DocumentEnvelopeInterface|XmlInterface|string $source
+     * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
      * @return void
      * @throws SignatureException Si la validación de la firma falla.
      */
     public function validateSignature(
-        DocumentEnvelopeInterface|XmlInterface|string $source
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void;
 }

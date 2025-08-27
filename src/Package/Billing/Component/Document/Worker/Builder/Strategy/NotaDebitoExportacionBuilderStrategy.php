@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaDebitoExportacionBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\NotaDebitoExportacion;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\NotaDeb
 /**
  * Constructor ("builder") del documento nota de débito de exportación.
  */
+#[Strategy(name: 'nota_debito_exportacion', worker: 'builder', component: 'document', package: 'billing')]
 class NotaDebitoExportacionBuilderStrategy extends AbstractBuilderStrategy implements NotaDebitoExportacionBuilderStrategyInterface
 {
     /**

@@ -24,32 +24,26 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Xml\Contract\XmlServiceInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
 
 /**
- * Estrategia "billing.document.parser.strategy:default.xml".
+ * Estrategia "billing.document.parser#strategy:default.xml".
  */
+#[Strategy(name: 'default.xml', worker: 'parser', component: 'document', package: 'billing')]
 class XmlParserStrategy extends AbstractStrategy implements ParserStrategyInterface
 {
     /**
-     * Componente "prime.xml" para decodifación de XML.
-     *
-     * @var XmlComponentInterface
-     */
-    private XmlComponentInterface $xmlComponent;
-
-    /**
      * Constructor de la estrategia del parser.
      *
-     * @param XmlComponentInterface $xmlComponent
+     * @param XmlServiceInterface $xmlService
      */
-    public function __construct(XmlComponentInterface $xmlComponent)
+    public function __construct(private XmlServiceInterface $xmlService)
     {
-        $this->xmlComponent = $xmlComponent;
     }
 
     /**
@@ -60,7 +54,7 @@ class XmlParserStrategy extends AbstractStrategy implements ParserStrategyInterf
         // Cargar los datos del XML a un arreglo.
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml($data);
-        $array = $this->xmlComponent->getDecoderWorker()->decode($xmlDocument);
+        $array = $this->xmlService->decode($xmlDocument);
 
         // Obtener los datos del documento a generar.
         $documentoData = $array['DTE']['Documento']

@@ -24,25 +24,114 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core;
 
-use Derafu\Lib\Core\Foundation\Application as DerafuApplication;
-use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
+use Derafu\Backbone\Contract\PackageRegistryInterface;
+use Derafu\Backbone\DependencyInjection\ServiceConfigurationCompilerPass;
+use Derafu\Backbone\DependencyInjection\ServiceProcessingCompilerPass;
+use Derafu\Kernel\Contract\EnvironmentInterface;
+use Derafu\Kernel\MicroKernel;
+use libredte\lib\Core\Contract\ApplicationInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
  * Clase principal de la aplicación.
  */
-class Application extends DerafuApplication
+final class Application extends MicroKernel implements ApplicationInterface
 {
     /**
-     * Entrega el paquete "billing".
+     * Instancia de la aplicación.
      *
-     * @return BillingPackageInterface
+     * @var self
      */
-    public function getBillingPackage(): BillingPackageInterface
+    private static self $instance;
+
+    /**
+     * Archivos de configuración.
+     *
+     * @var array<string,string>
+     */
+    protected const CONFIG_FILES = [
+        'services.yaml' => 'yaml',
+    ];
+
+    /**
+     * Cargadores de archivos de configuración.
+     *
+     * @var array<class-string>
+     */
+    protected const CONFIG_LOADERS = [
+        PhpFileLoader::class,
+        YamlFileLoader::class,
+    ];
+
+    /**
+     * Configura el contenedor de dependencias.
+     *
+     * @param ContainerConfigurator $configurator
+     * @param ContainerBuilder $container
+     */
+    protected function configure(
+        ContainerConfigurator $configurator,
+        ContainerBuilder $container
+    ): void {
+        // Cargar configuración.
+        $configurator->import(__DIR__ . '/../config/services.yaml');
+
+        // Agregar compiler passes.
+        $container->addCompilerPass(
+            new ServiceProcessingCompilerPass('libredte.lib.')
+        );
+        $container->addCompilerPass(
+            new ServiceConfigurationCompilerPass('libredte.lib.')
+        );
+    }
+
+    /**
+     * Entrega el registro de paquetes de la aplicación.
+     *
+     * @return PackageRegistry
+     */
+    public function getPackageRegistry(): PackageRegistry
     {
-        $package = $this->getPackage('billing');
+        return $this->getContainer()->get(PackageRegistryInterface::class);
+    }
 
-        assert($package instanceof BillingPackageInterface);
+    /**
+     * Entrega un servicio de la aplicación.
+     *
+     * @param string $id
+     * @return mixed
+     */
+    public function getService(string $id): mixed
+    {
+        return $this->getContainer()->get($id);
+    }
 
-        return $package;
+    /**
+     * Entrega la instancia de la aplicación.
+     *
+     * Este método se asegura de entregar una única instancia de la aplicación
+     * mediante el patrón singleton.
+     *
+     * Al utilizar inyección de dependencias y registrar la aplicación de
+     * LibreDTE en un contenedor de dependencias no será necesario, ni
+     * recomendado, utilizar este método. En ese caso se debe utilizar solo el
+     * contenedor de dependencias para obtener la aplicación de LibreDTE.
+     *
+     * @param string|EnvironmentInterface $environment
+     * @param bool $debug
+     * @return self
+     */
+    public static function getInstance(
+        string|EnvironmentInterface $environment = 'dev',
+        bool $debug = true
+    ): self {
+        if (!isset(self::$instance)) {
+            self::$instance = new self($environment, $debug);
+        }
+
+        return self::$instance;
     }
 }

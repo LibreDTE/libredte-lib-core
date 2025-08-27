@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\StrategyInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderException;
 
 /**
@@ -47,8 +47,8 @@ interface BuilderStrategyInterface extends StrategyInterface
     /**
      * Crea la instancia del DTE a partir del XmlDocument.
      *
-     * @param XmlInterface $xmlDocument
+     * @param XmlDocumentInterface $xmlDocument
      * @return DocumentInterface
      */
-    public function create(XmlInterface $xmlDocument): DocumentInterface;
+    public function create(XmlDocumentInterface $xmlDocument): DocumentInterface;
 }

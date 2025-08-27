@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Integration\Package\Billing\Component\Integration;
 
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Exception\CertificateException;
+use Derafu\Certificate\Exception\CertificateException;
+use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
@@ -38,10 +39,12 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\A
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractSiiWsdlResponse::class)]
 #[CoversClass(IntegrationComponent::class)]
@@ -62,13 +65,10 @@ class SiiValidateDocumentSignatureTest extends TestCase
     {
         $app = Application::getInstance();
 
-        $certificateLoader = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getLoaderWorker()
-        ;
+        $certificateLoader = new CertificateLoader();
 
         $this->siiLazyWorker = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIntegrationComponent()
             ->getSiiLazyWorker()
@@ -76,7 +76,7 @@ class SiiValidateDocumentSignatureTest extends TestCase
 
         // Cargar certificado digital.
         try {
-            $certificate = $certificateLoader->createFromFile(
+            $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
                 getenv('LIBREDTE_CERTIFICATE_PASS'),
             );

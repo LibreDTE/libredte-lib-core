@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
-use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
@@ -113,11 +113,11 @@ class DocumentBatch implements DocumentBatchInterface
      * Constructor del lote.
      *
      * @param string $file
-     * @param array|DataContainerInterface|null $options
+     * @param array|OptionsInterface|null $options
      */
     public function __construct(
         string $file,
-        array|DataContainerInterface|null $options = []
+        array|OptionsInterface|null $options = []
     ) {
         $this->file = $file;
         $this->setOptions($options);
@@ -190,6 +190,6 @@ class DocumentBatch implements DocumentBatchInterface
      */
     public function getBatchProcessorOptions(): array
     {
-        return (array) $this->getOptions()->get('batch_processor');
+        return $this->getOptions()->get('batch_processor')->all();
     }
 }

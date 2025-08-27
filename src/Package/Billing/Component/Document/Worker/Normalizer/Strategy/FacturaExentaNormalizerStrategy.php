@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\FacturaExentaNormalizerStrategyInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 /**
  * Normalizador del documento factura exenta.
  */
+#[Strategy(name: 'factura_exenta', worker: 'normalizer', component: 'document', package: 'billing')]
 class FacturaExentaNormalizerStrategy extends AbstractNormalizerStrategy implements FacturaExentaNormalizerStrategyInterface
 {
     public function __construct(

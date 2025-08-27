@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategyInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 /**
  * Normalizador del documento nota de crédito de exportación.
  */
+#[Strategy(name: 'nota_credito_exportacion', worker: 'normalizer', component: 'document', package: 'billing')]
 class NotaCreditoExportacionNormalizerStrategy extends AbstractNormalizerStrategy implements NotaCreditoExportacionNormalizerStrategyInterface
 {
     public function __construct(

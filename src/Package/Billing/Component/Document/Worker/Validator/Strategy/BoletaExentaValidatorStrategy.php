@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\BoletaExentaValidatorStrategyInterface;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Stra
 /**
  * Validador del documento boleta exenta.
  */
+#[Strategy(name: 'boleta_exenta', worker: 'validator', component: 'document', package: 'billing')]
 class BoletaExentaValidatorStrategy extends AbstractValidatorStrategy implements BoletaExentaValidatorStrategyInterface
 {
     /**

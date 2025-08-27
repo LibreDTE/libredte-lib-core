@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Repository;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Repository\Repository;
+use Derafu\Repository\Repository;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 
 /**

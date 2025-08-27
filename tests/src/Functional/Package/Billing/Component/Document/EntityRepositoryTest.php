@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\ManagerWorkerInterface;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Repository\Service\DataProvider;
+use Derafu\Repository\Service\RepositoryManager;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\GuiaDespachoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
@@ -63,36 +65,57 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(TipoDocumentoRepository::class)]
 class EntityRepositoryTest extends TestCase
 {
-    private ManagerWorkerInterface $manager;
+    private RepositoryManagerInterface $repositoryManager;
 
     protected function setUp(): void
     {
-        $app = Application::getInstance();
-
-        $this->manager = $app
-            ->getPrimePackage()
-            ->getEntityComponent()
-            ->getManagerWorker()
-        ;
+        $repositoryPath = realpath(__DIR__ . '/../../../../../../../resources/data/repository');
+        $dataProvider = new DataProvider(
+            sources: [
+                AduanaClausulaVenta::class => $repositoryPath . '/aduana_clausulas_venta.php',
+                AduanaFormaPago::class => $repositoryPath . '/aduana_formas_pago.php',
+                AduanaModalidadVenta::class => $repositoryPath . '/aduana_modalidades_venta.php',
+                AduanaPais::class => $repositoryPath . '/aduana_paises.php',
+                AduanaPuerto::class => $repositoryPath . '/aduana_puertos.php',
+                AduanaTipoBulto::class => $repositoryPath . '/aduana_tipos_bulto.php',
+                AduanaTransporte::class => $repositoryPath . '/aduana_transportes.php',
+                AduanaUnidad::class => $repositoryPath . '/aduana_unidades.php',
+                Comuna::class => $repositoryPath . '/comunas.php',
+                FormaPagoExportacion::class => $repositoryPath . '/formas_pago_exportacion.php',
+                FormaPago::class => $repositoryPath . '/formas_pago.php',
+                ImpuestoAdicionalRetencion::class => $repositoryPath . '/impuestos_adicionales_retenciones.php',
+                MedioPago::class => $repositoryPath . '/medios_pago.php',
+                TipoDocumentoInterface::class => $repositoryPath . '/tipos_documento.php',
+                TagXml::class => $repositoryPath . '/tag_xml.php',
+                Traslado::class => $repositoryPath . '/traslados.php',
+            ],
+            config: [
+                'normalization' => [
+                    'idAttribute' => 'codigo',
+                    'nameAttribute' => 'glosa',
+                ],
+            ],
+        );
+        $this->repositoryManager = new RepositoryManager($dataProvider);
     }
 
     public function testEntityRepositoryAduanaClausulaVenta(): void
     {
-        $repository = $this->manager->getRepository(AduanaClausulaVenta::class);
+        $repository = $this->repositoryManager->getRepository(AduanaClausulaVenta::class);
         $this->assertSame('FOB', $repository->find(5)->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'CIF'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaFormaPago(): void
     {
-        $repository = $this->manager->getRepository(AduanaFormaPago::class);
+        $repository = $this->repositoryManager->getRepository(AduanaFormaPago::class);
         $this->assertSame('S/PAGO', $repository->find(21)->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'COB1'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaModalidadVenta(): void
     {
-        $repository = $this->manager->getRepository(
+        $repository = $this->repositoryManager->getRepository(
             AduanaModalidadVenta::class
         );
         $this->assertSame('Sin pago', $repository->find(9)->getGlosa());
@@ -101,41 +124,41 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryAduanaPais(): void
     {
-        $repository = $this->manager->getRepository(AduanaPais::class);
+        $repository = $this->repositoryManager->getRepository(AduanaPais::class);
         $this->assertSame('ESTONIA', $repository->find(549)->getGlosa());
         $this->assertSame(563, $repository->findBy(['glosa' => 'ALEMANIA'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaPuerto(): void
     {
-        $repository = $this->manager->getRepository(AduanaPuerto::class);
+        $repository = $this->repositoryManager->getRepository(AduanaPuerto::class);
         $this->assertSame('HELSINSKI', $repository->find(581)->getGlosa());
         $this->assertSame(111, $repository->findBy(['glosa' => 'MONTREAL'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaTipoBulto(): void
     {
-        $repository = $this->manager->getRepository(AduanaTipoBulto::class);
+        $repository = $this->repositoryManager->getRepository(AduanaTipoBulto::class);
         $this->assertSame('ATAUD', $repository->find(86)->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'POLVO'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaTransporte(): void
     {
-        $repository = $this->manager->getRepository(AduanaTransporte::class);
+        $repository = $this->repositoryManager->getRepository(AduanaTransporte::class);
         $this->assertSame('Aéreo', $repository->find(4)->getGlosa());
     }
 
     public function testEntityRepositoryAduanaUnidad(): void
     {
-        $repository = $this->manager->getRepository(AduanaUnidad::class);
+        $repository = $this->repositoryManager->getRepository(AduanaUnidad::class);
         $this->assertSame('MT2', $repository->find(15)->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'TMB'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryComunas(): void
     {
-        $repository = $this->manager->getRepository(Comuna::class);
+        $repository = $this->repositoryManager->getRepository(Comuna::class);
         //$this->assertSame('', $repository->find()->getGlosa());
 
         $this->assertSame('Santiago', $repository->find('HUECHURABA')->getCiudad());
@@ -158,21 +181,21 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryTagXml(): void
     {
-        $repository = $this->manager->getRepository(TagXml::class);
+        $repository = $this->repositoryManager->getRepository(TagXml::class);
         $this->assertSame('Peso neto', $repository->find('PesoNeto')->getGlosa());
         $this->assertSame('FmaPagExp', $repository->findBy(['glosa' => 'Forma pago exp.'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryFormaPago(): void
     {
-        $repository = $this->manager->getRepository(FormaPago::class);
+        $repository = $this->repositoryManager->getRepository(FormaPago::class);
         $this->assertSame('Crédito', $repository->find(2)->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'Contado'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryFormaPagoExportacion(): void
     {
-        $repository = $this->manager->getRepository(
+        $repository = $this->repositoryManager->getRepository(
             FormaPagoExportacion::class
         );
         $this->assertSame('Cobranza más de 1 año', $repository->find(2)->getGlosa());
@@ -181,7 +204,7 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryImpuestoAdicionalRetencion(): void
     {
-        $repository = $this->manager->getRepository(
+        $repository = $this->repositoryManager->getRepository(
             ImpuestoAdicionalRetencion::class
         );
 
@@ -203,7 +226,7 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryMedioPago(): void
     {
-        $repository = $this->manager->getRepository(MedioPago::class);
+        $repository = $this->repositoryManager->getRepository(MedioPago::class);
         $this->assertSame(
             'Tarjeta de crédito o débito',
             $repository->find('TC')->glosa
@@ -213,7 +236,7 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryTipoDocumento(): void
     {
-        $repository = $this->manager->getRepository(
+        $repository = $this->repositoryManager->getRepository(
             TipoDocumentoInterface::class
         );
 
@@ -282,7 +305,7 @@ class EntityRepositoryTest extends TestCase
 
     public function testEntityRepositoryTraslado(): void
     {
-        $repository = $this->manager->getRepository(Traslado::class);
+        $repository = $this->repositoryManager->getRepository(Traslado::class);
         $this->assertSame('Traslados internos', $repository->find(5)->getGlosa());
         $this->assertSame(9, $repository->findBy(['glosa' => 'Venta para exportación'])[0]->getCodigo());
     }

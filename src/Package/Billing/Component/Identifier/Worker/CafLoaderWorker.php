@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
@@ -38,20 +39,21 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFa
 /**
  * Worker que permite cargar archivos CAF.
  */
+#[Worker(name: 'caf_loader', component: 'identifier', package: 'billing')]
 class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
 {
     protected string $cafClass = Caf::class;
 
     public function __construct(
         private EmisorFactoryInterface $emisorFactory,
-        private EntityComponentInterface $entityComponent
+        private RepositoryManagerInterface $repositoryManager
     ) {
     }
 
     /**
      * {@inheritDoc}
      */
-    public function load(string|XmlInterface $xml): CafBagInterface
+    public function load(string|XmlDocumentInterface $xml): CafBagInterface
     {
         $class = $this->cafClass;
         $caf = new $class($xml);
@@ -72,7 +74,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     private function getTipoDocumento(int $codigoTipoDocumento): TipoDocumentoInterface
     {
         // Buscar el tipo de documento tributario que se desea construir.
-        $tipoDocumento = $this->entityComponent
+        $tipoDocumento = $this->repositoryManager
             ->getRepository(TipoDocumentoInterface::class)
             ->find($codigoTipoDocumento)
         ;

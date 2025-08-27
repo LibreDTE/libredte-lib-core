@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\FacturaExentaBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\FacturaExenta;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\Factura
 /**
  * Constructor ("builder") del documento factura exenta.
  */
+#[Strategy(name: 'factura_exenta', worker: 'builder', component: 'document', package: 'billing')]
 class FacturaExentaBuilderStrategy extends AbstractBuilderStrategy implements FacturaExentaBuilderStrategyInterface
 {
     /**

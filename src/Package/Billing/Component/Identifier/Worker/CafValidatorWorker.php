@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 /**
  * Worker que permite validar archivos CAF.
  */
+#[Worker(name: 'caf_validator', component: 'identifier', package: 'billing')]
 class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInterface
 {
     /**
@@ -45,7 +47,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         $public_key_sii = $this->getSiiCertificate($caf->getIdk());
         if ($public_key_sii !== null) {
             $firma = $caf->getFirma();
-            $signed_da = $caf->getXmlDocument()->C14NWithIsoEncodingFlattened('/AUTORIZACION/CAF/DA');
+            $signed_da = $caf->getXmlDocument()->C14NWithIso88591EncodingFlattened('/AUTORIZACION/CAF/DA');
             if (openssl_verify($signed_da, base64_decode($firma), $public_key_sii) !== 1) {
                 throw new CafValidatorException(sprintf(
                     'La firma del CAF %s no es válida (no está autorizado por el SII).',

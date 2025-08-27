@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\GuiaDespachoBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\GuiaDespacho;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\GuiaDes
 /**
  * Constructor ("builder") del documento guía de despacho.
  */
+#[Strategy(name: 'guia_despacho', worker: 'builder', component: 'document', package: 'billing')]
 class GuiaDespachoBuilderStrategy extends AbstractBuilderStrategy implements GuiaDespachoBuilderStrategyInterface
 {
     /**

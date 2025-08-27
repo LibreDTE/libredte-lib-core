@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Foundation\Exception\StrategyException;
-use Derafu\Lib\Core\Support\Store\DataContainer;
+use Derafu\Backbone\Exception\StrategyException;
+use Derafu\Config\Options;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -63,10 +63,12 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -111,6 +113,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $app = Application::getInstance();
 
         $this->builder = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getBuilderWorker()
@@ -150,7 +153,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testDocumentoFactoryFromArrayWrongIntTipoDTE(): void
     {
         $this->expectException(StrategyException::class);
-        $this->expectExceptionMessage('No se encontró la estrategia documento_35 en el worker Billing Document Builder (billing.document.builder).');
+        $this->expectExceptionMessage('Strategy documento_35 not found in service builder (billing.document.builder).');
 
         $data = [
             'Encabezado' => [
@@ -168,7 +171,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testDocumentoFactoryFromArrayWrongStringTipoDTE(): void
     {
         $this->expectException(StrategyException::class);
-        $this->expectExceptionMessage('No se encontró la estrategia factura en el worker Billing Document Builder (billing.document.builder).');
+        $this->expectExceptionMessage('Strategy factura not found in service builder (billing.document.builder).');
 
         $data = [
             'Encabezado' => [
@@ -225,7 +228,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
         $bag = new DocumentBag(
             inputData: $data,
-            options: new DataContainer(['parser' => ['strategy' => 'default.xml']])
+            options: new Options(['parser' => ['strategy' => 'default.xml']])
         );
 
         $document = $this->builder->build($bag);
@@ -259,7 +262,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
         $bag = new DocumentBag(
             inputData: $data,
-            options: new DataContainer(['parser' => ['strategy' => 'default.yaml']])
+            options: new Options(['parser' => ['strategy' => 'default.yaml']])
         );
 
         $document = $this->builder->build($bag);

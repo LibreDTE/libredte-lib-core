@@ -24,11 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Contract\MailComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Support\Envelope as MailEnvelope;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Support\Message as MailMessage;
-use Derafu\Lib\Core\Package\Prime\Component\Mail\Support\Postman as MailPostman;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Mail\Contract\MailPackageInterface;
+use Derafu\Mail\Model\Envelope as MailEnvelope;
+use Derafu\Mail\Model\Message as MailMessage;
+use Derafu\Mail\Model\Postman as MailPostman;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -41,15 +42,16 @@ use Symfony\Component\Mime\Address;
 /**
  * Envío de documentos usando la estrategia SMTP de correo electrónico.
  */
+#[Strategy(name: 'email.smtp', worker: 'sender', component: 'exchange', package: 'billing')]
 class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInterface
 {
     /**
      * Constructor de la estrategia y sus dependencias.
      *
-     * @param MailComponentInterface $mailComponentInterface
+     * @param MailPackageInterface $mailPackage
      */
     public function __construct(
-        private MailComponentInterface $mailComponentInterface
+        private MailPackageInterface $mailPackage
     ) {
     }
 
@@ -152,7 +154,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
             'transport' => $this->resolveTransportOptions($envelope),
         ]);
         $postman->addEnvelope($mailEnvelope);
-        $this->mailComponentInterface->send($postman);
+        $this->mailPackage->getExchangeComponent()->getSenderWorker()->send($postman);
 
         // Crear resultado del envío del sobre y agregar el error del envío por
         // correo si existe (si no existe se agrega `null`).

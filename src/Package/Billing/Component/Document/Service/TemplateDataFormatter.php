@@ -24,12 +24,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
-use Derafu\Lib\Core\Enum\Currency;
-use Derafu\Lib\Core\Helper\Date;
-use Derafu\Lib\Core\Helper\Rut;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Template\Abstract\AbstractTemplateDataHandler;
-use Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataHandlerInterface;
+use Derafu\Enum\Currency;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Renderer\Contract\HandlerFormatterInterface;
+use Derafu\Renderer\Exception\FormatterException;
+use Derafu\Renderer\Formatter\Handler\GenericFormatterHandler;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Support\Date;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
@@ -47,16 +48,78 @@ use TCPDF2DBarcode;
  * Servicio para traducir los datos de los documentos a su representación para
  * ser utilizada en la renderización del documento.
  */
-class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHandlerInterface
+class TemplateDataFormatter implements HandlerFormatterInterface
 {
+    /**
+     * Mapa de handlers para formatos de los datos.
+     *
+     * @var array
+     */
+    protected array $handlers;
+
+    /**
+     * Generic handler when the handler is not an HandlerFormatterInterface and
+     * cannot be resolved.
+     *
+     * @var GenericFormatterHandler
+     */
+    private GenericFormatterHandler $genericHandler;
+
     /**
      * Constructor del handler.
      *
-     * @param EntityComponentInterface $entityComponent
+     * @param RepositoryManagerInterface $repositoryManager
      */
     public function __construct(
-        private EntityComponentInterface $entityComponent
+        private RepositoryManagerInterface $repositoryManager
     ) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function handle(mixed $value, string $format): string
+    {
+        $handler = $this->getHandlers()[$format] ?? null;
+
+        if ($handler === null) {
+            throw new FormatterException(sprintf(
+                'No se encontró el handler para el formato "%s".',
+                $format
+            ));
+        }
+
+        if (is_string($handler) && str_contains($handler, 'alias:')) {
+            $alias = str_replace('alias:', '', $handler);
+            return $this->handle($value, $alias);
+        }
+
+        return $this->getGenericHandler()->handle($value, $handler);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSupportedFormats(): array
+    {
+        return array_keys($this->getHandlers());
+    }
+
+    /**
+     * Retorna el mapa de handlers para formatos de los datos.
+     *
+     * Se crea el arreglo de handlers de manera perezosa para evitar que se
+     * carguen de forma innecesaria.
+     *
+     * @return array
+     */
+    protected function getHandlers(): array
+    {
+        if (!isset($this->handlers)) {
+            $this->handlers = $this->createHandlers();
+        }
+
+        return $this->handlers;
     }
 
     /**
@@ -68,7 +131,7 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
     {
         return [
             // Tipos de documento.
-            'TipoDTE' => $this->entityComponent->getRepository(
+            'TipoDTE' => $this->repositoryManager->getRepository(
                 TipoDocumentoInterface::class
             ),
             'TpoDocRef' => 'alias:TipoDTE',
@@ -80,12 +143,12 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             'RUTChofer' => 'alias:RUTEmisor',
             // Comuna.
             'CdgSIISucur' => fn (string $comuna) =>
-                $this->entityComponent->getRepository(
+                $this->repositoryManager->getRepository(
                     Comuna::class
                 )->find($comuna)->getDireccionRegional()
             ,
             'CiudadOrigen' => fn (string $comuna) =>
-                $this->entityComponent->getRepository(
+                $this->repositoryManager->getRepository(
                     Comuna::class
                 )->find($comuna)->getCiudad()
             ,
@@ -107,13 +170,13 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             // Datos de Aduana.
             'Aduana' => function (string $tagXmlAndValue) {
                 [$tagXml, $value] = explode(':', $tagXmlAndValue);
-                $xmlTagEntity = $this->entityComponent->getRepository(
+                $xmlTagEntity = $this->repositoryManager->getRepository(
                     TagXml::class
                 )->find($tagXml);
                 $name = $xmlTagEntity->getGlosa();
                 $entityClass = $xmlTagEntity->getEntity();
                 if ($entityClass) {
-                    $description = $this->entityComponent->getRepository(
+                    $description = $this->repositoryManager->getRepository(
                         $entityClass
                     )->find($value)->getGlosa();
                 } else {
@@ -127,26 +190,26 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             'TotItems' => 'alias:Number',
             // Otros datos que se mapean de un código a su glosa usando un
             // repositorio.
-            'TipoImp' => $this->entityComponent->getRepository(
+            'TipoImp' => $this->repositoryManager->getRepository(
                 ImpuestoAdicionalRetencion::class
             ),
-            'MedioPago' => $this->entityComponent->getRepository(
+            'MedioPago' => $this->repositoryManager->getRepository(
                 MedioPago::class
             ),
-            'FmaPago' => $this->entityComponent->getRepository(
+            'FmaPago' => $this->repositoryManager->getRepository(
                 FormaPago::class
             ),
-            'FmaPagExp' => $this->entityComponent->getRepository(
+            'FmaPagExp' => $this->repositoryManager->getRepository(
                 FormaPagoExportacion::class
             ),
-            'Nacionalidad' => $this->entityComponent->getRepository(
+            'Nacionalidad' => $this->repositoryManager->getRepository(
                 AduanaPais::class
             ),
             'CodPaisRecep' => 'alias:Nacionalidad',
-            'IndTraslado' => $this->entityComponent->getRepository(
+            'IndTraslado' => $this->repositoryManager->getRepository(
                 Traslado::class
             ),
-            'CodViaTransp' => $this->entityComponent->getRepository(
+            'CodViaTransp' => $this->repositoryManager->getRepository(
                 AduanaTransporte::class
             ),
             //  Timbre Electrónico del Documento (TED).
@@ -163,12 +226,26 @@ class TemplateDataHandler extends AbstractTemplateDataHandler implements DataHan
             // Montos según moneda.
             'MontoMoneda' => function (string $value) {
                 [$codigo, $num] = explode(':', $value);
-                $result = $this->entityComponent->getRepository(
+                $result = $this->repositoryManager->getRepository(
                     AduanaMoneda::class
                 )->findBy(['glosa' => $codigo]);
                 $currency = ($result[0] ?? null)?->getCurrency() ?? Currency::XXX;
                 return $currency->format((float) $num);
             },
         ];
+    }
+
+    /**
+     * Returns the generic handler.
+     *
+     * @return GenericFormatterHandler
+     */
+    private function getGenericHandler(): GenericFormatterHandler
+    {
+        if (!isset($this->genericHandler)) {
+            $this->genericHandler = new GenericFormatterHandler();
+        }
+
+        return $this->genericHandler;
     }
 }

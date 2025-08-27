@@ -24,11 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Helper\Date;
-use Derafu\Lib\Core\Helper\Rut;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Support\Date;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiValidateDocumentException;
@@ -40,12 +41,13 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
  * Principalmente es para el envío y consulta de estado del envío de documentos
  * tributarios electrónicos en formato XML.
  */
+#[Job(name: 'validate_document', worker: 'sii_lazy', component: 'integration', package: 'billing')]
 class ValidateDocumentJob extends AbstractJob implements JobInterface
 {
     public function __construct(
         private AuthenticateJob $authenticateJob,
         private ConsumeWebserviceJob $consumeWebserviceJob,
-        private XmlComponentInterface $xmlComponent
+        private XmlServiceInterface $xmlService
     ) {
     }
 
@@ -134,10 +136,9 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
             ));
         }
 
-        // Armar estado del XML enviado y retornar.
-        $responseData = $this->xmlComponent->getDecoderWorker()->decode(
-            $xmlResponse
-        );
+        // Armar estado del XML enviado.
+        $responseData = $this->xmlService->decode($xmlResponse);
+
         return new SiiValidateDocumentResponse($responseData, $requestData);
     }
 }

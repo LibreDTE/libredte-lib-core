@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 
 /**
@@ -35,9 +35,9 @@ interface CafInterface
     /**
      * Obtiene el documento XML.
      *
-     * @return XmlInterface
+     * @return XmlDocumentInterface
      */
-    public function getXmlDocument(): XmlInterface;
+    public function getXmlDocument(): XmlDocumentInterface;
 
     /**
      * Obtiene el documento XML como string.

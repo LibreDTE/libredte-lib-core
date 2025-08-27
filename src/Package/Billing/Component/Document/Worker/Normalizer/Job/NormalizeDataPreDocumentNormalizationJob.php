@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
-use Derafu\Lib\Core\Enum\Cl\Comuna;
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Helper\Arr;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\L10n\Cl\Enum\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface;
@@ -38,6 +38,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
  * Trabajo con reglas de normalización generales para el inicio de todos los
  * documentos tributarios.
  */
+#[Job(name: 'normalize_data_pre_document_normalization', worker: 'normalizer', component: 'document', package: 'billing')]
 class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements JobInterface
 {
     /**
@@ -96,7 +97,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         array &$data,
         int|false $IndServicio
     ): void {
-        $data = Arr::mergeRecursiveDistinct([
+        $data = array_replace_recursive([
             'Encabezado' => [
                 'IdDoc' => [
                     'TipoDTE' => false,

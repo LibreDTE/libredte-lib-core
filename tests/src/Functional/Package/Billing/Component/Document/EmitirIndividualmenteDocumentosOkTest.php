@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\FakerWorkerInterface as CertificateFakerWorkerInterface;
+use Derafu\Certificate\Contract\CertificateFakerInterface;
+use Derafu\Certificate\Service\CertificateFaker;
+use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -49,7 +51,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
-use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -122,12 +124,14 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -211,7 +215,6 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(Emisor::class)]
 #[CoversClass(AduanaPais::class)]
 #[CoversClass(AduanaTransporte::class)]
@@ -219,13 +222,14 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Traslado::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
+#[CoversClass(TemplateDataFormatter::class)]
 class EmitirIndividualmenteDocumentosOkTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
 
     private CafFakerWorkerInterface $cafFaker;
 
-    private CertificateFakerWorkerInterface $certificateFaker;
+    private CertificateFakerInterface $certificateFaker;
 
     private ValidatorWorkerInterface $validator;
 
@@ -236,30 +240,30 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $app = Application::getInstance();
 
         $this->builder = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getBuilderWorker()
         ;
 
         $this->cafFaker = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafFakerWorker()
         ;
 
-        $this->certificateFaker = $app
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getFakerWorker()
-        ;
+        $this->certificateFaker = new CertificateFaker(new CertificateLoader());
 
         $this->validator = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
         ;
 
         $this->renderer = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getRendererWorker()
@@ -308,7 +312,7 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $caf = $cafBag->getCaf();
 
         // Crear certificado de pruebas para el caso.
-        $certificate = $this->certificateFaker->create();
+        $certificate = $this->certificateFaker->createFake(id: $emisor->getRUT());
 
         // Construir el documento con los datos del archivo YAML, el CAF y el
         // certificado digital (construcción de DTE completa, timbrado y

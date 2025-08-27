@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use DateTimeInterface;
-use Derafu\Lib\Core\Support\Store\Contract\BagInterface;
+use Derafu\Container\Contract\BagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\DocumentType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 

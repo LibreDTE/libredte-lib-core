@@ -12,6 +12,7 @@ El siguiente es un ejemplo básico de cómo generar el XML de un DTE.
 
     // Cargar contenido del archivo CAF.
     $caf = $app
+        ->getPackageRegistry()
         ->getBillingPackage()
         ->getIdentifierComponent()
         ->getCafLoaderWorker()
@@ -20,15 +21,12 @@ El siguiente es un ejemplo básico de cómo generar el XML de un DTE.
     ;
 
     // Cargar el certificado digital.
-    $certificate = $app
-        ->getPrimePackage()
-        ->getCertificateComponent()
-        ->getLoaderWorker()
-        ->createFromFile($certificateFile, $certificatePass)
-    ;
+    $certificateLoader = new CertificateLoader();
+    $certificate = $certificateLoader->loadFromFile($certificateFile, $certificatePass);
 
     // Crear DTE.
     $document = $app
+        ->getPackageRegistry()
         ->getBillingPackage()
         ->getDocumentComponent()
         ->bill($data, $caf, $certificate)

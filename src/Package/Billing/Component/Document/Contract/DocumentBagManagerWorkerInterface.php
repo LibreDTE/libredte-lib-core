@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException;
 
 /**
@@ -43,19 +43,19 @@ interface DocumentBagManagerWorkerInterface extends WorkerInterface
      *     empezar con el prefijo `parser.strategy.xyz:` para que los datos sean
      *     parseados.
      *   - `array`: Datos ya normalizados.
-     *   - `XmlInterface`: Una instancia del documento XML con sus datos
+     *   - `XmlDocumentInterface`: Una instancia del documento XML con sus datos
      *     normalizado.
      *   - `DocumentInterface`: Una instancia del documento tributario con sus
      *     datos normalizados.
      *
-     * @param string|array|XmlInterface|DocumentInterface $source Datos de origen.
+     * @param string|array|XmlDocumentInterface|DocumentInterface $source Datos de origen.
      * @param bool $normalizeAll Indica si se deben normalizar todos los datos
      * de la bolsa al crearla o solo los mínimos.
      * @return DocumentBagInterface
      * @throws DocumentBagManagerException
      */
     public function create(
-        string|array|XmlInterface|DocumentInterface $source,
+        string|array|XmlDocumentInterface|DocumentInterface $source,
         bool $normalizeAll = true
     ): DocumentBagInterface;
 

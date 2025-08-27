@@ -24,21 +24,23 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
  * Normalizador del documento liquidación de factura.
  */
+#[Job(name: 'normalize_liquidacion_factura', worker: 'normalizer', component: 'document', package: 'billing')]
 class NormalizeLiquidacionFacturaJob extends AbstractJob implements JobInterface
 {
     // Traits usados por este normalizador.
     // TODO: Agregar los traits que usa este normalizador.
 
     public function __construct(
-        protected EntityComponentInterface $entityComponent
+        protected RepositoryManagerInterface $repositoryManager
     ) {
     }
 

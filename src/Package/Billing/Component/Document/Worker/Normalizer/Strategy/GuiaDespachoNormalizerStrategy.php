@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\GuiaDespachoNormalizerStrategyInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 /**
  * Normalizador del documento guía de despacho.
  */
+#[Strategy(name: 'guia_despacho', worker: 'normalizer', component: 'document', package: 'billing')]
 class GuiaDespachoNormalizerStrategy extends AbstractNormalizerStrategy implements GuiaDespachoNormalizerStrategyInterface
 {
     public function __construct(

@@ -24,13 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 
 /**
  * Interfaz para los procesadores de documentos en lote.
  */
-interface BatchProcessorWorkerInterface extends WorkerInterface
+interface BatchProcessorWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
      * Procesa masivamente documentos tributarios electrónicos.

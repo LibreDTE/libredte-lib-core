@@ -25,11 +25,11 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
 use DateTime;
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\SignatureComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Exception\SignatureException;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
@@ -55,15 +55,15 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         private NormalizerWorkerInterface $normalizerWorker,
         private SanitizerWorkerInterface $sanitizerWorker,
         private ValidatorWorkerInterface $validatorWorker,
-        private XmlComponentInterface $xmlComponent,
-        private SignatureComponentInterface $signatureComponent
+        private XmlServiceInterface $xmlService,
+        private SignatureServiceInterface $signatureService
     ) {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function create(XmlInterface $xmlDocument): DocumentInterface
+    public function create(XmlDocumentInterface $xmlDocument): DocumentInterface
     {
         $class = $this->documentClass;
         $document = new $class($xmlDocument);
@@ -102,9 +102,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         // Crear el documento XML del DTE y agregar a la bolsa si no se agregó
         // previamente (al firmar).
         if (!$bag->getXmlDocument()) {
-            $xmlDocument = $this->xmlComponent->getEncoderWorker()->encode(
-                $bag->getData()
-            );
+            $xmlDocument = $this->xmlService->encode($bag->getData());
             $bag->setXmlDocument($xmlDocument);
         }
 
@@ -128,9 +126,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $caf = $bag->getCaf();
 
         // Generar un borrador del DTE para manipular sus datos.
-        $xmlDocument = $this->xmlComponent->getEncoderWorker()->encode(
-            $bag->getNormalizedData()
-        );
+        $xmlDocument = $this->xmlService->encode($bag->getNormalizedData());
         $draft = $this->create($xmlDocument);
 
         // Verificar que el folio del documento esté dentro del rango del CAF.
@@ -159,27 +155,25 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
 
         // Preparar datos del timbre.
         $tedData = $draft->getPlantillaTED();
-        $cafArray = $this->xmlComponent->getDecoderWorker()->decode(
-            $caf->getXmlDocument()
-        );
+        $cafArray = $this->xmlService->decode($caf->getXmlDocument());
         $tedData['TED']['DD']['CAF'] = $cafArray['AUTORIZACION']['CAF'];
         $tedData['TED']['DD']['TSTED'] = $timestamp;
 
         // Armar XML del timbre y obtener los datos a timbrar (tag DD: datos
         // del documento).
-        $tedXmlDocument = $this->xmlComponent->getEncoderWorker()->encode($tedData);
-        $ddToStamp = $tedXmlDocument->C14NWithIsoEncodingFlattened('/TED/DD');
+        $tedXmlDocument = $this->xmlService->encode($tedData);
+        $ddToStamp = $tedXmlDocument->C14NWithIso88591EncodingFlattened('/TED/DD');
 
         // Timbrar los "datos a timbrar" $ddToStamp.
         $privateKey = $caf->getPrivateKey();
         $signatureAlgorithm = OPENSSL_ALGO_SHA1;
         try {
-            $timbre = $this->signatureComponent->getGeneratorWorker()->sign(
+            $timbre = $this->signatureService->sign(
                 $ddToStamp,
                 $privateKey,
                 $signatureAlgorithm
             );
-        } catch (SignatureException) {
+        } catch (SignatureException $e) {
             throw new BuilderException('No fue posible timbrar los datos.');
         }
 
@@ -218,10 +212,10 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $data = $bag->getData();
         $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
         $data['DTE'][$tagXml]['TmstFirma'] = $timestamp;
-        $xmlDocument = $this->xmlComponent->getEncoderWorker()->encode($data);
+        $xmlDocument = $this->xmlService->encode($data);
 
         // Firmar el tag que contiene el documento y retornar el XML firmado.
-        $xmlSigned = $this->signatureComponent->getGeneratorWorker()->signXml(
+        $xmlSigned = $this->signatureService->signXml(
             $xmlDocument,
             $certificate,
             $bag->getId()

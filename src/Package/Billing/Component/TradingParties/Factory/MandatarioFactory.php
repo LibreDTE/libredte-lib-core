@@ -24,9 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractFactory;
-use Derafu\Lib\Core\Helper\Factory;
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Support\Factory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario;
@@ -35,7 +34,7 @@ use LogicException;
 /**
  * Fábrica de una entidad de mandatario.
  */
-class MandatarioFactory extends AbstractFactory implements MandatarioFactoryInterface
+class MandatarioFactory implements MandatarioFactoryInterface
 {
     /**
      * Clase de la entidad de los mandatarios.

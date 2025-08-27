@@ -40,7 +40,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
-use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -82,11 +81,13 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -132,7 +133,6 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(RendererWorker::class)]
 #[CoversClass(EmailSenderHandler::class)]
 #[CoversClass(SiiSenderHandler::class)]
@@ -152,18 +152,21 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $app = Application::getInstance();
 
         $this->builder = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getBuilderWorker()
         ;
 
         $this->renderer = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getRendererWorker()
         ;
 
         $this->exchange = $app
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getExchangeComponent()
         ;

@@ -31,16 +31,17 @@ use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(DocumentComponent::class)]
 #[CoversClass(DocumentBag::class)]
 #[CoversClass(ParserWorker::class)]
-#[CoversClass(JsonParserStrategy::class)]
-class ApplicationTest extends TestCase
+#[CoversClass(JsonParserStrategy::class)]class ApplicationTest extends TestCase
 {
     private array $testCases = [
         'services' => [
@@ -70,6 +71,7 @@ class ApplicationTest extends TestCase
 
         $parsed =
             Application::getInstance()
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getParserWorker()

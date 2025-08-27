@@ -24,6 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\HandlersAwareTrait;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
@@ -34,8 +37,20 @@ use Throwable;
 /**
  * Worker "billing.exchange.sender".
  */
+#[Worker(name: 'sender', component: 'exchange', package: 'billing')]
 class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterface
 {
+    use HandlersAwareTrait;
+    use StrategiesAwareTrait;
+
+    public function __construct(
+        iterable $handlers = [],
+        iterable $strategies = []
+    ) {
+        $this->setHandlers($handlers);
+        $this->setStrategies($strategies);
+    }
+
     /**
      * Esquema de las opciones.
      *

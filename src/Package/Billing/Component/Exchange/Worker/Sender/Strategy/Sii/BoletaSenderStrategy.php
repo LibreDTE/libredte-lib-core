@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -34,8 +35,9 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeResult;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeStatus;
 
 /**
- * Envío de boletas al SII usando.
+ * Envío de boletas al SII.
  */
+#[Strategy(name: 'sii.boleta', worker: 'sender', component: 'exchange', package: 'billing')]
 class BoletaSenderStrategy extends AbstractStrategy implements SenderStrategyInterface
 {
     /**

@@ -24,11 +24,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Signature\Contract\SignatureComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorStrategyInterface;
@@ -38,28 +40,29 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorExce
 /**
  * Clase para los validadores de documentos.
  */
+#[Worker(name: 'validator', component: 'document', package: 'billing')]
 class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 {
+    use StrategiesAwareTrait;
+
     public function __construct(
         private DocumentBagManagerWorkerInterface $documentBagManager,
-        private XmlComponentInterface $xmlComponent,
-        private SignatureComponentInterface $signatureComponent,
+        private XmlServiceInterface $xmlService,
+        private SignatureServiceInterface $signatureService,
         iterable $jobs = [],
         iterable $handlers = [],
         iterable $strategies = []
     ) {
-        parent::__construct(
-            jobs: $jobs,
-            handlers: $handlers,
-            strategies: $strategies
-        );
+        $this->setJobs($jobs);
+        $this->setHandlers($handlers);
+        $this->setStrategies($strategies);
     }
 
     /**
      * {@inheritDoc}
      */
     public function validate(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
         // Asignar la bolsa del DTE a partir de la fuente.
         if (is_string($source)) {
@@ -92,12 +95,12 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      * {@inheritDoc}
      */
     public function validateSchema(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
         // Obtener el documento XML.
         if ($source instanceof DocumentBagInterface) {
             $xmlDocument = $source->getXmlDocument();
-        } elseif ($source instanceof XmlInterface) {
+        } elseif ($source instanceof XmlDocumentInterface) {
             $xmlDocument = $source;
         } else {
             // Importante: Hacerlo de esta forma garantiza que no se pierda el
@@ -118,23 +121,20 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
         // Validar esquema de otros DTE (no boletas).
         $schema = dirname(__DIR__, 6) . '/resources/schemas/DTE_v10.xsd';
-        $this->xmlComponent->getValidatorWorker()->validateSchema(
-            $bag->getXmlDocument(),
-            $schema
-        );
+        $this->xmlService->validate($bag->getXmlDocument(), $schema);
     }
 
     /**
      * {@inheritDoc}
      */
     public function validateSignature(
-        DocumentBagInterface|XmlInterface|string $source
+        DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
         $xml = $source instanceof DocumentBagInterface
             ? $source->getXmlDocument()
             : $source
         ;
 
-        $this->signatureComponent->getValidatorWorker()->validateXml($xml);
+        $this->signatureService->validateXml($xml);
     }
 }

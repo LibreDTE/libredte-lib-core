@@ -46,14 +46,14 @@ class Attachment extends DataPart implements AttachmentInterface
      * Constructor del archivo adjunto.
      *
      * @param string|File $body
-     * @param string $filename
+     * @param string|null $filename
      * @param string|null $contentType
      * @param string|null $encoding
      * @param int|null $size
      */
     public function __construct(
         string|File $body,
-        string $filename = null,
+        ?string $filename = null,
         ?string $contentType = null,
         ?string $encoding = null,
         ?int $size = null

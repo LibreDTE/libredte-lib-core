@@ -24,12 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface;
 
 /**
  * Componente "billing.ownership_transfer".
  */
+#[Component(name: 'ownership_transfer', package: 'billing')]
 class OwnershipTransferComponent extends AbstractComponent implements OwnershipTransferComponentInterface
 {
     public function __construct(

@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
-use Derafu\Lib\Core\Support\Store\Bag;
-use Derafu\Lib\Core\Support\Store\Contract\BagInterface;
+use Derafu\Container\Bag;
+use Derafu\Container\Contract\BagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeStatusInterface;
 use Throwable;
 

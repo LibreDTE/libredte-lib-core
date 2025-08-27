@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractStrategy;
-use Derafu\Lib\Core\Helper\Csv;
-use Derafu\Lib\Core\Helper\Date;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Support\Csv;
+use Derafu\Support\Date;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
@@ -39,15 +40,16 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
  * Procesa en lote los documentos tributarios de un archivo CSV con el formato
  * estándar de LibreDTE.
  */
+#[Strategy(name: 'spreadsheet.csv', worker: 'batch_processor', component: 'document', package: 'billing')]
 class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcessorStrategyInterface
 {
     /**
      * Constructor de la estrategia con sus dependencias.
      *
-     * @param EntityComponentInterface $entityComponent
+     * @param RepositoryManagerInterface $repositoryManager
      */
     public function __construct(
-        private EntityComponentInterface $entityComponent
+        private RepositoryManagerInterface $repositoryManager
     ) {
     }
 
@@ -595,7 +597,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     private function getCurrency(string $moneda): ?string
     {
         // Buscar la moneda a través del repositorio.
-        $result = $this->entityComponent
+        $result = $this->repositoryManager
             ->getRepository(AduanaMoneda::class)
             ->findBy([
                 'codigo_iso' => $moneda,

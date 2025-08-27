@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Enum\Currency;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
+use Derafu\Enum\Currency;
+use Derafu\Repository\Entity;
 
 /**
  * Entidad de una moneda de aduana (documentos de exportación).

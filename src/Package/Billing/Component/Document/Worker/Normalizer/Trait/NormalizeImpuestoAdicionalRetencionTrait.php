@@ -84,7 +84,7 @@ trait NormalizeImpuestoAdicionalRetencionTrait
 
             // Se normaliza.
             $tasa = $this
-                ->entityComponent
+                ->repositoryManager
                 ->getRepository(ImpuestoAdicionalRetencion::class)
                 ->find($codigo)
                 ->getTasa()

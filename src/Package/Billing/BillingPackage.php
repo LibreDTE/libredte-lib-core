@@ -24,7 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractPackage;
+use Derafu\Backbone\Abstract\AbstractPackage;
+use Derafu\Backbone\Attribute\Package;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
@@ -37,6 +38,7 @@ use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
 /**
  * Paquete de facturación: "billing".
  */
+#[Package(name: 'billing')]
 class BillingPackage extends AbstractPackage implements BillingPackageInterface
 {
     public function __construct(

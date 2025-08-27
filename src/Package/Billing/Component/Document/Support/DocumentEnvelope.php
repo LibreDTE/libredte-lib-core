@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
-use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Trait\OptionsAwareTrait;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
@@ -79,9 +79,9 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * Instancia del documento XML asociado al sobre de documentos tributarios.
      *
-     * @var XmlInterface|null
+     * @var XmlDocumentInterface|null
      */
-    private ?XmlInterface $xmlDocument = null;
+    private ?XmlDocumentInterface $xmlDocument = null;
 
     /**
      * Lista de bolsas de documentos tributarios que este sobre contendrá.
@@ -162,7 +162,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
-    public function setXmlDocument(?XmlInterface $xmlDocument): static
+    public function setXmlDocument(?XmlDocumentInterface $xmlDocument): static
     {
         $this->xmlDocument = $xmlDocument;
 
@@ -172,7 +172,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
-    public function getXmlDocument(): ?XmlInterface
+    public function getXmlDocument(): ?XmlDocumentInterface
     {
         return $this->xmlDocument;
     }
@@ -251,7 +251,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      */
     public function getDispatcherOptions(): array
     {
-        return (array) $this->getOptions()->get('dispatcher');
+        return $this->getOptions()->get('dispatcher')->all();
     }
 
     /**

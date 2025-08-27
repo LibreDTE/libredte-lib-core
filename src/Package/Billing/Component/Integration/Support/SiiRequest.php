@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support;
 
-use Derafu\Lib\Core\Common\Trait\OptionsAwareTrait;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Support\Store\Contract\DataContainerInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 use LogicException;
@@ -118,11 +118,11 @@ class SiiRequest implements SiiRequestInterface
      * Constructor de la configuración de conexión.
      *
      * @param CertificateInterface|null $certificate
-     * @param array|DataContainerInterface $options Opciones de la solicitud.
+     * @param array|OptionsInterface $options Opciones de la solicitud.
      */
     public function __construct(
         ?CertificateInterface $certificate = null,
-        array|DataContainerInterface $options = []
+        array|OptionsInterface $options = []
     ) {
         $this->certificate = $certificate;
 

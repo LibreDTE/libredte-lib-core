@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlComponentInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
@@ -45,18 +46,19 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
 /**
  * Clase para el administrador de la bolsa con los datos de un DTE.
  */
+#[Worker(name: 'document_bag_manager', component: 'document', package: 'billing')]
 class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagManagerWorkerInterface
 {
     protected $documentBagClass = DocumentBag::class;
 
     public function __construct(
-        private XmlComponentInterface $xmlComponent,
+        private XmlServiceInterface $xmlService,
         private BuilderWorkerInterface $builderWorker,
         private ParserWorkerInterface $parserWorker,
         private NormalizerWorkerInterface $normalizerWorker,
         private SanitizerWorkerInterface $sanitizerWorker,
         private ValidatorWorkerInterface $validatorWorker,
-        private EntityComponentInterface $entityComponent,
+        private RepositoryManagerInterface $repositoryManager,
         private EmisorFactoryInterface $emisorFactory,
         private ReceptorFactoryInterface $receptorFactory
     ) {
@@ -66,7 +68,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      * {@inheritDoc}
      */
     public function create(
-        string|array|XmlInterface|DocumentInterface $source,
+        string|array|XmlDocumentInterface|DocumentInterface $source,
         bool $normalizeAll = true
     ): DocumentBagInterface {
         // Asignar (si se pasó) o crear la bolsa.
@@ -91,7 +93,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Si los datos vienen como documento XML es un XML cargado desde un
         // string XML (carga realizada por LoaderWorker). Ya viene normalizado.
-        if ($source instanceof XmlInterface) {
+        if ($source instanceof XmlDocumentInterface) {
             $bag->setXmlDocument($source);
         }
 
@@ -174,7 +176,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Buscar el tipo de documento tributario que se desea construir.
         $codigoTipoDocumento = $bag->getCodigoTipoDocumento();
-        $tipoDocumento = $this->entityComponent
+        $tipoDocumento = $this->repositoryManager
             ->getRepository(TipoDocumentoInterface::class)
             ->find($codigoTipoDocumento)
         ;
@@ -229,7 +231,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Importante: se asume que el documento XML se cargó desde un XML que
         // es válido y por ende normalizado.
         elseif ($bag->getXmlDocument()) {
-            $normalizedData = $this->xmlComponent->getDecoderWorker()->decode(
+            $normalizedData = $this->xmlService->decode(
                 $bag->getXmlDocument()
             );
             $bag->setNormalizedData($normalizedData);
@@ -239,7 +241,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Importante: se asume que el DTE se cargó desde un XML que
         // es válido y por ende normalizado.
         elseif ($bag->getDocument()) {
-            $normalizedData = $this->xmlComponent->getDecoderWorker()->decode(
+            $normalizedData = $this->xmlService->decode(
                 $bag->getDocument()->getXmlDocument()
             );
             $bag->setNormalizedData($normalizedData);
@@ -280,7 +282,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
                     ], $bag->getNormalizedData()),
                 ],
             ];
-            $xmlDocument = $this->xmlComponent->getEncoderWorker()->encode(
+            $xmlDocument = $this->xmlService->encode(
                 $xmlDocumentData
             );
             $bag->setXmlDocument($xmlDocument);

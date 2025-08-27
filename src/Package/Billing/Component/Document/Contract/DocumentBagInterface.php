@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsAwareInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -146,17 +146,17 @@ interface DocumentBagInterface extends OptionsAwareInterface
     /**
      * Asigna el documento XML.
      *
-     * @param XmlInterface|null $xml
+     * @param XmlDocumentInterface|null $xml
      * @return static
      */
-    public function setXmlDocument(?XmlInterface $xml): static;
+    public function setXmlDocument(?XmlDocumentInterface $xml): static;
 
     /**
      * Obtiene el documento XML.
      *
-     * @return XmlInterface|null
+     * @return XmlDocumentInterface|null
      */
-    public function getXmlDocument(): ?XmlInterface;
+    public function getXmlDocument(): ?XmlDocumentInterface;
 
     /**
      * Asigna el CAF para timbrar el documento.

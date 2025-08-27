@@ -24,12 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\FactoryInterface;
-
 /**
  * Interfaz para la fábrica de una entidad de emisor.
  */
-interface EmisorFactoryInterface extends FactoryInterface
+interface EmisorFactoryInterface
 {
     /**
      * Crea una entidad de emisor a partir de sus datos.

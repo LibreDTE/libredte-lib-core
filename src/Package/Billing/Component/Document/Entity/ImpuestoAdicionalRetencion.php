@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping as DEM;
+use Derafu\Repository\Entity;
+use Derafu\Repository\Mapping as DRM;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 
 /**
  * Entidad de impuesto adicional y retención.
  */
-#[DEM\Entity(repositoryClass: ImpuestoAdicionalRetencionRepository::class)]
+#[DRM\Entity(repositoryClass: ImpuestoAdicionalRetencionRepository::class)]
 class ImpuestoAdicionalRetencion extends Entity
 {
     /**

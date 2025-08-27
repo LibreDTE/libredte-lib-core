@@ -24,8 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiCheckXmlDocumentSentStatusResponse;
@@ -43,6 +44,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\V
 /**
  * Clase del lazy worker del SII.
  */
+#[Worker(name: 'sii_lazy', component: 'integration', package: 'billing')]
 class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
 {
     public function __construct(
@@ -61,7 +63,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
      */
     public function sendXmlDocument(
         SiiRequestInterface $request,
-        XmlInterface $doc,
+        XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
         ?int $retry = null
@@ -162,7 +164,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
         string $function,
         array|int $args = [],
         ?int $retry = null
-    ): XmlInterface {
+    ): XmlDocumentInterface {
         return $this->consumeWebserviceJob->sendRequest(
             $request,
             $service,

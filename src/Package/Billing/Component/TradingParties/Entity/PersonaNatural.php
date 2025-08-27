@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Entity;
 
-use Derafu\Lib\Core\Helper\Rut;
+use Derafu\L10n\Cl\Rut\Rut;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\PersonaNaturalInterface;
 
 /**

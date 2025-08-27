@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing;
 
+use Derafu\Certificate\Service\CertificateFaker;
+use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -39,7 +41,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
-use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -71,10 +73,12 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
@@ -118,9 +122,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(TemplateDataHandler::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
+#[CoversClass(TemplateDataFormatter::class)]
 class BillingPackageTest extends TestCase
 {
     public function testBillingPackageBillerBill(): void
@@ -161,6 +165,7 @@ class BillingPackageTest extends TestCase
 
         // Generar un CAF falso.
         $cafFaker = Application::getInstance()
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
             ->getCafFakerWorker()
@@ -168,15 +173,12 @@ class BillingPackageTest extends TestCase
         $cafBag = $cafFaker->create(new Emisor($RUTEmisor), $TipoDTE, $Folio);
 
         // Generar un certificado falso.
-        $certificateFaker = Application::getInstance()
-            ->getPrimePackage()
-            ->getCertificateComponent()
-            ->getFakerWorker()
-        ;
-        $certificate = $certificateFaker->create($RUTEmisor);
+        $certificateFaker = new CertificateFaker(new CertificateLoader());
+        $certificate = $certificateFaker->createFake(id: $RUTEmisor);
 
         // Obtener el biller.
         $biller = Application::getInstance()
+            ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
         ;

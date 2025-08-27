@@ -475,10 +475,18 @@
                                             document.Encabezado.Transporte.CmnaDest
                                         ] | filter(v => v is not empty) | join(', ')
                                     }}
-                                    por {{ document.Encabezado.Transporte.RUTTrans | format_as('billing_document.RUTTrans') }}
-                                    en vehículo {{ document.Encabezado.Transporte.Patente }}
-                                    con chofer {{ document.Encabezado.Transporte.Chofer.NombreChofer }}
-                                    ({{ document.Encabezado.Transporte.Chofer.RUTChofer | format_as('billing_document.RUTChofer') }})
+                                    {% if document.Encabezado.Transporte.RUTTrans is not empty %}
+                                        por {{ document.Encabezado.Transporte.RUTTrans | format_as('billing_document.RUTTrans') }}
+                                    {% endif %}
+                                    {% if document.Encabezado.Transporte.Patente is not empty %}
+                                        en vehículo {{ document.Encabezado.Transporte.Patente }}
+                                    {% endif %}
+                                    {% if document.Encabezado.Transporte.Chofer.NombreChofer is not empty %}
+                                        con chofer {{ document.Encabezado.Transporte.Chofer.NombreChofer }}
+                                        {% if document.Encabezado.Transporte.Chofer.RUTChofer is not empty %}
+                                            ({{ document.Encabezado.Transporte.Chofer.RUTChofer | format_as('billing_document.RUTChofer') }})
+                                        {% endif %}
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endif %}
@@ -514,12 +522,13 @@
                             <tr>
                                 <td class="label">Contacto:</td>
                                 <td>
-                                    {{ document.Encabezado.Receptor.CorreoRecep }}{{ document.Encabezado.Receptor.Contacto }}
+                                    {{ document.Encabezado.Receptor.CorreoRecep }}
+                                    {{ document.Encabezado.Receptor.Contacto }}
                                 </td>
                             </tr>
                         {% endif %}
                         {# Nacionalidad #}
-                        {% if document.Encabezado.Receptor.Extranjero is not empty %}
+                        {% if document.Encabezado.Receptor.Extranjero.Nacionalidad is not empty %}
                             <tr>
                                 <td class="label">Nacionalidad:</td>
                                 <td>
@@ -543,7 +552,19 @@
                             <tr>
                                 <td class="label">Referencia:</td>
                                 <td>
-                                    {{ loop.index }} - {{ referencia.TpoDocRef | format_as('billing_document.TpoDocRef') }}{% if referencia.IndGlobal != 1 %} N°{{ referencia.FolioRef }}{% endif %} del {{ referencia.FchRef | format_as('billing_document.FchRef') }}{% if referencia.RazonRef is not empty %}: {{ referencia.RazonRef }}{% endif %}
+                                    {{ loop.index }} -
+                                    {% if referencia.TpoDocRef is not empty %}
+                                        {{ referencia.TpoDocRef | format_as('billing_document.TpoDocRef') }}
+                                    {% endif %}
+                                    {% if referencia.FolioRef is defined and referencia.IndGlobal != 1 %}
+                                        N°{{ referencia.FolioRef }}
+                                    {% endif %}
+                                    {% if referencia.FchRef is not empty %}
+                                        del {{ referencia.FchRef | format_as('billing_document.FchRef') }}
+                                    {% endif %}
+                                    {% if referencia.RazonRef is not empty %}
+                                        : {{ referencia.RazonRef }}
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% endfor %}
@@ -987,8 +1008,8 @@
         {% endif %}
         {# Footer #}
         <footer>
-            Boletas y Facturas con LibreDTE -
-            <a href="https://www.libredte.cl" style="text-decoration: none; color: inherit;">
+            Boletas y facturas generadas con LibreDTE -
+            <a href="https://www.libredte.cl" style="text-decoration: none; color: inherit;" target="_blank">
                 www.libredte.cl
             </a>
         </footer>

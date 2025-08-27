@@ -24,14 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Mapping as DEM;
+use Derafu\Repository\Entity;
+use Derafu\Repository\Mapping as DRM;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 
 /**
  * Entidad de comuna.
  */
-#[DEM\Entity(repositoryClass: ComunaRepository::class)]
+#[DRM\Entity(repositoryClass: ComunaRepository::class)]
 class Comuna extends Entity
 {
     /**
@@ -84,11 +84,12 @@ class Comuna extends Entity
     /**
      * Obtiene la dirección regional del SII asociada a la comuna.
      *
-     * Si el argumento es una cadena no numérica, intenta encontrar una dirección
-     * regional correspondiente en el arreglo de direcciones. Si no se encuentra,
-     * devuelve la cadena original en mayúsculas. Si el argumento es numérico,
-     * asume que es un código de sucursal y devuelve un formato de sucursal. Si
-     * el argumento es falso o vacío, devuelve 'N.N.' como valor por defecto.
+     * Si el argumento es una cadena no numérica, intenta encontrar una
+     * dirección regional correspondiente en el arreglo de direcciones. Si no se
+     * encuentra, devuelve la cadena original en mayúsculas. Si el argumento es
+     * numérico, asume que es un código de sucursal y devuelve un formato de
+     * sucursal. Si el argumento es falso o vacío, devuelve 'N.N.' como valor
+     * por defecto.
      *
      * @return string La dirección regional correspondiente, un formato de
      * sucursal para códigos numéricos, la misma entrada en mayúsculas si no se

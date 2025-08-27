@@ -24,7 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractWorker;
+use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -38,8 +40,11 @@ use Throwable;
 /**
  * Clase para los procesadores de documentos en lote.
  */
+#[Worker(name: 'batch_processor', component: 'document', package: 'billing')]
 class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorkerInterface
 {
+    use StrategiesAwareTrait;
+
     /**
      * Esquema de las opciones.
      *
@@ -67,9 +72,9 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * @param CafProviderInterface $cafProvider
      * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
      * @param BuilderWorkerInterface $builderWorker
-     * @param array $jobs
-     * @param array $handlers
-     * @param array $strategies
+     * @param iterable $jobs
+     * @param iterable $handlers
+     * @param iterable $strategies
      */
     public function __construct(
         private CafProviderInterface $cafProvider,
@@ -79,7 +84,9 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         iterable $handlers = [],
         iterable $strategies = []
     ) {
-        parent::__construct($jobs, $handlers, $strategies);
+        $this->setJobs($jobs);
+        $this->setHandlers($handlers);
+        $this->setStrategies($strategies);
     }
 
     /**

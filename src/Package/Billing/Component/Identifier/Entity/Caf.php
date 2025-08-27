@@ -25,8 +25,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Entity;
 
 use DateTime;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Entity\Xml as XmlDocument;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
@@ -76,16 +76,16 @@ class Caf implements CafInterface
      * Este objeto representa el XML cargado del CAF, utilizado para
      * interactuar con el contenido y extraer los datos necesarios.
      *
-     * @var XmlInterface
+     * @var XmlDocumentInterface
      */
-    private XmlInterface $xmlDocument;
+    private XmlDocumentInterface $xmlDocument;
 
     /**
      * Constructor del CAF.
      *
-     * @param string|XmlInterface $xml Documento XML del CAF.
+     * @param string|XmlDocumentInterface $xml Documento XML del CAF.
      */
-    public function __construct(string|XmlInterface $xml)
+    public function __construct(string|XmlDocumentInterface $xml)
     {
         $this->loadXml($xml);
     }
@@ -93,10 +93,10 @@ class Caf implements CafInterface
     /**
      * Carga un documento XML de un CAF en la instancia de la entidad Caf.
      *
-     * @param string|XmlInterface $xml Documento XML del CAF.
+     * @param string|XmlDocumentInterface $xml Documento XML del CAF.
      * @return static
      */
-    private function loadXml(string|XmlInterface $xml): static
+    private function loadXml(string|XmlDocumentInterface $xml): static
     {
         if (is_string($xml)) {
             $this->xmlDocument = new XmlDocument();
@@ -111,7 +111,7 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function getXmlDocument(): XmlInterface
+    public function getXmlDocument(): XmlDocumentInterface
     {
         return $this->xmlDocument;
     }
@@ -306,7 +306,33 @@ class Caf implements CafInterface
      */
     public function getPublicKey(): string
     {
-        return $this->xmlDocument->query('//AUTORIZACION/RSAPUBK');
+        $publicKey = $this->xmlDocument->query('//AUTORIZACION/RSAPUBK');
+
+        // Restaurar el formato PEM correcto con saltos de línea.
+        if (
+            !str_contains($publicKey, "\n")
+            && str_contains($publicKey, '-----BEGIN PUBLIC KEY-----')
+        ) {
+            // Extraer la parte codificada en base64 (entre los headers).
+            $start = strpos($publicKey, '-----BEGIN PUBLIC KEY-----') + 26;
+            $end = strpos($publicKey, '-----END PUBLIC KEY-----');
+            $base64Content = substr($publicKey, $start, $end - $start);
+
+            // Limpiar espacios en blanco y caracteres extra.
+            $base64Content = trim($base64Content);
+
+            // Dividir en líneas de 64 caracteres.
+            $chunks = str_split($base64Content, 64);
+            $formattedContent = implode("\n", $chunks);
+
+            // Reconstruir la clave con formato PEM correcto.
+            $publicKey = "-----BEGIN PUBLIC KEY-----\n"
+                . $formattedContent
+                . "\n-----END PUBLIC KEY-----"
+            ;
+        }
+
+        return $publicKey;
     }
 
     /**
@@ -314,7 +340,33 @@ class Caf implements CafInterface
      */
     public function getPrivateKey(): string
     {
-        return $this->xmlDocument->query('//AUTORIZACION/RSASK');
+        $privateKey = $this->xmlDocument->query('//AUTORIZACION/RSASK');
+
+        // Restaurar el formato PEM correcto con saltos de línea.
+        if (
+            !str_contains($privateKey, "\n")
+            && str_contains($privateKey, '-----BEGIN PRIVATE KEY-----')
+        ) {
+            // Extraer la parte codificada en base64 (entre los headers).
+            $start = strpos($privateKey, '-----BEGIN PRIVATE KEY-----') + 27;
+            $end = strpos($privateKey, '-----END PRIVATE KEY-----');
+            $base64Content = substr($privateKey, $start, $end - $start);
+
+            // Limpiar espacios en blanco y caracteres extra.
+            $base64Content = trim($base64Content);
+
+            // Dividir en líneas de 64 caracteres.
+            $chunks = str_split($base64Content, 64);
+            $formattedContent = implode("\n", $chunks);
+
+            // Reconstruir la clave con formato PEM correcto.
+            $privateKey = "-----BEGIN PRIVATE KEY-----\n"
+                . $formattedContent
+                . "\n-----END PRIVATE KEY-----"
+            ;
+        }
+
+        return $privateKey;
     }
 
     /**

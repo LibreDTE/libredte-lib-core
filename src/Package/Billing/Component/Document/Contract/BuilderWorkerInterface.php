@@ -24,13 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
+use Derafu\Backbone\Contract\StrategiesAwareInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderException;
 
 /**
  * Interfaz para los constructores de documentos.
  */
-interface BuilderWorkerInterface extends WorkerInterface
+interface BuilderWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
      * Construye el documento tributario con los datos pasados.

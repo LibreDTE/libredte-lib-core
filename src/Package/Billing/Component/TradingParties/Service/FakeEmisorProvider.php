@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Service;
 
-use Derafu\Lib\Core\Helper\Hydrator;
+use Derafu\Support\Hydrator;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface;

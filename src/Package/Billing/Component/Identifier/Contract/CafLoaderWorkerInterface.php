@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
-use Derafu\Lib\Core\Foundation\Contract\WorkerInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException;
 
 /**
@@ -37,9 +37,9 @@ interface CafLoaderWorkerInterface extends WorkerInterface
      * Carga el XML de un CAF y lo entrega en un contenedor con todos los datos
      * asociados a dicho CAF.
      *
-     * @param string|XmlInterface $xml
+     * @param string|XmlDocumentInterface $xml
      * @return CafBagInterface
      * @throws CafLoaderException
      */
-    public function load(string|XmlInterface $xml): CafBagInterface;
+    public function load(string|XmlDocumentInterface $xml): CafBagInterface;
 }

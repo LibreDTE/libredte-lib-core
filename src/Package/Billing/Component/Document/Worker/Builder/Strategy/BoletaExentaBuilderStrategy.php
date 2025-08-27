@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy;
 
+use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaExentaBuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\BoletaExenta;
@@ -31,6 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Document\BoletaE
 /**
  * Constructor ("builder") del documento boleta exenta.
  */
+#[Strategy(name: 'boleta_exenta', worker: 'builder', component: 'document', package: 'billing')]
 class BoletaExentaBuilderStrategy extends AbstractBuilderStrategy implements BoletaExentaBuilderStrategyInterface
 {
     /**

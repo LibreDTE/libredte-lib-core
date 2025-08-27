@@ -24,9 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
-use Derafu\Lib\Core\Common\Contract\OptionsAwareInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Certificate\Contract\CertificateInterface;
-use Derafu\Lib\Core\Package\Prime\Component\Xml\Contract\XmlInterface;
+use Derafu\Certificate\Contract\CertificateInterface;
+use Derafu\Config\Contract\OptionsAwareInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
@@ -70,17 +70,17 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface
     /**
      * Asigna el documento XML que representa al sobre de documentos.
      *
-     * @param XmlInterface|null $xmlDocument
+     * @param XmlDocumentInterface|null $xmlDocument
      * @return static
      */
-    public function setXmlDocument(?XmlInterface $xmlDocument): static;
+    public function setXmlDocument(?XmlDocumentInterface $xmlDocument): static;
 
     /**
      * Obtiene el documento XML que representa al sobre de documentos.
      *
-     * @return XmlInterface|null
+     * @return XmlDocumentInterface|null
      */
-    public function getXmlDocument(): ?XmlInterface;
+    public function getXmlDocument(): ?XmlDocumentInterface;
 
     /**
      * Asigna todos los documentos del sobre de una vez.

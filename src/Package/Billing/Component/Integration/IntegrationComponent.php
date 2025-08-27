@@ -24,13 +24,15 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractComponent;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 
 /**
  * Componente "billing.integration".
  */
+#[Component(name: 'integration', package: 'billing')]
 class IntegrationComponent extends AbstractComponent implements IntegrationComponentInterface
 {
     public function __construct(

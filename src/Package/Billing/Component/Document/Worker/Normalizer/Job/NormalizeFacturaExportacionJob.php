@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
-use Derafu\Lib\Core\Foundation\Abstract\AbstractJob;
-use Derafu\Lib\Core\Foundation\Contract\JobInterface;
-use Derafu\Lib\Core\Helper\Arr;
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\EntityComponentInterface;
+use Derafu\Backbone\Abstract\AbstractJob;
+use Derafu\Backbone\Attribute\Job;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Repository\Contract\RepositoryManagerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDescuentosRecargosTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDetalleTrait;
@@ -38,6 +38,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait
 /**
  * Normalizador del documento factura de exportación.
  */
+#[Job(name: 'normalize_factura_exportacion', worker: 'normalizer', component: 'document', package: 'billing')]
 class NormalizeFacturaExportacionJob extends AbstractJob implements JobInterface
 {
     // Traits usados por este normalizador.
@@ -48,7 +49,7 @@ class NormalizeFacturaExportacionJob extends AbstractJob implements JobInterface
     use NormalizeIvaMntTotalTrait;
 
     public function __construct(
-        protected EntityComponentInterface $entityComponent
+        protected RepositoryManagerInterface $repositoryManager
     ) {
     }
 
@@ -60,7 +61,7 @@ class NormalizeFacturaExportacionJob extends AbstractJob implements JobInterface
         $data = $bag->getNormalizedData();
 
         // Completar con nodos por defecto.
-        $data = Arr::mergeRecursiveDistinct([
+        $data = array_replace_recursive([
             'Encabezado' => [
                 'IdDoc' => false,
                 'Emisor' => false,

@@ -7,9 +7,15 @@ services:
         autoconfigure: true
         public: false
 
+    Derafu\Backbone\Contract\PackageRegistryInterface:
+        class: libredte\lib\Core\PackageRegistry
+        public: true
+        arguments:
+            $packages:
+                billing: '@libredte\lib\Core\Package\Billing\BillingPackage'
+
     # Paquetes.
-    libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface:
-        class: libredte\lib\Core\Package\Billing\BillingPackage
+    libredte\lib\Core\Package\Billing\BillingPackage: ~
 
     # Componentes del paquete "billing".
     libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface:
@@ -31,49 +37,50 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.batch_processor.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.batch_processor#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.builder.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.builder#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker
+        lazy: true # Necesario por referencia circular con BuilderWorker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.normalizer.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.normalizer#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.parser.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.parser#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.renderer.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.renderer#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.sanitizer.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.sanitizer#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker
         arguments:
-            $strategies: !tagged_iterator { tag: 'billing.document.validator.strategy', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.document.validator#strategy', index_by: 'name' }
 
     # Workers del componente "billing.exchange".
     libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker
         arguments:
-            $handlers: !tagged_iterator { tag: 'billing.exchange.receiver.handler', index_by: 'name' }
-            $strategies: !tagged_iterator { tag: 'billing.exchange.receiver.strategy', index_by: 'name' }
+            $handlers: !tagged_iterator { tag: 'billing.exchange.receiver#handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.receiver#strategy', index_by: 'name' }
     libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker
         arguments:
-            $handlers: !tagged_iterator { tag: 'billing.exchange.sender.handler', index_by: 'name' }
-            $strategies: !tagged_iterator { tag: 'billing.exchange.sender.strategy', index_by: 'name' }
+            $handlers: !tagged_iterator { tag: 'billing.exchange.sender#handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.sender#strategy', index_by: 'name' }
 
     # Workers del componente "billing.identifier".
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
@@ -112,7 +119,7 @@ services:
     # Servicios del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
-    libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler: ~
+    #libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler: ~
 
     # Estrategias del worker "billing.document.builder".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaAfectaBuilderStrategyInterface:
@@ -284,9 +291,12 @@ services:
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob: ~
 
-    # Workers del componente "prime.entity".
-    Derafu\Lib\Core\Package\Prime\Component\Entity\Contract\DatasourceProviderWorkerInterface:
-        class: Derafu\Lib\Core\Package\Prime\Component\Entity\Worker\DatasourceProviderWorker
+    # Derafu Repository.
+    Derafu\Repository\Contract\RepositoryManagerInterface:
+        class: Derafu\Repository\Service\RepositoryManager
+        arguments:
+            $dataProvider: '@Derafu\Repository\Service\DataProvider'
+    Derafu\Repository\Service\DataProvider:
         arguments:
             $sources:
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta:
@@ -323,22 +333,75 @@ services:
                     '%kernel.project_dir%/resources/data/repository/tag_xml.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado:
                     '%kernel.project_dir%/resources/data/repository/traslados.php'
+            $config:
+                normalization:
+                    idAttribute: codigo
+                    nameAttribute: glosa
 
-    # Estrategias del worker "prime.template.renderer".
-    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\HtmlRendererStrategyInterface:
-        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\TwigRendererStrategy
-        arguments:
-            $paths: '%kernel.project_dir%/resources/templates'
-            $extensions:
-                - '@Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension'
-    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\PdfRendererStrategyInterface:
-        class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\PdfRendererStrategy
+    # # Estrategias del worker "prime.template.renderer".
+    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\HtmlRendererStrategyInterface:
+    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\TwigRendererStrategy
+    #     arguments:
+    #         $paths: '%kernel.project_dir%/resources/templates'
+    #         $extensions:
+    #             - '@Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension'
+    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\Renderer\Strategy\PdfRendererStrategyInterface:
+    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Worker\Renderer\Strategy\PdfRendererStrategy
 
-    # Servicios del componente "prime.template".
-    Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataFormatterInterface:
-        class: Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatter
-        public: true
+    # # Servicios del componente "prime.template".
+    # Derafu\Lib\Core\Package\Prime\Component\Template\Contract\DataFormatterInterface:
+    #     class: Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatter
+    #     public: true
+    #     arguments:
+    #         $handlers:
+    #             billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler'
+    # Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension: ~
+
+    # Derafu XML.
+    Derafu\Xml\Contract\XmlServiceInterface:
+        class: Derafu\Xml\Service\XmlService
+    Derafu\Xml\Contract\XmlEncoderInterface:
+        class: Derafu\Xml\Service\XmlEncoder
+    Derafu\Xml\Contract\XmlDecoderInterface:
+        class: Derafu\Xml\Service\XmlDecoder
+    Derafu\Xml\Contract\XmlValidatorInterface:
+        class: Derafu\Xml\Service\XmlValidator
+
+    # Derafu Certificate.
+    Derafu\Certificate\Contract\CertificateServiceInterface:
+        class: Derafu\Certificate\Service\CertificateService
+    Derafu\Certificate\Contract\CertificateLoaderInterface:
+        class: Derafu\Certificate\Service\CertificateLoader
+    Derafu\Certificate\Contract\CertificateFakerInterface:
+        class: Derafu\Certificate\Service\CertificateFaker
+
+    # Derafu Signature.
+    Derafu\Signature\Contract\SignatureServiceInterface:
+        class: Derafu\Signature\Service\SignatureService
+    Derafu\Signature\Contract\SignatureGeneratorInterface:
+        class: Derafu\Signature\Service\SignatureGenerator
+    Derafu\Signature\Contract\SignatureValidatorInterface:
+        class: Derafu\Signature\Service\SignatureValidator
+
+    # Derafu Renderer.
+    Derafu\Renderer\Contract\RendererInterface:
+        factory: ['Derafu\Renderer\Factory\RendererFactory', 'create']
+        lazy: true
         arguments:
-            $handlers:
-                billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler'
-    Derafu\Lib\Core\Package\Prime\Component\Template\Service\DataFormatterTwigExtension: ~
+            $options:
+                engines: ['twig', 'pdf']
+                paths:
+                    - '%kernel.project_dir%/resources/templates'
+                formatters:
+                    billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter'
+    libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter: ~
+
+    # Derafu Mail.
+    Derafu\Mail\Contract\MailPackageInterface:
+        class: Derafu\Mail\MailPackage
+    Derafu\Mail\Component\Exchange\Contract\ExchangeComponentInterface:
+        class: Derafu\Mail\Component\Exchange\ExchangeComponent
+    Derafu\Mail\Component\Exchange\Worker\Receiver\Contract\ReceiverWorkerInterface:
+        class: Derafu\Mail\Component\Exchange\Worker\ReceiverWorker
+    Derafu\Mail\Component\Exchange\Worker\Sender\Contract\SenderWorkerInterface:
+        class: Derafu\Mail\Component\Exchange\Worker\SenderWorker

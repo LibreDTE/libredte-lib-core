@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Lib\Core\Package\Prime\Component\Entity\Entity\Entity;
+use Derafu\Repository\Entity;
 
 /**
  * Entidad de transporte de aduana (documentos de exportación).
