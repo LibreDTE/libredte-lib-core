@@ -13,7 +13,8 @@ build:
               format: clover
       environment:
         php:
-          version: 8.4
+          # https://php-package-mirror.scrutinizer-ci.com/8.4.11.tar.bz2
+          version: 8.4.11
           pecl_extensions:
             - xdebug
             - imap
