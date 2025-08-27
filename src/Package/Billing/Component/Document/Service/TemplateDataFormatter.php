@@ -26,9 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
 use Derafu\Enum\Currency;
 use Derafu\L10n\Cl\Rut\Rut;
-use Derafu\Renderer\Contract\HandlerFormatterInterface;
-use Derafu\Renderer\Exception\FormatterException;
-use Derafu\Renderer\Formatter\Handler\GenericFormatterHandler;
+use Derafu\Renderer\Abstract\AbstractHandlerFormatter;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Support\Date;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
@@ -48,23 +46,8 @@ use TCPDF2DBarcode;
  * Servicio para traducir los datos de los documentos a su representación para
  * ser utilizada en la renderización del documento.
  */
-class TemplateDataFormatter implements HandlerFormatterInterface
+class TemplateDataFormatter extends AbstractHandlerFormatter
 {
-    /**
-     * Mapa de handlers para formatos de los datos.
-     *
-     * @var array
-     */
-    protected array $handlers;
-
-    /**
-     * Generic handler when the handler is not an HandlerFormatterInterface and
-     * cannot be resolved.
-     *
-     * @var GenericFormatterHandler
-     */
-    private GenericFormatterHandler $genericHandler;
-
     /**
      * Constructor del handler.
      *
@@ -73,53 +56,6 @@ class TemplateDataFormatter implements HandlerFormatterInterface
     public function __construct(
         private RepositoryManagerInterface $repositoryManager
     ) {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function handle(mixed $value, string $format): string
-    {
-        $handler = $this->getHandlers()[$format] ?? null;
-
-        if ($handler === null) {
-            throw new FormatterException(sprintf(
-                'No se encontró el handler para el formato "%s".',
-                $format
-            ));
-        }
-
-        if (is_string($handler) && str_contains($handler, 'alias:')) {
-            $alias = str_replace('alias:', '', $handler);
-            return $this->handle($value, $alias);
-        }
-
-        return $this->getGenericHandler()->handle($value, $handler);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSupportedFormats(): array
-    {
-        return array_keys($this->getHandlers());
-    }
-
-    /**
-     * Retorna el mapa de handlers para formatos de los datos.
-     *
-     * Se crea el arreglo de handlers de manera perezosa para evitar que se
-     * carguen de forma innecesaria.
-     *
-     * @return array
-     */
-    protected function getHandlers(): array
-    {
-        if (!isset($this->handlers)) {
-            $this->handlers = $this->createHandlers();
-        }
-
-        return $this->handlers;
     }
 
     /**
@@ -233,19 +169,5 @@ class TemplateDataFormatter implements HandlerFormatterInterface
                 return $currency->format((float) $num);
             },
         ];
-    }
-
-    /**
-     * Returns the generic handler.
-     *
-     * @return GenericFormatterHandler
-     */
-    private function getGenericHandler(): GenericFormatterHandler
-    {
-        if (!isset($this->genericHandler)) {
-            $this->genericHandler = new GenericFormatterHandler();
-        }
-
-        return $this->genericHandler;
     }
 }
