@@ -119,7 +119,6 @@ services:
     # Servicios del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
-    #libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataHandler: ~
 
     # Estrategias del worker "billing.document.builder".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaAfectaBuilderStrategyInterface:
