@@ -30,8 +30,17 @@ jobs:
           extensions: curl, json, mbstring, openssl, soap, xdebug, imap
           tools: composer
 
+      - name: Display PHP version
+        run: php -v
+
       - name: Install Dependencies
         run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Run PHP Coding Standards Fixer
+        run: vendor/bin/php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1G
 
       - name: Run PHPUnit
         run: XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml
@@ -48,6 +57,3 @@ jobs:
         with:
           name: tests-coverage-php_${{ matrix.php-version }}.txt
           path: var/tests-coverage.txt
-
-      - name: Display PHP version
-        run: php -v
