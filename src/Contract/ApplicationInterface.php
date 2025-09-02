@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Contract;
 
+use Derafu\Backbone\Contract\ApplicationInterface as BackboneApplicationInterface;
 use Derafu\Backbone\Contract\PackageRegistryInterface;
 
 /**
@@ -35,7 +36,7 @@ use Derafu\Backbone\Contract\PackageRegistryInterface;
  * biblioteca define una implementación de esta interfaz básica, pero que
  * permite usar todas las funcionalidades incluídas en la biblioteca.
  */
-interface ApplicationInterface
+interface ApplicationInterface extends BackboneApplicationInterface
 {
     public function getPackageRegistry(): PackageRegistryInterface;
 }
