@@ -30,6 +30,8 @@ use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInter
 
 /**
  * Componente "billing.book".
+ *
+ * Este componente se encarga de la gestión de libros de ventas y compras.
  */
 #[Component(name: 'book', package: 'billing')]
 class BookComponent extends AbstractComponent implements BookComponentInterface

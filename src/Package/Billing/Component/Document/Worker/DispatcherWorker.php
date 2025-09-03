@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use DateTime;
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -98,6 +99,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function validateSchema(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void {
@@ -126,6 +128,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): void {

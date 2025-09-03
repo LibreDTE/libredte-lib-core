@@ -66,7 +66,7 @@ class MandatarioFactory implements MandatarioFactoryInterface
         $data['run'] = $data['run'] ?? $data['rut'] ?? null;
         unset($data['rut']);
 
-        if (empty($data['run']) || $data['nombre'] || $data['email']) {
+        if (empty($data['run']) || empty($data['nombre']) || empty($data['email'])) {
             throw new LogicException(
                 'Los atributos run, nombre y email del mandatario son obligatorios.'
             );

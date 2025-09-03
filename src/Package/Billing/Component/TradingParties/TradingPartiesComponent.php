@@ -31,6 +31,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingP
 
 /**
  * Componente "billing.trading_parties".
+ *
+ * Este componente se encarga de la gestión de partes comerciales de documentos tributarios.
  */
 #[Component(name: 'trading_parties', package: 'billing')]
 class TradingPartiesComponent extends AbstractComponent implements TradingPartiesComponentInterface

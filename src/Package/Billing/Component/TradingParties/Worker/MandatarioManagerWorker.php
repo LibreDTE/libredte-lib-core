@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Certificate\Contract\CertificateFakerInterface;
 use Derafu\Certificate\Contract\CertificateInterface;
@@ -60,6 +61,15 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
     /**
      * {@inheritDoc}
      */
+    #[ApiResource(
+        parametersExample: [
+            'mandatario' => [
+                'run' => '12345678-9',
+                'nombre' => 'Juan Pérez',
+                'email' => 'juan.perez@example.com',
+            ],
+        ],
+    )]
     public function createFakeCertificate(
         MandatarioInterface $mandatario
     ): CertificateInterface {

@@ -34,6 +34,8 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierCo
 
 /**
  * Componente "billing.identifier".
+ *
+ * Este componente se encarga de la gestión de folios de documentos tributarios.
  */
 #[Component(name: 'identifier', package: 'billing')]
 class IdentifierComponent extends AbstractComponent implements IdentifierComponentInterface

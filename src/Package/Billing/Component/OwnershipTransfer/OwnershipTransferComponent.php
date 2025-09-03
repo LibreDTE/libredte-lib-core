@@ -30,6 +30,8 @@ use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\Owner
 
 /**
  * Componente "billing.ownership_transfer".
+ *
+ * Este componente se encarga de la gestión de transferencia de propiedad de documentos tributarios.
  */
 #[Component(name: 'ownership_transfer', package: 'billing')]
 class OwnershipTransferComponent extends AbstractComponent implements OwnershipTransferComponentInterface

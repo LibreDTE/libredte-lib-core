@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
@@ -61,6 +62,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function sendXmlDocument(
         SiiRequestInterface $request,
         XmlDocumentInterface $doc,
@@ -80,6 +82,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function checkXmlDocumentSentStatus(
         SiiRequestInterface $request,
         int $trackId,
@@ -95,6 +98,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function requestXmlDocumentSentStatusByEmail(
         SiiRequestInterface $request,
         int $trackId,
@@ -110,6 +114,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function validateDocument(
         SiiRequestInterface $request,
         string $company,
@@ -133,6 +138,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function validateDocumentSignature(
         SiiRequestInterface $request,
         string $company,

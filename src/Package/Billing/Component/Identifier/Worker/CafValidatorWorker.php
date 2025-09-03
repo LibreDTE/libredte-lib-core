@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
@@ -41,6 +42,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function validate(CafInterface $caf): void
     {
         // Verificar firma del CAF con la clave pública del SII.

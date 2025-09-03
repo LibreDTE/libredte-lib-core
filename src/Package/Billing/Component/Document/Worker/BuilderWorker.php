@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
@@ -73,6 +74,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function build(DocumentBagInterface $bag): DocumentInterface
     {
         // Normalizar la bolsa con los datos del documento.

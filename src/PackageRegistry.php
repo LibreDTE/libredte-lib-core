@@ -29,7 +29,13 @@ use Derafu\Backbone\Trait\PackageRegistryTrait;
 use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
 
 /**
- * Registro de paquetes de la aplicación.
+ * Registro de paquetes disponibles en LibreDTE.
+ *
+ * LibreDTE Lib Core contiene los siguientes paquetes:
+ *
+ * - `billing`: Paquete de facturación.
+ *
+ * La misión de LibreDTE es **Proveer facturación electrónica libre, accesible y bien documentada para Chile**. Debido a lo anterior, esta biblioteca se centra exclusivamente en proveer funcionalidades relacionadas con la facturación electrónica de Chile.
  */
 class PackageRegistry implements PackageRegistryInterface
 {

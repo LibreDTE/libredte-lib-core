@@ -31,6 +31,8 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWork
 
 /**
  * Componente "billing.integration".
+ *
+ * Este componente se encarga de la gestión de integración con el SII.
  */
 #[Component(name: 'integration', package: 'billing')]
 class IntegrationComponent extends AbstractComponent implements IntegrationComponentInterface

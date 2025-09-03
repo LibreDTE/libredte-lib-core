@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
+use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\HandlersAwareTrait;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
@@ -70,6 +71,7 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[ApiResource()]
     public function send(ExchangeBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getOptions());

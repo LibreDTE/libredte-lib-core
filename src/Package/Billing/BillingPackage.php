@@ -37,6 +37,18 @@ use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
 
 /**
  * Paquete de facturación: "billing".
+ *
+ * Este paquete contiene los siguientes componentes:
+ *
+ * - `book`: Componente de libros de ventas y compras.
+ * - `document`: Componente de documentos tributarios.
+ * - `exchange`: Componente de intercambio de documentos tributarios.
+ * - `identifier`: Componente de folios de documentos tributarios.
+ * - `integration`: Componente de integración con el SII.
+ * - `ownership_transfer`: Componente de transferencia de propiedad.
+ * - `trading_parties`: Componente de partes comerciales.
+ *
+ * Este paquete es la parte central de LibreDTE. Pues es la que provee las funcionalidades que permiten crear, enviar y consultar documentos tributarios.
  */
 #[Package(name: 'billing')]
 class BillingPackage extends AbstractPackage implements BillingPackageInterface

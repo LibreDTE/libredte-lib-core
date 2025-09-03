@@ -33,6 +33,8 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerIn
 
 /**
  * Componente "billing.exchange".
+ *
+ * Este componente se encarga de la gestión de intercambio de documentos tributarios.
  */
 #[Component(name: 'exchange', package: 'billing')]
 class ExchangeComponent extends AbstractComponent implements ExchangeComponentInterface
