@@ -351,6 +351,16 @@ Search.appendIndex(
             "summary": "Realiza\u0020una\u0020consulta\u0020XPath\u0020al\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_query"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003A\u0024tipoDocumento",
             "name": "tipoDocumento",
             "summary": "C\u00F3digo\u0020del\u0020tipo\u0020de\u0020documento\u0020tributario\u0020al\u0020que\u0020est\u00E1\u0020asociada\u0020esta\ninstancia\u0020de\u0020un\u0020documento.",
@@ -1225,6 +1235,11 @@ Search.appendIndex(
             "name": "query",
             "summary": "Realiza\u0020una\u0020consulta\u0020XPath\u0020al\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_query"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\LoaderWorkerInterface",
             "name": "LoaderWorkerInterface",
@@ -6701,6 +6716,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020siguiente\u0020folio\u0020disponible\u0020que\u0020se\u0020puede\u0020utilizar\u0020en\u0020el\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getSiguienteFolio"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFakerWorkerInterface",
             "name": "CafFakerWorkerInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020crea\u0020archivos\u0020CAF\u0020falsos\u0020\u0028de\u0020prueba\u0029.",
@@ -6820,6 +6840,11 @@ Search.appendIndex(
             "name": "getFirma",
             "summary": "Obtiene\u0020la\u0020firma\u0020del\u0020SII\u0020sobre\u0020el\u0020nodo\u0020DA\u0020del\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_getFirma"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020CAF\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafLoaderWorkerInterface",
             "name": "CafLoaderWorkerInterface",
@@ -7006,6 +7031,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020firma\u0020del\u0020SII\u0020sobre\u0020el\u0020nodo\u0020DA\u0020del\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_getFirma"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020CAF\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AIDK_CERTIFICACION",
             "name": "IDK_CERTIFICACION",
             "summary": "Ambiente\u0020de\u0020certificaci\u00F3n\u0020del\u0020SII.",
@@ -7170,6 +7205,16 @@ Search.appendIndex(
             "name": "ensureFoliosDisponibles",
             "summary": "Asegura\u0020que\u0020existan\u0020folios\u0020disponibles\u0020asignados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_ensureFoliosDisponibles"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A\u0024foliosDisponibles",
             "name": "foliosDisponibles",
