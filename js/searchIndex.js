@@ -8928,7 +8928,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\PackageRegistry",
             "name": "PackageRegistry",
-            "summary": "Registro\u0020de\u0020paquetes\u0020de\u0020la\u0020aplicaci\u00F3n.",
+            "summary": "Registro\u0020de\u0020paquetes\u0020disponibles\u0020en\u0020LibreDTE.",
             "url": "classes/libredte-lib-Core-PackageRegistry.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\PackageRegistry\u003A\u003AgetBillingPackage\u0028\u0029",
