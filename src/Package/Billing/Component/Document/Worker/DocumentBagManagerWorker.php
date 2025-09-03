@@ -78,12 +78,12 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Si los datos vienen como string se deben parsear para asignar.
         // Además se normalizarán.
         if (is_string($source)) {
-            $aux = explode(':', $source, 1);
+            $aux = explode(':', $source, 2);
             $parserStrategy = str_replace('parser.strategy.', '', $aux[0]);
             $inputData = $aux[1] ?? '';
             $bag->setInputData($inputData);
             $bag->getOptions()->set('parser.strategy', $parserStrategy);
-            $$this->parserWorker->parse($bag);
+            $this->parserWorker->parse($bag);
         }
 
         // Si los datos vienen como arreglo son los datos normalizados.

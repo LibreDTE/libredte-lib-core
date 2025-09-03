@@ -290,7 +290,7 @@ class Caf implements CafInterface
      */
     public function getCertificacion(): ?int
     {
-        return $this->getAmbiente()->value;
+        return $this->getAmbiente()?->value;
     }
 
     /**
@@ -375,5 +375,42 @@ class Caf implements CafInterface
     public function getFirma(): string
     {
         return $this->xmlDocument->query('//AUTORIZACION/CAF/FRMA');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'emisor' => $this->getEmisor(),
+            'tipoDocumento' => $this->getTipoDocumento(),
+            'folioDesde' => $this->getFolioDesde(),
+            'folioHasta' => $this->getFolioHasta(),
+            'cantidadFolios' => $this->getCantidadFolios(),
+            'fechaAutorizacion' => $this->getFechaAutorizacion(),
+            'fechaVencimiento' => $this->getFechaVencimiento(),
+            'mesesAutorizacion' => $this->getMesesAutorizacion(),
+            'vigente' => $this->vigente(),
+            'vence' => $this->vence(),
+            'idk' => $this->getIdk(),
+            'ambiente' => $this->getAmbiente(),
+            'certificacion' => $this->getCertificacion(),
+            'publicKey' => $this->getPublicKey(),
+            'privateKey' => $this->getPrivateKey(),
+            'xml' => $this->getXmlDocument()->saveXml(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
     }
 }

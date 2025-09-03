@@ -26,12 +26,13 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Repository\Contract\EntityInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 
 /**
  * Interfaz para las entidades que representan documentos tributarios.
  */
-interface DocumentInterface extends EntityInterface
+interface DocumentInterface extends EntityInterface, JsonSerializable
 {
     /**
      * Entrega el documento XML asociado al DTE.
@@ -213,4 +214,11 @@ interface DocumentInterface extends EntityInterface
      * @param array $params Arreglo de parámetros en formato ['param' => 'value'].
      */
     public function query(string $query, array $params = []): string|array|null;
+
+    /**
+     * Entrega los datos del DTE como un arreglo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

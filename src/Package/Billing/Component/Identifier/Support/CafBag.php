@@ -142,4 +142,22 @@ class CafBag implements CafBagInterface
             $this->foliosDisponibles = range($desde, $hasta);
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'caf' => $this->getCaf(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

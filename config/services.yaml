@@ -1,3 +1,7 @@
+# Configuración de parámetros.
+parameters:
+    libredte.lib.core.project_dir: '%kernel.project_dir%'
+
 # Configuración de servicios que provee la biblioteca.
 services:
 
@@ -299,39 +303,39 @@ services:
         arguments:
             $sources:
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta:
-                    '%kernel.project_dir%/resources/data/repository/aduana_clausulas_venta.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_clausulas_venta.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaFormaPago:
-                    '%kernel.project_dir%/resources/data/repository/aduana_formas_pago.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_formas_pago.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta:
-                    '%kernel.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda:
-                    '%kernel.project_dir%/resources/data/repository/aduana_moneda.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_moneda.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais:
-                    '%kernel.project_dir%/resources/data/repository/aduana_paises.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_paises.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto:
-                    '%kernel.project_dir%/resources/data/repository/aduana_puertos.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_puertos.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTipoBulto:
-                    '%kernel.project_dir%/resources/data/repository/aduana_tipos_bulto.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_tipos_bulto.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte:
-                    '%kernel.project_dir%/resources/data/repository/aduana_transportes.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_transportes.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaUnidad:
-                    '%kernel.project_dir%/resources/data/repository/aduana_unidades.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_unidades.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna:
-                    '%kernel.project_dir%/resources/data/repository/comunas.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/comunas.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface:
-                    '%kernel.project_dir%/resources/data/repository/tipos_documento.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/tipos_documento.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago:
-                    '%kernel.project_dir%/resources/data/repository/formas_pago.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/formas_pago.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPagoExportacion:
-                    '%kernel.project_dir%/resources/data/repository/formas_pago_exportacion.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/formas_pago_exportacion.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion:
-                    '%kernel.project_dir%/resources/data/repository/impuestos_adicionales_retenciones.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/impuestos_adicionales_retenciones.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago:
-                    '%kernel.project_dir%/resources/data/repository/medios_pago.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/medios_pago.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml:
-                    '%kernel.project_dir%/resources/data/repository/tag_xml.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/tag_xml.php'
                 libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado:
-                    '%kernel.project_dir%/resources/data/repository/traslados.php'
+                    '%libredte.lib.core.project_dir%/resources/data/repository/traslados.php'
             $config:
                 normalization:
                     idAttribute: codigo

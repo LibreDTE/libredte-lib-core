@@ -74,7 +74,42 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'bag' => [
+                'inputData' => [
+                    'Encabezado' => [
+                        'IdDoc' => [
+                            'TipoDTE' => 33,
+                            'Folio' => 1,
+                        ],
+                        'Emisor' => [
+                            'RUTEmisor' => '12345678-5',
+                            'RznSoc' => 'Empresa S.A.',
+                            'GiroEmis' => 'Giro de la empresa',
+                            'Acteco' => 123456,
+                            'DirOrigen' => 'Santiago',
+                            'CmnaOrigen' => 'Santiago',
+                        ],
+                        'Receptor' => [
+                            'RUTRecep' => '23456789-6',
+                            'RznSocRecep' => 'Empresa S.A.',
+                            'GiroRecep' => 'Giro de la empresa',
+                            'DirRecep' => 'Santiago',
+                            'CmnaRecep' => 'Santiago',
+                        ],
+                    ],
+                    'Detalle' => [
+                        [
+                            'NmbItem' => 'Producto A',
+                            'QtyItem' => 1,
+                            'PrcItem' => 1000,
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function build(DocumentBagInterface $bag): DocumentInterface
     {
         // Normalizar la bolsa con los datos del documento.

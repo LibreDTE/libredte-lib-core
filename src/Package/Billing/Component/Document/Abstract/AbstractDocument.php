@@ -350,4 +350,28 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     {
         return $this->xmlDocument->query($query, $params);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'datos' => $this->getDatos(),
+            'ted' => $this->getTED(),
+            'xml' => $this->getXmlDocument()->saveXml(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
+    }
 }

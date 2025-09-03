@@ -25,12 +25,13 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 
 /**
  * Interfaz para la entidad que representa archivos CAF.
  */
-interface CafInterface
+interface CafInterface extends JsonSerializable
 {
     /**
      * Obtiene el documento XML.
@@ -198,4 +199,11 @@ interface CafInterface
      * @return string Firma en base64.
      */
     public function getFirma(): string;
+
+    /**
+     * Entrega los datos del CAF como un arreglo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

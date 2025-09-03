@@ -24,13 +24,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
  * Interfaz para la bolsa con los datos del CAF.
  */
-interface CafBagInterface
+interface CafBagInterface extends JsonSerializable
 {
     /**
      * Obtiene el CAF.
@@ -74,4 +75,11 @@ interface CafBagInterface
      * @return int
      */
     public function getSiguienteFolio(): int;
+
+    /**
+     * Entrega los datos de la bolsa como un arreglo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

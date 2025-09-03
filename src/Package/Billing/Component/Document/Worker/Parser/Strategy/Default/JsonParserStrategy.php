@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Str
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
 
 /**
  * Estrategia "billing.document.parser#strategy:default.json".
@@ -40,6 +41,12 @@ class JsonParserStrategy extends AbstractStrategy implements ParserStrategyInter
     public function parse(string $data): array
     {
         $array = json_decode($data, true);
+
+        if ($array === null) {
+            throw new ParserException(
+                'Los datos de entrada no son un JSON válido.'
+            );
+        }
 
         return $array;
     }

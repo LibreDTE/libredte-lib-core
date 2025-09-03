@@ -52,7 +52,16 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'emisor' => [
+                'rut' => '12345678-9',
+            ],
+            'codigoDocumento' => 33,
+            'folioDesde' => 1,
+            'folioHasta' => 100,
+        ],
+    )]
     public function create(
         EmisorInterface $emisor,
         int $codigoDocumento,
