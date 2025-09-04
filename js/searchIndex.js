@@ -576,6 +576,11 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020maneja\u0020el\u0020env\u00EDo\u0020de\u0020los\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020de\u0020un\u0020documento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_create"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Normaliza\u0020un\u0020sobre\u0020con\u0020datos\u0020de\u0020los\u0020documentos\u0020tributarios\u0020transferidos.",
@@ -1120,6 +1125,11 @@ Search.appendIndex(
             "name": "getCaratula",
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getCaratula"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface",
             "name": "DocumentInterface",
@@ -3366,6 +3376,16 @@ Search.appendIndex(
             "summary": "Retorna\u0020una\u0020nueva\u0020sobre\u0020con\u0020los\u0020datos\u0020del\u0020sobre\u0020actual\u0020e\u0020incluye\u0020un\ncertificado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_withCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
             "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020del\u0020documento.",
@@ -3666,6 +3686,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020de\u0020un\u0020documento\u0020tributario.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_create"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Normaliza\u0020un\u0020sobre\u0020con\u0020datos\u0020de\u0020los\u0020documentos\u0020tributarios\u0020transferidos.",
@@ -3690,6 +3715,11 @@ Search.appendIndex(
             "name": "validateSignature",
             "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_validateSignature"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003AgetXmlDocument\u0028\u0029",
+            "name": "getXmlDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020a\u0020partir\u0020de\u0020la\u0020fuente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_getXmlDocument"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003AensureDocuments\u0028\u0029",
             "name": "ensureDocuments",
@@ -4845,6 +4875,11 @@ Search.appendIndex(
             "name": "render",
             "summary": "Realiza\u0020el\u0020renderizado\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_render"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003A\u0024documentBagManager",
+            "name": "documentBagManager",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#property_documentBagManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -7746,6 +7781,16 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020de\u0020los\u0020documentos\u0020procesados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_calculateResume"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiCheckXmlDocumentSentStatusResponse.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiCheckXmlDocumentSentStatusResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida.",
@@ -7771,6 +7816,16 @@ Search.appendIndex(
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#method_parseEstado"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRequestXmlDocumentSentStatusByEmailResponse.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRequestXmlDocumentSentStatusByEmailResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida\u0020y\u0020error.",
@@ -7790,6 +7845,16 @@ Search.appendIndex(
             "name": "parseEstado",
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#method_parseEstado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentResponse.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
@@ -7815,6 +7880,16 @@ Search.appendIndex(
             "name": "parseEstado",
             "summary": "Parsea\u0020el\u0020estado\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#method_parseEstado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiValidateDocumentSignatureResponse.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiValidateDocumentSignatureResponse\u003A\u003ASTATUSES",
             "name": "STATUSES",
