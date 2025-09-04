@@ -364,4 +364,26 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
 
         return $envelope;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'tag' => $this->getTipoSobre()->getTagXml(),
+            'xml' => $this->getXmlDocument()->saveXml(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
+    }
 }

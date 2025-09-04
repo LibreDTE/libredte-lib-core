@@ -33,6 +33,7 @@ use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\SobreEnvio;
@@ -55,6 +56,39 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     ) {
         $this->setJobs($jobs);
         $this->setHandlers($handlers);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[ApiResource(
+        parametersExample: [
+            'bag' => [
+                'xmlDocument' => '',
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'emisor' => [
+                    'autorizacionDte' => [
+                        'fechaResolucion' => '2014-08-22',
+                        'numeroResolucion' => 80,
+                    ],
+                ],
+            ],
+        ],
+    )]
+    public function create(DocumentBagInterface $bag): DocumentEnvelopeInterface
+    {
+        $this->documentBagManagerWorker->normalize($bag, true);
+
+        $envelope = new DocumentEnvelope();
+        $envelope->addDocument($bag);
+        $envelope->setCertificate($bag->getCertificate());
+
+        $this->normalize($envelope);
+
+        return $envelope;
     }
 
     /**
@@ -90,28 +124,31 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[ApiResource(
+        parametersExample: [
+            'source' => '',
+        ],
+    )]
     public function validate(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void {
-        // TODO: Agregar validaciones del sobre.
+    ): XmlDocumentInterface {
+        $xmlDocument = $this->getXmlDocument($source);
+
+        $this->validateSchema($xmlDocument);
+        $this->validateSignature($xmlDocument);
+
+        // TODO: Agregar validaciones del sobre respecto a los datos.
+
+        return $xmlDocument;
     }
 
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
     public function validateSchema(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void {
-        // Obtener el documento XML.
-        if ($source instanceof DocumentEnvelopeInterface) {
-            $xmlDocument = $source->getXmlDocument();
-        } elseif ($source instanceof XmlDocumentInterface) {
-            $xmlDocument = $source;
-        } else {
-            $xmlDocument = new XmlDocument();
-            $xmlDocument->loadXml($source);
-        }
+    ): XmlDocumentInterface {
+        $xmlDocument = $this->getXmlDocument($source);
 
         // Validar esquema del sobre de documentos (EnvioDTE y EnvioBOLETA).
         $schema = sprintf(
@@ -123,21 +160,42 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             $xmlDocument,
             $schema
         );
+
+        return $xmlDocument;
     }
 
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void {
-        $xml = $source instanceof DocumentEnvelopeInterface
-            ? $source->getXmlDocument()
-            : $source
-        ;
+    ): XmlDocumentInterface {
+        $xmlDocument = $this->getXmlDocument($source);
 
-        $this->signatureService->validateXml($xml);
+        $this->signatureService->validateXml($xmlDocument);
+
+        return $xmlDocument;
+    }
+
+    /**
+     * Obtiene el documento XML a partir de la fuente.
+     *
+     * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
+     * @return XmlDocumentInterface
+     */
+    protected function getXmlDocument(
+        DocumentEnvelopeInterface|XmlDocumentInterface|string $source
+    ): XmlDocumentInterface {
+        if ($source instanceof DocumentEnvelopeInterface) {
+            $xmlDocument = $source->getXmlDocument();
+        } elseif ($source instanceof XmlDocumentInterface) {
+            $xmlDocument = $source;
+        } else {
+            $xmlDocument = new XmlDocument();
+            $xmlDocument->loadXml($source);
+        }
+
+        return $xmlDocument;
     }
 
     /**
@@ -209,6 +267,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             $envelope->getCaratula()
             || !$envelope->getDocuments()
             || !$envelope->getEmisor()
+            || !$envelope->getEmisor()->getAutorizacionDte()
             || !$envelope->getMandatario()
             || !$envelope->getReceptor()
         ) {
@@ -363,11 +422,19 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     protected function sign(DocumentEnvelopeInterface $envelope): void
     {
+        // Corroborar que exista la carátula.
+        $caratula = $envelope->getCaratula();
+        if ($caratula === null) {
+            throw new DispatcherException(
+                'La carátula del sobre no está definida.'
+            );
+        }
+
         // El certificado digital para realizar la firma.
         $certificate = $envelope->getCertificate();
 
         // Asignar marca de tiempo si no se pasó una.
-        $timestamp = $envelope->getCaratula()['TmstFirmaEnv'];
+        $timestamp = $caratula['TmstFirmaEnv'];
 
         // Corroborar que el certificado esté vigente según el timestamp usado.
         if (!$certificate->isActive($timestamp)) {

@@ -30,6 +30,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiCheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRequestXmlDocumentSentStatusByEmailResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiValidateDocumentResponse;
@@ -62,7 +63,21 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'request' => [
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'options' => [
+                    'ambiente' => SiiAmbiente::PRODUCCION,
+                ],
+            ],
+            'doc' => '',
+            'company' => '12345678-5',
+        ],
+    )]
     public function sendXmlDocument(
         SiiRequestInterface $request,
         XmlDocumentInterface $doc,
@@ -82,7 +97,21 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'request' => [
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'options' => [
+                    'ambiente' => SiiAmbiente::PRODUCCION,
+                ],
+            ],
+            'trackId' => 123,
+            'company' => '12345678-5',
+        ],
+    )]
     public function checkXmlDocumentSentStatus(
         SiiRequestInterface $request,
         int $trackId,
@@ -98,7 +127,21 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'request' => [
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'options' => [
+                    'ambiente' => SiiAmbiente::PRODUCCION,
+                ],
+            ],
+            'trackId' => 123,
+            'company' => '12345678-5',
+        ],
+    )]
     public function requestXmlDocumentSentStatusByEmail(
         SiiRequestInterface $request,
         int $trackId,
@@ -114,7 +157,25 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'request' => [
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'options' => [
+                    'ambiente' => SiiAmbiente::PRODUCCION,
+                ],
+            ],
+            'company' => '12345678-5',
+            'document' => 33,
+            'number' => 1,
+            'date' => '2025-01-01',
+            'total' => 1000,
+            'recipient' => '23456789-6',
+        ],
+    )]
     public function validateDocument(
         SiiRequestInterface $request,
         string $company,
@@ -138,7 +199,26 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'request' => [
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+                'options' => [
+                    'ambiente' => SiiAmbiente::PRODUCCION,
+                ],
+            ],
+            'company' => '12345678-5',
+            'document' => 33,
+            'number' => 1,
+            'date' => '2025-01-01',
+            'total' => 1000,
+            'recipient' => '23456789-6',
+            'signature' => '',
+        ],
+    )]
     public function validateDocumentSignature(
         SiiRequestInterface $request,
         string $company,

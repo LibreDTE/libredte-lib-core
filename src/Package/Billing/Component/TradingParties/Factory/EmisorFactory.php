@@ -29,6 +29,7 @@ use Derafu\Support\Factory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 
 /**
@@ -48,11 +49,22 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
      */
     public function create(array $data): EmisorInterface
     {
-        $data = $this->normalizeData($data);
+        $normalized = $this->normalizeData($data);
 
-        [$data['rut'], $data['dv']] = Rut::toArray($data['rut']);
+        [$normalized['rut'], $normalized['dv']] = Rut::toArray($normalized['rut']);
 
-        return Factory::create($data, $this->class);
+        $emisor = Factory::create($normalized, $this->class);
+
+        if (!empty($data['autorizacionDte'])) {
+            $emisor->setAutorizacionDte(
+                new AutorizacionDte(
+                    $data['autorizacionDte']['fechaResolucion'] ?? '',
+                    (int) ($data['autorizacionDte']['numeroResolucion'] ?? 0)
+                )
+            );
+        }
+
+        return $emisor;
     }
 
     /**

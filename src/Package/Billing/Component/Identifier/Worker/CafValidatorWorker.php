@@ -42,8 +42,12 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
-    public function validate(CafInterface $caf): void
+    #[ApiResource(
+        parametersExample: [
+            'caf' => '',
+        ],
+    )]
+    public function validate(CafInterface $caf): CafInterface
     {
         // Verificar firma del CAF con la clave pública del SII.
         $public_key_sii = $this->getSiiCertificate($caf->getIdk());
@@ -81,6 +85,9 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
                 $caf->getId()
             ));
         }
+
+        // Retornar el CAF validado.
+        return $caf;
     }
 
     /**

@@ -55,6 +55,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @return int Número de seguimiento (Track ID) del envío del XML al SII.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws SiiSendXmlDocumentException Si hay algún error al enviar el XML.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
      */
     public function sendXmlDocument(
         SiiRequestInterface $request,
@@ -70,13 +71,12 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * Este estado podría no ser el final, si no es un estado final se debe
      * reintentar la consulta posteriormente al SII.
      *
-     * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
-     *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del XML que se envió.
      * @return SiiCheckXmlDocumentSentStatusResponse
      * @throws SiiCheckXmlDocumentSentStatusException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
      */
     public function checkXmlDocumentSentStatus(
         SiiRequestInterface $request,
@@ -95,13 +95,12 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * incluye los detalles de los rechazos, algo que no entrega a través del
      * servicio web de consulta del estado del envío del XML al SII.
      *
-     * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
-     *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del documento.
      * @return SiiRequestXmlDocumentSentStatusByEmailResponse
      * @throws SiiRequestXmlDocumentSentStatusByEmailException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
      */
     public function requestXmlDocumentSentStatusByEmail(
         SiiRequestInterface $request,
@@ -118,8 +117,6 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * Este servicio valida que el documento exista en SII (esté aceptado) y
      * además que los datos del documento proporcionados coincidan.
      *
-     * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
-     *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param string $company RUT de la empresa emisora del documento.
      * @param int $document Tipo de documento tributario electrónico.
@@ -129,6 +126,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param string $recipient RUT del receptor del documento.
      * @return SiiValidateDocumentResponse
      * @throws SiiValidateDocumentException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
      */
     public function validateDocument(
         SiiRequestInterface $request,
@@ -150,8 +148,6 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * los datos del documento proporcionados coincidan. Finalmente, valida que
      * la firma electrónica del documento coincida con la enviada al SII.
      *
-     * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf
-     *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param string $company RUT de la empresa emisora del documento.
      * @param int $document Tipo de documento tributario electrónico.
@@ -162,6 +158,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param string $signature Tag DTE/Signature/SignatureValue del XML.
      * @return SiiValidateDocumentSignatureResponse
      * @throws SiiValidateDocumentSignatureException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf
      */
     public function validateDocumentSignature(
         SiiRequestInterface $request,
@@ -207,6 +204,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @return string El token asociado al certificado digital de la solicitud.
      * @throws SiiAuthenticateException Si hubo algún error al obtener el token.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/autenticacion.pdf
      */
     public function authenticate(SiiRequestInterface $request): string;
 }

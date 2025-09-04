@@ -138,6 +138,11 @@ abstract class AbstractSiiWsdlResponse
         // Normalizar espacios.
         $input = preg_replace('/\s+/', ' ', trim($input));
 
+        // Número de atención sin fecha (nuevo formato).
+        if (!str_contains($input, ' ') && is_numeric($input)) {
+            return [(int) $input, date('Y-m-d\TH:i:s')];
+        }
+
         // Extraer número y la fecha usando una expresión regular.
         if (preg_match(
             '/(\d+)\s+\(\s*(\d{4}\/\d{2}\/\d{2})\s+(\d{2}:\d{2}:\d{2})\s*\)/',

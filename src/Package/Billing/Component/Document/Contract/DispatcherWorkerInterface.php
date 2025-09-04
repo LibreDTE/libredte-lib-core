@@ -36,6 +36,14 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherExc
 interface DispatcherWorkerInterface extends WorkerInterface
 {
     /**
+     * Crea un sobre con los datos de la bolsa de un documento tributario.
+     *
+     * @param DocumentBagInterface $bag
+     * @return DocumentEnvelopeInterface
+     */
+    public function create(DocumentBagInterface $bag): DocumentEnvelopeInterface;
+
+    /**
      * Normaliza un sobre con datos de los documentos tributarios transferidos.
      *
      * Se completará el contenido que falte con lo que se pueda completar según
@@ -61,32 +69,32 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Realiza la validación del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return void
+     * @return XmlDocumentInterface
      * @throws DispatcherException
      */
     public function validate(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): XmlDocumentInterface;
 
     /**
      * Valida el esquema del XML del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return void
+     * @return XmlDocumentInterface
      * @throws XmlException Si la validación del esquema falla.
      */
     public function validateSchema(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): XmlDocumentInterface;
 
     /**
      * Valida la firma electrónica del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return void
+     * @return XmlDocumentInterface
      * @throws SignatureException Si la validación de la firma falla.
      */
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): XmlDocumentInterface;
 }

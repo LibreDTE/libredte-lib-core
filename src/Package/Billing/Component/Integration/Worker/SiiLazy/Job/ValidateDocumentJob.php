@@ -81,6 +81,13 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         int $total,
         string $recipient
     ): SiiValidateDocumentResponse {
+        // Validar que se haya proporcionado un certificado digital.
+        if ($request->getCertificate() === null) {
+            throw new SiiValidateDocumentException(
+                'No se ha proporcionado un certificado digital para la consulta de estado del documento.'
+            );
+        }
+
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         $user = $request->getCertificate()->getId();
         Rut::validate($user);

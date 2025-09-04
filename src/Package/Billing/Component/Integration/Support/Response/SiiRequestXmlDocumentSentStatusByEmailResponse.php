@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response;
 
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
 /**
@@ -31,7 +32,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSii
  *
  * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
  */
-class SiiRequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlResponse
+class SiiRequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlResponse implements JsonSerializable
 {
     /**
      * Estados de salida y error.
@@ -117,5 +118,26 @@ class SiiRequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlResp
 
         // Entregar valores determinados para el error.
         return [$status, $description];
+    }
+
+    /**
+     * Entrega los datos de la respuesta como un arreglo.
+     *
+     * @return array Datos de la respuesta.
+     */
+    public function toArray(): array
+    {
+        return $this->getData();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $data = $this->toArray();
+        unset($data['token']);
+
+        return $data;
     }
 }

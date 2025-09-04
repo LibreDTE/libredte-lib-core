@@ -130,6 +130,9 @@ class SiiRequest implements SiiRequestInterface
         $this->optionsSchema['reintentos']['normalizer'] =
             fn (Options $options, int $value) => max(0, min(10, $value))
         ;
+        if (isset($options['ambiente']) && is_numeric($options['ambiente'])) {
+            $options['ambiente'] = SiiAmbiente::from((int) $options['ambiente']);
+        }
         $this->setOptions($options);
     }
 

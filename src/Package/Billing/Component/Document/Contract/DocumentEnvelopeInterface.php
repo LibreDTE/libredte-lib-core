@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
@@ -36,7 +37,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
  * Interfaz para el sobre (contenedor) de documentos tributarios para el proceso
  * de envío al SII e intercambio entre contribuyentes.
  */
-interface DocumentEnvelopeInterface extends OptionsAwareInterface
+interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializable
 {
     /**
      * Entrega el identificador del sobre de documentos.
@@ -204,4 +205,11 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface
      * @return array|null
      */
     public function getCaratula(): ?array;
+
+    /**
+     * Entrega los datos del sobre de documentos en un arreglo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

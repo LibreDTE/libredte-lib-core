@@ -370,6 +370,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function jsonSerialize(): array
     {
         $array = $this->toArray();
+        if ($array['ted'] !== null) {
+            $array['ted'] = base64_encode($array['ted']);
+        }
         $array['xml'] = base64_encode($array['xml']);
 
         return $array;

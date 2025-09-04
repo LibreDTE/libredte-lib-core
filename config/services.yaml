@@ -375,7 +375,7 @@ services:
             $options:
                 engines: ['twig', 'pdf']
                 paths:
-                    - '%kernel.project_dir%/resources/templates'
+                    - '%libredte.lib.core.project_dir%/resources/templates'
                 formatters:
                     billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter'
     libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter: ~

@@ -53,6 +53,23 @@ class Emisor extends Contribuyente implements EmisorInterface
     private ?string $vendedor = null;
 
     /**
+     * Información de la autorización que da el SII para ser emisor de
+     * documentos tributarios electrónicos.
+     *
+     * La autorización contiene además el ambiente en que se autoriza al emisor.
+     *
+     * @var AutorizacionDteInterface|null
+     */
+    private ?AutorizacionDteInterface $autorizacionDte = null;
+
+    /**
+     * Logo del emisor.
+     *
+     * @var string|null
+     */
+    private ?string $logo = null;
+
+    /**
      * Entrega el código de la sucursal asignado por el SII al emisor.
      *
      * @return integer|null
@@ -71,23 +88,6 @@ class Emisor extends Contribuyente implements EmisorInterface
     {
         return $this->vendedor;
     }
-
-    /**
-     * Información de la autorización que da el SII para ser emisor de
-     * documentos tributarios electrónicos.
-     *
-     * La autorización contiene además el ambiente en que se autoriza al emisor.
-     *
-     * @var AutorizacionDteInterface|null
-     */
-    private ?AutorizacionDteInterface $autorizacionDte = null;
-
-    /**
-     * Logo del emisor.
-     *
-     * @var string|null
-     */
-    private ?string $logo = null;
 
     /**
      * {@inheritDoc}

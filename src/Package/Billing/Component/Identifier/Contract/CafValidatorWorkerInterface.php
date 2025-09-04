@@ -38,7 +38,8 @@ interface CafValidatorWorkerInterface extends WorkerInterface
      * Valida la firma y las claves públicas y privadas asociadas al CAF.
      *
      * @param CafInterface $caf Instancia del CAF a validar.
+     * @return CafInterface Instancia del CAF validado.
      * @throws CafValidatorException En caso de algún problema al validar.
      */
-    public function validate(CafInterface $caf): void;
+    public function validate(CafInterface $caf): CafInterface;
 }

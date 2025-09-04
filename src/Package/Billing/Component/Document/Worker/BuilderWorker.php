@@ -107,6 +107,11 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
                         ],
                     ],
                 ],
+                'caf' => '',
+                'certificate' => [
+                    'data' => '',
+                    'password' => '',
+                ],
             ],
         ],
     )]

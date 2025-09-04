@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
@@ -93,7 +92,6 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
     public function process(DocumentBatchInterface $batch): array
     {
         $emisor = $batch->getEmisor();

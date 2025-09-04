@@ -24,7 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
-use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\HandlersAwareTrait;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
@@ -71,7 +70,6 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
     public function receive(ExchangeBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getOptions());

@@ -614,7 +614,7 @@
                     <tr>
                         {% set columns = {
                             'codigo': {
-                                'show': document.Detalle | filter(detalle => detalle.CdgItem is not empty and detalle.CdgItem.VlrCodigo is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.CdgItem is defined and detalle.CdgItem is not empty and detalle.CdgItem.VlrCodigo is not empty) | length > 0,
                                 'title': 'Código',
                                 'width': '10%',
                                 'align': 'left',
@@ -622,7 +622,7 @@
                                 'format': null,
                             },
                             'item': {
-                                'show': document.Detalle | filter(detalle => detalle.NmbItem is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.NmbItem is defined and detalle.NmbItem is not empty) | length > 0,
                                 'title': 'Ítem',
                                 'width': '64%',
                                 'align': 'left',
@@ -631,7 +631,7 @@
                                 'description': 'DscItem'
                             },
                             'indexe': {
-                                'show': document.Detalle | filter(detalle => detalle.IndExe is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.IndExe is defined and detalle.IndExe is not empty) | length > 0,
                                 'title': 'IE',
                                 'width': '5%',
                                 'align': 'left',
@@ -639,7 +639,7 @@
                                 'format': 'indexe'
                             },
                             'cantidad': {
-                                'show': document.Detalle | filter(detalle => detalle.QtyItem is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.QtyItem is defined and detalle.QtyItem is not empty) | length > 0,
                                 'title': 'Cant.',
                                 'width': '12%',
                                 'align': 'right',
@@ -647,7 +647,7 @@
                                 'format': 'number'
                             },
                             'unidad': {
-                                'show': document.Detalle | filter(detalle => detalle.UnmdItem is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.UnmdItem is defined and detalle.UnmdItem is not empty) | length > 0,
                                 'title': 'Unidad',
                                 'width': '10%',
                                 'align': 'left',
@@ -655,7 +655,7 @@
                                 'format': null
                             },
                             'precio_unitario': {
-                                'show': document.Detalle | filter(detalle => detalle.PrcItem is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.PrcItem is defined and detalle.PrcItem is not empty) | length > 0,
                                 'title': 'P. Unitario',
                                 'width': 'auto',
                                 'align': 'right',
@@ -663,7 +663,7 @@
                                 'format': 'number'
                             },
                             'descuento': {
-                                'show': document.Detalle | filter(detalle => detalle.DescuentoMonto is not empty or detalle.DescuentoPct is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => (detalle.DescuentoMonto is defined and detalle.DescuentoMonto is not empty) or (detalle.DescuentoPct is defined and detalle.DescuentoPct is not empty)) | length > 0,
                                 'title': 'Descuento',
                                 'width': '10%',
                                 'align': 'right',
@@ -671,7 +671,7 @@
                                 'format': 'number'
                             },
                             'total_item': {
-                                'show': document.Detalle | filter(detalle => detalle.MontoItem is not empty) | length > 0,
+                                'show': (document.Detalle ?? []) | filter(detalle => detalle.MontoItem is not empty) | length > 0,
                                 'title': 'Total Ítem',
                                 'width': '12%',
                                 'align': 'right',

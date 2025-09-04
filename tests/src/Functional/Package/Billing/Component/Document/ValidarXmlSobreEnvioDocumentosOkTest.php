@@ -52,6 +52,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManag
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\PackageRegistry;
@@ -119,6 +120,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(AutorizacionDte::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(ReceptorFactory::class)]
+#[CoversClass(Emisor::class)]
 class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 {
     // Worker que tiene los servicios para trabajar con XML del proceso de

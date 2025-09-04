@@ -29,6 +29,7 @@ use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
@@ -43,6 +44,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     use StrategiesAwareTrait;
 
     public function __construct(
+        private DocumentBagManagerWorkerInterface $documentBagManager,
         iterable $strategies = []
     ) {
         $this->setStrategies($strategies);
@@ -64,13 +66,26 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource()]
+    #[ApiResource(
+        parametersExample: [
+            'bag' => [
+                'xmlDocument' => '',
+                'options' => [
+                    'renderer' => [
+                        'format' => 'pdf',
+                    ],
+                ],
+            ],
+        ]
+    )]
     public function render(DocumentBagInterface $bag): string
     {
         $options = $this->resolveOptions($bag->getRendererOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
 
         assert($strategy instanceof RendererStrategyInterface);
+
+        $bag = $this->documentBagManager->normalize($bag, all: true);
 
         try {
             $renderedData = $strategy->render($bag);
