@@ -28,14 +28,9 @@
                 <marker>NOTE</marker>
             </markers>
         </api>
-        <guide format="rst">
-            <source dsn=".">
-                <path>docs</path>
-            </source>
-            <output>/guide</output>
-        </guide>
     </version>
     <setting name="template.color" value="blue" />
     <setting name="guides.enabled" value="true" />
+    <setting name="template.navigation.enabled" value="false" />
     <!-- <setting name="graphs.enabled" value="true" /> -->
 </phpdocumentor>

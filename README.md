@@ -11,11 +11,11 @@
 
 LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica Libre para Chile.
 
-Revisa la [documentación](https://lib-core.docs.libredte.cl) de la biblioteca para más información, sus características y detalles de su uso.
+Revisa el [sitio web de LibreDTE Core](https://core.libredte.cl) para más información, sus características y detalles de su uso.
 
 ## Términos y condiciones de uso
 
-Al utilizar este proyecto, total o parcialmente, automáticamente se acepta cumplir con los [términos y condiciones de uso](https://www.libredte.cl/legal) que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/libredte/libredte-lib-core/master/COPYING) solo aplica para quienes respeten los términos y condiciones de uso. No existe una licencia comercial de LibreDTE, por lo cual no es posible usar el proyecto si no aceptas cumplir dichos términos y condiciones.
+Al utilizar este proyecto, total o parcialmente, automáticamente se acepta cumplir con los [términos y condiciones de uso](https://core.libredte.cl/legal) que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/libredte/libredte-lib-core/master/COPYING) solo aplica para quienes respeten los términos y condiciones de uso. No existe una licencia comercial de la biblioteca PHP de LibreDTE, por lo cual no es posible usar el proyecto si no aceptas cumplir dichos términos y condiciones.
 
 La versión resumida de los términos y condiciones de uso de LibreDTE que permiten utilizar el proyecto, son los siguientes:
 
@@ -24,12 +24,4 @@ La versión resumida de los términos y condiciones de uso de LibreDTE que permi
 3. Si haces cambios a LibreDTE deberás liberar de manera pública el código fuente de dichos cambios bajo licencia AGPL.
 4. Debes hacer referencia de manera pública en tu software al proyecto y autor original de LibreDTE, tanto si usas LibreDTE sin modificar o realizando cambios al código.
 
-Es obligación de quienes quieran usar el proyecto leer y aceptar por completo los [términos y condiciones de uso](https://www.libredte.cl/legal).
-
-Enlaces
--------
-
-- [Sitio web LibreDTE](https://www.libredte.cl).
-- [Código fuente en GitHub](https://github.com/libredte/libredte-lib-core).
-- [Paquete en Packagist](https://packagist.org/packages/libredte/libredte-lib-core).
-- [Documentación](https://lib-core.docs.libredte.cl).
+Es obligación de quienes quieran usar el proyecto leer y aceptar por completo los [términos y condiciones de uso](https://core.libredte.cl/legal).
