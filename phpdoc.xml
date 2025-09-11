@@ -30,7 +30,7 @@
         </api>
     </version>
     <setting name="template.color" value="blue" />
-    <setting name="guides.enabled" value="true" />
-    <setting name="template.navigation.enabled" value="false" />
+    <setting name="guides.enabled" value="false" />
+    <!-- <setting name="template.navigation.enabled" value="false" /> -->
     <!-- <setting name="graphs.enabled" value="true" /> -->
 </phpdocumentor>
