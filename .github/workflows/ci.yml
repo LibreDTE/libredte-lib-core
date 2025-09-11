@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tests:
+    name: Tests
+    timeout-minutes: 10
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php-version: ['8.4']
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: curl, json, mbstring, openssl, soap, xdebug, imap
+          tools: composer
+
+      - name: Display PHP version
+        run: php -v
+
+      - name: Install Dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Run PHP Coding Standards Fixer
+        run: vendor/bin/php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1G
+
+      - name: Run PHPUnit
+        run: XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml
+
+      - name: Upload PHPUnit result report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-testdox-php_${{ matrix.php-version }}.txt
+          path: var/tests-testdox.txt
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-coverage-php_${{ matrix.php-version }}.txt
+          path: var/tests-coverage.txt
