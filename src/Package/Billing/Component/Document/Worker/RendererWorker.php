@@ -89,6 +89,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 
         try {
             $renderedData = $strategy->render($bag);
+
         } catch (Throwable $e) {
             throw new RendererException(
                 message: $e->getMessage(),

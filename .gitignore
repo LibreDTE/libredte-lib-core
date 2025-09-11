@@ -21,3 +21,4 @@
 /vendor/
 /ast.dump
 /composer.lock
+/.idea

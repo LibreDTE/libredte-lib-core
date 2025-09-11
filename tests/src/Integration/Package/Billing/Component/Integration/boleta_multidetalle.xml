@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DTE xmlns="http://www.sii.cl/SiiDte" version="1.0">
+    <Documento ID="LibreDTE_76192083-9_T039F000000001">
+        <Encabezado>
+            <IdDoc>
+                <TipoDTE>39</TipoDTE>
+                <Folio>1</Folio>
+                <FchEmis>2025-09-10</FchEmis>
+                <IndServicio>3</IndServicio>
+            </IdDoc>
+            <Emisor>
+                <RUTEmisor>76192083-9</RUTEmisor>
+                <RznSocEmisor>SASCO SpA</RznSocEmisor>
+                <GiroEmisor>Tecnología, Informática y Telecomunicaciones</GiroEmisor>
+                <DirOrigen>DBG</DirOrigen>
+                <CmnaOrigen>Santa Cruz</CmnaOrigen>
+            </Emisor>
+            <Receptor>
+                <RUTRecep>66666666-6</RUTRecep>
+                <RznSocRecep>Sin RUT</RznSocRecep>
+                <DirRecep>Santiago</DirRecep>
+                <CmnaRecep>Santiago</CmnaRecep>
+            </Receptor>
+            <Totales>
+                <MntNeto>7100</MntNeto>
+                <IVA>0</IVA>
+                <MntTotal>7100</MntTotal>
+            </Totales>
+        </Encabezado>
+        <Detalle>
+            <NroLinDet>1</NroLinDet>
+            <NmbItem>Producto A</NmbItem>
+            <QtyItem>2</QtyItem>
+            <PrcItem>1000</PrcItem>
+            <MontoItem>2000</MontoItem>
+        </Detalle>
+        <Detalle>
+            <NroLinDet>2</NroLinDet>
+            <NmbItem>Servicio B</NmbItem>
+            <QtyItem>1</QtyItem>
+            <PrcItem>1500</PrcItem>
+            <MontoItem>1500</MontoItem>
+        </Detalle>
+        <Detalle>
+            <NroLinDet>3</NroLinDet>
+            <NmbItem>Producto C</NmbItem>
+            <QtyItem>3</QtyItem>
+            <PrcItem>500</PrcItem>
+            <MontoItem>1500</MontoItem>
+        </Detalle>
+        <Referencia>
+            <NroLinRef>1</NroLinRef>
+            <RazonRef>Email receptor: contacto@sasco.cl</RazonRef>
+        </Referencia>
+    </Documento>
+</DTE>

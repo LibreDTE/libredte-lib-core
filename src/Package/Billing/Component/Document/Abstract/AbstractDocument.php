@@ -29,6 +29,9 @@ use Derafu\Selector\Selector;
 use Derafu\Support\Arr;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
+use Derafu\Xml\XmlDocument;
+use DOMDocument;
+use DOMNode;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use LogicException;
@@ -260,15 +263,27 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         // Si los datos del DTE no están determinados se crean de una manera
         // estandarizada compatible con los datos de entrada normalizados.
         if (!isset($this->datos)) {
-            $array = $this->xmlDocument->toArray();
+            $rawXml = mb_convert_encoding($this->getXml(), 'UTF-8', 'ISO-8859-1');
 
-            $array = $array['DTE']['Documento']
-                ?? $array['DTE']['Exportaciones']
-                ?? $array['DTE']['Liquidacion']
+            $rawXml = preg_replace('/<\?xml[^>]+encoding=[\'"][^\'"]+[\'"][^>]*\?>/i', '<?xml version="1.0" encoding="UTF-8"?>', $rawXml);
+            $rawXml = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $rawXml);
+
+
+            $dom = new DOMDocument();
+            $dom->loadXML($rawXml);
+            $array = $this->domToArray($dom->documentElement);
+            $documentoData = $array['Documento']
+                ?? $array['Exportaciones']
+                ?? $array['Liquidacion']
                 ?? $array
             ;
+            print_r($documentoData);
+            if (is_array($documentoData)) {
+                $documentoData = $this->limpiarXmlArray($documentoData);
+                unset($documentoData['@attributes']);
+            }
+            unset($documentoData['TED'], $array['TmstFirma']);
 
-            unset($array['TED'], $array['TmstFirma']);
 
             $arrayRequired = [
                 'Encabezado.Totales.ImptoReten',
@@ -277,10 +292,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 'Referencia',
             ];
             foreach ($arrayRequired as $path) {
-                Arr::ensureArrayAtPath($array, $path);
+                Arr::ensureArrayAtPath($documentoData, $path);
             }
 
-            $this->datos = Arr::cast($array);
+            $this->datos = Arr::cast($documentoData);
         }
 
         // Entregar los datos del DTE.
@@ -376,5 +391,61 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         $array['xml'] = base64_encode($array['xml']);
 
         return $array;
+    }
+    function domToArray(DOMNode $node): array|string {
+        if ($node->nodeType == XML_TEXT_NODE) {
+            return trim($node->nodeValue);
+        }
+
+        $output = [];
+
+        if ($node->hasAttributes()) {
+            foreach ($node->attributes as $attr) {
+                $output['@attributes'][$attr->nodeName] = $attr->nodeValue;
+            }
+        }
+
+        foreach ($node->childNodes as $child) {
+            if ($child->nodeType == XML_TEXT_NODE && trim($child->nodeValue) === '') {
+                continue;
+            }
+
+            $value = $this->domToArray($child);
+            $tag = $child->nodeName;
+
+            if (isset($output[$tag])) {
+                if (!is_array($output[$tag]) || !isset($output[$tag][0])) {
+                    $output[$tag] = [$output[$tag]];
+                }
+                $output[$tag][] = $value;
+            } else {
+                $output[$tag] = $value;
+            }
+        }
+
+        return $output;
+    }
+    private function limpiarXmlArray(array $data): array
+    {
+        $resultado = [];
+
+        foreach ($data as $clave => $valor) {
+            if (is_array($valor)) {
+                if (array_keys($valor) === ['#text']) {
+                    $resultado[$clave] = $valor['#text'];
+                } elseif (array_is_list($valor)) {
+                    $resultado[$clave] = array_map([$this, 'limpiarXmlArray'], $valor);
+                } elseif (isset($valor['@attributes'])) {
+                    unset($valor['@attributes']);
+                    $resultado[$clave] = $this->limpiarXmlArray($valor);
+                } else {
+                    $resultado[$clave] = $this->limpiarXmlArray($valor);
+                }
+            } else {
+                $resultado[$clave] = $valor;
+            }
+        }
+
+        return $resultado;
     }
 }

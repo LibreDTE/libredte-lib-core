@@ -52,6 +52,7 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
         $parser = $this->parserWorker->getStrategy('default.xml');
         assert($parser instanceof XmlParserStrategy);
 
+
         $data = $parser->parse($xml);
 
         return $this->documentBagManager->create($data);

@@ -73,6 +73,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
             'document_auth' => $bag->getDocumentAuth(),
         ];
 
+        //print_r($bag);
         $options = [
             'template' => $options->get('template'),
             'filepath' => null,

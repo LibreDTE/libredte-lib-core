@@ -627,6 +627,7 @@ class DocumentBag implements DocumentBagInterface
             return $documentData;
         }
 
+
         return array_replace_recursive($documentData, $documentExtra);
     }
 
