@@ -35,6 +35,7 @@ use DOMNode;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use LogicException;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\XmlArrayTrait;
 
 /**
  * Clase abstracta (base) de la representación de un documento tributario
@@ -42,6 +43,7 @@ use LogicException;
  */
 abstract class AbstractDocument extends Entity implements DocumentInterface
 {
+    use XmlArrayTrait;
     /**
      * Código del tipo de documento tributario al que está asociada esta
      * instancia de un documento.
@@ -264,10 +266,8 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         // estandarizada compatible con los datos de entrada normalizados.
         if (!isset($this->datos)) {
             $rawXml = mb_convert_encoding($this->getXml(), 'UTF-8', 'ISO-8859-1');
-
             $rawXml = preg_replace('/<\?xml[^>]+encoding=[\'"][^\'"]+[\'"][^>]*\?>/i', '<?xml version="1.0" encoding="UTF-8"?>', $rawXml);
             $rawXml = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $rawXml);
-
 
             $dom = new DOMDocument();
             $dom->loadXML($rawXml);
@@ -392,60 +392,5 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         return $array;
     }
-    function domToArray(DOMNode $node): array|string {
-        if ($node->nodeType == XML_TEXT_NODE) {
-            return trim($node->nodeValue);
-        }
-
-        $output = [];
-
-        if ($node->hasAttributes()) {
-            foreach ($node->attributes as $attr) {
-                $output['@attributes'][$attr->nodeName] = $attr->nodeValue;
-            }
-        }
-
-        foreach ($node->childNodes as $child) {
-            if ($child->nodeType == XML_TEXT_NODE && trim($child->nodeValue) === '') {
-                continue;
-            }
-
-            $value = $this->domToArray($child);
-            $tag = $child->nodeName;
-
-            if (isset($output[$tag])) {
-                if (!is_array($output[$tag]) || !isset($output[$tag][0])) {
-                    $output[$tag] = [$output[$tag]];
-                }
-                $output[$tag][] = $value;
-            } else {
-                $output[$tag] = $value;
-            }
-        }
-
-        return $output;
-    }
-    private function limpiarXmlArray(array $data): array
-    {
-        $resultado = [];
-
-        foreach ($data as $clave => $valor) {
-            if (is_array($valor)) {
-                if (array_keys($valor) === ['#text']) {
-                    $resultado[$clave] = $valor['#text'];
-                } elseif (array_is_list($valor)) {
-                    $resultado[$clave] = array_map([$this, 'limpiarXmlArray'], $valor);
-                } elseif (isset($valor['@attributes'])) {
-                    unset($valor['@attributes']);
-                    $resultado[$clave] = $this->limpiarXmlArray($valor);
-                } else {
-                    $resultado[$clave] = $this->limpiarXmlArray($valor);
-                }
-            } else {
-                $resultado[$clave] = $valor;
-            }
-        }
-
-        return $resultado;
-    }
+    
 }
