@@ -1,5 +1,4 @@
 .codegpt
-.DS_Store
 /.php-cs-fixer.cache
 /.phpunit.result.cache
 /build/
@@ -21,3 +20,4 @@
 /vendor/
 /ast.dump
 /composer.lock
+**/.DS_Store
