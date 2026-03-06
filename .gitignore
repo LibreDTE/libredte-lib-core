@@ -1,8 +1,12 @@
-# ejemplos, composer, pruebas, etc (archivos generados al usar la biblioteca)
+.vscode/
+build/
+vendor/
+.phpunit.result.cache
+composer.lock
+
 doc/html
 doc/latex
 examples/config.php
 examples/xml
 examples/pdf
-vendor
 tests/firma.p12
