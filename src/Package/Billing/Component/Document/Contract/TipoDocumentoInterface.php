@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
@@ -32,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 /**
  * Interfaz para la entidad de tipo de documento tributario.
  */
-interface TipoDocumentoInterface
+interface TipoDocumentoInterface extends JsonSerializable
 {
     /*
     |--------------------------------------------------------------------------
@@ -238,4 +239,17 @@ interface TipoDocumentoInterface
      * @return integer|false
      */
     public function getDefaultIndServicio(): int|false;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serialización.
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Serializa el tipo de documento a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

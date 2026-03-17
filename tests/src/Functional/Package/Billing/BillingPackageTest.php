@@ -37,7 +37,9 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValida
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
@@ -125,6 +127,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
 #[CoversClass(TemplateDataFormatter::class)]
+#[CoversClass(CategoriaDocumento::class)]
+#[CoversClass(OperacionDocumento::class)]
 class BillingPackageTest extends TestCase
 {
     public function testBillingPackageBillerBill(): void

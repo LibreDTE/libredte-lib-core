@@ -39,6 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelo
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\SobreEnvio;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentEnvelope;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario;
 
 /**
@@ -231,8 +232,21 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             return;
         }
 
-        // Asignar como emisor del sobre el emisor del primer documento.
+        // Emisor del sobre se asume siempre como el emisor del primer documento.
+        // Es una suposición válida siempre y cuando todos los documentos que se
+        // envían sean del mismo emisor.
         $emisor = $envelope->getDocuments()[0]->getEmisor();
+
+        // Asignar la autorización de la carátula al emisor.
+        $fechaResolucion = $envelope->getCaratula()['FchResol'] ?? null;
+        $numeroResolucion = $envelope->getCaratula()['NroResol'] ?? null;
+        if ($fechaResolucion !== null && $numeroResolucion !== null) {
+            $emisor->setAutorizacionDte(
+                new AutorizacionDte($fechaResolucion, (int) $numeroResolucion)
+            );
+        }
+
+        // Asignar el emisor al sobre.
         $envelope->setEmisor($emisor);
     }
 

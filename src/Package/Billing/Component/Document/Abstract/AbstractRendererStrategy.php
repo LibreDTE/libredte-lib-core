@@ -71,6 +71,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
             'document_extra' => $bag->getDocumentExtra(),
             'document_stamp' => $bag->getDocumentStamp(),
             'document_auth' => $bag->getDocumentAuth(),
+            'document_type' => $bag->getDocumentType()->toArray(),
         ];
 
         $options = [

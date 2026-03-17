@@ -411,4 +411,46 @@ class TipoDocumento implements TipoDocumentoInterface
     {
         return $this->esBoleta() ? 3 : false;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serialización.
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            // Datos básicos del tipo de documento.
+            'codigo' => $this->getCodigo(),
+            'nombre' => $this->getNombre(),
+            'nombre_corto' => $this->getNombreCorto(),
+            'categoria' => $this->getCategoria() ? [
+                'codigo' => $this->getCategoria()->getCodigo(),
+                'nombre' => $this->getCategoria()->getNombre(),
+            ] : null,
+            'operacion' => $this->getOperacion() ? [
+                'codigo' => $this->getOperacion()->getCodigo(),
+                'nombre' => $this->getOperacion()->getNombre(),
+            ] : null,
+
+            // Describe características del documento.
+            'es_cedible' => $this->esCedible(),
+            'es_exento' => $this->esExento(),
+            'es_boleta' => $this->esBoleta(),
+            'es_exportacion' => $this->esExportacion(),
+            'es_guia_despacho' => $this->esGuiaDespacho(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

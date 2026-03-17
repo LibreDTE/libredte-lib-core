@@ -47,7 +47,9 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
@@ -232,6 +234,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NotaCreditoExportacionSanitizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
 #[CoversClass(TemplateDataFormatter::class)]
+#[CoversClass(CategoriaDocumento::class)]
+#[CoversClass(OperacionDocumento::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
