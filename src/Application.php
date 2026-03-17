@@ -50,11 +50,13 @@ final class Application extends MicroKernel implements ApplicationInterface
     /**
      * Archivos de configuración.
      *
+     * NOTE: LibreDTE no debe cargar archivos de configuración del proyecto que
+     * lo usa. Los archivos de configuración de LibreDTE se cargan de manera
+     * explícita en el método `Application::configure()`.
+     *
      * @var array<string,string>
      */
-    protected const CONFIG_FILES = [
-        'services.yaml' => 'yaml',
-    ];
+    protected const CONFIG_FILES = [];
 
     /**
      * Cargadores de archivos de configuración.
@@ -76,7 +78,7 @@ final class Application extends MicroKernel implements ApplicationInterface
         ContainerConfigurator $configurator,
         ContainerBuilder $container
     ): void {
-        // Cargar configuración.
+        // Cargar configuración de la biblioteca de LibreDTE.
         $configurator->import(__DIR__ . '/../config/services.yaml');
 
         // Agregar compiler passes.
