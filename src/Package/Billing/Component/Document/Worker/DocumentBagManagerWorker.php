@@ -266,8 +266,13 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
             return;
         }
 
+        // Asignar el XmlDocument a partir del DTE.
+        if ($bag->getDocument()) {
+            $bag->setXmlDocument($bag->getDocument()->getXmlDocument());
+        }
+
         // Construir el XmlDocument a partir de los datos normalizados.
-        if ($bag->getNormalizedData()) {
+        elseif ($bag->getNormalizedData()) {
             $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
             $xmlDocumentData = [
                 'DTE' => [
@@ -286,11 +291,6 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
                 $xmlDocumentData
             );
             $bag->setXmlDocument($xmlDocument);
-        }
-
-        // Asignar el XmlDocument a partir del DTE.
-        elseif ($bag->getDocument()) {
-            $bag->setXmlDocument($bag->getDocument()->getXmlDocument());
         }
     }
 

@@ -303,6 +303,14 @@ class DocumentBag implements DocumentBagInterface
      */
     public function setNormalizedData(?array $normalizedData): static
     {
+        if ($normalizedData !== null) {
+            $normalizedData = $normalizedData['DTE']['Documento']
+                ?? $normalizedData['DTE']['Exportaciones']
+                ?? $normalizedData['DTE']['Liquidacion']
+                ?? $normalizedData
+            ;
+        }
+
         $this->normalizedData = $normalizedData;
 
         return $this;
