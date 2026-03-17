@@ -1651,6 +1651,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020valor\u0020por\u0020defecto\u0020del\u0020indicador\u0020de\u0020servicio\u0020para\u0020el\u0020tipo\u0020de\ndocumento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getDefaultIndServicio"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Serializa\u0020el\u0020tipo\u0020de\u0020documento\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\Validator\\Strategy\\BoletaAfectaValidatorStrategyInterface",
             "name": "BoletaAfectaValidatorStrategyInterface",
             "summary": "Interfaz\u0020del\u0020validador\u0020del\u0020documento\u0020boleta\u0020afecta.",
@@ -2395,6 +2400,16 @@ Search.appendIndex(
             "name": "getDefaultIndServicio",
             "summary": "Entrega\u0020el\u0020valor\u0020por\u0020defecto\u0020del\u0020indicador\u0020de\u0020servicio\u0020para\u0020el\u0020tipo\u0020de\ndocumento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_getDefaultIndServicio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Serializa\u0020el\u0020tipo\u0020de\u0020documento\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003A\u0024codigo",
             "name": "codigo",
