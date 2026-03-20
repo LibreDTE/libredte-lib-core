@@ -162,7 +162,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         // Armar XML del timbre y obtener los datos a timbrar (tag DD: datos
         // del documento).
         $tedXmlDocument = $this->xmlService->encode($tedData);
-        $ddToStamp = $tedXmlDocument->C14NWithIso88591EncodingFlattened('/TED/DD');
+        $ddToStamp = $tedXmlDocument->C14NEncodedFlattened('/TED/DD');
 
         // Timbrar los "datos a timbrar" $ddToStamp.
         $privateKey = $caf->getPrivateKey();

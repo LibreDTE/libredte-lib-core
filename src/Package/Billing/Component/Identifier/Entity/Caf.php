@@ -121,7 +121,7 @@ class Caf implements CafInterface
      */
     public function getXml(): string
     {
-        return $this->xmlDocument->saveXml();
+        return $this->xmlDocument->setEncoding('ISO-8859-1')->saveXml();
     }
 
     /**
@@ -399,7 +399,7 @@ class Caf implements CafInterface
             'certificacion' => $this->getCertificacion(),
             'publicKey' => $this->getPublicKey(),
             'privateKey' => $this->getPrivateKey(),
-            'xml' => $this->getXmlDocument()->saveXml(),
+            'xml' => $this->getXml(),
         ];
     }
 

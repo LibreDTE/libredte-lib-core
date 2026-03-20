@@ -326,13 +326,13 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         $dispatcher->normalize($envelope);
 
-        //echo $envelope->getXmlDocument()->saveXml() , "\n\n";
+        //echo $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml() , "\n\n";
 
         $dispatcher->validateSchema($envelope);
         //$dispatcher->validateSignature($envelope);
 
         // Guardar el XML.
-        $xmlEnvelope = $envelope->getXmlDocument()->saveXml();
+        $xmlEnvelope = $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
         file_put_contents($yamlFile . '-sobre.xml', $xmlEnvelope);
 
         // Todo OK.

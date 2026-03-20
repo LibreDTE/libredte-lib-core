@@ -370,7 +370,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $xmlDocument = $this->xmlService->encode($data);
 
         // Agregar los DTE dentro de SetDTE reemplazando el tag vacio DTE.
-        $xmlBaseSobre = $xmlDocument->saveXML();
+        $xmlBaseSobre = $xmlDocument->setEncoding('ISO-8859-1')->saveXML();
         $xmlSobre = str_replace('<DTE/>', implode("\n", $documents), $xmlBaseSobre);
 
         // Reemplazar el documento XML del sobre del envío con el string XML que

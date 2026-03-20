@@ -74,7 +74,7 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function saveXml(): string
     {
-        return $this->xmlDocument->saveXml();
+        return $this->xmlDocument->setEncoding('ISO-8859-1')->saveXml();
     }
 
     /**

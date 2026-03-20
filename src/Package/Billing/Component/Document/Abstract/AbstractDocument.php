@@ -105,7 +105,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function saveXml(): string
     {
-        return $this->xmlDocument->saveXml();
+        return $this->xmlDocument->setEncoding('ISO-8859-1')->saveXml();
     }
 
     /**
@@ -113,7 +113,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getXml(): string
     {
-        return $this->xmlDocument->getXml();
+        return $this->xmlDocument->setEncoding('ISO-8859-1')->getXml();
     }
 
     /**
@@ -293,7 +293,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getTED(): ?string
     {
         try {
-            return $this->getXmlDocument()->C14NWithIso88591EncodingFlattened('//TED');
+            return $this->getXmlDocument()->C14NEncodedFlattened('//TED');
         } catch (XmlException $e) {
             return null;
         }
@@ -360,7 +360,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             'id' => $this->getId(),
             'datos' => $this->getDatos(),
             'ted' => $this->getTED(),
-            'xml' => $this->getXmlDocument()->saveXml(),
+            'xml' => $this->saveXml(),
         ];
     }
 

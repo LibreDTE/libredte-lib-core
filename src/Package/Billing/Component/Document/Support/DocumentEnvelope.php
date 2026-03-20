@@ -372,7 +372,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     {
         return [
             'tag' => $this->getTipoSobre()->getTagXml(),
-            'xml' => $this->getXmlDocument()->saveXml(),
+            'xml' => $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml(),
         ];
     }
 

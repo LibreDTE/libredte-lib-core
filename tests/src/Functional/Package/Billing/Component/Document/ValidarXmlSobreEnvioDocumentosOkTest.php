@@ -300,11 +300,6 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
             $signatureElement->C14N()
         );
 
-        // TODO: Revisar problema de validación.
-        //$expectedMessage = 'El DigestValue que viene en el XML "hlmQtu/AyjUjTDhM3852wvRCr8w=" para la referencia "F60T33" no coincide con el valor calculado al validar "4GXbxCc2Fhaiol1WYeMzcwRKnT4=". Los datos de la referencia podrían haber sido manipulados después de haber sido firmados.';
-        $this->expectException(SignatureException::class);
-        //$this->expectExceptionMessage($expectedMessage);
-
         $this->signatureValidator->validateXmlDigestValue(
             $document->getXmlDocument(),
             $signatureNode

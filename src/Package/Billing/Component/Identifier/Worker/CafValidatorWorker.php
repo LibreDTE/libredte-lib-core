@@ -53,7 +53,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         $public_key_sii = $this->getSiiCertificate($caf->getIdk());
         if ($public_key_sii !== null) {
             $firma = $caf->getFirma();
-            $signed_da = $caf->getXmlDocument()->C14NWithIso88591EncodingFlattened('/AUTORIZACION/CAF/DA');
+            $signed_da = $caf->getXmlDocument()->C14NEncodedFlattened('/AUTORIZACION/CAF/DA');
             if (openssl_verify($signed_da, base64_decode($firma), $public_key_sii) !== 1) {
                 throw new CafValidatorException(sprintf(
                     'La firma del CAF %s no es válida (no está autorizado por el SII).',

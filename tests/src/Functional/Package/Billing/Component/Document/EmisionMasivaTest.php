@@ -250,7 +250,7 @@ class EmisionMasivaTest extends TestCase
             }
 
             // Generar XML del documento.
-            $xml = $documentBag->getXmlDocument()->saveXml();
+            $xml = $documentBag->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
             $this->assertIsString($xml);
             $this->assertNotEmpty($xml);
             file_put_contents(
