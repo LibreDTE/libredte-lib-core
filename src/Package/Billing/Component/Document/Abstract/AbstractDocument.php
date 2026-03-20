@@ -293,7 +293,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getTED(): ?string
     {
         try {
-            return $this->getXmlDocument()->C14NEncodedFlattened('//TED');
+            return $this->xmlDocument
+                ->setEncoding('ISO-8859-1')
+                ->C14NEncodedFlattened('//TED')
+            ;
         } catch (XmlException $e) {
             return null;
         }
