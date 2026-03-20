@@ -97,7 +97,7 @@ class SiiSendXmlDocumentTest extends TestCase
     public function testSendXmlDteForUploadOkTrackId(): void
     {
         // Corrorborar que el archivo XML del DTE exista.
-        $file = $this->xmlDir . '/upload/dte_for_upload_1.xml';
+        $file = $this->xmlDir . '/upload/set_pruebas_basico.xml';
         if (!file_exists($file)) {
             $this->markTestSkipped(sprintf('Archivo %s no existe.', $file));
         }
@@ -114,5 +114,6 @@ class SiiSendXmlDocumentTest extends TestCase
         );
 
         $this->assertGreaterThan(0, $trackId);
+        // $message = sprintf('Track ID archivo %s es %d.', $file, $trackId);
     }
 }

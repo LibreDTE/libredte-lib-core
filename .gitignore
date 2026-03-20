@@ -21,3 +21,4 @@
 /ast.dump
 /composer.lock
 **/.DS_Store
+.env

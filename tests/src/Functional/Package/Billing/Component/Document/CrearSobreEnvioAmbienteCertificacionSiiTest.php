@@ -212,10 +212,13 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
     public static function provideDocumentosOk(): array
     {
         // Buscar los archivos con los casos para el test.
+        // Se usan estos archivos porque sus cafs no vencen.
         $codes = ['034', '039', '041', '052', '110', '111', '112'];
         $files = [];
         foreach ($codes as $code) {
-            $filesPath = self::getFixturesPath() . "/yaml/documentos_ok/{$code}_*/{$code}_001_*.yaml";
+            $filesPath = self::getFixturesPath()
+                . "/yaml/documentos_ok/{$code}_*/{$code}_001_*.yaml"
+            ;
             $files = array_merge($files, glob($filesPath));
         }
 
@@ -276,7 +279,6 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $cafBag = $cafLoader->load($cafData);
         $caf = $cafBag->getCaf();
 
-
         // Cargar datos del caso de prueba.
         $yamlData = file_get_contents($yamlFile);
         $data = Yaml::parse($yamlData);
@@ -284,16 +286,8 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Ajustar folio con el primer valor del CAF y el RUT del emisor que
         // esté configurado como variable de entorno.
-        $data['Encabezado']['IdDoc']['Folio'] = $caf->getFolioDesde();
-        $data['Encabezado']['Emisor']['RUTEmisor'] = getenv('LIBREDTE_COMPANY');
-
-        // Sanitizar el arreglo quitando todo lo que no sea ASCII.
-        // array_walk_recursive($data, function (&$value) {
-        //     if (is_string($value)) {
-        //         // Reemplazar caracteres no ASCII con "?".
-        //         $value = preg_replace('/[^\x20-\x7E]/', '?', $value);
-        //     }
-        // });
+        $data['Encabezado']['IdDoc']['Folio'] = $caf->getFolioHasta();
+        $data['Encabezado']['Emisor']['RUTEmisor'] = $caf->getEmisor()['rut'];
 
         // Facturar el documento.
         $documentBag = $biller->bill($data, $caf, $certificate);
@@ -324,12 +318,12 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $envelope->addDocument($documentBag);
         $envelope->setCertificate($certificate);
 
+        // Normalizar el sobre.
         $dispatcher->normalize($envelope);
 
-        //echo $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml() , "\n\n";
-
+        // Validar esquema y firma del sobre.
         $dispatcher->validateSchema($envelope);
-        //$dispatcher->validateSignature($envelope);
+        $dispatcher->validateSignature($envelope);
 
         // Guardar el XML.
         $xmlEnvelope = $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();

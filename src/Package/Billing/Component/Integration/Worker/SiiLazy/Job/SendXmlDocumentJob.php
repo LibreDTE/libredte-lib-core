@@ -276,12 +276,8 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
                 ? curl_error($curl)
                 : 'El SII tiene problemas en sus servidores (Error 500).'
             ;
-            curl_close($curl); // Se cierra conexión curl acá por error.
             throw new SiiSendXmlDocumentException($message);
         }
-
-        // Cerrar conexión curl.
-        curl_close($curl);
 
         // Entregar el resultado como un documento XML.
         $xmlDocument = new XmlDocument();

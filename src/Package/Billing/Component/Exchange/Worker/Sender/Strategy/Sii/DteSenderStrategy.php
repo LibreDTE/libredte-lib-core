@@ -65,6 +65,8 @@ class DteSenderStrategy extends AbstractStrategy implements SenderStrategyInterf
         EnvelopeInterface $envelope
     ): ExchangeResultInterface {
         // TODO: Implementar el envío de los DTE al SII.
+        // El envío de los DTE ya se hace con el LazyWorker, hay que unir eso
+        // con esta estrategia.
         throw new ExchangeException(
             'Estrategia de envío sii.dte no está implementada.'
         );
