@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
 use Derafu\Signature\Contract\SignatureValidatorInterface;
-use Derafu\Signature\Exception\SignatureException;
 use Derafu\Signature\Service\SignatureGenerator;
 use Derafu\Signature\Service\SignatureValidator;
 use Derafu\Xml\Service\XmlDecoder;
@@ -61,44 +60,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * Validación de firma electrónica de XML de terceros.
+ * Validación de documentos XML generados para producción con otro software de
+ * facturación o bien con la versión de 2016 de LibreDTE (en producción).
  *
- * Actualmente se valida solo un XML de ejemplo del SII. Sin embargo el test
- * quedó creado para validar cualquier XML del directorio:
- * ./tests/fixtures/xml/documentos_ok
- *
- * NOTE: La validación de una de las firmas falla indicando que la firma es
- * inválida. Se asume que efectivamente la firma viene mal pues fue validada
- * con una herramienta online para verificar XML DSIG.
- *
- * Salida del sitio web para la validación de la firma del XML:
- *
- * NumSignatures: 2
- *
- *   Signature 1                            <- firma del documento (?).
- *     Signature Verified
- *     Number of Reference Digests = 1
- *     Reference 1 digest is valid.
- *
- *   Signature 2                            <- firma del sobre (?).
- *     Signature is Invalid
- *     Number of Reference Digests = 1
- *     Reference 1 digest is valid.
- *
- * WARNING: Este test debería pasar con ambos DigestValue y con una de las
- * firmas. Esto es algo que no se está haciendo, fues la salida del test es:
- *
- *   Validate sobre digest value -> DIGEST VALUE SOBRE OK.
- *   Validate sobre signature value exception signature error
- *   Validate documento digest value exception digest value error
- *   Validate documento signature value exception signature error
- *
- * Solo pasa un DigestValue y ninguna de las firmas.
- *
- * TODO: Se debe determinar cuál es el test que realmente debe fallar, según la
- * web usada para validar. Y si es que realmente debe fallar o es un problema
- * con algún paso en LibreDTE o, directamente, en el componente de firma
- * electrónica de Derafu.
+ * Este test busca validar el sobre de documentos que están "OK" (recibidos por
+ * el SII) en ambiente de producción.
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -124,7 +90,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 {
     // Worker que tiene los servicios para trabajar con XML del proceso de
-    // interfamcio de DTE (sobres de documentos, aka: DocumentEnvelope).
+    // interfaz de DTE (sobres de documentos, aka: DocumentEnvelope).
     private DispatcherWorkerInterface $dispatcher;
 
     // Worker que tiene los servicios para validar un DTE.
@@ -165,11 +131,22 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 
     // Proveedor de los documentos XML con los casos de prueba que se deben
     // realizar.
+    //
+    // Si el directorio documentos_ok/ no contiene archivos XML (p.ej. en CI
+    // donde los fixtures no se incluyen en el repo), retorna un dataset con un
+    // marcador especial. createEnvelope() detecta ese marcador y llama a
+    // markTestSkipped(), evitando el exit code 2 que PHPUnit 11 produce cuando
+    // un DataProvider retorna un array vacío.
     public static function provideDocumentosOk(): array
     {
         // Buscar los archivos con los casos para el test.
         $filesPath = self::getFixturesPath() . '/xml/documentos_ok/*.xml';
-        $files = glob($filesPath);
+        $files = glob($filesPath) ?: [];
+
+        // Si no hay fixtures, retornar marcador para skip en lugar de vacío.
+        if (empty($files)) {
+            return ['sin fixtures' => ['']];
+        }
 
         // Armar datos de prueba.
         $documentosOk = [];
@@ -182,20 +159,33 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Crea un sobre a partir de un archivo XML.
+    //
+    // Si se recibe una ruta vacía (marcador de "sin fixtures" del DataProvider),
+    // marca el test como skipped en lugar de intentar cargar un archivo.
     private function createEnvelope(string $file): DocumentEnvelopeInterface
     {
+        if ($file === '') {
+            $this->markTestSkipped(
+                'No hay fixtures en tests/fixtures/xml/documentos_ok/. '
+                . 'Agregar archivos XML de sobres EnvioDTE para ejecutar estos tests.'
+            );
+        }
+
         $xml = file_get_contents($file);
         $envelope = $this->dispatcher->loadXml($xml);
 
         return $envelope;
     }
 
-    // Validación general del os datos del sobre.
+    // Validación general de los datos del sobre.
+    // Verifica que se puedan extraer correctamente RutEmisor, RutEnvia,
+    // RutReceptor y FchResol de la carátula del EnvioDTE.
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreGeneralData(string $file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
+
         $this->assertSame(1, count($documents));
         $this->assertNotEmpty($envelope->getSobreEnvio()->getRutEmisor());
         $this->assertNotEmpty($envelope->getSobreEnvio()->getRunMandatario());
@@ -203,7 +193,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->assertNotEmpty($envelope->getSobreEnvio()->getAutorizacionDte()->getFechaResolucion());
     }
 
-    // Validación del esquema XML del sobre.
+    // Validación del esquema XML del sobre contra EnvioDTE_v10.xsd.
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreSchema(string $file): void
     {
@@ -213,19 +203,20 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->assertTrue(true);
     }
 
-    // Validación del esquema XML del documento (DTE) que viene en el sobre.
+    // Validación del esquema XML del documento (DTE) que viene en el sobre
+    // contra el XSD correspondiente al tipo de documento (ej. DTE_v10.xsd).
     #[DataProvider('provideDocumentosOk')]
     public function testValidateDocumentoSchema($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
         $document = $documents[0];
+
         $this->validator->validateSchema($document);
         $this->assertTrue(true);
     }
 
-    // Valida solo el digest value de la firma del sobre
-    // Importante: Esto es útil para debug solamente.
+    // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreDigestValue($file): void
     {
@@ -245,10 +236,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->assertTrue(true);
     }
 
-    // Valida solo el digest value de la firma del sobre
-    // Importante: Esto es útil para debug solamente.
+    // Valida el SignatureValue de la firma del sobre (Firma 2, referencia #SetDoc).
     #[DataProvider('provideDocumentosOk')]
-    public function testValidateSobreSignatureValueExceptionSignatureError($file): void
+    public function testValidateSobreSignatureValue($file): void
     {
         $envelope = $this->createEnvelope($file);
 
@@ -259,35 +249,23 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
             $signatureElement->C14N()
         );
 
-        // TODO: Revisar problema de validación.
-        //$expectedMessage = 'La firma electrónica del nodo `SignedInfo` del XML para la referencia "SetDoc" no es válida. error:0200008A:rsa routines::invalid padding error:02000072:rsa routines::padding check failed error:1C880004:Provider routines::RSA lib';
-        $this->expectException(SignatureException::class);
-        //$this->expectExceptionMessage($expectedMessage);
-
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
         $this->assertTrue(true);
     }
 
-    // Validación de la firma electrónica del XML del sobre.
+    // Valida la firma completa del sobre vía DispatcherWorker::validateSignature().
     #[DataProvider('provideDocumentosOk')]
-    public function testValidateSobreSignatureExceptionDigestValueError(string $file): void
+    public function testValidateSobreSignature(string $file): void
     {
         $envelope = $this->createEnvelope($file);
-
-        // TODO: Revisar problema de validación.
-        //$expectedMessage = 'El DigestValue que viene en el XML "hlmQtu/AyjUjTDhM3852wvRCr8w=" para la referencia "F60T33" no coincide con el valor calculado al validar "4GXbxCc2Fhaiol1WYeMzcwRKnT4=". Los datos de la referencia podrían haber sido manipulados después de haber sido firmados.';
-        $this->expectException(SignatureException::class);
-        //$this->expectExceptionMessage($expectedMessage);
 
         $this->dispatcher->validateSignature($envelope);
         $this->assertTrue(true);
     }
 
-    // Valida solo el digest value de la firma del documento (DTE) que viene en
-    // el sobre.
-    // Importante: Esto es útil para debug solamente.
+    // Valida el DigestValue de la firma del documento (Firma 1).
     #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoDigestValueExceptionDigestValueError($file): void
+    public function testValidateDocumentoDigestValue($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -307,11 +285,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->assertTrue(true);
     }
 
-    // Valida solo el digest value de la firma del documento (DTE) que viene en
-    // el sobre.
-    // Importante: Esto es útil para debug solamente.
+    // Valida el SignatureValue de la firma del documento (Firma 1).
     #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoSignatureValueExceptionSignatureError($file): void
+    public function testValidateDocumentoSignatureValue($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -324,28 +300,17 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
             $signatureElement->C14N()
         );
 
-        // TODO: Revisar problema de validación.
-        //$expectedMessage = 'La firma electrónica del nodo `SignedInfo` del XML para la referencia "F60T33" no es válida. error:0200008A:rsa routines::invalid padding error:02000072:rsa routines::padding check failed error:1C880004:Provider routines::RSA lib';
-        $this->expectException(SignatureException::class);
-        //$this->expectExceptionMessage($expectedMessage);
-
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
         $this->assertTrue(true);
     }
 
-    // Validación de la firma electrónica del documento (DTE) que viene en el
-    // sobre.
+    // Valida la firma completa del documento vía ValidatorWorker::validateSignature().
     #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoSignatureExceptionDigestValueError($file): void
+    public function testValidateDocumentoSignature($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
         $document = $documents[0];
-
-        // TODO: Revisar problema de validación.
-        //$expectedMessage = 'El DigestValue que viene en el XML "hlmQtu/AyjUjTDhM3852wvRCr8w=" para la referencia "F60T33" no coincide con el valor calculado al validar "4GXbxCc2Fhaiol1WYeMzcwRKnT4=". Los datos de la referencia podrían haber sido manipulados después de haber sido firmados.';
-        $this->expectException(SignatureException::class);
-        //$this->expectExceptionMessage($expectedMessage);
 
         $this->validator->validateSignature($document);
         $this->assertTrue(true);
