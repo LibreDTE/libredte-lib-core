@@ -1733,17 +1733,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ValidatorWorkerInterface\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020del\u0020documento.",
+            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ValidatorWorkerInterface\u003A\u003AvalidateSchema\u0028\u0029",
             "name": "validateSchema",
-            "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020DTE.",
+            "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html#method_validateSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ValidatorWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020DTE.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent",
@@ -5168,17 +5168,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020del\u0020documento.",
+            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003AvalidateSchema\u0028\u0029",
             "name": "validateSchema",
-            "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020DTE.",
+            "summary": "Valida\u0020el\u0020esquema\u0020del\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#method_validateSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020DTE.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024documentBagManager",
