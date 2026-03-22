@@ -89,6 +89,14 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
             $this->validatorWorker->validate($bag);
         }
 
+        // Si no se normalizaron los datos ni tampoco están asignados en la
+        // bolsa, se asume que los datos parseados están normalizados,
+        // sanitizados y validados previamente, y se usan como datos
+        // normalizados directamente.
+        elseif ($bag->getNormalizedData() === null) {
+            $bag->setNormalizedData($bag->getParsedData());
+        }
+
         // Si existe un CAF en la bolsa se timbra.
         if ($bag->getCaf()) {
             $this->stamp($bag);
