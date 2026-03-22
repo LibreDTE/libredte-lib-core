@@ -390,7 +390,8 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 
         // Validar esquema del XML generado y la firma.
         $this->validator->validateSchema($xml);
-        $this->validator->validateSignature($xml);
+        $result = $this->validator->validateSignature($xml);
+        $this->assertTrue($result->isValid());
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar.

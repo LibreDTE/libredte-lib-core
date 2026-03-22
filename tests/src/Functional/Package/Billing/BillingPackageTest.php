@@ -200,7 +200,8 @@ class BillingPackageTest extends TestCase
 
         // Validar la firma electrónica del documento generado.
         // Acá se valida la firma pasando la bolsa.
-        $biller->getValidatorWorker()->validateSignature($bag);
+        $result = $biller->getValidatorWorker()->validateSignature($bag);
+        $this->assertTrue($result->isValid());
 
         // Cargar el XML con el loader y corroborar el total.
         $xml = $document->saveXml();
@@ -217,7 +218,8 @@ class BillingPackageTest extends TestCase
         // Acá se valida la firma pasando el string XML.
         // Importante: no es posible validar un XML del LoaderWorker. Pues este
         // quita el tag Signature.
-        $biller->getValidatorWorker()->validateSignature($xml);
+        $result = $biller->getValidatorWorker()->validateSignature($xml);
+        $this->assertTrue($result->isValid());
 
         // Renderizar el documento cargado en la nueva bolsa.
         $renderer = $biller->getRendererWorker();

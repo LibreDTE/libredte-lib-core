@@ -259,8 +259,10 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $this->dispatcher->validateSignature($envelope);
-        $this->assertTrue(true);
+        $results = $this->dispatcher->validateSignature($envelope);
+        foreach ($results as $result) {
+            $this->assertTrue($result->isValid());
+        }
     }
 
     // Valida el DigestValue de la firma del documento (Firma 1).
@@ -312,7 +314,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $documents = $envelope->getDocuments();
         $document = $documents[0];
 
-        $this->validator->validateSignature($document);
-        $this->assertTrue(true);
+        $result = $this->validator->validateSignature($document);
+        $this->assertTrue($result->isValid());
     }
 }

@@ -272,7 +272,10 @@ class EmisionMasivaTest extends TestCase
 
             // Validar firma del documento.
             try {
-                $validator->validateSignature($xml);
+                $result = $validator->validateSignature($xml);
+                if (!$result->isValid()) {
+                    throw $result->getError();
+                }
             } catch (Exception $e) {
                 throw new SignatureException(sprintf(
                     'La validación de la firma del documento %d (%s) falló: %s',

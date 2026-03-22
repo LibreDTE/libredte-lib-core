@@ -28,6 +28,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Signature\Contract\SignatureValidationResultInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
@@ -129,12 +130,12 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     public function validateSignature(
         DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void {
+    ): SignatureValidationResultInterface {
         $xml = $source instanceof DocumentBagInterface
             ? $source->getXmlDocument()
             : $source
         ;
 
-        $this->signatureService->validateXml($xml);
+        return $this->signatureService->validateXml($xml)[0];
     }
 }

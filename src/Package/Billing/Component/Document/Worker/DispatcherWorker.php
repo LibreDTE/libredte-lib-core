@@ -135,9 +135,6 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     ): XmlDocumentInterface {
         $xmlDocument = $this->getXmlDocument($source);
 
-        $this->validateSchema($xmlDocument);
-        $this->validateSignature($xmlDocument);
-
         // TODO: Agregar validaciones del sobre respecto a los datos.
 
         return $xmlDocument;
@@ -170,12 +167,10 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): XmlDocumentInterface {
+    ): array {
         $xmlDocument = $this->getXmlDocument($source);
 
-        $this->signatureService->validateXml($xmlDocument);
-
-        return $xmlDocument;
+        return $this->signatureService->validateXml($xmlDocument);
     }
 
     /**

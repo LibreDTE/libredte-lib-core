@@ -26,10 +26,12 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Backbone\Contract\StrategiesAwareInterface;
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Signature\Contract\SignatureValidationResultInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorException;
+use NoDiscard;
 
 /**
  * Interfaz para los validadores de documentos.
@@ -37,7 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorExce
 interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
-     * Realiza la validación del documento.
+     * Realiza la validación de los datos del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * @return void
@@ -48,7 +50,7 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
     ): void;
 
     /**
-     * Valida el esquema del XML del DTE.
+     * Valida el esquema del XML del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * @return void
@@ -59,13 +61,14 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
     ): void;
 
     /**
-     * Valida la firma electrónica del documento XML del DTE.
+     * Valida la firma electrónica del documento XML del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
-     * @return void
+     * @return SignatureValidationResultInterface
      * @throws SignatureException Si la validación de la firma falla.
      */
+    #[NoDiscard()]
     public function validateSignature(
         DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): SignatureValidationResultInterface;
 }

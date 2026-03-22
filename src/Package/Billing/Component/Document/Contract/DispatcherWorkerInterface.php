@@ -25,10 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Signature\Contract\SignatureValidationResultInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
+use NoDiscard;
 
 /**
  * Interfaz para el worker que maneja el envío de los documentos.
@@ -91,10 +93,11 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Valida la firma electrónica del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return XmlDocumentInterface
+     * @return array<SignatureValidationResultInterface>
      * @throws SignatureException Si la validación de la firma falla.
      */
+    #[NoDiscard()]
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-    ): XmlDocumentInterface;
+    ): array;
 }

@@ -300,7 +300,8 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             ->getValidatorWorker()
         ;
         $validator->validateSchema($documentBag);
-        $validator->validateSignature($documentBag);
+        $result = $validator->validateSignature($documentBag);
+        $this->assertTrue($result->isValid());
 
         // Agregar al emisor la fecha de resolución y número de resolución.
         $documentBag->getEmisor()->setAutorizacionDte(
@@ -323,7 +324,10 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 
         // Validar esquema y firma del sobre.
         $dispatcher->validateSchema($envelope);
-        $dispatcher->validateSignature($envelope);
+        $results = $dispatcher->validateSignature($envelope);
+        foreach ($results as $result) {
+            $this->assertTrue($result->isValid());
+        }
 
         // Guardar el XML.
         $xmlEnvelope = $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();

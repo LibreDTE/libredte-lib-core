@@ -279,7 +279,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
 
     // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
     //
-    // RESULTADO ESPERADO: pasa sin excepción.
+    // RESULTADO ESPERADO: pasa sin excepción ni error.
     //
     // El DigestValue 4OTWXyRl5fw3htjTyZXQtYEsC3E= es calculado correctamente
     // por SignatureValidator::generateXmlDigestValue() usando C14N estándar del
@@ -342,7 +342,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
 
     // Valida la firma completa del sobre vía DispatcherWorker::validateSignature().
     //
-    // RESULTADO ESPERADO: lanza SignatureException (comportamiento correcto).
+    // RESULTADO ESPERADO: retorna un resultado de validación de firma inválido.
     //
     // SignatureService::validateXml() itera todas las firmas del EnvioDTE en
     // orden de aparición en el documento. Encuentra primero la Firma 1
@@ -361,15 +361,15 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $this->expectException(SignatureException::class);
-
-        $this->dispatcher->validateSignature($envelope);
-        $this->assertTrue(true);
+        $results = $this->dispatcher->validateSignature($envelope);
+        foreach ($results as $result) {
+            $this->assertFalse($result->isValid());
+        }
     }
 
     // Valida el DigestValue de la firma del documento (Firma 1, referencia #F60T33).
     //
-    // RESULTADO ESPERADO: pasa sin excepción.
+    // RESULTADO ESPERADO: pasa sin excepción ni error.
     //
     // El DigestValue hlmQtu/AyjUjTDhM3852wvRCr8w= es el SHA1 del elemento
     // <Documento ID="F60T33"> canonicalizado sin declaraciones de namespace
@@ -437,7 +437,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
 
     // Valida la firma completa del documento vía ValidatorWorker::validateSignature().
     //
-    // RESULTADO ESPERADO: lanza SignatureException (comportamiento correcto).
+    // RESULTADO ESPERADO: retorna un resultado de validación de firma inválido.
     //
     // Análogo a testValidateSobreSignatureExceptionDigestValueError() pero usando
     // el ValidatorWorker sobre el DocumentBag del DTE extraído. El DigestValue
@@ -453,9 +453,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $documents = $envelope->getDocuments();
         $document = $documents[0];
 
-        $this->expectException(SignatureException::class);
-
-        $this->validator->validateSignature($document);
-        $this->assertTrue(true);
+        $result = $this->validator->validateSignature($document);
+        $this->assertFalse($result->isValid());
     }
 }
