@@ -35,7 +35,14 @@ use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
  *
  * - `billing`: Paquete de facturación.
  *
- * La misión de LibreDTE es **Proveer facturación electrónica libre, accesible y bien documentada para Chile**. Debido a lo anterior, esta biblioteca se centra exclusivamente en proveer funcionalidades relacionadas con la facturación electrónica de Chile.
+ * La misión de LibreDTE es **Proveer facturación electrónica libre, accesible y
+ * bien documentada para Chile**. Debido a lo anterior, esta biblioteca se
+ * centra exclusivamente en proveer funcionalidades relacionadas con la
+ * facturación electrónica de Chile y no tiene, ni tendrá, la intención de
+ * ser una biblioteca completa para la administración de empresas de Chile.
+ *
+ * Por el motivo anterior, el único paquete disponible en LibreDTE Lib Core es
+ * el paquete "billing".
  */
 class PackageRegistry implements PackageRegistryInterface
 {

@@ -38,7 +38,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Clase principal de la aplicación.
  */
-final class Application extends MicroKernel implements ApplicationInterface
+class Application extends MicroKernel implements ApplicationInterface
 {
     /**
      * Instancia de la aplicación.
@@ -56,7 +56,9 @@ final class Application extends MicroKernel implements ApplicationInterface
      *
      * @var array<string,string>
      */
-    protected const CONFIG_FILES = [];
+    protected const CONFIG_FILES = [
+        'services.yaml' => 'yaml',
+    ];
 
     /**
      * Cargadores de archivos de configuración.
@@ -78,9 +80,6 @@ final class Application extends MicroKernel implements ApplicationInterface
         ContainerConfigurator $configurator,
         ContainerBuilder $container
     ): void {
-        // Cargar configuración de la biblioteca de LibreDTE.
-        $configurator->import(__DIR__ . '/../config/services.yaml');
-
         // Agregar compiler passes.
         $container->addCompilerPass(
             new ServiceProcessingCompilerPass('libredte.lib.')
