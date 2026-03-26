@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -35,7 +36,7 @@ use stdClass;
 /**
  * Interfaz para el contenedor de un documento.
  */
-interface DocumentBagInterface extends OptionsAwareInterface
+interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
 {
     /**
      * Asignar los datos de entrada del documento.
@@ -413,4 +414,11 @@ interface DocumentBagInterface extends OptionsAwareInterface
      * @return string
      */
     public function getAlias(): string;
+
+    /**
+     * Entrega los datos de la bolsa como un arreglo.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

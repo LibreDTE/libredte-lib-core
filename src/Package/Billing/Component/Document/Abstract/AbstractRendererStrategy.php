@@ -63,17 +63,11 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
      */
     protected function createDataAndOptions(DocumentBagInterface $bag): array
     {
-        $options = $this->resolveOptions($bag->getRendererOptions());
-
         // Preparar datos que se usarán para renderizar.
-        $data = [
-            'document' => $bag->getDocumentData(),
-            'document_extra' => $bag->getDocumentExtra(),
-            'document_stamp' => $bag->getDocumentStamp(),
-            'document_auth' => $bag->getDocumentAuth(),
-            'document_type' => $bag->getDocumentType()->toArray(),
-        ];
+        $data = $bag->toArray();
 
+        // Preparar opciones que se usarán para renderizar.
+        $options = $this->resolveOptions($bag->getRendererOptions());
         $options = [
             'template' => $options->get('template'),
             'filepath' => null,

@@ -805,4 +805,27 @@ class DocumentBag implements DocumentBagInterface
             ?? 'documento_desconocido'
         ;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'document' => $this->getDocumentData(),
+            'document_extra' => $this->getDocumentExtra(),
+            'document_stamp' => $this->getDocumentStamp(),
+            'document_auth' => $this->getDocumentAuth(),
+            'document_type' => $this->getDocumentType()?->toArray(),
+            'options' => $this->getOptions()->all(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }
