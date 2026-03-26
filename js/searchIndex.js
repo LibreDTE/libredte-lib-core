@@ -896,6 +896,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020que\u0020contiene\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getAlias"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagManagerWorkerInterface",
             "name": "DocumentBagManagerWorkerInterface",
             "summary": "Interfaz\u0020para\u0020que\u0020administra\u0020una\u0020bolsa\u0020con\u0020los\u0020datos\u0020de\u0020un\u0020documento\ntributario.",
@@ -3135,6 +3140,16 @@ Search.appendIndex(
             "name": "getAlias",
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020que\u0020contiene\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getAlias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
