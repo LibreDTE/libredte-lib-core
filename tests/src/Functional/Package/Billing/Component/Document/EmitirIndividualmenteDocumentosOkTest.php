@@ -122,6 +122,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorke
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Receptor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
@@ -213,11 +214,12 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
+#[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(Emisor::class)]
 #[CoversClass(AduanaPais::class)]
 #[CoversClass(AduanaTransporte::class)]
 #[CoversClass(FormaPago::class)]

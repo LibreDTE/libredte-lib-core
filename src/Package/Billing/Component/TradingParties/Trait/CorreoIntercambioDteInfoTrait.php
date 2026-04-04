@@ -39,9 +39,9 @@ trait CorreoIntercambioDteInfoTrait
     /**
      * {@inheritDoc}
      */
-    public function setCorreoIntercambioDte(string $correoIntercambioDte): static
+    public function setCorreoIntercambioDte(?string $correoIntercambioDte): static
     {
-        $this->correoIntercambioDte = $correoIntercambioDte;
+        $this->correoIntercambioDte = trim((string)$correoIntercambioDte) ?: null;
 
         return $this;
     }

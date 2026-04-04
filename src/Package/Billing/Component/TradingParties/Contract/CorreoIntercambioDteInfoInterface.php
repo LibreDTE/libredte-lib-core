@@ -33,10 +33,10 @@ interface CorreoIntercambioDteInfoInterface
     /**
      * Establece el correo electrónico de intercambio de DTE del contribuyente.
      *
-     * @param string $correo
+     * @param string|null $correo
      * @return static
      */
-    public function setCorreoIntercambioDte(string $correo): static;
+    public function setCorreoIntercambioDte(?string $correo): static;
 
     /**
      * Obtiene el correo electrónico de intercambio de DTE del contribuyente.

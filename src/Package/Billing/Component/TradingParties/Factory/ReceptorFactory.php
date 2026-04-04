@@ -54,4 +54,38 @@ class ReceptorFactory extends AbstractContribuyenteFactory implements ReceptorFa
 
         return Factory::create($data, $this->class);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function normalizeData(array $data): array
+    {
+        $normalized = parent::normalizeData($data);
+
+        $normalized['codigo_interno'] = (
+            (string) (
+                $data['codigo_interno']
+                ?? $data['CdgIntRecep']
+                ?? null
+            )
+        ) ?: null;
+
+        $normalized['nacionalidad'] = (
+            (string) (
+                $data['nacionalidad']
+                ?? $data['Nacionalidad']
+                ?? null
+            )
+        ) ?: null;
+
+        $normalized['identificador_extranjero'] = (
+            (string) (
+                $data['identificador_extranjero']
+                ?? $data['NumId']
+                ?? null
+            )
+        ) ?: null;
+
+        return $normalized;
+    }
 }

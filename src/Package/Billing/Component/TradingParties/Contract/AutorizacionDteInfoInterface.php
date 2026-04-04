@@ -34,10 +34,10 @@ interface AutorizacionDteInfoInterface
      * Asigna el ambiente, fecha y número de resolución que autoriza al
      * contribuyente a ser facturador electrónico en dicho ambiente del SII.
      *
-     * @param AutorizacionDteInterface $autorizacionDte Información de la autorización.
+     * @param AutorizacionDteInterface|null $autorizacionDte Información de la autorización.
      * @return static
      */
-    public function setAutorizacionDte(AutorizacionDteInterface $autorizacionDte): static;
+    public function setAutorizacionDte(?AutorizacionDteInterface $autorizacionDte): static;
 
     /**
      * Obtiene el ambiente, fecha y número de resolución que autoriza al

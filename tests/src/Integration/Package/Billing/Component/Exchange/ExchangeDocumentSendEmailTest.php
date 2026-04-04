@@ -77,6 +77,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Receptor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
@@ -110,14 +111,15 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ValidatorWorker::class)]
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
+#[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
+#[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(NormalizationUtils::class)]
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
 #[CoversClass(Contribuyente::class)]
-#[CoversClass(Emisor::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
 #[CoversClass(ExchangeComponent::class)]

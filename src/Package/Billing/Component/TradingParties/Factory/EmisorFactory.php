@@ -74,18 +74,28 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
     {
         $normalized = parent::normalizeData($data);
 
+        $normalized['sucursal'] = (
+            (string) (
+                $data['sucursal']
+                ?? $data['Sucursal']
+                ?? null
+            )
+        ) ?: null;
+
         $normalized['codigo_sucursal'] = (
             (int) (
                 $data['codigo_sucursal']
                 ?? $data['CdgSIISucur']
-                ?? false
+                ?? null
             )
         ) ?: null;
 
         $normalized['vendedor'] = (
-            $data['vendedor']
-            ?? $data['CdgVendedor']
-            ?? null
+            (string) (
+                $data['vendedor']
+                ?? $data['CdgVendedor']
+                ?? null
+            )
         ) ?: null;
 
         return $normalized;

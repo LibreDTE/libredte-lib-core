@@ -55,55 +55,76 @@ abstract class AbstractContribuyenteFactory
         }
 
         $normalized['razon_social'] = (
-            $data['razon_social']
-            ?? $data['RznSoc']
-            ?? $data['RznSocEmisor']
-            ?? $data['RznSocRecep']
-            ?? null
+            (string) (
+                $data['razon_social']
+                ?? $data['RznSoc']
+                ?? $data['RznSocEmisor']
+                ?? $data['RznSocRecep']
+                ?? null
+            )
         ) ?: null;
 
         $normalized['giro'] = (
-            $data['giro']
-            ?? $data['GiroEmis']
-            ?? $data['GiroEmisor']
-            ?? $data['GiroRecep']
-            ?? null
+            (string) (
+                $data['giro']
+                ?? $data['GiroEmis']
+                ?? $data['GiroEmisor']
+                ?? $data['GiroRecep']
+                ?? null
+            )
         ) ?: null;
 
         $normalized['actividad_economica'] = (
             (int) (
                 $data['actividad_economica']
                 ?? $data['Acteco']
-                ?? 0
+                ?? null
             )
         ) ?: null;
 
         $normalized['telefono'] = (
-            $data['telefono']
-            ?? $data['Telefono']
-            ?? $data['Contacto']
-            ?? null
+            (string) (
+                $data['telefono']
+                ?? $data['Telefono']
+                ?? $data['Contacto']
+                ?? null
+            )
         ) ?: null;
 
         $normalized['email'] = (
-            $data['email']
-            ?? $data['CorreoEmisor']
-            ?? $data['CorreoRecep']
-            ?? null
+            (string) (
+                $data['email']
+                ?? $data['CorreoEmisor']
+                ?? $data['CorreoRecep']
+                ?? null
+            )
         ) ?: null;
 
         $normalized['direccion'] = (
-            $data['direccion']
-            ?? $data['DirOrigen']
-            ?? $data['DirRecep']
-            ?? null
+            (string) (
+                $data['direccion']
+                ?? $data['DirOrigen']
+                ?? $data['DirRecep']
+                ?? null
+            )
         ) ?: null;
 
         $normalized['comuna'] = (
-            $data['comuna']
-            ?? $data['CmnaOrigen']
-            ?? $data['CmnaRecep']
-            ?? null
+            (string) (
+                $data['comuna']
+                ?? $data['CmnaOrigen']
+                ?? $data['CmnaRecep']
+                ?? null
+            )
+        ) ?: null;
+
+        $normalized['ciudad'] = (
+            (string) (
+                $data['ciudad']
+                ?? $data['CiudadOrigen']
+                ?? $data['CiudadRecep']
+                ?? null
+            )
         ) ?: null;
 
         return $normalized;

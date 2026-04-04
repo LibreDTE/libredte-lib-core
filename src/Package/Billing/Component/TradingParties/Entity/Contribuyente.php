@@ -54,49 +54,56 @@ class Contribuyente implements ContribuyenteInterface
      *
      * @var string|null
      */
-    protected ?string $razon_social;
+    protected ?string $razon_social = null;
 
     /**
      * Giro comercial del contribuyente.
      *
      * @var string|null
      */
-    protected ?string $giro;
+    protected ?string $giro = null;
 
     /**
-     * Código de actividad económica del contribuyente.
+     * Códigos de actividades económicas del contribuyente.
      *
-     * @var int|null
+     * @var int[]
      */
-    protected ?int $actividad_economica;
+    protected array $actividades_economicas = [];
 
     /**
-     * Teléfono del contribuyente.
+     * Teléfonos del contribuyente.
      *
-     * @var string|null
+     * @var string[]
      */
-    protected ?string $telefono;
+    protected array $telefonos = [];
 
     /**
      * Dirección de correo electrónico del contribuyente.
      *
      * @var string|null
      */
-    protected ?string $email;
+    protected ?string $email = null;
 
     /**
-     * Dirección física del contribuyente.
+     * Dirección tributaria del contribuyente.
      *
      * @var string|null
      */
-    protected ?string $direccion;
+    protected ?string $direccion = null;
 
     /**
-     * Comuna de residencia del contribuyente.
+     * Comuna tributaria del contribuyente.
      *
      * @var string|null
      */
-    protected ?string $comuna;
+    protected ?string $comuna = null;
+
+    /**
+     * Ciudad tributaria del contribuyente.
+     *
+     * @var string|null
+     */
+    protected ?string $ciudad = null;
 
     /**
      * Constructor de la clase Contribuyente.
@@ -107,8 +114,9 @@ class Contribuyente implements ContribuyenteInterface
      * @param int|null $actividad_economica Código de actividad económica.
      * @param string|null $telefono Teléfono del contribuyente.
      * @param string|null $email Correo electrónico del contribuyente.
-     * @param string|null $direccion Dirección física del contribuyente.
-     * @param string|null $comuna Comuna de residencia.
+     * @param string|null $direccion Dirección tributaria del contribuyente.
+     * @param string|null $comuna Comuna tributaria.
+     * @param string|null $ciudad Ciudad tributaria.
      */
     public function __construct(
         string|int $rut,
@@ -119,17 +127,42 @@ class Contribuyente implements ContribuyenteInterface
         ?string $email = null,
         ?string $direccion = null,
         ?string $comuna = null,
+        ?string $ciudad = null,
     ) {
         $rut = Rut::format($rut);
         [$this->rut, $this->dv] = Rut::toArray($rut);
 
-        $this->razon_social = $razon_social ?: null;
-        $this->giro = $giro ?: null;
-        $this->actividad_economica = $actividad_economica ?: null;
-        $this->telefono = $telefono ?: null;
-        $this->email = $email ?: null;
-        $this->direccion = $direccion ?: null;
-        $this->comuna = $comuna ?: null;
+        if ($razon_social !== null) {
+            $this->setRazonSocial($razon_social);
+        }
+
+        if ($giro !== null) {
+            $this->setGiro($giro);
+        }
+
+        if ($actividad_economica !== null) {
+            $this->setActividadEconomica($actividad_economica);
+        }
+
+        if ($telefono !== null) {
+            $this->setTelefono($telefono);
+        }
+
+        if ($email !== null) {
+            $this->setEmail($email);
+        }
+
+        if ($direccion !== null) {
+            $this->setDireccion($direccion);
+        }
+
+        if ($comuna !== null) {
+            $this->setComuna($comuna);
+        }
+
+        if ($ciudad !== null) {
+            $this->setCiudad($ciudad);
+        }
 
         // Validar el RUT asignado (independiente del origen).
         Rut::validate($this->getRut());
@@ -154,9 +187,29 @@ class Contribuyente implements ContribuyenteInterface
     /**
      * {@inheritDoc}
      */
+    public function setRazonSocial(?string $razon_social): static
+    {
+        $this->razon_social = trim((string)$razon_social) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getRazonSocial(): string
     {
         return $this->razon_social ?? $this->getRut();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setGiro(?string $giro): static
+    {
+        $this->giro = trim((string)$giro) ?: null;
+
+        return $this;
     }
 
     /**
@@ -170,9 +223,41 @@ class Contribuyente implements ContribuyenteInterface
     /**
      * {@inheritDoc}
      */
+    public function setActividadEconomica(?int $actividad_economica): static
+    {
+        $actividad_economica = $actividad_economica ?: null;
+
+        if ($actividad_economica !== null) {
+            array_unshift($this->actividades_economicas, $actividad_economica);
+            $this->actividades_economicas = array_unique(
+                $this->actividades_economicas
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getActividadEconomica(): ?int
     {
-        return $this->actividad_economica;
+        return $this->actividades_economicas[0] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTelefono(?string $telefono): static
+    {
+        $telefono = trim((string)$telefono) ?: null;
+
+        if ($telefono !== null) {
+            array_unshift($this->telefonos, $telefono);
+            $this->telefonos = array_unique($this->telefonos);
+        }
+
+        return $this;
     }
 
     /**
@@ -180,7 +265,17 @@ class Contribuyente implements ContribuyenteInterface
      */
     public function getTelefono(): ?string
     {
-        return $this->telefono;
+        return $this->telefonos[0] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmail(?string $email): static
+    {
+        $this->email = trim((string)$email) ?: null;
+
+        return $this;
     }
 
     /**
@@ -194,6 +289,16 @@ class Contribuyente implements ContribuyenteInterface
     /**
      * {@inheritDoc}
      */
+    public function setDireccion(?string $direccion): static
+    {
+        $this->direccion = trim((string)$direccion) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDireccion(): ?string
     {
         return $this->direccion;
@@ -202,8 +307,36 @@ class Contribuyente implements ContribuyenteInterface
     /**
      * {@inheritDoc}
      */
+    public function setComuna(?string $comuna): static
+    {
+        $this->comuna = trim((string)$comuna) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getComuna(): ?string
     {
         return $this->comuna;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCiudad(?string $ciudad): static
+    {
+        $this->ciudad = trim((string)$ciudad) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCiudad(): ?string
+    {
+        return $this->ciudad;
     }
 }

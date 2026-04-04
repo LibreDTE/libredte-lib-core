@@ -108,6 +108,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Autorizaci
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\PersonaNatural;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Receptor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
@@ -201,9 +202,10 @@ use Throwable;
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(AutorizacionDte::class)]
 #[CoversClass(Contribuyente::class)]
-#[CoversClass(Emisor::class)]
 #[CoversClass(PersonaNatural::class)]
+#[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
+#[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]

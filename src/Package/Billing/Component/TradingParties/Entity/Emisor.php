@@ -37,6 +37,13 @@ class Emisor extends Contribuyente implements EmisorInterface
     use CorreoIntercambioDteInfoTrait;
 
     /**
+     * Sucursal del emisor.
+     *
+     * @var string|null
+     */
+    private ?string $sucursal = null;
+
+    /**
      * Código de la sucursal del emisor en el SII.
      *
      * Nota: La casa matriz también tiene código de sucursal asignado por SII.
@@ -70,9 +77,180 @@ class Emisor extends Contribuyente implements EmisorInterface
     private ?string $logo = null;
 
     /**
-     * Entrega el código de la sucursal asignado por el SII al emisor.
+     * Constructor de la clase Contribuyente.
      *
-     * @return integer|null
+     * @param string|int $rut RUT del contribuyente.
+     * @param string|null $razon_social Razón social del contribuyente.
+     * @param string|null $giro Giro comercial del contribuyente.
+     * @param int|array|null $actividad_economica Código de actividad económica.
+     * @param string|array|null $telefono Teléfonos del contribuyente.
+     * @param string|null $email Correo electrónico del contribuyente.
+     * @param string|null $direccion Dirección tributaria del contribuyente.
+     * @param string|null $comuna Comuna tributaria.
+     * @param string|null $ciudad Ciudad tributaria.
+     * @param string|null $sucursal Sucursal del emisor.
+     * @param int|null $codigo_sucursal Código de la sucursal del emisor en el
+     * SII.
+     * @param string|null $vendedor Nombre o código del vendedor que está
+     * representando al emisor.
+     * @param AutorizacionDteInterface|null $autorizacionDte Información de la
+     * autorización que da el SII para ser emisor de documentos tributarios
+     * electrónicos.
+     * @param string|null $logo Logo del emisor.
+     */
+    public function __construct(
+        string|int $rut,
+        ?string $razon_social = null,
+        ?string $giro = null,
+        int|array|null $actividad_economica = null,
+        string|array|null $telefono = null,
+        ?string $email = null,
+        ?string $direccion = null,
+        ?string $comuna = null,
+        ?string $ciudad = null,
+        ?string $sucursal = null,
+        ?int $codigo_sucursal = null,
+        ?string $vendedor = null,
+        ?AutorizacionDteInterface $autorizacionDte = null,
+        ?string $logo = null,
+    ) {
+        parent::__construct(
+            rut: $rut,
+            razon_social: $razon_social,
+            giro: $giro,
+            email: $email,
+            direccion: $direccion,
+            comuna: $comuna,
+            ciudad: $ciudad
+        );
+
+        if ($actividad_economica !== null) {
+            if (is_array($actividad_economica)) {
+                $this->setActividadesEconomicas($actividad_economica);
+            } else {
+                $this->setActividadEconomica($actividad_economica);
+            }
+        }
+
+        if ($telefono !== null) {
+            if (is_array($telefono)) {
+                $this->setTelefonos($telefono);
+            } else {
+                $this->setTelefono($telefono);
+            }
+        }
+
+        if ($sucursal !== null) {
+            $this->setSucursal($sucursal);
+        }
+
+        if ($codigo_sucursal !== null) {
+            $this->setCodigoSucursal($codigo_sucursal);
+        }
+
+        if ($vendedor !== null) {
+            $this->setVendedor($vendedor);
+        }
+
+        if ($autorizacionDte !== null) {
+            $this->setAutorizacionDte($autorizacionDte);
+        }
+
+        if ($logo !== null) {
+            $this->setLogo($logo);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addActividadEconomica(int $actividad_economica): static
+    {
+        if (!in_array($actividad_economica, $this->actividades_economicas)) {
+            $this->actividades_economicas[] = $actividad_economica;
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setActividadesEconomicas(array $actividades_economicas): static
+    {
+        $this->actividades_economicas = $actividades_economicas;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getActividadesEconomicas(): array
+    {
+        return $this->actividades_economicas;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addTelefono(string $telefono): static
+    {
+        if (!in_array($telefono, $this->telefonos)) {
+            $this->telefonos[] = $telefono;
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTelefonos(array $telefonos): static
+    {
+        $this->telefonos = $telefonos;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTelefonos(): array
+    {
+        return $this->telefonos;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSucursal(?string $sucursal): static
+    {
+        $this->sucursal = trim((string)$sucursal) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSucursal(): ?string
+    {
+        return $this->sucursal;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCodigoSucursal(?int $codigo_sucursal): static
+    {
+        $this->codigo_sucursal = $codigo_sucursal ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getCodigoSucursal(): ?int
     {
@@ -80,9 +258,17 @@ class Emisor extends Contribuyente implements EmisorInterface
     }
 
     /**
-     * Entrega el nombre o código del vendedor que está representando al emisor.
-     *
-     * @return string|null
+     * {@inheritDoc}
+     */
+    public function setVendedor(?string $vendedor): static
+    {
+        $this->vendedor = trim((string)$vendedor) ?: null;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getVendedor(): ?string
     {
@@ -92,7 +278,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     /**
      * {@inheritDoc}
      */
-    public function setAutorizacionDte(AutorizacionDteInterface $autorizacionDte): static
+    public function setAutorizacionDte(?AutorizacionDteInterface $autorizacionDte): static
     {
         $this->autorizacionDte = $autorizacionDte;
 
@@ -110,7 +296,7 @@ class Emisor extends Contribuyente implements EmisorInterface
     /**
      * {@inheritDoc}
      */
-    public function setLogo(string $logo): static
+    public function setLogo(?string $logo): static
     {
         $this->logo = $logo;
 
@@ -123,5 +309,58 @@ class Emisor extends Contribuyente implements EmisorInterface
     public function getLogo(): ?string
     {
         return $this->logo;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toDteArray(): array
+    {
+        // Determinar el tag Acteco del XML del DTE.
+        $Acteco = $this->getActividadesEconomicas();
+        if (isset($Acteco[0])) {
+            if (isset($Acteco[1])) {
+                $Acteco = array_slice($Acteco, 0, 4);
+            } else {
+                $Acteco = $Acteco[0];
+            }
+        } else {
+            $Acteco = false;
+        }
+
+        // Determinar el tag Telefono del XML del DTE.
+        $Telefono = $this->getTelefonos();
+        if (isset($Telefono[0])) {
+            if (isset($Telefono[1])) {
+                $Telefono = array_slice($Telefono, 0, 2);
+            } else {
+                $Telefono = $Telefono[0];
+            }
+        } else {
+            $Telefono = false;
+        }
+
+        // Entregar los datos del emisor como el nodo Emisor del XML del DTE.
+        return [
+            'RUTEmisor' => $this->getRut(),
+            'RznSoc' => $this->getRazonSocial(),
+            'GiroEmis' => $this->getGiro() ?? false,
+            'Telefono' => $Telefono,
+            'CorreoEmisor' => $this->getEmail()
+                ?? $this->getCorreoIntercambioDte()
+                ?? false
+            ,
+            'Acteco' => $Acteco,
+            // 'GuiaExport' => $this->,
+            'Sucursal' => $this->getSucursal() ?? false,
+            'CdgSIISucur' => $this->getCodigoSucursal() ?? false,
+            'DirOrigen' => $this->getDireccion() ?? false,
+            'CmnaOrigen' => $this->getComuna() ?? false,
+            'CiudadOrigen' => $this->getCiudad() ?? false,
+            'CdgVendedor' => $this->getVendedor() ?? false,
+            // 'IdAdicEmisor' => $this->,
+            // 'RUTProveedor' => $this->,
+            // 'RznSocProveedor' => $this->,
+        ];
     }
 }

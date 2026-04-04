@@ -64,6 +64,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
 class CafTest extends TestCase
 {
     private CafFakerWorkerInterface $cafFaker;
