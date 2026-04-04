@@ -196,18 +196,32 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividad_economica">$actividad_economica</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividades_economicas">$actividades_economicas</a>
     <span>
-                        &nbsp;: int|null            </span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
 </dt>
-<dd>Código de actividad económica del contribuyente.</dd>
+<dd>Códigos de actividades económicas del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_ciudad">$ciudad</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+<dd>Ciudad tributaria del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_codigo_interno">$codigo_interno</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+<dd>Código interno del receptor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_comuna">$comuna</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
-<dd>Comuna de residencia del contribuyente.</dd>
+<dd>Comuna tributaria del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#property_correoIntercambioDte">$correoIntercambioDte</a>
@@ -221,7 +235,7 @@
     <span>
                         &nbsp;: string|null            </span>
 </dt>
-<dd>Dirección física del contribuyente.</dd>
+<dd>Dirección tributaria del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_dv">$dv</a>
@@ -245,6 +259,20 @@
 <dd>Giro comercial del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_identificador_extranjero">$identificador_extranjero</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+<dd>Identificador extranjero del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_nacionalidad">$nacionalidad</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+<dd>Nacionalidad del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_razon_social">$razon_social</a>
     <span>
                         &nbsp;: string|null            </span>
@@ -259,11 +287,11 @@
 <dd>RUT del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefono">$telefono</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefonos">$telefonos</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
 </dt>
-<dd>Teléfono del contribuyente.</dd>
+<dd>Teléfonos del contribuyente.</dd>
 
     </dl>
 
@@ -274,11 +302,11 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Constructor de la clase Contribuyente.</dd>
+<dd>Constructor de la clase Receptor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getActividadEconomica">getActividadEconomica()</a>
@@ -286,6 +314,20 @@
                                 &nbsp;: int|null    </span>
 </dt>
 <dd>Devuelve el código de actividad económica del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getCiudad">getCiudad()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Devuelve la ciudad del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getCodigoInterno">getCodigoInterno()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Devuelve el código interno del receptor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna">getComuna()</a>
@@ -323,6 +365,20 @@
 <dd>Devuelve el giro comercial del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getIdentificadorExtranjero">getIdentificadorExtranjero()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Devuelve el identificador extranjero del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getNacionalidad">getNacionalidad()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Devuelve la nacionalidad del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRazonSocial">getRazonSocial()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -351,11 +407,96 @@
 <dd>Devuelve el teléfono del contribuyente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setActividadEconomica">setActividadEconomica()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el código de actividad económica del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setCiudad">setCiudad()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna la ciudad del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setCodigoInterno">setCodigoInterno()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el código interno del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setComuna">setComuna()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna la comuna del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#method_setCorreoIntercambioDte">setCorreoIntercambioDte()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setDireccion">setDireccion()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna la dirección del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setEmail">setEmail()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el correo electrónico del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setGiro">setGiro()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el giro comercial del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setIdentificadorExtranjero">setIdentificadorExtranjero()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el identificador extranjero del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setNacionalidad">setNacionalidad()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna la nacionalidad del receptor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setRazonSocial">setRazonSocial()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna la razón social del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setTelefono">setTelefono()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Asigna el teléfono del contribuyente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toDteArray">toDteArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Entrega los datos del receptor en un arreglo compatible con el XML del
+DTE.</dd>
 
     </dl>
 
@@ -377,9 +518,9 @@
             -protected
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_actividad_economica">
-        $actividad_economica
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividad_economica" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_actividades_economicas">
+        $actividades_economicas
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividades_economicas" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
@@ -391,14 +532,90 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Código de actividad económica del contribuyente.</p>
+        <p class="phpdocumentor-summary">Códigos de actividades económicas del contribuyente.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$actividad_economica</span>
-    </code>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
+    <span class="phpdocumentor-signature__name">$actividades_economicas</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_ciudad">
+        $ciudad
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_ciudad" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">106</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Ciudad tributaria del contribuyente.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$ciudad</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_codigo_interno">
+        $codigo_interno
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_codigo_interno" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">43</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Código interno del receptor.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$codigo_interno</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -429,14 +646,14 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Comuna de residencia del contribuyente.</p>
+        <p class="phpdocumentor-summary">Comuna tributaria del contribuyente.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$comuna</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -505,14 +722,14 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Dirección física del contribuyente.</p>
+        <p class="phpdocumentor-summary">Dirección tributaria del contribuyente.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$direccion</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -588,7 +805,7 @@
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$email</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -626,7 +843,83 @@
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$giro</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_identificador_extranjero">
+        $identificador_extranjero
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_identificador_extranjero" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Identificador extranjero del receptor.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$identificador_extranjero</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_nacionalidad">
+        $nacionalidad
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_nacionalidad" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Nacionalidad del receptor.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$nacionalidad</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -664,7 +957,7 @@
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$razon_social</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -719,9 +1012,9 @@
             -protected
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_telefono">
-        $telefono
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefono" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_telefonos">
+        $telefonos
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefonos" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
@@ -733,14 +1026,14 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Teléfono del contribuyente.</p>
+        <p class="phpdocumentor-summary">Teléfonos del contribuyente.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$telefono</span>
-    </code>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$telefonos</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
     
@@ -766,21 +1059,21 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructor de la clase Contribuyente.</p>
+        <p class="phpdocumentor-summary">Constructor de la clase Receptor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rut</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$razon_social</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$giro</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actividad_economica</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$telefono</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direccion</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comuna</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rut</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$razon_social</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$giro</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actividad_economica</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$telefono</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direccion</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comuna</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ciudad</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigo_interno</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nacionalidad</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$identificador_extranjero</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -793,7 +1086,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>RUT del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>RUT del receptor.</p>
 </section>
 
             </dd>
@@ -802,7 +1095,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Razón social del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>Razón social del receptor.</p>
 </section>
 
             </dd>
@@ -811,7 +1104,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Giro comercial del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>Giro comercial del receptor.</p>
 </section>
 
             </dd>
@@ -820,7 +1113,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Código de actividad económica.</p>
+                    <section class="phpdocumentor-description"><p>Código de actividad económica del receptor.</p>
 </section>
 
             </dd>
@@ -829,7 +1122,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Teléfono del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>Teléfono del receptor.</p>
 </section>
 
             </dd>
@@ -838,7 +1131,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Correo electrónico del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>Correo electrónico del receptor.</p>
 </section>
 
             </dd>
@@ -847,7 +1140,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Dirección física del contribuyente.</p>
+                    <section class="phpdocumentor-description"><p>Dirección tributaria del receptor.</p>
 </section>
 
             </dd>
@@ -856,7 +1149,43 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Comuna de residencia.</p>
+                    <section class="phpdocumentor-description"><p>Comuna tributaria del receptor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$ciudad</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ciudad tributaria del receptor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$codigo_interno</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Código interno del receptor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$nacionalidad</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nacionalidad del receptor.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$identificador_extranjero</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Identificador extranjero del receptor.</p>
 </section>
 
             </dd>
@@ -882,7 +1211,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">243</span>
 
     </aside>
 
@@ -917,6 +1246,92 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getCiudad">
+        getCiudad()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getCiudad" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">338</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve la ciudad del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCiudad</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ciudad del contribuyente o null.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCodigoInterno">
+        getCodigoInterno()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getCodigoInterno" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">125</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve el código interno del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCodigoInterno</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Código interno del receptor.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getComuna">
         getComuna()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna" class="headerlink"><i class="fas fa-link"></i></a>
@@ -925,7 +1340,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
@@ -1007,7 +1422,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">302</span>
 
     </aside>
 
@@ -1050,7 +1465,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">284</span>
 
     </aside>
 
@@ -1093,7 +1508,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">218</span>
 
     </aside>
 
@@ -1128,6 +1543,92 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getIdentificadorExtranjero">
+        getIdentificadorExtranjero()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getIdentificadorExtranjero" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">161</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve el identificador extranjero del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getIdentificadorExtranjero</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Identificador extranjero del receptor.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getNacionalidad">
+        getNacionalidad()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getNacionalidad" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">143</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve la nacionalidad del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getNacionalidad</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Nacionalidad del receptor.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getRazonSocial">
         getRazonSocial()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRazonSocial" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1136,7 +1637,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">157</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
     </aside>
 
@@ -1179,7 +1680,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -1222,7 +1723,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">141</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -1265,7 +1766,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">181</span>
+    <span class="phpdocumentor-element-found-in__line">266</span>
 
     </aside>
 
@@ -1300,6 +1801,204 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setActividadEconomica">
+        setActividadEconomica()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setActividadEconomica" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">226</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el código de actividad económica del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setActividadEconomica</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actividad_economica</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$actividad_economica</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setCiudad">
+        setCiudad()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setCiudad" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">328</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna la ciudad del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setCiudad</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ciudad</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$ciudad</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setCodigoInterno">
+        setCodigoInterno()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setCodigoInterno" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">115</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el código interno del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setCodigoInterno</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigo_interno</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$codigo_interno</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Código interno del receptor.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setComuna">
+        setComuna()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setComuna" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">310</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna la comuna del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setComuna</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comuna</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$comuna</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setCorreoIntercambioDte">
         setCorreoIntercambioDte()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#method_setCorreoIntercambioDte" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1316,7 +2015,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setCorreoIntercambioDte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$correoIntercambioDte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setCorreoIntercambioDte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$correoIntercambioDte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1326,7 +2025,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$correoIntercambioDte</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1340,6 +2039,397 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setDireccion">
+        setDireccion()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setDireccion" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">292</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna la dirección del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setDireccion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direccion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$direccion</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setEmail">
+        setEmail()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setEmail" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">274</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el correo electrónico del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setEmail</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$email</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setGiro">
+        setGiro()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setGiro" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">208</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el giro comercial del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setGiro</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$giro</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$giro</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setIdentificadorExtranjero">
+        setIdentificadorExtranjero()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setIdentificadorExtranjero" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">151</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el identificador extranjero del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setIdentificadorExtranjero</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$identificador_extranjero</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$identificador_extranjero</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Identificador extranjero del receptor.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setNacionalidad">
+        setNacionalidad()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setNacionalidad" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">133</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna la nacionalidad del receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setNacionalidad</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nacionalidad</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$nacionalidad</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nacionalidad del receptor.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setRazonSocial">
+        setRazonSocial()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setRazonSocial" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">190</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna la razón social del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setRazonSocial</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$razon_social</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$razon_social</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setTelefono">
+        setTelefono()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setTelefono" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php"><a href="files/src-package-billing-component-tradingparties-entity-contribuyente.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Contribuyente.php">Contribuyente.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">251</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asigna el teléfono del contribuyente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setTelefono</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$telefono</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$telefono</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toDteArray">
+        toDteArray()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toDteArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php"><a href="files/src-package-billing-component-tradingparties-entity-receptor.html"><abbr title="src/Package/Billing/Component/TradingParties/Entity/Receptor.php">Receptor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">169</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega los datos del receptor en un arreglo compatible con el XML del
+DTE.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toDteArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Arreglo con los datos del receptor en formato del DTE.</p>
+</section>
+
             </section>
 
 </article>
@@ -1458,34 +2548,54 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividad_economica">$actividad_economica</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividades_economicas">$actividades_economicas</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_ciudad">$ciudad</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_codigo_interno">$codigo_interno</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_comuna">$comuna</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#property_correoIntercambioDte">$correoIntercambioDte</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_direccion">$direccion</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_dv">$dv</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_email">$email</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_giro">$giro</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_identificador_extranjero">$identificador_extranjero</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_nacionalidad">$nacionalidad</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_razon_social">$razon_social</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_rut">$rut</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefono">$telefono</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefonos">$telefonos</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getActividadEconomica">getActividadEconomica()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getCiudad">getCiudad()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getCodigoInterno">getCodigoInterno()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna">getComuna()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#method_getCorreoIntercambioDte">getCorreoIntercambioDte()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getDireccion">getDireccion()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getEmail">getEmail()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getGiro">getGiro()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getIdentificadorExtranjero">getIdentificadorExtranjero()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getNacionalidad">getNacionalidad()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRazonSocial">getRazonSocial()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRut">getRut()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRutAsInt">getRutAsInt()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getTelefono">getTelefono()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setActividadEconomica">setActividadEconomica()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setCiudad">setCiudad()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setCodigoInterno">setCodigoInterno()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setComuna">setComuna()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Trait-CorreoIntercambioDteInfoTrait.html#method_setCorreoIntercambioDte">setCorreoIntercambioDte()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setDireccion">setDireccion()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setEmail">setEmail()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setGiro">setGiro()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setIdentificadorExtranjero">setIdentificadorExtranjero()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setNacionalidad">setNacionalidad()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setRazonSocial">setRazonSocial()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setTelefono">setTelefono()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toDteArray">toDteArray()</a></li>
                                     </ul>
             </li>
                     </ul>

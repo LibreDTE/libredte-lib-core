@@ -8411,40 +8411,85 @@ Search.appendIndex(
             "summary": "Devuelve\u0020el\u0020RUT\u0020completo\u0020\u0028incluyendo\u0020el\u0020DV\u0029\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getRut"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetRazonSocial\u0028\u0029",
+            "name": "setRazonSocial",
+            "summary": "Asigna\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setRazonSocial"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetRazonSocial\u0028\u0029",
             "name": "getRazonSocial",
             "summary": "Devuelve\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getRazonSocial"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetGiro\u0028\u0029",
+            "name": "setGiro",
+            "summary": "Asigna\u0020el\u0020giro\u0020comercial\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setGiro"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetGiro\u0028\u0029",
             "name": "getGiro",
             "summary": "Devuelve\u0020el\u0020giro\u0020comercial\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getGiro"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetActividadEconomica\u0028\u0029",
+            "name": "setActividadEconomica",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020de\u0020actividad\u0020econ\u00F3mica\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setActividadEconomica"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetActividadEconomica\u0028\u0029",
             "name": "getActividadEconomica",
             "summary": "Devuelve\u0020el\u0020c\u00F3digo\u0020de\u0020actividad\u0020econ\u00F3mica\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getActividadEconomica"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetTelefono\u0028\u0029",
+            "name": "setTelefono",
+            "summary": "Asigna\u0020el\u0020tel\u00E9fono\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setTelefono"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetTelefono\u0028\u0029",
             "name": "getTelefono",
             "summary": "Devuelve\u0020el\u0020tel\u00E9fono\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getTelefono"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetEmail\u0028\u0029",
+            "name": "setEmail",
+            "summary": "Asigna\u0020el\u0020correo\u0020electr\u00F3nico\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setEmail"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetEmail\u0028\u0029",
             "name": "getEmail",
             "summary": "Devuelve\u0020el\u0020correo\u0020electr\u00F3nico\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetDireccion\u0028\u0029",
+            "name": "setDireccion",
+            "summary": "Asigna\u0020la\u0020direcci\u00F3n\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setDireccion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetDireccion\u0028\u0029",
             "name": "getDireccion",
             "summary": "Devuelve\u0020la\u0020direcci\u00F3n\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getDireccion"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetComuna\u0028\u0029",
+            "name": "setComuna",
+            "summary": "Asigna\u0020la\u0020comuna\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setComuna"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetComuna\u0028\u0029",
             "name": "getComuna",
             "summary": "Devuelve\u0020la\u0020comuna\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getComuna"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AsetCiudad\u0028\u0029",
+            "name": "setCiudad",
+            "summary": "Asigna\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_setCiudad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AgetCiudad\u0028\u0029",
+            "name": "getCiudad",
+            "summary": "Devuelve\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getCiudad"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\CorreoIntercambioDteInfoInterface",
             "name": "CorreoIntercambioDteInfoInterface",
@@ -8476,10 +8521,60 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020una\u0020entidad\u0020de\u0020emisor\u0020de\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AaddActividadEconomica\u0028\u0029",
+            "name": "addActividadEconomica",
+            "summary": "Agrega\u0020una\u0020actividad\u0020econ\u00F3mica\u0020al\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_addActividadEconomica"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetActividadesEconomicas\u0028\u0029",
+            "name": "setActividadesEconomicas",
+            "summary": "Asigna\u0020las\u0020actividades\u0020econ\u00F3micas\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setActividadesEconomicas"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetActividadesEconomicas\u0028\u0029",
+            "name": "getActividadesEconomicas",
+            "summary": "Devuelve\u0020las\u0020actividades\u0020econ\u00F3micas\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getActividadesEconomicas"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AaddTelefono\u0028\u0029",
+            "name": "addTelefono",
+            "summary": "Agrega\u0020un\u0020tel\u00E9fono\u0020al\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_addTelefono"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetTelefonos\u0028\u0029",
+            "name": "setTelefonos",
+            "summary": "Asigna\u0020los\u0020tel\u00E9fonos\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setTelefonos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetTelefonos\u0028\u0029",
+            "name": "getTelefonos",
+            "summary": "Devuelve\u0020los\u0020tel\u00E9fonos\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getTelefonos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetSucursal\u0028\u0029",
+            "name": "setSucursal",
+            "summary": "Asigna\u0020el\u0020nombre\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetSucursal\u0028\u0029",
+            "name": "getSucursal",
+            "summary": "Entrega\u0020el\u0020nombre\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetCodigoSucursal\u0028\u0029",
+            "name": "setCodigoSucursal",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setCodigoSucursal"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetCodigoSucursal\u0028\u0029",
             "name": "getCodigoSucursal",
             "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getCodigoSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AsetVendedor\u0028\u0029",
+            "name": "setVendedor",
+            "summary": "Asigna\u0020el\u0020nombre\u0020o\u0020c\u00F3digo\u0020del\u0020vendedor\u0020que\u0020est\u00E1\u0020representando\u0020al\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_setVendedor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AgetVendedor\u0028\u0029",
             "name": "getVendedor",
@@ -8495,6 +8590,11 @@ Search.appendIndex(
             "name": "getLogo",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_getLogo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorInterface\u003A\u003AtoDteArray\u0028\u0029",
+            "name": "toDteArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020emisor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html#method_toDteArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\EmisorProviderInterface",
             "name": "EmisorProviderInterface",
@@ -8570,6 +8670,41 @@ Search.appendIndex(
             "name": "ReceptorInterface",
             "summary": "Interfaz\u0020para\u0020una\u0020entidad\u0020de\u0020receptor\u0020de\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AsetCodigoInterno\u0028\u0029",
+            "name": "setCodigoInterno",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020interno\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_setCodigoInterno"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AgetCodigoInterno\u0028\u0029",
+            "name": "getCodigoInterno",
+            "summary": "Devuelve\u0020el\u0020c\u00F3digo\u0020interno\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_getCodigoInterno"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AsetNacionalidad\u0028\u0029",
+            "name": "setNacionalidad",
+            "summary": "Asigna\u0020la\u0020nacionalidad\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_setNacionalidad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AgetNacionalidad\u0028\u0029",
+            "name": "getNacionalidad",
+            "summary": "Devuelve\u0020la\u0020nacionalidad\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_getNacionalidad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AsetIdentificadorExtranjero\u0028\u0029",
+            "name": "setIdentificadorExtranjero",
+            "summary": "Asigna\u0020el\u0020identificador\u0020extranjero\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_setIdentificadorExtranjero"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AgetIdentificadorExtranjero\u0028\u0029",
+            "name": "getIdentificadorExtranjero",
+            "summary": "Devuelve\u0020el\u0020identificador\u0020extranjero\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_getIdentificadorExtranjero"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorInterface\u003A\u003AtoDteArray\u0028\u0029",
+            "name": "toDteArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020receptor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\nDTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html#method_toDteArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorProviderInterface",
             "name": "ReceptorProviderInterface",
@@ -8651,40 +8786,85 @@ Search.appendIndex(
             "summary": "Devuelve\u0020el\u0020RUT\u0020completo\u0020\u0028incluyendo\u0020el\u0020DV\u0029\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRut"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetRazonSocial\u0028\u0029",
+            "name": "setRazonSocial",
+            "summary": "Asigna\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setRazonSocial"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetRazonSocial\u0028\u0029",
             "name": "getRazonSocial",
             "summary": "Devuelve\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getRazonSocial"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetGiro\u0028\u0029",
+            "name": "setGiro",
+            "summary": "Asigna\u0020el\u0020giro\u0020comercial\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setGiro"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetGiro\u0028\u0029",
             "name": "getGiro",
             "summary": "Devuelve\u0020el\u0020giro\u0020comercial\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getGiro"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetActividadEconomica\u0028\u0029",
+            "name": "setActividadEconomica",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020de\u0020actividad\u0020econ\u00F3mica\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setActividadEconomica"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetActividadEconomica\u0028\u0029",
             "name": "getActividadEconomica",
             "summary": "Devuelve\u0020el\u0020c\u00F3digo\u0020de\u0020actividad\u0020econ\u00F3mica\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getActividadEconomica"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetTelefono\u0028\u0029",
+            "name": "setTelefono",
+            "summary": "Asigna\u0020el\u0020tel\u00E9fono\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setTelefono"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetTelefono\u0028\u0029",
             "name": "getTelefono",
             "summary": "Devuelve\u0020el\u0020tel\u00E9fono\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getTelefono"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetEmail\u0028\u0029",
+            "name": "setEmail",
+            "summary": "Asigna\u0020el\u0020correo\u0020electr\u00F3nico\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setEmail"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetEmail\u0028\u0029",
             "name": "getEmail",
             "summary": "Devuelve\u0020el\u0020correo\u0020electr\u00F3nico\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetDireccion\u0028\u0029",
+            "name": "setDireccion",
+            "summary": "Asigna\u0020la\u0020direcci\u00F3n\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setDireccion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetDireccion\u0028\u0029",
             "name": "getDireccion",
             "summary": "Devuelve\u0020la\u0020direcci\u00F3n\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getDireccion"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetComuna\u0028\u0029",
+            "name": "setComuna",
+            "summary": "Asigna\u0020la\u0020comuna\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setComuna"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetComuna\u0028\u0029",
             "name": "getComuna",
             "summary": "Devuelve\u0020la\u0020comuna\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getComuna"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AsetCiudad\u0028\u0029",
+            "name": "setCiudad",
+            "summary": "Asigna\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_setCiudad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AgetCiudad\u0028\u0029",
+            "name": "getCiudad",
+            "summary": "Devuelve\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getCiudad"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024rut",
             "name": "rut",
@@ -8706,15 +8886,15 @@ Search.appendIndex(
             "summary": "Giro\u0020comercial\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_giro"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024actividad_economica",
-            "name": "actividad_economica",
-            "summary": "C\u00F3digo\u0020de\u0020actividad\u0020econ\u00F3mica\u0020del\u0020contribuyente.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividad_economica"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024actividades_economicas",
+            "name": "actividades_economicas",
+            "summary": "C\u00F3digos\u0020de\u0020actividades\u0020econ\u00F3micas\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_actividades_economicas"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024telefono",
-            "name": "telefono",
-            "summary": "Tel\u00E9fono\u0020del\u0020contribuyente.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefono"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024telefonos",
+            "name": "telefonos",
+            "summary": "Tel\u00E9fonos\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_telefonos"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024email",
             "name": "email",
@@ -8723,23 +8903,83 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024direccion",
             "name": "direccion",
-            "summary": "Direcci\u00F3n\u0020f\u00EDsica\u0020del\u0020contribuyente.",
+            "summary": "Direcci\u00F3n\u0020tributaria\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_direccion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024comuna",
             "name": "comuna",
-            "summary": "Comuna\u0020de\u0020residencia\u0020del\u0020contribuyente.",
+            "summary": "Comuna\u0020tributaria\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_comuna"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024ciudad",
+            "name": "ciudad",
+            "summary": "Ciudad\u0020tributaria\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#property_ciudad"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor",
             "name": "Emisor",
             "summary": "Clase\u0020para\u0020representar\u0020un\u0020emisor\u0020de\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AaddActividadEconomica\u0028\u0029",
+            "name": "addActividadEconomica",
+            "summary": "Agrega\u0020una\u0020actividad\u0020econ\u00F3mica\u0020al\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_addActividadEconomica"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetActividadesEconomicas\u0028\u0029",
+            "name": "setActividadesEconomicas",
+            "summary": "Asigna\u0020las\u0020actividades\u0020econ\u00F3micas\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setActividadesEconomicas"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetActividadesEconomicas\u0028\u0029",
+            "name": "getActividadesEconomicas",
+            "summary": "Devuelve\u0020las\u0020actividades\u0020econ\u00F3micas\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getActividadesEconomicas"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AaddTelefono\u0028\u0029",
+            "name": "addTelefono",
+            "summary": "Agrega\u0020un\u0020tel\u00E9fono\u0020al\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_addTelefono"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetTelefonos\u0028\u0029",
+            "name": "setTelefonos",
+            "summary": "Asigna\u0020los\u0020tel\u00E9fonos\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setTelefonos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetTelefonos\u0028\u0029",
+            "name": "getTelefonos",
+            "summary": "Devuelve\u0020los\u0020tel\u00E9fonos\u0020del\u0020contribuyente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getTelefonos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetSucursal\u0028\u0029",
+            "name": "setSucursal",
+            "summary": "Asigna\u0020el\u0020nombre\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetSucursal\u0028\u0029",
+            "name": "getSucursal",
+            "summary": "Entrega\u0020el\u0020nombre\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetCodigoSucursal\u0028\u0029",
+            "name": "setCodigoSucursal",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setCodigoSucursal"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetCodigoSucursal\u0028\u0029",
             "name": "getCodigoSucursal",
             "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getCodigoSucursal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AsetVendedor\u0028\u0029",
+            "name": "setVendedor",
+            "summary": "Asigna\u0020el\u0020nombre\u0020o\u0020c\u00F3digo\u0020del\u0020vendedor\u0020que\u0020est\u00E1\u0020representando\u0020al\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_setVendedor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AgetVendedor\u0028\u0029",
             "name": "getVendedor",
@@ -8765,6 +9005,16 @@ Search.appendIndex(
             "name": "getLogo",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020logo\u0020del\u0020emisor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_getLogo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AtoDteArray\u0028\u0029",
+            "name": "toDteArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020emisor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_toDteArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024sucursal",
+            "name": "sucursal",
+            "summary": "Sucursal\u0020del\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#property_sucursal"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024codigo_sucursal",
             "name": "codigo_sucursal",
@@ -8841,6 +9091,61 @@ Search.appendIndex(
             "summary": "Clase\u0020para\u0020representar\u0020un\u0020receptor\u0020de\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020de\u0020la\u0020clase\u0020Receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AsetCodigoInterno\u0028\u0029",
+            "name": "setCodigoInterno",
+            "summary": "Asigna\u0020el\u0020c\u00F3digo\u0020interno\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setCodigoInterno"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AgetCodigoInterno\u0028\u0029",
+            "name": "getCodigoInterno",
+            "summary": "Devuelve\u0020el\u0020c\u00F3digo\u0020interno\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getCodigoInterno"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AsetNacionalidad\u0028\u0029",
+            "name": "setNacionalidad",
+            "summary": "Asigna\u0020la\u0020nacionalidad\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setNacionalidad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AgetNacionalidad\u0028\u0029",
+            "name": "getNacionalidad",
+            "summary": "Devuelve\u0020la\u0020nacionalidad\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getNacionalidad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AsetIdentificadorExtranjero\u0028\u0029",
+            "name": "setIdentificadorExtranjero",
+            "summary": "Asigna\u0020el\u0020identificador\u0020extranjero\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_setIdentificadorExtranjero"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AgetIdentificadorExtranjero\u0028\u0029",
+            "name": "getIdentificadorExtranjero",
+            "summary": "Devuelve\u0020el\u0020identificador\u0020extranjero\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_getIdentificadorExtranjero"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AtoDteArray\u0028\u0029",
+            "name": "toDteArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020receptor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\nDTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toDteArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003A\u0024codigo_interno",
+            "name": "codigo_interno",
+            "summary": "C\u00F3digo\u0020interno\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_codigo_interno"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003A\u0024nacionalidad",
+            "name": "nacionalidad",
+            "summary": "Nacionalidad\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_nacionalidad"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003A\u0024identificador_extranjero",
+            "name": "identificador_extranjero",
+            "summary": "Identificador\u0020extranjero\u0020del\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#property_identificador_extranjero"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Exception\\TradingPartiesException",
             "name": "TradingPartiesException",
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020componente\u0020\u0022billing.trading_parties\u0022.",
@@ -8910,6 +9215,11 @@ Search.appendIndex(
             "name": "create",
             "summary": "Crea\u0020una\u0020entidad\u0020de\u0020receptor\u0020a\u0020partir\u0020de\u0020sus\u0020datos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-ReceptorFactory.html#method_create"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Factory\\ReceptorFactory\u003A\u003AnormalizeData\u0028\u0029",
+            "name": "normalizeData",
+            "summary": "Normaliza\u0020los\u0020datos\u0020del\u0020contribuyente\u0020que\u0020podr\u00EDan\u0020venir\u0020en\u0020diferentes\n\u00EDndices.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-ReceptorFactory.html#method_normalizeData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Factory\\ReceptorFactory\u003A\u003A\u0024class",
             "name": "class",
