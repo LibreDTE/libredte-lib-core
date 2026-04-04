@@ -29,6 +29,7 @@ use Derafu\Selector\Selector;
 use Derafu\Support\Arr;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
+use Derafu\Xml\Exception\XmlQueryException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use LogicException;
@@ -142,7 +143,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getFolio(): int
     {
-        return (int) $this->xmlDocument->query('//Encabezado/IdDoc/Folio');
+        $value = $this->xmlDocument->query('//Encabezado/IdDoc/Folio');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un folio asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/IdDoc/Folio'
+            );
+        }
+
+        return (int) $value;
     }
 
     /**
@@ -158,7 +169,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getEmisor(): array
     {
-        return $this->xmlDocument->query('//Encabezado/Emisor');
+        $value = $this->xmlDocument->query('//Encabezado/Emisor');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un emisor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Emisor'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -166,7 +187,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRutEmisor(): string
     {
-        return $this->xmlDocument->query('//Encabezado/Emisor/RUTEmisor');
+        $value = $this->xmlDocument->query('//Encabezado/Emisor/RUTEmisor');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un RUT de emisor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Emisor/RUTEmisor'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -174,7 +205,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getReceptor(): array
     {
-        return $this->xmlDocument->query('//Encabezado/Receptor');
+        $value = $this->xmlDocument->query('//Encabezado/Receptor');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un receptor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Receptor'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -182,7 +223,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRutReceptor(): string
     {
-        return $this->xmlDocument->query('//Encabezado/Receptor/RUTRecep');
+        $value = $this->xmlDocument->query('//Encabezado/Receptor/RUTRecep');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un RUT de receptor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Receptor/RUTRecep'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -190,7 +241,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRazonSocialReceptor(): string
     {
-        return $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep');
+        $value = $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene una razón social de receptor asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Receptor/RznSocRecep'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -198,7 +259,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getFechaEmision(): string
     {
-        return $this->xmlDocument->query('//Encabezado/IdDoc/FchEmis');
+        $value = $this->xmlDocument->query('//Encabezado/IdDoc/FchEmis');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene una fecha de emisión asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/IdDoc/FchEmis'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -206,7 +277,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getTotales(): array
     {
-        return $this->xmlDocument->query('//Encabezado/Totales');
+        $value = $this->xmlDocument->query('//Encabezado/Totales');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene los totales asignados en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Totales'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -214,7 +295,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoTotal(): int|float
     {
-        $monto = (float) $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
+        $value = $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un monto total asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Totales/MntTotal'
+            );
+        }
+
+        $monto = (float) $value;
 
         // Verificar si el monto es equivalente a un entero.
         if (floor($monto) == $monto) {
@@ -230,7 +321,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMoneda(): string
     {
-        $moneda = $this->query('//Encabezado/Totales/TpoMoneda') ?? 'PESO CL';
+        $moneda = $this->xmlDocument->query('//Encabezado/Totales/TpoMoneda')
+            ?? 'PESO CL'
+        ;
 
         return (string) $moneda;
     }
@@ -241,6 +334,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getDetalle(?int $index = null): array
     {
         $detalle = $this->xmlDocument->query('//Detalle');
+
         if ($detalle === null) {
             return [];
         }

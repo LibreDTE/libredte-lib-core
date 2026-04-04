@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Entity;
 
 use DateTime;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlQueryException;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
@@ -142,9 +143,29 @@ class Caf implements CafInterface
      */
     public function getEmisor(): array
     {
+        $RE = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RE');
+
+        if ($RE === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene un RUT de emisor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/RE'
+            );
+        }
+
+        $RS = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RS');
+
+        if ($RS === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una razón social de emisor asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/RS'
+            );
+        }
+
         return [
-            'rut' => $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RE'),
-            'razon_social' => $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RS'),
+            'rut' => $RE,
+            'razon_social' => $RS,
         ];
     }
 
@@ -153,7 +174,17 @@ class Caf implements CafInterface
      */
     public function getTipoDocumento(): int
     {
-        return (int) $this->xmlDocument->query('//AUTORIZACION/CAF/DA/TD');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/TD');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene un tipo de documento asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/TD'
+            );
+        }
+
+        return (int) $value;
     }
 
     /**
@@ -161,7 +192,17 @@ class Caf implements CafInterface
      */
     public function getFolioDesde(): int
     {
-        return (int) $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/D');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/D');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene un folio desde asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/RNG/D'
+            );
+        }
+
+        return (int) $value;
     }
 
     /**
@@ -169,7 +210,17 @@ class Caf implements CafInterface
      */
     public function getFolioHasta(): int
     {
-        return (int) $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/H');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/H');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene un folio hasta asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/RNG/H'
+            );
+        }
+
+        return (int) $value;
     }
 
     /**
@@ -196,7 +247,17 @@ class Caf implements CafInterface
      */
     public function getFechaAutorizacion(): string
     {
-        return $this->xmlDocument->query('//AUTORIZACION/CAF/DA/FA');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/FA');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una fecha de autorización asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/FA'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -272,7 +333,17 @@ class Caf implements CafInterface
      */
     public function getIdk(): int
     {
-        return (int) $this->xmlDocument->query('//AUTORIZACION/CAF/DA/IDK');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/IDK');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene un IDK asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/DA/IDK'
+            );
+        }
+
+        return (int) $value;
     }
 
     /**
@@ -298,7 +369,17 @@ class Caf implements CafInterface
      */
     public function getAutorizacion(): array
     {
-        return $this->xmlDocument->query('//AUTORIZACION/CAF');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una autorización asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -307,6 +388,14 @@ class Caf implements CafInterface
     public function getPublicKey(): string
     {
         $publicKey = $this->xmlDocument->query('//AUTORIZACION/RSAPUBK');
+
+        if ($publicKey === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una clave pública asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/RSAPUBK'
+            );
+        }
 
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
@@ -342,6 +431,14 @@ class Caf implements CafInterface
     {
         $privateKey = $this->xmlDocument->query('//AUTORIZACION/RSASK');
 
+        if ($privateKey === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una clave privada asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/RSASK'
+            );
+        }
+
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
             !str_contains($privateKey, "\n")
@@ -374,7 +471,17 @@ class Caf implements CafInterface
      */
     public function getFirma(): string
     {
-        return $this->xmlDocument->query('//AUTORIZACION/CAF/FRMA');
+        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/FRMA');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El CAF no tiene una firma asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//AUTORIZACION/CAF/FRMA'
+            );
+        }
+
+        return $value;
     }
 
     /**

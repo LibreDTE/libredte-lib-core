@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlQueryException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
@@ -90,7 +91,17 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRutEmisor(): string
     {
-        return $this->xmlDocument->query('//SetDTE/Caratula/RutEmisor');
+        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutEmisor');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene un RUT de emisor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/RutEmisor'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -98,7 +109,17 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRunMandatario(): string
     {
-        return $this->xmlDocument->query('//SetDTE/Caratula/RutEnvia');
+        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutEnvia');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene un RUN de mandatario asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/RutEnvia'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -106,7 +127,17 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRutReceptor(): string
     {
-        return $this->xmlDocument->query('//SetDTE/Caratula/RutReceptor');
+        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutReceptor');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene un RUT de receptor asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/RutReceptor'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -115,9 +146,26 @@ class SobreEnvio implements SobreEnvioInterface
     public function getAutorizacionDte(): AutorizacionDteInterface
     {
         $fechaResolucion = $this->xmlDocument->query('//SetDTE/Caratula/FchResol');
-        $numeroResolucion = (int) $this->xmlDocument->query('//SetDTE/Caratula/NroResol');
 
-        return new AutorizacionDte($fechaResolucion, $numeroResolucion);
+        if ($fechaResolucion === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene una fecha de resolución asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/FchResol'
+            );
+        }
+
+        $numeroResolucion = $this->xmlDocument->query('//SetDTE/Caratula/NroResol');
+
+        if ($numeroResolucion === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene un número de resolución asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/NroResol'
+            );
+        }
+
+        return new AutorizacionDte($fechaResolucion, (int) $numeroResolucion);
     }
 
     /**
@@ -125,7 +173,17 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getFechaFirma(): string
     {
-        return $this->xmlDocument->query('//SetDTE/Caratula/TmstFirmaEnv');
+        $value = $this->xmlDocument->query('//SetDTE/Caratula/TmstFirmaEnv');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene una fecha de firma asignada en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/TmstFirmaEnv'
+            );
+        }
+
+        return $value;
     }
 
     /**
@@ -134,6 +192,14 @@ class SobreEnvio implements SobreEnvioInterface
     public function getResumen(): array
     {
         $SubTotDTE = $this->xmlDocument->query('//SetDTE/Caratula/SubTotDTE');
+
+        if ($SubTotDTE === null) {
+            throw new XmlQueryException(
+                'El sobre de envío no tiene un resumen asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//SetDTE/Caratula/SubTotDTE'
+            );
+        }
 
         return isset($SubTotDTE[0]) ? $SubTotDTE : [$SubTotDTE];
     }
