@@ -125,8 +125,8 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
     # Workers del componente "billing.integration".
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker
 
     # Workers del componente "billing.trading_parties".
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
@@ -311,14 +311,14 @@ services:
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
 
-    # Trabajos del worker "billing.integration.sii_lazy"
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\CheckXmlDocumentSentStatusJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\RequestXmlDocumentSentStatusByEmailJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\SendXmlDocumentJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ValidateDocumentSignatureJob: ~
+    # Trabajos del worker "billing.integration.sii_dte"
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\AuthenticateJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\CheckXmlDocumentSentStatusJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ConsumeWebserviceJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\RequestXmlDocumentSentStatusByEmailJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentSignatureJob: ~
 
     # Derafu Repository.
     Derafu\Repository\Contract\RepositoryManagerInterface:

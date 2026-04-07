@@ -27,7 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration;
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\IntegrationComponentInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
 
 /**
  * Componente "billing.integration".
@@ -38,7 +38,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWork
 class IntegrationComponent extends AbstractComponent implements IntegrationComponentInterface
 {
     public function __construct(
-        private SiiLazyWorkerInterface $siiLazyWorker
+        private SiiDteWorkerInterface $siiDteWorker
     ) {
     }
 
@@ -48,15 +48,15 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     public function getWorkers(): array
     {
         return [
-            'sii_lazy' => $this->siiLazyWorker,
+            'sii_dte' => $this->siiDteWorker,
         ];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getSiiLazyWorker(): SiiLazyWorkerInterface
+    public function getSiiDteWorker(): SiiDteWorkerInterface
     {
-        return $this->siiLazyWorker;
+        return $this->siiDteWorker;
     }
 }

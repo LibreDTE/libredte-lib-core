@@ -22,19 +22,11 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
-
-use Derafu\Backbone\Contract\ComponentInterface;
+namespace libredte\lib\Core\Package\Billing\Component\Integration\Exception;
 
 /**
- * Interfaz para `IntegrationComponent`.
+ * Excepción base para los workers del RCV del SII.
  */
-interface IntegrationComponentInterface extends ComponentInterface
+class SiiRcvException extends SiiException
 {
-    /**
-     * Entrega el worker que realiza las acciones de DTE en el SII.
-     *
-     * @return SiiDteWorkerInterface
-     */
-    public function getSiiDteWorker(): SiiDteWorkerInterface;
 }

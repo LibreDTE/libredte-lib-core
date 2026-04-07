@@ -22,19 +22,14 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 
 /**
- * Interfaz para `IntegrationComponent`.
+ * Excepción para problemas al solicitar el estado de los envíos al SII mediante
+ * correo electrónico.
  */
-interface IntegrationComponentInterface extends ComponentInterface
+class SiiRequestXmlDocumentSentStatusByEmailException extends SiiDteException
 {
-    /**
-     * Entrega el worker que realiza las acciones de DTE en el SII.
-     *
-     * @return SiiDteWorkerInterface
-     */
-    public function getSiiDteWorker(): SiiDteWorkerInterface;
 }
