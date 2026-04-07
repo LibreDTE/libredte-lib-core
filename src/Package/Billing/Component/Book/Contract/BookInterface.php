@@ -97,6 +97,17 @@ interface BookInterface extends JsonSerializable
     public function countDetalle(): int;
 
     /**
+     * Entrega el namespace XML que debe usarse en el elemento `Signature`.
+     *
+     * La mayoría de los libros usa el namespace estándar XML DSIG. Los libros
+     * que requieran un namespace diferente (p. ej. el Libro de Boletas que usa
+     * `http://www.sii.cl/SiiDte`) deben sobrescribir este método.
+     *
+     * @return string|null Namespace URI, o `null` para usar el estándar.
+     */
+    public function getSignatureNamespace(): ?string;
+
+    /**
      * Entrega los datos del libro como un arreglo.
      *
      * @return array

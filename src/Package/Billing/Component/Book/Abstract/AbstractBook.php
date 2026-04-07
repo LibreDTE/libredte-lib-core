@@ -80,6 +80,15 @@ abstract class AbstractBook implements BookInterface
     /**
      * {@inheritDoc}
      */
+    public function getSignatureNamespace(): ?string
+    {
+        // Se usa el namespace por defecto de la firma electrónica.
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getXml(): string
     {
         return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();

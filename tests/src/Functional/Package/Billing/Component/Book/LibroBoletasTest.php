@@ -138,10 +138,10 @@ class LibroBoletasTest extends TestCase
         // esquema XSD y que la firma electrónica es válida.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
-        // $this->assertTrue(
-        //     $result->isValid(),
-        //     $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
-        // );
+        $this->assertTrue(
+            $result->isValid(),
+            $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
+        );
 
         // Realizar las verificaciones sobre el contenido del libro generado.
         $data = $book->toArray();

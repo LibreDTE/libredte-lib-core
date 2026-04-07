@@ -24,8 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
-use Derafu\Xml\Contract\XmlDocumentInterface;
-use DOMDocument;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroBoletasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -45,27 +43,9 @@ class LibroBoletas extends AbstractBook implements LibroBoletasInterface
 
     /**
      * {@inheritDoc}
-     *
-     * Se sobrescribe para reemplazar el namespace de la firma electrónica por
-     * lo esperado por el SII.
      */
-    public function getXmlDocument(): XmlDocumentInterface
+    public function getSignatureNamespace(): string
     {
-        $xmlDocument = parent::getXmlDocument();
-
-        assert($xmlDocument instanceof DOMDocument);
-
-        $signature = $xmlDocument->getElementsByTagName('Signature')->item(0);
-
-        if ($signature !== null && $signature->namespaceURI !== 'http://www.sii.cl/SiiDte') {
-            $xmlString = str_replace(
-                'xmlns="http://www.w3.org/2000/09/xmldsig#"',
-                'xmlns="http://www.sii.cl/SiiDte"',
-                $xmlDocument->saveXML()
-            );
-            $xmlDocument->loadXML($xmlString);
-        }
-
-        return $xmlDocument;
+        return 'http://www.sii.cl/SiiDte';
     }
 }
