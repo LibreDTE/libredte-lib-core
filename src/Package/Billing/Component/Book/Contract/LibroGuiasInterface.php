@@ -24,31 +24,31 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
-use Derafu\Backbone\Contract\ComponentInterface;
-
 /**
- * Interfaz para `BookComponent`.
+ * Interfaz para el Libro de Guías de Despacho.
+ *
+ * Producido por `LibroGuiasWorker`. El resumen del período distingue entre
+ * guías de venta (TpoOper=1) y guías de traslado (TpoOper>1).
  */
-interface BookComponentInterface extends ComponentInterface
+interface LibroGuiasInterface extends BookInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
+     * Entrega el resumen del período del libro de guías.
      *
-     * @return LoaderWorkerInterface
+     * Incluye contadores y montos de guías de venta, guías anuladas (folio
+     * anulado y guía anulada) y guías de traslado agrupadas por `TpoOper`.
+     *
+     * @return array<string, mixed>
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
+    public function getResumen(): array;
 
     /**
-     * Entrega el worker que construye el XML del libro.
+     * Entrega el folio de notificación asignado por el SII al libro.
      *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
+     * Solo aplica cuando `TipoEnvio = 'ESPECIAL'`. En los demás casos
+     * retorna `null`.
      *
-     * @return ValidatorWorkerInterface
+     * @return int|null
      */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function getFolioNotificacion(): ?int;
 }

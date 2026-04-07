@@ -37,6 +37,32 @@ services:
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingPartiesComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\TradingPartiesComponent
 
+    # Workers del componente "billing.book".
+    libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.book.loader#strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Book\Worker\BuilderWorker
+        arguments:
+            $strategies: !tagged_iterator { tag: 'billing.book.builder#strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Book\Worker\ValidatorWorker
+
+    # Estrategias del worker "billing.book.loader".
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroVentas\ArrayLoaderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroCompras\ArrayLoaderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroBoletas\ArrayLoaderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias\ArrayLoaderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias\ArrayLoaderStrategy: ~
+
+    # Estrategias del worker "billing.book.builder".
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroVentas\BuilderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroCompras\BuilderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroBoletas\BuilderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroGuias\BuilderStrategy: ~
+    libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\ResumenVentasDiarias\BuilderStrategy: ~
+
     # Workers del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker

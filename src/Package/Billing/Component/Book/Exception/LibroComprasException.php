@@ -22,33 +22,11 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
-
-use Derafu\Backbone\Contract\ComponentInterface;
+namespace libredte\lib\Core\Package\Billing\Component\Book\Exception;
 
 /**
- * Interfaz para `BookComponent`.
+ * Excepción general para los libros de compras.
  */
-interface BookComponentInterface extends ComponentInterface
+class LibroComprasException extends BookException
 {
-    /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
-     */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
 }

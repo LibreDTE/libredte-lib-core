@@ -22,33 +22,27 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
-
-use Derafu\Backbone\Contract\ComponentInterface;
+namespace libredte\lib\Core\Package\Billing\Component\Book\Enum;
 
 /**
- * Interfaz para `BookComponent`.
+ * Tipos de operación de los libros.
+ *
  */
-interface BookComponentInterface extends ComponentInterface
+enum TipoOperacion: string
 {
-    /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
-     */
-    public function getLoaderWorker(): LoaderWorkerInterface;
+    case VENTA = 'VENTA';
+    case COMPRA = 'COMPRA';
 
     /**
-     * Entrega el worker que construye el XML del libro.
+     * Retorna el tipo de libro correspondiente a la operación.
      *
-     * @return BuilderWorkerInterface
+     * @return TipoLibro
      */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function getTipoLibro(): TipoLibro
+    {
+        return match ($this) {
+            self::VENTA => TipoLibro::VENTAS,
+            self::COMPRA => TipoLibro::COMPRAS,
+        };
+    }
 }

@@ -22,33 +22,27 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Backbone\Attribute\Strategy;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
 
 /**
- * Interfaz para `BookComponent`.
+ * Estrategia `resumen_ventas_diarias.array` del `LoaderWorker`.
+ *
+ * Para el RVD (ConsumoFolios) los detalles se usan directamente sin
+ * normalización previa: el BuilderWorker los procesa en `calcularResumen()`.
  */
-interface BookComponentInterface extends ComponentInterface
+#[Strategy(name: 'resumen_ventas_diarias.array', worker: 'loader', component: 'book', package: 'billing')]
+class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
+     * {@inheritDoc}
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function load(BookBagInterface $bag): BookBagInterface
+    {
+        return $bag;
+    }
 }

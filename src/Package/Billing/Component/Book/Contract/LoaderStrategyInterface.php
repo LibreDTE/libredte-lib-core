@@ -24,31 +24,26 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 
 /**
- * Interfaz para `BookComponent`.
+ * Interfaz para las estrategias del `LoaderWorker`.
+ *
+ * Cada estrategia sabe leer un formato de entrada específico para un tipo de
+ * libro determinado, normaliza los detalles crudos y retorna el bag actualizado.
+ *
+ * Los nombres de estrategia siguen el patrón `{tipo}.{formato}`, por ejemplo:
+ *   - `libro_ventas.array`
+ *   - `libro_compras.csv`
+ *   - `libro_guias.xml`
  */
-interface BookComponentInterface extends ComponentInterface
+interface LoaderStrategyInterface extends StrategyInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
+     * Carga y normaliza los detalles del bag según el formato de entrada.
      *
-     * @return LoaderWorkerInterface
+     * @param BookBagInterface $bag Bag con detalles crudos.
+     * @return BookBagInterface El mismo bag con detalles normalizados.
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function load(BookBagInterface $bag): BookBagInterface;
 }

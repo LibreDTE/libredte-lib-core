@@ -38,12 +38,12 @@ class AutorizacionDte implements AutorizacionDteInterface
     /**
      * Constructor de la entidad.
      *
-     * @param string $fechaResolucion Fecha asignada por SII a la resolución.
-     * @param int $numeroResolucion Número de resolución.
+     * @param string $fecha_resolucion Fecha asignada por SII a la resolución.
+     * @param int $numero_resolucion Número de resolución.
      */
     public function __construct(
-        private string $fechaResolucion,
-        private int $numeroResolucion = 0
+        private string $fecha_resolucion,
+        private int $numero_resolucion = 0
     ) {
     }
 
@@ -52,7 +52,7 @@ class AutorizacionDte implements AutorizacionDteInterface
      */
     public function getFechaResolucion(): string
     {
-        return $this->fechaResolucion;
+        return $this->fecha_resolucion;
     }
 
     /**
@@ -60,7 +60,7 @@ class AutorizacionDte implements AutorizacionDteInterface
      */
     public function getNumeroResolucion(): int
     {
-        return $this->numeroResolucion;
+        return $this->numero_resolucion;
     }
 
     /**
@@ -68,7 +68,7 @@ class AutorizacionDte implements AutorizacionDteInterface
      */
     public function getAmbiente(): SiiAmbiente
     {
-        return $this->numeroResolucion === 0
+        return $this->numero_resolucion === 0
             ? SiiAmbiente::PRODUCCION
             : SiiAmbiente::CERTIFICACION
         ;

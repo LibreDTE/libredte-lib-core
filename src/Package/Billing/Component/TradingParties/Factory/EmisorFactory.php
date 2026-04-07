@@ -55,11 +55,22 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
 
         $emisor = Factory::create($normalized, $this->class);
 
-        if (!empty($data['autorizacionDte'])) {
+        $autorizacion_dte = $data['autorizacion_dte']
+            ?? $data['autorizacionDte']
+            ?? null
+        ;
+
+        if (!empty($autorizacion_dte)) {
             $emisor->setAutorizacionDte(
                 new AutorizacionDte(
-                    $data['autorizacionDte']['fechaResolucion'] ?? '',
-                    (int) ($data['autorizacionDte']['numeroResolucion'] ?? 0)
+                    $autorizacion_dte['fecha_resolucion']
+                        ?? $autorizacion_dte['FchResol']
+                        ?? '',
+                    (int) (
+                        $autorizacion_dte['numero_resolucion']
+                        ?? $autorizacion_dte['NroResol']
+                        ?? 0
+                    )
                 )
             );
         }

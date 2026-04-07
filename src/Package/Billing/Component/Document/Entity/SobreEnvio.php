@@ -145,9 +145,9 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getAutorizacionDte(): AutorizacionDteInterface
     {
-        $fechaResolucion = $this->xmlDocument->query('//SetDTE/Caratula/FchResol');
+        $fecha_resolucion = $this->xmlDocument->query('//SetDTE/Caratula/FchResol');
 
-        if ($fechaResolucion === null) {
+        if ($fecha_resolucion === null) {
             throw new XmlQueryException(
                 'El sobre de envío no tiene una fecha de resolución asignada en el XML.',
                 xmlDocument: $this->xmlDocument,
@@ -155,9 +155,9 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        $numeroResolucion = $this->xmlDocument->query('//SetDTE/Caratula/NroResol');
+        $numero_resolucion = $this->xmlDocument->query('//SetDTE/Caratula/NroResol');
 
-        if ($numeroResolucion === null) {
+        if ($numero_resolucion === null) {
             throw new XmlQueryException(
                 'El sobre de envío no tiene un número de resolución asignado en el XML.',
                 xmlDocument: $this->xmlDocument,
@@ -165,7 +165,7 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return new AutorizacionDte($fechaResolucion, (int) $numeroResolucion);
+        return new AutorizacionDte($fecha_resolucion, (int) $numero_resolucion);
     }
 
     /**

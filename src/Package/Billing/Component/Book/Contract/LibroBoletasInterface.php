@@ -24,31 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
-use Derafu\Backbone\Contract\ComponentInterface;
-
 /**
- * Interfaz para `BookComponent`.
+ * Interfaz para el Libro de Boletas Electrónicas.
+ *
+ * Producido por `LibroBoletasWorker`. El resumen del período se agrupa por
+ * tipo de documento (`TpoDoc`) y tipo de servicio (`TpoServ`).
  */
-interface BookComponentInterface extends ComponentInterface
+interface LibroBoletasInterface extends BookInterface
 {
-    /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
-     */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
 }

@@ -24,31 +24,24 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use Derafu\Backbone\Contract\WorkerInterface;
 
 /**
- * Interfaz para `BookComponent`.
+ * Interfaz para el worker `billing.book.builder`.
+ *
+ * Responsable de construir el XML y la entidad resultante de cualquier tipo de
+ * libro tributario a partir del bag con detalles normalizados.
+ *
+ * Selecciona la estrategia usando `BookBagInterface::getTipo()` directamente,
+ * ya que no depende del formato de origen (eso es responsabilidad del loader).
  */
-interface BookComponentInterface extends ComponentInterface
+interface BuilderWorkerInterface extends WorkerInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
+     * Construye la entidad libro a partir del bag normalizado.
      *
-     * @return LoaderWorkerInterface
+     * @param BookBagInterface $bag Bag con detalles ya normalizados.
+     * @return BookInterface Entidad libro resultante con su XML.
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function build(BookBagInterface $bag): BookInterface;
 }

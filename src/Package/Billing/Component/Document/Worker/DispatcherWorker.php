@@ -71,9 +71,9 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
                     'password' => '',
                 ],
                 'emisor' => [
-                    'autorizacionDte' => [
-                        'fechaResolucion' => '2014-08-22',
-                        'numeroResolucion' => 80,
+                    'autorizacion_dte' => [
+                        'fecha_resolucion' => '2014-08-22',
+                        'numero_resolucion' => 80,
                     ],
                 ],
             ],

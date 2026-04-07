@@ -67,7 +67,7 @@ class Emisor extends Contribuyente implements EmisorInterface
      *
      * @var AutorizacionDteInterface|null
      */
-    private ?AutorizacionDteInterface $autorizacionDte = null;
+    private ?AutorizacionDteInterface $autorizacion_dte = null;
 
     /**
      * Logo del emisor.
@@ -93,7 +93,7 @@ class Emisor extends Contribuyente implements EmisorInterface
      * SII.
      * @param string|null $vendedor Nombre o código del vendedor que está
      * representando al emisor.
-     * @param AutorizacionDteInterface|null $autorizacionDte Información de la
+     * @param AutorizacionDteInterface|null $autorizacion_dte Información de la
      * autorización que da el SII para ser emisor de documentos tributarios
      * electrónicos.
      * @param string|null $logo Logo del emisor.
@@ -111,7 +111,7 @@ class Emisor extends Contribuyente implements EmisorInterface
         ?string $sucursal = null,
         ?int $codigo_sucursal = null,
         ?string $vendedor = null,
-        ?AutorizacionDteInterface $autorizacionDte = null,
+        ?AutorizacionDteInterface $autorizacion_dte = null,
         ?string $logo = null,
     ) {
         parent::__construct(
@@ -152,8 +152,8 @@ class Emisor extends Contribuyente implements EmisorInterface
             $this->setVendedor($vendedor);
         }
 
-        if ($autorizacionDte !== null) {
-            $this->setAutorizacionDte($autorizacionDte);
+        if ($autorizacion_dte !== null) {
+            $this->setAutorizacionDte($autorizacion_dte);
         }
 
         if ($logo !== null) {
@@ -278,9 +278,9 @@ class Emisor extends Contribuyente implements EmisorInterface
     /**
      * {@inheritDoc}
      */
-    public function setAutorizacionDte(?AutorizacionDteInterface $autorizacionDte): static
+    public function setAutorizacionDte(?AutorizacionDteInterface $autorizacion_dte): static
     {
-        $this->autorizacionDte = $autorizacionDte;
+        $this->autorizacion_dte = $autorizacion_dte;
 
         return $this;
     }
@@ -290,7 +290,7 @@ class Emisor extends Contribuyente implements EmisorInterface
      */
     public function getAutorizacionDte(): ?AutorizacionDteInterface
     {
-        return $this->autorizacionDte;
+        return $this->autorizacion_dte;
     }
 
     /**

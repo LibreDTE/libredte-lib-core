@@ -27,18 +27,29 @@ namespace libredte\lib\Core\Package\Billing\Component\Book;
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface;
 
 /**
  * Componente "billing.book".
  *
- * Este componente se encarga de la gestión de libros de ventas y compras.
+ * Gestión de libros y registros tributarios electrónicos:
+ * Libro de Ventas, Libro de Compras, Libro de Boletas, Libro de Guías de
+ * Despacho y Resumen de Ventas Diarias (ConsumoFolios).
+ *
+ * El flujo principal usa dos workers en secuencia:
+ *   1. `LoaderWorker`: normaliza los datos de entrada según tipo y formato.
+ *   2. `BuilderWorker`: construye el XML y retorna la entidad resultante.
  */
 #[Component(name: 'book', package: 'billing')]
 class BookComponent extends AbstractComponent implements BookComponentInterface
 {
     public function __construct(
+        private LoaderWorkerInterface $loaderWorker,
+        private BuilderWorkerInterface $builderWorker,
+        private ValidatorWorkerInterface $validatorWorker,
     ) {
-        // TODO: Agregar workers para inyección de dependencias.
     }
 
     /**
@@ -47,7 +58,33 @@ class BookComponent extends AbstractComponent implements BookComponentInterface
     public function getWorkers(): array
     {
         return [
-            // TODO: Agregar workers.
+            'loader' => $this->loaderWorker,
+            'builder' => $this->builderWorker,
+            'validator' => $this->validatorWorker,
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLoaderWorker(): LoaderWorkerInterface
+    {
+        return $this->loaderWorker;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBuilderWorker(): BuilderWorkerInterface
+    {
+        return $this->builderWorker;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getValidatorWorker(): ValidatorWorkerInterface
+    {
+        return $this->validatorWorker;
     }
 }

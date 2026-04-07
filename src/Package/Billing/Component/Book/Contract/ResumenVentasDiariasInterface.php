@@ -24,31 +24,41 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
-use Derafu\Backbone\Contract\ComponentInterface;
-
 /**
- * Interfaz para `BookComponent`.
+ * Interfaz para el Resumen de Ventas Diarias (RVD).
+ *
+ * Anteriormente denominado Consumo de Folios (RCOF). Producido por
+ * `ResumenVentasDiariasWorker`.
+ *
+ * El XML resultante usa el tag raíz `<ConsumoFolios>` por compatibilidad con
+ * el esquema `ConsumoFolio_v10.xsd` del SII.
  */
-interface BookComponentInterface extends ComponentInterface
+interface ResumenVentasDiariasInterface extends BookInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
+     * Entrega la fecha del primer documento incluido en el registro.
      *
-     * @return LoaderWorkerInterface
+     * Se calcula automáticamente a partir del campo `FchDoc` de los detalles.
+     *
+     * @return string Fecha en formato `YYYY-MM-DD`.
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
+    public function getFechaInicial(): string;
 
     /**
-     * Entrega el worker que construye el XML del libro.
+     * Entrega la fecha del último documento incluido en el registro.
      *
-     * @return BuilderWorkerInterface
+     * Se calcula automáticamente a partir del campo `FchDoc` de los detalles.
+     *
+     * @return string Fecha en formato `YYYY-MM-DD`.
      */
-    public function getBuilderWorker(): BuilderWorkerInterface;
+    public function getFechaFinal(): string;
 
     /**
-     * Entrega el worker que valida el esquema y la firma del libro.
+     * Entrega el número de secuencia del envío.
      *
-     * @return ValidatorWorkerInterface
+     * Corresponde al campo `SecEnvio` de la carátula.
+     *
+     * @return int
      */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+    public function getSecuencia(): int;
 }

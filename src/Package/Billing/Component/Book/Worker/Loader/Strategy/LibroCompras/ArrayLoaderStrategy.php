@@ -22,33 +22,18 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroCompras;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use Derafu\Backbone\Attribute\Strategy;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractLibroComprasVentasArrayLoaderStrategy;
 
 /**
- * Interfaz para `BookComponent`.
+ * Estrategia `libro_compras.array` del `LoaderWorker`.
+ *
+ * Normaliza los detalles del Libro de Compras desde un arreglo PHP.
  */
-interface BookComponentInterface extends ComponentInterface
+#[Strategy(name: 'libro_compras.array', worker: 'loader', component: 'book', package: 'billing')]
+class ArrayLoaderStrategy extends AbstractLibroComprasVentasArrayLoaderStrategy implements LoaderStrategyInterface
 {
-    /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
-     */
-    public function getLoaderWorker(): LoaderWorkerInterface;
-
-    /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
-     */
-    public function getBuilderWorker(): BuilderWorkerInterface;
-
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
 }

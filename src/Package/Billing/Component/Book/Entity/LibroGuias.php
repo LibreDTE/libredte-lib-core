@@ -22,33 +22,32 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
+use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroGuiasInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 
 /**
- * Interfaz para `BookComponent`.
+ * Entidad que representa un Libro de Guías de Despacho.
+ *
+ * El resumen del período distingue entre guías de venta (TpoOper=1),
+ * guías de traslado (TpoOper>1) y guías anuladas.
  */
-interface BookComponentInterface extends ComponentInterface
+class LibroGuias extends AbstractBook implements LibroGuiasInterface
 {
     /**
-     * Entrega el worker que carga y normaliza los datos de entrada.
-     *
-     * @return LoaderWorkerInterface
+     * Tipo de libro.
      */
-    public function getLoaderWorker(): LoaderWorkerInterface;
+    protected TipoLibro $tipo = TipoLibro::GUIAS;
 
     /**
-     * Entrega el worker que construye el XML del libro.
-     *
-     * @return BuilderWorkerInterface
+     * {@inheritDoc}
      */
-    public function getBuilderWorker(): BuilderWorkerInterface;
+    public function getFolioNotificacion(): ?int
+    {
+        $folio = $this->xmlDocument->query('//Caratula/FolioNotificacion');
 
-    /**
-     * Entrega el worker que valida el esquema y la firma del libro.
-     *
-     * @return ValidatorWorkerInterface
-     */
-    public function getValidatorWorker(): ValidatorWorkerInterface;
+        return $folio !== null ? (int) $folio : null;
+    }
 }
