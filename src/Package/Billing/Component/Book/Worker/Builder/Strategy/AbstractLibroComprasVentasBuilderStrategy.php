@@ -114,7 +114,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
 
         $encoder = new XmlEncoder();
         $xmlDocument = $encoder->encode([
-            'LibroComprasVentas' => [
+            'LibroCompraVenta' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
                     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',

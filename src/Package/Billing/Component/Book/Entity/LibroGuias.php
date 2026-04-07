@@ -46,7 +46,7 @@ class LibroGuias extends AbstractBook implements LibroGuiasInterface
      */
     public function getFolioNotificacion(): ?int
     {
-        $folio = $this->xmlDocument->query('//Caratula/FolioNotificacion');
+        $folio = $this->getXmlDocument()->query('//Caratula/FolioNotificacion');
 
         return $folio !== null ? (int) $folio : null;
     }

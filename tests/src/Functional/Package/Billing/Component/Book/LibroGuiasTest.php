@@ -24,24 +24,54 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
+use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Selector\Selector;
+use Derafu\Support\Arr;
 use libredte\lib\Core\Application;
+use libredte\lib\Core\Package\Billing\BillingPackage;
+use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
+use libredte\lib\Core\Package\Billing\Component\Book\BookComponent;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroGuiasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Support\BookBag;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroGuias\BuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\BuilderWorker;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias\ArrayLoaderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\ValidatorWorker;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(LoaderWorker::class)]
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(ValidatorWorker::class)]
+#[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
+#[CoversClass(BillingPackage::class)]
+#[CoversClass(AbstractBook::class)]
+#[CoversClass(BookComponent::class)]
+#[CoversClass(TipoLibro::class)]
+#[CoversClass(BookBag::class)]
+#[CoversClass(BuilderStrategy::class)]
+#[CoversClass(ArrayLoaderStrategy::class)]
+#[CoversClass(AbstractContribuyenteFactory::class)]
+#[CoversClass(AutorizacionDte::class)]
+#[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
+#[CoversClass(EmisorFactory::class)]
 class LibroGuiasTest extends TestCase
 {
     private LoaderWorkerInterface $loader;
@@ -50,6 +80,10 @@ class LibroGuiasTest extends TestCase
 
     private ValidatorWorkerInterface $validator;
 
+    private CertificateInterface $certificate;
+
+    private EmisorInterface $emisor;
+
     protected function setUp(): void
     {
         $book = Application::getInstance()
@@ -57,195 +91,68 @@ class LibroGuiasTest extends TestCase
             ->getBillingPackage()
             ->getBookComponent()
         ;
+
         $this->loader = $book->getLoaderWorker();
         $this->builder = $book->getBuilderWorker();
         $this->validator = $book->getValidatorWorker();
+
+        $this->certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
+        $this->emisor = (new EmisorFactory())->create([
+            'rut' => '76192083-9',
+            'razon_social' => 'SASCO SpA',
+            'autorizacion_dte' => [
+                'fecha_resolucion' => '2014-08-22',
+                'numero_resolucion' => 80,
+            ],
+        ]);
     }
 
-    /**
-     * Verifica que el libro de guías de despacho se construya correctamente
-     * a partir de guías de venta y de traslado.
-     */
-    public function testBuildLibroGuiasConGuiasVentaYTraslado(): void
+    public static function dataProviderForTestFromArraySource(): array
     {
-        $bag = new BookBag(
-            tipo: TipoLibro::GUIAS,
-            caratula: [
-                'RutEmisorLibro'    => '76192083-9',
-                'RutEnvia'          => '76192083-9',
-                'PeriodoTributario' => '2024-01',
-                'FchResol'          => '2014-08-22',
-                'NroResol'          => 80,
-                'TipoLibro'         => 'ESPECIAL',
-                'TipoEnvio'         => 'TOTAL',
-            ],
-            detalle: [
-                [
-                    'Folio'    => 1,
-                    'FchDoc'   => '2024-01-10',
-                    'RUTDoc'   => '12345678-9',
-                    'RznSoc'   => 'Cliente Venta SA',
-                    'TpoOper'  => 1,
-                    'MntNeto'  => 100000,
-                    'TasaImp'  => 19,
-                    'IVA'      => 19000,
-                    'MntTotal' => 119000,
-                ],
-                [
-                    'Folio'    => 2,
-                    'FchDoc'   => '2024-01-15',
-                    'RUTDoc'   => '12345678-9',
-                    'RznSoc'   => 'Bodega Propia',
-                    'TpoOper'  => 5,
-                    'MntNeto'  => 50000,
-                    'TasaImp'  => 0,
-                    'IVA'      => 0,
-                    'MntTotal' => 50000,
-                ],
-            ]
-        );
-
-        $bag = $this->loader->load($bag);
-        $libro = $this->builder->build($bag);
-
-        $this->assertInstanceOf(LibroGuiasInterface::class, $libro);
-        $this->assertStringContainsString('<LibroGuia', $libro->getXml());
-        $this->assertStringContainsString('<TotGuiaVenta>', $libro->getXml());
-        $this->assertStringContainsString('<TotTraslado>', $libro->getXml());
-        $this->assertSame(2, $libro->countDetalle());
+        return require self::getFixturesPath('books/libro_guias.php');
     }
 
-    /**
-     * Verifica que las guías anuladas se registren en el resumen sin sumar al
-     * monto total de ventas.
-     */
-    public function testBuildLibroGuiasConGuiasAnuladas(): void
+    #[DataProvider('dataProviderForTestFromArraySource')]
+    public function testFromArraySource($input, $expected): void
     {
+        // Construir la bolsa de trabajo con los datos del libro.
         $bag = new BookBag(
             tipo: TipoLibro::GUIAS,
-            caratula: [
-                'RutEmisorLibro'    => '76192083-9',
-                'RutEnvia'          => '76192083-9',
-                'PeriodoTributario' => '2024-01',
-                'FchResol'          => '2014-08-22',
-                'NroResol'          => 80,
-                'TipoLibro'         => 'ESPECIAL',
-                'TipoEnvio'         => 'TOTAL',
-            ],
-            detalle: [
-                [
-                    'Folio'    => 1,
-                    'FchDoc'   => '2024-01-10',
-                    'RUTDoc'   => '12345678-9',
-                    'TpoOper'  => 1,
-                    'MntNeto'  => 100000,
-                    'TasaImp'  => 19,
-                    'IVA'      => 19000,
-                    'MntTotal' => 119000,
-                ],
-                [
-                    'Folio'    => 2,
-                    'Anulado'  => 1,
-                    'FchDoc'   => '2024-01-11',
-                    'RUTDoc'   => '12345678-9',
-                    'MntTotal' => 0,
-                ],
-            ]
+            caratula: $input['caratula'] ?? [],
+            detalle: $input['detalle'] ?? [],
+            certificate: $this->certificate,
+            emisor: $this->emisor,
         );
 
+        // Cargar los datos de entrada y normalizarlos.
         $bag = $this->loader->load($bag);
-        $libro = $this->builder->build($bag);
 
-        $this->assertStringContainsString('<TotFolAnulado>', $libro->getXml());
-    }
+        // Construir el libro de guías.
+        $book = $this->builder->build($bag);
+        assert($book instanceof LibroGuiasInterface);
+        $this->assertInstanceOf(LibroGuiasInterface::class, $book);
 
-    /**
-     * Verifica que el monto total de ventas se calcule correctamente en el
-     * resumen del período.
-     */
-    public function testBuildLibroGuiasCalculaMontosVentaCorrectamente(): void
-    {
-        $bag = new BookBag(
-            tipo: TipoLibro::GUIAS,
-            caratula: [
-                'RutEmisorLibro'    => '76192083-9',
-                'RutEnvia'          => '76192083-9',
-                'PeriodoTributario' => '2024-01',
-                'FchResol'          => '2014-08-22',
-                'NroResol'          => 80,
-                'TipoLibro'         => 'ESPECIAL',
-                'TipoEnvio'         => 'TOTAL',
-            ],
-            detalle: [
-                [
-                    'Folio'    => 1,
-                    'FchDoc'   => '2024-01-10',
-                    'RUTDoc'   => '12345678-9',
-                    'TpoOper'  => 1,
-                    'MntNeto'  => 100000,
-                    'TasaImp'  => 19,
-                    'IVA'      => 19000,
-                    'MntTotal' => 119000,
-                ],
-                [
-                    'Folio'    => 2,
-                    'FchDoc'   => '2024-01-20',
-                    'RUTDoc'   => '98765432-1',
-                    'TpoOper'  => 1,
-                    'MntNeto'  => 80000,
-                    'TasaImp'  => 19,
-                    'IVA'      => 15200,
-                    'MntTotal' => 95200,
-                ],
-            ]
-        );
-
-        $bag = $this->loader->load($bag);
-        $libro = $this->builder->build($bag);
-
-        $this->assertStringContainsString('<TotGuiaVenta>2</TotGuiaVenta>', $libro->getXml());
-        $this->assertStringContainsString('<TotMntGuiaVta>214200</TotMntGuiaVta>', $libro->getXml());
-    }
-
-    /**
-     * Verifica que el libro de guías generado supera la validación de esquema
-     * XSD y que la firma electrónica es válida.
-     */
-    public function testValidarEsquemaYFirmaLibroGuias(): void
-    {
-        $certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
-
-        $bag = new BookBag(
-            tipo: TipoLibro::GUIAS,
-            caratula: [
-                'RutEmisorLibro'    => '76192083-9',
-                'RutEnvia'          => '76192083-9',
-                'PeriodoTributario' => '2024-01',
-                'FchResol'          => '2014-08-22',
-                'NroResol'          => 80,
-                'TipoLibro'         => 'ESPECIAL',
-                'TipoEnvio'         => 'TOTAL',
-            ],
-            detalle: [
-                [
-                    'Folio'    => 1,
-                    'FchDoc'   => '2024-01-10',
-                    'RUTDoc'   => '12345678-9',
-                    'TpoOper'  => 1,
-                    'MntNeto'  => 100000,
-                    'TasaImp'  => 19,
-                    'IVA'      => 19000,
-                    'MntTotal' => 119000,
-                ],
-            ],
-            certificate: $certificate,
-        );
-
-        $bag = $this->loader->load($bag);
-        $libro = $this->builder->build($bag);
-
+        // Verifica que el libro de guías generado supera la validación de
+        // esquema XSD y que la firma electrónica es válida.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
-        $this->assertTrue($result->isValid());
+        $this->assertTrue(
+            $result->isValid(),
+            $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
+        );
+
+        // Realizar las verificaciones sobre el contenido del libro generado.
+        $data = $book->toArray();
+        foreach ($expected as $key => $expectedValue) {
+            $actualValue = Selector::get($data, $key);
+            if ($actualValue !== null) {
+                if (!is_array($expectedValue)) {
+                    $actualValue = Arr::cast([$actualValue])[0];
+                } else {
+                    $actualValue = Arr::cast($actualValue);
+                }
+            }
+            $this->assertSame($expectedValue, $actualValue, "Key: $key");
+        }
     }
 }

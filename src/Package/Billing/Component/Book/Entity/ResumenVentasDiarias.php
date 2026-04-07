@@ -48,7 +48,7 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getId(): string
     {
-        return (string) ($this->xmlDocument->query('//DocumentoConsumoFolios/@ID') ?? '');
+        return (string) ($this->getXmlDocument()->query('//DocumentoConsumoFolios/@ID') ?? '');
     }
 
     /**
@@ -56,7 +56,7 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaInicial(): string
     {
-        return (string) ($this->xmlDocument->query('//Caratula/FchInicio') ?? '');
+        return (string) ($this->getXmlDocument()->query('//Caratula/FchInicio') ?? '');
     }
 
     /**
@@ -64,7 +64,7 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaFinal(): string
     {
-        return (string) ($this->xmlDocument->query('//Caratula/FchFinal') ?? '');
+        return (string) ($this->getXmlDocument()->query('//Caratula/FchFinal') ?? '');
     }
 
     /**
@@ -72,6 +72,6 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getSecuencia(): int
     {
-        return (int) ($this->xmlDocument->query('//Caratula/SecEnvio') ?? 1);
+        return (int) ($this->getXmlDocument()->query('//Caratula/SecEnvio') ?? 1);
     }
 }

@@ -43,6 +43,8 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
      */
     public function load(BookBagInterface $bag): BookBagInterface
     {
+        $bag->setCaratula($this->normalizarCaratula($bag));
+
         $detalles = $bag->getDetalle();
 
         foreach ($detalles as &$detalle) {
@@ -51,6 +53,27 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
         unset($detalle);
 
         return $bag->setDetalle($detalles);
+    }
+
+    /**
+     * Normaliza la carátula del libro de guías de despacho.
+     *
+     * @param BookBagInterface $bag
+     * @return array
+     */
+    private function normalizarCaratula(BookBagInterface $bag): array
+    {
+        return array_merge([
+            'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
+            'RutEnvia'          => $bag->getCertificate()?->getId() ?? false,
+            'PeriodoTributario' => date('Y-m'),
+            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? false,
+            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? false,
+            'TipoLibro'         => 'ESPECIAL',
+            'TipoEnvio'         => 'TOTAL',
+            'NroSegmento'       => false,
+            'FolioNotificacion' => 1,
+        ], $bag->getCaratula());
     }
 
     /**

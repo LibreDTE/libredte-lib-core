@@ -26,6 +26,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strateg
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
+use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
 
 /**
  * Estrategia base de carga desde array para Libro de Compras/Ventas.
@@ -43,6 +45,8 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStr
      */
     public function load(BookBagInterface $bag): BookBagInterface
     {
+        $bag->setCaratula($this->normalizarCaratula($bag));
+
         $detalles = $bag->getDetalle();
 
         foreach ($detalles as &$detalle) {
@@ -51,6 +55,29 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStr
         unset($detalle);
 
         return $bag->setDetalle($detalles);
+    }
+
+    /**
+     * Normaliza la carátula del libro de compra/venta.
+     *
+     * @param BookBagInterface $bag
+     * @return array
+     */
+    private function normalizarCaratula(BookBagInterface $bag): array
+    {
+        return array_merge([
+            'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
+            'RutEnvia'          => $bag->getCertificate()?->getId() ?? false,
+            'PeriodoTributario' => date('Y-m'),
+            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? false,
+            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? false,
+            'TipoOperacion'     => $bag->getTipo() === TipoLibro::VENTAS
+                ? TipoOperacion::VENTA->value
+                : TipoOperacion::COMPRA->value
+            ,
+            'TipoLibro'         => 'MENSUAL',
+            'TipoEnvio'         => 'TOTAL',
+        ], $bag->getCaratula());
     }
 
     /**

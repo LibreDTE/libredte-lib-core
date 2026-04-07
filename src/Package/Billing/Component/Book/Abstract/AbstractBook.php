@@ -110,8 +110,10 @@ abstract class AbstractBook implements BookInterface
      */
     public function getResumen(): array
     {
-        $resumen = (array) ($this->getXmlDocument()->query(
-            $this->getTipo()->getXpathResumen()) ?? []
+        $resumen = (array) (
+            $this->getXmlDocument()->query(
+                $this->getTipo()->getXpathResumen()
+            ) ?? []
         );
 
         if (!empty($resumen) && !isset($resumen[0])) {

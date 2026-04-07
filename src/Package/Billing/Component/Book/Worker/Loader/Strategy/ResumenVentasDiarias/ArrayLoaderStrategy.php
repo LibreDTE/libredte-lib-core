@@ -43,6 +43,48 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
      */
     public function load(BookBagInterface $bag): BookBagInterface
     {
-        return $bag;
+        $bag->setCaratula($this->normalizarCaratula($bag));
+
+        $detalles = $bag->getDetalle();
+
+        foreach ($detalles as &$detalle) {
+            $this->normalizarDetalle($detalle);
+        }
+        unset($detalle);
+
+        return $bag->setDetalle($detalles);
+    }
+
+    /**
+     * Normaliza la carátula del resumen de ventas diarias.
+     *
+     * @param BookBagInterface $bag
+     * @return array
+     */
+    private function normalizarCaratula(BookBagInterface $bag): array
+    {
+        return array_merge([
+            'RutEmisor' => $bag->getEmisor()?->getRut() ?? false,
+            'RutEnvia' => $bag->getCertificate()?->getId() ?? false,
+            'FchResol' => $bag->getBookAuth()['FchResol'] ?? false,
+            'NroResol' => $bag->getBookAuth()['NroResol'] ?? false,
+            'FchInicio' => false,
+            'FchFinal' => false,
+            'Correlativo' => 1,
+            'SecEnvio' => 1,
+        ], $bag->getCaratula());
+    }
+
+    /**
+     * Normaliza un detalle del resumen de ventas diarias.
+     *
+     * @param array $detalle
+     * @return void
+     */
+    private function normalizarDetalle(array &$detalle): void
+    {
+        $detalle = array_merge([
+            // TODO: Normalizar detalle según lo que se usa en el BuilderStrategy.
+        ], $detalle);
     }
 }

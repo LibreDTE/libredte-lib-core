@@ -24,24 +24,56 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
+use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Selector\Selector;
+use Derafu\Support\Arr;
 use libredte\lib\Core\Application;
+use libredte\lib\Core\Package\Billing\BillingPackage;
+use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
+use libredte\lib\Core\Package\Billing\Component\Book\BookComponent;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ResumenVentasDiariasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Entity\ResumenVentasDiarias;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Support\BookBag;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\ResumenVentasDiarias\BuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\BuilderWorker;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias\ArrayLoaderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\ValidatorWorker;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
+use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
+use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(LoaderWorker::class)]
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(ValidatorWorker::class)]
+#[CoversClass(Application::class)]
+#[CoversClass(PackageRegistry::class)]
+#[CoversClass(BillingPackage::class)]
+#[CoversClass(AbstractBook::class)]
+#[CoversClass(BookComponent::class)]
+#[CoversClass(ResumenVentasDiarias::class)]
+#[CoversClass(TipoLibro::class)]
+#[CoversClass(BookBag::class)]
+#[CoversClass(BuilderStrategy::class)]
+#[CoversClass(ArrayLoaderStrategy::class)]
+#[CoversClass(AbstractContribuyenteFactory::class)]
+#[CoversClass(AutorizacionDte::class)]
+#[CoversClass(Contribuyente::class)]
+#[CoversClass(Emisor::class)]
+#[CoversClass(EmisorFactory::class)]
 class ResumenVentasDiariasTest extends TestCase
 {
     private LoaderWorkerInterface $loader;
@@ -50,6 +82,10 @@ class ResumenVentasDiariasTest extends TestCase
 
     private ValidatorWorkerInterface $validator;
 
+    private CertificateInterface $certificate;
+
+    private EmisorInterface $emisor;
+
     protected function setUp(): void
     {
         $book = Application::getInstance()
@@ -57,176 +93,68 @@ class ResumenVentasDiariasTest extends TestCase
             ->getBillingPackage()
             ->getBookComponent()
         ;
+
         $this->loader = $book->getLoaderWorker();
         $this->builder = $book->getBuilderWorker();
         $this->validator = $book->getValidatorWorker();
+
+        $this->certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
+        $this->emisor = (new EmisorFactory())->create([
+            'rut' => '76192083-9',
+            'razon_social' => 'SASCO SpA',
+            'autorizacion_dte' => [
+                'fecha_resolucion' => '2014-08-22',
+                'numero_resolucion' => 80,
+            ],
+        ]);
     }
 
-    /**
-     * Verifica que el RVD se construya correctamente a partir de boletas de
-     * un período de un día.
-     */
-    public function testBuildRvdConBoletasDeUnDia(): void
+    public static function dataProviderForTestFromArraySource(): array
     {
-        $bag = new BookBag(
-            tipo: TipoLibro::RVD,
-            caratula: [
-                'RutEmisor'  => '76192083-9',
-                'RutEnvia'   => '76192083-9',
-                'FchResol'   => '2014-08-22',
-                'NroResol'   => 80,
-                'Correlativo' => 1,
-                'SecEnvio'   => 1,
-            ],
-            detalle: [
-                [
-                    'TpoDoc'  => 39,
-                    'NroDoc'  => 1,
-                    'TasaImp' => 19,
-                    'FchDoc'  => '2024-01-10',
-                    'MntNeto' => 10000,
-                    'MntIVA'  => 1900,
-                    'MntTotal' => 11900,
-                ],
-                [
-                    'TpoDoc'  => 39,
-                    'NroDoc'  => 2,
-                    'TasaImp' => 19,
-                    'FchDoc'  => '2024-01-10',
-                    'MntNeto' => 5000,
-                    'MntIVA'  => 950,
-                    'MntTotal' => 5950,
-                ],
-                [
-                    'TpoDoc'  => 41,
-                    'NroDoc'  => 1,
-                    'TasaImp' => 0,
-                    'FchDoc'  => '2024-01-10',
-                    'MntExe'  => 2000,
-                    'MntTotal' => 2000,
-                ],
-            ]
-        );
-
-        $bag = $this->loader->load($bag);
-        $rvd = $this->builder->build($bag);
-
-        $this->assertInstanceOf(ResumenVentasDiariasInterface::class, $rvd);
-        $this->assertStringContainsString('<ConsumoFolios', $rvd->getXml());
-        $this->assertStringContainsString('<TipoDocumento>39</TipoDocumento>', $rvd->getXml());
-        $this->assertStringContainsString('<TipoDocumento>41</TipoDocumento>', $rvd->getXml());
-        $this->assertStringContainsString('<FoliosEmitidos>', $rvd->getXml());
-        $this->assertStringContainsString('<RangoUtilizados>', $rvd->getXml());
+        return require self::getFixturesPath('books/resumen_ventas_diarias.php');
     }
 
-    /**
-     * Verifica que las fechas de inicio y fin se calculen correctamente a
-     * partir de los documentos del detalle.
-     */
-    public function testBuildRvdCalculaFechasInicioYFin(): void
+    #[DataProvider('dataProviderForTestFromArraySource')]
+    public function testFromArraySource($input, $expected): void
     {
+        // Construir la bolsa de trabajo con los datos del resumen.
         $bag = new BookBag(
             tipo: TipoLibro::RVD,
-            caratula: [
-                'RutEmisor'   => '76192083-9',
-                'RutEnvia'    => '76192083-9',
-                'FchResol'    => '2014-08-22',
-                'NroResol'    => 80,
-                'Correlativo' => 1,
-                'SecEnvio'    => 1,
-            ],
-            detalle: [
-                [
-                    'TpoDoc'   => 39,
-                    'NroDoc'   => 5,
-                    'TasaImp'  => 19,
-                    'FchDoc'   => '2024-01-15',
-                    'MntTotal' => 11900,
-                ],
-                [
-                    'TpoDoc'   => 39,
-                    'NroDoc'   => 6,
-                    'TasaImp'  => 19,
-                    'FchDoc'   => '2024-01-20',
-                    'MntTotal' => 5950,
-                ],
-            ]
+            caratula: $input['caratula'] ?? [],
+            detalle: $input['detalle'] ?? [],
+            certificate: $this->certificate,
+            emisor: $this->emisor,
         );
 
+        // Cargar los datos de entrada y normalizarlos.
         $bag = $this->loader->load($bag);
-        $rvd = $this->builder->build($bag);
 
-        $this->assertStringContainsString('<FchInicio>2024-01-15</FchInicio>', $rvd->getXml());
-        $this->assertStringContainsString('<FchFinal>2024-01-20</FchFinal>', $rvd->getXml());
-    }
+        // Construir el resumen de ventas diarias.
+        $book = $this->builder->build($bag);
+        assert($book instanceof ResumenVentasDiariasInterface);
+        $this->assertInstanceOf(ResumenVentasDiariasInterface::class, $book);
 
-    /**
-     * Verifica que los folios se agrupen en rangos continuos correctamente
-     * en el resumen del RVD.
-     */
-    public function testBuildRvdAgrupaFoliosEnRangosContinuos(): void
-    {
-        $bag = new BookBag(
-            tipo: TipoLibro::RVD,
-            caratula: [
-                'RutEmisor'   => '76192083-9',
-                'RutEnvia'    => '76192083-9',
-                'FchResol'    => '2014-08-22',
-                'NroResol'    => 80,
-                'Correlativo' => 1,
-                'SecEnvio'    => 1,
-            ],
-            detalle: [
-                ['TpoDoc' => 39, 'NroDoc' => 1, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
-                ['TpoDoc' => 39, 'NroDoc' => 2, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
-                ['TpoDoc' => 39, 'NroDoc' => 3, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
-                // Folio 5 rompe el rango continuo (falta el 4).
-                ['TpoDoc' => 39, 'NroDoc' => 5, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
-            ]
-        );
-
-        $bag = $this->loader->load($bag);
-        $rvd = $this->builder->build($bag);
-
-        // Deben existir 2 rangos: [1-3] y [5-5].
-        $this->assertSame(2, substr_count($rvd->getXml(), '<Inicial>'));
-    }
-
-    /**
-     * Verifica que el RVD generado supera la validación de esquema XSD y que
-     * la firma electrónica es válida.
-     */
-    public function testValidarEsquemaYFirmaRvd(): void
-    {
-        $certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
-
-        $bag = new BookBag(
-            tipo: TipoLibro::RVD,
-            caratula: [
-                'RutEmisor'   => '76192083-9',
-                'RutEnvia'    => '76192083-9',
-                'FchResol'    => '2014-08-22',
-                'NroResol'    => 80,
-                'Correlativo' => 1,
-                'SecEnvio'    => 1,
-            ],
-            detalle: [
-                [
-                    'TpoDoc'   => 39,
-                    'NroDoc'   => 1,
-                    'TasaImp'  => 19,
-                    'FchDoc'   => '2024-01-10',
-                    'MntTotal' => 11900,
-                ],
-            ],
-            certificate: $certificate,
-        );
-
-        $bag = $this->loader->load($bag);
-        $rvd = $this->builder->build($bag);
-
+        // Verifica que el resumen generado supera la validación de esquema XSD
+        // y que la firma electrónica es válida.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
-        $this->assertTrue($result->isValid());
+        $this->assertTrue(
+            $result->isValid(),
+            $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
+        );
+
+        // Realizar las verificaciones sobre el contenido del resumen generado.
+        $data = $book->toArray();
+        foreach ($expected as $key => $expectedValue) {
+            $actualValue = Selector::get($data, $key);
+            if ($actualValue !== null) {
+                if (!is_array($expectedValue)) {
+                    $actualValue = Arr::cast([$actualValue])[0];
+                } else {
+                    $actualValue = Arr::cast($actualValue);
+                }
+            }
+            $this->assertSame($expectedValue, $actualValue, "Key: $key");
+        }
     }
 }

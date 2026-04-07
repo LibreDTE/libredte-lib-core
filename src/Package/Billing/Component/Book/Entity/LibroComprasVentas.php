@@ -55,7 +55,7 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
     public function getTipoOperacion(): TipoOperacion
     {
         $operacion = TipoOperacion::tryFrom(strtoupper(
-            (string) $this->xmlDocument->query('//Caratula/TipoOperacion')
+            (string) $this->getXmlDocument()->query('//Caratula/TipoOperacion')
         ));
 
         if ($operacion === null) {
