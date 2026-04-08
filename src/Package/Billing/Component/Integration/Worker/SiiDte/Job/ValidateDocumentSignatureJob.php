@@ -30,10 +30,11 @@ use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Date;
 use Derafu\Xml\Contract\XmlServiceInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiConsumeWebserviceException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiValidateDocumentSignatureException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentSignatureResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 
 /**
  * Clase para el envío de documentos al SII.
@@ -45,8 +46,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
 {
     public function __construct(
-        private AuthenticateJob $authenticateJob,
-        private ConsumeWebserviceJob $consumeWebserviceJob,
+        private SiiLazyWorkerInterface $siiLazyWorker,
         private XmlServiceInterface $xmlService
     ) {
     }
@@ -71,8 +71,8 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
      * @param string $signature Tag DTE/Signature/SignatureValue del XML.
-     * @return SiiValidateDocumentSignatureResponse
-     * @throws SiiValidateDocumentSignatureException En caso de error.
+     * @return ValidateDocumentSignatureResponse
+     * @throws ValidateDocumentSignatureException En caso de error.
      */
     public function validate(
         SiiRequestInterface $request,
@@ -83,7 +83,7 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
         int $total,
         string $recipient,
         string $signature
-    ): SiiValidateDocumentSignatureResponse {
+    ): ValidateDocumentSignatureResponse {
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         Rut::validate($company);
         Rut::validate($recipient);
@@ -93,14 +93,14 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
         // Validar fecha y convertir al formato del SII.
         $dateSii = Date::validateAndConvert($date, 'dmY');
         if ($dateSii === null) {
-            throw new SiiValidateDocumentSignatureException(sprintf(
+            throw new ValidateDocumentSignatureException(sprintf(
                 'La fecha %s del documento no es válida, debe tener formato AAAA-MM-DD.',
                 $date
             ));
         }
 
         // Obtener el token asociado al certificado digital.
-        $token = $this->authenticateJob->authenticate($request);
+        $token = $this->siiLazyWorker->authenticate($request);
 
         // Datos para la consulta.
         $requestData = [
@@ -118,14 +118,14 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
 
         // Consultar el estado del documento, incluyendo su firma, al SII.
         try {
-            $xmlResponse = $this->consumeWebserviceJob->sendRequest(
-                $request,
-                'QueryEstDteAv',
-                'getEstDteAv',
-                $requestData
+            $xmlResponse = $this->siiLazyWorker->consumeWebservice(
+                request: $request,
+                service: 'QueryEstDteAv',
+                function: 'getEstDteAv',
+                args: $requestData
             );
-        } catch (SiiConsumeWebserviceException $e) {
-            throw new SiiValidateDocumentSignatureException(sprintf(
+        } catch (ConsumeWebserviceException $e) {
+            throw new ValidateDocumentSignatureException(sprintf(
                 'No fue posible obtener el estado de la firma del documento T%dF%d de %d-%s desde el SII. %s',
                 $document,
                 $number,
@@ -138,7 +138,7 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
         // Armar estado del XML enviado.
         $responseData = $this->xmlService->decode($xmlResponse);
 
-        return new SiiValidateDocumentSignatureResponse(
+        return new ValidateDocumentSignatureResponse(
             $responseData,
             $requestData
         );

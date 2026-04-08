@@ -71,6 +71,11 @@ enum SiiAmbiente: int
         'default' => 'https://%s.sii.cl/DTEWS/%s.jws?WSDL',
         'QueryEstDteAv' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
         'wsDTECorreo' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
+        // El servicio del RCV usa servidores y rutas distintos al patrón DTEWS.
+        'registroreclamodteservice' => [
+            0 => 'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
+            1 => 'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
+        ],
     ];
 
     /**
@@ -106,6 +111,13 @@ enum SiiAmbiente: int
     public function getWsdl(string $servicio): string
     {
         $wsdl = self::WSDL_URLS[$servicio] ?? self::WSDL_URLS['default'];
+
+        // Algunos servicios (p. ej. el RCV) definen URLs completas por ambiente
+        // en vez de una plantilla con el nombre del servidor.
+        if (is_array($wsdl)) {
+            return $wsdl[$this->value];
+        }
+
         $servidor = $this->getServidor();
 
         return sprintf($wsdl, $servidor, $servicio);

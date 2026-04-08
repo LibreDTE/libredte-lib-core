@@ -30,10 +30,11 @@ use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Date;
 use Derafu\Xml\Contract\XmlServiceInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiConsumeWebserviceException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiValidateDocumentException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 
 /**
  * Clase para el envío de documentos al SII.
@@ -45,8 +46,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 class ValidateDocumentJob extends AbstractJob implements JobInterface
 {
     public function __construct(
-        private AuthenticateJob $authenticateJob,
-        private ConsumeWebserviceJob $consumeWebserviceJob,
+        private SiiLazyWorkerInterface $siiLazyWorker,
         private XmlServiceInterface $xmlService
     ) {
     }
@@ -69,8 +69,8 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
      * @param string $date Fecha de emisión del documento, formato: AAAA-MM-DD.
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
-     * @return SiiValidateDocumentResponse
-     * @throws SiiValidateDocumentException En caso de error.
+     * @return ValidateDocumentResponse
+     * @throws ValidateDocumentException En caso de error.
      */
     public function validate(
         SiiRequestInterface $request,
@@ -80,10 +80,10 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         string $date,
         int $total,
         string $recipient
-    ): SiiValidateDocumentResponse {
+    ): ValidateDocumentResponse {
         // Validar que se haya proporcionado un certificado digital.
         if ($request->getCertificate() === null) {
-            throw new SiiValidateDocumentException(
+            throw new ValidateDocumentException(
                 'No se ha proporcionado un certificado digital para la consulta de estado del documento.'
             );
         }
@@ -100,14 +100,14 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         // Validar fecha y convertir al formato del SII.
         $dateSii = Date::validateAndConvert($date, 'dmY');
         if ($dateSii === null) {
-            throw new SiiValidateDocumentException(sprintf(
+            throw new ValidateDocumentException(sprintf(
                 'La fecha %s del documento no es válida, debe tener formato AAAA-MM-DD.',
                 $date
             ));
         }
 
         // Obtener el token asociado al certificado digital.
-        $token = $this->authenticateJob->authenticate($request);
+        $token = $this->siiLazyWorker->authenticate($request);
 
         // Datos para la consulta.
         $requestData = [
@@ -126,14 +126,14 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
 
         // Consultar el estado del documento al SII.
         try {
-            $xmlResponse = $this->consumeWebserviceJob->sendRequest(
-                $request,
-                'QueryEstDte',
-                'getEstDte',
-                $requestData
+            $xmlResponse = $this->siiLazyWorker->consumeWebservice(
+                request: $request,
+                service: 'QueryEstDte',
+                function: 'getEstDte',
+                args: $requestData
             );
-        } catch (SiiConsumeWebserviceException $e) {
-            throw new SiiValidateDocumentException(sprintf(
+        } catch (ConsumeWebserviceException $e) {
+            throw new ValidateDocumentException(sprintf(
                 'No fue posible obtener el estado del documento T%dF%d de %d-%s desde el SII. %s',
                 $document,
                 $number,
@@ -146,6 +146,6 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         // Armar estado del XML enviado.
         $responseData = $this->xmlService->decode($xmlResponse);
 
-        return new SiiValidateDocumentResponse($responseData, $requestData);
+        return new ValidateDocumentResponse($responseData, $requestData);
     }
 }

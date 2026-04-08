@@ -29,10 +29,11 @@ use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Xml\Contract\XmlServiceInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiCheckXmlDocumentSentStatusException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiConsumeWebserviceException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiCheckXmlDocumentSentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\CheckXmlDocumentSentStatusException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 
 /**
  * Clase para realizar las consultas de validación de documentos al SII.
@@ -41,8 +42,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
 {
     public function __construct(
-        private AuthenticateJob $authenticateJob,
-        private ConsumeWebserviceJob $consumeWebserviceJob,
+        private SiiLazyWorkerInterface $siiLazyWorker,
         private XmlServiceInterface $xmlService
     ) {
     }
@@ -58,21 +58,21 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del XML que se envió.
-     * @return SiiCheckXmlDocumentSentStatusResponse
-     * @throws SiiCheckXmlDocumentSentStatusException En caso de error.
+     * @return CheckXmlDocumentSentStatusResponse
+     * @throws CheckXmlDocumentSentStatusException En caso de error.
      */
     public function checkSentStatus(
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiCheckXmlDocumentSentStatusResponse {
+    ): CheckXmlDocumentSentStatusResponse {
         // Validar el RUT de la empresa que se utilizará para la consulta del
         // estado de envío al SII.
         Rut::validate($company);
         [$rutCompany, $dvCompany] = Rut::toArray($company);
 
         // Obtener el token asociado al certificado digital.
-        $token = $this->authenticateJob->authenticate($request);
+        $token = $this->siiLazyWorker->authenticate($request);
 
         // Datos para la consulta.
         $requestData = [
@@ -84,14 +84,14 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
 
         // Consultar el estado del documento enviado al SII.
         try {
-            $xmlResponse = $this->consumeWebserviceJob->sendRequest(
-                $request,
-                'QueryEstUp',
-                'getEstUp',
-                $requestData
+            $xmlResponse = $this->siiLazyWorker->consumeWebservice(
+                request: $request,
+                service: 'QueryEstUp',
+                function: 'getEstUp',
+                args: $requestData
             );
-        } catch (SiiConsumeWebserviceException $e) {
-            throw new SiiCheckXmlDocumentSentStatusException(sprintf(
+        } catch (ConsumeWebserviceException $e) {
+            throw new CheckXmlDocumentSentStatusException(sprintf(
                 'No fue posible obtener el estado del XML enviado al SII con Track ID %s. %s',
                 $trackId,
                 $e->getMessage()
@@ -104,7 +104,7 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
         );
 
         // Retornar respuesta.
-        return new SiiCheckXmlDocumentSentStatusResponse(
+        return new CheckXmlDocumentSentStatusResponse(
             $responseData,
             $requestData
         );

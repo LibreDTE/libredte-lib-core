@@ -26,17 +26,15 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiAuthenticateException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiCheckXmlDocumentSentStatusException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiConsumeWebserviceException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiRequestXmlDocumentSentStatusByEmailException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiSendXmlDocumentException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiValidateDocumentException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiValidateDocumentSignatureException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiCheckXmlDocumentSentStatusResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiRequestXmlDocumentSentStatusByEmailResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentSignatureResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\CheckXmlDocumentSentStatusException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\RequestXmlDocumentSentStatusByEmailException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 use UnexpectedValueException;
 
 /**
@@ -54,7 +52,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
      * @return int Número de seguimiento (Track ID) del envío del XML al SII.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
-     * @throws SiiSendXmlDocumentException Si hay algún error al enviar el XML.
+     * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
      */
     public function sendXmlDocument(
@@ -74,15 +72,15 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del XML que se envió.
-     * @return SiiCheckXmlDocumentSentStatusResponse
-     * @throws SiiCheckXmlDocumentSentStatusException En caso de error.
+     * @return CheckXmlDocumentSentStatusResponse
+     * @throws CheckXmlDocumentSentStatusException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
      */
     public function checkXmlDocumentSentStatus(
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiCheckXmlDocumentSentStatusResponse;
+    ): CheckXmlDocumentSentStatusResponse;
 
     /**
      * Solicita al SII que le envíe el estado del DTE mediente correo
@@ -98,15 +96,15 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del documento.
-     * @return SiiRequestXmlDocumentSentStatusByEmailResponse
-     * @throws SiiRequestXmlDocumentSentStatusByEmailException En caso de error.
+     * @return RequestXmlDocumentSentStatusByEmailResponse
+     * @throws RequestXmlDocumentSentStatusByEmailException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
      */
     public function requestXmlDocumentSentStatusByEmail(
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiRequestXmlDocumentSentStatusByEmailResponse;
+    ): RequestXmlDocumentSentStatusByEmailResponse;
 
     /**
      * Obtiene el estado de un documento en el SII.
@@ -124,8 +122,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param string $date Fecha de emisión del documento, formato: AAAA-MM-DD.
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
-     * @return SiiValidateDocumentResponse
-     * @throws SiiValidateDocumentException En caso de error.
+     * @return ValidateDocumentResponse
+     * @throws ValidateDocumentException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
      */
     public function validateDocument(
@@ -136,7 +134,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
         string $date,
         int $total,
         string $recipient
-    ): SiiValidateDocumentResponse;
+    ): ValidateDocumentResponse;
 
     /**
      * Obtiene el estado avanzado de un documento en el SII.
@@ -156,8 +154,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
      * @param string $signature Tag DTE/Signature/SignatureValue del XML.
-     * @return SiiValidateDocumentSignatureResponse
-     * @throws SiiValidateDocumentSignatureException En caso de error.
+     * @return ValidateDocumentSignatureResponse
+     * @throws ValidateDocumentSignatureException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf
      */
     public function validateDocumentSignature(
@@ -169,42 +167,5 @@ interface SiiDteWorkerInterface extends WorkerInterface
         int $total,
         string $recipient,
         string $signature
-    ): SiiValidateDocumentSignatureResponse;
-
-    /**
-     * Realiza una solicitud a un servicio web del SII mediante el uso de WSDL.
-     *
-     * Este método prepara y normaliza los datos recibidos y llama al método
-     * que realmente hace la consulta al SII: callServiceFunction().
-     *
-     * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param string $service Nombre del servicio del SII que se consumirá.
-     * @param string $function Nombre de la función que se ejecutará en el
-     * servicio web del SII.
-     * @param array|int $args Argumentos que se pasarán al servicio web.
-     * @param int|null $retry Intentos que se realizarán como máximo para
-     * obtener respuesta.
-     * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
-     * @throws SiiConsumeWebserviceException En caso de error.
-     */
-    public function consumeWebservice(
-        SiiRequestInterface $request,
-        string $service,
-        string $function,
-        array|int $args = [],
-        ?int $retry = null
-    ): XmlDocumentInterface;
-
-    /**
-     * Obtiene un token de autenticación asociado al certificado digital.
-     *
-     * El token se busca primero en la caché, si existe, se reutilizará, si no
-     * existe se solicitará uno nuevo al SII.
-     *
-     * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @return string El token asociado al certificado digital de la solicitud.
-     * @throws SiiAuthenticateException Si hubo algún error al obtener el token.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/autenticacion.pdf
-     */
-    public function authenticate(SiiRequestInterface $request): string;
+    ): ValidateDocumentSignatureResponse;
 }

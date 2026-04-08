@@ -31,13 +31,11 @@ use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiCheckXmlDocumentSentStatusResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiRequestXmlDocumentSentStatusByEmailResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiValidateDocumentSignatureResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\AuthenticateJob;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\CheckXmlDocumentSentStatusJob;
-use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ConsumeWebserviceJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\RequestXmlDocumentSentStatusByEmailJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentJob;
@@ -50,9 +48,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\Va
 class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
 {
     public function __construct(
-        private AuthenticateJob $authenticateJob,
         private CheckXmlDocumentSentStatusJob $checkXmlDocumentSentStatusJob,
-        private ConsumeWebserviceJob $consumeWebserviceJob,
         private RequestXmlDocumentSentStatusByEmailJob $requestXmlDocumentSentStatusByEmailJob,
         private SendXmlDocumentJob $sendXmlDocumentJob,
         private ValidateDocumentJob $validateDocumentJob,
@@ -116,7 +112,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiCheckXmlDocumentSentStatusResponse {
+    ): CheckXmlDocumentSentStatusResponse {
         return $this->checkXmlDocumentSentStatusJob->checkSentStatus(
             $request,
             $trackId,
@@ -146,7 +142,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiRequestXmlDocumentSentStatusByEmailResponse {
+    ): RequestXmlDocumentSentStatusByEmailResponse {
         return $this->requestXmlDocumentSentStatusByEmailJob->requestEmail(
             $request,
             $trackId,
@@ -184,7 +180,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         string $date,
         int $total,
         string $recipient
-    ): SiiValidateDocumentResponse {
+    ): ValidateDocumentResponse {
         return $this->validateDocumentJob->validate(
             $request,
             $company,
@@ -228,7 +224,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         int $total,
         string $recipient,
         string $signature
-    ): SiiValidateDocumentSignatureResponse {
+    ): ValidateDocumentSignatureResponse {
         return $this->validateDocumentSignatureJob->validate(
             $request,
             $company,
@@ -239,32 +235,5 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             $recipient,
             $signature
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function consumeWebservice(
-        SiiRequestInterface $request,
-        string $service,
-        string $function,
-        array|int $args = [],
-        ?int $retry = null
-    ): XmlDocumentInterface {
-        return $this->consumeWebserviceJob->sendRequest(
-            $request,
-            $service,
-            $function,
-            $args,
-            $retry
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function authenticate(SiiRequestInterface $request): string
-    {
-        return $this->authenticateJob->authenticate($request);
     }
 }

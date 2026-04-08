@@ -31,8 +31,9 @@ use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiSendXmlDocumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use UnexpectedValueException;
 
@@ -42,14 +43,8 @@ use UnexpectedValueException;
 #[Job(name: 'send_xml_document', worker: 'sii_dte', component: 'integration', package: 'billing')]
 class SendXmlDocumentJob extends AbstractJob implements JobInterface
 {
-    /**
-     * Constructor del worker.
-     *
-     * @param AuthenticateJob $authenticateJob
-     * @param XmlServiceInterface $xmlService
-     */
     public function __construct(
-        private AuthenticateJob $authenticateJob,
+        private SiiLazyWorkerInterface $siiLazyWorker,
         private XmlServiceInterface $xmlService
     ) {
     }
@@ -64,7 +59,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
      * @return int Número de seguimiento (Track ID) del envío del XML al SII.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
-     * @throws SiiSendXmlDocumentException Si hay algún error al enviar el XML.
+     * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
      */
     public function send(
         SiiRequestInterface $request,
@@ -76,7 +71,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         // Crear string del documento XML.
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml == '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n") {
-            throw new SiiSendXmlDocumentException(
+            throw new SendXmlDocumentException(
                 'El XML que se desea enviar al SII no puede ser vacío.'
             );
         }
@@ -139,7 +134,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         // la misma solicitud se hizo de manera incorrecta produciendo que el
         // SII no contestase adecuadamente.
         if ($status === null) {
-            throw new SiiSendXmlDocumentException(
+            throw new SendXmlDocumentException(
                 'La respuesta del envío del XML al SII no trae un código de estado válido.'
             );
         }
@@ -199,7 +194,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         }
 
         // Lanzar una excepción con el mensaje de error determinado.
-        throw new SiiSendXmlDocumentException($message);
+        throw new SendXmlDocumentException($message);
     }
 
     /**
@@ -227,7 +222,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         $url = $request->getAmbiente()->getUrl('/cgi_dte/UPL/DTEUpload');
 
         // Obtener el token asociado al certificado digital.
-        $token = $this->authenticateJob->authenticate($request);
+        $token = $this->siiLazyWorker->authenticate($request);
 
         // Cabeceras HTTP de la solicitud que se hará al SII.
         $headers = [
@@ -276,7 +271,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
                 ? curl_error($curl)
                 : 'El SII tiene problemas en sus servidores (Error 500).'
             ;
-            throw new SiiSendXmlDocumentException($message);
+            throw new SendXmlDocumentException($message);
         }
 
         // Entregar el resultado como un documento XML.

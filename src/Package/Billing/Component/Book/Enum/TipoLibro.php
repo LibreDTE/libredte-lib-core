@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Enum;
 
+use ValueError;
+
 /**
  * Tipos de libro tributario soportados por el componente `billing.book`.
  *
@@ -141,7 +143,7 @@ enum TipoLibro: string
      */
     public static function fromTag(string $tag): self
     {
-        return self::tryFromTag($tag) ?? throw new \ValueError(sprintf(
+        return self::tryFromTag($tag) ?? throw new ValueError(sprintf(
             '"%s" no es un elemento raíz válido de libro tributario.',
             $tag
         ));

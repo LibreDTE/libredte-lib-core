@@ -28,8 +28,8 @@ use DateTimeImmutable;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use Derafu\Mail\Contract\MailPackageInterface;
-use Derafu\Mail\Model\Contract\EnvelopeInterface as MailEnvelopeInterface;
-use Derafu\Mail\Model\Contract\MessageInterface as MailMessageInterface;
+use Derafu\Mail\Contract\EnvelopeInterface as MailEnvelopeInterface;
+use Derafu\Mail\Contract\MessageInterface as MailMessageInterface;
 use Derafu\Mail\Model\Postman as MailPostman;
 use Derafu\Support\Str;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
@@ -231,11 +231,11 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         }
 
         // Determinar desde cuándo se debe realizar la búsqueda de correos.
-        if (($options['search']['criteria'] ?? null) === null) {
-            $daysAgo = $options['search']['daysAgo'] ?? 7;
+        if (($options['search.criteria'] ?? null) === null) {
+            $daysAgo = $options['search.daysAgo'] ?? 7;
             $since = (new DateTimeImmutable())->modify("-$daysAgo days")->format('Y-m-d');
-            $options['search']['criteria'] = 'UNSEEN SINCE ' . $since;
-            unset($options['search']['daysAgo']);
+            $options['search.criteria'] = 'UNSEEN SINCE ' . $since;
+            unset($options['search.daysAgo']);
         }
 
         // Si no se indicó lo contrario los correos serán marcados como leídos
@@ -252,6 +252,6 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         ];
 
         // Entregar las opciones resueltas.
-        return $options;
+        return is_array($options) ? $options : $options->all();
     }
 }

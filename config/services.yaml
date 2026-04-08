@@ -1,3 +1,10 @@
+# Importación de servicios que requiere LibreDTE Lib Core.
+imports:
+  - { resource: '../vendor/derafu/xml/config/services.yaml' }
+  - { resource: '../vendor/derafu/certificate/config/services.yaml' }
+  - { resource: '../vendor/derafu/signature/config/services.yaml' }
+  - { resource: '../vendor/derafu/mail/config/services.yaml' }
+
 # Configuración de parámetros.
 parameters:
     libredte.lib.core.project_dir: '%kernel.project_dir%'
@@ -11,6 +18,7 @@ services:
         autoconfigure: true
         public: false
 
+    # Registro de paquetes.
     Derafu\Backbone\Contract\PackageRegistryInterface:
         class: libredte\lib\Core\PackageRegistry
         public: true
@@ -125,8 +133,12 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
     # Workers del componente "billing.integration".
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcvWorker
 
     # Workers del componente "billing.trading_parties".
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
@@ -311,14 +323,22 @@ services:
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
 
+    # Trabajos del worker "billing.integration.sii_lazy"
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob: ~
+
     # Trabajos del worker "billing.integration.sii_dte"
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\AuthenticateJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\CheckXmlDocumentSentStatusJob: ~
-    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ConsumeWebserviceJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\RequestXmlDocumentSentStatusByEmailJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentSignatureJob: ~
+
+    # Trabajos del worker "billing.integration.sii_rcv"
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\SubmitDocumentAcceptanceJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\ListDocumentEventsJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\CheckDocumentAssignabilityJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\GetDocumentSiiReceptionDateJob: ~
 
     # Derafu Repository.
     Derafu\Repository\Contract\RepositoryManagerInterface:
@@ -367,32 +387,6 @@ services:
                     idAttribute: codigo
                     nameAttribute: glosa
 
-    # Derafu XML.
-    Derafu\Xml\Contract\XmlServiceInterface:
-        class: Derafu\Xml\Service\XmlService
-    Derafu\Xml\Contract\XmlEncoderInterface:
-        class: Derafu\Xml\Service\XmlEncoder
-    Derafu\Xml\Contract\XmlDecoderInterface:
-        class: Derafu\Xml\Service\XmlDecoder
-    Derafu\Xml\Contract\XmlValidatorInterface:
-        class: Derafu\Xml\Service\XmlValidator
-
-    # Derafu Certificate.
-    Derafu\Certificate\Contract\CertificateServiceInterface:
-        class: Derafu\Certificate\Service\CertificateService
-    Derafu\Certificate\Contract\CertificateLoaderInterface:
-        class: Derafu\Certificate\Service\CertificateLoader
-    Derafu\Certificate\Contract\CertificateFakerInterface:
-        class: Derafu\Certificate\Service\CertificateFaker
-
-    # Derafu Signature.
-    Derafu\Signature\Contract\SignatureServiceInterface:
-        class: Derafu\Signature\Service\SignatureService
-    Derafu\Signature\Contract\SignatureGeneratorInterface:
-        class: Derafu\Signature\Service\SignatureGenerator
-    Derafu\Signature\Contract\SignatureValidatorInterface:
-        class: Derafu\Signature\Service\SignatureValidator
-
     # Derafu Renderer.
     Derafu\Renderer\Contract\RendererInterface:
         factory: ['Derafu\Renderer\Factory\RendererFactory', 'create']
@@ -405,13 +399,3 @@ services:
                 formatters:
                     billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter'
     libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter: ~
-
-    # Derafu Mail.
-    Derafu\Mail\Contract\MailPackageInterface:
-        class: Derafu\Mail\MailPackage
-    Derafu\Mail\Component\Exchange\Contract\ExchangeComponentInterface:
-        class: Derafu\Mail\Component\Exchange\ExchangeComponent
-    Derafu\Mail\Component\Exchange\Worker\Receiver\Contract\ReceiverWorkerInterface:
-        class: Derafu\Mail\Component\Exchange\Worker\ReceiverWorker
-    Derafu\Mail\Component\Exchange\Worker\Sender\Contract\SenderWorkerInterface:
-        class: Derafu\Mail\Component\Exchange\Worker\SenderWorker

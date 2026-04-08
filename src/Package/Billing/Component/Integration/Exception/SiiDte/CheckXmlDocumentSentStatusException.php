@@ -22,34 +22,13 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 
 /**
- * Interfaz para `IntegrationComponent`.
+ * Excepción para problemas al consultar el estado de los envíos al SII.
  */
-interface IntegrationComponentInterface extends ComponentInterface
+class CheckXmlDocumentSentStatusException extends SiiDteException
 {
-    /**
-     * Entrega el lazy worker del SII que maneja la autenticación y el consumo
-     * de servicios web.
-     *
-     * @return SiiLazyWorkerInterface
-     */
-    public function getSiiLazyWorker(): SiiLazyWorkerInterface;
-
-    /**
-     * Entrega el worker del SII para realizar las acciones de DTE.
-     *
-     * @return SiiDteWorkerInterface
-     */
-    public function getSiiDteWorker(): SiiDteWorkerInterface;
-
-    /**
-     * Entrega el worker del SII para realizar las acciones del RCV.
-     *
-     * @return SiiRcvWorkerInterface
-     */
-    public function getSiiRcvWorker(): SiiRcvWorkerInterface;
 }

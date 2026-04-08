@@ -37,9 +37,12 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorker
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
+use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
@@ -141,6 +144,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentType::class)]
 #[CoversClass(ExchangeResult::class)]
 #[CoversClass(ExchangeStatus::class)]
+#[CoversClass(CategoriaDocumento::class)]
+#[CoversClass(OperacionDocumento::class)]
+#[CoversClass(TemplateDataFormatter::class)]
 class ExchangeDocumentSendEmailTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

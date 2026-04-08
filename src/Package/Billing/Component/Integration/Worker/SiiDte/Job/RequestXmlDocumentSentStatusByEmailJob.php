@@ -29,10 +29,11 @@ use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Xml\Contract\XmlServiceInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiConsumeWebserviceException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SiiRequestXmlDocumentSentStatusByEmailException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SiiRequestXmlDocumentSentStatusByEmailResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\RequestXmlDocumentSentStatusByEmailException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
 
 /**
  * Clase para realizar las consultas de validación de documentos al SII.
@@ -41,8 +42,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobInterface
 {
     public function __construct(
-        private AuthenticateJob $authenticateJob,
-        private ConsumeWebserviceJob $consumeWebserviceJob,
+        private SiiLazyWorkerInterface $siiLazyWorker,
         private XmlServiceInterface $xmlService
     ) {
     }
@@ -63,20 +63,20 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del documento.
-     * @return SiiRequestXmlDocumentSentStatusByEmailResponse
-     * @throws SiiRequestXmlDocumentSentStatusByEmailException En caso de error.
+     * @return RequestXmlDocumentSentStatusByEmailResponse
+     * @throws RequestXmlDocumentSentStatusByEmailException En caso de error.
      */
     public function requestEmail(
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): SiiRequestXmlDocumentSentStatusByEmailResponse {
+    ): RequestXmlDocumentSentStatusByEmailResponse {
         // Validar los RUT que se utilizarán para la consulta de estado del DTE.
         Rut::validate($company);
         [$rutCompany, $dvCompany] = Rut::toArray($company);
 
         // Obtener el token asociado al certificado digital.
-        $token = $this->authenticateJob->authenticate($request);
+        $token = $this->siiLazyWorker->authenticate($request);
 
         // Datos para la consulta.
         $requestData = [
@@ -88,14 +88,14 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
 
         // Solicitar al SII que envíe el correo electrónico del estado del DTE.
         try {
-            $xmlResponse = $this->consumeWebserviceJob->sendRequest(
-                $request,
-                'wsDTECorreo',
-                'reenvioCorreo',
-                $requestData
+            $xmlResponse = $this->siiLazyWorker->consumeWebservice(
+                request: $request,
+                service: 'wsDTECorreo',
+                function: 'reenvioCorreo',
+                args: $requestData
             );
-        } catch (SiiConsumeWebserviceException $e) {
-            throw new SiiRequestXmlDocumentSentStatusByEmailException(sprintf(
+        } catch (ConsumeWebserviceException $e) {
+            throw new RequestXmlDocumentSentStatusByEmailException(sprintf(
                 'No fue posible solicitar el correo con el estado del envío %d al SII. %s',
                 $trackId,
                 $e->getMessage()
@@ -108,7 +108,7 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
         );
 
         // Retornar respuesta.
-        return new SiiRequestXmlDocumentSentStatusByEmailResponse(
+        return new RequestXmlDocumentSentStatusByEmailResponse(
             $responseData,
             $requestData
         );
