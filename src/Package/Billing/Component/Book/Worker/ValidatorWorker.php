@@ -59,7 +59,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     public function validateSchema(
         BookBagInterface|XmlDocumentInterface|string $source
-    ): void {
+    ): XmlDocumentInterface {
         if ($source instanceof BookBagInterface) {
             $schema = dirname(__DIR__, 6)
                 . '/resources/schemas/'
@@ -80,6 +80,8 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         }
 
         $this->xmlService->validate($xmlDocument, $schema);
+
+        return $xmlDocument;
     }
 
     /**

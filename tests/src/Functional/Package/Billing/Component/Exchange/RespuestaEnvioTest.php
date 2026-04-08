@@ -36,7 +36,6 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\TipoDocumentoRespu
 use libredte\lib\Core\Package\Billing\Component\Exchange\ExchangeComponent;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\ValidateJob;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker;
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
@@ -44,7 +43,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(DocumentResponseWorker::class)]
 #[CoversClass(BuildRespuestaEnvioJob::class)]
-#[CoversClass(ValidateJob::class)]
 #[CoversClass(RespuestaEnvio::class)]
 #[CoversClass(AbstractExchangeDocument::class)]
 #[CoversClass(ExchangeDocumentBag::class)]
@@ -133,7 +131,11 @@ class RespuestaEnvioTest extends TestCase
         $this->assertSame('LibreDTE_ResultadoEnvio', $document->getId());
         $this->assertTrue($document->isRecepcionEnvio());
         $this->assertFalse($document->isResultadoDTE());
-        $this->assertTrue($this->worker->validate($document));
+
+        $this->worker->validateSchema($document);
+        $results = $this->worker->validateSignature($document);
+        $this->assertCount(1, $results);
+        $this->assertTrue($results[0]->isValid());
     }
 
     /**
@@ -188,6 +190,10 @@ class RespuestaEnvioTest extends TestCase
         $this->assertSame('LibreDTE_ResultadoEnvio', $document->getId());
         $this->assertFalse($document->isRecepcionEnvio());
         $this->assertTrue($document->isResultadoDTE());
-        $this->assertTrue($this->worker->validate($document));
+
+        $this->worker->validateSchema($document);
+        $results = $this->worker->validateSignature($document);
+        $this->assertCount(1, $results);
+        $this->assertTrue($results[0]->isValid());
     }
 }

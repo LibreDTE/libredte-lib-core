@@ -108,63 +108,6 @@ services:
         arguments:
             $strategies: !tagged_iterator { tag: 'billing.document.validator#strategy', index_by: 'name' }
 
-    # Workers del componente "billing.exchange".
-    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker
-
-    # Jobs del worker "billing.exchange.document_response".
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob: ~
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob: ~
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\ValidateJob: ~
-    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker
-        arguments:
-            $handlers: !tagged_iterator { tag: 'billing.exchange.receiver#handler', index_by: 'name' }
-            $strategies: !tagged_iterator { tag: 'billing.exchange.receiver#strategy', index_by: 'name' }
-    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker
-        arguments:
-            $handlers: !tagged_iterator { tag: 'billing.exchange.sender#handler', index_by: 'name' }
-            $strategies: !tagged_iterator { tag: 'billing.exchange.sender#strategy', index_by: 'name' }
-
-    # Workers del componente "billing.identifier".
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker
-        arguments:
-            $emisorFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface'
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
-
-    # Workers del componente "billing.integration".
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker
-    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcvWorker
-
-    # Workers del componente "billing.trading_parties".
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Worker\MandatarioManagerWorker
-        arguments:
-            $mandatarioFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface'
-
-    # Servicios del componente "billing.trading_parties".
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\MandatarioFactory
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
-    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider
-
     # Servicios del componente "billing.document".
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
@@ -301,6 +244,24 @@ services:
     # Estrategias del worker "billing.document.batch_processor".
     libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy: ~
 
+    # Workers del componente "billing.exchange".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker
+        arguments:
+            $handlers: !tagged_iterator { tag: 'billing.exchange.receiver#handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.receiver#strategy', index_by: 'name' }
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker
+        arguments:
+            $handlers: !tagged_iterator { tag: 'billing.exchange.sender#handler', index_by: 'name' }
+            $strategies: !tagged_iterator { tag: 'billing.exchange.sender#strategy', index_by: 'name' }
+
+    # Jobs del worker "billing.exchange.document_response".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob: ~
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob: ~
+
     # Handlers del  worker "billing.exchange.receiver".
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler\EmailReceiverHandler:
         arguments:
@@ -326,9 +287,29 @@ services:
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy: ~
 
+    # Workers del componente "billing.identifier".
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker
+        arguments:
+            $emisorFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface'
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
+
     # Servicios del componente "billing.identifier"
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
+
+    # Workers del componente "billing.integration".
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcvWorker
 
     # Trabajos del worker "billing.integration.sii_lazy"
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
@@ -346,6 +327,33 @@ services:
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\ListDocumentEventsJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\CheckDocumentAssignabilityJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\GetDocumentSiiReceptionDateJob: ~
+
+    # Workers del componente "billing.ownership_transfer".
+    libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\AecWorker
+
+    # Jobs del worker "billing.ownership_transfer.aec".
+    libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildDteCedidoJob: ~
+    libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildCesionJob: ~
+    libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildAecJob: ~
+
+    # Workers del componente "billing.trading_parties".
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Worker\MandatarioManagerWorker
+        arguments:
+            $mandatarioFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface'
+
+    # Servicios del componente "billing.trading_parties".
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\MandatarioFactory
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider
 
     # Derafu Repository.
     Derafu\Repository\Contract\RepositoryManagerInterface:

@@ -26,19 +26,21 @@ namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer;
 
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\OwnershipTransferComponentInterface;
 
 /**
  * Componente "billing.ownership_transfer".
  *
- * Este componente se encarga de la gestión de transferencia de propiedad de documentos tributarios.
+ * Este componente se encarga de la gestión de transferencia de propiedad de
+ * documentos tributarios (cesión electrónica / factoring).
  */
 #[Component(name: 'ownership_transfer', package: 'billing')]
 class OwnershipTransferComponent extends AbstractComponent implements OwnershipTransferComponentInterface
 {
     public function __construct(
+        private AecWorkerInterface $aecWorker,
     ) {
-        // TODO: Agregar workers para inyección de dependencias.
     }
 
     /**
@@ -47,7 +49,15 @@ class OwnershipTransferComponent extends AbstractComponent implements OwnershipT
     public function getWorkers(): array
     {
         return [
-            // TODO: Agregar workers.
+            'aec' => $this->aecWorker,
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAecWorker(): AecWorkerInterface
+    {
+        return $this->aecWorker;
     }
 }

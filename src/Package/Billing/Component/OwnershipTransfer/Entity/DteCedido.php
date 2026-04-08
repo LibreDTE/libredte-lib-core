@@ -22,19 +22,31 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Abstract\AbstractOwnershipTransferDocument;
 
 /**
- * Interfaz para `OwnershipTransferComponent`.
+ * Entidad que representa el XML `DTECedido`.
+ *
+ * Envuelve el XML de un DTE dentro de la estructura `DocumentoDTECedido`
+ * y lo firma con ID `LibreDTE_DTECedido`. XSD: `DTECedido_v10.xsd`.
  */
-interface OwnershipTransferComponentInterface extends ComponentInterface
+class DteCedido extends AbstractOwnershipTransferDocument
 {
     /**
-     * Entrega el worker para generación y validación del AEC.
-     *
-     * @return AecWorkerInterface
+     * {@inheritDoc}
      */
-    public function getAecWorker(): AecWorkerInterface;
+    public function getId(): string
+    {
+        return (string) ($this->getXmlDocument()->query('//DocumentoDTECedido/@ID') ?? '');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSchema(): string
+    {
+        return 'DTECedido_v10.xsd';
+    }
 }

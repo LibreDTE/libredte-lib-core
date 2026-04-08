@@ -22,53 +22,56 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract;
 
-use Derafu\Backbone\Contract\StrategiesAwareInterface;
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
-use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\ValidatorException;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Exception\OwnershipTransferException;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag;
 use NoDiscard;
 
 /**
- * Interfaz para los validadores de documentos.
+ * Interfaz para `AecWorker`.
  */
-interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInterface
+interface AecWorkerInterface extends WorkerInterface
 {
     /**
-     * Realiza la validación de los datos del documento.
+     * Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.
      *
-     * @param DocumentBagInterface|XmlDocumentInterface|string $source
-     * @return void
-     * @throws ValidatorException
+     * @param AecBag $bag Contenedor con el DTE, cedente, cesionario, cesión y
+     *   certificado.
+     * @return Aec
+     * @throws OwnershipTransferException En caso de error.
      */
-    public function validate(
-        DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void;
+    public function build(AecBag $bag): Aec;
 
     /**
-     * Valida el esquema del XML del documento.
+     * Valida el esquema XSD del AEC.
      *
-     * @param DocumentBagInterface|XmlDocumentInterface|string $source
+     * @param Aec|XmlDocumentInterface|string $source
      * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
+     * @throws OwnershipTransferException Si no se puede determinar el esquema.
      */
+    #[NoDiscard()]
     public function validateSchema(
-        DocumentBagInterface|XmlDocumentInterface|string $source
+        Aec|XmlDocumentInterface|string $source
     ): XmlDocumentInterface;
 
     /**
-     * Valida la firma electrónica del documento XML del documento.
+     * Valida la(s) firma(s) electrónica(s) del AEC.
      *
-     * @param DocumentBagInterface|XmlDocumentInterface|string $source
-     * @return SignatureValidationResultInterface
-     * @throws SignatureException Si la validación de la firma falla.
+     * El AEC contiene múltiples firmas: DTECedido, Cesion y AEC. Se retornan
+     * todos los resultados.
+     *
+     * @param Aec|XmlDocumentInterface|string $source
+     * @return array<SignatureValidationResultInterface>
      */
     #[NoDiscard()]
     public function validateSignature(
-        DocumentBagInterface|XmlDocumentInterface|string $source
-    ): SignatureValidationResultInterface;
+        Aec|XmlDocumentInterface|string $source
+    ): array;
 }

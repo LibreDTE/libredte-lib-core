@@ -36,7 +36,6 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\TipoDocumentoRespu
 use libredte\lib\Core\Package\Billing\Component\Exchange\ExchangeComponent;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\ValidateJob;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker;
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
@@ -45,7 +44,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(DocumentResponseWorker::class)]
 #[CoversClass(BuildEnvioRecibosJob::class)]
-#[CoversClass(ValidateJob::class)]
 #[CoversClass(EnvioRecibos::class)]
 #[CoversClass(AbstractExchangeDocument::class)]
 #[CoversClass(ExchangeDocumentBag::class)]
@@ -146,6 +144,12 @@ class EnvioRecibosTest extends TestCase
             $this->assertStringContainsString($idRecibo, $xml);
         }
 
-        $this->assertTrue($this->worker->validate($document));
+        $this->worker->validateSchema($document);
+
+        $results = $this->worker->validateSignature($document);
+        $this->assertNotEmpty($results);
+        foreach ($results as $result) {
+            $this->assertTrue($result->isValid());
+        }
     }
 }

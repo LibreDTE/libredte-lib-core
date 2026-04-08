@@ -44,11 +44,12 @@ interface ValidatorWorkerInterface extends WorkerInterface
      * esquema a partir del elemento raíz del documento.
      *
      * @param BookBagInterface|XmlDocumentInterface|string $source
+     * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
      */
     public function validateSchema(
         BookBagInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): XmlDocumentInterface;
 
     /**
      * Valida la firma electrónica XML del libro.

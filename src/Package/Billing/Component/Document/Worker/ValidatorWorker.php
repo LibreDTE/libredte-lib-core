@@ -97,7 +97,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     public function validateSchema(
         DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void {
+    ): XmlDocumentInterface {
         // Obtener el documento XML.
         if ($source instanceof DocumentBagInterface) {
             $xmlDocument = $source->getXmlDocument();
@@ -117,12 +117,14 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         // Las boletas no se validan de manera individual (el DTE). Se validan
         // a través del EnvioBOLETA.
         if ($bag->getTipoDocumento()->esBoleta()) {
-            return;
+            return $bag->getXmlDocument();
         }
 
         // Validar esquema de otros DTE (no boletas).
         $schema = dirname(__DIR__, 6) . '/resources/schemas/DTE_v10.xsd';
         $this->xmlService->validate($bag->getXmlDocument(), $schema);
+
+        return $bag->getXmlDocument();
     }
 
     /**

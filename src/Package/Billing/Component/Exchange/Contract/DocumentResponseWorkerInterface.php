@@ -25,11 +25,15 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Signature\Contract\SignatureValidationResultInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentResponseException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
+use NoDiscard;
 
 /**
  * Interfaz para `DocumentResponseWorker`.
@@ -61,11 +65,29 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
     public function buildRespuestaEnvio(ExchangeDocumentBag $bag): RespuestaEnvio;
 
     /**
-     * Valida el esquema XSD y la firma electrónica del documento.
+     * Valida el esquema XSD del documento de respuesta.
      *
-     * @param AbstractExchangeDocument $document Documento a validar.
-     * @return bool `true` si el documento es válido.
-     * @throws DocumentResponseException En caso de error de validación.
+     * @param AbstractExchangeDocument|XmlDocumentInterface|string $source
+     * @return XmlDocumentInterface El documento XML validado.
+     * @throws XmlException Si la validación del esquema falla.
+     * @throws DocumentResponseException Si no se puede determinar el esquema.
      */
-    public function validate(AbstractExchangeDocument $document): bool;
+    #[NoDiscard()]
+    public function validateSchema(
+        AbstractExchangeDocument|XmlDocumentInterface|string $source
+    ): XmlDocumentInterface;
+
+    /**
+     * Valida la(s) firma(s) electrónica(s) del documento de respuesta.
+     *
+     * Para `EnvioRecibos` hay múltiples firmas (una por recibo más la del
+     * `SetRecibos`). Se retornan todos los resultados.
+     *
+     * @param AbstractExchangeDocument|XmlDocumentInterface|string $source
+     * @return array<SignatureValidationResultInterface>
+     */
+    #[NoDiscard()]
+    public function validateSignature(
+        AbstractExchangeDocument|XmlDocumentInterface|string $source
+    ): array;
 }

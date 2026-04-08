@@ -26,6 +26,10 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Contract\XmlServiceInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
@@ -34,7 +38,6 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentRespo
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\ValidateJob;
 use Throwable;
 
 /**
@@ -50,7 +53,8 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     public function __construct(
         private BuildEnvioRecibosJob $buildEnvioRecibosJob,
         private BuildRespuestaEnvioJob $buildRespuestaEnvioJob,
-        private ValidateJob $validateJob,
+        private XmlServiceInterface $xmlService,
+        private SignatureServiceInterface $signatureService,
     ) {
     }
 
@@ -99,20 +103,60 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     /**
      * {@inheritDoc}
      */
-    public function validate(AbstractExchangeDocument $document): bool
-    {
-        try {
-            return $this->validateJob->validate($document);
-        } catch (DocumentResponseException $e) {
-            throw $e;
-        } catch (Throwable $e) {
-            throw new DocumentResponseException(
-                message: sprintf(
-                    'No fue posible validar el documento de respuesta: %s',
-                    $e->getMessage()
+    public function validateSchema(
+        AbstractExchangeDocument|XmlDocumentInterface|string $source
+    ): XmlDocumentInterface {
+        $xmlDocument = $this->toXmlDocument($source);
+
+        if ($source instanceof AbstractExchangeDocument) {
+            $schemaFile = $source->getSchema();
+        } else {
+            $root = $xmlDocument->documentElement?->localName ?? '';
+            $schemaFile = match ($root) {
+                'EnvioRecibos' => 'EnvioRecibos_v10.xsd',
+                'RespuestaDTE' => 'RespuestaEnvioDTE_v10.xsd',
+                default => throw new DocumentResponseException(
+                    sprintf('No se reconoce el elemento raíz "%s" como documento de respuesta.', $root)
                 ),
-                previous: $e
-            );
+            };
         }
+
+        $schema = dirname(__DIR__, 6) . '/resources/schemas/' . $schemaFile;
+        $this->xmlService->validate($xmlDocument, $schema);
+
+        return $xmlDocument;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function validateSignature(
+        AbstractExchangeDocument|XmlDocumentInterface|string $source
+    ): array {
+        if ($source instanceof AbstractExchangeDocument) {
+            $source = $source->getXml();
+        }
+
+        return $this->signatureService->validateXml($source);
+    }
+
+    /**
+     * Convierte la fuente en un `XmlDocument`.
+     */
+    private function toXmlDocument(
+        AbstractExchangeDocument|XmlDocumentInterface|string $source
+    ): XmlDocument {
+        if ($source instanceof AbstractExchangeDocument) {
+            $xml = $source->getXml();
+        } elseif ($source instanceof XmlDocumentInterface) {
+            $xml = $source->saveXml();
+        } else {
+            $xml = $source;
+        }
+
+        $xmlDocument = new XmlDocument();
+        $xmlDocument->loadXml($xml);
+
+        return $xmlDocument;
     }
 }
