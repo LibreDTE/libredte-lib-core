@@ -109,6 +109,13 @@ services:
             $strategies: !tagged_iterator { tag: 'billing.document.validator#strategy', index_by: 'name' }
 
     # Workers del componente "billing.exchange".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker
+
+    # Jobs del worker "billing.exchange.document_response".
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob: ~
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob: ~
+    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\ValidateJob: ~
     libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\ReceiverWorker
         arguments:

@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange;
 
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface;
@@ -47,7 +48,8 @@ class ExchangeComponent extends AbstractComponent implements ExchangeComponentIn
      */
     public function __construct(
         private ReceiverWorkerInterface $receiverWorker,
-        private SenderWorkerInterface $senderWorker
+        private SenderWorkerInterface $senderWorker,
+        private DocumentResponseWorkerInterface $documentResponseWorker,
     ) {
     }
 
@@ -59,6 +61,7 @@ class ExchangeComponent extends AbstractComponent implements ExchangeComponentIn
         return [
             'receiver' => $this->receiverWorker,
             'sender' => $this->senderWorker,
+            'document_response' => $this->documentResponseWorker,
         ];
     }
 
@@ -76,6 +79,14 @@ class ExchangeComponent extends AbstractComponent implements ExchangeComponentIn
     public function getSenderWorker(): SenderWorkerInterface
     {
         return $this->senderWorker;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentResponseWorker(): DocumentResponseWorkerInterface
+    {
+        return $this->documentResponseWorker;
     }
 
     /**

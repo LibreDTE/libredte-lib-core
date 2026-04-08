@@ -46,6 +46,13 @@ interface ExchangeComponentInterface extends ComponentInterface
     public function getSenderWorker(): SenderWorkerInterface;
 
     /**
+     * Entrega el worker "billing.exchange.document_response".
+     *
+     * @return DocumentResponseWorkerInterface
+     */
+    public function getDocumentResponseWorker(): DocumentResponseWorkerInterface;
+
+    /**
      * Recibe documentos a través del proceso de intercambio mediante la
      * estrategia definida en la bolsa.
      *
