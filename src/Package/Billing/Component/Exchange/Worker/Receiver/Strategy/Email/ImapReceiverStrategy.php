@@ -27,8 +27,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\S
 use DateTimeImmutable;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
-use Derafu\Mail\Contract\MailPackageInterface;
 use Derafu\Mail\Contract\EnvelopeInterface as MailEnvelopeInterface;
+use Derafu\Mail\Contract\MailPackageInterface;
 use Derafu\Mail\Contract\MessageInterface as MailMessageInterface;
 use Derafu\Mail\Model\Postman as MailPostman;
 use Derafu\Support\Str;
