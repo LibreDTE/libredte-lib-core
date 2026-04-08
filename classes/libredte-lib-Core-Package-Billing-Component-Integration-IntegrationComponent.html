@@ -152,7 +152,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -216,6 +216,18 @@
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a>            </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiLazyWorker">$siiLazyWorker</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiRcvWorker">$siiRcvWorker</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a>            </span>
+</dt>
+
     </dl>
 
 <h4 id="toc-methods">
@@ -235,7 +247,22 @@
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a>    </span>
 </dt>
-<dd>Entrega el worker que realiza las acciones de DTE en el SII.</dd>
+<dd>Entrega el worker del SII para realizar las acciones de DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiLazyWorker">getSiiLazyWorker()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>    </span>
+</dt>
+<dd>Entrega el lazy worker del SII que maneja la autenticación y el consumo
+de servicios web.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiRcvWorker">getSiiRcvWorker()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a>    </span>
+</dt>
+<dd>Entrega el worker del SII para realizar las acciones del RCV.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getWorkers">getWorkers()</a>
@@ -274,7 +301,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -284,6 +311,80 @@
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$siiDteWorker</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_siiLazyWorker">
+        $siiLazyWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiLazyWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">43</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$siiLazyWorker</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_siiRcvWorker">
+        $siiRcvWorker
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiRcvWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$siiRcvWorker</span>
     </code>
 
     
@@ -316,14 +417,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiDteWorker</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiLazyWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiDteWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiRcvWorker</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -332,8 +433,22 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$siiLazyWorker</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$siiDteWorker</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$siiRcvWorker</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -360,11 +475,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el worker que realiza las acciones de DTE en el SII.</p>
+        <p class="phpdocumentor-summary">Entrega el worker del SII para realizar las acciones de DTE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -391,6 +506,85 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getSiiLazyWorker">
+        getSiiLazyWorker()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiLazyWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">64</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el lazy worker del SII que maneja la autenticación y el consumo
+de servicios web.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSiiLazyWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSiiRcvWorker">
+        getSiiRcvWorker()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiRcvWorker" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">80</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el worker del SII para realizar las acciones del RCV.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSiiRcvWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getWorkers">
         getWorkers()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getWorkers" class="headerlink"><i class="fas fa-link"></i></a>
@@ -399,7 +593,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/IntegrationComponent.php"><a href="files/src-package-billing-component-integration-integrationcomponent.html"><abbr title="src/Package/Billing/Component/Integration/IntegrationComponent.php">IntegrationComponent.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -540,6 +734,8 @@
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiDteWorker">$siiDteWorker</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiLazyWorker">$siiLazyWorker</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiRcvWorker">$siiRcvWorker</a></li>
                                             </ul>
                 </li>
             
@@ -548,6 +744,8 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiDteWorker">getSiiDteWorker()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiLazyWorker">getSiiLazyWorker()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiRcvWorker">getSiiRcvWorker()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getWorkers">getWorkers()</a></li>
                                     </ul>
             </li>
