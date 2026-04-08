@@ -8891,6 +8891,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020del\u0020SII\u0020para\u0020realizar\u0020las\u0020acciones\u0020del\u0020RCV.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRcvWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\IntegrationComponentInterface\u003A\u003AgetSiiRtcWorker\u0028\u0029",
+            "name": "getSiiRtcWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020del\u0020SII\u0020para\u0020realizar\u0020las\u0020acciones\u0020del\u0020RTC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRtcWorker"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteWorkerInterface",
             "name": "SiiDteWorkerInterface",
             "summary": "Interfaz\u0020del\u0020worker\u0020de\u0020DTE\u0020del\u0020SII.",
@@ -9005,6 +9010,16 @@ Search.appendIndex(
             "name": "SiiResponseInterface",
             "summary": "Interfaz\u0020para\u0020una\u0020respuesta\u0020desde\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiResponseInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRtcWorkerInterface",
+            "name": "SiiRtcWorkerInterface",
+            "summary": "Interfaz\u0020del\u0020worker\u0020del\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRtcWorkerInterface\u003A\u003AsendAec\u0028\u0029",
+            "name": "sendAec",
+            "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_sendAec"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiAmbiente",
             "name": "SiiAmbiente",
@@ -9151,6 +9166,16 @@ Search.appendIndex(
             "summary": "Excepci\u00F3n\u0020base\u0020para\u0020los\u0020workers\u0020del\u0020RCV\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRcvException.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtc\\SendAecException",
+            "name": "SendAecException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020enviar\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtc-SendAecException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtcException",
+            "name": "SiiRtcException",
+            "summary": "Excepci\u00F3n\u0020base\u0020para\u0020los\u0020workers\u0020del\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtcException.html"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent",
             "name": "IntegrationComponent",
             "summary": "Componente\u0020\u0022billing.integration\u0022.",
@@ -9181,6 +9206,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020del\u0020SII\u0020para\u0020realizar\u0020las\u0020acciones\u0020del\u0020RCV.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiRcvWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003AgetSiiRtcWorker\u0028\u0029",
+            "name": "getSiiRtcWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020del\u0020SII\u0020para\u0020realizar\u0020las\u0020acciones\u0020del\u0020RTC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#method_getSiiRtcWorker"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiLazyWorker",
             "name": "siiLazyWorker",
             "summary": "",
@@ -9195,6 +9225,11 @@ Search.appendIndex(
             "name": "siiRcvWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiRcvWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent\u003A\u003A\u0024siiRtcWorker",
+            "name": "siiRtcWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-IntegrationComponent.html#property_siiRtcWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse",
             "name": "CheckXmlDocumentSentStatusResponse",
@@ -9295,6 +9330,36 @@ Search.appendIndex(
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida\u0020y\u0020error.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-RequestXmlDocumentSentStatusByEmailResponse.html#constant_STATUSES"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse",
+            "name": "SendXmlDocumentResponse",
+            "summary": "Respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020documento\u0020XML\u0020\u0028EnvioDTE\u0020o\u0020EnvioBOLETA\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "Entrega\u0020el\u0020Track\u0020ID\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020recibir\u0020el\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_getTrackId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003A\u0024trackId",
+            "name": "trackId",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#property_trackId"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentResponse",
             "name": "ValidateDocumentResponse",
@@ -9515,6 +9580,36 @@ Search.appendIndex(
             "name": "description",
             "summary": "Glosa\u0020o\u0020descripci\u00F3n\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-SubmitDocumentAcceptanceResponse.html#property_description"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse",
+            "name": "SendAecResponse",
+            "summary": "Respuesta\u0020del\u0020RTC\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "Entrega\u0020el\u0020Track\u0020ID\u0020asignado\u0020por\u0020el\u0020RTC\u0020del\u0020SII\u0020al\u0020recibir\u0020el\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#method_getTrackId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse\u003A\u003A\u0024trackId",
+            "name": "trackId",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#property_trackId"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest",
             "name": "SiiRequest",
@@ -10070,6 +10165,61 @@ Search.appendIndex(
             "name": "getDocumentSiiReceptionDateJob",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#property_getDocumentSiiReceptionDateJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob",
+            "name": "SendAecJob",
+            "summary": "Clase\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003Asend\u0028\u0029",
+            "name": "send",
+            "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AvalidateResponse\u0028\u0029",
+            "name": "validateResponse",
+            "summary": "Valida\u0020la\u0020respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020el\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AuploadAec\u0028\u0029",
+            "name": "uploadAec",
+            "summary": "Sube\u0020el\u0020AEC\u0020al\u0020endpoint\u0020del\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AcreateXmlFile\u0028\u0029",
+            "name": "createXmlFile",
+            "summary": "Crea\u0020un\u0020archivo\u0020temporal\u0020con\u0020el\u0020XML\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003A\u0024siiLazyWorker",
+            "name": "siiLazyWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#property_siiLazyWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker",
+            "name": "SiiRtcWorker",
+            "summary": "Clase\u0020del\u0020worker\u0020del\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003AsendAec\u0028\u0029",
+            "name": "sendAec",
+            "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_sendAec"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024sendAecJob",
+            "name": "sendAecJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_sendAecJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument",
             "name": "AbstractOwnershipTransferDocument",
@@ -12031,6 +12181,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-exception-siircv.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtc",
+            "name": "SiiRtc",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-exception-siirtc.html"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration",
             "name": "Integration",
             "summary": "",
@@ -12050,6 +12205,11 @@ Search.appendIndex(
             "name": "SiiRcv",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-support-response-siircv.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc",
+            "name": "SiiRtc",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-support-response-siirtc.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support",
             "name": "Support",
@@ -12090,6 +12250,16 @@ Search.appendIndex(
             "name": "SiiRcv",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siircv.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siirtc-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc",
+            "name": "SiiRtc",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siirtc.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract",
             "name": "Abstract",

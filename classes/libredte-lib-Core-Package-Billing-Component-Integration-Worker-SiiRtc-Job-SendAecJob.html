@@ -122,13 +122,13 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration.html">Integration</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-worker.html">Worker</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-worker-siidte.html">SiiDte</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-worker-siidte-job.html">Job</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-worker-siirtc.html">SiiRtc</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-worker-siirtc-job.html">Job</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    SendXmlDocumentJob
+    SendAecJob
 
         <span class="phpdocumentor-element__extends">
         extends <abbr title="\Derafu\Backbone\Abstract\AbstractJob">AbstractJob</abbr>
@@ -153,13 +153,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Clase para el envío de documentos al SII.</p>
+            <p class="phpdocumentor-summary">Clase para el envío de un AEC al RTC del SII.</p>
 
 
 
@@ -168,7 +168,7 @@
     
             <section class="phpdocumentor-attributes">
             <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -176,10 +176,10 @@
         #[<abbr title="\Derafu\Backbone\Attribute\Job">Job</abbr>]
     </dt>
         <dd class="phpdocumentor-argument-list__entry">
-        $name: &#039;send_xml_document&#039;
+        $name: &#039;send_aec&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $worker: &#039;sii_dte&#039;
+        $worker: &#039;sii_rtc&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
         $component: &#039;integration&#039;
@@ -192,7 +192,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -200,7 +200,7 @@
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
@@ -213,70 +213,57 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_siiLazyWorker">$siiLazyWorker</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#property_siiLazyWorker">$siiLazyWorker</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_xmlService">$xmlService</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_send">send()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send">send()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse">SendXmlDocumentResponse</abbr></a>    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse">SendAecResponse</abbr></a>    </span>
 </dt>
-<dd>Realiza el envío de un documento XML al SII.</dd>
+<dd>Envía un AEC al Registro de Transferencias de Créditos (RTC) del SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_createXmlFile">createXmlFile()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Guarda el XML en un archivo temporal y, si es necesario, lo comprime.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_getXmlFilePath">getXmlFilePath()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile">createXmlFile()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Obtiene un nombre único para el archivo del XML que se desea crear.</dd>
+<dd>Crea un archivo temporal con el XML del AEC.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml">uploadXml()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec">uploadAec()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Sube el archivo XML al SII y retorna la respuesta de este.</dd>
+<dd>Sube el AEC al endpoint del RTC del SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse">validateUploadXmlResponse()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse">validateResponse()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Valida la respuesta recibida desde el SII al enviar un XML.</dd>
+<dd>Valida la respuesta del SII al enviar el AEC.</dd>
 
     </dl>
 
@@ -288,7 +275,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -300,15 +287,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_siiLazyWorker">
         $siiLazyWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_siiLazyWorker" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#property_siiLazyWorker" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -328,49 +315,12 @@
         
 
 </article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_xmlService">
-        $xmlService
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_xmlService" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">49</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$xmlService</span>
-    </code>
-
-    
-    
-    
-
-        
-        
-
-</article>
             </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -381,20 +331,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiLazyWorker</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$siiLazyWorker</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -405,13 +355,6 @@
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$siiLazyWorker</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$xmlService</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -432,21 +375,21 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_send">
         send()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_send" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Realiza el envío de un documento XML al SII.</p>
+        <p class="phpdocumentor-summary">Envía un AEC al Registro de Transferencias de Créditos (RTC) del SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">send</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse">SendXmlDocumentResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">send</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$doc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emailNotif</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse">SendAecResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -468,7 +411,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento XML que se desea enviar al SII.</p>
+                    <section class="phpdocumentor-description"><p>Documento XML del AEC.</p>
 </section>
 
             </dd>
@@ -477,16 +420,16 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>RUT de la empresa emisora del XML.</p>
+                    <section class="phpdocumentor-description"><p>RUT del cedente.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$compress</span>
-                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$emailNotif</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Indica si se debe enviar comprimido el XML.</p>
+                    <section class="phpdocumentor-description"><p>Correo electrónico de contacto del cedente.</p>
 </section>
 
             </dd>
@@ -495,7 +438,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Intentos que se realizarán como máximo al enviar.</p>
+                    <section class="phpdocumentor-description"><p>Intentos máximos al enviar.</p>
 </section>
 
             </dd>
@@ -504,7 +447,7 @@
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_send#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -514,7 +457,7 @@
                 <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\UnexpectedValueException">UnexpectedValueException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si alguno de los RUT son inválidos.</p>
+                                                 <section class="phpdocumentor-description"><p>Si el RUT de la empresa es inválido.</p>
 </section>
 
                                     </dd>
@@ -522,9 +465,9 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-SendXmlDocumentException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException">SendXmlDocumentException</abbr></a></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtc-SendAecException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException">SendAecException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si hay algún error al enviar el XML.</p>
+                                                 <section class="phpdocumentor-description"><p>Si hay algún error al enviar el AEC.</p>
 </section>
 
                                     </dd>
@@ -534,7 +477,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse">SendXmlDocumentResponse</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse">SendAecResponse</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Respuesta con el Track ID del envío.</p>
 </section>
@@ -550,21 +493,21 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_createXmlFile">
         createXmlFile()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_createXmlFile" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">289</span>
+    <span class="phpdocumentor-element-found-in__line">244</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Guarda el XML en un archivo temporal y, si es necesario, lo comprime.</p>
+        <p class="phpdocumentor-summary">Crea un archivo temporal con el XML del AEC.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createXmlFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">createXmlFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xml</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -577,71 +520,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento XML que se guardará en el archivo..</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$compress</span>
-                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Indica si se debe crear un archivo comprimido.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo con la ruta al archivo creado y su mimetype.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getXmlFilePath">
-        getXmlFilePath()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_getXmlFilePath" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">331</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Obtiene un nombre único para el archivo del XML que se desea crear.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getXmlFilePath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$compress</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$compress</span>
-                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Indica si se debe crear un archivo comprimido.</p>
+                    <section class="phpdocumentor-description"><p>Contenido XML del AEC (debe incluir declaración).</p>
 </section>
 
             </dd>
@@ -655,7 +534,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo con la ruta al archivo.</p>
+                <section class="phpdocumentor-description"><p>Ruta al archivo temporal creado.</p>
 </section>
 
             </section>
@@ -667,31 +546,31 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_uploadXml">
-        uploadXml()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_uploadAec">
+        uploadAec()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">215</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sube el archivo XML al SII y retorna la respuesta de este.</p>
+        <p class="phpdocumentor-summary">Sube el AEC al endpoint del RTC del SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">uploadXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">uploadAec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Este método emula la subida mendiante los siguientes formularios:</p>
+        <section class="phpdocumentor-description"><p>Emula el formulario web en:</p>
 <ul>
-<li>Producción: https://palena.sii.cl/cgi_dte/UPL/DTEauth?1</li>
-<li>Certificación: https://maullin.sii.cl/cgi_dte/UPL/DTEauth?1</li>
+<li>Producción:    https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2</li>
+<li>Certificación: https://maullin.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2</li>
 </ul>
 </section>
 
@@ -702,17 +581,14 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$data</span>
                 : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Arreglo con los datos del formulario del SII,
-incluyendo el archivo XML que se subirá.</p>
+                    <section class="phpdocumentor-description"><p>Campos del formulario multipart, incluido el archivo.</p>
 </section>
 
             </dd>
@@ -721,14 +597,16 @@ incluyendo el archivo XML que se subirá.</p>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Número de reintentos.</p>
+</section>
+
             </dd>
             </dl>
 
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -736,10 +614,9 @@ incluyendo el archivo XML que se subirá.</p>
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDteException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException">SiiDteException</abbr></a></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtcException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtcException">SiiRtcException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si no se puede obtener el token para enviar
-el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
+                                                 <section class="phpdocumentor-description"><p>Si no se puede autenticar o si el HTTP falla.</p>
 </section>
 
                                     </dd>
@@ -749,9 +626,9 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Respuesta del SII al enviar el XML.</p>
+                <section class="phpdocumentor-description"><p>Respuesta del SII decodificada como arreglo.</p>
 </section>
 
             </section>
@@ -763,45 +640,46 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validateUploadXmlResponse">
-        validateUploadXmlResponse()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validateResponse">
+        validateResponse()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida la respuesta recibida desde el SII al enviar un XML.</p>
+        <p class="phpdocumentor-summary">Valida la respuesta del SII al enviar el AEC.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">validateUploadXmlResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">validateResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$request</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+        <section class="phpdocumentor-description"><p>Códigos de estado:
+0  → Envío recibido OK.
+1  → RUT autenticado no tiene permiso para enviar en empresa cedente.
+2  → Error en tamaño del archivo enviado.
+4  → Faltan parámetros de entrada.
+5  → Error de autenticación (TOKEN inválido, no existe o expirado).
+6  → Empresa no es DTE.
+9  → Error interno del SII.
+10 → Error interno del SII.</p>
 </section>
 
-            </dd>
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$response</span>
                 : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Arreglo con los datos del XML de la respuesta.</p>
+                    <section class="phpdocumentor-description"><p>Arreglo decodificado de la respuesta XML del SII.</p>
 </section>
 
             </dd>
@@ -810,7 +688,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -818,9 +696,9 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDteException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException">SiiDteException</abbr></a></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtc-SendAecException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException">SendAecException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Si el envío tuvo algún problema.</p>
+                                                 <section class="phpdocumentor-description"><p>Si el STATUS indica un error.</p>
 </section>
 
                                     </dd>
@@ -836,7 +714,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -937,28 +815,26 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_siiLazyWorker">$siiLazyWorker</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#property_xmlService">$xmlService</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#property_siiLazyWorker">$siiLazyWorker</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_send">send()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_createXmlFile">createXmlFile()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_getXmlFilePath">getXmlFilePath()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml">uploadXml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse">validateUploadXmlResponse()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send">send()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile">createXmlFile()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec">uploadAec()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse">validateResponse()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -978,7 +854,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

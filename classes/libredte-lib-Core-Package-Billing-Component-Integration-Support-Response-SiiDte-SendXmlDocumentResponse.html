@@ -121,33 +121,46 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration.html">Integration</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-contract.html">Contract</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-support.html">Support</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-support-response.html">Response</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-integration-support-response-siidte.html">SiiDte</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -interface">
+    <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    IntegrationComponentInterface
-            <span class="phpdocumentor-element__extends">
-            extends
-                            <abbr title="\Derafu\Backbone\Contract\ComponentInterface">ComponentInterface</abbr>                    </span>
-                <div class="phpdocumentor-element__package">
-            in
+    SendXmlDocumentResponse
+
+    
+            <div class="phpdocumentor-element__package">
+            in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
                             </ul>
         </div>
+    
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\JsonSerializable">JsonSerializable</abbr>                    </span>
+    
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php"><a href="files/src-package-billing-component-integration-contract-integrationcomponentinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php">IntegrationComponentInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Interfaz para `IntegrationComponent`.</p>
+            <p class="phpdocumentor-summary">Respuesta del SII al enviar un documento XML (EnvioDTE o EnvioBOLETA).</p>
 
 
+    <section class="phpdocumentor-description"><p>Contiene el Track ID asignado por el SII para hacer seguimiento del envío.</p>
+</section>
 
 
 
@@ -155,65 +168,126 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\JsonSerializable">JsonSerializable</abbr></dt>    </dl>
 
 
 
 
 
 
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#property_trackId">$trackId</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+
+    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDteWorker">getSiiDteWorker()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a>    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Entrega el worker del SII para realizar las acciones de DTE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiLazyWorker">getSiiLazyWorker()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_getTrackId">getTrackId()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a>    </span>
+                                &nbsp;: int    </span>
 </dt>
-<dd>Entrega el lazy worker del SII que maneja la autenticación y el consumo
-de servicios web.</dd>
+<dd>Entrega el Track ID asignado por el SII al recibir el envío.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRcvWorker">getSiiRcvWorker()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_jsonSerialize">jsonSerialize()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a>    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Entrega el worker del SII para realizar las acciones del RCV.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRtcWorker">getSiiRtcWorker()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_toArray">toArray()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface">SiiRtcWorkerInterface</abbr></a>    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Entrega el worker del SII para realizar las acciones del RTC.</dd>
 
     </dl>
 
 
 
+        
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_trackId">
+        $trackId
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#property_trackId" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">36</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$trackId</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -222,23 +296,67 @@ de servicios web.</dd>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSiiDteWorker">
-        getSiiDteWorker()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDteWorker" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php"><a href="files/src-package-billing-component-integration-contract-integrationcomponentinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php">IntegrationComponentInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el worker del SII para realizar las acciones de DTE.</p>
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$response</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTrackId">
+        getTrackId()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_getTrackId" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el Track ID asignado por el SII al recibir el envío.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSiiDteWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getTrackId</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -251,7 +369,7 @@ de servicios web.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface">SiiDteWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -261,24 +379,22 @@ de servicios web.</dd>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSiiLazyWorker">
-        getSiiLazyWorker()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiLazyWorker" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
+        jsonSerialize()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php"><a href="files/src-package-billing-component-integration-contract-integrationcomponentinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php">IntegrationComponentInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el lazy worker del SII que maneja la autenticación y el consumo
-de servicios web.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSiiLazyWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -291,7 +407,7 @@ de servicios web.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiLazyWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface">SiiLazyWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -301,23 +417,22 @@ de servicios web.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSiiRcvWorker">
-        getSiiRcvWorker()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRcvWorker" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php"><a href="files/src-package-billing-component-integration-contract-integrationcomponentinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php">IntegrationComponentInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-sendxmldocumentresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php">SendXmlDocumentResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el worker del SII para realizar las acciones del RCV.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSiiRcvWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -330,46 +445,7 @@ de servicios web.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRcvWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface">SiiRcvWorkerInterface</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getSiiRtcWorker">
-        getSiiRtcWorker()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRtcWorker" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php"><a href="files/src-package-billing-component-integration-contract-integrationcomponentinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php">IntegrationComponentInterface.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Entrega el worker del SII para realizar las acciones del RTC.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSiiRtcWorker</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface">SiiRtcWorkerInterface</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface">SiiRtcWorkerInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -379,7 +455,7 @@ de servicios web.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Contract/IntegrationComponentInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Support/Response/SiiDte/SendXmlDocumentResponse.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -472,7 +548,7 @@ de servicios web.</p>
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                            
+                                
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -480,20 +556,27 @@ de servicios web.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#toc-constants">Constants</a></li>
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#toc-methods">Methods</a></li>
-                </ul>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
-                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiDteWorker">getSiiDteWorker()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiLazyWorker">getSiiLazyWorker()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRcvWorker">getSiiRcvWorker()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRtcWorker">getSiiRtcWorker()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#property_trackId">$trackId</a></li>
                                             </ul>
                 </li>
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_getTrackId">getTrackId()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_jsonSerialize">jsonSerialize()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_toArray">toArray()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
@@ -511,7 +594,7 @@ de servicios web.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
