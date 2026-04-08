@@ -40,7 +40,7 @@ class ListDocumentEventsResponse implements JsonSerializable
      */
     private array $events;
 
-    public function __construct(array $response)
+    public function __construct(array $response/*, array $request = []*/)
     {
         $this->events = [];
 

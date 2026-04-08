@@ -33,6 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorke
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker;
@@ -54,6 +55,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(ConsumeWebserviceJob::class)]
 #[CoversClass(SiiAmbiente::class)]
 #[CoversClass(SendXmlDocumentJob::class)]
+#[CoversClass(SendXmlDocumentResponse::class)]
 class SendXmlDocumentTest extends TestCase
 {
     private string $xmlDir;
@@ -109,13 +111,14 @@ class SendXmlDocumentTest extends TestCase
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml($xml);
 
-        $trackId = $this->siiDteWorker->sendXmlDocument(
+        $response = $this->siiDteWorker->sendXmlDocument(
             $this->siiRequest,
             $xmlDocument,
             '76192083-9'
         );
 
-        $this->assertGreaterThan(0, $trackId);
+        $this->assertInstanceOf(SendXmlDocumentResponse::class, $response);
+        $this->assertGreaterThan(0, $response->getTrackId());
         // $message = sprintf('Track ID archivo %s es %d.', $file, $trackId);
     }
 }

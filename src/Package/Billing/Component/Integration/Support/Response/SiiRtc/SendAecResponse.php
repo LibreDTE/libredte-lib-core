@@ -22,42 +22,37 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
+namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc;
 
 use JsonSerializable;
 
 /**
- * Respuesta del SII con la fecha de recepción de un DTE en el SII.
+ * Respuesta del RTC del SII al enviar un AEC.
  *
- * El SII retorna la fecha en formato `DD-MM-YYYY HH:MM:SS` dentro del XML de
- * respuesta. Esta clase la normaliza a `YYYY-MM-DD HH:MM:SS`.
+ * Contiene el Track ID asignado por el SII para hacer seguimiento del envío
+ * del Archivo Electrónico de Cesión (AEC).
  */
-class GetDocumentSiiReceptionDateResponse implements JsonSerializable
+class SendAecResponse implements JsonSerializable
 {
-    /**
-     * Fecha de recepción en formato `YYYY-MM-DD HH:MM:SS`.
-     */
-    private string $receptionDate;
+    private readonly int $trackId;
 
     public function __construct(array $response/*, array $request = []*/)
     {
-        $rawDate = (string) ($response['data'] ?? '');
-        [$day, $time] = explode(' ', $rawDate, 2);
-        [$d, $m, $Y] = explode('-', $day);
-        $this->receptionDate = sprintf('%s-%s-%s %s', $Y, $m, $d, $time);
+        $inner = reset($response);
+        $this->trackId = is_array($inner) ? (int) ($inner['TRACKID'] ?? 0) : 0;
     }
 
     /**
-     * Entrega la fecha de recepción en formato `YYYY-MM-DD HH:MM:SS`.
+     * Entrega el Track ID asignado por el RTC del SII al recibir el AEC.
      */
-    public function getReceptionDate(): string
+    public function getTrackId(): int
     {
-        return $this->receptionDate;
+        return $this->trackId;
     }
 
     public function toArray(): array
     {
-        return ['fecha_recepcion_sii' => $this->receptionDate];
+        return ['track_id' => $this->trackId];
     }
 
     public function jsonSerialize(): array

@@ -33,6 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestI
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\CheckXmlDocumentSentStatusJob;
@@ -80,7 +81,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         string $company,
         bool $compress = false,
         ?int $retry = null
-    ): int {
+    ): SendXmlDocumentResponse {
         return $this->sendXmlDocumentJob->send(
             $request,
             $doc,

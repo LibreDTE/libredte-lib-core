@@ -30,6 +30,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\Integration
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface;
 
 /**
  * Componente "billing.integration".
@@ -43,6 +44,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
         private SiiLazyWorkerInterface $siiLazyWorker,
         private SiiDteWorkerInterface $siiDteWorker,
         private SiiRcvWorkerInterface $siiRcvWorker,
+        private SiiRtcWorkerInterface $siiRtcWorker,
     ) {
     }
 
@@ -55,6 +57,7 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
             'sii_lazy' => $this->siiLazyWorker,
             'sii_dte' => $this->siiDteWorker,
             'sii_rcv' => $this->siiRcvWorker,
+            'sii_rtc' => $this->siiRtcWorker,
         ];
     }
 
@@ -80,5 +83,13 @@ class IntegrationComponent extends AbstractComponent implements IntegrationCompo
     public function getSiiRcvWorker(): SiiRcvWorkerInterface
     {
         return $this->siiRcvWorker;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSiiRtcWorker(): SiiRtcWorkerInterface
+    {
+        return $this->siiRtcWorker;
     }
 }

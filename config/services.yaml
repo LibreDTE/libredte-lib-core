@@ -310,6 +310,8 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcvWorker
+    libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtcWorker
 
     # Trabajos del worker "billing.integration.sii_lazy"
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
@@ -327,6 +329,9 @@ services:
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\ListDocumentEventsJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\CheckDocumentAssignabilityJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\GetDocumentSiiReceptionDateJob: ~
+
+    # Trabajos del worker "billing.integration.sii_rtc"
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob: ~
 
     # Workers del componente "billing.ownership_transfer".
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWorkerInterface:

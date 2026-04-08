@@ -35,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWork
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use UnexpectedValueException;
 
 /**
@@ -57,7 +58,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
-     * @return int Número de seguimiento (Track ID) del envío del XML al SII.
+     * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
      */
@@ -67,7 +68,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         string $company,
         bool $compress = false,
         ?int $retry = null
-    ): int {
+    ): SendXmlDocumentResponse {
         // Crear string del documento XML.
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml == '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n") {
@@ -110,9 +111,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         $response = $this->xmlService->decode($xmlResponse);
         $this->validateUploadXmlResponse($request, $response);
 
-        // Entregar el número de seguimiendo (Track ID) del envío al SII.
-        $trackId = $response['RECEPCIONDTE']['TRACKID'] ?? 0;
-        return (int) $trackId;
+        return new SendXmlDocumentResponse($response);
     }
 
     /**

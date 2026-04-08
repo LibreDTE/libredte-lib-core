@@ -33,6 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\Val
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 use UnexpectedValueException;
@@ -50,7 +51,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
      * @param int|null $retry Intentos que se realizarán como máximo al enviar.
-     * @return int Número de seguimiento (Track ID) del envío del XML al SII.
+     * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
@@ -61,7 +62,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
         string $company,
         bool $compress = false,
         ?int $retry = null
-    ): int;
+    ): SendXmlDocumentResponse;
 
     /**
      * Obtiene el estado actualizado del envío de un documento XML al SII.

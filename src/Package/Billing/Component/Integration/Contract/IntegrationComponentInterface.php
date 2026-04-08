@@ -52,4 +52,11 @@ interface IntegrationComponentInterface extends ComponentInterface
      * @return SiiRcvWorkerInterface
      */
     public function getSiiRcvWorker(): SiiRcvWorkerInterface;
+
+    /**
+     * Entrega el worker del SII para realizar las acciones del RTC.
+     *
+     * @return SiiRtcWorkerInterface
+     */
+    public function getSiiRtcWorker(): SiiRtcWorkerInterface;
 }

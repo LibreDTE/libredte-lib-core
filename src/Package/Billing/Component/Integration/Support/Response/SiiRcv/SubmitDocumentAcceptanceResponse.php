@@ -41,7 +41,7 @@ class SubmitDocumentAcceptanceResponse implements JsonSerializable
      */
     private string $description;
 
-    public function __construct(array $response)
+    public function __construct(array $response/*, array $request = []*/)
     {
         $return = $response['return'] ?? $response;
         $this->code = (int) ($return['codResp'] ?? 0);
