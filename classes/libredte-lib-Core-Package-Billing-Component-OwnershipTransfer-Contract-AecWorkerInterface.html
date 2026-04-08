@@ -120,13 +120,13 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book.html">Book</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book-contract.html">Contract</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer.html">OwnershipTransfer</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-contract.html">Contract</a></li>
     </ul>
 
     <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    ValidatorWorkerInterface
+    AecWorkerInterface
             <span class="phpdocumentor-element__extends">
             extends
                             <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
@@ -139,13 +139,13 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-validatorworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php">ValidatorWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php"><a href="files/src-package-billing-component-ownershiptransfer-contract-aecworkerinterface.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php">AecWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Interfaz para el validador de libros tributarios electrónicos.</p>
+            <p class="phpdocumentor-summary">Interfaz para `AecWorker`.</p>
 
 
 
@@ -155,7 +155,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -170,23 +170,30 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSchema">validateSchema()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build">build()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>    </span>
+</dt>
+<dd>Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema">validateSchema()</a>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
-<dd>Valida el esquema XSD del XML del libro.</dd>
+<dd>Valida el esquema XSD del AEC.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature">validateSignature()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSignature">validateSignature()</a>
     <span>
-                                &nbsp;: <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;    </span>
 </dt>
-<dd>Valida la firma electrónica XML del libro.</dd>
+<dd>Valida la(s) firma(s) electrónica(s) del AEC.</dd>
 
     </dl>
 
@@ -198,7 +205,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -207,37 +214,102 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validateSchema">
-        validateSchema()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSchema" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_build">
+        build()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-validatorworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php">ValidatorWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php"><a href="files/src-package-billing-component-ownershiptransfer-contract-aecworkerinterface.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php">AecWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida el esquema XSD del XML del libro.</p>
+        <p class="phpdocumentor-summary">Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validateSchema</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">build</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag">AecBag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Si se pasa un <code class="prettyprint">BookBagInterface</code>, el esquema se determina directamente
-desde <code class="prettyprint">$bag-&gt;getTipo()-&gt;getSchema()</code>. Para XML directo, se detecta el
-esquema a partir del elemento raíz del documento.</p>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag">AecBag</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Contenedor con el DTE, cedente, cesionario, cesión y
+certificado.</p>
 </section>
 
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Exception-OwnershipTransferException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Exception\OwnershipTransferException">OwnershipTransferException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>En caso de error.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateSchema">
+        validateSchema()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php"><a href="files/src-package-billing-component-ownershiptransfer-contract-aecworkerinterface.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php">AecWorkerInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">59</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida el esquema XSD del AEC.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateSchema</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$source</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -247,7 +319,7 @@ esquema a partir del elemento raíz del documento.</p>
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSchema#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -261,9 +333,30 @@ esquema a partir del elemento raíz del documento.</p>
 </section>
 
                                     </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Exception-OwnershipTransferException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Exception\OwnershipTransferException">OwnershipTransferException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si no se puede determinar el esquema.</p>
+</section>
+
+                                    </dd>
                                             </dl>
 
         
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\NoDiscard">NoDiscard</abbr>]
+    </dt>
+    </dl>
+                    </section>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -283,31 +376,34 @@ esquema a partir del elemento raíz del documento.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_validateSignature">
         validateSignature()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSignature" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-validatorworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php">ValidatorWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php"><a href="files/src-package-billing-component-ownershiptransfer-contract-aecworkerinterface.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php">AecWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida la firma electrónica XML del libro.</p>
+        <p class="phpdocumentor-summary">Valida la(s) firma(s) electrónica(s) del AEC.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validateSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">validateSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>El AEC contiene múltiples firmas: DTECedido, Cesion y AEC. Se retornan
+todos los resultados.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$source</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -315,28 +411,11 @@ esquema a partir del elemento raíz del documento.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Signature\Exception\SignatureException">SignatureException</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>Si la validación de la firma falla.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
 
         
             <section class="phpdocumentor-attributes">
             <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSignature#attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -348,7 +427,7 @@ esquema a partir del elemento raíz del documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span>
             </section>
 
 </article>
@@ -358,7 +437,7 @@ esquema a partir del elemento raíz del documento.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/OwnershipTransfer/Contract/AecWorkerInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -459,15 +538,16 @@ esquema a partir del elemento raíz del documento.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#toc-constants">Constants</a></li>
-                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#toc-methods">Methods</a></li>
+                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#toc-constants">Constants</a></li>
+                    <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#toc-methods">Methods</a></li>
                 </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSchema">validateSchema()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature">validateSignature()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build">build()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema">validateSchema()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSignature">validateSignature()</a></li>
                                             </ul>
                 </li>
             
@@ -488,7 +568,7 @@ esquema a partir del elemento raíz del documento.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

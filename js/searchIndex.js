@@ -6411,10 +6411,15 @@ Search.appendIndex(
             "summary": "Construye\u0020el\u0020XML\u0020\u0060RespuestaDTE\u0060\u0020firmado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_buildRespuestaEnvio"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\DocumentResponseWorkerInterface\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020y\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validate"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\DocumentResponseWorkerInterface\u003A\u003AvalidateSchema\u0028\u0029",
+            "name": "validateSchema",
+            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\DocumentResponseWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
+            "name": "validateSignature",
+            "summary": "Valida\u0020la\u0028s\u0029\u0020firma\u0028s\u0029\u0020electr\u00F3nica\u0028s\u0029\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\EnvelopeInterface",
             "name": "EnvelopeInterface",
@@ -7821,31 +7826,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-BuildRespuestaEnvioJob.html#property_signatureService"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\ValidateJob",
-            "name": "ValidateJob",
-            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020y\u0020la\u0020firma\u0020electr\u00F3nica\u0020de\u0020un\u0020documento\u0020de\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\ValidateJob\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\ValidateJob\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020y\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method_validate"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\ValidateJob\u003A\u003A\u0024xmlService",
-            "name": "xmlService",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_xmlService"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\ValidateJob\u003A\u003A\u0024signatureService",
-            "name": "signatureService",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_signatureService"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker",
             "name": "DocumentResponseWorker",
             "summary": "Worker\u0020\u0022billing.exchange.document_response\u0022.",
@@ -7866,10 +7846,20 @@ Search.appendIndex(
             "summary": "Construye\u0020el\u0020XML\u0020\u0060RespuestaDTE\u0060\u0020firmado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#method_buildRespuestaEnvio"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020y\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#method_validate"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003AvalidateSchema\u0028\u0029",
+            "name": "validateSchema",
+            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#method_validateSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003AvalidateSignature\u0028\u0029",
+            "name": "validateSignature",
+            "summary": "Valida\u0020la\u0028s\u0029\u0020firma\u0028s\u0029\u0020electr\u00F3nica\u0028s\u0029\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#method_validateSignature"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003AtoXmlDocument\u0028\u0029",
+            "name": "toXmlDocument",
+            "summary": "Convierte\u0020la\u0020fuente\u0020en\u0020un\u0020\u0060XmlDocument\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#method_toXmlDocument"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003A\u0024buildEnvioRecibosJob",
             "name": "buildEnvioRecibosJob",
@@ -7881,10 +7871,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#property_buildRespuestaEnvioJob"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003A\u0024validateJob",
-            "name": "validateJob",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#property_validateJob"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#property_xmlService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponseWorker\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponseWorker.html#property_signatureService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Receiver\\Handler\\EmailReceiverHandler",
             "name": "EmailReceiverHandler",
@@ -10076,10 +10071,130 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#property_getDocumentSiiReceptionDateJob"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument",
+            "name": "AbstractOwnershipTransferDocument",
+            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020de\u0020los\u0020documentos\u0020de\u0020cesi\u00F3n\u0020electr\u00F3nica\u0020\u0028AEC\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020documento\u0020de\u0020cesi\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetXmlDocument\u0028\u0029",
+            "name": "getXmlDocument",
+            "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetXml\u0028\u0029",
+            "name": "getXml",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020en\u0020formato\u0020ISO\u002D8859\u002D1.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetSignatureNamespace\u0028\u0029",
+            "name": "getSignatureNamespace",
+            "summary": "Entrega\u0020el\u0020namespace\u0020de\u0020la\u0020firma\u0020electr\u00F3nica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getSignatureNamespace"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020el\u0020documento\u0020como\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003A\u0024xmlDocument",
+            "name": "xmlDocument",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#property_xmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface",
+            "name": "AecWorkerInterface",
+            "summary": "Interfaz\u0020para\u0020\u0060AecWorker\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020DTECedido,\u0020Cesion\u0020y\u0020documento\u0020ra\u00EDz\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface\u003A\u003AvalidateSchema\u0028\u0029",
+            "name": "validateSchema",
+            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
+            "name": "validateSignature",
+            "summary": "Valida\u0020la\u0028s\u0029\u0020firma\u0028s\u0029\u0020electr\u00F3nica\u0028s\u0029\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_validateSignature"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferComponentInterface",
             "name": "OwnershipTransferComponentInterface",
             "summary": "Interfaz\u0020para\u0020\u0060OwnershipTransferComponent\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferComponentInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferComponentInterface\u003A\u003AgetAecWorker\u0028\u0029",
+            "name": "getAecWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020para\u0020generaci\u00F3n\u0020y\u0020validaci\u00F3n\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferComponentInterface.html#method_getAecWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Aec",
+            "name": "Aec",
+            "summary": "Entidad\u0020que\u0020representa\u0020el\u0020XML\u0020\u0060AEC\u0060\u0020\u0028Archivo\u0020Electr\u00F3nico\u0020de\u0020Cesi\u00F3n\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Aec\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Aec\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Cesion",
+            "name": "Cesion",
+            "summary": "Entidad\u0020que\u0020representa\u0020el\u0020XML\u0020\u0060Cesion\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Cesion\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html#method_getId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Cesion\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html#method_getSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\DteCedido",
+            "name": "DteCedido",
+            "summary": "Entidad\u0020que\u0020representa\u0020el\u0020XML\u0020\u0060DTECedido\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-DteCedido.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\DteCedido\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-DteCedido.html#method_getId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\DteCedido\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-DteCedido.html#method_getSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Exception\\OwnershipTransferException",
             "name": "OwnershipTransferException",
@@ -10100,6 +10215,231 @@ Search.appendIndex(
             "name": "getWorkers",
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method_getWorkers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\OwnershipTransferComponent\u003A\u003AgetAecWorker\u0028\u0029",
+            "name": "getAecWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020para\u0020generaci\u00F3n\u0020y\u0020validaci\u00F3n\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#method_getAecWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\OwnershipTransferComponent\u003A\u003A\u0024aecWorker",
+            "name": "aecWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-OwnershipTransferComponent.html#property_aecWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag",
+            "name": "AecBag",
+            "summary": "Contenedor\u0020de\u0020datos\u0020para\u0020construir\u0020o\u0020re\u002Dceder\u0020un\u0020Archivo\u0020Electr\u00F3nico\u0020de\u0020Cesi\u00F3n\u0020\u0028AEC\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetSource\u0028\u0029",
+            "name": "getSource",
+            "summary": "Entrega\u0020la\u0020fuente\u003A\u0020un\u0020\u0060DocumentInterface\u0060\u0020\u0028primera\u0020cesi\u00F3n\u0029\u0020o\u0020un\u0020\u0060Aec\u0060\n\u0028re\u002Dcesi\u00F3n\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getSource"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AisRecesion\u0028\u0029",
+            "name": "isRecesion",
+            "summary": "Indica\u0020si\u0020es\u0020una\u0020re\u002Dcesi\u00F3n\u0020\u0028la\u0020fuente\u0020es\u0020un\u0020AEC\u0020existente\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_isRecesion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCedente\u0028\u0029",
+            "name": "getCedente",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCedente"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCesionario\u0028\u0029",
+            "name": "getCesionario",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCesionario"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCesion\u0028\u0029",
+            "name": "getCesion",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCesion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCertificate\u0028\u0029",
+            "name": "getCertificate",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetSeq\u0028\u0029",
+            "name": "getSeq",
+            "summary": "Entrega\u0020el\u0020n\u00FAmero\u0020de\u0020secuencia\u0020expl\u00EDcito,\u0020o\u0020\u0060null\u0060\u0020para\u0020que\u0020el\u0020job\u0020lo\ncalcule\u0020autom\u00E1ticamente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getSeq"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024source",
+            "name": "source",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_source"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024cedente",
+            "name": "cedente",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_cedente"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024cesionario",
+            "name": "cesionario",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_cesionario"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024cesion",
+            "name": "cesion",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_cesion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024certificate",
+            "name": "certificate",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_certificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003A\u0024seq",
+            "name": "seq",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#property_seq"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob",
+            "name": "BuildAecJob",
+            "summary": "Construye\u0020el\u0020XML\u0020\u0060AEC\u0060\u0020firmado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Construye\u0020y\u0020firma\u0020el\u0020XML\u0020\u0060AEC\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AbuildPrimeraCesion\u0028\u0029",
+            "name": "buildPrimeraCesion",
+            "summary": "Construye\u0020el\u0020AEC\u0020para\u0020la\u0020primera\u0020cesi\u00F3n\u0020a\u0020partir\u0020de\u0020un\u0020\u0060DocumentInterface\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_buildPrimeraCesion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AbuildRecesion\u0028\u0029",
+            "name": "buildRecesion",
+            "summary": "Construye\u0020el\u0020AEC\u0020para\u0020una\u0020re\u002Dcesi\u00F3n\u0020a\u0020partir\u0020de\u0020un\u0020\u0060Aec\u0060\u0020existente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_buildRecesion"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AassembleAndSign\u0028\u0029",
+            "name": "assembleAndSign",
+            "summary": "Ensambla\u0020el\u0020XML\u0020del\u0020AEC\u0020con\u0020los\u0020nodos\u0020ya\u0020firmados\u0020y\u0020lo\u0020firma.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_assembleAndSign"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AstripXmlDeclaration\u0028\u0029",
+            "name": "stripXmlDeclaration",
+            "summary": "Elimina\u0020la\u0020declaraci\u00F3n\u0020\u0060\u003C\u003Fxml...\u003F\u003E\u0060\u0020de\u0020un\u0020string\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_stripXmlDeclaration"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003ANS",
+            "name": "NS",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#constant_NS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A\u0024buildDteCedidoJob",
+            "name": "buildDteCedidoJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#property_buildDteCedidoJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A\u0024buildCesionJob",
+            "name": "buildCesionJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#property_buildCesionJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#property_signatureService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob",
+            "name": "BuildCesionJob",
+            "summary": "Construye\u0020el\u0020XML\u0020\u0060Cesion\u0060\u0020firmado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Construye\u0020y\u0020firma\u0020el\u0020XML\u0020\u0060Cesion\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#property_signatureService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob",
+            "name": "BuildDteCedidoJob",
+            "summary": "Construye\u0020el\u0020XML\u0020\u0060DTECedido\u0060\u0020firmado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Construye\u0020y\u0020firma\u0020el\u0020XML\u0020\u0060DTECedido\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html#property_signatureService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker",
+            "name": "AecWorker",
+            "summary": "Worker\u0020\u0022billing.ownership_transfer.aec\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020DTECedido,\u0020Cesion\u0020y\u0020documento\u0020ra\u00EDz\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003AvalidateSchema\u0028\u0029",
+            "name": "validateSchema",
+            "summary": "Valida\u0020el\u0020esquema\u0020XSD\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_validateSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003AvalidateSignature\u0028\u0029",
+            "name": "validateSignature",
+            "summary": "Valida\u0020la\u0028s\u0029\u0020firma\u0028s\u0029\u0020electr\u00F3nica\u0028s\u0029\u0020del\u0020AEC.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_validateSignature"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003AtoXmlDocument\u0028\u0029",
+            "name": "toXmlDocument",
+            "summary": "Convierte\u0020la\u0020fuente\u0020en\u0020un\u0020\u0060XmlDocument\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_toXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003A\u0024buildAecJob",
+            "name": "buildAecJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#property_buildAecJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#property_xmlService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003A\u0024signatureService",
+            "name": "signatureService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#property_signatureService"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Abstract\\AbstractContribuyenteFactory",
             "name": "AbstractContribuyenteFactory",
@@ -11751,10 +12091,20 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-worker-siircv.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract",
+            "name": "Abstract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-abstract.html"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract",
             "name": "Contract",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-contract.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity",
+            "name": "Entity",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-entity.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Exception",
             "name": "Exception",
@@ -11765,6 +12115,26 @@ Search.appendIndex(
             "name": "OwnershipTransfer",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support",
+            "name": "Support",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-support.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker-aec-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec",
+            "name": "Aec",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker-aec.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker",
+            "name": "Worker",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Abstract",
             "name": "Abstract",

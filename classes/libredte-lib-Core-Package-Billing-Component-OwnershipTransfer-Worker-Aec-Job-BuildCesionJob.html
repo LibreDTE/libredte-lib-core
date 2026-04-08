@@ -120,15 +120,15 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange.html">Exchange</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange-worker.html">Worker</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange-worker-documentresponse.html">DocumentResponse</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange-worker-documentresponse-job.html">Job</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer.html">OwnershipTransfer</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker.html">Worker</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker-aec.html">Aec</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-worker-aec-job.html">Job</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ValidateJob
+    BuildCesionJob
 
         <span class="phpdocumentor-element__extends">
         extends <abbr title="\Derafu\Backbone\Abstract\AbstractJob">AbstractJob</abbr>
@@ -153,22 +153,33 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php"><a href="files/src-package-billing-component-exchange-worker-documentresponse-job-validatejob.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php">ValidateJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aec-job-buildcesionjob.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php">BuildCesionJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Valida el esquema XSD y la firma electrónica de un documento de respuesta.</p>
+            <p class="phpdocumentor-summary">Construye el XML `Cesion` firmado.</p>
 
 
+    <section class="phpdocumentor-description"><p>Acepta dos tipos de fuente para los datos de cabecera del DTE:</p>
+<ul>
+<li><code class="prettyprint">DocumentInterface</code>: extrae los datos vía sus métodos (<code class="prettyprint">getCodigo()</code>,
+<code class="prettyprint">getFolio()</code>, <code class="prettyprint">getFechaEmision()</code>, <code class="prettyprint">getMontoTotal()</code>, <code class="prettyprint">getRutEmisor()</code>,
+<code class="prettyprint">getRutReceptor()</code>). Usado en la primera cesión.</li>
+<li><code class="prettyprint">array</code>: recibe los datos directamente con las claves <code class="prettyprint">TipoDTE</code>,
+<code class="prettyprint">RUTEmisor</code>, <code class="prettyprint">RUTReceptor</code>, <code class="prettyprint">Folio</code>, <code class="prettyprint">FchEmis</code>, <code class="prettyprint">MntTotal</code>. Usado en
+re-cesiones donde el DTE original no está disponible directamente.</li>
+</ul>
+<p>Firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>.</p>
+</section>
 
 
 
     
             <section class="phpdocumentor-attributes">
             <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -176,13 +187,13 @@
         #[<abbr title="\Derafu\Backbone\Attribute\Job">Job</abbr>]
     </dt>
         <dd class="phpdocumentor-argument-list__entry">
-        $name: &#039;validate&#039;
+        $name: &#039;build_cesion&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $worker: &#039;document_response&#039;
+        $worker: &#039;aec&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $component: &#039;exchange&#039;
+        $component: &#039;ownership_transfer&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
         $package: &#039;billing&#039;
@@ -192,7 +203,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -200,7 +211,7 @@
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
@@ -213,42 +224,36 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_signatureService">$signatureService</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#property_signatureService">$signatureService</a>
     <span>
                         &nbsp;: <abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_xmlService">$xmlService</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method_validate">validate()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method_build">build()</a>
     <span>
-                                &nbsp;: bool    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Cesion">Cesion</abbr></a>    </span>
 </dt>
-<dd>Valida el esquema XSD y la firma electrónica del documento.</dd>
+<dd>Construye y firma el XML `Cesion`.</dd>
 
     </dl>
 
@@ -260,7 +265,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -272,15 +277,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_signatureService">
         $signatureService
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_signatureService" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#property_signatureService" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php"><a href="files/src-package-billing-component-exchange-worker-documentresponse-job-validatejob.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php">ValidateJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aec-job-buildcesionjob.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php">BuildCesionJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -300,49 +305,12 @@
         
 
 </article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_xmlService">
-        $xmlService
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_xmlService" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php"><a href="files/src-package-billing-component-exchange-worker-documentresponse-job-validatejob.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php">ValidateJob.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$xmlService</span>
-    </code>
-
-    
-    
-    
-
-        
-        
-
-</article>
             </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -353,20 +321,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php"><a href="files/src-package-billing-component-exchange-worker-documentresponse-job-validatejob.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php">ValidateJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aec-job-buildcesionjob.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php">BuildCesionJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signatureService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signatureService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -374,13 +342,6 @@
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$xmlService</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$signatureService</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr></span>
@@ -402,23 +363,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validate">
-        validate()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_build">
+        build()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method_build" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php"><a href="files/src-package-billing-component-exchange-worker-documentresponse-job-validatejob.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php">ValidateJob.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aec-job-buildcesionjob.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php">BuildCesionJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida el esquema XSD y la firma electrónica del documento.</p>
+        <p class="phpdocumentor-summary">Construye y firma el XML `Cesion`.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">build</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cedente</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cesionario</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cesion</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seq</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Cesion">Cesion</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -427,44 +388,70 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$document</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$dte</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|array&lt;string, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento a validar.</p>
+                    <section class="phpdocumentor-description"><p>DTE cedido como
+<code class="prettyprint">DocumentInterface</code>, o arreglo con claves <code class="prettyprint">TipoDTE</code>, <code class="prettyprint">RUTEmisor</code>,
+<code class="prettyprint">RUTReceptor</code>, <code class="prettyprint">Folio</code>, <code class="prettyprint">FchEmis</code>, <code class="prettyprint">MntTotal</code>.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cedente</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos del cedente.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cesionario</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos del cesionario.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cesion</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la cesión.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$certificate</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Certificado para firmar.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$seq</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de secuencia de la cesión.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method_validate#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Exception-DocumentResponseException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentResponseException">DocumentResponseException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>Si el esquema o la firma no son válidos.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p><code class="prettyprint">true</code> si el documento es válido.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Cesion.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Cesion">Cesion</abbr></a></span>
             </section>
 
 </article>
@@ -474,7 +461,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Exchange/Worker/DocumentResponse/Job/ValidateJob.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/OwnershipTransfer/Worker/Aec/Job/BuildCesionJob.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -575,24 +562,23 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_signatureService">$signatureService</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#property_xmlService">$xmlService</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#property_signatureService">$signatureService</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#method_validate">validate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method_build">build()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -612,7 +598,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-ValidateJob.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

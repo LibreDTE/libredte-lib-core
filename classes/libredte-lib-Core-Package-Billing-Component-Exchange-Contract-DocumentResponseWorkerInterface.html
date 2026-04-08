@@ -141,7 +141,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -189,11 +189,18 @@
 <dd>Construye el XML `RespuestaDTE` firmado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validate">validate()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema">validateSchema()</a>
     <span>
-                                &nbsp;: bool    </span>
+                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
-<dd>Valida el esquema XSD y la firma electrónica del documento.</dd>
+<dd>Valida el esquema XSD del documento de respuesta.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature">validateSignature()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;    </span>
+</dt>
+<dd>Valida la(s) firma(s) electrónica(s) del documento de respuesta.</dd>
 
     </dl>
 
@@ -222,7 +229,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -293,7 +300,7 @@ y luego el <code class="prettyprint">SetRecibos</code> se firma con ID <code cla
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -356,23 +363,23 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validate">
-        validate()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validateSchema">
+        validateSchema()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida el esquema XSD y la firma electrónica del documento.</p>
+        <p class="phpdocumentor-summary">Valida el esquema XSD del documento de respuesta.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">validateSchema</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -381,20 +388,18 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$document</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$source</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento a validar.</p>
-</section>
-
+                
             </dd>
             </dl>
 
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validate#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -402,23 +407,107 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Exception\XmlException">XmlException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Si la validación del esquema falla.</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Exception-DocumentResponseException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentResponseException">DocumentResponseException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>En caso de error de validación.</p>
+                                                 <section class="phpdocumentor-description"><p>Si no se puede determinar el esquema.</p>
 </section>
 
                                     </dd>
                                             </dl>
 
         
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\NoDiscard">NoDiscard</abbr>]
+    </dt>
+    </dl>
+                    </section>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p><code class="prettyprint">true</code> si el documento es válido.</p>
+                <section class="phpdocumentor-description"><p>El documento XML validado.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateSignature">
+        validateSignature()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">89</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida la(s) firma(s) electrónica(s) del documento de respuesta.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateSignature</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Para <code class="prettyprint">EnvioRecibos</code> hay múltiples firmas (una por recibo más la del
+<code class="prettyprint">SetRecibos</code>). Se retornan todos los resultados.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$source</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\NoDiscard">NoDiscard</abbr>]
+    </dt>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span>
             </section>
 
 </article>
@@ -538,7 +627,8 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_buildEnvioRecibos">buildEnvioRecibos()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_buildRespuestaEnvio">buildRespuestaEnvio()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validate">validate()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSchema">validateSchema()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature">validateSignature()</a></li>
                                             </ul>
                 </li>
             
