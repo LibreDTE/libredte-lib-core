@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias;
 
-use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy;
 
 /**
  * Estrategia `resumen_ventas_diarias.array` del `LoaderWorker`.
@@ -36,32 +36,17 @@ use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInte
  * normalización previa: el BuilderWorker los procesa en `calcularResumen()`.
  */
 #[Strategy(name: 'resumen_ventas_diarias.array', worker: 'loader', component: 'book', package: 'billing')]
-class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInterface
+class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderStrategyInterface
 {
     /**
      * {@inheritDoc}
-     */
-    public function load(BookBagInterface $bag): BookBagInterface
-    {
-        $bag->setCaratula($this->normalizarCaratula($bag));
-
-        $detalles = $bag->getDetalle();
-
-        foreach ($detalles as &$detalle) {
-            $this->normalizarDetalle($detalle);
-        }
-        unset($detalle);
-
-        return $bag->setDetalle($detalles);
-    }
-
-    /**
+     *
      * Normaliza la carátula del resumen de ventas diarias.
      *
      * @param BookBagInterface $bag
      * @return array
      */
-    private function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizarCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisor' => $bag->getEmisor()?->getRut() ?? false,
@@ -76,14 +61,16 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Normaliza un detalle del resumen de ventas diarias.
      *
      * @param array $detalle
-     * @return void
+     * @return array
      */
-    private function normalizarDetalle(array &$detalle): void
+    protected function normalizarDetalle(array $detalle): array
     {
-        $detalle = array_merge([
+        return array_merge([
             // TODO: Normalizar detalle según lo que se usa en el BuilderStrategy.
         ], $detalle);
     }

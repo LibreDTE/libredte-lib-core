@@ -24,7 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy;
 
-use Derafu\Backbone\Abstract\AbstractStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
@@ -35,35 +34,15 @@ use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
  * Normaliza cada registro de detalle según el esquema `LibroCV_v10.xsd`:
  * añade valores por defecto, calcula IVA cuando falta, normaliza estructuras
  * de IVA no recuperable y otros impuestos, y calcula el monto total.
- *
- * Compatible con todos los campos del legacy `LibroComprasVentas::normalizarDetalle()`.
  */
-abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStrategy
+abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArrayLoaderStrategy
 {
     /**
      * {@inheritDoc}
-     */
-    public function load(BookBagInterface $bag): BookBagInterface
-    {
-        $bag->setCaratula($this->normalizarCaratula($bag));
-
-        $detalles = $bag->getDetalle();
-
-        foreach ($detalles as &$detalle) {
-            $this->normalizarDetalle($detalle);
-        }
-        unset($detalle);
-
-        return $bag->setDetalle($detalles);
-    }
-
-    /**
-     * Normaliza la carátula del libro de compra/venta.
      *
-     * @param BookBagInterface $bag
-     * @return array
+     * Normaliza la carátula del libro de compra/venta.
      */
-    private function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizarCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
@@ -81,14 +60,17 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStr
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Normaliza un registro de detalle del libro de compra/venta.
      *
      * El orden de las claves determina el orden de los elementos en el XML,
      * que debe respetar el esquema `LibroCV_v10.xsd`.
      */
-    private function normalizarDetalle(array &$detalle): void
+    protected function normalizarDetalle(array $detalle): array
     {
-        $detalle = array_merge([
+        // Valores por defecto.
+        $default = [
             'TpoDoc' => false,
             'Emisor' => false,
             'IndFactCompra' => false,
@@ -135,16 +117,18 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStr
             'TabCigarrillos' => false,
             'TabElaborado' => false,
             'ImpVehiculo' => false,
-        ], $detalle);
+        ];
+
+        // Normalizar los campos del detalle.
+        $detalle = array_merge($default, $detalle);
 
         // Si está anulado, se mantiene solo el mínimo requerido.
         if (!empty($detalle['Anulado']) && $detalle['Anulado'] === 'A') {
-            $detalle = [
+            return array_merge($default, [
                 'TpoDoc' => $detalle['TpoDoc'],
                 'NroDoc' => $detalle['NroDoc'],
                 'Anulado' => $detalle['Anulado'],
-            ];
-            return;
+            ]);
         }
 
         // Truncar razón social.
@@ -202,5 +186,8 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractStr
         if (!$detalle['CdgSIISucur']) {
             $detalle['CdgSIISucur'] = false;
         }
+
+        // Retornar el detalle normalizado.
+        return $detalle;
     }
 }

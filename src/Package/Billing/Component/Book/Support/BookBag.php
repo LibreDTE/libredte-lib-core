@@ -74,6 +74,13 @@ class BookBag implements BookBagInterface
     private TipoLibro $tipo;
 
     /**
+     * Datos originales de entrada que se utilizarán para construir el libro.
+     *
+     * @var array|string
+     */
+    private array|string $inputData;
+
+    /**
      * Carátula del libro.
      *
      * @var array<string, mixed>
@@ -81,7 +88,7 @@ class BookBag implements BookBagInterface
     private array $caratula;
 
     /**
-     * Detalles del libro.
+     * Detalles normalizadosdel libro.
      *
      * @var array<int, array<string, mixed>>
      */
@@ -112,6 +119,10 @@ class BookBag implements BookBagInterface
      * Constructor del contenedor.
      *
      * @param TipoLibro $tipo Tipo de libro tributario.
+     * @param array|string $inputData Datos originales de entrada que se
+     * utilizarán para construir el libro. Si es un arreglo son los datos crudos.
+     * Si es un string podrá ser un CSV, XML, JSON, etc, dependiendo del formato
+     * de entrada en las opciones del `LoaderWorker`.
      * @param array<string, mixed> $caratula Datos de la carátula del libro.
      * @param array<int, array<string, mixed>> $detalle Filas del libro.
      * @param CertificateInterface|null $certificate Certificado para firmar.
@@ -121,6 +132,7 @@ class BookBag implements BookBagInterface
      */
     public function __construct(
         TipoLibro $tipo,
+        array|string $inputData = [],
         array $caratula = [],
         array $detalle = [],
         array|OptionsInterface|null $options = null,
@@ -129,6 +141,7 @@ class BookBag implements BookBagInterface
         EmisorInterface|null $emisor = null,
     ) {
         $this->tipo = $tipo;
+        $this->inputData = $inputData;
         $this->caratula = $caratula;
         $this->detalle = $detalle;
         $this->certificate = $certificate;
@@ -143,6 +156,24 @@ class BookBag implements BookBagInterface
     public function getTipo(): TipoLibro
     {
         return $this->tipo;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInputData(array|string $inputData): static
+    {
+        $this->inputData = $inputData;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputData(): array|string
+    {
+        return $this->inputData;
     }
 
     /**

@@ -53,6 +53,29 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getTipo(): TipoLibro;
 
     /**
+     * Asigna los datos de entrada del libro.
+     *
+     * Si es un arreglo son los datos crudos. Si es un string podrá ser un CSV,
+     * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
+     * `LoaderWorker`.
+     *
+     * @param array|string $inputData
+     * @return static
+     */
+    public function setInputData(array|string $inputData): static;
+
+    /**
+     * Obtiene los datos de entrada del libro.
+     *
+     * Si es un arreglo son los datos crudos. Si es un string podrá ser un CSV,
+     * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
+     * `LoaderWorker`.
+     *
+     * @return array|string
+     */
+    public function getInputData(): array|string;
+
+    /**
      * Asigna la carátula del libro.
      *
      * La estructura del arreglo varía según el tipo de libro:
@@ -78,8 +101,8 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Asigna los detalles del libro.
      *
-     * Antes de pasar por el `LoaderWorker` los detalles son datos crudos.
-     * Después del loader están normalizados con todos los campos en orden.
+     * Es el detalle normalizado con todos los campos en el orden correcto que
+     * espera el `BuilderWorker` para construir el XML del libro.
      *
      * @param array<int, array<string, mixed>> $detalles
      * @return static
@@ -88,6 +111,9 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
 
     /**
      * Obtiene los detalles del libro.
+     *
+     * Es el detalle normalizado con todos los campos en el orden correcto que
+     * espera el `BuilderWorker` para construir el XML del libro.
      *
      * @return array<int, array<string, mixed>>
      */

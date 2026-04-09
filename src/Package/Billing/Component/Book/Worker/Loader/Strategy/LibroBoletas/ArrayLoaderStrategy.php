@@ -24,38 +24,22 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroBoletas;
 
-use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy;
 
 /**
  * Estrategia `libro_boletas.array` del `LoaderWorker`.
  *
  * Normaliza los detalles del Libro de Boletas desde un arreglo PHP.
- * Compatible con los campos del legacy `LibroBoleta::agregar()`.
  */
 #[Strategy(name: 'libro_boletas.array', worker: 'loader', component: 'book', package: 'billing')]
-class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInterface
+class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderStrategyInterface
 {
     /**
      * {@inheritDoc}
-     */
-    public function load(BookBagInterface $bag): BookBagInterface
-    {
-        $bag->setCaratula($this->normalizarCaratula($bag));
-
-        $detalles = $bag->getDetalle();
-
-        foreach ($detalles as &$detalle) {
-            $this->normalizarDetalle($detalle);
-        }
-        unset($detalle);
-
-        return $bag->setDetalle($detalles);
-    }
-
-    /**
+     *
      * Normaliza la carátula del libro de boletas.
      *
      *   - TipoLibro: 'ESPECIAL' (siempre es especial en boletas).
@@ -68,7 +52,7 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
      * @param BookBagInterface $bag
      * @return array
      */
-    private function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizarCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisorLibro' => $bag->getEmisor()?->getRut() ?? false,
@@ -84,14 +68,16 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Normaliza un detalle del libro de boletas.
      *
      * El orden de las claves determina el orden de los elementos en el XML.
-     * Compatible con `LibroBoleta::agregar()` del legacy.
      */
-    private function normalizarDetalle(array &$detalle): void
+    protected function normalizarDetalle(array $detalle): array
     {
-        $detalle = array_merge([
+        // Valores por defecto.
+        return array_merge([
             'TpoDoc' => false,
             'FolioDoc' => false,
             'Anulado' => false,

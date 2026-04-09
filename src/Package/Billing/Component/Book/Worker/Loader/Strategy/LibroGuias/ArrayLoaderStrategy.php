@@ -24,44 +24,28 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias;
 
-use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy;
 
 /**
  * Estrategia `libro_guias.array` del `LoaderWorker`.
  *
  * Normaliza los detalles del Libro de Guías de Despacho desde un arreglo PHP.
- * Compatible con los campos del legacy `LibroGuia::normalizarDetalle()`.
  */
 #[Strategy(name: 'libro_guias.array', worker: 'loader', component: 'book', package: 'billing')]
-class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInterface
+class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderStrategyInterface
 {
     /**
      * {@inheritDoc}
-     */
-    public function load(BookBagInterface $bag): BookBagInterface
-    {
-        $bag->setCaratula($this->normalizarCaratula($bag));
-
-        $detalles = $bag->getDetalle();
-
-        foreach ($detalles as &$detalle) {
-            $this->normalizarDetalle($detalle);
-        }
-        unset($detalle);
-
-        return $bag->setDetalle($detalles);
-    }
-
-    /**
+     *
      * Normaliza la carátula del libro de guías de despacho.
      *
      * @param BookBagInterface $bag
      * @return array
      */
-    private function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizarCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
@@ -77,13 +61,15 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Normaliza un detalle del libro de guías de despacho.
      *
      * El orden de las claves determina el orden de los elementos en el XML.
-     * Compatible con `LibroGuia::normalizarDetalle()` del legacy.
      */
-    private function normalizarDetalle(array &$detalle): void
+    protected function normalizarDetalle(array $detalle): array
     {
+        // Valores por defecto.
         $detalle = array_merge([
             'Folio' => false,
             'Anulado' => false,
@@ -116,5 +102,8 @@ class ArrayLoaderStrategy extends AbstractStrategy implements LoaderStrategyInte
         if ($detalle['MntTotal'] === false) {
             $detalle['MntTotal'] = (int) $detalle['MntNeto'] + (int) $detalle['IVA'];
         }
+
+        // Retornar el detalle normalizado.
+        return $detalle;
     }
 }

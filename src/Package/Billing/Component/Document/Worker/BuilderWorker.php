@@ -77,7 +77,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     #[ApiResource(
         parametersExample: [
             'bag' => [
-                'inputData' => [
+                'detalle' => [
                     'Encabezado' => [
                         'IdDoc' => [
                             'TipoDTE' => 33,
