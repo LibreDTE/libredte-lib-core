@@ -124,15 +124,14 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book-worker.html">Worker</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book-worker-loader.html">Loader</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book-worker-loader-strategy.html">Strategy</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-book-worker-loader-strategy-libroguias.html">LibroGuias</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ArrayLoaderStrategy
+    AbstractArrayLoaderStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy">AbstractArrayLoaderStrategy</abbr></a>
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -142,72 +141,39 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LoaderStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface">LoaderStrategyInterface</abbr></a>                    </span>
     
     </h2>
 
 <div class="phpdocumentor-label-line">
 
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
+
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-libroguias-arrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php">ArrayLoaderStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php">AbstractArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Estrategia `libro_guias.array` del `LoaderWorker`.</p>
+            <p class="phpdocumentor-summary">Estrategia base de carga desde array.</p>
 
 
-    <section class="phpdocumentor-description"><p>Normaliza los detalles del Libro de Guías de Despacho desde un arreglo PHP.</p>
-</section>
 
 
 
     
-            <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
-
-            </h5>
-                            <dl class="phpdocumentor-argument-list">
-    <dt class="phpdocumentor-argument-list__entry">
-        #[<abbr title="\Derafu\Backbone\Attribute\Strategy">Strategy</abbr>]
-    </dt>
-        <dd class="phpdocumentor-argument-list__entry">
-        $name: &#039;libro_guias.array&#039;
-    </dd>
-        <dd class="phpdocumentor-argument-list__entry">
-        $worker: &#039;loader&#039;
-    </dd>
-        <dd class="phpdocumentor-argument-list__entry">
-        $component: &#039;book&#039;
-    </dd>
-        <dd class="phpdocumentor-argument-list__entry">
-        $package: &#039;billing&#039;
-    </dd>
-    </dl>
-                    </section>
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LoaderStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface">LoaderStrategyInterface</abbr></a></dt><dd>Interfaz para las estrategias del `LoaderWorker`.</dd>    </dl>
 
 
 
@@ -217,7 +183,7 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -236,14 +202,14 @@
 <dd>{@inheritDoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Normaliza la carátula del libro.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -260,7 +226,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -365,17 +331,17 @@
         class="phpdocumentor-element
             -method
             -protected
-                                                        "
+                        -abstract                                "
 >
     <h4 class="phpdocumentor-element__name" id="method_normalizarCaratula">
         normalizarCaratula()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarCaratula" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarCaratula" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-libroguias-arrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php">ArrayLoaderStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php">AbstractArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -383,14 +349,12 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizarCaratula</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">normalizarCaratula</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Normaliza la carátula del libro de guías de despacho.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -416,17 +380,17 @@
         class="phpdocumentor-element
             -method
             -protected
-                                                        "
+                        -abstract                                "
 >
     <h4 class="phpdocumentor-element__name" id="method_normalizarDetalle">
         normalizarDetalle()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarDetalle" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarDetalle" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-libroguias-arrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php">ArrayLoaderStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php">AbstractArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -434,13 +398,13 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">normalizarDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$detalle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">normalizarDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$detalle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Normaliza un detalle del libro de guías de despacho.</p>
-<p>El orden de las claves determina el orden de los elementos en el XML.</p>
+        <section class="phpdocumentor-description"><p>El orden de las claves determina el orden de los elementos en el XML,
+que debe respetar el esquema XSD del libro.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -470,7 +434,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Book/Worker/Loader/Strategy/LibroGuias/ArrayLoaderStrategy.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -571,7 +535,7 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -581,8 +545,8 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_load">load()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizar">normalizar()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -602,7 +566,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

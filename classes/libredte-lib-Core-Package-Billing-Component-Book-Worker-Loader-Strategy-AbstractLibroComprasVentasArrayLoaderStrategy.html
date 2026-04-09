@@ -131,7 +131,7 @@
     AbstractLibroComprasVentasArrayLoaderStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy">AbstractArrayLoaderStrategy</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -154,7 +154,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractlibrocomprasventasarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php">AbstractLibroComprasVentasArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -164,7 +164,6 @@
     <section class="phpdocumentor-description"><p>Normaliza cada registro de detalle según el esquema <code class="prettyprint">LibroCV_v10.xsd</code>:
 añade valores por defecto, calcula IVA cuando falta, normaliza estructuras
 de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
-<p>Compatible con todos los campos del legacy <code class="prettyprint">LibroComprasVentas::normalizarDetalle()</code>.</p>
 </section>
 
 
@@ -193,25 +192,32 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_load">load()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_load">load()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizar">normalizar()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Normaliza la carátula del libro de compra/venta.</dd>
+<dd>Normaliza la carátula del libro.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Normaliza un registro de detalle del libro de compra/venta.</dd>
+<dd>Normaliza un registro del detalle del libro.</dd>
 
     </dl>
 
@@ -235,13 +241,13 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_load">
         load()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_load" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_load" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractlibrocomprasventasarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php">AbstractLibroComprasVentasArrayLoaderStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php">AbstractArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -279,7 +285,56 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizar">
+        normalizar()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizar" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractArrayLoaderStrategy.php">AbstractArrayLoaderStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">normalizar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_normalizarCaratula">
@@ -290,20 +345,22 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractlibrocomprasventasarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php">AbstractLibroComprasVentasArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Normaliza la carátula del libro de compra/venta.</p>
+        <p class="phpdocumentor-summary">Normaliza la carátula del libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
+    <span class="phpdocumentor-signature__visibility">protected</span>
                     <span class="phpdocumentor-signature__name">normalizarCaratula</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Normaliza la carátula del libro de compra/venta.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -328,7 +385,7 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -protected
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_normalizarDetalle">
@@ -339,20 +396,21 @@ de IVA no recuperable y otros impuestos, y calcula el monto total.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php"><a href="files/src-package-billing-component-book-worker-loader-strategy-abstractlibrocomprasventasarrayloaderstrategy.html"><abbr title="src/Package/Billing/Component/Book/Worker/Loader/Strategy/AbstractLibroComprasVentasArrayLoaderStrategy.php">AbstractLibroComprasVentasArrayLoaderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Normaliza un registro de detalle del libro de compra/venta.</p>
+        <p class="phpdocumentor-summary">Normaliza un registro del detalle del libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">normalizarDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$detalle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">normalizarDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$detalle</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>El orden de las claves determina el orden de los elementos en el XML,
+        <section class="phpdocumentor-description"><p>Normaliza un registro de detalle del libro de compra/venta.</p>
+<p>El orden de las claves determina el orden de los elementos en el XML,
 que debe respetar el esquema <code class="prettyprint">LibroCV_v10.xsd</code>.</p>
 </section>
 
@@ -371,7 +429,11 @@ que debe respetar el esquema <code class="prettyprint">LibroCV_v10.xsd</code>.</
 
         
     
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
             </section>
 
@@ -488,7 +550,8 @@ que debe respetar el esquema <code class="prettyprint">LibroCV_v10.xsd</code>.</
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_load">load()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_load">load()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizar">normalizar()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarCaratula">normalizarCaratula()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarDetalle">normalizarDetalle()</a></li>
                                     </ul>

@@ -271,6 +271,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020libro\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_getTipo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AsetInputData\u0028\u0029",
+            "name": "setInputData",
+            "summary": "Asigna\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_setInputData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AgetInputData\u0028\u0029",
+            "name": "getInputData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_getInputData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AsetCaratula\u0028\u0029",
             "name": "setCaratula",
             "summary": "Asigna\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
@@ -771,6 +781,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020libro\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getTipo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AsetInputData\u0028\u0029",
+            "name": "setInputData",
+            "summary": "Asigna\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_setInputData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AgetInputData\u0028\u0029",
+            "name": "getInputData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getInputData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AsetCaratula\u0028\u0029",
             "name": "setCaratula",
             "summary": "Asigna\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
@@ -876,6 +896,11 @@ Search.appendIndex(
             "summary": "Tipo\u0020de\u0020libro\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#property_tipo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024inputData",
+            "name": "inputData",
+            "summary": "Datos\u0020originales\u0020de\u0020entrada\u0020que\u0020se\u0020utilizar\u00E1n\u0020para\u0020construir\u0020el\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#property_inputData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024caratula",
             "name": "caratula",
             "summary": "Car\u00E1tula\u0020del\u0020libro.",
@@ -883,7 +908,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024detalle",
             "name": "detalle",
-            "summary": "Detalles\u0020del\u0020libro.",
+            "summary": "Detalles\u0020normalizadosdel\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#property_detalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024certificate",
@@ -1011,24 +1036,44 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-BuilderWorker.html#property_signatureService"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractArrayLoaderStrategy",
+            "name": "AbstractArrayLoaderStrategy",
+            "summary": "Estrategia\u0020base\u0020de\u0020carga\u0020desde\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractArrayLoaderStrategy\u003A\u003Aload\u0028\u0029",
+            "name": "load",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_load"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractArrayLoaderStrategy\u003A\u003Anormalizar\u0028\u0029",
+            "name": "normalizar",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizar"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractArrayLoaderStrategy\u003A\u003AnormalizarCaratula\u0028\u0029",
+            "name": "normalizarCaratula",
+            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarCaratula"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractArrayLoaderStrategy\u003A\u003AnormalizarDetalle\u0028\u0029",
+            "name": "normalizarDetalle",
+            "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractArrayLoaderStrategy.html#method_normalizarDetalle"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy",
             "name": "AbstractLibroComprasVentasArrayLoaderStrategy",
             "summary": "Estrategia\u0020base\u0020de\u0020carga\u0020desde\u0020array\u0020para\u0020Libro\u0020de\u0020Compras\/Ventas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_load"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AnormalizarCaratula\u0028\u0029",
             "name": "normalizarCaratula",
-            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro\u0020de\u0020compra\/venta.",
+            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AnormalizarDetalle\u0028\u0029",
             "name": "normalizarDetalle",
-            "summary": "Normaliza\u0020un\u0020registro\u0020de\u0020detalle\u0020del\u0020libro\u0020de\u0020compra\/venta.",
+            "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizarDetalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroBoletas\\ArrayLoaderStrategy",
@@ -1036,19 +1081,14 @@ Search.appendIndex(
             "summary": "Estrategia\u0020\u0060libro_boletas.array\u0060\u0020del\u0020\u0060LoaderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroBoletas-ArrayLoaderStrategy.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroBoletas\\ArrayLoaderStrategy\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020del\u0020bag\u0020seg\u00FAn\u0020el\u0020formato\u0020de\u0020entrada.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroBoletas-ArrayLoaderStrategy.html#method_load"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroBoletas\\ArrayLoaderStrategy\u003A\u003AnormalizarCaratula\u0028\u0029",
             "name": "normalizarCaratula",
-            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro\u0020de\u0020boletas.",
+            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroBoletas-ArrayLoaderStrategy.html#method_normalizarCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroBoletas\\ArrayLoaderStrategy\u003A\u003AnormalizarDetalle\u0028\u0029",
             "name": "normalizarDetalle",
-            "summary": "Normaliza\u0020un\u0020detalle\u0020del\u0020libro\u0020de\u0020boletas.",
+            "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroBoletas-ArrayLoaderStrategy.html#method_normalizarDetalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroCompras\\ArrayLoaderStrategy",
@@ -1061,19 +1101,14 @@ Search.appendIndex(
             "summary": "Estrategia\u0020\u0060libro_guias.array\u0060\u0020del\u0020\u0060LoaderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020del\u0020bag\u0020seg\u00FAn\u0020el\u0020formato\u0020de\u0020entrada.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_load"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003AnormalizarCaratula\u0028\u0029",
             "name": "normalizarCaratula",
-            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro\u0020de\u0020gu\u00EDas\u0020de\u0020despacho.",
+            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003AnormalizarDetalle\u0028\u0029",
             "name": "normalizarDetalle",
-            "summary": "Normaliza\u0020un\u0020detalle\u0020del\u0020libro\u0020de\u0020gu\u00EDas\u0020de\u0020despacho.",
+            "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizarDetalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroVentas\\ArrayLoaderStrategy",
@@ -1086,19 +1121,14 @@ Search.appendIndex(
             "summary": "Estrategia\u0020\u0060resumen_ventas_diarias.array\u0060\u0020del\u0020\u0060LoaderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\ResumenVentasDiarias\\ArrayLoaderStrategy\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020del\u0020bag\u0020seg\u00FAn\u0020el\u0020formato\u0020de\u0020entrada.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_load"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\ResumenVentasDiarias\\ArrayLoaderStrategy\u003A\u003AnormalizarCaratula\u0028\u0029",
             "name": "normalizarCaratula",
-            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020resumen\u0020de\u0020ventas\u0020diarias.",
+            "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_normalizarCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\ResumenVentasDiarias\\ArrayLoaderStrategy\u003A\u003AnormalizarDetalle\u0028\u0029",
             "name": "normalizarDetalle",
-            "summary": "Normaliza\u0020un\u0020detalle\u0020del\u0020resumen\u0020de\u0020ventas\u0020diarias.",
+            "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_normalizarDetalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker",
