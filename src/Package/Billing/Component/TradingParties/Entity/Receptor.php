@@ -198,4 +198,18 @@ class Receptor extends Contribuyente implements ReceptorInterface
             // 'CiudadPostal' => $this->,
         ];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        $array = parent::toArray();
+
+        return array_merge($array, [
+            'codigo_interno' => $this->getCodigoInterno(),
+            'nacionalidad' => $this->getNacionalidad(),
+            'identificador_extranjero' => $this->getIdentificadorExtranjero(),
+        ]);
+    }
 }

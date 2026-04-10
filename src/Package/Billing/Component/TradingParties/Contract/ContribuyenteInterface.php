@@ -24,10 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
+use JsonSerializable;
+
 /**
  * Interfaz para una entidad de contribuyente.
  */
-interface ContribuyenteInterface
+interface ContribuyenteInterface extends JsonSerializable
 {
     /**
      * Devuelve solo la parte numérica del RUT del contribuyente.
@@ -164,4 +166,11 @@ interface ContribuyenteInterface
      * @return string|null Ciudad del contribuyente o null.
      */
     public function getCiudad(): ?string;
+
+    /**
+     * Entrega los datos del contribuyente en un arreglo.
+     *
+     * @return array Arreglo con los datos del contribuyente.
+     */
+    public function toArray(): array;
 }

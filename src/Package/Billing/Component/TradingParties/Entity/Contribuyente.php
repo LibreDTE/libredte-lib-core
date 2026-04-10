@@ -339,4 +339,36 @@ class Contribuyente implements ContribuyenteInterface
     {
         return $this->ciudad;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'rut' => $this->getRut(),
+            'razon_social' => $this->getRazonSocial(),
+            'giro' => $this->getGiro(),
+            'actividades_economicas' => $this->getActividadEconomica()
+                ? [$this->getActividadEconomica()]
+                : []
+            ,
+            'telefonos' => $this->getTelefono()
+                ? [$this->getTelefono()]
+                : []
+            ,
+            'email' => $this->getEmail(),
+            'direccion' => $this->getDireccion(),
+            'comuna' => $this->getComuna(),
+            'ciudad' => $this->getCiudad(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

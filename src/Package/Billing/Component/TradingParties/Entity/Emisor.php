@@ -363,4 +363,20 @@ class Emisor extends Contribuyente implements EmisorInterface
             // 'RznSocProveedor' => $this->,
         ];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        $array = parent::toArray();
+
+        return array_merge($array, [
+            'sucursal' => $this->getSucursal(),
+            'codigo_sucursal' => $this->getCodigoSucursal(),
+            'vendedor' => $this->getVendedor(),
+            'autorizacion_dte' => $this->getAutorizacionDte()?->toArray(),
+            'logo' => $this->getLogo(),
+        ]);
+    }
 }

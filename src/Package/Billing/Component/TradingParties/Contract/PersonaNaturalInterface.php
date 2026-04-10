@@ -24,10 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
+use JsonSerializable;
+
 /**
  * Interfaz para una entidad de persona natural.
  */
-interface PersonaNaturalInterface
+interface PersonaNaturalInterface extends JsonSerializable
 {
     /**
      * Devuelve el RUN completo (incluyendo el DV) de la persona natural.
@@ -51,4 +53,11 @@ interface PersonaNaturalInterface
      * @return string|null Correo electrónico de la persona natural o null.
      */
     public function getEmail(): ?string;
+
+    /**
+     * Entrega los datos de la persona natural en un arreglo.
+     *
+     * @return array Arreglo con los datos de la persona natural.
+     */
+    public function toArray(): array;
 }

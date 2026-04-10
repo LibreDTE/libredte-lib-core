@@ -108,4 +108,24 @@ class PersonaNatural implements PersonaNaturalInterface
     {
         return $this->email;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'run' => $this->getRun(),
+            'nombre' => $this->getNombre(),
+            'email' => $this->getEmail(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }
