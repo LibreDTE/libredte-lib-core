@@ -10776,6 +10776,11 @@ Search.appendIndex(
             "summary": "Devuelve\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_getCiudad"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020contribuyente\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ContribuyenteInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\CorreoIntercambioDteInfoInterface",
             "name": "CorreoIntercambioDteInfoInterface",
             "summary": "Interfaz\u0020para\u0020que\u0020los\u0020emisores\u0020y\u0020receptores\u0020implementen\u0020los\u0020m\u00E9todos\u0020para\nutilizar\u0020el\u0020correo\u0020de\u0020intercambio\u0020de\u0020DTE.",
@@ -10940,6 +10945,11 @@ Search.appendIndex(
             "name": "getEmail",
             "summary": "Devuelve\u0020el\u0020correo\u0020electr\u00F3nico\u0020de\u0020la\u0020persona\u0020natural.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-PersonaNaturalInterface.html#method_getEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\PersonaNaturalInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020persona\u0020natural\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-PersonaNaturalInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ReceptorFactoryInterface",
             "name": "ReceptorFactoryInterface",
@@ -11151,6 +11161,16 @@ Search.appendIndex(
             "summary": "Devuelve\u0020la\u0020ciudad\u0020del\u0020contribuyente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_getCiudad"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020contribuyente\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Contribuyente.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Contribuyente\u003A\u003A\u0024rut",
             "name": "rut",
             "summary": "RUT\u0020del\u0020contribuyente.",
@@ -11296,6 +11316,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020emisor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_toDteArray"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020contribuyente\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Emisor.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Emisor\u003A\u003A\u0024sucursal",
             "name": "sucursal",
             "summary": "Sucursal\u0020del\u0020emisor.",
@@ -11350,6 +11375,16 @@ Search.appendIndex(
             "name": "getEmail",
             "summary": "Devuelve\u0020el\u0020correo\u0020electr\u00F3nico\u0020de\u0020la\u0020persona\u0020natural.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-PersonaNatural.html#method_getEmail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\PersonaNatural\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020persona\u0020natural\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-PersonaNatural.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\PersonaNatural\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-PersonaNatural.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\PersonaNatural\u003A\u003A\u0024run",
             "name": "run",
@@ -11415,6 +11450,11 @@ Search.appendIndex(
             "name": "toDteArray",
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020receptor\u0020en\u0020un\u0020arreglo\u0020compatible\u0020con\u0020el\u0020XML\u0020del\nDTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toDteArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020contribuyente\u0020en\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-Receptor.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\Receptor\u003A\u003A\u0024codigo_interno",
             "name": "codigo_interno",
