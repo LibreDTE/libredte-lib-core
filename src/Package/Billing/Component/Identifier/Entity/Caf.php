@@ -31,7 +31,7 @@ use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
  * Entidad que representa un Código de Autorización de Folios (CAF).
@@ -48,7 +48,7 @@ class Caf implements CafInterface
      * Este valor se utiliza para identificar que el CAF pertenece al ambiente
      * de pruebas o certificación.
      */
-    private const IDK_CERTIFICACION = 100;
+    private const IDK_STAGING = 100;
 
     /**
      * Ambiente de producción del SII.
@@ -56,7 +56,7 @@ class Caf implements CafInterface
      * Este valor se utiliza para identificar que el CAF pertenece al ambiente
      * de producción.
      */
-    private const IDK_PRODUCCION = 300;
+    private const IDK_PRODUCTION = 300;
 
     /**
      * Mapa de ambientes disponibles para el CAF.
@@ -64,11 +64,11 @@ class Caf implements CafInterface
      * Asocia los valores de los ambientes con las configuraciones
      * correspondientes de conexión al SII (certificación o producción).
      *
-     * @var array<int, SiiAmbiente>
+     * @var array<int, SiiEnvironment>
      */
     private const AMBIENTES = [
-        self::IDK_CERTIFICACION => SiiAmbiente::CERTIFICACION,
-        self::IDK_PRODUCCION => SiiAmbiente::PRODUCCION,
+        self::IDK_STAGING => SiiEnvironment::STAGING,
+        self::IDK_PRODUCTION => SiiEnvironment::PRODUCTION,
     ];
 
     /**
@@ -237,7 +237,7 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function enRango(int $folio): bool
+    public function isEnRango(int $folio): bool
     {
         return $folio >= $this->getFolioDesde() && $folio <= $this->getFolioHasta();
     }
@@ -265,7 +265,7 @@ class Caf implements CafInterface
      */
     public function getFechaVencimiento(): ?string
     {
-        if (!$this->vence()) {
+        if (!$this->hasVencimiento()) {
             return null;
         }
 
@@ -301,9 +301,9 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function vigente(?string $timestamp = null): bool
+    public function isVigente(?string $timestamp = null): bool
     {
-        if (!$this->vence()) {
+        if (!$this->hasVencimiento()) {
             return true;
         }
 
@@ -321,7 +321,7 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function vence(): bool
+    public function hasVencimiento(): bool
     {
         $vencen = [33, 43, 46, 56, 61];
 
@@ -349,7 +349,7 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function getAmbiente(): ?SiiAmbiente
+    public function getEnvironment(): ?SiiEnvironment
     {
         $idk = $this->getIDK();
 
@@ -361,7 +361,7 @@ class Caf implements CafInterface
      */
     public function getCertificacion(): ?int
     {
-        return $this->getAmbiente()?->value;
+        return $this->getEnvironment()?->value;
     }
 
     /**
@@ -499,10 +499,10 @@ class Caf implements CafInterface
             'fechaAutorizacion' => $this->getFechaAutorizacion(),
             'fechaVencimiento' => $this->getFechaVencimiento(),
             'mesesAutorizacion' => $this->getMesesAutorizacion(),
-            'vigente' => $this->vigente(),
-            'vence' => $this->vence(),
+            'vigente' => $this->isVigente(),
+            'vence' => $this->hasVencimiento(),
             'idk' => $this->getIdk(),
-            'ambiente' => $this->getAmbiente(),
+            'ambiente' => $this->getEnvironment(),
             'certificacion' => $this->getCertificacion(),
             'publicKey' => $this->getPublicKey(),
             'privateKey' => $this->getPrivateKey(),

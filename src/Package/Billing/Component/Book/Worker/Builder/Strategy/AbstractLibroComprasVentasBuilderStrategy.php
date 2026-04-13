@@ -88,7 +88,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         $detalles = $bag->getDetalle();
 
         // Calcular resumen del período.
-        $totalesPeriodo = $this->calcularTotalesPeriodo($detalles);
+        $totalesPeriodo = $this->calculateTotalesPeriodo($detalles);
 
         // Construir carátula normalizada.
         $tipoOper = strtoupper($caratula['TipoOperacion'] ?? 'VENTA');
@@ -140,7 +140,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
      * @param array<int, array<string, mixed>> $detalles
      * @return array<int|string, array<string, mixed>>
      */
-    private function calcularTotalesPeriodo(array $detalles): array
+    private function calculateTotalesPeriodo(array $detalles): array
     {
         $totales = [];
 

@@ -82,7 +82,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         $wsdl = $this->getWsdlUri($request, $service);
 
         // Resolver el valor de $retry.
-        $retry = $request->getReintentos($retry);
+        $retry = $request->getRetries($retry);
 
         // Definir las opciones para consumir el servicio web.
         $soapClientOptions = $this->createSoapClientOptions($request);
@@ -111,7 +111,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      */
     private function getWsdlUri(SiiRequestInterface $request, string $servicio): string
     {
-        $ambiente = $request->getAmbiente();
+        $environment = $request->getEnvironment();
 
         // Algunos WSDL del ambiente de certificación no funcionan tal cual los
         // provee SII. Lo anterior ya que apuntan a un servidor llamado
@@ -121,8 +121,8 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         // con el servidor de pruebas (maullin.sii.cl). Estos WSDL se usan
         // siempre al solicitar el WSDL del ambiente de certificación.
         // Cambios basados en: http://stackoverflow.com/a/28464354/3333009
-        if ($ambiente->isCertificacion()) {
-            $wsdl = $ambiente->getWsdlPath($servicio);
+        if ($environment->isStaging()) {
+            $wsdl = $environment->getWsdlPath($servicio);
             if ($wsdl !== null) {
                 return $wsdl;
             }
@@ -133,7 +133,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         // Si por cualquier motivo un WSDL de un servicio para el ambiente de
         // certificación no existe localmente en LibreDTE, también se entregará
         // el WSDL oficial del SII.
-        return $ambiente->getWsdl($servicio);
+        return $environment->getWsdl($servicio);
     }
 
     /**
@@ -304,7 +304,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
 
         // Si no se debe verificar el certificado SSL del servidor del SII se
         // asigna al "stream_context" dicha configuración.
-        if (!$request->getVerificarSsl()) {
+        if (!$request->getVerifySsl()) {
             $options['stream_context']['ssl'] = [
                 'verify_peer' => false,
                 'verify_peer_name' => false,

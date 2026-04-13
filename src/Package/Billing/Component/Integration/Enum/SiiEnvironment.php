@@ -30,17 +30,17 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Enum;
  * Además permite obtener datos asociados al ambiente como el nombre del
  * servidor o armar una URL.
  */
-enum SiiAmbiente: int
+enum SiiEnvironment: int
 {
     /**
      * Ambiente de producción en el SII.
      */
-    case PRODUCCION = 0;
+    case PRODUCTION = 0;
 
     /**
      * Ambiente de certificación/pruebas en el SII.
      */
-    case CERTIFICACION = 1;
+    case STAGING = 1;
 
     /**
      * Por defecto se asignan los servidores estándars de documentos tributarios
@@ -49,14 +49,14 @@ enum SiiAmbiente: int
      *
      * @var array
      */
-    private const SERVIDORES = [
+    private const SERVERS = [
         'default' => [
-            self::PRODUCCION->value => 'palena',
-            self::CERTIFICACION->value => 'maullin',
+            self::PRODUCTION->value => 'palena',
+            self::STAGING->value => 'maullin',
         ],
         'www4' => [
-            self::PRODUCCION->value => 'www4',
-            self::CERTIFICACION->value => 'www4c',
+            self::PRODUCTION->value => 'www4',
+            self::STAGING->value => 'www4c',
         ],
     ];
 
@@ -83,34 +83,34 @@ enum SiiAmbiente: int
      *
      * @return bool
      */
-    public function isCertificacion(): bool
+    public function isStaging(): bool
     {
-        return $this === self::CERTIFICACION;
+        return $this === self::STAGING;
     }
 
     /**
      * Entrega el servidor del SII según el tipo solicitado.
      *
-     * @param string $tipo Es el tipo de servidor que se está solicitando.
+     * @param string $type Es el tipo de servidor que se está solicitando.
      * @return string Nombre del servidor al que se debe conectar en el SII.
      */
-    public function getServidor(string $tipo = 'default'): string
+    public function getServer(string $type = 'default'): string
     {
-        return self::SERVIDORES[$tipo][$this->value]
-            ?? self::SERVIDORES['default'][$this->value]
+        return self::SERVERS[$type][$this->value]
+            ?? self::SERVERS['default'][$this->value]
         ;
     }
 
     /**
      * Entrega la URL de un WSDL según su servicio.
      *
-     * @param string $servicio El servicio para el que se desea su WSDL.
+     * @param string $service El servicio para el que se desea su WSDL.
      * @return string WSDL del servicio si fue encontrado o el WSDL por defecto
      * en el caso que no exista un WSDL específico para el servicio.
      */
-    public function getWsdl(string $servicio): string
+    public function getWsdl(string $service): string
     {
-        $wsdl = self::WSDL_URLS[$servicio] ?? self::WSDL_URLS['default'];
+        $wsdl = self::WSDL_URLS[$service] ?? self::WSDL_URLS['default'];
 
         // Algunos servicios (p. ej. el RCV) definen URLs completas por ambiente
         // en vez de una plantilla con el nombre del servidor.
@@ -118,9 +118,9 @@ enum SiiAmbiente: int
             return $wsdl[$this->value];
         }
 
-        $servidor = $this->getServidor();
+        $server = $this->getServer();
 
-        return sprintf($wsdl, $servidor, $servicio);
+        return sprintf($wsdl, $server, $service);
     }
 
     /**
@@ -131,7 +131,7 @@ enum SiiAmbiente: int
      */
     public function getWsdlPath(string $service): ?string
     {
-        $server = $this->getServidor();
+        $server = $this->getServer();
         $wsdlPath = dirname(__DIR__, 6);
         $filepath = sprintf('%s/%s/%s.wsdl', $wsdlPath, $server, $service);
 
@@ -142,16 +142,16 @@ enum SiiAmbiente: int
      * Método que entrega la URL de un recurso en el SII según el ambiente que
      * se esté usando.
      *
-     * @param string $recurso Recurso del sitio de SII que se desea su URL.
+     * @param string $resource Recurso del sitio de SII que se desea su URL.
      * @return string URL del recurso solicitado.
      */
-    public function getUrl(string $recurso): string
+    public function getUrl(string $resource): string
     {
-        $servidor = $recurso === '/anulacionMsvDteInternet'
-            ? $this->getServidor('www4')
-            : $this->getServidor()
+        $server = $resource === '/anulacionMsvDteInternet'
+            ? $this->getServer('www4')
+            : $this->getServer()
         ;
 
-        return sprintf('https://%s.sii.cl%s', $servidor, $recurso);
+        return sprintf('https://%s.sii.cl%s', $server, $resource);
     }
 }

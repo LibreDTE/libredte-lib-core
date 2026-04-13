@@ -28,7 +28,7 @@ use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
@@ -48,7 +48,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]
 #[CoversClass(ConsumeWebserviceJob::class)]
-#[CoversClass(SiiAmbiente::class)]
+#[CoversClass(SiiEnvironment::class)]
 #[CoversClass(SiiException::class)]
 class SiiAuthenticateFakeCertificateTest extends TestCase
 {

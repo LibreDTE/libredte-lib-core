@@ -45,7 +45,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * @param BookBagInterface $bag
      * @return array
      */
-    protected function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
@@ -67,7 +67,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      *
      * El orden de las claves determina el orden de los elementos en el XML.
      */
-    protected function normalizarDetalle(array $detalle): array
+    protected function normalizeDetalle(array $detalle): array
     {
         // Valores por defecto.
         $detalle = array_merge([

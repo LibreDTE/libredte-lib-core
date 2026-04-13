@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
  * Interfaz para la clase que representa la información de autorización que da
@@ -50,9 +50,9 @@ interface AutorizacionDteInterface
     /**
      * Obtiene el ambiente para el que esta autorización es válida.
      *
-     * @return SiiAmbiente
+     * @return SiiEnvironment
      */
-    public function getAmbiente(): SiiAmbiente;
+    public function getEnvironment(): SiiEnvironment;
 
     /**
      * Entrega un arreglo con los índices: FchResol y NroResol.

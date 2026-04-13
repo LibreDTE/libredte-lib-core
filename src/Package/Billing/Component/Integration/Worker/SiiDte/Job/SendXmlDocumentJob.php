@@ -99,7 +99,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         ];
 
         // Resolver el valor de $retry.
-        $retry = $request->getReintentos($retry);
+        $retry = $request->getRetries($retry);
 
         // Realizar la solicitud mediante POST al SII para subir el archivo.
         $xmlResponse = $this->uploadXml($request, $data, $retry);
@@ -218,7 +218,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         int $retry
     ): XmlDocumentInterface {
         // URL que se utilizará para subir el XML al SII.
-        $url = $request->getAmbiente()->getUrl('/cgi_dte/UPL/DTEUpload');
+        $url = $request->getEnvironment()->getUrl('/cgi_dte/UPL/DTEUpload');
 
         // Obtener el token asociado al certificado digital.
         $token = $this->siiLazyWorker->authenticate($request);
@@ -239,7 +239,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
 
         // Si no se debe verificar el certificado SSL del servidor del SII se
         // agrega la opción a curl.
-        if (!$request->getVerificarSsl()) {
+        if (!$request->getVerifySsl()) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }

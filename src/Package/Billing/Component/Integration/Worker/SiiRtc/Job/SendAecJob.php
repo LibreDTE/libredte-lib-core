@@ -94,7 +94,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         ];
 
         // Resolver el valor de $retry.
-        $retry = $request->getReintentos($retry);
+        $retry = $request->getRetries($retry);
 
         // Realizar la solicitud al SII.
         $xmlResponse = $this->uploadAec($request, $data, $retry);
@@ -177,7 +177,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         array $data,
         int $retry
     ): array {
-        $url = $request->getAmbiente()->getUrl('/cgi_rtc/RTC/RTCAnotEnvio.cgi');
+        $url = $request->getEnvironment()->getUrl('/cgi_rtc/RTC/RTCAnotEnvio.cgi');
         $token = $this->siiLazyWorker->authenticate($request);
 
         $headers = [
@@ -192,7 +192,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        if (!$request->getVerificarSsl()) {
+        if (!$request->getVerifySsl()) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }

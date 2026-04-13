@@ -30,7 +30,7 @@ use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\GetDocumentSiiReceptionDateResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
@@ -51,7 +51,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]
 #[CoversClass(ConsumeWebserviceJob::class)]
-#[CoversClass(SiiAmbiente::class)]
+#[CoversClass(SiiEnvironment::class)]
 #[CoversClass(SiiRcvWorker::class)]
 #[CoversClass(GetDocumentSiiReceptionDateJob::class)]
 #[CoversClass(GetDocumentSiiReceptionDateResponse::class)]
@@ -88,7 +88,7 @@ class GetDocumentSiiReceptionDateTest extends TestCase
         $this->siiRequest = new SiiRequest(
             certificate: $certificate,
             options: [
-                'ambiente' => SiiAmbiente::CERTIFICACION,
+                'environment' => SiiEnvironment::STAGING,
             ],
         );
     }

@@ -28,7 +28,7 @@ use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use LogicException;
 use RuntimeException;
 use Symfony\Component\OptionsResolver\Options;
@@ -47,12 +47,12 @@ class SiiRequest implements SiiRequestInterface
      */
     protected array $optionsSchema = [
         // Por defecto la conexión es a los servidores de producción del SII.
-        'ambiente' => [
-            'types' => SiiAmbiente::class,
-            'default' => SiiAmbiente::PRODUCCION,
+        'environment' => [
+            'types' => SiiEnvironment::class,
+            'default' => SiiEnvironment::PRODUCTION,
             'choices' => [
-                SiiAmbiente::PRODUCCION,
-                SiiAmbiente::CERTIFICACION,
+                SiiEnvironment::PRODUCTION,
+                SiiEnvironment::STAGING,
             ],
         ],
 
@@ -60,7 +60,7 @@ class SiiRequest implements SiiRequestInterface
         // hacer una solicitud al SII. El reintento se hará utilizando
         // "exponential backoff", por lo que un número muy grande implicará un
         // tiempo de ejecución alto.
-        'reintentos' => [
+        'retries' => [
             'types' => 'int',
             'default' => 10,
             'normalizer' => null, // Se asigna en el constructor como callback.
@@ -70,7 +70,7 @@ class SiiRequest implements SiiRequestInterface
         // SSL del SII. A veces, en pruebas sobre todo, ha resultado útil poder
         // desactivar esta validación. Sin embargo, se desaconseja hacerlo por
         // motivos de seguridad.
-        'verificar_ssl' => [
+        'verify_ssl' => [
             'types' => 'bool',
             'default' => true,
         ],
@@ -127,11 +127,11 @@ class SiiRequest implements SiiRequestInterface
         $this->certificate = $certificate;
 
         // Resolver opciones de la solicitud.
-        $this->optionsSchema['reintentos']['normalizer'] =
+        $this->optionsSchema['retries']['normalizer'] =
             fn (Options $options, int $value) => max(0, min(10, $value))
         ;
-        if (isset($options['ambiente']) && is_numeric($options['ambiente'])) {
-            $options['ambiente'] = SiiAmbiente::from((int) $options['ambiente']);
+        if (isset($options['environment']) && is_numeric($options['environment'])) {
+            $options['environment'] = SiiEnvironment::from((int) $options['environment']);
         }
         $this->setOptions($options);
     }
@@ -139,30 +139,30 @@ class SiiRequest implements SiiRequestInterface
     /**
      * {@inheritDoc}
      */
-    public function getAmbiente(): SiiAmbiente
+    public function getEnvironment(): SiiEnvironment
     {
-        return $this->options->get('ambiente');
+        return $this->options->get('environment');
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getReintentos(?int $reintentos = null): int
+    public function getRetries(?int $retries = null): int
     {
-        $reintentosInOptions = $this->options->get('reintentos');
+        $retriesInOptions = $this->options->get('retries');
 
         return max(0, min(
-            $reintentos ?? $reintentosInOptions,
-            $this->optionsSchema['reintentos']['default']
+            $retries ?? $retriesInOptions,
+            $this->optionsSchema['retries']['default']
         ));
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getVerificarSsl(): bool
+    public function getVerifySsl(): bool
     {
-        return $this->options->get('verificar_ssl');
+        return $this->options->get('verify_ssl');
     }
 
     /**

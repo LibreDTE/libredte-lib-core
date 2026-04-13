@@ -230,7 +230,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         }
 
         // Validar que no se haya llenado la lista de documentos permitida.
-        $maximoDocumentos = $this->getTipoSobre()->getMaximoDocumentos();
+        $maximoDocumentos = $this->getTipoSobre()->getMaxDocumentos();
         if (isset($this->documentos[$maximoDocumentos - 1])) {
             throw new DispatcherException(sprintf(
                 'No es posible agregar nuevos documentos al sobre %s, el límite es de %d documentos por sobre.',

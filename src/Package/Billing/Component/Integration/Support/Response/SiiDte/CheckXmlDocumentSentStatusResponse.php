@@ -130,7 +130,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
 
             // Normalizar los documentos.
             $documents = $this->parseDocumentos($this->body);
-            $resume = $this->calculateResume($documents);
+            $resume = $this->calculateResumen($documents);
 
             // Armar los datos normalizados.
             $this->data = [
@@ -345,7 +345,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      * @return array Resumen con el total de reportados, aceptados, rechazados
      * y reparos.
      */
-    private function calculateResume(array $documents): array
+    private function calculateResumen(array $documents): array
     {
         $resume = [
             'reported' => 0,

@@ -57,7 +57,7 @@ trait NormalizeIvaMntTotalTrait
         // Si es una boleta y no están los datos de monto neto ni IVA se
         // calculan.
         if (
-            $bag->getTipoDocumento()->esBoleta()
+            $bag->getTipoDocumento()->isBoleta()
             && (
                 empty($data['Encabezado']['IdDoc']['IndMntNeto'])
                 || $data['Encabezado']['IdDoc']['IndMntNeto'] != 2
@@ -76,7 +76,7 @@ trait NormalizeIvaMntTotalTrait
                 list(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['IVA']
-                ) = Utils::calcularNetoIVA(
+                ) = Utils::calculateNetoIVA(
                     $total,
                     $data['Encabezado']['Totales']['TasaIVA']
                         ?? $bag->getTipoDocumento()->getDefaultTasaIVA()
@@ -90,7 +90,7 @@ trait NormalizeIvaMntTotalTrait
                 list(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['IVA']
-                ) = Utils::calcularNetoIVA(
+                ) = Utils::calculateNetoIVA(
                     $data['Encabezado']['Totales']['MntNeto'],
                     $data['Encabezado']['Totales']['TasaIVA']
                 );
@@ -205,7 +205,7 @@ trait NormalizeIvaMntTotalTrait
         // cambia a valor entero. El monto total no es decimal en documentos
         // nacionales.
         if (is_numeric($data['Encabezado']['Totales']['MntTotal'] ?? null)) {
-            if (!$bag->getTipoDocumento()->esExportacion()) {
+            if (!$bag->getTipoDocumento()->isExportacion()) {
                 $data['Encabezado']['Totales']['MntTotal'] =
                     (int) $data['Encabezado']['Totales']['MntTotal']
                 ;

@@ -61,8 +61,8 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
      */
     public function build(ExchangeDocumentBag $bag): EnvioRecibos
     {
-        $caratula = $this->normalizarCaratula($bag->getCaratula());
-        $recibosData = $bag->getDatos();
+        $caratula = $this->normalizeCaratula($bag->getCaratula());
+        $recibosData = $bag->getData();
         $certificate = $bag->getCertificate();
 
         $encoder = new XmlEncoder();
@@ -95,7 +95,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
             $folio = (int) ($recibo['Folio'] ?? 0);
             $id = sprintf('LibreDTE_T%dF%d', $tipo, $folio);
 
-            $reciboData = $this->normalizarRecibo($recibo, $id);
+            $reciboData = $this->normalizeRecibo($recibo, $id);
 
             $reciboXml = $encoder->encode(['Recibo' => $reciboData])->saveXml();
 
@@ -139,7 +139,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
      * @param array<string, mixed> $caratula
      * @return array<string, mixed>
      */
-    private function normalizarCaratula(array $caratula): array
+    private function normalizeCaratula(array $caratula): array
     {
         return array_merge([
             '@attributes' => ['version' => '1.0'],
@@ -159,7 +159,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
      * @param string $id ID del DocumentoRecibo.
      * @return array<string, mixed>
      */
-    private function normalizarRecibo(array $recibo, string $id): array
+    private function normalizeRecibo(array $recibo, string $id): array
     {
         return [
             '@attributes' => ['version' => '1.0'],

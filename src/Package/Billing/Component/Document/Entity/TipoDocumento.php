@@ -234,7 +234,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esElectronico(): ?bool
+    public function isElectronico(): ?bool
     {
         return $this->electronico;
     }
@@ -242,7 +242,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function seEnviaAlSii(): ?bool
+    public function isSentToSii(): ?bool
     {
         return $this->electronico && $this->enviar;
     }
@@ -250,7 +250,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function disponibleEnCompras(): ?bool
+    public function isDisponibleEnCompras(): ?bool
     {
         return $this->compra;
     }
@@ -258,7 +258,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function disponibleEnVentas(): ?bool
+    public function isDisponibleEnVentas(): ?bool
     {
         return $this->venta;
     }
@@ -274,7 +274,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esCedible(): bool
+    public function isCedible(): bool
     {
         return $this->cedible ?? false;
     }
@@ -290,7 +290,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function estaDisponible(): bool
+    public function isDisponible(): bool
     {
         return $this->disponible;
     }
@@ -328,7 +328,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esGuiaDespacho(): bool
+    public function isGuiaDespacho(): bool
     {
         return (int) $this->codigo === 52;
     }
@@ -336,7 +336,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esBoleta(): bool
+    public function isBoleta(): bool
     {
         return $this->tipo_sobre === TipoSobre::ENVIO_BOLETA;
     }
@@ -344,7 +344,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esExportacion(): bool
+    public function isExportacion(): bool
     {
         return $this->tag_xml === TagXmlDocumento::EXPORTACIONES;
     }
@@ -352,9 +352,9 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function esExento(): bool
+    public function isExento(): bool
     {
-        return $this->esExportacion() || in_array($this->codigo, [34, 41]);
+        return $this->isExportacion() || in_array($this->codigo, [34, 41]);
     }
 
     /*
@@ -366,7 +366,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function requiereAcuseRecibo(): bool
+    public function requiresAcuseRecibo(): bool
     {
         // Boletas, notas de crédito y notas de débito no usan acuse de recibo.
         return !in_array($this->codigo, [39, 41, 56, 61, 110, 111, 112]);
@@ -375,7 +375,7 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function requiereTpoTranVenta(): bool
+    public function requiresTpoTranVenta(): bool
     {
         return !in_array($this->codigo, [39, 41, 110, 111, 112]);
     }
@@ -409,7 +409,7 @@ class TipoDocumento implements TipoDocumentoInterface
      */
     public function getDefaultIndServicio(): int|false
     {
-        return $this->esBoleta() ? 3 : false;
+        return $this->isBoleta() ? 3 : false;
     }
 
     /*
@@ -438,11 +438,11 @@ class TipoDocumento implements TipoDocumentoInterface
             ] : null,
 
             // Describe características del documento.
-            'es_cedible' => $this->esCedible(),
-            'es_exento' => $this->esExento(),
-            'es_boleta' => $this->esBoleta(),
-            'es_exportacion' => $this->esExportacion(),
-            'es_guia_despacho' => $this->esGuiaDespacho(),
+            'es_cedible' => $this->isCedible(),
+            'es_exento' => $this->isExento(),
+            'es_boleta' => $this->isBoleta(),
+            'es_exportacion' => $this->isExportacion(),
+            'es_guia_despacho' => $this->isGuiaDespacho(),
         ];
     }
 

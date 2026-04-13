@@ -72,28 +72,28 @@ interface TipoDocumentoInterface extends JsonSerializable
      *
      * @return bool|null
      */
-    public function esElectronico(): ?bool;
+    public function isElectronico(): ?bool;
 
     /**
      * Indica si un documento que es electrónico se debe enviar al SII.
      *
      * @return bool|null
      */
-    public function seEnviaAlSii(): ?bool;
+    public function isSentToSii(): ?bool;
 
     /**
      * Indica si el documento puede ser utilizado en compras de la empresa.
      *
      * @return bool|null
      */
-    public function disponibleEnCompras(): ?bool;
+    public function isDisponibleEnCompras(): ?bool;
 
     /**
      * Indica si el documento puede ser utilizado en ventas de la empresa.
      *
      * @return bool|null
      */
-    public function disponibleEnVentas(): ?bool;
+    public function isDisponibleEnVentas(): ?bool;
 
     /**
      * Entrega la operación que representa el documento al ser agrupado con
@@ -108,7 +108,7 @@ interface TipoDocumentoInterface extends JsonSerializable
      *
      * @return bool
      */
-    public function esCedible(): bool;
+    public function isCedible(): bool;
 
     /**
      * Entrega el tag que debe ser usado al construir el XML del documento.
@@ -130,7 +130,7 @@ interface TipoDocumentoInterface extends JsonSerializable
      *
      * @return bool
      */
-    public function estaDisponible(): bool;
+    public function isDisponible(): bool;
 
     /**
      * Entrega el alias del tipo de documento basado en el ID.
@@ -166,28 +166,28 @@ interface TipoDocumentoInterface extends JsonSerializable
      *
      * @return bool
      */
-    public function esGuiaDespacho(): bool;
+    public function isGuiaDespacho(): bool;
 
     /**
      * Indica si el documento es de tipo boleta.
      *
      * @return bool
      */
-    public function esBoleta(): bool;
+    public function isBoleta(): bool;
 
     /**
      * Indica si el documento es de exportación.
      *
      * @return bool
      */
-    public function esExportacion(): bool;
+    public function isExportacion(): bool;
 
     /**
      * Indica si el documento es exento.
      *
      * @return bool
      */
-    public function esExento(): bool;
+    public function isExento(): bool;
 
     /*
     |--------------------------------------------------------------------------
@@ -200,14 +200,14 @@ interface TipoDocumentoInterface extends JsonSerializable
      *
      * @return bool
      */
-    public function requiereAcuseRecibo(): bool;
+    public function requiresAcuseRecibo(): bool;
 
     /**
      * Indica si el documento requiere el tag "TpoTranVenta" en el XML.
      *
      * @return bool
      */
-    public function requiereTpoTranVenta(): bool;
+    public function requiresTpoTranVenta(): bool;
 
     /*
     |--------------------------------------------------------------------------

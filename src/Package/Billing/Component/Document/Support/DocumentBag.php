@@ -628,7 +628,7 @@ class DocumentBag implements DocumentBagInterface
             return null;
         }
 
-        $documentData = $this->document->getDatos();
+        $documentData = $this->document->getData();
         $documentExtra = $this->libredteData['extra']['dte'] ?? null;
 
         if (empty($documentExtra)) {

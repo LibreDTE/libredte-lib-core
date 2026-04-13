@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Entity;
 
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 
 /**
@@ -66,11 +66,11 @@ class AutorizacionDte implements AutorizacionDteInterface
     /**
      * {@inheritDoc}
      */
-    public function getAmbiente(): SiiAmbiente
+    public function getEnvironment(): SiiEnvironment
     {
         return $this->numero_resolucion === 0
-            ? SiiAmbiente::PRODUCCION
-            : SiiAmbiente::CERTIFICACION
+            ? SiiEnvironment::PRODUCTION
+            : SiiEnvironment::STAGING
         ;
     }
 

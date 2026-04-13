@@ -30,7 +30,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
@@ -68,7 +68,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'doc' => '',
@@ -102,7 +102,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'trackId' => 123,
@@ -132,7 +132,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'trackId' => 123,
@@ -162,7 +162,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'company' => '12345678-5',
@@ -204,7 +204,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'company' => '12345678-5',

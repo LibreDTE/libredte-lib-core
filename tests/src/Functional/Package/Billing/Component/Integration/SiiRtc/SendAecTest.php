@@ -62,7 +62,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
@@ -136,7 +136,7 @@ use Throwable;
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
-#[CoversClass(SiiAmbiente::class)]
+#[CoversClass(SiiEnvironment::class)]
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]
 #[CoversClass(ConsumeWebserviceJob::class)]
@@ -210,7 +210,7 @@ class SendAecTest extends TestCase
         // si retorna Track ID la comunicación fue exitosa; si lanza
         // SendAecException el round-trip HTTP funcionó correctamente.
         $request = new SiiRequest($certificate, [
-            'ambiente' => SiiAmbiente::CERTIFICACION,
+            'environment' => SiiEnvironment::STAGING,
         ]);
 
         try {

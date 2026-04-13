@@ -88,7 +88,7 @@ trait NormalizeDetalleTrait
             }
 
             // Normalizar.
-            if ($bag->getTipoDocumento()->esExportacion()) {
+            if ($bag->getTipoDocumento()->isExportacion()) {
                 $d['IndExe'] = 1;
             }
             if (is_array($d['CdgItem'])) {
@@ -164,7 +164,7 @@ trait NormalizeDetalleTrait
             // Sumar valor del monto a MntNeto o MntExe según corresponda.
             if ($d['MontoItem']) {
                 // Si no es boleta.
-                if (!$bag->getTipoDocumento()->esBoleta()) {
+                if (!$bag->getTipoDocumento()->isBoleta()) {
                     // Si es exento o no facturable.
                     if (!empty($d['IndExe'])) {
                         if ($d['IndExe'] == 1) {

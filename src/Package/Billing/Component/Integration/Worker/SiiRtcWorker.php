@@ -30,7 +30,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob;
 
@@ -59,7 +59,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
                     'password' => '',
                 ],
                 'options' => [
-                    'ambiente' => SiiAmbiente::PRODUCCION,
+                    'environment' => SiiEnvironment::PRODUCTION,
                 ],
             ],
             'doc' => '',

@@ -184,7 +184,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Definir los campos mínimos requeridos.
-        $datos_minimos = [
+        $minimal_data = [
             'FchEmis',
             'GiroEmis',
             'Acteco',
@@ -198,12 +198,12 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Para ciertos tipos de documento, se requieren campos adicionales.
         if (!in_array($data['TpoDoc'], [56, 61, 110, 111, 112])) {
-            $datos_minimos[] = 'GiroRecep';
-            $datos_minimos[] = 'CmnaRecep';
+            $minimal_data[] = 'GiroRecep';
+            $minimal_data[] = 'CmnaRecep';
         }
 
         // Validar que todos los campos mínimos estén presentes.
-        foreach ($datos_minimos as $attr) {
+        foreach ($minimal_data as $attr) {
             if (empty($data[$attr])) {
                 throw new ParserException(sprintf(
                     'Error al recibir campos mínimos, falta: %s.',
@@ -658,7 +658,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             }
 
             // Agregar otros datos del ítem.
-            $datos = [
+            $item_data_keys = [
                 'IndExe',
                 'NmbItem',
                 'DscItem',
@@ -667,13 +667,13 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 'PrcItem',
                 'CodImpAdic',
             ];
-            foreach ($datos as $d) {
-                if (isset($data[$d][$i])) {
-                    $valor = trim((string) $data[$d][$i]);
-                    if (!empty($valor)) {
-                        $detalle[$d] = is_numeric($valor)
-                            ? (float) $valor
-                            : $valor
+            foreach ($item_data_keys as $key) {
+                if (isset($data[$key][$i])) {
+                    $value = trim((string) $data[$key][$i]);
+                    if (!empty($value)) {
+                        $detalle[$key] = is_numeric($value)
+                            ? (float) $value
+                            : $value
                         ;
                     }
                 }

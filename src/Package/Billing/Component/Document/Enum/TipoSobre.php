@@ -83,7 +83,7 @@ enum TipoSobre: int
      *
      * @return int
      */
-    public function getMaximoTiposDocumentos(): int
+    public function getMaxTiposDocumentos(): int
     {
         return self::CONFIG[$this->value]['SubTotDTE_max'];
     }
@@ -94,7 +94,7 @@ enum TipoSobre: int
      *
      * @return int
      */
-    public function getMaximoDocumentos(): int
+    public function getMaxDocumentos(): int
     {
         return self::CONFIG[$this->value]['DTE_max'];
     }
@@ -124,7 +124,7 @@ enum TipoSobre: int
      *
      * @return bool `true`es sobre de boletas, `false` es de otros DTE.
      */
-    public function sonBoletas(): bool
+    public function areBoletas(): bool
     {
         return $this === self::ENVIO_BOLETA;
     }

@@ -97,7 +97,7 @@ class RespuestaEnvioTest extends TestCase
                 'RutRecibe' => '88888888-8',
                 'IdRespuesta' => 1,
             ],
-            datos: [
+            data: [
                 'recepcion_envio' => [
                     [
                         'NmbEnvio' => 'EnvioDTE_88888888-8.xml',
@@ -166,7 +166,7 @@ class RespuestaEnvioTest extends TestCase
                 'RutRecibe' => '88888888-8',
                 'IdRespuesta' => 1,
             ],
-            datos: [
+            data: [
                 'resultado_dte' => [
                     [
                         'TipoDTE' => 33,

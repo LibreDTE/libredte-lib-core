@@ -50,11 +50,11 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $detalles = $bag->getDetalle();
 
         // Calcular fechas inicio y fin desde los detalles.
-        $fchInicio = $this->calcularFechaInicial($detalles);
-        $fchFinal = $this->calcularFechaFinal($detalles);
+        $fchInicio = $this->calculateFechaInicial($detalles);
+        $fchFinal = $this->calculateFechaFinal($detalles);
 
         // Calcular resumen agrupado por TpoDoc con rangos de folios.
-        $resumen = $this->calcularResumen($detalles);
+        $resumen = $this->calculateResumen($detalles);
 
         // Construir carátula normalizada.
         $caratulaNorm = array_merge([
@@ -104,7 +104,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      *
      * @param array<int, array<string, mixed>> $detalles
      */
-    private function calcularFechaInicial(array $detalles): string
+    private function calculateFechaInicial(array $detalles): string
     {
         $fecha = '9999-12-31';
         foreach ($detalles as $d) {
@@ -120,7 +120,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      *
      * @param array<int, array<string, mixed>> $detalles
      */
-    private function calcularFechaFinal(array $detalles): string
+    private function calculateFechaFinal(array $detalles): string
     {
         $fecha = '0000-01-01';
         foreach ($detalles as $d) {
@@ -137,7 +137,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      * @param array<int, array<string, mixed>> $detalles
      * @return array<int|string, array<string, mixed>>
      */
-    private function calcularResumen(array $detalles): array
+    private function calculateResumen(array $detalles): array
     {
         $resumen = [];
         $foliosPorTipo = [];
@@ -185,7 +185,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         // Post-procesamiento: calcular folios utilizados y rangos.
         foreach ($resumen as $tpoDoc => &$r) {
             $r['FoliosUtilizados'] = $r['FoliosEmitidos'] + $r['FoliosAnulados'];
-            $r['RangoUtilizados'] = $this->calcularRangos($foliosPorTipo[$tpoDoc] ?? []);
+            $r['RangoUtilizados'] = $this->calculateRangos($foliosPorTipo[$tpoDoc] ?? []);
         }
         unset($r);
 
@@ -198,7 +198,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      * @param int[] $folios Lista de números de folio.
      * @return array<int, array{Inicial: int, Final: int}>
      */
-    private function calcularRangos(array $folios): array
+    private function calculateRangos(array $folios): array
     {
         if (empty($folios)) {
             return [];

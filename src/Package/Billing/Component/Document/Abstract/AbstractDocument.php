@@ -60,7 +60,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      *
      * @var array
      */
-    private array $datos;
+    private array $data;
 
     /**
      * Constructor del documento tributario.
@@ -349,11 +349,11 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getDatos(): array
+    public function getData(): array
     {
         // Si los datos del DTE no están determinados se crean de una manera
         // estandarizada compatible con los datos de entrada normalizados.
-        if (!isset($this->datos)) {
+        if (!isset($this->data)) {
             $array = $this->xmlDocument->toArray();
 
             $array = $array['DTE']['Documento']
@@ -374,11 +374,11 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 Arr::ensureArrayAtPath($array, $path);
             }
 
-            $this->datos = Arr::cast($array);
+            $this->data = Arr::cast($array);
         }
 
         // Entregar los datos del DTE.
-        return $this->datos;
+        return $this->data;
     }
 
     /**
@@ -399,7 +399,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getPlantillaTED(): array
+    public function getTemplateTED(): array
     {
         return [
             'TED' => [
@@ -437,7 +437,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function get(string $selector): mixed
     {
-        return Selector::get($this->getDatos(), $selector);
+        return Selector::get($this->getData(), $selector);
     }
 
     /**
@@ -455,7 +455,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     {
         return [
             'id' => $this->getId(),
-            'datos' => $this->getDatos(),
+            'datos' => $this->getData(),
             'ted' => $this->getTED(),
             'xml' => $this->saveXml(),
         ];

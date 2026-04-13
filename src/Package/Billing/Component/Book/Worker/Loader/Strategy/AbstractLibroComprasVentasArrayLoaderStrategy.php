@@ -42,7 +42,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
      *
      * Normaliza la carátula del libro de compra/venta.
      */
-    protected function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
@@ -67,7 +67,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
      * El orden de las claves determina el orden de los elementos en el XML,
      * que debe respetar el esquema `LibroCV_v10.xsd`.
      */
-    protected function normalizarDetalle(array $detalle): array
+    protected function normalizeDetalle(array $detalle): array
     {
         // Valores por defecto.
         $default = [

@@ -290,7 +290,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         // Si se agregaron más tipos de documentos que los permitidos error.
         $SubTotDTE = $this->getResumen($envelope);
 
-        $maximoTiposDocumentos = $envelope->getTipoSobre()->getMaximoTiposDocumentos();
+        $maximoTiposDocumentos = $envelope->getTipoSobre()->getMaxTiposDocumentos();
         if (isset($SubTotDTE[$maximoTiposDocumentos])) {
             throw new DispatcherException(
                 'Se agregaron más tipos de documentos de los que son permitidos en el sobre (%d).',

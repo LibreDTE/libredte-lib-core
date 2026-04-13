@@ -28,7 +28,7 @@ use Derafu\Certificate\Exception\CertificateException;
 use Derafu\Certificate\Service\CertificateLoader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob;
@@ -46,7 +46,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]
 #[CoversClass(ConsumeWebserviceJob::class)]
-#[CoversClass(SiiAmbiente::class)]
+#[CoversClass(SiiEnvironment::class)]
 class AuthenticateTest extends TestCase
 {
     public function testGetTokenOk(): void

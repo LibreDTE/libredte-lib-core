@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
  * Interfaz para la entidad que representa archivos CAF.
@@ -99,7 +99,7 @@ interface CafInterface extends JsonSerializable
      * @param int $folio
      * @return bool
      */
-    public function enRango(int $folio): bool;
+    public function isEnRango(int $folio): bool;
 
     /**
      * Obtiene la fecha de autorización del CAF.
@@ -131,7 +131,7 @@ interface CafInterface extends JsonSerializable
      * actual.
      * @return bool `true` si el CAF está vigente, `false` si no está vigente.
      */
-    public function vigente(?string $timestamp = null): bool;
+    public function isVigente(?string $timestamp = null): bool;
 
     /**
      * Indica si el CAF de este tipo de documento vence o no.
@@ -139,7 +139,7 @@ interface CafInterface extends JsonSerializable
      * @return bool `true` si los folios de este tipo de documento vencen,
      * `false` si no vencen.
      */
-    public function vence(): bool;
+    public function hasVencimiento(): bool;
 
     /**
      * Obtiene el identificador del certificado utilizado en el CAF.
@@ -155,17 +155,17 @@ interface CafInterface extends JsonSerializable
      *
      *   - `null`: no hay ambiente, pues el Caf es falso y tiene IDK CafFaker::IDK
      *
-     * @return SiiAmbiente|null
+     * @return SiiEnvironment|null
      */
-    public function getAmbiente(): ?SiiAmbiente;
+    public function getEnvironment(): ?SiiEnvironment;
 
     /**
      * Indica si el CAF es de certificación o producción.
      *
      * El resultado puede ser:
      *
-     *   - SiiAmbiente::CERTIFICACION->value es CAF de certificación.
-     *   - SiiAmbiente::PRODUCCION->value es CAF de producción.
+     *   - SiiEnvironment::STAGING->value es CAF de certificación.
+     *   - SiiEnvironment::PRODUCTION->value es CAF de producción.
      *   - `null`: indicando que el Caf es falso y tiene IDK CafFaker::IDK
      *
      * @return int|null

@@ -138,7 +138,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $draft = $this->create($xmlDocument);
 
         // Verificar que el folio del documento esté dentro del rango del CAF.
-        if (!$caf->enRango($draft->getFolio())) {
+        if (!$caf->isEnRango($draft->getFolio())) {
             throw new BuilderException(sprintf(
                 'El folio %d del documento %s no está disponible en el rango del CAF %s.',
                 $draft->getFolio(),
@@ -151,7 +151,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $timestamp = $bag->getBuilderOptions()['timestamp'] ?? date('Y-m-d\TH:i:s');
 
         // Corroborar que el CAF esté vigente según el timestamp usado.
-        if (!$caf->vigente($timestamp)) {
+        if (!$caf->isVigente($timestamp)) {
             throw new BuilderException(sprintf(
                 'El CAF %s que contiene el folio %d del documento %s no está vigente, venció el día %s.',
                 $caf->getId(),
@@ -162,7 +162,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         }
 
         // Preparar datos del timbre.
-        $tedData = $draft->getPlantillaTED();
+        $tedData = $draft->getTemplateTED();
         $cafArray = $this->xmlService->decode($caf->getXmlDocument());
         $tedData['TED']['DD']['CAF'] = $cafArray['AUTORIZACION']['CAF'];
         $tedData['TED']['DD']['TSTED'] = $timestamp;

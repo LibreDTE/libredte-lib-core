@@ -297,7 +297,7 @@ class EmisionMasivaTest extends TestCase
             );
 
             // Validar campos esperados del documento.
-            $dataActual = Arr::dot($documentBag->getDocument()->getDatos());
+            $dataActual = Arr::dot($documentBag->getDocument()->getData());
             foreach ($dataExpected as $expectedKey => $expectedValue) {
                 $actualValue = $dataActual[$expectedKey] ?? null;
                 $this->assertSame(

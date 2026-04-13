@@ -130,7 +130,7 @@ class EnvioRecibosTest extends TestCase
                 'RutResponde' => '76192083-9',
                 'RutRecibe' => '88888888-8',
             ],
-            datos: $recibos,
+            data: $recibos,
             certificate: $this->certificate,
         );
 

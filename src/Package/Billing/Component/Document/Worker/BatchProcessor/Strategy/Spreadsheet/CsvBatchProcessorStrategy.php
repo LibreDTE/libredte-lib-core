@@ -59,44 +59,44 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     public function process(DocumentBatchInterface $batch): array
     {
         // Cargar archivo CSV y obtener los datos.
-        $datos = Csv::read($batch->getFile());
-        $n_datos = count($datos);
+        $data = Csv::read($batch->getFile());
+        $n_data = count($data);
         $documentos = [];
         $documento = [];
 
         // Procesar cada fila del archivo.
-        for ($i = 1; $i < $n_datos; $i++) {
+        for ($i = 1; $i < $n_data; $i++) {
             // Si la fila corresponde a un documento nuevo.
-            if (!empty($datos[$i][0])) {
+            if (!empty($data[$i][0])) {
                 // Agregar el documento actual al listado si existe.
                 if ($documento) {
                     $documentos[] = $documento;
                 }
                 // Crear un nuevo documento.
-                $documento = $this->createDocument($datos[$i]);
+                $documento = $this->createDocument($data[$i]);
             } else {
                 // Si la fila no corresponde a un documento nuevo, agregar
                 // detalles al documento actual.
-                if (!empty($datos[$i][13])) {
-                    $datosItem = array_merge(
+                if (!empty($data[$i][13])) {
+                    $dataItem = array_merge(
                         // Datos originales del item (vienen juntos en el
                         // archivo).
-                        array_slice($datos[$i], 11, 8),
+                        array_slice($data[$i], 11, 8),
 
                         // Datos adicionales del item (vienen después del item,
                         // "al final", porque se añadieron después de los
                         // previos al archivo).
                         [
                             // CodImpAdic.
-                            !empty($datos[$i][38]) ? $datos[$i][38] : null,
+                            !empty($data[$i][38]) ? $data[$i][38] : null,
                         ]
                     );
 
-                    $this->addItem($documento, $datosItem);
+                    $this->addItem($documento, $dataItem);
                 }
 
                 // Agregar referencias al documento.
-                $this->addReference($documento, array_slice($datos[$i], 28, 5));
+                $this->addReference($documento, array_slice($data[$i], 28, 5));
             }
         }
 
@@ -113,7 +113,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      *
      * También agrega ítems, transporte y referencias al documento.
      *
-     * @param array $datos Datos para crear el documento. Los índices corresponden a:
+     * @param array $data Datos para crear el documento. Los índices corresponden a:
      *   - 0: Tipo de documento (obligatorio).
      *   - 1: Folio del documento (obligatorio).
      *   - 2: Fecha de emisión (opcional).
@@ -134,37 +134,37 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * @return array Estructura del documento generado.
      * @throws BatchProcessorException Si faltan datos mínimos o son inválidos.
      */
-    private function createDocument(array $datos): array
+    private function createDocument(array $data): array
     {
         // Verificar datos mínimos obligatorios.
-        if (empty($datos[0])) {
+        if (empty($data[0])) {
             throw new BatchProcessorException('Falta tipo de documento.');
         }
-        if (empty($datos[1])) {
+        if (empty($data[1])) {
             throw new BatchProcessorException('Falta folio del documento.');
         }
-        if (empty($datos[4])) {
+        if (empty($data[4])) {
             throw new BatchProcessorException('Falta RUT del receptor.');
         }
 
         // Verificar datos si no es boleta.
-        if (!in_array($datos[0], [39, 41])) {
-            if (empty($datos[5])) {
+        if (!in_array($data[0], [39, 41])) {
+            if (empty($data[5])) {
                 throw new BatchProcessorException(
                     'Falta razón social del receptor.'
                 );
             }
-            if (empty($datos[6])) {
+            if (empty($data[6])) {
                 throw new BatchProcessorException(
                     'Falta giro del receptor.'
                 );
             }
-            if (empty($datos[9])) {
+            if (empty($data[9])) {
                 throw new BatchProcessorException(
                     'Falta dirección del receptor.'
                 );
             }
-            if (empty($datos[10])) {
+            if (empty($data[10])) {
                 throw new BatchProcessorException(
                     'Falta comuna del receptor.'
                 );
@@ -172,18 +172,18 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
         }
 
         // Crear la estructura base del documento.
-        $documento = $this->setInitialDTE($datos);
+        $documento = $this->setInitialDTE($data);
 
         // Validar correo electrónico.
-        if (!empty($datos[8])) {
-            if (!filter_var($datos[8], FILTER_VALIDATE_EMAIL)) {
+        if (!empty($data[8])) {
+            if (!filter_var($data[8], FILTER_VALIDATE_EMAIL)) {
                 throw new BatchProcessorException(sprintf(
                     'Correo electrónico %s no es válido.',
-                    $datos[8]
+                    $data[8]
                 ));
             }
             $documento['Encabezado']['Receptor']['CorreoRecep'] = mb_substr(
-                trim($datos[8]),
+                trim($data[8]),
                 0,
                 80
             );
@@ -192,24 +192,24 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
         // Manejar tipos de moneda para documentos de exportación.
         if (in_array($documento['Encabezado']['IdDoc']['TipoDTE'], [110,111,112])) {
             // Agregar moneda.
-            if (empty($datos[33])) {
-                $datos[33] = 'USD';
+            if (empty($data[33])) {
+                $data[33] = 'USD';
             }
-            $moneda = $this->getCurrency($datos[33]);
+            $moneda = $this->getCurrency($data[33]);
             if (empty($moneda)) {
                 throw new BatchProcessorException(
                     sprintf(
                         'El tipo de moneda %s no está permitido, solo: USD, EUR y CLP.',
-                        $datos[33]
+                        $data[33]
                     )
                 );
             }
             $documento['Encabezado']['Totales']['TpoMoneda'] = $moneda;
 
             // Agregar ID del receptor.
-            if (!empty($datos[34])) {
+            if (!empty($data[34])) {
                 $documento['Encabezado']['Receptor']['Extranjero']['NumId'] = mb_substr(
-                    trim($datos[34]),
+                    trim($data[34]),
                     0,
                     20
                 );
@@ -217,13 +217,13 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
         }
 
         // Procesar descuentos globales.
-        if (!empty($datos[35])) {
-            if (strpos($datos[35], '%')) {
+        if (!empty($data[35])) {
+            if (strpos($data[35], '%')) {
                 $TpoValor_global = '%';
-                $ValorDR_global = (float)substr($datos[35], 0, -1);
+                $ValorDR_global = (float)substr($data[35], 0, -1);
             } else {
                 $TpoValor_global = '$';
-                $ValorDR_global = (float)$datos[35];
+                $ValorDR_global = (float)$data[35];
             }
             $documento['DscRcgGlobal'][] = [
                 'TpoMov' => 'D',
@@ -235,37 +235,37 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
 
         // Asignar el nombre del PDF si se proporciona.
         // Esto permite asociar un archivo PDF específico al documento.
-        if (!empty($datos[36])) {
-            $documento['LibreDTE']['pdf']['nombre'] = $datos[36];
+        if (!empty($data[36])) {
+            $documento['LibreDTE']['pdf']['nombre'] = $data[36];
         }
 
         // Procesar forma de pago.
-        if (!empty($datos[37])) {
-            if (!in_array($datos[37], [1, 2, 3])) {
+        if (!empty($data[37])) {
+            if (!in_array($data[37], [1, 2, 3])) {
                 throw new BatchProcessorException(sprintf(
                     'Forma de pago de código %s es incorrecta, debe ser: 1 (contado), 2 (crédito) o 3 (sin costo).',
-                    $datos[37]
+                    $data[37]
                 ));
             }
-            $documento['Encabezado']['IdDoc']['FmaPago'] = (int) $datos[37];
+            $documento['Encabezado']['IdDoc']['FmaPago'] = (int) $data[37];
         }
 
         // Agregar ítems, transporte y referencias.
-        $datosItem = array_merge(
+        $dataItem = array_merge(
             // Datos originales del item (vienen juntos en el archivo).
-            array_slice($datos, 11, 8),
+            array_slice($data, 11, 8),
 
             // Datos adicionales del item (vienen después del item, "al final",
             // porque se añadieron después de los previos al archivo)
             [
                 // CodImpAdic.
-                !empty($datos[38]) ? $datos[38] : null,
+                !empty($data[38]) ? $data[38] : null,
             ]
         );
 
-        $this->addItem($documento, $datosItem);
-        $this->addTransport($documento, array_slice($datos, 22, 6));
-        $this->addReference($documento, array_slice($datos, 28, 5));
+        $this->addItem($documento, $dataItem);
+        $this->addTransport($documento, array_slice($data, 22, 6));
+        $this->addReference($documento, array_slice($data, 28, 5));
 
         return $documento;
     }
@@ -278,38 +278,38 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
      * predeterminados para los campos opcionales y procesa algunos datos de
      * entrada.
      *
-     * @param array $datos Datos de entrada para generar la estructura del DTE.
+     * @param array $data Datos de entrada para generar la estructura del DTE.
      * @return array Arreglo con la estructura inicial del DTE.
      */
-    private function setInitialDTE(array $datos): array
+    private function setInitialDTE(array $data): array
     {
         return [
             'Encabezado' => [
                 'IdDoc' => [
-                    'TipoDTE' => (int) $datos[0],
-                    'Folio' => (int) $datos[1],
+                    'TipoDTE' => (int) $data[0],
+                    'Folio' => (int) $data[1],
                     'FchEmis' => (
-                        !empty($datos[2]) && Date::validateAndConvert($datos[2], 'Y-m-d') !== null
-                    ) ? $datos[2] : date('Y-m-d'),
+                        !empty($data[2]) && Date::validateAndConvert($data[2], 'Y-m-d') !== null
+                    ) ? $data[2] : date('Y-m-d'),
                     'TpoTranCompra' => false,
                     'TpoTranVenta' => false,
                     'FmaPago' => false,
                     'FchCancel' => false,
-                    'PeriodoDesde' => !empty($datos[20]) && Date::validateAndConvert($datos[20], 'Y-m-d') !== null
-                        ? $datos[20]
+                    'PeriodoDesde' => !empty($data[20]) && Date::validateAndConvert($data[20], 'Y-m-d') !== null
+                        ? $data[20]
                         : false,
-                    'PeriodoHasta' => !empty($datos[21]) && Date::validateAndConvert($datos[21], 'Y-m-d') !== null
-                        ? $datos[21]
+                    'PeriodoHasta' => !empty($data[21]) && Date::validateAndConvert($data[21], 'Y-m-d') !== null
+                        ? $data[21]
                         : false,
                     'MedioPago' => false,
                     'TpoCtaPago' => false,
                     'NumCtaPago' => false,
                     'BcoPago' => false,
-                    'TermPagoGlosa' => !empty($datos[19])
-                        ? mb_substr(trim($datos[19]), 0, 100)
+                    'TermPagoGlosa' => !empty($data[19])
+                        ? mb_substr(trim($data[19]), 0, 100)
                         : false,
-                    'FchVenc' => !empty($datos[3]) && Date::validateAndConvert($datos[3], 'Y-m-d') !== null
-                        ? $datos[3]
+                    'FchVenc' => !empty($data[3]) && Date::validateAndConvert($data[3], 'Y-m-d') !== null
+                        ? $data[3]
                         : false,
                 ],
                 'Emisor' => [
@@ -325,23 +325,23 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
                     'CdgVendedor' => false,
                 ],
                 'Receptor' => [
-                    'RUTRecep' => str_replace('.', '', $datos[4]),
+                    'RUTRecep' => str_replace('.', '', $data[4]),
                     'CdgIntRecep' => false,
-                    'RznSocRecep' => !empty($datos[5])
-                        ? mb_substr(trim($datos[5]), 0, 100)
+                    'RznSocRecep' => !empty($data[5])
+                        ? mb_substr(trim($data[5]), 0, 100)
                         : false,
-                    'GiroRecep' => !empty($datos[6])
-                        ? mb_substr(trim($datos[6]), 0, 40)
+                    'GiroRecep' => !empty($data[6])
+                        ? mb_substr(trim($data[6]), 0, 40)
                         : false,
-                    'Contacto' => !empty($datos[7])
-                        ? mb_substr(trim($datos[7]), 0, 80)
+                    'Contacto' => !empty($data[7])
+                        ? mb_substr(trim($data[7]), 0, 80)
                         : false,
                     'CorreoRecep' => false,
-                    'DirRecep' => !empty($datos[9])
-                        ? mb_substr(trim($datos[9]), 0, 70)
+                    'DirRecep' => !empty($data[9])
+                        ? mb_substr(trim($data[9]), 0, 70)
                         : false,
-                    'CmnaRecep' => !empty($datos[10])
-                        ? mb_substr(trim($datos[10]), 0, 20)
+                    'CmnaRecep' => !empty($data[10])
+                        ? mb_substr(trim($data[10]), 0, 20)
                         : false,
                     'CiudadRecep' => false,
                 ],

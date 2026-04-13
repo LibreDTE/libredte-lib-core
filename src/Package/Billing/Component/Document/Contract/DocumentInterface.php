@@ -174,7 +174,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      *
      * @return array
      */
-    public function getDatos(): array;
+    public function getData(): array;
 
     /**
      * Entrega el nodo TED aplanado y listo para ser usado en el PDF417.
@@ -198,7 +198,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      *
      * @return array
      */
-    public function getPlantillaTED(): array;
+    public function getTemplateTED(): array;
 
     /**
      * Obtiene un elemento del DTE utilizando un selector.

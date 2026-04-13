@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
-use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
  * Interfaz para una solicitud al SII.
@@ -37,25 +37,25 @@ interface SiiRequestInterface extends OptionsAwareInterface
      * Entrega el ambiente que está configurado para realizar las conexiones al
      * Servicio de Impuestos Internos.
      *
-     * @return SiiAmbiente Ambiente que se utilizará en la conexión al SII.
+     * @return SiiEnvironment Ambiente que se utilizará en la conexión al SII.
      */
-    public function getAmbiente(): SiiAmbiente;
+    public function getEnvironment(): SiiEnvironment;
 
     /**
      * Entrega la cantidad de reintentos que se deben realizar al hacer una
      * consulta a un servicio web del SII.
      *
-     * @param int|null $reintentos
+     * @param int|null $retries
      * @return int
      */
-    public function getReintentos(?int $reintentos = null): int;
+    public function getRetries(?int $retries = null): int;
 
     /**
      * Indica si se está o no verificando el SSL en las conexiones al SII.
      *
      * @return bool `true` si se está verificando, `false` en caso contrario.
      */
-    public function getVerificarSsl(): bool;
+    public function getVerifySsl(): bool;
 
     /**
      * Indica cuál es la caché por defecto que se debe utilizar al realizar la

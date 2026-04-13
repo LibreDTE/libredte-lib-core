@@ -37,7 +37,7 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      */
     public function load(BookBagInterface $bag): BookBagInterface
     {
-        return $this->normalizar($bag->setDetalle(
+        return $this->normalize($bag->setDetalle(
             (array) $bag->getInputData() ?: $bag->getDetalle()
         ));
     }
@@ -45,14 +45,14 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    protected function normalizar(BookBagInterface $bag): BookBagInterface
+    protected function normalize(BookBagInterface $bag): BookBagInterface
     {
-        $bag->setCaratula($this->normalizarCaratula($bag));
+        $bag->setCaratula($this->normalizeCaratula($bag));
 
         $detalles = $bag->getDetalle();
 
         foreach ($detalles as &$detalle) {
-            $detalle = $this->normalizarDetalle($detalle);
+            $detalle = $this->normalizeDetalle($detalle);
         }
 
         return $bag->setDetalle($detalles);
@@ -64,7 +64,7 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      * @param BookBagInterface $bag
      * @return array
      */
-    abstract protected function normalizarCaratula(BookBagInterface $bag): array;
+    abstract protected function normalizeCaratula(BookBagInterface $bag): array;
 
     /**
      * Normaliza un registro del detalle del libro.
@@ -75,5 +75,5 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      * @param array $detalle
      * @return array
      */
-    abstract protected function normalizarDetalle(array $detalle): array;
+    abstract protected function normalizeDetalle(array $detalle): array;
 }

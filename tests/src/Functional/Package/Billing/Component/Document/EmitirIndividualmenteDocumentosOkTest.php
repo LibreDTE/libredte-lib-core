@@ -340,11 +340,11 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $this->assertInstanceOf(DocumentInterface::class, $document);
 
         // Validar los valores esperados del DTE con los reales obtenidos.
-        // Se usa getDatos() en vez de $normalizedData justamente para
+        // Se usa getData() en vez de $normalizedData justamente para
         // corroborar que al pasar por la construcción del XML no se haya
         // alterado ningún dato (sobre todo en casos con tags con valores 0 o
         // codificados).
-        $actualValues = $document->getDatos();
+        $actualValues = $document->getData();
         $this->validateExpectedValues(
             $test['ExpectedValues'],
             $actualValues,

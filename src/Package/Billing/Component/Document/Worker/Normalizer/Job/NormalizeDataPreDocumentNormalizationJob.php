@@ -78,7 +78,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         $this->normalizeReferencias($data);
         $this->normalizeTpoTranVenta(
             $data,
-            $bag->getTipoDocumento()->requiereTpoTranVenta()
+            $bag->getTipoDocumento()->requiresTpoTranVenta()
         );
         $this->normalizeEmisor($data);
         $this->normalizeReceptor($data);

@@ -70,7 +70,7 @@ class Utils
      * @param int|float|false $tasa Tasa del IVA o `false` si no corresponde.
      * @return array Arreglo con el neto y el IVA en índices 0 y 1.
      */
-    public static function calcularNetoIVA($total, int|float|false $tasa): array
+    public static function calculateNetoIVA($total, int|float|false $tasa): array
     {
         // Si no existe tasa es porque no hay Neto ni IVA (doc exento).
         if ($tasa === 0 || $tasa === false) {

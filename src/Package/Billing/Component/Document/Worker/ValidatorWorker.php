@@ -116,7 +116,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
         // Las boletas no se validan de manera individual (el DTE). Se validan
         // a través del EnvioBOLETA.
-        if ($bag->getTipoDocumento()->esBoleta()) {
+        if ($bag->getTipoDocumento()->isBoleta()) {
             return $bag->getXmlDocument();
         }
 

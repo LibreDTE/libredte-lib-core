@@ -50,7 +50,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $detalles = $bag->getDetalle();
 
         // Calcular resumen del período.
-        $resumenPeriodo = $this->calcularResumenPeriodo($detalles);
+        $resumenPeriodo = $this->calculateResumenPeriodo($detalles);
 
         // Construir ID del documento.
         $rut = str_replace('-', '', $caratula['RutEmisorLibro'] ?? '');
@@ -98,7 +98,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      * @param array<int, array<string, mixed>> $detalles
      * @return array<string, mixed>
      */
-    private function calcularResumenPeriodo(array $detalles): array
+    private function calculateResumenPeriodo(array $detalles): array
     {
         $resumen = [
             'TotFolAnulado' => false,

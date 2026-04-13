@@ -171,7 +171,7 @@ class CafTest extends TestCase
         $caf = $cafBag->getCaf();
 
         // Verificar que el ambiente sea el de LibreDTE.
-        $this->assertNull($caf->getAmbiente());
+        $this->assertNull($caf->getEnvironment());
     }
 
     /**

@@ -62,7 +62,7 @@ trait NormalizeDescuentosRecargosTrait
                     'ValorDROtrMnda' => false,
                     'IndExeDR' => false,
                 ], $dr);
-                if ($bag->getTipoDocumento()->esExportacion()) {
+                if ($bag->getTipoDocumento()->isExportacion()) {
                     $dr['IndExeDR'] = 1;
                 }
 

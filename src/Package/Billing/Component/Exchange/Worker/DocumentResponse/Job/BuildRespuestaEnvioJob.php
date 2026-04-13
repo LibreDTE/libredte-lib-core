@@ -58,17 +58,17 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
      */
     public function build(ExchangeDocumentBag $bag): RespuestaEnvio
     {
-        $datos = $bag->getDatos();
+        $data = $bag->getData();
         $certificate = $bag->getCertificate();
 
-        $recepcionEnvio = $datos['recepcion_envio'] ?? null;
-        $resultadoDte = $datos['resultado_dte'] ?? null;
+        $recepcionEnvio = $data['recepcion_envio'] ?? null;
+        $resultadoDte = $data['resultado_dte'] ?? null;
 
         $nroDetalles = $recepcionEnvio !== null
             ? count((array) $recepcionEnvio)
             : count((array) $resultadoDte);
 
-        $caratula = $this->normalizarCaratula($bag->getCaratula(), $nroDetalles);
+        $caratula = $this->normalizeCaratula($bag->getCaratula(), $nroDetalles);
 
         $resultado = [
             '@attributes' => ['ID' => 'LibreDTE_ResultadoEnvio'],
@@ -76,11 +76,11 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
         ];
 
         if ($recepcionEnvio !== null) {
-            $resultado['RecepcionEnvio'] = $this->normalizarRecepcionEnvio(
+            $resultado['RecepcionEnvio'] = $this->normalizeRecepcionEnvio(
                 (array) $recepcionEnvio
             );
         } else {
-            $resultado['ResultadoDTE'] = $this->normalizarResultadoDte(
+            $resultado['ResultadoDTE'] = $this->normalizeResultadoDte(
                 (array) $resultadoDte
             );
         }
@@ -119,7 +119,7 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
      * @param int $nroDetalles
      * @return array<string, mixed>
      */
-    private function normalizarCaratula(array $caratula, int $nroDetalles): array
+    private function normalizeCaratula(array $caratula, int $nroDetalles): array
     {
         return array_merge([
             '@attributes' => ['version' => '1.0'],
@@ -140,7 +140,7 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
      * @param array<int, array<string, mixed>> $recepcionEnvio
      * @return array<int, array<string, mixed>>
      */
-    private function normalizarRecepcionEnvio(array $recepcionEnvio): array
+    private function normalizeRecepcionEnvio(array $recepcionEnvio): array
     {
         $normalized = [];
         foreach ($recepcionEnvio as $recepcion) {
@@ -168,7 +168,7 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
      * @param array<int, array<string, mixed>> $resultadoDte
      * @return array<int, array<string, mixed>>
      */
-    private function normalizarResultadoDte(array $resultadoDte): array
+    private function normalizeResultadoDte(array $resultadoDte): array
     {
         $normalized = [];
         foreach ($resultadoDte as $resultado) {

@@ -62,7 +62,7 @@ class ExchangeDocumentBag
      *
      * @var array<mixed>
      */
-    private array $datos;
+    private array $data;
 
     /**
      * Certificado digital para la firma del XML.
@@ -79,20 +79,20 @@ class ExchangeDocumentBag
      *
      * @param TipoDocumentoRespuesta $tipo Tipo de documento de respuesta.
      * @param array<string, mixed> $caratula Datos de la carátula.
-     * @param array<mixed> $datos Recibos o respuestas según el tipo.
+     * @param array<mixed> $data Recibos o respuestas según el tipo.
      * @param CertificateInterface|null $certificate Certificado para firmar.
      * @param AbstractExchangeDocument|null $document Documento ya construido.
      */
     public function __construct(
         TipoDocumentoRespuesta $tipo,
         array $caratula = [],
-        array $datos = [],
+        array $data = [],
         ?CertificateInterface $certificate = null,
         ?AbstractExchangeDocument $document = null,
     ) {
         $this->tipo = $tipo;
         $this->caratula = $caratula;
-        $this->datos = $datos;
+        $this->data = $data;
         $this->certificate = $certificate;
         $this->document = $document;
     }
@@ -135,20 +135,20 @@ class ExchangeDocumentBag
      *
      * @return array<mixed>
      */
-    public function getDatos(): array
+    public function getData(): array
     {
-        return $this->datos;
+        return $this->data;
     }
 
     /**
      * Asigna los datos del documento.
      *
-     * @param array<mixed> $datos
+     * @param array<mixed> $data
      * @return static
      */
-    public function setDatos(array $datos): static
+    public function setData(array $data): static
     {
-        $this->datos = $datos;
+        $this->data = $data;
 
         return $this;
     }

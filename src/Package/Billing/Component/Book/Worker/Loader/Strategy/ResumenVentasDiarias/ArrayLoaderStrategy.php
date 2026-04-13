@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\Abst
  * Estrategia `resumen_ventas_diarias.array` del `LoaderWorker`.
  *
  * Para el RVD (ConsumoFolios) los detalles se usan directamente sin
- * normalización previa: el BuilderWorker los procesa en `calcularResumen()`.
+ * normalización previa: el BuilderWorker los procesa en `calculateResumen()`.
  */
 #[Strategy(name: 'resumen_ventas_diarias.array', worker: 'loader', component: 'book', package: 'billing')]
 class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderStrategyInterface
@@ -46,7 +46,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * @param BookBagInterface $bag
      * @return array
      */
-    protected function normalizarCaratula(BookBagInterface $bag): array
+    protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
             'RutEmisor' => $bag->getEmisor()?->getRut() ?? false,
@@ -68,7 +68,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * @param array $detalle
      * @return array
      */
-    protected function normalizarDetalle(array $detalle): array
+    protected function normalizeDetalle(array $detalle): array
     {
         return array_merge([
             // TODO: Normalizar detalle según lo que se usa en el BuilderStrategy.
