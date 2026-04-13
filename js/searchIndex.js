@@ -931,6 +931,11 @@ Search.appendIndex(
             "summary": "Estrategia\u0020base\u0020de\u0020construcci\u00F3n\u0020para\u0020Libro\u0020de\u0020Compras\/Ventas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003Abuild\u0028\u0029",
             "name": "build",
             "summary": "Construye\u0020el\u0020Libro\u0020de\u0020Compras\/Ventas\u0020a\u0020partir\u0020del\u0020bag\u0020normalizado.",
@@ -946,10 +951,20 @@ Search.appendIndex(
             "summary": "Valores\u0020por\u0020defecto\u0020de\u0020los\u0020totales\u0020del\u0020per\u00EDodo\u0020por\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#property_totalDefault"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroBoletas\\BuilderStrategy",
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060libro_boletas\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroBoletas-BuilderStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroBoletas\\BuilderStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroBoletas-BuilderStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroBoletas\\BuilderStrategy\u003A\u003Abuild\u0028\u0029",
             "name": "build",
@@ -961,6 +976,11 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020del\u0020per\u00EDodo\u0020agrupado\u0020por\u0020TpoDoc\u0020y\u0020TpoServ.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroBoletas-BuilderStrategy.html#method_calculateResumenPeriodo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroBoletas\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroBoletas-BuilderStrategy.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroCompras\\BuilderStrategy",
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060libro_compras\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
@@ -970,6 +990,11 @@ Search.appendIndex(
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060libro_guias\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003Abuild\u0028\u0029",
             "name": "build",
@@ -981,6 +1006,11 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020del\u0020per\u00EDodo\u0020del\u0020libro\u0020de\u0020gu\u00EDas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method_calculateResumenPeriodo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroVentas\\BuilderStrategy",
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060libro_ventas\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
@@ -990,6 +1020,11 @@ Search.appendIndex(
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060resumen_ventas_diarias\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003Abuild\u0028\u0029",
             "name": "build",
@@ -1015,6 +1050,11 @@ Search.appendIndex(
             "name": "calculateRangos",
             "summary": "Determina\u0020los\u0020rangos\u0020continuos\u0020de\u0020folios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_calculateRangos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#property_xmlEncoder"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\BuilderWorker",
             "name": "BuilderWorker",
@@ -6231,6 +6271,56 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#property_signatureService"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument",
+            "name": "AbstractExchangeDocument",
+            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020de\u0020los\u0020documentos\u0020de\u0020respuesta\u0020al\u0020intercambio\u0020de\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetXmlDocument\u0028\u0029",
+            "name": "getXmlDocument",
+            "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetXml\u0028\u0029",
+            "name": "getXml",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020en\u0020formato\u0020ISO\u002D8859\u002D1.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getXml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getSchema"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetSignatureNamespace\u0028\u0029",
+            "name": "getSignatureNamespace",
+            "summary": "Entrega\u0020el\u0020namespace\u0020de\u0020la\u0020firma\u0020electr\u00F3nica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getSignatureNamespace"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020el\u0020documento\u0020como\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003A\u0024xmlDocument",
+            "name": "xmlDocument",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#property_xmlDocument"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeWorker",
             "name": "AbstractExchangeWorker",
             "summary": "Clase\u0020base\u0020para\u0020los\u0020workers\u0020de\u0020intercambio\u003A\u0020ReceiverWorker\u0020y\u0020SenderWorker.",
@@ -6835,56 +6925,6 @@ Search.appendIndex(
             "name": "handle",
             "summary": "Procesa\u0020una\u0020bolsa\u0020de\u0020intercambio,\u0020sus\u0020sobres\u0020y\u0020docuemntos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-SenderWorkerInterface.html#method_handle"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument",
-            "name": "AbstractExchangeDocument",
-            "summary": "Clase\u0020abstracta\u0020\u0028base\u0029\u0020de\u0020los\u0020documentos\u0020de\u0020respuesta\u0020al\u0020intercambio\u0020de\u0020DTE.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020del\u0020documento\u0020de\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AgetXmlDocument\u0028\u0029",
-            "name": "getXmlDocument",
-            "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_getXmlDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AgetXml\u0028\u0029",
-            "name": "getXml",
-            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020en\u0020formato\u0020ISO\u002D8859\u002D1.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_getXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_getId"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AgetSchema\u0028\u0029",
-            "name": "getSchema",
-            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_getSchema"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AgetSignatureNamespace\u0028\u0029",
-            "name": "getSignatureNamespace",
-            "summary": "Entrega\u0020el\u0020namespace\u0020de\u0020la\u0020firma\u0020electr\u00F3nica.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_getSignatureNamespace"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Entrega\u0020el\u0020documento\u0020como\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\AbstractExchangeDocument\u003A\u003A\u0024xmlDocument",
-            "name": "xmlDocument",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-AbstractExchangeDocument.html#property_xmlDocument"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\EnvioRecibos",
             "name": "EnvioRecibos",
@@ -7816,6 +7856,11 @@ Search.appendIndex(
             "summary": "Normaliza\u0020un\u0020recibo\u0020con\u0020los\u0020campos\u0020requeridos\u0020y\u0020sus\u0020valores\u0020por\u0020defecto.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-BuildEnvioRecibosJob.html#method_normalizeRecibo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\BuildEnvioRecibosJob\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-BuildEnvioRecibosJob.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\BuildEnvioRecibosJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
             "summary": "",
@@ -7850,6 +7895,11 @@ Search.appendIndex(
             "name": "normalizeResultadoDte",
             "summary": "Normaliza\u0020la\u0020lista\u0020de\u0020resultados\u0020de\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-BuildRespuestaEnvioJob.html#method_normalizeResultadoDte"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\BuildRespuestaEnvioJob\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-DocumentResponse-Job-BuildRespuestaEnvioJob.html#property_xmlEncoder"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\DocumentResponse\\Job\\BuildRespuestaEnvioJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
@@ -10471,6 +10521,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#property_buildCesionJob"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
             "summary": "",
@@ -10491,6 +10546,11 @@ Search.appendIndex(
             "summary": "Construye\u0020y\u0020firma\u0020el\u0020XML\u0020\u0060Cesion\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#method_build"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildCesionJob.html#property_xmlEncoder"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildCesionJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
             "summary": "",
@@ -10510,6 +10570,11 @@ Search.appendIndex(
             "name": "build",
             "summary": "Construye\u0020y\u0020firma\u0020el\u0020XML\u0020\u0060DTECedido\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html#method_build"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob\u003A\u003A\u0024xmlEncoder",
+            "name": "xmlEncoder",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildDteCedidoJob.html#property_xmlEncoder"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildDteCedidoJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
