@@ -95,6 +95,11 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         // Calcular resumen del período.
         $totalesPeriodo = $this->calculateTotalesPeriodo($detalles);
 
+        // Se actualizan los detalles por si se modificó algo al realizar el
+        // cálculo de totales. Por ejemplo, si se quitó el factor de
+        // proporcionalidad de IVA de uso común, campo FctProp.
+        $bag->setDetalle($detalles);
+
         // Construir carátula normalizada.
         $tipoOper = strtoupper($caratula['TipoOperacion'] ?? 'VENTA');
         $caratulaNorm = array_merge([
@@ -144,11 +149,11 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
      * @param array<int, array<string, mixed>> $detalles
      * @return array<int|string, array<string, mixed>>
      */
-    private function calculateTotalesPeriodo(array $detalles): array
+    private function calculateTotalesPeriodo(array &$detalles): array
     {
         $totales = [];
 
-        foreach ($detalles as $d) {
+        foreach ($detalles as &$d) {
             $tpoDoc = $d['TpoDoc'] ?? false;
             if (!$tpoDoc) {
                 continue;
@@ -176,10 +181,16 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
 
             // Activo fijo.
             if (!empty($d['MntActivoFijo'])) {
-                $totales[$tpoDoc]['TotMntActivoFijo'] = (int) $totales[$tpoDoc]['TotMntActivoFijo'] + (int) $d['MntActivoFijo'];
+                $totales[$tpoDoc]['TotMntActivoFijo'] =
+                    (int) $totales[$tpoDoc]['TotMntActivoFijo']
+                    + (int) $d['MntActivoFijo']
+                ;
             }
             if (!empty($d['MntIVAActivoFijo'])) {
-                $totales[$tpoDoc]['TotMntIVAActivoFijo'] = (int) $totales[$tpoDoc]['TotMntIVAActivoFijo'] + (int) $d['MntIVAActivoFijo'];
+                $totales[$tpoDoc]['TotMntIVAActivoFijo'] =
+                    (int) $totales[$tpoDoc]['TotMntIVAActivoFijo']
+                    + (int) $d['MntIVAActivoFijo']
+                ;
             }
 
             // IVA no recuperable.
@@ -197,21 +208,34 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                         ];
                     }
                     $totales[$tpoDoc]['TotIVANoRec'][$cod]['TotOpIVANoRec']++;
-                    $totales[$tpoDoc]['TotIVANoRec'][$cod]['TotMntIVANoRec'] += (int) $iva['MntIVANoRec'];
+                    $totales[$tpoDoc]['TotIVANoRec'][$cod]['TotMntIVANoRec'] +=
+                        (int) $iva['MntIVANoRec']
+                    ;
                 }
             }
 
             // IVA de uso común.
-            if (!empty($d['FctProp'])) {
-                $totales[$tpoDoc]['TotIVAUsoComun'] = (int) $totales[$tpoDoc]['TotIVAUsoComun'] + (int) $d['IVAUsoComun'];
-                $totales[$tpoDoc]['FctProp'] = $d['FctProp'] / 100;
-                $totales[$tpoDoc]['TotCredIVAUsoComun'] = (int) $totales[$tpoDoc]['TotCredIVAUsoComun']
-                    + (int) round((int) $d['IVAUsoComun'] * ($d['FctProp'] / 100));
+            if (isset($d['FctProp'])) {
+                if (!empty($d['FctProp'])) {
+                    $totales[$tpoDoc]['TotIVAUsoComun'] =
+                        (int) $totales[$tpoDoc]['TotIVAUsoComun']
+                        + (int) $d['IVAUsoComun']
+                    ;
+                    $totales[$tpoDoc]['FctProp'] = $d['FctProp'] / 100;
+                    $totales[$tpoDoc]['TotCredIVAUsoComun'] =
+                        (int) $totales[$tpoDoc]['TotCredIVAUsoComun']
+                        + (int) round((int) $d['IVAUsoComun'] * ($d['FctProp'] / 100))
+                    ;
+                }
+                unset($d['FctProp']);
             }
 
             // IVA fuera de plazo.
             if (!empty($d['IVAFueraPlazo'])) {
-                $totales[$tpoDoc]['TotIVAFueraPlazo'] = (int) $totales[$tpoDoc]['TotIVAFueraPlazo'] + (int) $d['IVAFueraPlazo'];
+                $totales[$tpoDoc]['TotIVAFueraPlazo'] =
+                    (int) $totales[$tpoDoc]['TotIVAFueraPlazo']
+                    + (int) $d['IVAFueraPlazo']
+                ;
             }
 
             // Otros impuestos.
@@ -227,29 +251,46 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                             'TotMntImp' => 0,
                         ];
                     }
-                    $totales[$tpoDoc]['TotOtrosImp'][$cod]['TotMntImp'] += (int) $imp['MntImp'];
+                    $totales[$tpoDoc]['TotOtrosImp'][$cod]['TotMntImp'] +=
+                        (int) $imp['MntImp']
+                    ;
                 }
             }
 
             // Monto sin crédito.
             if (!empty($d['MntSinCred'])) {
-                $totales[$tpoDoc]['TotImpSinCredito'] = (int) $totales[$tpoDoc]['TotImpSinCredito'] + (int) $d['MntSinCred'];
+                $totales[$tpoDoc]['TotImpSinCredito'] =
+                    (int) $totales[$tpoDoc]['TotImpSinCredito']
+                    + (int) $d['MntSinCred']
+                ;
             }
 
             // IVA retenido.
             if (!empty($d['IVARetTotal'])) {
-                $totales[$tpoDoc]['TotIVARetTotal'] = (int) $totales[$tpoDoc]['TotIVARetTotal'] + (int) $d['IVARetTotal'];
+                $totales[$tpoDoc]['TotIVARetTotal'] =
+                    (int) $totales[$tpoDoc]['TotIVARetTotal']
+                    + (int) $d['IVARetTotal']
+                ;
             }
             if (!empty($d['IVARetParcial'])) {
-                $totales[$tpoDoc]['TotIVARetParcial'] = (int) $totales[$tpoDoc]['TotIVARetParcial'] + (int) $d['IVARetParcial'];
+                $totales[$tpoDoc]['TotIVARetParcial'] =
+                    (int) $totales[$tpoDoc]['TotIVARetParcial']
+                    + (int) $d['IVARetParcial']
+                ;
             }
             if (!empty($d['IVANoRetenido'])) {
-                $totales[$tpoDoc]['TotIVANoRetenido'] = (int) $totales[$tpoDoc]['TotIVANoRetenido'] + (int) $d['IVANoRetenido'];
+                $totales[$tpoDoc]['TotIVANoRetenido'] =
+                    (int) $totales[$tpoDoc]['TotIVANoRetenido']
+                    + (int) $d['IVANoRetenido']
+                ;
             }
 
             // Impuesto vehículos.
             if (!empty($d['ImpVehiculo'])) {
-                $totales[$tpoDoc]['TotImpVehiculo'] = (int) $totales[$tpoDoc]['TotImpVehiculo'] + (int) $d['ImpVehiculo'];
+                $totales[$tpoDoc]['TotImpVehiculo'] =
+                    (int) $totales[$tpoDoc]['TotImpVehiculo']
+                    + (int) $d['ImpVehiculo']
+                ;
             }
         }
 
@@ -262,7 +303,6 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                 $t['TotOtrosImp'] = array_values($t['TotOtrosImp']);
             }
         }
-        unset($t);
 
         return $totales;
     }
