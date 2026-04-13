@@ -4566,10 +4566,10 @@ Search.appendIndex(
             "summary": "Esquema\u0020de\u0020las\u0020opciones.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_optionsSchema"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003A\u0024cafProvider",
-            "name": "cafProvider",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003A\u0024cafFaker",
+            "name": "cafFaker",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_cafProvider"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#property_cafFaker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003A\u0024documentBagManagerWorker",
             "name": "documentBagManagerWorker",
@@ -8116,46 +8116,6 @@ Search.appendIndex(
             "summary": "Esquema\u0020de\u0020las\u0020opciones.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html#property_optionsSchema"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface",
-            "name": "CafBagInterface",
-            "summary": "Interfaz\u0020para\u0020la\u0020bolsa\u0020con\u0020los\u0020datos\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AgetCaf\u0028\u0029",
-            "name": "getCaf",
-            "summary": "Obtiene\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getCaf"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AgetEmisor\u0028\u0029",
-            "name": "getEmisor",
-            "summary": "Obtiene\u0020el\u0020contribuyente\u0020emisor\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getEmisor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AgetTipoDocumento\u0028\u0029",
-            "name": "getTipoDocumento",
-            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020documento\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getTipoDocumento"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AsetFoliosDisponibles\u0028\u0029",
-            "name": "setFoliosDisponibles",
-            "summary": "Asigna\u0020el\u0020listado\u0020de\u0020folios\u0020disponibles\u0020en\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_setFoliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AgetFoliosDisponibles\u0028\u0029",
-            "name": "getFoliosDisponibles",
-            "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020folios\u0020disponibles\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getFoliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AgetSiguienteFolio\u0028\u0029",
-            "name": "getSiguienteFolio",
-            "summary": "Entrega\u0020el\u0020siguiente\u0020folio\u0020disponible\u0020que\u0020se\u0020puede\u0020utilizar\u0020en\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_getSiguienteFolio"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafBagInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html#method_toArray"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFakerWorkerInterface",
             "name": "CafFakerWorkerInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020crea\u0020archivos\u0020CAF\u0020falsos\u0020\u0028de\u0020prueba\u0029.",
@@ -8165,6 +8125,21 @@ Search.appendIndex(
             "name": "create",
             "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020mandatario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html#method_create"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFolioInterface",
+            "name": "CafFolioInterface",
+            "summary": "Interfaz\u0020para\u0020un\u0020contenedor\u0020de\u0020un\u0020archivo\u0020CAF\u0020y\u0020el\u0020folio\u0020asociado\u0020a\u0020usar\u0020en\nun\u0020documento\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFolioInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFolioInterface\u003A\u003AgetFolio\u0028\u0029",
+            "name": "getFolio",
+            "summary": "Entrega\u0020el\u0020folio\u0020espec\u00EDfico\u0020a\u0020usar\u0020en\u0020un\u0020documento\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFolioInterface.html#method_getFolio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFolioInterface\u003A\u003AgetCaf\u0028\u0029",
+            "name": "getCaf",
+            "summary": "Entrega\u0020el\u0020CAF\u0020que\u0020contiene\u0020el\u0020folio\u0020que\u0020se\u0020deber\u00E1\u0020usar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFolioInterface.html#method_getCaf"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface",
             "name": "CafInterface",
@@ -8288,28 +8263,48 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafLoaderWorkerInterface\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020el\u0020XML\u0020de\u0020un\u0020CAF\u0020y\u0020lo\u0020entrega\u0020en\u0020un\u0020contenedor\u0020con\u0020todos\u0020los\u0020datos\nasociados\u0020a\u0020dicho\u0020CAF.",
+            "summary": "Carga\u0020el\u0020XML\u0020de\u0020un\u0020CAF\u0020y\u0020lo\u0020entrega\u0020como\u0020entidad\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafLoaderWorkerInterface.html#method_load"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderInterface",
-            "name": "CafProviderInterface",
-            "summary": "Interfaz\u0020para\u0020el\u0020servicio\u0020provee\u0020el\u0020CAF\u0020con\u0020el\u0020folio\u0020que\u0020se\u0020debe\u0020asignar\u0020al\nemitir\u0020un\u0020documento\u0020tributario.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface",
+            "name": "CafManagerInterface",
+            "summary": "Interfaz\u0020para\u0020el\u0020gestor\u0020de\u0020archivos\u0020CAF.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderInterface\u003A\u003Aretrieve\u0028\u0029",
-            "name": "retrieve",
-            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html#method_retrieve"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Agrega\u0020un\u0020archivo\u0020CAF\u0020al\u0020pool.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_add"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderWorkerInterface",
-            "name": "CafProviderWorkerInterface",
-            "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020provee\u0020de\u0020CAF\u0020a\u0020la\u0020biblioteca.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderWorkerInterface.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AmarkConsumed\u0028\u0029",
+            "name": "markConsumed",
+            "summary": "Marca\u0020folios\u0020como\u0020ya\u0020consumidos\u0020\u0028estado\u0020previo\u0020al\u0020uso\u0020de\u0020este\u0020manager\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_markConsumed"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafProviderWorkerInterface\u003A\u003Aretrieve\u0028\u0029",
-            "name": "retrieve",
-            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderWorkerInterface.html#method_retrieve"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AsetAvailable\u0028\u0029",
+            "name": "setAvailable",
+            "summary": "Define\u0020expl\u00EDcitamente\u0020qu\u00E9\u0020folios\u0020est\u00E1n\u0020disponibles\u0020para\u0020consumo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_setAvailable"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AhasEnoughFolios\u0028\u0029",
+            "name": "hasEnoughFolios",
+            "summary": "\u00BFHay\u0020suficientes\u0020folios\u0020disponibles\u0020para\u0020este\u0020tipo\u003F",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_hasEnoughFolios"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003Aconsume\u0028\u0029",
+            "name": "consume",
+            "summary": "Consumir\u0020el\u0020pr\u00F3ximo\u0020folio.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_consume"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AgetCafs\u0028\u0029",
+            "name": "getCafs",
+            "summary": "Devuelve\u0020todos\u0020los\u0020CAFs\u0020cargados\u0020como\u0020lista\u0020plana.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_getCafs"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AgetCafForFolio\u0028\u0029",
+            "name": "getCafForFolio",
+            "summary": "Obtiene\u0020el\u0020CAF\u0020que\u0020cubre\u0020un\u0020folio\u0020ya\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_getCafForFolio"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafValidatorWorkerInterface",
             "name": "CafValidatorWorkerInterface",
@@ -8335,11 +8330,6 @@ Search.appendIndex(
             "name": "getCafLoaderWorker",
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_loader\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-IdentifierComponentInterface.html#method_getCafLoaderWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\IdentifierComponentInterface\u003A\u003AgetCafProviderWorker\u0028\u0029",
-            "name": "getCafProviderWorker",
-            "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_provider\u0022.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-IdentifierComponentInterface.html#method_getCafProviderWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\IdentifierComponentInterface\u003A\u003AgetCafValidatorWorker\u0028\u0029",
             "name": "getCafValidatorWorker",
@@ -8541,11 +8531,6 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_loader\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#method_getCafLoaderWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003AgetCafProviderWorker\u0028\u0029",
-            "name": "getCafProviderWorker",
-            "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_provider\u0022.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#method_getCafProviderWorker"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003AgetCafValidatorWorker\u0028\u0029",
             "name": "getCafValidatorWorker",
             "summary": "Obtiene\u0020el\u0020worker\u0020\u0022billing.identifier.caf_validator\u0022.",
@@ -8561,115 +8546,65 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#property_cafLoader"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003A\u0024cafProvider",
-            "name": "cafProvider",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#property_cafProvider"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\IdentifierComponent\u003A\u003A\u0024cafValidator",
             "name": "cafValidator",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-IdentifierComponent.html#property_cafValidator"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider",
-            "name": "FakeCafProvider",
-            "summary": "Implementaci\u00F3n\u0020de\u0020un\u0020proveedor\u0020de\u0020archivos\u0020CAF\u0020falsos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager",
+            "name": "CafManager",
+            "summary": "Implementaci\u00F3n\u0020de\u0020un\u0020gestor\u0020de\u0020archivos\u0020CAF.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020con\u0020dependencias\u0020del\u0020servicio.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Agrega\u0020un\u0020archivo\u0020CAF\u0020al\u0020pool.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_add"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003Aretrieve\u0028\u0029",
-            "name": "retrieve",
-            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_retrieve"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AmarkConsumed\u0028\u0029",
+            "name": "markConsumed",
+            "summary": "Marca\u0020folios\u0020como\u0020ya\u0020consumidos\u0020\u0028estado\u0020previo\u0020al\u0020uso\u0020de\u0020este\u0020manager\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_markConsumed"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003A\u0024folios",
-            "name": "folios",
-            "summary": "Historial\u0020de\u0020folios\u0020asignados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AsetAvailable\u0028\u0029",
+            "name": "setAvailable",
+            "summary": "Define\u0020expl\u00EDcitamente\u0020qu\u00E9\u0020folios\u0020est\u00E1n\u0020disponibles\u0020para\u0020consumo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailable"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\FakeCafProvider\u003A\u003A\u0024cafFakerWorker",
-            "name": "cafFakerWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AhasEnoughFolios\u0028\u0029",
+            "name": "hasEnoughFolios",
+            "summary": "\u00BFHay\u0020suficientes\u0020folios\u0020disponibles\u0020para\u0020este\u0020tipo\u003F",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_hasEnoughFolios"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag",
-            "name": "CafBag",
-            "summary": "Contenedor\u0020de\u0020datos\u0020del\u0020archivo\u0020CAF\u0020de\u0020un\u0020documento\u0020tributario\u0020electr\u00F3nico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003Aconsume\u0028\u0029",
+            "name": "consume",
+            "summary": "Consumir\u0020el\u0020pr\u00F3ximo\u0020folio.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_consume"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020de\u0020la\u0020bolsa\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method___construct"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AgetCafs\u0028\u0029",
+            "name": "getCafs",
+            "summary": "Devuelve\u0020todos\u0020los\u0020CAFs\u0020cargados\u0020como\u0020lista\u0020plana.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafs"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AgetCaf\u0028\u0029",
-            "name": "getCaf",
-            "summary": "Obtiene\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getCaf"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AgetCafForFolio\u0028\u0029",
+            "name": "getCafForFolio",
+            "summary": "Obtiene\u0020el\u0020CAF\u0020que\u0020cubre\u0020un\u0020folio\u0020ya\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafForFolio"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AgetEmisor\u0028\u0029",
-            "name": "getEmisor",
-            "summary": "Obtiene\u0020el\u0020contribuyente\u0020emisor\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getEmisor"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AparseFolios\u0028\u0029",
+            "name": "parseFolios",
+            "summary": "Parsea\u0020folios\u0020desde\u0020un\u0020string\u0020de\u0020rangos\u0020o\u0020un\u0020array\u0020de\u0020enteros.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_parseFolios"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AgetTipoDocumento\u0028\u0029",
-            "name": "getTipoDocumento",
-            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020documento\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getTipoDocumento"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003A\u0024pool",
+            "name": "pool",
+            "summary": "Pool\u0020de\u0020CAFs\u0020agrupados\u0020por\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#property_pool"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AsetFoliosDisponibles\u0028\u0029",
-            "name": "setFoliosDisponibles",
-            "summary": "Asigna\u0020el\u0020listado\u0020de\u0020folios\u0020disponibles\u0020en\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_setFoliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AgetFoliosDisponibles\u0028\u0029",
-            "name": "getFoliosDisponibles",
-            "summary": "Obtiene\u0020el\u0020listado\u0020de\u0020folios\u0020disponibles\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getFoliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AgetSiguienteFolio\u0028\u0029",
-            "name": "getSiguienteFolio",
-            "summary": "Entrega\u0020el\u0020siguiente\u0020folio\u0020disponible\u0020que\u0020se\u0020puede\u0020utilizar\u0020en\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_getSiguienteFolio"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AensureFoliosDisponibles\u0028\u0029",
-            "name": "ensureFoliosDisponibles",
-            "summary": "Asegura\u0020que\u0020existan\u0020folios\u0020disponibles\u0020asignados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_ensureFoliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020como\u0020un\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A\u0024foliosDisponibles",
-            "name": "foliosDisponibles",
-            "summary": "Listado\u0020de\u0020folios\u0020disponibles\u0020en\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_foliosDisponibles"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A\u0024caf",
-            "name": "caf",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_caf"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A\u0024emisor",
-            "name": "emisor",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_emisor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafBag\u003A\u003A\u0024tipoDocumento",
-            "name": "tipoDocumento",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafBag.html#property_tipoDocumento"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003A\u0024consumed",
+            "name": "consumed",
+            "summary": "Conjunto\u0020de\u0020folios\u0020ya\u0020consumidos\u0020por\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#property_consumed"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker",
             "name": "CafFaker",
@@ -8731,6 +8666,36 @@ Search.appendIndex(
             "summary": "Clave\u0020p\u00FAblica\u0020en\u0020formato\u0020PEM.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_publicKey"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio",
+            "name": "CafFolio",
+            "summary": "Clase\u0020que\u0020representa\u0020un\u0020contenedor\u0020de\u0020un\u0020archivo\u0020CAF\u0020y\u0020el\u0020folio\u0020asociado\u0020a\nusar\u0020en\u0020un\u0020documento\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio\u003A\u003AgetFolio\u0028\u0029",
+            "name": "getFolio",
+            "summary": "Entrega\u0020el\u0020folio\u0020espec\u00EDfico\u0020a\u0020usar\u0020en\u0020un\u0020documento\u0020electr\u00F3nico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getFolio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio\u003A\u003AgetCaf\u0028\u0029",
+            "name": "getCaf",
+            "summary": "Entrega\u0020el\u0020CAF\u0020que\u0020contiene\u0020el\u0020folio\u0020que\u0020se\u0020deber\u00E1\u0020usar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getCaf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio\u003A\u003A\u0024folio",
+            "name": "folio",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_folio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio\u003A\u003A\u0024caf",
+            "name": "caf",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_caf"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker",
             "name": "CafFakerWorker",
             "summary": "Worker\u0020que\u0020permite\u0020crear\u0020CAF\u0020falsos\u0020\u0028usando\u0020CafFaker\u0029\u0020para\u0020pruebas.",
@@ -8783,48 +8748,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020el\u0020XML\u0020de\u0020un\u0020CAF\u0020y\u0020lo\u0020entrega\u0020en\u0020un\u0020contenedor\u0020con\u0020todos\u0020los\u0020datos\nasociados\u0020a\u0020dicho\u0020CAF.",
+            "summary": "Carga\u0020el\u0020XML\u0020de\u0020un\u0020CAF\u0020y\u0020lo\u0020entrega\u0020como\u0020entidad\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#method_load"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003AgetTipoDocumento\u0028\u0029",
-            "name": "getTipoDocumento",
-            "summary": "Obtiene\u0020la\u0020instancia\u0020del\u0020tipo\u0020de\u0020documento\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#method_getTipoDocumento"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003AvalidateTipoDocumento\u0028\u0029",
+            "name": "validateTipoDocumento",
+            "summary": "Valida\u0020que\u0020el\u0020c\u00F3digo\u0020de\u0020tipo\u0020de\u0020documento\u0020del\u0020CAF\u0020exista\u0020en\u0020el\u0020repositorio.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#method_validateTipoDocumento"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024cafClass",
             "name": "cafClass",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_cafClass"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024emisorFactory",
-            "name": "emisorFactory",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_emisorFactory"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafLoaderWorker\u003A\u003A\u0024repositoryManager",
             "name": "repositoryManager",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafLoaderWorker.html#property_repositoryManager"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker",
-            "name": "CafProviderWorker",
-            "summary": "Worker\u0020que\u0020permite\u0020provee\u0020folios\u0020\u0028archivos\u0020CAF\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020del\u0020worker\u0020con\u0020sus\u0020dependencias.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003Aretrieve\u0028\u0029",
-            "name": "retrieve",
-            "summary": "Provee\u0020un\u0020CAF\u0020para\u0020el\u0020emisor\u0020y\u0020tipo\u0020de\u0020documento\u0020solicitado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#method_retrieve"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafProviderWorker\u003A\u003A\u0024cafProvider",
-            "name": "cafProvider",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafProviderWorker.html#property_cafProvider"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafValidatorWorker",
             "name": "CafValidatorWorker",

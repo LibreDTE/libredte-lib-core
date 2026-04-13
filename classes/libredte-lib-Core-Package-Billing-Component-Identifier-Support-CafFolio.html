@@ -121,12 +121,12 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier.html">Identifier</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier-service.html">Service</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-identifier-support.html">Support</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    FakeCafProvider
+    CafFolio
 
     
             <div class="phpdocumentor-element__package">
@@ -138,7 +138,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a>                    </span>
+                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFolioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFolioInterface">CafFolioInterface</abbr></a>                    </span>
     
     </h2>
 
@@ -148,19 +148,16 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Implementación de un proveedor de archivos CAF falsos.</p>
+            <p class="phpdocumentor-summary">Clase que representa un contenedor de un archivo CAF y el folio asociado a
+usar en un documento electrónico.</p>
 
 
-    <section class="phpdocumentor-description"><p>Esta implementación es solo para pruebas de LibreDTE. Cada aplicación deberá
-implementar un servicio real de CafProviderInterface para que sea inyectado
-donde sea necesario (ej: en emisión masiva).</p>
-</section>
 
 
 
@@ -168,7 +165,7 @@ donde sea necesario (ej: en emisión masiva).</p>
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -176,12 +173,12 @@ donde sea necesario (ej: en emisión masiva).</p>
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafProviderInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface">CafProviderInterface</abbr></a></dt><dd>Interfaz para el servicio provee el CAF con el folio que se debe asignar al
-emitir un documento tributario.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFolioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFolioInterface">CafFolioInterface</abbr></a></dt><dd>Interfaz para un contenedor de un archivo CAF y el folio asociado a usar en
+un documento electrónico.</dd>    </dl>
 
 
 
@@ -190,44 +187,49 @@ emitir un documento tributario.</dd>    </dl>
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker">$cafFakerWorker</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_caf">$caf</a>
     <span>
-                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a>            </span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios">$folios</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_folio">$folio</a>
     <span>
-                        &nbsp;: array&lt;int, array&lt;int, int&gt;&gt;            </span>
+                        &nbsp;: int            </span>
 </dt>
-<dd>Historial de folios asignados.</dd>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Constructor con dependencias del servicio.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_retrieve">retrieve()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getCaf">getCaf()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a>    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>    </span>
 </dt>
-<dd>Provee un CAF para el emisor y tipo de documento solicitado.</dd>
+<dd>Entrega el CAF que contiene el folio que se deberá usar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getFolio">getFolio()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el folio específico a usar en un documento electrónico.</dd>
 
     </dl>
 
@@ -239,7 +241,7 @@ emitir un documento tributario.</dd>    </dl>
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -249,17 +251,17 @@ emitir un documento tributario.</dd>    </dl>
             -private
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_cafFakerWorker">
-        $cafFakerWorker
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_caf">
+        $caf
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_caf" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -267,8 +269,8 @@ emitir un documento tributario.</dd>    </dl>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$cafFakerWorker</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$caf</span>
     </code>
 
     
@@ -286,37 +288,29 @@ emitir un documento tributario.</dd>    </dl>
             -private
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_folios">
-        $folios
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_folio">
+        $folio
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_folio" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Historial de folios asignados.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type">array&lt;int, array&lt;int, int&gt;&gt;</span>
-    <span class="phpdocumentor-signature__name">$folios</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+            <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$folio</span>
+    </code>
 
-        <section class="phpdocumentor-description"><p>Permite entregar siempre folios diferentes para los emisores y tipos de
-documentos. Así se evitan problemas de repetir folios. Esto es lo que
-realmente debería implementar la aplicación que use LibreDTE: un control
-de la asignación de folios.</p>
-<p>El arreglo guardará por cada emisor y tipo de documento el último folio
-que fue entregado.</p>
-</section>
-
+    
     
     
 
@@ -329,7 +323,7 @@ que fue entregado.</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -340,21 +334,20 @@ que fue entregado.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructor con dependencias del servicio.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafFakerWorker</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folio</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$caf</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -363,8 +356,15 @@ que fue entregado.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$cafFakerWorker</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface">CafFakerWorkerInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$folio</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$caf</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -383,70 +383,75 @@ que fue entregado.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_retrieve">
-        retrieve()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_retrieve" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getCaf">
+        getCaf()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getCaf" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php"><a href="files/src-package-billing-component-identifier-service-fakecafprovider.html"><abbr title="src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php">FakeCafProvider.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Provee un CAF para el emisor y tipo de documento solicitado.</p>
+        <p class="phpdocumentor-summary">Entrega el CAF que contiene el folio que se deberá usar.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">retrieve</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tipoDocumento</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folio</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getCaf</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$emisor</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Emisor para el que se busca un CAF.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$tipoDocumento</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface">TipoDocumentoInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento a buscar su CAF.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$folio</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Permite indicar si se quiere un folio específico.</p>
-</section>
-
-            </dd>
-            </dl>
-
+    
     
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface">CafBagInterface</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Bolsa con los datos del CAF encontrado.</p>
-</section>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span>
+            </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getFolio">
+        getFolio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getFolio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Support/CafFolio.php"><a href="files/src-package-billing-component-identifier-support-caffolio.html"><abbr title="src/Package/Billing/Component/Identifier/Support/CafFolio.php">CafFolio.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el folio específico a usar en un documento electrónico.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getFolio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -456,7 +461,7 @@ que fue entregado.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Identifier/Service/FakeCafProvider.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Identifier/Support/CafFolio.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -557,24 +562,25 @@ que fue entregado.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_cafFakerWorker">$cafFakerWorker</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#property_folios">$folios</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_caf">$caf</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_folio">$folio</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#method_retrieve">retrieve()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getCaf">getCaf()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#method_getFolio">getFolio()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -594,7 +600,7 @@ que fue entregado.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-FakeCafProvider.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
