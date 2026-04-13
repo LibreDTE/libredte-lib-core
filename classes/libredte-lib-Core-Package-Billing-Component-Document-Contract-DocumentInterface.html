@@ -189,7 +189,7 @@
 <dd>Obtiene el código numérico del documento tributario.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDatos">getDatos()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getData">getData()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -245,13 +245,6 @@
 <dd>Entrega el monto total del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getPlantillaTED">getPlantillaTED()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -285,6 +278,13 @@
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Entrega el nodo TED aplanado y listo para ser usado en el PDF417.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED">getTemplateTED()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDocumento">getTipoDocumento()</a>
@@ -441,9 +441,9 @@ al inicio y final.</dd>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getDatos">
-        getDatos()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDatos" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getData">
+        getData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getData" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -457,7 +457,7 @@ al inicio y final.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDatos</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -785,56 +785,6 @@ fecha de creación real del documento en LibreDTE.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getPlantillaTED">
-        getPlantillaTED()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getPlantillaTED" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">201</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Entrega un arreglo con una plantilla con la estructura del TED.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getPlantillaTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Esta plantilla se usa luego para crear el TED firmado. Se deberán
-completar antes de firmar el TED los campos:</p>
-<ul>
-<li>TED.DD.CAF</li>
-<li>TED.DD.TSTED</li>
-</ul>
-<p>Luego calcular la firma del TED y agregar a:</p>
-<ul>
-<li>TED.FRMT.@value</li>
-</ul>
-</section>
-
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getRazonSocialReceptor">
         getRazonSocialReceptor()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1025,6 +975,56 @@ completar antes de firmar el TED los campos:</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTemplateTED">
+        getTemplateTED()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">201</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega un arreglo con una plantilla con la estructura del TED.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTemplateTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Esta plantilla se usa luego para crear el TED firmado. Se deberán
+completar antes de firmar el TED los campos:</p>
+<ul>
+<li>TED.DD.CAF</li>
+<li>TED.DD.TSTED</li>
+</ul>
+<p>Luego calcular la firma del TED y agregar a:</p>
+<ul>
+<li>TED.FRMT.@value</li>
+</ul>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -1469,7 +1469,7 @@ al inicio y final.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_get">get()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getCodigo">getCodigo()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDatos">getDatos()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getData">getData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDetalle">getDetalle()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getEmisor">getEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getFechaEmision">getFechaEmision()</a></li>
@@ -1477,12 +1477,12 @@ al inicio y final.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getId">getId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda">getMoneda()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoTotal">getMontoTotal()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getPlantillaTED">getPlantillaTED()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getReceptor">getReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutEmisor">getRutEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutReceptor">getRutReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED">getTED()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED">getTemplateTED()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDocumento">getTipoDocumento()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotales">getTotales()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getXml">getXml()</a></li>

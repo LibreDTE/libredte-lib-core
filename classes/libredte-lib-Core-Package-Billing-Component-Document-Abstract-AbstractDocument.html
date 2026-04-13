@@ -211,7 +211,7 @@ instancia de un documento.</dd>
 <dd>Instancia del documento XML asociado a los datos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_datos">$datos</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_data">$data</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
@@ -254,7 +254,7 @@ instancia de un documento.</dd>
 <dd>Obtiene el código numérico del documento tributario.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDatos">getDatos()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getData">getData()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -310,13 +310,6 @@ instancia de un documento.</dd>
 <dd>Entrega el monto total del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getPlantillaTED">getPlantillaTED()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -350,6 +343,13 @@ instancia de un documento.</dd>
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Entrega el nodo TED aplanado y listo para ser usado en el PDF417.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTemplateTED">getTemplateTED()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTipoDocumento">getTipoDocumento()</a>
@@ -507,9 +507,9 @@ instancia de un documento.</p>
             -private
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_datos">
-        $datos
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_datos" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_data">
+        $data
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_data" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
@@ -527,7 +527,7 @@ instancia de un documento.</p>
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$datos</span>
+    <span class="phpdocumentor-signature__name">$data</span>
     </code>
 
     
@@ -722,9 +722,9 @@ instancia de un documento.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getDatos">
-        getDatos()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDatos" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getData">
+        getData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getData" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -738,7 +738,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDatos</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1055,45 +1055,6 @@ instancia de un documento.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getPlantillaTED">
-        getPlantillaTED()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getPlantillaTED" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">402</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Entrega un arreglo con una plantilla con la estructura del TED.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getPlantillaTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getRazonSocialReceptor">
         getRazonSocialReceptor()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRazonSocialReceptor" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1284,6 +1245,45 @@ instancia de un documento.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTemplateTED">
+        getTemplateTED()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTemplateTED" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">402</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega un arreglo con una plantilla con la estructura del TED.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTemplateTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -1738,7 +1738,7 @@ al inicio y final.</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_tipoDocumento">$tipoDocumento</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_xmlDocument">$xmlDocument</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_datos">$datos</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#property_data">$data</a></li>
                                             </ul>
                 </li>
             
@@ -1749,7 +1749,7 @@ al inicio y final.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_get">get()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getCodigo">getCodigo()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDatos">getDatos()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getData">getData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDetalle">getDetalle()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getEmisor">getEmisor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getFechaEmision">getFechaEmision()</a></li>
@@ -1757,12 +1757,12 @@ al inicio y final.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getId">getId()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMoneda">getMoneda()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMontoTotal">getMontoTotal()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getPlantillaTED">getPlantillaTED()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getReceptor">getReceptor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRutEmisor">getRutEmisor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRutReceptor">getRutReceptor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTED">getTED()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTemplateTED">getTemplateTED()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTipoDocumento">getTipoDocumento()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTotales">getTotales()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getXml">getXml()</a></li>

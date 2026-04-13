@@ -175,14 +175,6 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getAmbiente">getAmbiente()</a>
-    <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente">SiiAmbiente</abbr></a>    </span>
-</dt>
-<dd>Entrega el ambiente que está configurado para realizar las conexiones al
-Servicio de Impuestos Internos.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getCertificate">getCertificate()</a>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null    </span>
@@ -190,7 +182,15 @@ Servicio de Impuestos Internos.</dd>
 <dd>Obtiene el certificado digital asociado a la solicitud.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getReintentos">getReintentos()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getEnvironment">getEnvironment()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment">SiiEnvironment</abbr></a>    </span>
+</dt>
+<dd>Entrega el ambiente que está configurado para realizar las conexiones al
+Servicio de Impuestos Internos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getRetries">getRetries()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
@@ -221,7 +221,7 @@ digital asignado.</dd>
 <dd>Obtiene el TTL del token solicitado al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerificarSsl">getVerificarSsl()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerifySsl">getVerifySsl()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
@@ -240,50 +240,6 @@ digital asignado.</dd>
             <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getAmbiente">
-        getAmbiente()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getAmbiente" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiRequestInterface.php"><a href="files/src-package-billing-component-integration-contract-siirequestinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiRequestInterface.php">SiiRequestInterface.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Entrega el ambiente que está configurado para realizar las conexiones al
-Servicio de Impuestos Internos.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getAmbiente</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente">SiiAmbiente</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiAmbiente.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiAmbiente">SiiAmbiente</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Ambiente que se utilizará en la conexión al SII.</p>
-</section>
-
-            </section>
-
-</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -329,9 +285,53 @@ Servicio de Impuestos Internos.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getReintentos">
-        getReintentos()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getReintentos" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getEnvironment">
+        getEnvironment()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getEnvironment" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiRequestInterface.php"><a href="files/src-package-billing-component-integration-contract-siirequestinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiRequestInterface.php">SiiRequestInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el ambiente que está configurado para realizar las conexiones al
+Servicio de Impuestos Internos.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getEnvironment</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment">SiiEnvironment</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment">SiiEnvironment</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ambiente que se utilizará en la conexión al SII.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getRetries">
+        getRetries()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getRetries" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -346,7 +346,7 @@ consulta a un servicio web del SII.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getReintentos</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reintentos</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getRetries</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retries</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -355,7 +355,7 @@ consulta a un servicio web del SII.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$reintentos</span>
+                <span class="phpdocumentor-argument-list__argument__name">$retries</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -502,9 +502,9 @@ digital asignado.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getVerificarSsl">
-        getVerificarSsl()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerificarSsl" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getVerifySsl">
+        getVerifySsl()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerifySsl" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -518,7 +518,7 @@ digital asignado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getVerificarSsl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">getVerifySsl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -653,13 +653,13 @@ digital asignado.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getAmbiente">getAmbiente()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getCertificate">getCertificate()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getReintentos">getReintentos()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getEnvironment">getEnvironment()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getRetries">getRetries()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenDefaultCache">getTokenDefaultCache()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenKey">getTokenKey()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenTtl">getTokenTtl()</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerificarSsl">getVerificarSsl()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getVerifySsl">getVerifySsl()</a></li>
                                             </ul>
                 </li>
             
