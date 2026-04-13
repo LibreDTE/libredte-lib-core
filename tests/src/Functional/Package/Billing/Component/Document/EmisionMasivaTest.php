@@ -92,8 +92,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -173,8 +172,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Caf::class)]
-#[CoversClass(FakeCafProvider::class)]
-#[CoversClass(CafBag::class)]
+#[CoversClass(CafManager::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]

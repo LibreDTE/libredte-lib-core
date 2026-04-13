@@ -41,12 +41,12 @@ interface CafFakerWorkerInterface extends WorkerInterface
      * @param int|null $folioDesde Número de folio inicial.
      * @param int|null $folioHasta Número de folio final. Si es `null`, se usa
      * el mismo valor de $folioDesde.
-     * @return CafBagInterface CAF ficticio generado para el contribuyente.
+     * @return CafInterface CAF ficticio generado para el contribuyente.
      */
     public function create(
         EmisorInterface $emisor,
         int $codigoDocumento,
         ?int $folioDesde = 1,
         ?int $folioHasta = null
-    ): CafBagInterface;
+    ): CafInterface;
 }

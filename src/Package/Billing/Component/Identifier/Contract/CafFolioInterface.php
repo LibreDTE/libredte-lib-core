@@ -24,30 +24,23 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
-use Derafu\Backbone\Contract\WorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
-use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
-
 /**
- * Interfaz para el worker que provee de CAF a la biblioteca.
- *
- * Este worker utiliza el servicio que implemente CafProviderInterface.
+ * Interfaz para un contenedor de un archivo CAF y el folio asociado a usar en
+ * un documento electrónico.
  */
-interface CafProviderWorkerInterface extends WorkerInterface
+interface CafFolioInterface
 {
     /**
-     * Provee un CAF para el emisor y tipo de documento solicitado.
+     * Entrega el folio específico a usar en un documento electrónico.
      *
-     * Opcionalmente se puede indicar el folio que se desea utilizar.
-     *
-     * @param EmisorInterface $emisor Emisor para el que se busca un CAF.
-     * @param TipoDocumentoInterface $tipoDocumento Documento a buscar su CAF.
-     * @param int|null $folio Permite indicar si se quiere un folio específico.
-     * @return CafBagInterface Bolsa con los datos del CAF encontrado.
+     * @return int
      */
-    public function retrieve(
-        EmisorInterface $emisor,
-        TipoDocumentoInterface $tipoDocumento,
-        ?int $folio = null
-    ): CafBagInterface;
+    public function getFolio(): int;
+
+    /**
+     * Entrega el CAF que contiene el folio que se deberá usar.
+     *
+     * @return CafInterface
+     */
+    public function getCaf(): CafInterface;
 }

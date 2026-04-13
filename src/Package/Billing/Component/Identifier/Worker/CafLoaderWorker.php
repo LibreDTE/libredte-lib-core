@@ -29,12 +29,10 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
-use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 
 /**
  * Worker que permite cargar archivos CAF.
@@ -45,7 +43,6 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     protected string $cafClass = Caf::class;
 
     public function __construct(
-        private EmisorFactoryInterface $emisorFactory,
         private RepositoryManagerInterface $repositoryManager
     ) {
     }
@@ -53,41 +50,35 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     /**
      * {@inheritDoc}
      */
-    public function load(string|XmlDocumentInterface $xml): CafBagInterface
+    public function load(string|XmlDocumentInterface $xml): CafInterface
     {
         $class = $this->cafClass;
         $caf = new $class($xml);
 
-        $emisor = $this->emisorFactory->create($caf->getEmisor());
+        $this->validateTipoDocumento($caf->getTipoDocumento());
 
-        $tipoDocumento = $this->getTipoDocumento($caf->getTipoDocumento());
-
-        return new CafBag($caf, $emisor, $tipoDocumento);
+        return $caf;
     }
 
     /**
-     * Obtiene la instancia del tipo de documento del CAF.
+     * Valida que el código de tipo de documento del CAF exista en el repositorio.
      *
      * @param int $codigoTipoDocumento
-     * @return TipoDocumentoInterface
+     * @return void
+     * @throws CafLoaderException
      */
-    private function getTipoDocumento(int $codigoTipoDocumento): TipoDocumentoInterface
+    private function validateTipoDocumento(int $codigoTipoDocumento): void
     {
-        // Buscar el tipo de documento tributario que se desea construir.
         $tipoDocumento = $this->repositoryManager
             ->getRepository(TipoDocumentoInterface::class)
             ->find($codigoTipoDocumento)
         ;
 
-        // Si el documento no existe error.
         if (!$tipoDocumento) {
             throw new CafLoaderException(sprintf(
                 'No se encontró el código de documento %d para procesar el CAF.',
                 $codigoTipoDocumento
             ));
         }
-
-        // Entregar el tipo documento a la bolsa.
-        return $tipoDocumento;
     }
 }

@@ -115,7 +115,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -208,7 +207,6 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
@@ -310,12 +308,11 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         );
 
         // Crear CAF de pruebas para el caso.
-        $cafBag = $this->cafFaker->create(
+        $caf = $this->cafFaker->create(
             $emisor,
             $data['Encabezado']['IdDoc']['TipoDTE'],
             $data['Encabezado']['IdDoc']['Folio']
         );
-        $caf = $cafBag->getCaf();
 
         // Crear certificado de pruebas para el caso.
         $certificate = $this->certificateFaker->createFake(id: $emisor->getRUT());

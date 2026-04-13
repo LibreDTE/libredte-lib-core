@@ -58,7 +58,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -132,7 +131,6 @@ use Throwable;
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
@@ -245,7 +243,6 @@ class SendAecTest extends TestCase
             ->getIdentifierComponent()
             ->getCafFakerWorker()
             ->create(new Emisor($emisorRut, $certificate->getName()), 33, 1)
-            ->getCaf()
         ;
 
         $bag = new DocumentBag(

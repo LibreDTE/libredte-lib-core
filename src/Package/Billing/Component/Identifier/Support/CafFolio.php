@@ -22,33 +22,36 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
+namespace libredte\lib\Core\Package\Billing\Component\Identifier\Support;
 
-use Derafu\Backbone\Contract\ComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFolioInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 
 /**
- * Interfaz para `IdentifierComponent`.
+ * Clase que representa un contenedor de un archivo CAF y el folio asociado a
+ * usar en un documento electrónico.
  */
-interface IdentifierComponentInterface extends ComponentInterface
+class CafFolio implements CafFolioInterface
 {
-    /**
-     * Obtiene el worker "billing.identifier.caf_faker".
-     *
-     * @return CafFakerWorkerInterface
-     */
-    public function getCafFakerWorker(): CafFakerWorkerInterface;
+    public function __construct(
+        private int $folio,
+        private CafInterface $caf,
+    ) {
+    }
 
     /**
-     * Obtiene el worker "billing.identifier.caf_loader".
-     *
-     * @return CafLoaderWorkerInterface
+     * {@inheritDoc}
      */
-    public function getCafLoaderWorker(): CafLoaderWorkerInterface;
+    public function getFolio(): int
+    {
+        return $this->folio;
+    }
 
     /**
-     * Obtiene el worker "billing.identifier.caf_validator".
-     *
-     * @return CafValidatorWorkerInterface
+     * {@inheritDoc}
      */
-    public function getCafValidatorWorker(): CafValidatorWorkerInterface;
+    public function getCaf(): CafInterface
+    {
+        return $this->caf;
+    }
 }

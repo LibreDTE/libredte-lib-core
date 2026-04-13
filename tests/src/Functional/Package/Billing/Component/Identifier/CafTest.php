@@ -34,7 +34,6 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWor
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -56,7 +55,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(TipoDocumentoFactory::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(CafValidatorWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
@@ -106,8 +104,7 @@ class CafTest extends TestCase
     {
         // Generar el CAF.
         $emisor = new Emisor('76192083-9');
-        $cafBag = $this->cafFaker->create($emisor, 33, 1, 100);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafFaker->create($emisor, 33, 1, 100);
 
         // Verificar que se pueda obtener el RUT del emisor.
         $this->assertSame('76192083-9', $caf->getEmisor()['rut']);
@@ -121,7 +118,7 @@ class CafTest extends TestCase
         $this->assertNotEmpty($caf->getPublicKey());
 
         // Verificar que el tipo de documento sea el esperado.
-        $this->assertSame(33, $cafBag->getTipoDocumento()->getCodigo());
+        $this->assertSame(33, $caf->getTipoDocumento());
     }
 
     /**
@@ -131,13 +128,12 @@ class CafTest extends TestCase
     {
         // Generar el CAF.
         $emisor = new Emisor('76192083-9');
-        $cafBag = $this->cafFaker->create($emisor, 61, 200, 300);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafFaker->create($emisor, 61, 200, 300);
 
         // Verificar que los folios y el tipo de documento sean correctos.
         $this->assertSame(200, $caf->getFolioDesde());
         $this->assertSame(300, $caf->getFolioHasta());
-        $this->assertSame(61, $cafBag->getTipoDocumento()->getCodigo());
+        $this->assertSame(61, $caf->getTipoDocumento());
 
         // Verificar que la fecha de autorización esté en el formato correcto.
         $this->assertMatchesRegularExpression('/\d{4}-\d{2}-\d{2}/', $caf->getFechaAutorizacion());
@@ -150,8 +146,7 @@ class CafTest extends TestCase
     {
         // Generar el CAF.
         $emisor = new Emisor('76192083-9');
-        $cafBag = $this->cafFaker->create($emisor, 33, 1);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafFaker->create($emisor, 33, 1);
 
         // Validar el CAF falso. Se validará clave pública y privada del CAF,
         // pero no se validará la firma del CAF en si, pues es falsa.
@@ -167,8 +162,7 @@ class CafTest extends TestCase
     {
         // Generar el CAF.
         $emisor = new Emisor('76192083-9');
-        $cafBag = $this->cafFaker->create($emisor, 33, 1);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafFaker->create($emisor, 33, 1);
 
         // Verificar que el ambiente sea el de LibreDTE.
         $this->assertNull($caf->getEnvironment());
@@ -181,8 +175,7 @@ class CafTest extends TestCase
     {
         // Generar el CAF.
         $emisor = new Emisor('76192083-9');
-        $cafBag = $this->cafFaker->create($emisor, 33, 1);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafFaker->create($emisor, 33, 1);
 
         // Verificar que la clave privada es válida.
         $this->assertStringContainsString('PRIVATE KEY', $caf->getPrivateKey());
@@ -217,11 +210,10 @@ class CafTest extends TestCase
         }
 
         $xml = file_get_contents($file);
-        $cafBag = $this->cafLoader->load($xml);
-        $caf = $cafBag->getCaf();
+        $caf = $this->cafLoader->load($xml);
 
         $this->cafValidator->validate($caf);
 
-        $this->assertSame($code, $cafBag->getTipoDocumento()->getCodigo());
+        $this->assertSame($code, $caf->getTipoDocumento());
     }
 }

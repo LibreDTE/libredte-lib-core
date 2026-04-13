@@ -62,7 +62,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -131,7 +130,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
@@ -352,8 +350,7 @@ class AecTest extends TestCase
 
         $emisor = new Emisor('76192083-9', 'SASCO SpA');
 
-        $cafBag = $cafFaker->create($emisor, 33, 1);
-        $caf = $cafBag->getCaf();
+        $caf = $cafFaker->create($emisor, 33, 1);
 
         $data = [
             'Encabezado' => [

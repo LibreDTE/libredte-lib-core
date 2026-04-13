@@ -34,12 +34,11 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderEx
 interface CafLoaderWorkerInterface extends WorkerInterface
 {
     /**
-     * Carga el XML de un CAF y lo entrega en un contenedor con todos los datos
-     * asociados a dicho CAF.
+     * Carga el XML de un CAF y lo entrega como entidad CAF.
      *
      * @param string|XmlDocumentInterface $xml
-     * @return CafBagInterface
+     * @return CafInterface
      * @throws CafLoaderException
      */
-    public function load(string|XmlDocumentInterface $xml): CafBagInterface;
+    public function load(string|XmlDocumentInterface $xml): CafInterface;
 }

@@ -101,7 +101,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 //use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
@@ -197,7 +196,6 @@ use Throwable;
 #[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(AutorizacionDte::class)]
@@ -278,8 +276,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             ->getCafLoaderWorker()
         ;
         $cafData = file_get_contents($cafFile);
-        $cafBag = $cafLoader->load($cafData);
-        $caf = $cafBag->getCaf();
+        $caf = $cafLoader->load($cafData);
 
         // Cargar datos del caso de prueba.
         $yamlData = file_get_contents($yamlFile);

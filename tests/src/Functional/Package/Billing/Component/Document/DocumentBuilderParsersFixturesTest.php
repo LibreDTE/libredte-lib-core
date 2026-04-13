@@ -114,15 +114,14 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFolio;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
@@ -173,7 +172,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(BoletaAfectaValidatorStrategy::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
+#[CoversClass(CafManager::class)]
+#[CoversClass(CafFolio::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
@@ -190,8 +190,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(NormalizeBoletaAfectaJob::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(FakeCafProvider::class)]
-#[CoversClass(CafProviderWorker::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
 #[CoversClass(ImpuestoAdicionalRetencion::class)]
@@ -242,7 +240,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
 
-    private CafProviderWorkerInterface $cafProvider;
+    private CafFakerWorkerInterface $cafFaker;
 
     private CertificateFakerInterface $certificateFaker;
 
@@ -261,11 +259,11 @@ class DocumentBuilderParsersFixturesTest extends TestCase
             ->getBuilderWorker()
         ;
 
-        $this->cafProvider = $app
+        $this->cafFaker = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getIdentifierComponent()
-            ->getCafProviderWorker()
+            ->getCafFakerWorker()
         ;
 
         $this->certificateFaker = new CertificateFaker(new CertificateLoader());
@@ -369,14 +367,14 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 
         // Crear CAF de pruebas y armar una nueva bolsa que incluya el CAF.
         // Al usar build() se timbrará el documento previamente normalizado.
-        $cafBag = $this->cafProvider->retrieve(
-            $bag->getEmisor(),
-            $bag->getTipoDocumento(),
-            $bag->getFolio()
-        );
-        $caf = $cafBag->getCaf();
-        $bag = $bag->withCaf($caf); // withCaf() retorna una nueva DocumentBag.
-        $bag->setFolio($bag->getFolio() ?? $cafBag->getSiguienteFolio());
+        $tipoDoc = $bag->getTipoDocumento()->getCodigo();
+        $folio = $bag->getFolio() ?? 1;
+        $fakeCaf = $this->cafFaker->create($bag->getEmisor(), $tipoDoc, $folio, $folio);
+        $cafManager = new CafManager();
+        $cafManager->add($fakeCaf->getXml());
+        $cafFolio = $cafManager->consume($tipoDoc);
+        $bag = $bag->withCaf($cafFolio->getCaf()); // withCaf() retorna una nueva DocumentBag.
+        $bag->setFolio($cafFolio->getFolio());
         $this->builder->build($bag);
 
         // Crear certificado de pruebas y armar una nueva bolsa que incluya el

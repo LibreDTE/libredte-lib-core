@@ -64,7 +64,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -110,7 +109,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafBag::class)]
 #[CoversClass(CafFaker::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
@@ -176,7 +174,7 @@ class BillingPackageTest extends TestCase
             ->getIdentifierComponent()
             ->getCafFakerWorker()
         ;
-        $cafBag = $cafFaker->create(new Emisor($RUTEmisor), $TipoDTE, $Folio);
+        $caf = $cafFaker->create(new Emisor($RUTEmisor), $TipoDTE, $Folio);
 
         // Generar un certificado falso.
         $certificateFaker = new CertificateFaker(new CertificateLoader());
@@ -190,7 +188,7 @@ class BillingPackageTest extends TestCase
         ;
 
         // Facturar con los datos, CAF y certificado.
-        $bag = $biller->bill($data, $cafBag->getCaf(), $certificate);
+        $bag = $biller->bill($data, $caf, $certificate);
 
         // Corroborar el monto total del documento.
         $document = $bag->getDocument();

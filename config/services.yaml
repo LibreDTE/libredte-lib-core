@@ -292,16 +292,12 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker
-        arguments:
-            $emisorFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface'
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafProviderWorker
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
     # Servicios del componente "billing.identifier"
-    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface:
-        class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\FakeCafProvider
+    libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafManagerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager
 
     # Workers del componente "billing.integration".
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:

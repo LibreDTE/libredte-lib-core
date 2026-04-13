@@ -34,7 +34,9 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagMan
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -69,7 +71,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * Constructor del worker y sus dependencias.
      *
-     * @param CafProviderInterface $cafProvider
+     * @param CafFakerWorkerInterface $cafFaker
      * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
      * @param BuilderWorkerInterface $builderWorker
      * @param iterable $jobs
@@ -77,7 +79,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * @param iterable $strategies
      */
     public function __construct(
-        private CafProviderInterface $cafProvider,
+        private CafFakerWorkerInterface $cafFaker,
         private DocumentBagManagerWorkerInterface $documentBagManagerWorker,
         private BuilderWorkerInterface $builderWorker,
         iterable $jobs = [],
@@ -99,6 +101,11 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
 
         // Cargar documentos desde el archivo.
         $parsedDocuments = $this->loadDocumentsFromFile($batch);
+
+        // Manager de folios y seguimiento del último folio por tipo de
+        // documento, para este lote.
+        $cafManager = new CafManager();
+        $lastFolios = [];
 
         // Crear la bolsa de cada documento.
         $documentBags = [];
@@ -122,28 +129,37 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             // parseados.
             $this->documentBagManagerWorker->normalize($documentBag);
 
-            // Solicitar CAF al proveedor y asignar certificado si se solicitó.
+            // Solicitar CAF y asignar certificado si se solicitó.
             if ($options->get('stamp')) {
-                // Buscar folio del documento (si existe) y obtener el CAF que
-                // tiene ese folio.
                 $folio = $documentBag->getFolio();
                 $folio = is_int($folio) ? $folio : null;
-                $cafBag = $this->cafProvider->retrieve(
-                    $emisor,
-                    $documentBag->getTipoDocumento(),
-                    $folio
-                );
+                $tipoDoc = $documentBag->getTipoDocumento()->getCodigo();
 
-                // Si no había un folio en el documento se deberá asignar el
-                // siguiente folio del CAF a los datos de la bolsa del
-                // documento.
                 if ($folio === null) {
-                    $siguienteFolio = $cafBag->getSiguienteFolio();
-                    $documentBag->setFolio($siguienteFolio);
+                    // Auto-asignar el siguiente folio disponible del lote.
+                    if (!$cafManager->hasEnoughFolios($tipoDoc)) {
+                        $start = ($lastFolios[$tipoDoc] ?? 0) + 1;
+                        $fakeCaf = $this->cafFaker->create($emisor, $tipoDoc, $start, $start + 999);
+                        $cafManager->add($fakeCaf->getXml());
+                    }
+                    $cafFolio = $cafManager->consume($tipoDoc);
+                    $documentBag->setFolio($cafFolio->getFolio());
+                    $documentBag->setCaf($cafFolio->getCaf());
+                    $lastFolios[$tipoDoc] = $cafFolio->getFolio();
+                } else {
+                    // El documento trae folio preestablecido: buscar o generar
+                    // el CAF que lo cubra.
+                    try {
+                        $caf = $cafManager->getCafForFolio($tipoDoc, $folio);
+                    } catch (RuntimeException $e) {
+                        $fakeCaf = $this->cafFaker->create($emisor, $tipoDoc, $folio, $folio);
+                        $cafManager->add($fakeCaf->getXml());
+                        $caf = $cafManager->getCafForFolio($tipoDoc, $folio);
+                    }
+                    $documentBag->setCaf($caf);
                 }
 
-                // Asignar CAF y certificado a la bolsa del documento.
-                $documentBag->setCaf($cafBag->getCaf());
+                // Asignar certificado a la bolsa del documento.
                 $documentBag->setCertificate($batch->getCertificate());
             }
 

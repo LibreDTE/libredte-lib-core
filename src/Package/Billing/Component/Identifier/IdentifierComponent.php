@@ -28,7 +28,6 @@ use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafProviderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\IdentifierComponentInterface;
 
@@ -43,7 +42,6 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     public function __construct(
         private CafFakerWorkerInterface $cafFaker,
         private CafLoaderWorkerInterface $cafLoader,
-        private CafProviderWorkerInterface $cafProvider,
         private CafValidatorWorkerInterface $cafValidator
     ) {
     }
@@ -56,7 +54,6 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
         return [
             'caf_faker' => $this->cafFaker,
             'caf_loader' => $this->cafLoader,
-            'caf_provider' => $this->cafProvider,
             'caf_validator' => $this->cafValidator,
         ];
     }
@@ -75,14 +72,6 @@ class IdentifierComponent extends AbstractComponent implements IdentifierCompone
     public function getCafLoaderWorker(): CafLoaderWorkerInterface
     {
         return $this->cafLoader;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCafProviderWorker(): CafProviderWorkerInterface
-    {
-        return $this->cafProvider;
     }
 
     /**

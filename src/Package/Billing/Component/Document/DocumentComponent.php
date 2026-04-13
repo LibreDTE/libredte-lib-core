@@ -179,8 +179,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     ): DocumentBagInterface {
         // Si el CAF es un string se debe construir el CAF.
         if (is_string($caf)) {
-            $cafBag = $this->cafLoader->load($caf);
-            $caf = $cafBag->getCaf();
+            $caf = $this->cafLoader->load($caf);
         }
 
         // Crear contenedor del documento.

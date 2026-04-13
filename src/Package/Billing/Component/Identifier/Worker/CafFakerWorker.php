@@ -29,8 +29,8 @@ use Derafu\Backbone\Attribute\ApiResource;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
@@ -67,7 +67,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
         int $codigoDocumento,
         ?int $folioDesde = 1,
         ?int $folioHasta = null
-    ): CafBagInterface {
+    ): CafInterface {
         $xml = $this->createXml(
             $emisor,
             $codigoDocumento,
