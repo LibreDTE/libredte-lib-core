@@ -29,7 +29,7 @@ use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use DOMDocument;
 use DOMXPath;
@@ -58,6 +58,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
     public function __construct(
         private BuildDteCedidoJob $buildDteCedidoJob,
         private BuildCesionJob $buildCesionJob,
+        private XmlEncoderInterface $xmlEncoder,
         private SignatureServiceInterface $signatureService,
     ) {
     }
@@ -185,8 +186,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
     ): Aec {
         $cesionesPlaceholder = '__CESIONES_PLACEHOLDER__';
 
-        $encoder = new XmlEncoder();
-        $xml = $encoder->encode([
+        $xml = $this->xmlEncoder->encode([
             'AEC' => [
                 '@attributes' => [
                     'xmlns' => self::NS,

@@ -121,14 +121,15 @@ enum TipoLibro: string
      * Retorna el case correspondiente al elemento raíz del XML, o `null` si no
      * se reconoce.
      *
-     * Nota: `LibroComprasVentas` resuelve a `VENTAS` porque ambos casos
+     * Nota: `LibroCompraVenta` resuelve a `VENTAS` porque ambos casos
      * comparten el mismo esquema XSD; para distinguirlos se debe usar el campo
-     * `TipoOperacion` de la carátula.
+     * `TipoOperacion` de la carátula no siendo posible confiar en el tag raíz
+     * para resolver el tipo de libro.
      */
     public static function tryFromTag(string $tag): ?self
     {
         return match($tag) {
-            'LibroComprasVentas' => self::VENTAS,
+            'LibroCompraVenta'   => self::VENTAS, // También es COMPRAS.
             'LibroBoleta'        => self::BOLETAS,
             'LibroGuia'          => self::GUIAS,
             'ConsumoFolios'      => self::RVD,

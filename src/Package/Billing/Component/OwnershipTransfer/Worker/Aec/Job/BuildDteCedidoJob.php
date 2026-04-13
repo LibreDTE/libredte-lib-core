@@ -29,7 +29,7 @@ use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\DteCedido;
@@ -46,6 +46,7 @@ use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\DteCedi
 class BuildDteCedidoJob extends AbstractJob implements JobInterface
 {
     public function __construct(
+        private XmlEncoderInterface $xmlEncoder,
         private SignatureServiceInterface $signatureService
     ) {
     }
@@ -61,8 +62,7 @@ class BuildDteCedidoJob extends AbstractJob implements JobInterface
     {
         $placeholder = '__DTE_PLACEHOLDER__';
 
-        $encoder = new XmlEncoder();
-        $xml = $encoder->encode([
+        $xml = $this->xmlEncoder->encode([
             'DTECedido' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',

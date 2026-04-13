@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strate
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
@@ -41,6 +41,11 @@ use libredte\lib\Core\Package\Billing\Component\Book\Entity\ResumenVentasDiarias
 #[Strategy(name: 'resumen_ventas_diarias', worker: 'builder', component: 'book', package: 'billing')]
 class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterface
 {
+    public function __construct(
+        private XmlEncoderInterface $xmlEncoder
+    ) {
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -79,8 +84,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $id = sprintf('LibreDTE_CONSUMO_FOLIO_%s_%s_%s', $rut, $fecha, time());
 
         // Generar XML (el tag raíz sigue siendo <ConsumoFolios> por esquema SII).
-        $encoder = new XmlEncoder();
-        $xmlDocument = $encoder->encode([
+        $xmlDocument = $this->xmlEncoder->encode([
             'ConsumoFolios' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',

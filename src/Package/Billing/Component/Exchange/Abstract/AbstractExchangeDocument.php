@@ -22,7 +22,7 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Exchange\Entity;
+namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;

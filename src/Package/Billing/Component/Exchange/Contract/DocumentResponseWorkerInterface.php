@@ -28,7 +28,7 @@ use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentResponseException;

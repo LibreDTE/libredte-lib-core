@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
 use Derafu\Certificate\Contract\CertificateInterface;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\AbstractExchangeDocument;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\TipoDocumentoRespuesta;
 
 /**

@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Entity;
 
+use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument;
+
 /**
  * Entidad que representa el XML `RespuestaDTE`.
  *

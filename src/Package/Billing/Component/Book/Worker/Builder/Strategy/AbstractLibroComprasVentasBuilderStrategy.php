@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy;
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroComprasVentas;
@@ -79,6 +79,11 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         'TotImpVehiculo' => false,
     ];
 
+    public function __construct(
+        private XmlEncoderInterface $xmlEncoder
+    ) {
+    }
+
     /**
      * Construye el Libro de Compras/Ventas a partir del bag normalizado.
      */
@@ -112,8 +117,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         // Generar estructura XML.
         $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
 
-        $encoder = new XmlEncoder();
-        $xmlDocument = $encoder->encode([
+        $xmlDocument = $this->xmlEncoder->encode([
             'LibroCompraVenta' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',

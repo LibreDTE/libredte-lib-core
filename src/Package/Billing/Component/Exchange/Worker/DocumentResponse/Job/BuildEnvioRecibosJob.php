@@ -28,7 +28,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
@@ -47,6 +47,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumen
 class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
 {
     public function __construct(
+        private XmlEncoderInterface $xmlEncoder,
         private SignatureServiceInterface $signatureService
     ) {
     }
@@ -65,12 +66,10 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
         $recibosData = $bag->getData();
         $certificate = $bag->getCertificate();
 
-        $encoder = new XmlEncoder();
-
         // Generar la estructura principal con un marcador de posición para los
         // recibos. Se usa un string único para poder reemplazarlo después.
         $placeholder = '__RECIBO_PLACEHOLDER__';
-        $mainXml = $encoder->encode([
+        $mainXml = $this->xmlEncoder->encode([
             'EnvioRecibos' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
@@ -97,7 +96,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
 
             $reciboData = $this->normalizeRecibo($recibo, $id);
 
-            $reciboXml = $encoder->encode(['Recibo' => $reciboData])->saveXml();
+            $reciboXml = $this->xmlEncoder->encode(['Recibo' => $reciboData])->saveXml();
 
             if ($certificate !== null) {
                 $reciboXml = $this->signatureService->signXml(

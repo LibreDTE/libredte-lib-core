@@ -28,7 +28,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
@@ -46,6 +46,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumen
 class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
 {
     public function __construct(
+        private XmlEncoderInterface $xmlEncoder,
         private SignatureServiceInterface $signatureService
     ) {
     }
@@ -85,8 +86,7 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
             );
         }
 
-        $encoder = new XmlEncoder();
-        $xml = $encoder->encode([
+        $xml = $this->xmlEncoder->encode([
             'RespuestaDTE' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',

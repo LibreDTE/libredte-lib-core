@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strate
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
-use Derafu\Xml\Service\XmlEncoder;
+use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
@@ -41,6 +41,11 @@ use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroBoletas;
 #[Strategy(name: 'libro_boletas', worker: 'builder', component: 'book', package: 'billing')]
 class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterface
 {
+    public function __construct(
+        private XmlEncoderInterface $xmlEncoder
+    ) {
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -70,8 +75,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         ], $caratula);
 
         // Generar XML.
-        $encoder = new XmlEncoder();
-        $xmlDocument = $encoder->encode([
+        $xmlDocument = $this->xmlEncoder->encode([
             'LibroBoleta' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
