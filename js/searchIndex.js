@@ -8331,10 +8331,20 @@ Search.appendIndex(
             "summary": "Marca\u0020folios\u0020como\u0020ya\u0020consumidos\u0020\u0028estado\u0020previo\u0020al\u0020uso\u0020de\u0020este\u0020manager\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_markConsumed"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AsetAvailable\u0028\u0029",
-            "name": "setAvailable",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AsetAvailableRange\u0028\u0029",
+            "name": "setAvailableRange",
             "summary": "Define\u0020expl\u00EDcitamente\u0020qu\u00E9\u0020folios\u0020est\u00E1n\u0020disponibles\u0020para\u0020consumo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_setAvailable"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_setAvailableRange"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AgetAvailableRange\u0028\u0029",
+            "name": "getAvailableRange",
+            "summary": "Obtiene\u0020los\u0020folios\u0020disponibles\u0020para\u0020un\u0020tipo\u0020de\u0020documento\u0020como\u0020string\nde\u0020rangos\u0020compactos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_getAvailableRange"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003Aremove\u0028\u0029",
+            "name": "remove",
+            "summary": "Elimina\u0020un\u0020CAF\u0020espec\u00EDfico\u0020del\u0020pool.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_remove"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AhasEnoughFolios\u0028\u0029",
             "name": "hasEnoughFolios",
@@ -8616,10 +8626,20 @@ Search.appendIndex(
             "summary": "Marca\u0020folios\u0020como\u0020ya\u0020consumidos\u0020\u0028estado\u0020previo\u0020al\u0020uso\u0020de\u0020este\u0020manager\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_markConsumed"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AsetAvailable\u0028\u0029",
-            "name": "setAvailable",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AsetAvailableRange\u0028\u0029",
+            "name": "setAvailableRange",
             "summary": "Define\u0020expl\u00EDcitamente\u0020qu\u00E9\u0020folios\u0020est\u00E1n\u0020disponibles\u0020para\u0020consumo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailable"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailableRange"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AgetAvailableRange\u0028\u0029",
+            "name": "getAvailableRange",
+            "summary": "Obtiene\u0020los\u0020folios\u0020disponibles\u0020para\u0020un\u0020tipo\u0020de\u0020documento\u0020como\u0020string\nde\u0020rangos\u0020compactos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getAvailableRange"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003Aremove\u0028\u0029",
+            "name": "remove",
+            "summary": "Elimina\u0020un\u0020CAF\u0020espec\u00EDfico\u0020del\u0020pool.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_remove"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AhasEnoughFolios\u0028\u0029",
             "name": "hasEnoughFolios",

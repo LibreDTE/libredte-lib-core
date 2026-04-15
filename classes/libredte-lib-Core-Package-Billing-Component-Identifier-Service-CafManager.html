@@ -232,6 +232,14 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
 <dd>Consumir el próximo folio.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getAvailableRange">getAvailableRange()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene los folios disponibles para un tipo de documento como string
+de rangos compactos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafForFolio">getCafForFolio()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>    </span>
@@ -260,7 +268,14 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
 <dd>Marca folios como ya consumidos (estado previo al uso de este manager).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailable">setAvailable()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_remove">remove()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Elimina un CAF específico del pool.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailableRange">setAvailableRange()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
@@ -437,7 +452,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">260</span>
 
     </aside>
 
@@ -478,6 +493,62 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getAvailableRange">
+        getAvailableRange()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getAvailableRange" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">145</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los folios disponibles para un tipo de documento como string
+de rangos compactos.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAvailableRange</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$dte</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Rangos de folios disponibles. Vacío si no hay disponibles.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getCafForFolio">
         getCafForFolio()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafForFolio" class="headerlink"><i class="fas fa-link"></i></a>
@@ -486,7 +557,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">204</span>
+    <span class="phpdocumentor-element-found-in__line">304</span>
 
     </aside>
 
@@ -546,7 +617,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">289</span>
 
     </aside>
 
@@ -585,7 +656,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
@@ -641,7 +712,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -693,15 +764,75 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setAvailable">
-        setAvailable()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailable" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_remove">
+        remove()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_remove" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">188</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Elimina un CAF específico del pool.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">remove</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folioDesde</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$dte</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$folioDesde</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Folio de inicio del CAF a eliminar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setAvailableRange">
+        setAvailableRange()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailableRange" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -709,7 +840,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setAvailable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folios</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">setAvailableRange</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dte</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folios</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -761,7 +892,7 @@ incluso rangos con gaps: &quot;1-6,10,14,16-20&quot;.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Service/CafManager.php"><a href="files/src-package-billing-component-identifier-service-cafmanager.html"><abbr title="src/Package/Billing/Component/Identifier/Service/CafManager.php">CafManager.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">235</span>
+    <span class="phpdocumentor-element-found-in__line">335</span>
 
     </aside>
 
@@ -924,11 +1055,13 @@ El array debe contener enteros: [1, 2, 3, 4, 5, 6, 10].</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_add">add()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_consume">consume()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getAvailableRange">getAvailableRange()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafForFolio">getCafForFolio()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getCafs">getCafs()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_hasEnoughFolios">hasEnoughFolios()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_markConsumed">markConsumed()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailable">setAvailable()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_remove">remove()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_setAvailableRange">setAvailableRange()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_parseFolios">parseFolios()</a></li>
                                     </ul>
             </li>
