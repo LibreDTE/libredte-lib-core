@@ -73,13 +73,23 @@ class CafManager implements CafManagerInterface
             $this->pool[$dte] = [];
         }
 
+        // Ignorar si ya existe un CAF con el mismo tipo y folio desde.
+        foreach ($this->pool[$dte] as $existing) {
+            if ($existing->getFolioDesde() === $caf->getFolioDesde()) {
+                return $this;
+            }
+        }
+
         $this->pool[$dte][] = $caf;
 
-        // Mantener ordenado por folio desde.
+        // Mantener ordenado por folio desde dentro del tipo.
         usort(
             $this->pool[$dte],
             fn (CafInterface $a, CafInterface $b) => $a->getFolioDesde() <=> $b->getFolioDesde()
         );
+
+        // Mantener el pool ordenado por código de tipo de documento.
+        ksort($this->pool);
 
         return $this;
     }
@@ -103,7 +113,7 @@ class CafManager implements CafManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function setAvailable(int $dte, string|array $folios): static
+    public function setAvailableRange(int $dte, string|array $folios): static
     {
         if (!isset($this->pool[$dte])) {
             throw new RuntimeException(sprintf(
@@ -124,6 +134,96 @@ class CafManager implements CafManagerInterface
                     $this->consumed[$dte][$f] = true;
                 }
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAvailableRange(int $dte): string
+    {
+        if (!isset($this->pool[$dte])) {
+            return '';
+        }
+
+        // Recopilar todos los folios disponibles en orden.
+        $available = [];
+        foreach ($this->pool[$dte] as $caf) {
+            for ($f = $caf->getFolioDesde(); $f <= $caf->getFolioHasta(); $f++) {
+                if (!isset($this->consumed[$dte][$f])) {
+                    $available[] = $f;
+                }
+            }
+        }
+
+        if (empty($available)) {
+            return '';
+        }
+
+        // Compactar en rangos: [1,2,3,5,7,8,9] → "1-3,5,7-9"
+        sort($available);
+        $ranges = [];
+        $start = $available[0];
+        $prev = $available[0];
+
+        for ($i = 1, $count = count($available); $i < $count; $i++) {
+            if ($available[$i] === $prev + 1) {
+                $prev = $available[$i];
+            } else {
+                $ranges[] = $start === $prev ? (string) $start : "$start-$prev";
+                $start = $available[$i];
+                $prev = $available[$i];
+            }
+        }
+        $ranges[] = $start === $prev ? (string) $start : "$start-$prev";
+
+        return implode(',', $ranges);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function remove(int $dte, int $folioDesde): static
+    {
+        if (!isset($this->pool[$dte])) {
+            throw new RuntimeException(sprintf(
+                'No hay CAFs cargados para el tipo de documento %d.',
+                $dte
+            ));
+        }
+
+        $found = false;
+        foreach ($this->pool[$dte] as $index => $caf) {
+            if ($caf->getFolioDesde() === $folioDesde) {
+                // Limpiar folios consumidos de este CAF.
+                for ($f = $caf->getFolioDesde(); $f <= $caf->getFolioHasta(); $f++) {
+                    unset($this->consumed[$dte][$f]);
+                }
+
+                // Eliminar del pool.
+                unset($this->pool[$dte][$index]);
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            throw new RuntimeException(sprintf(
+                'No se encontró un CAF para el tipo %d con folio desde %d.',
+                $dte,
+                $folioDesde
+            ));
+        }
+
+        // Reindexar el array.
+        $this->pool[$dte] = array_values($this->pool[$dte]);
+
+        // Si no quedan CAFs para este tipo, limpiar completamente.
+        if (empty($this->pool[$dte])) {
+            unset($this->pool[$dte]);
+            unset($this->consumed[$dte]);
         }
 
         return $this;

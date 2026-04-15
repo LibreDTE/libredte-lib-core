@@ -86,10 +86,10 @@ interface CafManagerInterface
      * Casos de uso:
      *
      *   // Solo estos folios están disponibles (rangos con gaps):
-     *   $manager->setAvailable(33, '7-9,11,14,16-20');
+     *   $manager->setAvailableRange(33, '7-9,11,14,16-20');
      *
      *   // Desde un array de enteros:
-     *   $manager->setAvailable(33, [7, 8, 9, 11, 14, 16, 17, 18, 19, 20]);
+     *   $manager->setAvailableRange(33, [7, 8, 9, 11, 14, 16, 17, 18, 19, 20]);
      *
      * Formato del string de rangos: segmentos separados por coma, cada
      * segmento es un folio individual ("11") o un rango inclusivo ("7-9").
@@ -98,7 +98,35 @@ interface CafManagerInterface
      * @param string|int[] $folios Folios que están disponibles para consumo.
      * @return static
      */
-    public function setAvailable(int $dte, string|array $folios): static;
+    public function setAvailableRange(int $dte, string|array $folios): static;
+
+    /**
+     * Obtiene los folios disponibles para un tipo de documento como string
+     * de rangos compactos.
+     *
+     * Recorre todos los CAFs del tipo, identifica los folios no consumidos y
+     * los devuelve en formato de rangos separados por coma.
+     *
+     * Ejemplo de retorno: "1-6,10,14,16-20"
+     *
+     * @param int $dte Tipo de documento.
+     * @return string Rangos de folios disponibles. Vacío si no hay disponibles.
+     */
+    public function getAvailableRange(int $dte): string;
+
+    /**
+     * Elimina un CAF específico del pool.
+     *
+     * Identifica el CAF por su tipo de documento y folio de inicio, que juntos
+     * son únicos. Al eliminar un CAF, también se limpian de la lista de
+     * consumidos los folios que pertenecían a ese CAF.
+     *
+     * @param int $dte Tipo de documento.
+     * @param int $folioDesde Folio de inicio del CAF a eliminar.
+     * @return static
+     * @throws \RuntimeException Si no se encuentra el CAF especificado.
+     */
+    public function remove(int $dte, int $folioDesde): static;
 
     /**
      * ¿Hay suficientes folios disponibles para este tipo?
