@@ -62,7 +62,7 @@
         "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^11.5",
         "symfony/mailer": "^8.0",
-        "php-imap/php-imap": "^5.0"
+        "webklex/php-imap": "^6.2"
     },
     "scripts": {
         "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
