@@ -208,12 +208,15 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         $parsedData = $bag->getParsedData();
 
         // Verificar si es necesario y si se puede asignar.
-        if (!empty($parsedData['Encabezado']['Emisor']) || !$bag->getEmisor()) {
+        if (!empty($parsedData['Encabezado']['Emisor']['RUTEmisor']) || !$bag->getEmisor()) {
             return;
         }
 
         // Asignar los datos del emisor a los datos parseados.
-        $parsedData['Encabezado']['Emisor'] = $bag->getEmisor()->toDteArray();
+        $parsedData['Encabezado']['Emisor'] = array_merge(
+            $bag->getEmisor()->toDteArray(),
+            $parsedData['Encabezado']['Emisor'] ?? []
+        );
         $bag->setParsedData($parsedData);
 
         // Asignar el emisor a la bolsa.
