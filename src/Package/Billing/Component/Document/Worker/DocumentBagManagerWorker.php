@@ -214,16 +214,39 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Construir los datos normalizados a partir de los datos parseados.
         if ($bag->getParsedData()) {
             // Normalizar los datos del documento de la bolsa si corresponde.
+            // Normalizar implica sanitizar y validar.
             $normalize = $bag->getNormalizerOptions()['normalize'] ?? true;
             if ($normalize) {
                 // Normalizar los datos parseados de la bolsa.
                 $this->normalizerWorker->normalize($bag);
 
                 // Sanitizar los datos normalizados de la bolsa.
-                $this->sanitizerWorker->sanitize($bag);
+                $sanitize = $bag->getSanitizerOptions()['sanitize'] ?? true;
+                if ($sanitize) {
+                    $this->sanitizerWorker->sanitize($bag);
+                }
 
                 // Validar los datos normalizados y sanitizados de la bolsa.
-                $this->validatorWorker->validate($bag);
+                $validate = $bag->getValidatorOptions()['validate'] ?? true;
+                if ($validate) {
+                    $this->validatorWorker->validate($bag);
+                }
+            }
+
+            // Si no se normalizan los datos, aun así se puede sanitizar y
+            // validar. Pero solo si se pidió explicitamente.
+            else {
+                // Sanitizar los datos normalizados de la bolsa.
+                $sanitize = $bag->getSanitizerOptions()['sanitize'] ?? false;
+                if ($sanitize) {
+                    $this->sanitizerWorker->sanitize($bag);
+                }
+
+                // Validar los datos normalizados y sanitizados de la bolsa.
+                $validate = $bag->getValidatorOptions()['validate'] ?? false;
+                if ($validate) {
+                    $this->validatorWorker->validate($bag);
+                }
             }
         }
 

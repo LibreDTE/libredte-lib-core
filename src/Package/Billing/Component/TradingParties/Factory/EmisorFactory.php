@@ -109,6 +109,13 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
             )
         ) ?: null;
 
+        $normalized['logo'] = (
+            (string) (
+                $data['logo']
+                ?? null
+            )
+        ) ?: null;
+
         return $normalized;
     }
 }
