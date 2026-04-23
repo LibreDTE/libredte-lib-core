@@ -124,6 +124,8 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Datos extras que se pueden normalizar si se solicitó normalizar todo.
         if ($all === true) {
+            $this->ensureEmisorInParsedData($bag);
+            $this->ensureReceptorInParsedData($bag);
             $this->ensureNormalizedData($bag);
             $this->ensureXmlDocument($bag);
             $this->ensureDocument($bag);
@@ -149,7 +151,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureParsedData(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getParsedData() || !$bag->getInputData()) {
             return;
         }
@@ -169,7 +171,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureTipoDocumento(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getTipoDocumento() || !$bag->getCodigoTipoDocumento()) {
             return;
         }
@@ -193,6 +195,58 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
     }
 
     /**
+     * Asegura que existan los datos del emisor en los datos parseados si existen
+     * para poder determinarlo y no está asignado previamente.
+     *
+     * Requiere: $bag->getParsedData() y $bag->getEmisor().
+     *
+     * @param DocumentBagInterface $bag
+     * @return void
+     */
+    protected function ensureEmisorInParsedData(DocumentBagInterface $bag): void
+    {
+        $parsedData = $bag->getParsedData();
+
+        // Verificar si es necesario y si se puede asignar.
+        if (!empty($parsedData['Encabezado']['Emisor']) || !$bag->getEmisor()) {
+            return;
+        }
+
+        // Asignar los datos del emisor a los datos parseados.
+        $parsedData['Encabezado']['Emisor'] = $bag->getEmisor()->toDteArray();
+        $bag->setParsedData($parsedData);
+
+        // Asignar el emisor a la bolsa.
+        $bag->setEmisor($bag->getEmisor());
+    }
+
+    /**
+     * Asegura que existan los datos del receptor en los datos parseados si existen
+     * para poder determinarlo y no está asignado previamente.
+     *
+     * Requiere: $bag->getParsedData() y $bag->getReceptor().
+     *
+     * @param DocumentBagInterface $bag
+     * @return void
+     */
+    protected function ensureReceptorInParsedData(DocumentBagInterface $bag): void
+    {
+        $parsedData = $bag->getParsedData();
+
+        // Verificar si es necesario y si se puede asignar.
+        if (!empty($parsedData['Encabezado']['Receptor']) || !$bag->getReceptor()) {
+            return;
+        }
+
+        // Asignar los datos del receptor a los datos parseados.
+        $parsedData['Encabezado']['Receptor'] = $bag->getReceptor()->toDteArray();
+        $bag->setParsedData($parsedData);
+
+        // Asignar el receptor a la bolsa.
+        $bag->setReceptor($bag->getReceptor());
+    }
+
+    /**
      * Asegura que existan los datos normalizados en la bolsa si existen datos
      * parseados para poder determinarlo y no está asignado previamente.
      *
@@ -206,7 +260,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureNormalizedData(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getNormalizedData()) {
             return;
         }
@@ -284,7 +338,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureXmlDocument(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getXmlDocument()) {
             return;
         }
@@ -328,7 +382,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureDocument(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getDocument() || !$bag->getXmlDocument() || !$bag->getTipoDocumento()) {
             return;
         }
@@ -353,7 +407,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      */
     protected function ensureEmisor(DocumentBagInterface $bag): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Verificar si es necesario y si se puede asignar.
         if ($bag->getEmisor()) {
             return;
         }
