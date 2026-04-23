@@ -4901,6 +4901,16 @@ Search.appendIndex(
             "summary": "Asegura\u0020que\u0020exista\u0020un\u0020tipo\u0020de\u0020documento\u0020en\u0020la\u0020bolsa\u0020si\u0020existen\u0020datos\u0020para\npoder\u0020determinarlo\u0020y\u0020no\u0020est\u00E1\u0020asignado\u0020previamente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureTipoDocumento"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003AensureEmisorInParsedData\u0028\u0029",
+            "name": "ensureEmisorInParsedData",
+            "summary": "Asegura\u0020que\u0020existan\u0020los\u0020datos\u0020del\u0020emisor\u0020en\u0020los\u0020datos\u0020parseados\u0020si\u0020existen\npara\u0020poder\u0020determinarlo\u0020y\u0020no\u0020est\u00E1\u0020asignado\u0020previamente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureEmisorInParsedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003AensureReceptorInParsedData\u0028\u0029",
+            "name": "ensureReceptorInParsedData",
+            "summary": "Asegura\u0020que\u0020existan\u0020los\u0020datos\u0020del\u0020receptor\u0020en\u0020los\u0020datos\u0020parseados\u0020si\u0020existen\npara\u0020poder\u0020determinarlo\u0020y\u0020no\u0020est\u00E1\u0020asignado\u0020previamente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureReceptorInParsedData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker\u003A\u003AensureNormalizedData\u0028\u0029",
             "name": "ensureNormalizedData",
             "summary": "Asegura\u0020que\u0020existan\u0020los\u0020datos\u0020normalizados\u0020en\u0020la\u0020bolsa\u0020si\u0020existen\u0020datos\nparseados\u0020para\u0020poder\u0020determinarlo\u0020y\u0020no\u0020est\u00E1\u0020asignado\u0020previamente.",

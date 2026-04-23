@@ -318,6 +318,14 @@ para poder crearlo y no está asignado previamente.</dd>
 para poder determinarlo y no está asignado previamente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureEmisorInParsedData">ensureEmisorInParsedData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Asegura que existan los datos del emisor en los datos parseados si existen
+para poder determinarlo y no está asignado previamente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureNormalizedData">ensureNormalizedData()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -340,6 +348,14 @@ entrada para poder determinarlo y no está asignado previamente.</dd>
 </dt>
 <dd>Asegura que existan el emisor en la bolsa si existen datos
 normalizados para poder determinarlo y no está asignado previamente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureReceptorInParsedData">ensureReceptorInParsedData()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Asegura que existan los datos del receptor en los datos parseados si existen
+para poder determinarlo y no está asignado previamente.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureTipoDocumento">ensureTipoDocumento()</a>
@@ -982,7 +998,7 @@ solo la de la asignación del tipo de documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">329</span>
+    <span class="phpdocumentor-element-found-in__line">383</span>
 
     </aside>
 
@@ -1030,7 +1046,7 @@ para poder crearlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">354</span>
+    <span class="phpdocumentor-element-found-in__line">408</span>
 
     </aside>
 
@@ -1073,6 +1089,54 @@ $bag-&gt;getNormalizedData() o $bag-&gt;getParsedData().</p>
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_ensureEmisorInParsedData">
+        ensureEmisorInParsedData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureEmisorInParsedData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">206</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asegura que existan los datos del emisor en los datos parseados si existen
+para poder determinarlo y no está asignado previamente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">ensureEmisorInParsedData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Requiere: $bag-&gt;getParsedData() y $bag-&gt;getEmisor().</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_ensureNormalizedData">
         ensureNormalizedData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureNormalizedData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1081,7 +1145,7 @@ $bag-&gt;getNormalizedData() o $bag-&gt;getParsedData().</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">207</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
@@ -1131,7 +1195,7 @@ o un DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -1181,7 +1245,7 @@ indicar en las opciones de la bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">461</span>
 
     </aside>
 
@@ -1222,6 +1286,54 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_ensureReceptorInParsedData">
+        ensureReceptorInParsedData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureReceptorInParsedData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">232</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Asegura que existan los datos del receptor en los datos parseados si existen
+para poder determinarlo y no está asignado previamente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">ensureReceptorInParsedData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Requiere: $bag-&gt;getParsedData() y $bag-&gt;getReceptor().</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_ensureTipoDocumento">
         ensureTipoDocumento()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureTipoDocumento" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1230,7 +1342,7 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">170</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -1278,7 +1390,7 @@ poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">339</span>
 
     </aside>
 
@@ -1449,9 +1561,11 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_normalize">normalize()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureDocument">ensureDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureEmisor">ensureEmisor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureEmisorInParsedData">ensureEmisorInParsedData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureNormalizedData">ensureNormalizedData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureParsedData">ensureParsedData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureReceptor">ensureReceptor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureReceptorInParsedData">ensureReceptorInParsedData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureTipoDocumento">ensureTipoDocumento()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#method_ensureXmlDocument">ensureXmlDocument()</a></li>
                                     </ul>
