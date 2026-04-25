@@ -211,7 +211,7 @@ class SobreEnvio implements SobreEnvioInterface
     {
         $documentos = [];
 
-        $documentsNodes = $this->getXmlDocument()->getElementsByTagName('DTE');
+        $documentsNodes = $this->getXmlDocument()->getDomDocument()->getElementsByTagName('DTE');
 
         foreach ($documentsNodes as $documentNode) {
             $documentos[] = $documentNode->C14N();

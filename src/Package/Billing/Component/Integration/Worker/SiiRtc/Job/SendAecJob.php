@@ -221,7 +221,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         $xmlDocument->loadXml((string) $responseBody);
 
         $decoded = [];
-        foreach ($xmlDocument->childNodes as $node) {
+        foreach ($xmlDocument->getDomDocument()->childNodes as $node) {
             if ($node->nodeType === XML_ELEMENT_NODE) {
                 $decoded[$node->nodeName] = [];
                 foreach ($node->childNodes as $child) {

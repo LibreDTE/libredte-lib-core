@@ -224,7 +224,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $signatureElement = $envelope->getXmlDocument()->getElementsByTagName(
+        $signatureElement = $envelope->getXmlDocument()->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(1);
         $signatureNode = $this->signatureValidator->createSignatureNode(
@@ -244,7 +244,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $signatureElement = $envelope->getXmlDocument()->getElementsByTagName(
+        $signatureElement = $envelope->getXmlDocument()->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(1);
         $signatureNode = $this->signatureValidator->createSignatureNode(
@@ -275,7 +275,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $documents = $envelope->getDocuments();
         $document = $documents[0];
 
-        $signatureElement = $document->getXmlDocument()->getElementsByTagName(
+        $signatureElement = $document->getXmlDocument()->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(0);
         $signatureNode = $this->signatureValidator->createSignatureNode(
@@ -297,7 +297,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $documents = $envelope->getDocuments();
         $document = $documents[0];
 
-        $signatureElement = $document->getXmlDocument()->getElementsByTagName(
+        $signatureElement = $document->getXmlDocument()->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(0);
         $signatureNode = $this->signatureValidator->createSignatureNode(

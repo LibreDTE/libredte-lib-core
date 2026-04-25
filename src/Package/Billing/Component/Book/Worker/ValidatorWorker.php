@@ -68,7 +68,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
             $xmlDocument = $this->toXmlDocument($source->getBook()->getXmlDocument());
         } else {
             $xmlDocument = $this->toXmlDocument($source);
-            $root = $xmlDocument->documentElement?->localName ?? '';
+            $root = $xmlDocument->getDomDocument()->documentElement?->localName ?? '';
 
             try {
                 $schemaFile = TipoLibro::fromTag($root)->getSchema();

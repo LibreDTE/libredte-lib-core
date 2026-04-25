@@ -111,7 +111,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
         if ($source instanceof AbstractExchangeDocument) {
             $schemaFile = $source->getSchema();
         } else {
-            $root = $xmlDocument->documentElement?->localName ?? '';
+            $root = $xmlDocument->getDomDocument()->documentElement?->localName ?? '';
             $schemaFile = match ($root) {
                 'EnvioRecibos' => 'EnvioRecibos_v10.xsd',
                 'RespuestaDTE' => 'RespuestaEnvioDTE_v10.xsd',
