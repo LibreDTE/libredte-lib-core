@@ -196,6 +196,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020registros\u0020de\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_countDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AisSimplificado\u0028\u0029",
+            "name": "isSimplificado",
+            "summary": "Indica\u0020si\u0020el\u0020libro\u0020est\u00E1\u0020en\u0020formato\u0020simplificado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_isSimplificado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020que\u0020valida\u0020este\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020libro\u0020como\u0020un\u0020arreglo.",
@@ -436,6 +446,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020registros\u0020de\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_countDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AisSimplificado\u0028\u0029",
+            "name": "isSimplificado",
+            "summary": "Indica\u0020si\u0020el\u0020libro\u0020est\u00E1\u0020en\u0020formato\u0020simplificado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_isSimplificado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020que\u0020valida\u0020este\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AgetSignatureNamespace\u0028\u0029",
             "name": "getSignatureNamespace",
             "summary": "Entrega\u0020el\u0020namespace\u0020XML\u0020que\u0020debe\u0020usarse\u0020en\u0020el\u0020elemento\u0020\u0060Signature\u0060.",
@@ -480,11 +500,6 @@ Search.appendIndex(
             "name": "getTipoOperacion",
             "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020operaci\u00F3n\u0020del\u0020libro\u003A\u0020\u0060TipoOperacion\u003A\u003ACOMPRA\u0060\u0020o\n\u0060TipoOperacion\u003A\u003AVENTA\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LibroComprasVentasInterface.html#method_getTipoOperacion"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\LibroComprasVentasInterface\u003A\u003AisSimplificado\u0028\u0029",
-            "name": "isSimplificado",
-            "summary": "Indica\u0020si\u0020el\u0020libro\u0020est\u00E1\u0020en\u0020formato\u0020simplificado\u0020\u0028\u0060LibroCVS_v10.xsd\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LibroComprasVentasInterface.html#method_isSimplificado"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\LibroComprasVentasInterface\u003A\u003AgetTotalesPeriodo\u0028\u0029",
             "name": "getTotalesPeriodo",
@@ -593,7 +608,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Entity\\LibroComprasVentas\u003A\u003AisSimplificado\u0028\u0029",
             "name": "isSimplificado",
-            "summary": "Indica\u0020si\u0020el\u0020libro\u0020est\u00E1\u0020en\u0020formato\u0020simplificado\u0020\u0028\u0060LibroCVS_v10.xsd\u0060\u0029.",
+            "summary": "Indica\u0020si\u0020el\u0020libro\u0020est\u00E1\u0020en\u0020formato\u0020simplificado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Entity-LibroComprasVentas.html#method_isSimplificado"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Entity\\LibroComprasVentas\u003A\u003AgetTotalesPeriodo\u0028\u0029",
@@ -656,11 +671,6 @@ Search.appendIndex(
             "summary": "Retorna\u0020el\u0020XPath\u0020del\u0020resumen\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_getXpathResumen"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AgetSchema\u0028\u0029",
-            "name": "getSchema",
-            "summary": "Retorna\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020correspondiente\u0020a\u0020este\u0020tipo\u0020de\u0020libro.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_getSchema"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AgetCodigo\u0028\u0029",
             "name": "getCodigo",
             "summary": "Retorna\u0020el\u0020c\u00F3digo\u0020del\u0020tipo\u0020de\u0020libro.",
@@ -680,16 +690,6 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "Retorna\u0020los\u0020datos\u0020del\u0020tipo\u0020de\u0020libro\u0020como\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AtryFromTag\u0028\u0029",
-            "name": "tryFromTag",
-            "summary": "Retorna\u0020el\u0020case\u0020correspondiente\u0020al\u0020elemento\u0020ra\u00EDz\u0020del\u0020XML,\u0020o\u0020\u0060null\u0060\u0020si\u0020no\nse\u0020reconoce.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_tryFromTag"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AfromTag\u0028\u0029",
-            "name": "fromTag",
-            "summary": "Retorna\u0020el\u0020case\u0020correspondiente\u0020al\u0020elemento\u0020ra\u00EDz\u0020del\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_fromTag"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AVENTAS",
             "name": "VENTAS",

@@ -229,6 +229,13 @@ el esquema <code class="prettyprint">ConsumoFolio_v10.xsd</code> del SII.</p>
 <dd>Entrega el resumen del libro.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getSchema">getSchema()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Entrega el nombre del archivo XSD que valida este libro.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ResumenVentasDiariasInterface.html#method_getSecuencia">getSecuencia()</a>
     <span>
                                 &nbsp;: int    </span>
@@ -262,6 +269,13 @@ el esquema <code class="prettyprint">ConsumoFolio_v10.xsd</code> del SII.</p>
                                 &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
 <dd>Entrega el documento XML del libro.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_isSimplificado">isSimplificado()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si el libro está en formato simplificado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray">toArray()</a>
@@ -576,6 +590,53 @@ el esquema <code class="prettyprint">ConsumoFolio_v10.xsd</code> del SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getSchema">
+        getSchema()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getSchema" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">119</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el nombre del archivo XSD que valida este libro.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSchema</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Por defecto delega en <code class="prettyprint">TipoLibro::getSchema()</code>. Las subclases que usen
+un esquema diferente según su estado (p. ej. <code class="prettyprint">LibroComprasVentas</code> con
+formato simplificado) deben sobrescribir este método.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Nombre del archivo XSD (sin ruta).</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getSecuencia">
         getSecuencia()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ResumenVentasDiariasInterface.html#method_getSecuencia" class="headerlink"><i class="fas fa-link"></i></a>
@@ -625,7 +686,7 @@ el esquema <code class="prettyprint">ConsumoFolio_v10.xsd</code> del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -787,6 +848,49 @@ que requieran un namespace diferente (p. ej. el Libro de Boletas que usa
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_isSimplificado">
+        isSimplificado()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_isSimplificado" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">108</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si el libro está en formato simplificado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isSimplificado</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Esto afecta a los libros de compras/ventas, cambiando su esquema a
+<code class="prettyprint">LibroCVS_v10.xsd</code>. Si bien no afecta a otros libros, por simplicidad
+se incluye este método en la interfaz base de todos los libros.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
@@ -795,7 +899,7 @@ que requieran un namespace diferente (p. ej. el Libro de Boletas que usa
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
     </aside>
 
@@ -941,11 +1045,13 @@ que requieran un namespace diferente (p. ej. el Libro de Boletas que usa
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ResumenVentasDiariasInterface.html#method_getFechaInicial">getFechaInicial()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getId">getId()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getResumen">getResumen()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getSchema">getSchema()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ResumenVentasDiariasInterface.html#method_getSecuencia">getSecuencia()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getSignatureNamespace">getSignatureNamespace()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getTipo">getTipo()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXml">getXml()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXmlDocument">getXmlDocument()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_isSimplificado">isSimplificado()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray">toArray()</a></li>
                                             </ul>
                 </li>
