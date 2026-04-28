@@ -73,7 +73,7 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
      */
     public function isSimplificado(): bool
     {
-        return false;
+        return $this->getXmlDocument()->getSchema() === 'LibroCVS_v10.xsd';
     }
 
     /**

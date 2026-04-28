@@ -74,7 +74,8 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             $libro = $strategy->build($bag);
 
             // Firmar el XML si se proporcionó un certificado.
-            if ($certificate = $bag->getCertificate()) {
+            $certificate = $bag->getCertificate();
+            if ($certificate !== null && !$libro->isSimplificado()) {
                 $signedXml = $this->signatureService->signXml(
                     $libro->getXml(),
                     $certificate,

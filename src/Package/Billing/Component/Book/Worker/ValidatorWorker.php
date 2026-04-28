@@ -33,16 +33,15 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
-use ValueError;
 
 /**
  * Worker que valida los libros tributarios electrónicos.
  *
  * Realiza dos tipos de validación:
- *   - Esquema XSD: para bags usa `TipoLibro::getSchema()`; para XML directo
- *     detecta el esquema desde el elemento raíz vía `TipoLibro::schemaFromXmlRoot()`.
+ *   - Esquema XSD: obtiene el nombre del XSD desde `BookInterface::getSchema()`
+ *     (bag) o desde el atributo `xsi:schemaLocation` del propio XML (XmlDocument
+ *     o string). El XML es siempre la fuente de verdad del esquema que declara.
  *   - Firma electrónica: validación XML DSIG.
  */
 #[Worker(name: 'validator', component: 'book', package: 'billing')]
@@ -63,17 +62,20 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         if ($source instanceof BookBagInterface) {
             $schema = dirname(__DIR__, 6)
                 . '/resources/schemas/'
-                . $source->getTipo()->getSchema();
+                . $source->getBook()->getSchema();
 
-            $xmlDocument = $this->toXmlDocument($source->getBook()->getXmlDocument());
+            // Se pasa el XML como string para forzar un re-parseo que garantice
+            // las declaraciones de namespace en el DOM, necesario cuando el libro
+            // no pasó por el ciclo de firma (ej: libros simplificados).
+            $xmlDocument = $this->toXmlDocument($source->getBook()->getXml());
         } else {
             $xmlDocument = $this->toXmlDocument($source);
-            $root = $xmlDocument->getDomDocument()->documentElement?->localName ?? '';
+            $schemaFile = $xmlDocument->getSchema();
 
-            try {
-                $schemaFile = TipoLibro::fromTag($root)->getSchema();
-            } catch (ValueError $e) {
-                throw new BookException($e->getMessage(), previous: $e);
+            if ($schemaFile === null) {
+                throw new BookException(
+                    'El XML del libro no declara el atributo xsi:schemaLocation.'
+                );
             }
 
             $schema = dirname(__DIR__, 6) . '/resources/schemas/' . $schemaFile;

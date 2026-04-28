@@ -37,6 +37,7 @@ use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInter
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroComprasVentas;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Support\BookBag;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\AbstractLibroComprasVentasBuilderStrategy;
@@ -72,6 +73,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
+#[CoversClass(LibroComprasVentas::class)]
 class LibroComprasTest extends TestCase
 {
     private LoaderWorkerInterface $loader;
@@ -140,6 +142,55 @@ class LibroComprasTest extends TestCase
             $result->isValid(),
             $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
         );
+
+        // Realizar las verificaciones sobre el contenido del libro generado.
+        $data = $book->toArray();
+        foreach ($expected as $key => $expectedValue) {
+            $actualValue = Selector::get($data, $key);
+            if ($actualValue !== null) {
+                if (!is_array($expectedValue)) {
+                    $actualValue = Arr::cast([$actualValue])[0];
+                } else {
+                    $actualValue = Arr::cast($actualValue);
+                }
+            }
+            $this->assertSame($expectedValue, $actualValue, "Key: $key");
+        }
+    }
+
+    public static function dataProviderForTestSimplificadoFromArraySource(): array
+    {
+        return require self::getFixturesPath('books/libro_compras_simplificado.php');
+    }
+
+    #[DataProvider('dataProviderForTestSimplificadoFromArraySource')]
+    public function testSimplificadoFromArraySource($input, $expected): void
+    {
+        // Construir la bolsa con la opción de libro simplificado.
+        $bag = new BookBag(
+            tipo: TipoLibro::COMPRAS,
+            caratula: $input['caratula'] ?? [],
+            detalle: $input['detalle'] ?? [],
+            options: ['builder' => ['simplificado' => true]],
+            certificate: $this->certificate,
+            emisor: $this->emisor,
+        );
+
+        // Cargar los datos de entrada y normalizarlos.
+        $bag = $this->loader->load($bag);
+
+        // Construir el libro de compras simplificado.
+        $book = $this->builder->build($bag);
+        assert($book instanceof LibroComprasVentasInterface);
+        $this->assertInstanceOf(LibroComprasVentasInterface::class, $book);
+
+        // El libro simplificado declara el esquema correcto y no se firma.
+        $this->assertTrue($book->isSimplificado());
+        $this->assertSame('LibroCVS_v10.xsd', $book->getSchema());
+        $this->assertStringNotContainsString('<Signature', $book->getXml());
+
+        // Validar solo el esquema XSD (los libros simplificados no se firman).
+        $this->validator->validateSchema($bag);
 
         // Realizar las verificaciones sobre el contenido del libro generado.
         $data = $book->toArray();

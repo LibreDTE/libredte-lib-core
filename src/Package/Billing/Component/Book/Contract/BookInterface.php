@@ -97,6 +97,28 @@ interface BookInterface extends JsonSerializable
     public function countDetalle(): int;
 
     /**
+     * Indica si el libro está en formato simplificado.
+     *
+     * Esto afecta a los libros de compras/ventas, cambiando su esquema a
+     * `LibroCVS_v10.xsd`. Si bien no afecta a otros libros, por simplicidad
+     * se incluye este método en la interfaz base de todos los libros.
+     *
+     * @return bool
+     */
+    public function isSimplificado(): bool;
+
+    /**
+     * Entrega el nombre del archivo XSD que valida este libro.
+     *
+     * Por defecto delega en `TipoLibro::getSchema()`. Las subclases que usen
+     * un esquema diferente según su estado (p. ej. `LibroComprasVentas` con
+     * formato simplificado) deben sobrescribir este método.
+     *
+     * @return string Nombre del archivo XSD (sin ruta).
+     */
+    public function getSchema(): string;
+
+    /**
      * Entrega el namespace XML que debe usarse en el elemento `Signature`.
      *
      * La mayoría de los libros usa el namespace estándar XML DSIG. Los libros

@@ -43,16 +43,6 @@ interface LibroComprasVentasInterface extends BookInterface
     public function getTipoOperacion(): TipoOperacion;
 
     /**
-     * Indica si el libro está en formato simplificado (`LibroCVS_v10.xsd`).
-     *
-     * El formato simplificado omite el detalle de documentos y solo incluye
-     * el resumen del período.
-     *
-     * @return bool
-     */
-    public function isSimplificado(): bool;
-
-    /**
      * Entrega los totales del período agrupados por tipo de documento.
      *
      * Cada elemento del arreglo corresponde a un tipo de documento distinto y

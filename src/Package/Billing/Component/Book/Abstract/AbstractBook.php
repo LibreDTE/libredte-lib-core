@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Abstract;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
+use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 use LogicException;
 
 /**
@@ -152,6 +153,30 @@ abstract class AbstractBook implements BookInterface
     public function countDetalle(): int
     {
         return count($this->getDetalle());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isSimplificado(): bool
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSchema(): string
+    {
+        $schema = $this->getXmlDocument()->getSchema();
+
+        if ($schema === null) {
+            throw new BookException(
+                'El XML del libro no declara el atributo xsi:schemaLocation.'
+            );
+        }
+
+        return $schema;
     }
 
     /**

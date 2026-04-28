@@ -24,8 +24,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Enum;
 
-use ValueError;
-
 /**
  * Tipos de libro tributario soportados por el componente `billing.book`.
  *
@@ -51,19 +49,6 @@ enum TipoLibro: string
             self::BOLETAS               => '//Resumen',
             self::GUIAS                 => '//ResumenPeriodo',
             self::RVD                   => '//Resumen',
-        };
-    }
-
-    /**
-     * Retorna el nombre del archivo XSD correspondiente a este tipo de libro.
-     */
-    public function getSchema(): string
-    {
-        return match($this) {
-            self::VENTAS, self::COMPRAS => 'LibroCV_v10.xsd',
-            self::BOLETAS               => 'LibroBOLETA_v10.xsd',
-            self::GUIAS                 => 'LibroGuia_v10.xsd',
-            self::RVD                   => 'ConsumoFolio_v10.xsd',
         };
     }
 
@@ -115,38 +100,5 @@ enum TipoLibro: string
             'nombre' => $this->getNombre(),
             'nombre_corto' => $this->getNombreCorto(),
         ];
-    }
-
-    /**
-     * Retorna el case correspondiente al elemento raíz del XML, o `null` si no
-     * se reconoce.
-     *
-     * Nota: `LibroCompraVenta` resuelve a `VENTAS` porque ambos casos
-     * comparten el mismo esquema XSD; para distinguirlos se debe usar el campo
-     * `TipoOperacion` de la carátula no siendo posible confiar en el tag raíz
-     * para resolver el tipo de libro.
-     */
-    public static function tryFromTag(string $tag): ?self
-    {
-        return match($tag) {
-            'LibroCompraVenta'   => self::VENTAS, // También es COMPRAS.
-            'LibroBoleta'        => self::BOLETAS,
-            'LibroGuia'          => self::GUIAS,
-            'ConsumoFolios'      => self::RVD,
-            default              => null,
-        };
-    }
-
-    /**
-     * Retorna el case correspondiente al elemento raíz del XML.
-     *
-     * @throws \ValueError Si el elemento raíz no corresponde a ningún libro.
-     */
-    public static function fromTag(string $tag): self
-    {
-        return self::tryFromTag($tag) ?? throw new ValueError(sprintf(
-            '"%s" no es un elemento raíz válido de libro tributario.',
-            $tag
-        ));
     }
 }

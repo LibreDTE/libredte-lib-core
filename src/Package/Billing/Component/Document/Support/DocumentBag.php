@@ -683,7 +683,7 @@ class DocumentBag implements DocumentBagInterface
 
         if (is_int($folio)) {
             return sprintf(
-                'LibreDTE_%s_T%03dF%09d',
+                'LibreDTE_%s_T%03dF%012d',
                 $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
                 $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
                 $folio

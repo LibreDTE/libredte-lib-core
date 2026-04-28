@@ -122,12 +122,17 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         // Generar estructura XML.
         $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
 
+        $simplificado = (bool) ($bag->getBuilderOptions()['simplificado'] ?? false);
+
         $xmlDocument = $this->xmlEncoder->encode([
             'LibroCompraVenta' => [
                 '@attributes' => [
                     'xmlns' => 'http://www.sii.cl/SiiDte',
                     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation' => 'http://www.sii.cl/SiiDte LibroCV_v10.xsd',
+                    'xsi:schemaLocation' => $simplificado
+                        ? 'http://www.sii.cl/SiiDte LibroCVS_v10.xsd'
+                        : 'http://www.sii.cl/SiiDte LibroCV_v10.xsd'
+                    ,
                     'version' => '1.0',
                 ],
                 'EnvioLibro' => [
