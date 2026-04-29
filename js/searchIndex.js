@@ -1371,6 +1371,21 @@ Search.appendIndex(
             "summary": "Entrega\u0020todos\u0020los\u0020valores\u0020del\u0020tag\u0020\u0022Totales\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTotales"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetMontoExento\u0028\u0029",
+            "name": "getMontoExento",
+            "summary": "Entrega\u0020el\u0020monto\u0020exento\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMontoExento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetMontoNeto\u0028\u0029",
+            "name": "getMontoNeto",
+            "summary": "Entrega\u0020el\u0020monto\u0020neto\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMontoNeto"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetMontoIVA\u0028\u0029",
+            "name": "getMontoIVA",
+            "summary": "Entrega\u0020el\u0020monto\u0020de\u0020IVA\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMontoIVA"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetMontoTotal\u0028\u0029",
             "name": "getMontoTotal",
             "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
@@ -1380,6 +1395,36 @@ Search.appendIndex(
             "name": "getMoneda",
             "summary": "Entrega\u0020la\u0020moneda\u0020asociada\u0020al\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getMoneda"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetExento\u0028\u0029",
+            "name": "getExento",
+            "summary": "Entrega\u0020el\u0020monto\u0020exento\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getExento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetNeto\u0028\u0029",
+            "name": "getNeto",
+            "summary": "Entrega\u0020el\u0020monto\u0020neto\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getNeto"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetIVA\u0028\u0029",
+            "name": "getIVA",
+            "summary": "Entrega\u0020el\u0020monto\u0020de\u0020IVA\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getIVA"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetTotal\u0028\u0029",
+            "name": "getTotal",
+            "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTotal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetTipoDeCambio\u0028\u0029",
+            "name": "getTipoDeCambio",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020cambio\u0020asociado\u0020a\u0020una\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTipoDeCambio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AconvertirAPesosCL\u0028\u0029",
+            "name": "convertirAPesosCL",
+            "summary": "Convierte\u0020un\u0020monto\u0020a\u0020pesos\u0020chilenos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_convertirAPesosCL"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetDetalle\u0028\u0029",
             "name": "getDetalle",
@@ -2276,6 +2321,21 @@ Search.appendIndex(
             "summary": "Entrega\u0020todos\u0020los\u0020valores\u0020del\u0020tag\u0020\u0022Totales\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotales"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetMontoExento\u0028\u0029",
+            "name": "getMontoExento",
+            "summary": "Entrega\u0020el\u0020monto\u0020exento\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoExento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetMontoNeto\u0028\u0029",
+            "name": "getMontoNeto",
+            "summary": "Entrega\u0020el\u0020monto\u0020neto\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetMontoIVA\u0028\u0029",
+            "name": "getMontoIVA",
+            "summary": "Entrega\u0020el\u0020monto\u0020de\u0020IVA\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetMontoTotal\u0028\u0029",
             "name": "getMontoTotal",
             "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
@@ -2285,6 +2345,36 @@ Search.appendIndex(
             "name": "getMoneda",
             "summary": "Entrega\u0020la\u0020moneda\u0020asociada\u0020al\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetExento\u0028\u0029",
+            "name": "getExento",
+            "summary": "Entrega\u0020el\u0020monto\u0020exento\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getExento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetNeto\u0028\u0029",
+            "name": "getNeto",
+            "summary": "Entrega\u0020el\u0020monto\u0020neto\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getNeto"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetIVA\u0028\u0029",
+            "name": "getIVA",
+            "summary": "Entrega\u0020el\u0020monto\u0020de\u0020IVA\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getIVA"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetTotal\u0028\u0029",
+            "name": "getTotal",
+            "summary": "Entrega\u0020el\u0020monto\u0020total\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetTipoDeCambio\u0028\u0029",
+            "name": "getTipoDeCambio",
+            "summary": "Entrega\u0020el\u0020tipo\u0020de\u0020cambio\u0020asociado\u0020a\u0020una\u0020moneda.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AconvertirAPesosCL\u0028\u0029",
+            "name": "convertirAPesosCL",
+            "summary": "Convierte\u0020un\u0020monto\u0020a\u0020pesos\u0020chilenos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_convertirAPesosCL"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetDetalle\u0028\u0029",
             "name": "getDetalle",

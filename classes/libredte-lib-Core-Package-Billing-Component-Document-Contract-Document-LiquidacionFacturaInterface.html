@@ -176,6 +176,13 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_convertirAPesosCL">convertirAPesosCL()</a>
+    <span>
+                                &nbsp;: int|float    </span>
+</dt>
+<dd>Convierte un monto a pesos chilenos.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_get">get()</a>
     <span>
                                 &nbsp;: mixed    </span>
@@ -211,6 +218,13 @@
 <dd>Obtiene el contribuyente emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getExento">getExento()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto exento del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getFechaEmision">getFechaEmision()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -232,6 +246,13 @@
 <dd>Entrega el ID asignado al documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getIVA">getIVA()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto de IVA del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda">getMoneda()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -239,11 +260,39 @@
 <dd>Entrega la moneda asociada al documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoExento">getMontoExento()</a>
+    <span>
+                                &nbsp;: int|float    </span>
+</dt>
+<dd>Entrega el monto exento del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA">getMontoIVA()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto de IVA del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto">getMontoNeto()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto neto del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoTotal">getMontoTotal()</a>
     <span>
                                 &nbsp;: int|float    </span>
 </dt>
 <dd>Entrega el monto total del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getNeto">getNeto()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto neto del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a>
@@ -288,11 +337,25 @@
 <dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio">getTipoDeCambio()</a>
+    <span>
+                                &nbsp;: float    </span>
+</dt>
+<dd>Entrega el tipo de cambio asociado a una moneda.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDocumento">getTipoDocumento()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-CodigoDocumento.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento">CodigoDocumento</abbr></a>    </span>
 </dt>
 <dd>Entrega el tipo de documento (como enum) asociado al DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotal">getTotal()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el monto total del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotales">getTotales()</a>
@@ -356,6 +419,68 @@ al inicio y final.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_convertirAPesosCL">
+        convertirAPesosCL()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_convertirAPesosCL" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">247</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Convierte un monto a pesos chilenos.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">convertirAPesosCL</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int|float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moneda</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Solo tiene sentido en documentos que están en moneda extranjera.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int|float</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Monto a convertir.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$moneda</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Moneda a la que se desea convertir el monto.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|float</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_get">
         get()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
@@ -364,7 +489,7 @@ al inicio y final.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
     </aside>
 
@@ -450,7 +575,7 @@ al inicio y final.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">269</span>
 
     </aside>
 
@@ -492,7 +617,7 @@ compatible con los datos de entrada normalizados al crear un DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 
     </aside>
 
@@ -573,6 +698,49 @@ específico.</p>
                 <section class="phpdocumentor-description"><p>Datos del emisor en el DTE.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getExento">
+        getExento()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getExento" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">196</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto exento del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El monto estará siempre en la moneda CLP.</p>
+<p>Si el documento es de exportación y está en moneda extranjera, se
+convertirá a CLP usando el tipo de cambio informado en el documento.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -702,6 +870,47 @@ fecha de creación real del documento en LibreDTE.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getIVA">
+        getIVA()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getIVA" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">214</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto de IVA del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Es equivalente a llamar a <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface::getMontoIVA()">DocumentInterface::getMontoIVA()</abbr></a>.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getMoneda">
         getMoneda()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda" class="headerlink"><i class="fas fa-link"></i></a>
@@ -710,7 +919,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
@@ -741,6 +950,127 @@ fecha de creación real del documento en LibreDTE.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMontoExento">
+        getMontoExento()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoExento" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">151</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto exento del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMontoExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El monto estará en la moneda del documento.</p>
+<p>En documentos de exportación el monto será entregado como <code class="prettyprint">float</code>, en
+otros tipos de documentos será entregado como <code class="prettyprint">int</code>.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|float</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMontoIVA">
+        getMontoIVA()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">165</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto de IVA del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMontoIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMontoNeto">
+        getMontoNeto()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">158</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto neto del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMontoNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getMontoTotal">
         getMontoTotal()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoTotal" class="headerlink"><i class="fas fa-link"></i></a>
@@ -749,7 +1079,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
@@ -763,6 +1093,8 @@ fecha de creación real del documento en LibreDTE.</p>
         </div>
     
         <section class="phpdocumentor-description"><p>El monto estará en la moneda del documento.</p>
+<p>En documentos exentos el monto será entregado como <code class="prettyprint">float</code>, en otros
+tipos de documentos será entregado como <code class="prettyprint">int</code>.</p>
 </section>
 
     
@@ -777,6 +1109,47 @@ fecha de creación real del documento en LibreDTE.</p>
                 <section class="phpdocumentor-description"><p>Monto total del documento.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getNeto">
+        getNeto()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getNeto" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">205</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto neto del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Es equivalente a llamar a <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface::getMontoNeto()">DocumentInterface::getMontoNeto()</abbr></a>.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -954,7 +1327,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -993,7 +1366,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">293</span>
 
     </aside>
 
@@ -1035,6 +1408,59 @@ completar antes de firmar el TED los campos:</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getTipoDeCambio">
+        getTipoDeCambio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">236</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el tipo de cambio asociado a una moneda.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTipoDeCambio</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moneda</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">'PESO CL'</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Solo tiene sentido en documentos que están en moneda extranjera.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$moneda</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">'PESO CL'</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Moneda a la que se desea obtener el tipo de cambio.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">float</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getTipoDocumento">
         getTipoDocumento()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDocumento" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1065,6 +1491,49 @@ completar antes de firmar el TED los campos:</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-CodigoDocumento.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento">CodigoDocumento</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTotal">
+        getTotal()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotal" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">226</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el monto total del documento.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTotal</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El monto estará siempre en la moneda CLP.</p>
+<p>Si el documento es de exportación y está en moneda extranjera, se
+convertirá a CLP usando el tipo de cambio informado en el documento.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -1215,7 +1684,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">308</span>
 
     </aside>
 
@@ -1329,7 +1798,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">315</span>
 
     </aside>
 
@@ -1468,23 +1937,32 @@ al inicio y final.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_convertirAPesosCL">convertirAPesosCL()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_get">get()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getCodigo">getCodigo()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getData">getData()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDetalle">getDetalle()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getEmisor">getEmisor()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getExento">getExento()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getFechaEmision">getFechaEmision()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getFolio">getFolio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getId">getId()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getIVA">getIVA()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMoneda">getMoneda()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoExento">getMontoExento()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA">getMontoIVA()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto">getMontoNeto()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoTotal">getMontoTotal()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getNeto">getNeto()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getReceptor">getReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutEmisor">getRutEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutReceptor">getRutReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED">getTED()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED">getTemplateTED()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio">getTipoDeCambio()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDocumento">getTipoDocumento()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotal">getTotal()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTotales">getTotales()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getXml">getXml()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getXmlDocument">getXmlDocument()</a></li>
