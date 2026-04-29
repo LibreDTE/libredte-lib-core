@@ -220,7 +220,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getExento">getExento()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el monto exento del documento.</dd>
 
@@ -248,7 +248,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getIVA">getIVA()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el monto de IVA del documento.</dd>
 
@@ -262,21 +262,21 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoExento">getMontoExento()</a>
     <span>
-                                &nbsp;: int|float    </span>
+                                &nbsp;: int|float|null    </span>
 </dt>
 <dd>Entrega el monto exento del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoIVA">getMontoIVA()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el monto de IVA del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getMontoNeto">getMontoNeto()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el monto neto del documento.</dd>
 
@@ -290,14 +290,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getNeto">getNeto()</a>
     <span>
-                                &nbsp;: int    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el monto neto del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor">getRazonSocialReceptor()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: string|null    </span>
 </dt>
 <dd>Obtiene la razón social del receptor del documento.</dd>
 
@@ -323,6 +323,13 @@
 <dd>Obtiene el RUT del receptor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getSucursalSii">getSucursalSii()</a>
+    <span>
+                                &nbsp;: int|null    </span>
+</dt>
+<dd>Obtiene el código de la sucursal del emisor en el SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED">getTED()</a>
     <span>
                                 &nbsp;: string|null    </span>
@@ -339,7 +346,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio">getTipoDeCambio()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: float|null    </span>
 </dt>
 <dd>Entrega el tipo de cambio asociado a una moneda.</dd>
 
@@ -427,7 +434,7 @@ al inicio y final.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">247</span>
+    <span class="phpdocumentor-element-found-in__line">254</span>
 
     </aside>
 
@@ -489,7 +496,7 @@ al inicio y final.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">307</span>
 
     </aside>
 
@@ -575,7 +582,7 @@ al inicio y final.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">269</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -617,7 +624,7 @@ compatible con los datos de entrada normalizados al crear un DTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">266</span>
 
     </aside>
 
@@ -715,7 +722,7 @@ específico.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -723,7 +730,7 @@ específico.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -740,7 +747,7 @@ convertirá a CLP usando el tipo de cambio informado en el documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -758,7 +765,7 @@ convertirá a CLP usando el tipo de cambio informado en el documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -878,7 +885,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">221</span>
 
     </aside>
 
@@ -886,7 +893,7 @@ fecha de creación real del documento en LibreDTE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -901,7 +908,7 @@ fecha de creación real del documento en LibreDTE.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -919,7 +926,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -958,7 +965,7 @@ fecha de creación real del documento en LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">151</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
@@ -966,7 +973,7 @@ fecha de creación real del documento en LibreDTE.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getMontoExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float</span></code>
+                    <span class="phpdocumentor-signature__name">getMontoExento</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|float|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -983,7 +990,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|float</span>
+        <span class="phpdocumentor-signature__response_type">int|float|null</span>
             </section>
 
 </article>
@@ -1001,7 +1008,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -1009,7 +1016,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getMontoIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getMontoIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1022,7 +1029,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -1040,7 +1047,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 
@@ -1048,7 +1055,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getMontoNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getMontoNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1061,7 +1068,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -1079,7 +1086,7 @@ otros tipos de documentos será entregado como <code class="prettyprint">int</co
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
@@ -1126,7 +1133,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">212</span>
 
     </aside>
 
@@ -1134,7 +1141,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">getNeto</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1149,7 +1156,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
             </section>
 
 </article>
@@ -1167,7 +1174,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -1175,7 +1182,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getRazonSocialReceptor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getRazonSocialReceptor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1188,7 +1195,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
             </section>
 
 </article>
@@ -1206,7 +1213,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -1288,7 +1295,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
@@ -1319,6 +1326,45 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getSucursalSii">
+        getSucursalSii()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getSucursalSii" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">108</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el código de la sucursal del emisor en el SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSucursalSii</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getTED">
         getTED()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1327,7 +1373,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">276</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
     </aside>
 
@@ -1366,7 +1412,7 @@ tipos de documentos será entregado como <code class="prettyprint">int</code>.</
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
     </aside>
 
@@ -1416,7 +1462,7 @@ completar antes de firmar el TED los campos:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">236</span>
+    <span class="phpdocumentor-element-found-in__line">243</span>
 
     </aside>
 
@@ -1424,7 +1470,7 @@ completar antes de firmar el TED los campos:</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getTipoDeCambio</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moneda</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">'PESO CL'</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+                    <span class="phpdocumentor-signature__name">getTipoDeCambio</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moneda</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">'PESO CL'</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1451,7 +1497,7 @@ completar antes de firmar el TED los campos:</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
+        <span class="phpdocumentor-signature__response_type">float|null</span>
             </section>
 
 </article>
@@ -1508,7 +1554,7 @@ completar antes de firmar el TED los campos:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -1551,7 +1597,7 @@ convertirá a CLP usando el tipo de cambio informado en el documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">146</span>
 
     </aside>
 
@@ -1684,7 +1730,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">315</span>
 
     </aside>
 
@@ -1798,7 +1844,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php"><a href="files/src-package-billing-component-document-contract-documentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DocumentInterface.php">DocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">315</span>
+    <span class="phpdocumentor-element-found-in__line">322</span>
 
     </aside>
 
@@ -1958,6 +2004,7 @@ al inicio y final.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getReceptor">getReceptor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutEmisor">getRutEmisor()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutReceptor">getRutReceptor()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getSucursalSii">getSucursalSii()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTED">getTED()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED">getTemplateTED()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTipoDeCambio">getTipoDeCambio()</a></li>

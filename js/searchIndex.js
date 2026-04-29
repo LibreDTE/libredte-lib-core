@@ -1346,6 +1346,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020RUT\u0020del\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRutEmisor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetSucursalSii\u0028\u0029",
+            "name": "getSucursalSii",
+            "summary": "Obtiene\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getSucursalSii"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetReceptor\u0028\u0029",
             "name": "getReceptor",
             "summary": "Obtiene\u0020el\u0020contribuyente\u0020receptor\u0020del\u0020documento.",
@@ -2295,6 +2300,11 @@ Search.appendIndex(
             "name": "getRutEmisor",
             "summary": "Obtiene\u0020el\u0020RUT\u0020del\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRutEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetSucursalSii\u0028\u0029",
+            "name": "getSucursalSii",
+            "summary": "Obtiene\u0020el\u0020c\u00F3digo\u0020de\u0020la\u0020sucursal\u0020del\u0020emisor\u0020en\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getSucursalSii"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetReceptor\u0028\u0029",
             "name": "getReceptor",
