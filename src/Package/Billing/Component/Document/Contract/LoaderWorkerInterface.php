@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\LoaderException;
 
 /**
@@ -42,9 +43,9 @@ interface LoaderWorkerInterface extends WorkerInterface
      * sus datos (normalizados), el documento timbrado (con su CAF asociado) y
      * con su firma electrónica.
      *
-     * @param string $xml Datos del documento tributario.
+     * @param XmlDocumentInterface|string $xml Datos del documento tributario.
      * @return DocumentBagInterface Contenedor con los datos del documento.
      * @throws LoaderException
      */
-    public function loadXml(string $xml): DocumentBagInterface;
+    public function loadXml(XmlDocumentInterface|string $xml): DocumentBagInterface;
 }

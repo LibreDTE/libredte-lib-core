@@ -26,11 +26,12 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 
 /**
  * Clase para cargar documentos tributarios desde su XML.
@@ -39,7 +40,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\
 class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
 {
     public function __construct(
-        private ParserWorkerInterface $parserWorker,
         private DocumentBagManagerWorkerInterface $documentBagManager
     ) {
     }
@@ -47,13 +47,18 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
     /**
      * {@inheritDoc}
      */
-    public function loadXml(string $xml): DocumentBagInterface
+    public function loadXml(XmlDocumentInterface|string $xml): DocumentBagInterface
     {
-        $parser = $this->parserWorker->getStrategy('default.xml');
-        assert($parser instanceof XmlParserStrategy);
+        if (is_string($xml)) {
+            $xmlDocument = new XmlDocument();
+            $xmlDocument->loadXml($xml);
+        } else {
+            $xmlDocument = $xml;
+        }
 
-        $data = $parser->parse($xml);
+        $bag = new DocumentBag();
+        $bag->setXmlDocument($xmlDocument);
 
-        return $this->documentBagManager->create($data);
+        return $this->documentBagManager->normalize($bag, all: true);
     }
 }

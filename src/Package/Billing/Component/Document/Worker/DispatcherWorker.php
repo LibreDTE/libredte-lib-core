@@ -112,10 +112,15 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
-    public function loadXml(string $xml): DocumentEnvelopeInterface
+    public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface
     {
-        $xmlDocument = new XmlDocument();
-        $xmlDocument->loadXML($xml);
+        if (is_string($xml)) {
+            $xmlDocument = new XmlDocument();
+            $xmlDocument->loadXml($xml);
+        } else {
+            $xmlDocument = $xml;
+        }
+
         $envelope = new DocumentEnvelope();
         $envelope->setXmlDocument($xmlDocument);
 

@@ -61,11 +61,11 @@ interface DispatcherWorkerInterface extends WorkerInterface
     /**
      * Realiza la carga del sobre de documentos desde un string XML.
      *
-     * @param string $xml Datos del sobre de documentos tributarios.
+     * @param XmlDocumentInterface|string $xml Datos del sobre de documentos tributarios.
      * @return DocumentEnvelopeInterface Contenedor con los datos del sobre.
      * @throws DispatcherException
      */
-    public function loadXml(string $xml): DocumentEnvelopeInterface;
+    public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface;
 
     /**
      * Realiza la validación del sobre de documentos tributarios.

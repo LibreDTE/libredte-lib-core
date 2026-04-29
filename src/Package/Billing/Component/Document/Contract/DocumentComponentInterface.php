@@ -124,4 +124,12 @@ interface DocumentComponentInterface extends ComponentInterface
         string|array|CertificateInterface|null $certificate = null,
         array|OptionsInterface $options = []
     ): DocumentBagInterface;
+
+    /**
+     * Carga un XML de documento tributario o sobre de documentos tributarios.
+     *
+     * @param string $xml XML de un documento o sobre con uno o más documentos.
+     * @return array<DocumentBagInterface> Bolsas con los documentos cargados.
+     */
+    public function loadXml(string $xml): array;
 }

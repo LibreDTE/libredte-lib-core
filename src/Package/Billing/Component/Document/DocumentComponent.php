@@ -28,6 +28,7 @@ use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface;
@@ -198,5 +199,20 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
 
         // Entregar contenedor del documento.
         return $bag;
+    }
+
+    public function loadXml(string $xml): array
+    {
+        $xmlDocument = new XmlDocument();
+        $xmlDocument->loadXml($xml);
+
+        if ($xmlDocument->getDocumentElement()->tagName === 'DTE') {
+            $bag = $this->loaderWorker->loadXml($xmlDocument);
+            return [$bag];
+        }
+
+        $envelope = $this->dispatcherWorker->loadXml($xmlDocument);
+
+        return $envelope->getDocuments();
     }
 }
