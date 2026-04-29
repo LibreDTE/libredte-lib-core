@@ -2081,6 +2081,11 @@ Search.appendIndex(
             "summary": "Ejecuta\u0020el\u0020proceso\u0020de\u0020facturaci\u00F3n\u0020sobre\u0020los\u0020datos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_bill"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface\u003A\u003AloadXml\u0028\u0029",
+            "name": "loadXml",
+            "summary": "Carga\u0020un\u0020XML\u0020de\u0020documento\u0020tributario\u0020o\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_loadXml"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface",
             "name": "DocumentEnvelopeInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020sobre\u0020\u0028contenedor\u0029\u0020de\u0020documentos\u0020tributarios\u0020para\u0020el\u0020proceso\nde\u0020env\u00EDo\u0020al\u0020SII\u0020e\u0020intercambio\u0020entre\u0020contribuyentes.",
@@ -2880,6 +2885,11 @@ Search.appendIndex(
             "name": "bill",
             "summary": "Ejecuta\u0020el\u0020proceso\u0020de\u0020facturaci\u00F3n\u0020sobre\u0020los\u0020datos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_bill"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003AloadXml\u0028\u0029",
+            "name": "loadXml",
+            "summary": "Carga\u0020un\u0020XML\u0020de\u0020documento\u0020tributario\u0020o\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_loadXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003A\u0024batchProcessorWorker",
             "name": "batchProcessorWorker",
@@ -5000,11 +5010,6 @@ Search.appendIndex(
             "name": "loadXml",
             "summary": "Realiza\u0020la\u0020carga\u0020del\u0020documento\u0020desde\u0020un\u0020string\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html#method_loadXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\LoaderWorker\u003A\u003A\u0024parserWorker",
-            "name": "parserWorker",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html#property_parserWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\LoaderWorker\u003A\u003A\u0024documentBagManager",
             "name": "documentBagManager",
