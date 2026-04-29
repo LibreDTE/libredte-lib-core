@@ -139,9 +139,38 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     public function getTotales(): array;
 
     /**
+     * Entrega el monto exento del documento.
+     *
+     * El monto estará en la moneda del documento.
+     *
+     * En documentos de exportación el monto será entregado como `float`, en
+     * otros tipos de documentos será entregado como `int`.
+     *
+     * @return integer|float
+     */
+    public function getMontoExento(): int|float;
+
+    /**
+     * Entrega el monto neto del documento.
+     *
+     * @return integer
+     */
+    public function getMontoNeto(): int;
+
+    /**
+     * Entrega el monto de IVA del documento.
+     *
+     * @return integer
+     */
+    public function getMontoIVA(): int;
+
+    /**
      * Entrega el monto total del documento.
      *
      * El monto estará en la moneda del documento.
+     *
+     * En documentos exentos el monto será entregado como `float`, en otros
+     * tipos de documentos será entregado como `int`.
      *
      * @return int|float Monto total del documento.
      */
@@ -153,6 +182,69 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * @return string
      */
     public function getMoneda(): string;
+
+    /**
+     * Entrega el monto exento del documento.
+     *
+     * El monto estará siempre en la moneda CLP.
+     *
+     * Si el documento es de exportación y está en moneda extranjera, se
+     * convertirá a CLP usando el tipo de cambio informado en el documento.
+     *
+     * @return integer
+     */
+    public function getExento(): int;
+
+    /**
+     * Entrega el monto neto del documento.
+     *
+     * Es equivalente a llamar a {@see DocumentInterface::getMontoNeto()}.
+     *
+     * @return integer
+     */
+    public function getNeto(): int;
+
+    /**
+     * Entrega el monto de IVA del documento.
+     *
+     * Es equivalente a llamar a {@see DocumentInterface::getMontoIVA()}.
+     *
+     * @return integer
+     */
+    public function getIVA(): int;
+
+    /**
+     * Entrega el monto total del documento.
+     *
+     * El monto estará siempre en la moneda CLP.
+     *
+     * Si el documento es de exportación y está en moneda extranjera, se
+     * convertirá a CLP usando el tipo de cambio informado en el documento.
+     *
+     * @return integer
+     */
+    public function getTotal(): int;
+
+    /**
+     * Entrega el tipo de cambio asociado a una moneda.
+     *
+     * Solo tiene sentido en documentos que están en moneda extranjera.
+     *
+     * @param string $moneda Moneda a la que se desea obtener el tipo de cambio.
+     * @return float
+     */
+    public function getTipoDeCambio(string $moneda = 'PESO CL'): float;
+
+    /**
+     * Convierte un monto a pesos chilenos.
+     *
+     * Solo tiene sentido en documentos que están en moneda extranjera.
+     *
+     * @param int|float $value Monto a convertir.
+     * @param string|null $moneda Moneda a la que se desea convertir el monto.
+     * @return int|float
+     */
+    public function convertirAPesosCL(int|float $value, ?string $moneda = null): int|float;
 
     /**
      * Entrega el detalle del documento.

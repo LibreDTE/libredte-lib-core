@@ -293,6 +293,68 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
+    public function getMontoExento(): int|float
+    {
+        $value = $this->xmlDocument->query('//Encabezado/Totales/MntExe');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un monto exento asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Totales/MntExe'
+            );
+        }
+
+        $monto = (float) $value;
+
+        // Verificar si el monto es equivalente a un entero.
+        if (floor($monto) == $monto) {
+            return (int) $monto;
+        }
+
+        // Entregar como flotante.
+        return $monto;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMontoNeto(): int
+    {
+        $value = $this->xmlDocument->query('//Encabezado/Totales/MntNeto');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un monto neto asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Totales/MntNeto'
+            );
+        }
+
+        return (int) $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMontoIVA(): int
+    {
+        $value = $this->xmlDocument->query('//Encabezado/Totales/IVA');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                'El documento no tiene un monto de IVA asignado en el XML.',
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/Totales/IVA'
+            );
+        }
+
+        return (int) $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getMontoTotal(): int|float
     {
         $value = $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
@@ -326,6 +388,97 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         ;
 
         return (string) $moneda;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExento(): int
+    {
+        $value = $this->getMontoExento();
+
+        $moneda = $this->getMoneda();
+        if ($moneda === 'PESO CL') {
+            return (int) round($value);
+        }
+
+        return (int) round($this->convertirAPesosCL($value, $moneda));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNeto(): int
+    {
+        return $this->getMontoNeto();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIVA(): int
+    {
+        return $this->getMontoIVA();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTotal(): int
+    {
+        $value = $this->getMontoTotal();
+
+        $moneda = $this->getMoneda();
+        if ($moneda === 'PESO CL') {
+            return (int) round($value);
+        }
+
+        return (int) round($this->convertirAPesosCL($value, $moneda));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTipoDeCambio(string $moneda = 'PESO CL'): float
+    {
+        $value = $this->xmlDocument->query('//Encabezado/OtraMoneda');
+
+        if ($value === null) {
+            throw new XmlQueryException(
+                sprintf('El documento no tiene tipos de cambio asignados en el XML.'),
+                xmlDocument: $this->xmlDocument,
+                xpathExpression: '//Encabezado/OtraMoneda'
+            );
+        }
+
+        if (!isset($value[0])) {
+            $value = [$value];
+        }
+
+        foreach ($value as $OtraMoneda) {
+            if ($OtraMoneda['TpoMoneda'] === $moneda) {
+                return (float) $OtraMoneda['TpoCambio'];
+            }
+        }
+
+        throw new XmlQueryException(
+            sprintf('El documento no tiene un tipo de cambio asignado para la moneda %s en el XML.', $moneda),
+            xmlDocument: $this->xmlDocument,
+            xpathExpression: '//Encabezado/OtraMoneda'
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function convertirAPesosCL(int|float $value, ?string $moneda = null): int|float
+    {
+        $moneda = $moneda ?? $this->getMoneda();
+        if ($moneda === 'PESO CL') {
+            return $value;
+        }
+
+        return $value * $this->getTipoDeCambio('PESO CL');
     }
 
     /**
