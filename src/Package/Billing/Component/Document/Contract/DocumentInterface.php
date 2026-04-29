@@ -68,7 +68,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Obtiene el código numérico del documento tributario.
      *
-     * @return integer
+     * @return int
      */
     public function getCodigo(): int;
 
@@ -101,6 +101,13 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     public function getRutEmisor(): string;
 
     /**
+     * Obtiene el código de la sucursal del emisor en el SII.
+     *
+     * @return int|null
+     */
+    public function getSucursalSii(): ?int;
+
+    /**
      * Obtiene el contribuyente receptor del documento.
      *
      * @return array Datos del receptor en el DTE.
@@ -117,9 +124,9 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Obtiene la razón social del receptor del documento.
      *
-     * @return string
+     * @return string|null
      */
-    public function getRazonSocialReceptor(): string;
+    public function getRazonSocialReceptor(): ?string;
 
     /**
      * Entrega la fecha de emisión asignada al documento tributario.
@@ -146,23 +153,23 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * En documentos de exportación el monto será entregado como `float`, en
      * otros tipos de documentos será entregado como `int`.
      *
-     * @return integer|float
+     * @return int|float|null
      */
-    public function getMontoExento(): int|float;
+    public function getMontoExento(): int|float|null;
 
     /**
      * Entrega el monto neto del documento.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getMontoNeto(): int;
+    public function getMontoNeto(): ?int;
 
     /**
      * Entrega el monto de IVA del documento.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getMontoIVA(): int;
+    public function getMontoIVA(): ?int;
 
     /**
      * Entrega el monto total del documento.
@@ -191,27 +198,27 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Si el documento es de exportación y está en moneda extranjera, se
      * convertirá a CLP usando el tipo de cambio informado en el documento.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getExento(): int;
+    public function getExento(): ?int;
 
     /**
      * Entrega el monto neto del documento.
      *
      * Es equivalente a llamar a {@see DocumentInterface::getMontoNeto()}.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getNeto(): int;
+    public function getNeto(): ?int;
 
     /**
      * Entrega el monto de IVA del documento.
      *
      * Es equivalente a llamar a {@see DocumentInterface::getMontoIVA()}.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getIVA(): int;
+    public function getIVA(): ?int;
 
     /**
      * Entrega el monto total del documento.
@@ -221,7 +228,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Si el documento es de exportación y está en moneda extranjera, se
      * convertirá a CLP usando el tipo de cambio informado en el documento.
      *
-     * @return integer
+     * @return int
      */
     public function getTotal(): int;
 
@@ -231,9 +238,9 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Solo tiene sentido en documentos que están en moneda extranjera.
      *
      * @param string $moneda Moneda a la que se desea obtener el tipo de cambio.
-     * @return float
+     * @return float|null
      */
-    public function getTipoDeCambio(string $moneda = 'PESO CL'): float;
+    public function getTipoDeCambio(string $moneda = 'PESO CL'): ?float;
 
     /**
      * Convierte un monto a pesos chilenos.

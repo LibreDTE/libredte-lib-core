@@ -34,7 +34,7 @@ interface ContribuyenteInterface extends JsonSerializable
     /**
      * Devuelve solo la parte numérica del RUT del contribuyente.
      *
-     * @return integer Parte numérica del RUT del contribuyente.
+     * @return int Parte numérica del RUT del contribuyente.
      */
     public function getRutAsInt(): int;
 

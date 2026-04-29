@@ -101,7 +101,7 @@ interface EmisorInterface extends ContribuyenteInterface, AutorizacionDteInfoInt
     /**
      * Entrega el código de la sucursal asignado por el SII al emisor.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getCodigoSucursal(): ?int;
 

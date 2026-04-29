@@ -232,7 +232,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene el código numérico del documento tributario electrónico.
      *
-     * @return integer|null
+     * @return int|null
      */
     public function getDocumentTypeId(): ?int;
 

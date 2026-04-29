@@ -32,6 +32,7 @@ use Derafu\Xml\Exception\XmlException;
 use Derafu\Xml\Exception\XmlQueryException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use LogicException;
 
 /**
@@ -203,6 +204,20 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
+    public function getSucursalSii(): ?int
+    {
+        $value = $this->xmlDocument->query('//Encabezado/Emisor/CdgSIISucur');
+
+        if ($value === null) {
+            return null;
+        }
+
+        return (int) $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getReceptor(): array
     {
         $value = $this->xmlDocument->query('//Encabezado/Receptor');
@@ -239,19 +254,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getRazonSocialReceptor(): string
+    public function getRazonSocialReceptor(): ?string
     {
-        $value = $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'El documento no tiene una razón social de receptor asignada en el XML.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Receptor/RznSocRecep'
-            );
-        }
-
-        return $value;
+        return $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep');
     }
 
     /**
@@ -293,16 +298,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getMontoExento(): int|float
+    public function getMontoExento(): int|float|null
     {
         $value = $this->xmlDocument->query('//Encabezado/Totales/MntExe');
 
         if ($value === null) {
-            throw new XmlQueryException(
-                'El documento no tiene un monto exento asignado en el XML.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Totales/MntExe'
-            );
+            return null;
         }
 
         $monto = (float) $value;
@@ -319,16 +320,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getMontoNeto(): int
+    public function getMontoNeto(): ?int
     {
         $value = $this->xmlDocument->query('//Encabezado/Totales/MntNeto');
 
         if ($value === null) {
-            throw new XmlQueryException(
-                'El documento no tiene un monto neto asignado en el XML.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Totales/MntNeto'
-            );
+            return null;
         }
 
         return (int) $value;
@@ -337,16 +334,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getMontoIVA(): int
+    public function getMontoIVA(): ?int
     {
         $value = $this->xmlDocument->query('//Encabezado/Totales/IVA');
 
         if ($value === null) {
-            throw new XmlQueryException(
-                'El documento no tiene un monto de IVA asignado en el XML.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Totales/IVA'
-            );
+            return null;
         }
 
         return (int) $value;
@@ -393,9 +386,13 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getExento(): int
+    public function getExento(): ?int
     {
         $value = $this->getMontoExento();
+
+        if ($value === null) {
+            return null;
+        }
 
         $moneda = $this->getMoneda();
         if ($moneda === 'PESO CL') {
@@ -408,7 +405,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getNeto(): int
+    public function getNeto(): ?int
     {
         return $this->getMontoNeto();
     }
@@ -416,7 +413,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getIVA(): int
+    public function getIVA(): ?int
     {
         return $this->getMontoIVA();
     }
@@ -439,16 +436,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
-    public function getTipoDeCambio(string $moneda = 'PESO CL'): float
+    public function getTipoDeCambio(string $moneda = 'PESO CL'): ?float
     {
         $value = $this->xmlDocument->query('//Encabezado/OtraMoneda');
 
         if ($value === null) {
-            throw new XmlQueryException(
-                sprintf('El documento no tiene tipos de cambio asignados en el XML.'),
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/OtraMoneda'
-            );
+            return null;
         }
 
         if (!isset($value[0])) {
@@ -461,11 +454,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             }
         }
 
-        throw new XmlQueryException(
-            sprintf('El documento no tiene un tipo de cambio asignado para la moneda %s en el XML.', $moneda),
-            xmlDocument: $this->xmlDocument,
-            xpathExpression: '//Encabezado/OtraMoneda'
-        );
+        return null;
     }
 
     /**
@@ -478,7 +467,15 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             return $value;
         }
 
-        return $value * $this->getTipoDeCambio('PESO CL');
+        $tipoDeCambio = $this->getTipoDeCambio('PESO CL');
+        if ($tipoDeCambio === null) {
+            throw new DocumentException(sprintf(
+                'El documento no tiene un tipo de cambio asignado para la moneda %s en el XML.',
+                $moneda
+            ));
+        }
+
+        return $value * $tipoDeCambio;
     }
 
     /**

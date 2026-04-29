@@ -236,7 +236,7 @@ interface TipoDocumentoInterface extends JsonSerializable
      * Entrega el valor por defecto del indicador de servicio para el tipo de
      * documento.
      *
-     * @return integer|false
+     * @return int|false
      */
     public function getDefaultIndServicio(): int|false;
 

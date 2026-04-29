@@ -43,7 +43,7 @@ interface AutorizacionDteInterface
     /**
      * Obtiene el número de resolución de la autorización para emisión de DTE.
      *
-     * @return integer
+     * @return int
      */
     public function getNumeroResolucion(): int;
 
