@@ -499,6 +499,24 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
+    public function getReferencias(): array
+    {
+        $referencias = $this->xmlDocument->query('//Referencia');
+
+        if ($referencias === null) {
+            return [];
+        }
+
+        if (!isset($referencias[0])) {
+            $referencias = [$referencias];
+        }
+
+        return $referencias;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getData(): array
     {
         // Si los datos del DTE no están determinados se crean de una manera

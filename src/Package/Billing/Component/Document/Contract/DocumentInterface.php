@@ -266,6 +266,13 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     public function getDetalle(?int $index = null): array;
 
     /**
+     * Entrega las referencias del documento.
+     *
+     * @return array
+     */
+    public function getReferencias(): array;
+
+    /**
      * Entrega los datos del DTE.
      *
      * Este método estandariza los datos para entregarlos en un formato
