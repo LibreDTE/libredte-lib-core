@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Respon
 
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii;
 
 /**
  * Respuesta de la consulta de estado de un documento subido al SII.
@@ -174,6 +175,31 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             ? ($data['status'] . ' - ' . $data['description'])
             : $data['status']
         ;
+    }
+
+    /**
+     * Devuelve el estado del envío normalizado como enum.
+     *
+     * Retorna `null` cuando el SII aún no ha procesado definitivamente el envío
+     * (estados intermedios como SOK, FOK, PDR, etc.).
+     */
+    public function getEstadoEnvioSii(): ?EstadoEnvioSii
+    {
+        $data = $this->getData();
+
+        if ($data['status'] !== 'EPR') {
+            return null;
+        }
+
+        if ($this->hasRejectedDocuments()) {
+            return EstadoEnvioSii::RECHAZADO;
+        }
+
+        if ($this->hasRepairsDocuments()) {
+            return EstadoEnvioSii::REPARO;
+        }
+
+        return EstadoEnvioSii::ACEPTADO;
     }
 
     /**
