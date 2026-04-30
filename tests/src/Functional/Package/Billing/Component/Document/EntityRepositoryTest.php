@@ -269,13 +269,13 @@ class EntityRepositoryTest extends TestCase
         );
 
         $documentos = $repository->getDocumentos();
-        $this->assertSame(67, count($documentos));
+        $this->assertSame(68, count($documentos)); // Cambia si cambian los documentos en el repositorio.
 
         $documentos = $repository->getDocumentosTributarios();
-        $this->assertSame(33, count($documentos));
+        $this->assertSame(34, count($documentos)); // Cambia si cambian los documentos tributarios en el repositorio.
 
         $documentos = $repository->getDocumentosInformativos();
-        $this->assertSame(21, count($documentos));
+        $this->assertSame(22, count($documentos)); // Cambia si cambian los documentos informativos en el repositorio.
 
         $documentos = $repository->getDocumentosTributariosElectronicos();
         $this->assertSame(12, count($documentos));
