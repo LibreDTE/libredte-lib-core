@@ -4066,6 +4066,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020listado\u0020de\u0020documentos\u0020tributarios\u0020electr\u00F3nicos\u0020que\u0020pueden\u0020ser\nemitidos\u0020utilizando\u0020LibreDTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-TipoDocumentoRepository.html#method_getDocumentosDisponibles"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Repository\\TipoDocumentoRepository\u003A\u003AgetReferenciables\u0028\u0029",
+            "name": "getReferenciables",
+            "summary": "Entrega\u0020el\u0020listado\u0020de\u0020documentos\u0020v\u00E1lidos\u0020como\u0020referencia\u0020en\u0020un\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-TipoDocumentoRepository.html#method_getReferenciables"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Repository\\TipoDocumentoRepository\u003A\u003AfindByAlias\u0028\u0029",
             "name": "findByAlias",
             "summary": "Busca\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020su\u0020alias.",
