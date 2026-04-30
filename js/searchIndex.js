@@ -1436,6 +1436,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020detalle\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetReferencias\u0028\u0029",
+            "name": "getReferencias",
+            "summary": "Entrega\u0020las\u0020referencias\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getReferencias"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE.",
@@ -2390,6 +2395,11 @@ Search.appendIndex(
             "name": "getDetalle",
             "summary": "Entrega\u0020el\u0020detalle\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetReferencias\u0028\u0029",
+            "name": "getReferencias",
+            "summary": "Entrega\u0020las\u0020referencias\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getReferencias"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
@@ -3660,6 +3670,16 @@ Search.appendIndex(
             "name": "tipo_sobre",
             "summary": "Tipo\u0020del\u0020sobre\u0020de\u0020documentos\u0020que\u0020se\u0020debe\u0020utilizar\u0020cuando\u0020se\u0020requiera\nrealizar\u0020el\u0020env\u00EDo\u0020de\u0020este\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#property_tipo_sobre"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoReferencia",
+            "name": "TipoReferencia",
+            "summary": "Entidad\u0020de\u0020tipos\u0020de\u0020referencia.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoReferencia.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoReferencia\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoReferencia.html#method___toString"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\Traslado",
             "name": "Traslado",
