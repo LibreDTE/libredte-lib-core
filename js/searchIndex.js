@@ -9201,6 +9201,41 @@ Search.appendIndex(
             "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_sendAec"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii",
+            "name": "EstadoEnvioSii",
+            "summary": "Estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020DTE\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AisFinal\u0028\u0029",
+            "name": "isFinal",
+            "summary": "Indica\u0020si\u0020el\u0020estado\u0020es\u0020definitivo\u0020\u0028no\u0020se\u0020esperan\u0020m\u00E1s\u0020cambios\u0020del\u0020SII\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isFinal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AisAceptado\u0028\u0029",
+            "name": "isAceptado",
+            "summary": "Indica\u0020si\u0020el\u0020DTE\u0020fue\u0020aceptado\u0020por\u0020el\u0020SII\u0020\u0028con\u0020o\u0020sin\u0020reparos\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isAceptado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AENVIADO",
+            "name": "ENVIADO",
+            "summary": "Enviado\u0020al\u0020SII,\u0020esperando\u0020respuesta\u0020definitiva.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_ENVIADO"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AACEPTADO",
+            "name": "ACEPTADO",
+            "summary": "Aceptado\u0020sin\u0020observaciones.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_ACEPTADO"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AREPARO",
+            "name": "REPARO",
+            "summary": "Aceptado\u0020con\u0020reparos\u0020leves\u0020\u0028RLV\u0020en\u0020el\u0020SII\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_REPARO"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003ARECHAZADO",
+            "name": "RECHAZADO",
+            "summary": "Rechazado\u0020por\u0020el\u0020SII\u0020\u0028RCH\u0020en\u0020el\u0020SII\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_RECHAZADO"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment",
             "name": "SiiEnvironment",
             "summary": "Enum\u0020del\u0020ambiente\u0020del\u0020SII\u0020cuando\u0020est\u00E1\u0020disponible\u0020m\u00E1s\u0020de\u0020uno.",
@@ -9425,6 +9460,11 @@ Search.appendIndex(
             "name": "getReviewStatus",
             "summary": "Devuelve\u0020el\u0020estado\u0020de\u0020revisi\u00F3n\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetEstadoEnvioSii\u0028\u0029",
+            "name": "getEstadoEnvioSii",
+            "summary": "Devuelve\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020normalizado\u0020como\u0020enum.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewDetail\u0028\u0029",
             "name": "getReviewDetail",

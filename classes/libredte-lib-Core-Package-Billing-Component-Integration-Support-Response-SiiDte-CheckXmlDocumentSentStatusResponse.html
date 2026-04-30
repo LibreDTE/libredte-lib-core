@@ -155,7 +155,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -291,6 +291,13 @@
 <dd>Devuelve la descripción de la solicitud realizada al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null    </span>
+</dt>
+<dd>Devuelve el estado del envío normalizado como enum.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders">getHeaders()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
@@ -402,7 +409,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -445,7 +452,7 @@ error.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -754,7 +761,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -832,6 +839,48 @@ un único lugar (instancia).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getEstadoEnvioSii">
+        getEstadoEnvioSii()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">186</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve el estado del envío normalizado como enum.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getEstadoEnvioSii</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Retorna <code class="prettyprint">null</code> cuando el SII aún no ha procesado definitivamente el envío
+(estados intermedios como SOK, FOK, PDR, etc.).</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getHeaders">
         getHeaders()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders" class="headerlink"><i class="fas fa-link"></i></a>
@@ -883,7 +932,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">210</span>
 
     </aside>
 
@@ -926,7 +975,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">160</span>
 
     </aside>
 
@@ -1012,7 +1061,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">380</span>
+    <span class="phpdocumentor-element-found-in__line">406</span>
 
     </aside>
 
@@ -1051,7 +1100,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">372</span>
+    <span class="phpdocumentor-element-found-in__line">398</span>
 
     </aside>
 
@@ -1149,7 +1198,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">228</span>
 
     </aside>
 
@@ -1192,7 +1241,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">348</span>
+    <span class="phpdocumentor-element-found-in__line">374</span>
 
     </aside>
 
@@ -1248,7 +1297,7 @@ y reparos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
@@ -1291,7 +1340,7 @@ y reparos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">252</span>
 
     </aside>
 
@@ -1334,7 +1383,7 @@ y reparos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">302</span>
+    <span class="phpdocumentor-element-found-in__line">328</span>
 
     </aside>
 
@@ -1389,7 +1438,7 @@ y reparos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">265</span>
 
     </aside>
 
@@ -1567,6 +1616,7 @@ y reparos.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getBody">getBody()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getData">getData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getDescription">getDescription()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders">getHeaders()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail">getReviewDetail()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus">getReviewStatus()</a></li>
