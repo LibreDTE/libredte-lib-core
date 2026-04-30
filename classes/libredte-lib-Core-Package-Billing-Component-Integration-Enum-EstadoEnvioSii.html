@@ -154,12 +154,12 @@
         
             <section class="phpdocumentor-description"><p>Almacenado como CHAR(1) en la base de datos para minimizar el espacio en
 tablas con decenas o cientos de millones de filas.</p>
-<p>Mapa de estados del SII → este enum:</p>
+<p>Mapa de códigos SII → este enum:</p>
 <ul>
-<li>EPR sin rechazados ni reparos → ACEPTADO</li>
-<li>EPR con reparos (RLV)         → REPARO</li>
-<li>EPR con rechazados (RCH)      → RECHAZADO</li>
-<li>Cualquier otro estado         → ENVIADO (respuesta intermedia)</li>
+<li>EPR (sin rechazados ni reparos) → ACEPTADO</li>
+<li>RLV, RPR                        → REPARO</li>
+<li>RSC, RCH, RPT, RFR, VOF, RCT   → RECHAZADO</li>
+<li>Códigos no finales              → ENVIADO</li>
 </ul>
 </section>
 
@@ -205,14 +205,14 @@ tablas con decenas o cientos de millones de filas.</p>
     <span>
                 &nbsp;= &#039;X&#039;                    </span>
 </dt>
-<dd>Rechazado por el SII (RCH en el SII).</dd>
+<dd>Rechazado por el SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -case -">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_REPARO">REPARO</a>
     <span>
                 &nbsp;= &#039;R&#039;                    </span>
 </dt>
-<dd>Aceptado con reparos leves (RLV en el SII).</dd>
+<dd>Aceptado con reparos (RLV o RPR en el SII).</dd>
 
     </dl>
 
@@ -223,6 +223,22 @@ tablas con decenas o cientos de millones de filas.</p>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromGlosa">fromGlosa()</a>
+    <span>
+                                &nbsp;: self|null    </span>
+</dt>
+<dd>Construye el enum a partir de la glosa completa del SII
+(ej: &#039;RCH - DTE Rechazado&#039;, &#039;EPR - Envío Procesado&#039;).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromSiiCodigo">fromSiiCodigo()</a>
+    <span>
+                                &nbsp;: self|null    </span>
+</dt>
+<dd>Construye el enum a partir del código de 3 caracteres devuelto por el
+SII (ej: &#039;RCH&#039;, &#039;EPR&#039;, &#039;RFR&#039;).</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isAceptado">isAceptado()</a>
     <span>
@@ -236,6 +252,20 @@ tablas con decenas o cientos de millones de filas.</p>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Indica si el estado es definitivo (no se esperan más cambios del SII).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle">shouldStoreDetalle()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si el detalle SII debe persistirse para este estado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreGlosa">shouldStoreGlosa()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si la glosa SII debe persistirse para este estado.</dd>
 
     </dl>
 
@@ -319,7 +349,7 @@ tablas con decenas o cientos de millones de filas.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Aceptado con reparos leves (RLV en el SII).</p>
+        <p class="phpdocumentor-summary">Aceptado con reparos (RLV o RPR en el SII).</p>
 
     
     
@@ -346,7 +376,7 @@ tablas con decenas o cientos de millones de filas.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Rechazado por el SII (RCH en el SII).</p>
+        <p class="phpdocumentor-summary">Rechazado por el SII.</p>
 
     
     
@@ -367,6 +397,108 @@ tablas con decenas o cientos de millones de filas.</p>
         class="phpdocumentor-element
             -method
             -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fromGlosa">
+        fromGlosa()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromGlosa" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">97</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Construye el enum a partir de la glosa completa del SII
+(ej: &#039;RCH - DTE Rechazado&#039;, &#039;EPR - Envío Procesado&#039;).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromGlosa</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$glosa</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Extrae el código antes del primer espacio y delega a fromSiiCodigo().</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$glosa</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fromSiiCodigo">
+        fromSiiCodigo()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromSiiCodigo" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">80</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Construye el enum a partir del código de 3 caracteres devuelto por el
+SII (ej: &#039;RCH&#039;, &#039;EPR&#039;, &#039;RFR&#039;).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromSiiCodigo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigo</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$codigo</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_isAceptado">
@@ -377,7 +509,7 @@ tablas con decenas o cientos de millones de filas.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -416,7 +548,7 @@ tablas con decenas o cientos de millones de filas.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -430,6 +562,90 @@ tablas con decenas o cientos de millones de filas.</p>
         </div>
     
     
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_shouldStoreDetalle">
+        shouldStoreDetalle()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">138</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si el detalle SII debe persistirse para este estado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">shouldStoreDetalle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Se almacena para RECHAZADO y REPARO. Para ACEPTADO no hay detalle
+relevante; para ENVIADO aún no hay revisión.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_shouldStoreGlosa">
+        shouldStoreGlosa()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreGlosa" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php"><a href="files/src-package-billing-component-integration-enum-estadoenviosii.html"><abbr title="src/Package/Billing/Component/Integration/Enum/EstadoEnvioSii.php">EstadoEnvioSii.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">127</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si la glosa SII debe persistirse para este estado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">shouldStoreGlosa</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Solo se almacena para RECHAZADO; para ACEPTADO y REPARO el texto es
+siempre el mismo y se deriva en el getter de la entidad.</p>
+</section>
+
     
     
 
@@ -565,8 +781,12 @@ tablas con decenas o cientos de millones de filas.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromGlosa">fromGlosa()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromSiiCodigo">fromSiiCodigo()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isAceptado">isAceptado()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isFinal">isFinal()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle">shouldStoreDetalle()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreGlosa">shouldStoreGlosa()</a></li>
                                             </ul>
                 </li>
                     </ul>

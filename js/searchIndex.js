@@ -9206,6 +9206,16 @@ Search.appendIndex(
             "summary": "Estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020DTE\u0020al\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AfromSiiCodigo\u0028\u0029",
+            "name": "fromSiiCodigo",
+            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020del\u0020c\u00F3digo\u0020de\u00203\u0020caracteres\u0020devuelto\u0020por\u0020el\nSII\u0020\u0028ej\u003A\u0020\u0027RCH\u0027,\u0020\u0027EPR\u0027,\u0020\u0027RFR\u0027\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromSiiCodigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AfromGlosa\u0028\u0029",
+            "name": "fromGlosa",
+            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020de\u0020la\u0020glosa\u0020completa\u0020del\u0020SII\n\u0028ej\u003A\u0020\u0027RCH\u0020\u002D\u0020DTE\u0020Rechazado\u0027,\u0020\u0027EPR\u0020\u002D\u0020Env\u00EDo\u0020Procesado\u0027\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromGlosa"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AisFinal\u0028\u0029",
             "name": "isFinal",
             "summary": "Indica\u0020si\u0020el\u0020estado\u0020es\u0020definitivo\u0020\u0028no\u0020se\u0020esperan\u0020m\u00E1s\u0020cambios\u0020del\u0020SII\u0029.",
@@ -9215,6 +9225,16 @@ Search.appendIndex(
             "name": "isAceptado",
             "summary": "Indica\u0020si\u0020el\u0020DTE\u0020fue\u0020aceptado\u0020por\u0020el\u0020SII\u0020\u0028con\u0020o\u0020sin\u0020reparos\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_isAceptado"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AshouldStoreGlosa\u0028\u0029",
+            "name": "shouldStoreGlosa",
+            "summary": "Indica\u0020si\u0020la\u0020glosa\u0020SII\u0020debe\u0020persistirse\u0020para\u0020este\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreGlosa"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AshouldStoreDetalle\u0028\u0029",
+            "name": "shouldStoreDetalle",
+            "summary": "Indica\u0020si\u0020el\u0020detalle\u0020SII\u0020debe\u0020persistirse\u0020para\u0020este\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AENVIADO",
             "name": "ENVIADO",
@@ -9228,12 +9248,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AREPARO",
             "name": "REPARO",
-            "summary": "Aceptado\u0020con\u0020reparos\u0020leves\u0020\u0028RLV\u0020en\u0020el\u0020SII\u0029.",
+            "summary": "Aceptado\u0020con\u0020reparos\u0020\u0028RLV\u0020o\u0020RPR\u0020en\u0020el\u0020SII\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_REPARO"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003ARECHAZADO",
             "name": "RECHAZADO",
-            "summary": "Rechazado\u0020por\u0020el\u0020SII\u0020\u0028RCH\u0020en\u0020el\u0020SII\u0029.",
+            "summary": "Rechazado\u0020por\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_RECHAZADO"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment",
@@ -9390,6 +9410,26 @@ Search.appendIndex(
             "name": "SiiRtcException",
             "summary": "Excepci\u00F3n\u0020base\u0020para\u0020los\u0020workers\u0020del\u0020RTC\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtcException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Helper\\SiiEnvioAyudas",
+            "name": "SiiEnvioAyudas",
+            "summary": "Textos\u0020de\u0020ayuda\u0020asociados\u0020a\u0020los\u0020estados\u0020de\u0020rechazo\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Helper-SiiEnvioAyudas.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Helper\\SiiEnvioAyudas\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Devuelve\u0020el\u0020texto\u0020de\u0020ayuda\u0020para\u0020un\u0020documento\u0020rechazado,\u0020o\u0020null\u0020si\u0020no\nexiste\u0020ayuda\u0020espec\u00EDfica\u0020para\u0020esa\u0020combinaci\u00F3n\u0020de\u0020glosa\u0020y\u0020detalle.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Helper-SiiEnvioAyudas.html#method_get"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Helper\\SiiEnvioAyudas\u003A\u003AreplacePlaceholders\u0028\u0029",
+            "name": "replacePlaceholders",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Helper-SiiEnvioAyudas.html#method_replacePlaceholders"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Helper\\SiiEnvioAyudas\u003A\u003AAYUDAS",
+            "name": "AYUDAS",
+            "summary": "Mapa\u0020de\u0020ayudas\u0020por\u0020c\u00F3digo\u0020de\u0020glosa\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Helper-SiiEnvioAyudas.html#constant_AYUDAS"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\IntegrationComponent",
             "name": "IntegrationComponent",
@@ -12460,6 +12500,11 @@ Search.appendIndex(
             "name": "SiiRtc",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-exception-siirtc.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Helper",
+            "name": "Helper",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-helper.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration",
             "name": "Integration",
