@@ -358,6 +358,7 @@ services:
 
     # Derafu Repository.
     Derafu\Repository\Contract\RepositoryManagerInterface:
+        public: true
         class: Derafu\Repository\Service\RepositoryManager
         arguments:
             $dataProvider: '@Derafu\Repository\Service\DataProvider'
@@ -405,6 +406,7 @@ services:
 
     # Derafu Renderer.
     Derafu\Renderer\Contract\RendererInterface:
+        public: true
         factory: ['Derafu\Renderer\Factory\RendererFactory', 'create']
         lazy: true
         arguments:

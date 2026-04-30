@@ -32,6 +32,8 @@ return [
     // Documentos tributarios oficiales del SII.
     29 => [
         'nombre' => 'Factura de inicio',
+        'categoria' => CategoriaDocumento::TRIBUTARIO,
+        'electronico' => false,
     ],
     30 => [
         'nombre' => 'Factura',
@@ -474,6 +476,10 @@ return [
         'nombre' => 'Resumen ventas de internacionales pasajes sin factura',
     ],
     // Referencias no oficial del SII (pero comúnmente usados en Chile).
+    'COT' => [
+        'nombre' => 'Cotización',
+        'categoria' => CategoriaDocumento::REFERENCIA,
+    ],
     'HEM' => [
         'nombre' => 'Hoja de entrada de materiales (HEM)',
         'categoria' => CategoriaDocumento::REFERENCIA,

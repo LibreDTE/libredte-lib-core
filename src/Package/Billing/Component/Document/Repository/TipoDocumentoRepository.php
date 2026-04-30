@@ -125,6 +125,24 @@ class TipoDocumentoRepository extends Repository
     }
 
     /**
+     * Entrega el listado de documentos válidos como referencia en un DTE.
+     *
+     * Incluye todos los documentos excepto los tributarios no electrónicos.
+     *
+     * @return TipoDocumentoInterface[]
+     */
+    public function getReferenciables(): array
+    {
+        return array_values(array_filter(
+            $this->findBy([]),
+            fn (TipoDocumentoInterface $t) => !(
+                $t->getCategoria() === CategoriaDocumento::TRIBUTARIO
+                && $t->isElectronico() !== true
+            )
+        ));
+    }
+
+    /**
      * Busca un documento a partir de su alias.
      *
      * @param string $alias
