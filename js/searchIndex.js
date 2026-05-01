@@ -9256,6 +9256,51 @@ Search.appendIndex(
             "summary": "Rechazado\u0020por\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#enumcase_RECHAZADO"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion",
+            "name": "RcvAccion",
+            "summary": "Acci\u00F3n\u0020del\u0020receptor\u0020sobre\u0020un\u0020DTE\u0020en\u0020el\u0020RCV\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003Alabel\u0028\u0029",
+            "name": "label",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#method_label"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003AisFavorableParaEmisor\u0028\u0029",
+            "name": "isFavorableParaEmisor",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#method_isFavorableParaEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003AisReclamo\u0028\u0029",
+            "name": "isReclamo",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#method_isReclamo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003AERM",
+            "name": "ERM",
+            "summary": "Entrega\u0020Real\u0020de\u0020Mercader\u00EDas\u0020o\u0020Servicios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#enumcase_ERM"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003AACD",
+            "name": "ACD",
+            "summary": "Acepta\u0020Contenido\u0020del\u0020Documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#enumcase_ACD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003ARCD",
+            "name": "RCD",
+            "summary": "Reclamo\u0020al\u0020Contenido\u0020del\u0020Documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#enumcase_RCD"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003ARFP",
+            "name": "RFP",
+            "summary": "Reclamo\u0020por\u0020Falta\u0020Parcial\u0020de\u0020Mercader\u00EDas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#enumcase_RFP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\RcvAccion\u003A\u003ARFT",
+            "name": "RFT",
+            "summary": "Reclamo\u0020por\u0020Falta\u0020Total\u0020de\u0020Mercader\u00EDas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-RcvAccion.html#enumcase_RFT"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment",
             "name": "SiiEnvironment",
             "summary": "Enum\u0020del\u0020ambiente\u0020del\u0020SII\u0020cuando\u0020est\u00E1\u0020disponible\u0020m\u00E1s\u0020de\u0020uno.",
