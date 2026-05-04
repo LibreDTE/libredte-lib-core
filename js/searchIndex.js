@@ -9236,6 +9236,16 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020el\u0020detalle\u0020SII\u0020debe\u0020persistirse\u0020para\u0020este\u0020estado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003Alabel\u0028\u0029",
+            "name": "label",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_label"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AcolorClass\u0028\u0029",
+            "name": "colorClass",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_colorClass"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AENVIADO",
             "name": "ENVIADO",
             "summary": "Enviado\u0020al\u0020SII,\u0020esperando\u0020respuesta\u0020definitiva.",
