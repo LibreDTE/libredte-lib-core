@@ -72,14 +72,14 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
         XmlDocumentInterface $doc,
         string $company,
         string $emailNotif,
-        ?int $retry = null
+        ?int $retries = null
     ): SendAecResponse {
         return $this->sendAecJob->send(
             $request,
             $doc,
             $company,
             $emailNotif,
-            $retry
+            $retries
         );
     }
 }

@@ -80,14 +80,14 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
-        ?int $retry = null
+        ?int $retries = null
     ): SendXmlDocumentResponse {
         return $this->sendXmlDocumentJob->send(
             $request,
             $doc,
             $company,
             $compress,
-            $retry
+            $retries
         );
     }
 

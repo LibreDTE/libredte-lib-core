@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Enum\Contract\StatusInterface;
+use Derafu\Enum\Status;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -62,6 +64,16 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
         '112' => 'Error Interno.',
         '113' => 'Error Interno.',
     ];
+
+    /**
+     * Obtiene el tipo de salida para un estado.
+     *
+     * @return StatusInterface Tipo de salida.
+     */
+    public function getStatusType(): StatusInterface
+    {
+        return $this->getStatus() === '0' ? Status::Success : Status::Danger;
+    }
 
     /**
      * Obtiene los datos normalizados de la respuesta.

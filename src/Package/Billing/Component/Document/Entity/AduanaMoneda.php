@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
+use Derafu\Enum\Contract\CurrencyInterface;
 use Derafu\Enum\Currency;
 use Derafu\Repository\Entity;
 
@@ -56,9 +57,9 @@ class AduanaMoneda extends Entity
      * Si la moneda no fue encontrada en las monedas soportadas se devolverá la
      * moneda ISO 4217 XXX.
      *
-     * @return Currency
+     * @return CurrencyInterface
      */
-    public function getCurrency(): Currency
+    public function getCurrency(): CurrencyInterface
     {
         $moneda = Currency::tryFrom($this->getCodigoISO());
 

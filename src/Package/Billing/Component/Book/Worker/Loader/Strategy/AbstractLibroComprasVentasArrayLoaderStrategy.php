@@ -56,6 +56,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             ,
             'TipoLibro'         => 'MENSUAL',
             'TipoEnvio'         => 'TOTAL',
+            'FolioNotificacion' => false,
         ], $bag->getCaratula());
     }
 

@@ -28,6 +28,7 @@ use Derafu\Repository\Contract\EntityInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
  * Interfaz para las entidades que representan documentos tributarios.
@@ -305,6 +306,38 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * @return array
      */
     public function getTemplateTED(): array;
+
+    /**
+     * Obtiene la firma del DTE.
+     *
+     * @return string|null
+     */
+    public function getFirma(): ?string;
+
+    /**
+     * Obtiene el ambiente del SII asociado al documento.
+     *
+     * El ambiente se debe determinar a partir del CAF utilizado para timbrar el
+     * documento. Si el ambiente no se puede determinar se debe devolver `null`.
+     *
+     * El ambiente no se puede detemrinar si:
+     * - No se ha timbrado el documento.
+     * - El CAF utilizado para timbrar el documento no es uno entregado por el
+     *   SII. Por ejemplo, es un CAF falso generado con CafFaker.
+     *
+     * @return SiiEnvironment|null
+     */
+    public function getEnvironment(): ?SiiEnvironment;
+
+    /**
+     * Indica si el documento es del ambiente de certificación (1) o producción
+     * (0).
+     *
+     * Si el documento no tiene ambiente determinado se retornará `null`.
+     *
+     * @return int|null
+     */
+    public function getCertificacion(): ?int;
 
     /**
      * Obtiene un elemento del DTE utilizando un selector.

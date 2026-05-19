@@ -55,7 +55,7 @@ class SendAecJob extends AbstractJob implements JobInterface
      * @param XmlDocumentInterface $doc Documento XML del AEC.
      * @param string $company RUT del cedente.
      * @param string $emailNotif Correo electrónico de contacto del cedente.
-     * @param int|null $retry Intentos máximos al enviar.
+     * @param int|null $retries Intentos máximos al enviar.
      * @return SendAecResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
      * @throws SendAecException Si hay algún error al enviar el AEC.
@@ -65,7 +65,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         XmlDocumentInterface $doc,
         string $company,
         string $emailNotif,
-        ?int $retry = null
+        ?int $retries = null
     ): SendAecResponse {
         // Crear string del documento XML en ISO-8859-1 (requerido por el SII).
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
@@ -93,11 +93,11 @@ class SendAecJob extends AbstractJob implements JobInterface
             'archivo' => curl_file_create($filepath, 'application/xml', $filename),
         ];
 
-        // Resolver el valor de $retry.
-        $retry = $request->getRetries($retry);
+        // Resolver el valor de $retries.
+        $retries = $request->getRetries($retries);
 
         // Realizar la solicitud al SII.
-        $xmlResponse = $this->uploadAec($request, $data, $retry);
+        $xmlResponse = $this->uploadAec($request, $data, $retries);
 
         // Eliminar el archivo temporal.
         unlink($filepath);
@@ -168,14 +168,14 @@ class SendAecJob extends AbstractJob implements JobInterface
      *
      * @param SiiRequestInterface $request
      * @param array $data Campos del formulario multipart, incluido el archivo.
-     * @param int $retry Número de reintentos.
+     * @param int $retries Número de reintentos.
      * @return array Respuesta del SII decodificada como arreglo.
      * @throws SiiRtcException Si no se puede autenticar o si el HTTP falla.
      */
     private function uploadAec(
         SiiRequestInterface $request,
         array $data,
-        int $retry
+        int $retries
     ): array {
         $url = $request->getEnvironment()->getUrl('/cgi_rtc/RTC/RTCAnotEnvio.cgi');
         $token = $this->siiLazyWorker->authenticate($request);
@@ -198,14 +198,17 @@ class SendAecJob extends AbstractJob implements JobInterface
         }
 
         $responseBody = null;
-        for ($i = 0; $i < $retry; $i++) {
+        for ($i = 0; $i < $retries; $i++) {
             $responseBody = curl_exec($curl);
 
             if ($responseBody && $responseBody !== 'Error 500') {
                 break;
             }
 
-            usleep(200000 * $retry);
+            // El reitento será con "exponential backoff", por lo que se
+            // hace una pausa de 0.5 * $retries segundos antes de volver a
+            // intentar llamar a la función del servicio web.
+            usleep(500000 * $retries);
         }
 
         if (!$responseBody || $responseBody === 'Error 500') {

@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Enum\Contract\StatusInterface;
+use Derafu\Enum\Status;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -40,18 +42,44 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
      * El resultado de la consulta al SII puede arrojar uno de estos estados.
      */
     private const STATUSES = [
-        'DOK' => 'Documento Recibido por el SII. Datos Coinciden con los Registrados.',
-        'DNK' => 'Documento Recibido por el SII pero Datos NO Coinciden con los registrados.',
-        'FAU' => 'Documento No Recibido por el SII.',
-        'FNA' => 'Documento No Autorizado.',
-        'FAN' => 'Documento Anulado.',
-        'EMP' => 'Empresa no autorizada a Emitir Documentos Tributarios Electrónicos',
-        'TMD' => 'Existe Nota de Débito que Modifica Texto Documento.',
-        'TMC' => 'Existe Nota de Crédito que Modifica Textos Documento.',
-        'MMD' => 'Existe Nota de Débito que Modifica Montos Documento.',
-        'MMC' => 'Existe Nota de Crédito que Modifica Montos Documento.',
-        'AND' => 'Existe Nota de Débito que Anula Documento',
-        'ANC' => 'Existe Nota de Crédito que Anula Documento',
+        // Todo ok.
+        'DOK' => 'Documento recibido por el SII. Datos coinciden con los registrados.',
+        // Errores.
+        'DNK' => 'Documento recibido por el SII pero datos no coinciden con los registrados.',
+        'FAU' => 'Folio del documento no recibido por el SII.',
+        'FNA' => 'Folio no autorizado por el SII.',
+        'FAN' => 'Folio anulado antes de ser enviado al SII.',
+        'EMP' => 'Empresa no autorizada a emitir documentos tributarios electrónicos',
+        // Notas.
+        'TMD' => 'Existe nota de débito que modifica texto del documento.',
+        'TMC' => 'Existe nota de crédito que modifica texto del documento.',
+        'MMD' => 'Existe nota de débito que modifica montos del documento.',
+        'MMC' => 'Existe nota de crédito que modifica montos del documento.',
+        'AND' => 'Existe nota de débito que anula documento',
+        'ANC' => 'Existe nota de crédito que anula documento',
+    ];
+
+    /**
+     * Colores de salida.
+     *
+     * El resultado de la consulta al SII puede arrojar uno de estos colores.
+     */
+    private const STATUSES_TYPES = [
+        // Todo ok.
+        'DOK' => 'success',
+        // Errores.
+        'DNK' => 'danger',
+        'FAU' => 'danger',
+        'FNA' => 'danger',
+        'FAN' => 'danger',
+        'EMP' => 'danger',
+        // Notas.
+        'TMD' => 'info',
+        'TMC' => 'info',
+        'MMD' => 'info',
+        'MMC' => 'info',
+        'AND' => 'info',
+        'ANC' => 'info',
     ];
 
     /**
@@ -103,6 +131,16 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
             '14' => 'Error Interno',
         ],
     ];
+
+    /**
+     * Obtiene el tipo de salida para un estado.
+     *
+     * @return StatusInterface Tipo de salida.
+     */
+    public function getStatusType(): StatusInterface
+    {
+        return Status::tryFrom(self::STATUSES_TYPES[$this->getStatus()] ?? 'info');
+    }
 
     /**
      * Obtiene los datos normalizados de la respuesta.
@@ -186,13 +224,14 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
         // es un estado de error en el envío. Se valida esto primero pues es lo
         // que normalmente debería entregar el SII en la respuesta.
         if (isset(self::STATUSES[$status])) {
-            $description = $headers['GLOSA_ERR'] ?? null;
+            $description = self::STATUSES[$status];
+            // Se descarta la glosa del SII en $headers['GLOSA_ERR']
         }
 
         // Si el estado es un error de token se asigna.
         elseif (isset(self::ERRORS['TOKEN'][$status])) {
-            //$description = self::ERRORS['TOKEN'][$code];
-            $description = $headers['SII:GLOSA'] ?? null;
+            $description = self::ERRORS['TOKEN'][$status];
+            // Se descarta la glosa del SII en $headers['SII:GLOSA']
         }
 
         // El error es uno de los definidos como error de estado (excepto -11).

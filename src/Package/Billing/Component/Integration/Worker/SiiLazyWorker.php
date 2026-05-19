@@ -52,7 +52,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
         string $service,
         string $function,
         array|int $args = [],
-        ?int $retry = null,
+        ?int $retries = null,
         ?string $token = null
     ): XmlDocumentInterface {
         return $this->consumeWebserviceJob->sendRequest(
@@ -60,7 +60,7 @@ class SiiLazyWorker extends AbstractWorker implements SiiLazyWorkerInterface
             $service,
             $function,
             $args,
-            $retry,
+            $retries,
             $token
         );
     }

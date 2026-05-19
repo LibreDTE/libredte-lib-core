@@ -128,6 +128,18 @@ abstract class AbstractSiiWsdlResponse
     }
 
     /**
+     * Devuelve el mensaje de la solicitud realizada al SII.
+     *
+     * El formato es: <estado> - <descripción>.
+     *
+     * @return string El mensaje de la solicitud realizada al SII.
+     */
+    public function getMessage(): string
+    {
+        return sprintf('%s - %s', $this->getStatus(), $this->getDescription());
+    }
+
+    /**
      * Parsea el número de atención y la fecha/hora de un string.
      *
      * @param string $input Cadena con el número de atención y fecha/hora.

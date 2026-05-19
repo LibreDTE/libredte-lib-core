@@ -33,6 +33,8 @@ use Derafu\Xml\Exception\XmlQueryException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use LogicException;
 
 /**
@@ -598,6 +600,52 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFirma(): ?string
+    {
+        $firma = $this->xmlDocument->query('/DTE/Signature/SignatureValue');
+
+        if ($firma === null) {
+            return null;
+        }
+
+        return (string) trim(str_replace("\n", '', $firma));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    private function getCafIdk(): ?int
+    {
+        $value = $this->xmlDocument->query('//TED/DD/CAF/DA/IDK');
+
+        if ($value === null) {
+            return null;
+        }
+
+        return (int) $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEnvironment(): ?SiiEnvironment
+    {
+        $idk = $this->getCafIdk();
+
+        return $idk === CafFaker::IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCertificacion(): ?int
+    {
+        return $this->getEnvironment()?->value;
     }
 
     /**

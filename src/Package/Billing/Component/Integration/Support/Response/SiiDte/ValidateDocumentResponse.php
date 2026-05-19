@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Enum\Contract\StatusInterface;
+use Derafu\Enum\Status;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -40,18 +42,44 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
      * El resultado de la consulta al SII puede arrojar uno de estos estados.
      */
     private const STATUSES = [
-        'DOK' => 'Documento Recibido por el SII. Datos Coinciden con los Registrados.',
-        'DNK' => 'Documento Recibido por el SII pero Datos NO Coinciden con los registrados.',
-        'FAU' => 'Documento No Recibido por el SII.',
-        'FNA' => 'Documento No Autorizado.',
-        'FAN' => 'Documento Anulado.',
-        'EMP' => 'Empresa no autorizada a Emitir Documentos Tributarios Electrónicos',
-        'TMD' => 'Existe Nota de Débito que Modifica Texto Documento.',
-        'TMC' => 'Existe Nota de Crédito que Modifica Textos Documento.',
-        'MMD' => 'Existe Nota de Débito que Modifica Montos Documento.',
-        'MMC' => 'Existe Nota de Crédito que Modifica Montos Documento.',
-        'AND' => 'Existe Nota de Débito que Anula Documento',
-        'ANC' => 'Existe Nota de Crédito que Anula Documento',
+        // Todo ok.
+        'DOK' => 'Documento recibido por el SII. Datos coinciden con los registrados.',
+        // Errores.
+        'DNK' => 'Documento recibido por el SII pero datos no coinciden con los registrados.',
+        'FAU' => 'Folio del documento no recibido por el SII.',
+        'FNA' => 'Folio no autorizado por el SII.',
+        'FAN' => 'Folio anulado antes de ser enviado al SII.',
+        'EMP' => 'Empresa no autorizada a emitir documentos tributarios electrónicos',
+        // Notas.
+        'TMD' => 'Existe nota de débito que modifica texto del documento.',
+        'TMC' => 'Existe nota de crédito que modifica texto del documento.',
+        'MMD' => 'Existe nota de débito que modifica montos del documento.',
+        'MMC' => 'Existe nota de crédito que modifica montos del documento.',
+        'AND' => 'Existe nota de débito que anula documento',
+        'ANC' => 'Existe nota de crédito que anula documento',
+    ];
+
+    /**
+     * Colores de salida.
+     *
+     * El resultado de la consulta al SII puede arrojar uno de estos colores.
+     */
+    private const STATUSES_TYPES = [
+        // Todo ok.
+        'DOK' => 'success',
+        // Errores.
+        'DNK' => 'danger',
+        'FAU' => 'danger',
+        'FNA' => 'danger',
+        'FAN' => 'danger',
+        'EMP' => 'danger',
+        // Notas.
+        'TMD' => 'info',
+        'TMC' => 'info',
+        'MMD' => 'info',
+        'MMC' => 'info',
+        'AND' => 'info',
+        'ANC' => 'info',
     ];
 
     /**
@@ -86,21 +114,30 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
             //'OTRO' => 'Código de Oracle',
         ],
         'ERR_CODE' => [
-            '0' => 'Documento Recibido por el SII. Datos Coinciden con los Registrados.',
-            '1' => 'Documento Recibido por el SII pero Datos NO Coinciden con los registrados.',
-            '3' => 'Documento No Recibido por el SII.',
-            '4' => 'Documento No Autorizado.',
-            '5' => 'Documento Anulado.',
-            '6' => 'Empresa no autorizada a Emitir Documentos Tributarios Electrónicos',
-            '10' => 'Existe Nota de Debito que Modifica Texto Documento.',
-            '11' => 'Existe Nota de Crédito que Modifica Textos Documento.',
-            '12' => 'Existe Nota de Debito que Modifica Montos Documento.',
-            '13' => 'Existe Nota de Crédito que Modifica Montos Documento.',
-            '14' => 'Existe Nota de Debito que Anula Documento',
-            '15' => 'Existe Nota de Crédito que Anula Documento Otro Error Interno.',
-            //'OTRO' => 'Error Interno.',
+            '0' => self::STATUSES_TYPES['DOK'],
+            '1' => self::STATUSES_TYPES['DNK'],
+            '3' => self::STATUSES_TYPES['FAU'],
+            '4' => self::STATUSES_TYPES['FNA'],
+            '5' => self::STATUSES_TYPES['FAN'],
+            '6' => self::STATUSES_TYPES['EMP'],
+            '10' => self::STATUSES_TYPES['TMD'],
+            '11' => self::STATUSES_TYPES['TMC'],
+            '12' => self::STATUSES_TYPES['MMD'],
+            '13' => self::STATUSES_TYPES['MMC'],
+            '14' => self::STATUSES_TYPES['AND'],
+            '15' => self::STATUSES_TYPES['ANC'],
         ],
     ];
+
+    /**
+     * Obtiene el tipo de salida para un estado.
+     *
+     * @return StatusInterface Tipo de salida.
+     */
+    public function getStatusType(): StatusInterface
+    {
+        return Status::tryFrom(self::STATUSES_TYPES[$this->getStatus()] ?? 'info');
+    }
 
     /**
      * Obtiene los datos normalizados de la respuesta.
@@ -182,13 +219,14 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
         // que normalmente debería entregar el SII en la respuesta.
         if (isset(self::STATUSES[$status])) {
             $received = !in_array($status[0], ['F', 'E']);
-            $description = $headers['GLOSA_ERR'] ?? null;
+            $description = self::STATUSES[$status];
+            // Se descarta la glosa del SII en $headers['GLOSA_ERR']
         }
 
         // Si el estado es un error de token se asigna.
         elseif (isset(self::ERRORS['TOKEN'][$status])) {
-            //$description = self::ERRORS['TOKEN'][$code];
-            $description = $headers['GLOSA'] ?? null;
+            $description = self::ERRORS['TOKEN'][$status];
+            // Se descarta la glosa del SII en $headers['GLOSA']
         }
 
         // El error es uno de los definidos como error de estado (excepto -11).

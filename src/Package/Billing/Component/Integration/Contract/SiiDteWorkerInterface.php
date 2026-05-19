@@ -50,7 +50,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param XmlDocumentInterface $doc Documento XML que se desea enviar al SII.
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
-     * @param int|null $retry Intentos que se realizarán como máximo al enviar.
+     * @param int|null $retries Intentos que se realizarán como máximo al enviar.
      * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
@@ -61,7 +61,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
         XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
-        ?int $retry = null
+        ?int $retries = null
     ): SendXmlDocumentResponse;
 
     /**

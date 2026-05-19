@@ -65,7 +65,7 @@ enum SiiEnvironment: int
      * por defecto y otras específicas para ciertos servicios que tienen el WSDL
      * en otra ruta.
      *
-     * @var array
+     * @var array<string, string|array<int, string>>
      */
     private const WSDL_URLS = [
         'default' => 'https://%s.sii.cl/DTEWS/%s.jws?WSDL',
@@ -73,15 +73,68 @@ enum SiiEnvironment: int
         'wsDTECorreo' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
         // El servicio del RCV usa servidores y rutas distintos al patrón DTEWS.
         'registroreclamodteservice' => [
-            0 => 'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
-            1 => 'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
+            self::PRODUCTION->value => 'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',
+            self::STAGING->value => 'https://ws2.sii.cl/WSREGISTRORECLAMODTECERT/registroreclamodteservice?wsdl',
         ],
     ];
 
     /**
+     * Mapa de IDKs de CAF con los ambientes del SII.
+     *
+     * @var array<int, int>
+     */
+    private const CAF_IDKS = [
+        self::PRODUCTION->value => 300,
+        self::STAGING->value => 100,
+    ];
+
+    /**
+     * Obtiene el código del ambiente.
+     *
+     * El resultado puede ser:
+     *
+     *   - 'prod' para el ambiente de producción (production).
+     *   - 'cert' para el ambiente de certificación (staging).
+     *
+     * @return string Código del ambiente.
+     */
+    public function getCode(): string
+    {
+        return match ($this) {
+            self::PRODUCTION => 'prod',
+            self::STAGING => 'cert',
+        };
+    }
+
+    /**
+     * Obtiene el nombre del ambiente.
+     *
+     * @return string Nombre del ambiente.
+     */
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::PRODUCTION => 'Producción',
+            self::STAGING => 'Certificación',
+        };
+    }
+
+    /**
+     * Indica si el ambiente es el de producción.
+     *
+     * @return bool `true` si el ambiente es el de producción, `false` en caso
+     * contrario.
+     */
+    public function isProduction(): bool
+    {
+        return $this === self::PRODUCTION;
+    }
+
+    /**
      * Indica si el ambiente es el de certificación.
      *
-     * @return bool
+     * @return bool `true` si el ambiente es el de certificación, `false` en
+     * caso contrario.
      */
     public function isStaging(): bool
     {
@@ -153,5 +206,47 @@ enum SiiEnvironment: int
         ;
 
         return sprintf('https://%s.sii.cl%s', $server, $resource);
+    }
+
+    /**
+     * Obtiene el IDK del CAF para el ambiente.
+     *
+     * @return int IDK del CAF para el ambiente.
+     */
+    public function getCafIdk(): int
+    {
+        return self::CAF_IDKS[$this->value];
+    }
+
+    /**
+     * Intenta obtener el ambiente del SII a partir de un IDK.
+     *
+     * @param int $idk IDK del CAF.
+     * @return self|null Ambiente del SII o `null` si no se encontró.
+     */
+    public static function tryFromCafIdk(int $idk): ?self
+    {
+        foreach (self::CAF_IDKS as $environmentValue => $cafIdk) {
+            if ($idk === $cafIdk) {
+                return self::from($environmentValue);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Intenta obtener el ambiente del SII a partir de un código.
+     *
+     * @param string $code Código del ambiente.
+     * @return self|null Ambiente del SII o `null` si no se encontró.
+     */
+    public static function tryFromCode(string $code): ?self
+    {
+        return match ($code) {
+            'prod' => self::PRODUCTION,
+            'cert' => self::STAGING,
+            default => null,
+        };
     }
 }

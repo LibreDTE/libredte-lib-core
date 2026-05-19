@@ -58,7 +58,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param string $function Nombre de la función que se ejecutará en el
      * servicio web del SII.
      * @param array|int $args Argumentos que se pasarán al servicio web.
-     * @param int|null $retry Intentos que se realizarán como máximo para
+     * @param int|null $retries Intentos que se realizarán como máximo para
      * obtener respuesta.
      * @param string|null $token Token de autenticación. Si se provee, se
      * establece como cookie TOKEN en el cliente SOAP (requerido por el RCV).
@@ -70,20 +70,20 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         string $service,
         string $function,
         array|int $args = [],
-        ?int $retry = null,
+        ?int $retries = null,
         ?string $token = null
     ): XmlDocumentInterface {
-        // Revisar si se pasó en $args el valor de $retry.
+        // Revisar si se pasó en $args el valor de $retries.
         if (is_int($args)) {
-            $retry = $args;
+            $retries = $args;
             $args = [];
         }
 
         // Definir el WSDL que se debe utilizar.
         $wsdl = $this->getWsdlUri($request, $service);
 
-        // Resolver el valor de $retry.
-        $retry = $request->getRetries($retry);
+        // Resolver el valor de $retries.
+        $retries = $request->getRetries($retries);
 
         // Definir las opciones para consumir el servicio web.
         $soapClientOptions = $this->createSoapClientOptions($request);
@@ -94,7 +94,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
             $function,
             $args,
             $soapClientOptions,
-            $retry,
+            $retries,
             $token
         );
     }
@@ -144,7 +144,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param string $function Nombre de la función que se ejecutará,
      * @param array $args Argumentos que se pasarán al servicio web.
      * @param array $soapClientOptions Opciones del cliente SOAP.
-     * @param int $retry Intentos que se realizarán como máximo.
+     * @param int $retries Intentos que se realizarán como máximo.
      * @param string|null $token Token de autenticación para establecer como
      * cookie TOKEN en el cliente SOAP.
      * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
@@ -155,7 +155,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         string $function,
         array $args,
         array $soapClientOptions,
-        int $retry,
+        int $retries,
         ?string $token = null
     ): XmlDocumentInterface {
         // Preparar cliente SOAP.
@@ -199,9 +199,9 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
 
         // Ejecutar la función que se ha solicitado del servicio web a través
         // del cliente SOAP preparado previamente.
-        // Se realizarán $retry intentos de consulta. O sea, si $retry > 0 se
-        // hará una consulta más $retry - 1 reintentos.
-        for ($i = 0; $i < $retry; $i++) {
+        // Se realizarán $retries intentos de consulta. O sea, si $retries > 0 se
+        // hará una consulta más $retries - 1 reintentos.
+        for ($i = 0; $i < $retries; $i++) {
             try {
                 // Se realiza la llamada a la función en el servicio web.
                 $responseBody = $soap->__soapCall(
@@ -230,9 +230,9 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
                 );
                 $responseBody = null;
                 // El reitento será con "exponential backoff", por lo que se
-                // hace una pausa de 0.2 * $retry segundos antes de volver a
+                // hace una pausa de 0.5 * $retries segundos antes de volver a
                 // intentar llamar a la función del servicio web.
-                usleep(200000 * $retry);
+                usleep(500000 * $retries);
             }
         }
 
@@ -242,7 +242,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
             throw new ConsumeWebserviceException(sprintf(
                 'No se obtuvo respuesta de la función %s del servicio web SOAP del SII después de %d intentos. %s',
                 $function,
-                $retry,
+                $retries,
                 implode(' ', $errors)
             ));
         }

@@ -188,7 +188,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         $data = $this->getData();
 
         if ($data['status'] !== 'EPR') {
-            return null;
+            return EstadoEnvioSii::tryFromSiiCodigo($data['status']);
         }
 
         if ($this->hasRejectedDocuments()) {

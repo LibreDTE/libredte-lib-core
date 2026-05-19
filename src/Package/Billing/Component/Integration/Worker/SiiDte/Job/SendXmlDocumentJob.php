@@ -57,7 +57,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param XmlDocumentInterface $doc Documento XML que se desea enviar al SII.
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
-     * @param int|null $retry Intentos que se realizarán como máximo al enviar.
+     * @param int|null $retries Intentos que se realizarán como máximo al enviar.
      * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
@@ -67,7 +67,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         XmlDocumentInterface $doc,
         string $company,
         bool $compress = false,
-        ?int $retry = null
+        ?int $retries = null
     ): SendXmlDocumentResponse {
         // Crear string del documento XML.
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
@@ -98,11 +98,11 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             'archivo' => curl_file_create($filepath, $mimetype, $filename),
         ];
 
-        // Resolver el valor de $retry.
-        $retry = $request->getRetries($retry);
+        // Resolver el valor de $retries.
+        $retries = $request->getRetries($retries);
 
         // Realizar la solicitud mediante POST al SII para subir el archivo.
-        $xmlResponse = $this->uploadXml($request, $data, $retry);
+        $xmlResponse = $this->uploadXml($request, $data, $retries);
 
         // Eliminar el archivo temporal con el XML.
         unlink($filepath);
@@ -207,7 +207,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param array $data Arreglo con los datos del formulario del SII,
      * incluyendo el archivo XML que se subirá.
-     * @param int $retry
+     * @param int $retries
      * @return XmlDocumentInterface Respuesta del SII al enviar el XML.
      * @throws SiiDteException Si no se puede obtener el token para enviar
      * el XML al SII o si hubo un problema (error) al enviar el XML al SII.
@@ -215,7 +215,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
     private function uploadXml(
         SiiRequestInterface $request,
         array $data,
-        int $retry
+        int $retries
     ): XmlDocumentInterface {
         // URL que se utilizará para subir el XML al SII.
         $url = $request->getEnvironment()->getUrl('/cgi_dte/UPL/DTEUpload');
@@ -244,9 +244,9 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 
-        // Realizar el envío del XML al SII con $retry intentos.
+        // Realizar el envío del XML al SII con $retries intentos.
         $responseBody = null;
-        for ($i = 0; $i < $retry; $i++) {
+        for ($i = 0; $i < $retries; $i++) {
             // Realizar consulta al SII enviando el XML.
             $responseBody = curl_exec($curl);
 
@@ -258,9 +258,9 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             }
 
             // El reitento será con "exponential backoff", por lo que se hace
-            // una pausa de 0.2 * $retry segundos antes de volver a intentar el
+            // una pausa de 0.5 * $retries segundos antes de volver a intentar el
             // envio del XML al SII.
-            usleep(200000 * $retry);
+            usleep(500000 * $retries);
         }
 
         // Validar si hubo un error en la respuesta.

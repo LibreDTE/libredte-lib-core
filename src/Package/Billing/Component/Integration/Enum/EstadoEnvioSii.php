@@ -24,6 +24,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Enum;
 
+use Derafu\Enum\Contract\StatusInterface;
+use Derafu\Enum\Status;
+
 /**
  * Estado del envío de un DTE al SII.
  *
@@ -74,32 +77,6 @@ enum EstadoEnvioSii: string
     ];
 
     /**
-     * Construye el enum a partir del código de 3 caracteres devuelto por el
-     * SII (ej: 'RCH', 'EPR', 'RFR').
-     */
-    public static function fromSiiCodigo(string $codigo): ?self
-    {
-        return match (true) {
-            $codigo === 'EPR'                              => self::ACEPTADO,
-            in_array($codigo, ['RLV', 'RPR'], true)        => self::REPARO,
-            in_array($codigo, self::RECHAZADOS, true)      => self::RECHAZADO,
-            in_array($codigo, self::NO_FINALES, true)      => self::ENVIADO,
-            default                                        => null,
-        };
-    }
-
-    /**
-     * Construye el enum a partir de la glosa completa del SII
-     * (ej: 'RCH - DTE Rechazado', 'EPR - Envío Procesado').
-     *
-     * Extrae el código antes del primer espacio y delega a fromSiiCodigo().
-     */
-    public static function fromGlosa(string $glosa): ?self
-    {
-        return self::fromSiiCodigo(explode(' ', $glosa, 2)[0]);
-    }
-
-    /**
      * Indica si el estado es definitivo (no se esperan más cambios del SII).
      */
     public function isFinal(): bool
@@ -140,7 +117,7 @@ enum EstadoEnvioSii: string
         return $this === self::RECHAZADO || $this === self::REPARO;
     }
 
-    public function label(): string
+    public function getLabel(): string
     {
         return match ($this) {
             self::ENVIADO   => 'Enviado',
@@ -150,13 +127,39 @@ enum EstadoEnvioSii: string
         };
     }
 
-    public function colorClass(): string
+    public function getStatusType(): StatusInterface
     {
         return match ($this) {
-            self::ENVIADO   => 'text-bg-secondary',
-            self::ACEPTADO  => 'text-bg-success',
-            self::REPARO    => 'text-bg-warning',
-            self::RECHAZADO => 'text-bg-danger',
+            self::ENVIADO   => Status::Secondary,
+            self::ACEPTADO  => Status::Success,
+            self::REPARO    => Status::Warning,
+            self::RECHAZADO => Status::Danger,
         };
+    }
+
+    /**
+     * Construye el enum a partir del código de 3 caracteres devuelto por el
+     * SII (ej: 'RCH', 'EPR', 'RFR').
+     */
+    public static function tryFromSiiCodigo(string $codigo): ?self
+    {
+        return match (true) {
+            $codigo === 'EPR'                              => self::ACEPTADO,
+            in_array($codigo, ['RLV', 'RPR'], true)        => self::REPARO,
+            in_array($codigo, self::RECHAZADOS, true)      => self::RECHAZADO,
+            in_array($codigo, self::NO_FINALES, true)      => self::ENVIADO,
+            default                                        => null,
+        };
+    }
+
+    /**
+     * Construye el enum a partir de la glosa completa del SII
+     * (ej: 'RCH - DTE Rechazado', 'EPR - Envío Procesado').
+     *
+     * Extrae el código antes del primer espacio y delega a tryFromSiiCodigo().
+     */
+    public static function tryFromGlosa(string $glosa): ?self
+    {
+        return self::tryFromSiiCodigo(explode(' ', $glosa, 2)[0]);
     }
 }

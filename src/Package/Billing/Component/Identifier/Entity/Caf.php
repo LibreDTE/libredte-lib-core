@@ -43,35 +43,6 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 class Caf implements CafInterface
 {
     /**
-     * Ambiente de certificación del SII.
-     *
-     * Este valor se utiliza para identificar que el CAF pertenece al ambiente
-     * de pruebas o certificación.
-     */
-    private const IDK_STAGING = 100;
-
-    /**
-     * Ambiente de producción del SII.
-     *
-     * Este valor se utiliza para identificar que el CAF pertenece al ambiente
-     * de producción.
-     */
-    private const IDK_PRODUCTION = 300;
-
-    /**
-     * Mapa de ambientes disponibles para el CAF.
-     *
-     * Asocia los valores de los ambientes con las configuraciones
-     * correspondientes de conexión al SII (certificación o producción).
-     *
-     * @var array<int, SiiEnvironment>
-     */
-    private const AMBIENTES = [
-        self::IDK_STAGING => SiiEnvironment::STAGING,
-        self::IDK_PRODUCTION => SiiEnvironment::PRODUCTION,
-    ];
-
-    /**
      * Documento XML del CAF.
      *
      * Este objeto representa el XML cargado del CAF, utilizado para
@@ -353,7 +324,7 @@ class Caf implements CafInterface
     {
         $idk = $this->getIDK();
 
-        return $idk === CafFaker::IDK ? null : self::AMBIENTES[$idk];
+        return $idk === CafFaker::IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
     }
 
     /**

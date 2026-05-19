@@ -45,7 +45,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param string $function Nombre de la función que se ejecutará en el
      * servicio web del SII.
      * @param array|int $args Argumentos que se pasarán al servicio web.
-     * @param int|null $retry Intentos que se realizarán como máximo para
+     * @param int|null $retries Intentos que se realizarán como máximo para
      * obtener respuesta.
      * @param string|null $token Token de autenticación. Si se provee, se
      * establece como cookie TOKEN en el cliente SOAP (requerido por el RCV).
@@ -57,7 +57,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
         string $service,
         string $function,
         array|int $args = [],
-        ?int $retry = null,
+        ?int $retries = null,
         ?string $token = null
     ): XmlDocumentInterface;
 

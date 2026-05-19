@@ -42,7 +42,7 @@ interface SiiRtcWorkerInterface extends WorkerInterface
      * @param string $company RUT del cedente (empresa que cede el documento).
      * @param string $emailNotif Correo electrónico de contacto del cedente para
      *   notificaciones del SII sobre el resultado del procesamiento del AEC.
-     * @param int|null $retry Intentos que se realizarán como máximo al enviar.
+     * @param int|null $retries Intentos que se realizarán como máximo al enviar.
      * @return SendAecResponse Respuesta con el Track ID del envío.
      * @throws SendAecException Si hay algún error al enviar el AEC.
      * @link https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2
@@ -52,6 +52,6 @@ interface SiiRtcWorkerInterface extends WorkerInterface
         XmlDocumentInterface $doc,
         string $company,
         string $emailNotif,
-        ?int $retry = null
+        ?int $retries = null
     ): SendAecResponse;
 }
