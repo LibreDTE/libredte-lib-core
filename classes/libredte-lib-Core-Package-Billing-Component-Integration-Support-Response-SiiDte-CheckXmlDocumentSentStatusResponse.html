@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -197,23 +200,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#constant_ERRORS">ERRORS</a>
     <span>
-        &nbsp;= [
-    // Otros Errores.
-    &#039;ESTADO&#039; =&gt; [&#039;-1&#039; =&gt; &#039;ERROR: RETORNO CAMPO ESTADO, NO EXISTE&#039;, &#039;-2&#039; =&gt; &#039;ERROR RETORNO&#039;, &#039;-3&#039; =&gt; &#039;ERROR: RUT USUARIO NO EXISTE&#039;, &#039;-4&#039; =&gt; &#039;ERROR OBTENCION DE DATOS&#039;, &#039;-5&#039; =&gt; &#039;ERROR RETORNO DATOS&#039;, &#039;-6&#039; =&gt; &#039;ERROR: USUARIO NO AUTORIZADO&#039;, &#039;-7&#039; =&gt; &#039;ERROR RETORNO DATOS&#039;, &#039;-8&#039; =&gt; &#039;ERROR: RETORNO DATOS&#039;, &#039;-9&#039; =&gt; &#039;ERROR: RETORNO DATOS&#039;, &#039;-10&#039; =&gt; &#039;ERROR: VALIDA RUT USUARIO&#039;, &#039;-11&#039; =&gt; &#039;ERR_CODE, SQL_CODE, SRV_CODE&#039;, &#039;-12&#039; =&gt; &#039;ERROR: RETORNO CONSULTA&#039;, &#039;-13&#039; =&gt; &#039;ERROR RUT USUARIO NULO&#039;, &#039;-14&#039; =&gt; &#039;ERROR XML RETORNO DATOS&#039;],
-    // Errores por autenticación.
-    &#039;TOKEN&#039; =&gt; [&#039;001&#039; =&gt; &#039;Cookie Inactivo (o Token Inactivo)&#039;, &#039;002&#039; =&gt; &#039;Token Inactivo&#039;, &#039;003&#039; =&gt; &#039;Token No Existe&#039;],
-    // Errores de consulta.
-    &#039;SRV_CODE&#039; =&gt; [0 =&gt; &#039;Todo Ok&#039;, 1 =&gt; &#039;Error en Entrada&#039;, 2 =&gt; &#039;Error SQL&#039;],
-    &#039;SQL_CODE&#039; =&gt; [0 =&gt; &#039;Schema Validado&#039;],
-    &#039;ERR_CODE&#039; =&gt; [0 =&gt; &#039;Se retorna el estado&#039;, 1 =&gt; &#039;El envío no es de la Empresa, faltan parámetros de entrada.&#039;, 2 =&gt; &#039;Error de Proceso&#039;],
-]                            </span>
+        &nbsp;: mixed&nbsp;= [ // Otros Errores. &#039;ESTADO&#039; =&gt; [&#039;-1&#039; =&gt; &#039;ERROR...                            </span>
 </dt>
 <dd>Estados de salida por ERROR.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#constant_STATUSES">STATUSES</a>
     <span>
-        &nbsp;= [&#039;RSC&#039; =&gt; &#039;Rechazado por Error en Schema&#039;, &#039;SOK&#039; =&gt; &#039;Schema Validado&#039;, &#039;CRT&#039; =&gt; &#039;Carátula OK&#039;, &#039;RFR&#039; =&gt; &#039;Rechazado por Error en Firma&#039;, &#039;FOK&#039; =&gt; &#039;Firma de Envió Validada&#039;, &#039;PDR&#039; =&gt; &#039;Envió en Proceso&#039;, &#039;RCT&#039; =&gt; &#039;Rechazado por Error en Carátula&#039;, &#039;EPR&#039; =&gt; &#039;Envío Procesado&#039;]                            </span>
+        &nbsp;: mixed&nbsp;= [&#039;RSC&#039; =&gt; &#039;Rechazado por Error en Schema&#039;, &#039;SOK...                            </span>
 </dt>
 <dd>Estados de salida.</dd>
 
@@ -303,6 +297,13 @@
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Obtiene los encabezados de la respuesta del SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage">getMessage()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Devuelve el mensaje de la solicitud realizada al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail">getReviewDetail()</a>
@@ -924,6 +925,51 @@ un único lugar (instancia).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMessage">
+        getMessage()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php"><a href="files/src-package-billing-component-integration-abstract-abstractsiiwsdlresponse.html"><abbr title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php">AbstractSiiWsdlResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">137</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve el mensaje de la solicitud realizada al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMessage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El formato es: <estado> - &lt;descripción&gt;.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El mensaje de la solicitud realizada al SII.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getReviewDetail">
         getReviewDetail()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1143,7 +1189,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php"><a href="files/src-package-billing-component-integration-abstract-abstractsiiwsdlresponse.html"><abbr title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php">AbstractSiiWsdlResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
@@ -1481,100 +1527,7 @@ y reparos.</p>
 </article>
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -1618,6 +1571,7 @@ y reparos.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getDescription">getDescription()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders">getHeaders()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage">getMessage()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail">getReviewDetail()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus">getReviewStatus()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getStatus">getStatus()</a></li>

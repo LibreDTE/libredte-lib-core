@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -203,6 +206,27 @@ servidor o armar una URL.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCafIdk">getCafIdk()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Obtiene el IDK del CAF para el ambiente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCode">getCode()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el código del ambiente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getLabel">getLabel()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el nombre del ambiente.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getServer">getServer()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -232,11 +256,32 @@ se esté usando.</dd>
 <dd>Obtiene la ruta completa a un archivo WSDL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isProduction">isProduction()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si el ambiente es el de producción.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isStaging">isStaging()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Indica si el ambiente es el de certificación.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCafIdk">tryFromCafIdk()</a>
+    <span>
+                                &nbsp;: self|null    </span>
+</dt>
+<dd>Intenta obtener el ambiente del SII a partir de un IDK.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCode">tryFromCode()</a>
+    <span>
+                                &nbsp;: self|null    </span>
+</dt>
+<dd>Intenta obtener el ambiente del SII a partir de un código.</dd>
 
     </dl>
 
@@ -316,6 +361,141 @@ se esté usando.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getCafIdk">
+        getCafIdk()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCafIdk" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">216</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el IDK del CAF para el ambiente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCafIdk</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>IDK del CAF para el ambiente.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCode">
+        getCode()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">101</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el código del ambiente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCode</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El resultado puede ser:</p>
+<ul>
+<li>'prod' para el ambiente de producción (production).</li>
+<li>'cert' para el ambiente de certificación (staging).</li>
+</ul>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Código del ambiente.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getLabel">
+        getLabel()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getLabel" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">114</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el nombre del ambiente.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLabel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Nombre del ambiente.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getServer">
         getServer()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getServer" class="headerlink"><i class="fas fa-link"></i></a>
@@ -324,7 +504,7 @@ se esté usando.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
@@ -379,7 +559,7 @@ se esté usando.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">201</span>
 
     </aside>
 
@@ -435,7 +615,7 @@ se esté usando.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
@@ -491,7 +671,7 @@ en el caso que no exista un WSDL específico para el servicio.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">185</span>
 
     </aside>
 
@@ -538,6 +718,50 @@ en el caso que no exista un WSDL específico para el servicio.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_isProduction">
+        isProduction()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isProduction" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">128</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si el ambiente es el de producción.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isProduction</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">true</code> si el ambiente es el de producción, <code class="prettyprint">false</code> en caso
+contrario.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_isStaging">
         isStaging()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isStaging" class="headerlink"><i class="fas fa-link"></i></a>
@@ -546,7 +770,7 @@ en el caso que no exista un WSDL específico para el servicio.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -568,105 +792,127 @@ en el caso que no exista un WSDL específico para el servicio.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">true</code> si el ambiente es el de certificación, <code class="prettyprint">false</code> en
+caso contrario.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_tryFromCafIdk">
+        tryFromCafIdk()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCafIdk" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">227</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Intenta obtener el ambiente del SII a partir de un IDK.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">tryFromCafIdk</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$idk</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$idk</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>IDK del CAF.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ambiente del SII o <code class="prettyprint">null</code> si no se encontró.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_tryFromCode">
+        tryFromCode()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php"><a href="files/src-package-billing-component-integration-enum-siienvironment.html"><abbr title="src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php">SiiEnvironment.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">244</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Intenta obtener el ambiente del SII a partir de un código.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">tryFromCode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$code</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$code</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Código del ambiente.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ambiente del SII o <code class="prettyprint">null</code> si no se encontró.</p>
+</section>
+
             </section>
 
 </article>
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Enum/SiiEnvironment.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -693,11 +939,17 @@ en el caso que no exista un WSDL específico para el servicio.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCafIdk">getCafIdk()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCode">getCode()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getLabel">getLabel()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getServer">getServer()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getUrl">getUrl()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getWsdl">getWsdl()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getWsdlPath">getWsdlPath()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isProduction">isProduction()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isStaging">isStaging()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCafIdk">tryFromCafIdk()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCode">tryFromCode()</a></li>
                                             </ul>
                 </li>
                     </ul>

@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -155,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -197,25 +200,23 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_ERRORS">ERRORS</a>
     <span>
-        &nbsp;= [
-    // Otros Errores.
-    &#039;ESTADO&#039; =&gt; [&#039;-1&#039; =&gt; &#039;ERROR: RETORNO CAMPO ESTADO&#039;, &#039;-2&#039; =&gt; &#039;ERROR RETORNO&#039;, &#039;-3&#039; =&gt; &#039;ERROR RETORNO&#039;, &#039;-4&#039; =&gt; &#039;ERROR RETORNO&#039;],
-    // Errores por autenticación.
-    &#039;TOKEN&#039; =&gt; [&#039;001&#039; =&gt; &#039;Cookie Inactivo (o token no existe)&#039;, &#039;002&#039; =&gt; &#039;Token Inactivo&#039;, &#039;003&#039; =&gt; &#039;Token No Existe&#039;],
-    // Errores de consulta.
-    &#039;SRV_CODE&#039; =&gt; [0 =&gt; &#039;Todo Ok&#039;, 1 =&gt; &#039;Error en Entrada&#039;, 2 =&gt; &#039;Error SQL&#039;],
-    &#039;SQL_CODE&#039; =&gt; [0 =&gt; &#039;Schema Validado&#039;],
-    &#039;ERR_CODE&#039; =&gt; [&#039;0&#039; =&gt; &#039;Consulta procesada OK.&#039;, &#039;1&#039; =&gt; &#039;Token inactivo (expirado)&#039;, &#039;2&#039; =&gt; &#039;Token no existe&#039;, &#039;3&#039; =&gt; &#039;Error Interno (ver glosa)&#039;, &#039;4&#039; =&gt; &#039;Error Interno&#039;, &#039;5&#039; =&gt; &#039;Error parámetros de entrada (ver glosa)&#039;, &#039;6&#039; =&gt; &#039;Error Interno&#039;, &#039;7&#039; =&gt; &#039;Error Interno&#039;, &#039;8&#039; =&gt; &#039;Error Interno&#039;, &#039;9&#039; =&gt; &#039;Usuario no autorizado en empresa&#039;, &#039;10&#039; =&gt; &#039;Error Interno&#039;, &#039;11&#039; =&gt; &#039;Error Interno&#039;, &#039;12&#039; =&gt; &#039;Error Interno&#039;, &#039;13&#039; =&gt; &#039;Error Interno&#039;, &#039;14&#039; =&gt; &#039;Error Interno&#039;],
-]                            </span>
+        &nbsp;: mixed&nbsp;= [ // Otros Errores. &#039;ESTADO&#039; =&gt; [&#039;-1&#039; =&gt; &#039;ERROR...                            </span>
 </dt>
 <dd>Estados de salida por ERROR.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES">STATUSES</a>
     <span>
-        &nbsp;= [&#039;DOK&#039; =&gt; &#039;Documento Recibido por el SII. Datos Coinciden con los Registrados.&#039;, &#039;DNK&#039; =&gt; &#039;Documento Recibido por el SII pero Datos NO Coinciden con los registrados.&#039;, &#039;FAU&#039; =&gt; &#039;Documento No Recibido por el SII.&#039;, &#039;FNA&#039; =&gt; &#039;Documento No Autorizado.&#039;, &#039;FAN&#039; =&gt; &#039;Documento Anulado.&#039;, &#039;EMP&#039; =&gt; &#039;Empresa no autorizada a Emitir Documentos Tributarios Electrónicos&#039;, &#039;TMD&#039; =&gt; &#039;Existe Nota de Débito que Modifica Texto Documento.&#039;, &#039;TMC&#039; =&gt; &#039;Existe Nota de Crédito que Modifica Textos Documento.&#039;, &#039;MMD&#039; =&gt; &#039;Existe Nota de Débito que Modifica Montos Documento.&#039;, &#039;MMC&#039; =&gt; &#039;Existe Nota de Crédito que Modifica Montos Documento.&#039;, &#039;AND&#039; =&gt; &#039;Existe Nota de Débito que Anula Documento&#039;, &#039;ANC&#039; =&gt; &#039;Existe Nota de Crédito que Anula Documento&#039;]                            </span>
+        &nbsp;: mixed&nbsp;= [ // Todo ok. &#039;DOK&#039; =&gt; &#039;Documento recibido por...                            </span>
 </dt>
 <dd>Estados de salida.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES_TYPES">STATUSES_TYPES</a>
+    <span>
+        &nbsp;: mixed&nbsp;= [ // Todo ok. &#039;DOK&#039; =&gt; &#039;success&#039;, // Errores. &#039;...                            </span>
+</dt>
+<dd>Colores de salida.</dd>
 
     </dl>
 
@@ -298,11 +299,25 @@
 <dd>Obtiene los encabezados de la respuesta del SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage">getMessage()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Devuelve el mensaje de la solicitud realizada al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getStatus">getStatus()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Devuelve el estado de la solicitud realizada al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_getStatusType">getStatusType()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Enum\Contract\StatusInterface">StatusInterface</abbr>    </span>
+</dt>
+<dd>Obtiene el tipo de salida para un estado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_jsonSerialize">jsonSerialize()</a>
@@ -353,7 +368,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -396,7 +411,7 @@ error.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -407,11 +422,76 @@ error.</p>
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">STATUSES</span>
-    = <span class="phpdocumentor-signature__default-value">[&#039;DOK&#039; =&gt; &#039;Documento Recibido por el SII. Datos Coinciden con los Registrados.&#039;, &#039;DNK&#039; =&gt; &#039;Documento Recibido por el SII pero Datos NO Coinciden con los registrados.&#039;, &#039;FAU&#039; =&gt; &#039;Documento No Recibido por el SII.&#039;, &#039;FNA&#039; =&gt; &#039;Documento No Autorizado.&#039;, &#039;FAN&#039; =&gt; &#039;Documento Anulado.&#039;, &#039;EMP&#039; =&gt; &#039;Empresa no autorizada a Emitir Documentos Tributarios Electrónicos&#039;, &#039;TMD&#039; =&gt; &#039;Existe Nota de Débito que Modifica Texto Documento.&#039;, &#039;TMC&#039; =&gt; &#039;Existe Nota de Crédito que Modifica Textos Documento.&#039;, &#039;MMD&#039; =&gt; &#039;Existe Nota de Débito que Modifica Montos Documento.&#039;, &#039;MMC&#039; =&gt; &#039;Existe Nota de Crédito que Modifica Montos Documento.&#039;, &#039;AND&#039; =&gt; &#039;Existe Nota de Débito que Anula Documento&#039;, &#039;ANC&#039; =&gt; &#039;Existe Nota de Crédito que Anula Documento&#039;]</span>
+    = <span class="phpdocumentor-signature__default-value">[
+    // Todo ok.
+    &#039;DOK&#039; =&gt; &#039;Documento recibido por el SII. Datos coinciden con los registrados.&#039;,
+    // Errores.
+    &#039;DNK&#039; =&gt; &#039;Documento recibido por el SII pero datos no coinciden con los registrados.&#039;,
+    &#039;FAU&#039; =&gt; &#039;Folio del documento no recibido por el SII.&#039;,
+    &#039;FNA&#039; =&gt; &#039;Folio no autorizado por el SII.&#039;,
+    &#039;FAN&#039; =&gt; &#039;Folio anulado antes de ser enviado al SII.&#039;,
+    &#039;EMP&#039; =&gt; &#039;Empresa no autorizada a emitir documentos tributarios electrónicos&#039;,
+    // Notas.
+    &#039;TMD&#039; =&gt; &#039;Existe nota de débito que modifica texto del documento.&#039;,
+    &#039;TMC&#039; =&gt; &#039;Existe nota de crédito que modifica texto del documento.&#039;,
+    &#039;MMD&#039; =&gt; &#039;Existe nota de débito que modifica montos del documento.&#039;,
+    &#039;MMC&#039; =&gt; &#039;Existe nota de crédito que modifica montos del documento.&#039;,
+    &#039;AND&#039; =&gt; &#039;Existe nota de débito que anula documento&#039;,
+    &#039;ANC&#039; =&gt; &#039;Existe nota de crédito que anula documento&#039;,
+]</span>
 </code>
 
 
         <section class="phpdocumentor-description"><p>El resultado de la consulta al SII puede arrojar uno de estos estados.</p>
+</section>
+
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_STATUSES_TYPES">
+        STATUSES_TYPES
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES_TYPES" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">67</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Colores de salida.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">STATUSES_TYPES</span>
+    = <span class="phpdocumentor-signature__default-value">[
+    // Todo ok.
+    &#039;DOK&#039; =&gt; &#039;success&#039;,
+    // Errores.
+    &#039;DNK&#039; =&gt; &#039;danger&#039;,
+    &#039;FAU&#039; =&gt; &#039;danger&#039;,
+    &#039;FNA&#039; =&gt; &#039;danger&#039;,
+    &#039;FAN&#039; =&gt; &#039;danger&#039;,
+    &#039;EMP&#039; =&gt; &#039;danger&#039;,
+    // Notas.
+    &#039;TMD&#039; =&gt; &#039;info&#039;,
+    &#039;TMC&#039; =&gt; &#039;info&#039;,
+    &#039;MMD&#039; =&gt; &#039;info&#039;,
+    &#039;MMC&#039; =&gt; &#039;info&#039;,
+    &#039;AND&#039; =&gt; &#039;info&#039;,
+    &#039;ANC&#039; =&gt; &#039;info&#039;,
+]</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>El resultado de la consulta al SII puede arrojar uno de estos colores.</p>
 </section>
 
     
@@ -705,7 +785,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
@@ -826,6 +906,51 @@ un único lugar (instancia).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMessage">
+        getMessage()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php"><a href="files/src-package-billing-component-integration-abstract-abstractsiiwsdlresponse.html"><abbr title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php">AbstractSiiWsdlResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">137</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Devuelve el mensaje de la solicitud realizada al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMessage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El formato es: <estado> - &lt;descripción&gt;.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El mensaje de la solicitud realizada al SII.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getStatus">
         getStatus()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getStatus" class="headerlink"><i class="fas fa-link"></i></a>
@@ -869,6 +994,49 @@ un único lugar (instancia).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getStatusType">
+        getStatusType()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_getStatusType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">140</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el tipo de salida para un estado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getStatusType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Enum\Contract\StatusInterface">StatusInterface</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Enum\Contract\StatusInterface">StatusInterface</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Tipo de salida.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
         jsonSerialize()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
@@ -877,7 +1045,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">228</span>
+    <span class="phpdocumentor-element-found-in__line">267</span>
 
     </aside>
 
@@ -916,7 +1084,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">220</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 
     </aside>
 
@@ -959,7 +1127,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php"><a href="files/src-package-billing-component-integration-abstract-abstractsiiwsdlresponse.html"><abbr title="src/Package/Billing/Component/Integration/Abstract/AbstractSiiWsdlResponse.php">AbstractSiiWsdlResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
@@ -1014,7 +1182,7 @@ un único lugar (instancia).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-validatedocumentsignatureresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php">ValidateDocumentSignatureResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">215</span>
 
     </aside>
 
@@ -1066,100 +1234,7 @@ un único lugar (instancia).</p>
 </article>
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Package/Billing/Component/Integration/Support/Response/SiiDte/ValidateDocumentSignatureResponse.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -1181,6 +1256,7 @@ un único lugar (instancia).</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_ERRORS">ERRORS</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES">STATUSES</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES_TYPES">STATUSES_TYPES</a></li>
                                             </ul>
                 </li>
             
@@ -1202,7 +1278,9 @@ un único lugar (instancia).</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_getData">getData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getDescription">getDescription()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders">getHeaders()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage">getMessage()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getStatus">getStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_getStatusType">getStatusType()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_jsonSerialize">jsonSerialize()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_toArray">toArray()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_parseNumeroAtencion">parseNumeroAtencion()</a></li>

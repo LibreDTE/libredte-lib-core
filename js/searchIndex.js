@@ -1456,6 +1456,26 @@ Search.appendIndex(
             "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTemplateTED"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetFirma\u0028\u0029",
+            "name": "getFirma",
+            "summary": "Obtiene\u0020la\u0020firma\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getFirma"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetCafIdk\u0028\u0029",
+            "name": "getCafIdk",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getCafIdk"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetEnvironment\u0028\u0029",
+            "name": "getEnvironment",
+            "summary": "Obtiene\u0020el\u0020ambiente\u0020del\u0020SII\u0020asociado\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getEnvironment"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetCertificacion\u0028\u0029",
+            "name": "getCertificacion",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020del\u0020ambiente\u0020de\u0020certificaci\u00F3n\u0020\u00281\u0029\u0020o\u0020producci\u00F3n\n\u00280\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getCertificacion"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Obtiene\u0020un\u0020elemento\u0020del\u0020DTE\u0020utilizando\u0020un\u0020selector.",
@@ -2415,6 +2435,21 @@ Search.appendIndex(
             "name": "getTemplateTED",
             "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020una\u0020plantilla\u0020con\u0020la\u0020estructura\u0020del\u0020TED.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getTemplateTED"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetFirma\u0028\u0029",
+            "name": "getFirma",
+            "summary": "Obtiene\u0020la\u0020firma\u0020del\u0020DTE.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getFirma"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetEnvironment\u0028\u0029",
+            "name": "getEnvironment",
+            "summary": "Obtiene\u0020el\u0020ambiente\u0020del\u0020SII\u0020asociado\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getEnvironment"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetCertificacion\u0028\u0029",
+            "name": "getCertificacion",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020es\u0020del\u0020ambiente\u0020de\u0020certificaci\u00F3n\u0020\u00281\u0029\u0020o\u0020producci\u00F3n\n\u00280\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getCertificacion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003Aget\u0028\u0029",
             "name": "get",
@@ -8666,21 +8701,6 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AIDK_STAGING",
-            "name": "IDK_STAGING",
-            "summary": "Ambiente\u0020de\u0020certificaci\u00F3n\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#constant_IDK_STAGING"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AIDK_PRODUCTION",
-            "name": "IDK_PRODUCTION",
-            "summary": "Ambiente\u0020de\u0020producci\u00F3n\u0020del\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#constant_IDK_PRODUCTION"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AAMBIENTES",
-            "name": "AMBIENTES",
-            "summary": "Mapa\u0020de\u0020ambientes\u0020disponibles\u0020para\u0020el\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#constant_AMBIENTES"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003A\u0024xmlDocument",
             "name": "xmlDocument",
             "summary": "Documento\u0020XML\u0020del\u0020CAF.",
@@ -9026,6 +9046,11 @@ Search.appendIndex(
             "summary": "Devuelve\u0020la\u0020descripci\u00F3n\u0020de\u0020la\u0020solicitud\u0020realizada\u0020al\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getDescription"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiWsdlResponse\u003A\u003AgetMessage\u0028\u0029",
+            "name": "getMessage",
+            "summary": "Devuelve\u0020el\u0020mensaje\u0020de\u0020la\u0020solicitud\u0020realizada\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiWsdlResponse\u003A\u003AparseNumeroAtencion\u0028\u0029",
             "name": "parseNumeroAtencion",
             "summary": "Parsea\u0020el\u0020n\u00FAmero\u0020de\u0020atenci\u00F3n\u0020y\u0020la\u0020fecha\/hora\u0020de\u0020un\u0020string.",
@@ -9206,16 +9231,6 @@ Search.appendIndex(
             "summary": "Estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020DTE\u0020al\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AfromSiiCodigo\u0028\u0029",
-            "name": "fromSiiCodigo",
-            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020del\u0020c\u00F3digo\u0020de\u00203\u0020caracteres\u0020devuelto\u0020por\u0020el\nSII\u0020\u0028ej\u003A\u0020\u0027RCH\u0027,\u0020\u0027EPR\u0027,\u0020\u0027RFR\u0027\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromSiiCodigo"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AfromGlosa\u0028\u0029",
-            "name": "fromGlosa",
-            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020de\u0020la\u0020glosa\u0020completa\u0020del\u0020SII\n\u0028ej\u003A\u0020\u0027RCH\u0020\u002D\u0020DTE\u0020Rechazado\u0027,\u0020\u0027EPR\u0020\u002D\u0020Env\u00EDo\u0020Procesado\u0027\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_fromGlosa"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AisFinal\u0028\u0029",
             "name": "isFinal",
             "summary": "Indica\u0020si\u0020el\u0020estado\u0020es\u0020definitivo\u0020\u0028no\u0020se\u0020esperan\u0020m\u00E1s\u0020cambios\u0020del\u0020SII\u0029.",
@@ -9236,15 +9251,25 @@ Search.appendIndex(
             "summary": "Indica\u0020si\u0020el\u0020detalle\u0020SII\u0020debe\u0020persistirse\u0020para\u0020este\u0020estado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_shouldStoreDetalle"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003Alabel\u0028\u0029",
-            "name": "label",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_label"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_getLabel"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AcolorClass\u0028\u0029",
-            "name": "colorClass",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_colorClass"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_getStatusType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AtryFromSiiCodigo\u0028\u0029",
+            "name": "tryFromSiiCodigo",
+            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020del\u0020c\u00F3digo\u0020de\u00203\u0020caracteres\u0020devuelto\u0020por\u0020el\nSII\u0020\u0028ej\u003A\u0020\u0027RCH\u0027,\u0020\u0027EPR\u0027,\u0020\u0027RFR\u0027\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_tryFromSiiCodigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AtryFromGlosa\u0028\u0029",
+            "name": "tryFromGlosa",
+            "summary": "Construye\u0020el\u0020enum\u0020a\u0020partir\u0020de\u0020la\u0020glosa\u0020completa\u0020del\u0020SII\n\u0028ej\u003A\u0020\u0027RCH\u0020\u002D\u0020DTE\u0020Rechazado\u0027,\u0020\u0027EPR\u0020\u002D\u0020Env\u00EDo\u0020Procesado\u0027\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html#method_tryFromGlosa"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii\u003A\u003AENVIADO",
             "name": "ENVIADO",
@@ -9316,6 +9341,21 @@ Search.appendIndex(
             "summary": "Enum\u0020del\u0020ambiente\u0020del\u0020SII\u0020cuando\u0020est\u00E1\u0020disponible\u0020m\u00E1s\u0020de\u0020uno.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AgetCode\u0028\u0029",
+            "name": "getCode",
+            "summary": "Obtiene\u0020el\u0020c\u00F3digo\u0020del\u0020ambiente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCode"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "Obtiene\u0020el\u0020nombre\u0020del\u0020ambiente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getLabel"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AisProduction\u0028\u0029",
+            "name": "isProduction",
+            "summary": "Indica\u0020si\u0020el\u0020ambiente\u0020es\u0020el\u0020de\u0020producci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_isProduction"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AisStaging\u0028\u0029",
             "name": "isStaging",
             "summary": "Indica\u0020si\u0020el\u0020ambiente\u0020es\u0020el\u0020de\u0020certificaci\u00F3n.",
@@ -9340,6 +9380,21 @@ Search.appendIndex(
             "name": "getUrl",
             "summary": "M\u00E9todo\u0020que\u0020entrega\u0020la\u0020URL\u0020de\u0020un\u0020recurso\u0020en\u0020el\u0020SII\u0020seg\u00FAn\u0020el\u0020ambiente\u0020que\nse\u0020est\u00E9\u0020usando.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getUrl"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AgetCafIdk\u0028\u0029",
+            "name": "getCafIdk",
+            "summary": "Obtiene\u0020el\u0020IDK\u0020del\u0020CAF\u0020para\u0020el\u0020ambiente.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_getCafIdk"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AtryFromCafIdk\u0028\u0029",
+            "name": "tryFromCafIdk",
+            "summary": "Intenta\u0020obtener\u0020el\u0020ambiente\u0020del\u0020SII\u0020a\u0020partir\u0020de\u0020un\u0020IDK.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCafIdk"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003AtryFromCode\u0028\u0029",
+            "name": "tryFromCode",
+            "summary": "Intenta\u0020obtener\u0020el\u0020ambiente\u0020del\u0020SII\u0020a\u0020partir\u0020de\u0020un\u0020c\u00F3digo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-SiiEnvironment.html#method_tryFromCode"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\SiiEnvironment\u003A\u003APRODUCTION",
             "name": "PRODUCTION",
@@ -9621,6 +9676,11 @@ Search.appendIndex(
             "summary": "Respuesta\u0020de\u0020la\u0020solicitud\u0020de\u0020correo\u0020de\u0020estado\u0020de\u0020un\u0020documento\u0020subido\u0020al\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-RequestXmlDocumentSentStatusByEmailResponse.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\RequestXmlDocumentSentStatusByEmailResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020para\u0020un\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-RequestXmlDocumentSentStatusByEmailResponse.html#method_getStatusType"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\RequestXmlDocumentSentStatusByEmailResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
@@ -9681,6 +9741,11 @@ Search.appendIndex(
             "summary": "Respuesta\u0020con\u0020el\u0020estado\u0020de\u0020un\u0020DTE\u0020aceptado\u0020por\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentResponse.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020para\u0020un\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentResponse.html#method_getStatusType"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
@@ -9706,6 +9771,11 @@ Search.appendIndex(
             "summary": "Estados\u0020de\u0020salida.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentResponse.html#constant_STATUSES"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentResponse\u003A\u003ASTATUSES_TYPES",
+            "name": "STATUSES_TYPES",
+            "summary": "Colores\u0020de\u0020salida.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentResponse.html#constant_STATUSES_TYPES"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentResponse\u003A\u003AERRORS",
             "name": "ERRORS",
             "summary": "Estados\u0020de\u0020salida\u0020por\u0020ERROR.",
@@ -9715,6 +9785,11 @@ Search.appendIndex(
             "name": "ValidateDocumentSignatureResponse",
             "summary": "Respuesta\u0020con\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020DTE\u0020aceptado\u0020por\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentSignatureResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020para\u0020un\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#method_getStatusType"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentSignatureResponse\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
@@ -9740,6 +9815,11 @@ Search.appendIndex(
             "name": "STATUSES",
             "summary": "Estados\u0020de\u0020salida.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentSignatureResponse\u003A\u003ASTATUSES_TYPES",
+            "name": "STATUSES_TYPES",
+            "summary": "Colores\u0020de\u0020salida.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html#constant_STATUSES_TYPES"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\ValidateDocumentSignatureResponse\u003A\u003AERRORS",
             "name": "ERRORS",
