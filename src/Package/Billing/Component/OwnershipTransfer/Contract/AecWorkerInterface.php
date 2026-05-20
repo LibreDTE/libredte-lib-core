@@ -56,7 +56,6 @@ interface AecWorkerInterface extends WorkerInterface
      * @throws XmlException Si la validación del esquema falla.
      * @throws OwnershipTransferException Si no se puede determinar el esquema.
      */
-    #[NoDiscard()]
     public function validateSchema(
         Aec|XmlDocumentInterface|string $source
     ): XmlDocumentInterface;

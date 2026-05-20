@@ -262,8 +262,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
                 getenv('LIBREDTE_CERTIFICATE_PASS')
-            )
-            ;
+            );
         } catch (Throwable $e) {
             $this->markTestSkipped($e->getMessage());
         }

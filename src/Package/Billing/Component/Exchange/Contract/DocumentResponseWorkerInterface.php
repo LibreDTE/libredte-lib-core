@@ -72,7 +72,6 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
      * @throws XmlException Si la validación del esquema falla.
      * @throws DocumentResponseException Si no se puede determinar el esquema.
      */
-    #[NoDiscard()]
     public function validateSchema(
         AbstractExchangeDocument|XmlDocumentInterface|string $source
     ): XmlDocumentInterface;
