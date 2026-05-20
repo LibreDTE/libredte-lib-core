@@ -1106,6 +1106,11 @@ Search.appendIndex(
             "summary": "Estrategia\u0020base\u0020de\u0020carga\u0020desde\u0020array\u0020para\u0020Libro\u0020de\u0020Compras\/Ventas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method___construct"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AnormalizeCaratula\u0028\u0029",
             "name": "normalizeCaratula",
             "summary": "Normaliza\u0020la\u0020car\u00E1tula\u0020del\u0020libro.",
@@ -1115,6 +1120,16 @@ Search.appendIndex(
             "name": "normalizeDetalle",
             "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_normalizeDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AcalcularIvaRetenidoDetalle\u0028\u0029",
+            "name": "calcularIvaRetenidoDetalle",
+            "summary": "Calcula\u0020el\u0020IVA\u0020retenido\u0020del\u0020detalle.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_calcularIvaRetenidoDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#property_repositoryManager"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroBoletas\\ArrayLoaderStrategy",
             "name": "ArrayLoaderStrategy",
