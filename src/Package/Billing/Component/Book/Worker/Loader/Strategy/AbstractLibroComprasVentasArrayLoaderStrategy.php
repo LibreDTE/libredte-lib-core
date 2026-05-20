@@ -24,9 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy;
 
+use Derafu\Repository\Contract\RepositoryManagerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 
 /**
  * Estrategia base de carga desde array para Libro de Compras/Ventas.
@@ -37,6 +39,11 @@ use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
  */
 abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArrayLoaderStrategy
 {
+    public function __construct(
+        private readonly RepositoryManagerInterface $repositoryManager
+    ) {
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -159,6 +166,20 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             $detalle['OtrosImp'] = [$detalle['OtrosImp']];
         }
 
+        // Determinar si hay IVA retenido y si es total o parcial.
+        $ivaRetenido = $this->calcularIvaRetenidoDetalle($detalle);
+        if ($ivaRetenido) {
+            // Si el IVA retenido es total.
+            if ($ivaRetenido == $detalle['MntIVA']) {
+                $detalle['IVARetTotal'] = $ivaRetenido;
+            }
+            // Si el IVA retenido es parcial.
+            else {
+                $detalle['IVARetParcial'] = $ivaRetenido;
+                $detalle['IVANoRetenido'] = (int) $detalle['MntIVA'] - $ivaRetenido;
+            }
+        }
+
         // Calcular monto total si falta.
         if ($detalle['MntTotal'] === false) {
             $total = (int) $detalle['MntExe'] + (int) $detalle['MntNeto'] + (int) $detalle['MntIVA'];
@@ -190,5 +211,43 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
 
         // Retornar el detalle normalizado.
         return $detalle;
+    }
+
+    /**
+     * Calcula el IVA retenido del detalle.
+     *
+     * Se calcula revisando los "otros impuestos" y sumando todos aquellos que
+     * son retención de IVA.
+     *
+     * @param array $detalle El detalle del libro de compra/venta.
+     * @return int El IVA retenido del detalle.
+     */
+    private function calcularIvaRetenidoDetalle(array $detalle): int
+    {
+        $otrosImp = $detalle['OtrosImp'] ?? [];
+        if (empty($otrosImp)) {
+            return 0;
+        }
+
+        if (!isset($otrosImp[0])) {
+            $otrosImp = [$otrosImp];
+        }
+
+        $ivaRetenido = 0;
+
+        $repository = $this->repositoryManager->getRepository(
+            ImpuestoAdicionalRetencion::class
+        );
+
+        foreach ($otrosImp as $otroImp) {
+            $impuesto = $repository->find($otroImp['CodImp']);
+            assert($impuesto instanceof ImpuestoAdicionalRetencion);
+
+            if ($impuesto->getTipo() === 'R') {
+                $ivaRetenido += (int) $otroImp['MntImp'];
+            }
+        }
+
+        return $ivaRetenido;
     }
 }

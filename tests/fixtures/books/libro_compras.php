@@ -83,6 +83,74 @@ return [
             'LibroCompraVenta.EnvioLibro.Detalle' => null,
         ],
     ],
+    'con_iva_retenido_total' => [
+        'input' => [
+            'caratula' => [
+                'PeriodoTributario' => '2024-01',
+            ],
+            'detalle' => [
+                [
+                    'TpoDoc'      => 46,
+                    'NroDoc'      => 3001,
+                    'TasaImp'     => 19,
+                    'FchDoc'      => '2024-01-15',
+                    'RUTDoc'      => '76192083-9',
+                    'MntNeto'     => 100000,
+                    'MntIVA'      => 19000,
+                    'OtrosImp'    => [
+                        ['CodImp' => 15, 'TasaImp' => 19, 'MntImp' => 19000],
+                    ],
+                    'IVARetTotal' => 19000,
+                    'MntTotal'    => 100000,
+                ],
+            ],
+        ],
+        'expected' => [
+            'LibroCompraVenta.EnvioLibro.Caratula.TipoOperacion'                                    => 'COMPRA',
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TpoDoc'                      => 46,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotDoc'                      => 1,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntNeto'                  => 100000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntIVA'                   => 19000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotOtrosImp.CodImp'          => 15,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotOtrosImp.TotMntImp'       => 19000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotIVARetTotal'              => 19000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntTotal'                 => 100000,
+        ],
+    ],
+    'con_iva_retenido_parcial' => [
+        'input' => [
+            'caratula' => [
+                'PeriodoTributario' => '2024-01',
+            ],
+            'detalle' => [
+                [
+                    'TpoDoc'        => 46,
+                    'NroDoc'        => 3002,
+                    'TasaImp'       => 19,
+                    'FchDoc'        => '2024-01-15',
+                    'RUTDoc'        => '76192083-9',
+                    'MntNeto'       => 100000,
+                    'MntIVA'        => 19000,
+                    'OtrosImp'      => [
+                        ['CodImp' => 16, 'TasaImp' => 19, 'MntImp' => 9500],
+                    ],
+                    'IVARetParcial' => 9500,
+                    'MntTotal'      => 109500,
+                ],
+            ],
+        ],
+        'expected' => [
+            'LibroCompraVenta.EnvioLibro.Caratula.TipoOperacion'                                    => 'COMPRA',
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TpoDoc'                      => 46,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotDoc'                      => 1,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntNeto'                  => 100000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntIVA'                   => 19000,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotOtrosImp.CodImp'          => 16,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotOtrosImp.TotMntImp'       => 9500,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotIVARetParcial'            => 9500,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntTotal'                 => 109500,
+        ],
+    ],
     'validar_esquema_y_firma' => [
         'input' => [
             'caratula' => [

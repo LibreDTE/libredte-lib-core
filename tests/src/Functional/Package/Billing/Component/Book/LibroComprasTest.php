@@ -45,6 +45,8 @@ use libredte\lib\Core\Package\Billing\Component\Book\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractLibroComprasVentasArrayLoaderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\ValidatorWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
@@ -74,6 +76,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(LibroComprasVentas::class)]
+#[CoversClass(ImpuestoAdicionalRetencion::class)]
+#[CoversClass(ImpuestoAdicionalRetencionRepository::class)]
 class LibroComprasTest extends TestCase
 {
     private LoaderWorkerInterface $loader;
