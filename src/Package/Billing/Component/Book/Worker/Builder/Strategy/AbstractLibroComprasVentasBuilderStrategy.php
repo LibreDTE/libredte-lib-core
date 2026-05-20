@@ -89,11 +89,17 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
      */
     public function build(BookBagInterface $bag): LibroComprasVentasInterface
     {
+        // Opciones de construcción.
+        $simplificado = (bool) ($bag->getBuilderOptions()['simplificado'] ?? false);
+        $detalle = (bool) ($bag->getBuilderOptions()['detalle'] ?? true);
+
+        // Datos del bag.
         $caratula = $bag->getCaratula();
         $detalles = $bag->getDetalle();
 
         // Calcular resumen del período.
         $totalesPeriodo = $this->calculateTotalesPeriodo($detalles);
+        $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
 
         // Se actualizan los detalles por si se modificó algo al realizar el
         // cálculo de totales. Por ejemplo, si se quitó el factor de
@@ -120,10 +126,6 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         $id = sprintf('LibreDTE_LIBRO_%s_%s_%s_%s', $tipoOper, $rut, $periodo, time());
 
         // Generar estructura XML.
-        $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
-
-        $simplificado = (bool) ($bag->getBuilderOptions()['simplificado'] ?? false);
-
         $xmlDocument = $this->xmlEncoder->encode([
             'LibroCompraVenta' => [
                 '@attributes' => [
@@ -139,7 +141,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
                     'ResumenPeriodo' => $resumenPeriodo,
-                    'Detalle' => $detalles ?: false,
+                    'Detalle' => $detalle ? ($detalles ?: false) : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ],
