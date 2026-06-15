@@ -33,11 +33,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
 interface BatchProcessorStrategyInterface extends StrategyInterface
 {
     /**
-     * Procesa masivamente documentos tributarios electrónicos.
+     * Carga los datos de los documentos tributarios electrónicos del lote.
      *
      * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
-     * @return DocumentInterface[]
+     * @return array Arreglo con los datos de los documentos cargados.
      * @throws BatchProcessorException
      */
-    public function process(DocumentBatchInterface $batch): array;
+    public function load(DocumentBatchInterface $batch): array;
 }

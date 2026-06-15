@@ -95,8 +95,15 @@ class SiiEnvioAyudas
         return self::replacePlaceholders($ayuda, $tipoDoc, $folio);
     }
 
-    private static function replacePlaceholders(string $texto, int $tipoDoc, int $folio): string
-    {
-        return str_replace(['{dte}', '{folio}'], [$tipoDoc, $folio], $texto);
+    private static function replacePlaceholders(
+        string $texto,
+        int $tipoDoc,
+        int $folio
+    ): string {
+        return str_replace(
+            ['{dte}', '{folio}'],
+            [(string) $tipoDoc, (string) $folio],
+            $texto
+        );
     }
 }

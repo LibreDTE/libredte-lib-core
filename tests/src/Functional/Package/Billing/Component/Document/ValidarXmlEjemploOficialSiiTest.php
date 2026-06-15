@@ -264,7 +264,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $envelope = $this->createEnvelope($file);
 
         $this->dispatcher->validateSchema($envelope);
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     // Validación del esquema XML del documento (DTE) que viene en el sobre
@@ -276,7 +276,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $documents = $envelope->getDocuments();
         $document = $documents[0];
         $this->validator->validateSchema($document);
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
@@ -303,7 +303,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
             $envelope->getXmlDocument(),
             $signatureNode
         );
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     // Valida el SignatureValue de la firma del sobre (Firma 2, referencia #SetDoc).
@@ -339,7 +339,6 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->expectException(SignatureException::class);
 
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
-        $this->assertTrue(true);
     }
 
     // Valida la firma completa del sobre vía DispatcherWorker::validateSignature().
@@ -400,7 +399,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
             $document->getXmlDocument(),
             $signatureNode
         );
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     // Valida el SignatureValue de la firma del documento (Firma 1, referencia #F60T33).
@@ -434,7 +433,6 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->expectException(SignatureException::class);
 
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
-        $this->assertTrue(true);
     }
 
     // Valida la firma completa del documento vía ValidatorWorker::validateSignature().

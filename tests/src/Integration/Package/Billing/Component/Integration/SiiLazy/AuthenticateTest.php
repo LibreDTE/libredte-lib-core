@@ -74,6 +74,6 @@ class AuthenticateTest extends TestCase
 
         // Solicitar token ambiente producción.
         $token = $siiLazyWorker->authenticate(new SiiRequest($certificate));
-        $this->assertIsString($token);
+        $this->assertNotEmpty($token);
     }
 }

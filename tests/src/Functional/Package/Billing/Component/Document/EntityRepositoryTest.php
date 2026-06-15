@@ -241,7 +241,6 @@ class EntityRepositoryTest extends TestCase
         );
 
         $this->assertInstanceOf(TipoDocumentoRepository::class, $repository);
-        assert($repository instanceof TipoDocumentoRepository);
 
         $this->assertSame(
             'Factura no afecta o exenta electrónica',

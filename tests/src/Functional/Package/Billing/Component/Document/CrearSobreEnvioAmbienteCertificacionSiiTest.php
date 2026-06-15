@@ -331,7 +331,6 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $xmlEnvelope = $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
         file_put_contents($yamlFile . '-sobre.xml', $xmlEnvelope);
 
-        // Todo OK.
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 }

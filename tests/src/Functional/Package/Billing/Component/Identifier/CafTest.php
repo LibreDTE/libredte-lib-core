@@ -152,7 +152,7 @@ class CafTest extends TestCase
         // pero no se validará la firma del CAF en si, pues es falsa.
         $this->cafValidator->validate($caf);
 
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     /**

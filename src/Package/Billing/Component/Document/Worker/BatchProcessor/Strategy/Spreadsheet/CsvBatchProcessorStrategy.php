@@ -56,7 +56,7 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     /**
      * {@inheritDoc}
      */
-    public function process(DocumentBatchInterface $batch): array
+    public function load(DocumentBatchInterface $batch): array
     {
         // Cargar archivo CSV y obtener los datos.
         $data = Csv::read($batch->getFile());

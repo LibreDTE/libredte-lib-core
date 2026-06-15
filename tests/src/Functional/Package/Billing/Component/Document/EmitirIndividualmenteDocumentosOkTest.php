@@ -364,7 +364,6 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $bag->getOptions()->set('renderer.format', 'html');
         $html = $this->renderer->render($bag);
         $this->assertNotEmpty($html);
-        $this->assertIsString($html);
         file_put_contents($file . '.html', $html);
 
         // Renderizar el documento para corroborar que se puedan construir con
@@ -372,7 +371,6 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $bag->getOptions()->set('renderer.format', 'pdf');
         $pdf = $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
-        $this->assertIsString($pdf);
         file_put_contents($file . '.pdf', $pdf);
     }
 

@@ -178,11 +178,35 @@ class TipoDocumento implements TipoDocumentoInterface
     public function __construct(
         int|string $codigo,
         string $nombre,
-        ?string $nombre_corto = null
+        ?string $nombre_corto = null,
+        ?CategoriaDocumento $categoria = null,
+        ?bool $electronico = null,
+        ?bool $enviar = null,
+        ?bool $compra = null,
+        ?bool $venta = null,
+        ?OperacionDocumento $operacion = null,
+        ?bool $cedible = null,
+        ?TagXmlDocumento $tag_xml = null,
+        bool $disponible = false,
+        ?string $alias = null,
+        ?string $interface = null,
+        ?TipoSobre $tipo_sobre = null,
     ) {
         $this->codigo = $codigo;
         $this->nombre = $nombre;
         $this->nombre_corto = $nombre_corto;
+        $this->categoria = $categoria;
+        $this->electronico = $electronico;
+        $this->enviar = $enviar;
+        $this->compra = $compra;
+        $this->venta = $venta;
+        $this->operacion = $operacion;
+        $this->cedible = $cedible;
+        $this->tag_xml = $tag_xml;
+        $this->disponible = $disponible;
+        $this->alias = $alias;
+        $this->interface = $interface;
+        $this->tipo_sobre = $tipo_sobre;
     }
 
     /**

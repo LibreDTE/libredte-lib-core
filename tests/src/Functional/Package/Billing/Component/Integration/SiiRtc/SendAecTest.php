@@ -46,11 +46,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDescuentosRecargosTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDetalleTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeImpuestoAdicionalRetencionTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeIvaMntTotalTrait;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeTransporteTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
@@ -120,11 +115,6 @@ use Throwable;
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
 #[CoversClass(FacturaAfectaNormalizerStrategy::class)]
-#[CoversClass(NormalizeDescuentosRecargosTrait::class)]
-#[CoversClass(NormalizeDetalleTrait::class)]
-#[CoversClass(NormalizeImpuestoAdicionalRetencionTrait::class)]
-#[CoversClass(NormalizeIvaMntTotalTrait::class)]
-#[CoversClass(NormalizeTransporteTrait::class)]
 #[CoversClass(SanitizerWorker::class)]
 #[CoversClass(FacturaAfectaSanitizerStrategy::class)]
 #[CoversClass(ValidatorWorker::class)]

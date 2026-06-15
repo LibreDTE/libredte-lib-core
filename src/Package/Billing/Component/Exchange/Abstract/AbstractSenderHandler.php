@@ -98,7 +98,6 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
                 // se pasa solo el sobre que se está procesando.
                 $bagClass = get_class($bag);
                 $bagForWorker = new $bagClass($bag->getOptions()->all());
-                assert($bagForWorker instanceof ExchangeBagInterface);
                 $bagForWorker->addEnvelope($envelope);
                 $bagForWorker->getOptions()->set('strategy', $strategy);
 

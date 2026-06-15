@@ -99,7 +99,7 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
 
         // Validar a mano cuando se pruebe funcionalidad otras cosas.
         // Nota: Realizar validación real al ejecutar el test localmente.
-        $this->assertTrue(true);
+        $this->addToAssertionCount(1);
         //$this->assertNotEmpty($results);
     }
 }

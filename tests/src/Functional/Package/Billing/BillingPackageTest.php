@@ -226,6 +226,5 @@ class BillingPackageTest extends TestCase
         $newBag->getOptions()->set('renderer.format', 'html');
         $renderedData = $renderer->render($newBag);
         $this->assertNotEmpty($renderedData);
-        $this->assertIsString($renderedData);
     }
 }

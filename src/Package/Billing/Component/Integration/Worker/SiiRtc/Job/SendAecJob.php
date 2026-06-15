@@ -193,7 +193,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         if (!$request->getVerifySsl()) {
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 

@@ -193,7 +193,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         assert($strategy instanceof BatchProcessorStrategyInterface);
 
         try {
-            $documents = $strategy->process($batch);
+            $documents = $strategy->load($batch);
         } catch (Throwable $e) {
             throw new BatchProcessorException(
                 message: $e->getMessage(),

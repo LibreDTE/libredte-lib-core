@@ -191,7 +191,7 @@ class BookBag implements BookBagInterface
      */
     public function getCaratula(): array
     {
-        if (!isset($this->caratula) && isset($this->book)) {
+        if ($this->caratula === [] && isset($this->book)) {
             $this->caratula = $this->book->getCaratula();
         }
 
@@ -213,7 +213,7 @@ class BookBag implements BookBagInterface
      */
     public function getDetalle(): array
     {
-        if (!isset($this->detalle) && isset($this->book)) {
+        if ($this->detalle === [] && isset($this->book)) {
             $this->detalle = $this->book->getDetalle();
         }
 

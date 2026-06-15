@@ -103,6 +103,5 @@ class ListDocumentEventsTest extends TestCase
         );
 
         $this->assertInstanceOf(ListDocumentEventsResponse::class, $response);
-        $this->assertIsArray($response->getEvents());
     }
 }

@@ -86,6 +86,5 @@ use PHPUnit\Framework\Attributes\CoversClass;
         ;
 
         $this->assertNotEmpty($parsed);
-        $this->assertIsArray($parsed);
     }
 }

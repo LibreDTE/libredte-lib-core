@@ -103,7 +103,5 @@ class CheckDocumentAssignabilityTest extends TestCase
         );
 
         $this->assertInstanceOf(CheckDocumentAssignabilityResponse::class, $response);
-        $this->assertIsInt($response->getCode());
-        $this->assertIsString($response->getDescription());
     }
 }

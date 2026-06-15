@@ -240,7 +240,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         // Si no se debe verificar el certificado SSL del servidor del SII se
         // agrega la opción a curl.
         if (!$request->getVerifySsl()) {
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 

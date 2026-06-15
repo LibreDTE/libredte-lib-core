@@ -397,7 +397,6 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         // la estrategia estándar.
         $pdf = $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
-        $this->assertIsString($pdf);
         file_put_contents($file . '.pdf', $pdf);
     }
 }
