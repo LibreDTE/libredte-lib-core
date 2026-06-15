@@ -38,7 +38,7 @@ return [
                     'RznSoc'   => 'Proveedor Nacional SA',
                     'MntNeto'  => 200000,
                     'MntIVA'   => 38000,
-                    'MntTotal' => 238000,
+                    // 'MntTotal' => 238000, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],
@@ -63,7 +63,7 @@ return [
                     'IVANoRec' => [
                         ['CodIVANoRec' => 1, 'MntIVANoRec' => 9500],
                     ],
-                    'MntTotal' => 59500,
+                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],
@@ -101,7 +101,7 @@ return [
                         ['CodImp' => 15, 'TasaImp' => 19, 'MntImp' => 19000],
                     ],
                     'IVARetTotal' => 19000,
-                    'MntTotal'    => 100000,
+                    // 'MntTotal'    => 100000, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],
@@ -135,7 +135,7 @@ return [
                         ['CodImp' => 16, 'TasaImp' => 19, 'MntImp' => 9500],
                     ],
                     'IVARetParcial' => 9500,
-                    'MntTotal'      => 109500,
+                    // 'MntTotal'      => 109500, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],
@@ -165,7 +165,7 @@ return [
                     'RUTDoc'   => '12345678-9',
                     'MntNeto'  => 100000,
                     'MntIVA'   => 19000,
-                    'MntTotal' => 119000,
+                    // 'MntTotal' => 119000, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],

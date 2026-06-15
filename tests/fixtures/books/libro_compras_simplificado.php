@@ -38,7 +38,7 @@ return [
                     'RznSoc'   => 'Proveedor Nacional SA',
                     'MntNeto'  => 200000,
                     'MntIVA'   => 38000,
-                    'MntTotal' => 238000,
+                    // 'MntTotal' => 238000, // Omitido a propósito para testear el cálculo del total.
                 ],
             ],
         ],

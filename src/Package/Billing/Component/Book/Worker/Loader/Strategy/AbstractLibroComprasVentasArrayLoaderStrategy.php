@@ -191,6 +191,12 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             if (isset($detalle['FctProp'])) {
                 $total += (int) $detalle['IVAUsoComun'];
             }
+            if (!empty($detalle['IVARetTotal'])) {
+                $total -= (int) $detalle['IVARetTotal'];
+            }
+            if (!empty($detalle['IVARetParcial'])) {
+                $total -= (int) $detalle['IVARetParcial'];
+            }
             $total += (int) $detalle['MntSinCred']
                 + (int) $detalle['TabPuros']
                 + (int) $detalle['TabCigarrillos']
