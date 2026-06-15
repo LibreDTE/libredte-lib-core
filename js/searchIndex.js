@@ -1616,10 +1616,10 @@ Search.appendIndex(
             "summary": "Interfaz\u0020para\u0020las\u0020estrategias\u0020de\u0020los\u0020procesadores\u0020de\u0020documentos\u0020en\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorStrategyInterface\u003A\u003Aprocess\u0028\u0029",
-            "name": "process",
-            "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html#method_process"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorStrategyInterface\u003A\u003Aload\u0028\u0029",
+            "name": "load",
+            "summary": "Carga\u0020los\u0020datos\u0020de\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos\u0020del\u0020lote.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\BatchProcessorWorkerInterface",
             "name": "BatchProcessorWorkerInterface",
@@ -4721,10 +4721,10 @@ Search.appendIndex(
             "summary": "Constructor\u0020de\u0020la\u0020estrategia\u0020con\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003Aprocess\u0028\u0029",
-            "name": "process",
-            "summary": "Procesa\u0020masivamente\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_process"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003Aload\u0028\u0029",
+            "name": "load",
+            "summary": "Carga\u0020los\u0020datos\u0020de\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos\u0020del\u0020lote.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AcreateDocument\u0028\u0029",
             "name": "createDocument",
