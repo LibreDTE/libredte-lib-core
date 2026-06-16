@@ -151,7 +151,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
                     (int) $detalle['MntNeto'] * ($detalle['TasaImp'] / 100)
                 );
             }
-        } elseif (!$detalle['MntIVA'] && !is_array($detalle['IVANoRec']) && $detalle['TasaImp'] && $detalle['MntNeto']) {
+        } elseif ($detalle['MntIVA'] === false && !is_array($detalle['IVANoRec']) && $detalle['IVAUsoComun'] === false && $detalle['TasaImp'] && $detalle['MntNeto']) {
             // Calcular IVA si falta y no hay IVA no recuperable.
             $detalle['MntIVA'] = (int) round($detalle['MntNeto'] * ($detalle['TasaImp'] / 100));
         }

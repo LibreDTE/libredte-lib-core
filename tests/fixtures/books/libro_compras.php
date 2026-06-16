@@ -151,6 +151,56 @@ return [
             'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotMntTotal'                 => 109500,
         ],
     ],
+    'con_iva_no_recuperable_y_mnt_iva_cero' => [
+        'input' => [
+            'caratula' => [
+                'PeriodoTributario' => '2024-01',
+            ],
+            'detalle' => [
+                [
+                    'TpoDoc'   => 33,
+                    'NroDoc'   => 2002,
+                    'TasaImp'  => 19,
+                    'FchDoc'   => '2024-01-10',
+                    'RUTDoc'   => '11111111-1',
+                    'MntNeto'  => 50000,
+                    'MntIVA'   => 0,
+                    'IVANoRec' => [
+                        ['CodIVANoRec' => 1, 'MntIVANoRec' => 9500],
+                    ],
+                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
+                ],
+            ],
+        ],
+        'expected' => [
+            'LibroCompraVenta.EnvioLibro.Detalle.MntIVA'                                        => 0,
+            'LibroCompraVenta.EnvioLibro.ResumenPeriodo.TotalesPeriodo.TotIVANoRec.CodIVANoRec' => 1,
+        ],
+    ],
+    'con_iva_uso_comun_y_mnt_iva_cero' => [
+        'input' => [
+            'caratula' => [
+                'PeriodoTributario' => '2024-01',
+            ],
+            'detalle' => [
+                [
+                    'TpoDoc'      => 33,
+                    'NroDoc'      => 2003,
+                    'TasaImp'     => 19,
+                    'FchDoc'      => '2024-01-10',
+                    'RUTDoc'      => '11111111-1',
+                    'MntNeto'     => 50000,
+                    'MntIVA'      => 0,
+                    'IVAUsoComun' => 9500,
+                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
+                ],
+            ],
+        ],
+        'expected' => [
+            'LibroCompraVenta.EnvioLibro.Detalle.MntIVA'      => 0,
+            'LibroCompraVenta.EnvioLibro.Detalle.IVAUsoComun' => 9500,
+        ],
+    ],
     'validar_esquema_y_firma' => [
         'input' => [
             'caratula' => [
