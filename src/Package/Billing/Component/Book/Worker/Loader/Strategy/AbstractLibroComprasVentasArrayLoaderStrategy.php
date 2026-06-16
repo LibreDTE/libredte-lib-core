@@ -205,6 +205,11 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             $detalle['MntTotal'] = $total;
         }
 
+        // Si hay monto neto pero MntIVA no fue asignado, declararlo como 0.
+        if ($detalle['MntNeto'] !== false && $detalle['MntIVA'] === false) {
+            $detalle['MntIVA'] = 0;
+        }
+
         // Si no hay monto neto, quitar campos de IVA.
         if ($detalle['MntNeto'] === false) {
             $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = false;

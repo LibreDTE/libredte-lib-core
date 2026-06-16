@@ -301,6 +301,9 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             }
         }
 
+        // Ordenar por tipo de documento ascendente.
+        ksort($totales);
+
         // Re-indexar subarreglos para XML.
         foreach ($totales as &$t) {
             if (is_array($t['TotIVANoRec'])) {
