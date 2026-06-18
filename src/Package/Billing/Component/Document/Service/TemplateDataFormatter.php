@@ -91,7 +91,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'CiudadRecep' => 'alias:CiudadOrigen',
             // Fechas largas.
             'FchEmis' => fn (string $fecha) => Date::formatSpanish($fecha),
-            'FchRef' => 'alias:FchEmis',
+            'FchRef' => 'alias:PeriodoDesde',
             'FchVenc' => 'alias:FchEmis',
             'FchCancel' => 'alias:FchEmis',
             // Fechas cortas.
@@ -105,7 +105,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'FchResol' => fn (string $fecha) => explode('-', $fecha, 2)[0],
             // Datos de Aduana.
             'Aduana' => function (string $tagXmlAndValue) {
-                [$tagXml, $value] = explode(':', $tagXmlAndValue);
+                [$tagXml, $value] = explode(':', $tagXmlAndValue, 2);
                 $xmlTagEntity = $this->repositoryManager->getRepository(
                     TagXml::class
                 )->find($tagXml);
@@ -115,8 +115,10 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                     $description = $this->repositoryManager->getRepository(
                         $entityClass
                     )->find($value)->getGlosa();
+                } elseif (in_array($tagXml, $this->getSupportedFormats())) {
+                    $description = $this->handle($value, $tagXml);
                 } else {
-                    $description = $this->handle($tagXml, $value);
+                    $description = $value;
                 }
                 if ($name && !in_array($description, [false, null, ''], true)) {
                     return $name . ': ' . $description;
@@ -124,6 +126,13 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                 return '';
             },
             'TotItems' => 'alias:Number',
+            'TotBultos' => 'alias:Number',
+            'MntFlete' => 'alias:Number',
+            'MntSeguro' => 'alias:Number',
+            'Tara' => 'alias:Number',
+            'PesoBruto' => 'alias:Number',
+            'PesoNeto' => 'alias:Number',
+            'RUTCiaTransp' => 'alias:RUTEmisor',
             // Otros datos que se mapean de un código a su glosa usando un
             // repositorio.
             'TipoImp' => $this->repositoryManager->getRepository(
