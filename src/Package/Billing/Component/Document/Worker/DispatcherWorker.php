@@ -237,18 +237,16 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         // envían sean del mismo emisor.
         $emisor = $envelope->getDocuments()[0]->getEmisor();
 
-        // Asignar la autorización de la carátula del documento XML al emisor
-        // de cada documento, ya que cada uno tiene su propio objeto Emisor.
+        // Asignar la autorización de la carátula del documento XML al emisor.
         if ($envelope->getXmlDocument()) {
             $caratula = $envelope->getXmlDocument()->query('//Caratula');
             $RutEmisor = $caratula['RutEmisor'] ?? null;
             $FchResol = $caratula['FchResol'] ?? null;
             $NroResol = $caratula['NroResol'] ?? null;
             if ($RutEmisor === $emisor->getRut() && $FchResol !== null) {
-                $autorizacionDte = new AutorizacionDte($FchResol, (int) $NroResol);
-                foreach ($envelope->getDocuments() as $document) {
-                    $document->getEmisor()->setAutorizacionDte($autorizacionDte);
-                }
+                $emisor->setAutorizacionDte(
+                    new AutorizacionDte($FchResol, (int) $NroResol)
+                );
             }
         }
 
