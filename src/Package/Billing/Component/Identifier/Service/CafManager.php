@@ -185,6 +185,16 @@ class CafManager implements CafManagerInterface
     /**
      * {@inheritDoc}
      */
+    public function resetConsumedFolios(int $dte): static
+    {
+        unset($this->consumed[$dte]);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function remove(int $dte, int $folioDesde): static
     {
         if (!isset($this->pool[$dte])) {

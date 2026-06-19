@@ -115,6 +115,20 @@ interface CafManagerInterface
     public function getAvailableRange(int $dte): string;
 
     /**
+     * Resetea los folios consumidos de un tipo de documento.
+     *
+     * Deja todos los folios del pool del tipo indicado disponibles para
+     * consumo, como si nunca se hubiera llamado a markConsumed() ni a
+     * setAvailableRange() para ese tipo.
+     *
+     * Es una no-op si el tipo no tiene CAFs cargados.
+     *
+     * @param int $dte Tipo de documento.
+     * @return static
+     */
+    public function resetConsumedFolios(int $dte): static;
+
+    /**
      * Elimina un CAF específico del pool.
      *
      * Identifica el CAF por su tipo de documento y folio de inicio, que juntos
