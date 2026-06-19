@@ -641,10 +641,10 @@
                                         {{ referencia.TpoDocRef | format_as('billing_document.TpoDocRef') }}
                                     {% endif %}
                                     {% if referencia.FolioRef is defined and referencia.IndGlobal != 1 %}
-                                        N°{{ referencia.FolioRef }}
+                                        {% if referencia.FolioRef matches '/^[0-9]+$/' %}N° {% endif %}{{ referencia.FolioRef }}
                                     {% endif %}
                                     {% if referencia.FchRef is not empty %}
-                                        del {{ referencia.FchRef }}
+                                        del {{ referencia.FchRef | date('d/m/Y') }}
                                     {% endif %}
                                     {% if referencia.RazonRef is not empty %}
                                         : {{ referencia.RazonRef }}
@@ -872,13 +872,46 @@
             </table>
         </div>
         {% endif %}
-        {# Observación #}
-        {% if document.Encabezado.IdDoc.TermPagoGlosa is not empty %}
+        {# Pagos programados #}
+        {% if document.Encabezado.IdDoc.MntPagos is not empty %}
         <div class="container-observacion">
+            <p>
+                <span class="bold">Pago(s) programado(s):</span>
+                {% set pagosArr = document.Encabezado.IdDoc.MntPagos %}
+                {% if pagosArr.FchPago is defined %}{% set pagosArr = [pagosArr] %}{% endif %}
+                {% for pago in pagosArr %}
+                    - {{ pago.FchPago | date('d/m/Y') }}: ${{ pago.MntPago | number_format(0, ',', '.') }}.-{% if pago.GlosaPagos is not empty %} ({{ pago.GlosaPagos }}){% endif %}
+                {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+        {# Observación #}
+        {% if document.Encabezado.IdDoc.TermPagoGlosa is not empty
+            or document.Encabezado.IdDoc.MedioPago is not empty
+            or document.Encabezado.IdDoc.TermPagoDias is not empty %}
+        <div class="container-observacion">
+            {% if document.Encabezado.IdDoc.TermPagoGlosa is not empty %}
             <p>
                 <span class="bold">Observación:</span>
                 {{ document.Encabezado.IdDoc.TermPagoGlosa | raw }}
             </p>
+            {% endif %}
+            {% if document.Encabezado.IdDoc.MedioPago is not empty or document.Encabezado.IdDoc.TermPagoDias is not empty %}
+            <p>
+                {% set pagoInfo = [] %}
+                {% if document.Encabezado.IdDoc.MedioPago is not empty %}
+                    {% set medio = 'Medio de pago: ' ~ (document.Encabezado.IdDoc.MedioPago | format_as('billing_document.MedioPago')) %}
+                    {% if document.Encabezado.IdDoc.BcoPago is not empty %}{% set medio = medio ~ ' a ' ~ document.Encabezado.IdDoc.BcoPago %}{% endif %}
+                    {% if document.Encabezado.IdDoc.TpoCtaPago is not empty %}{% set medio = medio ~ ' en cuenta ' ~ (document.Encabezado.IdDoc.TpoCtaPago | lower) %}{% endif %}
+                    {% if document.Encabezado.IdDoc.NumCtaPago is not empty %}{% set medio = medio ~ ' N° ' ~ document.Encabezado.IdDoc.NumCtaPago %}{% endif %}
+                    {% set pagoInfo = pagoInfo | merge([medio]) %}
+                {% endif %}
+                {% if document.Encabezado.IdDoc.TermPagoDias is not empty %}
+                    {% set pagoInfo = pagoInfo | merge(['Días de pago: ' ~ document.Encabezado.IdDoc.TermPagoDias]) %}
+                {% endif %}
+                {{ pagoInfo | join(' / ') }}
+            </p>
+            {% endif %}
         </div>
         {% endif %}
         <div class="container-informacion-bottom"{% if acuse_recibo is empty %}style="bottom: 130px;"{% endif %}>
@@ -1041,8 +1074,8 @@
                                 {% if document.Encabezado.Totales.ImptoReten is not empty %}
                                     {% for impuesto in document.Encabezado.Totales.ImptoReten %}
                                     <tr>
-                                        <td >
-                                            {{ impuesto.TipoImp | format_as('billing_document.TipoImp') }} ({{ impuesto.TasaImp }}%):
+                                        <td>
+                                            {{ impuesto.TipoImp | format_as('billing_document.TipoImp') }}{% if impuesto.TasaImp is not empty %} ({{ impuesto.TasaImp }}%){% endif %} $:
                                         </td>
                                         <td>
                                             {% if otraMoneda %}
