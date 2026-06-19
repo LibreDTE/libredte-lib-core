@@ -249,7 +249,7 @@
             font-weight: bold;
             padding: 10px;
         }
-        .acuse-recibo .acuse-recibo-label {
+        .acuse-recibo-label {
             text-align: justify;
             margin-top: 5px;
             width: 90%;
@@ -387,11 +387,11 @@
                         | join(', ')
                     }}
                 </p>
-                {# Correo del Emisor #}
-                <p class="emisor-correo">
-                    {{ document.Encabezado.Emisor.CorreoEmisor
-                        | default(document.Encabezado.Emisor.CorreoEmisor) }}
-                </p>
+                {# Teléfono y correo del Emisor -#}
+                {% set contacto_emisor = [document.Encabezado.Emisor.Telefono, document.Encabezado.Emisor.CorreoEmisor] | filter(v => v is not empty) %}
+                {% if contacto_emisor is not empty %}
+                <p class="emisor-contacto">{{ contacto_emisor | join(' / ') }}</p>
+                {% endif %}
             </div>
             <div class="container-dte">
                 {# Información del DTE #}
@@ -480,18 +480,86 @@
                                 </td>
                             </tr>
                         {% endif %}
-                        {# Traslado #}
-                        {% if document.Encabezado.Transporte is not empty %}
+                        {# Aduana - Modalidad de venta #}
+                        {% if document.Encabezado.Transporte.Aduana.CodModVenta is not empty %}
+                            <tr>
+                                <td class="bold">Mod. venta</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.CodModVenta | format_as('billing_document.CodModVenta') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Total cláusula de venta #}
+                        {% if document.Encabezado.Transporte.Aduana.TotClauVenta is not empty %}
+                            <tr>
+                                <td class="bold">Total claú.</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.TotClauVenta }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Puerto de embarque #}
+                        {% if document.Encabezado.Transporte.Aduana.CodPtoEmbarque is not empty %}
+                            <tr>
+                                <td class="bold">Embarque</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.CodPtoEmbarque | format_as('billing_document.CodPtoEmbarque') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Unidad tara #}
+                        {% if document.Encabezado.Transporte.Aduana.CodUnidMedTara is not empty %}
+                            <tr>
+                                <td class="bold">U. tara</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.CodUnidMedTara | format_as('billing_document.CodUnidMedTara') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Unidad peso neto #}
+                        {% if document.Encabezado.Transporte.Aduana.CodUnidPesoNeto is not empty %}
+                            <tr>
+                                <td class="bold">U. p. neto</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.CodUnidPesoNeto | format_as('billing_document.CodUnidPesoNeto') }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Tipo de bultos #}
+                        {% if document.Encabezado.Transporte.Aduana.TipoBultos is not empty %}
+                            {% set tipoBultosArr = document.Encabezado.Transporte.Aduana.TipoBultos %}
+                            {% if tipoBultosArr.CodTpoBultos is defined %}{% set tipoBultosArr = [tipoBultosArr] %}{% endif %}
+                            {% for bulto in tipoBultosArr %}
+                                <tr>
+                                    <td class="bold">Bultos</td>
+                                    <td>:</td>
+                                    <td>
+                                        {{ bulto.CantBultos }}
+                                        {% if bulto.CodTpoBultos is not empty %}{{ bulto.CodTpoBultos | format_as('billing_document.CodTpoBultos') }}{% endif %}
+                                        {% if bulto.Marcas is not empty %}({{ bulto.Marcas }}){% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {# Aduana - Flete #}
+                        {% if document.Encabezado.Transporte.Aduana.MntFlete is not empty %}
+                            <tr>
+                                <td class="bold">Flete</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.MntFlete }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Aduana - Seguro #}
+                        {% if document.Encabezado.Transporte.Aduana.MntSeguro is not empty %}
+                            <tr>
+                                <td class="bold">Seguro</td>
+                                <td>:</td>
+                                <td>{{ document.Encabezado.Transporte.Aduana.MntSeguro }}</td>
+                            </tr>
+                        {% endif %}
+                        {# Traslado (destino físico) - solo si hay datos de destino o transportista #}
+                        {% set traslado_dest = [document.Encabezado.Transporte.DirDest, document.Encabezado.Transporte.CmnaDest] | filter(v => v is not empty) | join(', ') %}
+                        {% if traslado_dest is not empty or document.Encabezado.Transporte.RUTTrans is not empty or document.Encabezado.Transporte.Patente is not empty or document.Encabezado.Transporte.Chofer.NombreChofer is not empty %}
                             <tr>
                                 <td class="bold">Traslado</td>
                                 <td>:</td>
                                 <td>
-                                    A {{
-                                        [
-                                            document.Encabezado.Transporte.DirDest,
-                                            document.Encabezado.Transporte.CmnaDest
-                                        ] | filter(v => v is not empty) | join(', ')
-                                    }}
+                                    {% if traslado_dest is not empty %}A {{ traslado_dest }}{% endif %}
                                     {% if document.Encabezado.Transporte.RUTTrans is not empty %}
                                         por {{ document.Encabezado.Transporte.RUTTrans | format_as('billing_document.RUTTrans') }}
                                     {% endif %}
@@ -507,17 +575,6 @@
                                 </td>
                             </tr>
                         {% endif %}
-                        {# Transporte #}
-                        {% if document.Encabezado.Transporte.Aduana.CodViaTransp is not empty %}
-                            <tr>
-                                <td class="bold">Traslado</td>
-                                <td>:</td>
-                                <td>
-                                    {{ document.Encabezado.Transporte.Aduana.CodViaTransp
-                                        | format_as('billing_document.CodViaTransp') }}
-                                </td>
-                            </tr>
-                        {% endif %}
                         {# País receptor #}
                         {% if document.Encabezado.Transporte.Aduana.CodPaisRecep is not empty %}
                             <tr>
@@ -529,12 +586,15 @@
                                 </td>
                             </tr>
                         {% endif %}
-                        {# Total bultos #}
-                        {% if document.Encabezado.Transporte.Aduana.TotBultos is not empty %}
+                        {# País de destino #}
+                        {% if document.Encabezado.Transporte.Aduana.CodPaisDestin is not empty %}
                             <tr>
-                                <td class="bold">Total bultos</td>
+                                <td class="bold">P. destino</td>
                                 <td>:</td>
-                                <td>{{ document.Encabezado.Transporte.Aduana.TotBultos }}</td>
+                                <td>
+                                    {{ document.Encabezado.Transporte.Aduana.CodPaisDestin
+                                        | format_as('billing_document.CodPaisDestin') }}
+                                </td>
                             </tr>
                         {% endif %}
                         {# Contacto #}
@@ -543,8 +603,8 @@
                                 <td class="bold">Contacto</td>
                                 <td>:</td>
                                 <td>
-                                    {{ document.Encabezado.Receptor.CorreoRecep }}
-                                    {{ document.Encabezado.Receptor.Contacto }}
+                                    {% set contacto_receptor = [document.Encabezado.Receptor.Contacto, document.Encabezado.Receptor.CorreoRecep] | filter(v => v is not empty) %}
+                                    {{ contacto_receptor | join(' / ') }}
                                 </td>
                             </tr>
                         {% endif %}
@@ -629,6 +689,22 @@
                 {% if document.Encabezado.Emisor.CdgVendedor is not empty %}
                     <p>Vendedor: {{ document.Encabezado.Emisor.CdgVendedor }}</p>
                 {% endif %}
+                {# Aduana - campos columna derecha #}
+                {% if document.Encabezado.Transporte.Aduana.CodClauVenta is not empty %}
+                    <p>Claú. venta: {{ document.Encabezado.Transporte.Aduana.CodClauVenta | format_as('billing_document.CodClauVenta') }}</p>
+                {% endif %}
+                {% if document.Encabezado.Transporte.Aduana.CodViaTransp is not empty %}
+                    <p>Transporte: {{ document.Encabezado.Transporte.Aduana.CodViaTransp | format_as('billing_document.CodViaTransp') }}</p>
+                {% endif %}
+                {% if document.Encabezado.Transporte.Aduana.CodPtoDesemb is not empty %}
+                    <p>Desembarq.: {{ document.Encabezado.Transporte.Aduana.CodPtoDesemb | format_as('billing_document.CodPtoDesemb') }}</p>
+                {% endif %}
+                {% if document.Encabezado.Transporte.Aduana.CodUnidPesoBruto is not empty %}
+                    <p>U. p. bruto: {{ document.Encabezado.Transporte.Aduana.CodUnidPesoBruto | format_as('billing_document.CodUnidPesoBruto') }}</p>
+                {% endif %}
+                {% if document.Encabezado.Transporte.Aduana.TotBultos is not empty %}
+                    <p>Total bultos: {{ document.Encabezado.Transporte.Aduana.TotBultos }}</p>
+                {% endif %}
             </div>
         </div>
         <div class="container container-detalles">
@@ -655,7 +731,7 @@
                                 'description': 'DscItem'
                             },
                             'indexe': {
-                                'show': (document.Detalle ?? []) | filter(detalle => detalle.IndExe is defined and detalle.IndExe is not empty) | length > 0,
+                                'show': document.Encabezado.IdDoc.TipoDTE not in [34, 110, 111, 112] and (document.Detalle ?? []) | filter(detalle => detalle.IndExe is defined and detalle.IndExe is not empty) | length > 0,
                                 'title': 'IE',
                                 'width': '5%',
                                 'align': 'left',
@@ -731,10 +807,13 @@
                                                 </div>
                                             {% endif %}
                                         {% elseif column.format == 'indexe' %}
-                                            {{ detalle.IndExe == 1
-                                                ? 'EX'
-                                                : attribute(detalle, column.value)
-                                                | default('') }}
+                                            {% if detalle.IndExe == 1 %}EX{% elseif detalle.IndExe == 2 %}NF{% endif %}
+                                        {% elseif key == 'descuento' %}
+                                            {% if detalle.DescuentoPct is not empty %}
+                                                {{ detalle.DescuentoPct }}%
+                                            {% elseif detalle.DescuentoMonto is not empty %}
+                                                {{ detalle.DescuentoMonto | number_format(0, ',', '.') }}
+                                            {% endif %}
                                         {% elseif column.format == 'number' %}
                                             {{ attribute(detalle, column.value) is not empty
                                                 ? attribute(detalle, column.value)
@@ -774,15 +853,19 @@
                     </tr>
                     {# Descuento o Recargo #}
                     {% for descuento in document.DscRcgGlobal %}
+                    {% set drTipo = (descuento.TpoMov | trim | upper == "D") ? "Descuento" : "Recargo" %}
+                    {% if descuento.IndExeDR is not empty %}{% set drTipo = drTipo ~ ' EX' %}{% endif %}
                     <tr>
                         <td class="label">
-                            {{ descuento.TpoMov
-                                | trim
-                                | upper == "D"
-                                ? "Descuento:"
-                                : "Recargo:" }}
+                            {{ drTipo }}{% if (descuento.TpoValor | trim) == '$' %} ${% endif %}{% if descuento.GlosaDR is not empty %} ({{ descuento.GlosaDR }}){% endif %}:
                         </td>
-                        <td>{{ descuento.ValorDR }}{{ descuento.TpoValor }}</td>
+                        <td>
+                            {% if (descuento.TpoValor | trim) == '%' %}
+                                {{ descuento.ValorDR }}%
+                            {% else %}
+                                {{ descuento.ValorDR | number_format(0, ',', '.') }}
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -939,6 +1022,21 @@
                                         </td>
                                     </tr>
                                 {% endif %}
+                                {# Crédito consumo en el exterior -#}
+                                {% if document.Encabezado.Totales.CredEC is not empty %}
+                                    <tr>
+                                        <td>Desc. 65% IVA $:</td>
+                                        <td>
+                                            {% if otraMoneda %}
+                                                {{ document.Encabezado.Totales.CredEC
+                                                    | number_format(2, '.', ',') }}
+                                            {% else %}
+                                                {{ document.Encabezado.Totales.CredEC
+                                                    | number_format(0, ',', '.') }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
                                 {# IVA adicional -#}
                                 {% if document.Encabezado.Totales.ImptoReten is not empty %}
                                     {% for impuesto in document.Encabezado.Totales.ImptoReten %}
@@ -1008,6 +1106,36 @@
                                                     | number_format(2, '.', ',') }}
                                             {% else %}
                                                 {{ document.Encabezado.Totales.MontoPeriodo
+                                                    | number_format(0, ',', '.') }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                {# Saldo anterior -#}
+                                {% if document.Encabezado.Totales.SaldoAnterior is not empty %}
+                                    <tr>
+                                        <td>Saldo anterior $:</td>
+                                        <td>
+                                            {% if otraMoneda %}
+                                                {{ document.Encabezado.Totales.SaldoAnterior
+                                                    | number_format(2, '.', ',') }}
+                                            {% else %}
+                                                {{ document.Encabezado.Totales.SaldoAnterior
+                                                    | number_format(0, ',', '.') }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                {# Valor a pagar -#}
+                                {% if document.Encabezado.Totales.VlrPagar is not empty %}
+                                    <tr>
+                                        <td>Valor a pagar $:</td>
+                                        <td>
+                                            {% if otraMoneda %}
+                                                {{ document.Encabezado.Totales.VlrPagar
+                                                    | number_format(2, '.', ',') }}
+                                            {% else %}
+                                                {{ document.Encabezado.Totales.VlrPagar
                                                     | number_format(0, ',', '.') }}
                                             {% endif %}
                                         </td>
