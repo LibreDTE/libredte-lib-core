@@ -8531,6 +8531,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020folios\u0020disponibles\u0020para\u0020un\u0020tipo\u0020de\u0020documento\u0020como\u0020string\nde\u0020rangos\u0020compactos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_getAvailableRange"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003AresetConsumedFolios\u0028\u0029",
+            "name": "resetConsumedFolios",
+            "summary": "Resetea\u0020los\u0020folios\u0020consumidos\u0020de\u0020un\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafManagerInterface.html#method_resetConsumedFolios"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafManagerInterface\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
             "summary": "Elimina\u0020un\u0020CAF\u0020espec\u00EDfico\u0020del\u0020pool.",
@@ -8810,6 +8815,11 @@ Search.appendIndex(
             "name": "getAvailableRange",
             "summary": "Obtiene\u0020los\u0020folios\u0020disponibles\u0020para\u0020un\u0020tipo\u0020de\u0020documento\u0020como\u0020string\nde\u0020rangos\u0020compactos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_getAvailableRange"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003AresetConsumedFolios\u0028\u0029",
+            "name": "resetConsumedFolios",
+            "summary": "Resetea\u0020los\u0020folios\u0020consumidos\u0020de\u0020un\u0020tipo\u0020de\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#method_resetConsumedFolios"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Service\\CafManager\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
