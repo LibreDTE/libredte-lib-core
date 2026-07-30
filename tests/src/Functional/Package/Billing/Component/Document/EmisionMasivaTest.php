@@ -39,6 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRender
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
@@ -47,6 +48,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
@@ -185,6 +187,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
+#[CoversClass(DocumentException::class)]
+#[CoversClass(AduanaModalidadVenta::class)]
 class EmisionMasivaTest extends TestCase
 {
     public function testCargarDocumentosDesdeArchivoCsv(): void

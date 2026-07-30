@@ -31,9 +31,14 @@ use Derafu\Renderer\Abstract\AbstractHandlerFormatter;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Support\Date;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTipoBulto;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaUnidad;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPagoExportacion;
@@ -123,6 +128,32 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                 }
                 return '';
             },
+            'CodModVenta' => $this->repositoryManager->getRepository(
+                AduanaModalidadVenta::class
+            ),
+            'CodClauVenta' => $this->repositoryManager->getRepository(
+                AduanaClausulaVenta::class
+            ),
+            'CodViaTransp' => $this->repositoryManager->getRepository(
+                AduanaTransporte::class
+            ),
+            'CodTpoBultos' => $this->repositoryManager->getRepository(
+                AduanaTipoBulto::class
+            ),
+            'CodPaisRecep' => 'alias:Nacionalidad',
+            'CodPaisDestin' => 'alias:Nacionalidad',
+            'CodPtoEmbarque' => $this->repositoryManager->getRepository(
+                AduanaPuerto::class
+            ),
+            'CodPtoDesemb' => 'alias:CodPtoEmbarque',
+            'CodUnidMedTara' => $this->repositoryManager->getRepository(
+                AduanaUnidad::class
+            ),
+            'CodUnidPesoBruto' => 'alias:CodUnidMedTara',
+            'CodUnidPesoNeto' => 'alias:CodUnidMedTara',
+            'Nacionalidad' => $this->repositoryManager->getRepository(
+                AduanaPais::class
+            ),
             'TotItems' => 'alias:Number',
             // Otros datos que se mapean de un código a su glosa usando un
             // repositorio.
@@ -138,15 +169,8 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'FmaPagExp' => $this->repositoryManager->getRepository(
                 FormaPagoExportacion::class
             ),
-            'Nacionalidad' => $this->repositoryManager->getRepository(
-                AduanaPais::class
-            ),
-            'CodPaisRecep' => 'alias:Nacionalidad',
             'IndTraslado' => $this->repositoryManager->getRepository(
                 Traslado::class
-            ),
-            'CodViaTransp' => $this->repositoryManager->getRepository(
-                AduanaTransporte::class
             ),
             //  Timbre Electrónico del Documento (TED).
             'TED' => function (string $timbre) {
