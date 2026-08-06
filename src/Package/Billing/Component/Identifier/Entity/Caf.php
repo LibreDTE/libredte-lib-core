@@ -71,6 +71,17 @@ class Caf implements CafInterface
     private function loadXml(string|XmlDocumentInterface $xml): static
     {
         if (is_string($xml)) {
+            // El SII nunca emite CAFs en UTF-8; usa ISO-8859-1 y con frecuencia
+            // omite (o declara mal) el atributo `encoding` en la cabecera. Se
+            // fuerza la cabecera para que el parser decodifique los bytes
+            // originales correctamente, sin alterar el contenido del documento.
+            $xml = preg_replace(
+                '/^\s*<\?xml[^?]*\?>/',
+                '<?xml version="1.0" encoding="ISO-8859-1"?>',
+                $xml,
+                1
+            );
+
             $this->xmlDocument = new XmlDocument();
             $this->xmlDocument->loadXml($xml);
         } else {
