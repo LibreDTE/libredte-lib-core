@@ -223,7 +223,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_cache">$cache</a>
     <span>
-                        &nbsp;: <abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr>            </span>
+                        &nbsp;: <abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr>            </span>
 </dt>
 <dd>Instancia con la implementación de la caché que se utilizará para el
 almacenamiento de los tokens.</dd>
@@ -233,6 +233,14 @@ almacenamiento de los tokens.</dd>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a>            </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_memoizer">$memoizer</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Cache\Memoizer">Memoizer</abbr>            </span>
+</dt>
+<dd>Instancia utilizada para calcular y cachear el token una sola vez,
+incluso ante accesos concurrentes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_signatureService">$signatureService</a>
@@ -271,7 +279,7 @@ almacenamiento de los tokens.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#method_getCache">getCache()</a>
     <span>
-                                &nbsp;: <abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr>    </span>
+                                &nbsp;: <abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr>    </span>
 </dt>
 <dd>Entrega una instancia con la implementación de una caché para ser
 utilizada en la biblioteca.</dd>
@@ -331,7 +339,7 @@ almacenamiento de los tokens.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr></span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr></span>
     <span class="phpdocumentor-signature__name">$cache</span>
     </code>
 
@@ -360,7 +368,7 @@ almacenamiento de los tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -370,6 +378,45 @@ almacenamiento de los tokens.</p>
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a></span>
     <span class="phpdocumentor-signature__name">$consumeWebserviceJob</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_memoizer">
+        $memoizer
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_memoizer" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">61</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Instancia utilizada para calcular y cachear el token una sola vez,
+incluso ante accesos concurrentes.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Cache\Memoizer">Memoizer</abbr></span>
+    <span class="phpdocumentor-signature__name">$memoizer</span>
     </code>
 
     
@@ -397,7 +444,7 @@ almacenamiento de los tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -434,7 +481,7 @@ almacenamiento de los tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
@@ -476,7 +523,7 @@ almacenamiento de los tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -484,7 +531,7 @@ almacenamiento de los tokens.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signatureService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$consumeWebserviceJob</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cache</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Signature\Contract\SignatureServiceInterface">SignatureServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signatureService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-ConsumeWebserviceJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob">ConsumeWebserviceJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$consumeWebserviceJob</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cache</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -524,7 +571,7 @@ consultas a la API SOAP del SII.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$cache</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr></span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -551,7 +598,7 @@ consultas a la API SOAP del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -625,7 +672,7 @@ existe se solicitará uno nuevo al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">232</span>
+    <span class="phpdocumentor-element-found-in__line">241</span>
 
     </aside>
 
@@ -634,7 +681,7 @@ utilizada en la biblioteca.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getCache</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$defaultCache</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getCache</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$defaultCache</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -659,9 +706,9 @@ utilizada en la biblioteca.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Psr\SimpleCache\CacheInterface">CacheInterface</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Cache\CacheItemPoolInterface">CacheItemPoolInterface</abbr></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Implementación de caché PSR-16.</p>
+                <section class="phpdocumentor-description"><p>Implementación de caché PSR-6.</p>
 </section>
 
             </section>
@@ -681,7 +728,7 @@ utilizada en la biblioteca.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -761,7 +808,7 @@ WSDL certificación: https://maullin.sii.cl/DTEWS/CrSeed.jws?WSDL</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php"><a href="files/src-package-billing-component-integration-worker-siilazy-job-authenticatejob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiLazy/Job/AuthenticateJob.php">AuthenticateJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -849,6 +896,7 @@ WSDL certificación: https://maullin.sii.cl/DTEWS/GetTokenFromSeed.jws?WSDL</p>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_cache">$cache</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_consumeWebserviceJob">$consumeWebserviceJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_memoizer">$memoizer</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_signatureService">$signatureService</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_xmlService">$xmlService</a></li>
                                             </ul>

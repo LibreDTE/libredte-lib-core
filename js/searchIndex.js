@@ -10331,6 +10331,11 @@ Search.appendIndex(
             "summary": "Instancia\u0020con\u0020la\u0020implementaci\u00F3n\u0020de\u0020la\u0020cach\u00E9\u0020que\u0020se\u0020utilizar\u00E1\u0020para\u0020el\nalmacenamiento\u0020de\u0020los\u0020tokens.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_cache"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024memoizer",
+            "name": "memoizer",
+            "summary": "Instancia\u0020utilizada\u0020para\u0020calcular\u0020y\u0020cachear\u0020el\u0020token\u0020una\u0020sola\u0020vez,\nincluso\u0020ante\u0020accesos\u0020concurrentes.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiLazy-Job-AuthenticateJob.html#property_memoizer"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiLazy\\Job\\AuthenticateJob\u003A\u003A\u0024signatureService",
             "name": "signatureService",
             "summary": "",
