@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
@@ -51,20 +51,22 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'doc' => '',
-            'company' => '12345678-5',
-            'emailNotif' => 'cedente@empresa.cl',
+            'doc' => ['example' => ''],
+            'company' => ['example' => '12345678-5'],
+            'emailNotif' => ['example' => 'cedente@empresa.cl'],
         ],
     )]
     public function sendAec(

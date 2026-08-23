@@ -26,7 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use DateTime;
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -62,18 +62,20 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'bag' => [
-                'xmlDocument' => '',
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'emisor' => [
-                    'autorizacion_dte' => [
-                        'fecha_resolucion' => '2014-08-22',
-                        'numero_resolucion' => 80,
+                'example' => [
+                    'xmlDocument' => '',
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'emisor' => [
+                        'autorizacion_dte' => [
+                            'fecha_resolucion' => '2014-08-22',
+                            'numero_resolucion' => 80,
+                        ],
                     ],
                 ],
             ],
@@ -130,9 +132,9 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
-            'source' => '',
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
         ],
     )]
     public function validate(

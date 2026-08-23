@@ -33,6 +33,7 @@
         "ext-openssl": "*",
         "ext-soap": "*",
         "derafu/backbone": "dev-main",
+        "derafu/cache": "dev-main",
         "derafu/certificate": "dev-main",
         "derafu/config": "dev-main",
         "derafu/enum": "dev-main",
@@ -47,14 +48,11 @@
         "derafu/xml": "dev-main",
         "league/csv": "^9.28",
         "mpdf/mpdf": "^8.3",
-        "nesbot/carbon": "^3.11",
-        "symfony/cache": "^8.0",
-        "symfony/filesystem": "^8.0",
-        "symfony/mailer": "^8.0",
-        "symfony/mime": "^8.0",
+        "nesbot/carbon": "^3.13",
+        "symfony/mailer": "^8.1",
+        "symfony/mime": "^8.1",
         "phpseclib/phpseclib": "^3.0",
-        "psr/simple-cache": "^3.0",
-        "tecnickcom/tc-lib-barcode": "^2.4"
+        "tecnickcom/tc-lib-barcode": "^2.12"
     },
     "require-dev": {
         "ext-xdebug": "*",

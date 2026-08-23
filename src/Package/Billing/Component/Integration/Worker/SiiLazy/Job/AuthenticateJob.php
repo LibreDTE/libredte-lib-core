@@ -27,16 +27,16 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Cache\Enum\LocalCacheBackend;
+use Derafu\Cache\LocalCacheFactory;
+use Derafu\Cache\Memoizer;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
 use LogicException;
-use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Psr16Cache;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Clase para gestionar las solicitudes de token para autenticación al SII.
@@ -48,9 +48,17 @@ class AuthenticateJob extends AbstractJob implements JobInterface
      * Instancia con la implementación de la caché que se utilizará para el
      * almacenamiento de los tokens.
      *
-     * @var CacheInterface
+     * @var CacheItemPoolInterface
      */
-    private CacheInterface $cache;
+    private CacheItemPoolInterface $cache;
+
+    /**
+     * Instancia utilizada para calcular y cachear el token una sola vez,
+     * incluso ante accesos concurrentes.
+     *
+     * @var Memoizer
+     */
+    private Memoizer $memoizer;
 
     /**
      * Constructor y sus dependencias.
@@ -61,17 +69,19 @@ class AuthenticateJob extends AbstractJob implements JobInterface
      * XML.
      * @param ConsumeWebserviceJob $consumeWebserviceJob Trabajo que realiza
      * consultas a la API SOAP del SII.
-     * @param CacheInterface $cache
+     * @param CacheItemPoolInterface $cache
      */
     public function __construct(
         private SignatureServiceInterface $signatureService,
         private XmlServiceInterface $xmlService,
         private ConsumeWebserviceJob $consumeWebserviceJob,
-        ?CacheInterface $cache = null
+        ?CacheItemPoolInterface $cache = null
     ) {
         if ($cache !== null) {
             $this->cache = $cache;
         }
+
+        $this->memoizer = new Memoizer();
     }
 
     /**
@@ -91,26 +101,25 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         // Armar clave de la caché para el token asociado al certificado.
         $cacheKey = $request->getTokenKey();
 
-        // Verificar si hay un token en la caché y si no ha expirado.
-        if ($cache->has($cacheKey)) {
-            return $cache->get($cacheKey);
-        }
+        // Obtener el token desde la caché. Si no hay uno o está expirado, se
+        // calcula una sola vez (incluso ante accesos concurrentes) y se
+        // guarda en la caché.
+        return $this->memoizer->remember(
+            $cache,
+            $cacheKey,
+            function () use ($request) {
+                // Esto falla con excepción que se deja pasar a quien haya
+                // llamado a este método getToken().
+                if ($request->getCertificate() === null) {
+                    throw new LogicException(
+                        'Para autenticar en el SII se debe proveer un certificado digital.'
+                    );
+                }
 
-        // Si no hay un token o está expirado, solicitar uno nuevo.
-        // Esto falla con excepción que se deja pasara a quien haya llamado a
-        // este método getToken().
-        if ($request->getCertificate() === null) {
-            throw new LogicException(
-                'Para autenticar en el SII se debe proveer un certificado digital.'
-            );
-        }
-        $newToken = $this->getTokenFromSii($request);
-
-        // Si se logró obtener un token, se guarda en la caché.
-        $cache->set($cacheKey, $newToken, $request->getTokenTtl());
-
-        // Entregar el nuevo token obtenido.
-        return $newToken;
+                return $this->getTokenFromSii($request);
+            },
+            $request->getTokenTtl()
+        );
     }
 
     /**
@@ -227,29 +236,18 @@ class AuthenticateJob extends AbstractJob implements JobInterface
      * utilizada en la biblioteca.
      *
      * @param string $defaultCache Caché por defecto que se debe crear.
-     * @return CacheInterface Implementación de caché PSR-16.
+     * @return CacheItemPoolInterface Implementación de caché PSR-6.
      */
-    private function getCache(string $defaultCache): CacheInterface
+    private function getCache(string $defaultCache): CacheItemPoolInterface
     {
         // Si no está asignada la caché se asigna a una por defecto.
         if (!isset($this->cache)) {
-            // Asignar una implementación de caché en el sistema de archivos.
-            if ($defaultCache === 'filesystem') {
-                $adapter = new FilesystemAdapter(
-                    'libredte_lib',
-                    3600, // TTL por defecto a una hora (3600 segundos).
-                    sys_get_temp_dir()
-                );
-            }
-
-            // Asignar una implementación de caché en memoria.
-            else {
-                $adapter = new ArrayAdapter();
-            }
-
-            // Asignar el adaptador de la caché que se utilizará convirtiéndolo
-            // a una instancia válida de PSR-16.
-            $this->cache = new Psr16Cache($adapter);
+            $this->cache = LocalCacheFactory::pool(
+                LocalCacheBackend::from($defaultCache),
+                'libredte_lib',
+                sys_get_temp_dir(),
+                3600 // TTL por defecto a una hora (3600 segundos).
+            );
         }
 
         // Entregar la instancia de la caché.

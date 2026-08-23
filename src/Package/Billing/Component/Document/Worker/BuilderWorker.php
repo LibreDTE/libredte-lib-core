@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
@@ -74,43 +74,45 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'bag' => [
-                'detalle' => [
-                    'Encabezado' => [
-                        'IdDoc' => [
-                            'TipoDTE' => 33,
-                            'Folio' => 1,
+                'example' => [
+                    'detalle' => [
+                        'Encabezado' => [
+                            'IdDoc' => [
+                                'TipoDTE' => 33,
+                                'Folio' => 1,
+                            ],
+                            'Emisor' => [
+                                'RUTEmisor' => '12345678-5',
+                                'RznSoc' => 'Empresa S.A.',
+                                'GiroEmis' => 'Giro de la empresa',
+                                'Acteco' => 123456,
+                                'DirOrigen' => 'Santiago',
+                                'CmnaOrigen' => 'Santiago',
+                            ],
+                            'Receptor' => [
+                                'RUTRecep' => '23456789-6',
+                                'RznSocRecep' => 'Empresa S.A.',
+                                'GiroRecep' => 'Giro de la empresa',
+                                'DirRecep' => 'Santiago',
+                                'CmnaRecep' => 'Santiago',
+                            ],
                         ],
-                        'Emisor' => [
-                            'RUTEmisor' => '12345678-5',
-                            'RznSoc' => 'Empresa S.A.',
-                            'GiroEmis' => 'Giro de la empresa',
-                            'Acteco' => 123456,
-                            'DirOrigen' => 'Santiago',
-                            'CmnaOrigen' => 'Santiago',
-                        ],
-                        'Receptor' => [
-                            'RUTRecep' => '23456789-6',
-                            'RznSocRecep' => 'Empresa S.A.',
-                            'GiroRecep' => 'Giro de la empresa',
-                            'DirRecep' => 'Santiago',
-                            'CmnaRecep' => 'Santiago',
+                        'Detalle' => [
+                            [
+                                'NmbItem' => 'Producto A',
+                                'QtyItem' => 1,
+                                'PrcItem' => 1000,
+                            ],
                         ],
                     ],
-                    'Detalle' => [
-                        [
-                            'NmbItem' => 'Producto A',
-                            'QtyItem' => 1,
-                            'PrcItem' => 1000,
-                        ],
+                    'caf' => '',
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
                     ],
-                ],
-                'caf' => '',
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
                 ],
             ],
         ],

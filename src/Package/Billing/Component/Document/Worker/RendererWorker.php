@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
@@ -66,13 +66,15 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'bag' => [
-                'xmlDocument' => '',
-                'options' => [
-                    'renderer' => [
-                        'format' => 'pdf',
+                'example' => [
+                    'xmlDocument' => '',
+                    'options' => [
+                        'renderer' => [
+                            'format' => 'pdf',
+                        ],
                     ],
                 ],
             ],

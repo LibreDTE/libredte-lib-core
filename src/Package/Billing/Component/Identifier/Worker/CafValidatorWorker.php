@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
@@ -42,9 +42,9 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
-            'caf' => '',
+    #[Operation(
+        parameters: [
+            'caf' => ['example' => ''],
         ],
     )]
     public function validate(CafInterface $caf): CafInterface

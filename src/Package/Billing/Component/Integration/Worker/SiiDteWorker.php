@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
@@ -60,19 +60,21 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'doc' => '',
-            'company' => '12345678-5',
+            'doc' => ['example' => ''],
+            'company' => ['example' => '12345678-5'],
         ],
     )]
     public function sendXmlDocument(
@@ -94,19 +96,21 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'trackId' => 123,
-            'company' => '12345678-5',
+            'trackId' => ['example' => 123],
+            'company' => ['example' => '12345678-5'],
         ],
     )]
     public function checkXmlDocumentSentStatus(
@@ -124,19 +128,21 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'trackId' => 123,
-            'company' => '12345678-5',
+            'trackId' => ['example' => 123],
+            'company' => ['example' => '12345678-5'],
         ],
     )]
     public function requestXmlDocumentSentStatusByEmail(
@@ -154,23 +160,25 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'company' => '12345678-5',
-            'document' => 33,
-            'number' => 1,
-            'date' => '2025-01-01',
-            'total' => 1000,
-            'recipient' => '23456789-6',
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+            'date' => ['example' => '2025-01-01'],
+            'total' => ['example' => 1000],
+            'recipient' => ['example' => '23456789-6'],
         ],
     )]
     public function validateDocument(
@@ -196,24 +204,26 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'request' => [
-                'certificate' => [
-                    'data' => '',
-                    'password' => '',
-                ],
-                'options' => [
-                    'environment' => SiiEnvironment::PRODUCTION,
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
                 ],
             ],
-            'company' => '12345678-5',
-            'document' => 33,
-            'number' => 1,
-            'date' => '2025-01-01',
-            'total' => 1000,
-            'recipient' => '23456789-6',
-            'signature' => '',
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+            'date' => ['example' => '2025-01-01'],
+            'total' => ['example' => 1000],
+            'recipient' => ['example' => '23456789-6'],
+            'signature' => ['example' => ''],
         ],
     )]
     public function validateDocumentSignature(

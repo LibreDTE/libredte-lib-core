@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
-use Derafu\Backbone\Attribute\ApiResource;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
@@ -52,14 +52,16 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[ApiResource(
-        parametersExample: [
+    #[Operation(
+        parameters: [
             'emisor' => [
-                'rut' => '12345678-9',
+                'example' => [
+                    'rut' => '12345678-9',
+                ],
             ],
-            'codigoDocumento' => 33,
-            'folioDesde' => 1,
-            'folioHasta' => 100,
+            'codigoDocumento' => ['example' => 33],
+            'folioDesde' => ['example' => 1],
+            'folioHasta' => ['example' => 100],
         ],
     )]
     public function create(
