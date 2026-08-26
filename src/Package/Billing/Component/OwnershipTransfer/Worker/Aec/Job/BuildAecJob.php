@@ -98,8 +98,12 @@ class BuildAecJob extends AbstractJob implements JobInterface
             $seq
         );
 
-        $dteCedidoXml = $this->stripXmlDeclaration($dteCedido->getXmlDocument()->saveXml());
-        $cesionXml = $this->stripXmlDeclaration($cesionDoc->getXmlDocument()->saveXml());
+        $dteCedidoXml = $this->stripXmlDeclaration(
+            $dteCedido->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
+        );
+        $cesionXml = $this->stripXmlDeclaration(
+            $cesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
+        );
 
         return $this->assembleAndSign(
             $bag->getCedente(),
@@ -121,19 +125,32 @@ class BuildAecJob extends AbstractJob implements JobInterface
 
         // Cargar el AEC existente en un DOMDocument para extraer sus nodos.
         $dom = new DOMDocument();
-        $dom->loadXML($existingAec->getXmlDocument()->saveXml());
+        $dom->loadXML($existingAec->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml());
         $xpath = new DOMXPath($dom);
         $xpath->registerNamespace('s', self::NS);
 
-        // Extraer el nodo DTECedido completo.
+        // Extraer el nodo DTECedido completo. Importante: DOMDocument::
+        // saveXML($node) con un nodo específico (a diferencia de sin
+        // argumentos, para el documento completo) siempre entrega el
+        // fragmento en UTF-8, sin importar $dom->encoding — se debe
+        // convertir explícitamente para que quede consistente con el resto
+        // del AEC, que se ensambla y firma en ISO-8859-1.
         $dteCedidoNode = $xpath->query('//s:Cesiones/s:DTECedido')->item(0);
-        $dteCedidoXml = $dom->saveXML($dteCedidoNode);
+        $dteCedidoXml = mb_convert_encoding(
+            $dom->saveXML($dteCedidoNode),
+            'ISO-8859-1',
+            'UTF-8'
+        );
 
-        // Extraer todos los nodos Cesion existentes.
+        // Extraer todos los nodos Cesion existentes (mismo motivo de arriba).
         $cesionNodes = $xpath->query('//s:Cesiones/s:Cesion');
         $existingCesionesXml = [];
         foreach ($cesionNodes as $node) {
-            $existingCesionesXml[] = $dom->saveXML($node);
+            $existingCesionesXml[] = mb_convert_encoding(
+                $dom->saveXML($node),
+                'ISO-8859-1',
+                'UTF-8'
+            );
         }
         $existingCount = count($existingCesionesXml);
         $seq = $bag->getSeq() ?? $existingCount + 1;
@@ -157,7 +174,9 @@ class BuildAecJob extends AbstractJob implements JobInterface
             $certificate,
             $seq
         );
-        $newCesionXml = $this->stripXmlDeclaration($newCesionDoc->getXmlDocument()->saveXml());
+        $newCesionXml = $this->stripXmlDeclaration(
+            $newCesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
+        );
 
         return $this->assembleAndSign(
             $bag->getCedente(),
@@ -205,7 +224,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
                     'Cesiones' => $cesionesPlaceholder,
                 ],
             ],
-        ])->saveXml();
+        ])->setEncoding('ISO-8859-1')->saveXml();
 
         $cesionesContent = $dteCedidoXml . "\n" . implode("\n", $cesionesXml);
 

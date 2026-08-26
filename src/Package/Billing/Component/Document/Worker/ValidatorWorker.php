@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
@@ -62,6 +63,11 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validate(
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
@@ -95,6 +101,11 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSchema(
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): XmlDocumentInterface {
@@ -130,6 +141,11 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSignature(
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): SignatureValidationResultInterface {

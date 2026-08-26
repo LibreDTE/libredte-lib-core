@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\XmlDocument;
@@ -47,6 +48,11 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'xml' => ['example' => ''],
+        ],
+    )]
     public function loadXml(XmlDocumentInterface|string $xml): DocumentBagInterface
     {
         if (is_string($xml)) {

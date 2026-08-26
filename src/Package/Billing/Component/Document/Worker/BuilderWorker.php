@@ -78,7 +78,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
         parameters: [
             'bag' => [
                 'example' => [
-                    'detalle' => [
+                    'parsedData' => [
                         'Encabezado' => [
                             'IdDoc' => [
                                 'TipoDTE' => 33,

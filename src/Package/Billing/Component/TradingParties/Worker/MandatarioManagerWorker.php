@@ -48,6 +48,16 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'certificate' => [
+                'example' => [
+                    'data' => '',
+                    'password' => '',
+                ],
+            ],
+        ],
+    )]
     public function createFromCertificate(
         CertificateInterface $certificate
     ): MandatarioInterface {

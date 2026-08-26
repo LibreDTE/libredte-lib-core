@@ -200,11 +200,23 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      *
      * Requiere: $bag->getParsedData() y $bag->getEmisor().
      *
+     * No hace nada si la bolsa ya tiene un XmlDocument: en ese caso
+     * ensureNormalizedData() derivará los datos normalizados directamente
+     * del XML (ya válido), no del pipeline basado en $parsedData — parchar
+     * $parsedData acá solo lograría, sin ningún beneficio, que quedara con
+     * una estructura parcial (sin Detalle/IdDoc) que haría que
+     * ensureNormalizedData() tome por error la rama basada en $parsedData
+     * en lugar de la basada en el XmlDocument ya completo.
+     *
      * @param DocumentBagInterface $bag
      * @return void
      */
     protected function ensureEmisorInParsedData(DocumentBagInterface $bag): void
     {
+        if ($bag->getXmlDocument()) {
+            return;
+        }
+
         $parsedData = $bag->getParsedData();
 
         // Verificar si es necesario y si se puede asignar.
@@ -229,11 +241,18 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
      *
      * Requiere: $bag->getParsedData() y $bag->getReceptor().
      *
+     * No hace nada si la bolsa ya tiene un XmlDocument — ver el docblock de
+     * ensureEmisorInParsedData(), la misma razón aplica acá.
+     *
      * @param DocumentBagInterface $bag
      * @return void
      */
     protected function ensureReceptorInParsedData(DocumentBagInterface $bag): void
     {
+        if ($bag->getXmlDocument()) {
+            return;
+        }
+
         $parsedData = $bag->getParsedData();
 
         // Verificar si es necesario y si se puede asignar.

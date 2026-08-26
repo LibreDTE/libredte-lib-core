@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -34,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchan
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\TipoDocumentoRespuesta;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\DocumentResponseException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeDocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob;
@@ -61,6 +63,35 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'tipo' => TipoDocumentoRespuesta::ENVIO_RECIBOS,
+                    'caratula' => [
+                        'RutResponde' => '76192083-9',
+                        'RutRecibe' => '88888888-8',
+                    ],
+                    'data' => [
+                        [
+                            'TipoDoc' => 33,
+                            'Folio' => 1,
+                            'FchEmis' => '2024-01-15',
+                            'RUTEmisor' => '88888888-8',
+                            'RUTRecep' => '76192083-9',
+                            'MntTotal' => 100000,
+                            'Recinto' => 'Oficina central',
+                            'RutFirma' => '76192083-9',
+                        ],
+                    ],
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function buildEnvioRecibos(ExchangeDocumentBag $bag): EnvioRecibos
     {
         try {
@@ -82,6 +113,39 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'tipo' => TipoDocumentoRespuesta::RESPUESTA_ENVIO,
+                    'caratula' => [
+                        'RutResponde' => '76192083-9',
+                        'RutRecibe' => '88888888-8',
+                        'IdRespuesta' => 1,
+                    ],
+                    'data' => [
+                        'resultado_dte' => [
+                            [
+                                'TipoDTE' => 33,
+                                'Folio' => 1,
+                                'FchEmis' => '2024-01-15',
+                                'RUTEmisor' => '88888888-8',
+                                'RUTRecep' => '76192083-9',
+                                'MntTotal' => 100000,
+                                'CodEnvio' => 1,
+                                'EstadoDTE' => 0,
+                                'EstadoDTEGlosa' => 'ACEPTADO OK',
+                            ],
+                        ],
+                    ],
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function buildRespuestaEnvio(ExchangeDocumentBag $bag): RespuestaEnvio
     {
         try {
@@ -103,6 +167,11 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSchema(
         AbstractExchangeDocument|XmlDocumentInterface|string $source
     ): XmlDocumentInterface {
@@ -130,6 +199,11 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSignature(
         AbstractExchangeDocument|XmlDocumentInterface|string $source
     ): array {

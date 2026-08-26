@@ -132,7 +132,7 @@ class BuildCesionJob extends AbstractJob implements JobInterface
                     'TmstCesion' => date('Y-m-d\TH:i:s'),
                 ],
             ],
-        ])->saveXml();
+        ])->setEncoding('ISO-8859-1')->saveXml();
 
         if ($certificate !== null) {
             $xml = $this->signatureService->signXml(

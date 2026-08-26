@@ -25,9 +25,11 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRcvWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\CheckDocumentAssignabilityResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\GetDocumentSiiReceptionDateResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\ListDocumentEventsResponse;
@@ -54,6 +56,25 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+            'action' => ['example' => 'ACD'],
+        ],
+    )]
     public function submitDocumentAcceptance(
         SiiRequestInterface $request,
         string $company,
@@ -73,6 +94,24 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+        ],
+    )]
     public function listDocumentEvents(
         SiiRequestInterface $request,
         string $company,
@@ -90,6 +129,24 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+        ],
+    )]
     public function checkDocumentAssignability(
         SiiRequestInterface $request,
         string $company,
@@ -107,6 +164,24 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1],
+        ],
+    )]
     public function getDocumentSiiReceptionDate(
         SiiRequestInterface $request,
         string $company,

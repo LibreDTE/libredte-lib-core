@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -55,6 +56,39 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'source' => '',
+                    'cedente' => [
+                        'RUT' => '76192083-9',
+                        'RazonSocial' => 'SASCO SpA',
+                        'Direccion' => 'Santa Cruz, Chile',
+                        'eMail' => 'contacto@sasco.cl',
+                        'RUTAutorizado' => [
+                            'RUT' => '76192083-9',
+                            'Nombre' => 'Administrador',
+                        ],
+                    ],
+                    'cesionario' => [
+                        'RUT' => '76354771-K',
+                        'RazonSocial' => 'Factoring S.A.',
+                        'Direccion' => 'Providencia, Santiago',
+                        'eMail' => 'cesiones@factoring.cl',
+                    ],
+                    'cesion' => [
+                        'MontoCesion' => 119000,
+                        'UltimoVencimiento' => '2024-02-14',
+                    ],
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function build(AecBag $bag): Aec
     {
         try {
@@ -73,6 +107,11 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSchema(
         Aec|XmlDocumentInterface|string $source
     ): XmlDocumentInterface {
@@ -87,6 +126,11 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSignature(
         Aec|XmlDocumentInterface|string $source
     ): array {

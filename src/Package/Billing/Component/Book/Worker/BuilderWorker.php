@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
@@ -32,6 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 use Throwable;
 
@@ -63,6 +65,39 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'tipo' => TipoLibro::VENTAS,
+                    'caratula' => [
+                        'RutEmisorLibro' => '76192083-9',
+                        'PeriodoTributario' => '2024-01',
+                    ],
+                    'detalle' => [
+                        [
+                            'TpoDoc' => 33,
+                            'NroDoc' => 1,
+                            'TasaImp' => 19,
+                            'FchDoc' => '2024-01-10',
+                            'RUTDoc' => '12345678-9',
+                            'RznSoc' => 'Empresa Compradora SpA',
+                            'MntNeto' => 100000,
+                            'MntIVA' => 19000,
+                            'MntTotal' => 119000,
+                        ],
+                    ],
+                    'certificate' => [
+                        'data' => '',
+                        'password' => '',
+                    ],
+                    'emisor' => [
+                        'rut' => '76192083-9',
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function build(BookBagInterface $bag): BookInterface
     {
         $strategyName = $bag->getTipo()->value;

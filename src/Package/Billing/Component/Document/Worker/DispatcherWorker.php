@@ -114,6 +114,11 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'xml' => ['example' => ''],
+        ],
+    )]
     public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface
     {
         if (is_string($xml)) {
@@ -150,6 +155,11 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSchema(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): XmlDocumentInterface {
@@ -172,6 +182,11 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'source' => ['example' => ''],
+        ],
+    )]
     public function validateSignature(
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): array {

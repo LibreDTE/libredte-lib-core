@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -50,6 +51,11 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'xml' => ['example' => ''],
+        ],
+    )]
     public function load(string|XmlDocumentInterface $xml): CafInterface
     {
         $class = $this->cafClass;
