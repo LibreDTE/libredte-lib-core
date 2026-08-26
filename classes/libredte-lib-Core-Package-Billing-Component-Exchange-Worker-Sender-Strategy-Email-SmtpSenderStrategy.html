@@ -247,8 +247,7 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Indica si la estrategia puede enviar una bolsa con todos sus sobres o un
-sobre específico.</dd>
+<dd>Indica si la estrategia puede enviar un sobre específico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_send">send()</a>
@@ -402,16 +401,15 @@ sobre específico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Indica si la estrategia puede enviar una bolsa con todos sus sobres o un
-sobre específico.</p>
+        <p class="phpdocumentor-summary">Indica si la estrategia puede enviar un sobre específico.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">canSend</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$what</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">canSend</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$envelope</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -420,11 +418,23 @@ sobre específico.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$what</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>|<a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$envelope</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Sobre que se desea enviar.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsa que contiene el sobre, con las
+opciones comunes a todos los sobres que envíe esta llamada.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -505,7 +515,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
@@ -570,7 +580,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">219</span>
+    <span class="phpdocumentor-element-found-in__line">216</span>
 
     </aside>
 
@@ -635,7 +645,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">199</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
@@ -643,17 +653,22 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">resolveTransportOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$envelope</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">resolveTransportOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Las opciones de transporte son comunes a todos los sobres que se envíen
+en una misma llamada — si se necesita enviar con transportes distintos
+(por ejemplo, remitentes/cuentas SMTP distintas), corresponde hacer una
+llamada separada por cada transporte.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$envelope</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -700,7 +715,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -708,7 +723,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">sendEnvelope</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$envelope</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">sendEnvelope</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface">EnvelopeInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$envelope</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -722,6 +737,16 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Sobre con documentos a enviar.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsa que contiene el sobre, con las
+opciones de transporte comunes a todos los sobres de este envío.</p>
 </section>
 
             </dd>

@@ -6551,6 +6551,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020las\u0020direcciones\u0020de\u0020correo\u0020electr\u00F3nico\u0020registradas\u0020como\u0020puntos\u0020de\nrecepci\u00F3n\u0020de\u0020documentos\u0020del\u0020participante.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#method_getEmails"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractParty\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020participante\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractParty\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractParty.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractParty\u003A\u003A\u0024identifier",
             "name": "identifier",
             "summary": "Identificador\u0020\u00FAnico\u0020del\u0020participante.",
@@ -6706,6 +6716,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentInterface.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\DocumentInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020documento\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\DocumentResponseWorkerInterface",
             "name": "DocumentResponseWorkerInterface",
             "summary": "Interfaz\u0020para\u0020\u0060DocumentResponseWorker\u0060.",
@@ -6806,6 +6821,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\EnvelopeInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020sobre\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-EnvelopeInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeBagInterface",
             "name": "ExchangeBagInterface",
             "summary": "Interfaz\u0020que\u0020almacena\u0020sobres,\u0020y\u0020sus\u0020documentos,\u0020m\u00E1s\u0020los\u0020datos\u0020para\u0020enviar\u0020o\nrecibir\u0020durante\u0020el\u0020proceso\u0020de\u0020intercambio\u0020de\u0020documentos\u0020electr\u00F3nicos.",
@@ -6835,6 +6855,11 @@ Search.appendIndex(
             "name": "addResult",
             "summary": "Agrega\u0020un\u0020resultado\u0020del\u0020proceso\u0020de\u0020intercambio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html#method_addResult"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeBagInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020la\u0020bolsa\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeComponentInterface",
             "name": "ExchangeComponentInterface",
@@ -6921,6 +6946,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020resultado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeResultInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020resultado\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeStatusInterface",
             "name": "ExchangeStatusInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020estado\u0020del\u0020resultado\u0020de\u0020una\u0020estrategia\u0020de\u0020intercambio\u0020de\u0020un\nsobre\u0020espec\u00EDfico.",
@@ -6966,6 +6996,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020estado\u0020del\u0020resultado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeStatusInterface.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeStatusInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020estado\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeStatusInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyEndpointInterface",
             "name": "PartyEndpointInterface",
             "summary": "Interfaz\u0020para\u0020los\u0020puntos\u0020t\u00E9cnicos\u0020de\u0020recepci\u00F3n\u0020de\u0020documentos\u0020de\u0020los\nparticipantes\u0020del\u0020intercambio.",
@@ -6990,6 +7025,11 @@ Search.appendIndex(
             "name": "getValue",
             "summary": "Obtiene\u0020el\u0020valor\u0020del\u0020punto\u0020t\u00E9cnico\u0020de\u0020recepci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyEndpointInterface.html#method_getValue"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyEndpointInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020punto\u0020de\u0020recepci\u00F3n\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyEndpointInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyIdentifierInterface",
             "name": "PartyIdentifierInterface",
@@ -7021,6 +7061,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020autoridad\u0020que\u0020registra\u0020y\u0020lista\u0020los\u0020valores\u0020del\u0020ID\u0020de\u0020los\nparticipantes\u0020en\u0020el\u0020contexto\u0020del\u0020esquema\u0020del\u0020ID.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyIdentifierInterface.html#method_getAuthority"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyIdentifierInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020identificador\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyIdentifierInterface.html#method_toArray"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyInterface",
             "name": "PartyInterface",
             "summary": "Interfaz\u0020base\u0020para\u0020los\u0020participantes\u0020del\u0020intercambio.",
@@ -7045,6 +7090,11 @@ Search.appendIndex(
             "name": "getEmails",
             "summary": "Obtiene\u0020las\u0020direcciones\u0020de\u0020correo\u0020electr\u00F3nico\u0020registradas\u0020como\u0020puntos\u0020de\nrecepci\u00F3n\u0020de\u0020documentos\u0020del\u0020participante.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyInterface.html#method_getEmails"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\PartyInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020participante\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-PartyInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ReceiverInterface",
             "name": "ReceiverInterface",
@@ -7098,7 +7148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\SenderStrategyInterface\u003A\u003AcanSend\u0028\u0029",
             "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020una\u0020bolsa\u0020con\u0020todos\u0020sus\u0020sobres\u0020o\u0020un\nsobre\u0020espec\u00EDfico.",
+            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-SenderStrategyInterface.html#method_canSend"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\SenderWorkerInterface",
@@ -7161,6 +7211,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020valor\u0020del\u0020punto\u0020t\u00E9cnico\u0020de\u0020recepci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyEndpoint.html#method_getValue"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyEndpoint\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020punto\u0020de\u0020recepci\u00F3n\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyEndpoint.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyEndpoint\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyEndpoint.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyEndpoint\u003A\u003ASCHEME_NAMES",
             "name": "SCHEME_NAMES",
             "summary": "Mapa\u0020de\u0020identificadores\u0020de\u0020esquema\u0020a\u0020su\u0020nombre.",
@@ -7210,6 +7270,16 @@ Search.appendIndex(
             "name": "getAuthority",
             "summary": "Entrega\u0020la\u0020autoridad\u0020que\u0020registra\u0020y\u0020lista\u0020los\u0020valores\u0020del\u0020ID\u0020de\u0020los\nparticipantes\u0020en\u0020el\u0020contexto\u0020del\u0020esquema\u0020del\u0020ID.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyIdentifier.html#method_getAuthority"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyIdentifier\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020identificador\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyIdentifier.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyIdentifier\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-PartyIdentifier.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Entity\\PartyIdentifier\u003A\u003ASCHEME_NAMES",
             "name": "SCHEME_NAMES",
@@ -7556,6 +7626,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Attachment.html#method_toArray"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Attachment\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Attachment.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Attachment\u003A\u003AguessContentType\u0028\u0029",
             "name": "guessContentType",
             "summary": "Adivina\u0020el\u0020Content\u0020Type\u0020del\u0020contenido\u0020del\u0020archivo\u0020a\u0020partir\u0020de\u0020la\nextensi\u00F3n\u0020del\u0020nombre\u0020del\u0020archivo.",
@@ -7620,6 +7695,16 @@ Search.appendIndex(
             "name": "getMetadata",
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Document.html#method_getMetadata"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Document\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020documento\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Document.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Document\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Document.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Document\u003A\u003A\u0024type",
             "name": "type",
@@ -7721,6 +7806,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Envelope.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Envelope\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020sobre\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Envelope.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Envelope\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-Envelope.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\Envelope\u003A\u003A\u0024sender",
             "name": "sender",
             "summary": "Remitente\u0020del\u0020sobre.",
@@ -7800,6 +7895,16 @@ Search.appendIndex(
             "name": "addResult",
             "summary": "Agrega\u0020un\u0020resultado\u0020del\u0020proceso\u0020de\u0020intercambio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_addResult"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020la\u0020bolsa\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -7941,6 +8046,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020resultado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeResult.html#method_getMetadata"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeResult\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020resultado\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeResult.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeResult\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeResult.html#method_jsonSerialize"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeResult\u003A\u003A\u0024envelope",
             "name": "envelope",
             "summary": "Sobre\u0020al\u0020que\u0020est\u00E1\u0020asociado\u0020el\u0020resultado.",
@@ -8005,6 +8120,16 @@ Search.appendIndex(
             "name": "getMetadata",
             "summary": "Obtiene\u0020los\u0020metadatos\u0020del\u0020estado\u0020del\u0020resultado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeStatus.html#method_getMetadata"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeStatus\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Convierte\u0020el\u0020estado\u0020a\u0020un\u0020array.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeStatus.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeStatus\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeStatus.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeStatus\u003A\u003A\u0024strategy",
             "name": "strategy",
@@ -8273,7 +8398,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003AcanSend\u0028\u0029",
             "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020una\u0020bolsa\u0020con\u0020todos\u0020sus\u0020sobres\u0020o\u0020un\nsobre\u0020espec\u00EDfico.",
+            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_canSend"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003AresolveTransportOptions\u0028\u0029",
@@ -8313,7 +8438,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy\u003A\u003AcanSend\u0028\u0029",
             "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020una\u0020bolsa\u0020con\u0020todos\u0020sus\u0020sobres\u0020o\u0020un\nsobre\u0020espec\u00EDfico.",
+            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html#method_canSend"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy",
@@ -8333,7 +8458,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy\u003A\u003AcanSend\u0028\u0029",
             "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020una\u0020bolsa\u0020con\u0020todos\u0020sus\u0020sobres\u0020o\u0020un\nsobre\u0020espec\u00EDfico.",
+            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html#method_canSend"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker",
