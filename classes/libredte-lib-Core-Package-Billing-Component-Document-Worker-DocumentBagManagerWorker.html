@@ -1001,7 +1001,7 @@ solo la de la asignación del tipo de documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">386</span>
+    <span class="phpdocumentor-element-found-in__line">405</span>
 
     </aside>
 
@@ -1049,7 +1049,7 @@ para poder crearlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">411</span>
+    <span class="phpdocumentor-element-found-in__line">430</span>
 
     </aside>
 
@@ -1100,7 +1100,7 @@ $bag-&gt;getNormalizedData() o $bag-&gt;getParsedData().</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">206</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -1115,6 +1115,13 @@ para poder determinarlo y no está asignado previamente.</p>
         </div>
     
         <section class="phpdocumentor-description"><p>Requiere: $bag-&gt;getParsedData() y $bag-&gt;getEmisor().</p>
+<p>No hace nada si la bolsa ya tiene un XmlDocument: en ese caso
+ensureNormalizedData() derivará los datos normalizados directamente
+del XML (ya válido), no del pipeline basado en $parsedData — parchar
+$parsedData acá solo lograría, sin ningún beneficio, que quedara con
+una estructura parcial (sin Detalle/IdDoc) que haría que
+ensureNormalizedData() tome por error la rama basada en $parsedData
+en lugar de la basada en el XmlDocument ya completo.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1148,7 +1155,7 @@ para poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">264</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
     </aside>
 
@@ -1248,7 +1255,7 @@ indicar en las opciones de la bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">464</span>
+    <span class="phpdocumentor-element-found-in__line">483</span>
 
     </aside>
 
@@ -1297,7 +1304,7 @@ normalizados para poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">235</span>
+    <span class="phpdocumentor-element-found-in__line">250</span>
 
     </aside>
 
@@ -1312,6 +1319,8 @@ para poder determinarlo y no está asignado previamente.</p>
         </div>
     
         <section class="phpdocumentor-description"><p>Requiere: $bag-&gt;getParsedData() y $bag-&gt;getReceptor().</p>
+<p>No hace nada si la bolsa ya tiene un XmlDocument — ver el docblock de
+ensureEmisorInParsedData(), la misma razón aplica acá.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1393,7 +1402,7 @@ poder determinarlo y no está asignado previamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php"><a href="files/src-package-billing-component-document-worker-documentbagmanagerworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DocumentBagManagerWorker.php">DocumentBagManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">361</span>
 
     </aside>
 
