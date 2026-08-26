@@ -68,10 +68,12 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
                 'example' => [
                     'xmlDocument' => '',
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'emisor' => [
+                        'rut' => '76192083-9',
+                        'razon_social' => 'SASCO SpA',
                         'autorizacion_dte' => [
                             'fecha_resolucion' => '2014-08-22',
                             'numero_resolucion' => 80,

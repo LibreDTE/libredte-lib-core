@@ -133,4 +133,40 @@ class ExchangeBag implements ExchangeBagInterface
 
         return $this;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'options' => $this->getOptions()->all(),
+            'envelopes' => array_map(
+                fn (EnvelopeInterface $envelope) => $envelope->toArray(),
+                $this->getEnvelopes(),
+            ),
+            'results' => array_map(
+                fn (ExchangeResultInterface $result) => $result->toArray(),
+                $this->getResults(),
+            ),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'options' => $this->getOptions()->all(),
+            'envelopes' => array_map(
+                fn (EnvelopeInterface $envelope) => $envelope->jsonSerialize(),
+                $this->getEnvelopes(),
+            ),
+            'results' => array_map(
+                fn (ExchangeResultInterface $result) => $result->jsonSerialize(),
+                $this->getResults(),
+            ),
+        ];
+    }
 }

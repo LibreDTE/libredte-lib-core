@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Config\Contract\OptionsAwareInterface;
+use JsonSerializable;
 
 /**
  * Interfaz que almacena sobres, y sus documentos, más los datos para enviar o
@@ -32,7 +33,7 @@ use Derafu\Config\Contract\OptionsAwareInterface;
  *
  * Contiene los sobres y todas las opciones necesarias para el intercambio.
  */
-interface ExchangeBagInterface extends OptionsAwareInterface
+interface ExchangeBagInterface extends OptionsAwareInterface, JsonSerializable
 {
     /**
      * Agrega un sobre a la bolsa.
@@ -73,4 +74,11 @@ interface ExchangeBagInterface extends OptionsAwareInterface
      * @return static
      */
     public function addResult(ExchangeResultInterface $result): static;
+
+    /**
+     * Convierte la bolsa a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

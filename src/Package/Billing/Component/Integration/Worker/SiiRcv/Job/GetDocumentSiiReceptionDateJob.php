@@ -82,6 +82,10 @@ class GetDocumentSiiReceptionDateJob extends AbstractJob implements JobInterface
                 ],
                 token: $token
             );
+
+            $response = $this->xmlService->decode($xmlResponse);
+
+            return new GetDocumentSiiReceptionDateResponse($response);
         } catch (Throwable $e) {
             throw new GetDocumentSiiReceptionDateException(sprintf(
                 'No fue posible obtener la fecha de recepción del documento T%dF%d de %s desde el SII. %s',
@@ -91,9 +95,5 @@ class GetDocumentSiiReceptionDateJob extends AbstractJob implements JobInterface
                 $e->getMessage()
             ), code: $e->getCode(), previous: $e, request: $request);
         }
-
-        $response = $this->xmlService->decode($xmlResponse);
-
-        return new GetDocumentSiiReceptionDateResponse($response);
     }
 }

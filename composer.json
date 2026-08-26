@@ -62,6 +62,9 @@
         "symfony/mailer": "^8.1",
         "webklex/php-imap": "^6.2"
     },
+    "suggest": {
+        "webklex/php-imap": "Requerido en tiempo de ejecución para recibir documentos por correo con billing.exchange.receiver::receive (estrategia email.imap)."
+    },
     "scripts": {
         "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
         "tests": "XDEBUG_MODE=coverage vendor/bin/phpunit --configuration=phpunit.xml",

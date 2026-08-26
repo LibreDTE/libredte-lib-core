@@ -83,7 +83,7 @@ class BoletaSenderStrategy extends AbstractStrategy implements SenderStrategyInt
     /**
      * {@inheritDoc}
      */
-    public function canSend(ExchangeBagInterface|EnvelopeInterface $what): void
+    public function canSend(EnvelopeInterface $envelope, ExchangeBagInterface $bag): void
     {
         // Todo OK. Las validaciones que se requieren se hicieron en el handler
         // SiiSenderHandler.

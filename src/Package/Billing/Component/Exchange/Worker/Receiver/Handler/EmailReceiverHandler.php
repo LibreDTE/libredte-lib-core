@@ -45,7 +45,9 @@ class EmailReceiverHandler extends AbstractReceiverHandler implements ExchangeHa
     protected function hasRequiredData(ExchangeBagInterface $bag): bool
     {
         // Se necesitan los datos de transporte.
-        if (!$bag->getOptions()->get('transport')) {
+        $transport = $bag->getOptions()->get('transport');
+        $transport = is_array($transport) ? $transport : $transport?->all();
+        if (empty($transport)) {
             return false;
         }
 

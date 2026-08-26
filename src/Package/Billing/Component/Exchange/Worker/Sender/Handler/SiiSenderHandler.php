@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Han
 use Derafu\Backbone\Attribute\Handler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractSenderHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
@@ -64,7 +65,7 @@ class SiiSenderHandler extends AbstractSenderHandler implements ExchangeHandlerI
     /**
      * {@inheritDoc}
      */
-    protected function hasRequiredData(EnvelopeInterface $envelope): bool
+    protected function hasRequiredData(EnvelopeInterface $envelope, ExchangeBagInterface $bag): bool
     {
         // Si no hay firma electrónica no se podrá hacer el envío al SII.
         if (!$envelope->getMetadata()->get('certificate')) {

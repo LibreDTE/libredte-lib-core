@@ -56,8 +56,8 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -66,7 +66,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
             ],
             'doc' => ['example' => ''],
             'company' => ['example' => '12345678-5'],
-            'emailNotif' => ['example' => 'cedente@empresa.cl'],
+            'emailNotif' => ['example' => 'cedente@example.com'],
         ],
     )]
     public function sendAec(

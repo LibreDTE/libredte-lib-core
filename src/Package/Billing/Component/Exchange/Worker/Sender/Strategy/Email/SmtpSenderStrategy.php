@@ -62,7 +62,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
     {
         // Procesar cada sobre por separado.
         foreach ($bag->getEnvelopes() as $envelope) {
-            $result = $this->sendEnvelope($envelope);
+            $result = $this->sendEnvelope($envelope, $bag);
             $bag->addResult($result);
         }
 
@@ -74,10 +74,13 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
      * Envía los documentos de un sobre por correo.
      *
      * @param EnvelopeInterface $envelope Sobre con documentos a enviar.
+     * @param ExchangeBagInterface $bag Bolsa que contiene el sobre, con las
+     * opciones de transporte comunes a todos los sobres de este envío.
      * @return ExchangeResultInterface Resultado del envío del sobre.
      */
     private function sendEnvelope(
-        EnvelopeInterface $envelope
+        EnvelopeInterface $envelope,
+        ExchangeBagInterface $bag
     ): ExchangeResultInterface {
         // Crear sobre con los correos del remitente y los destinatarios.
         $sender = $this->resolveSender($envelope);
@@ -151,7 +154,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         // Crear el cartero, pasarle el sobre y enviar el correo.
         $postman = new MailPostman([
             'strategy' => 'smtp',
-            'transport' => $this->resolveTransportOptions($envelope),
+            'transport' => $this->resolveTransportOptions($bag),
         ]);
         $postman->addEnvelope($mailEnvelope);
         $this->mailPackage->getExchangeComponent()->getSenderWorker()->send($postman);
@@ -171,34 +174,28 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
     /**
      * {@inheritDoc}
      */
-    public function canSend(ExchangeBagInterface|EnvelopeInterface $what): void
+    public function canSend(EnvelopeInterface $envelope, ExchangeBagInterface $bag): void
     {
-        // Armar listado de sobres a revisar.
-        if ($what instanceof ExchangeBagInterface) {
-            $envelopes = $what;
-        } else {
-            $envelopes = [$what];
-        }
-
-        // Revisar cada sobre y validar que tiene los datos necesario
-        // resolviendolos a sus valores.
-        foreach ($envelopes as $envelope) {
-            $this->resolveTransportOptions($envelope);
-            $this->resolveSender($envelope);
-            $this->resolveRecipients($envelope);
-        }
+        $this->resolveTransportOptions($bag);
+        $this->resolveSender($envelope);
+        $this->resolveRecipients($envelope);
     }
 
     /**
      * Resuelve y entrega los datos de transporte.
      *
-     * @param EnvelopeInterface $envelope
+     * Las opciones de transporte son comunes a todos los sobres que se envíen
+     * en una misma llamada — si se necesita enviar con transportes distintos
+     * (por ejemplo, remitentes/cuentas SMTP distintas), corresponde hacer una
+     * llamada separada por cada transporte.
+     *
+     * @param ExchangeBagInterface $bag
      * @return array
      * @throws ExchangeException Si no se encuentran los datos de transporte.
      */
-    private function resolveTransportOptions(EnvelopeInterface $envelope): array
+    private function resolveTransportOptions(ExchangeBagInterface $bag): array
     {
-        $options = $envelope->getMetadata()->get('transport', []);
+        $options = $bag->getOptions()->get('transport', []);
 
         if (empty($options['username']) || empty($options['password'])) {
             throw new ExchangeException(
@@ -206,7 +203,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
             );
         }
 
-        return $options;
+        return is_array($options) ? $options : $options->all();
     }
 
     /**

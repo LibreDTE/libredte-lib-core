@@ -26,13 +26,14 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use DateTimeInterface;
 use Derafu\Container\Contract\BagInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\DocumentType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 
 /**
  * Interfaz para la clase que representa un sobre con documentos.
  */
-interface EnvelopeInterface
+interface EnvelopeInterface extends JsonSerializable
 {
     /**
      * Entrega el remitente del sobre.
@@ -147,4 +148,11 @@ interface EnvelopeInterface
      * @return BagInterface
      */
     public function getMetadata(): BagInterface;
+
+    /**
+     * Convierte el sobre a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

@@ -24,12 +24,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
+use JsonSerializable;
 use Symfony\Component\Mime\Address;
 
 /**
  * Interfaz base para los participantes del intercambio.
  */
-interface PartyInterface
+interface PartyInterface extends JsonSerializable
 {
     /**
      * Identificador único del participante.
@@ -58,4 +59,11 @@ interface PartyInterface
      * @return Address[]
      */
     public function getEmails(): array;
+
+    /**
+     * Convierte el participante a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

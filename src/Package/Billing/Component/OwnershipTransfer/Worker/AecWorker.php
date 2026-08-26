@@ -65,7 +65,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
                         'RUT' => '76192083-9',
                         'RazonSocial' => 'SASCO SpA',
                         'Direccion' => 'Santa Cruz, Chile',
-                        'eMail' => 'contacto@sasco.cl',
+                        'eMail' => 'cedente@example.com',
                         'RUTAutorizado' => [
                             'RUT' => '76192083-9',
                             'Nombre' => 'Administrador',
@@ -75,15 +75,15 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
                         'RUT' => '76354771-K',
                         'RazonSocial' => 'Factoring S.A.',
                         'Direccion' => 'Providencia, Santiago',
-                        'eMail' => 'cesiones@factoring.cl',
+                        'eMail' => 'factoring@example.com',
                     ],
                     'cesion' => [
                         'MontoCesion' => 119000,
                         'UltimoVencimiento' => '2024-02-14',
                     ],
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                 ],
             ],

@@ -97,4 +97,25 @@ class PartyEndpoint implements PartyEndpointInterface
     {
         return $this->value;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'value' => $this->getValue(),
+            'schemeId' => $this->getSchemeId(),
+            'schemeName' => $this->getSchemeName(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

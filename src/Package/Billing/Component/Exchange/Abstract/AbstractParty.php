@@ -104,4 +104,32 @@ abstract class AbstractParty implements PartyInterface
 
         return $emails;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'identifier' => $this->identifier->toArray(),
+            'endpoints' => array_map(
+                fn (PartyEndpointInterface $endpoint) => $endpoint->toArray(),
+                $this->endpoints,
+            ),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'identifier' => $this->identifier->jsonSerialize(),
+            'endpoints' => array_map(
+                fn (PartyEndpointInterface $endpoint) => $endpoint->jsonSerialize(),
+                $this->endpoints,
+            ),
+        ];
+    }
 }

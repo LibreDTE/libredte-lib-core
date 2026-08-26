@@ -182,4 +182,38 @@ class Document implements DocumentInterface
     {
         return $this->metadata;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getID(),
+            'type' => $this->type->value,
+            'content' => $this->content,
+            'attachments' => array_map(
+                fn (AttachmentInterface $attachment) => $attachment->toArray(),
+                $this->attachments,
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getID(),
+            'type' => $this->type->value,
+            'content' => base64_encode($this->content),
+            'attachments' => array_map(
+                fn (AttachmentInterface $attachment) => $attachment->jsonSerialize(),
+                $this->attachments,
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
 }

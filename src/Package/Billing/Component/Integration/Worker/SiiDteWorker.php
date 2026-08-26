@@ -65,8 +65,8 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -101,8 +101,8 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -133,8 +133,8 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -165,8 +165,8 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -209,8 +209,8 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,

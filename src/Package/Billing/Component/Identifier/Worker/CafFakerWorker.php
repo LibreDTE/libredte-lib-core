@@ -57,6 +57,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
             'emisor' => [
                 'example' => [
                     'rut' => '12345678-9',
+                    'razon_social' => 'Empresa de Prueba SpA',
                 ],
             ],
             'codigoDocumento' => ['example' => 33],

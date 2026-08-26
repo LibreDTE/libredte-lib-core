@@ -85,8 +85,8 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
                         ],
                     ],
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                 ],
             ],
@@ -139,8 +139,8 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
                         ],
                     ],
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                 ],
             ],

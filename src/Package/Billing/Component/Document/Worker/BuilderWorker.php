@@ -88,7 +88,6 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
                                 'RUTEmisor' => '12345678-5',
                                 'RznSoc' => 'Empresa S.A.',
                                 'GiroEmis' => 'Giro de la empresa',
-                                'Acteco' => 123456,
                                 'DirOrigen' => 'Santiago',
                                 'CmnaOrigen' => 'Santiago',
                             ],
@@ -110,8 +109,8 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
                     ],
                     'caf' => '',
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                 ],
             ],

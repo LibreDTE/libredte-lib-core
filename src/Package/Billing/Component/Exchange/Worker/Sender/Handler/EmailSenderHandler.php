@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Han
 use Derafu\Backbone\Attribute\Handler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractSenderHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 
@@ -70,10 +71,13 @@ class EmailSenderHandler extends AbstractSenderHandler implements ExchangeHandle
     /**
      * {@inheritDoc}
      */
-    protected function hasRequiredData(EnvelopeInterface $envelope): bool
+    protected function hasRequiredData(EnvelopeInterface $envelope, ExchangeBagInterface $bag): bool
     {
-        // Se necesitan los datos de transporte.
-        if (!$envelope->getMetadata()->get('transport')) {
+        // Se necesitan los datos de transporte, comunes a todos los sobres
+        // que se envíen en esta llamada.
+        $transport = $bag->getOptions()->get('transport');
+        $transport = is_array($transport) ? $transport : $transport?->all();
+        if (empty($transport)) {
             return false;
         }
 

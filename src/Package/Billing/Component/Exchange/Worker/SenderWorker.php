@@ -32,6 +32,8 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchan
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\DocumentType;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\ExchangeException;
 use Throwable;
 
@@ -71,7 +73,58 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
     /**
      * {@inheritDoc}
      */
-    #[Operation()]
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'options' => [
+                        'strategy' => 'email.smtp',
+                        'transport' => [
+                            'username' => '',
+                            'password' => '',
+                        ],
+                    ],
+                    'envelopes' => [
+                        [
+                            'sender' => [
+                                'identifier' => [
+                                    'value' => '76192083-9',
+                                    'schemeId' => 'CL-RUT',
+                                ],
+                                'endpoints' => [
+                                    [
+                                        'value' => 'emisor@example.com',
+                                        'schemeId' => 'EMAIL',
+                                    ],
+                                ],
+                            ],
+                            'receiver' => [
+                                'identifier' => [
+                                    'value' => '66666666-6',
+                                    'schemeId' => 'CL-RUT',
+                                ],
+                                'endpoints' => [
+                                    [
+                                        'value' => 'cliente@example.com',
+                                        'schemeId' => 'EMAIL',
+                                    ],
+                                ],
+                            ],
+                            'documentType' => DocumentType::INVOICE,
+                            'process' => ProcessType::BILLING,
+                            'businessMessageID' => 'envio-001',
+                            'documents' => [
+                                [
+                                    'type' => DocumentType::INVOICE,
+                                    'content' => '',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function send(ExchangeBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getOptions());

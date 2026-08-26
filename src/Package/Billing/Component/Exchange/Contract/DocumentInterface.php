@@ -25,13 +25,14 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Container\Contract\BagInterface;
+use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\DocumentType;
 
 /**
  * Interfaz para la clase que representa un documento que se enviará en un
  * sobre.
  */
-interface DocumentInterface
+interface DocumentInterface extends JsonSerializable
 {
     /**
      * Obtiene el tipo del documento.
@@ -104,4 +105,11 @@ interface DocumentInterface
      * @return BagInterface
      */
     public function getMetadata(): BagInterface;
+
+    /**
+     * Convierte el documento a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

@@ -71,7 +71,21 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
     /**
      * {@inheritDoc}
      */
-    #[Operation()]
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'options' => [
+                        'strategy' => 'email.imap',
+                        'transport' => [
+                            'username' => '',
+                            'password' => '',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    )]
     public function receive(ExchangeBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getOptions());

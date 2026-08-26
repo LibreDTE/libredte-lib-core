@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
+use JsonSerializable;
+
 /**
  * Interfaz para los identificadores de los participantes.
  *
@@ -31,7 +33,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
  *
  * En el caso de Chile es el RUT.
  */
-interface PartyIdentifierInterface
+interface PartyIdentifierInterface extends JsonSerializable
 {
     /**
      * Obtiene el identificador completo del participante.
@@ -87,4 +89,11 @@ interface PartyIdentifierInterface
      * @return string
      */
     public function getAuthority(): string;
+
+    /**
+     * Convierte el identificador a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

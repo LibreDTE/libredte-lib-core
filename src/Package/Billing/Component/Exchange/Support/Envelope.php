@@ -286,4 +286,46 @@ class Envelope implements EnvelopeInterface
     {
         return $this->metadata;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'sender' => $this->sender->toArray(),
+            'receiver' => $this->receiver->toArray(),
+            'documentType' => $this->documentType->value,
+            'process' => $this->process->value,
+            'businessMessageID' => $this->businessMessageID,
+            'originalBusinessMessageID' => $this->originalBusinessMessageID,
+            'creationDateAndTime' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
+            'documents' => array_map(
+                fn (DocumentInterface $document) => $document->toArray(),
+                $this->documents,
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'sender' => $this->sender->jsonSerialize(),
+            'receiver' => $this->receiver->jsonSerialize(),
+            'documentType' => $this->documentType->value,
+            'process' => $this->process->value,
+            'businessMessageID' => $this->businessMessageID,
+            'originalBusinessMessageID' => $this->originalBusinessMessageID,
+            'creationDateAndTime' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
+            'documents' => array_map(
+                fn (DocumentInterface $document) => $document->jsonSerialize(),
+                $this->documents,
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
 }

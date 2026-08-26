@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
+use JsonSerializable;
+
 /**
  * Interfaz para los puntos técnicos de recepción de documentos de los
  * participantes del intercambio.
@@ -33,7 +35,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
  * En el caso de Chile oficialmente es el "correo de contacto empresas" definido
  * en el SII.
  */
-interface PartyEndpointInterface
+interface PartyEndpointInterface extends JsonSerializable
 {
     /**
      * Obtiene el identificador completo del punto técnico de recepción.
@@ -80,4 +82,11 @@ interface PartyEndpointInterface
      * @return string
      */
     public function getValue(): string;
+
+    /**
+     * Convierte el punto de recepción a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

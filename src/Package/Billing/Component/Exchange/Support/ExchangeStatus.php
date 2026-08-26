@@ -147,4 +147,26 @@ class ExchangeStatus implements ExchangeStatusInterface
     {
         return $this->metadata;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'strategy' => $this->strategy,
+            'error' => $this->error !== null
+                ? ['message' => $this->error->getMessage()]
+                : null,
+            'metadata' => $this->metadata->all(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

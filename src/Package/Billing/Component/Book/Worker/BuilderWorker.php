@@ -88,11 +88,12 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
                         ],
                     ],
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'emisor' => [
                         'rut' => '76192083-9',
+                        'razon_social' => 'SASCO SpA',
                     ],
                 ],
             ],

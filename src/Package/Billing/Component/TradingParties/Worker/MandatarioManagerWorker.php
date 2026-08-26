@@ -52,8 +52,8 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
         parameters: [
             'certificate' => [
                 'example' => [
-                    'data' => '',
-                    'password' => '',
+                    'certificate' => '',
+                    'privateKey' => '',
                 ],
             ],
         ],

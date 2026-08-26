@@ -25,11 +25,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Container\Contract\BagInterface;
+use JsonSerializable;
 
 /**
  * Interfaz para el resultado del proceso de intercambio de un sobre.
  */
-interface ExchangeResultInterface
+interface ExchangeResultInterface extends JsonSerializable
 {
     /**
      * Obtiene el sobre asociado a la operación, y resultado, de intercambio.
@@ -84,4 +85,17 @@ interface ExchangeResultInterface
      * @return BagInterface
      */
     public function getMetadata(): BagInterface;
+
+    /**
+     * Convierte el resultado a un array.
+     *
+     * El sobre se referencia por su `businessMessageID` (no se embebe
+     * completo) — el sobre completo siempre está disponible en
+     * `ExchangeBagInterface::toArray()['envelopes']`, ya que
+     * `ExchangeBag::addResult()` garantiza que todo sobre con un resultado
+     * también quede agregado a los sobres de la bolsa.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

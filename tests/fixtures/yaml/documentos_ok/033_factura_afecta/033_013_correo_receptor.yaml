@@ -16,7 +16,7 @@ Encabezado:
     GiroRecep: Gobierno
     # CorreoRecep: E-mail de contacto de la empresa receptora - Largo. máx: 80
     #              Tipo: ALFA.
-    CorreoRecep: correo@dominio.cl
+    CorreoRecep: contacto@example.com
     DirRecep: Santiago
     CmnaRecep: Santiago
 Detalle:

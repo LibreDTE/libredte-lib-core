@@ -116,4 +116,26 @@ class PartyIdentifier implements PartyIdentifierInterface
     {
         return self::AUTHORITIES[$this->schemeId] ?? $this->schemeId;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'value' => $this->getValue(),
+            'schemeId' => $this->getSchemeId(),
+            'schemeName' => $this->getSchemeName(),
+            'authority' => $this->getAuthority(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
 }

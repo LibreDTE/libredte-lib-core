@@ -103,6 +103,17 @@ class Attachment extends DataPart implements AttachmentInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $array = $this->toArray();
+        $array['data'] = base64_encode($array['data']);
+
+        return $array;
+    }
+
+    /**
      * Adivina el Content Type del contenido del archivo a partir de la
      * extensión del nombre del archivo.
      *

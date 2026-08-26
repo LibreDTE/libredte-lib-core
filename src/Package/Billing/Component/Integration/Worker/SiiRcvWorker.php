@@ -61,8 +61,8 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -99,8 +99,8 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -134,8 +134,8 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,
@@ -169,8 +169,8 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
             'request' => [
                 'example' => [
                     'certificate' => [
-                        'data' => '',
-                        'password' => '',
+                        'certificate' => '',
+                        'privateKey' => '',
                     ],
                     'options' => [
                         'environment' => SiiEnvironment::PRODUCTION,

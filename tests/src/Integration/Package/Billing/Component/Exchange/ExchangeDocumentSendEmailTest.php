@@ -244,14 +244,14 @@ class ExchangeDocumentSendEmailTest extends TestCase
         );
         $envelope->addDocument($document);
 
-        // Agregar los datos de transporte al envelope.
-        $envelope->addMetadata('transport', [
-            'username' => $username,
-            'password' => $password,
+        // Enviar el documento. Los datos de transporte van en las opciones de
+        // la bolsa (comunes a todos los sobres que se envíen en esta llamada).
+        $exchangeBag = new ExchangeBag([
+            'transport' => [
+                'username' => $username,
+                'password' => $password,
+            ],
         ]);
-
-        // Enviar el documento.
-        $exchangeBag = new ExchangeBag();
         $exchangeBag->addEnvelope($envelope);
         $results = $this->exchange->handle($exchangeBag);
 

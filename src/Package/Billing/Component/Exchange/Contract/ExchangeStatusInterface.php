@@ -25,13 +25,14 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Container\Contract\BagInterface;
+use JsonSerializable;
 use Throwable;
 
 /**
  * Interfaz para el estado del resultado de una estrategia de intercambio de un
  * sobre específico.
  */
-interface ExchangeStatusInterface
+interface ExchangeStatusInterface extends JsonSerializable
 {
     /**
      * Entrega el código de la estrategia que generó este estado de intercambio
@@ -94,4 +95,11 @@ interface ExchangeStatusInterface
      * @return BagInterface
      */
     public function getMetadata(): BagInterface;
+
+    /**
+     * Convierte el estado a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

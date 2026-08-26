@@ -138,4 +138,34 @@ class ExchangeResult implements ExchangeResultInterface
     {
         return $this->metadata;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'envelope' => $this->envelope->getBusinessMessageID(),
+            'statuses' => array_map(
+                fn (ExchangeStatusInterface $status) => $status->toArray(),
+                $this->getStatuses(),
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'envelope' => $this->envelope->getBusinessMessageID(),
+            'statuses' => array_map(
+                fn (ExchangeStatusInterface $status) => $status->jsonSerialize(),
+                $this->getStatuses(),
+            ),
+            'metadata' => $this->metadata->all(),
+        ];
+    }
 }

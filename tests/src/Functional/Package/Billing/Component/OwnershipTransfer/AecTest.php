@@ -194,7 +194,7 @@ class AecTest extends TestCase
                 'RUT' => '76192083-9',
                 'RazonSocial' => 'SASCO SpA',
                 'Direccion' => 'Santa Cruz, Chile',
-                'eMail' => 'contacto@sasco.cl',
+                'eMail' => 'cedente@example.com',
                 'RUTAutorizado' => [
                     'RUT' => '76192083-9',
                     'Nombre' => 'Administrador',
@@ -204,7 +204,7 @@ class AecTest extends TestCase
                 'RUT' => '76354771-K',
                 'RazonSocial' => 'Factoring S.A.',
                 'Direccion' => 'Providencia, Santiago',
-                'eMail' => 'cesiones@factoring.cl',
+                'eMail' => 'factoring@example.com',
             ],
             cesion: [
                 'MontoCesion' => $this->dte->getMontoTotal(),
@@ -252,7 +252,7 @@ class AecTest extends TestCase
                 'RUT' => '76192083-9',
                 'RazonSocial' => 'SASCO SpA',
                 'Direccion' => 'Santa Cruz, Chile',
-                'eMail' => 'contacto@sasco.cl',
+                'eMail' => 'cedente@example.com',
                 'RUTAutorizado' => [
                     'RUT' => '76192083-9',
                     'Nombre' => 'Administrador',
@@ -262,7 +262,7 @@ class AecTest extends TestCase
                 'RUT' => '76354771-K',
                 'RazonSocial' => 'Factoring S.A.',
                 'Direccion' => 'Providencia, Santiago',
-                'eMail' => 'cesiones@factoring.cl',
+                'eMail' => 'factoring@example.com',
             ],
             cesion: [
                 'MontoCesion' => $this->dte->getMontoTotal(),
@@ -279,7 +279,7 @@ class AecTest extends TestCase
                 'RUT' => '76354771-K',
                 'RazonSocial' => 'Factoring S.A.',
                 'Direccion' => 'Providencia, Santiago',
-                'eMail' => 'cesiones@factoring.cl',
+                'eMail' => 'factoring@example.com',
                 'RUTAutorizado' => [
                     'RUT' => '76354771-K',
                     'Nombre' => 'Gerente Factoring',
@@ -289,7 +289,7 @@ class AecTest extends TestCase
                 'RUT' => '77123456-7',
                 'RazonSocial' => 'Fondo de Inversión SpA',
                 'Direccion' => 'Las Condes, Santiago',
-                'eMail' => 'inversiones@fondo.cl',
+                'eMail' => 'fondo@example.com',
             ],
             cesion: [
                 'MontoCesion' => $this->dte->getMontoTotal(),

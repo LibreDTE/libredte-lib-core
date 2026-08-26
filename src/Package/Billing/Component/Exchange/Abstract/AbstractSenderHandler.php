@@ -82,12 +82,12 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
             // Verificar que el sobre tenga lo necesario.
             // Esta es una revisión general del handler. Evita solicitar la
             // estrategia si no se debe procesar por este handler.
-            if (!$this->hasRequiredData($envelope)) {
+            if (!$this->hasRequiredData($envelope, $bag)) {
                 continue;
             }
 
             // Determinar qué estrategias se ejecutarán.
-            $strategies = $this->resolveStrategies($envelope);
+            $strategies = $this->resolveStrategies($envelope, $bag);
             if (empty($strategies)) {
                 continue;
             }
@@ -131,13 +131,18 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
      *
      * Estos datos mínimos son independientes de la estrategia que use el
      * handler, pero están relacionados. Por ejemplo, estrategias que envían el
-     * sobre por correo electrónico requerirán un correo electrónico en el
-     * destinatario.
+     * sobre por correo electrónico requerirán las opciones de transporte en
+     * la bolsa.
      *
      * @param EnvelopeInterface $envelope
+     * @param ExchangeBagInterface $bag Bolsa que contiene el sobre, con las
+     * opciones comunes a todos los sobres que envíe esta llamada.
      * @return bool
      */
-    abstract protected function hasRequiredData(EnvelopeInterface $envelope): bool;
+    abstract protected function hasRequiredData(
+        EnvelopeInterface $envelope,
+        ExchangeBagInterface $bag
+    ): bool;
 
     /**
      * Entrega las estrategias que efectivamente se pueden ejecutar con el sobre
@@ -147,16 +152,20 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
      * estrategia lo puede procesar.
      *
      * @param EnvelopeInterface $envelope
+     * @param ExchangeBagInterface $bag Bolsa que contiene el sobre, con las
+     * opciones comunes a todos los sobres que envíe esta llamada.
      * @return string[] Códigos de las estrategias que se pueden ejecutar.
      */
-    protected function resolveStrategies(EnvelopeInterface $envelope): array
-    {
+    protected function resolveStrategies(
+        EnvelopeInterface $envelope,
+        ExchangeBagInterface $bag
+    ): array {
         $strategies = [];
 
         foreach ($this->getStrategies() as $name => $strategy) {
             assert($strategy instanceof SenderStrategyInterface);
             try {
-                $strategy->canSend($envelope);
+                $strategy->canSend($envelope, $bag);
                 $strategies[] = $name;
             } catch (ExchangeException $e) {
                 // Falla silenciosamente pues no se puede procesar con esta

@@ -43,17 +43,17 @@ interface SenderStrategyInterface extends StrategyInterface
     public function send(ExchangeBagInterface $bag): array;
 
     /**
-     * Indica si la estrategia puede enviar una bolsa con todos sus sobres o un
-     * sobre específico.
+     * Indica si la estrategia puede enviar un sobre específico.
      *
-     * Si se pasa una bolsa de intercambio con varios sobres este método
-     * corroborará que puede enviar todos los sobres con la estrategia. Si al
-     * menos un sobre no puede ser enviado con la estrategia el método entregará
-     * como resultado `false`, pues no puede enviar todo lo que hay en la bolsa.
+     * La bolsa se entrega como contexto (para datos comunes a todos los
+     * sobres, como las opciones de transporte) — la evaluación es siempre
+     * sobre el sobre puntual que se pasa, no sobre la bolsa completa.
      *
-     * @param ExchangeBagInterface|EnvelopeInterface $what
+     * @param EnvelopeInterface $envelope Sobre que se desea enviar.
+     * @param ExchangeBagInterface $bag Bolsa que contiene el sobre, con las
+     * opciones comunes a todos los sobres que envíe esta llamada.
      * @return void
      * @throws ExchangeException Motivo por el que no se puede procesar.
      */
-    public function canSend(ExchangeBagInterface|EnvelopeInterface $what): void;
+    public function canSend(EnvelopeInterface $envelope, ExchangeBagInterface $bag): void;
 }

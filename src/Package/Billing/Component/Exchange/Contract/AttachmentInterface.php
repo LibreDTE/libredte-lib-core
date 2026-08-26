@@ -24,10 +24,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
+use JsonSerializable;
+
 /**
  * Interfaz para la clase que representa un archivo adjunto de un documento.
  */
-interface AttachmentInterface
+interface AttachmentInterface extends JsonSerializable
 {
     /**
      * Obtiene el nombre del archivo.
