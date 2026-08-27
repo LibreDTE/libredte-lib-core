@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafFakerWorkerInterface.php"><a href="files/src-package-billing-component-identifier-contract-caffakerworkerinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafFakerWorkerInterface.php">CafFakerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -183,7 +183,7 @@
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a>    </span>
 </dt>
 <dd>Genera y devuelve un CAF (Código de Autorización de Folios) ficticio para
-el mandatario.</dd>
+el emisor (contribuyente).</dd>
 
     </dl>
 
@@ -214,12 +214,12 @@ el mandatario.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafFakerWorkerInterface.php"><a href="files/src-package-billing-component-identifier-contract-caffakerworkerinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafFakerWorkerInterface.php">CafFakerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Genera y devuelve un CAF (Código de Autorización de Folios) ficticio para
-el mandatario.</p>
+el emisor (contribuyente).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -271,6 +271,23 @@ el mismo valor de $folioDesde.</p>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_create_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html#method_create_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Exception-CafLoaderException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException">CafLoaderException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el CAF ficticio generado no puede ser
+cargado (delega en <code class="prettyprint">billing.identifier.caf_loader::load()</code>).</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
@@ -278,7 +295,7 @@ el mismo valor de $folioDesde.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>CAF ficticio generado para el contribuyente.</p>
+                <section class="phpdocumentor-description"><p>CAF ficticio generado para el emisor.</p>
 </section>
 
             </section>

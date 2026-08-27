@@ -254,7 +254,8 @@
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>    </span>
 </dt>
-<dd>Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.</dd>
+<dd>Construye el AEC completo: `DTECedido`, `Cesion` y documento raíz
+`AEC`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_validateSchema">validateSchema()</a>
@@ -485,7 +486,8 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.</p>
+        <p class="phpdocumentor-summary">Construye el AEC completo: `DTECedido`, `Cesion` y documento raíz
+`AEC`.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -502,7 +504,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag">AecBag</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Contenedor con el DTE, cedente, cesionario, cesión y
+                    <section class="phpdocumentor-description"><p>Bolsa con el DTE, cedente, cesionario, cesión y
 certificado.</p>
 </section>
 
@@ -530,6 +532,10 @@ certificado.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El AEC construido y firmado.</p>
+</section>
+
             </section>
 
 </article>
@@ -568,7 +574,11 @@ certificado.</p>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a validar: el
+AEC ya construido, o su XML ya construido (como documento o como
+string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -635,7 +645,11 @@ certificado.</p>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec">Aec</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a validar: el
+AEC ya construido, o su XML ya construido (como documento o como
+string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -660,6 +674,11 @@ certificado.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de
+validar cada firma electrónica encontrada en el AEC.</p>
+</section>
+
             </section>
 
 </article>

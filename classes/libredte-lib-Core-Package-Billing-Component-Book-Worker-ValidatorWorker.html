@@ -261,7 +261,7 @@ o string). El XML es siempre la fuente de verdad del esquema que declara.</li>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>    </span>
 </dt>
-<dd>Valida la firma electrónica XML del libro.</dd>
+<dd>Valida la firma electrónica del XML del libro.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-ValidatorWorker.html#method_toXmlDocument">toXmlDocument()</a>
@@ -451,7 +451,11 @@ o string). El XML es siempre la fuente de verdad del esquema que declara.</li>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a
+validar: la bolsa con el tipo de libro ya definido, o el XML del
+libro ya construido (como documento o como string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -501,7 +505,7 @@ o string). El XML es siempre la fuente de verdad del esquema que declara.</li>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida la firma electrónica XML del libro.</p>
+        <p class="phpdocumentor-summary">Valida la firma electrónica del XML del libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -518,7 +522,11 @@ o string). El XML es siempre la fuente de verdad del esquema que declara.</li>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a
+validar: la bolsa con el tipo de libro ya definido, o el XML del
+libro ya construido (como documento o como string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -543,6 +551,11 @@ o string). El XML es siempre la fuente de verdad del esquema que declara.</li>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de validar
+la firma electrónica del libro.</p>
+</section>
+
             </section>
 
 </article>

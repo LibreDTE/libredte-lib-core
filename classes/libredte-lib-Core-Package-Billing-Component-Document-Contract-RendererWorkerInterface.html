@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -213,7 +213,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -234,7 +234,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Contenedor con los datos del documento a
+                    <section class="phpdocumentor-description"><p>Bolsa con los datos del documento a
 renderizar.</p>
 </section>
 
@@ -253,7 +253,23 @@ renderizar.</p>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-RendererException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException">RendererException</abbr></a></span>
-                                                                                    
+                                                                                        <section class="phpdocumentor-description"><p>Si la estrategia de renderizado falla.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException">DocumentBagManagerException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si no se determina un tipo de
+documento tributario válido para el documento de la bolsa.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Backbone\Exception\StrategyException">StrategyException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si no existe una estrategia de renderizado
+registrada para la solicitada.</p>
+</section>
+
                                     </dd>
                         </dl>
 
@@ -263,7 +279,7 @@ renderizar.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Datos binarios del renderizado.</p>
+                <section class="phpdocumentor-description"><p>Datos binarios del renderizado (ej. el PDF).</p>
 </section>
 
             </section>

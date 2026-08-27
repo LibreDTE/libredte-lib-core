@@ -483,7 +483,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BuilderWorkerInterface\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Construye\u0020la\u0020entidad\u0020libro\u0020a\u0020partir\u0020del\u0020bag\u0020normalizado.",
+            "summary": "Construye\u0020la\u0020entidad\u0020libro\u0020a\u0020partir\u0020de\u0020la\u0020bolsa\u0020normalizada.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BuilderWorkerInterface.html#method_build"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\LibroBoletasInterface",
@@ -538,7 +538,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\LoaderWorkerInterface\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020del\u0020bag.",
+            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020de\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LoaderWorkerInterface.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\ResumenVentasDiariasInterface",
@@ -573,7 +573,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\ValidatorWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020XML\u0020del\u0020libro.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020XML\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-ValidatorWorkerInterface.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Entity\\LibroBoletas",
@@ -1068,7 +1068,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\BuilderWorker\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Construye\u0020la\u0020entidad\u0020libro\u0020a\u0020partir\u0020del\u0020bag\u0020normalizado.",
+            "summary": "Construye\u0020la\u0020entidad\u0020libro\u0020a\u0020partir\u0020de\u0020la\u0020bolsa\u0020normalizada.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-BuilderWorker.html#method_build"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\BuilderWorker\u003A\u003A\u0024signatureService",
@@ -1198,7 +1198,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020del\u0020bag.",
+            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020de\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-LoaderWorker.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003A\u0024optionsSchema",
@@ -1223,7 +1223,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\ValidatorWorker\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020XML\u0020del\u0020libro.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020XML\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-ValidatorWorker.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\ValidatorWorker\u003A\u003AtoXmlDocument\u0028\u0029",
@@ -2973,7 +2973,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ValidatorWorkerInterface\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020documento.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ValidatorWorkerInterface.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent",
@@ -6443,7 +6443,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003AvalidateSignature\u0028\u0029",
             "name": "validateSignature",
-            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020documento\u0020XML\u0020del\u0020documento.",
+            "summary": "Valida\u0020la\u0020firma\u0020electr\u00F3nica\u0020del\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#method_validateSignature"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A\u0024documentBagManager",
@@ -8488,7 +8488,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFakerWorkerInterface\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020mandatario.",
+            "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020emisor\u0020\u0028contribuyente\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafFakerWorkerInterface.html#method_create"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafFolioInterface",
@@ -8693,7 +8693,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafValidatorWorkerInterface\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "M\u00E9todo\u0020que\u0020valida\u0020el\u0020c\u00F3digo\u0020de\u0020autorizaci\u00F3n\u0020de\u0020folios\u0020\u0028CAF\u0029.",
+            "summary": "Valida\u0020el\u0020c\u00F3digo\u0020de\u0020autorizaci\u00F3n\u0020de\u0020folios\u0020\u0028CAF\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafValidatorWorkerInterface.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\IdentifierComponentInterface",
@@ -9088,7 +9088,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020mandatario.",
+            "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020emisor\u0020\u0028contribuyente\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_create"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003AcreateXml\u0028\u0029",
@@ -9153,7 +9153,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafValidatorWorker\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "M\u00E9todo\u0020que\u0020valida\u0020el\u0020c\u00F3digo\u0020de\u0020autorizaci\u00F3n\u0020de\u0020folios\u0020\u0028CAF\u0029.",
+            "summary": "Valida\u0020el\u0020c\u00F3digo\u0020de\u0020autorizaci\u00F3n\u0020de\u0020folios\u0020\u0028CAF\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafValidatorWorker.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafValidatorWorker\u003A\u003AgetSiiCertificate\u0028\u0029",
@@ -9268,7 +9268,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteWorkerInterface\u003A\u003ArequestXmlDocumentSentStatusByEmail\u0028\u0029",
             "name": "requestXmlDocumentSentStatusByEmail",
-            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
+            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediante\u0020correo\nelectr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteWorkerInterface.html#method_requestXmlDocumentSentStatusByEmail"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteWorkerInterface\u003A\u003AvalidateDocument\u0028\u0029",
@@ -10383,7 +10383,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDteWorker\u003A\u003ArequestXmlDocumentSentStatusByEmail\u0028\u0029",
             "name": "requestXmlDocumentSentStatusByEmail",
-            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediente\u0020correo\nelectr\u00F3nico.",
+            "summary": "Solicita\u0020al\u0020SII\u0020que\u0020le\u0020env\u00EDe\u0020el\u0020estado\u0020del\u0020DTE\u0020mediante\u0020correo\nelectr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#method_requestXmlDocumentSentStatusByEmail"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDteWorker\u003A\u003AvalidateDocument\u0028\u0029",
@@ -10828,7 +10828,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020DTECedido,\u0020Cesion\u0020y\u0020documento\u0020ra\u00EDz\u0020AEC.",
+            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020\u0060DTECedido\u0060,\u0020\u0060Cesion\u0060\u0020y\u0020documento\u0020ra\u00EDz\n\u0060AEC\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-AecWorkerInterface.html#method_build"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\AecWorkerInterface\u003A\u003AvalidateSchema\u0028\u0029",
@@ -11123,7 +11123,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020DTECedido,\u0020Cesion\u0020y\u0020documento\u0020ra\u00EDz\u0020AEC.",
+            "summary": "Construye\u0020el\u0020AEC\u0020completo\u003A\u0020\u0060DTECedido\u0060,\u0020\u0060Cesion\u0060\u0020y\u0020documento\u0020ra\u00EDz\n\u0060AEC\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-AecWorker.html#method_build"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\AecWorker\u003A\u003AvalidateSchema\u0028\u0029",

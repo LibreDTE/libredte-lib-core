@@ -189,7 +189,7 @@
     <span>
                                 &nbsp;: <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>    </span>
 </dt>
-<dd>Valida la firma electrónica XML del libro.</dd>
+<dd>Valida la firma electrónica del XML del libro.</dd>
 
     </dl>
 
@@ -220,7 +220,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-validatorworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php">ValidatorWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -233,9 +233,10 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Si se pasa un <code class="prettyprint">BookBagInterface</code>, el esquema se determina directamente
-desde <code class="prettyprint">$bag-&gt;getTipo()-&gt;getSchema()</code>. Para XML directo, se detecta el
-esquema a partir del elemento raíz del documento.</p>
+        <section class="phpdocumentor-description"><p>Si se pasa una bolsa (<code class="prettyprint">BookBagInterface</code>), el esquema se determina
+según el tipo de libro asociado a esa bolsa. Si se pasa el XML
+directamente, el esquema se detecta a partir del elemento raíz del
+documento.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -245,7 +246,11 @@ esquema a partir del elemento raíz del documento.</p>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a
+validar: la bolsa con el tipo de libro ya definido, o el XML del
+libro ya construido (como documento o como string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -293,11 +298,11 @@ esquema a partir del elemento raíz del documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-validatorworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/ValidatorWorkerInterface.php">ValidatorWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Valida la firma electrónica XML del libro.</p>
+        <p class="phpdocumentor-summary">Valida la firma electrónica del XML del libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -314,7 +319,11 @@ esquema a partir del elemento raíz del documento.</p>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a
+validar: la bolsa con el tipo de libro ya definido, o el XML del
+libro ya construido (como documento o como string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -352,6 +361,11 @@ esquema a partir del elemento raíz del documento.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de validar
+la firma electrónica del libro.</p>
+</section>
+
             </section>
 
 </article>

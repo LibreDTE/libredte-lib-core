@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php"><a href="files/src-package-billing-component-tradingparties-contract-mandatariomanagerworkerinterface.html"><abbr title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php">MandatarioManagerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -220,7 +220,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php"><a href="files/src-package-billing-component-tradingparties-contract-mandatariomanagerworkerinterface.html"><abbr title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php">MandatarioManagerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -241,11 +241,31 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Mandatario para el que se
+generará el certificado falso.</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_createFakeCertificate_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioManagerWorkerInterface.html#method_createFakeCertificate_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Certificate\Exception\CertificateException">CertificateException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la generación del certificado
+autofirmado o su carga posterior.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
@@ -273,7 +293,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php"><a href="files/src-package-billing-component-tradingparties-contract-mandatariomanagerworkerinterface.html"><abbr title="src/Package/Billing/Component/TradingParties/Contract/MandatarioManagerWorkerInterface.php">MandatarioManagerWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -294,17 +314,42 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Certificado digital desde el
+que se extraen los datos del mandatario (RUT y nombre).</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_createFromCertificate_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioManagerWorkerInterface.html#method_createFromCertificate_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el certificado no incluye RUT, nombre o
+correo electrónico del titular.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-MandatarioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface">MandatarioInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El mandatario creado a partir de los
+datos del certificado.</p>
+</section>
+
             </section>
 
 </article>

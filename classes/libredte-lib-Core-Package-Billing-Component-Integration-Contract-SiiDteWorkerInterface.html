@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -189,7 +189,7 @@
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-RequestXmlDocumentSentStatusByEmailResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse">RequestXmlDocumentSentStatusByEmailResponse</abbr></a>    </span>
 </dt>
-<dd>Solicita al SII que le envíe el estado del DTE mediente correo
+<dd>Solicita al SII que le envíe el estado del DTE mediante correo
 electrónico.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -242,7 +242,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -255,8 +255,8 @@ electrónico.</dd>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Este estado podría no ser el final, si no es un estado final se debe
-reintentar la consulta posteriormente al SII.</p>
+        <section class="phpdocumentor-description"><p>Este estado podría no ser el final; en ese caso, se debe reintentar
+la consulta más adelante.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -301,6 +301,25 @@ reintentar la consulta posteriormente al SII.</p>
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\UnexpectedValueException">UnexpectedValueException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el RUT de la empresa es inválido.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la solicitud no incluye un certificado
+digital para autenticar en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazy-AuthenticateException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException">AuthenticateException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la autenticación en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-CheckXmlDocumentSentStatusException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\CheckXmlDocumentSentStatusException">CheckXmlDocumentSentStatusException</abbr></a></span>
                                                                                         <section class="phpdocumentor-description"><p>En caso de error.</p>
 </section>
@@ -319,6 +338,11 @@ reintentar la consulta posteriormente al SII.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse">CheckXmlDocumentSentStatusResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El estado de revisión del
+envío, incluyendo el detalle por cada documento cuando corresponda.</p>
+</section>
+
             </section>
 
 </article>
@@ -336,11 +360,11 @@ reintentar la consulta posteriormente al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Solicita al SII que le envíe el estado del DTE mediente correo
+        <p class="phpdocumentor-summary">Solicita al SII que le envíe el estado del DTE mediante correo
 electrónico.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
@@ -399,6 +423,25 @@ servicio web de consulta del estado del envío del XML al SII.</p>
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\UnexpectedValueException">UnexpectedValueException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el RUT de la empresa es inválido.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la solicitud no incluye un certificado
+digital para autenticar en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazy-AuthenticateException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException">AuthenticateException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la autenticación en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-RequestXmlDocumentSentStatusByEmailException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\RequestXmlDocumentSentStatusByEmailException">RequestXmlDocumentSentStatusByEmailException</abbr></a></span>
                                                                                         <section class="phpdocumentor-description"><p>En caso de error.</p>
 </section>
@@ -417,6 +460,12 @@ servicio web de consulta del estado del envío del XML al SII.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-RequestXmlDocumentSentStatusByEmailResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse">RequestXmlDocumentSentStatusByEmailResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>La confirmación
+del SII de que la solicitud de envío del estado por correo fue
+registrada.</p>
+</section>
+
             </section>
 
 </article>
@@ -434,7 +483,7 @@ servicio web de consulta del estado del envío del XML al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -514,6 +563,19 @@ servicio web de consulta del estado del envío del XML al SII.</p>
 
                                     </dd>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la solicitud no incluye un certificado
+digital para autenticar en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazy-AuthenticateException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException">AuthenticateException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la autenticación en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-SendXmlDocumentException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException">SendXmlDocumentException</abbr></a></span>
                                                                                         <section class="phpdocumentor-description"><p>Si hay algún error al enviar el XML.</p>
 </section>
@@ -553,7 +615,7 @@ servicio web de consulta del estado del envío del XML al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">130</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -566,8 +628,8 @@ servicio web de consulta del estado del envío del XML al SII.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Este estado solo se obtiene si el documento se encuentra aceptado por el
-SII, ya sea aceptado 100% OK o con reparos.</p>
+        <section class="phpdocumentor-description"><p>Este estado solo se obtiene si el documento fue aceptado por el SII,
+ya sea 100% OK o con reparos.</p>
 <p>Este servicio valida que el documento exista en SII (esté aceptado) y
 además que los datos del documento proporcionados coincidan.</p>
 </section>
@@ -650,8 +712,22 @@ además que los datos del documento proporcionados coincidan.</p>
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\UnexpectedValueException">UnexpectedValueException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el RUT del usuario, la empresa o
+el receptor es inválido.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazy-AuthenticateException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException">AuthenticateException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la autenticación en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-ValidateDocumentException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException">ValidateDocumentException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>En caso de error.</p>
+                                                                                        <section class="phpdocumentor-description"><p>En caso de error (incluyendo no
+haber proporcionado un certificado digital para la consulta).</p>
 </section>
 
                                     </dd>
@@ -668,6 +744,11 @@ además que los datos del documento proporcionados coincidan.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse">ValidateDocumentResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de la validación del
+documento en el SII.</p>
+</section>
+
             </section>
 
 </article>
@@ -685,7 +766,7 @@ además que los datos del documento proporcionados coincidan.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">162</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -698,8 +779,8 @@ además que los datos del documento proporcionados coincidan.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Este estado solo se obtiene si el documento se encuentra aceptado por el
-SII, ya sea aceptado 100% OK o con reparos.</p>
+        <section class="phpdocumentor-description"><p>Este estado solo se obtiene si el documento fue aceptado por el SII,
+ya sea 100% OK o con reparos.</p>
 <p>Este servicio valida que el documento exista en SII (esté aceptado), que
 los datos del documento proporcionados coincidan. Finalmente, valida que
 la firma electrónica del documento coincida con la enviada al SII.</p>
@@ -792,6 +873,26 @@ la firma electrónica del documento coincida con la enviada al SII.</p>
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\UnexpectedValueException">UnexpectedValueException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el RUT de la empresa o el
+receptor es inválido.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la solicitud no incluye un certificado
+digital para autenticar en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiLazy-AuthenticateException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException">AuthenticateException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si falla la autenticación en el SII.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiDte-ValidateDocumentSignatureException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException">ValidateDocumentSignatureException</abbr></a></span>
                                                                                         <section class="phpdocumentor-description"><p>En caso de error.</p>
 </section>
@@ -810,6 +911,11 @@ la firma electrónica del documento coincida con la enviada al SII.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-ValidateDocumentSignatureResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse">ValidateDocumentSignatureResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de la
+validación del documento y su firma electrónica en el SII.</p>
+</section>
+
             </section>
 
 </article>

@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafLoaderWorkerInterface.php"><a href="files/src-package-billing-component-identifier-contract-cafloaderworkerinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafLoaderWorkerInterface.php">CafLoaderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -213,7 +213,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Contract/CafLoaderWorkerInterface.php"><a href="files/src-package-billing-component-identifier-contract-cafloaderworkerinterface.html"><abbr title="src/Package/Billing/Component/Identifier/Contract/CafLoaderWorkerInterface.php">CafLoaderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
@@ -234,7 +234,10 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>XML del CAF a cargar, como
+string o como documento ya construido.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -249,8 +252,17 @@
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Exception\XmlParseException">XmlParseException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el XML del CAF está vacío o mal formado.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Exception-CafLoaderException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException">CafLoaderException</abbr></a></span>
-                                                                                    
+                                                                                        <section class="phpdocumentor-description"><p>Si el código de tipo de documento del CAF
+no existe en el repositorio.</p>
+</section>
+
                                     </dd>
                         </dl>
 
@@ -259,6 +271,11 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface">CafInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El CAF cargado, con sus datos y folios
+disponibles.</p>
+</section>
+
             </section>
 
 </article>

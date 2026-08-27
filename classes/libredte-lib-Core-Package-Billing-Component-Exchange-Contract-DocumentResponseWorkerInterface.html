@@ -144,7 +144,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -234,7 +234,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -287,6 +287,10 @@ y luego el <code class="prettyprint">SetRecibos</code> se firma con ID <code cla
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-EnvioRecibos.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos">EnvioRecibos</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El <code class="prettyprint">EnvioRecibos</code> construido y firmado.</p>
+</section>
+
             </section>
 
 </article>
@@ -304,7 +308,7 @@ y luego el <code class="prettyprint">SetRecibos</code> se firma con ID <code cla
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -318,7 +322,8 @@ y luego el <code class="prettyprint">SetRecibos</code> se firma con ID <code cla
         </div>
     
         <section class="phpdocumentor-description"><p>El nodo <code class="prettyprint">Resultado</code> se firma con ID <code class="prettyprint">LibreDTE_ResultadoEnvio</code>.
-Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="prettyprint">ResultadoDTE</code> según los datos del bag.</p>
+Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="prettyprint">ResultadoDTE</code> según los datos de la
+bolsa.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -357,6 +362,10 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-RespuestaEnvio.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio">RespuestaEnvio</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El <code class="prettyprint">RespuestaDTE</code> construido y firmado.</p>
+</section>
+
             </section>
 
 </article>
@@ -374,7 +383,7 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -395,7 +404,11 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a validar: el documento de respuesta ya construido (<code class="prettyprint">EnvioRecibos</code>
+o <code class="prettyprint">RespuestaEnvio</code>), o su XML ya construido (como documento o como
+string).</p>
+</section>
+
             </dd>
             </dl>
 
@@ -449,7 +462,7 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php"><a href="files/src-package-billing-component-exchange-contract-documentresponseworkerinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/DocumentResponseWorkerInterface.php">DocumentResponseWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -473,11 +486,32 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument">AbstractExchangeDocument</abbr></a>|<abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Origen a validar: el documento de respuesta ya construido (<code class="prettyprint">EnvioRecibos</code>
+o <code class="prettyprint">RespuestaEnvio</code>), o su XML ya construido (como documento o como
+string).</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_validateSignature_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-DocumentResponseWorkerInterface.html#method_validateSignature_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Signature\Exception\SignatureException">SignatureException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si el XML está mal formado o no contiene
+firmas.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
@@ -495,6 +529,11 @@ Puede contener <code class="prettyprint">RecepcionEnvio</code> o <code class="pr
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Derafu\Signature\Contract\SignatureValidationResultInterface">SignatureValidationResultInterface</abbr>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El resultado de
+validar cada firma electrónica encontrada en el documento.</p>
+</section>
+
             </section>
 
 </article>
