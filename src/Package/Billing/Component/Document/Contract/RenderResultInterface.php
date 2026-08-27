@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
 use Stringable;
 
 /**
@@ -37,9 +38,34 @@ interface RenderResultInterface extends Stringable, JsonSerializable
     /**
      * Obtiene los archivos generados por el renderizado.
      *
+     * Uno por presentación (`label`) distinta solicitada, nunca duplicado
+     * por su cantidad de copias. Ver `RenderedDocumentInterface::getCopies()`.
+     *
      * @return RenderedDocumentInterface[]
      */
     public function getRenderings(): array;
+
+    /**
+     * Indica si el renderizado generó un archivo con el `label` indicado.
+     *
+     * Puede ser `false` tanto porque nunca se solicitó esa presentación como
+     * porque se omitió en silencio (ej. copia cedible solicitada para un
+     * tipo de documento que no la admite).
+     *
+     * @param string $label
+     * @return bool
+     */
+    public function hasRendering(string $label): bool;
+
+    /**
+     * Obtiene el archivo generado con el `label` indicado.
+     *
+     * @param string $label
+     * @return RenderedDocumentInterface
+     * @throws RendererException Si no existe un archivo renderizado con ese
+     * `label`.
+     */
+    public function getRendering(string $label): RenderedDocumentInterface;
 
     /**
      * Entrega el contenido del renderizado como string.
@@ -56,6 +82,12 @@ interface RenderResultInterface extends Stringable, JsonSerializable
     /**
      * Obtiene un arreglo con todos los archivos generados por el
      * renderizado.
+     *
+     * A diferencia de `getRenderings()`, esta representación sí se expande
+     * por cantidad de copias: cada archivo con `copies > 1` aparece como
+     * múltiples entradas (mismo `content`/`mimeType`, calculados una sola
+     * vez), cada una con un `copyNumber` (desde 1) y, si hay más de una
+     * copia, el `filename` ajustado para no colisionar entre copias.
      *
      * @return array
      */

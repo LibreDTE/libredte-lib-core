@@ -41,6 +41,17 @@ class RenderResult implements RenderResultInterface
     private readonly array $renderings;
 
     /**
+     * Archivos generados por el renderizado, indexados por su `label`.
+     *
+     * Solo incluye los que tienen `label` asignado (no es el caso de uso
+     * normal, pero un `RenderedDocumentInterface` sin `label` sigue siendo
+     * válido, solo no queda indexado para `hasRendering()`/`getRendering()`).
+     *
+     * @var array<string,RenderedDocumentInterface>
+     */
+    private readonly array $renderingsByLabel;
+
+    /**
      * Constructor del resultado del renderizado.
      *
      * @param RenderedDocumentInterface ...$renderings Archivos generados
@@ -49,6 +60,14 @@ class RenderResult implements RenderResultInterface
     public function __construct(RenderedDocumentInterface ...$renderings)
     {
         $this->renderings = $renderings;
+
+        $renderingsByLabel = [];
+        foreach ($renderings as $rendering) {
+            if ($rendering->getLabel() !== null) {
+                $renderingsByLabel[$rendering->getLabel()] = $rendering;
+            }
+        }
+        $this->renderingsByLabel = $renderingsByLabel;
     }
 
     /**
@@ -57,6 +76,29 @@ class RenderResult implements RenderResultInterface
     public function getRenderings(): array
     {
         return $this->renderings;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function hasRendering(string $label): bool
+    {
+        return isset($this->renderingsByLabel[$label]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRendering(string $label): RenderedDocumentInterface
+    {
+        if (!isset($this->renderingsByLabel[$label])) {
+            throw new RendererException(sprintf(
+                'El renderizado no generó ningún archivo con la presentación "%s".',
+                $label
+            ));
+        }
+
+        return $this->renderingsByLabel[$label];
     }
 
     /**
@@ -80,9 +122,8 @@ class RenderResult implements RenderResultInterface
     public function toArray(): array
     {
         return [
-            'renderings' => array_map(
-                fn (RenderedDocumentInterface $rendering) => $rendering->toArray(),
-                $this->renderings
+            'renderings' => $this->expand(
+                fn (RenderedDocumentInterface $rendering) => $rendering->toArray()
             ),
         ];
     }
@@ -93,10 +134,67 @@ class RenderResult implements RenderResultInterface
     public function jsonSerialize(): array
     {
         return [
-            'renderings' => array_map(
-                fn (RenderedDocumentInterface $rendering) => $rendering->jsonSerialize(),
-                $this->renderings
+            'renderings' => $this->expand(
+                fn (RenderedDocumentInterface $rendering) => $rendering->jsonSerialize()
             ),
         ];
+    }
+
+    /**
+     * Expande cada archivo renderizado en tantas entradas como copias
+     * represente, agregando el número de copia y, si hay más de una copia,
+     * ajustando el nombre del archivo para no colisionar entre copias.
+     *
+     * El `content`/`mimeType` de cada entrada se calculan una sola vez (vía
+     * `$serializer`), no una vez por copia: expandir es solo repetir el
+     * mismo arreglo ya calculado.
+     *
+     * @param callable(RenderedDocumentInterface): array $serializer
+     * @return array
+     */
+    private function expand(callable $serializer): array
+    {
+        $expanded = [];
+
+        foreach ($this->renderings as $rendering) {
+            $entry = $serializer($rendering);
+            $copies = $rendering->getCopies();
+
+            for ($copyNumber = 1; $copyNumber <= $copies; $copyNumber++) {
+                $copy = $entry;
+                $copy['copyNumber'] = $copyNumber;
+
+                if ($copies > 1 && $copy['filename'] !== null) {
+                    $copy['filename'] = $this->appendCopyNumber(
+                        $copy['filename'],
+                        $copyNumber
+                    );
+                }
+
+                $expanded[] = $copy;
+            }
+        }
+
+        return $expanded;
+    }
+
+    /**
+     * Agrega el número de copia al nombre de un archivo, antes de su
+     * extensión (ej. `factura.pdf` => `factura_2.pdf`).
+     *
+     * @param string $filename
+     * @param int $copyNumber
+     * @return string
+     */
+    private function appendCopyNumber(string $filename, int $copyNumber): string
+    {
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $base = pathinfo($filename, PATHINFO_FILENAME);
+
+        if ($extension === '') {
+            return sprintf('%s_%d', $base, $copyNumber);
+        }
+
+        return sprintf('%s_%d.%s', $base, $copyNumber, $extension);
     }
 }

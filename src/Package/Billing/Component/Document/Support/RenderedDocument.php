@@ -38,11 +38,16 @@ class RenderedDocument implements RenderedDocumentInterface
      * @param string $content Datos binarios (o de texto) del renderizado.
      * @param string $mimeType Tipo MIME del renderizado (ej. `application/pdf`).
      * @param string|null $filename Nombre sugerido para el archivo.
+     * @param string|null $label Identificador de la presentación con la que
+     * se generó (ej. `tributaria`, `cedible`).
+     * @param int $copies Cantidad de copias que representa este archivo.
      */
     public function __construct(
         private readonly string $content,
         private readonly string $mimeType,
-        private readonly ?string $filename = null
+        private readonly ?string $filename = null,
+        private readonly ?string $label = null,
+        private readonly int $copies = 1
     ) {
     }
 
@@ -73,12 +78,30 @@ class RenderedDocument implements RenderedDocumentInterface
     /**
      * {@inheritDoc}
      */
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCopies(): int
+    {
+        return $this->copies;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function toArray(): array
     {
         return [
             'content' => $this->getContent(),
             'mimeType' => $this->getMimeType(),
             'filename' => $this->getFilename(),
+            'label' => $this->getLabel(),
+            'copies' => $this->getCopies(),
         ];
     }
 

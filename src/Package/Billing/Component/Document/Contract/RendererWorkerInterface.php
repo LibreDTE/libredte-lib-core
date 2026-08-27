@@ -38,11 +38,22 @@ interface RendererWorkerInterface extends WorkerInterface, StrategiesAwareInterf
     /**
      * Realiza el renderizado del documento.
      *
+     * Por defecto genera una sola presentación (`tributaria`). Se puede
+     * pedir más de una, y más de una copia de cada una, con la opción
+     * `bag.options.renderer.renderings` (ej. `['tributaria' => 2, 'cedible'
+     * => 1]`). Una copia `cedible` solicitada para un tipo de documento que
+     * no admite acuse de recibo (ver
+     * `TipoDocumentoInterface::requiresAcuseRecibo()`) se omite en
+     * silencio: no es un error, simplemente esa presentación no aparece en
+     * el resultado.
+     *
      * @param DocumentBagInterface $bag Bolsa con los datos del documento a
      * renderizar.
      * @return RenderResultInterface Resultado del renderizado (el o los
      * archivos generados, ej. el PDF).
-     * @throws RendererException Si la estrategia de renderizado falla.
+     * @throws RendererException Si la estrategia de renderizado falla, si se
+     * solicita una presentación de renderizado que no existe, o si ninguna
+     * de las presentaciones solicitadas pudo generarse.
      * @throws DocumentBagManagerException Si no se determina un tipo de
      * documento tributario válido para el documento de la bolsa.
      * @throws StrategyException Si no existe una estrategia de renderizado

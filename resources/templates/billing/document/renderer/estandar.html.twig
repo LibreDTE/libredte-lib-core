@@ -914,7 +914,8 @@
             {% endif %}
         </div>
         {% endif %}
-        <div class="container-informacion-bottom"{% if acuse_recibo is empty %}style="bottom: 130px;"{% endif %}>
+        {% set esCedible = options.renderer.presentation is defined and options.renderer.presentation == 'cedible' %}
+        <div class="container-informacion-bottom"{% if not esCedible %}style="bottom: 130px;"{% endif %}>
             <table class="tabla-bottom-element">
                 <tr>
                     <td class="tabla-bottom-element-cell">
@@ -942,7 +943,7 @@
                             </table>
                         {% endif %}
                     </td>
-                    {% if acuse_recibo is not empty %}
+                    {% if esCedible %}
                         <td class="tabla-bottom-element-cell">
                         {# Acuse de Recibo -#}
                             <table class="acuse-recibo">
@@ -1180,7 +1181,7 @@
                 </tr>
             </table>
         </div>
-        {% if acuse_recibo is not empty %}
+        {% if esCedible %}
             <div class="container container-cedible">
                 <p class="cedible">
                     {% if document.Encabezado.IdDoc.TipoDTE in ['52', '56', '61'] %}

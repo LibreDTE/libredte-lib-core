@@ -54,6 +54,31 @@ interface RenderedDocumentInterface extends JsonSerializable
     public function getFilename(): ?string;
 
     /**
+     * Obtiene el identificador de la presentación con la que se generó este
+     * archivo (ej. `tributaria`, `cedible`).
+     *
+     * Es un identificador de texto libre, no atado a un enum específico: lo
+     * asigna quien construye el resultado del renderizado (ej. el worker),
+     * para que esta clase se pueda reutilizar fuera del contexto de
+     * documentos tributarios.
+     *
+     * @return string|null
+     */
+    public function getLabel(): ?string;
+
+    /**
+     * Obtiene la cantidad de copias que representa este archivo renderizado.
+     *
+     * El contenido no se duplica en memoria por tener más de una copia: es
+     * el mismo archivo, pensado para usarse (ej. imprimirse) esa cantidad de
+     * veces. Ver `RenderResultInterface::toArray()`/`jsonSerialize()` para
+     * la única expansión real a múltiples entradas.
+     *
+     * @return int
+     */
+    public function getCopies(): int;
+
+    /**
      * Obtiene un arreglo con todos los atributos del archivo renderizado.
      *
      * El contenido se entrega tal cual (crudo, sin codificar), consistente
