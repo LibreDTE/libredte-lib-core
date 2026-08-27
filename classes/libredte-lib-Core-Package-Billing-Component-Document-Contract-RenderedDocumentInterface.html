@@ -129,10 +129,10 @@
 
     <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    RendererWorkerInterface
+    RenderedDocumentInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>,                             <abbr title="\Derafu\Backbone\Contract\StrategiesAwareInterface">StrategiesAwareInterface</abbr>                    </span>
+                            <abbr title="\JsonSerializable">JsonSerializable</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -142,13 +142,14 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Interfaz para los renderizadores.</p>
+            <p class="phpdocumentor-summary">Interfaz para la clase que representa un archivo generado por un
+renderizador de documentos (ej. el PDF o el HTML de un DTE).</p>
 
 
 
@@ -158,7 +159,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -173,16 +174,37 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render">render()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getContent">getContent()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a>    </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd>Realiza el renderizado del documento.</dd>
+<dd>Obtiene los datos binarios (o de texto) del archivo renderizado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename">getFilename()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene el nombre sugerido para el archivo renderizado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType">getMimeType()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Obtiene el tipo MIME del archivo renderizado (ej. `application/pdf`).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_toArray">toArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Obtiene un arreglo con todos los atributos del archivo renderizado.</dd>
 
     </dl>
 
@@ -196,7 +218,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -205,84 +227,157 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_render">
-        render()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getContent">
+        getContent()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getContent" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Realiza el renderizado del documento.</p>
+        <p class="phpdocumentor-summary">Obtiene los datos binarios (o de texto) del archivo renderizado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">render</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getContent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos del documento a
-renderizar.</p>
-</section>
-
-            </dd>
-            </dl>
-
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_render_tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-RendererException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException">RendererException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si la estrategia de renderizado falla.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException">DocumentBagManagerException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si no se determina un tipo de
-documento tributario válido para el documento de la bolsa.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Backbone\Exception\StrategyException">StrategyException</abbr></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si no existe una estrategia de renderizado
-registrada para la solicitada.</p>
-</section>
-
-                                    </dd>
-                        </dl>
+    
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Resultado del renderizado (el o los
-archivos generados, ej. el PDF).</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getFilename">
+        getFilename()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el nombre sugerido para el archivo renderizado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getFilename</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMimeType">
+        getMimeType()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el tipo MIME del archivo renderizado (ej. `application/pdf`).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMimeType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">65</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un arreglo con todos los atributos del archivo renderizado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El contenido se entrega tal cual (crudo, sin codificar), consistente
+con el resto de la biblioteca: la codificación a base64 para
+serialización JSON ocurre solo en <code class="prettyprint">jsonSerialize()</code>.</p>
 </section>
 
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -300,14 +395,17 @@ archivos generados, ej. el PDF).</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render">render()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getContent">getContent()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename">getFilename()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType">getMimeType()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_toArray">toArray()</a></li>
                                             </ul>
                 </li>
             
@@ -328,7 +426,7 @@ archivos generados, ej. el PDF).</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

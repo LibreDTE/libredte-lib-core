@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -248,9 +248,17 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_render">render()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a>    </span>
 </dt>
 <dd>Realiza el renderizado del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType">resolveMimeType()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Resuelve el tipo MIME correspondiente al formato de renderizado
+solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
 
     </dl>
 
@@ -282,7 +290,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -293,7 +301,7 @@
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;template.estandar&#039;]]</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;template.estandar&#039;], &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;pdf&#039;]]</span></code>
 
     
     
@@ -320,7 +328,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -362,7 +370,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -413,7 +421,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -421,7 +429,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">render</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">render</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -461,11 +469,64 @@ renderizar.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Datos binarios del renderizado (ej. el PDF).</p>
+                <section class="phpdocumentor-description"><p>Resultado del renderizado (el o los
+archivos generados, ej. el PDF).</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveMimeType">
+        resolveMimeType()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">128</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resuelve el tipo MIME correspondiente al formato de renderizado
+solicitado (ej. `pdf` =&gt; `application/pdf`).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveMimeType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$format</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Formato de renderizado (ej. <code class="prettyprint">pdf</code>, <code class="prettyprint">html</code>).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -501,6 +562,7 @@ renderizar.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_render">render()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType">resolveMimeType()</a></li>
                                     </ul>
             </li>
                     </ul>
