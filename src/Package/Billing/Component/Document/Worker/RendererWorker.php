@@ -32,7 +32,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInt
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
+use Symfony\Component\Mime\MimeTypes;
 use Throwable;
 
 /**
@@ -61,6 +65,10 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
             'types' => 'string',
             'default' => 'template.estandar',
         ],
+        'format' => [
+            'types' => 'string',
+            'default' => 'pdf',
+        ],
     ];
 
     /**
@@ -80,7 +88,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
             ],
         ]
     )]
-    public function render(DocumentBagInterface $bag): string
+    public function render(DocumentBagInterface $bag): RenderResultInterface
     {
         $options = $this->resolveOptions($bag->getRendererOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
@@ -99,6 +107,28 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
             );
         }
 
-        return $renderedData;
+        $format = (string) $options->get('format');
+
+        $rendering = new RenderedDocument(
+            content: $renderedData,
+            mimeType: $this->resolveMimeType($format),
+            filename: $bag->getId() . '.' . $format,
+        );
+
+        return new RenderResult($rendering);
+    }
+
+    /**
+     * Resuelve el tipo MIME correspondiente al formato de renderizado
+     * solicitado (ej. `pdf` => `application/pdf`).
+     *
+     * @param string $format Formato de renderizado (ej. `pdf`, `html`).
+     * @return string
+     */
+    private function resolveMimeType(string $format): string
+    {
+        $mimeTypes = MimeTypes::getDefault()->getMimeTypes($format);
+
+        return $mimeTypes[0] ?? 'application/octet-stream';
     }
 }

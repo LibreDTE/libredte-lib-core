@@ -44,6 +44,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
@@ -139,6 +141,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(EmailSenderHandler::class)]
 #[CoversClass(SiiSenderHandler::class)]
 #[CoversClass(DocumentType::class)]
@@ -213,7 +217,7 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $xml = $documentBag->getDocument()->saveXml();
 
         // Renderizar el documento en PDF.
-        $pdf = $this->renderer->render($documentBag);
+        $pdf = (string) $this->renderer->render($documentBag);
 
         // Correo de intercambio para el emisor y receptor.
         $documentBag->getEmisor()->setCorreoIntercambioDte($username);

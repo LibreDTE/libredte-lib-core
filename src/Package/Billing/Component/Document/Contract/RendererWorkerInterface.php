@@ -40,12 +40,13 @@ interface RendererWorkerInterface extends WorkerInterface, StrategiesAwareInterf
      *
      * @param DocumentBagInterface $bag Bolsa con los datos del documento a
      * renderizar.
-     * @return string Datos binarios del renderizado (ej. el PDF).
+     * @return RenderResultInterface Resultado del renderizado (el o los
+     * archivos generados, ej. el PDF).
      * @throws RendererException Si la estrategia de renderizado falla.
      * @throws DocumentBagManagerException Si no se determina un tipo de
      * documento tributario válido para el documento de la bolsa.
      * @throws StrategyException Si no existe una estrategia de renderizado
      * registrada para la solicitada.
      */
-    public function render(DocumentBagInterface $bag): string;
+    public function render(DocumentBagInterface $bag): RenderResultInterface;
 }

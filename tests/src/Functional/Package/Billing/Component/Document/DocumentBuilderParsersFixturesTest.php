@@ -56,6 +56,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaReposi
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
@@ -164,6 +166,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(YamlParserStrategy::class)]
 #[CoversClass(EstandarParserStrategy::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(SanitizerWorker::class)]
 #[CoversClass(FacturaAfectaSanitizerStrategy::class)]
 #[CoversClass(BoletaAfectaSanitizerStrategy::class)]
@@ -395,7 +399,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar.
-        $pdf = $this->renderer->render($bag);
+        $pdf = (string) $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
         file_put_contents($file . '.pdf', $pdf);
     }

@@ -54,6 +54,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdic
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBatch;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
@@ -182,6 +184,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
 #[CoversClass(TemplateDataFormatter::class)]
@@ -289,7 +293,7 @@ class EmisionMasivaTest extends TestCase
             }
 
             // Generar el PDF del documento.
-            $pdf = $renderer->render($documentBag);
+            $pdf = (string) $renderer->render($documentBag);
             $this->assertNotEmpty($pdf);
             file_put_contents(
                 $file . '_' . $documentBag->getId() . '.pdf',

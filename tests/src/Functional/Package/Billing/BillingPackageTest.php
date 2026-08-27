@@ -45,6 +45,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFa
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker;
@@ -116,6 +118,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(LoaderWorker::class)]
 #[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(CodigoDocumento::class)]
 #[CoversClass(TagXmlDocumento::class)]
 #[CoversClass(NormalizationUtils::class)]
@@ -224,7 +228,7 @@ class BillingPackageTest extends TestCase
         // Renderizar el documento cargado en la nueva bolsa.
         $renderer = $biller->getRendererWorker();
         $newBag->getOptions()->set('renderer.format', 'html');
-        $renderedData = $renderer->render($newBag);
+        $renderedData = (string) $renderer->render($newBag);
         $this->assertNotEmpty($renderedData);
     }
 }

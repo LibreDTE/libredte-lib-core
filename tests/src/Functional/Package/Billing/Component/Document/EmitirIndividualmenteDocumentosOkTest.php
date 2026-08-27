@@ -55,6 +55,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaReposi
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
@@ -179,6 +181,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NotaDebitoExportacionNormalizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionNormalizerStrategy::class)]
 #[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(SanitizerWorker::class)]
 #[CoversClass(FacturaAfectaSanitizerStrategy::class)]
 #[CoversClass(FacturaExentaSanitizerStrategy::class)]
@@ -362,14 +366,14 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar en HTML.
         $bag->getOptions()->set('renderer.format', 'html');
-        $html = $this->renderer->render($bag);
+        $html = (string) $this->renderer->render($bag);
         $this->assertNotEmpty($html);
         file_put_contents($file . '.html', $html);
 
         // Renderizar el documento para corroborar que se puedan construir con
         // la estrategia estándar en PDF.
         $bag->getOptions()->set('renderer.format', 'pdf');
-        $pdf = $this->renderer->render($bag);
+        $pdf = (string) $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
         file_put_contents($file . '.pdf', $pdf);
     }
