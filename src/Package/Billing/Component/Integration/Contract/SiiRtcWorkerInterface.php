@@ -52,7 +52,7 @@ interface SiiRtcWorkerInterface extends WorkerInterface
      * digital para autenticar en el SII.
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws SendAecException Si hay algún error al enviar el AEC.
-     * @link https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2
+     * @link https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2 Formulario web del SII para el envío manual de una cesión (AEC) al RTC, que este envío automatizado emula.
      */
     public function sendAec(
         SiiRequestInterface $request,

@@ -70,7 +70,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @return string El token asociado al certificado digital de la solicitud.
      * @throws AuthenticateException Si hubo algún error al obtener el token.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/autenticacion.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/autenticacion.pdf Manual del Desarrollador del SII: Autenticación Automática.
      */
     public function authenticate(SiiRequestInterface $request): string;
 }

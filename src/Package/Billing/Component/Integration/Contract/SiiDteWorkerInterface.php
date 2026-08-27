@@ -59,7 +59,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * digital para autenticar en el SII.
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf Manual del Desarrollador Externo del SII: Envío Automático de Documentos Tributarios Electrónicos.
      */
     public function sendXmlDocument(
         SiiRequestInterface $request,
@@ -85,7 +85,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * digital para autenticar en el SII.
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws CheckXmlDocumentSentStatusException En caso de error.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf Manual del Desarrollador Externo del SII: Consulta de Estado de Upload de DTE.
      */
     public function checkXmlDocumentSentStatus(
         SiiRequestInterface $request,
@@ -115,7 +115,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * digital para autenticar en el SII.
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws RequestXmlDocumentSentStatusByEmailException En caso de error.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf Manual del Desarrollador Externo del SII: Solicitud de Reenvío de Correo de Validación de DTE.
      */
     public function requestXmlDocumentSentStatusByEmail(
         SiiRequestInterface $request,
@@ -146,7 +146,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws ValidateDocumentException En caso de error (incluyendo no
      * haber proporcionado un certificado digital para la consulta).
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf Manual del Desarrollador Externo del SII: Consulta de Estado de DTE.
      */
     public function validateDocument(
         SiiRequestInterface $request,
@@ -184,7 +184,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * digital para autenticar en el SII.
      * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws ValidateDocumentSignatureException En caso de error.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf Manual del Desarrollador Externo del SII: Consulta Avanzada de Estado de DTE.
      */
     public function validateDocumentSignature(
         SiiRequestInterface $request,

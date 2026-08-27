@@ -30,7 +30,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Enum;
  *
  * Para la definición de las URN se utilizó RFC 4198.
  *
- * @link https://www.rfc-editor.org/rfc/rfc4198.html
+ * @link https://www.rfc-editor.org/rfc/rfc4198.html RFC 4198: A Uniform Resource Name (URN) Namespace for Federated Content.
  */
 enum ProcessType: string
 {

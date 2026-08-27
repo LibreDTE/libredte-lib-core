@@ -53,10 +53,10 @@ interface BuilderWorkerInterface extends WorkerInterface, StrategiesAwareInterfa
      * documento tributario válido para el documento de la bolsa.
      * @throws StrategyException Si no existe una estrategia de construcción
      * registrada para el alias del documento.
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/formato_dte_202602.pdf
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/diagrama_dte.zip
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/boletas_elec_0720_3.pdf
-     * @link https://www.sii.cl/factura_electronica/factura_mercado/diag_boleta_0920.zip
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/formato_dte_202602.pdf Formato de los Documentos Tributarios Electrónicos (DTE) del SII.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/diagrama_dte.zip Diagrama del esquema XML del sobre EnvioDTE.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/boletas_elec_0720_3.pdf Formato de las Boletas Electrónicas del SII.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/diag_boleta_0920.zip Diagrama del esquema XML de la Boleta Electrónica.
      */
     public function build(DocumentBagInterface $bag): DocumentInterface;
 
