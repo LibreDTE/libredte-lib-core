@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -253,12 +253,27 @@
 <dd>Realiza el renderizado del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_renderPresentacion">renderPresentacion()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Renderiza el documento con una presentación específica.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType">resolveMimeType()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Resuelve el tipo MIME correspondiente al formato de renderizado
 solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolvePresentaciones">resolvePresentaciones()</a>
+    <span>
+                                &nbsp;: array&lt;string, int&gt;    </span>
+</dt>
+<dd>Resuelve qué presentaciones renderizar y cuántas copias de cada una,
+a partir de la opción `renderer.renderings` de la bolsa.</dd>
 
     </dl>
 
@@ -290,7 +305,7 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -301,7 +316,7 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;template.estandar&#039;], &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;pdf&#039;]]</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;strategy&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;template.estandar&#039;], &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;pdf&#039;], &#039;renderings&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; [\libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoPresentacion::TRIBUTARIA-&gt;value =&gt; 1]]]</span></code>
 
     
     
@@ -328,7 +343,7 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -370,7 +385,7 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -421,7 +436,7 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -462,7 +477,7 @@ renderizar.</p>
         #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
     </dt>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;options&#039; =&gt; [&#039;renderer&#039; =&gt; [&#039;format&#039; =&gt; &#039;pdf&#039;]]]]]
+        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;options&#039; =&gt; [&#039;renderer&#039; =&gt; [&#039;format&#039; =&gt; &#039;pdf&#039;, &#039;renderings&#039; =&gt; [&#039;tributaria&#039; =&gt; 1, &#039;cedible&#039; =&gt; 1]]]]]]
     </dd>
     </dl>
                     </section>
@@ -484,6 +499,93 @@ archivos generados, ej. el PDF).</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_renderPresentacion">
+        renderPresentacion()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_renderPresentacion" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">210</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Renderiza el documento con una presentación específica.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">renderPresentacion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface">RendererStrategyInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategy</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$presentacion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Le indica a la estrategia (y, a través de ella, a la plantilla) qué
+presentación renderizar vía <code class="prettyprint">bag.options.renderer.presentation</code>,
+dejando el valor solo mientras dura esta llamada.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$strategy</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface">RendererStrategyInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsa (ya normalizada) del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$presentacion</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Valor de <code class="prettyprint">TipoPresentacion</code> a renderizar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_renderPresentacion_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_renderPresentacion_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-RendererException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException">RendererException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la estrategia de renderizado falla.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_resolveMimeType">
         resolveMimeType()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType" class="headerlink"><i class="fas fa-link"></i></a>
@@ -492,7 +594,7 @@ archivos generados, ej. el PDF).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">237</span>
 
     </aside>
 
@@ -530,6 +632,94 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</p>
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolvePresentaciones">
+        resolvePresentaciones()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolvePresentaciones" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/RendererWorker.php"><a href="files/src-package-billing-component-document-worker-rendererworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/RendererWorker.php">RendererWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">158</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resuelve qué presentaciones renderizar y cuántas copias de cada una,
+a partir de la opción `renderer.renderings` de la bolsa.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolvePresentaciones</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Una presentación <code class="prettyprint">cedible</code> solicitada para un tipo de documento que no
+admite acuse de recibo se omite en silencio (no es un error: es una
+combinación válida que simplemente no genera nada para esa
+presentación).</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$options</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Opciones ya resueltas del worker.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsa (ya normalizada) del documento.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_resolvePresentaciones_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolvePresentaciones_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-RendererException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException">RendererException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si se solicita una presentación que no
+corresponde a ningún caso de <code class="prettyprint">TipoPresentacion</code>.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, int&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Cantidad de copias por presentación
+(<code class="prettyprint">TipoPresentacion::value</code>), solo las que sí se van a renderizar.</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         
@@ -562,7 +752,9 @@ solicitado (ej. `pdf` =&gt; `application/pdf`).</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_render">render()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_renderPresentacion">renderPresentacion()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolveMimeType">resolveMimeType()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolvePresentaciones">resolvePresentaciones()</a></li>
                                     </ul>
             </li>
                     </ul>

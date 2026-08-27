@@ -124,41 +124,51 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-contract.html">Contract</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document-enum.html">Enum</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -interface">
+    <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    RendererWorkerInterface
+    TipoPresentacion
+
             <span class="phpdocumentor-element__extends">
-            extends
-                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>,                             <abbr title="\Derafu\Backbone\Contract\StrategiesAwareInterface">StrategiesAwareInterface</abbr>                    </span>
-                <div class="phpdocumentor-element__package">
-            in
+        : string
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
                             </ul>
         </div>
+    
+    
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php"><a href="files/src-package-billing-component-document-enum-tipopresentacion.html"><abbr title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php">TipoPresentacion.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Interfaz para los renderizadores.</p>
+            <p class="phpdocumentor-summary">Presentación con la que se renderiza un documento.</p>
+
+        
+            <section class="phpdocumentor-description"><p>Un mismo documento (mismos datos) puede renderizarse con distintas
+presentaciones: no cambia su contenido tributario, solo cómo se ve (ej.
+leyendas, marcas de agua o bloques adicionales impresos). No debe
+confundirse con la estrategia de renderizado (ej. plantilla vs. TCPDF),
+que decide <em>cómo</em> se genera el archivo, no <em>qué</em> se le agrega visualmente.</p>
+</section>
+
+        
 
 
-
-
-
-    
-    
+        
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -169,140 +179,116 @@
 
 
 
-
-
-<h4 id="toc-methods">
-    Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+<h4 id="toc-cases">
+    Cases
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#toc-cases" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render">render()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_CEDIBLE">CEDIBLE</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a>    </span>
+                &nbsp;= &#039;cedible&#039;                    </span>
 </dt>
-<dd>Realiza el renderizado del documento.</dd>
+<dd>Copia cedible: incluye la leyenda &quot;CEDIBLE&quot; y el bloque de acuse de
+recibo (Ley 19.983), cuando el tipo de documento lo admite.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_TRIBUTARIA">TRIBUTARIA</a>
+    <span>
+                &nbsp;= &#039;tributaria&#039;                    </span>
+</dt>
+<dd>Copia tributaria: sin leyenda &quot;CEDIBLE&quot; ni bloque de acuse de recibo.</dd>
 
     </dl>
 
 
 
 
-        
 
-        
-
-            <section class="phpdocumentor-methods">
-        <h3 class="phpdocumentor-elements__header" id="methods">
-            Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <section class="phpdocumentor-cases">
+        <h3 class="phpdocumentor-elements__header" id="cases">
+            Cases
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#cases" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_render">
-        render()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="enumcase_TRIBUTARIA">
+        TRIBUTARIA
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_TRIBUTARIA" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-rendererworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RendererWorkerInterface.php">RendererWorkerInterface.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php"><a href="files/src-package-billing-component-document-enum-tipopresentacion.html"><abbr title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php">TipoPresentacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Realiza el renderizado del documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">render</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Por defecto genera una sola presentación (<code class="prettyprint">tributaria</code>). Se puede
-pedir más de una, y más de una copia de cada una, con la opción
-<code class="prettyprint">bag.options.renderer.renderings</code> (ej. <code class="prettyprint">['tributaria' =&gt; 2, 'cedible' =&gt; 1]</code>). Una copia <code class="prettyprint">cedible</code> solicitada para un tipo de documento que
-no admite acuse de recibo (ver
-<code class="prettyprint">TipoDocumentoInterface::requiresAcuseRecibo()</code>) se omite en
-silencio: no es un error, simplemente esa presentación no aparece en
-el resultado.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$bag</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con los datos del documento a
-renderizar.</p>
-</section>
-
-            </dd>
-            </dl>
+        <p class="phpdocumentor-summary">Copia tributaria: sin leyenda &quot;CEDIBLE&quot; ni bloque de acuse de recibo.</p>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_render_tags">
+    
+    
+    
+
+        
+    </article>
+                    <article
+        class="
+            phpdocumentor-element
+            -enum-case
+        "
+>
+    <h4 class="phpdocumentor-element__name" id="enumcase_CEDIBLE">
+        CEDIBLE
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_CEDIBLE" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php"><a href="files/src-package-billing-component-document-enum-tipopresentacion.html"><abbr title="src/Package/Billing/Component/Document/Enum/TipoPresentacion.php">TipoPresentacion.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Copia cedible: incluye la leyenda &quot;CEDIBLE&quot; y el bloque de acuse de
+recibo (Ley 19.983), cuando el tipo de documento lo admite.</p>
+
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="enumcase_CEDIBLE_tags">
         Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_CEDIBLE_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
                     <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
+                <span class="phpdocumentor-tag__name">see</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-RendererException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException">RendererException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si la estrategia de renderizado falla, si se
-solicita una presentación de renderizado que no existe, o si ninguna
-de las presentaciones solicitadas pudo generarse.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException">DocumentBagManagerException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si no se determina un tipo de
-documento tributario válido para el documento de la bolsa.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Backbone\Exception\StrategyException">StrategyException</abbr></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si no existe una estrategia de renderizado
-registrada para la solicitada.</p>
-</section>
-
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_requiresAcuseRecibo"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface::requiresAcuseRecibo()">TipoDocumentoInterface::requiresAcuseRecibo()</abbr></a></span>
+                                                                
                                     </dd>
                         </dl>
 
         
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface">RenderResultInterface</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Resultado del renderizado (el o los
-archivos generados, ej. el PDF).</p>
-</section>
-
+    </article>
             </section>
 
-</article>
-            </section>
-
+        
         
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                                
+                            
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -310,14 +296,14 @@ archivos generados, ej. el PDF).</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#toc-methods">Methods</a></li>
-                                    </ul>
+                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#toc-cases">Cases</a></li>
+                                                        </ul>
             </li>
-            
-                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                            <li class="phpdocumentor-on-this-page-section__title">Cases</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render">render()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_TRIBUTARIA">TRIBUTARIA</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_CEDIBLE">CEDIBLE</a></li>
                                             </ul>
                 </li>
             
@@ -338,7 +324,7 @@ archivos generados, ej. el PDF).</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

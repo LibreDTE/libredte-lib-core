@@ -2611,6 +2611,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getLabel"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetCopies\u0028\u0029",
+            "name": "getCopies",
+            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getCopies"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
@@ -2645,6 +2655,16 @@ Search.appendIndex(
             "name": "getRenderings",
             "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_getRenderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AhasRendering\u0028\u0029",
+            "name": "hasRendering",
+            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_hasRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AgetRendering\u0028\u0029",
+            "name": "getRendering",
+            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_getRendering"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
@@ -3961,6 +3981,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TagXmlDocumento.html#enumcase_EXPORTACIONES"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\TipoPresentacion",
+            "name": "TipoPresentacion",
+            "summary": "Presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020renderiza\u0020un\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\TipoPresentacion\u003A\u003ATRIBUTARIA",
+            "name": "TRIBUTARIA",
+            "summary": "Copia\u0020tributaria\u003A\u0020sin\u0020leyenda\u0020\u0022CEDIBLE\u0022\u0020ni\u0020bloque\u0020de\u0020acuse\u0020de\u0020recibo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_TRIBUTARIA"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\TipoPresentacion\u003A\u003ACEDIBLE",
+            "name": "CEDIBLE",
+            "summary": "Copia\u0020cedible\u003A\u0020incluye\u0020la\u0020leyenda\u0020\u0022CEDIBLE\u0022\u0020y\u0020el\u0020bloque\u0020de\u0020acuse\u0020de\nrecibo\u0020\u0028Ley\u002019.983\u0029,\u0020cuando\u0020el\u0020tipo\u0020de\u0020documento\u0020lo\u0020admite.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Enum-TipoPresentacion.html#enumcase_CEDIBLE"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Enum\\TipoSobre",
             "name": "TipoSobre",
             "summary": "Enum\u0020del\u0020Tag\u0020XML\u0020donde\u0020va\u0020el\u0020documento\u0020\u0028tag\u0020DTE\u0029.",
@@ -4781,6 +4816,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getFilename"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getLabel"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetCopies\u0028\u0029",
+            "name": "getCopies",
+            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getCopies"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
@@ -4806,6 +4851,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_filename"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_label"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024copies",
+            "name": "copies",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_copies"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult",
             "name": "RenderResult",
             "summary": "Clase\u0020para\u0020representar\u0020el\u0020resultado\u0020de\u0020renderizar\u0020un\u0020documento.",
@@ -4820,6 +4875,16 @@ Search.appendIndex(
             "name": "getRenderings",
             "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_getRenderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AhasRendering\u0028\u0029",
+            "name": "hasRendering",
+            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_hasRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AgetRendering\u0028\u0029",
+            "name": "getRendering",
+            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_getRendering"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
@@ -4836,10 +4901,25 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_jsonSerialize"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003Aexpand\u0028\u0029",
+            "name": "expand",
+            "summary": "Expande\u0020cada\u0020archivo\u0020renderizado\u0020en\u0020tantas\u0020entradas\u0020como\u0020copias\nrepresente,\u0020agregando\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020y,\u0020si\u0020hay\u0020m\u00E1s\u0020de\u0020una\u0020copia,\najustando\u0020el\u0020nombre\u0020del\u0020archivo\u0020para\u0020no\u0020colisionar\u0020entre\u0020copias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_expand"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AappendCopyNumber\u0028\u0029",
+            "name": "appendCopyNumber",
+            "summary": "Agrega\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020al\u0020nombre\u0020de\u0020un\u0020archivo,\u0020antes\u0020de\u0020su\nextensi\u00F3n\u0020\u0028ej.\u0020\u0060factura.pdf\u0060\u0020\u003D\u003E\u0020\u0060factura_2.pdf\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_appendCopyNumber"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A\u0024renderings",
             "name": "renderings",
             "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#property_renderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A\u0024renderingsByLabel",
+            "name": "renderingsByLabel",
+            "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado,\u0020indexados\u0020por\u0020su\u0020\u0060label\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#property_renderingsByLabel"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy",
             "name": "CsvBatchProcessorStrategy",
@@ -6285,6 +6365,16 @@ Search.appendIndex(
             "name": "render",
             "summary": "Realiza\u0020el\u0020renderizado\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_render"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003AresolvePresentaciones\u0028\u0029",
+            "name": "resolvePresentaciones",
+            "summary": "Resuelve\u0020qu\u00E9\u0020presentaciones\u0020renderizar\u0020y\u0020cu\u00E1ntas\u0020copias\u0020de\u0020cada\u0020una,\na\u0020partir\u0020de\u0020la\u0020opci\u00F3n\u0020\u0060renderer.renderings\u0060\u0020de\u0020la\u0020bolsa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_resolvePresentaciones"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003ArenderPresentacion\u0028\u0029",
+            "name": "renderPresentacion",
+            "summary": "Renderiza\u0020el\u0020documento\u0020con\u0020una\u0020presentaci\u00F3n\u0020espec\u00EDfica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_renderPresentacion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003AresolveMimeType\u0028\u0029",
             "name": "resolveMimeType",

@@ -186,11 +186,26 @@ renderizador de documentos (ej. el PDF o el HTML de un DTE).</p>
 <dd>Obtiene los datos binarios (o de texto) del archivo renderizado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getCopies">getCopies()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Obtiene la cantidad de copias que representa este archivo renderizado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename">getFilename()</a>
     <span>
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Obtiene el nombre sugerido para el archivo renderizado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getLabel">getLabel()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene el identificador de la presentación con la que se generó este
+archivo (ej. `tributaria`, `cedible`).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType">getMimeType()</a>
@@ -266,6 +281,50 @@ renderizador de documentos (ej. el PDF o el HTML de un DTE).</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getCopies">
+        getCopies()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getCopies" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">79</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene la cantidad de copias que representa este archivo renderizado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCopies</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El contenido no se duplica en memoria por tener más de una copia: es
+el mismo archivo, pensado para usarse (ej. imprimirse) esa cantidad de
+veces. Ver <code class="prettyprint">RenderResultInterface::toArray()</code>/<code class="prettyprint">jsonSerialize()</code> para
+la única expansión real a múltiples entradas.</p>
+</section>
+
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getFilename">
         getFilename()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename" class="headerlink"><i class="fas fa-link"></i></a>
@@ -288,6 +347,51 @@ renderizador de documentos (ej. el PDF o el HTML de un DTE).</p>
         </div>
     
     
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getLabel">
+        getLabel()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getLabel" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">67</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el identificador de la presentación con la que se generó este
+archivo (ej. `tributaria`, `cedible`).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLabel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Es un identificador de texto libre, no atado a un enum específico: lo
+asigna quien construye el resultado del renderizado (ej. el worker),
+para que esta clase se pueda reutilizar fuera del contexto de
+documentos tributarios.</p>
+</section>
+
     
     
 
@@ -352,7 +456,7 @@ renderizador de documentos (ej. el PDF o el HTML de un DTE).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php"><a href="files/src-package-billing-component-document-contract-rendereddocumentinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/RenderedDocumentInterface.php">RenderedDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -403,7 +507,9 @@ serialización JSON ocurre solo en <code class="prettyprint">jsonSerialize()</co
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getContent">getContent()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getCopies">getCopies()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename">getFilename()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getLabel">getLabel()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType">getMimeType()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_toArray">toArray()</a></li>
                                             </ul>
