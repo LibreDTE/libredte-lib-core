@@ -26,7 +26,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Backbone\Contract\StrategiesAwareInterface;
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Backbone\Exception\StrategyException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException;
 
 /**
  * Interfaz para los constructores de documentos.
@@ -42,10 +44,19 @@ interface BuilderWorkerInterface extends WorkerInterface, StrategiesAwareInterfa
      *   - Documento timbrado: Se incluyó folio real y CAF.
      *   - Documento timbrado y firmado: Se incluyó CAF y certificado digital.
      *
-     * @param DocumentBagInterface $bag Contenedor con los datos del documento a
+     * @param DocumentBagInterface $bag Bolsa con los datos del documento a
      * construir.
-     * @return DocumentInterface
-     * @throws BuilderException
+     * @return DocumentInterface El documento construido (borrador, timbrado
+     * o timbrado y firmado, según los datos pasados).
+     * @throws BuilderException Si la estrategia de construcción falla.
+     * @throws DocumentBagManagerException Si no se determina un tipo de
+     * documento tributario válido para el documento de la bolsa.
+     * @throws StrategyException Si no existe una estrategia de construcción
+     * registrada para el alias del documento.
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/formato_dte_202602.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/diagrama_dte.zip
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/boletas_elec_0720_3.pdf
+     * @link https://www.sii.cl/factura_electronica/factura_mercado/diag_boleta_0920.zip
      */
     public function build(DocumentBagInterface $bag): DocumentInterface;
 

@@ -42,6 +42,8 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
      * Realiza la validación de los datos del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
+     * Origen a validar: el documento con sus datos ya cargados en la
+     * bolsa, o su XML ya construido (como documento o como string).
      * @return void
      * @throws ValidatorException
      */
@@ -53,6 +55,8 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
      * Valida el esquema del XML del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
+     * Origen a validar: el documento con sus datos ya cargados en la
+     * bolsa, o su XML ya construido (como documento o como string).
      * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
      */
@@ -61,10 +65,13 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
     ): XmlDocumentInterface;
 
     /**
-     * Valida la firma electrónica del documento XML del documento.
+     * Valida la firma electrónica del XML del documento.
      *
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
-     * @return SignatureValidationResultInterface
+     * Origen a validar: el documento con sus datos ya cargados en la
+     * bolsa, o su XML ya construido (como documento o como string).
+     * @return SignatureValidationResultInterface El resultado de validar
+     * la firma electrónica del documento.
      * @throws SignatureException Si la validación de la firma falla.
      */
     #[NoDiscard()]

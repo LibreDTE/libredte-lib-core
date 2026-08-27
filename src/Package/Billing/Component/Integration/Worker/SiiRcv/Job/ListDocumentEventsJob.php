@@ -82,6 +82,10 @@ class ListDocumentEventsJob extends AbstractJob implements JobInterface
                 ],
                 token: $token
             );
+
+            return new ListDocumentEventsResponse(
+                $this->xmlService->decode($xmlResponse)
+            );
         } catch (Throwable $e) {
             throw new ListDocumentEventsException(sprintf(
                 'No fue posible listar los eventos del documento T%dF%d de %s en el RCV del SII. %s',
@@ -91,9 +95,5 @@ class ListDocumentEventsJob extends AbstractJob implements JobInterface
                 $e->getMessage()
             ), code: $e->getCode(), previous: $e, request: $request);
         }
-
-        return new ListDocumentEventsResponse(
-            $this->xmlService->decode($xmlResponse)
-        );
     }
 }

@@ -32,6 +32,7 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\CheckXmlDocumentSentStatusException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 
@@ -82,7 +83,11 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
             'Token' => $token,
         ];
 
-        // Consultar el estado del documento enviado al SII.
+        // Consultar el estado del documento enviado al SII, decodificar la
+        // respuesta y construir el resultado — todo dentro del mismo try,
+        // para que tanto un fallo de red al consumir el webservice como una
+        // respuesta del SII sin la forma esperada se envuelvan en la misma
+        // excepción.
         try {
             $xmlResponse = $this->siiLazyWorker->consumeWebservice(
                 request: $request,
@@ -90,23 +95,19 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
                 function: 'getEstUp',
                 args: $requestData
             );
-        } catch (ConsumeWebserviceException $e) {
+
+            $responseData = $this->xmlService->decode($xmlResponse);
+
+            return new CheckXmlDocumentSentStatusResponse(
+                $responseData,
+                $requestData
+            );
+        } catch (ConsumeWebserviceException | SiiDteException $e) {
             throw new CheckXmlDocumentSentStatusException(sprintf(
                 'No fue posible obtener el estado del XML enviado al SII con Track ID %s. %s',
                 $trackId,
                 $e->getMessage()
             ));
         }
-
-        // Armar estado del XML enviado.
-        $responseData = $this->xmlService->decode(
-            $xmlResponse
-        );
-
-        // Retornar respuesta.
-        return new CheckXmlDocumentSentStatusResponse(
-            $responseData,
-            $requestData
-        );
     }
 }

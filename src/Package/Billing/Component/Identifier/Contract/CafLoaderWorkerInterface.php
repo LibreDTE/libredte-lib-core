@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlParseException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException;
 
 /**
@@ -36,9 +37,13 @@ interface CafLoaderWorkerInterface extends WorkerInterface
     /**
      * Carga el XML de un CAF y lo entrega como entidad CAF.
      *
-     * @param string|XmlDocumentInterface $xml
-     * @return CafInterface
-     * @throws CafLoaderException
+     * @param string|XmlDocumentInterface $xml XML del CAF a cargar, como
+     * string o como documento ya construido.
+     * @return CafInterface El CAF cargado, con sus datos y folios
+     * disponibles.
+     * @throws XmlParseException Si el XML del CAF está vacío o mal formado.
+     * @throws CafLoaderException Si el código de tipo de documento del CAF
+     * no existe en el repositorio.
      */
     public function load(string|XmlDocumentInterface $xml): CafInterface;
 }

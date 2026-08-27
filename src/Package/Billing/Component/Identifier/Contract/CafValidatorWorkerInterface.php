@@ -33,7 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafValidato
 interface CafValidatorWorkerInterface extends WorkerInterface
 {
     /**
-     * Método que valida el código de autorización de folios (CAF).
+     * Valida el código de autorización de folios (CAF).
      *
      * Valida la firma y las claves públicas y privadas asociadas al CAF.
      *

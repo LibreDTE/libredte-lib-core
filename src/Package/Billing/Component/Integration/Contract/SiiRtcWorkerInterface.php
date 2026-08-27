@@ -26,8 +26,11 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
+use LogicException;
+use UnexpectedValueException;
 
 /**
  * Interfaz del worker del RTC del SII.
@@ -44,6 +47,10 @@ interface SiiRtcWorkerInterface extends WorkerInterface
      *   notificaciones del SII sobre el resultado del procesamiento del AEC.
      * @param int|null $retries Intentos que se realizarán como máximo al enviar.
      * @return SendAecResponse Respuesta con el Track ID del envío.
+     * @throws UnexpectedValueException Si el RUT del cedente es inválido.
+     * @throws LogicException Si la solicitud no incluye un certificado
+     * digital para autenticar en el SII.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws SendAecException Si hay algún error al enviar el AEC.
      * @link https://palena.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2
      */

@@ -33,6 +33,7 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 
@@ -124,7 +125,11 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
             'Token' => $token,
         ];
 
-        // Consultar el estado del documento al SII.
+        // Consultar el estado del documento al SII, decodificar la
+        // respuesta y construir el resultado — todo dentro del mismo try,
+        // para que tanto un fallo de red al consumir el webservice como una
+        // respuesta del SII sin la forma esperada se envuelvan en la misma
+        // excepción.
         try {
             $xmlResponse = $this->siiLazyWorker->consumeWebservice(
                 request: $request,
@@ -132,7 +137,11 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
                 function: 'getEstDte',
                 args: $requestData
             );
-        } catch (ConsumeWebserviceException $e) {
+
+            $responseData = $this->xmlService->decode($xmlResponse);
+
+            return new ValidateDocumentResponse($responseData, $requestData);
+        } catch (ConsumeWebserviceException | SiiDteException $e) {
             throw new ValidateDocumentException(sprintf(
                 'No fue posible obtener el estado del documento T%dF%d de %d-%s desde el SII. %s',
                 $document,
@@ -142,10 +151,5 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
                 $e->getMessage()
             ));
         }
-
-        // Armar estado del XML enviado.
-        $responseData = $this->xmlService->decode($xmlResponse);
-
-        return new ValidateDocumentResponse($responseData, $requestData);
     }
 }

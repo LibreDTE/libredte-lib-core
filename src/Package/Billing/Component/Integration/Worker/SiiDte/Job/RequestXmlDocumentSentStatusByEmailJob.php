@@ -32,6 +32,7 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\RequestXmlDocumentSentStatusByEmailException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
 
@@ -86,7 +87,11 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
             'TrackId' => $trackId,
         ];
 
-        // Solicitar al SII que envíe el correo electrónico del estado del DTE.
+        // Solicitar al SII que envíe el correo electrónico del estado del
+        // DTE, decodificar la respuesta y construir el resultado — todo
+        // dentro del mismo try, para que tanto un fallo de red al consumir
+        // el webservice como una respuesta del SII sin la forma esperada
+        // se envuelvan en la misma excepción.
         try {
             $xmlResponse = $this->siiLazyWorker->consumeWebservice(
                 request: $request,
@@ -94,23 +99,19 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
                 function: 'reenvioCorreo',
                 args: $requestData
             );
-        } catch (ConsumeWebserviceException $e) {
+
+            $responseData = $this->xmlService->decode($xmlResponse);
+
+            return new RequestXmlDocumentSentStatusByEmailResponse(
+                $responseData,
+                $requestData
+            );
+        } catch (ConsumeWebserviceException | SiiDteException $e) {
             throw new RequestXmlDocumentSentStatusByEmailException(sprintf(
                 'No fue posible solicitar el correo con el estado del envío %d al SII. %s',
                 $trackId,
                 $e->getMessage()
             ));
         }
-
-        // Armar estado del XML enviado.
-        $responseData = $this->xmlService->decode(
-            $xmlResponse
-        );
-
-        // Retornar respuesta.
-        return new RequestXmlDocumentSentStatusByEmailResponse(
-            $responseData,
-            $requestData
-        );
     }
 }

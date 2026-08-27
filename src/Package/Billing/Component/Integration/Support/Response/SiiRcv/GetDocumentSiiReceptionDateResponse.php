@@ -24,8 +24,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
 
-use InvalidArgumentException;
 use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRcv\GetDocumentSiiReceptionDateException;
 
 /**
  * Respuesta del SII con la fecha de recepción de un DTE en el SII.
@@ -48,7 +48,7 @@ class GetDocumentSiiReceptionDateResponse implements JsonSerializable
         // tiene fecha de recepción registrada (folio inexistente o aún no
         // recibido) — confirmado contra el SII de certificación.
         if ($rawDate === '') {
-            throw new InvalidArgumentException(
+            throw new GetDocumentSiiReceptionDateException(
                 'El SII no registra fecha de recepción para el documento consultado.'
             );
         }

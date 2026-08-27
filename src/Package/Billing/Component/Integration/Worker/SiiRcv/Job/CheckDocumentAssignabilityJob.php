@@ -82,6 +82,10 @@ class CheckDocumentAssignabilityJob extends AbstractJob implements JobInterface
                 ],
                 token: $token
             );
+
+            return new CheckDocumentAssignabilityResponse(
+                $this->xmlService->decode($xmlResponse)
+            );
         } catch (Throwable $e) {
             throw new CheckDocumentAssignabilityException(sprintf(
                 'No fue posible consultar la cesibilidad del documento T%dF%d de %s en el RCV del SII. %s',
@@ -91,9 +95,5 @@ class CheckDocumentAssignabilityJob extends AbstractJob implements JobInterface
                 $e->getMessage()
             ), code: $e->getCode(), previous: $e, request: $request);
         }
-
-        return new CheckDocumentAssignabilityResponse(
-            $this->xmlService->decode($xmlResponse)
-        );
     }
 }

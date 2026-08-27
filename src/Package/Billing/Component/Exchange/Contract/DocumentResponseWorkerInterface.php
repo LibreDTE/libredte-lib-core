@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
+use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument;
@@ -47,7 +48,7 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
      * y luego el `SetRecibos` se firma con ID `LibreDTE_SetDteRecibidos`.
      *
      * @param ExchangeDocumentBag $bag Bolsa con la carátula y los recibos.
-     * @return EnvioRecibos
+     * @return EnvioRecibos El `EnvioRecibos` construido y firmado.
      * @throws DocumentResponseException En caso de error.
      */
     public function buildEnvioRecibos(ExchangeDocumentBag $bag): EnvioRecibos;
@@ -56,10 +57,11 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
      * Construye el XML `RespuestaDTE` firmado.
      *
      * El nodo `Resultado` se firma con ID `LibreDTE_ResultadoEnvio`.
-     * Puede contener `RecepcionEnvio` o `ResultadoDTE` según los datos del bag.
+     * Puede contener `RecepcionEnvio` o `ResultadoDTE` según los datos de la
+     * bolsa.
      *
      * @param ExchangeDocumentBag $bag Bolsa con la carátula y las respuestas.
-     * @return RespuestaEnvio
+     * @return RespuestaEnvio El `RespuestaDTE` construido y firmado.
      * @throws DocumentResponseException En caso de error.
      */
     public function buildRespuestaEnvio(ExchangeDocumentBag $bag): RespuestaEnvio;
@@ -68,6 +70,9 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
      * Valida el esquema XSD del documento de respuesta.
      *
      * @param AbstractExchangeDocument|XmlDocumentInterface|string $source
+     * Origen a validar: el documento de respuesta ya construido (`EnvioRecibos`
+     * o `RespuestaEnvio`), o su XML ya construido (como documento o como
+     * string).
      * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
      * @throws DocumentResponseException Si no se puede determinar el esquema.
@@ -83,7 +88,13 @@ interface DocumentResponseWorkerInterface extends WorkerInterface
      * `SetRecibos`). Se retornan todos los resultados.
      *
      * @param AbstractExchangeDocument|XmlDocumentInterface|string $source
-     * @return array<SignatureValidationResultInterface>
+     * Origen a validar: el documento de respuesta ya construido (`EnvioRecibos`
+     * o `RespuestaEnvio`), o su XML ya construido (como documento o como
+     * string).
+     * @return array<SignatureValidationResultInterface> El resultado de
+     * validar cada firma electrónica encontrada en el documento.
+     * @throws SignatureException Si el XML está mal formado o no contiene
+     * firmas.
      */
     #[NoDiscard()]
     public function validateSignature(

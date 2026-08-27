@@ -29,7 +29,9 @@ use Derafu\Signature\Contract\SignatureValidationResultInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
+use Derafu\Xml\Exception\XmlParseException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException;
 use NoDiscard;
 
 /**
@@ -40,8 +42,15 @@ interface DispatcherWorkerInterface extends WorkerInterface
     /**
      * Crea un sobre con los datos de la bolsa de un documento tributario.
      *
-     * @param DocumentBagInterface $bag
-     * @return DocumentEnvelopeInterface
+     * @param DocumentBagInterface $bag Bolsa con los datos del documento a
+     * partir del cual se arma el sobre.
+     * @return DocumentEnvelopeInterface El sobre construido a partir de la
+     * bolsa.
+     * @throws DispatcherException Si se agregan más tipos de documentos de
+     * los permitidos en el sobre, o si el certificado digital no está
+     * vigente al momento de firmar.
+     * @throws DocumentBagManagerException Si no se determina un tipo de
+     * documento tributario válido para el documento de la bolsa.
      */
     public function create(DocumentBagInterface $bag): DocumentEnvelopeInterface;
 
@@ -62,8 +71,12 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Realiza la carga del sobre de documentos desde un string XML.
      *
      * @param XmlDocumentInterface|string $xml Datos del sobre de documentos tributarios.
-     * @return DocumentEnvelopeInterface Contenedor con los datos del sobre.
-     * @throws DispatcherException
+     * @return DocumentEnvelopeInterface El sobre reconstruido a partir del
+     * XML.
+     * @throws XmlParseException Si el XML del sobre está vacío o mal
+     * formado.
+     * @throws DocumentBagManagerException Si el sobre contiene un documento
+     * sin un tipo de documento tributario válido.
      */
     public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface;
 
@@ -71,7 +84,9 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Realiza la validación del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return XmlDocumentInterface
+     * Origen a validar: el sobre ya construido, o su XML ya construido
+     * (como documento o como string).
+     * @return XmlDocumentInterface El XML del sobre, ya validado.
      * @throws DispatcherException
      */
     public function validate(
@@ -82,7 +97,10 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Valida el esquema del XML del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return XmlDocumentInterface
+     * Origen a validar: el sobre ya construido, o su XML ya construido
+     * (como documento o como string).
+     * @return XmlDocumentInterface El XML del sobre, ya validado contra su
+     * esquema XSD.
      * @throws XmlException Si la validación del esquema falla.
      */
     public function validateSchema(
@@ -93,7 +111,10 @@ interface DispatcherWorkerInterface extends WorkerInterface
      * Valida la firma electrónica del sobre de documentos tributarios.
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
-     * @return array<SignatureValidationResultInterface>
+     * Origen a validar: el sobre ya construido, o su XML ya construido
+     * (como documento o como string).
+     * @return array<SignatureValidationResultInterface> El resultado de
+     * validar cada firma electrónica encontrada en el sobre.
      * @throws SignatureException Si la validación de la firma falla.
      */
     #[NoDiscard()]

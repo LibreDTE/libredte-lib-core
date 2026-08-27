@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 
 /**
  * Interfaz para el worker `billing.book.loader`.
@@ -40,10 +41,11 @@ use Derafu\Backbone\Contract\WorkerInterface;
 interface LoaderWorkerInterface extends WorkerInterface
 {
     /**
-     * Carga y normaliza los detalles del bag.
+     * Carga y normaliza los detalles de la bolsa.
      *
-     * @param BookBagInterface $bag Bag con detalles crudos.
-     * @return BookBagInterface El mismo bag con detalles normalizados.
+     * @param BookBagInterface $bag Bolsa con detalles crudos.
+     * @return BookBagInterface La misma bolsa con detalles normalizados.
+     * @throws BookException En caso de error al cargar o normalizar la bolsa.
      */
     public function load(BookBagInterface $bag): BookBagInterface;
 }

@@ -39,11 +39,14 @@ interface ValidatorWorkerInterface extends WorkerInterface
     /**
      * Valida el esquema XSD del XML del libro.
      *
-     * Si se pasa un `BookBagInterface`, el esquema se determina directamente
-     * desde `$bag->getTipo()->getSchema()`. Para XML directo, se detecta el
-     * esquema a partir del elemento raíz del documento.
+     * Si se pasa una bolsa (`BookBagInterface`), el esquema se determina
+     * según el tipo de libro asociado a esa bolsa. Si se pasa el XML
+     * directamente, el esquema se detecta a partir del elemento raíz del
+     * documento.
      *
-     * @param BookBagInterface|XmlDocumentInterface|string $source
+     * @param BookBagInterface|XmlDocumentInterface|string $source Origen a
+     * validar: la bolsa con el tipo de libro ya definido, o el XML del
+     * libro ya construido (como documento o como string).
      * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
      */
@@ -52,10 +55,13 @@ interface ValidatorWorkerInterface extends WorkerInterface
     ): XmlDocumentInterface;
 
     /**
-     * Valida la firma electrónica XML del libro.
+     * Valida la firma electrónica del XML del libro.
      *
-     * @param BookBagInterface|XmlDocumentInterface|string $source
-     * @return SignatureValidationResultInterface
+     * @param BookBagInterface|XmlDocumentInterface|string $source Origen a
+     * validar: la bolsa con el tipo de libro ya definido, o el XML del
+     * libro ya construido (como documento o como string).
+     * @return SignatureValidationResultInterface El resultado de validar
+     * la firma electrónica del libro.
      * @throws SignatureException Si la validación de la firma falla.
      */
     #[NoDiscard()]

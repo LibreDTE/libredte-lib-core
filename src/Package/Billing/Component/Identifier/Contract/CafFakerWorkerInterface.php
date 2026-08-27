@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafLoaderException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
@@ -34,14 +35,16 @@ interface CafFakerWorkerInterface extends WorkerInterface
 {
     /**
      * Genera y devuelve un CAF (Código de Autorización de Folios) ficticio para
-     * el mandatario.
+     * el emisor (contribuyente).
      *
      * @param EmisorInterface $emisor Emisor al que se creará el CAF falso.
      * @param int $codigoDocumento Código del tipo de documento.
      * @param int|null $folioDesde Número de folio inicial.
      * @param int|null $folioHasta Número de folio final. Si es `null`, se usa
      * el mismo valor de $folioDesde.
-     * @return CafInterface CAF ficticio generado para el contribuyente.
+     * @return CafInterface CAF ficticio generado para el emisor.
+     * @throws CafLoaderException Si el CAF ficticio generado no puede ser
+     * cargado (delega en `billing.identifier.caf_loader::load()`).
      */
     public function create(
         EmisorInterface $emisor,

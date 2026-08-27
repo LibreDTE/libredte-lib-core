@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Contract;
 use Derafu\Backbone\Contract\HandlersAwareInterface;
 use Derafu\Backbone\Contract\StrategiesAwareInterface;
 use Derafu\Backbone\Contract\WorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\ExchangeException;
 
 /**
  * Interfaz para el worker "billing.exchange.sender".
@@ -41,6 +42,7 @@ interface SenderWorkerInterface extends WorkerInterface, HandlersAwareInterface,
      * realizar el intercambio de documentos.
      * @return ExchangeResultInterface[] Los resultados de procesar los sobres
      * de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.
+     * @throws ExchangeException En caso de error al enviar los documentos.
      */
     public function send(ExchangeBagInterface $bag): array;
 

@@ -31,11 +31,13 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\Req
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
+use LogicException;
 use UnexpectedValueException;
 
 /**
@@ -53,6 +55,9 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param int|null $retries Intentos que se realizarán como máximo al enviar.
      * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
+     * @throws LogicException Si la solicitud no incluye un certificado
+     * digital para autenticar en el SII.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws SendXmlDocumentException Si hay algún error al enviar el XML.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf
      */
@@ -67,13 +72,18 @@ interface SiiDteWorkerInterface extends WorkerInterface
     /**
      * Obtiene el estado actualizado del envío de un documento XML al SII.
      *
-     * Este estado podría no ser el final, si no es un estado final se debe
-     * reintentar la consulta posteriormente al SII.
+     * Este estado podría no ser el final; en ese caso, se debe reintentar
+     * la consulta más adelante.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del XML que se envió.
-     * @return CheckXmlDocumentSentStatusResponse
+     * @return CheckXmlDocumentSentStatusResponse El estado de revisión del
+     * envío, incluyendo el detalle por cada documento cuando corresponda.
+     * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
+     * @throws LogicException Si la solicitud no incluye un certificado
+     * digital para autenticar en el SII.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws CheckXmlDocumentSentStatusException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
      */
@@ -84,7 +94,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
     ): CheckXmlDocumentSentStatusResponse;
 
     /**
-     * Solicita al SII que le envíe el estado del DTE mediente correo
+     * Solicita al SII que le envíe el estado del DTE mediante correo
      * electrónico.
      *
      * El correo al que se informa el estado del DTE es el que está configurado
@@ -97,7 +107,13 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del documento.
-     * @return RequestXmlDocumentSentStatusByEmailResponse
+     * @return RequestXmlDocumentSentStatusByEmailResponse La confirmación
+     * del SII de que la solicitud de envío del estado por correo fue
+     * registrada.
+     * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
+     * @throws LogicException Si la solicitud no incluye un certificado
+     * digital para autenticar en el SII.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws RequestXmlDocumentSentStatusByEmailException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf
      */
@@ -110,8 +126,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
     /**
      * Obtiene el estado de un documento en el SII.
      *
-     * Este estado solo se obtiene si el documento se encuentra aceptado por el
-     * SII, ya sea aceptado 100% OK o con reparos.
+     * Este estado solo se obtiene si el documento fue aceptado por el SII,
+     * ya sea 100% OK o con reparos.
      *
      * Este servicio valida que el documento exista en SII (esté aceptado) y
      * además que los datos del documento proporcionados coincidan.
@@ -123,8 +139,13 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param string $date Fecha de emisión del documento, formato: AAAA-MM-DD.
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
-     * @return ValidateDocumentResponse
-     * @throws ValidateDocumentException En caso de error.
+     * @return ValidateDocumentResponse El resultado de la validación del
+     * documento en el SII.
+     * @throws UnexpectedValueException Si el RUT del usuario, la empresa o
+     * el receptor es inválido.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
+     * @throws ValidateDocumentException En caso de error (incluyendo no
+     * haber proporcionado un certificado digital para la consulta).
      * @link https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf
      */
     public function validateDocument(
@@ -140,8 +161,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
     /**
      * Obtiene el estado avanzado de un documento en el SII.
      *
-     * Este estado solo se obtiene si el documento se encuentra aceptado por el
-     * SII, ya sea aceptado 100% OK o con reparos.
+     * Este estado solo se obtiene si el documento fue aceptado por el SII,
+     * ya sea 100% OK o con reparos.
      *
      * Este servicio valida que el documento exista en SII (esté aceptado), que
      * los datos del documento proporcionados coincidan. Finalmente, valida que
@@ -155,7 +176,13 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param int $total Total del documento.
      * @param string $recipient RUT del receptor del documento.
      * @param string $signature Tag DTE/Signature/SignatureValue del XML.
-     * @return ValidateDocumentSignatureResponse
+     * @return ValidateDocumentSignatureResponse El resultado de la
+     * validación del documento y su firma electrónica en el SII.
+     * @throws UnexpectedValueException Si el RUT de la empresa o el
+     * receptor es inválido.
+     * @throws LogicException Si la solicitud no incluye un certificado
+     * digital para autenticar en el SII.
+     * @throws AuthenticateException Si falla la autenticación en el SII.
      * @throws ValidateDocumentSignatureException En caso de error.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf
      */

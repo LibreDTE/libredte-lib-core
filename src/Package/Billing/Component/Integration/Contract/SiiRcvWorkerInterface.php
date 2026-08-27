@@ -33,6 +33,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\GetDocumentSiiReceptionDateResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\ListDocumentEventsResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\SubmitDocumentAcceptanceResponse;
+use UnexpectedValueException;
 
 /**
  * Interfaz del worker del Registro de Compra y Venta (RCV) del SII.
@@ -42,14 +43,21 @@ interface SiiRcvWorkerInterface extends WorkerInterface
     /**
      * Ingresa una aceptación o reclamo de un DTE en el RCV del SII.
      *
-     * Acciones válidas: ERM, ACD, RCD, RFP, RFT.
+     * Acciones válidas:
+     *
+     *   - `ERM`: Entrega Real de Mercaderías o Servicios (Ley 19.983).
+     *   - `ACD`: Acepta Contenido del Documento.
+     *   - `RCD`: Reclamo al Contenido del Documento.
+     *   - `RFP`: Reclamo por Falta Parcial de Mercaderías.
+     *   - `RFT`: Reclamo por Falta Total de Mercaderías.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param string $company RUT del emisor del DTE (formato RUT-DV).
      * @param int $document Tipo de documento tributario electrónico.
      * @param int $number Folio del documento.
      * @param string $action Acción a registrar.
-     * @return SubmitDocumentAcceptanceResponse
+     * @return SubmitDocumentAcceptanceResponse El resultado del registro de
+     * la acción: código y descripción.
      * @throws SubmitDocumentAcceptanceException En caso de error.
      */
     public function submitDocumentAcceptance(
@@ -67,7 +75,8 @@ interface SiiRcvWorkerInterface extends WorkerInterface
      * @param string $company RUT del emisor del DTE (formato RUT-DV).
      * @param int $document Tipo de documento tributario electrónico.
      * @param int $number Folio del documento.
-     * @return ListDocumentEventsResponse
+     * @return ListDocumentEventsResponse El historial de eventos del DTE en
+     * el RCV.
      * @throws ListDocumentEventsException En caso de error.
      */
     public function listDocumentEvents(
@@ -84,7 +93,8 @@ interface SiiRcvWorkerInterface extends WorkerInterface
      * @param string $company RUT del emisor del DTE (formato RUT-DV).
      * @param int $document Tipo de documento tributario electrónico.
      * @param int $number Folio del documento.
-     * @return CheckDocumentAssignabilityResponse
+     * @return CheckDocumentAssignabilityResponse El resultado de la
+     * consulta: código y descripción indicando si el DTE puede ser cedido.
      * @throws CheckDocumentAssignabilityException En caso de error.
      */
     public function checkDocumentAssignability(
@@ -101,7 +111,9 @@ interface SiiRcvWorkerInterface extends WorkerInterface
      * @param string $company RUT del emisor del DTE (formato RUT-DV).
      * @param int $document Tipo de documento tributario electrónico.
      * @param int $number Folio del documento.
-     * @return GetDocumentSiiReceptionDateResponse
+     * @return GetDocumentSiiReceptionDateResponse La fecha de recepción del
+     * DTE en el SII.
+     * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
      * @throws GetDocumentSiiReceptionDateException En caso de error.
      */
     public function getDocumentSiiReceptionDate(

@@ -26,6 +26,7 @@ namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract
 
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
+use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec;
@@ -39,11 +40,12 @@ use NoDiscard;
 interface AecWorkerInterface extends WorkerInterface
 {
     /**
-     * Construye el AEC completo: DTECedido, Cesion y documento raíz AEC.
+     * Construye el AEC completo: `DTECedido`, `Cesion` y documento raíz
+     * `AEC`.
      *
-     * @param AecBag $bag Contenedor con el DTE, cedente, cesionario, cesión y
+     * @param AecBag $bag Bolsa con el DTE, cedente, cesionario, cesión y
      *   certificado.
-     * @return Aec
+     * @return Aec El AEC construido y firmado.
      * @throws OwnershipTransferException En caso de error.
      */
     public function build(AecBag $bag): Aec;
@@ -51,7 +53,9 @@ interface AecWorkerInterface extends WorkerInterface
     /**
      * Valida el esquema XSD del AEC.
      *
-     * @param Aec|XmlDocumentInterface|string $source
+     * @param Aec|XmlDocumentInterface|string $source Origen a validar: el
+     * AEC ya construido, o su XML ya construido (como documento o como
+     * string).
      * @return XmlDocumentInterface El documento XML validado.
      * @throws XmlException Si la validación del esquema falla.
      * @throws OwnershipTransferException Si no se puede determinar el esquema.
@@ -63,11 +67,16 @@ interface AecWorkerInterface extends WorkerInterface
     /**
      * Valida la(s) firma(s) electrónica(s) del AEC.
      *
-     * El AEC contiene múltiples firmas: DTECedido, Cesion y AEC. Se retornan
-     * todos los resultados.
+     * El AEC contiene múltiples firmas: `DTECedido`, `Cesion` y `AEC`. Se
+     * retornan todos los resultados.
      *
-     * @param Aec|XmlDocumentInterface|string $source
-     * @return array<SignatureValidationResultInterface>
+     * @param Aec|XmlDocumentInterface|string $source Origen a validar: el
+     * AEC ya construido, o su XML ya construido (como documento o como
+     * string).
+     * @return array<SignatureValidationResultInterface> El resultado de
+     * validar cada firma electrónica encontrada en el AEC.
+     * @throws SignatureException Si el XML está mal formado o no contiene
+     * firmas.
      */
     #[NoDiscard()]
     public function validateSignature(

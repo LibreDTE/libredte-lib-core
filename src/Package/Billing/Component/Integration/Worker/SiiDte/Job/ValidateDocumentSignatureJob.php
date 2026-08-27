@@ -33,6 +33,7 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 
@@ -116,7 +117,11 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
             'Token' => $token,
         ];
 
-        // Consultar el estado del documento, incluyendo su firma, al SII.
+        // Consultar el estado del documento, incluyendo su firma, al SII,
+        // decodificar la respuesta y construir el resultado — todo dentro
+        // del mismo try, para que tanto un fallo de red al consumir el
+        // webservice como una respuesta del SII sin la forma esperada se
+        // envuelvan en la misma excepción.
         try {
             $xmlResponse = $this->siiLazyWorker->consumeWebservice(
                 request: $request,
@@ -124,7 +129,14 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
                 function: 'getEstDteAv',
                 args: $requestData
             );
-        } catch (ConsumeWebserviceException $e) {
+
+            $responseData = $this->xmlService->decode($xmlResponse);
+
+            return new ValidateDocumentSignatureResponse(
+                $responseData,
+                $requestData
+            );
+        } catch (ConsumeWebserviceException | SiiDteException $e) {
             throw new ValidateDocumentSignatureException(sprintf(
                 'No fue posible obtener el estado de la firma del documento T%dF%d de %d-%s desde el SII. %s',
                 $document,
@@ -134,13 +146,5 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
                 $e->getMessage()
             ));
         }
-
-        // Armar estado del XML enviado.
-        $responseData = $this->xmlService->decode($xmlResponse);
-
-        return new ValidateDocumentSignatureResponse(
-            $responseData,
-            $requestData
-        );
     }
 }

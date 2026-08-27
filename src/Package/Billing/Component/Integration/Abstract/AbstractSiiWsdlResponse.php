@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Abstract;
 
 use InvalidArgumentException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 
 /**
  * Clase base para respuestas de los servicios web del SII utilizando SOAP.
@@ -68,10 +69,19 @@ abstract class AbstractSiiWsdlResponse
      *
      * @param array $response Datos de la respuesta a la solicitud enviada.
      * @param array $request Datos de la solicitud original enviada.
+     * @throws SiiDteException Si la respuesta del SII no incluye las
+     * cabeceras `SII:RESPUESTA.SII:RESP_HDR` esperadas.
      */
     public function __construct(array $response, array $request = [])
     {
-        $this->headers = $response['SII:RESPUESTA']['SII:RESP_HDR'];
+        $headers = $response['SII:RESPUESTA']['SII:RESP_HDR'] ?? [];
+        if (empty($headers)) {
+            throw new SiiDteException(
+                'La respuesta del SII no incluye las cabeceras esperadas.'
+            );
+        }
+
+        $this->headers = $headers;
         $this->body = $response['SII:RESPUESTA']['SII:RESP_BODY'] ?? [];
         $this->requestData = $request;
     }
