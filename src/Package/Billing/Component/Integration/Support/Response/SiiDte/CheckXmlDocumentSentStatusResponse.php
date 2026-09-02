@@ -216,9 +216,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             if ($this->allDocumentsAreAccepted()) {
                 return 'DTE aceptado';
             }
-        }
-
-        elseif ($data['status'] === 'LOK') {
+        } elseif ($data['status'] === 'LOK') {
             return 'Cuadrado';
         }
 
