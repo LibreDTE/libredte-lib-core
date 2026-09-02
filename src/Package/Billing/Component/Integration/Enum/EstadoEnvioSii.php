@@ -144,7 +144,7 @@ enum EstadoEnvioSii: string
     public static function tryFromSiiCodigo(string $codigo): ?self
     {
         return match (true) {
-            $codigo === 'EPR'                              => self::ACEPTADO,
+            in_array($codigo, ['EPR', 'LOK'], true)        => self::ACEPTADO,
             in_array($codigo, ['RLV', 'RPR'], true)        => self::REPARO,
             in_array($codigo, self::RECHAZADOS, true)      => self::RECHAZADO,
             in_array($codigo, self::NO_FINALES, true)      => self::ENVIADO,

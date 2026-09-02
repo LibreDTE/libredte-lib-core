@@ -49,6 +49,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         'PDR' => 'Envió en Proceso',
         'RCT' => 'Rechazado por Error en Carátula',
         'EPR' => 'Envío Procesado',
+        'LOK' => 'Envío de Libro Aceptado',
     ];
 
     /**
@@ -215,6 +216,10 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             if ($this->allDocumentsAreAccepted()) {
                 return 'DTE aceptado';
             }
+        }
+
+        elseif ($data['status'] === 'LOK') {
+            return 'Cuadrado';
         }
 
         return null;
