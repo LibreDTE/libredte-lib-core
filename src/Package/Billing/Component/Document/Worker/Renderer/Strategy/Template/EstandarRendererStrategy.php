@@ -49,5 +49,52 @@ class EstandarRendererStrategy extends AbstractRendererStrategy implements Rende
             'types' => 'string',
             'default' => 'pdf',
         ],
+        // Configuración pasada tal cual al motor de PDF (mPDF). Se define
+        // acá, vía PHP, y no con `@page` en el CSS de la plantilla: mPDF no
+        // soporta `@page` anidado dentro de `@media` (como usa el resto de
+        // los estilos "solo para impresión" de la plantilla) y, al toparse
+        // con esa regla, corrompe el parseo del resto de la hoja de estilos
+        // (por ejemplo, ignora silenciosamente el `background-color` del
+        // body) y dejaba un espacio en blanco enorme antes del encabezado.
+        'pdf' => [
+            'types' => 'array',
+            'schema' => [
+                // Carta (Letter, 215.9 x 279.4mm / 612 x 792pt): mismo
+                // tamaño que emite el SII (verificado con `pdfinfo` sobre un
+                // PDF real de referencia). Antes se usaba 216x260mm (una
+                // hoja recortada ~19mm de alto respecto a Carta real).
+                'format' => [
+                    'types' => 'string',
+                    'default' => 'Letter',
+                ],
+                // Ajustado a ojo (14mm) tras comparar con el PDF de
+                // referencia del SII: 18mm (la medición inicial) dejaba el
+                // emisor un poco más abajo de lo esperado.
+                'margin_top' => [
+                    'types' => 'int',
+                    'default' => 14,
+                ],
+                'margin_bottom' => [
+                    'types' => 'int',
+                    'default' => 5,
+                ],
+                'margin_left' => [
+                    'types' => 'int',
+                    'default' => 5,
+                ],
+                'margin_right' => [
+                    'types' => 'int',
+                    'default' => 5,
+                ],
+                'margin_header' => [
+                    'types' => 'int',
+                    'default' => 0,
+                ],
+                'margin_footer' => [
+                    'types' => 'int',
+                    'default' => 0,
+                ],
+            ],
+        ],
     ];
 }
