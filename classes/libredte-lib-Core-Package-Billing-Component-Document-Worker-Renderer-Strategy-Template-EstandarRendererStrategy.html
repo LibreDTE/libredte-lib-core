@@ -297,7 +297,34 @@
         <span class="phpdocumentor-signature__visibility">protected</span>
             <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true, &#039;template&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;estandar&#039;], &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;pdf&#039;]]</span></code>
+     = <span class="phpdocumentor-signature__default-value">[
+    &#039;__allowUndefinedKeys&#039; =&gt; true,
+    &#039;template&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;estandar&#039;],
+    &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;pdf&#039;],
+    // Configuración pasada tal cual al motor de PDF (mPDF). Se define
+    // acá, vía PHP, y no con `@page` en el CSS de la plantilla: mPDF no
+    // soporta `@page` anidado dentro de `@media` (como usa el resto de
+    // los estilos &quot;solo para impresión&quot; de la plantilla) y, al toparse
+    // con esa regla, corrompe el parseo del resto de la hoja de estilos
+    // (por ejemplo, ignora silenciosamente el `background-color` del
+    // body) y dejaba un espacio en blanco enorme antes del encabezado.
+    &#039;pdf&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;schema&#039; =&gt; [
+        // Carta (Letter, 215.9 x 279.4mm / 612 x 792pt): mismo
+        // tamaño que emite el SII (verificado con `pdfinfo` sobre un
+        // PDF real de referencia). Antes se usaba 216x260mm (una
+        // hoja recortada ~19mm de alto respecto a Carta real).
+        &#039;format&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;Letter&#039;],
+        // Ajustado a ojo (14mm) tras comparar con el PDF de
+        // referencia del SII: 18mm (la medición inicial) dejaba el
+        // emisor un poco más abajo de lo esperado.
+        &#039;margin_top&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 14],
+        &#039;margin_bottom&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 5],
+        &#039;margin_left&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 5],
+        &#039;margin_right&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 5],
+        &#039;margin_header&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 0],
+        &#039;margin_footer&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 0],
+    ]],
+]</span></code>
 
     
     
