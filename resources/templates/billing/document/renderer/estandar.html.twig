@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             font-size: 10pt;
             height: 100%;
+            margin: 0;
+            padding: 0;
         }
         p {
             margin: 5px 0;
@@ -207,7 +209,6 @@
         .tabla-bottom-element-cell {
             width: 33%;
             height: 100%;
-            vertical-align: top;
         }
         .tabla-bottom-element-cell table {
             max-height: 100%;
@@ -239,7 +240,7 @@
             border: 1px solid black;
         }
         .acuse-recibo td {
-            padding: 5px;
+            padding: 1px 5px;
             vertical-align: bottom;
             border: none;
             text-align: left;
@@ -247,14 +248,11 @@
         .acuse-recibo .acuse-title {
             text-align: center;
             font-weight: bold;
-            padding: 10px;
+            padding: 3px;
         }
         .acuse-recibo-label {
             text-align: justify;
             margin-top: 5px;
-            width: 90%;
-            margin-left: auto;
-            margin-right: auto;
             font-size: 8pt;
         }
         .acuse-recibo .linea {
@@ -267,10 +265,9 @@
             text-align: center;
         }
         .cedible {
-            font-size: 15pt;
-            text-align: right;
+            font-size: 11pt;
             font-weight: bold;
-            margin-left: auto;
+            padding-top: 24mm;
         }
         .container-footer{
             display: table;
@@ -287,10 +284,6 @@
             text-align:right;
         }
         @media print {
-            @page {
-                size: 216mm 260mm;
-                margin: 5mm;
-            }
             .container-dte {
                 display: flex;
             }
@@ -299,15 +292,9 @@
                 margin: 0;
             }
             .container-informacion-bottom {
-                position: absolute;
-                bottom: 0;
-                left: 0;
                 width: 98%;
                 min-height: 150px;
-            }
-            .container-cedible {
-                position: fixed;
-                bottom: 0px;
+                margin-top: 10mm;
             }
             .img-timbre {
                 width: 60mm;
@@ -915,7 +902,7 @@
         </div>
         {% endif %}
         {% set esCedible = options.renderer.presentation is defined and options.renderer.presentation == 'cedible' %}
-        <div class="container-informacion-bottom"{% if not esCedible %}style="bottom: 130px;"{% endif %}>
+        <div class="container-informacion-bottom">
             <table class="tabla-bottom-element">
                 <tr>
                     <td class="tabla-bottom-element-cell">
@@ -1175,23 +1162,23 @@
                                         </td>
                                     </tr>
                                 {% endif %}
+                                {% if esCedible %}
+                                    <tr>
+                                        <td colspan="2" class="cedible">
+                                            {% if document.Encabezado.IdDoc.TipoDTE in ['52', '56', '61'] %}
+                                                CEDIBLE CON SU FACTURA
+                                            {% else %}
+                                                CEDIBLE
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </td>
                 </tr>
             </table>
         </div>
-        {% if esCedible %}
-            <div class="container container-cedible">
-                <p class="cedible">
-                    {% if document.Encabezado.IdDoc.TipoDTE in ['52', '56', '61'] %}
-                        CEDIBLE CON SU FACTURA
-                    {% else %}
-                        CEDIBLE
-                    {% endif %}
-                </p>
-            </div>
-        {% endif %}
         {# Footer #}
         <footer>
             <div class="container-footer">
