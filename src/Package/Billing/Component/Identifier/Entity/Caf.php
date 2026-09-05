@@ -102,9 +102,17 @@ class Caf implements CafInterface
     /**
      * {@inheritDoc}
      */
-    public function getXml(): string
+    public function saveXml(): string
     {
         return $this->xmlDocument->setEncoding('ISO-8859-1')->saveXml();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getXml(): string
+    {
+        return $this->xmlDocument->setEncoding('ISO-8859-1')->getXml();
     }
 
     /**
@@ -488,7 +496,7 @@ class Caf implements CafInterface
             'certificacion' => $this->getCertificacion(),
             'publicKey' => $this->getPublicKey(),
             'privateKey' => $this->getPrivateKey(),
-            'xml' => $this->getXml(),
+            'xml' => $this->saveXml(),
         ];
     }
 

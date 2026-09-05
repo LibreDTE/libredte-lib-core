@@ -140,7 +140,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
                     if (!$cafManager->hasEnoughFolios($tipoDoc)) {
                         $start = ($lastFolios[$tipoDoc] ?? 0) + 1;
                         $fakeCaf = $this->cafFaker->create($emisor, $tipoDoc, $start, $start + 999);
-                        $cafManager->add($fakeCaf->getXml());
+                        $cafManager->add($fakeCaf->saveXml());
                     }
                     $cafFolio = $cafManager->consume($tipoDoc);
                     $documentBag->setFolio($cafFolio->getFolio());
@@ -153,7 +153,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
                         $caf = $cafManager->getCafForFolio($tipoDoc, $folio);
                     } catch (RuntimeException $e) {
                         $fakeCaf = $this->cafFaker->create($emisor, $tipoDoc, $folio, $folio);
-                        $cafManager->add($fakeCaf->getXml());
+                        $cafManager->add($fakeCaf->saveXml());
                         $caf = $cafManager->getCafForFolio($tipoDoc, $folio);
                     }
                     $documentBag->setCaf($caf);

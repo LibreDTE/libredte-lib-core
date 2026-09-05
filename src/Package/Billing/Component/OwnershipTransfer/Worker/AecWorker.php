@@ -135,7 +135,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
         Aec|XmlDocumentInterface|string $source
     ): array {
         if ($source instanceof Aec) {
-            $source = $source->getXml();
+            $source = $source->saveXml();
         }
 
         return $this->signatureService->validateXml($source);
@@ -147,7 +147,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
     private function toXmlDocument(Aec|XmlDocumentInterface|string $source): XmlDocument
     {
         if ($source instanceof Aec) {
-            $xml = $source->getXml();
+            $xml = $source->saveXml();
         } elseif ($source instanceof XmlDocumentInterface) {
             $xml = $source->saveXml();
         } else {

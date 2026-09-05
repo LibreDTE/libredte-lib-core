@@ -41,9 +41,16 @@ interface CafInterface extends JsonSerializable
     public function getXmlDocument(): XmlDocumentInterface;
 
     /**
-     * Obtiene el documento XML como string.
+     * Obtiene el documento XML como string, incluyendo la cabecera XML.
      *
-     * @return string Contenido del XML.
+     * @return string Contenido del XML, con cabecera.
+     */
+    public function saveXml(): string;
+
+    /**
+     * Obtiene el documento XML como string, sin la cabecera XML.
+     *
+     * @return string Contenido del XML, sin cabecera.
      */
     public function getXml(): string;
 

@@ -304,7 +304,7 @@ class AecTest extends TestCase
         $this->assertSame('LibreDTE_AEC', $aecRecedido->getId());
 
         // El XML debe contener ambas cesiones.
-        $xml = $aecRecedido->getXml();
+        $xml = $aecRecedido->saveXml();
         $this->assertStringContainsString('LibreDTE_Cesion_1', $xml);
         $this->assertStringContainsString('LibreDTE_Cesion_2', $xml);
 

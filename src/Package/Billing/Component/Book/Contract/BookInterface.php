@@ -51,11 +51,20 @@ interface BookInterface extends JsonSerializable
     public function getXmlDocument(): XmlDocumentInterface;
 
     /**
-     * Entrega el XML del libro.
+     * Entrega el XML del libro, incluyendo la cabecera XML.
      *
      * El XML estará codificado en ISO-8859-1.
      *
-     * @return string XML del libro.
+     * @return string XML del libro, con cabecera.
+     */
+    public function saveXml(): string;
+
+    /**
+     * Entrega el XML del libro, sin la cabecera XML.
+     *
+     * El XML estará codificado en ISO-8859-1.
+     *
+     * @return string XML del libro, sin cabecera.
      */
     public function getXml(): string;
 

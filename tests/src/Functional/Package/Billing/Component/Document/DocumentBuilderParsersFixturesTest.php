@@ -375,7 +375,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $folio = $bag->getFolio() ?? 1;
         $fakeCaf = $this->cafFaker->create($bag->getEmisor(), $tipoDoc, $folio, $folio);
         $cafManager = new CafManager();
-        $cafManager->add($fakeCaf->getXml());
+        $cafManager->add($fakeCaf->saveXml());
         $cafFolio = $cafManager->consume($tipoDoc);
         $bag = $bag->withCaf($cafFolio->getCaf()); // withCaf() retorna una nueva DocumentBag.
         $bag->setFolio($cafFolio->getFolio());

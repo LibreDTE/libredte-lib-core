@@ -55,13 +55,25 @@ abstract class AbstractOwnershipTransferDocument implements JsonSerializable
     }
 
     /**
-     * Entrega el XML del documento de cesión en formato ISO-8859-1.
+     * Entrega el XML del documento de cesión en formato ISO-8859-1, incluyendo
+     * la cabecera XML.
+     *
+     * @return string
+     */
+    public function saveXml(): string
+    {
+        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+    }
+
+    /**
+     * Entrega el XML del documento de cesión en formato ISO-8859-1, sin la
+     * cabecera XML.
      *
      * @return string
      */
     public function getXml(): string
     {
-        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
     }
 
     /**
@@ -99,7 +111,10 @@ abstract class AbstractOwnershipTransferDocument implements JsonSerializable
      */
     public function toArray(): array
     {
-        return $this->getXmlDocument()->toArray();
+        return [
+            ...$this->getXmlDocument()->toArray(),
+            'xml' => $this->saveXml(),
+        ];
     }
 
     /**
@@ -107,6 +122,9 @@ abstract class AbstractOwnershipTransferDocument implements JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
     }
 }
