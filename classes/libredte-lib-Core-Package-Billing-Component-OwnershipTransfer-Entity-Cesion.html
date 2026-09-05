@@ -222,7 +222,8 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Entrega el XML del documento de cesión en formato ISO-8859-1.</dd>
+<dd>Genera el XML del documento de cesión como string sin encabezado ni
+saltos de línea al inicio y final.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument">getXmlDocument()</a>
@@ -237,6 +238,14 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml">saveXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Genera el XML del documento de cesión como string incluyendo
+encabezado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray">toArray()</a>
@@ -398,7 +407,7 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
@@ -441,11 +450,12 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el XML del documento de cesión en formato ISO-8859-1.</p>
+        <p class="phpdocumentor-summary">Genera el XML del documento de cesión como string sin encabezado ni
+saltos de línea al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -519,7 +529,7 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -550,6 +560,46 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_saveXml">
+        saveXml()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el XML del documento de cesión como string incluyendo
+encabezado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">saveXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
@@ -558,7 +608,7 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
     </aside>
 
@@ -612,6 +662,7 @@ y se firma con ID <code class="prettyprint">LibreDTE_Cesion_{seq}</code>. XSD: <
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml">getXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument">getXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_jsonSerialize">jsonSerialize()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml">saveXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>

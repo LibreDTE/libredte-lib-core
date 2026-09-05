@@ -288,7 +288,8 @@ guías de traslado (TpoOper&gt;1) y guías anuladas.</p>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Entrega el XML del libro.</dd>
+<dd>Genera el XML del libro como string sin encabezado ni saltos de línea
+al inicio y final.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getXmlDocument">getXmlDocument()</a>
@@ -310,6 +311,13 @@ guías de traslado (TpoOper&gt;1) y guías anuladas.</p>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_saveXml">saveXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Genera el XML del libro como string incluyendo encabezado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_toArray">toArray()</a>
@@ -439,7 +447,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">153</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -478,7 +486,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
     </aside>
 
@@ -517,7 +525,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
@@ -595,7 +603,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">113</span>
 
     </aside>
 
@@ -638,7 +646,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -677,7 +685,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
@@ -802,11 +810,12 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el XML del libro.</p>
+        <p class="phpdocumentor-summary">Genera el XML del libro como string sin encabezado ni saltos de línea
+al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -824,10 +833,6 @@ deben sobrescribir este método.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>XML del libro.</p>
-</section>
-
             </section>
 
 </article>
@@ -884,7 +889,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">161</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
@@ -923,7 +928,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -954,6 +959,45 @@ deben sobrescribir este método.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_saveXml">
+        saveXml()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">93</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el XML del libro como string incluyendo encabezado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">saveXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
@@ -962,7 +1006,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">193</span>
 
     </aside>
 
@@ -1030,6 +1074,7 @@ deben sobrescribir este método.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getXmlDocument">getXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_isSimplificado">isSimplificado()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_jsonSerialize">jsonSerialize()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_saveXml">saveXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>

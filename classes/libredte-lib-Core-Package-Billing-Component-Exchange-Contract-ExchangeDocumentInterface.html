@@ -123,45 +123,40 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer.html">OwnershipTransfer</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-ownershiptransfer-entity.html">Entity</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange.html">Exchange</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-exchange-contract.html">Contract</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -class">
+    <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    Aec
-
-        <span class="phpdocumentor-element__extends">
-        extends <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Abstract\AbstractOwnershipTransferDocument">AbstractOwnershipTransferDocument</abbr></a>
-    </span>
-    
-            <div class="phpdocumentor-element__package">
-            in package
+    ExchangeDocumentInterface
+            <span class="phpdocumentor-element__extends">
+            extends
+                            <abbr title="\JsonSerializable">JsonSerializable</abbr>                    </span>
+                <div class="phpdocumentor-element__package">
+            in
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
                             </ul>
         </div>
-    
-    
     </h2>
 
-<div class="phpdocumentor-label-line">
-
-
-</div>
-
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php"><a href="files/src-package-billing-component-ownershiptransfer-entity-aec.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php">Aec.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Entidad que representa el XML `AEC` (Archivo Electrónico de Cesión).</p>
+            <p class="phpdocumentor-summary">Interfaz para los documentos de respuesta al intercambio de DTE.</p>
 
 
-    <section class="phpdocumentor-description"><p>Agrupa el <code class="prettyprint">DTECedido</code> y una o más <code class="prettyprint">Cesion</code>. El <code class="prettyprint">DocumentoAEC</code> se firma
-con ID <code class="prettyprint">LibreDTE_AEC</code>. XSD: <code class="prettyprint">AEC_v10.xsd</code>.</p>
+    <section class="phpdocumentor-description"><p>El documento es una vista sobre el <code class="prettyprint">XmlDocumentInterface</code> que lo contiene;
+todos los datos se derivan del XML. Implementada por <code class="prettyprint">EnvioRecibos</code> y
+<code class="prettyprint">RespuestaEnvio</code>.</p>
+<p>No confundir con <code class="prettyprint">DocumentInterface</code> de este mismo namespace, que
+representa un documento dentro del sobre P2P de intercambio (Peppol/UBL),
+una entidad completamente distinta.</p>
 </section>
 
 
@@ -170,7 +165,7 @@ con ID <code class="prettyprint">LibreDTE_AEC</code>. XSD: <code class="prettypr
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -185,76 +180,63 @@ con ID <code class="prettyprint">LibreDTE_AEC</code>. XSD: <code class="prettypr
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method___construct">__construct()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Constructor del documento de cesión.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getId">getId()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getId">getId()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Entrega el ID del nodo principal del documento para firmar.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getSchema">getSchema()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSchema">getSchema()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Entrega el nombre del archivo XSD para validación de esquema.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getSignatureNamespace">getSignatureNamespace()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSignatureNamespace">getSignatureNamespace()</a>
     <span>
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Entrega el namespace de la firma electrónica.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml">getXml()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXml">getXml()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Genera el XML del documento de cesión como string sin encabezado ni
+<dd>Genera el XML del documento de respuesta como string sin encabezado ni
 saltos de línea al inicio y final.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument">getXmlDocument()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXmlDocument">getXmlDocument()</a>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
 </dt>
-<dd>Entrega el documento XML del documento de cesión.</dd>
+<dd>Entrega el documento XML del documento de respuesta.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_jsonSerialize">jsonSerialize()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>{@inheritDoc}</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml">saveXml()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_saveXml">saveXml()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Genera el XML del documento de cesión como string incluyendo
+<dd>Genera el XML del documento de respuesta como string incluyendo
 encabezado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray">toArray()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_toArray">toArray()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Entrega el documento como arreglo.</dd>
 
     </dl>
+
 
 
 
@@ -265,7 +247,7 @@ encabezado.</dd>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -274,62 +256,15 @@ encabezado.</dd>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Constructor del documento de cesión.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlDocument</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$xmlDocument</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Instancia del documento XML.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getId">
         getId()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getId" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getId" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php"><a href="files/src-package-billing-component-ownershiptransfer-entity-aec.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php">Aec.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -362,13 +297,13 @@ encabezado.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method_getSchema">
         getSchema()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getSchema" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSchema" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php"><a href="files/src-package-billing-component-ownershiptransfer-entity-aec.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Entity/Aec.php">Aec.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -401,13 +336,13 @@ encabezado.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method_getSignatureNamespace">
         getSignatureNamespace()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getSignatureNamespace" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSignatureNamespace" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -420,11 +355,7 @@ encabezado.</dd>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Retorna <code class="prettyprint">null</code> para que la firma use el namespace xmldsig estándar
-<code class="prettyprint">http://www.w3.org/2000/09/xmldsig#</code>, tal como lo exigen los XSD de
-<code class="prettyprint">DTECedido</code>, <code class="prettyprint">Cesion</code> y <code class="prettyprint">AEC</code>.</p>
-</section>
-
+    
     
     
 
@@ -444,17 +375,17 @@ encabezado.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method_getXml">
         getXml()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXml" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Genera el XML del documento de cesión como string sin encabezado ni
+        <p class="phpdocumentor-summary">Genera el XML del documento de respuesta como string sin encabezado ni
 saltos de línea al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
@@ -467,6 +398,20 @@ saltos de línea al inicio y final.</p>
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_getXml_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXml_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">see</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface::getXml()">XmlDocumentInterface::getXml()</abbr></span>
+                                                                
+                                    </dd>
+                        </dl>
 
         
     
@@ -484,17 +429,17 @@ saltos de línea al inicio y final.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getXmlDocument">
         getXmlDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el documento XML del documento de cesión.</p>
+        <p class="phpdocumentor-summary">Entrega el documento XML del documento de respuesta.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -521,58 +466,19 @@ saltos de línea al inicio y final.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
-        jsonSerialize()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">117</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">{@inheritDoc}</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_saveXml">
         saveXml()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Genera el XML del documento de cesión como string incluyendo
+        <p class="phpdocumentor-summary">Genera el XML del documento de respuesta como string incluyendo
 encabezado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
@@ -585,6 +491,20 @@ encabezado.</p>
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_saveXml_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_saveXml_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">see</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface::saveXml()">XmlDocumentInterface::saveXml()</abbr></span>
+                                                                
+                                    </dd>
+                        </dl>
 
         
     
@@ -602,13 +522,13 @@ encabezado.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php"><a href="files/src-package-billing-component-ownershiptransfer-abstract-abstractownershiptransferdocument.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Abstract/AbstractOwnershipTransferDocument.php">AbstractOwnershipTransferDocument.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php"><a href="files/src-package-billing-component-exchange-contract-exchangedocumentinterface.html"><abbr title="src/Package/Billing/Component/Exchange/Contract/ExchangeDocumentInterface.php">ExchangeDocumentInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -647,25 +567,23 @@ encabezado.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getId">getId()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSchema">getSchema()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSignatureNamespace">getSignatureNamespace()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXml">getXml()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXmlDocument">getXmlDocument()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_saveXml">saveXml()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_toArray">toArray()</a></li>
+                                            </ul>
+                </li>
             
-                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
-            <li>
-                <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getId">getId()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#method_getSchema">getSchema()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getSignatureNamespace">getSignatureNamespace()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml">getXml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXmlDocument">getXmlDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_jsonSerialize">jsonSerialize()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml">saveXml()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_toArray">toArray()</a></li>
-                                    </ul>
-            </li>
                     </ul>
     </section>
 
@@ -683,7 +601,7 @@ encabezado.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Entity-Aec.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

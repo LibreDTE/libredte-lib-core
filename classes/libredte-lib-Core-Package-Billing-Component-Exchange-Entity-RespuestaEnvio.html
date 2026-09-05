@@ -242,7 +242,8 @@
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Entrega el XML del documento de respuesta en formato ISO-8859-1.</dd>
+<dd>Genera el XML del documento de respuesta como string sin encabezado ni
+saltos de línea al inicio y final.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getXmlDocument">getXmlDocument()</a>
@@ -271,6 +272,14 @@
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_saveXml">saveXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Genera el XML del documento de respuesta como string incluyendo
+encabezado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_toArray">toArray()</a>
@@ -432,7 +441,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php"><a href="files/src-package-billing-component-exchange-abstract-abstractexchangedocument.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php">AbstractExchangeDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
@@ -475,11 +484,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php"><a href="files/src-package-billing-component-exchange-abstract-abstractexchangedocument.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php">AbstractExchangeDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el XML del documento de respuesta en formato ISO-8859-1.</p>
+        <p class="phpdocumentor-summary">Genera el XML del documento de respuesta como string sin encabezado ni
+saltos de línea al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -631,7 +641,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php"><a href="files/src-package-billing-component-exchange-abstract-abstractexchangedocument.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php">AbstractExchangeDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -662,6 +672,46 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_saveXml">
+        saveXml()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php"><a href="files/src-package-billing-component-exchange-abstract-abstractexchangedocument.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php">AbstractExchangeDocument.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el XML del documento de respuesta como string incluyendo
+encabezado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">saveXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
@@ -670,7 +720,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php"><a href="files/src-package-billing-component-exchange-abstract-abstractexchangedocument.html"><abbr title="src/Package/Billing/Component/Exchange/Abstract/AbstractExchangeDocument.php">AbstractExchangeDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
     </aside>
 
@@ -726,6 +776,7 @@
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-RespuestaEnvio.html#method_isRecepcionEnvio">isRecepcionEnvio()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Entity-RespuestaEnvio.html#method_isResultadoDTE">isResultadoDTE()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_jsonSerialize">jsonSerialize()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_saveXml">saveXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>

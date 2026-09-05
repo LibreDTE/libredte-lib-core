@@ -256,7 +256,8 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Entrega el XML del libro.</dd>
+<dd>Genera el XML del libro como string sin encabezado ni saltos de línea
+al inicio y final.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXmlDocument">getXmlDocument()</a>
@@ -271,6 +272,13 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Indica si el libro está en formato simplificado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_saveXml">saveXml()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Genera el XML del libro como string incluyendo encabezado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray">toArray()</a>
@@ -308,7 +316,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -347,7 +355,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -386,7 +394,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -425,7 +433,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -466,7 +474,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
@@ -505,7 +513,7 @@ diferencia entre ambos libros reside exclusivamente en el <code class="prettypri
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -552,7 +560,7 @@ formato simplificado) deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">130</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 
     </aside>
 
@@ -720,11 +728,12 @@ contiene los campos calculados (TotDoc, TotMntNeto, TotMntIVA, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el XML del libro.</p>
+        <p class="phpdocumentor-summary">Genera el XML del libro como string sin encabezado ni saltos de línea
+al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -733,21 +742,29 @@ contiene los campos calculados (TotDoc, TotMntNeto, TotMntIVA, etc.).</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>El XML estará codificado en ISO-8859-1.</p>
-</section>
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_getXml_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXml_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
-    
-    
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">see</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface::getXml()">XmlDocumentInterface::getXml()</abbr></span>
+                                                                
+                                    </dd>
+                        </dl>
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>XML del libro.</p>
-</section>
-
             </section>
 
 </article>
@@ -804,7 +821,7 @@ contiene los campos calculados (TotDoc, TotMntNeto, TotMntIVA, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
@@ -839,6 +856,61 @@ se incluye este método en la interfaz base de todos los libros.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_saveXml">
+        saveXml()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_saveXml" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">61</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Genera el XML del libro como string incluyendo encabezado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">saveXml</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>El XML estará codificado en ISO-8859-1.</p>
+</section>
+
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_saveXml_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_saveXml_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">see</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface::saveXml()">XmlDocumentInterface::saveXml()</abbr></span>
+                                                                
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
@@ -847,7 +919,7 @@ se incluye este método en la interfaz base de todos los libros.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/BookInterface.php"><a href="files/src-package-billing-component-book-contract-bookinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/BookInterface.php">BookInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
@@ -906,6 +978,7 @@ se incluye este método en la interfaz base de todos los libros.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXml">getXml()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXmlDocument">getXmlDocument()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_isSimplificado">isSimplificado()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_saveXml">saveXml()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_toArray">toArray()</a></li>
                                             </ul>
                 </li>
