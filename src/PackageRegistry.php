@@ -27,6 +27,7 @@ namespace libredte\lib\Core;
 use Derafu\Backbone\Contract\PackageRegistryInterface;
 use Derafu\Backbone\Trait\PackageRegistryTrait;
 use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
+use libredte\lib\Core\Package\System\Contract\SystemPackageInterface;
 
 /**
  * Registro de paquetes disponibles en LibreDTE.
@@ -34,6 +35,8 @@ use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
  * LibreDTE Lib Core contiene los siguientes paquetes:
  *
  * - `billing`: Paquete de facturación.
+ * - `system`: Capacidades transversales que no son de negocio (ej.
+ *   exploración genérica de repositorios de datos).
  *
  * La misión de LibreDTE es **Proveer facturación electrónica libre, accesible y
  * bien documentada para Chile**. Debido a lo anterior, esta biblioteca se
@@ -41,8 +44,9 @@ use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
  * facturación electrónica de Chile y no tiene, ni tendrá, la intención de
  * ser una biblioteca completa para la administración de empresas de Chile.
  *
- * Por el motivo anterior, el único paquete disponible en LibreDTE Lib Core es
- * el paquete "billing".
+ * Por el motivo anterior, el paquete "billing" es el único paquete de
+ * negocio disponible en LibreDTE Lib Core. El paquete "system" existe solo
+ * para capacidades transversales, no de negocio.
  */
 class PackageRegistry implements PackageRegistryInterface
 {
@@ -57,6 +61,19 @@ class PackageRegistry implements PackageRegistryInterface
     {
         $package = $this->getPackage('billing');
         assert($package instanceof BillingPackageInterface);
+
+        return $package;
+    }
+
+    /**
+     * Entrega el paquete "system".
+     *
+     * @return SystemPackageInterface
+     */
+    public function getSystemPackage(): SystemPackageInterface
+    {
+        $package = $this->getPackage('system');
+        assert($package instanceof SystemPackageInterface);
 
         return $package;
     }

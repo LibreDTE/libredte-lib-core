@@ -25,9 +25,11 @@ services:
         arguments:
             $packages:
                 billing: '@libredte\lib\Core\Package\Billing\BillingPackage'
+                system: '@libredte\lib\Core\Package\System\SystemPackage'
 
     # Paquetes.
     libredte\lib\Core\Package\Billing\BillingPackage: ~
+    libredte\lib\Core\Package\System\SystemPackage: ~
 
     # Componentes del paquete "billing".
     libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface:
@@ -44,6 +46,20 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\OwnershipTransferComponent
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingPartiesComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\TradingPartiesComponent
+
+    # Componentes del paquete "system".
+    libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface:
+        class: libredte\lib\Core\Package\System\Component\Certificate\CertificateComponent
+    libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface:
+        class: libredte\lib\Core\Package\System\Component\Repository\RepositoryComponent
+
+    # Workers del componente "system.certificate".
+    libredte\lib\Core\Package\System\Component\Certificate\Contract\LoaderWorkerInterface:
+        class: libredte\lib\Core\Package\System\Component\Certificate\Worker\LoaderWorker
+
+    # Workers del componente "system.repository".
+    libredte\lib\Core\Package\System\Component\Repository\Contract\CatalogWorkerInterface:
+        class: libredte\lib\Core\Package\System\Component\Repository\Worker\CatalogWorker
 
     # Workers del componente "billing.book".
     libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface:
@@ -85,6 +101,10 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker
         lazy: true # Necesario por referencia circular con BuilderWorker.
+    libredte\lib\Core\Package\Billing\Component\Document\Contract\ExamplesWorkerInterface:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ExamplesWorker
+        arguments:
+            $fixturesDir: '%libredte.lib.core.project_dir%/tests/fixtures/yaml/documentos_ok'
     libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface:

@@ -57,6 +57,13 @@ interface DocumentComponentInterface extends ComponentInterface
     public function getDispatcherWorker(): DispatcherWorkerInterface;
 
     /**
+     * Entrega el worker "billing.document.examples".
+     *
+     * @return ExamplesWorkerInterface
+     */
+    public function getExamplesWorker(): ExamplesWorkerInterface;
+
+    /**
      * Entrega el worker "billing.document.document_bag_manager".
      *
      * @return DocumentBagManagerWorkerInterface

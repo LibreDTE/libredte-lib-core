@@ -35,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWork
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\ExamplesWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\LoaderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface;
@@ -60,6 +61,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
         private BuilderWorkerInterface $builderWorker,
         private DispatcherWorkerInterface $dispatcherWorker,
         private DocumentBagManagerWorkerInterface $documentBagManagerWorker,
+        private ExamplesWorkerInterface $examplesWorker,
         private LoaderWorkerInterface $loaderWorker,
         private NormalizerWorkerInterface $normalizerWorker,
         private ParserWorkerInterface $parserWorker,
@@ -80,6 +82,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
             'builder' => $this->builderWorker,
             'dispatcher' => $this->dispatcherWorker,
             'document_bag_manager' => $this->documentBagManagerWorker,
+            'examples' => $this->examplesWorker,
             'loader' => $this->loaderWorker,
             'normalizer' => $this->normalizerWorker,
             'parser' => $this->parserWorker,
@@ -119,6 +122,14 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     public function getDocumentBagManagerWorker(): DocumentBagManagerWorkerInterface
     {
         return $this->documentBagManagerWorker;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExamplesWorker(): ExamplesWorkerInterface
+    {
+        return $this->examplesWorker;
     }
 
     /**
