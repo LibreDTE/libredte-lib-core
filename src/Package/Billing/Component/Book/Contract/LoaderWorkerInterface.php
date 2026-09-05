@@ -41,11 +41,31 @@ use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 interface LoaderWorkerInterface extends WorkerInterface
 {
     /**
-     * Carga y normaliza los detalles de la bolsa.
+     * Carga y normaliza los datos de entrada de un libro tributario.
      *
-     * @param BookBagInterface $bag Bolsa con detalles crudos.
-     * @return BookBagInterface La misma bolsa con detalles normalizados.
-     * @throws BookException En caso de error al cargar o normalizar la bolsa.
+     * Deja lista la carátula y el detalle del libro, en la forma exacta
+     * que corresponde a su tipo, a partir de los datos de entrada
+     * entregados en cualquiera de los formatos de origen soportados.
+     *
+     * Esta operación únicamente prepara esos datos: no construye el
+     * libro ni genera su documento firmado, por lo que ese resultado
+     * nunca forma parte de lo que esta operación entrega, sin importar
+     * los datos de entrada recibidos. Para obtener el libro construido
+     * y su documento hay que continuar con la operación de
+     * construcción, usando esta misma carátula y detalle ya
+     * normalizados.
+     *
+     * La autorización del emisor del libro (fecha y número de la
+     * resolución que lo autoriza) solo aparece en el resultado cuando
+     * esa autorización fue entregada junto con los datos del emisor; si
+     * no se entregó, simplemente no va a estar presente.
+     *
+     * @param BookBagInterface $bag Datos de entrada del libro, junto con
+     * su tipo y el emisor.
+     * @return BookBagInterface Los mismos datos, con la carátula y el
+     * detalle ya normalizados.
+     * @throws BookException En caso de error al cargar o normalizar los
+     * datos.
      */
     public function load(BookBagInterface $bag): BookBagInterface;
 }

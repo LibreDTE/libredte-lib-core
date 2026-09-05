@@ -342,6 +342,8 @@ class BookBag implements BookBagInterface
             'book' => $this->getData(),
             'book_auth' => $this->getBookAuth(),
             'book_type' => $this->getTipo()->toArray(),
+            'caratula' => $this->getCaratula(),
+            'detalle' => $this->getDetalle(),
             'options' => $this->getOptions()->all(),
         ];
     }
