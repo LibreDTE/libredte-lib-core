@@ -10441,6 +10441,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\ListDocumentEventsResponse\u003A\u003AnormalizeFecha\u0028\u0029",
+            "name": "normalizeFecha",
+            "summary": "Normaliza\u0020la\u0020fecha\u0020de\u0020un\u0020evento\u0020desde\u0020el\u0020formato\u0020del\u0020SII\n\u0028\u0060DD\u002DMM\u002DYYYY\u0020HH\u003AMM\u003ASS\u0060\u0029\u0020a\u0020\u0060YYYY\u002DMM\u002DDD\u0020HH\u003AMM\u003ASS\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method_normalizeFecha"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\ListDocumentEventsResponse\u003A\u003AgetEvents\u0028\u0029",
             "name": "getEvents",
             "summary": "Entrega\u0020los\u0020eventos\u0020del\u0020DTE.",
