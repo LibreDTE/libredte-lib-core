@@ -121,61 +121,151 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system.html">System</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-component.html">Component</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-component-certificate.html">Certificate</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-component-certificate-contract.html">Contract</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">Worker</h2>
+    <article class="phpdocumentor-element -interface">
+        <h2 class="phpdocumentor-content__title">
+    LoaderWorkerInterface
+            <span class="phpdocumentor-element__extends">
+            extends
+                            <abbr title="\Derafu\Backbone\Contract\WorkerInterface">WorkerInterface</abbr>                    </span>
+                <div class="phpdocumentor-element__package">
+            in
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    </h2>
 
-        
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Certificate/Contract/LoaderWorkerInterface.php"><a href="files/src-package-system-component-certificate-contract-loaderworkerinterface.html"><abbr title="src/Package/System/Component/Certificate/Contract/LoaderWorkerInterface.php">LoaderWorkerInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Interfaz para la carga genérica de certificados digitales.</p>
+
+
+    <section class="phpdocumentor-description"><p>No depende de ningún paquete de negocio: cualquier consumidor externo
+(API, consola) puede usar esto para cargar un certificado a partir de sus
+datos crudos (PKCS#12 con clave, o certificado y llave privada en PEM) y
+obtener de vuelta sus datos ya parseados (RUN, nombre, email, vigencia,
+etc.), sin necesitar una operación de negocio específica que use un
+certificado como insumo.</p>
+</section>
+
+
+
+    
+    
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
-<h4 id="namespaces">
-    Namespaces
-    <a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+
+
+
+
+
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-batchprocessor.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor">BatchProcessor</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-builder.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder">Builder</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-normalizer.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer">Normalizer</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-parser.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser">Parser</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-renderer.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer">Renderer</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-sanitizer.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer">Sanitizer</abbr></a></dt>
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/libredte-lib-core-package-billing-component-document-worker-validator.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator">Validator</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#method_load">load()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>    </span>
+</dt>
+<dd>Carga un certificado digital.</dd>
+
     </dl>
 
 
-    <h4 id="toc-classes">
-        Classes
-        <a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+
+
+        
+
+        
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_load">
+        load()
+        <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#method_load" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker">BatchProcessorWorker</abbr></a></dt><dd>Clase para los procesadores de documentos en lote.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker">BuilderWorker</abbr></a></dt><dd>Clase para los constructores de documentos.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker">DispatcherWorker</abbr></a></dt><dd>Clase para la gestión de sobres de documentos (para envíos/transferencias).</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker">DocumentBagManagerWorker</abbr></a></dt><dd>Clase para el administrador de la bolsa con los datos de un DTE.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\ExamplesWorker">ExamplesWorker</abbr></a></dt><dd>Clase para el catálogo de ejemplos de documentos tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-LoaderWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\LoaderWorker">LoaderWorker</abbr></a></dt><dd>Clase para cargar documentos tributarios desde su XML.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker">NormalizerWorker</abbr></a></dt><dd>Clase para los normalizadores.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker">ParserWorker</abbr></a></dt><dd>Clase para los parsers de datos de entrada de los documentos tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker">RendererWorker</abbr></a></dt><dd>Clase para los renderizadores.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker">SanitizerWorker</abbr></a></dt><dd>Clase para los sanitizadores.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker">ValidatorWorker</abbr></a></dt><dd>Clase para los validadores de documentos.</dd>    </dl>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Certificate/Contract/LoaderWorkerInterface.php"><a href="files/src-package-system-component-certificate-contract-loaderworkerinterface.html"><abbr title="src/Package/System/Component/Certificate/Contract/LoaderWorkerInterface.php">LoaderWorkerInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
+    </aside>
 
+        <p class="phpdocumentor-summary">Carga un certificado digital.</p>
 
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">load</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>La deserialización de los datos crudos del certificado (recibidos vía
+API/consola) ya ocurre antes de invocar este método: quien llama
+recibe una instancia de <code class="prettyprint">CertificateInterface</code> ya resuelta.</p>
+</section>
 
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$certificate</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
 
-
+    
 
         
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr></span>
+            </section>
 
-        
+</article>
+            </section>
+
         
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                            
+                                
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -183,10 +273,16 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                    <li><a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html#toc-classes">Classes</a></li>
-                                                                                                                    </ul>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
-
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#method_load">load()</a></li>
+                                            </ul>
+                </li>
             
                     </ul>
     </section>
@@ -205,7 +301,7 @@
     </section>
 </section>
         </div>
-        <a href="namespaces/libredte-lib-core-package-billing-component-document-worker.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

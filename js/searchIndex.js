@@ -2131,6 +2131,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.dispatcher\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_getDispatcherWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface\u003A\u003AgetExamplesWorker\u0028\u0029",
+            "name": "getExamplesWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.examples\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_getExamplesWorker"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface\u003A\u003AgetDocumentBagManagerWorker\u0028\u0029",
             "name": "getDocumentBagManagerWorker",
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.document_bag_manager\u0022.",
@@ -2480,6 +2485,21 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020DTE\u0020como\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ExamplesWorkerInterface",
+            "name": "ExamplesWorkerInterface",
+            "summary": "Interfaz\u0020para\u0020el\u0020cat\u00E1logo\u0020de\u0020ejemplos\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ExamplesWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ExamplesWorkerInterface\u003A\u003Alist\u0028\u0029",
+            "name": "list",
+            "summary": "Entrega\u0020el\u0020listado\u0020de\u0020ejemplos\u0020disponibles.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ExamplesWorkerInterface.html#method_list"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\ExamplesWorkerInterface\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020un\u0020ejemplo\u0020espec\u00EDfico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ExamplesWorkerInterface.html#method_get"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\LoaderWorkerInterface",
             "name": "LoaderWorkerInterface",
@@ -3076,6 +3096,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.document_bag_manager\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_getDocumentBagManagerWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003AgetExamplesWorker\u0028\u0029",
+            "name": "getExamplesWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.examples\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_getExamplesWorker"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003AgetLoaderWorker\u0028\u0029",
             "name": "getLoaderWorker",
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.loader\u0022.",
@@ -3135,6 +3160,11 @@ Search.appendIndex(
             "name": "documentBagManagerWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#property_documentBagManagerWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003A\u0024examplesWorker",
+            "name": "examplesWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#property_examplesWorker"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003A\u0024loaderWorker",
             "name": "loaderWorker",
@@ -4095,6 +4125,11 @@ Search.appendIndex(
             "name": "DocumentBagManagerException",
             "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.document_bag_manager\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\ExamplesException",
+            "name": "ExamplesException",
+            "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.examples\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ExamplesException.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\LoaderException",
             "name": "LoaderException",
@@ -5380,6 +5415,41 @@ Search.appendIndex(
             "name": "receptorFactory",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DocumentBagManagerWorker.html#property_receptorFactory"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker",
+            "name": "ExamplesWorker",
+            "summary": "Clase\u0020para\u0020el\u0020cat\u00E1logo\u0020de\u0020ejemplos\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003Alist\u0028\u0029",
+            "name": "list",
+            "summary": "Entrega\u0020el\u0020listado\u0020de\u0020ejemplos\u0020disponibles.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_list"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020un\u0020ejemplo\u0020espec\u00EDfico.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_get"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003AtoId\u0028\u0029",
+            "name": "toId",
+            "summary": "Determina\u0020el\u0020identificador\u0020de\u0020un\u0020ejemplo\u0020a\u0020partir\u0020de\u0020la\u0020ruta\u0020de\u0020su\narchivo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_toId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003AEXTENSION",
+            "name": "EXTENSION",
+            "summary": "Extensi\u00F3n\u0020de\u0020los\u0020archivos\u0020de\u0020ejemplos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#constant_EXTENSION"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003A\u0024fixturesDir",
+            "name": "fixturesDir",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#property_fixturesDir"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\LoaderWorker",
             "name": "LoaderWorker",
@@ -12471,6 +12541,251 @@ Search.appendIndex(
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020paquete\u0020\u0022billing\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Exception-BillingException.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\CertificateComponent",
+            "name": "CertificateComponent",
+            "summary": "Componente\u0020\u0022system.certificate\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-CertificateComponent.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\CertificateComponent\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-CertificateComponent.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\CertificateComponent\u003A\u003AgetWorkers\u0028\u0029",
+            "name": "getWorkers",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-CertificateComponent.html#method_getWorkers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\CertificateComponent\u003A\u003AgetLoaderWorker\u0028\u0029",
+            "name": "getLoaderWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022system.certificate.loader\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-CertificateComponent.html#method_getLoaderWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\CertificateComponent\u003A\u003A\u0024loaderWorker",
+            "name": "loaderWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-CertificateComponent.html#property_loaderWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Contract\\CertificateComponentInterface",
+            "name": "CertificateComponentInterface",
+            "summary": "Interfaz\u0020para\u0020\u0060CertificateComponent\u0060.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Contract\\CertificateComponentInterface\u003A\u003AgetLoaderWorker\u0028\u0029",
+            "name": "getLoaderWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022system.certificate.loader\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html#method_getLoaderWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Contract\\LoaderWorkerInterface",
+            "name": "LoaderWorkerInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020carga\u0020gen\u00E9rica\u0020de\u0020certificados\u0020digitales.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Contract\\LoaderWorkerInterface\u003A\u003Aload\u0028\u0029",
+            "name": "load",
+            "summary": "Carga\u0020un\u0020certificado\u0020digital.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-LoaderWorkerInterface.html#method_load"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Worker\\LoaderWorker",
+            "name": "LoaderWorker",
+            "summary": "Clase\u0020para\u0020la\u0020carga\u0020gen\u00E9rica\u0020de\u0020certificados\u0020digitales.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Worker-LoaderWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Worker\\LoaderWorker\u003A\u003Aload\u0028\u0029",
+            "name": "load",
+            "summary": "Carga\u0020un\u0020certificado\u0020digital.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Worker-LoaderWorker.html#method_load"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface",
+            "name": "CatalogWorkerInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020exploraci\u00F3n\u0020gen\u00E9rica\u0020de\u0020repositorios\u0020de\u0020datos.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003Alist\u0028\u0029",
+            "name": "list",
+            "summary": "Entrega\u0020los\u0020identificadores\u0020de\u0020los\u0020repositorios\u0020disponibles.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_list"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "Busca\u0020un\u0020elemento\u0020de\u0020un\u0020repositorio\u0020por\u0020su\u0020identificador.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_find"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003AfindAll\u0028\u0029",
+            "name": "findAll",
+            "summary": "Entrega\u0020todos\u0020los\u0020elementos\u0020de\u0020un\u0020repositorio.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_findAll"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003AfindBy\u0028\u0029",
+            "name": "findBy",
+            "summary": "Busca\u0020elementos\u0020de\u0020un\u0020repositorio\u0020seg\u00FAn\u0020criterios\u0020de\u0020coincidencia.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_findBy"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003AfindOneBy\u0028\u0029",
+            "name": "findOneBy",
+            "summary": "Busca\u0020un\u0020\u00FAnico\u0020elemento\u0020de\u0020un\u0020repositorio\u0020seg\u00FAn\u0020criterios\u0020de\ncoincidencia.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_findOneBy"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface\u003A\u003Acount\u0028\u0029",
+            "name": "count",
+            "summary": "Cuenta\u0020los\u0020elementos\u0020de\u0020un\u0020repositorio\u0020que\u0020cumplen\u0020ciertos\u0020criterios.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-CatalogWorkerInterface.html#method_count"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\RepositoryComponentInterface",
+            "name": "RepositoryComponentInterface",
+            "summary": "Interfaz\u0020para\u0020\u0060RepositoryComponent\u0060.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\RepositoryComponentInterface\u003A\u003AgetCatalogWorker\u0028\u0029",
+            "name": "getCatalogWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022system.repository.catalog\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html#method_getCatalogWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Exception\\CatalogException",
+            "name": "CatalogException",
+            "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022system.repository.catalog\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Exception-CatalogException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Exception\\RepositoryException",
+            "name": "RepositoryException",
+            "summary": "Excepci\u00F3n\u0020general\u0020del\u0020componente\u0020\u0022system.repository\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Exception-RepositoryException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\RepositoryComponent",
+            "name": "RepositoryComponent",
+            "summary": "Componente\u0020\u0022system.repository\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-RepositoryComponent.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\RepositoryComponent\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-RepositoryComponent.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\RepositoryComponent\u003A\u003AgetWorkers\u0028\u0029",
+            "name": "getWorkers",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-RepositoryComponent.html#method_getWorkers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\RepositoryComponent\u003A\u003AgetCatalogWorker\u0028\u0029",
+            "name": "getCatalogWorker",
+            "summary": "Entrega\u0020el\u0020worker\u0020\u0022system.repository.catalog\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-RepositoryComponent.html#method_getCatalogWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\RepositoryComponent\u003A\u003A\u0024catalogWorker",
+            "name": "catalogWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-RepositoryComponent.html#property_catalogWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker",
+            "name": "CatalogWorker",
+            "summary": "Clase\u0020para\u0020la\u0020exploraci\u00F3n\u0020gen\u00E9rica\u0020de\u0020repositorios\u0020de\u0020datos.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003Alist\u0028\u0029",
+            "name": "list",
+            "summary": "Entrega\u0020los\u0020identificadores\u0020de\u0020los\u0020repositorios\u0020disponibles.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_list"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "Busca\u0020un\u0020elemento\u0020de\u0020un\u0020repositorio\u0020por\u0020su\u0020identificador.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_find"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AfindAll\u0028\u0029",
+            "name": "findAll",
+            "summary": "Entrega\u0020todos\u0020los\u0020elementos\u0020de\u0020un\u0020repositorio.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_findAll"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AfindBy\u0028\u0029",
+            "name": "findBy",
+            "summary": "Busca\u0020elementos\u0020de\u0020un\u0020repositorio\u0020seg\u00FAn\u0020criterios\u0020de\u0020coincidencia.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_findBy"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AfindOneBy\u0028\u0029",
+            "name": "findOneBy",
+            "summary": "Busca\u0020un\u0020\u00FAnico\u0020elemento\u0020de\u0020un\u0020repositorio\u0020seg\u00FAn\u0020criterios\u0020de\ncoincidencia.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_findOneBy"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003Acount\u0028\u0029",
+            "name": "count",
+            "summary": "Cuenta\u0020los\u0020elementos\u0020de\u0020un\u0020repositorio\u0020que\u0020cumplen\u0020ciertos\u0020criterios.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_count"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AresolveRepository\u0028\u0029",
+            "name": "resolveRepository",
+            "summary": "Resuelve\u0020el\u0020repositorio\u0020solicitado,\u0020traduciendo\u0020cualquier\u0020error\u0020de\nresoluci\u00F3n\u0020a\u0020una\u0020excepci\u00F3n\u0020propia\u0020de\u0020este\u0020worker.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#method_resolveRepository"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AEXAMPLE_REPOSITORY",
+            "name": "EXAMPLE_REPOSITORY",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_EXAMPLE_REPOSITORY"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003A\u0024repositoryManager",
+            "name": "repositoryManager",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#property_repositoryManager"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Contract\\SystemPackageInterface",
+            "name": "SystemPackageInterface",
+            "summary": "Interfaz\u0020para\u0020\u0060SystemPackage\u0060.",
+            "url": "classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Contract\\SystemPackageInterface\u003A\u003AgetCertificateComponent\u0028\u0029",
+            "name": "getCertificateComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.certificate\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getCertificateComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Contract\\SystemPackageInterface\u003A\u003AgetRepositoryComponent\u0028\u0029",
+            "name": "getRepositoryComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.repository\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRepositoryComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Exception\\SystemException",
+            "name": "SystemException",
+            "summary": "Excepci\u00F3n\u0020general\u0020del\u0020paquete\u0020\u0022system\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Exception-SystemException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage",
+            "name": "SystemPackage",
+            "summary": "Paquete\u0020\u0022system\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003AgetComponents\u0028\u0029",
+            "name": "getComponents",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getComponents"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003AgetCertificateComponent\u0028\u0029",
+            "name": "getCertificateComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.certificate\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getCertificateComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003AgetRepositoryComponent\u0028\u0029",
+            "name": "getRepositoryComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.repository\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRepositoryComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003A\u0024certificateComponent",
+            "name": "certificateComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#property_certificateComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003A\u0024repositoryComponent",
+            "name": "repositoryComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#property_repositoryComponent"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\PackageRegistry",
             "name": "PackageRegistry",
             "summary": "Registro\u0020de\u0020paquetes\u0020disponibles\u0020en\u0020LibreDTE.",
@@ -12480,6 +12795,11 @@ Search.appendIndex(
             "name": "getBillingPackage",
             "summary": "Entrega\u0020el\u0020paquete\u0020\u0022billing\u0022.",
             "url": "classes/libredte-lib-Core-PackageRegistry.html#method_getBillingPackage"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\PackageRegistry\u003A\u003AgetSystemPackage\u0028\u0029",
+            "name": "getSystemPackage",
+            "summary": "Entrega\u0020el\u0020paquete\u0020\u0022system\u0022.",
+            "url": "classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -13195,5 +13515,60 @@ Search.appendIndex(
             "name": "Exception",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-exception.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate",
+            "name": "Certificate",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-certificate.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component",
+            "name": "Component",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Contract",
+            "name": "Contract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-certificate-contract.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Certificate\\Worker",
+            "name": "Worker",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-certificate-worker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract",
+            "name": "Contract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-repository-contract.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Exception",
+            "name": "Exception",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-repository-exception.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository",
+            "name": "Repository",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-repository.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker",
+            "name": "Worker",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-repository-worker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Contract",
+            "name": "Contract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-contract.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Exception",
+            "name": "Exception",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-exception.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System",
+            "name": "System",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system.html"
         }            ]
 );

@@ -120,59 +120,35 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system.html">System</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-contract.html">Contract</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -class">
+    <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    PackageRegistry
-
-    
-            <div class="phpdocumentor-element__package">
-            in package
+    SystemPackageInterface
+            <span class="phpdocumentor-element__extends">
+            extends
+                            <abbr title="\Derafu\Backbone\Contract\PackageInterface">PackageInterface</abbr>                    </span>
+                <div class="phpdocumentor-element__package">
+            in
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                                    <li><a href="packages/LibreDTE.html">LibreDTE</a></li>
                             </ul>
         </div>
-    
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <abbr title="\Derafu\Backbone\Contract\PackageRegistryInterface">PackageRegistryInterface</abbr>                    </span>
-    
-            <span class="phpdocumentor-element__extends">
-            uses
-                            <abbr title="\Derafu\Backbone\Trait\PackageRegistryTrait">PackageRegistryTrait</abbr>                    </span>
     </h2>
 
-<div class="phpdocumentor-label-line">
-
-
-</div>
-
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/PackageRegistry.php"><a href="files/src-packageregistry.html"><abbr title="src/PackageRegistry.php">PackageRegistry.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Contract/SystemPackageInterface.php"><a href="files/src-package-system-contract-systempackageinterface.html"><abbr title="src/Package/System/Contract/SystemPackageInterface.php">SystemPackageInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Registro de paquetes disponibles en LibreDTE.</p>
+            <p class="phpdocumentor-summary">Interfaz para `SystemPackage`.</p>
 
 
-    <section class="phpdocumentor-description"><p>LibreDTE Lib Core contiene los siguientes paquetes:</p>
-<ul>
-<li><code class="prettyprint">billing</code>: Paquete de facturación.</li>
-<li><code class="prettyprint">system</code>: Capacidades transversales que no son de negocio (ej.
-exploración genérica de repositorios de datos).</li>
-</ul>
-<p>La misión de LibreDTE es <strong>Proveer facturación electrónica libre, accesible y
-bien documentada para Chile</strong>. Debido a lo anterior, esta biblioteca se
-centra exclusivamente en proveer funcionalidades relacionadas con la
-facturación electrónica de Chile y no tiene, ni tendrá, la intención de
-ser una biblioteca completa para la administración de empresas de Chile.</p>
-<p>Por el motivo anterior, el paquete &quot;billing&quot; es el único paquete de
-negocio disponible en LibreDTE Lib Core. El paquete &quot;system&quot; existe solo
-para capacidades transversales, no de negocio.</p>
-</section>
 
 
 
@@ -180,19 +156,12 @@ para capacidades transversales, no de negocio.</p>
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-PackageRegistry.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/libredte-lib-Core-PackageRegistry.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Backbone\Contract\PackageRegistryInterface">PackageRegistryInterface</abbr></dt>    </dl>
 
 
 
@@ -202,25 +171,26 @@ para capacidades transversales, no de negocio.</p>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/libredte-lib-Core-PackageRegistry.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-PackageRegistry.html#method_getBillingPackage">getBillingPackage()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getCertificateComponent">getCertificateComponent()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a>    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a>    </span>
 </dt>
-<dd>Entrega el paquete &quot;billing&quot;.</dd>
+<dd>Entrega el componente &quot;system.certificate&quot;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage">getSystemPackage()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRepositoryComponent">getRepositoryComponent()</a>
     <span>
-                                &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html"><abbr title="\libredte\lib\Core\Package\System\Contract\SystemPackageInterface">SystemPackageInterface</abbr></a>    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a>    </span>
 </dt>
-<dd>Entrega el paquete &quot;system&quot;.</dd>
+<dd>Entrega el componente &quot;system.repository&quot;.</dd>
 
     </dl>
+
 
 
 
@@ -231,7 +201,7 @@ para capacidades transversales, no de negocio.</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/libredte-lib-Core-PackageRegistry.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -240,23 +210,23 @@ para capacidades transversales, no de negocio.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getBillingPackage">
-        getBillingPackage()
-        <a href="classes/libredte-lib-Core-PackageRegistry.html#method_getBillingPackage" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getCertificateComponent">
+        getCertificateComponent()
+        <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getCertificateComponent" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/PackageRegistry.php"><a href="files/src-packageregistry.html"><abbr title="src/PackageRegistry.php">PackageRegistry.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Contract/SystemPackageInterface.php"><a href="files/src-package-system-contract-systempackageinterface.html"><abbr title="src/Package/System/Contract/SystemPackageInterface.php">SystemPackageInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el paquete &quot;billing&quot;.</p>
+        <p class="phpdocumentor-summary">Entrega el componente &quot;system.certificate&quot;.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getBillingPackage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getCertificateComponent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -269,7 +239,7 @@ para capacidades transversales, no de negocio.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Contract-BillingPackageInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface">BillingPackageInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a></span>
             </section>
 
 </article>
@@ -279,23 +249,23 @@ para capacidades transversales, no de negocio.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSystemPackage">
-        getSystemPackage()
-        <a href="classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getRepositoryComponent">
+        getRepositoryComponent()
+        <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRepositoryComponent" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/PackageRegistry.php"><a href="files/src-packageregistry.html"><abbr title="src/PackageRegistry.php">PackageRegistry.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Contract/SystemPackageInterface.php"><a href="files/src-package-system-contract-systempackageinterface.html"><abbr title="src/Package/System/Contract/SystemPackageInterface.php">SystemPackageInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega el paquete &quot;system&quot;.</p>
+        <p class="phpdocumentor-summary">Entrega el componente &quot;system.repository&quot;.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSystemPackage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html"><abbr title="\libredte\lib\Core\Package\System\Contract\SystemPackageInterface">SystemPackageInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getRepositoryComponent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -308,7 +278,7 @@ para capacidades transversales, no de negocio.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html"><abbr title="\libredte\lib\Core\Package\System\Contract\SystemPackageInterface">SystemPackageInterface</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a></span>
             </section>
 
 </article>
@@ -326,18 +296,18 @@ para capacidades transversales, no de negocio.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/libredte-lib-Core-PackageRegistry.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getCertificateComponent">getCertificateComponent()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRepositoryComponent">getRepositoryComponent()</a></li>
+                                            </ul>
+                </li>
             
-                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
-            <li>
-                <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-PackageRegistry.html#method_getBillingPackage">getBillingPackage()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage">getSystemPackage()</a></li>
-                                    </ul>
-            </li>
                     </ul>
     </section>
 
@@ -355,7 +325,7 @@ para capacidades transversales, no de negocio.</p>
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-PackageRegistry.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
