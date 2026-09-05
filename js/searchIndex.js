@@ -168,12 +168,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020libro\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020libro,\u0020incluyendo\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020libro\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\u0020saltos\u0020de\u0020l\u00EDnea\nal\u0020inicio\u0020y\u0020final.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020libro,\u0020sin\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AgetId\u0028\u0029",
@@ -423,12 +423,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020libro\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020libro,\u0020incluyendo\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020libro\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\u0020saltos\u0020de\u0020l\u00EDnea\nal\u0020inicio\u0020y\u0020final.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020libro,\u0020sin\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookInterface.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookInterface\u003A\u003AgetId\u0028\u0029",
@@ -6783,12 +6783,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020como\u0020string\u0020incluyendo\nencabezado.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020en\u0020formato\u0020ISO\u002D8859\u002D1,\nincluyendo\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\nsaltos\u0020de\u0020l\u00EDnea\u0020al\u0020inicio\u0020y\u0020final.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020en\u0020formato\u0020ISO\u002D8859\u002D1,\u0020sin\u0020la\ncabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeDocument.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeDocument\u003A\u003AgetId\u0028\u0029",
@@ -7205,46 +7205,6 @@ Search.appendIndex(
             "name": "handle",
             "summary": "Procesa\u0020una\u0020bolsa\u0020de\u0020intercambio,\u0020sus\u0020sobres\u0020y\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeComponentInterface.html#method_handle"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface",
-            "name": "ExchangeDocumentInterface",
-            "summary": "Interfaz\u0020para\u0020los\u0020documentos\u0020de\u0020respuesta\u0020al\u0020intercambio\u0020de\u0020DTE.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AgetXmlDocument\u0028\u0029",
-            "name": "getXmlDocument",
-            "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXmlDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AsaveXml\u0028\u0029",
-            "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020como\u0020string\u0020incluyendo\nencabezado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_saveXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AgetXml\u0028\u0029",
-            "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020respuesta\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\nsaltos\u0020de\u0020l\u00EDnea\u0020al\u0020inicio\u0020y\u0020final.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getId"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AgetSchema\u0028\u0029",
-            "name": "getSchema",
-            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSchema"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AgetSignatureNamespace\u0028\u0029",
-            "name": "getSignatureNamespace",
-            "summary": "Entrega\u0020el\u0020namespace\u0020de\u0020la\u0020firma\u0020electr\u00F3nica.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_getSignatureNamespace"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeDocumentInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Entrega\u0020el\u0020documento\u0020como\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeDocumentInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeHandlerInterface",
             "name": "ExchangeHandlerInterface",
@@ -8868,12 +8828,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020CAF\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020como\u0020string,\u0020incluyendo\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020CAF\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\u0020saltos\u0020de\u0020l\u00EDnea\u0020al\ninicio\u0020y\u0020final.",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020como\u0020string,\u0020sin\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AgetId\u0028\u0029",
@@ -9093,12 +9053,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020CAF\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020como\u0020string,\u0020incluyendo\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020CAF\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\u0020saltos\u0020de\u0020l\u00EDnea\u0020al\ninicio\u0020y\u0020final.",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020como\u0020string,\u0020sin\u0020la\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AgetId\u0028\u0029",
@@ -11148,12 +11108,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020como\u0020string\u0020incluyendo\nencabezado.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020en\u0020formato\u0020ISO\u002D8859\u002D1,\u0020incluyendo\nla\u0020cabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_saveXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetXml\u0028\u0029",
             "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\nsaltos\u0020de\u0020l\u00EDnea\u0020al\u0020inicio\u0020y\u0020final.",
+            "summary": "Entrega\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020en\u0020formato\u0020ISO\u002D8859\u002D1,\u0020sin\u0020la\ncabecera\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Abstract-AbstractOwnershipTransferDocument.html#method_getXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument\u003A\u003AgetId\u0028\u0029",
@@ -11215,46 +11175,6 @@ Search.appendIndex(
             "name": "getAecWorker",
             "summary": "Entrega\u0020el\u0020worker\u0020para\u0020generaci\u00F3n\u0020y\u0020validaci\u00F3n\u0020del\u0020AEC.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferComponentInterface.html#method_getAecWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface",
-            "name": "OwnershipTransferDocumentInterface",
-            "summary": "Interfaz\u0020para\u0020los\u0020documentos\u0020de\u0020cesi\u00F3n\u0020electr\u00F3nica\u0020\u0028AEC\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AgetXmlDocument\u0028\u0029",
-            "name": "getXmlDocument",
-            "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_getXmlDocument"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AsaveXml\u0028\u0029",
-            "name": "saveXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020como\u0020string\u0020incluyendo\nencabezado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_saveXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AgetXml\u0028\u0029",
-            "name": "getXml",
-            "summary": "Genera\u0020el\u0020XML\u0020del\u0020documento\u0020de\u0020cesi\u00F3n\u0020como\u0020string\u0020sin\u0020encabezado\u0020ni\nsaltos\u0020de\u0020l\u00EDnea\u0020al\u0020inicio\u0020y\u0020final.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_getXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "Entrega\u0020el\u0020ID\u0020del\u0020nodo\u0020principal\u0020del\u0020documento\u0020para\u0020firmar.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_getId"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AgetSchema\u0028\u0029",
-            "name": "getSchema",
-            "summary": "Entrega\u0020el\u0020nombre\u0020del\u0020archivo\u0020XSD\u0020para\u0020validaci\u00F3n\u0020de\u0020esquema.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_getSchema"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AgetSignatureNamespace\u0028\u0029",
-            "name": "getSignatureNamespace",
-            "summary": "Entrega\u0020el\u0020namespace\u0020de\u0020la\u0020firma\u0020electr\u00F3nica.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_getSignatureNamespace"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Contract\\OwnershipTransferDocumentInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Entrega\u0020el\u0020documento\u0020como\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Contract-OwnershipTransferDocumentInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Entity\\Aec",
             "name": "Aec",
