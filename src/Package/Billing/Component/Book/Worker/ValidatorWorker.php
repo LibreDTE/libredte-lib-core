@@ -73,7 +73,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
             // Se pasa el XML como string para forzar un re-parseo que garantice
             // las declaraciones de namespace en el DOM, necesario cuando el libro
             // no pasó por el ciclo de firma (ej: libros simplificados).
-            $xmlDocument = $this->toXmlDocument($source->getBook()->saveXml());
+            $xmlDocument = $this->toXmlDocument($source->getBook()->getXml());
         } else {
             $xmlDocument = $this->toXmlDocument($source);
             $schemaFile = $xmlDocument->getSchema();
@@ -104,7 +104,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         BookBagInterface|XmlDocumentInterface|string $source
     ): SignatureValidationResultInterface {
         if ($source instanceof BookBagInterface) {
-            $source = $source->getBook()->saveXml();
+            $source = $source->getBook()->getXml();
         }
 
         return $this->signatureService->validateXml($source)[0];

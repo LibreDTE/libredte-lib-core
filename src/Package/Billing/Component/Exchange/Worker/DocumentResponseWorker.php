@@ -208,7 +208,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
         AbstractExchangeDocument|XmlDocumentInterface|string $source
     ): array {
         if ($source instanceof AbstractExchangeDocument) {
-            $source = $source->saveXml();
+            $source = $source->getXml();
         }
 
         return $this->signatureService->validateXml($source);
@@ -221,7 +221,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
         AbstractExchangeDocument|XmlDocumentInterface|string $source
     ): XmlDocument {
         if ($source instanceof AbstractExchangeDocument) {
-            $xml = $source->saveXml();
+            $xml = $source->getXml();
         } elseif ($source instanceof XmlDocumentInterface) {
             $xml = $source->saveXml();
         } else {

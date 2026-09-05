@@ -191,7 +191,7 @@ class LibroComprasTest extends TestCase
         // El libro simplificado declara el esquema correcto y no se firma.
         $this->assertTrue($book->isSimplificado());
         $this->assertSame('LibroCVS_v10.xsd', $book->getSchema());
-        $this->assertStringNotContainsString('<Signature', $book->saveXml());
+        $this->assertStringNotContainsString('<Signature', $book->getXml());
 
         // Validar solo el esquema XSD (los libros simplificados no se firman).
         $this->validator->validateSchema($bag);

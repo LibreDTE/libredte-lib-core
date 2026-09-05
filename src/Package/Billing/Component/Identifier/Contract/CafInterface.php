@@ -41,19 +41,9 @@ interface CafInterface extends JsonSerializable
     public function getXmlDocument(): XmlDocumentInterface;
 
     /**
-     * Genera el XML del CAF como string incluyendo encabezado.
+     * Obtiene el documento XML como string.
      *
-     * @return string
-     * @see XmlDocumentInterface::saveXml()
-     */
-    public function saveXml(): string;
-
-    /**
-     * Genera el XML del CAF como string sin encabezado ni saltos de línea al
-     * inicio y final.
-     *
-     * @return string
-     * @see XmlDocumentInterface::getXml()
+     * @return string Contenido del XML.
      */
     public function getXml(): string;
 
