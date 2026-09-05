@@ -36,7 +36,7 @@ class ListDocumentEventsResponse implements JsonSerializable
     /**
      * Lista de eventos del DTE.
      *
-     * @var array<int, array{codigo: string, glosa: string, responsable: string, fecha: string}>
+     * @var array<int, DocumentEvent>
      */
     private array $events;
 
@@ -52,12 +52,12 @@ class ListDocumentEventsResponse implements JsonSerializable
                 $items = [$items];
             }
             foreach ($items as $event) {
-                $this->events[] = [
-                    'codigo' => (string) ($event['codEvento'] ?? ''),
-                    'glosa' => (string) ($event['descEvento'] ?? ''),
-                    'responsable' => ($event['rutResponsable'] ?? '') . '-' . ($event['dvResponsable'] ?? ''),
-                    'fecha' => (string) ($event['fechaEvento'] ?? ''),
-                ];
+                $this->events[] = new DocumentEvent(
+                    codigo: (string) ($event['codEvento'] ?? ''),
+                    glosa: (string) ($event['descEvento'] ?? ''),
+                    responsable: ($event['rutResponsable'] ?? '') . '-' . ($event['dvResponsable'] ?? ''),
+                    fecha: (string) ($event['fechaEvento'] ?? ''),
+                );
             }
         }
     }
@@ -65,20 +65,31 @@ class ListDocumentEventsResponse implements JsonSerializable
     /**
      * Entrega los eventos del DTE.
      *
-     * @return array<int, array{codigo: string, glosa: string, responsable: string, fecha: string}>
+     * @return array<int, DocumentEvent>
      */
     public function getEvents(): array
     {
         return $this->events;
     }
 
+    /**
+     * Entrega los eventos del DTE.
+     *
+     * @return array<int, DocumentEvent>
+     */
     public function toArray(): array
     {
         return $this->events;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        return array_map(
+            fn (DocumentEvent $event): array => $event->toArray(),
+            $this->events
+        );
     }
 }
