@@ -139,7 +139,7 @@ class EnvioRecibosTest extends TestCase
         $this->assertInstanceOf(EnvioRecibos::class, $document);
         $this->assertSame($expected['id'], $document->getId());
 
-        $xml = $document->getXml();
+        $xml = $document->saveXml();
         foreach ($expected['ids_recibos'] as $idRecibo) {
             $this->assertStringContainsString($idRecibo, $xml);
         }

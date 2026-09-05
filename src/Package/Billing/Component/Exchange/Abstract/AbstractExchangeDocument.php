@@ -25,14 +25,14 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
-use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeDocumentInterface;
 
 /**
  * Clase abstracta (base) de los documentos de respuesta al intercambio de DTE.
  *
  * El documento es una vista sobre el `XmlDocumentInterface` que lo contiene.
  */
-abstract class AbstractExchangeDocument implements JsonSerializable
+abstract class AbstractExchangeDocument implements ExchangeDocumentInterface
 {
     /**
      * Constructor del documento de respuesta.
@@ -55,13 +55,19 @@ abstract class AbstractExchangeDocument implements JsonSerializable
     }
 
     /**
-     * Entrega el XML del documento de respuesta en formato ISO-8859-1.
-     *
-     * @return string
+     * {@inheritDoc}
+     */
+    public function saveXml(): string
+    {
+        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getXml(): string
     {
-        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
     }
 
     /**
@@ -99,7 +105,10 @@ abstract class AbstractExchangeDocument implements JsonSerializable
      */
     public function toArray(): array
     {
-        return $this->getXmlDocument()->toArray();
+        return [
+            ...$this->getXmlDocument()->toArray(),
+            'xml' => $this->saveXml(),
+        ];
     }
 
     /**
@@ -107,6 +116,9 @@ abstract class AbstractExchangeDocument implements JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
     }
 }

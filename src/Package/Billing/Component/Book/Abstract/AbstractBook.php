@@ -90,9 +90,17 @@ abstract class AbstractBook implements BookInterface
     /**
      * {@inheritDoc}
      */
-    public function getXml(): string
+    public function saveXml(): string
     {
         return $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getXml(): string
+    {
+        return $this->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
     }
 
     /**
@@ -184,7 +192,10 @@ abstract class AbstractBook implements BookInterface
      */
     public function toArray(): array
     {
-        return $this->getXmlDocument()->toArray();
+        return [
+            ...$this->getXmlDocument()->toArray(),
+            'xml' => $this->saveXml(),
+        ];
     }
 
     /**
@@ -192,6 +203,9 @@ abstract class AbstractBook implements BookInterface
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $array = $this->toArray();
+        $array['xml'] = base64_encode($array['xml']);
+
+        return $array;
     }
 }

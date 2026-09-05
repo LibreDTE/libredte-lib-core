@@ -113,7 +113,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             $certificate = $bag->getCertificate();
             if ($certificate !== null && !$libro->isSimplificado()) {
                 $signedXml = $this->signatureService->signXml(
-                    $libro->getXml(),
+                    $libro->saveXml(),
                     $certificate,
                     $libro->getId(),
                     $libro->getSignatureNamespace()
