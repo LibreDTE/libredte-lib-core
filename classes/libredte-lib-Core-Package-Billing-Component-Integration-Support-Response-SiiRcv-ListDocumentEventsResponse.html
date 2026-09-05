@@ -199,7 +199,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#property_events">$events</a>
     <span>
-                        &nbsp;: array&lt;int, array{codigo: string, glosa: string, responsable: string, fecha: string}&gt;            </span>
+                        &nbsp;: array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;            </span>
 </dt>
 <dd>Lista de eventos del DTE.</dd>
 
@@ -220,7 +220,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method_getEvents">getEvents()</a>
     <span>
-                                &nbsp;: array&lt;int, array{codigo: string, glosa: string, responsable: string, fecha: string}&gt;    </span>
+                                &nbsp;: array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;    </span>
 </dt>
 <dd>Entrega los eventos del DTE.</dd>
 
@@ -229,12 +229,14 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>{@inheritDoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method_toArray">toArray()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;    </span>
 </dt>
+<dd>Entrega los eventos del DTE.</dd>
 
     </dl>
 
@@ -275,7 +277,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type">array&lt;int, array{codigo: string, glosa: string, responsable: string, fecha: string}&gt;</span>
+            <span class="phpdocumentor-signature__type">array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;</span>
     <span class="phpdocumentor-signature__name">$events</span>
     </code>
 
@@ -361,7 +363,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getEvents</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array{codigo: string, glosa: string, responsable: string, fecha: string}&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getEvents</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -374,7 +376,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;int, array{codigo: string, glosa: string, responsable: string, fecha: string}&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;</span>
             </section>
 
 </article>
@@ -392,11 +394,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiRcv/ListDocumentEventsResponse.php"><a href="files/src-package-billing-component-integration-support-response-siircv-listdocumenteventsresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiRcv/ListDocumentEventsResponse.php">ListDocumentEventsResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -430,14 +433,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiRcv/ListDocumentEventsResponse.php"><a href="files/src-package-billing-component-integration-support-response-siircv-listdocumenteventsresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiRcv/ListDocumentEventsResponse.php">ListDocumentEventsResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Entrega los eventos del DTE.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -450,7 +454,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv\DocumentEvent">DocumentEvent</abbr></a>&gt;</span>
             </section>
 
 </article>

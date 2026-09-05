@@ -10341,6 +10341,66 @@ Search.appendIndex(
             "summary": "Glosa\u0020o\u0020descripci\u00F3n\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-CheckDocumentAssignabilityResponse.html#property_description"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent",
+            "name": "DocumentEvent",
+            "summary": "Un\u0020evento\u0020del\u0020historial\u0020de\u0020un\u0020DTE\u0020en\u0020el\u0020RCV\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AgetCodigo\u0028\u0029",
+            "name": "getCodigo",
+            "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020del\u0020evento\u0020informado\u0020por\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_getCodigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AgetGlosa\u0028\u0029",
+            "name": "getGlosa",
+            "summary": "Entrega\u0020la\u0020glosa\u0020\u0028descripci\u00F3n\u0029\u0020del\u0020evento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_getGlosa"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AgetResponsable\u0028\u0029",
+            "name": "getResponsable",
+            "summary": "Entrega\u0020el\u0020RUT\u0020\u0028formato\u0020RUT\u002DDV\u0029\u0020del\u0020responsable\u0020del\u0020evento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_getResponsable"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AgetFecha\u0028\u0029",
+            "name": "getFecha",
+            "summary": "Entrega\u0020la\u0020fecha\u0020en\u0020que\u0020ocurri\u00F3\u0020el\u0020evento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_getFecha"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020el\u0020evento\u0020como\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003A\u0024codigo",
+            "name": "codigo",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#property_codigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003A\u0024glosa",
+            "name": "glosa",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#property_glosa"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003A\u0024responsable",
+            "name": "responsable",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#property_responsable"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\DocumentEvent\u003A\u003A\u0024fecha",
+            "name": "fecha",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-DocumentEvent.html#property_fecha"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\GetDocumentSiiReceptionDateResponse",
             "name": "GetDocumentSiiReceptionDateResponse",
             "summary": "Respuesta\u0020del\u0020SII\u0020con\u0020la\u0020fecha\u0020de\u0020recepci\u00F3n\u0020de\u0020un\u0020DTE\u0020en\u0020el\u0020SII.",
@@ -10388,12 +10448,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\ListDocumentEventsResponse\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "",
+            "summary": "Entrega\u0020los\u0020eventos\u0020del\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\ListDocumentEventsResponse\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
-            "summary": "",
+            "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-ListDocumentEventsResponse.html#method_jsonSerialize"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\ListDocumentEventsResponse\u003A\u003A\u0024events",
