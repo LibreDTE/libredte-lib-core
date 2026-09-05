@@ -191,7 +191,7 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a>    </span>
 </dt>
-<dd>Carga y normaliza los detalles de la bolsa.</dd>
+<dd>Carga y normaliza los datos de entrada de un libro tributario.</dd>
 
     </dl>
 
@@ -222,11 +222,11 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Contract/LoaderWorkerInterface.php"><a href="files/src-package-billing-component-book-contract-loaderworkerinterface.html"><abbr title="src/Package/Billing/Component/Book/Contract/LoaderWorkerInterface.php">LoaderWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Carga y normaliza los detalles de la bolsa.</p>
+        <p class="phpdocumentor-summary">Carga y normaliza los datos de entrada de un libro tributario.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -235,7 +235,22 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Deja lista la carátula y el detalle del libro, en la forma exacta
+que corresponde a su tipo, a partir de los datos de entrada
+entregados en cualquiera de los formatos de origen soportados.</p>
+<p>Esta operación únicamente prepara esos datos: no construye el
+libro ni genera su documento firmado, por lo que ese resultado
+nunca forma parte de lo que esta operación entrega, sin importar
+los datos de entrada recibidos. Para obtener el libro construido
+y su documento hay que continuar con la operación de
+construcción, usando esta misma carátula y detalle ya
+normalizados.</p>
+<p>La autorización del emisor del libro (fecha y número de la
+resolución que lo autoriza) solo aparece en el resultado cuando
+esa autorización fue entregada junto con los datos del emisor; si
+no se entregó, simplemente no va a estar presente.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -243,7 +258,8 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Bolsa con detalles crudos.</p>
+                    <section class="phpdocumentor-description"><p>Datos de entrada del libro, junto con
+su tipo y el emisor.</p>
 </section>
 
             </dd>
@@ -261,7 +277,8 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Exception-BookException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException">BookException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>En caso de error al cargar o normalizar la bolsa.</p>
+                                                                                        <section class="phpdocumentor-description"><p>En caso de error al cargar o normalizar los
+datos.</p>
 </section>
 
                                     </dd>
@@ -273,7 +290,8 @@ libro tributario desde cualquier formato de origen (array, CSV, XML, etc.).</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface">BookBagInterface</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>La misma bolsa con detalles normalizados.</p>
+                <section class="phpdocumentor-description"><p>Los mismos datos, con la carátula y el
+detalle ya normalizados.</p>
 </section>
 
             </section>

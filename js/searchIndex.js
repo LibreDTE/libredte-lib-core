@@ -548,7 +548,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\LoaderWorkerInterface\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020de\u0020la\u0020bolsa.",
+            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020datos\u0020de\u0020entrada\u0020de\u0020un\u0020libro\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-LoaderWorkerInterface.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\ResumenVentasDiariasInterface",
@@ -1208,7 +1208,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020detalles\u0020de\u0020la\u0020bolsa.",
+            "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020datos\u0020de\u0020entrada\u0020de\u0020un\u0020libro\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-LoaderWorker.html#method_load"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003A\u0024optionsSchema",
