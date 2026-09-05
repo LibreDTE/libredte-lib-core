@@ -56,10 +56,38 @@ class ListDocumentEventsResponse implements JsonSerializable
                     codigo: (string) ($event['codEvento'] ?? ''),
                     glosa: (string) ($event['descEvento'] ?? ''),
                     responsable: ($event['rutResponsable'] ?? '') . '-' . ($event['dvResponsable'] ?? ''),
-                    fecha: (string) ($event['fechaEvento'] ?? ''),
+                    fecha: self::normalizeFecha((string) ($event['fechaEvento'] ?? '')),
                 );
             }
         }
+    }
+
+    /**
+     * Normaliza la fecha de un evento desde el formato del SII
+     * (`DD-MM-YYYY HH:MM:SS`) a `YYYY-MM-DD HH:MM:SS`.
+     *
+     * Mismo formato de origen y de destino que usa
+     * `GetDocumentSiiReceptionDateResponse` para `fecha_recepcion_sii`.
+     *
+     * @param string $fecha Fecha cruda del evento, tal como la entrega el SII.
+     * @return string Fecha normalizada, o la fecha original sin modificar si
+     * no calza con el formato esperado (ej. string vacío).
+     */
+    private static function normalizeFecha(string $fecha): string
+    {
+        if (
+            !preg_match(
+                '/^(\d{2})-(\d{2})-(\d{4}) (\d{2}:\d{2}:\d{2})$/',
+                $fecha,
+                $matches
+            )
+        ) {
+            return $fecha;
+        }
+
+        [, $d, $m, $Y, $time] = $matches;
+
+        return sprintf('%s-%s-%s %s', $Y, $m, $d, $time);
     }
 
     /**
