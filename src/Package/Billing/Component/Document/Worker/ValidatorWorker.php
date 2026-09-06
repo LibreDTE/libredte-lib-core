@@ -71,13 +71,20 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     public function validate(
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
-        // Asignar la bolsa del DTE a partir de la fuente.
+        // Un XmlDocumentInterface se trata igual que un string: se extrae su
+        // XML y se procesa por la misma vía.
+        if ($source instanceof XmlDocumentInterface) {
+            $source = $source->getXml();
+        }
+
         if (is_string($source)) {
             // Importante: Esto quitará la firma, no sirve para otras
             // validaciones (de esquema o firma). Solo para esta validación que
             // solo valida los datos contenidos en el documento.
             $source = 'parser.strategy.default.xml:' . $source;
         }
+
+        // Asignar la bolsa del DTE a partir de la fuente.
         $bag = $source instanceof DocumentBagInterface
             ? $source
             : $this->documentBagManager->create($source)
