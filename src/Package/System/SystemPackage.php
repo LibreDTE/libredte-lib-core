@@ -27,6 +27,7 @@ namespace libredte\lib\Core\Package\System;
 use Derafu\Backbone\Abstract\AbstractPackage;
 use Derafu\Backbone\Attribute\Package;
 use libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface;
 use libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface;
 use libredte\lib\Core\Package\System\Contract\SystemPackageInterface;
 
@@ -38,6 +39,8 @@ use libredte\lib\Core\Package\System\Contract\SystemPackageInterface;
  * - `certificate`: Componente de carga genérica de certificados digitales.
  * - `repository`: Componente de exploración genérica de repositorios de
  *   datos.
+ * - `rendering`: Componente con los tipos compartidos del resultado de un
+ *   renderizado.
  *
  * A diferencia de `billing`, este paquete no provee funcionalidades de
  * negocio: agrupa capacidades transversales de la aplicación que no
@@ -48,7 +51,8 @@ class SystemPackage extends AbstractPackage implements SystemPackageInterface
 {
     public function __construct(
         private CertificateComponentInterface $certificateComponent,
-        private RepositoryComponentInterface $repositoryComponent
+        private RepositoryComponentInterface $repositoryComponent,
+        private RenderingComponentInterface $renderingComponent
     ) {
     }
 
@@ -60,6 +64,7 @@ class SystemPackage extends AbstractPackage implements SystemPackageInterface
         return [
             'certificate' => $this->certificateComponent,
             'repository' => $this->repositoryComponent,
+            'rendering' => $this->renderingComponent,
         ];
     }
 
@@ -77,5 +82,13 @@ class SystemPackage extends AbstractPackage implements SystemPackageInterface
     public function getRepositoryComponent(): RepositoryComponentInterface
     {
         return $this->repositoryComponent;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRenderingComponent(): RenderingComponentInterface
+    {
+        return $this->renderingComponent;
     }
 }

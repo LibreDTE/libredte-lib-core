@@ -29,6 +29,7 @@ use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Backbone\Exception\StrategyException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderResultInterface;
 
 /**
  * Interfaz para los renderizadores.

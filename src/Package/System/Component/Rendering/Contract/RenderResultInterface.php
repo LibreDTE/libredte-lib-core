@@ -22,16 +22,16 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
+namespace libredte\lib\Core\Package\System\Component\Rendering\Contract;
 
 use JsonSerializable;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use libredte\lib\Core\Package\System\Component\Rendering\Exception\RenderResultException;
 use Stringable;
 
 /**
- * Interfaz para la clase que representa el resultado de renderizar un
- * documento (uno o más archivos generados, ej. el PDF y/o el HTML de un
- * DTE).
+ * Interfaz para la clase que representa el resultado de un renderizado (uno
+ * o más archivos generados, ej. el PDF y/o el HTML de un DTE, de un libro
+ * tributario, o de cualquier otro contenido renderizado).
  */
 interface RenderResultInterface extends Stringable, JsonSerializable
 {
@@ -62,8 +62,8 @@ interface RenderResultInterface extends Stringable, JsonSerializable
      *
      * @param string $label
      * @return RenderedDocumentInterface
-     * @throws RendererException Si no existe un archivo renderizado con ese
-     * `label`.
+     * @throws RenderResultException Si no existe un archivo renderizado con
+     * ese `label`.
      */
     public function getRendering(string $label): RenderedDocumentInterface;
 

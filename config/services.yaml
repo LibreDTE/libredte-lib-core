@@ -52,6 +52,8 @@ services:
         class: libredte\lib\Core\Package\System\Component\Certificate\CertificateComponent
     libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface:
         class: libredte\lib\Core\Package\System\Component\Repository\RepositoryComponent
+    libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface:
+        class: libredte\lib\Core\Package\System\Component\Rendering\RenderingComponent
 
     # Workers del componente "system.certificate".
     libredte\lib\Core\Package\System\Component\Certificate\Contract\LoaderWorkerInterface:

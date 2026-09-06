@@ -22,14 +22,14 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
+namespace libredte\lib\Core\Package\System\Component\Rendering\Support;
 
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderedDocumentInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderResultInterface;
+use libredte\lib\Core\Package\System\Component\Rendering\Exception\RenderResultException;
 
 /**
- * Clase para representar el resultado de renderizar un documento.
+ * Clase para representar el resultado de un renderizado.
  */
 class RenderResult implements RenderResultInterface
 {
@@ -92,7 +92,7 @@ class RenderResult implements RenderResultInterface
     public function getRendering(string $label): RenderedDocumentInterface
     {
         if (!isset($this->renderingsByLabel[$label])) {
-            throw new RendererException(sprintf(
+            throw new RenderResultException(sprintf(
                 'El renderizado no generó ningún archivo con la presentación "%s".',
                 $label
             ));
@@ -107,7 +107,7 @@ class RenderResult implements RenderResultInterface
     public function __toString(): string
     {
         if (count($this->renderings) !== 1) {
-            throw new RendererException(sprintf(
+            throw new RenderResultException(sprintf(
                 'No es posible representar el resultado del renderizado como un solo string: contiene %d archivo(s), se esperaba exactamente 1.',
                 count($this->renderings)
             ));

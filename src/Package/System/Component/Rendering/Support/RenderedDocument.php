@@ -22,13 +22,12 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
+namespace libredte\lib\Core\Package\System\Component\Rendering\Support;
 
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderedDocumentInterface;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface;
 
 /**
- * Clase para representar un archivo generado por un renderizador de
- * documentos.
+ * Clase para representar un archivo generado por un renderizador.
  */
 class RenderedDocument implements RenderedDocumentInterface
 {

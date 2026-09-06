@@ -48,8 +48,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFa
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
-use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
-use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\BoletaAfectaBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\FacturaAfectaBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
@@ -80,6 +78,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFac
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
+use libredte\lib\Core\Package\System\Component\Rendering\Exception\RenderResultException;
+use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
+use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -128,6 +129,7 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 #[CoversClass(EstandarRendererStrategy::class)]
 #[CoversClass(RenderResult::class)]
 #[CoversClass(RenderedDocument::class)]
+#[CoversClass(RenderResultException::class)]
 #[CoversClass(TipoPresentacion::class)]
 #[CoversClass(CodigoDocumento::class)]
 #[CoversClass(TagXmlDocumento::class)]
@@ -273,7 +275,7 @@ class RendererPresentacionesTest extends TestCase
         $this->assertStringContainsString('Acuse de recibo', $cedible->getContent());
 
         // Con 2 archivos, __toString() ya no es ambiguo-resoluble: falla.
-        $this->expectException(RendererException::class);
+        $this->expectException(RenderResultException::class);
         (string) $result;
     }
 

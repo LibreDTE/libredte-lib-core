@@ -33,11 +33,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInt
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RenderResultInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoPresentacion;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\RendererException;
-use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderedDocument;
-use libredte\lib\Core\Package\Billing\Component\Document\Support\RenderResult;
+use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderResultInterface;
+use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
+use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use Symfony\Component\Mime\MimeTypes;
 use Throwable;
 

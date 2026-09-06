@@ -22,36 +22,30 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\System\Contract;
+namespace libredte\lib\Core\Package\System\Component\Rendering;
 
-use Derafu\Backbone\Contract\PackageInterface;
-use libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface;
+use Derafu\Backbone\Abstract\AbstractComponent;
+use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface;
-use libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface;
 
 /**
- * Interfaz para `SystemPackage`.
+ * Componente "system.rendering".
+ *
+ * Agrupa los tipos compartidos que representan el resultado de un
+ * renderizado (`RenderResultInterface`/`RenderedDocumentInterface`),
+ * reutilizables por cualquier worker de negocio que renderice contenido
+ * (ej. `billing.document.renderer`, `human_resources.payroll.renderer`),
+ * sin depender de ningún paquete de negocio en particular. No expone
+ * workers propios.
  */
-interface SystemPackageInterface extends PackageInterface
+#[Component(name: 'rendering', package: 'system')]
+class RenderingComponent extends AbstractComponent implements RenderingComponentInterface
 {
     /**
-     * Entrega el componente "system.certificate".
-     *
-     * @return CertificateComponentInterface
+     * {@inheritDoc}
      */
-    public function getCertificateComponent(): CertificateComponentInterface;
-
-    /**
-     * Entrega el componente "system.repository".
-     *
-     * @return RepositoryComponentInterface
-     */
-    public function getRepositoryComponent(): RepositoryComponentInterface;
-
-    /**
-     * Entrega el componente "system.rendering".
-     *
-     * @return RenderingComponentInterface
-     */
-    public function getRenderingComponent(): RenderingComponentInterface;
+    public function getWorkers(): array
+    {
+        return [];
+    }
 }

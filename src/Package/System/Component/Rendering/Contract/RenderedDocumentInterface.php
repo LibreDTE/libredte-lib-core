@@ -22,13 +22,14 @@ declare(strict_types=1);
  * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
  */
 
-namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
+namespace libredte\lib\Core\Package\System\Component\Rendering\Contract;
 
 use JsonSerializable;
 
 /**
  * Interfaz para la clase que representa un archivo generado por un
- * renderizador de documentos (ej. el PDF o el HTML de un DTE).
+ * renderizador (ej. el PDF o el HTML de un DTE, de un libro tributario, o de
+ * cualquier otro contenido renderizado).
  */
 interface RenderedDocumentInterface extends JsonSerializable
 {
