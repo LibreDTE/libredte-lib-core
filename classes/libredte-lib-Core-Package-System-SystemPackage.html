@@ -153,7 +153,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -165,6 +165,8 @@
 <li><code class="prettyprint">certificate</code>: Componente de carga genérica de certificados digitales.</li>
 <li><code class="prettyprint">repository</code>: Componente de exploración genérica de repositorios de
 datos.</li>
+<li><code class="prettyprint">rendering</code>: Componente con los tipos compartidos del resultado de un
+renderizado.</li>
 </ul>
 <p>A diferencia de <code class="prettyprint">billing</code>, este paquete no provee funcionalidades de
 negocio: agrupa capacidades transversales de la aplicación que no
@@ -223,6 +225,12 @@ dependen de ningún paquete de negocio en particular.</p>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_renderingComponent">$renderingComponent</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_repositoryComponent">$repositoryComponent</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a>            </span>
@@ -255,6 +263,13 @@ dependen de ningún paquete de negocio en particular.</p>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRenderingComponent">getRenderingComponent()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a>    </span>
+</dt>
+<dd>Entrega el componente &quot;system.rendering&quot;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRepositoryComponent">getRepositoryComponent()</a>
@@ -293,7 +308,7 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -303,6 +318,43 @@ dependen de ningún paquete de negocio en particular.</p>
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$certificateComponent</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_renderingComponent">
+        $renderingComponent
+        <a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_renderingComponent" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$renderingComponent</span>
     </code>
 
     
@@ -330,7 +382,7 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -372,14 +424,14 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificateComponent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Certificate-Contract-CertificateComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface">CertificateComponentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$certificateComponent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryComponent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$renderingComponent</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -397,6 +449,13 @@ dependen de ningún paquete de negocio en particular.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$repositoryComponent</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Contract-RepositoryComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface">RepositoryComponentInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$renderingComponent</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -423,7 +482,7 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -462,7 +521,7 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -493,6 +552,45 @@ dependen de ningún paquete de negocio en particular.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getRenderingComponent">
+        getRenderingComponent()
+        <a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRenderingComponent" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el componente &quot;system.rendering&quot;.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getRenderingComponent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getRepositoryComponent">
         getRepositoryComponent()
         <a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRepositoryComponent" class="headerlink"><i class="fas fa-link"></i></a>
@@ -501,7 +599,7 @@ dependen de ningún paquete de negocio en particular.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/SystemPackage.php"><a href="files/src-package-system-systempackage.html"><abbr title="src/Package/System/SystemPackage.php">SystemPackage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
@@ -549,6 +647,7 @@ dependen de ningún paquete de negocio en particular.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_certificateComponent">$certificateComponent</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_renderingComponent">$renderingComponent</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#property_repositoryComponent">$repositoryComponent</a></li>
                                             </ul>
                 </li>
@@ -559,6 +658,7 @@ dependen de ningún paquete de negocio en particular.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getCertificateComponent">getCertificateComponent()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getComponents">getComponents()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRenderingComponent">getRenderingComponent()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRepositoryComponent">getRepositoryComponent()</a></li>
                                     </ul>
             </li>

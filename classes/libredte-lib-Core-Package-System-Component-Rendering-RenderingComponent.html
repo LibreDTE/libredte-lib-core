@@ -121,47 +121,171 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package.html">Package</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing.html">Billing</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component.html">Component</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-billing-component-document.html">Document</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system.html">System</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-component.html">Component</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-package-system-component-rendering.html">Rendering</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">Support</h2>
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    RenderingComponent
 
-        
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\Derafu\Backbone\Abstract\AbstractComponent">AbstractComponent</abbr>
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/LibreDTE.html">LibreDTE</a></li>
+                            </ul>
+        </div>
+    
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a>                    </span>
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Rendering/RenderingComponent.php"><a href="files/src-package-system-component-rendering-renderingcomponent.html"><abbr title="src/Package/System/Component/Rendering/RenderingComponent.php">RenderingComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Componente &quot;system.rendering&quot;.</p>
+
+
+    <section class="phpdocumentor-description"><p>Agrupa los tipos compartidos que representan el resultado de un
+renderizado (<code class="prettyprint">RenderResultInterface</code>/<code class="prettyprint">RenderedDocumentInterface</code>),
+reutilizables por cualquier worker de negocio que renderice contenido
+(ej. <code class="prettyprint">billing.document.renderer</code>, <code class="prettyprint">human_resources.payroll.renderer</code>),
+sin depender de ningún paquete de negocio en particular. No expone
+workers propios.</p>
+</section>
+
+
+
+    
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Component">Component</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;rendering&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $package: &#039;system&#039;
+    </dd>
+    </dl>
+                    </section>
+    
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/libredte-lib-core-package-billing-component-document-support.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-
-    <h4 id="toc-classes">
-        Classes
-        <a href="namespaces/libredte-lib-core-package-billing-component-document-support.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag">DocumentBag</abbr></a></dt><dd>Contenedor de datos del documento tributario electrónico.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBatch">DocumentBatch</abbr></a></dt><dd>Contenedor de datos para procesamiento en lote de documentos tributarios.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentEnvelope">DocumentEnvelope</abbr></a></dt><dd>Contenedor de datos del sobre de documentos tributarios electrónicos.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface">RenderingComponentInterface</abbr></a></dt><dd>Interfaz para `RenderingComponent`.</dd>    </dl>
 
 
 
 
 
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#method_getWorkers">getWorkers()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
+
+    </dl>
 
 
 
         
 
         
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getWorkers">
+        getWorkers()
+        <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#method_getWorkers" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Rendering/RenderingComponent.php"><a href="files/src-package-system-component-rendering-renderingcomponent.html"><abbr title="src/Package/System/Component/Rendering/RenderingComponent.php">RenderingComponent.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getWorkers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+            </section>
+
         
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                            
+                                
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -169,11 +293,17 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                    <li><a href="namespaces/libredte-lib-core-package-billing-component-document-support.html#toc-classes">Classes</a></li>
-                                                                                                                    </ul>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
-
             
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#method_getWorkers">getWorkers()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
@@ -191,7 +321,7 @@
     </section>
 </section>
         </div>
-        <a href="namespaces/libredte-lib-core-package-billing-component-document-support.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

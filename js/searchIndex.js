@@ -2621,41 +2621,6 @@ Search.appendIndex(
             "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ParserWorkerInterface.html#method_parse"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface",
-            "name": "RenderedDocumentInterface",
-            "summary": "Interfaz\u0020para\u0020la\u0020clase\u0020que\u0020representa\u0020un\u0020archivo\u0020generado\u0020por\u0020un\nrenderizador\u0020de\u0020documentos\u0020\u0028ej.\u0020el\u0020PDF\u0020o\u0020el\u0020HTML\u0020de\u0020un\u0020DTE\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetContent\u0028\u0029",
-            "name": "getContent",
-            "summary": "Obtiene\u0020los\u0020datos\u0020binarios\u0020\u0028o\u0020de\u0020texto\u0029\u0020del\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getContent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetMimeType\u0028\u0029",
-            "name": "getMimeType",
-            "summary": "Obtiene\u0020el\u0020tipo\u0020MIME\u0020del\u0020archivo\u0020renderizado\u0020\u0028ej.\u0020\u0060application\/pdf\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getMimeType"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetFilename\u0028\u0029",
-            "name": "getFilename",
-            "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getFilename"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getLabel"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AgetCopies\u0028\u0029",
-            "name": "getCopies",
-            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_getCopies"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderedDocumentInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderedDocumentInterface.html#method_toArray"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RendererStrategyInterface",
             "name": "RendererStrategyInterface",
             "summary": "Interfaz\u0020base\u0020de\u0020las\u0020estrategias\u0020de\u0020renderizado\u0020de\u0020documentos\u0020tributarios.",
@@ -2675,36 +2640,6 @@ Search.appendIndex(
             "name": "render",
             "summary": "Realiza\u0020el\u0020renderizado\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RendererWorkerInterface.html#method_render"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface",
-            "name": "RenderResultInterface",
-            "summary": "Interfaz\u0020para\u0020la\u0020clase\u0020que\u0020representa\u0020el\u0020resultado\u0020de\u0020renderizar\u0020un\ndocumento\u0020\u0028uno\u0020o\u0020m\u00E1s\u0020archivos\u0020generados,\u0020ej.\u0020el\u0020PDF\u0020y\/o\u0020el\u0020HTML\u0020de\u0020un\nDTE\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AgetRenderings\u0028\u0029",
-            "name": "getRenderings",
-            "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_getRenderings"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AhasRendering\u0028\u0029",
-            "name": "hasRendering",
-            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_hasRendering"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AgetRendering\u0028\u0029",
-            "name": "getRendering",
-            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_getRendering"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "Entrega\u0020el\u0020contenido\u0020del\u0020renderizado\u0020como\u0020string.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method___toString"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\RenderResultInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020archivos\u0020generados\u0020por\u0020el\nrenderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-RenderResultInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\Sanitizer\\Strategy\\BoletaAfectaSanitizerStrategyInterface",
             "name": "BoletaAfectaSanitizerStrategyInterface",
@@ -4835,136 +4770,6 @@ Search.appendIndex(
             "name": "caratula",
             "summary": "Datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#property_caratula"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument",
-            "name": "RenderedDocument",
-            "summary": "Clase\u0020para\u0020representar\u0020un\u0020archivo\u0020generado\u0020por\u0020un\u0020renderizador\u0020de\ndocumentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020del\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetContent\u0028\u0029",
-            "name": "getContent",
-            "summary": "Obtiene\u0020los\u0020datos\u0020binarios\u0020\u0028o\u0020de\u0020texto\u0029\u0020del\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getContent"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetMimeType\u0028\u0029",
-            "name": "getMimeType",
-            "summary": "Obtiene\u0020el\u0020tipo\u0020MIME\u0020del\u0020archivo\u0020renderizado\u0020\u0028ej.\u0020\u0060application\/pdf\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getMimeType"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetFilename\u0028\u0029",
-            "name": "getFilename",
-            "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getFilename"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getLabel"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AgetCopies\u0028\u0029",
-            "name": "getCopies",
-            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_getCopies"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024content",
-            "name": "content",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_content"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024mimeType",
-            "name": "mimeType",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_mimeType"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024filename",
-            "name": "filename",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_filename"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024label",
-            "name": "label",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_label"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderedDocument\u003A\u003A\u0024copies",
-            "name": "copies",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderedDocument.html#property_copies"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult",
-            "name": "RenderResult",
-            "summary": "Clase\u0020para\u0020representar\u0020el\u0020resultado\u0020de\u0020renderizar\u0020un\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020del\u0020resultado\u0020del\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method___construct"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AgetRenderings\u0028\u0029",
-            "name": "getRenderings",
-            "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_getRenderings"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AhasRendering\u0028\u0029",
-            "name": "hasRendering",
-            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_hasRendering"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AgetRendering\u0028\u0029",
-            "name": "getRendering",
-            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_getRendering"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "Entrega\u0020el\u0020contenido\u0020del\u0020renderizado\u0020como\u0020string.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method___toString"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020archivos\u0020generados\u0020por\u0020el\nrenderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "\u007B\u0040inheritDoc\u007D",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003Aexpand\u0028\u0029",
-            "name": "expand",
-            "summary": "Expande\u0020cada\u0020archivo\u0020renderizado\u0020en\u0020tantas\u0020entradas\u0020como\u0020copias\nrepresente,\u0020agregando\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020y,\u0020si\u0020hay\u0020m\u00E1s\u0020de\u0020una\u0020copia,\najustando\u0020el\u0020nombre\u0020del\u0020archivo\u0020para\u0020no\u0020colisionar\u0020entre\u0020copias.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_expand"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003AappendCopyNumber\u0028\u0029",
-            "name": "appendCopyNumber",
-            "summary": "Agrega\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020al\u0020nombre\u0020de\u0020un\u0020archivo,\u0020antes\u0020de\u0020su\nextensi\u00F3n\u0020\u0028ej.\u0020\u0060factura.pdf\u0060\u0020\u003D\u003E\u0020\u0060factura_2.pdf\u0060\u0029.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#method_appendCopyNumber"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A\u0024renderings",
-            "name": "renderings",
-            "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#property_renderings"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\RenderResult\u003A\u003A\u0024renderingsByLabel",
-            "name": "renderingsByLabel",
-            "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado,\u0020indexados\u0020por\u0020su\u0020\u0060label\u0060.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-RenderResult.html#property_renderingsByLabel"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy",
             "name": "CsvBatchProcessorStrategy",
@@ -12691,6 +12496,221 @@ Search.appendIndex(
             "summary": "Carga\u0020un\u0020certificado\u0020digital.",
             "url": "classes/libredte-lib-Core-Package-System-Component-Certificate-Worker-LoaderWorker.html#method_load"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface",
+            "name": "RenderedDocumentInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020clase\u0020que\u0020representa\u0020un\u0020archivo\u0020generado\u0020por\u0020un\nrenderizador\u0020\u0028ej.\u0020el\u0020PDF\u0020o\u0020el\u0020HTML\u0020de\u0020un\u0020DTE,\u0020de\u0020un\u0020libro\u0020tributario,\u0020o\u0020de\ncualquier\u0020otro\u0020contenido\u0020renderizado\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AgetContent\u0028\u0029",
+            "name": "getContent",
+            "summary": "Obtiene\u0020los\u0020datos\u0020binarios\u0020\u0028o\u0020de\u0020texto\u0029\u0020del\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_getContent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AgetMimeType\u0028\u0029",
+            "name": "getMimeType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020MIME\u0020del\u0020archivo\u0020renderizado\u0020\u0028ej.\u0020\u0060application\/pdf\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_getMimeType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AgetFilename\u0028\u0029",
+            "name": "getFilename",
+            "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_getFilename"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_getLabel"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AgetCopies\u0028\u0029",
+            "name": "getCopies",
+            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_getCopies"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderedDocumentInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderingComponentInterface",
+            "name": "RenderingComponentInterface",
+            "summary": "Interfaz\u0020para\u0020\u0060RenderingComponent\u0060.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderingComponentInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface",
+            "name": "RenderResultInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020clase\u0020que\u0020representa\u0020el\u0020resultado\u0020de\u0020un\u0020renderizado\u0020\u0028uno\no\u0020m\u00E1s\u0020archivos\u0020generados,\u0020ej.\u0020el\u0020PDF\u0020y\/o\u0020el\u0020HTML\u0020de\u0020un\u0020DTE,\u0020de\u0020un\u0020libro\ntributario,\u0020o\u0020de\u0020cualquier\u0020otro\u0020contenido\u0020renderizado\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface\u003A\u003AgetRenderings\u0028\u0029",
+            "name": "getRenderings",
+            "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html#method_getRenderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface\u003A\u003AhasRendering\u0028\u0029",
+            "name": "hasRendering",
+            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html#method_hasRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface\u003A\u003AgetRendering\u0028\u0029",
+            "name": "getRendering",
+            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html#method_getRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Entrega\u0020el\u0020contenido\u0020del\u0020renderizado\u0020como\u0020string.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html#method___toString"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract\\RenderResultInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020archivos\u0020generados\u0020por\u0020el\nrenderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderResultInterface.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Exception\\RenderResultException",
+            "name": "RenderResultException",
+            "summary": "Excepci\u00F3n\u0020para\u0020el\u0020componente\u0020\u0022system.rendering\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Exception-RenderResultException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\RenderingComponent",
+            "name": "RenderingComponent",
+            "summary": "Componente\u0020\u0022system.rendering\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\RenderingComponent\u003A\u003AgetWorkers\u0028\u0029",
+            "name": "getWorkers",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-RenderingComponent.html#method_getWorkers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument",
+            "name": "RenderedDocument",
+            "summary": "Clase\u0020para\u0020representar\u0020un\u0020archivo\u0020generado\u0020por\u0020un\u0020renderizador.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AgetContent\u0028\u0029",
+            "name": "getContent",
+            "summary": "Obtiene\u0020los\u0020datos\u0020binarios\u0020\u0028o\u0020de\u0020texto\u0029\u0020del\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_getContent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AgetMimeType\u0028\u0029",
+            "name": "getMimeType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020MIME\u0020del\u0020archivo\u0020renderizado\u0020\u0028ej.\u0020\u0060application\/pdf\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_getMimeType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AgetFilename\u0028\u0029",
+            "name": "getFilename",
+            "summary": "Obtiene\u0020el\u0020nombre\u0020sugerido\u0020para\u0020el\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_getFilename"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "Obtiene\u0020el\u0020identificador\u0020de\u0020la\u0020presentaci\u00F3n\u0020con\u0020la\u0020que\u0020se\u0020gener\u00F3\u0020este\narchivo\u0020\u0028ej.\u0020\u0060tributaria\u0060,\u0020\u0060cedible\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_getLabel"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AgetCopies\u0028\u0029",
+            "name": "getCopies",
+            "summary": "Obtiene\u0020la\u0020cantidad\u0020de\u0020copias\u0020que\u0020representa\u0020este\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_getCopies"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020atributos\u0020del\u0020archivo\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A\u0024content",
+            "name": "content",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#property_content"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A\u0024mimeType",
+            "name": "mimeType",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#property_mimeType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#property_filename"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#property_label"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderedDocument\u003A\u003A\u0024copies",
+            "name": "copies",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderedDocument.html#property_copies"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult",
+            "name": "RenderResult",
+            "summary": "Clase\u0020para\u0020representar\u0020el\u0020resultado\u0020de\u0020un\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020resultado\u0020del\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AgetRenderings\u0028\u0029",
+            "name": "getRenderings",
+            "summary": "Obtiene\u0020los\u0020archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_getRenderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AhasRendering\u0028\u0029",
+            "name": "hasRendering",
+            "summary": "Indica\u0020si\u0020el\u0020renderizado\u0020gener\u00F3\u0020un\u0020archivo\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_hasRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AgetRendering\u0028\u0029",
+            "name": "getRendering",
+            "summary": "Obtiene\u0020el\u0020archivo\u0020generado\u0020con\u0020el\u0020\u0060label\u0060\u0020indicado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_getRendering"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Entrega\u0020el\u0020contenido\u0020del\u0020renderizado\u0020como\u0020string.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method___toString"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Obtiene\u0020un\u0020arreglo\u0020con\u0020todos\u0020los\u0020archivos\u0020generados\u0020por\u0020el\nrenderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003Aexpand\u0028\u0029",
+            "name": "expand",
+            "summary": "Expande\u0020cada\u0020archivo\u0020renderizado\u0020en\u0020tantas\u0020entradas\u0020como\u0020copias\nrepresente,\u0020agregando\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020y,\u0020si\u0020hay\u0020m\u00E1s\u0020de\u0020una\u0020copia,\najustando\u0020el\u0020nombre\u0020del\u0020archivo\u0020para\u0020no\u0020colisionar\u0020entre\u0020copias.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_expand"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003AappendCopyNumber\u0028\u0029",
+            "name": "appendCopyNumber",
+            "summary": "Agrega\u0020el\u0020n\u00FAmero\u0020de\u0020copia\u0020al\u0020nombre\u0020de\u0020un\u0020archivo,\u0020antes\u0020de\u0020su\nextensi\u00F3n\u0020\u0028ej.\u0020\u0060factura.pdf\u0060\u0020\u003D\u003E\u0020\u0060factura_2.pdf\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_appendCopyNumber"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003A\u0024renderings",
+            "name": "renderings",
+            "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#property_renderings"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support\\RenderResult\u003A\u003A\u0024renderingsByLabel",
+            "name": "renderingsByLabel",
+            "summary": "Archivos\u0020generados\u0020por\u0020el\u0020renderizado,\u0020indexados\u0020por\u0020su\u0020\u0060label\u0060.",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#property_renderingsByLabel"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract\\CatalogWorkerInterface",
             "name": "CatalogWorkerInterface",
             "summary": "Interfaz\u0020para\u0020la\u0020exploraci\u00F3n\u0020gen\u00E9rica\u0020de\u0020repositorios\u0020de\u0020datos.",
@@ -12841,6 +12861,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.repository\u0022.",
             "url": "classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRepositoryComponent"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Contract\\SystemPackageInterface\u003A\u003AgetRenderingComponent\u0028\u0029",
+            "name": "getRenderingComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.rendering\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-Contract-SystemPackageInterface.html#method_getRenderingComponent"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Exception\\SystemException",
             "name": "SystemException",
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020paquete\u0020\u0022system\u0022.",
@@ -12871,6 +12896,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.repository\u0022.",
             "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRepositoryComponent"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003AgetRenderingComponent\u0028\u0029",
+            "name": "getRenderingComponent",
+            "summary": "Entrega\u0020el\u0020componente\u0020\u0022system.rendering\u0022.",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#method_getRenderingComponent"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003A\u0024certificateComponent",
             "name": "certificateComponent",
             "summary": "",
@@ -12880,6 +12910,11 @@ Search.appendIndex(
             "name": "repositoryComponent",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#property_repositoryComponent"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\SystemPackage\u003A\u003A\u0024renderingComponent",
+            "name": "renderingComponent",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-SystemPackage.html#property_renderingComponent"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\PackageRegistry",
             "name": "PackageRegistry",
@@ -13630,6 +13665,26 @@ Search.appendIndex(
             "name": "Worker",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-system-component-certificate-worker.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Contract",
+            "name": "Contract",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-rendering-contract.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Exception",
+            "name": "Exception",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-rendering-exception.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering",
+            "name": "Rendering",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-rendering.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Rendering\\Support",
+            "name": "Support",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-system-component-rendering-support.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Contract",
             "name": "Contract",
