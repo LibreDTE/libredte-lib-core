@@ -41,6 +41,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      * El resultado de la consulta al SII puede arrojar uno de estos estados.
      */
     private const STATUSES = [
+        // Documentos tributarios.
         'RSC' => 'Rechazado por Error en Schema',
         'SOK' => 'Schema Validado',
         'CRT' => 'Carátula OK',
@@ -49,6 +50,9 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         'PDR' => 'Envió en Proceso',
         'RCT' => 'Rechazado por Error en Carátula',
         'EPR' => 'Envío Procesado',
+        // Libros.
+        'LNC' => 'Tipo de Envío de Libro No Corresponde',
+        'LSO' => 'Schema de Envio de Libro Correcto',
         'LOK' => 'Envío de Libro Aceptado',
     ];
 
