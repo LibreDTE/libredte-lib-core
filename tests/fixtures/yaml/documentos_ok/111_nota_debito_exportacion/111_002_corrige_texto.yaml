@@ -21,9 +21,9 @@ Encabezado:
     TpoMoneda: DOLAR USA
 Detalle:
 - IndExe: 1
-  NmbItem: Alojamiento 5 noches
+  NmbItem: DONDE DICE Calle 124, Hong Kong, China DEBE DECIR Calle 123, Hong Kong, China
   QtyItem: 1
-  PrcItem: 50
+  PrcItem: false
 Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
@@ -40,5 +40,5 @@ Test:
   ExpectedValues:
     Encabezado:
       Totales:
-        MntExe: 50
-        MntTotal: 50
+        MntExe: 0
+        MntTotal: 0
