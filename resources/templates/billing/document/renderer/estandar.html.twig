@@ -91,7 +91,7 @@
             font-size: 12pt;
         }
         .sucursal-sii {
-            margin-top: 5px;
+            margin-top: 8px;
             font-size: 10pt;
             color: rgb(255, 0, 0);
         }
@@ -139,6 +139,19 @@
             word-wrap: break-word;
             white-space: normal;
             padding: 2px 0;
+        }
+        {# Con "table-layout: fixed" y sin anchos, el navegador reparte el
+           ancho en 3 partes iguales (etiqueta, ":", valor), dejando la
+           columna del ":" enorme y separando todo. La etiqueta queda como
+           bloque fijo alineado a la izquierda, con el ":" pegado después.
+           Los anchos van como "style" inline en cada <td> (ver más abajo)
+           y no acá por CSS: mPDF no soporta el combinador "+" (por eso el
+           ":" nunca tomaba su ancho) y, aunque sí reconoce ".tabla-receptor
+           td.bold" como selector válido, en la práctica no respeta el
+           "width" puesto así en celdas de tabla — solo el atributo/style
+           inline en el <td> de cada fila. #}
+        .tabla-receptor td.bold {
+            text-align: left;
         }
         {# Tabla montos globales #}
         .tabla-montos-global {
@@ -269,36 +282,50 @@
             font-weight: bold;
             padding-top: 24mm;
         }
+        {# "container-footer" es una <table> real (ver el HTML más abajo),
+           no flexbox ni "display: table" sobre <div>: mPDF soporta muy poco
+           flexbox y, con divs, tampoco calculaba bien las columnas — una
+           <table> real sí funciona igual de bien en el PDF y en el HTML. #}
         .container-footer{
-            display: table;
-            justify-content: space-between;
+            border: none;
+            border-collapse: collapse;
             width: 100%;
         }
+        {# mPDF no hereda el "font-weight"/"font-size" del <footer> hacia
+           adentro de la <table>, así que van explícitos acá. #}
+        .footer-text, .footer-link {
+            border: none;
+            padding: 0;
+            font-weight: bold;
+            font-size: 8pt;
+        }
         .footer-text{
-            float: left;
             width: 50%;
-            text-align:left;
+            text-align: left;
+            padding-left: 0.1in;
         }
         .footer-link{
-            width: 20%;
-            text-align:right;
+            width: 50%;
+            text-align: right;
+            padding-right: 0.1in;
+        }
+        {# Medidas compartidas por PDF y HTML: no van dentro de un @media
+           porque, a diferencia del resto de las reglas "solo impresión",
+           acá no hay nada específico de mPDF — son el mismo tamaño en
+           ambos formatos para que el HTML se vea proporcional al PDF. #}
+        .container-informacion-bottom {
+            width: 98%;
+            min-height: 150px;
+            margin-top: 10mm;
+        }
+        .img-timbre {
+            width: 60mm;
+            height: 35mm;
         }
         @media print {
-            .container-dte {
-                display: flex;
-            }
             .dte-informacion p {
                 padding: 1.5mm;
                 margin: 0;
-            }
-            .container-informacion-bottom {
-                width: 98%;
-                min-height: 150px;
-                margin-top: 10mm;
-            }
-            .img-timbre {
-                width: 60mm;
-                height: 35mm;
             }
             footer {
                 position: absolute;
@@ -314,18 +341,37 @@
                 background-color: #fff;
                 padding-top: 5px;
             }
-            .footer-link{
-                width: 47%;
-                text-align:right;
-            }
         }
         @media screen {
-            body {
-                font-size: 12pt;
-                margin: 10px;
-                min-height: 100%;
+            {# Página de fondo (fuera de la hoja) para que el "papel" se
+               distinga del resto del navegador, igual que un print preview. #}
+            html {
+                background: #e8e8e8;
             }
-
+            {# La hoja HTML se dimensiona y margina igual que el PDF: tamaño
+               Carta (215.9mm x 279.4mm, mismo "format: Letter" configurado
+               en EstandarRendererStrategy) y los mismos márgenes de
+               options.config.pdf (margin_top/right/bottom/left), para que
+               las posiciones queden lo más parecidas posible al PDF. #}
+            body {
+                position: relative;
+                width: 215.9mm;
+                {# El "height: 100%" de la regla global (más arriba) gana por
+                   sobre "min-height" cuando la ventana es más alta que una
+                   Carta, estirando la hoja a lo alto de la ventana entera y
+                   dejando el footer (position: absolute; bottom: 0) pegado
+                   ahí abajo, lejos del contenido. Por eso hay que anularlo. #}
+                height: auto;
+                min-height: 279.4mm;
+                margin: 10mm auto;
+                padding-top: {{ options.config.pdf.margin_top | default(14) }}mm;
+                padding-right: {{ options.config.pdf.margin_right | default(5) }}mm;
+                padding-bottom: {{ options.config.pdf.margin_bottom | default(5) }}mm;
+                padding-left: {{ options.config.pdf.margin_left | default(5) }}mm;
+                box-sizing: border-box;
+                background: #fff;
+                box-shadow: 0 0 8px rgba(0, 0, 0, .25);
+            }
             .tabla-detalles th, .tabla-detalles td {
                 font-size: 11pt;
                 padding: 5px;
@@ -339,12 +385,27 @@
                 margin: 0;
             }
             .dte-informacion p {
-                margin: 5px 0;
+                padding: 1.5mm;
+                margin: 0;
             }
-            .sucursal-sii {
-                margin-top: 10px;
-                font-size: 10pt;
-                color: rgb(255, 0, 0);
+            {# Mismo mecanismo que en @media print: el footer se ancla al
+               borde inferior de la hoja (acá, el "body" de 279.4mm, gracias
+               a su "position: relative" de arriba) en vez de quedar pegado
+               al final del contenido. Si el detalle es muy largo y la hoja
+               crece más allá de una Carta, el footer simplemente queda al
+               final de todo el documento en vez de repetirse por página
+               (el HTML no pagina como sí lo hace mPDF). #}
+            footer {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-weight: bold;
+                font-size: 8pt;
+                border-top: 1px solid #000;
+                padding: 5px 0;
+                background-color: #fff;
             }
         }
     </style>
@@ -410,8 +471,8 @@
                         {# Información del Receptor #}
                         {% if document.Encabezado.Receptor.RUTRecep != '66666666-6' %}
                             <tr>
-                                <td class="bold">R.U.T.</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">R.U.T.</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Receptor.RUTRecep
                                         | format_as('billing_document.RUTRecep') }}
@@ -421,8 +482,8 @@
                         {# Razón Social #}
                         {% if document.Encabezado.Receptor.RznSocRecep is not empty %}
                             <tr>
-                                <td class="bold">Razón Social</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Razón Social</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Receptor.RznSocRecep }}
                                 </td>
@@ -431,8 +492,8 @@
                         {# Giro #}
                         {% if document.Encabezado.Receptor.GiroRecep is not empty %}
                         <tr>
-                            <td class="bold">Giro</td>
-                                <td>:</td>
+                            <td class="bold" style="width: 34mm;">Giro</td>
+                                <td style="width: 2mm;">:</td>
                             <td>
                                 {{ document.Encabezado.Receptor.GiroRecep }}
                             </td>
@@ -441,8 +502,8 @@
                         {# Dirección #}
                         {% if document.Encabezado.Receptor.DirRecep is not empty %}
                             <tr>
-                                <td class="bold">Dirección</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Dirección</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{
                                         [
@@ -459,8 +520,8 @@
                         {# Tipo de Operación #}
                         {% if document.Encabezado.IdDoc.IndTraslado is not empty %}
                             <tr>
-                                <td class="bold">Tipo oper.</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Tipo oper.</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.IdDoc.IndTraslado
                                         | format_as('billing_document.IndTraslado') }}
@@ -470,40 +531,40 @@
                         {# Aduana - Modalidad de venta #}
                         {% if document.Encabezado.Transporte.Aduana.CodModVenta is not empty %}
                             <tr>
-                                <td class="bold">Mod. venta</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Mod. venta</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.CodModVenta | format_as('billing_document.CodModVenta') }}</td>
                             </tr>
                         {% endif %}
                         {# Aduana - Total cláusula de venta #}
                         {% if document.Encabezado.Transporte.Aduana.TotClauVenta is not empty %}
                             <tr>
-                                <td class="bold">Total claú.</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Total claú.</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.TotClauVenta }}</td>
                             </tr>
                         {% endif %}
                         {# Aduana - Puerto de embarque #}
                         {% if document.Encabezado.Transporte.Aduana.CodPtoEmbarque is not empty %}
                             <tr>
-                                <td class="bold">Embarque</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Embarque</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.CodPtoEmbarque | format_as('billing_document.CodPtoEmbarque') }}</td>
                             </tr>
                         {% endif %}
                         {# Aduana - Unidad tara #}
                         {% if document.Encabezado.Transporte.Aduana.CodUnidMedTara is not empty %}
                             <tr>
-                                <td class="bold">U. tara</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">U. tara</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.CodUnidMedTara | format_as('billing_document.CodUnidMedTara') }}</td>
                             </tr>
                         {% endif %}
                         {# Aduana - Unidad peso neto #}
                         {% if document.Encabezado.Transporte.Aduana.CodUnidPesoNeto is not empty %}
                             <tr>
-                                <td class="bold">U. p. neto</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">U. p. neto</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.CodUnidPesoNeto | format_as('billing_document.CodUnidPesoNeto') }}</td>
                             </tr>
                         {% endif %}
@@ -513,8 +574,8 @@
                             {% if tipoBultosArr.CodTpoBultos is defined %}{% set tipoBultosArr = [tipoBultosArr] %}{% endif %}
                             {% for bulto in tipoBultosArr %}
                                 <tr>
-                                    <td class="bold">Bultos</td>
-                                    <td>:</td>
+                                    <td class="bold" style="width: 34mm;">Bultos</td>
+                                    <td style="width: 2mm;">:</td>
                                     <td>
                                         {{ bulto.CantBultos }}
                                         {% if bulto.CodTpoBultos is not empty %}{{ bulto.CodTpoBultos | format_as('billing_document.CodTpoBultos') }}{% endif %}
@@ -526,16 +587,16 @@
                         {# Aduana - Flete #}
                         {% if document.Encabezado.Transporte.Aduana.MntFlete is not empty %}
                             <tr>
-                                <td class="bold">Flete</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Flete</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.MntFlete }}</td>
                             </tr>
                         {% endif %}
                         {# Aduana - Seguro #}
                         {% if document.Encabezado.Transporte.Aduana.MntSeguro is not empty %}
                             <tr>
-                                <td class="bold">Seguro</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Seguro</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>{{ document.Encabezado.Transporte.Aduana.MntSeguro }}</td>
                             </tr>
                         {% endif %}
@@ -543,8 +604,8 @@
                         {% set traslado_dest = [document.Encabezado.Transporte.DirDest, document.Encabezado.Transporte.CmnaDest] | filter(v => v is not empty) | join(', ') %}
                         {% if traslado_dest is not empty or document.Encabezado.Transporte.RUTTrans is not empty or document.Encabezado.Transporte.Patente is not empty or document.Encabezado.Transporte.Chofer.NombreChofer is not empty %}
                             <tr>
-                                <td class="bold">Traslado</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Traslado</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {% if traslado_dest is not empty %}A {{ traslado_dest }}{% endif %}
                                     {% if document.Encabezado.Transporte.RUTTrans is not empty %}
@@ -565,8 +626,8 @@
                         {# País receptor #}
                         {% if document.Encabezado.Transporte.Aduana.CodPaisRecep is not empty %}
                             <tr>
-                                <td class="bold">P. receptor</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">P. receptor</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Transporte.Aduana.CodPaisRecep
                                         | format_as('billing_document.CodPaisRecep') }}
@@ -576,8 +637,8 @@
                         {# País de destino #}
                         {% if document.Encabezado.Transporte.Aduana.CodPaisDestin is not empty %}
                             <tr>
-                                <td class="bold">P. destino</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">P. destino</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Transporte.Aduana.CodPaisDestin
                                         | format_as('billing_document.CodPaisDestin') }}
@@ -587,8 +648,8 @@
                         {# Contacto #}
                         {% if document.Encabezado.Receptor.CorreoRecep is not empty or document.Encabezado.Receptor.Contacto is not empty %}
                             <tr>
-                                <td class="bold">Contacto</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Contacto</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {% set contacto_receptor = [document.Encabezado.Receptor.Contacto, document.Encabezado.Receptor.CorreoRecep] | filter(v => v is not empty) %}
                                     {{ contacto_receptor | join(' / ') }}
@@ -598,8 +659,8 @@
                         {# Nacionalidad #}
                         {% if document.Encabezado.Receptor.Extranjero.Nacionalidad is not empty %}
                             <tr>
-                                <td class="bold">Nacionalidad</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Nacionalidad</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Receptor.Extranjero.Nacionalidad
                                         | format_as('billing_document.Nacionalidad') }}
@@ -609,8 +670,8 @@
                         {# Cód. recep #}
                         {% if document.Encabezado.Receptor.CdgIntRecep is not empty %}
                             <tr>
-                                <td class="bold">Cód. recep.</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Cód. recep.</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ document.Encabezado.Receptor.CdgIntRecep }}
                                 </td>
@@ -620,8 +681,8 @@
                         {% if document.Referencia is not empty %}
                             {% for referencia in document.Referencia %}
                             <tr>
-                                <td class="bold">Referencia</td>
-                                <td>:</td>
+                                <td class="bold" style="width: 34mm;">Referencia</td>
+                                <td style="width: 2mm;">:</td>
                                 <td>
                                     {{ loop.index }} -
                                     {% if referencia.TpoDocRef is not empty %}
@@ -1181,16 +1242,24 @@
         </div>
         {# Footer #}
         <footer>
-            <div class="container-footer">
-                <div class="footer-text">
-                    Boletas y facturas generadas con LibreDTE
-                </div>
-                <div class="footer-link">
-                    <a href="https://www.libredte.cl" style="text-decoration: none; color: inherit;" target="_blank">
-                        www.libredte.cl
-                    </a>
-                </div>
-            </div>
+            {# Tabla real, no divs con "display: table": mPDF soporta mucho
+               mejor <table><tr><td> reales (como el resto del documento)
+               que la emulación de tabla vía CSS sobre <div> — con divs,
+               "www.libredte.cl" no quedaba pegado a la derecha, sino
+               flotando cerca del centro, incluso sin agregar ningún
+               margen. #}
+            <table class="container-footer">
+                <tr>
+                    <td class="footer-text">
+                        Boletas y facturas generadas con LibreDTE
+                    </td>
+                    <td class="footer-link">
+                        <a href="https://www.libredte.cl" style="text-decoration: none; color: inherit;" target="_blank">
+                            www.libredte.cl
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </footer>
     </body>
 </html>
