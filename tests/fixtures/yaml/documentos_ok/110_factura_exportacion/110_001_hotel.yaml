@@ -24,6 +24,12 @@ Encabezado:
     # TpoMoneda: Tipo de moneda en que se registra la transacción de
     #            exportafción. - Largo máx. 15 - Tipo: ALFA.
     TpoMoneda: DOLAR USA
+  # OtraMoneda: Área otra moneda. Incluye información de tipo de moneda y
+  #             tipo de cambio. Tipo de cambio de referencia fijo (1000)
+  #             usado en todos los ejemplos de exportación.
+  OtraMoneda:
+    TpoMoneda: PESO CL
+    TpoCambio: 1000
 Detalle:
 - IndExe: 1
   NmbItem: Alojamiento 5 noches
@@ -40,3 +46,6 @@ Test:
       Totales:
         MntExe: 50
         MntTotal: 50
+      OtraMoneda:
+        MntExeOtrMnda: 50000
+        MntTotOtrMnda: 50000

@@ -19,6 +19,11 @@ Encabezado:
     DirRecep: Calle 123, Hong Kong, China
   Totales:
     TpoMoneda: DOLAR USA
+  # OtraMoneda: Tipo de cambio de referencia fijo (1000) usado en todos los
+  #             ejemplos de exportación.
+  OtraMoneda:
+    TpoMoneda: PESO CL
+    TpoCambio: 1000
 Detalle:
 - IndExe: 1
   NmbItem: Alojamiento 5 noches
@@ -42,3 +47,6 @@ Test:
       Totales:
         MntExe: 50
         MntTotal: 50
+      OtraMoneda:
+        MntExeOtrMnda: 50000
+        MntTotOtrMnda: 50000

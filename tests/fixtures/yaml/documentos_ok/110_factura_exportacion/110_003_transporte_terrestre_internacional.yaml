@@ -46,7 +46,7 @@ Encabezado:
     TpoMoneda: DOLAR USA
   OtraMoneda:
     TpoMoneda: PESO CL
-    TpoCambio: 500
+    TpoCambio: 1000
 Detalle:
 - IndExe: 1
   NmbItem: Sillones
@@ -60,3 +60,6 @@ Test:
       Totales:
         MntExe: 100
         MntTotal: 100
+      OtraMoneda:
+        MntExeOtrMnda: 100000
+        MntTotOtrMnda: 100000

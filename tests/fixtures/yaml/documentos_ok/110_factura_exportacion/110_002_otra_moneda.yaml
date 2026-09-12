@@ -26,7 +26,9 @@ Encabezado:
     #            exportafción. - Largo máx. 15 - Tipo: ALFA.
     TpoMoneda: PESO CL
     # TpoCambio: Tipo de cambio. - Largo máx: 10 - Decimales: 4 - Tipo: NÚM.
-    TpoCambio: 500
+    #            Tipo de cambio de referencia fijo (1000) usado en todos los
+    #            ejemplos de exportación.
+    TpoCambio: 1000
 Detalle:
 - IndExe: 1
   NmbItem: Alojamiento 5 noches
@@ -43,3 +45,6 @@ Test:
       Totales:
         MntExe: 50
         MntTotal: 50
+      OtraMoneda:
+        MntExeOtrMnda: 50000
+        MntTotOtrMnda: 50000
