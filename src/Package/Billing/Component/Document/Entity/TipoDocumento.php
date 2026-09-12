@@ -462,6 +462,10 @@ class TipoDocumento implements TipoDocumentoInterface
             ] : null,
 
             // Describe características del documento.
+            'es_electronico' => $this->isElectronico(),
+            'se_envia_al_sii' => $this->isSentToSii(),
+            'disponible_en_compras' => $this->isDisponibleEnCompras(),
+            'disponible_en_ventas' => $this->isDisponibleEnVentas(),
             'es_cedible' => $this->isCedible(),
             'es_exento' => $this->isExento(),
             'es_boleta' => $this->isBoleta(),
