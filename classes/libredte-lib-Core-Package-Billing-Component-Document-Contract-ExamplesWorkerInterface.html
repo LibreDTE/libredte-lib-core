@@ -220,7 +220,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/ExamplesWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-examplesworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/ExamplesWorkerInterface.php">ExamplesWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -298,7 +298,7 @@ ejemplo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/ExamplesWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-examplesworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/ExamplesWorkerInterface.php">ExamplesWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -314,10 +314,32 @@ ejemplo.</p>
         <section class="phpdocumentor-description"><p>Cada elemento entrega su identificador (a usar con <code class="prettyprint">get()</code>), la
 categoría (nombre de la carpeta del ejemplo) y el caso (nombre del
 archivo del ejemplo, sin extensión).</p>
+<p>El orden entregado garantiza que todo ejemplo aparece después de los
+ejemplos de los que depende (ej. una Nota de Crédito que anula una
+Factura aparece después de esa Factura) — un consumidor que arme cada
+ejemplo secuencialmente, en el orden recibido, siempre podrá resolver
+esas referencias contra ejemplos ya procesados.</p>
 </section>
 
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_list_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-ExamplesWorkerInterface.html#method_list_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ExamplesException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ExamplesException">ExamplesException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si algún ejemplo declara una dependencia
+circular o hacia un ejemplo inexistente.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     

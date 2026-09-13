@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -170,6 +170,13 @@ la suite de tests para sus aserciones); acá se separan en <code class="prettypr
 (entrada válida para <code class="prettyprint">BuilderWorker::build()</code>) y <code class="prettyprint">expected</code> (los valores
 esperados), sin exponer el vocabulario <code class="prettyprint">Test</code>/<code class="prettyprint">ExpectedValues</code> propio de
 la suite de tests.</p>
+<p>Algunos ejemplos referencian a otro (ej. una Nota de Crédito que anula una
+Factura previamente emitida) vía <code class="prettyprint">Test.DependsOn</code> en el YAML de origen —
+una lista de IDs de otros ejemplos. <code class="prettyprint">list()</code> entrega los ejemplos en un
+orden donde toda dependencia aparece antes que quien depende de ella, para
+que un consumidor que emita los ejemplos secuencialmente (ej. un demo/seed
+de una aplicación) siempre pueda resolver esas referencias contra
+documentos que ya emitió.</p>
 </section>
 
 
@@ -272,6 +279,15 @@ la suite de tests.</p>
 <dd>Entrega el listado de ejemplos disponibles.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies">sortByDependencies()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, string&gt;    </span>
+</dt>
+<dd>Ordena los IDs de ejemplos de forma que cada uno aparezca después de
+todos los ejemplos de los que depende (`Test.DependsOn` en el YAML de
+origen).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_toId">toId()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -300,7 +316,7 @@ archivo.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -347,7 +363,7 @@ archivo.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -389,7 +405,7 @@ archivo.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -433,7 +449,7 @@ archivo.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
@@ -503,7 +519,7 @@ ejemplo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -545,6 +561,87 @@ ejemplo.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_sortByDependencies">
+        sortByDependencies()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Ordena los IDs de ejemplos de forma que cada uno aparezca después de
+todos los ejemplos de los que depende (`Test.DependsOn` en el YAML de
+origen).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">sortByDependencies</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, array&lt;string|int, string&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dependsOnById</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Recorrido DFS post-order sobre el orden de entrada (<code class="prettyprint">$dependsOnById</code>,
+ya determinístico por venir de <code class="prettyprint">$files</code> ordenado alfabéticamente):
+los ejemplos sin dependencias, o cuyas dependencias ya se visitaron,
+mantienen ese mismo orden entre sí; solo se reordenan los que
+dependen de otro ejemplo que todavía no aparecía.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$dependsOnById</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, array&lt;string|int, string&gt;&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>IDs de ejemplo mapeados
+a la lista de IDs de los que dependen (posiblemente vacía).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_sortByDependencies_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ExamplesException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ExamplesException">ExamplesException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si un ejemplo depende de un ID inexistente,
+o si hay una dependencia circular entre ejemplos.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>IDs en el orden final.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toId">
         toId()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_toId" class="headerlink"><i class="fas fa-link"></i></a>
@@ -553,7 +650,7 @@ ejemplo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -634,6 +731,7 @@ archivo.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_get">get()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_list">list()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies">sortByDependencies()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_toId">toId()</a></li>
                                     </ul>
             </li>

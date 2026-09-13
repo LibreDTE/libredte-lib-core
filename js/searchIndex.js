@@ -5246,6 +5246,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020listado\u0020de\u0020ejemplos\u0020disponibles.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_list"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003AsortByDependencies\u0028\u0029",
+            "name": "sortByDependencies",
+            "summary": "Ordena\u0020los\u0020IDs\u0020de\u0020ejemplos\u0020de\u0020forma\u0020que\u0020cada\u0020uno\u0020aparezca\u0020despu\u00E9s\u0020de\ntodos\u0020los\u0020ejemplos\u0020de\u0020los\u0020que\u0020depende\u0020\u0028\u0060Test.DependsOn\u0060\u0020en\u0020el\u0020YAML\u0020de\norigen\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Entrega\u0020los\u0020datos\u0020de\u0020un\u0020ejemplo\u0020espec\u00EDfico.",
