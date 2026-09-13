@@ -239,7 +239,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             'Encabezado' => [
                 'IdDoc' => [
                     'TipoDTE' => $data['TpoDoc'],
-                    'Folio' => !empty($data['Folio'])
+                    'Folio' => array_key_exists('Folio', $data)
                         ? $data['Folio']
                         : false
                     ,

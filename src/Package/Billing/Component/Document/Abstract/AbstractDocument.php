@@ -125,11 +125,17 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getId(): string
     {
+        try {
+            $folio = $this->getFolio();
+        } catch (XmlQueryException) {
+            $folio = 0;
+        }
+
         return sprintf(
             '%s_T%03dF%09d',
             $this->getRutEmisor(),
             $this->getCodigo(),
-            $this->getFolio()
+            $folio
         );
     }
 
