@@ -738,7 +738,7 @@ class DocumentBag implements DocumentBagInterface
     {
         $data = $this->getNormalizedData() ?? $this->getParsedData();
 
-        $folio = $data['Encabezado']['IdDoc']['Folio'];
+        $folio = $data['Encabezado']['IdDoc']['Folio'] ?? null;
 
         if (!$folio) {
             return null;
@@ -813,10 +813,13 @@ class DocumentBag implements DocumentBagInterface
     {
         return [
             'document' => $this->getDocumentData(),
+            'document_normalized' => $this->getNormalizedData(),
             'document_extra' => $this->getDocumentExtra(),
             'document_stamp' => $this->getDocumentStamp(),
             'document_auth' => $this->getDocumentAuth(),
             'document_type' => $this->getDocumentType()?->toArray(),
+            'document_id' => $this->document?->getId(),
+            'document_xml' => $this->document?->saveXml(),
             'options' => $this->getOptions()->all(),
         ];
     }
@@ -826,6 +829,16 @@ class DocumentBag implements DocumentBagInterface
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $array = $this->toArray();
+
+        if ($array['document_stamp'] !== null) {
+            $array['document_stamp'] = base64_encode($array['document_stamp']);
+        }
+
+        if ($array['document_xml'] !== null) {
+            $array['document_xml'] = base64_encode($array['document_xml']);
+        }
+
+        return $array;
     }
 }

@@ -353,6 +353,9 @@ class BookBag implements BookBagInterface
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $array = $this->toArray();
+        $array['book'] = $this->getBook()?->jsonSerialize();
+
+        return $array;
     }
 }
