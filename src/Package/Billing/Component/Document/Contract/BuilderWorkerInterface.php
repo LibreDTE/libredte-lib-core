@@ -46,7 +46,7 @@ interface BuilderWorkerInterface extends WorkerInterface, StrategiesAwareInterfa
      *
      * @param DocumentBagInterface $bag Bolsa con los datos del documento a
      * construir.
-     * @return DocumentInterface El documento construido (borrador, timbrado
+     * @return DocumentBagInterface La bolsa con el DTE construido (borrador, timbrado
      * o timbrado y firmado, según los datos pasados).
      * @throws BuilderException Si la estrategia de construcción falla.
      * @throws DocumentBagManagerException Si no se determina un tipo de
@@ -58,13 +58,13 @@ interface BuilderWorkerInterface extends WorkerInterface, StrategiesAwareInterfa
      * @link https://www.sii.cl/factura_electronica/factura_mercado/boletas_elec_0720_3.pdf Formato de las Boletas Electrónicas del SII.
      * @link https://www.sii.cl/factura_electronica/factura_mercado/diag_boleta_0920.zip Diagrama del esquema XML de la Boleta Electrónica.
      */
-    public function build(DocumentBagInterface $bag): DocumentInterface;
+    public function build(DocumentBagInterface $bag): DocumentBagInterface;
 
     /**
      * Crea la instancia del DTE a partir del XmlDocument contenido en la bolsa.
      *
      * @param DocumentBagInterface $bag
-     * @return DocumentInterface
+     * @return DocumentBagInterface
      */
-    public function create(DocumentBagInterface $bag): DocumentInterface;
+    public function create(DocumentBagInterface $bag): DocumentBagInterface;
 }

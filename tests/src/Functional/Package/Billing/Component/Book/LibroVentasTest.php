@@ -130,7 +130,8 @@ class LibroVentasTest extends TestCase
         $bag = $this->loader->load($bag);
 
         // Construir el libro de ventas.
-        $book = $this->builder->build($bag);
+        $this->builder->build($bag);
+        $book = $bag->getBook();
         assert($book instanceof LibroComprasVentasInterface);
         $this->assertInstanceOf(LibroComprasVentasInterface::class, $book);
 
@@ -180,7 +181,8 @@ class LibroVentasTest extends TestCase
         $bag = $this->loader->load($bag);
 
         // Construir el libro de ventas simplificado.
-        $book = $this->builder->build($bag);
+        $this->builder->build($bag);
+        $book = $bag->getBook();
         assert($book instanceof LibroComprasVentasInterface);
         $this->assertInstanceOf(LibroComprasVentasInterface::class, $book);
 

@@ -42,8 +42,8 @@ interface BuilderWorkerInterface extends WorkerInterface
      * Construye la entidad libro a partir de la bolsa normalizada.
      *
      * @param BookBagInterface $bag Bolsa con detalles ya normalizados.
-     * @return BookInterface Entidad libro resultante con su XML.
+     * @return BookBagInterface La bolsa con el libro construido.
      * @throws BookException En caso de error al construir el libro.
      */
-    public function build(BookBagInterface $bag): BookInterface;
+    public function build(BookBagInterface $bag): BookBagInterface;
 }

@@ -30,7 +30,6 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
-use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -99,7 +98,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             ],
         ],
     )]
-    public function build(BookBagInterface $bag): BookInterface
+    public function build(BookBagInterface $bag): BookBagInterface
     {
         $strategyName = $bag->getTipo()->value;
         $strategy = $this->getStrategy($strategyName);
@@ -124,7 +123,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             // Guardar el libro en el bag para uso posterior (ej: validación).
             $bag->setBook($libro);
 
-            return $libro;
+            return $bag;
         } catch (Throwable $e) {
             throw new BookException(
                 message: sprintf(

@@ -273,6 +273,7 @@ class SendAecTest extends TestCase
             ->getDocumentComponent()
             ->getBuilderWorker()
             ->build($bag)
+            ->getDocument()
         ;
     }
 }

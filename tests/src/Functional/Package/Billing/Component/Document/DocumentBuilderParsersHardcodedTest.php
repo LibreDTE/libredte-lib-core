@@ -219,9 +219,9 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
         $bag = new DocumentBag($data);
 
-        $document = $this->builder->build($bag);
+        $this->builder->build($bag);
 
-        $this->assertSame(571200, $document->getMontoTotal());
+        $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromXmlOk(): void
@@ -233,9 +233,9 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
             options: new Options(['parser' => ['strategy' => 'default.xml']])
         );
 
-        $document = $this->builder->build($bag);
+        $this->builder->build($bag);
 
-        $this->assertSame(571200, $document->getMontoTotal());
+        $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromYamlOk(): void
@@ -267,9 +267,9 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
             options: new Options(['parser' => ['strategy' => 'default.yaml']])
         );
 
-        $document = $this->builder->build($bag);
+        $this->builder->build($bag);
 
-        $this->assertSame(571200, $document->getMontoTotal());
+        $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
     public function testDocumentoFactoryFromJsonOk(): void
@@ -303,8 +303,8 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
         $bag = new DocumentBag($data);
 
-        $document = $this->builder->build($bag);
+        $this->builder->build($bag);
 
-        $this->assertSame(571200, $document->getMontoTotal());
+        $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 }

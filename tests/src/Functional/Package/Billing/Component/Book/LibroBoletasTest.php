@@ -130,7 +130,8 @@ class LibroBoletasTest extends TestCase
         $bag = $this->loader->load($bag);
 
         // Construir el libro de boletas.
-        $book = $this->builder->build($bag);
+        $this->builder->build($bag);
+        $book = $bag->getBook();
         assert($book instanceof LibroBoletasInterface);
         $this->assertInstanceOf(LibroBoletasInterface::class, $book);
 

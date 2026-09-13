@@ -128,7 +128,8 @@ class LibroGuiasTest extends TestCase
         $bag = $this->loader->load($bag);
 
         // Construir el libro de guías.
-        $book = $this->builder->build($bag);
+        $this->builder->build($bag);
+        $book = $bag->getBook();
         assert($book instanceof LibroGuiasInterface);
         $this->assertInstanceOf(LibroGuiasInterface::class, $book);
 

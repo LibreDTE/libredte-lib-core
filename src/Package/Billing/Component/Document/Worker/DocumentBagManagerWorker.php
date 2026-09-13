@@ -410,8 +410,8 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         }
 
         // Crear el DTE.
-        $document = $this->builderWorker->create($bag);
-        $bag->setDocument($document);
+        $this->builderWorker->create($bag);
+        $bag->setDocument($bag->getDocument());
     }
 
     /**
@@ -446,7 +446,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->emisorFactory->create(
                 $bag->getXmlDocument()->query(
-                    '/Encabezado/Emisor'
+                    '//Encabezado/Emisor'
                 )
             );
             $bag->setEmisor($emisor);
@@ -499,7 +499,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->receptorFactory->create(
                 $bag->getXmlDocument()->query(
-                    '/Encabezado/Receptor'
+                    '//Encabezado/Receptor'
                 )
             );
             $bag->setReceptor($emisor);

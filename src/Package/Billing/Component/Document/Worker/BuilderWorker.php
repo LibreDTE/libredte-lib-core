@@ -32,7 +32,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrateg
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 
 /**
  * Clase para los constructores de documentos.
@@ -56,7 +55,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     /**
      * {@inheritDoc}
      */
-    public function create(DocumentBagInterface $bag): DocumentInterface
+    public function create(DocumentBagInterface $bag): DocumentBagInterface
     {
         // Buscar la estrategia para crear el documento tributario.
         $strategy = $this->getStrategy(
@@ -66,9 +65,10 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
 
         // Construir el documento usando la estrategia.
         $document = $strategy->create($bag->getXmlDocument());
+        $bag->setDocument($document);
 
-        // Entregar el DTE construído.
-        return $document;
+        // Entregar la bolsa con el DTE construído.
+        return $bag;
     }
 
     /**
@@ -116,7 +116,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             ],
         ],
     )]
-    public function build(DocumentBagInterface $bag): DocumentInterface
+    public function build(DocumentBagInterface $bag): DocumentBagInterface
     {
         // Normalizar la bolsa con los datos del documento.
         // Acá no se puede normalizar todo, solo lo necesario. El resto de la
@@ -130,12 +130,12 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
         assert($strategy instanceof BuilderStrategyInterface);
 
         // Construir el documento usando la estrategia.
-        $document = $strategy->build($bag);
+        $strategy->build($bag);
 
         // Normalizar la bolsa con los datos actualizados del documento.
         $bag = $this->documentBagManager->normalize($bag, all: true);
 
-        // Entregar el DTE construído.
-        return $document;
+        // Entregar la bolsa con el DTE construído.
+        return $bag;
     }
 }
