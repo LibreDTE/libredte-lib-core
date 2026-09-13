@@ -41,6 +41,14 @@ use Symfony\Component\Yaml\Yaml;
  * (entrada válida para `BuilderWorker::build()`) y `expected` (los valores
  * esperados), sin exponer el vocabulario `Test`/`ExpectedValues` propio de
  * la suite de tests.
+ *
+ * Algunos ejemplos referencian a otro (ej. una Nota de Crédito que anula una
+ * Factura previamente emitida) vía `Test.DependsOn` en el YAML de origen —
+ * una lista de IDs de otros ejemplos. `list()` entrega los ejemplos en un
+ * orden donde toda dependencia aparece antes que quien depende de ella, para
+ * que un consumidor que emita los ejemplos secuencialmente (ej. un demo/seed
+ * de una aplicación) siempre pueda resolver esas referencias contra
+ * documentos que ya emitió.
  */
 #[Worker(name: 'examples', component: 'document', package: 'billing')]
 class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
@@ -62,10 +70,19 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
     public function list(): array
     {
         $files = glob($this->fixturesDir . '/*/*' . self::EXTENSION) ?: [];
+        sort($files);
 
-        $examples = [];
+        $dependsOnById = [];
         foreach ($files as $file) {
             $id = $this->toId($file);
+            $data = Yaml::parseFile($file);
+            $dependsOnById[$id] = $data['Test']['DependsOn'] ?? [];
+        }
+
+        $orderedIds = $this->sortByDependencies($dependsOnById);
+
+        $examples = [];
+        foreach ($orderedIds as $id) {
             $examples[] = [
                 'id' => $id,
                 'category' => dirname($id),
@@ -74,6 +91,69 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
         }
 
         return $examples;
+    }
+
+    /**
+     * Ordena los IDs de ejemplos de forma que cada uno aparezca después de
+     * todos los ejemplos de los que depende (`Test.DependsOn` en el YAML de
+     * origen).
+     *
+     * Recorrido DFS post-order sobre el orden de entrada (`$dependsOnById`,
+     * ya determinístico por venir de `$files` ordenado alfabéticamente):
+     * los ejemplos sin dependencias, o cuyas dependencias ya se visitaron,
+     * mantienen ese mismo orden entre sí; solo se reordenan los que
+     * dependen de otro ejemplo que todavía no aparecía.
+     *
+     * @param array<string, string[]> $dependsOnById IDs de ejemplo mapeados
+     * a la lista de IDs de los que dependen (posiblemente vacía).
+     * @return string[] IDs en el orden final.
+     * @throws ExamplesException Si un ejemplo depende de un ID inexistente,
+     * o si hay una dependencia circular entre ejemplos.
+     */
+    private function sortByDependencies(array $dependsOnById): array
+    {
+        $visited = [];
+        $ordered = [];
+
+        $visit = function (string $id, array $path) use (
+            &$visit,
+            &$visited,
+            &$ordered,
+            $dependsOnById
+        ): void {
+            if (isset($visited[$id])) {
+                return;
+            }
+
+            if (in_array($id, $path, true)) {
+                throw new ExamplesException(sprintf(
+                    'Dependencia circular entre ejemplos: %s -> %s.',
+                    implode(' -> ', $path),
+                    $id
+                ));
+            }
+
+            if (!array_key_exists($id, $dependsOnById)) {
+                throw new ExamplesException(sprintf(
+                    'El ejemplo "%s" no existe (referenciado en DependsOn).',
+                    $id
+                ));
+            }
+
+            $path[] = $id;
+            foreach ($dependsOnById[$id] as $dependencyId) {
+                $visit($dependencyId, $path);
+            }
+
+            $visited[$id] = true;
+            $ordered[] = $id;
+        };
+
+        foreach (array_keys($dependsOnById) as $id) {
+            $visit($id, []);
+        }
+
+        return $ordered;
     }
 
     /**

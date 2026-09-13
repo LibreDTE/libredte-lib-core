@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 2
   Emisor:
     RUTEmisor: 76192083-9
     RznSoc: SASCO SpA
@@ -33,6 +33,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 052_guia_despacho/052_001_constituye_venta
   ExpectedValues:
     Encabezado:
       Totales:

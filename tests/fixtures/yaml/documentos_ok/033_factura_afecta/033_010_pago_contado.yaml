@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 10
     # FmaPago: Forma de Pago 1 indica que es "Contado".
     FmaPago: 1
   Emisor:

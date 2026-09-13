@@ -33,6 +33,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 061_nota_credito/061_001_anula_factura
   ExpectedValues:
     Encabezado:
       Totales:

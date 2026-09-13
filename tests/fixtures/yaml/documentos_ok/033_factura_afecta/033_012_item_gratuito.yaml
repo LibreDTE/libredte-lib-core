@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 12
     # FmaPago: Forma de Pago 3 indica que es "Entrega Gratuita". Este tipo
     #          no tiene derecho a crédito fiscal.
     FmaPago: 3

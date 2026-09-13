@@ -1,28 +1,31 @@
 Encabezado:
   IdDoc:
     TipoDTE: 52
-    Folio: 1
+    Folio: 3
     TipoDespacho: 1
     # IndTraslado: Código 7 indica Guía de devolución. - Largo máx: 1
     #              Tipo: NÚM.
     IndTraslado: 7
     TermPagoGlosa: DEVOLUCION POR NO CORRESPONDER A LO SOLICITADO SEGUN FACTURA
-  # En las guías de devolución el Receptor del documento que se hace referencia
-  # se convierte en el Emisor de la guía de devolución. El Emisor del documento
-  # que se hace referencia se convierte en el Receptor de la guía de devolución.
+  # El Emisor/Receptor del DTE (XML) no se invierten en una guía de
+  # devolución: el Emisor siempre es quien timbra con su propio CAF y
+  # certificado (SASCO), igual que en el resto de los documentos. Lo que
+  # se invierte es el sentido físico de la mercadería: quien recibió los
+  # bienes en la factura original ahora los está devolviendo (remitente
+  # de la devolución), y quien los despachó ahora los recibe de vuelta.
   Emisor:
-    RUTEmisor: 1234567-4
-    RznSoc: Antonio Rosales
-    GiroEmis: Venta al por menor de muebles
-    Acteco: 523330
-    DirOrigen: Calle 432
-    CmnaOrigen: Hong Kong
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
   Receptor:
-    RUTRecep: 76192083-9
+    RUTRecep: 60803000-K
     RznSocRecep: Servicio de Impuestos Internos
     GiroRecep: Gobierno
-    DirRecep: Santa Cruz
-    CiudadRecep: Santa Cruz
+    DirRecep: Santiago
+    CmnaRecep: Santiago
   Transporte:
     DirDest: Calle 123
     CmnaDest: Santiago
@@ -32,12 +35,14 @@ Detalle:
   PrcItem: 31500
 Referencia:
 - TpoDocRef: 33
-  FolioRef: 1
+  FolioRef: 7
   FchRef: '2016-01-01'
   CodRef: 1
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 033_factura_afecta/033_007_contado_observacion
   ExpectedValues:
     Encabezado:
       Totales:

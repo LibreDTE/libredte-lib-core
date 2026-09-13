@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 11
     # FmaPago: Forma de Pago 2 indica que es "Crédito".
     FmaPago: 2
   Emisor:

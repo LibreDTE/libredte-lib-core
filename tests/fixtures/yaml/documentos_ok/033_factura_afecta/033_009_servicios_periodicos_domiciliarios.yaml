@@ -1,24 +1,24 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 9
     # IndServicio: Código 1 corresponde Factura de servicios periódicos
     #              domiciliarios.
     IndServicio: 1
     FchVenc: '2024-10-31'
   Emisor:
-    RUTEmisor: 12345678-5
-    RznSoc: Compañía de Gas
-    GiroEmis: DISTRIBUCION DE COMBUSTIBLES GASEOSOS POR TUBERIA
-    Acteco: 352020
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
     DirOrigen: Santa Cruz
     CmnaOrigen: Santa Cruz
   Receptor:
-    RUTRecep: 76192083-9
+    RUTRecep: 60803000-K
     RznSocRecep: Servicio de Impuestos Internos
     GiroRecep: Gobierno
-    DirRecep: Santa Cruz
-    CmnaRecep: Santa Cruz
+    DirRecep: Santiago
+    CmnaRecep: Santiago
 Detalle:
 - NmbItem: Servicio de gas
   QtyItem: 99

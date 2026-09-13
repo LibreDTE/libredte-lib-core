@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 52
-    Folio: 1
+    Folio: 2
     # IndTraslado: Código 5 indica Traslado interno. - Largo máx: 1 - Tipo: NÚM.
     IndTraslado: 5
   Emisor:
@@ -13,7 +13,7 @@ Encabezado:
     CmnaOrigen: Santa Cruz
   Receptor:
     RUTRecep: 76192083-9
-    RznSocRecep: Servicio de Impuestos Internos
+    RznSocRecep: SASCO SpA
     GiroRecep: Servicios integrales de informática
     DirRecep: Santiago
     CmnaRecep: Santiago

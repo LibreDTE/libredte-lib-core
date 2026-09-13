@@ -42,6 +42,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 112_nota_credito_exportacion/112_001_anula_factura
   ExpectedValues:
     Encabezado:
       Totales:

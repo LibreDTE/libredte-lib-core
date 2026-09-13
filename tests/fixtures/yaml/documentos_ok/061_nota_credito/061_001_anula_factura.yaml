@@ -31,6 +31,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 033_factura_afecta/033_001_simple
   ExpectedValues:
     Encabezado:
       Totales:

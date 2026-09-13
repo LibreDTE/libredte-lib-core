@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 61
-    Folio: 1
+    Folio: 2
   Emisor:
     RUTEmisor: 76192083-9
     RznSoc: SASCO SpA
@@ -31,7 +31,7 @@ Detalle:
   PrcItem: false
 Referencia:
 - TpoDocRef: 33
-  FolioRef: 1
+  FolioRef: 10
   FchRef: '2016-01-01'
   # CodRef: Debe de ser siempre 2, ya que corresponde a
   #         'Corrige Texto Documento de Referencia'.
@@ -40,6 +40,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 033_factura_afecta/033_010_pago_contado
   ExpectedValues:
     Encabezado:
       Totales:

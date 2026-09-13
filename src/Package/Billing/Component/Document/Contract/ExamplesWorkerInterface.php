@@ -39,7 +39,15 @@ interface ExamplesWorkerInterface extends WorkerInterface
      * categoría (nombre de la carpeta del ejemplo) y el caso (nombre del
      * archivo del ejemplo, sin extensión).
      *
+     * El orden entregado garantiza que todo ejemplo aparece después de los
+     * ejemplos de los que depende (ej. una Nota de Crédito que anula una
+     * Factura aparece después de esa Factura) — un consumidor que arme cada
+     * ejemplo secuencialmente, en el orden recibido, siempre podrá resolver
+     * esas referencias contra ejemplos ya procesados.
+     *
      * @return array<int, array{id: string, category: string, case: string}>
+     * @throws ExamplesException Si algún ejemplo declara una dependencia
+     * circular o hacia un ejemplo inexistente.
      */
     public function list(): array;
 

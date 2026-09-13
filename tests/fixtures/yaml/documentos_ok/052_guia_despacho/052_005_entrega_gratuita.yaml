@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 52
-    Folio: 1
+    Folio: 5
     TipoDespacho: 1
     # IndTraslado: Código 4 indica entrega gratuita. - Largo máx: 1 - Tipo: NÚM.
     IndTraslado: 4
@@ -13,10 +13,10 @@ Encabezado:
     DirOrigen: Santa Cruz
     CmnaOrigen: Santa Cruz
   Receptor:
-    RUTRecep: 1234567-4
-    RznSocRecep: Venta al por menor de muebles
-    GiroRecep: Antonio Rosales
-    DirRecep: Calle 423
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
     CmnaRecep: Santiago
   Transporte:
     Patente: ABCD12

@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 33
-    Folio: 1
+    Folio: 7
     # FmaPago: Forma de pago - Largo máx: 1 - Tipo: NÚM.
     FmaPago: 1
     # TermPagoCdg: Términos del Pago/glosa. Describe las condiciones del pago

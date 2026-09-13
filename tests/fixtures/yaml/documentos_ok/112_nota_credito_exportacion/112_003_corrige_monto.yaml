@@ -1,7 +1,7 @@
 Encabezado:
   IdDoc:
     TipoDTE: 112
-    Folio: 1
+    Folio: 3
     IndServicio: 4
   Emisor:
     RUTEmisor: 76192083-9
@@ -33,7 +33,7 @@ Referencia:
 - TpoDocRef: 813
   FolioRef: E12345
 - TpoDocRef: 110
-  FolioRef: 1
+  FolioRef: 3
   FchRef: '2016-01-01'
   # CodRef: Debe de ser siempre 3, ya que corresponde a 'Corrige montos'.
   CodRef: 3
@@ -41,6 +41,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 110_factura_exportacion/110_003_transporte_terrestre_internacional
   ExpectedValues:
     Encabezado:
       Totales:

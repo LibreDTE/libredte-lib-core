@@ -44,6 +44,8 @@ Referencia:
 
 # Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
 Test:
+  DependsOn:
+  - 110_factura_exportacion/110_001_hotel
   ExpectedValues:
     Encabezado:
       Totales:
