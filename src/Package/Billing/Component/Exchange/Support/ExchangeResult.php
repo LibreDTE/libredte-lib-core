@@ -49,9 +49,13 @@ class ExchangeResult implements ExchangeResultInterface
     /**
      * Listado de resultados de las estrategias que procesaron el sobre.
      *
+     * Puede quedar vacío: por ejemplo, `ImapReceiverStrategy` crea un
+     * `ExchangeResult` por cada sobre recibido sin llamar a `addStatus()`,
+     * pues la recepción en sí no produce un estado de una estrategia.
+     *
      * @var array<string, ExchangeStatusInterface>
      */
-    private array $statuses;
+    private array $statuses = [];
 
     /**
      * Metadatos del resultado.
