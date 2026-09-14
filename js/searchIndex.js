@@ -1741,6 +1741,11 @@ Search.appendIndex(
             "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020de\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_create"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003AcreateMany\u0028\u0029",
+            "name": "createMany",
+            "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020varias\u0020bolsas\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_createMany"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",
             "summary": "Normaliza\u0020un\u0020sobre\u0020con\u0020datos\u0020de\u0020los\u0020documentos\u0020tributarios\u0020transferidos.",
@@ -5025,6 +5030,11 @@ Search.appendIndex(
             "name": "create",
             "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020la\u0020bolsa\u0020de\u0020un\u0020documento\u0020tributario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_create"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003AcreateMany\u0028\u0029",
+            "name": "createMany",
+            "summary": "Crea\u0020un\u0020sobre\u0020con\u0020los\u0020datos\u0020de\u0020varias\u0020bolsas\u0020de\u0020documentos\u0020tributarios.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_createMany"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003Anormalize\u0028\u0029",
             "name": "normalize",

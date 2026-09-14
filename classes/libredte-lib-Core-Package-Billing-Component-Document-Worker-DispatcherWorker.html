@@ -255,6 +255,13 @@
 <dd>Crea un sobre con los datos de la bolsa de un documento tributario.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_createMany">createMany()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a>    </span>
+</dt>
+<dd>Crea un sobre con los datos de varias bolsas de documentos tributarios.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_loadXml">loadXml()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a>    </span>
@@ -635,6 +642,77 @@ bolsa.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_createMany">
+        createMany()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_createMany" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">102</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Crea un sobre con los datos de varias bolsas de documentos tributarios.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">createMany</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bags</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bags</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsas con los datos de los
+documentos a partir de los cuales se arma el sobre.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_createMany_attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_createMany_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bags&#039; =&gt; [&#039;example&#039; =&gt; [[&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;autorizacion_dte&#039; =&gt; [&#039;fecha_resolucion&#039; =&gt; &#039;2014-08-22&#039;, &#039;numero_resolucion&#039; =&gt; 80]]]]]]
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El sobre construido a partir de las
+bolsas.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_loadXml">
         loadXml()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_loadXml" class="headerlink"><i class="fas fa-link"></i></a>
@@ -643,7 +721,7 @@ bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 
@@ -713,7 +791,7 @@ XML.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -762,7 +840,7 @@ XML.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -832,7 +910,7 @@ XML.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 
     </aside>
 
@@ -903,7 +981,7 @@ esquema XSD.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
@@ -974,7 +1052,7 @@ validar cada firma electrónica encontrada en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">349</span>
 
     </aside>
 
@@ -1018,7 +1096,7 @@ validar cada firma electrónica encontrada en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">228</span>
+    <span class="phpdocumentor-element-found-in__line">277</span>
 
     </aside>
 
@@ -1064,7 +1142,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">247</span>
+    <span class="phpdocumentor-element-found-in__line">296</span>
 
     </aside>
 
@@ -1108,7 +1186,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">276</span>
+    <span class="phpdocumentor-element-found-in__line">325</span>
 
     </aside>
 
@@ -1152,7 +1230,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">288</span>
+    <span class="phpdocumentor-element-found-in__line">337</span>
 
     </aside>
 
@@ -1196,7 +1274,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">408</span>
+    <span class="phpdocumentor-element-found-in__line">473</span>
 
     </aside>
 
@@ -1240,7 +1318,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">346</span>
+    <span class="phpdocumentor-element-found-in__line">411</span>
 
     </aside>
 
@@ -1284,7 +1362,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">429</span>
+    <span class="phpdocumentor-element-found-in__line">494</span>
 
     </aside>
 
@@ -1339,7 +1417,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">206</span>
+    <span class="phpdocumentor-element-found-in__line">255</span>
 
     </aside>
 
@@ -1388,7 +1466,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">460</span>
+    <span class="phpdocumentor-element-found-in__line">525</span>
 
     </aside>
 
@@ -1452,6 +1530,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_create">create()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_createMany">createMany()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_loadXml">loadXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_normalize">normalize()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_validate">validate()</a></li>

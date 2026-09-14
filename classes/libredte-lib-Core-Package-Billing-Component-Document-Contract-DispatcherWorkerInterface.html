@@ -185,6 +185,13 @@
 <dd>Crea un sobre con los datos de la bolsa de un documento tributario.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_createMany">createMany()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a>    </span>
+</dt>
+<dd>Crea un sobre con los datos de varias bolsas de documentos tributarios.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_loadXml">loadXml()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a>    </span>
@@ -322,6 +329,92 @@ bolsa.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_createMany">
+        createMany()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_createMany" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">74</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Crea un sobre con los datos de varias bolsas de documentos tributarios.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">createMany</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bags</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Todas las bolsas deben ser del mismo emisor — el certificado del sobre
+se toma de la primera bolsa, igual que asume <code class="prettyprint">ensureEmisor()</code> con el
+emisor.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$bags</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Bolsas con los datos de los
+documentos a partir de los cuales se arma el sobre.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_createMany_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_createMany_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DispatcherException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException">DispatcherException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si <code class="prettyprint">$bags</code> viene vacío, si se agregan más
+tipos de documentos de los permitidos en el sobre, o si el certificado
+digital no está vigente al momento de firmar.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentBagManagerException">DocumentBagManagerException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si no se determina un tipo de
+documento tributario válido para el documento de alguna bolsa.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelopeInterface">DocumentEnvelopeInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El sobre construido a partir de las
+bolsas.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_loadXml">
         loadXml()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_loadXml" class="headerlink"><i class="fas fa-link"></i></a>
@@ -330,7 +423,7 @@ bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -410,7 +503,7 @@ XML.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -462,7 +555,7 @@ sea el contenido del sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -532,7 +625,7 @@ sea el contenido del sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -605,7 +698,7 @@ esquema XSD.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php"><a href="files/src-package-billing-component-document-contract-dispatcherworkerinterface.html"><abbr title="src/Package/Billing/Component/Document/Contract/DispatcherWorkerInterface.php">DispatcherWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -697,6 +790,7 @@ validar cada firma electrónica encontrada en el sobre.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_create">create()</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_createMany">createMany()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_loadXml">loadXml()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_normalize">normalize()</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_validate">validate()</a></li>
