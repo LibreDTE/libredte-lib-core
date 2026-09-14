@@ -72,9 +72,13 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): void {
         // Un XmlDocumentInterface se trata igual que un string: se extrae su
-        // XML y se procesa por la misma vía.
+        // XML y se procesa por la misma vía. Se usa saveXml() (con cabecera
+        // y encoding declarado) y no getXml() (sin cabecera, pensado para
+        // embeber el documento dentro de otro XML): sin la cabecera, un XML
+        // con caracteres no ASCII (ISO-8859-1) se reinterpreta como UTF-8 al
+        // volver a parsearlo más abajo y falla con XmlParseException.
         if ($source instanceof XmlDocumentInterface) {
-            $source = $source->getXml();
+            $source = $source->saveXml();
         }
 
         if (is_string($source)) {
