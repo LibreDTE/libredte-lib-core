@@ -55,6 +55,25 @@ interface DispatcherWorkerInterface extends WorkerInterface
     public function create(DocumentBagInterface $bag): DocumentEnvelopeInterface;
 
     /**
+     * Crea un sobre con los datos de varias bolsas de documentos tributarios.
+     *
+     * Todas las bolsas deben ser del mismo emisor — el certificado del sobre
+     * se toma de la primera bolsa, igual que asume `ensureEmisor()` con el
+     * emisor.
+     *
+     * @param DocumentBagInterface[] $bags Bolsas con los datos de los
+     * documentos a partir de los cuales se arma el sobre.
+     * @return DocumentEnvelopeInterface El sobre construido a partir de las
+     * bolsas.
+     * @throws DispatcherException Si `$bags` viene vacío, si se agregan más
+     * tipos de documentos de los permitidos en el sobre, o si el certificado
+     * digital no está vigente al momento de firmar.
+     * @throws DocumentBagManagerException Si no se determina un tipo de
+     * documento tributario válido para el documento de alguna bolsa.
+     */
+    public function createMany(array $bags): DocumentEnvelopeInterface;
+
+    /**
      * Normaliza un sobre con datos de los documentos tributarios transferidos.
      *
      * Se completará el contenido que falte con lo que se pueda completar según

@@ -821,6 +821,11 @@ class DocumentBag implements DocumentBagInterface
             'document_id' => $this->document?->getId(),
             'document_xml' => $this->document?->saveXml(),
             'options' => $this->getOptions()->all(),
+            'certificate' => $this->certificate?->toArray(),
+            'emisor' => $this->emisor?->toArray(),
+            'receptor' => $this->receptor?->toArray(),
+            'caf' => $this->caf?->toArray(),
+            'timbre' => $this->timbre,
         ];
     }
 
@@ -837,6 +842,10 @@ class DocumentBag implements DocumentBagInterface
 
         if ($array['document_xml'] !== null) {
             $array['document_xml'] = base64_encode($array['document_xml']);
+        }
+
+        if ($this->caf !== null) {
+            $array['caf'] = $this->caf->jsonSerialize();
         }
 
         return $array;

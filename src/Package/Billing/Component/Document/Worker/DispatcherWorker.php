@@ -99,6 +99,55 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bags' => [
+                'example' => [
+                    [
+                        'xmlDocument' => '',
+                        'certificate' => [
+                            'certificate' => '',
+                            'privateKey' => '',
+                        ],
+                        'emisor' => [
+                            'rut' => '76192083-9',
+                            'razon_social' => 'SASCO SpA',
+                            'autorizacion_dte' => [
+                                'fecha_resolucion' => '2014-08-22',
+                                'numero_resolucion' => 80,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    )]
+    public function createMany(array $bags): DocumentEnvelopeInterface
+    {
+        if ($bags === []) {
+            throw new DispatcherException(
+                'Se debe indicar al menos un documento para crear el sobre.'
+            );
+        }
+
+        foreach ($bags as $bag) {
+            $this->documentBagManagerWorker->normalize($bag, true);
+        }
+
+        $envelope = new DocumentEnvelope();
+        foreach ($bags as $bag) {
+            $envelope->addDocument($bag);
+        }
+        $envelope->setCertificate($bags[0]->getCertificate());
+
+        $this->normalize($envelope);
+
+        return $envelope;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function normalize(
         DocumentEnvelopeInterface $envelope
     ): DocumentEnvelopeInterface {
@@ -299,10 +348,26 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
     protected function ensureCaratula(DocumentEnvelopeInterface $envelope): void
     {
-        // Verificar si es necesario, y se puede, asignar.
+        // Ya está asignada, no hay nada que hacer.
+        if ($envelope->getCaratula()) {
+            return;
+        }
+
+        // Si el sobre ya tiene un XML propio (se cargó desde un XML existente
+        // en vez de armarse desde cero) su carátula se lee directamente desde
+        // ese XML en lugar de reconstruirla.
+        if ($envelope->getXmlDocument()) {
+            $caratula = $envelope->getXmlDocument()->query('//Caratula');
+            if ($caratula !== null) {
+                $envelope->setCaratula($caratula);
+            }
+
+            return;
+        }
+
+        // Verificar si es necesario, y se puede, construir la carátula.
         if (
-            $envelope->getCaratula()
-            || !$envelope->getDocuments()
+            !$envelope->getDocuments()
             || !$envelope->getEmisor()
             || !$envelope->getEmisor()->getAutorizacionDte()
             || !$envelope->getMandatario()

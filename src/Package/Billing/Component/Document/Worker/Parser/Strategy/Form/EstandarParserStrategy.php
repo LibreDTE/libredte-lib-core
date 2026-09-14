@@ -256,7 +256,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ? $data['FmaPago']
                         : false
                     ,
-                    'FchCancel' => $data['FchVenc'] < $data['FchEmis']
+                    'FchCancel' => (
+                        !empty($data['FchVenc'])
+                        && $data['FchVenc'] < $data['FchEmis']
+                    )
                         ? $data['FchVenc']
                         : false
                     ,
@@ -288,7 +291,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ? $data['TermPagoGlosa']
                         : false
                     ,
-                    'FchVenc' => $data['FchVenc'] > $data['FchEmis']
+                    'FchVenc' => (
+                        !empty($data['FchVenc'])
+                        && $data['FchVenc'] > $data['FchEmis']
+                    )
                         ? $data['FchVenc']
                         : false
                     ,
@@ -317,7 +323,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         : false
                     ,
                     'Acteco' => $data['Acteco'],
-                    'CdgSIISucur' => $data['CdgSIISucur']
+                    'CdgSIISucur' => !empty($data['CdgSIISucur'])
                         ? $data['CdgSIISucur']
                         : false
                     ,
@@ -329,7 +335,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ? $data['CmnaOrigen']
                         : false
                     ,
-                    'CdgVendedor' => $data['CdgVendedor']
+                    'CdgVendedor' => !empty($data['CdgVendedor'])
                         ? $data['CdgVendedor']
                         : false
                     ,
@@ -404,13 +410,14 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
     {
         // Agregar pagos programados si es venta a crédito y no es boleta.
         if (
-            $data['FmaPago'] == 2
+            !empty($data['FmaPago'])
+            && $data['FmaPago'] == 2
             && !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [39, 41])
         ) {
             // Si no hay pagos explícitos se copia la fecha de vencimiento y el
             // monto total se determinará en el proceso de normalización
             if (empty($data['FchPago'])) {
-                if ($data['FchVenc'] > $data['FchEmis']) {
+                if (!empty($data['FchVenc']) && $data['FchVenc'] > $data['FchEmis']) {
                     $dte['Encabezado']['IdDoc']['MntPagos'] = [
                         'FchPago' => $data['FchVenc'],
                         'GlosaPagos' => 'Fecha de pago igual al vencimiento',
@@ -424,7 +431,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 for ($i = 0; $i < $n_pagos; $i++) {
                     $dte['Encabezado']['IdDoc']['MntPagos'][] = [
                         'FchPago' => $data['FchPago'][$i],
-                        'MntPago' => $data['MntPago'][$i],
+                        'MntPago' => $data['MntPago'][$i] ?? false,
                         'GlosaPagos' => !empty($data['GlosaPagos'][$i])
                             ? $data['GlosaPagos'][$i]
                             : false,
@@ -460,7 +467,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Si no hay información relevante de transporte se retorna.
-        $dte['Encabezado']['IdDoc']['IndTraslado'] = $data['IndTraslado'];
+        $dte['Encabezado']['IdDoc']['IndTraslado'] = $data['IndTraslado'] ?? false;
         if (!(
             !empty($data['Patente'])
             || !empty($data['RUTTrans'])
@@ -595,7 +602,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 $data['Nacionalidad']
             ;
         }
-        $dte['Encabezado']['Totales']['TpoMoneda'] = $data['TpoMoneda'];
+        $dte['Encabezado']['Totales']['TpoMoneda'] = $data['TpoMoneda'] ?? false;
         if (!empty($data['TpoCambio'])) {
             $dte['Encabezado']['OtraMoneda'] = [
                 'TpoMoneda' => 'PESO CL',

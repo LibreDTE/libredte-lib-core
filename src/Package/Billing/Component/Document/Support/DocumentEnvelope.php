@@ -373,6 +373,11 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         return [
             'tag' => $this->getTipoSobre()->getTagXml(),
             'xml' => $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml(),
+            'documents' => array_map(
+                fn (DocumentBagInterface $document) => $document->toArray(),
+                $this->documents ?? []
+            ),
+            'caratula' => $this->caratula,
         ];
     }
 
@@ -383,6 +388,10 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     {
         $array = $this->toArray();
         $array['xml'] = base64_encode($array['xml']);
+        $array['documents'] = array_map(
+            fn (DocumentBagInterface $document) => $document->jsonSerialize(),
+            $this->documents ?? []
+        );
 
         return $array;
     }
