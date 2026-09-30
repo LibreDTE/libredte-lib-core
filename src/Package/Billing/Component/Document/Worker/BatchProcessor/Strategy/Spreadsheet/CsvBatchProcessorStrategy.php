@@ -695,13 +695,13 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
                 10
             );
         }
-        if ($transporte[2] && !$transporte[3]) {
-            throw new BatchProcessorException('Falta nombre del chofer.');
-        }
-        if ($transporte[3] && !$transporte[2]) {
-            throw new BatchProcessorException('Falta RUT del chofer.');
-        }
-        if ($transporte[2] && $transporte[3]) {
+        if ($transporte[2] || $transporte[3]) {
+            if (!$transporte[2]) {
+                throw new BatchProcessorException('Falta RUT del chofer.');
+            }
+            if (!$transporte[3]) {
+                throw new BatchProcessorException('Falta nombre del chofer.');
+            }
             $documento['Encabezado']['Transporte']['Chofer']['RUTChofer'] =
                 mb_substr(
                     str_replace('.', '', trim($transporte[2])),
