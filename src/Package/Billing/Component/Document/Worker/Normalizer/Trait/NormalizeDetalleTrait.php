@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerException;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
 /**
@@ -90,6 +91,16 @@ trait NormalizeDetalleTrait
             // Normalizar.
             if ($bag->getTipoDocumento()->isExportacion()) {
                 $d['IndExe'] = 1;
+            }
+            if (
+                !empty($d['IndExe'])
+                && !in_array((int) $d['IndExe'], [1, 2], true)
+            ) {
+                throw new NormalizerException(sprintf(
+                    'El ítem %d tiene IndExe = %s, que no está soportado (solo se soportan 1 y 2).',
+                    $d['NroLinDet'],
+                    $d['IndExe']
+                ));
             }
             if (is_array($d['CdgItem'])) {
                 $d['CdgItem'] = array_merge([
