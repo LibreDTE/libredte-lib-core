@@ -26,19 +26,33 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
+use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
  * Interfaz para el contenedor de varios documentos que se procesarán en lote.
  */
-interface DocumentBatchInterface extends OptionsAwareInterface
+interface DocumentBatchInterface extends OptionsAwareInterface, JsonSerializable
 {
     /**
-     * Entrega la ruta del archivo con documentos que se debe procesar.
+     * Entrega la ruta del archivo con los documentos que se deben procesar.
+     *
+     * @return string|null Ruta del archivo, o `null` si el lote se creó a
+     * partir del contenido.
+     */
+    public function getInputFile(): ?string;
+
+    /**
+     * Entrega el contenido con los documentos que se deben procesar.
+     *
+     * Si el lote se creó a partir de un archivo, el contenido se lee la primera
+     * vez que se solicita.
      *
      * @return string
+     * @throws BatchProcessorException Si no es posible leer el archivo.
      */
-    public function getFile(): string;
+    public function getInputData(): string;
 
     /**
      * Asigna el emisor del documento.
@@ -91,4 +105,11 @@ interface DocumentBatchInterface extends OptionsAwareInterface
      * @return array Opciones del batch processor.
      */
     public function getBatchProcessorOptions(): array;
+
+    /**
+     * Convierte el lote a un array.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

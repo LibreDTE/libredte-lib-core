@@ -386,6 +386,17 @@ class EmisionMasivaTest extends TestCase
         $this->assertSame(100, mb_strlen($nombre));
     }
 
+    public function testLoteComoContenidoEntregaLosMismosDocumentos(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
+        $batch = new DocumentBatch(inputData: file_get_contents($file));
+
+        $documentsBag = $this->processBatch($batch);
+
+        $this->assertCount(1, $documentsBag);
+        $this->assertNull($batch->getInputFile());
+    }
+
     /**
      * Procesa un archivo de emisión masiva con un emisor y un certificado de
      * pruebas.
@@ -393,6 +404,17 @@ class EmisionMasivaTest extends TestCase
      * @return array Bolsas con los documentos generados.
      */
     private function processFile(string $file): array
+    {
+        return $this->processBatch(new DocumentBatch(inputFile: $file));
+    }
+
+    /**
+     * Procesa un lote de emisión masiva con un emisor y un certificado de
+     * pruebas.
+     *
+     * @return array Bolsas con los documentos generados.
+     */
+    private function processBatch(DocumentBatch $batch): array
     {
         $emisor = new Emisor(
             rut: 76192083,
@@ -407,7 +429,6 @@ class EmisionMasivaTest extends TestCase
         $certificateFaker = new CertificateFaker(new CertificateLoader());
         $certificate = $certificateFaker->createFake(id: $emisor->getRUT());
 
-        $batch = new DocumentBatch($file);
         $batch->setEmisor($emisor);
         $batch->setCertificate($certificate);
 
@@ -417,6 +438,7 @@ class EmisionMasivaTest extends TestCase
             ->getDocumentComponent()
             ->getBatchProcessorWorker()
             ->process($batch)
+            ->getDocumentBags()
         ;
     }
 }

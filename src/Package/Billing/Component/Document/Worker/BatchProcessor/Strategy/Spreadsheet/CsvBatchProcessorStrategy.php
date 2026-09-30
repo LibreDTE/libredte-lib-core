@@ -37,8 +37,10 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
 /**
  * Estrategia "billing.document.batch_processor.strategy:spreadsheet.csv".
  *
- * Procesa en lote los documentos tributarios de un archivo CSV con el formato
- * estándar de LibreDTE.
+ * Parsea un lote de documentos tributarios entregado como CSV con el formato
+ * estándar de LibreDTE. Genera el listado de los documentos en la estructura
+ * oficial del SII; no los construye, eso se hace después, uno a uno, al
+ * procesar el lote.
  *
  * Formato del archivo:
  *
@@ -161,10 +163,10 @@ class CsvBatchProcessorStrategy extends AbstractStrategy implements BatchProcess
     /**
      * {@inheritDoc}
      */
-    public function load(DocumentBatchInterface $batch): array
+    public function parse(DocumentBatchInterface $batch): array
     {
-        // Cargar archivo CSV y obtener los datos.
-        $data = Csv::read($batch->getFile());
+        // Cargar el contenido CSV y obtener los datos.
+        $data = Csv::load($batch->getInputData());
         $n_data = count($data);
         $documentos = [];
         $documento = [];

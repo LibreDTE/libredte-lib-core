@@ -34,11 +34,24 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
 interface BatchProcessorWorkerInterface extends WorkerInterface, StrategiesAwareInterface
 {
     /**
-     * Procesa masivamente documentos tributarios electrónicos.
+     * Parsea los datos de entrada del lote, con la estrategia solicitada.
      *
      * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
-     * @return DocumentBagInterface[]
+     * @return DocumentBatchInterface Contenedor del lote con los datos de cada
+     * documento parseado.
      * @throws BatchProcessorException
      */
-    public function process(DocumentBatchInterface $batch): array;
+    public function parse(DocumentBatchInterface $batch): DocumentBatchInterface;
+
+    /**
+     * Procesa masivamente documentos tributarios electrónicos.
+     *
+     * Parsea los datos de entrada del lote, con la estrategia solicitada, y con
+     * el listado de documentos resultante crea cada documento.
+     *
+     * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
+     * @return DocumentBatchInterface
+     * @throws BatchProcessorException
+     */
+    public function process(DocumentBatchInterface $batch): DocumentBatchInterface;
 }

@@ -29,15 +29,21 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
 
 /**
  * Interfaz para las estrategias de los procesadores de documentos en lote.
+ *
+ * Las estrategias son parsers: reciben el lote con los datos de entrada (un
+ * archivo CSV, una planilla, etc.) y generan el listado de los documentos
+ * tributarios en la estructura oficial del SII. No construyen los documentos,
+ * eso se hace después, uno a uno, al procesar el lote.
  */
 interface BatchProcessorStrategyInterface extends StrategyInterface
 {
     /**
-     * Carga los datos de los documentos tributarios electrónicos del lote.
+     * Parsea los datos de entrada del lote y genera los datos de los
+     * documentos tributarios electrónicos.
      *
-     * @param DocumentBatchInterface $batch Contenedor del lote a procesar.
-     * @return array Arreglo con los datos de los documentos cargados.
+     * @param DocumentBatchInterface $batch Contenedor del lote a parsear.
+     * @return array Arreglo con los datos de cada documento parseado.
      * @throws BatchProcessorException
      */
-    public function load(DocumentBatchInterface $batch): array;
+    public function parse(DocumentBatchInterface $batch): array;
 }

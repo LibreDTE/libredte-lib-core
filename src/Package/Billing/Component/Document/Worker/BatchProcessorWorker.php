@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
@@ -41,6 +42,11 @@ use Throwable;
 
 /**
  * Clase para los procesadores de documentos en lote.
+ *
+ * Las estrategias (`BatchProcessorStrategyInterface`) son parsers: transforman
+ * los datos de entrada del lote (un CSV, una planilla, etc.) en el listado de
+ * documentos tributarios. El worker toma ese listado y crea los documentos, uno
+ * a uno.
  */
 #[Worker(name: 'batch_processor', component: 'document', package: 'billing')]
 class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorkerInterface
@@ -94,18 +100,30 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * {@inheritDoc}
      */
-    public function process(DocumentBatchInterface $batch): array
+    #[Operation(
+        parameters: [
+            'batch' => [
+                'example' => [
+                    'emisor' => [
+                        'rut' => '76192083-9',
+                        'razon_social' => 'SASCO SpA',
+                    ],
+                    'inputData' => '...',
+                    'options' => [
+                        'strategy' => 'spreadsheet.csv',
+                        'complete' => true,
+                    ],
+                ],
+            ],
+        ],
+    )]
+    public function parse(DocumentBatchInterface $batch): DocumentBatchInterface
     {
         $emisor = $batch->getEmisor();
         $options = $this->resolveOptions($batch->getOptions());
 
-        // Cargar documentos desde el archivo.
-        $parsedDocuments = $this->loadDocumentsFromFile($batch);
-
-        // Manager de folios y seguimiento del último folio por tipo de
-        // documento, para este lote.
-        $cafManager = new CafManager();
-        $lastFolios = [];
+        // Parsear los datos de entrada del lote para obtener los documentos.
+        $parsedDocuments = $this->parseDocuments($batch);
 
         // Crear la bolsa de cada documento.
         $documentBags = [];
@@ -124,6 +142,37 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             // Asignar documento parseado desde el archivo masivo.
             $documentBag->setParsedData($parsedData);
 
+            // Agregar la bolsa al listado de bolsas que se generaron a partir
+            // del archivo de emisión masiva.
+            $documentBags[] = $documentBag;
+        }
+
+        // Asignar bolsas con los documentos al lote procesado.
+        $batch->setDocumentBags($documentBags);
+
+        // Entregar el lote con las bolsas de documentos.
+        return $batch;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function process(DocumentBatchInterface $batch): DocumentBatchInterface
+    {
+        $emisor = $batch->getEmisor();
+        $options = $this->resolveOptions($batch->getOptions());
+
+        // Parsear los datos de entrada del lote. Con esto el lote queda con la
+        // bolsa de cada documento, con sus datos parseados.
+        $this->parse($batch);
+
+        // Manager de folios y seguimiento del último folio por tipo de
+        // documento, para este lote.
+        $cafManager = new CafManager();
+        $lastFolios = [];
+
+        // Crear el documento de cada bolsa.
+        foreach ($batch->getDocumentBags() as $documentBag) {
             // Normalizar lo básico de la bolsa del documento.
             // Esto es para poder tener el tipo de documento de los datos
             // parseados.
@@ -165,27 +214,20 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
 
             // Construir el documento a partir de los datos de la bolsa.
             $this->builderWorker->build($documentBag);
-
-            // Agregar la bolsa al listado de bolsas que se generaron a partir
-            // del archivo de emisión masiva.
-            $documentBags[] = $documentBag;
         }
 
-        // Asignar bolsas con los documentos al lote procesado.
-        $batch->setDocumentBags($documentBags);
-
-        // Entregar las bolsas de documentos.
-        return $documentBags;
+        // Entregar el lote con las bolsas de documentos.
+        return $batch;
     }
 
     /**
-     * Carga los documentos desde el archivo según la estrategia de
-     * procesamiento en lote que se haya solicitado.
+     * Parsea los datos de entrada del lote, con la estrategia que se haya
+     * solicitado, y entrega los datos de los documentos que se deben crear.
      *
      * @param DocumentBatchInterface $batch
      * @return array
      */
-    private function loadDocumentsFromFile(DocumentBatchInterface $batch): array
+    private function parseDocuments(DocumentBatchInterface $batch): array
     {
         $options = $this->resolveOptions($batch->getBatchProcessorOptions());
         $strategy = $this->getStrategy($options->get('strategy'));
@@ -193,7 +235,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         assert($strategy instanceof BatchProcessorStrategyInterface);
 
         try {
-            $documents = $strategy->load($batch);
+            $documents = $strategy->parse($batch);
         } catch (Throwable $e) {
             throw new BatchProcessorException(
                 message: $e->getMessage(),
@@ -216,6 +258,11 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         array $data
     ): array {
         $emisor = $batch->getEmisor();
+
+        // Sin emisor en el lote no hay datos con los que completar.
+        if ($emisor === null) {
+            return $data;
+        }
 
         $data['Encabezado']['Emisor']['RUTEmisor'] =
             ($data['Encabezado']['Emisor']['RUTEmisor'] ?? false)

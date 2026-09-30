@@ -29,6 +29,7 @@ use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
@@ -84,9 +85,19 @@ class DocumentBatch implements DocumentBatchInterface
     /**
      * Ruta al archivo que contiene el lote de documentos que se deben procesar.
      *
-     * @var string
+     * @var string|null
      */
-    private string $file;
+    private ?string $inputFile;
+
+    /**
+     * Contenido con el lote de documentos que se deben procesar.
+     *
+     * Si el lote se creó a partir de un archivo, se lee la primera vez que se
+     * solicita.
+     *
+     * @var string|null
+     */
+    private ?string $inputData;
 
     /**
      * Emisor del documento tributario.
@@ -100,7 +111,7 @@ class DocumentBatch implements DocumentBatchInterface
      *
      * @var CertificateInterface|null
      */
-    private ?CertificateInterface $certificate;
+    private ?CertificateInterface $certificate = null;
 
     /**
      * Listado de bolsas con los documentos procesados.
@@ -112,23 +123,62 @@ class DocumentBatch implements DocumentBatchInterface
     /**
      * Constructor del lote.
      *
-     * @param string $file
+     * Se debe indicar el contenido del lote (`inputData`) o la ruta del archivo
+     * que lo contiene (`inputFile`), pero no ambos.
+     *
+     * @param string|null $inputData Contenido con los documentos.
+     * @param string|null $inputFile Ruta al archivo con los documentos.
      * @param array|OptionsInterface|null $options
+     * @throws BatchProcessorException Si no se indica ninguno de los dos orígenes
+     * o se indican ambos.
      */
     public function __construct(
-        string $file,
+        ?string $inputData = null,
+        ?string $inputFile = null,
         array|OptionsInterface|null $options = []
     ) {
-        $this->file = $file;
-        $this->setOptions($options);
+        if ($inputData === null && $inputFile === null) {
+            throw new BatchProcessorException(
+                'Se debe indicar el contenido (inputData) o la ruta (inputFile) del lote.'
+            );
+        }
+        if ($inputData !== null && $inputFile !== null) {
+            throw new BatchProcessorException(
+                'Se debe indicar solo uno: el contenido (inputData) o la ruta (inputFile) del lote.'
+            );
+        }
+
+        $this->inputData = $inputData;
+        $this->inputFile = $inputFile;
+        $this->setOptions($options ?? []);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFile(): string
+    public function getInputFile(): ?string
     {
-        return $this->file;
+        return $this->inputFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputData(): string
+    {
+        if ($this->inputData === null) {
+            $file = (string) $this->inputFile;
+            $data = is_readable($file) ? file_get_contents($file) : false;
+            if ($data === false) {
+                throw new BatchProcessorException(
+                    sprintf('No fue posible leer el archivo %s.', $file),
+                    documentBatch: $this
+                );
+            }
+            $this->inputData = $data;
+        }
+
+        return $this->inputData;
     }
 
     /**
@@ -191,5 +241,27 @@ class DocumentBatch implements DocumentBatchInterface
     public function getBatchProcessorOptions(): array
     {
         return $this->getOptions()->get('batch_processor')->all();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'document_bags' => $this->getDocumentBags(),
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize(): array
+    {
+        $data = $this->toArray();
+
+        $data['document_bags'] = array_map(fn (DocumentBagInterface $bag) => $bag->jsonSerialize(), $data['document_bags']);
+
+        return $data;
     }
 }
