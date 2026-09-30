@@ -104,6 +104,11 @@
     "52_002_traslado_interno": {
         "MntTotal": 0
     },
+    "52_003_traslado_completo": {
+        "MntNeto": 31500,
+        "IVA": 5985,
+        "MntTotal": 37485
+    },
     "56_001_anula_nota_credito": {
         "MntNeto": 31500,
         "IVA": 5985,

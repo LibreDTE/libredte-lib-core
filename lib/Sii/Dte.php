@@ -1728,19 +1728,23 @@ class Dte
      * Método que normaliza los datos de transporte
      * @param datos Arreglo con los datos del documento que se desean normalizar
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2017-09-01
+     * @version 2026-09-30
      */
     private function normalizar_transporte(array &$datos)
     {
         if (!empty($datos['Encabezado']['Transporte'])) {
             $datos['Encabezado']['Transporte'] = array_merge([
                 'Patente' => false,
+                'PatenteCarro' => false,
                 'RUTTrans' => false,
                 'Chofer' => false,
                 'DirDest' => false,
                 'CmnaDest' => false,
                 'CiudadDest' => false,
                 'Aduana' => false,
+                'FchSalida' => false,
+                'HraSalida' => false,
+                'FchLlegada' => false,
             ], $datos['Encabezado']['Transporte']);
         }
     }

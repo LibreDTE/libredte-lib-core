@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--Esquema para documentos DTE.
-Fecha Actualizacion:  25/05/07 15:00
-
-Se incorporan dos nuevos Tipos de datos :
-FechaType		:  Fecha entre 2000-01-01 y 2050-12-31
-FechaHoraType :  FechaType + hora entre 00:00 y 23:59
-
-Fecha Actualizacion:  19-12-2007 16:21
-
-Totales Exportacion : acepta minimo 0 (incluye detalle)
-
-Fecha Actualizacion:  30-05-2011 12:00
-
-Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
-			   para que sea dato de largo 1
-
-  -->
-<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SiiDte="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!--Esquema para DTE
+Fecha Actualizacion:  06/02/2026
+-->
+<xs:schema xmlns:SiiDte="http://www.sii.cl/SiiDte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="SiiTypes_v10.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsignature_v10.xsd"/>
 	<xs:element name="DTE" type="SiiDte:DTEDefType"/>
@@ -364,6 +350,17 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 															<xs:documentation>Fecha de Vencimiento del Pago (AAAA-MM-DD)</xs:documentation>
 														</xs:annotation>
 													</xs:element>
+													<xs:element name="TipoFactEsp" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Tipo de Factura Especial</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:nonNegativeInteger">
+																<xs:totalDigits value="1"/>
+																<xs:enumeration value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
@@ -516,6 +513,19 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
+													<xs:element name="RUTProveedor" type="SiiDte:RUTType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>RUT del Proveedor de madera</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="RznSocProveedor" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Nombre o Razon Social del Proveedor de madera</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="SiiDte:RznSocLargaType"/>
+														</xs:simpleType>
+													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
@@ -575,6 +585,17 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 																		<xs:restriction base="xs:string">
 																			<xs:maxLength value="3"/>
 																			<xs:minLength value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TipoDocID" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Tipo de Documento del Turista</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:nonNegativeInteger">
+																			<xs:enumeration value="1"/>
+																			<xs:enumeration value="2"/>
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
@@ -663,6 +684,16 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 													<xs:element name="Patente" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>Patente del Vehiculo que Transporta los Bienes</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="8"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="PatenteCarro" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Patente de Carro o remolque</xs:documentation>
 														</xs:annotation>
 														<xs:simpleType>
 															<xs:restriction base="xs:string">
@@ -1017,8 +1048,7 @@ Descuento Recargo Global : se incorporar restricción en Tipo de Movimiento
 																</xs:element>
 																<xs:element name="CodPaisRecep" minOccurs="0">
 																	<xs:annotation>
-																		<xs:documentation>Código del país del receptor extranjero de la mercadería,
-según tabla Países aduana</xs:documentation>
+																		<xs:documentation>Código del país del receptor extranjero de la mercadería, según tabla Países aduana</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:positiveInteger">
@@ -1028,8 +1058,7 @@ según tabla Países aduana</xs:documentation>
 																</xs:element>
 																<xs:element name="CodPaisDestin" minOccurs="0">
 																	<xs:annotation>
-																		<xs:documentation>Código del país de destino extranjero de la mercadería,
-según tabla Países aduana</xs:documentation>
+																		<xs:documentation>Código del país de destino extranjero de la mercadería, según tabla Países aduana</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:positiveInteger">
@@ -1039,6 +1068,37 @@ según tabla Países aduana</xs:documentation>
 																</xs:element>
 															</xs:sequence>
 														</xs:complexType>
+													</xs:element>
+													<xs:element name="FchSalida" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Fecha de Salida</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="SiiDte:FechaType">
+																<xs:minInclusive value="2003-04-01"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="HraSalida" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Hora de Salida</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="SiiDte:HoraType">
+																<xs:minInclusive value="00:00:00"/>
+																<xs:maxInclusive value="23:59:59"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FchLlegada" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Fecha de Llegada</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="SiiDte:FechaType">
+																<xs:minInclusive value="2003-04-01"/>
+															</xs:restriction>
+														</xs:simpleType>
 													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
@@ -1110,7 +1170,7 @@ según tabla Países aduana</xs:documentation>
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
-																<xs:element name="MontoImp" type="SiiDte:MntImpType">
+																<xs:element name="MontoImp" type="SiiDte:ValorType">
 																	<xs:annotation>
 																		<xs:documentation>Monto del Impuesto o Retencion</xs:documentation>
 																	</xs:annotation>
@@ -1838,6 +1898,184 @@ según tabla Países aduana</xs:documentation>
 											<xs:simpleType>
 												<xs:restriction base="xs:string">
 													<xs:maxLength value="90"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="GeoRefEmision" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Ubicación</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LatitudEmision">
+											<xs:annotation>
+												<xs:documentation>Latitud</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LongitudEmision">
+											<xs:annotation>
+												<xs:documentation>Longitud</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SistemaReferencia">
+											<xs:annotation>
+												<xs:documentation>Sistema de Referencia</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:maxInclusive value="9"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ManejoMadera" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Manejo de la Madera</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ComunaRolOrigen">
+											<xs:annotation>
+												<xs:documentation>Comuna del Rol Predial de Origen</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MnzRolOrigen">
+											<xs:annotation>
+												<xs:documentation>Manzana del Rol Predial de Origen</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PrdRolOrigen">
+											<xs:annotation>
+												<xs:documentation>Num. Predio del Rol Predial de Origen</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ComunaRolDestino" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Comuna del Rol Predial de Destino</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MnzRolDestino" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Manzana del Rol Predial de Destino</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PrdRolDestino" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Num. Predio del Rol Predial de Destino</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="6"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CodPlanConaf">
+											<xs:annotation>
+												<xs:documentation>Código Plan de Manejo Conaf</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="40"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="AvisoEjecucionFaena" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Aviso Ejecución de Faena</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="40"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LatitudOrigenMadera">
+											<xs:annotation>
+												<xs:documentation>Latitud Origen</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LongitudOrigenMadera">
+											<xs:annotation>
+												<xs:documentation>Longitud Origen</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LatitudDestinoMadera" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Latitud Destino</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="LongitudDestinoMadera" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Longitud Destino</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="30"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SistemareferenciaMadera">
+											<xs:annotation>
+												<xs:documentation>Sistema de Referencia</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:positiveInteger">
+													<xs:totalDigits value="1"/>
 												</xs:restriction>
 											</xs:simpleType>
 										</xs:element>
@@ -3419,6 +3657,7 @@ según tabla Países aduana</xs:documentation>
 																</xs:enumeration>
 																<xs:enumeration value="4"/>
 																<xs:enumeration value="5"/>
+																<xs:enumeration value="6"/>
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
@@ -4215,8 +4454,7 @@ según tabla Países aduana</xs:documentation>
 																</xs:element>
 																<xs:element name="CodPaisRecep" minOccurs="0">
 																	<xs:annotation>
-																		<xs:documentation>Código del país del receptor extranjero de la mercadería,
-según tabla Países aduana</xs:documentation>
+																		<xs:documentation>Código del país del receptor extranjero de la mercadería, según tabla Países aduana</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:positiveInteger">
@@ -4226,8 +4464,7 @@ según tabla Países aduana</xs:documentation>
 																</xs:element>
 																<xs:element name="CodPaisDestin" minOccurs="0">
 																	<xs:annotation>
-																		<xs:documentation>Código del país de destino extranjero de la mercadería,
-según tabla Países aduana</xs:documentation>
+																		<xs:documentation>Código del país de destino extranjero de la mercadería, según tabla Países aduana</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:positiveInteger">
@@ -4297,12 +4534,12 @@ según tabla Países aduana</xs:documentation>
 															<xs:documentation>Tipo de Cambio fijado por el Banco Central de Chile</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="MntExeOtrMnda" type="xs:decimal" minOccurs="0">
+													<xs:element name="MntExeOtrMnda" type="SiiDte:Dec14_4-0Type" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>Monto Exento del DTE en Otra Moneda  </xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="MntTotOtrMnda" type="xs:decimal">
+													<xs:element name="MntTotOtrMnda" type="SiiDte:Dec14_4-0Type">
 														<xs:annotation>
 															<xs:documentation>Monto Total Otra Moneda</xs:documentation>
 														</xs:annotation>

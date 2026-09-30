@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--Esquema para tipos de datos generales.
-Fecha Actualizacion:  25/05/07 15:00
-
-Se incorporan dos nuevos Tipos de datos :
-FechaType		:  Fecha entre 2000-01-01 y 2050-12-31
-FechaHoraType :  FechaType + hora entre 00:00 y 23:59
-ImpAdicDTEType: elimina codigo 29 para DTE
-
-Fecha Actualizacion:  30/05/2011 12:00
-Se incorpora restricción en DineroPorcentajeType para que sea dato de largo 1
-
-Fecha Actualizacion:  07/05/2014 11:30
-ImpAdicDTEType	: se agregan los codigos 54 y 55 (SDI-1092)
-
-Fecha Actualizacion:  30/09/2014 11:40
-ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
-
-
+Fecha Actualizacion:  06/02/2026
 -->
-<xs:schema targetNamespace="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:ns1="http://www.sii.cl/SiiDte" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:simpleType name="DOCType">
 		<xs:annotation>
 			<xs:documentation>Todos los tipos de Documentos Tributarios Electronicos</xs:documentation>
@@ -166,11 +150,7 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 			<xs:maxLength value="18"/>
 			<xs:minLength value="1"/>
 		</xs:restriction>
-		<!-- Referencia a Documentos con Folio alfanumericos
-		<xs:restriction base="xs:nonNegativeInteger">
-			<xs:totalDigits value="10"/>
-		</xs:restriction>
--->
+		<!-- Referencia a Documentos con Folio alfanumericos 		<xs:restriction base="xs:nonNegativeInteger"> 			<xs:totalDigits value="10"/> 		</xs:restriction> -->
 	</xs:simpleType>
 	<xs:simpleType name="Dec16_2Type">
 		<xs:annotation>
@@ -191,6 +171,17 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 			<xs:totalDigits value="18"/>
 			<xs:fractionDigits value="4"/>
 			<xs:minInclusive value="0.0001"/>
+			<xs:maxInclusive value="99999999999999.9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Dec14_4-0Type">
+		<xs:annotation>
+			<xs:documentation>Monto con 14 Digitos de Cuerpo y 4 Decimales partiendo de cero</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="18"/>
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="0.0000"/>
 			<xs:maxInclusive value="99999999999999.9999"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -306,8 +297,7 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 			</xs:enumeration>
 			<xs:enumeration value="29">
 				<xs:annotation>
-					<xs:documentation>Recuperación Impuesto Específico diesel Transportistas  Para transportistas de carga
- Art 2° Ley N°19.764/2001</xs:documentation>
+					<xs:documentation>Recuperación Impuesto Específico diesel Transportistas  Para transportistas de carga  Art 2° Ley N°19.764/2001</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="30">
@@ -828,7 +818,9 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 		<xs:annotation>
 			<xs:documentation>Tipo de Transacción para el comprador</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:nonNegativeInteger">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="7"/>
 			<xs:enumeration value="1">
 				<xs:annotation>
 					<xs:documentation>Del Giro</xs:documentation>
@@ -863,6 +855,8 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 			<xs:documentation>Tipo de Transacción para el vendedor</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
 			<xs:enumeration value="1">
 				<xs:annotation>
 					<xs:documentation>Del Giro</xs:documentation>
@@ -883,6 +877,15 @@ ImpAdicDTEType	: se agregan el codigo de impuesto 271 (SDI-9342)
 					<xs:documentation>NCE MR * (solo NCE</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HoraType">
+		<xs:annotation>
+			<xs:documentation>Hora entre 00:00:00 y 23:59:59</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:time">
+			<xs:minInclusive value="00:00:00"/>
+			<xs:maxInclusive value="23:59:59"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

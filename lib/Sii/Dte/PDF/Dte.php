@@ -817,7 +817,7 @@ class Dte extends \sasco\LibreDTE\PDF
      * @param Transporte
      * @param x Posición horizontal de inicio en el PDF
      * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
-     * @version 2016-08-03
+     * @version 2026-09-30
      */
     protected function agregarTraslado($IndTraslado, array $Transporte = null, $x = 10, $offset = 22)
     {
@@ -839,6 +839,9 @@ class Dte extends \sasco\LibreDTE\PDF
                 $transporte .= ' por '.$Transporte['RUTTrans'];
             if (!empty($Transporte['Patente']))
                 $transporte .= ' en vehículo '.$Transporte['Patente'];
+            if (!empty($Transporte['PatenteCarro'])) {
+                $transporte .= (!empty($Transporte['Patente']) ? ' y' : ' en').' carro '.$Transporte['PatenteCarro'];
+            }
             if (isset($Transporte['Chofer']) and is_array($Transporte['Chofer'])) {
                 if (!empty($Transporte['Chofer']['NombreChofer'])) {
                     $transporte .= ' con chofer '.$Transporte['Chofer']['NombreChofer'];
@@ -847,12 +850,25 @@ class Dte extends \sasco\LibreDTE\PDF
                     $transporte .= ' ('.$Transporte['Chofer']['RUTChofer'].')';
                 }
             }
+            if (!empty($Transporte['FchSalida']) or !empty($Transporte['HraSalida'])) {
+                $salida = [];
+                if (!empty($Transporte['FchSalida'])) {
+                    $salida[] = date('d/m/Y', strtotime($Transporte['FchSalida']));
+                }
+                if (!empty($Transporte['HraSalida'])) {
+                    $salida[] = substr($Transporte['HraSalida'], 0, 5);
+                }
+                $transporte .= ', salida '.implode(' ', $salida);
+            }
+            if (!empty($Transporte['FchLlegada'])) {
+                $transporte .= ', llegada '.date('d/m/Y', strtotime($Transporte['FchLlegada']));
+            }
             if ($transporte) {
                 $this->setFont('', 'B', null);
                 $this->Texto('Traslado', $x);
                 $this->Texto(':', $x+$offset);
                 $this->setFont('', '', null);
-                $this->MultiTexto(ucfirst(trim($transporte)), $x+$offset+2);
+                $this->MultiTexto(ucfirst(trim($transporte, ' ,')), $x+$offset+2);
             }
         }
         // agregar información de aduana
