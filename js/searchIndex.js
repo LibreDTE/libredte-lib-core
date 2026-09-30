@@ -4796,6 +4796,11 @@ Search.appendIndex(
             "summary": "Crea\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020proporcionados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AaddGlobalDiscount\u0028\u0029",
+            "name": "addGlobalDiscount",
+            "summary": "Agrega\u0020un\u0020descuento\u0020global\u0020al\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessor\\Strategy\\Spreadsheet\\CsvBatchProcessorStrategy\u003A\u003AsetInitialDTE\u0028\u0029",
             "name": "setInitialDTE",
             "summary": "Genera\u0020la\u0020estructura\u0020inicial\u0020del\u0020DTE.",
