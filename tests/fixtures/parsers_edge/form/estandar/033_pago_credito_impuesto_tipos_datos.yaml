@@ -1,12 +1,10 @@
+# Tipos de datos de los pagos programados, la tasa del impuesto adicional y la
+# actividad económica.
 lista_precios: "0"
-Folio: ""
 TpoDoc: "33"
-FchEmis: "2025-01-20"
-FmaPago: ""
-FchVenc: "2025-01-20"
-IndServicio: ""
-PeriodoDesde: ""
-PeriodoHasta: ""
+FchEmis: "2025-01-16"
+FmaPago: "2"
+FchVenc: "2025-03-01"
 RUTEmisor: "76192083-9"
 CdgVendedor: "vl"
 CdgSIISucur: "0"
@@ -18,7 +16,7 @@ RznSocRecep: "Servicio de Impuestos Internos"
 GiroRecep: "Gobierno"
 DirRecep: "Santiago"
 CmnaRecep: "13101"
-CorreoRecep: "contacto@example.com"
+CorreoRecep: ""
 Contacto: ""
 CdgIntRecep: ""
 RUTSolicita: ""
@@ -33,29 +31,34 @@ NumId: ""
 TpoCambio: ""
 VlrCodigo: []
 NmbItem:
-  - "Prueba"
+  - "Producto"
 DscItem: []
 IndExe:
   - "0"
 QtyItem:
   - "1"
-UnmdItem:
-  - ""
+UnmdItem: []
 PrcItem:
-  - "30000"
+  - "10000"
 ValorDR:
   - "0"
 TpoValor:
   - "%"
-subtotal:
-  - "30000"
+CodImpAdic:
+  - "24"
+impuesto_adicional_tipo_24: "A"
+impuesto_adicional_tasa_24: "27"
+FchPago:
+  - "2025-02-01"
+  - "2025-03-01"
+MntPago:
+  - "5000"
+  - "5000"
+GlosaPagos:
+  - ""
+  - ""
 ValorDR_global: "0"
 TpoValor_global: "%"
-neto: "30000"
-exento: "0"
-tasa: "19"
-iva: "5700"
-total: "35700"
 TermPagoGlosa: ""
 MedioPago: ""
 BcoPago: ""
@@ -64,3 +67,19 @@ NumCtaPago: ""
 TpoTranVenta: ""
 TpoTranCompra: ""
 submit: ""
+
+Test:
+  ExpectedValues:
+    Encabezado:
+      Emisor:
+        Acteco: 726000
+      IdDoc:
+        MntPagos:
+          - FchPago: "2025-02-01"
+            MntPago: 5000
+          - FchPago: "2025-03-01"
+            MntPago: 5000
+      Totales:
+        ImptoReten:
+          - TipoImp: 24
+            TasaImp: 27.0

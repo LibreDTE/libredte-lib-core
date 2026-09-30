@@ -1,62 +1,62 @@
-lista_precios: 0
-TpoDoc: 41
-FchEmis: 2025-01-16
-FmaPago: null
-FchVenc: 2025-01-16
-RUTEmisor: 76192083
-CdgVendedor: vl
-CdgSIISucur: 0
-Acteco: 726000
-GiroEmis: Tecnología, Informática y Telecomunicaciones
-RUTRecep: 66.666.666-6
-dte_referencia_defecto: 0
-RznSocRecep: Sin razón social informada
-GiroRecep: Sin giro informado
-DirRecep: Sin dirección informada
-CmnaRecep: 13101
-CorreoRecep: null
-Contacto: null
-CdgIntRecep: null
-RUTSolicita: null
-IndTraslado: 1
-DirDest: null
-CmnaDest: null
-RUTTrans: null
-Patente: null
-RUTChofer: null
-NombreChofer: null
-NumId: null
-TpoCambio: null
+lista_precios: "0"
+TpoDoc: "41"
+FchEmis: "2025-01-16"
+FmaPago: ""
+FchVenc: "2025-01-16"
+RUTEmisor: "76192083-9"
+CdgVendedor: "vl"
+CdgSIISucur: "0"
+Acteco: "726000"
+GiroEmis: "Tecnología, Informática y Telecomunicaciones"
+RUTRecep: "66.666.666-6"
+dte_referencia_defecto: "0"
+RznSocRecep: "Sin razón social informada"
+GiroRecep: "Sin giro informado"
+DirRecep: "Sin dirección informada"
+CmnaRecep: "13101"
+CorreoRecep: ""
+Contacto: ""
+CdgIntRecep: ""
+RUTSolicita: ""
+IndTraslado: "1"
+DirDest: ""
+CmnaDest: ""
+RUTTrans: ""
+Patente: ""
+RUTChofer: ""
+NombreChofer: ""
+NumId: ""
+TpoCambio: ""
 NmbItem:
-  - Prueba
+  - "Prueba"
 DscItem:
-  - null
+  - ""
 IndExe:
-  - 1
+  - "1"
 QtyItem:
-  - 1
+  - "1"
 UnmdItem:
-  - null
+  - ""
 PrcItem:
-  - 30000
+  - "30000"
 ValorDR:
-  - 0
+  - "0"
 TpoValor:
   - "%"
 subtotal:
-  - 30000
-ValorDR_global: 10
+  - "30000"
+ValorDR_global: "10"
 TpoValor_global: "%"
-neto: 0
-exento: 27000
-tasa: 19
-iva: 0
-total: 27000
-TermPagoGlosa: null
-MedioPago: null
-BcoPago: null
-TpoCtaPago: null
-NumCtaPago: null
-TpoTranVenta: null
-TpoTranCompra: null
-submit: null
+neto: "0"
+exento: "27000"
+tasa: "19"
+iva: "0"
+total: "27000"
+TermPagoGlosa: ""
+MedioPago: ""
+BcoPago: ""
+TpoCtaPago: ""
+NumCtaPago: ""
+TpoTranVenta: ""
+TpoTranCompra: ""
+submit: ""

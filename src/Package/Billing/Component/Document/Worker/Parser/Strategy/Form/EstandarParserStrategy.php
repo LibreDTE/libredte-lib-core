@@ -104,7 +104,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             ));
         }
 
-        return $decoded;
+        return is_array($decoded) ? $decoded : [];
     }
 
     /**
@@ -322,7 +322,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ? $data['CorreoEmisor']
                         : false
                     ,
-                    'Acteco' => $data['Acteco'],
+                    'Acteco' => (int) $data['Acteco'],
                     'CdgSIISucur' => !empty($data['CdgSIISucur'])
                         ? $data['CdgSIISucur']
                         : false
@@ -379,7 +379,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     ,
                 ],
                 'RUTSolicita' => !empty($data['RUTSolicita'])
-                    ? str_replace('.', '', $data['RUTSolicita'])
+                    ? str_replace('.', '', (string) $data['RUTSolicita'])
                     : false
                 ,
             ],
@@ -431,7 +431,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 for ($i = 0; $i < $n_pagos; $i++) {
                     $dte['Encabezado']['IdDoc']['MntPagos'][] = [
                         'FchPago' => $data['FchPago'][$i],
-                        'MntPago' => $data['MntPago'][$i] ?? false,
+                        'MntPago' => !empty($data['MntPago'][$i])
+                            ? (int) round((float) $data['MntPago'][$i])
+                            : false,
                         'GlosaPagos' => !empty($data['GlosaPagos'][$i])
                             ? $data['GlosaPagos'][$i]
                             : false,
@@ -484,12 +486,16 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 ? $data['Patente']
                 : false,
             'RUTTrans' => !empty($data['RUTTrans'])
-                ? str_replace('.', '', $data['RUTTrans'])
+                ? str_replace('.', '', (string) $data['RUTTrans'])
                 : false,
             'Chofer' => (
                 !empty($data['RUTChofer']) && !empty($data['NombreChofer'])
             ) ? [
-                    'RUTChofer' => str_replace('.', '', $data['RUTChofer']),
+                    'RUTChofer' => str_replace(
+                        '.',
+                        '',
+                        (string) $data['RUTChofer']
+                    ),
                     'NombreChofer' => $data['NombreChofer'],
                 ]
                 : false,
@@ -645,7 +651,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $n_itemExento = 0;
 
         // Obtener el IVA.
-        $iva_sii = $this->getTax($data['TpoDoc']);
+        $iva_sii = $this->getTax((int) $data['TpoDoc']);
 
         // Procesar cada ítem.
         for ($i = 0; $i < $n_detalles; $i++) {
@@ -674,14 +680,18 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 'PrcItem',
                 'CodImpAdic',
             ];
+            $float_keys = ['QtyItem', 'PrcItem'];
+            $int_keys = ['IndExe', 'CodImpAdic'];
             foreach ($item_data_keys as $key) {
                 if (isset($data[$key][$i])) {
                     $value = trim((string) $data[$key][$i]);
                     if (!empty($value)) {
-                        $detalle[$key] = is_numeric($value)
-                            ? (float) $value
-                            : $value
-                        ;
+                        if (in_array($key, $float_keys) && is_numeric($value)) {
+                            $value = (float) $value;
+                        } elseif (in_array($key, $int_keys) && is_numeric($value)) {
+                            $value = (int) $value;
+                        }
+                        $detalle[$key] = $value;
                     }
                 }
             }
@@ -692,7 +702,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 && (!isset($detalle['IndExe']) || $detalle['IndExe'] == false)
             ) {
                 // IVA.
-                $iva = round((float) $detalle['PrcItem'] * ($iva_sii / 100));
+                $iva = round(
+                    (float) ($detalle['PrcItem'] ?? 0) * ($iva_sii / 100)
+                );
 
                 // Impuesto adicional (no se permiten impuestos adicionales en
                 // boletas).
@@ -706,17 +718,24 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     $adicional = 0;
                 }
 
-                // Agregar al precio.
-                assert(is_numeric($detalle['PrcItem']));
-                $detalle['PrcItem'] += $iva + $adicional;
+                // Agregar al precio (si el ítem tiene precio).
+                if (isset($detalle['PrcItem'])) {
+                    assert(is_numeric($detalle['PrcItem']));
+                    $detalle['PrcItem'] += $iva + $adicional;
+                }
             }
 
             // Agregar descuentos.
             if (!empty($data['ValorDR'][$i]) && !empty($data['TpoValor'][$i])) {
                 if ($data['TpoValor'][$i] == '%') {
-                    $detalle['DescuentoPct'] = round($data['ValorDR'][$i], 2);
+                    $detalle['DescuentoPct'] = round(
+                        (float) $data['ValorDR'][$i],
+                        2
+                    );
                 } else {
-                    $detalle['DescuentoMonto'] = $data['ValorDR'][$i];
+                    $detalle['DescuentoMonto'] = (int) round(
+                        (float) $data['ValorDR'][$i]
+                    );
                     // Si es boleta y el item no es exento se le agrega el IVA
                     // al descuento.
                     if (
@@ -726,7 +745,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         $iva_descuento = round(
                             $detalle['DescuentoMonto'] * ($iva_sii / 100)
                         );
-                        $detalle['DescuentoMonto'] += $iva_descuento;
+                        $detalle['DescuentoMonto'] += (int) $iva_descuento;
                     }
                 }
             }
@@ -783,7 +802,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             if (!empty($data['impuesto_adicional_tasa_' . $codigo])) {
                 $ImptoReten[] = [
                     'TipoImp' => $codigo,
-                    'TasaImp' => $data['impuesto_adicional_tasa_' . $codigo],
+                    'TasaImp' => (float) $data[
+                        'impuesto_adicional_tasa_' . $codigo
+                    ],
                 ];
             }
         }
@@ -863,11 +884,21 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Obtener el IVA.
-        $iva_sii = $this->getTax($data['TpoDoc']);
+        $iva_sii = $this->getTax((int) $data['TpoDoc']);
 
         // Agregar descuentos globales.
         $TpoValor_global = $data['TpoValor_global'];
-        $ValorDR_global = $data['ValorDR_global'];
+        $ValorDR_global = (float) $data['ValorDR_global'];
+
+        // Un descuento global en monto no se puede repartir entre ítems afectos
+        // y exentos.
+        if ($TpoValor_global == '$' && $n_itemAfecto && $n_itemExento) {
+            throw new ParserException(
+                'No es posible generar un documento con un descuento global '.
+                'en monto que tenga ítems afectos y exentos mediante '.
+                'LibreDTE. Este es un caso de uso no considerado.'
+            );
+        }
 
         // Si el descuento es porcentual, redondearlo a 2 decimales.
         if ($TpoValor_global == '%') {
@@ -931,17 +962,15 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $n_referencias = count($data['TpoDocRef']);
         $dte['Referencia'] = [];
         for ($i = 0; $i < $n_referencias; $i++) {
+            $folioRef = $data['FolioRef'][$i] ?? false;
             $dte['Referencia'][] = [
                 'TpoDocRef' => $data['TpoDocRef'][$i],
-                'IndGlobal' => (
-                    is_numeric($data['FolioRef'][$i])
-                    && $data['FolioRef'][$i] == 0
-                )
+                'IndGlobal' => (is_numeric($folioRef) && $folioRef == 0)
                     ? 1
                     : false
                 ,
-                'FolioRef' => $data['FolioRef'][$i],
-                'FchRef' => $data['FchRef'][$i],
+                'FolioRef' => $folioRef,
+                'FchRef' => $data['FchRef'][$i] ?? false,
                 'CodRef' => !empty($data['CodRef'][$i])
                     ? $data['CodRef'][$i]
                     : false
