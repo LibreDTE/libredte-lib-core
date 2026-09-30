@@ -190,6 +190,20 @@
 														<xs:documentation>Fecha de Vencimiento del Pago (AAAA-MM-DD)</xs:documentation>
 													</xs:annotation>
 												</xs:element>
+												<xs:element name="MedioPago" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Indica el Medio de Pago utilizado</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:positiveInteger">
+															<xs:enumeration value="1"/>
+															<xs:enumeration value="2"/>
+															<xs:enumeration value="3"/>
+															<xs:enumeration value="4"/>
+															<xs:enumeration value="5"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
@@ -308,6 +322,16 @@
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
+												<xs:element name="CorreoRecep" type="SiiDte:MailType" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Correo Elect. de contacto en empresa del receptor </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="TelefonoRecep" type="SiiDte:FonoType" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Telefono de contacto en empresa del receptor </xs:documentation>
+													</xs:annotation>
+												</xs:element>
 												<xs:element name="DirRecep" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Direccion en la Cual se Envian los Productos o se Prestan los Servicios</xs:documentation>
@@ -371,6 +395,11 @@
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
+									<xs:element name="RUTProvSW" type="SiiDte:RUTType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>RUT Proveedor</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 									<xs:element name="Totales">
 										<xs:annotation>
 											<xs:documentation>Montos Totales del DTE</xs:documentation>
@@ -387,7 +416,7 @@
 														<xs:documentation>Monto Exento</xs:documentation>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="IVA" type="SiiDte:MntImpType" minOccurs="0">
+												<xs:element name="IVA" type="SiiDte:MontoType" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Monto de IVA</xs:documentation>
 													</xs:annotation>
@@ -402,7 +431,7 @@
 														<xs:documentation>Monto No Facturable - Corresponde a Bienes o Servicios Facturados Previamente</xs:documentation>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="TotalPeriodo" type="SiiDte:MontoType" minOccurs="0">
+												<xs:element name="TotalPeriodo" type="SiiDte:ValorType" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Total de Ventas o Servicios del Periodo</xs:documentation>
 													</xs:annotation>
@@ -429,10 +458,16 @@
 							</xs:annotation>
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="NroLinDet" type="xs:positiveInteger">
+									<xs:element name="NroLinDet">
 										<xs:annotation>
 											<xs:documentation>Numero Secuencial de Linea</xs:documentation>
 										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:positiveInteger">
+												<xs:minInclusive value="1"/>
+												<xs:maxInclusive value="1000"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:element>
 									<xs:element name="CdgItem" minOccurs="0" maxOccurs="5">
 										<xs:annotation>
@@ -731,7 +766,8 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:positiveInteger">
-												<xs:maxInclusive value="99"/>
+												<xs:maxInclusive value="20"/>
+												<xs:minInclusive value="1"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -811,7 +847,7 @@
 										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:positiveInteger">
-												<xs:maxInclusive value="99"/>
+												<xs:maxInclusive value="20"/>
 												<xs:minInclusive value="1"/>
 											</xs:restriction>
 										</xs:simpleType>
@@ -904,6 +940,7 @@
 										<xs:simpleType>
 											<xs:restriction base="xs:positiveInteger">
 												<xs:maxInclusive value="40"/>
+												<xs:minInclusive value="1"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -964,6 +1001,45 @@
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:maxLength value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="GeoRefEmision" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Ubicación</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="LatitudEmision">
+										<xs:annotation>
+											<xs:documentation>Latitud</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LongitudEmision">
+										<xs:annotation>
+											<xs:documentation>Longitud</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="SistemaReferencia">
+										<xs:annotation>
+											<xs:documentation>Sistema de Referencia</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:positiveInteger">
+												<xs:maxInclusive value="9"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
@@ -1296,6 +1372,22 @@
 			<xs:fractionDigits value="2"/>
 			<xs:minInclusive value="0.00"/>
 			<xs:maxInclusive value="100.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MailType">
+		<xs:annotation>
+			<xs:documentation>Dirección email</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FonoType">
+		<xs:annotation>
+			<xs:documentation>Teléfono</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

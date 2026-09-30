@@ -602,7 +602,7 @@
                         {% endif %}
                         {# Traslado (destino físico) - solo si hay datos de destino o transportista #}
                         {% set traslado_dest = [document.Encabezado.Transporte.DirDest, document.Encabezado.Transporte.CmnaDest] | filter(v => v is not empty) | join(', ') %}
-                        {% if traslado_dest is not empty or document.Encabezado.Transporte.RUTTrans is not empty or document.Encabezado.Transporte.Patente is not empty or document.Encabezado.Transporte.Chofer.NombreChofer is not empty %}
+                        {% if traslado_dest is not empty or document.Encabezado.Transporte.RUTTrans is not empty or document.Encabezado.Transporte.Patente is not empty or document.Encabezado.Transporte.PatenteCarro is not empty or document.Encabezado.Transporte.Chofer.NombreChofer is not empty or document.Encabezado.Transporte.FchSalida is not empty or document.Encabezado.Transporte.HraSalida is not empty or document.Encabezado.Transporte.FchLlegada is not empty %}
                             <tr>
                                 <td class="bold" style="width: 34mm;">Traslado</td>
                                 <td style="width: 2mm;">:</td>
@@ -614,11 +614,22 @@
                                     {% if document.Encabezado.Transporte.Patente is not empty %}
                                         en vehículo {{ document.Encabezado.Transporte.Patente }}
                                     {% endif %}
+                                    {% if document.Encabezado.Transporte.PatenteCarro is not empty %}
+                                        {% if document.Encabezado.Transporte.Patente is not empty %}y{% else %}en{% endif %} carro {{ document.Encabezado.Transporte.PatenteCarro }}
+                                    {% endif %}
                                     {% if document.Encabezado.Transporte.Chofer.NombreChofer is not empty %}
                                         con chofer {{ document.Encabezado.Transporte.Chofer.NombreChofer }}
                                         {% if document.Encabezado.Transporte.Chofer.RUTChofer is not empty %}
                                             ({{ document.Encabezado.Transporte.Chofer.RUTChofer | format_as('billing_document.RUTChofer') }})
                                         {% endif %}
+                                    {% endif %}
+                                    {% if document.Encabezado.Transporte.FchSalida is not empty or document.Encabezado.Transporte.HraSalida is not empty %}
+                                        , salida
+                                        {% if document.Encabezado.Transporte.FchSalida is not empty %}{{ document.Encabezado.Transporte.FchSalida | format_as('billing_document.FchSalida') }}{% endif %}
+                                        {% if document.Encabezado.Transporte.HraSalida is not empty %}{{ document.Encabezado.Transporte.HraSalida | slice(0, 5) }}{% endif %}
+                                    {% endif %}
+                                    {% if document.Encabezado.Transporte.FchLlegada is not empty %}
+                                        , llegada {{ document.Encabezado.Transporte.FchLlegada | format_as('billing_document.FchLlegada') }}
                                     {% endif %}
                                 </td>
                             </tr>

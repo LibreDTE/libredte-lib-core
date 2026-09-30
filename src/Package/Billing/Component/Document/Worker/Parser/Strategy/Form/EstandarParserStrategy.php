@@ -485,6 +485,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             'Patente' => !empty($data['Patente'])
                 ? $data['Patente']
                 : false,
+            'PatenteCarro' => !empty($data['PatenteCarro'])
+                ? $data['PatenteCarro']
+                : false,
             'RUTTrans' => !empty($data['RUTTrans'])
                 ? str_replace('.', '', (string) $data['RUTTrans'])
                 : false,
@@ -504,6 +507,20 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 : false,
             'CmnaDest' => !empty($data['CmnaDest'])
                 ? $data['CmnaDest']
+                : false,
+            'FchSalida' => !empty($data['FchSalida'])
+                ? $data['FchSalida']
+                : false,
+            // Si la hora viene como HH:MM se completa con los segundos.
+            'HraSalida' => !empty($data['HraSalida'])
+                ? preg_replace(
+                    '/^(\d{2}:\d{2})$/',
+                    '$1:00',
+                    (string) $data['HraSalida']
+                )
+                : false,
+            'FchLlegada' => !empty($data['FchLlegada'])
+                ? $data['FchLlegada']
                 : false,
         ];
     }

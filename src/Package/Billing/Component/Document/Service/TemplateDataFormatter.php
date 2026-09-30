@@ -106,6 +106,8 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             },
             'PeriodoHasta' => 'alias:PeriodoDesde',
             'FchPago' => 'alias:PeriodoDesde',
+            'FchSalida' => 'alias:PeriodoDesde',
+            'FchLlegada' => 'alias:PeriodoDesde',
             // Solo año de una fecha.
             'FchResol' => fn (string $fecha) => explode('-', $fecha, 2)[0],
             // Datos de Aduana.

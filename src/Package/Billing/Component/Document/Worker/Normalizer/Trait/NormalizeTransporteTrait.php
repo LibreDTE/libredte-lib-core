@@ -44,12 +44,16 @@ trait NormalizeTransporteTrait
         if (!empty($data['Encabezado']['Transporte'])) {
             $data['Encabezado']['Transporte'] = array_merge([
                 'Patente' => false,
+                'PatenteCarro' => false,
                 'RUTTrans' => false,
                 'Chofer' => false,
                 'DirDest' => false,
                 'CmnaDest' => false,
                 'CiudadDest' => false,
                 'Aduana' => false,
+                'FchSalida' => false,
+                'HraSalida' => false,
+                'FchLlegada' => false,
             ], $data['Encabezado']['Transporte']);
         }
 

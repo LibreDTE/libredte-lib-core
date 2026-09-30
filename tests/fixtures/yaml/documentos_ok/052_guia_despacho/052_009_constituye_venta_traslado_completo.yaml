@@ -1,0 +1,58 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 52
+    Folio: 9
+    TipoDespacho: 1
+    # IndTraslado: Indicador de tipo de traslado de bienes, corresponde valor 1
+    #              cuando constituye venta.
+    #              Largo máx: 1 - Tipo: NÚM.
+    IndTraslado: 1
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Calle 123
+    CmnaRecep: Santiago
+  Transporte:
+    # Patente: Patente del vehículo que transporta los bienes.
+    #          Largo máx: 8 - Tipo: ALFA.
+    Patente: ABCD12
+    # PatenteCarro: Patente del carro o remolque.
+    #               Largo máx: 8 - Tipo: ALFA.
+    PatenteCarro: EFGH34
+    RUTTrans: 2-7
+    Chofer:
+      RUTChofer: 1-9
+      NombreChofer: Pedro
+    DirDest: Calle 123
+    CmnaDest: Santiago
+    # FchSalida: Fecha de salida (inicio del traslado) - Formato: AAAA-MM-DD.
+    FchSalida: '2026-05-04'
+    # HraSalida: Hora de salida (inicio del traslado) - Formato: HH:MM:SS.
+    HraSalida: '08:30:00'
+    # FchLlegada: Fecha de llegada (estimada) - Formato: AAAA-MM-DD.
+    FchLlegada: '2026-05-05'
+Detalle:
+- NmbItem: Router WiFi 6
+  QtyItem: 6
+  PrcItem: 25000
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Transporte:
+        Patente: ABCD12
+        PatenteCarro: EFGH34
+        HraSalida: '08:30:00'
+      Totales:
+        MntNeto: 150000
+        IVA: 28500
+        MntTotal: 178500
