@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
+use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
@@ -62,6 +63,15 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
     /**
      * {@inheritDoc}
      */
+    #[Operation(
+        parameters: [
+            'bag' => [
+                'example' => [
+                    'inputData' => '...',
+                ],
+            ],
+        ],
+    )]
     public function parse(DocumentBagInterface $bag): array
     {
         $options = $this->resolveOptions($bag->getParserOptions());
@@ -80,8 +90,6 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
         }
 
         $bag->setParsedData($parsedData);
-
-        // Se podrían arrastrar opciones resueltas mediante el bag. ¿Necesario?
 
         return $parsedData;
     }

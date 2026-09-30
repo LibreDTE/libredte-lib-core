@@ -1,23 +1,317 @@
 # Cantidad de documentos que el archivo de emisión masiva debe generar.
-cantidad: 10
+cantidad: 63
 
 # Listado de documentos con sus valores esperados en notación ".".
 # El orden de los documentos debe ser el mismo del archivo de emisión.
 documentos:
-  - Encabezado.IdDoc.Folio: 1
-    Encabezado.Receptor.RUTRecep: '77888999-4'
+  # 033_001_simple
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_002_factura_guia
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_003_iva_anticipado
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.IVA: 133000
+    Encabezado.Totales.MntTotal: 917000
+  # 033_004_descuento_global
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 4
+    Encabezado.Totales.IVA: 17799
+    Encabezado.Totales.MntTotal: 111480
+  # 033_005_descuento_item_monto
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 5
+    Encabezado.Totales.IVA: 17878
+    Encabezado.Totales.MntTotal: 111975
+  # 033_006_descuento_item_porcentaje
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 6
+    Encabezado.Totales.IVA: 17799
+    Encabezado.Totales.MntTotal: 111480
+  # 033_007_contado_observacion
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 7
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_008_impuesto_adicional
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 8
+    Encabezado.Totales.IVA: 190
+    Encabezado.Totales.MntTotal: 1505
+  # 033_010_pago_contado
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 10
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_011_pago_credito
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 11
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_012_item_gratuito
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 12
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_013_correo_receptor
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 13
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_014_contacto_receptor
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 14
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 033_015_factura_varias_guias
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 15
+    Encabezado.Totales.IVA: 81700
+    Encabezado.Totales.MntTotal: 511700
+  # 033_016_facturas_varias_guias_sobre_10 (referencia global, FolioRef 0)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 16
+    Encabezado.Totales.IVA: 4750
+    Encabezado.Totales.MntTotal: 29750
+    Referencia.0.IndGlobal: 1
+  # Varios ítems (filas de continuación) con código, unidad, descripción, exento y descuentos de ítem y globales
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 101
+    Encabezado.Totales.IVA: 2052
+    Encabezado.Totales.MntTotal: 107852
+  # Descuentos de ítem con decimales (33.333% y 1000.5)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 102
+    Encabezado.Totales.IVA: 2027
+    Encabezado.Totales.MntTotal: 12693
+  # Descuento global afecto en porcentaje con decimales (12.345%)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 103
+    Encabezado.Totales.IVA: 1665
+    Encabezado.Totales.MntTotal: 10430
+  # Fechas de emisión y vencimiento, período, teléfono, correo y nombre del PDF
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 104
     Encabezado.Totales.IVA: 570
-    Encabezado.Totales.MntTotal: 103570
-  - Encabezado.IdDoc.FchEmis: '2017-03-25'
-    Encabezado.IdDoc.FchVenc: '2017-03-31'
-    Encabezado.Totales.IVA: 5890
-    Encabezado.Totales.MntTotal: 36890
-  - Encabezado.Totales.MntTotal: 30000
-  - Encabezado.Totales.MntTotal: 6000 # En boletas el precio del item ya va con IVA.
-  - Encabezado.Totales.MntTotal: 380
-  - Encabezado.Totales.MntTotal: 100
-  - Encabezado.Totales.MntTotal: 50
-  - Encabezado.Totales.MntTotal: 30000
-  - Encabezado.Totales.MntTotal: 59500
-  - Encabezado.Totales.IVA: 19000
+    Encabezado.Totales.MntTotal: 3570
+    Encabezado.IdDoc.FchEmis: '2025-03-25'
+    Encabezado.IdDoc.FchVenc: '2025-03-31'
+    Encabezado.IdDoc.PeriodoDesde: '2025-03-01'
+    Encabezado.IdDoc.PeriodoHasta: '2025-03-31'
+  # Fila corta: sin las columnas finales vacías
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 105
+    Encabezado.Totales.IVA: 190
+    Encabezado.Totales.MntTotal: 1190
+  # Descuento de ítem con el % al inicio (%10)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 106
+    Encabezado.Totales.IVA: 1710
+    Encabezado.Totales.MntTotal: 10710
+  # Descuento global afecto con el % al inicio (%10)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 107
+    Encabezado.Totales.IVA: 1710
+    Encabezado.Totales.MntTotal: 10710
+  # Teléfono del receptor de más de 20 caracteres
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 108
+    Encabezado.Receptor.Contacto: '+56 9 55443322 anexo'
+    Encabezado.Totales.IVA: 190
+    Encabezado.Totales.MntTotal: 1190
+  # Descuentos que resultan 0 (ítem en monto, ítem en % y global) se omiten
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 109
+    Encabezado.Totales.IVA: 570
+    Encabezado.Totales.MntTotal: 3570
+    Detalle.0.DescuentoMonto: null
+    Detalle.1.DescuentoPct: null
+    DscRcgGlobal.0.ValorDR: null
+  # Descuento de ítem en porcentaje con coma decimal (12,5%)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 110
+    Encabezado.Totales.IVA: 3325
+    Encabezado.Totales.MntTotal: 20825
+  # Descuento de ítem en monto con coma decimal (1000,5)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 111
+    Encabezado.Totales.IVA: 1710
+    Encabezado.Totales.MntTotal: 10709
+  # Descuento global afecto en porcentaje con coma decimal (2,5%)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 112
+    Encabezado.Totales.IVA: 7410
+    Encabezado.Totales.MntTotal: 46410
+  # Cantidad y precio con coma decimal (2,5 y 1000,5)
+  - Encabezado.IdDoc.TipoDTE: 33
+    Encabezado.IdDoc.Folio: 113
+    Encabezado.Totales.IVA: 475
+    Encabezado.Totales.MntTotal: 2976
+  # 034_001_simple
+  - Encabezado.IdDoc.TipoDTE: 34
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.MntTotal: 125000
+  # 034_002_descuento_global (exento)
+  - Encabezado.IdDoc.TipoDTE: 34
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 112500
+  # 034_003_descuento_item_monto
+  - Encabezado.IdDoc.TipoDTE: 34
+    Encabezado.IdDoc.Folio: 3
     Encabezado.Totales.MntTotal: 100000
+  # 034_004_descuento_item_porcentaje
+  - Encabezado.IdDoc.TipoDTE: 34
+    Encabezado.IdDoc.Folio: 4
+    Encabezado.Totales.MntTotal: 112500
+  # 034_005_item_exento_con_item_no_facturable
+  - Encabezado.IdDoc.TipoDTE: 34
+    Encabezado.IdDoc.Folio: 5
+    Encabezado.Totales.MntTotal: 20000
+  # 039_001_simple
+  - Encabezado.IdDoc.TipoDTE: 39
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 190
+    Encabezado.Totales.MntTotal: 1190
+  # 039_002_descuento_global
+  - Encabezado.IdDoc.TipoDTE: 39
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.IVA: 171
+    Encabezado.Totales.MntTotal: 1071
+  # 039_003_observacion
+  - Encabezado.IdDoc.TipoDTE: 39
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.IVA: 190
+    Encabezado.Totales.MntTotal: 1190
+  # 039_004_multiples_items
+  - Encabezado.IdDoc.TipoDTE: 39
+    Encabezado.IdDoc.Folio: 4
+    Encabezado.Totales.IVA: 798
+    Encabezado.Totales.MntTotal: 5000
+  # Descuento global afecto en monto (bruto)
+  - Encabezado.IdDoc.TipoDTE: 39
+    Encabezado.IdDoc.Folio: 101
+    Encabezado.Totales.IVA: 361
+    Encabezado.Totales.MntTotal: 2261
+  # 041_001_simple
+  - Encabezado.IdDoc.TipoDTE: 41
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.MntTotal: 1000
+  # 041_002_descuento_global (exento)
+  - Encabezado.IdDoc.TipoDTE: 41
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 900
+  # 046_001_afecta
+  - Encabezado.IdDoc.TipoDTE: 46
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 8550
+    Encabezado.Totales.MntTotal: 53550
+  # 046_002_exenta
+  - Encabezado.IdDoc.TipoDTE: 46
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 45000
+  # 046_003_iva_retenido_total
+  - Encabezado.IdDoc.TipoDTE: 46
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.IVA: 19000
+    Encabezado.Totales.MntTotal: 100000
+  # 046_004_iva_retenido_parcial
+  - Encabezado.IdDoc.TipoDTE: 46
+    Encabezado.IdDoc.Folio: 4
+    Encabezado.Totales.IVA: 1900
+    Encabezado.Totales.MntTotal: 11500
+  # 046_005_compra_proveedor_extranjero
+  - Encabezado.IdDoc.TipoDTE: 46
+    Encabezado.IdDoc.Folio: 5
+    Encabezado.Totales.IVA: 23555
+    Encabezado.Totales.MntTotal: 123973
+  # 052_001_constituye_venta
+  - Encabezado.IdDoc.TipoDTE: 52
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 052_006_constituye_venta_cable_red
+  - Encabezado.IdDoc.TipoDTE: 52
+    Encabezado.IdDoc.Folio: 6
+    Encabezado.Totales.IVA: 19000
+    Encabezado.Totales.MntTotal: 119000
+  # 052_007_constituye_venta_switch
+  - Encabezado.IdDoc.TipoDTE: 52
+    Encabezado.IdDoc.Folio: 7
+    Encabezado.Totales.IVA: 34200
+    Encabezado.Totales.MntTotal: 214200
+  # 052_008_constituye_venta_router
+  - Encabezado.IdDoc.TipoDTE: 52
+    Encabezado.IdDoc.Folio: 8
+    Encabezado.Totales.IVA: 28500
+    Encabezado.Totales.MntTotal: 178500
+  # 052_009_constituye_venta_traslado_completo (campos nuevos de transporte)
+  - Encabezado.IdDoc.TipoDTE: 52
+    Encabezado.IdDoc.Folio: 9
+    Encabezado.Totales.IVA: 28500
+    Encabezado.Totales.MntTotal: 178500
+    Encabezado.Transporte.Patente: 'ABCD12'
+    Encabezado.Transporte.PatenteCarro: 'EFGH34'
+    Encabezado.Transporte.FchSalida: '2026-05-04'
+    Encabezado.Transporte.HraSalida: '08:30:00'
+    Encabezado.Transporte.FchLlegada: '2026-05-05'
+  # 056_001_anula_nota_credito
+  - Encabezado.IdDoc.TipoDTE: 56
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 061_001_anula_factura
+  - Encabezado.IdDoc.TipoDTE: 61
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.IVA: 5985
+    Encabezado.Totales.MntTotal: 37485
+  # 061_002_corrige_texto_factura (precio 0)
+  - Encabezado.IdDoc.TipoDTE: 61
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 0
+  # 061_003_corrige_monto_factura
+  - Encabezado.IdDoc.TipoDTE: 61
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.IVA: 1710
+    Encabezado.Totales.MntTotal: 10710
+  # Corrige texto con cantidad 0 y precio 0 (se omiten ambos campos)
+  - Encabezado.IdDoc.TipoDTE: 61
+    Encabezado.IdDoc.Folio: 4
+    Encabezado.Totales.MntTotal: 0
+  # Exportación, moneda por defecto (USD), descuento de ítem y global exento
+  - Encabezado.IdDoc.TipoDTE: 110
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.MntTotal: 380
+  # Exportación en EUR con descuento global exento en porcentaje
+  - Encabezado.IdDoc.TipoDTE: 110
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 100
+  # Exportación en USD con ID extranjero y descuento global decimal
+  - Encabezado.IdDoc.TipoDTE: 110
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.MntTotal: 50
+  # 111_001_anula_nota_credito
+  - Encabezado.IdDoc.TipoDTE: 111
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.MntTotal: 50
+  # 111_002_corrige_texto (precio 0)
+  - Encabezado.IdDoc.TipoDTE: 111
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 0
+  # 112_001_anula_factura
+  - Encabezado.IdDoc.TipoDTE: 112
+    Encabezado.IdDoc.Folio: 1
+    Encabezado.Totales.MntTotal: 50
+  # 112_002_corrige_texto (precio 0)
+  - Encabezado.IdDoc.TipoDTE: 112
+    Encabezado.IdDoc.Folio: 2
+    Encabezado.Totales.MntTotal: 0
+  # 112_003_corrige_monto
+  - Encabezado.IdDoc.TipoDTE: 112
+    Encabezado.IdDoc.Folio: 3
+    Encabezado.Totales.MntTotal: 50

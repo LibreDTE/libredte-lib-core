@@ -42,13 +42,16 @@ use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerException;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
@@ -60,6 +63,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
@@ -67,31 +71,46 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExentaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExportacionJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeGuiaDespachoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoExportacionJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaExentaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaCompraNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExentaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\GuiaDespachoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\RendererWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaExentaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaCompraSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExentaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\GuiaDespachoSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaExentaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaCompraValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExentaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\GuiaDespachoValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
@@ -112,6 +131,7 @@ use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
@@ -120,6 +140,8 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentComponent::class)]
 #[CoversClass(AduanaMoneda::class)]
 #[CoversClass(DocumentBatch::class)]
+#[CoversClass(BatchProcessorException::class)]
+#[CoversClass(NormalizerException::class)]
 #[CoversClass(BatchProcessorWorker::class)]
 #[CoversClass(CsvBatchProcessorStrategy::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
@@ -128,6 +150,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(AbstractSanitizerStrategy::class)]
 #[CoversClass(AbstractValidatorStrategy::class)]
 #[CoversClass(ImpuestoAdicionalRetencion::class)]
+#[CoversClass(FormaPago::class)]
 #[CoversClass(TipoDocumento::class)]
 #[CoversClass(CodigoDocumento::class)]
 #[CoversClass(TagXmlDocumento::class)]
@@ -138,6 +161,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NormalizerWorker::class)]
 #[CoversClass(Utils::class)]
 #[CoversClass(NormalizeBoletaAfectaJob::class)]
+#[CoversClass(NormalizeBoletaExentaJob::class)]
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeDataPreDocumentNormalizationJob::class)]
 #[CoversClass(NormalizeFacturaAfectaJob::class)]
@@ -146,29 +170,44 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NormalizeFacturaExportacionJob::class)]
 #[CoversClass(NormalizeGuiaDespachoJob::class)]
 #[CoversClass(NormalizeNotaCreditoJob::class)]
+#[CoversClass(NormalizeNotaCreditoExportacionJob::class)]
+#[CoversClass(NormalizeNotaDebitoJob::class)]
+#[CoversClass(NormalizeNotaDebitoExportacionJob::class)]
 #[CoversClass(BoletaAfectaNormalizerStrategy::class)]
+#[CoversClass(BoletaExentaNormalizerStrategy::class)]
 #[CoversClass(FacturaAfectaNormalizerStrategy::class)]
 #[CoversClass(FacturaCompraNormalizerStrategy::class)]
 #[CoversClass(FacturaExentaNormalizerStrategy::class)]
 #[CoversClass(FacturaExportacionNormalizerStrategy::class)]
 #[CoversClass(GuiaDespachoNormalizerStrategy::class)]
 #[CoversClass(NotaCreditoNormalizerStrategy::class)]
+#[CoversClass(NotaCreditoExportacionNormalizerStrategy::class)]
+#[CoversClass(NotaDebitoNormalizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionNormalizerStrategy::class)]
 #[CoversClass(SanitizerWorker::class)]
 #[CoversClass(BoletaAfectaSanitizerStrategy::class)]
+#[CoversClass(BoletaExentaSanitizerStrategy::class)]
 #[CoversClass(FacturaAfectaSanitizerStrategy::class)]
 #[CoversClass(FacturaCompraSanitizerStrategy::class)]
 #[CoversClass(FacturaExentaSanitizerStrategy::class)]
 #[CoversClass(FacturaExportacionSanitizerStrategy::class)]
 #[CoversClass(GuiaDespachoSanitizerStrategy::class)]
 #[CoversClass(NotaCreditoSanitizerStrategy::class)]
+#[CoversClass(NotaCreditoExportacionSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionSanitizerStrategy::class)]
 #[CoversClass(ValidatorWorker::class)]
 #[CoversClass(BoletaAfectaValidatorStrategy::class)]
+#[CoversClass(BoletaExentaValidatorStrategy::class)]
 #[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(FacturaCompraValidatorStrategy::class)]
 #[CoversClass(FacturaExentaValidatorStrategy::class)]
 #[CoversClass(FacturaExportacionValidatorStrategy::class)]
 #[CoversClass(GuiaDespachoValidatorStrategy::class)]
 #[CoversClass(NotaCreditoValidatorStrategy::class)]
+#[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
+#[CoversClass(NotaDebitoValidatorStrategy::class)]
+#[CoversClass(NotaDebitoExportacionValidatorStrategy::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(Emisor::class)]
@@ -218,30 +257,7 @@ class EmisionMasivaTest extends TestCase
             self::getFixturesPath('emision_masiva/emision_masiva.yaml')
         );
 
-        $emisor = new Emisor(
-            rut: 76192083,
-            razon_social: 'SASCO SpA',
-            giro: 'Tecnología, Informática y Telecomunicaciones',
-            actividad_economica: 726000,
-            direccion: 'DBG',
-            comuna: 'Santa Cruz'
-        );
-
-        // Generar un certificado falso.
-        $certificateFaker = new CertificateFaker(new CertificateLoader());
-        $certificate = $certificateFaker->createFake(id: $emisor->getRUT());
-
-        $batch = new DocumentBatch($file);
-        $batch->setEmisor($emisor);
-        $batch->setCertificate($certificate);
-
-        $documentsBag = $app
-            ->getPackageRegistry()
-            ->getBillingPackage()
-            ->getDocumentComponent()
-            ->getBatchProcessorWorker()
-            ->process($batch)
-        ;
+        $documentsBag = $this->processFile($file);
 
         $cantidad = count($documentsBag);
         $this->assertSame($expected['cantidad'], $cantidad);
@@ -318,5 +334,89 @@ class EmisionMasivaTest extends TestCase
                 );
             }
         }
+    }
+
+    public static function provideArchivosConErrores(): array
+    {
+        $dir = self::getFixturesPath('emision_masiva/errores');
+        $casos = Yaml::parseFile($dir . '/errores.yaml');
+
+        $archivos = [];
+        foreach ($casos as $archivo => $caso) {
+            $archivos[$archivo] = [
+                $dir . '/' . $archivo,
+                $caso['exception'],
+                $caso['message'],
+            ];
+        }
+
+        return $archivos;
+    }
+
+    #[DataProvider('provideArchivosConErrores')]
+    public function testArchivoConErroresLanzaExcepcion(
+        string $file,
+        string $exception,
+        string $message
+    ): void {
+        $this->expectException(
+            'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
+            . $exception
+        );
+        $this->expectExceptionMessage($message);
+
+        $this->processFile($file);
+    }
+
+    public function testArchivoSinDocumentosEntregaArregloVacio(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/sin_documentos.csv');
+
+        $this->assertSame([], $this->processFile($file));
+    }
+
+    public function testNombrePdfSeTruncaA100Caracteres(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
+
+        $documentsBag = $this->processFile($file);
+
+        $this->assertCount(1, $documentsBag);
+        $nombre = $documentsBag[0]->getParsedData()['LibreDTE']['pdf']['nombre'];
+        $this->assertSame(100, mb_strlen($nombre));
+    }
+
+    /**
+     * Procesa un archivo de emisión masiva con un emisor y un certificado de
+     * pruebas.
+     *
+     * @return array Bolsas con los documentos generados.
+     */
+    private function processFile(string $file): array
+    {
+        $emisor = new Emisor(
+            rut: 76192083,
+            razon_social: 'SASCO SpA',
+            giro: 'Tecnología, Informática y Telecomunicaciones',
+            actividad_economica: 726000,
+            direccion: 'DBG',
+            comuna: 'Santa Cruz'
+        );
+
+        // Generar un certificado falso.
+        $certificateFaker = new CertificateFaker(new CertificateLoader());
+        $certificate = $certificateFaker->createFake(id: $emisor->getRUT());
+
+        $batch = new DocumentBatch($file);
+        $batch->setEmisor($emisor);
+        $batch->setCertificate($certificate);
+
+        return Application::getInstance()
+            ->getPackageRegistry()
+            ->getBillingPackage()
+            ->getDocumentComponent()
+            ->getBatchProcessorWorker()
+            ->process($batch)
+        ;
     }
 }

@@ -1,0 +1,28 @@
+# Archivo CSV => excepción esperada y fragmento del mensaje.
+indexe_no_soportado.csv:
+  exception: NormalizerException
+  message: 'IndExe'
+fchref_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Fecha del documento de referencia'
+fchref_vacia.csv:
+  exception: BatchProcessorException
+  message: 'Fecha del documento de referencia'
+chofer_incompleto.csv:
+  exception: BatchProcessorException
+  message: 'chofer'
+folio_repetido.csv:
+  exception: BatchProcessorException
+  message: 'repetido'
+folio_invalido.csv:
+  exception: BatchProcessorException
+  message: 'El folio del documento debe ser un número entero mayor a 0'
+fila_truncada_item.csv:
+  exception: BatchProcessorException
+  message: 'Falta precio del item'
+fila_truncada_referencia.csv:
+  exception: BatchProcessorException
+  message: 'Folio del documento de referencia'
+cantidad_cero_con_precio.csv:
+  exception: BatchProcessorException
+  message: 'cantidad'
