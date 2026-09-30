@@ -813,6 +813,7 @@ class DocumentBag implements DocumentBagInterface
     {
         return [
             'document' => $this->getDocumentData(),
+            'document_parsed' => $this->getParsedData(),
             'document_normalized' => $this->getNormalizedData(),
             'document_extra' => $this->getDocumentExtra(),
             'document_stamp' => $this->getDocumentStamp(),

@@ -37,8 +37,8 @@ interface ParserWorkerInterface extends WorkerInterface, StrategiesAwareInterfac
      * Realiza la transformación de los datos del documento.
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a transformar.
-     * @return array Arreglo con los datos parseados.
+     * @return DocumentBagInterface Contenedor con los datos parseados asignados.
      * @throws ParserException
      */
-    public function parse(DocumentBagInterface $bag): array;
+    public function parse(DocumentBagInterface $bag): DocumentBagInterface;
 }

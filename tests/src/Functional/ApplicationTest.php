@@ -69,22 +69,25 @@ use PHPUnit\Framework\Attributes\CoversClass;
     {
         $data = '{"Encabezado": {}}';
 
-        $parsed =
+        $bag = new DocumentBag(
+            inputData: $data,
+            options: [
+                'parser' => [
+                    'strategy' => 'json',
+                ],
+            ]
+        );
+
+        $result =
             Application::getInstance()
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getParserWorker()
-            ->parse(new DocumentBag(
-                inputData: $data,
-                options: [
-                    'parser' => [
-                        'strategy' => 'json',
-                    ],
-                ]
-            ))
+            ->parse($bag)
         ;
 
-        $this->assertNotEmpty($parsed);
+        $this->assertSame($bag, $result);
+        $this->assertNotEmpty($result->getParsedData());
     }
 }
