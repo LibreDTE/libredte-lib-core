@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -227,9 +227,16 @@ de manera sencilla y, sobre todo, extensible.</p>
 <dd>Emisor del documento tributario.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file">$file</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputData">$inputData</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
+</dt>
+<dd>Contenido con el lote de documentos que se deben procesar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputFile">$inputFile</a>
+    <span>
+                        &nbsp;: string|null            </span>
 </dt>
 <dd>Ruta al archivo que contiene el lote de documentos que se deben procesar.</dd>
 
@@ -277,11 +284,25 @@ de manera sencilla y, sobre todo, extensible.</p>
 <dd>Obtiene el emisor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile">getFile()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputData">getInputData()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Entrega la ruta del archivo con documentos que se debe procesar.</dd>
+<dd>Entrega el contenido con los documentos que se deben procesar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputFile">getInputFile()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Entrega la ruta del archivo con los documentos que se deben procesar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_jsonSerialize">jsonSerialize()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate">setCertificate()</a>
@@ -303,6 +324,13 @@ de manera sencilla y, sobre todo, extensible.</p>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Asigna el emisor del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_toArray">toArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Convierte el lote a un array.</dd>
 
     </dl>
 
@@ -334,7 +362,7 @@ de manera sencilla y, sobre todo, extensible.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -376,7 +404,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">114</span>
 
     </aside>
 
@@ -387,7 +415,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>|null</span>
     <span class="phpdocumentor-signature__name">$certificate</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -414,7 +442,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">110</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
     </aside>
 
@@ -452,7 +480,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -480,9 +508,9 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             -private
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_file">
-        $file
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_inputData">
+        $inputData
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputData" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
@@ -490,7 +518,48 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Contenido con el lote de documentos que se deben procesar.</p>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$inputData</span>
+    </code>
+
+        <section class="phpdocumentor-description"><p>Si el lote se creó a partir de un archivo, se lee la primera vez que se
+solicita.</p>
+</section>
+
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_inputFile">
+        $inputFile
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputFile" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -499,8 +568,8 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$file</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$inputFile</span>
     </code>
 
     
@@ -533,7 +602,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -541,20 +610,34 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputData</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputFile</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;|<abbr title="\Derafu\Config\Contract\OptionsInterface">OptionsInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Se debe indicar el contenido del lote (<code class="prettyprint">inputData</code>) o la ruta del archivo
+que lo contiene (<code class="prettyprint">inputFile</code>), pero no ambos.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$file</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$inputData</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Contenido con los documentos.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$inputFile</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ruta al archivo con los documentos.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$options</span>
@@ -566,6 +649,23 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method___construct_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method___construct_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si no se indica ninguno de los dos orígenes
+o se indican ambos.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
@@ -585,7 +685,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">241</span>
 
     </aside>
 
@@ -628,7 +728,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">215</span>
 
     </aside>
 
@@ -667,7 +767,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">183</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -706,7 +806,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
@@ -737,23 +837,23 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getFile">
-        getFile()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getInputData">
+        getInputData()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputData" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Entrega la ruta del archivo con documentos que se debe procesar.</p>
+        <p class="phpdocumentor-summary">Entrega el contenido con los documentos que se deben procesar.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getFile</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getInputData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -776,6 +876,89 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getInputFile">
+        getInputFile()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputFile" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">159</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega la ruta del archivo con los documentos que se deben procesar.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getInputFile</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Ruta del archivo, o <code class="prettyprint">null</code> si el lote se creó a
+partir del contenido.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
+        jsonSerialize()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">259</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setCertificate">
         setCertificate()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate" class="headerlink"><i class="fas fa-link"></i></a>
@@ -784,7 +967,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">205</span>
 
     </aside>
 
@@ -833,7 +1016,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
@@ -882,7 +1065,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -917,6 +1100,45 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBatch.php"><a href="files/src-package-billing-component-document-support-documentbatch.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBatch.php">DocumentBatch.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">249</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Convierte el lote a un array.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
             </section>
 
         
@@ -943,7 +1165,8 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_certificate">$certificate</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_documentBags">$documentBags</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_emisor">$emisor</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_file">$file</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputData">$inputData</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#property_inputFile">$inputFile</a></li>
                                             </ul>
                 </li>
             
@@ -955,10 +1178,13 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getCertificate">getCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getDocumentBags">getDocumentBags()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getEmisor">getEmisor()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getFile">getFile()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputData">getInputData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getInputFile">getInputFile()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_jsonSerialize">jsonSerialize()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setCertificate">setCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setDocumentBags">setDocumentBags()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_setEmisor">setEmisor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>
                     </ul>

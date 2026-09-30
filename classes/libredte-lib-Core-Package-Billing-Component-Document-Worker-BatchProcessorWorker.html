@@ -159,13 +159,18 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">Clase para los procesadores de documentos en lote.</p>
 
 
+    <section class="phpdocumentor-description"><p>Las estrategias (<code class="prettyprint">BatchProcessorStrategyInterface</code>) son parsers: transforman
+los datos de entrada del lote (un CSV, una planilla, etc.) en el listado de
+documentos tributarios. El worker toma ese listado y crea los documentos, uno
+a uno.</p>
+</section>
 
 
 
@@ -259,9 +264,16 @@
 <dd>Constructor del worker y sus dependencias.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parse">parse()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>    </span>
+</dt>
+<dd>Parsea los datos de entrada del lote, con la estrategia solicitada.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_process">process()</a>
     <span>
-                                &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>    </span>
 </dt>
 <dd>Procesa masivamente documentos tributarios electrónicos.</dd>
 
@@ -273,12 +285,12 @@
 <dd>Completa los datos del documento parseado desde el archivo masivo.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_loadDocumentsFromFile">loadDocumentsFromFile()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parseDocuments">parseDocuments()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Carga los documentos desde el archivo según la estrategia de
-procesamiento en lote que se haya solicitado.</dd>
+<dd>Parsea los datos de entrada del lote, con la estrategia que se haya
+solicitado, y entrega los datos de los documentos que se deben crear.</dd>
 
     </dl>
 
@@ -310,7 +322,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -348,7 +360,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -385,7 +397,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -422,7 +434,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -464,7 +476,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -536,6 +548,76 @@ procesamiento en lote que se haya solicitado.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_parse">
+        parse()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Parsea los datos de entrada del lote, con la estrategia solicitada.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">parse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$batch</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Contenedor del lote a procesar.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_parse_attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parse_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;batch&#039; =&gt; [&#039;example&#039; =&gt; [&#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;], &#039;inputData&#039; =&gt; &#039;...&#039;, &#039;options&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;spreadsheet.csv&#039;, &#039;complete&#039; =&gt; true]]]]
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Contenedor del lote con los datos de cada
+documento parseado.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_process">
         process()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_process" class="headerlink"><i class="fas fa-link"></i></a>
@@ -544,7 +626,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">160</span>
 
     </aside>
 
@@ -552,7 +634,7 @@ procesamiento en lote que se haya solicitado.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -577,7 +659,7 @@ procesamiento en lote que se haya solicitado.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
             </section>
 
 </article>
@@ -595,7 +677,7 @@ procesamiento en lote que se haya solicitado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">256</span>
 
     </aside>
 
@@ -643,24 +725,24 @@ procesamiento en lote que se haya solicitado.</dd>
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_loadDocumentsFromFile">
-        loadDocumentsFromFile()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_loadDocumentsFromFile" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_parseDocuments">
+        parseDocuments()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parseDocuments" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">188</span>
+    <span class="phpdocumentor-element-found-in__line">230</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Carga los documentos desde el archivo según la estrategia de
-procesamiento en lote que se haya solicitado.</p>
+        <p class="phpdocumentor-summary">Parsea los datos de entrada del lote, con la estrategia que se haya
+solicitado, y entrega los datos de los documentos que se deben crear.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">loadDocumentsFromFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">parseDocuments</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -720,9 +802,10 @@ procesamiento en lote que se haya solicitado.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parse">parse()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_process">process()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_completeParsedData">completeParsedData()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_loadDocumentsFromFile">loadDocumentsFromFile()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_parseDocuments">parseDocuments()</a></li>
                                     </ul>
             </li>
                     </ul>

@@ -159,15 +159,17 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">150</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">Estrategia &quot;billing.document.batch_processor.strategy:spreadsheet.csv&quot;.</p>
 
 
-    <section class="phpdocumentor-description"><p>Procesa en lote los documentos tributarios de un archivo CSV con el formato
-estándar de LibreDTE.</p>
+    <section class="phpdocumentor-description"><p>Parsea un lote de documentos tributarios entregado como CSV con el formato
+estándar de LibreDTE. Genera el listado de los documentos en la estructura
+oficial del SII; no los construye, eso se hace después, uno a uno, al
+procesar el lote.</p>
 <p>Formato del archivo:</p>
 <ul>
 <li>Separador de columnas <code class="prettyprint">;</code> y codificación UTF-8.</li>
@@ -351,11 +353,12 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
 <dd>Constructor de la estrategia con sus dependencias.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_load">load()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse">parse()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Carga los datos de los documentos tributarios electrónicos del lote.</dd>
+<dd>Parsea los datos de entrada del lote y genera los datos de los
+documentos tributarios electrónicos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount">addGlobalDiscount()</a>
@@ -436,7 +439,7 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">157</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -478,7 +481,7 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">156</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
@@ -515,23 +518,24 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_load">
-        load()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_load" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_parse">
+        parse()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">166</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Carga los datos de los documentos tributarios electrónicos del lote.</p>
+        <p class="phpdocumentor-summary">Parsea los datos de entrada del lote y genera los datos de los
+documentos tributarios electrónicos.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">load</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">parse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -544,7 +548,7 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Contenedor del lote a procesar.</p>
+                    <section class="phpdocumentor-description"><p>Contenedor del lote a parsear.</p>
 </section>
 
             </dd>
@@ -558,7 +562,7 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo con los datos de los documentos cargados.</p>
+                <section class="phpdocumentor-description"><p>Arreglo con los datos de cada documento parseado.</p>
 </section>
 
             </section>
@@ -578,7 +582,7 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">420</span>
+    <span class="phpdocumentor-element-found-in__line">422</span>
 
     </aside>
 
@@ -654,7 +658,7 @@ es <code class="prettyprint">false</code> aplica al monto afecto.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">554</span>
+    <span class="phpdocumentor-element-found-in__line">556</span>
 
     </aside>
 
@@ -741,7 +745,7 @@ directamente.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">787</span>
+    <span class="phpdocumentor-element-found-in__line">789</span>
 
     </aside>
 
@@ -835,7 +839,7 @@ no es válido.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">668</span>
+    <span class="phpdocumentor-element-found-in__line">670</span>
 
     </aside>
 
@@ -933,7 +937,7 @@ nombre del chofer.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
@@ -1027,7 +1031,7 @@ nombre del chofer.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">843</span>
+    <span class="phpdocumentor-element-found-in__line">845</span>
 
     </aside>
 
@@ -1086,7 +1090,7 @@ resultado, devuelve la glosa asociada; de lo contrario, retorna <code class="pre
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">462</span>
+    <span class="phpdocumentor-element-found-in__line">464</span>
 
     </aside>
 
@@ -1162,7 +1166,7 @@ entrada.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_load">load()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse">parse()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount">addGlobalDiscount()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem">addItem()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference">addReference()</a></li>
