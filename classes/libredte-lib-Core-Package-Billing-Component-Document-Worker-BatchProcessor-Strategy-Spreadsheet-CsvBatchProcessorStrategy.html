@@ -135,7 +135,7 @@
     CsvBatchProcessorStrategy
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Derafu\Backbone\Abstract\AbstractStrategy">AbstractStrategy</abbr>
+        extends <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSpreadsheetBatchProcessorStrategy">AbstractSpreadsheetBatchProcessorStrategy</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -145,9 +145,6 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface">BatchProcessorStrategyInterface</abbr></a>                    </span>
     
     </h2>
 
@@ -159,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -167,114 +164,9 @@
 
 
     <section class="phpdocumentor-description"><p>Parsea un lote de documentos tributarios entregado como CSV con el formato
-estándar de LibreDTE. Genera el listado de los documentos en la estructura
-oficial del SII; no los construye, eso se hace después, uno a uno, al
-procesar el lote.</p>
-<p>Formato del archivo:</p>
-<ul>
-<li>Separador de columnas <code class="prettyprint">;</code> y codificación UTF-8.</li>
-<li>La primera fila es el encabezado y se ignora.</li>
-<li>Una fila con <code class="prettyprint">TipoDTE</code> crea un documento nuevo, con su primer ítem y su
-primera referencia (si las tiene).</li>
-<li>Una fila sin <code class="prettyprint">TipoDTE</code> agrega un ítem (si trae <code class="prettyprint">NmbItem</code>) y/o una
-referencia al último documento creado.</li>
-<li>El par (<code class="prettyprint">TipoDTE</code>, <code class="prettyprint">Folio</code>) no puede repetirse dentro del archivo.</li>
-<li>Las filas pueden venir sin las últimas columnas, que se asumen vacías.</li>
-<li>En los decimales se puede usar punto o coma. No se usa separador de
-miles.</li>
-<li>Un archivo sin documentos entrega un arreglo vacío.</li>
-</ul>
-<p>Columnas (letra, nombre, largo máximo y obligatoriedad):</p>
-<ol>
-<li>A <code class="prettyprint">TipoDTE</code> (3, obligatorio): tipo de documento. Por ejemplo: 33 factura
-afecta, 34 factura exenta, 39 boleta afecta, 41 boleta exenta, 46
-factura de compra, 52 guía de despacho, 56 nota de débito, 61 nota de
-crédito, 110 factura de exportación, 111 nota de débito de exportación
-y 112 nota de crédito de exportación.</li>
-<li>B <code class="prettyprint">Folio</code> (10, obligatorio): entero mayor a 0 que identifica al
-documento dentro del archivo. Normalmente parte en 1 y es correlativo.</li>
-<li>C <code class="prettyprint">FchEmis</code> (10, opcional): fecha de emisión AAAA-MM-DD. Si falta o no
-es válida se usa la fecha actual.</li>
-<li>D <code class="prettyprint">FchVenc</code> (10, opcional): fecha de vencimiento AAAA-MM-DD. Si no es
-válida se ignora.</li>
-<li>E <code class="prettyprint">RUTRecep</code> (10, obligatorio): RUT del receptor sin puntos, con guión
-y dígito verificador.</li>
-<li>F <code class="prettyprint">RznSocRecep</code> (100, obligatorio excepto en boletas): razón social del
-receptor.</li>
-<li>G <code class="prettyprint">GiroRecep</code> (40, obligatorio excepto en boletas): giro del receptor.</li>
-<li>H <code class="prettyprint">Telefono</code> (20, opcional): teléfono del receptor, se guarda en el
-contacto. Formato recomendado: +56 9 55443322.</li>
-<li>I <code class="prettyprint">CorreoRecep</code> (80, opcional): correo del receptor. Se valida.</li>
-<li>J <code class="prettyprint">DirRecep</code> (70, obligatorio excepto en boletas): dirección del
-receptor.</li>
-<li>K <code class="prettyprint">CmnaRecep</code> (20, obligatorio excepto en boletas): comuna del
-receptor, sin abreviaciones.</li>
-<li>L <code class="prettyprint">VlrCodigo</code> (35, opcional): código del ítem.</li>
-<li>M <code class="prettyprint">IndExe</code> (1, opcional): 1 si el ítem es exento, 2 si es no
-facturable. Otros valores no están soportados.</li>
-<li>N <code class="prettyprint">NmbItem</code> (80, obligatorio): nombre del ítem.</li>
-<li>O <code class="prettyprint">DscItem</code> (1000, opcional): descripción del ítem.</li>
-<li>P <code class="prettyprint">QtyItem</code> (18, obligatorio salvo que el precio sea 0): cantidad del
-ítem. Una cantidad vacía o 0 solo es válida si el precio también es 0;
-en ese caso se omiten la cantidad y el precio del ítem.</li>
-<li>Q <code class="prettyprint">UnmdItem</code> (4, opcional): unidad del ítem.</li>
-<li>R <code class="prettyprint">PrcItem</code> (18, obligatorio): precio del ítem. Monto bruto (con IVA)
-en boletas y monto neto en los demás documentos. Un precio 0 se omite.</li>
-<li>S <code class="prettyprint">Descuento</code> (18, opcional): descuento del ítem, en porcentaje (por
-ejemplo <code class="prettyprint">50%</code>) o en monto (por ejemplo <code class="prettyprint">1000</code>). En boletas el monto es
-bruto. El porcentaje se redondea a 2 decimales y el monto a un entero.
-Un descuento que resulta 0 se omite.</li>
-<li>T <code class="prettyprint">TermPagoGlosa</code> (100, opcional): observación del documento.</li>
-<li>U <code class="prettyprint">PeriodoDesde</code> (10, opcional): inicio del período AAAA-MM-DD. Si no es
-válido se ignora.</li>
-<li>V <code class="prettyprint">PeriodoHasta</code> (10, opcional): fin del período AAAA-MM-DD. Si no es
-válido se ignora.</li>
-<li>W <code class="prettyprint">Patente</code> (8, opcional): patente del vehículo de despacho.</li>
-<li>X <code class="prettyprint">RUTTrans</code> (10, opcional): RUT del transportista sin puntos, con
-guión y dígito verificador.</li>
-<li>Y <code class="prettyprint">RUTChofer</code> (10, obligatorio solo si va el nombre del chofer): RUT del
-chofer sin puntos, con guión y dígito verificador.</li>
-<li>Z <code class="prettyprint">NombreChofer</code> (30, obligatorio solo si va el RUT del chofer): nombre
-del chofer.</li>
-<li>AA <code class="prettyprint">DirDest</code> (70, opcional): dirección de despacho.</li>
-<li>AB <code class="prettyprint">CmnaDest</code> (20, opcional): comuna de despacho, sin abreviaciones.</li>
-<li>AC <code class="prettyprint">TpoDocRef</code> (3, opcional): tipo del documento de referencia. Por
-ejemplo: 33, 34, 39, 41, 52, 801 orden de compra o HES hoja de entrada
-de servicios.</li>
-<li>AD <code class="prettyprint">FolioRef</code> (18, obligatorio si hay referencia): folio del documento
-de referencia. El folio 0 indica una referencia global a un conjunto de
-documentos.</li>
-<li>AE <code class="prettyprint">FchRef</code> (10, obligatorio si hay referencia): fecha del documento de
-referencia AAAA-MM-DD.</li>
-<li>AF <code class="prettyprint">CodRef</code> (1, obligatorio en notas de crédito y de débito): código de
-referencia. 1 anula el documento, 2 corrige el texto y 3 corrige los
-montos.</li>
-<li>AG <code class="prettyprint">RazonRef</code> (90, obligatorio en notas de crédito y de débito): motivo
-de la referencia.</li>
-<li>AH <code class="prettyprint">Moneda</code> (3, opcional): moneda de los documentos de exportación. Por
-defecto USD.</li>
-<li>AI <code class="prettyprint">NumId</code> (20, opcional): ID del receptor extranjero, en los
-documentos de exportación.</li>
-<li>AJ <code class="prettyprint">DscGlobal Exento</code> (18, opcional): descuento global sobre el monto
-exento, en porcentaje (por ejemplo <code class="prettyprint">50%</code>) o en monto.</li>
-<li>AK <code class="prettyprint">Nombre PDF</code> (100, opcional): nombre del PDF a descargar. Se pueden
-usar las variables {rut}, {dv}, {dte} y {folio}.</li>
-<li>AL <code class="prettyprint">Forma de Pago</code> (1, opcional): 1 contado, 2 crédito y 3 sin costo
-(entrega gratuita).</li>
-<li>AM <code class="prettyprint">CodImpAdic</code> (3, opcional): código del impuesto adicional, recargo o
-retención del ítem. Por ejemplo: 15 para el IVA retenido total en
-facturas de compra.</li>
-<li>AN <code class="prettyprint">DscGlobal Afecto</code> (18, opcional): descuento global sobre el monto
-afecto, en porcentaje (por ejemplo <code class="prettyprint">50%</code>) o en monto. En boletas el
-monto es bruto.</li>
-<li>AO <code class="prettyprint">PatenteCarro</code> (8, opcional): patente del carro o remolque.</li>
-<li>AP <code class="prettyprint">FchSalida</code> (10, opcional): fecha de salida del traslado AAAA-MM-DD.
-Si no es válida se ignora.</li>
-<li>AQ <code class="prettyprint">HraSalida</code> (8, opcional): hora de salida del traslado, HH:MM o
-HH:MM:SS.</li>
-<li>AR <code class="prettyprint">FchLlegada</code> (10, opcional): fecha de llegada del traslado
-AAAA-MM-DD. Si no es válida se ignora.</li>
-</ol>
+estándar de LibreDTE. El formato de las columnas está descrito en
+<code class="prettyprint">AbstractSpreadsheetBatchProcessorStrategy</code>.</p>
+<p>Formato del archivo: separador de columnas <code class="prettyprint">;</code> y codificación UTF-8.</p>
 </section>
 
 
@@ -312,32 +204,12 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-BatchProcessorStrategyInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface">BatchProcessorStrategyInterface</abbr></a></dt><dd>Interfaz para las estrategias de los procesadores de documentos en lote.</dd>    </dl>
 
 
 
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_repositoryManager">$repositoryManager</a>
-    <span>
-                        &nbsp;: <abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>            </span>
-</dt>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -346,68 +218,26 @@ AAAA-MM-DD. Si no es válida se ignora.</li>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct">__construct()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Constructor de la estrategia con sus dependencias.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse">parse()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method_parse">parse()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Parsea los datos de entrada del lote y genera los datos de los
 documentos tributarios electrónicos.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount">addGlobalDiscount()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_readRows">readRows()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: array&lt;int, array&lt;int, string&gt;&gt;    </span>
 </dt>
-<dd>Agrega un descuento global al documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem">addItem()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Agrega un ítem al documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference">addReference()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Agrega una referencia a un documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addTransport">addTransport()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Agrega información de transporte a un documento.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument">createDocument()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Crea un documento a partir de los datos proporcionados.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_getCurrency">getCurrency()</a>
-    <span>
-                                &nbsp;: string|null    </span>
-</dt>
-<dd>Obtiene la glosa de una moneda a partir de su código ISO.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_setInitialDTE">setInitialDTE()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Genera la estructura inicial del DTE.</dd>
+<dd>Entrega las filas de la planilla del lote, incluyendo el encabezado.</dd>
 
     </dl>
 
@@ -416,50 +246,6 @@ documentos tributarios electrónicos.</dd>
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_repositoryManager">
-        $repositoryManager
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_repositoryManager" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">159</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$repositoryManager</span>
-    </code>
-
-    
-    
-    
-
-        
-        
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -475,13 +261,13 @@ documentos tributarios electrónicos.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractSpreadsheetBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractspreadsheetbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractSpreadsheetBatchProcessorStrategy.php">AbstractSpreadsheetBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -520,13 +306,13 @@ documentos tributarios electrónicos.</dd>
 >
     <h4 class="phpdocumentor-element__name" id="method_parse">
         parse()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractSpreadsheetBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractspreadsheetbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractSpreadsheetBatchProcessorStrategy.php">AbstractSpreadsheetBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">183</span>
 
     </aside>
 
@@ -571,26 +357,26 @@ documentos tributarios electrónicos.</p>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_addGlobalDiscount">
-        addGlobalDiscount()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_readRows">
+        readRows()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_readRows" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">422</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Agrega un descuento global al documento.</p>
+        <p class="phpdocumentor-summary">Entrega las filas de la planilla del lote, incluyendo el encabezado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">addGlobalDiscount</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$descuento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$exento</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">readRows</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batch</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;int, string&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -599,34 +385,11 @@ documentos tributarios electrónicos.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$documento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-argument-list__argument__name">$batch</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface">DocumentBatchInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento al que se agregará el descuento.
-Se pasa por referencia para modificarlo.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$descuento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Porcentaje (por ejemplo <code class="prettyprint">10%</code>) o monto (por
-ejemplo <code class="prettyprint">1000</code>) del descuento.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$exento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Si es <code class="prettyprint">true</code> el descuento aplica al monto exento, si
-es <code class="prettyprint">false</code> aplica al monto afecto.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -636,503 +399,7 @@ es <code class="prettyprint">false</code> aplica al monto afecto.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Modifica el documento directamente.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_addItem">
-        addItem()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">556</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Agrega un ítem al documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">addItem</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Procesa los datos de un ítem y lo agrega al arreglo de detalles. Valida
-que los campos mínimos estén presentes y ajusta la longitud de los datos.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$documento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento al que se agregará el ítem. Modificado
-directamente.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$item</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos del ítem. Los índices corresponden a:</p>
-<ul>
-<li>0: Código del ítem (opcional).</li>
-<li>1: Indicador de exención (opcional).</li>
-<li>2: Nombre del ítem (obligatorio).</li>
-<li>3: Descripción del ítem (opcional).</li>
-<li>4: Cantidad del ítem (obligatoria, salvo que el precio sea 0).</li>
-<li>5: Unidad de medida (opcional).</li>
-<li>6: Precio del ítem (obligatorio).</li>
-<li>7: Descuento (opcional, porcentaje o monto).</li>
-<li>8: Código de impuesto adicional (opcional).</li>
-</ul>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_addItem_tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si faltan datos obligatorios.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_addReference">
-        addReference()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">789</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Agrega una referencia a un documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">addReference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$referencia</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Procesa los datos de referencia y los agrega al arreglo <code class="prettyprint">Referencia</code>
-dentro del documento. Valida los campos obligatorios y ajusta su longitud
-si es necesario.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$documento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento al que se agregará la referencia.
-Se pasa por referencia para modificarlo.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$referencia</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de la referencia a agregar. Los índices
-deben ser:</p>
-<ul>
-<li>0: Tipo del documento referenciado (obligatorio).</li>
-<li>1: Folio del documento referenciado (obligatorio).</li>
-<li>2: Fecha del documento en formato AAAA-MM-DD (obligatorio).</li>
-<li>3: Código de referencia (opcional).</li>
-<li>4: Razón de la referencia (opcional).</li>
-</ul>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_addReference_tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si algún campo obligatorio está vacío o
-no es válido.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Modifica el documento directamente.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_addTransport">
-        addTransport()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addTransport" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">670</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Agrega información de transporte a un documento.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">addTransport</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$documento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$transporte</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Procesa los datos de transporte proporcionados y los agrega al arreglo
-<code class="prettyprint">Transporte</code> dentro del documento. Los datos incluyen información de
-patente, transportista, chofer, destino y fechas del traslado.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$documento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Documento al que se agregará la información de
-transporte. Se pasa por referencia para modificarlo.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$transporte</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de transporte a procesar. Los índices son:</p>
-<ul>
-<li>0: Patente del vehículo (opcional).</li>
-<li>1: RUT del transportista (opcional).</li>
-<li>2: RUT del chofer (opcional).</li>
-<li>3: Nombre del chofer (opcional).</li>
-<li>4: Dirección del destino (opcional).</li>
-<li>5: Comuna del destino (opcional).</li>
-<li>6: Patente del carro o remolque (opcional).</li>
-<li>7: Fecha de salida AAAA-MM-DD (opcional, se ignora si no es válida).</li>
-<li>8: Hora de salida HH:MM o HH:MM:SS (opcional).</li>
-<li>9: Fecha de llegada AAAA-MM-DD (opcional, se ignora si no es válida).</li>
-</ul>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_addTransport_tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addTransport_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si se indica solo el RUT o solo el
-nombre del chofer.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">void</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Modifica el documento directamente.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createDocument">
-        createDocument()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">261</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Crea un documento a partir de los datos proporcionados.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Verifica los datos mínimos requeridos y genera la estructura base.</p>
-<p>También agrega ítems, transporte y referencias al documento.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$data</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos para crear el documento. Los índices corresponden a:</p>
-<ul>
-<li>0: Tipo de documento (obligatorio).</li>
-<li>1: Folio del documento (obligatorio).</li>
-<li>2: Fecha de emisión (opcional).</li>
-<li>3: Fecha de vencimiento (opcional).</li>
-<li>4: RUT del receptor (obligatorio).</li>
-<li>5: Razón social del receptor (obligatoria si no es boleta).</li>
-<li>6: Giro del receptor (obligatorio si no es boleta).</li>
-<li>7: Teléfono del receptor, va en Contacto (opcional, máximo 20).</li>
-<li>8: Correo del receptor (opcional, validado si se proporciona).</li>
-<li>9: Dirección del receptor (obligatoria si no es boleta).</li>
-<li>10: Comuna del receptor (obligatoria si no es boleta).</li>
-<li>33: Tipo de moneda (opcional, por defecto USD si aplica).</li>
-<li>34: Número de identificación del receptor extranjero (opcional).</li>
-<li>35: Descuento global exento (opcional, porcentaje o monto).</li>
-<li>36: Nombre del PDF (opcional).</li>
-<li>37: Forma de pago (opcional, 1, 2 o 3).</li>
-<li>38: Código de impuesto adicional (opcional).</li>
-<li>39: Descuento global afecto (opcional, porcentaje o monto).</li>
-</ul>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_createDocument_tags">
-        Tags
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-BatchProcessorException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException">BatchProcessorException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si faltan datos mínimos o son inválidos.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Estructura del documento generado.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getCurrency">
-        getCurrency()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_getCurrency" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">845</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Obtiene la glosa de una moneda a partir de su código ISO.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getCurrency</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$moneda</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Este método busca en el repositorio de la entidad <code class="prettyprint">AduanaMoneda</code> un
-registro que coincida con el código ISO proporcionado. Si encuentra un
-resultado, devuelve la glosa asociada; de lo contrario, retorna <code class="prettyprint">null</code>.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$moneda</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Código ISO de la moneda que se desea buscar.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|null</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>La glosa de la moneda o <code class="prettyprint">null</code> si no existe.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setInitialDTE">
-        setInitialDTE()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_setInitialDTE" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">464</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Genera la estructura inicial del DTE.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">setInitialDTE</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <section class="phpdocumentor-description"><p>Este método crea un arreglo con la estructura base del DTE, incluyendo
-encabezado, emisor, receptor y detalles. Configura valores
-predeterminados para los campos opcionales y procesa algunos datos de
-entrada.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$data</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos de entrada para generar la estructura del DTE.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Arreglo con la estructura inicial del DTE.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;int, string&gt;&gt;</span>
             </section>
 
 </article>
@@ -1150,30 +417,17 @@ entrada.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#property_repositoryManager">$repositoryManager</a></li>
-                                            </ul>
-                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_parse">parse()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addGlobalDiscount">addGlobalDiscount()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addItem">addItem()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addReference">addReference()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_addTransport">addTransport()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_createDocument">createDocument()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_getCurrency">getCurrency()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_setInitialDTE">setInitialDTE()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method_parse">parse()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessor-Strategy-Spreadsheet-CsvBatchProcessorStrategy.html#method_readRows">readRows()</a></li>
                                     </ul>
             </li>
                     </ul>
