@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -166,7 +166,10 @@
     <section class="phpdocumentor-description"><p>Parsea un lote de documentos tributarios entregado como CSV con el formato
 estándar de LibreDTE. El formato de las columnas está descrito en
 <code class="prettyprint">AbstractSpreadsheetBatchProcessorStrategy</code>.</p>
-<p>Formato del archivo: separador de columnas <code class="prettyprint">;</code> y codificación UTF-8.</p>
+<p>Formato del archivo: separador de columnas <code class="prettyprint">;</code> y codificación UTF-8. Si el
+contenido no es UTF-8 válido (por ejemplo un CSV exportado desde Excel en
+Windows) se asume Windows-1252, que para los caracteres del español coincide
+con ISO-8859-1.</p>
 </section>
 
 
@@ -368,7 +371,7 @@ documentos tributarios electrónicos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php"><a href="files/src-package-billing-component-document-worker-batchprocessor-strategy-spreadsheet-csvbatchprocessorstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessor/Strategy/Spreadsheet/CsvBatchProcessorStrategy.php">CsvBatchProcessorStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
