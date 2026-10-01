@@ -110,8 +110,10 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
                     ],
                     'inputData' => '...',
                     'options' => [
-                        'strategy' => 'spreadsheet.csv',
-                        'complete' => true,
+                        'batch_processor' => [
+                            'strategy' => 'spreadsheet.csv',
+                            'complete' => true,
+                        ],
                     ],
                 ],
             ],
@@ -120,7 +122,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     public function parse(DocumentBatchInterface $batch): DocumentBatchInterface
     {
         $emisor = $batch->getEmisor();
-        $options = $this->resolveOptions($batch->getOptions());
+        $options = $this->resolveOptions($batch->getBatchProcessorOptions());
 
         // Parsear los datos de entrada del lote para obtener los documentos.
         $parsedDocuments = $this->parseDocuments($batch);
@@ -160,7 +162,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     public function process(DocumentBatchInterface $batch): DocumentBatchInterface
     {
         $emisor = $batch->getEmisor();
-        $options = $this->resolveOptions($batch->getOptions());
+        $options = $this->resolveOptions($batch->getBatchProcessorOptions());
 
         // Parsear los datos de entrada del lote. Con esto el lote queda con la
         // bolsa de cada documento, con sus datos parseados.

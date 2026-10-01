@@ -36,7 +36,10 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchI
  * estándar de LibreDTE. El formato de las columnas está descrito en
  * `AbstractSpreadsheetBatchProcessorStrategy`.
  *
- * Formato del archivo: separador de columnas `;` y codificación UTF-8.
+ * Formato del archivo: separador de columnas `;` y codificación UTF-8. Si el
+ * contenido no es UTF-8 válido (por ejemplo un CSV exportado desde Excel en
+ * Windows) se asume Windows-1252, que para los caracteres del español coincide
+ * con ISO-8859-1.
  */
 #[Strategy(name: 'spreadsheet.csv', worker: 'batch_processor', component: 'document', package: 'billing')]
 class CsvBatchProcessorStrategy extends AbstractSpreadsheetBatchProcessorStrategy
@@ -46,6 +49,9 @@ class CsvBatchProcessorStrategy extends AbstractSpreadsheetBatchProcessorStrateg
      */
     protected function readRows(DocumentBatchInterface $batch): array
     {
-        return Csv::load($batch->getInputData());
+        $data = $batch->getInputData();
+        $encoding = mb_check_encoding($data, 'UTF-8') ? 'UTF-8' : 'Windows-1252';
+
+        return Csv::load($data, encoding: $encoding);
     }
 }

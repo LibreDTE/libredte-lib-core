@@ -388,6 +388,29 @@ class EmisionMasivaTest extends TestCase
         $this->assertSame(100, mb_strlen($nombre));
     }
 
+    public function testArchivoEnIso88591SeConvierteAUtf8(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/iso_8859_1.csv');
+
+        $documentsBag = $this->processFile($file);
+
+        $this->assertCount(1, $documentsBag);
+        $parsed = $documentsBag[0]->getParsedData();
+        $this->assertSame(
+            'Peña Ñandú Ltda',
+            $parsed['Encabezado']['Receptor']['RznSocRecep']
+        );
+        $this->assertSame(
+            'Asesoría y Diseño',
+            $parsed['Encabezado']['Receptor']['GiroRecep']
+        );
+        $this->assertSame('Café', $parsed['Detalle'][0]['NmbItem']);
+        $this->assertSame(
+            'Descripción: á é í ó ú ñ',
+            $parsed['Detalle'][0]['DscItem']
+        );
+    }
+
     public function testLoteComoContenidoEntregaLosMismosDocumentos(): void
     {
         $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
