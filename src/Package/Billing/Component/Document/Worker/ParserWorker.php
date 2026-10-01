@@ -68,6 +68,9 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
             'bag' => [
                 'example' => [
                     'inputData' => '...',
+                    'options' => [
+                        'strategy' => 'default.json',
+                    ],
                 ],
             ],
         ],
