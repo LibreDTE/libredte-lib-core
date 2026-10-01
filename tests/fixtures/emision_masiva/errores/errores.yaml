@@ -4,25 +4,28 @@ indexe_no_soportado.csv:
   message: 'IndExe'
 fchref_invalida.csv:
   exception: BatchProcessorException
-  message: 'Fecha del documento de referencia'
+  message: 'Fila 2: Fecha del documento de referencia'
 fchref_vacia.csv:
   exception: BatchProcessorException
-  message: 'Fecha del documento de referencia'
+  message: 'Fila 2: Fecha del documento de referencia'
 chofer_incompleto.csv:
   exception: BatchProcessorException
-  message: 'chofer'
+  message: 'Fila 2: Falta nombre del chofer.'
 folio_repetido.csv:
   exception: BatchProcessorException
-  message: 'repetido'
+  message: 'Fila 3: El folio 1 del tipo de documento 33 está repetido en el archivo.'
 folio_invalido.csv:
   exception: BatchProcessorException
-  message: 'El folio del documento debe ser un número entero mayor a 0'
+  message: 'Fila 2: El folio del documento debe ser un número entero mayor a 0'
 fila_truncada_item.csv:
   exception: BatchProcessorException
-  message: 'Falta precio del item'
+  message: 'Fila 2: Falta precio del item'
 fila_truncada_referencia.csv:
   exception: BatchProcessorException
-  message: 'Folio del documento de referencia'
+  message: 'Fila 2: Folio del documento de referencia'
 cantidad_cero_con_precio.csv:
   exception: BatchProcessorException
-  message: 'cantidad'
+  message: 'Fila 2: La cantidad del item no puede ser 0 si el precio es distinto de 0.'
+item_sin_documento.csv:
+  exception: BatchProcessorException
+  message: 'Fila 2: La fila trae un ítem o una referencia, pero no hay un documento anterior al que agregarlos.'

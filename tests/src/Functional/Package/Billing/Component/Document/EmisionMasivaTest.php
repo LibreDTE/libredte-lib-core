@@ -37,6 +37,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractDocume
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSpreadsheetBatchProcessorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
@@ -143,6 +144,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(BatchProcessorException::class)]
 #[CoversClass(NormalizerException::class)]
 #[CoversClass(BatchProcessorWorker::class)]
+#[CoversClass(AbstractSpreadsheetBatchProcessorStrategy::class)]
 #[CoversClass(CsvBatchProcessorStrategy::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
