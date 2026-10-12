@@ -255,6 +255,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setInputData(string|array|stdClass|null $inputData): static
     {
         if ($inputData === null) {

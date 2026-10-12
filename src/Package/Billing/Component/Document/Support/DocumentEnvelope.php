@@ -128,6 +128,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId(): string
     {
         return 'LibreDTE_SetDoc';

@@ -82,6 +82,14 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     #[Operation(
         parameters: [
             'bag' => [

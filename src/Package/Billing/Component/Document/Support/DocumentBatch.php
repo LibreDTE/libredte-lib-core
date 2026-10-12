@@ -156,6 +156,14 @@ class DocumentBatch implements DocumentBatchInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getInputFile(): ?string
     {
         return $this->inputFile;

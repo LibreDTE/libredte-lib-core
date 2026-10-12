@@ -63,6 +63,14 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     #[Operation(
         parameters: [
             'bag' => [

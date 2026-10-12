@@ -77,6 +77,14 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     #[Operation(
         parameters: [
             'bag' => [

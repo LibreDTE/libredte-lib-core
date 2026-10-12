@@ -73,6 +73,14 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     #[Operation(
         parameters: [
             'bag' => [

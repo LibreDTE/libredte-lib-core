@@ -35,9 +35,26 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrate
  */
 abstract class AbstractRendererStrategy extends AbstractStrategy implements RendererStrategyInterface
 {
+    /**
+     * Esquema de las opciones.
+     *
+     * @var array<string,array|bool>
+     */
+    protected array $optionsSchema = [
+        '__allowUndefinedKeys' => true,
+    ];
+
     public function __construct(
         private RendererInterface $renderer
     ) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
     }
 
     /**

@@ -57,8 +57,8 @@
     "require-dev": {
         "ext-xdebug": "*",
         "friendsofphp/php-cs-fixer": "^3.95",
-        "phpstan/phpstan": "^2.2",
-        "phpunit/phpunit": "^13.2",
+        "phpstan/phpstan": "^2.3",
+        "phpunit/phpunit": "^13.4",
         "symfony/mailer": "^8.1",
         "webklex/php-imap": "^6.2"
     },

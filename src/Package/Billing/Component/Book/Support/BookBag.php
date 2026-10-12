@@ -153,6 +153,14 @@ class BookBag implements BookBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getTipo(): TipoLibro
     {
         return $this->tipo;

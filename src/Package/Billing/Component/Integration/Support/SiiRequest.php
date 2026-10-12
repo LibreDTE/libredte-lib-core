@@ -139,6 +139,14 @@ class SiiRequest implements SiiRequestInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getEnvironment(): SiiEnvironment
     {
         return $this->options->get('environment');

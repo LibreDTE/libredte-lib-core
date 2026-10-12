@@ -87,6 +87,14 @@ class ExchangeBag implements ExchangeBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function addEnvelope(EnvelopeInterface $envelope): static
     {
         $this->envelopes[$envelope->getBusinessMessageID()] = $envelope;

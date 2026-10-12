@@ -100,6 +100,14 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * {@inheritDoc}
      */
+    public function getOptionsSchema(): array
+    {
+        return $this->optionsSchema;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     #[Operation(
         parameters: [
             'batch' => [
