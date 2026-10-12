@@ -786,6 +786,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020del\u0020contenedor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AgetTipo\u0028\u0029",
             "name": "getTipo",
             "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020libro\u0020tributario.",
@@ -1206,6 +1211,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-LoaderWorker.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-LoaderWorker.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003Aload\u0028\u0029",
             "name": "load",
             "summary": "Carga\u0020y\u0020normaliza\u0020los\u0020datos\u0020de\u0020entrada\u0020de\u0020un\u0020libro\u0020tributario.",
@@ -1571,6 +1581,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003Arender\u0028\u0029",
             "name": "render",
             "summary": "Realiza\u0020el\u0020renderizado\u0020del\u0020documento.",
@@ -1580,6 +1595,11 @@ Search.appendIndex(
             "name": "createDataAndOptions",
             "summary": "Crea\u0020los\u0020datos\u0020que\u0020se\u0020pasar\u00E1n\u0020a\u0020la\u0020plantilla\u0020que\u0020se\u0020renderizar\u00E1.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003A\u0024optionsSchema",
+            "name": "optionsSchema",
+            "summary": "Esquema\u0020de\u0020las\u0020opciones.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_optionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractRendererStrategy\u003A\u003A\u0024renderer",
             "name": "renderer",
@@ -4301,6 +4321,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020del\u0020contenedor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetInputData\u0028\u0029",
             "name": "setInputData",
             "summary": "Asignar\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020documento.",
@@ -4616,6 +4641,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020del\u0020lote.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AgetInputFile\u0028\u0029",
             "name": "getInputFile",
             "summary": "Entrega\u0020la\u0020ruta\u0020del\u0020archivo\u0020con\u0020los\u0020documentos\u0020que\u0020se\u0020deben\u0020procesar.",
@@ -4705,6 +4735,11 @@ Search.appendIndex(
             "name": "DocumentEnvelope",
             "summary": "Contenedor\u0020de\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getOptionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
@@ -4890,6 +4925,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BatchProcessorWorker.html#method_getOptionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BatchProcessorWorker\u003A\u003Aparse\u0028\u0029",
             "name": "parse",
@@ -6291,6 +6331,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003Aparse\u0028\u0029",
             "name": "parse",
             "summary": "Realiza\u0020la\u0020transformaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020documento.",
@@ -6320,6 +6365,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method_getOptionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003Arender\u0028\u0029",
             "name": "render",
@@ -8061,6 +8111,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020de\u0020la\u0020bolsa\u0020de\u0020intercambio.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Support-ExchangeBag.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Support\\ExchangeBag\u003A\u003AaddEnvelope\u0028\u0029",
             "name": "addEnvelope",
             "summary": "Agrega\u0020un\u0020sobre\u0020a\u0020la\u0020bolsa.",
@@ -8526,6 +8581,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html#method_getOptionsSchema"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003Areceive\u0028\u0029",
             "name": "receive",
             "summary": "Recibe\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio\u0020mediante\u0020la\nestrategia\u0020definida\u0020en\u0020la\u0020bolsa.",
@@ -8660,6 +8720,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html#method_getOptionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003Asend\u0028\u0029",
             "name": "send",
@@ -10430,6 +10495,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructor\u0020de\u0020la\u0020configuraci\u00F3n\u0020de\u0020conexi\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetOptionsSchema\u0028\u0029",
+            "name": "getOptionsSchema",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getOptionsSchema"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetEnvironment\u0028\u0029",
             "name": "getEnvironment",
