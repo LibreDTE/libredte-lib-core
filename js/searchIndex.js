@@ -3306,6 +3306,16 @@ Search.appendIndex(
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPais.html#method___toString"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPais\u003A\u003AgetCodigo\u0028\u0029",
+            "name": "getCodigo",
+            "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020del\u0020pa\u00EDs\u0020en\u0020las\u0020tablas\u0020de\u0020aduana\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPais.html#method_getCodigo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPais\u003A\u003AgetCodigoISO\u0028\u0029",
+            "name": "getCodigoISO",
+            "summary": "Entrega\u0020el\u0020c\u00F3digo\u0020ISO\u00203166\u002D1\u0020alpha\u002D2\u0020del\u0020pa\u00EDs\u0020\u0028el\u0020que\u0020usa\u0020UBL\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-AduanaPais.html#method_getCodigoISO"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaPuerto",
             "name": "AduanaPuerto",
             "summary": "Entidad\u0020de\u0020puerto\u0020de\u0020aduana\u0020\u0028documentos\u0020de\u0020exportaci\u00F3n\u0029.",
@@ -4220,6 +4230,16 @@ Search.appendIndex(
             "name": "class",
             "summary": "Clase\u0020de\u0020la\u0020entidad\u0020de\u0020los\u0020tipos\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Factory-TipoDocumentoFactory.html#property_class"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Repository\\AduanaPaisRepository",
+            "name": "AduanaPaisRepository",
+            "summary": "Repositorio\u0020para\u0020trabajar\u0020con\u0020los\u0020pa\u00EDses\u0020de\u0020aduana.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-AduanaPaisRepository.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Repository\\AduanaPaisRepository\u003A\u003AfindOneByCodigoISO\u0028\u0029",
+            "name": "findOneByCodigoISO",
+            "summary": "Entrega\u0020el\u0020pa\u00EDs\u0020de\u0020aduana\u0020que\u0020tiene\u0020el\u0020c\u00F3digo\u0020ISO\u00203166\u002D1\u0020alpha\u002D2\nindicado\u0020\u0028el\u0020que\u0020usa\u0020UBL\u0020en\u0020\u0060Country\/IdentificationCode\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Repository-AduanaPaisRepository.html#method_findOneByCodigoISO"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Repository\\ComunaRepository",
             "name": "ComunaRepository",
