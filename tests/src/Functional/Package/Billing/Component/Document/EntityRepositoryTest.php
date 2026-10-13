@@ -48,6 +48,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\AduanaPaisRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\TipoDocumentoRepository;
@@ -57,9 +58,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(Application::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(CodigoDocumento::class)]
+#[CoversClass(AduanaPais::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ImpuestoAdicionalRetencion::class)]
 #[CoversClass(TipoDocumento::class)]
+#[CoversClass(AduanaPaisRepository::class)]
 #[CoversClass(ComunaRepository::class)]
 #[CoversClass(ImpuestoAdicionalRetencionRepository::class)]
 #[CoversClass(TipoDocumentoRepository::class)]
@@ -127,6 +130,76 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
         $this->assertSame('ESTONIA', $repository->find(549)->getGlosa());
         $this->assertSame(563, $repository->findBy(['glosa' => 'ALEMANIA'])[0]->getCodigo());
+    }
+
+    public function testEntityRepositoryAduanaPaisCodigoISO(): void
+    {
+        $repository = $this->repositoryManager->getRepository(AduanaPais::class);
+        $this->assertInstanceOf(AduanaPaisRepository::class, $repository);
+
+        // Un país por su código ISO 3166-1 alpha-2, sin importar las
+        // mayúsculas ni los espacios.
+        $this->assertSame(563, $repository->findOneByCodigoISO('DE')->getCodigo());
+        $this->assertSame('ALEMANIA', (string) $repository->findOneByCodigoISO(' de '));
+        $this->assertSame('CL', $repository->find(997)->getCodigoISO());
+        $this->assertSame('DE', $repository->find(563)->getCodigoISO());
+
+        // Países con una glosa distinta de su nombre.
+        $this->assertSame(225, $repository->findOneByCodigoISO('US')->getCodigo());
+        $this->assertSame(206, $repository->findOneByCodigoISO('DO')->getCodigo());
+
+        // Países que el SII llama distinto: Sahara Occidental, Palestina (el 322
+        // era el Yemen anterior a la unificación), Países Bajos y Belau.
+        $this->assertSame(165, $repository->findOneByCodigoISO('EH')->getCodigo());
+        $this->assertSame(322, $repository->findOneByCodigoISO('PS')->getCodigo());
+        $this->assertSame('PAISES BAJOS', (string) $repository->findOneByCodigoISO('NL'));
+        $this->assertSame('BELAU', (string) $repository->findOneByCodigoISO('PW'));
+
+        // Un país que el SII tiene dos veces tiene el código en el vigente.
+        $this->assertSame(565, $repository->findOneByCodigoISO('GI')->getCodigo());
+        $this->assertSame(346, $repository->findOneByCodigoISO('YE')->getCodigo());
+
+        // Sin país: código que no existe, que no es un código ISO, o que el
+        // SII no tiene (por ejemplo, Antártica).
+        $this->assertNull($repository->findOneByCodigoISO('ZZ'));
+        $this->assertNull($repository->findOneByCodigoISO('AQ'));
+        $this->assertNull($repository->findOneByCodigoISO('DEU'));
+        $this->assertNull($repository->findOneByCodigoISO(''));
+        $this->assertNull($repository->findOneByCodigoISO('1A'));
+    }
+
+    public function testEntityRepositoryAduanaPaisSinCodigoISO(): void
+    {
+        $repository = $this->repositoryManager->getRepository(AduanaPais::class);
+
+        // Países que ya no existen, grupos de territorios y códigos
+        // especiales no tienen código ISO.
+        foreach ([521, 529, 526, 151, 905, 998, 999, 888, 585, 323] as $codigo) {
+            $this->assertNull($repository->find($codigo)->getCodigoISO(), (string) $codigo);
+        }
+    }
+
+    public function testEntityRepositoryAduanaPaisDatosDeCodigosISO(): void
+    {
+        $repository = $this->repositoryManager->getRepository(AduanaPais::class);
+
+        $codigos = [];
+        foreach ($repository->findAll() as $pais) {
+            $codigoISO = $pais->getCodigoISO();
+            if ($codigoISO === null) {
+                continue;
+            }
+            $this->assertMatchesRegularExpression('/^[A-Z]{2}$/', $codigoISO, (string) $pais);
+            $codigos[] = $codigoISO;
+        }
+
+        // Cada código ISO está en un solo país: si no, el país encontrado por
+        // un código dependería del orden de los datos.
+        $this->assertSame([], array_keys(array_filter(
+            array_count_values($codigos),
+            fn (int $cantidad): bool => $cantidad > 1
+        )));
+        $this->assertCount(220, $codigos);
     }
 
     public function testEntityRepositoryAduanaPuerto(): void

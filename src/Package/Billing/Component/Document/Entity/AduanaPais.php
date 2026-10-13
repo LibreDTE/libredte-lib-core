@@ -25,10 +25,13 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
 use Derafu\Repository\Entity;
+use Derafu\Repository\Mapping as DRM;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\AduanaPaisRepository;
 
 /**
  * Entidad de país de aduana (documentos de exportación).
  */
+#[DRM\Entity(repositoryClass: AduanaPaisRepository::class)]
 class AduanaPais extends Entity
 {
     /**
@@ -37,5 +40,28 @@ class AduanaPais extends Entity
     public function __toString(): string
     {
         return $this->getAttribute('glosa');
+    }
+
+    /**
+     * Entrega el código del país en las tablas de aduana del SII.
+     *
+     * @return int
+     */
+    public function getCodigo(): int
+    {
+        return (int) $this->getAttribute('codigo');
+    }
+
+    /**
+     * Entrega el código ISO 3166-1 alpha-2 del país (el que usa UBL).
+     *
+     * Es `null` si el país del SII no tiene un código ISO vigente (países que
+     * ya no existen, grupos de territorios, zonas francas, etc.).
+     *
+     * @return string|null
+     */
+    public function getCodigoISO(): ?string
+    {
+        return $this->getAttribute('codigo_iso');
     }
 }
