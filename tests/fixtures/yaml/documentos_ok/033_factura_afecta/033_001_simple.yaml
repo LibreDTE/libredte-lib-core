@@ -28,6 +28,8 @@ Encabezado:
     # CmnaOrigen: Comuna desde donde se despachan bienes o de la sucursal que
     #             emite el documento - Largo máx: 20 - Tipo: ALFA.
     CmnaOrigen: Santa Cruz
+    # CdgVendedor: Código del vendedor - Largo máx: 60 - Tipo: ALFA.
+    CdgVendedor: vl
   # Receptor: Área Identificación del Receptor.
   Receptor:
     # RUTRecep: RUT del cliente, excepto factura que hace referencia al
@@ -57,6 +59,8 @@ Detalle:
 Test:
   ExpectedValues:
     Encabezado:
+      Emisor:
+        CdgVendedor: vl
       Totales:
         MntNeto: 31500
         IVA: 5985

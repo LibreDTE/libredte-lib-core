@@ -17,6 +17,7 @@ Encabezado:
     Acteco: 726000
     DirOrigen: Santa Cruz
     CmnaOrigen: Santa Cruz
+    CdgVendedor: vl
   Receptor:
     RUTRecep: 60803000-K
     RznSocRecep: Servicio de Impuestos Internos
@@ -51,6 +52,8 @@ Detalle:
 Test:
   ExpectedValues:
     Encabezado:
+      Emisor:
+        CdgVendedor: vl
       Totales:
         MntNeto: 31500
         IVA: 5985

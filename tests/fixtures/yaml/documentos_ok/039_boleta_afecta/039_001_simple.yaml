@@ -8,6 +8,12 @@ Encabezado:
     GiroEmisor: Tecnología, Informática y Telecomunicaciones
     DirOrigen: DBG
     CmnaOrigen: Santa Cruz
+    # CdgVendedor: Código del vendedor - Largo máx: 60 - Tipo: ALFA.
+    #              Oficialmente no es parte del XML de las boletas (el esquema
+    #              del SII no lo incluye en el Emisor), pero este ejemplo lo
+    #              incluye porque qué hacer con el campo se decide en una etapa
+    #              posterior a la entrada de datos.
+    CdgVendedor: vl
   Receptor:
     # RUTRecep: RUT 66666666-6 corresponde a uno genérico.
     RUTRecep: 66666666-6
