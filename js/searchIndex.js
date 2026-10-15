@@ -4156,6 +4156,11 @@ Search.appendIndex(
             "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.dispatcher\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DispatcherException.html"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\DocumentBagManagerException",
+            "name": "DocumentBagManagerException",
+            "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.document_bag_manager\u0022.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\DocumentException",
             "name": "DocumentException",
             "summary": "Excepci\u00F3n\u0020general\u0020del\u0020componente\u0020\u0022billing.document\u0022.",
@@ -4175,11 +4180,6 @@ Search.appendIndex(
             "name": "documentBag",
             "summary": "Contenedor\u0020del\u0020documento\u0020que\u0020se\u0020estaba\u0020manipulando\u0020cuando\u0020se\u0020gener\u00F3\u0020la\nexcepci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentException.html#property_documentBag"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\DocumentBagManagerException",
-            "name": "DocumentBagManagerException",
-            "summary": "Excepci\u00F3n\u0020para\u0020el\u0020worker\u0020\u0022billing.document.document_bag_manager\u0022.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentBagManagerException.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Exception\\ExamplesException",
             "name": "ExamplesException",
