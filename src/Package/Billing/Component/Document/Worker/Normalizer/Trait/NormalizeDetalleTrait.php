@@ -45,6 +45,13 @@ trait NormalizeDetalleTrait
     {
         $data = $bag->getNormalizedData();
 
+        // El detalle es obligatorio: todo documento debe tener al menos un ítem.
+        if (empty($data['Detalle'])) {
+            throw new NormalizerException(
+                'Falta indicar el detalle del documento (Detalle): debe tener al menos un ítem.'
+            );
+        }
+
         if (!isset($data['Detalle'][0])) {
             $data['Detalle'] = [
                 $data['Detalle'],
