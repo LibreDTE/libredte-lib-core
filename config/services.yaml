@@ -7,6 +7,7 @@ imports:
 
 # Configuración de parámetros.
 parameters:
+    app.locale.default: 'es'
     libredte.lib.core.project_dir: '%kernel.project_dir%'
 
 # Configuración de servicios que provee la biblioteca.
