@@ -296,7 +296,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         elseif ($status == '-11') {
             $errors = [];
             foreach (['SRV_CODE', 'SQL_CODE', 'ERR_CODE'] as $errorType) {
-                if (isset($headers[$errorType])) {
+                if (($headers[$errorType] ?? '') !== '') {
                     $errors[] = self::ERRORS[$errorType][$headers[$errorType]]
                         ?? sprintf(
                             'Error %s #%s',
@@ -352,7 +352,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         // Normalizar a arreglo de documentos (y otros datos) si no lo son.
         if (!is_array($body[$keys[0]])) {
             foreach ($keys as $key) {
-                $body[$key] = [$body[$key] ?? 0];
+                $body[$key] = [$body[$key] ?? ''];
             }
         }
 
@@ -362,7 +362,13 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         for ($i = 0; $i < $n_documents; $i++) {
             $document = [];
             foreach ($keysMap as $source => $destination) {
-                $document[$destination] = $body[$source][$i];
+                $value = $body[$source][$i];
+                // Un contador que viene vacío (el elemento vacío se decodifica
+                // como texto vacío) es cero.
+                $document[$destination] = $value === '' && $source !== $keys[0]
+                    ? 0
+                    : $value
+                ;
             }
             $documents[$body[$keys[0]][$i]] = $document;
         }

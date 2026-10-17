@@ -128,11 +128,12 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
     ): void {
         $status = $response['RECEPCIONDTE']['STATUS'] ?? null;
 
-        // Si el estado es `null` la respuesta del SII no es válida. Lo cual
-        // indicaría que el SII no contestó correctamente a la solicitud o bien
-        // la misma solicitud se hizo de manera incorrecta produciendo que el
-        // SII no contestase adecuadamente.
-        if ($status === null) {
+        // Si el estado es `null` (o vacío, el elemento vacío se decodifica como
+        // texto vacío) la respuesta del SII no es válida. Lo cual indicaría que
+        // el SII no contestó correctamente a la solicitud o bien la misma
+        // solicitud se hizo de manera incorrecta produciendo que el SII no
+        // contestase adecuadamente.
+        if ($status === null || $status === '') {
             throw new SendXmlDocumentException(
                 'La respuesta del envío del XML al SII no trae un código de estado válido.'
             );

@@ -180,7 +180,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         $token = $response['SII:RESPUESTA']['SII:RESP_BODY']['TOKEN'] ?? null;
 
         // Validar respuesta de la solicitud del token.
-        if ($estado !== '00' || $token === null) {
+        if ($estado !== '00' || $token === null || $token === '') {
             $glosa = $response['SII:RESPUESTA']['SII:RESP_HDR']['GLOSA'] ?? null;
             throw new AuthenticateException(sprintf(
                 'No fue posible obtener el token para autenticar en el SII al usuario %s. %s',
@@ -222,7 +222,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         $estado = $response['SII:RESPUESTA']['SII:RESP_HDR']['ESTADO'] ?? null;
         $semilla = $response['SII:RESPUESTA']['SII:RESP_BODY']['SEMILLA'] ?? null;
 
-        if ($estado !== '00' || $semilla === null) {
+        if ($estado !== '00' || $semilla === null || $semilla === '') {
             throw new AuthenticateException(
                 'No fue posible obtener la semilla.'
             );

@@ -82,7 +82,8 @@ abstract class AbstractSiiWsdlResponse
         }
 
         $this->headers = $headers;
-        $this->body = $response['SII:RESPUESTA']['SII:RESP_BODY'] ?? [];
+        $body = $response['SII:RESPUESTA']['SII:RESP_BODY'] ?? [];
+        $this->body = is_array($body) ? $body : [];
         $this->requestData = $request;
     }
 

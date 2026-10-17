@@ -24,7 +24,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Backbone\Exception\StrategyException;
+use Derafu\Backbone\Exception\StrategyNotFoundException;
 use Derafu\Config\Options;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
@@ -154,7 +154,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
     public function testDocumentoFactoryFromArrayWrongIntTipoDTE(): void
     {
-        $this->expectException(StrategyException::class);
+        $this->expectException(StrategyNotFoundException::class);
         $this->expectExceptionMessage('Strategy documento_35 not found in service builder (billing.document.builder).');
 
         $data = [
@@ -172,7 +172,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
 
     public function testDocumentoFactoryFromArrayWrongStringTipoDTE(): void
     {
-        $this->expectException(StrategyException::class);
+        $this->expectException(StrategyNotFoundException::class);
         $this->expectExceptionMessage('Strategy factura not found in service builder (billing.document.builder).');
 
         $data = [

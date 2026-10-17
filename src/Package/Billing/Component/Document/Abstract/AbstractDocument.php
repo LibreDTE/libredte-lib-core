@@ -550,7 +550,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 Arr::ensureArrayAtPath($array, $path);
             }
 
-            $this->data = Arr::cast($array);
+            $this->data = Arr::cast($array, preserveFormat: true);
         }
 
         // Entregar los datos del DTE.

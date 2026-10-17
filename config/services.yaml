@@ -1,9 +1,9 @@
 # Importación de servicios que requiere LibreDTE Lib Core.
 imports:
-  - { resource: '../vendor/derafu/xml/config/services.yaml' }
-  - { resource: '../vendor/derafu/certificate/config/services.yaml' }
-  - { resource: '../vendor/derafu/signature/config/services.yaml' }
-  - { resource: '../vendor/derafu/mail/config/services.yaml' }
+  - { resource: '../vendor/derafu/xml/resources/config/xml-services.yaml' }
+  - { resource: '../vendor/derafu/certificate/resources/config/certificate-services.yaml' }
+  - { resource: '../vendor/derafu/signature/resources/config/signature-services.yaml' }
+  - { resource: '../vendor/derafu/mail/resources/config/mail-services.yaml' }
 
 # Configuración de parámetros.
 parameters:

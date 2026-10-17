@@ -133,8 +133,13 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         // Obtener el CAF de la bolsa.
         $caf = $bag->getCaf();
 
-        // Generar un borrador del DTE para manipular sus datos.
-        $xmlDocument = $this->xmlService->encode($bag->getNormalizedData());
+        // Generar un borrador del DTE para manipular sus datos. Los datos
+        // normalizados son el contenido del documento, un XML necesita un solo
+        // elemento raíz, por eso se envuelven en la misma estructura del DTE.
+        $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
+        $xmlDocument = $this->xmlService->encode([
+            'DTE' => [$tagXml => $bag->getNormalizedData()],
+        ]);
         $draft = $this->create($xmlDocument);
 
         // Verificar que el folio del documento esté dentro del rango del CAF.

@@ -216,7 +216,16 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
     {
         // Asignar el código del estado y asumir que hubo error en la
         // validación del documento por parte del SII.
-        $status = $headers['ESTADO'] ?? $body['ESTADO'] ?? $headers['SII:ESTADO'];
+        // El estado es el primero que viene con valor: un elemento vacío no es
+        // un estado.
+        $status = null;
+        foreach ([$headers['ESTADO'] ?? null, $body['ESTADO'] ?? null] as $candidate) {
+            if ($candidate !== null && $candidate !== '') {
+                $status = $candidate;
+                break;
+            }
+        }
+        $status ??= $headers['SII:ESTADO'];
         $received = ($body['RECIBIDO'] ?? 'NO') === 'SI';
         $description = null;
 
