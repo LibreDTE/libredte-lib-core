@@ -63,7 +63,7 @@ class Application extends MicroKernel implements ApplicationInterface
     /**
      * Cargadores de archivos de configuración.
      *
-     * @var array<class-string>
+     * @var array<class-string<\Symfony\Component\Config\Loader\LoaderInterface>>
      */
     protected const CONFIG_LOADERS = [
         PhpFileLoader::class,

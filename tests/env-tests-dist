@@ -8,6 +8,11 @@
 #   $ source tests/env-tests
 #
 
+# OpenSSL con el proveedor legacy activo, para certificados con cifrado
+# 40BitRC2. Se debe cargar el archivo desde la raíz del proyecto. Si el
+# certificado usa un cifrado moderno se puede omitir.
+export OPENSSL_CONF="$(pwd)/tests/openssl-legacy.cnf"
+
 # Certificado digital.
 export LIBREDTE_CERTIFICATE_FILE=""
 export LIBREDTE_CERTIFICATE_PASS=""
