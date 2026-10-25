@@ -142,12 +142,12 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
 
         // Verificar que el folio del documento esté dentro del rango del CAF.
         if (!$caf->isEnRango($draft->getFolio())) {
-            throw new BuilderException(sprintf(
-                'El folio %d del documento %s no está disponible en el rango del CAF %s.',
-                $draft->getFolio(),
-                $draft->getId(),
-                $caf->getId()
-            ));
+            throw new BuilderException([
+                'Document number {folio} of document {document} is not available in CAF {caf} range.',
+                'folio' => $draft->getFolio(),
+                'document' => $draft->getId(),
+                'caf' => $caf->getId(),
+            ]);
         }
 
         // Asignar marca de tiempo si no se pasó una.
@@ -155,13 +155,13 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
 
         // Corroborar que el CAF esté vigente según el timestamp usado.
         if (!$caf->isVigente($timestamp)) {
-            throw new BuilderException(sprintf(
-                'El CAF %s que contiene el folio %d del documento %s no está vigente, venció el día %s.',
-                $caf->getId(),
-                $draft->getFolio(),
-                $draft->getId(),
-                (new DateTime($caf->getFechaVencimiento()))->format('d/m/Y'),
-            ));
+            throw new BuilderException([
+                'CAF {caf} containing document number {folio} of document {document} is not valid; it expired on {date}.',
+                'caf' => $caf->getId(),
+                'folio' => $draft->getFolio(),
+                'document' => $draft->getId(),
+                'date' => (new DateTime($caf->getFechaVencimiento()))->format('d/m/Y'),
+            ]);
         }
 
         // Preparar datos del timbre.
@@ -188,7 +188,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
                 $signatureAlgorithm
             );
         } catch (SignatureException $e) {
-            throw new BuilderException('No fue posible timbrar los datos.');
+            throw new BuilderException('Could not stamp the data.');
         }
 
         // Agregar timbre al TED.
@@ -213,13 +213,13 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
 
         // Corroborar que el certificado esté vigente según el timestamp usado.
         if (!$certificate->isActive($timestamp)) {
-            throw new BuilderException(sprintf(
-                'El certificado digital de %s no está vigente en el tiempo %s, su rango de vigencia es del %s al %s.',
-                $certificate->getID(),
-                (new DateTime($timestamp))->format('d/m/Y H:i'),
-                (new DateTime($certificate->getFrom()))->format('d/m/Y H:i'),
-                (new DateTime($certificate->getTo()))->format('d/m/Y H:i'),
-            ));
+            throw new BuilderException([
+                'Digital certificate for {id} is not valid at {time}; its validity range is from {from} to {to}.',
+                'id' => $certificate->getID(),
+                'time' => (new DateTime($timestamp))->format('d/m/Y H:i'),
+                'from' => (new DateTime($certificate->getFrom()))->format('d/m/Y H:i'),
+                'to' => (new DateTime($certificate->getTo()))->format('d/m/Y H:i'),
+            ]);
         }
 
         // Agregar timestamp.

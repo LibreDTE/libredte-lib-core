@@ -167,11 +167,11 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
             ) {
                 $message .= ': ' . $e->getTrace()[0]['args'][1];
             }
-            throw new ConsumeWebserviceException(sprintf(
-                'Ocurrió un error al crear el cliente SOAP para la API del SII con el WSDL %s. %s',
-                $wsdl,
-                $message
-            ));
+            throw new ConsumeWebserviceException([
+                'An error occurred while creating the SOAP client for the SII API with WSDL {wsdl}. {detail}',
+                'wsdl' => $wsdl,
+                'detail' => $message,
+            ]);
         }
 
         // Si se provee un token, se establece como cookie en el cliente SOAP.
@@ -237,12 +237,12 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         // Si la respuesta es `null` significa que ninguno de los intentos de
         // llamadas a la función del servicio web fue exitoso.
         if ($responseBody === null) {
-            throw new ConsumeWebserviceException(sprintf(
-                'No se obtuvo respuesta de la función %s del servicio web SOAP del SII después de %d intentos. %s',
-                $function,
-                $retries,
-                implode(' ', $errors)
-            ));
+            throw new ConsumeWebserviceException([
+                'No response was received from SII SOAP function {function} after {attempts} attempts. {detail}',
+                'function' => $function,
+                'attempts' => $retries,
+                'detail' => implode(' ', $errors),
+            ]);
         }
 
         // Si la respuesta es un objeto stdClass, se convierte a un array y

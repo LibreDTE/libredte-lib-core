@@ -22,11 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Abstract;
 
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
-use LogicException;
 
 /**
  * Clase abstracta (base) de la representación de un libro tributario
@@ -59,10 +59,10 @@ abstract class AbstractBook implements BookInterface
     public function getTipo(): TipoLibro
     {
         if (!isset($this->tipo)) {
-            throw new LogicException(sprintf(
-                'El tipo de libro no está definido en la clase "%s".',
-                static::class
-            ));
+            throw new LogicException([
+                'The book type is not defined in class "{class}".',
+                'class' => static::class,
+            ]);
         }
 
         return $this->tipo;
@@ -178,7 +178,7 @@ abstract class AbstractBook implements BookInterface
 
         if ($schema === null) {
             throw new BookException(
-                'El XML del libro no declara el atributo xsi:schemaLocation.'
+                'The book XML does not declare the xsi:schemaLocation attribute.'
             );
         }
 

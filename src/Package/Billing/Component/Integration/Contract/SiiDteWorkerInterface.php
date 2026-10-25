@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\CheckXmlDocumentSentStatusException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\RequestXmlDocumentSentStatusByEmailException;
@@ -35,7 +36,6 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\Sii
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
-use LogicException;
 use UnexpectedValueException;
 
 /**

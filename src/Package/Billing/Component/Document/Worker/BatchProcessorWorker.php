@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -35,7 +36,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcesso
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
-use RuntimeException;
 use Throwable;
 
 /**
@@ -246,7 +246,10 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $documents = $strategy->parse($batch);
         } catch (Throwable $e) {
             throw new BatchProcessorException(
-                message: $e->getMessage(),
+                message: [
+                    'Could not process the document batch: {detail}',
+                    'detail' => $e,
+                ],
                 documentBatch: $batch
             );
         }

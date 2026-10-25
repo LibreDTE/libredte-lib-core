@@ -120,8 +120,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 
         if (empty($presentaciones)) {
             throw new RendererException(
-                'No fue posible generar ninguna renderización con las '
-                . 'presentaciones solicitadas.',
+                'Could not generate any rendering with the requested presentations.',
                 documentBag: $bag
             );
         }
@@ -181,10 +180,10 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 
             $presentacion = TipoPresentacion::tryFrom((string) $key);
             if ($presentacion === null) {
-                throw new RendererException(sprintf(
-                    'La presentación de renderizado "%s" no existe.',
-                    $key
-                ), documentBag: $bag);
+                throw new RendererException([
+                    'Rendering presentation "{presentation}" does not exist.',
+                    'presentation' => $key,
+                ], documentBag: $bag);
             }
 
             if (
@@ -224,7 +223,10 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
             return $strategy->render($bag);
         } catch (Throwable $e) {
             throw new RendererException(
-                message: $e->getMessage(),
+                message: [
+                    'Could not render the document: {detail}',
+                    'detail' => $e,
+                ],
                 documentBag: $bag,
                 previous: $e
             );

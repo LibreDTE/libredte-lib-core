@@ -101,11 +101,11 @@ class CheckXmlDocumentSentStatusJob extends AbstractJob implements JobInterface
                 $requestData
             );
         } catch (ConsumeWebserviceException | SiiDteException $e) {
-            throw new CheckXmlDocumentSentStatusException(sprintf(
-                'No fue posible obtener el estado del XML enviado al SII con Track ID %s. %s',
-                $trackId,
-                $e->getMessage()
-            ));
+            throw new CheckXmlDocumentSentStatusException([
+                'Could not obtain the status of the XML sent to the SII with Track ID {trackId}. {detail}',
+                'trackId' => $trackId,
+                'detail' => $e,
+            ]);
         }
     }
 }

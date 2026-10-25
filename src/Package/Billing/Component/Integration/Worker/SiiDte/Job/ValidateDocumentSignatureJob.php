@@ -92,10 +92,10 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
         // Validar fecha y convertir al formato del SII.
         $dateSii = Date::validateAndConvert($date, 'dmY');
         if ($dateSii === null) {
-            throw new ValidateDocumentSignatureException(sprintf(
-                'La fecha %s del documento no es válida, debe tener formato AAAA-MM-DD.',
-                $date
-            ));
+            throw new ValidateDocumentSignatureException([
+                'Document date {date} is not valid; it must be in YYYY-MM-DD format.',
+                'date' => $date,
+            ]);
         }
 
         // Obtener el token asociado al certificado digital.
@@ -135,14 +135,14 @@ class ValidateDocumentSignatureJob extends AbstractJob implements JobInterface
                 $requestData
             );
         } catch (ConsumeWebserviceException | SiiDteException $e) {
-            throw new ValidateDocumentSignatureException(sprintf(
-                'No fue posible obtener el estado de la firma del documento T%dF%d de %d-%s desde el SII. %s',
-                $document,
-                $number,
-                $rutCompany,
-                $dvCompany,
-                $e->getMessage()
-            ));
+            throw new ValidateDocumentSignatureException([
+                'Could not obtain signature status for document type {type} with number {folio} for {rut}-{dv} from the SII. {detail}',
+                'type' => $document,
+                'folio' => $number,
+                'rut' => $rutCompany,
+                'dv' => $dvCompany,
+                'detail' => $e,
+            ]);
         }
     }
 }

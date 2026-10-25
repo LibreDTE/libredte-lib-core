@@ -96,10 +96,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         try {
             $decoded = Yaml::parse($data);
         } catch (ParseException $e) {
-            throw new ParserException(sprintf(
-                'El YAML proporcionado es inválido: %s',
-                $e->getMessage()
-            ));
+            throw new ParserException([
+                'The provided YAML is invalid: {detail}',
+                'detail' => $e,
+            ]);
         }
 
         return is_array($decoded) ? $decoded : [];
@@ -170,14 +170,14 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         // Si no se proporcionan datos, lanza una excepción indicando.
         if (empty($data)) {
             throw new ParserException(
-                'No puede acceder de forma directa a la previsualización.'
+                'Direct access to the preview is not allowed.'
             );
         }
 
         // Verificar que se haya indicado el tipo de documento.
         if (empty($data['TpoDoc'])) {
             throw new ParserException(
-                'Debe indicar el tipo de documento a emitir.'
+                'Must indicate the document type to issue.'
             );
         }
 
@@ -203,10 +203,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         // Validar que todos los campos mínimos estén presentes.
         foreach ($minimal_data as $attr) {
             if (empty($data[$attr])) {
-                throw new ParserException(sprintf(
-                    'Error al recibir campos mínimos, falta: %s.',
-                    $attr
-                ));
+                throw new ParserException([
+                    'Must indicate the field {field}.',
+                    'field' => $attr,
+                ]);
             }
         }
     }
@@ -725,9 +725,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 // boletas).
                 if (!empty($detalle['CodImpAdic'])) {
                     throw new ParserException(
-                        'No es posible generar una boleta que tenga impuestos '.
-                        'adicionales mediante LibreDTE. '.
-                        'Este es un caso de uso no considerado.',
+                        'It is not possible to generate a receipt with additional taxes through LibreDTE. This use case is not supported.',
                     );
                 } else {
                     $adicional = 0;
@@ -909,9 +907,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         // y exentos.
         if ($TpoValor_global == '$' && $n_itemAfecto && $n_itemExento) {
             throw new ParserException(
-                'No es posible generar un documento con un descuento global '.
-                'en monto que tenga ítems afectos y exentos mediante '.
-                'LibreDTE. Este es un caso de uso no considerado.'
+                'It is not possible to generate a document with a global amount discount that has both taxable and exempt items through LibreDTE. This use case is not supported.'
             );
         }
 
@@ -1023,10 +1019,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Retornar null si no se encuentra ningún resultado.
         if (empty($result)) {
-            throw new ParserException(sprintf(
-                'No se pudo recuperar el IVA para el documento %d.',
-                $documentType
-            ));
+            throw new ParserException([
+                'Could not retrieve VAT for document type {type}.',
+                'type' => $documentType,
+            ]);
         }
 
         // Retornar el tax.

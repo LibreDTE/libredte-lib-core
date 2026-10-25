@@ -26,6 +26,7 @@ use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayPath;
 use Derafu\Repository\Entity;
 use Derafu\Selector\Selector;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use Derafu\Xml\Exception\XmlQueryException;
@@ -34,7 +35,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
-use LogicException;
 
 /**
  * Clase abstracta (base) de la representación de un documento tributario
@@ -78,12 +78,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         // de la estrategia espera.
         $xmlDocumentTipoDTE = (int) $xmlDocument->query('//Encabezado/IdDoc/TipoDTE');
         if ($xmlDocumentTipoDTE !== $this->getCodigo()) {
-            throw new LogicException(sprintf(
-                'El código %s del XmlDocument cargado en %s no corresponde con el esperado, debería ser código %d.',
-                $xmlDocumentTipoDTE,
-                static::class,
-                $this->getCodigo()
-            ));
+            throw new LogicException([
+                'Code {code} of the XmlDocument loaded in {class} does not match the expected value; it should be code {expected}.',
+                'code' => $xmlDocumentTipoDTE,
+                'class' => static::class,
+                'expected' => $this->getCodigo(),
+            ]);
         }
     }
 
@@ -155,7 +155,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un folio asignado en el XML.',
+                'The document XML does not include an assigned document number.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/IdDoc/Folio'
             );
@@ -181,7 +181,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un emisor asignado en el XML.',
+                'The document XML does not include an assigned issuer.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Emisor'
             );
@@ -199,7 +199,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un RUT de emisor asignado en el XML.',
+                'The document XML does not include an assigned issuer RUT.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Emisor/RUTEmisor'
             );
@@ -231,7 +231,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un receptor asignado en el XML.',
+                'The document XML does not include an assigned recipient.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Receptor'
             );
@@ -249,7 +249,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un RUT de receptor asignado en el XML.',
+                'The document XML does not include an assigned recipient RUT.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Receptor/RUTRecep'
             );
@@ -275,7 +275,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene una fecha de emisión asignada en el XML.',
+                'The document XML does not include an assigned issue date.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/IdDoc/FchEmis'
             );
@@ -293,7 +293,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene los totales asignados en el XML.',
+                'The document XML does not include assigned totals.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Totales'
             );
@@ -361,7 +361,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El documento no tiene un monto total asignado en el XML.',
+                'The document XML does not include an assigned total amount.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//Encabezado/Totales/MntTotal'
             );
@@ -476,10 +476,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         $tipoDeCambio = $this->getTipoDeCambio('PESO CL');
         if ($tipoDeCambio === null) {
-            throw new DocumentException(sprintf(
-                'El documento no tiene un tipo de cambio asignado para la moneda %s en el XML.',
-                $moneda
-            ));
+            throw new DocumentException([
+                'The document XML does not include an exchange rate assigned for currency {currency}.',
+                'currency' => $moneda,
+            ]);
         }
 
         return $value * $tipoDeCambio;

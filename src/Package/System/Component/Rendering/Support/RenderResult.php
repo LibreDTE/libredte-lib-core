@@ -90,10 +90,10 @@ class RenderResult implements RenderResultInterface
     public function getRendering(string $label): RenderedDocumentInterface
     {
         if (!isset($this->renderingsByLabel[$label])) {
-            throw new RenderResultException(sprintf(
-                'El renderizado no generó ningún archivo con la presentación "%s".',
-                $label
-            ));
+            throw new RenderResultException([
+                'Rendering did not produce any file with presentation "{presentation}".',
+                'presentation' => $label,
+            ]);
         }
 
         return $this->renderingsByLabel[$label];
@@ -105,10 +105,10 @@ class RenderResult implements RenderResultInterface
     public function __toString(): string
     {
         if (count($this->renderings) !== 1) {
-            throw new RenderResultException(sprintf(
-                'No es posible representar el resultado del renderizado como un solo string: contiene %d archivo(s), se esperaba exactamente 1.',
-                count($this->renderings)
-            ));
+            throw new RenderResultException([
+                'Cannot represent the render result as a single text string: it contains {count} file(s), exactly 1 was expected.',
+                'count' => count($this->renderings),
+            ]);
         }
 
         return $this->renderings[0]->getContent();

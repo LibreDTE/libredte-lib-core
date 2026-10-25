@@ -66,7 +66,7 @@ abstract class AbstractSanitizerStrategy extends AbstractStrategy implements San
         // Si no viene un folio asignado error.
         if (!isset($data['Encabezado']['IdDoc']['Folio'])) {
             throw new SanitizerException(
-                'Es obligatorio indicar el folio del documento.'
+                'Must indicate the document number.'
             );
         }
 

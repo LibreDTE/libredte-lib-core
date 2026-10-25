@@ -93,10 +93,10 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
             return $this->buildAecJob->build($bag);
         } catch (Throwable $e) {
             throw new OwnershipTransferException(
-                message: sprintf(
-                    'No fue posible construir el AEC: %s',
-                    $e->getMessage()
-                ),
+                message: [
+                    'Could not build the AEC: {detail}',
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }

@@ -103,7 +103,10 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
             $results = $strategy->receive($bag);
         } catch (Throwable $e) {
             throw new ExchangeException(
-                message: $e->getMessage(),
+                message: [
+                    'Could not receive the exchange: {detail}',
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }

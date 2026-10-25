@@ -66,7 +66,7 @@ class DteSenderStrategy extends AbstractStrategy implements SenderStrategyInterf
         // El envío de los DTE ya se hace con el LazyWorker, hay que unir eso
         // con esta estrategia.
         throw new ExchangeException(
-            'Estrategia de envío sii.dte no está implementada.'
+            'The sii.dte send strategy is not implemented.'
         );
 
         // // Crear resultado del envío del sobre al SII.

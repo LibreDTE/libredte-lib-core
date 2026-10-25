@@ -47,7 +47,7 @@ class GetDocumentSiiReceptionDateResponse implements JsonSerializable
         // recibido) — confirmado contra el SII de certificación.
         if ($rawDate === '') {
             throw new GetDocumentSiiReceptionDateException(
-                'El SII no registra fecha de recepción para el documento consultado.'
+                'The SII has no reception date on record for the queried document.'
             );
         }
 

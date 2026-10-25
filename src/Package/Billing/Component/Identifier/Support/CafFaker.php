@@ -114,11 +114,11 @@ class CafFaker
     public function setRangoFolios(int $desde, int $hasta): static
     {
         if ($desde > $hasta) {
-            throw new CafException(sprintf(
-                'Al crear un CAF el folio desde (%d) no puede ser mayor que el folio hasta (%d).',
-                $desde,
-                $hasta
-            ));
+            throw new CafException([
+                'When creating a CAF, the starting document number ({from}) cannot be greater than the ending document number ({to}).',
+                'from' => $desde,
+                'to' => $hasta,
+            ]);
         }
 
         $this->rangoFolios = [

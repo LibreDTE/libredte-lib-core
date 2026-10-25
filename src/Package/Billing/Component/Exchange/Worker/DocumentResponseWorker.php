@@ -99,10 +99,10 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
             return $document;
         } catch (Throwable $e) {
             throw new DocumentResponseException(
-                message: sprintf(
-                    'No fue posible construir el EnvioRecibos: %s',
-                    $e->getMessage()
-                ),
+                message: [
+                    'Could not build EnvioRecibos: {detail}',
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }
@@ -153,10 +153,10 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
             return $document;
         } catch (Throwable $e) {
             throw new DocumentResponseException(
-                message: sprintf(
-                    'No fue posible construir el RespuestaDTE: %s',
-                    $e->getMessage()
-                ),
+                message: [
+                    'Could not build RespuestaDTE: {detail}',
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }
@@ -182,9 +182,10 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
             $schemaFile = match ($root) {
                 'EnvioRecibos' => 'EnvioRecibos_v10.xsd',
                 'RespuestaDTE' => 'RespuestaEnvioDTE_v10.xsd',
-                default => throw new DocumentResponseException(
-                    sprintf('No se reconoce el elemento raíz "%s" como documento de respuesta.', $root)
-                ),
+                default => throw new DocumentResponseException([
+                    'Root element "{root}" is not recognized as a response document.',
+                    'root' => $root,
+                ]),
             };
         }
 

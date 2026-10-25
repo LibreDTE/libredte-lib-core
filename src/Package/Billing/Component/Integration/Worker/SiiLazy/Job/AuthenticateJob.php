@@ -30,10 +30,10 @@ use Derafu\Cache\LocalCacheFactory;
 use Derafu\Cache\Memoizer;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Exception\SignatureException;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
-use LogicException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -110,7 +110,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
                 // llamado a este método getToken().
                 if ($request->getCertificate() === null) {
                     throw new LogicException(
-                        'Para autenticar en el SII se debe proveer un certificado digital.'
+                        'A digital certificate must be provided to authenticate with the SII.'
                     );
                 }
 
@@ -158,10 +158,10 @@ class AuthenticateJob extends AbstractJob implements JobInterface
                 $request->getCertificate()
             );
         } catch (SignatureException $e) {
-            throw new AuthenticateException(sprintf(
-                'No fue posible firmar getToken. %s',
-                $e->getMessage()
-            ));
+            throw new AuthenticateException([
+                'Could not sign getToken. {detail}',
+                'detail' => $e,
+            ]);
         }
 
         // Realizar la solicitud del token al SII.
@@ -180,11 +180,11 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         // Validar respuesta de la solicitud del token.
         if ($estado !== '00' || $token === null || $token === '') {
             $glosa = $response['SII:RESPUESTA']['SII:RESP_HDR']['GLOSA'] ?? null;
-            throw new AuthenticateException(sprintf(
-                'No fue posible obtener el token para autenticar en el SII al usuario %s. %s',
-                $request->getCertificate()->getId(),
-                $glosa
-            ));
+            throw new AuthenticateException([
+                'Could not obtain the token to authenticate user {user} with the SII. {detail}',
+                'user' => $request->getCertificate()->getId(),
+                'detail' => $glosa,
+            ]);
         }
 
         // Entregar el token obtenido desde el SII para la sesión.
@@ -222,7 +222,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
 
         if ($estado !== '00' || $semilla === null || $semilla === '') {
             throw new AuthenticateException(
-                'No fue posible obtener la semilla.'
+                'Could not obtain the seed.'
             );
         }
 

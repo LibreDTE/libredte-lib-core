@@ -226,11 +226,11 @@ class Envelope implements EnvelopeInterface
     public function addDocument(DocumentInterface $document): static
     {
         if ($document->getType() !== $this->getDocumentType()) {
-            throw new ExchangeException(sprintf(
-                'El tipo del documento %s no coincide con los tipos de documento que el sobre puede contener %s.',
-                $document->getType()->getID(),
-                $this->getDocumentType()->getID()
-            ));
+            throw new ExchangeException([
+                'Document type {documentType} does not match the document types this envelope can contain {allowed}.',
+                'documentType' => $document->getType()->getID(),
+                'allowed' => $this->getDocumentType()->getID(),
+            ]);
         }
 
         $this->documents[] = $document;

@@ -64,7 +64,7 @@ class XmlParserStrategy extends AbstractStrategy implements ParserStrategyInterf
         // Si el XML no tiene los tags válidos se lanza una excepción.
         if ($documentoData === null) {
             throw new ParserException(
-                'El nodo raíz del XML del documento debe ser el tag "DTE". Dentro de este nodo raíz debe existir un tag "Documento", "Exportaciones" o "Liquidacion". Este segundo nodo es el que debe contener los datos del documento.'
+                'The document XML root node must be the "DTE" tag. Inside this root node there must be a "Documento", "Exportaciones" or "Liquidacion" tag. That inner node must contain the document data.'
             );
         }
 

@@ -85,13 +85,13 @@ class GetDocumentSiiReceptionDateJob extends AbstractJob implements JobInterface
 
             return new GetDocumentSiiReceptionDateResponse($response);
         } catch (Throwable $e) {
-            throw new GetDocumentSiiReceptionDateException(sprintf(
-                'No fue posible obtener la fecha de recepción del documento T%dF%d de %s desde el SII. %s',
-                $document,
-                $number,
-                $company,
-                $e->getMessage()
-            ), code: $e->getCode(), previous: $e, request: $request);
+            throw new GetDocumentSiiReceptionDateException([
+                'Could not obtain the SII reception date for document type {type} with number {folio} for {company}. {detail}',
+                'type' => $document,
+                'folio' => $number,
+                'company' => $company,
+                'detail' => $e,
+            ], code: $e->getCode(), previous: $e, request: $request);
         }
     }
 }

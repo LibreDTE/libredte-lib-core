@@ -25,7 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Contract;
 use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Exception\CertificateException;
-use LogicException;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 
 /**
  * Interfaz para el worker que administra los mandatarios.

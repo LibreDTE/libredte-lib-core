@@ -46,7 +46,7 @@ trait NormalizeDetalleTrait
         // El detalle es obligatorio: todo documento debe tener al menos un ítem.
         if (empty($data['Detalle'])) {
             throw new NormalizerException(
-                'Falta indicar el detalle del documento (Detalle): debe tener al menos un ítem.'
+                'The document detail (Detalle) must be indicated: there must be at least one item.'
             );
         }
 
@@ -101,11 +101,11 @@ trait NormalizeDetalleTrait
                 !empty($d['IndExe'])
                 && !in_array((int) $d['IndExe'], [1, 2], true)
             ) {
-                throw new NormalizerException(sprintf(
-                    'El ítem %d tiene IndExe = %s, que no está soportado (solo se soportan 1 y 2).',
-                    $d['NroLinDet'],
-                    $d['IndExe']
-                ));
+                throw new NormalizerException([
+                    'Item {line} has IndExe = {indExe}, which is not supported (only 1 and 2 are supported).',
+                    'line' => $d['NroLinDet'],
+                    'indExe' => $d['IndExe'],
+                ]);
             }
             if (is_array($d['CdgItem'])) {
                 $d['CdgItem'] = array_merge([

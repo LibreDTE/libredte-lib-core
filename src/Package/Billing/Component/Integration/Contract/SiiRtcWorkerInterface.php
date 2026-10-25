@@ -23,11 +23,11 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
-use LogicException;
 use UnexpectedValueException;
 
 /**

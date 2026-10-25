@@ -123,7 +123,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testBuildFromArrayWithoutTipoDte(): void
     {
         $this->expectException(DocumentException::class);
-        $this->expectExceptionMessage('Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.');
+        $this->expectExceptionMessage('The document type (TipoDTE) must be indicated in the DTE data.');
 
         $data = [];
 
@@ -135,7 +135,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
     public function testBuildFromArrayWithEmptyTipoDte(): void
     {
         $this->expectException(DocumentException::class);
-        $this->expectExceptionMessage('Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.');
+        $this->expectExceptionMessage('The document type (TipoDTE) must be indicated in the DTE data.');
 
         $data = [
             'Encabezado' => [

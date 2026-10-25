@@ -124,18 +124,18 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
             }
 
             if (in_array($id, $path, true)) {
-                throw new ExamplesException(sprintf(
-                    'Dependencia circular entre ejemplos: %s -> %s.',
-                    implode(' -> ', $path),
-                    $id
-                ));
+                throw new ExamplesException([
+                    'Circular dependency between examples: {path} -> {id}.',
+                    'path' => implode(' -> ', $path),
+                    'id' => $id,
+                ]);
             }
 
             if (!array_key_exists($id, $dependsOnById)) {
-                throw new ExamplesException(sprintf(
-                    'El ejemplo "%s" no existe (referenciado en DependsOn).',
-                    $id
-                ));
+                throw new ExamplesException([
+                    'Example "{id}" does not exist (referenced in DependsOn).',
+                    'id' => $id,
+                ]);
             }
 
             $path[] = $id;
@@ -175,10 +175,10 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
             || $baseDir === false
             || !str_starts_with($file, $baseDir . DIRECTORY_SEPARATOR)
         ) {
-            throw new ExamplesException(sprintf(
-                'El ejemplo "%s" no existe.',
-                $id
-            ));
+            throw new ExamplesException([
+                'Example "{id}" does not exist.',
+                'id' => $id,
+            ]);
         }
 
         $data = (array) Yaml::parseFile($file);

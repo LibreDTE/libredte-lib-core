@@ -186,9 +186,9 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Si el documento no existe error.
         if (!$tipoDocumento) {
-            throw new DocumentBagManagerException(sprintf(
-                'No se encontró un código de documento tributario válido en los datos del DTE.'
-            ));
+            throw new DocumentBagManagerException(
+                'No valid tax document code was found in the DTE data.'
+            );
         }
 
         // Asignar el tipo documento a la bolsa.

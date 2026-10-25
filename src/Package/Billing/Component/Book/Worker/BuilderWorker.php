@@ -124,11 +124,11 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
             return $bag;
         } catch (Throwable $e) {
             throw new BookException(
-                message: sprintf(
-                    'No fue posible construir el libro "%s": %s',
-                    $bag->getTipo()->value,
-                    $e->getMessage()
-                ),
+                message: [
+                    'Could not build the book "{type}": {detail}',
+                    'type' => $bag->getTipo()->value,
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }

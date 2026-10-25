@@ -137,12 +137,12 @@ class DocumentBatch implements DocumentBatchInterface
     ) {
         if ($inputData === null && $inputFile === null) {
             throw new BatchProcessorException(
-                'Se debe indicar el contenido (inputData) o la ruta (inputFile) del lote.'
+                'Either batch content (inputData) or path (inputFile) must be specified.'
             );
         }
         if ($inputData !== null && $inputFile !== null) {
             throw new BatchProcessorException(
-                'Se debe indicar solo uno: el contenido (inputData) o la ruta (inputFile) del lote.'
+                'Only one of batch content (inputData) or path (inputFile) must be specified.'
             );
         }
 
@@ -177,7 +177,7 @@ class DocumentBatch implements DocumentBatchInterface
             $data = is_readable($file) ? file_get_contents($file) : false;
             if ($data === false) {
                 throw new BatchProcessorException(
-                    sprintf('No fue posible leer el archivo %s.', $file),
+                    ['Could not read file {file}.', 'file' => $file],
                     documentBatch: $this
                 );
             }

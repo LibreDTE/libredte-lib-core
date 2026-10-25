@@ -211,7 +211,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         // Si ya se agregó la carátula no se permite agregar nuevos documentos.
         if (isset($this->caratula)) {
             throw new DispatcherException(
-                'No es posible agregar documentos al sobre cuando la carátula ya fue generada.'
+                'Documents cannot be added to the envelope after the cover has been generated.'
             );
         }
 
@@ -228,21 +228,21 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
 
         // Validar que el tipo de documento se pueda agregar al sobre.
         if ($document->getTipoDocumento()->getTipoSobre() !== $this->tipo_sobre) {
-            throw new DispatcherException(sprintf(
-                'El tipo de documento %s no se puede agregar a un sobre de tipo %s.',
-                $document->getTipoDocumento()->getNombre(),
-                $this->getTipoSobre()->getNombre()
-            ));
+            throw new DispatcherException([
+                'Document type {documentType} cannot be added to an envelope of type {envelopeType}.',
+                'documentType' => $document->getTipoDocumento()->getNombre(),
+                'envelopeType' => $this->getTipoSobre()->getNombre(),
+            ]);
         }
 
         // Validar que no se haya llenado la lista de documentos permitida.
         $maximoDocumentos = $this->getTipoSobre()->getMaxDocumentos();
         if (isset($this->documentos[$maximoDocumentos - 1])) {
-            throw new DispatcherException(sprintf(
-                'No es posible agregar nuevos documentos al sobre %s, el límite es de %d documentos por sobre.',
-                $this->getTipoSobre()->getNombre(),
-                $maximoDocumentos
-            ));
+            throw new DispatcherException([
+                'Cannot add new documents to envelope {envelope}; the limit is {max} documents per envelope.',
+                'envelope' => $this->getTipoSobre()->getNombre(),
+                'max' => $maximoDocumentos,
+            ]);
         }
 
         // Agregar el documento al sobre.

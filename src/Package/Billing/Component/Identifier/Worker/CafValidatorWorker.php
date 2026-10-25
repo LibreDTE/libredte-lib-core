@@ -56,10 +56,10 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
                 ->C14NEncodedFlattened('/AUTORIZACION/CAF/DA')
             ;
             if (openssl_verify($signed_da, base64_decode($firma), $public_key_sii) !== 1) {
-                throw new CafValidatorException(sprintf(
-                    'La firma del CAF %s no es válida (no está autorizado por el SII).',
-                    $caf->getId()
-                ));
+                throw new CafValidatorException([
+                    'CAF {id} signature is not valid (the CAF is not authorized by the SII).',
+                    'id' => $caf->getId(),
+                ]);
             }
         }
 
@@ -68,23 +68,23 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         $private_key = $caf->getPrivateKey();
         $test_plain = md5(date('U'));
         if (!openssl_private_encrypt($test_plain, $test_encrypted, $private_key)) {
-            throw new CafValidatorException(sprintf(
-                'El CAF %s no pasó la validación de su clave privada (posible archivo CAF corrupto).',
-                $caf->getId()
-            ));
+            throw new CafValidatorException([
+                'CAF {id} failed private key validation (possible corrupt CAF file).',
+                'id' => $caf->getId(),
+            ]);
         }
         $public_key = $caf->getPublicKey();
         if (!openssl_public_decrypt($test_encrypted, $test_decrypted, $public_key)) {
-            throw new CafValidatorException(sprintf(
-                'El CAF %s no pasó la validación de su clave pública (posible archivo CAF corrupto).',
-                $caf->getId()
-            ));
+            throw new CafValidatorException([
+                'CAF {id} failed public key validation (possible corrupt CAF file).',
+                'id' => $caf->getId(),
+            ]);
         }
         if ($test_plain !== $test_decrypted) {
-            throw new CafValidatorException(sprintf(
-                'El CAF %s no logró encriptar y desencriptar correctamente un texto de prueba (posible archivo CAF corrupto).',
-                $caf->getId()
-            ));
+            throw new CafValidatorException([
+                'CAF {id} failed to encrypt and decrypt a test string correctly (possible corrupt CAF file).',
+                'id' => $caf->getId(),
+            ]);
         }
 
         // Retornar el CAF validado.
@@ -110,10 +110,10 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         $filepath = dirname(__DIR__, 6) . '/resources/certificates/' . $filename;
 
         if (!file_exists($filepath)) {
-            throw new CafValidatorException(sprintf(
-                'No fue posible obtener el certificado del SII %s para validar el CAF.',
-                $filename
-            ));
+            throw new CafValidatorException([
+                'Could not obtain SII certificate {file} to validate the CAF.',
+                'file' => $filename,
+            ]);
         }
 
         return file_get_contents($filepath);

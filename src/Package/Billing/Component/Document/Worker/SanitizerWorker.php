@@ -52,7 +52,7 @@ class SanitizerWorker extends AbstractWorker implements SanitizerWorkerInterface
         // Si no hay tipo de documento no se podrá sanitizar.
         if (!$bag->getTipoDocumento()) {
             throw new SanitizerException(
-                'No es posible sanitizar sin un TipoDocumento en la $bag.'
+                'Cannot sanitize without a TipoDocumento in the $bag.'
             );
         }
 

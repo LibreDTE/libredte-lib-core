@@ -79,7 +79,7 @@ class SendXmlDocumentJobTest extends TestCase
     {
         $this->expectException(SendXmlDocumentException::class);
         $this->expectExceptionMessage(
-            'La respuesta del envío del XML al SII no trae un código de estado válido.'
+            'The SII XML upload response does not include a valid status code.'
         );
 
         $this->validate($xml);
@@ -95,7 +95,7 @@ class SendXmlDocumentJobTest extends TestCase
     public function testAnUploadWithAnErrorStatusThrowsItsMessage(): void
     {
         $this->expectException(SendXmlDocumentException::class);
-        $this->expectExceptionMessage('El esquema del XML es inválido.');
+        $this->expectExceptionMessage('The XML schema is invalid.');
 
         $this->validate('<RECEPCIONDTE><STATUS>7</STATUS></RECEPCIONDTE>');
     }

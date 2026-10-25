@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Exception;
 
+use Derafu\Translation\Contract\TranslatableInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiResponseInterface;
 use Throwable;
@@ -48,14 +49,14 @@ class SiiException extends IntegrationException
     /**
      * Constructor de la excepción.
      *
-     * @param string $message
+     * @param string|array<int|string, mixed>|TranslatableInterface $message
      * @param int $code
      * @param Throwable|null $previous
      * @param SiiRequestInterface|null $request
      * @param SiiResponseInterface|null $response
      */
     public function __construct(
-        string $message = '',
+        string|array|TranslatableInterface $message = '',
         int $code = 0,
         ?Throwable $previous = null,
         ?SiiRequestInterface $request = null,

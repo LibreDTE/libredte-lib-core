@@ -22,11 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Exception;
 
-use libredte\lib\Core\Exception\Exception;
+use libredte\lib\Core\Exception\LibredteException;
 
 /**
  * Excepción general del paquete "billing".
  */
-class BillingException extends Exception
+class BillingException extends LibredteException
 {
 }

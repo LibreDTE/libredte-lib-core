@@ -78,7 +78,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
             if ($schemaFile === null) {
                 throw new BookException(
-                    'El XML del libro no declara el atributo xsi:schemaLocation.'
+                    'The book XML does not declare the xsi:schemaLocation attribute.'
                 );
             }
 

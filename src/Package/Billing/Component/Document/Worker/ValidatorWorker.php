@@ -95,7 +95,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         // Si no hay tipo de documento no se podrá normalizar.
         if (!$bag->getTipoDocumento()) {
             throw new ValidatorException(
-                'No es posible validar sin un TipoDocumento en la $bag.'
+                'Cannot validate without a TipoDocumento in the $bag.'
             );
         }
 

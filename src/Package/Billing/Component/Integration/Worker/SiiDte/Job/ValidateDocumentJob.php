@@ -83,7 +83,7 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         // Validar que se haya proporcionado un certificado digital.
         if ($request->getCertificate() === null) {
             throw new ValidateDocumentException(
-                'No se ha proporcionado un certificado digital para la consulta de estado del documento.'
+                'No digital certificate was provided for the document status query.'
             );
         }
 
@@ -99,10 +99,10 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         // Validar fecha y convertir al formato del SII.
         $dateSii = Date::validateAndConvert($date, 'dmY');
         if ($dateSii === null) {
-            throw new ValidateDocumentException(sprintf(
-                'La fecha %s del documento no es válida, debe tener formato AAAA-MM-DD.',
-                $date
-            ));
+            throw new ValidateDocumentException([
+                'Document date {date} is not valid; it must be in YYYY-MM-DD format.',
+                'date' => $date,
+            ]);
         }
 
         // Obtener el token asociado al certificado digital.
@@ -140,14 +140,14 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
 
             return new ValidateDocumentResponse($responseData, $requestData);
         } catch (ConsumeWebserviceException | SiiDteException $e) {
-            throw new ValidateDocumentException(sprintf(
-                'No fue posible obtener el estado del documento T%dF%d de %d-%s desde el SII. %s',
-                $document,
-                $number,
-                $rutCompany,
-                $dvCompany,
-                $e->getMessage()
-            ));
+            throw new ValidateDocumentException([
+                'Could not obtain status for document type {type} with number {folio} for {rut}-{dv} from the SII. {detail}',
+                'type' => $document,
+                'folio' => $number,
+                'rut' => $rutCompany,
+                'dv' => $dvCompany,
+                'detail' => $e,
+            ]);
         }
     }
 }

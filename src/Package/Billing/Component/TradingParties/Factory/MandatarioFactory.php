@@ -24,10 +24,10 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Factory;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario;
-use LogicException;
 
 /**
  * Fábrica de una entidad de mandatario.
@@ -66,7 +66,7 @@ class MandatarioFactory implements MandatarioFactoryInterface
 
         if (empty($data['run']) || empty($data['nombre']) || empty($data['email'])) {
             throw new LogicException(
-                'Los atributos run, nombre y email del mandatario son obligatorios.'
+                'The agent run, name and email attributes are required.'
             );
         }
 

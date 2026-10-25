@@ -79,10 +79,10 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
         ;
 
         if (!$tipoDocumento) {
-            throw new CafLoaderException(sprintf(
-                'No se encontró el código de documento %d para procesar el CAF.',
-                $codigoTipoDocumento
-            ));
+            throw new CafLoaderException([
+                'Document type code {code} was not found to process the CAF.',
+                'code' => $codigoTipoDocumento,
+            ]);
         }
     }
 }

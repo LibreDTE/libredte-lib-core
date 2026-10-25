@@ -71,7 +71,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml == '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n") {
             throw new SendXmlDocumentException(
-                'El XML que se desea enviar al SII no puede ser vacío.'
+                'The XML to send to the SII cannot be empty.'
             );
         }
 
@@ -133,7 +133,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         // contestase adecuadamente.
         if ($status === null || $status === '') {
             throw new SendXmlDocumentException(
-                'La respuesta del envío del XML al SII no trae un código de estado válido.'
+                'The SII XML upload response does not include a valid status code.'
             );
         }
 
@@ -142,57 +142,64 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             return;
         }
 
-        // Se define un mensaje de error según el código de estado.
-        switch ($status) {
-            case 1:
-                $message = sprintf(
-                    'El usuario %s no tiene permisos para enviar XML al SII.',
-                    $request->getCertificate()->getId()
-                );
-                break;
-            case 2:
-                $message = 'Error en el tamaño del archivo enviado con el XML, muy grande o muy chico.';
-                break;
-            case 3:
-                $message = 'El archivo enviado está cortado, el tamaño es diferente al parámetro "size".';
-                break;
-            case 5:
-                $message = sprintf(
-                    'El usuario %s no está autenticado (posible token expirado).',
-                    $request->getCertificate()->getId()
-                );
-                break;
-            case 6:
-                $message = 'La empresa no está autorizada a enviar archivos XML al SII.';
-                break;
-            case 7:
-                $message = 'El esquema del XML es inválido.';
-                break;
-            case 8:
-                $message = 'Existe un error en la firma del documento XML.';
-                break;
-            case 9:
-                $message = 'Los servidores del SII están con problemas internos.';
-                break;
-            case 99:
-                $message = 'El XML enviado ya fue previamente recibido por el SII.';
-                break;
-            default:
-                $message = sprintf(
-                    'Ocurrió un error con código de estado "%s", que es desconocido por LibreDTE.',
-                    $status
-                );
-                break;
-        }
-
-        // Ver si vienen detalles del error.
         $error = $response['DETAIL']['ERROR'] ?? null;
-        if ($error !== null) {
-            $message .= ' ' . implode(' ', $error);
-        }
+        $detail = $error !== null ? implode(' ', $error) : '';
 
-        // Lanzar una excepción con el mensaje de error determinado.
-        throw new SendXmlDocumentException($message);
+        switch ((int) $status) {
+            case 1:
+                throw new SendXmlDocumentException([
+                    'User {user} does not have permission to send XML to the SII. {detail}',
+                    'user' => $request->getCertificate()->getId(),
+                    'detail' => $detail,
+                ]);
+            case 2:
+                throw new SendXmlDocumentException([
+                    'Uploaded XML file size error: too large or too small. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 3:
+                throw new SendXmlDocumentException([
+                    'Uploaded file is truncated; size differs from the "size" parameter. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 5:
+                throw new SendXmlDocumentException([
+                    'User {user} is not authenticated (token may be expired). {detail}',
+                    'user' => $request->getCertificate()->getId(),
+                    'detail' => $detail,
+                ]);
+            case 6:
+                throw new SendXmlDocumentException([
+                    'The company is not authorized to send XML files to the SII. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 7:
+                throw new SendXmlDocumentException([
+                    'The XML schema is invalid. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 8:
+                throw new SendXmlDocumentException([
+                    'There is an error in the XML document signature. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 9:
+                throw new SendXmlDocumentException([
+                    'SII servers are experiencing internal problems. {detail}',
+                    'detail' => $detail,
+                ]);
+            case 99:
+                throw new SendXmlDocumentException([
+                    'The XML sent was already received by the SII. {detail}',
+                    'detail' => $detail,
+                ]);
+            default:
+                throw new SendXmlDocumentException([
+                    'An error occurred with status code "{status}", which is unknown to LibreDTE. {detail}',
+                    'status' => (string) $status,
+                    'detail' => $detail,
+                ]);
+        }
     }
 
     /**
@@ -264,12 +271,12 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
 
         // Validar si hubo un error en la respuesta.
         if (!$responseBody || $responseBody === 'Error 500') {
-            $message = 'Falló el envío del XML al SII. ';
-            $message .= !$responseBody
-                ? curl_error($curl)
-                : 'El SII tiene problemas en sus servidores (Error 500).'
-            ;
-            throw new SendXmlDocumentException($message);
+            throw new SendXmlDocumentException([
+                'Failed to send the XML to the SII. {detail}',
+                'detail' => !$responseBody
+                    ? curl_error($curl)
+                    : 'The SII servers are having problems (Error 500).',
+            ]);
         }
 
         // Entregar el resultado como un documento XML.

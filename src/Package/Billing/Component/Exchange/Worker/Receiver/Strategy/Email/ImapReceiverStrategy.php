@@ -224,7 +224,7 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         // Validar que esté el nombre de usuario y contraseña.
         if (empty($options['username']) || empty($options['password'])) {
             throw new ExchangeException(
-                'Se debe especificar el usuario y contraseña de IMAP.'
+                'IMAP username and password must be specified.'
             );
         }
 

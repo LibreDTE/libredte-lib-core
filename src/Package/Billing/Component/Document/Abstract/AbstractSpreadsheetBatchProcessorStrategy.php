@@ -203,11 +203,11 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     $tipo = $documento['Encabezado']['IdDoc']['TipoDTE'];
                     $folio = $documento['Encabezado']['IdDoc']['Folio'];
                     if (isset($folios[$tipo][$folio])) {
-                        throw new BatchProcessorException(sprintf(
-                            'El folio %d del tipo de documento %d está repetido en el archivo.',
-                            $folio,
-                            $tipo
-                        ));
+                        throw new BatchProcessorException([
+                            'Document number {folio} for document type {type} is duplicated in the file.',
+                            'folio' => $folio,
+                            'type' => $tipo,
+                        ]);
                     }
                     $folios[$tipo][$folio] = true;
                 } else {
@@ -219,7 +219,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                         && (!empty($data[$i][13]) || array_filter($referencia))
                     ) {
                         throw new BatchProcessorException(
-                            'La fila trae un ítem o una referencia, pero no hay un documento anterior al que agregarlos.'
+                            'The row includes an item or a reference, but there is no previous document to attach them to.'
                         );
                     }
                     if (!empty($data[$i][13])) {
@@ -247,7 +247,11 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                 // El número de fila es el que ve el usuario en la planilla:
                 // el índice 0 es la fila 1 (el encabezado).
                 throw new BatchProcessorException(
-                    sprintf('Fila %d: %s', $i + 1, $e->getMessage()),
+                    [
+                        'Row {row}: {detail}',
+                        'row' => $i + 1,
+                        'detail' => $e,
+                    ],
                     $e->getCode(),
                     $e
                 );
@@ -295,41 +299,41 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
     {
         // Verificar datos mínimos obligatorios.
         if (empty($data[0])) {
-            throw new BatchProcessorException('Falta tipo de documento.');
+            throw new BatchProcessorException('Missing document type.');
         }
         $folio = trim((string) ($data[1] ?? ''));
         if ($folio === '') {
-            throw new BatchProcessorException('Falta folio del documento.');
+            throw new BatchProcessorException('Missing document number.');
         }
         if (!ctype_digit($folio) || (int) $folio < 1) {
             throw new BatchProcessorException(
-                'El folio del documento debe ser un número entero mayor a 0.'
+                'The document number must be an integer greater than 0.'
             );
         }
         if (empty($data[4])) {
-            throw new BatchProcessorException('Falta RUT del receptor.');
+            throw new BatchProcessorException('Missing recipient RUT.');
         }
 
         // Verificar datos si no es boleta.
         if (!in_array($data[0], [39, 41])) {
             if (empty($data[5])) {
                 throw new BatchProcessorException(
-                    'Falta razón social del receptor.'
+                    'Missing recipient business name.'
                 );
             }
             if (empty($data[6])) {
                 throw new BatchProcessorException(
-                    'Falta giro del receptor.'
+                    'Missing recipient business activity.'
                 );
             }
             if (empty($data[9])) {
                 throw new BatchProcessorException(
-                    'Falta dirección del receptor.'
+                    'Missing recipient address.'
                 );
             }
             if (empty($data[10])) {
                 throw new BatchProcessorException(
-                    'Falta comuna del receptor.'
+                    'Missing recipient commune.'
                 );
             }
         }
@@ -340,10 +344,10 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         // Validar correo electrónico.
         if (!empty($data[8])) {
             if (!filter_var($data[8], FILTER_VALIDATE_EMAIL)) {
-                throw new BatchProcessorException(sprintf(
-                    'Correo electrónico %s no es válido.',
-                    $data[8]
-                ));
+                throw new BatchProcessorException([
+                    'Email address {email} is not valid.',
+                    'email' => $data[8],
+                ]);
             }
             $documento['Encabezado']['Receptor']['CorreoRecep'] = mb_substr(
                 trim($data[8]),
@@ -360,12 +364,10 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
             }
             $moneda = $this->getCurrency($data[33]);
             if (empty($moneda)) {
-                throw new BatchProcessorException(
-                    sprintf(
-                        'El tipo de moneda %s no está permitido, solo: USD, EUR y CLP.',
-                        $data[33]
-                    )
-                );
+                throw new BatchProcessorException([
+                    'Currency type {currency} is not allowed; only USD, EUR and CLP are allowed.',
+                    'currency' => $data[33],
+                ]);
             }
             $documento['Encabezado']['Totales']['TpoMoneda'] = $moneda;
 
@@ -401,10 +403,10 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         // Procesar forma de pago.
         if (!empty($data[37])) {
             if (!in_array($data[37], [1, 2, 3])) {
-                throw new BatchProcessorException(sprintf(
-                    'Forma de pago de código %s es incorrecta, debe ser: 1 (contado), 2 (crédito) o 3 (sin costo).',
-                    $data[37]
-                ));
+                throw new BatchProcessorException([
+                    'Payment method code {code} is incorrect; it must be 1 (cash), 2 (credit) or 3 (no cost).',
+                    'code' => $data[37],
+                ]);
             }
             $documento['Encabezado']['IdDoc']['FmaPago'] = (int) $data[37];
         }
@@ -591,13 +593,13 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         // Verificar datos mínimos obligatorios.
         if (empty($item[2])) {
             throw new BatchProcessorException(
-                'Falta nombre del item.'
+                'Missing item name.'
             );
         }
         $precioTexto = trim((string) ($item[6] ?? ''));
         if ($precioTexto === '') {
             throw new BatchProcessorException(
-                'Falta precio del item.'
+                'Missing item price.'
             );
         }
         $cantidadTexto = trim((string) ($item[4] ?? ''));
@@ -608,8 +610,8 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         if ($cantidad == 0 && $precio != 0) {
             throw new BatchProcessorException(
                 $cantidadTexto === ''
-                    ? 'Falta cantidad del item.'
-                    : 'La cantidad del item no puede ser 0 si el precio es distinto de 0.'
+                    ? 'Missing item quantity.'
+                    : 'The item quantity cannot be 0 when the price is not 0.'
             );
         }
 
@@ -732,10 +734,10 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
         if ($transporte[2] || $transporte[3]) {
             if (!$transporte[2]) {
-                throw new BatchProcessorException('Falta RUT del chofer.');
+                throw new BatchProcessorException('Missing driver RUT.');
             }
             if (!$transporte[3]) {
-                throw new BatchProcessorException('Falta nombre del chofer.');
+                throw new BatchProcessorException('Missing driver name.');
             }
             $documento['Encabezado']['Transporte']['Chofer']['RUTChofer'] =
                 mb_substr(
@@ -833,13 +835,13 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
         if (empty($referencia[0])) {
             throw new BatchProcessorException(
-                'Tipo del documento de referencia no puede estar vacío.'
+                'The reference document type cannot be empty.'
             );
         }
         $Referencia['TpoDocRef'] = mb_substr(trim($referencia[0]), 0, 3);
         if (trim((string) ($referencia[1] ?? '')) === '') {
             throw new BatchProcessorException(
-                'Folio del documento de referencia no puede estar vacío.'
+                'The reference document number cannot be empty.'
             );
         }
         $Referencia['FolioRef'] = mb_substr(trim($referencia[1]), 0, 18);
@@ -852,7 +854,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         $fchRef = trim((string) ($referencia[2] ?? ''));
         if ($fchRef === '' || Date::validateAndConvert($fchRef, 'Y-m-d') === null) {
             throw new BatchProcessorException(
-                'Fecha del documento de referencia debe ser en formato AAAA-MM-DD.'
+                'The reference document date must be in YYYY-MM-DD format.'
             );
         }
         $Referencia['FchRef'] = $fchRef;

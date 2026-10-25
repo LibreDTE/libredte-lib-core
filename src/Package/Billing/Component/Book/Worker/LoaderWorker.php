@@ -130,12 +130,12 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
             return $strategy->load($bag);
         } catch (Throwable $e) {
             throw new BookException(
-                message: sprintf(
-                    'No fue posible cargar el libro "%s" desde formato "%s": %s',
-                    $bag->getTipo()->value,
-                    $format,
-                    $e->getMessage()
-                ),
+                message: [
+                    'Could not load the book "{type}" from format "{format}": {detail}',
+                    'type' => $bag->getTipo()->value,
+                    'format' => $format,
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }

@@ -42,7 +42,7 @@ class JsonParserStrategy extends AbstractStrategy implements ParserStrategyInter
 
         if ($array === null) {
             throw new ParserException(
-                'Los datos de entrada no son un JSON válido.'
+                'The input data is not valid JSON.'
             );
         }
 

@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
@@ -33,7 +34,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentExcep
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
-use LogicException;
 use stdClass;
 
 /**
@@ -516,7 +516,7 @@ class DocumentBag implements DocumentBagInterface
 
         if (!$TipoDTE) {
             throw new DocumentException(
-                'Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.'
+                'The document type (TipoDTE) must be indicated in the DTE data.'
             );
         }
 
@@ -711,7 +711,7 @@ class DocumentBag implements DocumentBagInterface
     {
         if ($this->getXmlDocument()) {
             throw new LogicException(
-                'No es posible asignar el folio si ya se generó el documento XML.'
+                'The document number cannot be assigned after the XML document has been generated.'
             );
         }
 
@@ -720,7 +720,7 @@ class DocumentBag implements DocumentBagInterface
 
         if ($parsedData === null && $normalizedData === null) {
             throw new LogicException(
-                'No es posible asignar el folio si no existen datos parseados o normalizados.'
+                'The document number cannot be assigned when there are no parsed or normalized data.'
             );
         }
 

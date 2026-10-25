@@ -69,7 +69,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml === '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\n") {
             throw new SendAecException(
-                'El XML del AEC que se desea enviar al SII no puede ser vacío.'
+                'The AEC XML to send to the SII cannot be empty.'
             );
         }
 
@@ -131,7 +131,7 @@ class SendAecJob extends AbstractJob implements JobInterface
 
         if ($status === null) {
             throw new SendAecException(
-                'La respuesta del envío del AEC al SII no trae un código de estado válido.'
+                'The SII AEC upload response does not include a valid status code.'
             );
         }
 
@@ -139,22 +139,28 @@ class SendAecJob extends AbstractJob implements JobInterface
             return;
         }
 
-        $messages = [
-            1 => 'El RUT autenticado no tiene permiso para enviar en la empresa cedente.',
-            2 => 'Error en el tamaño del archivo enviado.',
-            4 => 'Faltan parámetros de entrada en la solicitud al RTC.',
-            5 => 'Error de autenticación: TOKEN inválido, no existe o está expirado.',
-            6 => 'La empresa no está autorizada como emisor de DTE.',
-            9 => 'Error interno en los servidores del SII.',
-            10 => 'Error interno en los servidores del SII.',
-        ];
-
-        $message = $messages[(int) $status] ?? sprintf(
-            'El SII rechazó el AEC con el código de estado desconocido "%s".',
-            $status
-        );
-
-        throw new SendAecException($message);
+        switch ((int) $status) {
+            case 1:
+                throw new SendAecException(
+                    'The authenticated RUT has no permission to send on behalf of the assigning company.'
+                );
+            case 2:
+                throw new SendAecException('Uploaded file size error.');
+            case 4:
+                throw new SendAecException('Missing input parameters in the RTC request.');
+            case 5:
+                throw new SendAecException('Authentication error: invalid, missing or expired TOKEN.');
+            case 6:
+                throw new SendAecException('The company is not authorized as a DTE issuer.');
+            case 9:
+            case 10:
+                throw new SendAecException('Internal error on SII servers.');
+            default:
+                throw new SendAecException([
+                    'The SII rejected the AEC with unknown status code "{status}".',
+                    'status' => (string) $status,
+                ]);
+        }
     }
 
     /**
@@ -210,11 +216,12 @@ class SendAecJob extends AbstractJob implements JobInterface
         }
 
         if (!$responseBody || $responseBody === 'Error 500') {
-            $message = 'Falló el envío del AEC al SII. ';
-            $message .= !$responseBody
-                ? curl_error($curl)
-                : 'El SII tiene problemas en sus servidores (Error 500).';
-            throw new SendAecException($message);
+            throw new SendAecException([
+                'Failed to send the AEC to the SII. {detail}',
+                'detail' => !$responseBody
+                    ? curl_error($curl)
+                    : 'The SII servers are having problems (Error 500).',
+            ]);
         }
 
         // Parsear la respuesta XML del SII como arreglo.

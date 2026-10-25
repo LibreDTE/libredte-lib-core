@@ -89,7 +89,7 @@ class SiiRequestTest extends TestCase
         $request = new SiiRequest(options: ['token' => ['key' => 'sin_placeholder']]);
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('La clave del token debe permitir asignar el ID asociado al token.');
+        $this->expectExceptionMessage('The token key must allow assigning the ID associated with the token.');
 
         $request->getTokenKey();
     }
@@ -99,7 +99,7 @@ class SiiRequestTest extends TestCase
         $request = new SiiRequest();
 
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('No hay certificado digital asociado a la solicitud.');
+        $this->expectExceptionMessage('There is no digital certificate associated with the request.');
 
         $request->getTokenKey();
     }

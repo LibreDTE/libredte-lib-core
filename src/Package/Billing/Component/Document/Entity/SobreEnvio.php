@@ -93,7 +93,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene un RUT de emisor asignado en el XML.',
+                'The shipping envelope XML does not include an assigned issuer RUT.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/RutEmisor'
             );
@@ -111,7 +111,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene un RUN de mandatario asignado en el XML.',
+                'The shipping envelope XML does not include an assigned agent RUN.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/RutEnvia'
             );
@@ -129,7 +129,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene un RUT de receptor asignado en el XML.',
+                'The shipping envelope XML does not include an assigned recipient RUT.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/RutReceptor'
             );
@@ -147,7 +147,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($fecha_resolucion === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene una fecha de resolución asignada en el XML.',
+                'The shipping envelope XML does not include an assigned resolution date.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/FchResol'
             );
@@ -157,7 +157,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($numero_resolucion === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene un número de resolución asignado en el XML.',
+                'The shipping envelope XML does not include an assigned resolution number.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/NroResol'
             );
@@ -175,7 +175,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene una fecha de firma asignada en el XML.',
+                'The shipping envelope XML does not include an assigned signature date.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/TmstFirmaEnv'
             );
@@ -193,7 +193,7 @@ class SobreEnvio implements SobreEnvioInterface
 
         if ($SubTotDTE === null) {
             throw new XmlQueryException(
-                'El sobre de envío no tiene un resumen asignado en el XML.',
+                'The shipping envelope XML does not include an assigned summary.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//SetDTE/Caratula/SubTotDTE'
             );

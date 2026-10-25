@@ -31,6 +31,7 @@
     <testsuites>
         <testsuite name="unit">
             <directory>tests/src/Unit</directory>
+            <directory>tests/src/Translation</directory>
         </testsuite>
         <testsuite name="functional">
             <directory>tests/src/Functional</directory>

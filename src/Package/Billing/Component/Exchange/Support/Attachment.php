@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Support;
 
-use InvalidArgumentException;
+use Derafu\Translation\Exception\Logic\TranslatableInvalidArgumentException as InvalidArgumentException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\AttachmentInterface;
 use Symfony\Component\Mime\MimeTypes;
 use Symfony\Component\Mime\Part\DataPart;
@@ -139,10 +139,10 @@ class Attachment extends DataPart implements AttachmentInterface
         $mimeTypes = MimeTypes::getDefault()->getMimeTypes($extension);
 
         if (!isset($mimeTypes[0])) {
-            throw new InvalidArgumentException(sprintf(
-                'El archivo %s tiene una extensión inválida. Corrige la extensión o especifica el $contentType.',
-                $filename
-            ));
+            throw new InvalidArgumentException([
+                'File {file} has an invalid extension. Fix the extension or specify $contentType.',
+                'file' => $filename,
+            ]);
         }
 
         return $mimeTypes[0];

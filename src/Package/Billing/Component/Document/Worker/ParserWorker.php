@@ -92,7 +92,10 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
             $parsedData = $strategy->parse($bag->getInputData());
         } catch (Throwable $e) {
             throw new ParserException(
-                message: $e->getMessage(),
+                message: [
+                    'Could not interpret the document: {detail}',
+                    'detail' => $e,
+                ],
                 documentBag: $bag,
                 previous: $e
             );

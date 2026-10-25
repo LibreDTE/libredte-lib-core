@@ -85,13 +85,13 @@ class ListDocumentEventsJob extends AbstractJob implements JobInterface
                 $this->xmlService->decode($xmlResponse)
             );
         } catch (Throwable $e) {
-            throw new ListDocumentEventsException(sprintf(
-                'No fue posible listar los eventos del documento T%dF%d de %s en el RCV del SII. %s',
-                $document,
-                $number,
-                $company,
-                $e->getMessage()
-            ), code: $e->getCode(), previous: $e, request: $request);
+            throw new ListDocumentEventsException([
+                'Could not list events for document type {type} with number {folio} for {company} in the SII RCV. {detail}',
+                'type' => $document,
+                'folio' => $number,
+                'company' => $company,
+                'detail' => $e,
+            ], code: $e->getCode(), previous: $e, request: $request);
         }
     }
 }

@@ -100,7 +100,7 @@ class AuthenticateJobTest extends TestCase
     public function testAnEmptySeedIsAnError(): void
     {
         $this->expectException(AuthenticateException::class);
-        $this->expectExceptionMessage('No fue posible obtener la semilla.');
+        $this->expectExceptionMessage('Could not obtain the seed.');
 
         $this->authenticate(
             $this->document('00', '<SEMILLA/>'),
@@ -111,7 +111,7 @@ class AuthenticateJobTest extends TestCase
     public function testAnEmptyTokenIsAnError(): void
     {
         $this->expectException(AuthenticateException::class);
-        $this->expectExceptionMessage('No fue posible obtener el token');
+        $this->expectExceptionMessage('Could not obtain the token to authenticate user');
 
         $this->authenticate(
             $this->document('00', '<SEMILLA>123</SEMILLA>'),

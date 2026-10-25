@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Abstract;
 
-use InvalidArgumentException;
+use Derafu\Translation\Exception\Logic\TranslatableInvalidArgumentException as InvalidArgumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 
 /**
@@ -75,7 +75,7 @@ abstract class AbstractSiiWsdlResponse
         $headers = $response['SII:RESPUESTA']['SII:RESP_HDR'] ?? [];
         if (empty($headers)) {
             throw new SiiDteException(
-                'La respuesta del SII no incluye las cabeceras esperadas.'
+                'The SII response does not include the expected headers.'
             );
         }
 
@@ -182,9 +182,9 @@ abstract class AbstractSiiWsdlResponse
         }
 
         // Si el formato es incorrecto, lanzar una excepción.
-        throw new InvalidArgumentException(sprintf(
-            'El formato del número de atención "%s" es incorrecto.',
-            $input
-        ));
+        throw new InvalidArgumentException([
+            'Attention number format "{input}" is incorrect.',
+            'input' => $input,
+        ]);
     }
 }

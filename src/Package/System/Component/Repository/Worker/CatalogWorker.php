@@ -150,7 +150,10 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
         try {
             return $this->repositoryManager->getRepository($repository);
         } catch (ManagerException $e) {
-            throw new CatalogException($e->getMessage(), previous: $e);
+            throw new CatalogException([
+                'Could not resolve the repository: {detail}',
+                'detail' => $e,
+            ], previous: $e);
         }
     }
 }

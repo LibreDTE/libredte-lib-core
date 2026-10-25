@@ -46,6 +46,7 @@
         "derafu/repository": "dev-main",
         "derafu/selector": "dev-main",
         "derafu/signature": "dev-main",
+        "derafu/translation": "dev-main",
         "derafu/xml": "dev-main",
         "league/csv": "^9.28",
         "mpdf/mpdf": "^8.3",
@@ -59,6 +60,7 @@
         "ext-xdebug": "*",
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpstan/phpstan": "^2.3",
+        "nikic/php-parser": "^5.9",
         "phpunit/phpunit": "^13.4",
         "symfony/mailer": "^8.1",
         "webklex/php-imap": "^6.2"

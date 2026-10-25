@@ -22,12 +22,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Service;
 
+use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFolioInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafManagerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFolio;
-use RuntimeException;
 
 /**
  * Implementación de un gestor de archivos CAF.
@@ -114,10 +114,10 @@ class CafManager implements CafManagerInterface
     public function setAvailableRange(int $dte, string|array $folios): static
     {
         if (!isset($this->pool[$dte])) {
-            throw new RuntimeException(sprintf(
-                'Debe agregar CAFs del tipo %d antes de llamar a setAvailable().',
-                $dte
-            ));
+            throw new RuntimeException([
+                'CAFs of type {type} must be added before calling setAvailable().',
+                'type' => $dte,
+            ]);
         }
 
         $available = array_flip($this->parseFolios($folios));
@@ -196,10 +196,10 @@ class CafManager implements CafManagerInterface
     public function remove(int $dte, int $folioDesde): static
     {
         if (!isset($this->pool[$dte])) {
-            throw new RuntimeException(sprintf(
-                'No hay CAFs cargados para el tipo de documento %d.',
-                $dte
-            ));
+            throw new RuntimeException([
+                'No CAFs are loaded for document type {type}.',
+                'type' => $dte,
+            ]);
         }
 
         $found = false;
@@ -218,11 +218,11 @@ class CafManager implements CafManagerInterface
         }
 
         if (!$found) {
-            throw new RuntimeException(sprintf(
-                'No se encontró un CAF para el tipo %d con folio desde %d.',
-                $dte,
-                $folioDesde
-            ));
+            throw new RuntimeException([
+                'No CAF was found for type {type} with document number from {from}.',
+                'type' => $dte,
+                'from' => $folioDesde,
+            ]);
         }
 
         // Reindexar el array.
@@ -268,10 +268,10 @@ class CafManager implements CafManagerInterface
     public function consume(int $dte): CafFolioInterface
     {
         if (!$this->hasEnoughFolios($dte)) {
-            throw new RuntimeException(sprintf(
-                'No hay folios disponibles para el tipo de documento %d.',
-                $dte
-            ));
+            throw new RuntimeException([
+                'No document numbers are available for document type {type}.',
+                'type' => $dte,
+            ]);
         }
 
         // Buscar el primer folio disponible en orden de los CAFs.
@@ -285,10 +285,10 @@ class CafManager implements CafManagerInterface
         }
 
         // No debería llegar aquí si hasEnoughFolios() es correcto.
-        throw new RuntimeException(sprintf(
-            'No se encontró folio disponible para el tipo de documento %d.',
-            $dte
-        ));
+        throw new RuntimeException([
+            'No available document number was found for document type {type}.',
+            'type' => $dte,
+        ]);
     }
 
     /**
@@ -312,10 +312,10 @@ class CafManager implements CafManagerInterface
     public function getCafForFolio(int $dte, int $folio): CafInterface
     {
         if (!isset($this->pool[$dte])) {
-            throw new RuntimeException(sprintf(
-                'No hay CAFs cargados para el tipo de documento %d.',
-                $dte
-            ));
+            throw new RuntimeException([
+                'No CAFs are loaded for document type {type}.',
+                'type' => $dte,
+            ]);
         }
 
         foreach ($this->pool[$dte] as $caf) {
@@ -324,11 +324,11 @@ class CafManager implements CafManagerInterface
             }
         }
 
-        throw new RuntimeException(sprintf(
-            'No se encontró un CAF para el tipo %d con el folio %d.',
-            $dte,
-            $folio
-        ));
+        throw new RuntimeException([
+            'No CAF was found for type {type} with document number {folio}.',
+            'type' => $dte,
+            'folio' => $folio,
+        ]);
     }
 
     /**

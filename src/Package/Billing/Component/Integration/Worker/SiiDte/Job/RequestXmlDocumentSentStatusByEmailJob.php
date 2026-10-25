@@ -105,11 +105,11 @@ class RequestXmlDocumentSentStatusByEmailJob extends AbstractJob implements JobI
                 $requestData
             );
         } catch (ConsumeWebserviceException | SiiDteException $e) {
-            throw new RequestXmlDocumentSentStatusByEmailException(sprintf(
-                'No fue posible solicitar el correo con el estado del envío %d al SII. %s',
-                $trackId,
-                $e->getMessage()
-            ));
+            throw new RequestXmlDocumentSentStatusByEmailException([
+                'Could not request the email with upload status {trackId} from the SII. {detail}',
+                'trackId' => $trackId,
+                'detail' => $e,
+            ]);
         }
     }
 }

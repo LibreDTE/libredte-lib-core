@@ -64,7 +64,7 @@ class BoletaSenderStrategy extends AbstractStrategy implements SenderStrategyInt
     ): ExchangeResultInterface {
         // TODO: Implementar el envío de las boletas al SII.
         throw new ExchangeException(
-            'Estrategia de envío sii.boleta no está implementada.'
+            'The sii.boleta send strategy is not implemented.'
         );
 
         // // Crear resultado del envío del sobre al SII.

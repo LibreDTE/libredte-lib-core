@@ -25,10 +25,10 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
-use LogicException;
-use RuntimeException;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -188,13 +188,13 @@ class SiiRequest implements SiiRequestInterface
 
         if (!str_contains($key, '%s')) {
             throw new RuntimeException(
-                'La clave del token debe permitir asignar el ID asociado al token.'
+                'The token key must allow assigning the ID associated with the token.'
             );
         }
 
         if ($this->certificate === null) {
             throw new LogicException(
-                'No hay certificado digital asociado a la solicitud.'
+                'There is no digital certificate associated with the request.'
             );
         }
 

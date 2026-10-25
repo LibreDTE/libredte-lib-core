@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Exception;
 
+use Derafu\Translation\Contract\TranslatableInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Exception\BillingException;
 use Throwable;
@@ -42,13 +43,13 @@ class DocumentException extends BillingException
     /**
      * Constructor de la excepción.
      *
-     * @param string $message
+     * @param string|array<int|string, mixed>|TranslatableInterface $message
      * @param int $code
      * @param Throwable|null $previous
      * @param DocumentBagInterface|null $documentBag
      */
     public function __construct(
-        string $message = '',
+        string|array|TranslatableInterface $message = '',
         int $code = 0,
         ?Throwable $previous = null,
         ?DocumentBagInterface $documentBag = null

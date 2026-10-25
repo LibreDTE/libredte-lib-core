@@ -52,7 +52,7 @@ class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterfa
         // Si no hay tipo de documento no se podrá normalizar.
         if (!$bag->getTipoDocumento()) {
             throw new NormalizerException(
-                'No es posible normalizar sin un TipoDocumento en la $bag.'
+                'Cannot normalize without a TipoDocumento in the $bag.'
             );
         }
 

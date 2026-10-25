@@ -23,13 +23,13 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Backbone\Abstract\AbstractHandler;
+use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\ExchangeException;
-use LogicException;
 
 /**
  * Clase base para los handlers de envío del proceso de intercambio.
@@ -57,7 +57,7 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
         // Si no hay sobres error.
         if (!$bag->hasEnvelopes()) {
             throw new LogicException(
-                'La bolsa de intercambio que se desea enviar no posee sobres.'
+                'The exchange bag to send has no envelopes.'
             );
         }
 
@@ -66,7 +66,7 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
             // Si no hay documentos error.
             if (!$envelope->countDocuments()) {
                 throw new LogicException(
-                    'El sobre que se desea enviar no posee documentos.'
+                    'The envelope to send has no documents.'
                 );
             }
 

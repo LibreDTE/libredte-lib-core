@@ -135,7 +135,7 @@ class Caf implements CafInterface
 
         if ($RE === null) {
             throw new XmlQueryException(
-                'El CAF no tiene un RUT de emisor asignado en el XML.',
+                'The CAF XML does not include an assigned issuer RUT.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/RE'
             );
@@ -145,7 +145,7 @@ class Caf implements CafInterface
 
         if ($RS === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una razón social de emisor asignada en el XML.',
+                'The CAF XML does not include an assigned issuer business name.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/RS'
             );
@@ -166,7 +166,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene un tipo de documento asignado en el XML.',
+                'The CAF XML does not include an assigned document type.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/TD'
             );
@@ -184,7 +184,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene un folio desde asignado en el XML.',
+                'The CAF XML does not include an assigned starting document number.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/RNG/D'
             );
@@ -202,7 +202,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene un folio hasta asignado en el XML.',
+                'The CAF XML does not include an assigned ending document number.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/RNG/H'
             );
@@ -239,7 +239,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una fecha de autorización asignada en el XML.',
+                'The CAF XML does not include an assigned authorization date.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/FA'
             );
@@ -259,10 +259,10 @@ class Caf implements CafInterface
 
         $fecha_autorizacion = $this->getFechaAutorizacion();
         if (!$fecha_autorizacion) {
-            throw new CafException(sprintf(
-                'No fue posible obtener la fecha de autorización del CAF %s.',
-                $this->getID()
-            ));
+            throw new CafException([
+                'Could not obtain the CAF {id} authorization date.',
+                'id' => $this->getID(),
+            ]);
         }
 
         // Los folios vencen en 6 meses (6 * 30 días).
@@ -325,7 +325,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene un IDK asignado en el XML.',
+                'The CAF XML does not include an assigned IDK.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/DA/IDK'
             );
@@ -361,7 +361,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una autorización asignada en el XML.',
+                'The CAF XML does not include an assigned authorization.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF'
             );
@@ -379,7 +379,7 @@ class Caf implements CafInterface
 
         if ($publicKey === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una clave pública asignada en el XML.',
+                'The CAF XML does not include an assigned public key.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/RSAPUBK'
             );
@@ -421,7 +421,7 @@ class Caf implements CafInterface
 
         if ($privateKey === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una clave privada asignada en el XML.',
+                'The CAF XML does not include an assigned private key.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/RSASK'
             );
@@ -463,7 +463,7 @@ class Caf implements CafInterface
 
         if ($value === null) {
             throw new XmlQueryException(
-                'El CAF no tiene una firma asignada en el XML.',
+                'The CAF XML does not include an assigned signature.',
                 xmlDocument: $this->xmlDocument,
                 xpathExpression: '//AUTORIZACION/CAF/FRMA'
             );

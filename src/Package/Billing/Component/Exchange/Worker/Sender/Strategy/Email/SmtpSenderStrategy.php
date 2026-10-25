@@ -197,7 +197,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
 
         if (empty($options['username']) || empty($options['password'])) {
             throw new ExchangeException(
-                'Se debe especificar el usuario y contraseña de SMTP.'
+                'SMTP username and password must be specified.'
             );
         }
 
@@ -217,7 +217,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
 
         if ($sender === null) {
             throw new ExchangeException(
-                'Se debe especificar el identificador con esquema EMAIL en el remitente.'
+                'The sender must include an identifier with EMAIL scheme.'
             );
         }
 
@@ -237,7 +237,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
 
         if (empty($recipients)) {
             throw new ExchangeException(
-                'Se debe especificar al menos un identificador con esquema EMAIL en el destinatario.'
+                'The recipient must include at least one identifier with EMAIL scheme.'
             );
         }
 

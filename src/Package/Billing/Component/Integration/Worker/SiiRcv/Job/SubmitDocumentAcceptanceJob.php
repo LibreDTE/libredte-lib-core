@@ -75,11 +75,11 @@ class SubmitDocumentAcceptanceJob extends AbstractJob implements JobInterface
         string $action
     ): SubmitDocumentAcceptanceResponse {
         if (!in_array($action, self::VALID_ACTIONS, true)) {
-            throw new SubmitDocumentAcceptanceException(sprintf(
-                'La acción "%s" no es válida. Las acciones válidas son: %s.',
-                $action,
-                implode(', ', self::VALID_ACTIONS)
-            ));
+            throw new SubmitDocumentAcceptanceException([
+                'Action "{action}" is not valid. Valid actions are: {valid}.',
+                'action' => $action,
+                'valid' => implode(', ', self::VALID_ACTIONS),
+            ]);
         }
 
         Rut::validate($company);
@@ -105,14 +105,14 @@ class SubmitDocumentAcceptanceJob extends AbstractJob implements JobInterface
                 $this->xmlService->decode($xmlResponse)
             );
         } catch (Throwable $e) {
-            throw new SubmitDocumentAcceptanceException(sprintf(
-                'No fue posible ingresar la acción "%s" para el documento T%dF%d de %s en el RCV del SII. %s',
-                $action,
-                $document,
-                $number,
-                $company,
-                $e->getMessage()
-            ), code: $e->getCode(), previous: $e, request: $request);
+            throw new SubmitDocumentAcceptanceException([
+                'Could not submit action "{action}" for document type {type} with number {folio} for {company} in the SII RCV. {detail}',
+                'action' => $action,
+                'type' => $document,
+                'folio' => $number,
+                'company' => $company,
+                'detail' => $e,
+            ], code: $e->getCode(), previous: $e, request: $request);
         }
     }
 }

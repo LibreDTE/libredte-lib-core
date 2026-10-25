@@ -57,10 +57,10 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
         ));
 
         if ($operacion === null) {
-            throw new BookException(sprintf(
-                'El tipo de operación "%s" no es válido.',
-                $operacion
-            ));
+            throw new BookException([
+                'The operation type "{operation}" is not valid.',
+                'operation' => $operacion,
+            ]);
         }
 
         return $operacion;

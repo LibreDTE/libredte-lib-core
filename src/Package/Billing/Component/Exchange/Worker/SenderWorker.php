@@ -142,7 +142,10 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
             $results = $strategy->send($bag);
         } catch (Throwable $e) {
             throw new ExchangeException(
-                message: $e->getMessage(),
+                message: [
+                    'Could not send the exchange: {detail}',
+                    'detail' => $e,
+                ],
                 previous: $e
             );
         }

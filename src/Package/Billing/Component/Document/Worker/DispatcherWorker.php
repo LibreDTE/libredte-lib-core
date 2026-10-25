@@ -124,7 +124,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     {
         if ($bags === []) {
             throw new DispatcherException(
-                'Se debe indicar al menos un documento para crear el sobre.'
+                'At least one document must be specified to create the envelope.'
             );
         }
 
@@ -380,8 +380,10 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $maximoTiposDocumentos = $envelope->getTipoSobre()->getMaxTiposDocumentos();
         if (isset($SubTotDTE[$maximoTiposDocumentos])) {
             throw new DispatcherException(
-                'Se agregaron más tipos de documentos de los que son permitidos en el sobre (%d).',
-                $maximoTiposDocumentos
+                [
+                    'More document types were added than allowed in the envelope ({max}).',
+                    'max' => $maximoTiposDocumentos,
+                ]
             );
         }
 
@@ -526,7 +528,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $caratula = $envelope->getCaratula();
         if ($caratula === null) {
             throw new DispatcherException(
-                'La carátula del sobre no está definida.'
+                'The envelope cover is not defined.'
             );
         }
 
@@ -538,13 +540,13 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
         // Corroborar que el certificado esté vigente según el timestamp usado.
         if (!$certificate->isActive($timestamp)) {
-            throw new DispatcherException(sprintf(
-                'El certificado digital de %s no está vigente en el tiempo %s, su rango de vigencia es del %s al %s.',
-                $certificate->getID(),
-                (new DateTime($timestamp))->format('d/m/Y H:i'),
-                (new DateTime($certificate->getFrom()))->format('d/m/Y H:i'),
-                (new DateTime($certificate->getTo()))->format('d/m/Y H:i'),
-            ));
+            throw new DispatcherException([
+                'Digital certificate for {id} is not valid at {time}; its validity range is from {from} to {to}.',
+                'id' => $certificate->getID(),
+                'time' => (new DateTime($timestamp))->format('d/m/Y H:i'),
+                'from' => (new DateTime($certificate->getFrom()))->format('d/m/Y H:i'),
+                'to' => (new DateTime($certificate->getTo()))->format('d/m/Y H:i'),
+            ]);
         }
 
         // Obtener el documento XML a firmar.

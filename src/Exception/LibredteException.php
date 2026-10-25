@@ -22,11 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Exception;
 
-use Exception as BaseException;
+use Derafu\Translation\Exception\Core\TranslatableLogicException;
 
 /**
- * Excepción general de la aplicación.
+ * Base translatable exception for this library.
  */
-class Exception extends BaseException
+class LibredteException extends TranslatableLogicException
 {
 }
