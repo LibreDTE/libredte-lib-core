@@ -229,7 +229,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
-class EmitirIndividualmenteDocumentosOkTest extends TestCase
+class DocumentOkExamplesEndToEndTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
 
@@ -279,31 +279,31 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
     /**
      * @return array<string, array{string}>
      */
-    public static function provideDocumentosOk(): array
+    public static function provideDocumentOkExamples(): array
     {
         // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml';
         $files = glob($filesPath);
 
         // Build test data.
-        $documentosOk = [];
+        $documentOkExamples = [];
         foreach ($files as $file) {
-            $documentosOk[basename($file)] = [$file];
+            $documentOkExamples[basename($file)] = [$file];
         }
 
         // Return data for tests.
-        return $documentosOk;
+        return $documentOkExamples;
     }
 
-    #[DataProvider('provideDocumentosOk')]
-    public function testEmisionCompletaEjemplosDocumentosOk(string $file): void
+    #[DataProvider('provideDocumentOkExamples')]
+    public function testFullPipelineForDocumentOkExample(string $file): void
     {
         // Load test case data.
         $yaml = file_get_contents($file);
         $data = Yaml::parse($yaml);
         $test = $data['Test'];
         unset($data['Test']);
-        $test['caso'] = basename($file);
+        $test['caseName'] = basename($file);
 
         // Instantiate the document issuer.
         $emisor = new Emisor(
@@ -350,7 +350,7 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         $this->validateExpectedValues(
             $test['ExpectedValues'],
             $actualValues,
-            $test['caso']
+            $test['caseName']
         );
 
         // Get the DTE XML.
@@ -387,7 +387,7 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
     private function validateExpectedValues(
         array $expectedValues,
         array $actualValues,
-        string $caso,
+        string $caseName,
         string $parentKey = ''
     ): void {
         foreach ($expectedValues as $key => $expectedValue) {
@@ -397,8 +397,8 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
 
             // Assert the index is present in actual data.
             $this->assertArrayHasKey($key, $actualValues, sprintf(
-                'En el caso %s no existe el campo %s.',
-                $caso,
+                'Case %s is missing field %s.',
+                $caseName,
                 $fullKey
             ));
 
@@ -407,7 +407,7 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
                 $this->validateExpectedValues(
                     $expectedValue,
                     $actualValues[$key],
-                    $caso,
+                    $caseName,
                     $fullKey
                 );
             }
@@ -429,8 +429,8 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
                     $expectedValue,
                     $actualValues[$key],
                     sprintf(
-                        'En el caso %s el valor %s para %s no cuadra con el valor esperado %s.',
-                        $caso,
+                        'Case %s: value %s for %s does not match expected %s.',
+                        $caseName,
                         $actualValues[$key],
                         $fullKey,
                         $expectedValue

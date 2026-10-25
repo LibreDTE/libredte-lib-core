@@ -205,12 +205,12 @@ use Throwable;
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
-class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
+class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
 {
     /**
      * @return array<string, array{string, string}>
      */
-    public static function provideDocumentosOk(): array
+    public static function provideDocumentOkExamples(): array
     {
         // Find files with test cases.
         // These files are used because their CAFs do not expire.
@@ -224,26 +224,26 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         }
 
         // Build test data.
-        $documentosOk = [];
+        $documentOkExamples = [];
         foreach ($files as $yamlFile) {
             $name = basename($yamlFile);
             $code = substr($name, 0, 3);
             $cafFile = self::getFixturesPath() . '/caf/' . $code . '.xml';
-            $documentosOk[$name] = [$yamlFile, $cafFile];
+            $documentOkExamples[$name] = [$yamlFile, $cafFile];
         }
 
         // Return data for tests.
-        return $documentosOk;
+        return $documentOkExamples;
     }
 
-    #[DataProvider('provideDocumentosOk')]
-    public function testCrearSobreEnvioAmbienteCertificacionSii(
+    #[DataProvider('provideDocumentOkExamples')]
+    public function testCreateDispatchEnvelopeForSiiCertificationEnvironment(
         string $yamlFile,
         string $cafFile
     ): void {
         // If the CAF file does not exist, the test is not run.
         if (!file_exists($cafFile)) {
-            $this->markTestSkipped('No existe el CAF ' . $cafFile);
+            $this->markTestSkipped('CAF file does not exist: ' . $cafFile);
         }
 
         // Start the application.

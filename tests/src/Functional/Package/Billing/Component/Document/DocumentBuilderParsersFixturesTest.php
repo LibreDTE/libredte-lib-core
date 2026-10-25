@@ -340,7 +340,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
     }
 
     #[DataProvider('provideInputFiles')]
-    public function testDocumentoParser(string $format, string $file): void
+    public function testParseDocumentFixture(string $format, string $file): void
     {
         // Build the document from file data and the
         // parsing strategy for the format.

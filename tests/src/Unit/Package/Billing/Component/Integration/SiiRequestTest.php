@@ -34,7 +34,7 @@ use RuntimeException;
 #[CoversClass(SiiRequest::class)]
 class SiiRequestTest extends TestCase
 {
-    public function testOpcionesPredeterminadasDeConexionYToken(): void
+    public function testDefaultConnectionAndTokenOptions(): void
     {
         $request = new SiiRequest();
 
@@ -46,7 +46,7 @@ class SiiRequestTest extends TestCase
         $this->assertNull($request->getCertificate());
     }
 
-    public function testOpcionesPersonalizadasYClaveDelCertificado(): void
+    public function testCustomOptionsAndCertificateBasedTokenKey(): void
     {
         $certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
         $request = new SiiRequest($certificate, [
@@ -69,7 +69,7 @@ class SiiRequestTest extends TestCase
         $this->assertSame($certificate, $request->getCertificate());
     }
 
-    public function testEntornoNumericoYLimitesDeReintentos(): void
+    public function testNumericEnvironmentAndRetryLimits(): void
     {
         $request = new SiiRequest(options: [
             'environment' => (string) SiiEnvironment::STAGING->value,
@@ -84,7 +84,7 @@ class SiiRequestTest extends TestCase
         $this->assertSame(0, (new SiiRequest(options: ['retries' => -1]))->getRetries());
     }
 
-    public function testClaveDeTokenRequierePlaceholderDelCertificado(): void
+    public function testTokenKeyRequiresCertificatePlaceholder(): void
     {
         $request = new SiiRequest(options: ['token' => ['key' => 'sin_placeholder']]);
 
@@ -94,7 +94,7 @@ class SiiRequestTest extends TestCase
         $request->getTokenKey();
     }
 
-    public function testClaveDeTokenRequiereCertificado(): void
+    public function testTokenKeyRequiresCertificate(): void
     {
         $request = new SiiRequest();
 

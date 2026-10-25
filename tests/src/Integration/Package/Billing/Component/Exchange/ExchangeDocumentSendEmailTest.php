@@ -188,7 +188,7 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $password = getenv('MAIL_PASSWORD');
 
         if (!$username || !$password) {
-            $this->markTestSkipped('No existe configuración para enviar correo.');
+            $this->markTestSkipped('No mail configuration available for sending.');
         }
 
         // Find files with test cases.

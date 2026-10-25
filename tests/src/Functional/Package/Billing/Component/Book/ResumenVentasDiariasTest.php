@@ -152,7 +152,7 @@ class ResumenVentasDiariasTest extends TestCase
         $result = $this->validator->validateSignature($bag);
         $this->assertTrue(
             $result->isValid(),
-            $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
+            $result->getError()?->getMessage() ?? 'Could not validate the electronic signature.'
         );
 
         // Run assertions on the generated summary content.

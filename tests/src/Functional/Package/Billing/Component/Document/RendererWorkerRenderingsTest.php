@@ -144,7 +144,7 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
-class RendererPresentacionesTest extends TestCase
+class RendererWorkerRenderingsTest extends TestCase
 {
     private DocumentComponentInterface $biller;
 
@@ -247,7 +247,7 @@ class RendererPresentacionesTest extends TestCase
         $this->assertSame($rendering->getContent(), (string) $result);
     }
 
-    public function testCedibleAndTributariaSeGeneranAmbasParaFacturaConNombresDistintos(): void
+    public function testCedibleAndTributariaBothGeneratedForInvoiceWithDistinctFilenames(): void
     {
         $bag = $this->facturaAfecta();
         $bag->getOptions()->set('renderer.format', 'html');
@@ -277,7 +277,7 @@ class RendererPresentacionesTest extends TestCase
         (string) $result;
     }
 
-    public function testMultipleCopiesSeAlmacenanUnaVezYSoloSeExpandenEnToArray(): void
+    public function testMultipleCopiesStoredOnceAndExpandedOnlyInToArray(): void
     {
         $bag = $this->facturaAfecta();
         $bag->getOptions()->set('renderer.format', 'html');
@@ -310,7 +310,7 @@ class RendererPresentacionesTest extends TestCase
         }
     }
 
-    public function testRenderingDesconocidoLanzaExcepcion(): void
+    public function testUnknownRenderingThrowsException(): void
     {
         $bag = $this->facturaAfecta();
         $bag->getOptions()->set('renderer.renderings', [
@@ -322,7 +322,7 @@ class RendererPresentacionesTest extends TestCase
         $this->biller->getRendererWorker()->render($bag);
     }
 
-    public function testCedibleSeOmiteEnSilencioParaBoletaSiSePideJuntoATributaria(): void
+    public function testCedibleSilentlySkippedForReceiptWhenRequestedWithTributaria(): void
     {
         $bag = $this->boletaAfecta();
         $bag->getOptions()->set('renderer.format', 'html');
@@ -338,7 +338,7 @@ class RendererPresentacionesTest extends TestCase
         $this->assertFalse($result->hasRendering('cedible'));
     }
 
-    public function testRenderLanzaExcepcionSiSoloSePideCedibleParaBoletaYQuedaVacio(): void
+    public function testRenderThrowsWhenOnlyCedibleRequestedForReceiptAndResultIsEmpty(): void
     {
         $bag = $this->boletaAfecta();
         $bag->getOptions()->set('renderer.renderings', [

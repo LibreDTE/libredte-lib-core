@@ -171,7 +171,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
-class ValidarXmlEjemploOficialSiiTest extends TestCase
+class OfficialSiiExampleXmlValidationTest extends TestCase
 {
     // Worker with services for DTE interface XML (document envelopes,
     // aka DocumentEnvelope).
@@ -217,20 +217,20 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @return array<string, array{string}>
      */
-    public static function provideDocumentosSii(): array
+    public static function provideSiiExampleDocuments(): array
     {
         // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/xml/sii/*.xml';
         $files = glob($filesPath);
 
         // Build test data.
-        $documentosSii = [];
+        $siiExampleDocuments = [];
         foreach ($files as $file) {
-            $documentosSii[basename($file)] = [$file];
+            $siiExampleDocuments[basename($file)] = [$file];
         }
 
         // Return data for tests.
-        return $documentosSii;
+        return $siiExampleDocuments;
     }
 
     // Creates an envelope from an XML file.
@@ -245,7 +245,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // General validation of envelope data.
     // Asserts RutEmisor, RutEnvia, RutReceptor, and FchResol can be extracted
     // correctly from the EnvioDTE cover page.
-    #[DataProvider('provideDocumentosSii')]
+    #[DataProvider('provideSiiExampleDocuments')]
     public function testValidateSobreGeneralData(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -258,7 +258,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     }
 
     // Validate envelope XML schema against EnvioDTE_v10.xsd.
-    #[DataProvider('provideDocumentosSii')]
+    #[DataProvider('provideSiiExampleDocuments')]
     public function testValidateSobreSchema(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -272,8 +272,8 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
-    public function testValidateDocumentoSchema($file): void
+    #[DataProvider('provideSiiExampleDocuments')]
+    public function testValidateDocumentSchema($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -293,7 +293,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
+    #[DataProvider('provideSiiExampleDocuments')]
     public function testValidateSobreDigestValue($file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -333,7 +333,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
+    #[DataProvider('provideSiiExampleDocuments')]
     public function testValidateSobreSignatureValueExceptionSignatureError($file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -366,7 +366,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // via the strip-namespaces fallback in findMatchingDigestValue(). The
     // error that remains today is exclusively SignatureValue due to the fixture
     // key mismatch.
-    #[DataProvider('provideDocumentosSii')]
+    #[DataProvider('provideSiiExampleDocuments')]
     public function testValidateSobreSignatureExceptionDigestValueError(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -393,8 +393,8 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
-    public function testValidateDocumentoDigestValueExceptionDigestValueError($file): void
+    #[DataProvider('provideSiiExampleDocuments')]
+    public function testValidateDocumentDigestValueExceptionDigestValueError($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -431,8 +431,8 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
-    public function testValidateDocumentoSignatureValueExceptionSignatureError($file): void
+    #[DataProvider('provideSiiExampleDocuments')]
+    public function testValidateDocumentSignatureValueExceptionSignatureError($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -464,8 +464,8 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosSii')]
-    public function testValidateDocumentoSignatureExceptionDigestValueError($file): void
+    #[DataProvider('provideSiiExampleDocuments')]
+    public function testValidateDocumentSignatureExceptionDigestValueError($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();

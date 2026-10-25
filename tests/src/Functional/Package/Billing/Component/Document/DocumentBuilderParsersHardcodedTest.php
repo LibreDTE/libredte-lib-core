@@ -120,7 +120,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         ;
     }
 
-    public function testDocumentoFactoryFromArrayWithoutTipoDTE(): void
+    public function testBuildFromArrayWithoutTipoDte(): void
     {
         $this->expectException(DocumentException::class);
         $this->expectExceptionMessage('Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.');
@@ -132,7 +132,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $document = $this->builder->build($bag);
     }
 
-    public function testDocumentoFactoryFromArrayEmptyTipoDTE(): void
+    public function testBuildFromArrayWithEmptyTipoDte(): void
     {
         $this->expectException(DocumentException::class);
         $this->expectExceptionMessage('Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.');
@@ -150,7 +150,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $document = $this->builder->build($bag);
     }
 
-    public function testDocumentoFactoryFromArrayWrongIntTipoDTE(): void
+    public function testBuildFromArrayWithInvalidIntTipoDte(): void
     {
         $this->expectException(StrategyNotFoundException::class);
         $this->expectExceptionMessage('Strategy documento_35 not found in service builder (billing.document.builder).');
@@ -168,7 +168,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $document = $this->builder->build($bag);
     }
 
-    public function testDocumentoFactoryFromArrayWrongStringTipoDTE(): void
+    public function testBuildFromArrayWithInvalidStringTipoDte(): void
     {
         $this->expectException(StrategyNotFoundException::class);
         $this->expectExceptionMessage('Strategy factura not found in service builder (billing.document.builder).');
@@ -186,7 +186,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $document = $this->builder->build($bag);
     }
 
-    public function testDocumentoFactoryFromArrayOk(): void
+    public function testBuildFromArrayOk(): void
     {
         $data = [
             'Encabezado' => [
@@ -222,7 +222,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
-    public function testDocumentoFactoryFromXmlOk(): void
+    public function testBuildFromXmlOk(): void
     {
         $data = '<DTE><Documento><Encabezado><IdDoc><TipoDTE>33</TipoDTE></IdDoc><Emisor><RUTEmisor>76192083-9</RUTEmisor><RznSoc>SASCO SpA</RznSoc><GiroEmis>Tecnología, Informática y Telecomunicaciones</GiroEmis><DirOrigen>Santiago</DirOrigen><CmnaOrigen>Santiago</CmnaOrigen></Emisor><Receptor><RUTRecep>60803000-K</RUTRecep><RznSocRecep>Servicio de Impuestos Internos</RznSocRecep><GiroRecep>Gobierno</GiroRecep><DirRecep>Santiago</DirRecep><CmnaRecep>Santiago</CmnaRecep></Receptor></Encabezado><Detalle><NmbItem>Servicio Plus de LibreDTE</NmbItem><QtyItem>12</QtyItem><PrcItem>40000</PrcItem></Detalle></Documento></DTE>';
 
@@ -236,7 +236,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
-    public function testDocumentoFactoryFromYamlOk(): void
+    public function testBuildFromYamlOk(): void
     {
         $data = <<<YAML
         Encabezado:
@@ -270,7 +270,7 @@ class DocumentBuilderParsersHardcodedTest extends TestCase
         $this->assertSame(571200, $bag->getDocument()->getMontoTotal());
     }
 
-    public function testDocumentoFactoryFromJsonOk(): void
+    public function testBuildFromJsonOk(): void
     {
         $data = '{
             "Encabezado": {

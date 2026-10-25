@@ -101,7 +101,7 @@ class SendXmlDocumentTest extends TestCase
         // Assert the DTE XML file exists.
         $file = $this->xmlDir . '/upload/set_pruebas_basico.xml';
         if (!file_exists($file)) {
-            $this->markTestSkipped(sprintf('Archivo %s no existe.', $file));
+            $this->markTestSkipped(sprintf('File %s does not exist.', $file));
         }
 
         // Load DTE XML into an XML document.

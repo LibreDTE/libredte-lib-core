@@ -60,7 +60,7 @@ abstract class TestCase extends PHPUnitTestCase
 
         if ($fullpath === false) {
             throw new LogicException(sprintf(
-                'No existe la ruta: %s/%s',
+                'Path does not exist: %s/%s',
                 $fixturesPath,
                 $path
             ));

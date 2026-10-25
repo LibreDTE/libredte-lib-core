@@ -77,22 +77,22 @@ class EstandarParserStrategyTest extends TestCase
     /**
      * @return array<string, array{string}>
      */
-    public static function provideCasosBorde(): array
+    public static function provideEdgeCases(): array
     {
         $files = glob(
             self::getFixturesPath() . '/parsers_edge/form/estandar/*.yaml'
         );
 
-        $casos = [];
+        $edgeCases = [];
         foreach ($files as $file) {
-            $casos[basename($file)] = [$file];
+            $edgeCases[basename($file)] = [$file];
         }
 
-        return $casos;
+        return $edgeCases;
     }
 
-    #[DataProvider('provideCasosBorde')]
-    public function testCasoBorde(string $file): void
+    #[DataProvider('provideEdgeCases')]
+    public function testEdgeCase(string $file): void
     {
         $data = Yaml::parse(file_get_contents($file));
         $test = $data['Test'];
@@ -117,7 +117,7 @@ class EstandarParserStrategyTest extends TestCase
         );
     }
 
-    public function testYamlVacioLanzaParserException(): void
+    public function testEmptyYamlThrowsParserException(): void
     {
         $this->expectException(ParserException::class);
 
@@ -133,15 +133,15 @@ class EstandarParserStrategyTest extends TestCase
     private function assertExpectedValues(
         array $expected,
         array $actual,
-        string $caso,
+        string $caseName,
         string $parentKey = ''
     ): void {
         foreach ($expected as $key => $expectedValue) {
             $fullKey = $parentKey ? $parentKey . '.' . $key : (string) $key;
 
             $this->assertArrayHasKey($key, $actual, sprintf(
-                'En el caso %s no existe el campo %s.',
-                $caso,
+                'Case %s is missing field %s.',
+                $caseName,
                 $fullKey
             ));
 
@@ -150,13 +150,13 @@ class EstandarParserStrategyTest extends TestCase
                 $this->assertExpectedValues(
                     $expectedValue,
                     $actual[$key],
-                    $caso,
+                    $caseName,
                     $fullKey
                 );
             } else {
                 $this->assertSame($expectedValue, $actual[$key], sprintf(
-                    'En el caso %s el valor de %s no cuadra con el esperado.',
-                    $caso,
+                    'Case %s: value of %s does not match expected.',
+                    $caseName,
                     $fullKey
                 ));
             }

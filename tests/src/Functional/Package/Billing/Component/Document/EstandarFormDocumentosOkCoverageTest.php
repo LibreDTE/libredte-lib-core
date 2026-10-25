@@ -36,11 +36,11 @@ use PHPUnit\Framework\Attributes\CoversNothing;
  * `ExamplesWorker`). Each case should exist in both with the same file name.
  * This test does not assert both produce the same DTE (that is covered separately
  * by `DocumentBuilderParsersFixturesTest` and
- * `EmitirIndividualmenteDocumentosOkTest`); it only ensures no full case is
+ * `DocumentOkExamplesEndToEndTest`); it only ensures no full case is
  * missing on either side.
  */
 #[CoversNothing]
-class FormEstandarDocumentosOkCoverageTest extends TestCase
+class EstandarFormDocumentosOkCoverageTest extends TestCase
 {
     /**
      * `parsers/form/estandar` cases with no pair in `yaml/documentos_ok` on
@@ -68,47 +68,47 @@ class FormEstandarDocumentosOkCoverageTest extends TestCase
         '110_003_transporte_terrestre_internacional',
     ];
 
-    public function testTodosLosCasosDeFormEstandarExistenEnDocumentosOk(): void
+    public function testAllFormEstandarCasesExistInDocumentosOk(): void
     {
-        $faltantes = array_values(array_diff(
-            $this->casosFormEstandar(),
-            $this->casosDocumentosOk(),
+        $missing = array_values(array_diff(
+            $this->formEstandarCaseNames(),
+            $this->documentosOkCaseNames(),
             self::EXCLUDED_FORM_ESTANDAR_ONLY,
         ));
 
-        $this->assertSame([], $faltantes, sprintf(
-            "Hay casos en 'parsers/form/estandar' sin equivalente en " .
-            "'yaml/documentos_ok': %s. Si el caso se puede representar en " .
-            "YAML (casi siempre se puede), agrégalo ahí con el mismo " .
-            "nombre de archivo. Si genuinamente no corresponde (prueba una " .
-            "particularidad del parser, no un documento completo), " .
-            "agrégalo a self::EXCLUDED_FORM_ESTANDAR_ONLY con el motivo.",
-            implode(', ', $faltantes)
+        $this->assertSame([], $missing, sprintf(
+            "Cases in 'parsers/form/estandar' with no match in " .
+            "'yaml/documentos_ok': %s. If the case can be represented in " .
+            "YAML (usually it can), add it there with the same " .
+            "file name. If it genuinely does not apply (tests a " .
+            "parser quirk, not a complete document), " .
+            "add it to self::EXCLUDED_FORM_ESTANDAR_ONLY with a reason.",
+            implode(', ', $missing)
         ));
     }
 
-    public function testTodosLosCasosDeDocumentosOkExistenEnFormEstandar(): void
+    public function testAllDocumentosOkCasesExistInFormEstandar(): void
     {
-        $faltantes = array_values(array_diff(
-            $this->casosDocumentosOk(),
-            $this->casosFormEstandar(),
+        $missing = array_values(array_diff(
+            $this->documentosOkCaseNames(),
+            $this->formEstandarCaseNames(),
             self::EXCLUDED_DOCUMENTOS_OK_ONLY,
         ));
 
-        $this->assertSame([], $faltantes, sprintf(
-            "Hay casos en 'yaml/documentos_ok' sin equivalente en " .
-            "'parsers/form/estandar': %s. Revisa si form.estandar puede " .
-            "representarlo y agrégalo ahí. Si no puede (le faltan campos " .
-            "al parser), agrégalo a self::EXCLUDED_DOCUMENTOS_OK_ONLY con " .
-            "el motivo.",
-            implode(', ', $faltantes)
+        $this->assertSame([], $missing, sprintf(
+            "Cases in 'yaml/documentos_ok' with no match in " .
+            "'parsers/form/estandar': %s. Check whether form.estandar can " .
+            "represent them and add them there. If it cannot (missing parser " .
+            "fields), add them to self::EXCLUDED_DOCUMENTOS_OK_ONLY with " .
+            "a reason.",
+            implode(', ', $missing)
         ));
     }
 
     /**
      * @return string[] File names (without extension) in `form/estandar`.
      */
-    private function casosFormEstandar(): array
+    private function formEstandarCaseNames(): array
     {
         $files = glob(self::getFixturesPath() . '/parsers/form/estandar/*.yaml');
 
@@ -121,7 +121,7 @@ class FormEstandarDocumentosOkCoverageTest extends TestCase
     /**
      * @return string[] File names (without extension) in `documentos_ok`.
      */
-    private function casosDocumentosOk(): array
+    private function documentosOkCaseNames(): array
     {
         $files = glob(self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml');
 

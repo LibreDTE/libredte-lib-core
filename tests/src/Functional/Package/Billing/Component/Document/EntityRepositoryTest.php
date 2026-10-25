@@ -166,38 +166,38 @@ class EntityRepositoryTest extends TestCase
         $this->assertNull($repository->findOneByCodigoISO('1A'));
     }
 
-    public function testEntityRepositoryAduanaPaisSinCodigoISO(): void
+    public function testEntityRepositoryAduanaPaisWithoutIsoCode(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
 
         // Defunct countries, territory groups, and special
         // codes have no ISO code.
-        foreach ([521, 529, 526, 151, 905, 998, 999, 888, 585, 323] as $codigo) {
-            $this->assertNull($repository->find($codigo)->getCodigoISO(), (string) $codigo);
+        foreach ([521, 529, 526, 151, 905, 998, 999, 888, 585, 323] as $code) {
+            $this->assertNull($repository->find($code)->getCodigoISO(), (string) $code);
         }
     }
 
-    public function testEntityRepositoryAduanaPaisDatosDeCodigosISO(): void
+    public function testEntityRepositoryAduanaPaisIsoCodeData(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
 
-        $codigos = [];
+        $isoCodes = [];
         foreach ($repository->findAll() as $pais) {
-            $codigoISO = $pais->getCodigoISO();
-            if ($codigoISO === null) {
+            $isoCode = $pais->getCodigoISO();
+            if ($isoCode === null) {
                 continue;
             }
-            $this->assertMatchesRegularExpression('/^[A-Z]{2}$/', $codigoISO, (string) $pais);
-            $codigos[] = $codigoISO;
+            $this->assertMatchesRegularExpression('/^[A-Z]{2}$/', $isoCode, (string) $pais);
+            $isoCodes[] = $isoCode;
         }
 
         // Each ISO code maps to one country; otherwise the country found by
         // a code would depend on data order.
         $this->assertSame([], array_keys(array_filter(
-            array_count_values($codigos),
-            fn (int $cantidad): bool => $cantidad > 1
+            array_count_values($isoCodes),
+            fn (int $count): bool => $count > 1
         )));
-        $this->assertCount(220, $codigos);
+        $this->assertCount(220, $isoCodes);
     }
 
     public function testEntityRepositoryAduanaPuerto(): void

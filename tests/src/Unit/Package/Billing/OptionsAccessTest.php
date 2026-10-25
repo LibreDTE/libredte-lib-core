@@ -37,7 +37,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(DocumentEnvelope::class)]
 class OptionsAccessTest extends TestCase
 {
-    public function testSeccionesDelDocumentoConservanArreglosAnidados(): void
+    public function testDocumentSectionsPreserveNestedArrays(): void
     {
         $section = ['strategy' => 'custom', 'config' => ['enabled' => false, 'values' => [1, null]]];
         $bag = new DocumentBag(options: array_fill_keys([
@@ -52,7 +52,7 @@ class OptionsAccessTest extends TestCase
         $this->assertSame($section, $bag->getRendererOptions());
     }
 
-    public function testSeccionesOpcionalesAusentesONullEntreganArregloVacio(): void
+    public function testMissingOrNullOptionalSectionsReturnEmptyArray(): void
     {
         foreach ([new Options(), new Options([
             'parser' => null, 'builder' => null, 'normalizer' => null,
@@ -74,7 +74,7 @@ class OptionsAccessTest extends TestCase
         }
     }
 
-    public function testSeccionesDelLibroConservanOpcionesPersonalizadas(): void
+    public function testBookSectionsPreserveCustomOptions(): void
     {
         $loader = ['format' => 'csv', 'csv' => ['delimiter' => ';']];
         $builder = ['encoding' => 'ISO-8859-1'];
@@ -89,7 +89,7 @@ class OptionsAccessTest extends TestCase
         $this->assertSame([], $book->getValidatorOptions());
     }
 
-    public function testLoteYSobreConservanOpcionesPredeterminadasYPersonalizadas(): void
+    public function testBatchAndEnvelopePreserveDefaultAndCustomOptions(): void
     {
         $this->assertSame([], (new DocumentBatch(inputData: 'contenido'))->getBatchProcessorOptions());
         $this->assertSame([], (new DocumentEnvelope())->getDispatcherOptions());

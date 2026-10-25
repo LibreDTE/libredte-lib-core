@@ -244,7 +244,7 @@ class AecTest extends TestCase
     public function testRecesionFacturaAfecta(): void
     {
         // Build the original AEC (first assignment).
-        $bagPrimera = new AecBag(
+        $firstAssignmentBag = new AecBag(
             source: $this->dte,
             cedente: [
                 'RUT' => '76192083-9',
@@ -268,7 +268,7 @@ class AecTest extends TestCase
             ],
             certificate: $this->certificate,
         );
-        $aecOriginal = $this->worker->build($bagPrimera);
+        $aecOriginal = $this->worker->build($firstAssignmentBag);
 
         // Re-assign the AEC: the original assignee (Factoring S.A.) assigns to another party.
         $bagRecesion = new AecBag(

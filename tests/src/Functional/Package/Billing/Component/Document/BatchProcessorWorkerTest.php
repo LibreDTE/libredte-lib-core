@@ -233,9 +233,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(OperacionDocumento::class)]
 #[CoversClass(DocumentException::class)]
 #[CoversClass(AduanaModalidadVenta::class)]
-class EmisionMasivaTest extends TestCase
+class BatchProcessorWorkerTest extends TestCase
 {
-    public function testCargarDocumentosDesdeArchivoCsv(): void
+    public function testLoadDocumentsFromCsvFile(): void
     {
         $app = Application::getInstance();
 
@@ -260,15 +260,15 @@ class EmisionMasivaTest extends TestCase
 
         $documentsBag = $this->processFile($file);
 
-        $cantidad = count($documentsBag);
-        $this->assertSame($expected['cantidad'], $cantidad);
+        $documentCount = count($documentsBag);
+        $this->assertSame($expected['cantidad'], $documentCount);
 
-        for ($i = 0; $i < $cantidad; $i++) {
+        for ($i = 0; $i < $documentCount; $i++) {
             $documentBag = $documentsBag[$i];
-            $dataExpected = $expected['documentos'][$i] ?? null;
-            if ($dataExpected === null) {
+            $expectedData = $expected['documentos'][$i] ?? null;
+            if ($expectedData === null) {
                 throw new LogicException(sprintf(
-                    'Falta definir los valores esperados del documento %d del archivo %s',
+                    'Expected values for document %d in file %s are not defined',
                     $i + 1,
                     $file
                 ));
@@ -287,7 +287,7 @@ class EmisionMasivaTest extends TestCase
                 $validator->validateSchema($xml);
             } catch (Exception $e) {
                 throw new XmlException(sprintf(
-                    'La validación del XML del documento %d (%s) falló: %s',
+                    'XML validation for document %d (%s) failed: %s',
                     $i + 1,
                     $documentBag->getId(),
                     $e->getMessage()
@@ -302,7 +302,7 @@ class EmisionMasivaTest extends TestCase
                 }
             } catch (Exception $e) {
                 throw new SignatureException(sprintf(
-                    'La validación de la firma del documento %d (%s) falló: %s',
+                    'Signature validation for document %d (%s) failed: %s',
                     $i + 1,
                     $documentBag->getId(),
                     $e->getMessage()
@@ -318,16 +318,16 @@ class EmisionMasivaTest extends TestCase
             );
 
             // Validate expected document fields.
-            $dataActual = ArrayPath::flatten(
+            $actualData = ArrayPath::flatten(
                 $documentBag->getDocument()->getData()
             );
-            foreach ($dataExpected as $expectedKey => $expectedValue) {
-                $actualValue = $dataActual[$expectedKey] ?? null;
+            foreach ($expectedData as $expectedKey => $expectedValue) {
+                $actualValue = $actualData[$expectedKey] ?? null;
                 $this->assertSame(
                     $expectedValue,
                     $actualValue,
                     sprintf(
-                        'Error al validar que el valor de %s (%s) coincida con el esperado %s en el documento %d (%s).',
+                        'Field %s (%s) does not match expected %s in document %d (%s).',
                         $expectedKey,
                         $actualValue,
                         $expectedValue,
@@ -342,25 +342,25 @@ class EmisionMasivaTest extends TestCase
     /**
      * @return array<string, array{string, mixed, mixed}>
      */
-    public static function provideArchivosConErrores(): array
+    public static function provideErrorFiles(): array
     {
         $dir = self::getFixturesPath('emision_masiva/errores');
-        $casos = Yaml::parseFile($dir . '/errores.yaml');
+        $cases = Yaml::parseFile($dir . '/errores.yaml');
 
-        $archivos = [];
-        foreach ($casos as $archivo => $caso) {
-            $archivos[$archivo] = [
-                $dir . '/' . $archivo,
-                $caso['exception'],
-                $caso['message'],
+        $files = [];
+        foreach ($cases as $fileName => $caseDefinition) {
+            $files[$fileName] = [
+                $dir . '/' . $fileName,
+                $caseDefinition['exception'],
+                $caseDefinition['message'],
             ];
         }
 
-        return $archivos;
+        return $files;
     }
 
-    #[DataProvider('provideArchivosConErrores')]
-    public function testArchivoConErroresLanzaExcepcion(
+    #[DataProvider('provideErrorFiles')]
+    public function testFileWithErrorsThrowsException(
         string $file,
         string $exception,
         string $message
@@ -374,25 +374,25 @@ class EmisionMasivaTest extends TestCase
         $this->processFile($file);
     }
 
-    public function testArchivoSinDocumentosEntregaArregloVacio(): void
+    public function testFileWithNoDocumentsReturnsEmptyArray(): void
     {
         $file = self::getFixturesPath('emision_masiva/sin_documentos.csv');
 
         $this->assertSame([], $this->processFile($file));
     }
 
-    public function testNombrePdfSeTruncaA100Caracteres(): void
+    public function testPdfNameIsTruncatedTo100Characters(): void
     {
         $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
 
         $documentsBag = $this->processFile($file);
 
         $this->assertCount(1, $documentsBag);
-        $nombre = $documentsBag[0]->getParsedData()['LibreDTE']['pdf']['nombre'];
-        $this->assertSame(100, mb_strlen($nombre));
+        $pdfFileName = $documentsBag[0]->getParsedData()['LibreDTE']['pdf']['nombre'];
+        $this->assertSame(100, mb_strlen($pdfFileName));
     }
 
-    public function testArchivoEnIso88591SeConvierteAUtf8(): void
+    public function testIso88591FileIsConvertedToUtf8(): void
     {
         $file = self::getFixturesPath('emision_masiva/iso_8859_1.csv');
 
@@ -415,7 +415,7 @@ class EmisionMasivaTest extends TestCase
         );
     }
 
-    public function testLoteComoContenidoEntregaLosMismosDocumentos(): void
+    public function testBatchFromContentReturnsSameDocuments(): void
     {
         $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
         $batch = new DocumentBatch(inputData: file_get_contents($file));

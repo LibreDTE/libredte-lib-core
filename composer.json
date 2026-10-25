@@ -3,7 +3,7 @@
     "description": "LibreDTE: Library for invoicing in Chile (Core)",
     "type": "library",
     "keywords": ["chile", "cl", "dte", "sii", "invoicing", "electronic invoicing", "facturación electrónica"],
-    "homepage": "https://lib-core.docs.libredte.cl",
+    "homepage": "https://core.libredte.cl",
     "license": "AGPL-3.0+",
     "authors": [
         {

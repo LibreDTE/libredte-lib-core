@@ -79,7 +79,7 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
         $password = getenv('MAIL_PASSWORD');
 
         if (!$username || !$password) {
-            $this->markTestSkipped('No existe configuración para recibir correo.');
+            $this->markTestSkipped('No mail configuration available for receiving.');
         }
 
         // Create the exchange bag (no envelopes, reception only).

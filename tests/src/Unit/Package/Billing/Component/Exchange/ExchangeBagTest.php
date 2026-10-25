@@ -99,7 +99,7 @@ class ExchangeBagTest extends TestCase
 
         $status = new ExchangeStatus(
             strategy: 'email.smtp',
-            error: new Exception('Fallo simulado de envío.'),
+            error: new Exception('Simulated send failure.'),
         );
         $result = new ExchangeResult($envelope);
         $result->addStatus($status);
@@ -169,7 +169,7 @@ class ExchangeBagTest extends TestCase
                     'statuses' => [
                         [
                             'strategy' => 'email.smtp',
-                            'error' => ['message' => 'Fallo simulado de envío.'],
+                            'error' => ['message' => 'Simulated send failure.'],
                             'metadata' => [],
                         ],
                     ],

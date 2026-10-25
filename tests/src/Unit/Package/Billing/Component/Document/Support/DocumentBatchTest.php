@@ -36,21 +36,21 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(DocumentException::class)]
 class DocumentBatchTest extends TestCase
 {
-    public function testSinOrigenLanzaExcepcion(): void
+    public function testMissingSourceThrowsException(): void
     {
         $this->expectException(BatchProcessorException::class);
 
         new DocumentBatch();
     }
 
-    public function testConContenidoYArchivoLanzaExcepcion(): void
+    public function testContentAndFileTogetherThrowsException(): void
     {
         $this->expectException(BatchProcessorException::class);
 
         new DocumentBatch(inputData: 'contenido', inputFile: '/ruta/archivo.csv');
     }
 
-    public function testContenidoEntregaElContenidoYNoTieneArchivo(): void
+    public function testContentSourceReturnsContentWithoutFile(): void
     {
         $batch = new DocumentBatch(inputData: 'contenido');
 
@@ -58,7 +58,7 @@ class DocumentBatchTest extends TestCase
         $this->assertNull($batch->getInputFile());
     }
 
-    public function testArchivoEntregaLaRutaYLeeElContenido(): void
+    public function testFileSourceReturnsPathAndReadsContent(): void
     {
         $file = self::getFixturesPath('emision_masiva/sin_documentos.csv');
         $batch = new DocumentBatch(inputFile: $file);
@@ -67,7 +67,7 @@ class DocumentBatchTest extends TestCase
         $this->assertSame(file_get_contents($file), $batch->getInputData());
     }
 
-    public function testArchivoInexistenteLanzaExcepcionAlLeerElContenido(): void
+    public function testMissingFileThrowsExceptionWhenReadingContent(): void
     {
         $batch = new DocumentBatch(inputFile: '/ruta/que/no/existe.csv');
 

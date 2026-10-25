@@ -87,7 +87,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
-class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
+class DocumentosOkEnvelopeXmlValidationTest extends TestCase
 {
     // Worker with services for DTE interface XML (document envelopes,
     // aka DocumentEnvelope).
@@ -138,7 +138,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @return array<string, array{string}>
      */
-    public static function provideDocumentosOk(): array
+    public static function provideDocumentOkXmlFiles(): array
     {
         // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/xml/documentos_ok/*.xml';
@@ -146,17 +146,17 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 
         // If there are no fixtures, return a skip marker instead of empty.
         if (empty($files)) {
-            return ['sin fixtures' => ['']];
+            return ['no fixtures' => ['']];
         }
 
         // Build test data.
-        $documentosOk = [];
+        $documentOkXmlFiles = [];
         foreach ($files as $file) {
-            $documentosOk[basename($file)] = [$file];
+            $documentOkXmlFiles[basename($file)] = [$file];
         }
 
         // Return data for tests.
-        return $documentosOk;
+        return $documentOkXmlFiles;
     }
 
     // Creates an envelope from an XML file.
@@ -167,8 +167,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     {
         if ($file === '') {
             $this->markTestSkipped(
-                'No hay fixtures en tests/fixtures/xml/documentos_ok/. '
-                . 'Agregar archivos XML de sobres EnvioDTE para ejecutar estos tests.'
+                'No fixtures in tests/fixtures/xml/documentos_ok/. '
+                . 'Add EnvioDTE envelope XML files to run these tests.'
             );
         }
 
@@ -181,7 +181,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     // General validation of envelope data.
     // Asserts RutEmisor, RutEnvia, RutReceptor, and FchResol can be extracted
     // correctly from the EnvioDTE cover page.
-    #[DataProvider('provideDocumentosOk')]
+    #[DataProvider('provideDocumentOkXmlFiles')]
     public function testValidateSobreGeneralData(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -195,7 +195,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Validate envelope XML schema against EnvioDTE_v10.xsd.
-    #[DataProvider('provideDocumentosOk')]
+    #[DataProvider('provideDocumentOkXmlFiles')]
     public function testValidateSobreSchema(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -209,8 +209,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoSchema($file): void
+    #[DataProvider('provideDocumentOkXmlFiles')]
+    public function testValidateDocumentSchema($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -224,7 +224,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
+    #[DataProvider('provideDocumentOkXmlFiles')]
     public function testValidateSobreDigestValue($file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -247,7 +247,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
+    #[DataProvider('provideDocumentOkXmlFiles')]
     public function testValidateSobreSignatureValue($file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -264,7 +264,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Validates full envelope signature via DispatcherWorker::validateSignature().
-    #[DataProvider('provideDocumentosOk')]
+    #[DataProvider('provideDocumentOkXmlFiles')]
     public function testValidateSobreSignature(string $file): void
     {
         $envelope = $this->createEnvelope($file);
@@ -279,8 +279,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoDigestValue($file): void
+    #[DataProvider('provideDocumentOkXmlFiles')]
+    public function testValidateDocumentDigestValue($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -304,8 +304,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoSignatureValue($file): void
+    #[DataProvider('provideDocumentOkXmlFiles')]
+    public function testValidateDocumentSignatureValue($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
@@ -326,8 +326,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     /**
      * @param string $file
      */
-    #[DataProvider('provideDocumentosOk')]
-    public function testValidateDocumentoSignature($file): void
+    #[DataProvider('provideDocumentOkXmlFiles')]
+    public function testValidateDocumentSignature($file): void
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
