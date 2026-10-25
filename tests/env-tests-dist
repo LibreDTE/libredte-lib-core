@@ -1,22 +1,22 @@
 #
-# Definición de variables de entorno para los tests de LibreDTE.
+# Environment variable definitions for LibreDTE tests.
 #
-# Para configurar se debe renombrar este archivo a env-tests con:
+# To configure, rename this file to env-tests with:
 #   $ mv env-tests-dist env-tests
 #
-# Las variables se deben cargar antes de ejecutar los tests ejecutando:
+# The variables should be loaded before running the tests by executing:
 #   $ source tests/env-tests
 #
 
-# OpenSSL con el proveedor legacy activo, para certificados con cifrado
-# 40BitRC2. Se debe cargar el archivo desde la raíz del proyecto. Si el
-# certificado usa un cifrado moderno se puede omitir.
+# OpenSSL with the legacy provider enabled, for certificates using
+# 40BitRC2 encryption. The file should be loaded from the root of the project.
+# If the certificate uses modern encryption, this can be omitted.
 export OPENSSL_CONF="$(pwd)/tests/openssl-legacy.cnf"
 
-# Certificado digital.
+# Digital certificate.
 export LIBREDTE_CERTIFICATE_FILE=""
 export LIBREDTE_CERTIFICATE_PASS=""
 
-# Correo electrónico (los tests usan una cuenta de Gmail).
+# Email account (the tests use a Gmail account).
 export MAIL_USERNAME=""
 export MAIL_PASSWORD=""

@@ -1,25 +1,25 @@
-# Importación de servicios que requiere LibreDTE Lib Core.
+# Import of services required by LibreDTE Lib Core.
 imports:
   - { resource: '../vendor/derafu/xml/resources/config/xml-services.yaml' }
   - { resource: '../vendor/derafu/certificate/resources/config/certificate-services.yaml' }
   - { resource: '../vendor/derafu/signature/resources/config/signature-services.yaml' }
   - { resource: '../vendor/derafu/mail/resources/config/mail-services.yaml' }
 
-# Configuración de parámetros.
+# Parameter configuration.
 parameters:
     app.locale.default: 'es'
     libredte.lib.core.project_dir: '%kernel.project_dir%'
 
-# Configuración de servicios que provee la biblioteca.
+# Configuration of services provided by the library.
 services:
 
-    # Configuración por defecto de los servicios.
+    # Default configuration for services.
     _defaults:
         autowire: true
         autoconfigure: true
         public: false
 
-    # Registro de paquetes.
+    # Package registry.
     Derafu\Backbone\Contract\PackageRegistryInterface:
         class: libredte\lib\Core\PackageRegistry
         public: true
@@ -28,11 +28,11 @@ services:
                 billing: '@libredte\lib\Core\Package\Billing\BillingPackage'
                 system: '@libredte\lib\Core\Package\System\SystemPackage'
 
-    # Paquetes.
+    # Packages.
     libredte\lib\Core\Package\Billing\BillingPackage: ~
     libredte\lib\Core\Package\System\SystemPackage: ~
 
-    # Componentes del paquete "billing".
+    # Components of the "billing" package.
     libredte\lib\Core\Package\Billing\Component\Book\Contract\BookComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\Book\BookComponent
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface:
@@ -48,7 +48,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\TradingPartiesComponentInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\TradingPartiesComponent
 
-    # Componentes del paquete "system".
+    # Components of the "system" package.
     libredte\lib\Core\Package\System\Component\Certificate\Contract\CertificateComponentInterface:
         class: libredte\lib\Core\Package\System\Component\Certificate\CertificateComponent
     libredte\lib\Core\Package\System\Component\Repository\Contract\RepositoryComponentInterface:
@@ -56,15 +56,15 @@ services:
     libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderingComponentInterface:
         class: libredte\lib\Core\Package\System\Component\Rendering\RenderingComponent
 
-    # Workers del componente "system.certificate".
+    # Workers of the "system.certificate" component.
     libredte\lib\Core\Package\System\Component\Certificate\Contract\LoaderWorkerInterface:
         class: libredte\lib\Core\Package\System\Component\Certificate\Worker\LoaderWorker
 
-    # Workers del componente "system.repository".
+    # Workers of the "system.repository" component.
     libredte\lib\Core\Package\System\Component\Repository\Contract\CatalogWorkerInterface:
         class: libredte\lib\Core\Package\System\Component\Repository\Worker\CatalogWorker
 
-    # Workers del componente "billing.book".
+    # Workers of the "billing.book" component.
     libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker
         arguments:
@@ -76,21 +76,21 @@ services:
     libredte\lib\Core\Package\Billing\Component\Book\Contract\ValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Book\Worker\ValidatorWorker
 
-    # Estrategias del worker "billing.book.loader".
+    # Strategies for the "billing.book.loader" worker.
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroVentas\ArrayLoaderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroCompras\ArrayLoaderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroBoletas\ArrayLoaderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias\ArrayLoaderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias\ArrayLoaderStrategy: ~
 
-    # Estrategias del worker "billing.book.builder".
+    # Strategies for the "billing.book.builder" worker.
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroVentas\BuilderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroCompras\BuilderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroBoletas\BuilderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroGuias\BuilderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\ResumenVentasDiarias\BuilderStrategy: ~
 
-    # Workers del componente "billing.document".
+    # Workers of the "billing.document" component.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker
         arguments:
@@ -103,7 +103,7 @@ services:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker
     libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker
-        lazy: true # Necesario por referencia circular con BuilderWorker.
+        lazy: true # Necessary due to circular reference with BuilderWorker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\ExamplesWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\ExamplesWorker
         arguments:
@@ -131,11 +131,11 @@ services:
         arguments:
             $strategies: !tagged_iterator { tag: 'billing.document.validator#strategy', index_by: 'name' }
 
-    # Servicios del componente "billing.document".
+    # Services of the "billing.document" component.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory
 
-    # Estrategias del worker "billing.document.builder".
+    # Strategies for the "billing.document.builder" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaAfectaBuilderStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\BoletaAfectaBuilderStrategy
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\BoletaExentaBuilderStrategyInterface:
@@ -161,7 +161,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Builder\Strategy\NotaDebitoExportacionBuilderStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Builder\Strategy\NotaDebitoExportacionBuilderStrategy
 
-    # Estrategias del worker "billing.document.normalizer".
+    # Strategies for the "billing.document.normalizer" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\BoletaAfectaNormalizerStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\BoletaExentaNormalizerStrategyInterface:
@@ -187,7 +187,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy
 
-    # Trabajos (jobs) del worker "billing.document.normalizer".
+    # Jobs of the "billing.document.normalizer" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob: ~
@@ -203,7 +203,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoExportacionJob: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaDebitoJob: ~
 
-    # Estrategias del worker "billing.document.sanitizer".
+    # Strategies for the "billing.document.sanitizer" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\BoletaAfectaSanitizerStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\BoletaExentaSanitizerStrategyInterface:
@@ -229,7 +229,7 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaDebitoExportacionSanitizerStrategy
 
-    # Estrategias del worker "billing.document.validator".
+    # Strategies for the "billing.document.validator" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\BoletaAfectaValidatorStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\BoletaExentaValidatorStrategyInterface:
@@ -255,19 +255,19 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Validator\Strategy\NotaDebitoExportacionValidatorStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy
 
-    # Estrategias del worker "billing.document.parser".
+    # Strategies for the "billing.document.parser" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\JsonParserStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\YamlParserStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default\XmlParserStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form\EstandarParserStrategy: ~
 
-    # Estrategias del worker "billing.document.renderer".
+    # Strategies for the "billing.document.renderer" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Renderer\Strategy\Template\EstandarRendererStrategy: ~
 
-    # Estrategias del worker "billing.document.batch_processor".
+    # Strategies for the "billing.document.batch_processor" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy: ~
 
-    # Workers del componente "billing.exchange".
+    # Workers of the "billing.exchange" component.
     libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponseWorker
     libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface:
@@ -281,17 +281,17 @@ services:
             $handlers: !tagged_iterator { tag: 'billing.exchange.sender#handler', index_by: 'name' }
             $strategies: !tagged_iterator { tag: 'billing.exchange.sender#strategy', index_by: 'name' }
 
-    # Jobs del worker "billing.exchange.document_response".
+    # Jobs of the "billing.exchange.document_response" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildEnvioRecibosJob: ~
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job\BuildRespuestaEnvioJob: ~
 
-    # Handlers del  worker "billing.exchange.receiver".
+    # Handlers for the "billing.exchange.receiver" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler\EmailReceiverHandler:
         arguments:
             $strategies:
                 email.imap: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy'
 
-    # Handlers del worker "billing.exchange.sender".
+    # Handlers for the "billing.exchange.sender" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler\EmailSenderHandler:
         arguments:
             $strategies:
@@ -302,15 +302,15 @@ services:
                 sii.dte: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy'
                 sii.boleta: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy'
 
-    # Estrategias del worker "billing.exchange.receiver".
+    # Strategies for the "billing.exchange.receiver" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy: ~
 
-    # Estrategias del worker "billing.exchange.sender".
+    # Strategies for the "billing.exchange.sender" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email\SmtpSenderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy: ~
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy: ~
 
-    # Workers del componente "billing.identifier".
+    # Workers of the "billing.identifier" component.
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface:
@@ -318,11 +318,11 @@ services:
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
-    # Servicios del componente "billing.identifier"
+    # Services of the "billing.identifier" component.
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafManagerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager
 
-    # Workers del componente "billing.integration".
+    # Workers of the "billing.integration" component.
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface:
@@ -332,42 +332,42 @@ services:
     libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtcWorker
 
-    # Trabajos del worker "billing.integration.sii_lazy"
+    # Jobs of the "billing.integration.sii_lazy" worker.
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob: ~
 
-    # Trabajos del worker "billing.integration.sii_dte"
+    # Jobs of the "billing.integration.sii_dte" worker.
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\CheckXmlDocumentSentStatusJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\RequestXmlDocumentSentStatusByEmailJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\ValidateDocumentSignatureJob: ~
 
-    # Trabajos del worker "billing.integration.sii_rcv"
+    # Jobs of the "billing.integration.sii_rcv" worker.
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\SubmitDocumentAcceptanceJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\ListDocumentEventsJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\CheckDocumentAssignabilityJob: ~
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRcv\Job\GetDocumentSiiReceptionDateJob: ~
 
-    # Trabajos del worker "billing.integration.sii_rtc"
+    # Jobs of the "billing.integration.sii_rtc" worker.
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob: ~
 
-    # Workers del componente "billing.ownership_transfer".
+    # Workers of the "billing.ownership_transfer" component.
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\AecWorker
 
-    # Jobs del worker "billing.ownership_transfer.aec".
+    # Jobs of the "billing.ownership_transfer.aec" worker.
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildDteCedidoJob: ~
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildCesionJob: ~
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildAecJob: ~
 
-    # Workers del componente "billing.trading_parties".
+    # Workers of the "billing.trading_parties" component.
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioManagerWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Worker\MandatarioManagerWorker
         arguments:
             $mandatarioFactory: '@libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface'
 
-    # Servicios del componente "billing.trading_parties".
+    # Services of the "billing.trading_parties" component.
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface:

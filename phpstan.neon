@@ -1,7 +1,7 @@
 parameters:
-    # Nivel de revisión, desde básico (1) a muy completo (9).
+    # Review level, from basic (1) to very thorough (9).
     level: 5
-    # Directorios de código fuente que se revisarán.
+    # Source code directories to be analyzed.
     paths:
         - src
         - tests

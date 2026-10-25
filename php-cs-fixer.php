@@ -3,27 +3,25 @@
 declare(strict_types=1);
 
 /**
- * LibreDTE: Biblioteca PHP (Núcleo).
- * Copyright (C) LibreDTE <https://www.libredte.cl>
+ * LibreDTE: Library for invoicing in Chile (Core).
+ * Copyright (C) 2026 LibreDTE <https://www.libredte.cl>
  *
- * Este programa es software libre: usted puede redistribuirlo y/o modificarlo
- * bajo los términos de la Licencia Pública General Affero de GNU publicada por
- * la Fundación para el Software Libre, ya sea la versión 3 de la Licencia, o
- * (a su elección) cualquier versión posterior de la misma.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- * Este programa se distribuye con la esperanza de que sea útil, pero SIN
- * GARANTÍA ALGUNA; ni siquiera la garantía implícita MERCANTIL o de APTITUD
- * PARA UN PROPÓSITO DETERMINADO. Consulte los detalles de la Licencia Pública
- * General Affero de GNU para obtener una información más detallada.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * Debería haber recibido una copia de la Licencia Pública General Affero de
- * GNU junto a este programa.
- *
- * En caso contrario, consulte <http://www.gnu.org/licenses/agpl.html>.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
- * Archivo de configuración para PHP CS Fixer.
+ * Configuration file for PHP CS Fixer.
  */
 
 use PhpCsFixer\Config;
@@ -37,32 +35,32 @@ $finder = Finder::create()
 ;
 
 return (new Config())
-    // Permitir reglas riesgosas que cambian la lógica del código.
+    // Allow risky rules that may change code logic.
     ->setRiskyAllowed(true)
-    // Basado en PSR-12, la última recomendación de estilo.
+    // Based on PSR-12, the latest style recommendation.
     ->setRules([
         '@PSR12' => true,
-        // Añadir "declare(strict_types=1);" a los archivos.
-        // Esto los añade así <?php declare(strict_types=1); sin embargo se
-        // recomienda editarlos o añadirlos manualmente en líneas separadas.
+        // Add "declare(strict_types=1);" to files.
+        // This adds them as <?php declare(strict_types=1); however, it is
+        // recommended to edit or add them manually in separate lines.
         'declare_strict_types' => true,
-        // Indentar con espacios.
+        // Indent with spaces.
         'indentation_type' => true,
-        // Ordenar los "use" alfabéticamente.
+        // Sort "use" statements alphabetically.
         'ordered_imports' => [
             'sort_algorithm' => 'alpha',
         ],
-        // Eliminar imports no usados.
+        // Remove unused imports.
         'no_unused_imports' => true,
-        // Un import por declaración.
+        // One import per statement.
         'single_import_per_statement' => true,
-        // Convertir arreglos a la sintaxis corta "[]".
+        // Convert arrays to short "[]" syntax.
         'array_syntax' => [
             'syntax' => 'short',
         ],
-        // Añadir comas finales en arreglos de varias líneas.
+        // Add trailing commas to multiline arrays.
         'trailing_comma_in_multiline' => true,
-        // Separar constantes y propiedades.
+        // Separate constants and properties.
         'class_attributes_separation' => [
             'elements' => [
                 'const' => 'one',
@@ -70,15 +68,15 @@ return (new Config())
                 'method' => 'one',
             ],
         ],
-        // Reemplazar strpos con un return de bool.
-        // Ejemplo usar: str_contains().
+        // Replace strpos with a boolean return.
+        // Example: use str_contains().
         'modernize_strpos' => true,
-        // Convertir funciones anónimas a funciones flecha.
+        // Convert anonymous functions to arrow functions.
         'use_arrow_functions' => true,
-        // Usar constructores de PHPUnit en lugar de métodos de fábrica.
+        // Use PHPUnit constructors instead of factory methods.
         'php_unit_construct' => true,
-        // Usar aserciones más estrictas en PHPUnit.
-        // Ejemplo: usar assertSame() en vez de assertEquals().
+        // Use stricter assertions in PHPUnit.
+        // Example: use assertSame() instead of assertEquals().
         'php_unit_strict' => true,
     ])
     ->setLineEnding("\n")

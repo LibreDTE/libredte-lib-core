@@ -1,9 +1,9 @@
-# Configuración de OpenSSL que activa el proveedor legacy, necesario para leer
-# certificados digitales PKCS#12 cifrados con 40BitRC2.
+# OpenSSL configuration that activates the legacy provider, required to read
+# PKCS#12 digital certificates encrypted with 40BitRC2.
 #
-# Al usar OPENSSL_CONF se reemplaza la configuración del sistema, por lo que
-# esta incluye también las secciones que PHP necesita para generar claves y
-# certificados (openssl_pkey_new(), openssl_csr_new(), openssl_csr_sign()).
+# Using OPENSSL_CONF replaces the system configuration, so
+# this also includes the sections PHP needs to generate keys and
+# certificates (openssl_pkey_new(), openssl_csr_new(), openssl_csr_sign()).
 openssl_conf = openssl_init
 
 [openssl_init]

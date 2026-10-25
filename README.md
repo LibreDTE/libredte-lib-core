@@ -1,23 +1,23 @@
-# LibreDTE: Biblioteca PHP (Núcleo)
+# LibreDTE: Library for Invoicing in Chile (Core)
 
 [![CI Workflow](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml/badge.svg?branch=master&event=push)](https://github.com/libredte/libredte-lib-core/actions/workflows/ci.yml?query=branch%3Amaster)
-[![Licencia](https://poser.pugx.org/libredte/libredte-lib-core/license)](https://packagist.org/packages/libredte/libredte-lib-core)
-[![Descargas Totales](https://poser.pugx.org/libredte/libredte-lib-core/downloads)](https://packagist.org/packages/libredte/libredte-lib-core)
-[![Descargas Mensuales](https://poser.pugx.org/libredte/libredte-lib-core/d/monthly)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![License](https://poser.pugx.org/libredte/libredte-lib-core/license)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![Total Downloads](https://poser.pugx.org/libredte/libredte-lib-core/downloads)](https://packagist.org/packages/libredte/libredte-lib-core)
+[![Monthly Downloads](https://poser.pugx.org/libredte/libredte-lib-core/d/monthly)](https://packagist.org/packages/libredte/libredte-lib-core)
 
-LibreDTE es un proyecto que tiene por objetivo proveer Facturación Electrónica Libre para Chile.
+LibreDTE is a project aimed at providing Free Electronic Invoicing for Chile.
 
-Revisa el [sitio web de LibreDTE Core](https://core.libredte.cl) para más información, sus características y detalles de su uso.
+Check out the [LibreDTE Core website](https://core.libredte.cl) for more information, features, and usage details.
 
-## Términos y condiciones de uso
+## Terms and Conditions of Use
 
-Al utilizar este proyecto, total o parcialmente, automáticamente se acepta cumplir con los [términos y condiciones de uso](https://core.libredte.cl/legal) que rigen a LibreDTE. La [Licencia Pública General Affero de GNU (AGPL)](https://raw.githubusercontent.com/libredte/libredte-lib-core/master/COPYING) solo aplica para quienes respeten los términos y condiciones de uso. No existe una licencia comercial de la biblioteca PHP de LibreDTE, por lo cual no es posible usar el proyecto si no aceptas cumplir dichos términos y condiciones.
+By using this project, in whole or in part, you automatically agree to comply with the [terms and conditions of use](https://core.libredte.cl/legal) that govern LibreDTE. The [GNU Affero General Public License (AGPL)](https://raw.githubusercontent.com/libredte/libredte-lib-core/master/COPYING) only applies to those who respect these terms and conditions. There is no commercial license available for the LibreDTE PHP library, so it is not possible to use the project if you do not accept these terms and conditions.
 
-La versión resumida de los términos y condiciones de uso de LibreDTE que permiten utilizar el proyecto, son los siguientes:
+The summarized version of the LibreDTE terms and conditions allowing you to use the project are as follows:
 
-1. Tienes la libertad de: usar, estudiar, distribuir y cambiar LibreDTE.
-2. Si utilizas LibreDTE en tu software, el código fuente de dicho software deberá ser liberado de manera pública bajo licencia AGPL.
-3. Si haces cambios a LibreDTE deberás liberar de manera pública el código fuente de dichos cambios bajo licencia AGPL.
-4. Debes hacer referencia de manera pública en tu software al proyecto y autor original de LibreDTE, tanto si usas LibreDTE sin modificar o realizando cambios al código.
+1. You are free to use, study, distribute, and modify LibreDTE.
+2. If you use LibreDTE in your software, the source code of that software must be released publicly under the AGPL license.
+3. If you make changes to LibreDTE, you must publicly release the source code of those changes under the AGPL license.
+4. You must publicly reference in your software the original LibreDTE project and its author, whether you use LibreDTE as-is or with modifications.
 
-Es obligación de quienes quieran usar el proyecto leer y aceptar por completo los [términos y condiciones de uso](https://core.libredte.cl/legal).
+It is the responsibility of anyone wishing to use the project to read and fully accept the [terms and conditions of use](https://core.libredte.cl/legal).

@@ -1,8 +1,8 @@
 {
     "name": "libredte/libredte-lib-core",
-    "description": "LibreDTE: Biblioteca PHP (Núcleo)",
+    "description": "LibreDTE: Library for invoicing in Chile (Core)",
     "type": "library",
-    "keywords": ["dte", "sii", "facturación electrónica", "chile"],
+    "keywords": ["chile", "cl", "dte", "sii", "invoicing", "electronic invoicing", "facturación electrónica"],
     "homepage": "https://lib-core.docs.libredte.cl",
     "license": "AGPL-3.0+",
     "authors": [
@@ -64,7 +64,8 @@
         "webklex/php-imap": "^6.2"
     },
     "suggest": {
-        "webklex/php-imap": "Requerido en tiempo de ejecución para recibir documentos por correo con billing.exchange.receiver::receive (estrategia email.imap)."
+        "webklex/php-imap": "Required at runtime to receive documents by email using billing.exchange.receiver::receive (strategy email.imap)."
+
     },
     "scripts": {
         "docs": "php tools/phpdocumentor run --config=phpdoc.xml",
