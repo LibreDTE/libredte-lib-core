@@ -212,8 +212,8 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
      */
     public static function provideDocumentosOk(): array
     {
-        // Buscar los archivos con los casos para el test.
-        // Se usan estos archivos porque sus cafs no vencen.
+        // Find files with test cases.
+        // These files are used because their CAFs do not expire.
         $codes = ['034', '039', '041', '052', '110', '111', '112'];
         $files = [];
         foreach ($codes as $code) {
@@ -223,7 +223,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             $files = array_merge($files, glob($filesPath));
         }
 
-        // Armar datos de prueba.
+        // Build test data.
         $documentosOk = [];
         foreach ($files as $yamlFile) {
             $name = basename($yamlFile);
@@ -232,7 +232,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             $documentosOk[$name] = [$yamlFile, $cafFile];
         }
 
-        // Entregar los datos para las pruebas.
+        // Return data for tests.
         return $documentosOk;
     }
 
@@ -241,23 +241,23 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         string $yamlFile,
         string $cafFile
     ): void {
-        // Si el archivo CAF no existe el test no se realiza.
+        // If the CAF file does not exist, the test is not run.
         if (!file_exists($cafFile)) {
             $this->markTestSkipped('No existe el CAF ' . $cafFile);
         }
 
-        // Iniciar aplicación.
+        // Start the application.
         $app = Application::getInstance();
 
-        // Obtener facturador (componente de documentos).
+        // Get biller (document component).
         $biller = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
         ;
 
-        // Tratar de cargar el certificado digital. Si no se logra cargar el
-        // test se marcará como "saltado".
+        // Try to load the digital certificate. If loading fails,
+        // the test is marked as skipped.
         try {
             $certificateLoader = new CertificateLoader();
             $certificate = $certificateLoader->loadFromFile(
@@ -268,7 +268,7 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        // Cargar contenido del archivo CAF.
+        // Load CAF file contents.
         $cafLoader = $app
             ->getPackageRegistry()
             ->getBillingPackage()
@@ -278,20 +278,20 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $cafData = file_get_contents($cafFile);
         $caf = $cafLoader->load($cafData);
 
-        // Cargar datos del caso de prueba.
+        // Load test case data.
         $yamlData = file_get_contents($yamlFile);
         $data = Yaml::parse($yamlData);
         unset($data['Test']);
 
-        // Ajustar folio con el primer valor del CAF y el RUT del emisor que
-        // esté configurado como variable de entorno.
+        // Adjust folio with the CAF first value and issuer RUT that
+        // is configured as an environment variable.
         $data['Encabezado']['IdDoc']['Folio'] = $caf->getFolioHasta();
         $data['Encabezado']['Emisor']['RUTEmisor'] = $caf->getEmisor()['rut'];
 
-        // Facturar el documento.
+        // Bill the document.
         $documentBag = $biller->bill($data, $caf, $certificate);
 
-        // Validar esquema y firma del documento.
+        // Validate document schema and signature.
         $validator = $app
             ->getPackageRegistry()
             ->getBillingPackage()
@@ -302,12 +302,12 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $result = $validator->validateSignature($documentBag);
         $this->assertTrue($result->isValid());
 
-        // Agregar al emisor la fecha de resolución y número de resolución.
+        // Add resolution date and resolution number to the issuer.
         $documentBag->getEmisor()->setAutorizacionDte(
             new AutorizacionDte(getenv('LIBREDTE_ENV_TEST_AUTH_DATE'))
         );
 
-        // Crear sobre, agregar documento y asignar carátula.
+        // Create envelope, add document, and set cover page.
         $dispatcher = $app
             ->getPackageRegistry()
             ->getBillingPackage()
@@ -318,10 +318,10 @@ class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
         $envelope->addDocument($documentBag);
         $envelope->setCertificate($certificate);
 
-        // Normalizar el sobre.
+        // Normalize the envelope.
         $dispatcher->normalize($envelope);
 
-        // Validar esquema y firma del sobre.
+        // Validate envelope schema and signature.
         $dispatcher->validateSchema($envelope);
         $results = $dispatcher->validateSignature($envelope);
         foreach ($results as $result) {

@@ -36,7 +36,7 @@ return [
                     'RznSoc'   => 'Proveedor Nacional SA',
                     'MntNeto'  => 200000,
                     'MntIVA'   => 38000,
-                    // 'MntTotal' => 238000, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal' => 238000, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -61,7 +61,7 @@ return [
                     'IVANoRec' => [
                         ['CodIVANoRec' => 1, 'MntIVANoRec' => 9500],
                     ],
-                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal' => 59500, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -99,7 +99,7 @@ return [
                         ['CodImp' => 15, 'TasaImp' => 19, 'MntImp' => 19000],
                     ],
                     'IVARetTotal' => 19000,
-                    // 'MntTotal'    => 100000, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal'    => 100000, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -133,7 +133,7 @@ return [
                         ['CodImp' => 16, 'TasaImp' => 19, 'MntImp' => 9500],
                     ],
                     'IVARetParcial' => 9500,
-                    // 'MntTotal'      => 109500, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal'      => 109500, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -166,7 +166,7 @@ return [
                     'IVANoRec' => [
                         ['CodIVANoRec' => 1, 'MntIVANoRec' => 9500],
                     ],
-                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal' => 59500, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -190,7 +190,7 @@ return [
                     'MntNeto'     => 50000,
                     'MntIVA'      => 0,
                     'IVAUsoComun' => 9500,
-                    // 'MntTotal' => 59500, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal' => 59500, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],
@@ -213,7 +213,7 @@ return [
                     'RUTDoc'   => '12345678-9',
                     'MntNeto'  => 100000,
                     'MntIVA'   => 19000,
-                    // 'MntTotal' => 119000, // Omitido a propósito para testear el cálculo del total.
+                    // 'MntTotal' => 119000, // Omitted on purpose to test total calculation.
                 ],
             ],
         ],

@@ -59,11 +59,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * Validación de documentos XML generados para producción con otro software de
- * facturación o bien con la versión de 2016 de LibreDTE (en producción).
+ * Validation of XML documents generated for production with other billing
+ * software or with the 2016 LibreDTE version (in production).
  *
- * Este test busca validar el sobre de documentos que están "OK" (recibidos por
- * el SII) en ambiente de producción.
+ * This test validates document envelopes that are "OK" (accepted by
+ * the SII) in production.
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -89,17 +89,17 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(ReceptorFactory::class)]
 class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 {
-    // Worker que tiene los servicios para trabajar con XML del proceso de
-    // interfaz de DTE (sobres de documentos, aka: DocumentEnvelope).
+    // Worker with services for DTE interface XML (document envelopes,
+    // aka DocumentEnvelope).
     private DispatcherWorkerInterface $dispatcher;
 
-    // Worker que tiene los servicios para validar un DTE.
+    // Worker with services to validate a DTE.
     private ValidatorWorkerInterface $validator;
 
-    // Worker del componente signature para la validación de firmas.
+    // Signature component worker for signature validation.
     private SignatureValidatorInterface $signatureValidator;
 
-    // Configuración inicial del test.
+    // Initial test setup.
     protected function setUp(): void
     {
         $app = Application::getInstance();
@@ -129,42 +129,40 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         );
     }
 
-    // Proveedor de los documentos XML con los casos de prueba que se deben
-    // realizar.
+    // Provider of XML documents with test cases to run.
     //
-    // Si el directorio documentos_ok/ no contiene archivos XML (p.ej. en CI
-    // donde los fixtures no se incluyen en el repo), retorna un dataset con un
-    // marcador especial. createEnvelope() detecta ese marcador y llama a
-    // markTestSkipped(), evitando el exit code 2 que PHPUnit 11 produce cuando
-    // un DataProvider retorna un array vacío.
+    // If documentos_ok/ has no XML files (e.g. in CI where fixtures are not
+    // in the repo), returns a dataset with a special marker. createEnvelope()
+    // detects that marker and calls markTestSkipped(), avoiding exit code 2
+    // that PHPUnit 11 produces when a DataProvider returns an empty array.
     /**
      * @return array<string, array{string}>
      */
     public static function provideDocumentosOk(): array
     {
-        // Buscar los archivos con los casos para el test.
+        // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/xml/documentos_ok/*.xml';
         $files = glob($filesPath) ?: [];
 
-        // Si no hay fixtures, retornar marcador para skip en lugar de vacío.
+        // If there are no fixtures, return a skip marker instead of empty.
         if (empty($files)) {
             return ['sin fixtures' => ['']];
         }
 
-        // Armar datos de prueba.
+        // Build test data.
         $documentosOk = [];
         foreach ($files as $file) {
             $documentosOk[basename($file)] = [$file];
         }
 
-        // Entregar los datos para las pruebas.
+        // Return data for tests.
         return $documentosOk;
     }
 
-    // Crea un sobre a partir de un archivo XML.
+    // Creates an envelope from an XML file.
     //
-    // Si se recibe una ruta vacía (marcador de "sin fixtures" del DataProvider),
-    // marca el test como skipped en lugar de intentar cargar un archivo.
+    // If an empty path is received ("no fixtures" marker from DataProvider),
+    // marks the test as skipped instead of trying to load a file.
     private function createEnvelope(string $file): DocumentEnvelopeInterface
     {
         if ($file === '') {
@@ -180,9 +178,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         return $envelope;
     }
 
-    // Validación general de los datos del sobre.
-    // Verifica que se puedan extraer correctamente RutEmisor, RutEnvia,
-    // RutReceptor y FchResol de la carátula del EnvioDTE.
+    // General validation of envelope data.
+    // Asserts RutEmisor, RutEnvia, RutReceptor, and FchResol can be extracted
+    // correctly from the EnvioDTE cover page.
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreGeneralData(string $file): void
     {
@@ -196,7 +194,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->assertNotEmpty($envelope->getSobreEnvio()->getAutorizacionDte()->getFechaResolucion());
     }
 
-    // Validación del esquema XML del sobre contra EnvioDTE_v10.xsd.
+    // Validate envelope XML schema against EnvioDTE_v10.xsd.
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreSchema(string $file): void
     {
@@ -206,8 +204,8 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Validación del esquema XML del documento (DTE) que viene en el sobre
-    // contra el XSD correspondiente al tipo de documento (ej. DTE_v10.xsd).
+    // Validate XML schema of the document (DTE) in the envelope
+    // against the XSD for the document type (e.g. DTE_v10.xsd).
     /**
      * @param string $file
      */
@@ -222,7 +220,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    // Validates envelope signature DigestValue (Signature 2, reference #SetDoc).
     /**
      * @param string $file
      */
@@ -245,7 +243,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el SignatureValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    // Validates envelope signature SignatureValue (Signature 2, reference #SetDoc).
     /**
      * @param string $file
      */
@@ -265,7 +263,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida la firma completa del sobre vía DispatcherWorker::validateSignature().
+    // Validates full envelope signature via DispatcherWorker::validateSignature().
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreSignature(string $file): void
     {
@@ -277,7 +275,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         }
     }
 
-    // Valida el DigestValue de la firma del documento (Firma 1).
+    // Validates document signature DigestValue (Signature 1).
     /**
      * @param string $file
      */
@@ -302,7 +300,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el SignatureValue de la firma del documento (Firma 1).
+    // Validates document signature SignatureValue (Signature 1).
     /**
      * @param string $file
      */
@@ -324,7 +322,7 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida la firma completa del documento vía ValidatorWorker::validateSignature().
+    // Validates full document signature via ValidatorWorker::validateSignature().
     /**
      * @param string $file
      */

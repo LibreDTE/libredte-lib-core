@@ -27,7 +27,7 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
- * Test funcional para la clase Contribuyente.
+ * Functional test for the Contribuyente class.
  */
 #[CoversClass(Contribuyente::class)]
 class ContribuyenteTest extends TestCase

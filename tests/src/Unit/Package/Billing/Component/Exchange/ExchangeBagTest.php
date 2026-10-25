@@ -41,14 +41,13 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
- * Test unitario para la serialización (`toArray()`/`jsonSerialize()`) de
- * `ExchangeBag` y todo el árbol de entidades que agrupa.
+ * Unit test for serialization (`toArray()`/`jsonSerialize()`) of `ExchangeBag`
+ * and the full tree of entities it holds.
  *
- * Es el único lugar donde se prueba esta serialización directamente: hoy
- * `ExchangeBag` no se usa desde ningún otro punto de la librería (las
- * operaciones `exchange.receiver::receive`/`exchange.sender::send` reciben
- * un `ExchangeBagInterface` ya construido por quien las invoca), así que no
- * hay un test funcional que la ejercite de punta a punta.
+ * This is the only place this serialization is tested directly: currently
+ * `ExchangeBag` is not used elsewhere in the library (`exchange.receiver::receive`
+ * / `exchange.sender::send` receive an `ExchangeBagInterface` already built by
+ * the caller), so there is no end-to-end functional test exercising it.
  */
 #[CoversClass(ExchangeBag::class)]
 #[UsesClass(Envelope::class)]
@@ -181,9 +180,9 @@ class ExchangeBagTest extends TestCase
 
         $actual = $bag->toArray();
 
-        // El ID del documento es un UUID autogenerado (ver Document::getID()),
-        // no determinístico — se verifica que exista y tenga forma de UUID,
-        // y luego se normaliza para poder comparar el resto del array.
+        // The document ID is an auto-generated UUID (see Document::getID()),
+        // non-deterministic — verify it exists and looks like a UUID,
+        // then normalize it to compare the rest of the array.
         $documentId = $actual['envelopes'][0]['documents'][0]['id'];
         $this->assertMatchesRegularExpression(
             '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/',
@@ -206,9 +205,9 @@ class ExchangeBagTest extends TestCase
         $array = $bag->toArray();
         $json = $bag->jsonSerialize();
 
-        // El contenido del documento y los datos del adjunto deben quedar en
-        // base64 en jsonSerialize(), a diferencia de toArray() (que los deja
-        // crudos) — mismo patrón que DocumentEnvelope::jsonSerialize().
+        // Document content and attachment data must be base64 in jsonSerialize(),
+        // unlike toArray() (which leaves them raw) — same pattern as
+        // DocumentEnvelope::jsonSerialize().
         $this->assertSame(
             base64_encode($array['envelopes'][0]['documents'][0]['content']),
             $json['envelopes'][0]['documents'][0]['content'],
@@ -218,7 +217,7 @@ class ExchangeBagTest extends TestCase
             $json['envelopes'][0]['documents'][0]['attachments'][0]['data'],
         );
 
-        // El resto del array debe ser idéntico entre toArray() y
+        // The rest of the array must be identical between toArray() and
         // jsonSerialize().
         $json['envelopes'][0]['documents'][0]['content'] = $array['envelopes'][0]['documents'][0]['content'];
         $json['envelopes'][0]['documents'][0]['attachments'][0]['data'] = $array['envelopes'][0]['documents'][0]['attachments'][0]['data'];

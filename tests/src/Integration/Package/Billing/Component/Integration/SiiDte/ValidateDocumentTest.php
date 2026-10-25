@@ -74,7 +74,7 @@ class ValidateDocumentTest extends TestCase
             ->getSiiDteWorker()
         ;
 
-        // Cargar certificado digital.
+        // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
@@ -84,7 +84,7 @@ class ValidateDocumentTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        // Crear solicitud que se usará de base.
+        // Create the request that will be used as a base.
         $this->siiRequest = new SiiRequest(
             certificate: $certificate,
             options: [

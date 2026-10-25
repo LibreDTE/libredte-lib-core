@@ -139,7 +139,7 @@ class BillingPackageTest extends TestCase
         $TipoDTE = 33;
         $Folio = 1;
 
-        // Datos para la creación del documento tributario.
+        // Data for creating the tax document.
         $data = [
             'Encabezado' => [
                 'IdDoc' => [
@@ -169,7 +169,7 @@ class BillingPackageTest extends TestCase
             ],
         ];
 
-        // Generar un CAF falso.
+        // Generate a fake CAF.
         $cafFaker = Application::getInstance()
             ->getPackageRegistry()
             ->getBillingPackage()
@@ -178,52 +178,52 @@ class BillingPackageTest extends TestCase
         ;
         $caf = $cafFaker->create(new Emisor($RUTEmisor), $TipoDTE, $Folio);
 
-        // Generar un certificado falso.
+        // Generate a fake certificate.
         $certificateFaker = new CertificateFaker(new CertificateLoader());
         $certificate = $certificateFaker->createFake(id: $RUTEmisor);
 
-        // Obtener el biller.
+        // Get the biller.
         $biller = Application::getInstance()
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
         ;
 
-        // Facturar con los datos, CAF y certificado.
+        // Bill with the data, CAF, and certificate.
         $bag = $biller->bill($data, $caf, $certificate);
 
-        // Corroborar el monto total del documento.
+        // Assert the document total amount.
         $document = $bag->getDocument();
         $this->assertSame(571200, $document->getMontoTotal());
 
-        // Validar el esquema del documento generado.
-        // Acá se valida el XML pasando la bolsa.
+        // Validate the generated document schema.
+        // Here the XML is validated by passing the bag.
         $biller->getValidatorWorker()->validateSchema($bag);
 
-        // Validar la firma electrónica del documento generado.
-        // Acá se valida la firma pasando la bolsa.
+        // Validate the electronic signature of the generated document.
+        // Here the signature is validated by passing the bag.
         $result = $biller->getValidatorWorker()->validateSignature($bag);
         $this->assertTrue($result->isValid());
 
-        // Cargar el XML con el loader y corroborar el total.
+        // Load the XML with the loader and assert the total.
         $xml = $document->saveXml();
         $newBag = $biller->getLoaderWorker()->loadXml($xml);
         $this->assertSame(571200, $newBag->getDocument()->getMontoTotal());
 
-        // Validar el esquema del documento cargado.
-        // Acá se valida el XML pasando el string XML.
-        // Importante: no es posible validar un XML del LoaderWorker. Pues este
-        // quita el tag Signature dañando el esquema del XML.
+        // Validate the loaded document schema.
+        // Here the XML is validated by passing the XML string.
+        // Important: validating XML from LoaderWorker is not possible because it
+        // removes the Signature tag, breaking the XML schema.
         $biller->getValidatorWorker()->validateSchema($xml);
 
-        // Validar la firma electrónica del documento cargado.
-        // Acá se valida la firma pasando el string XML.
-        // Importante: no es posible validar un XML del LoaderWorker. Pues este
-        // quita el tag Signature.
+        // Validate the electronic signature of the loaded document.
+        // Here the signature is validated by passing the XML string.
+        // Important: validating XML from LoaderWorker is not possible because it
+        // removes the Signature tag.
         $result = $biller->getValidatorWorker()->validateSignature($xml);
         $this->assertTrue($result->isValid());
 
-        // Renderizar el documento cargado en la nueva bolsa.
+        // Render the loaded document in the new bag.
         $renderer = $biller->getRendererWorker();
         $newBag->getOptions()->set('renderer.format', 'html');
         $renderedData = (string) $renderer->render($newBag);

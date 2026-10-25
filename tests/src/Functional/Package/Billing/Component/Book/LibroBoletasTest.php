@@ -128,7 +128,7 @@ class LibroBoletasTest extends TestCase
     #[DataProvider('dataProviderForTestFromArraySource')]
     public function testFromArraySource($input, $expected): void
     {
-        // Construir la bolsa de trabajo con los datos del libro.
+        // Build the work bag with book data.
         $bag = new BookBag(
             tipo: TipoLibro::BOLETAS,
             caratula: $input['caratula'] ?? [],
@@ -137,17 +137,17 @@ class LibroBoletasTest extends TestCase
             emisor: $this->emisor,
         );
 
-        // Cargar los datos de entrada y normalizarlos,
+        // Load input data and normalize it,
         $bag = $this->loader->load($bag);
 
-        // Construir el libro de boletas.
+        // Build the receipt book.
         $this->builder->build($bag);
         $book = $bag->getBook();
         assert($book instanceof LibroBoletasInterface);
         $this->assertInstanceOf(LibroBoletasInterface::class, $book);
 
-        // Verifica que el libro de boletas generado supera la validación de
-        // esquema XSD y que la firma electrónica es válida.
+        // Verify the generated receipt book passes XSD schema validation
+        // and has a valid electronic signature.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
         $this->assertTrue(
@@ -155,7 +155,7 @@ class LibroBoletasTest extends TestCase
             $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
         );
 
-        // Realizar las verificaciones sobre el contenido del libro generado.
+        // Run assertions on the generated book content.
         $data = $book->toArray();
         foreach ($expected as $key => $expectedValue) {
             $actualValue = Selector::get($data, $key);

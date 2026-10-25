@@ -45,7 +45,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helpe
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
-// CoverClass pendientes y sus use
+// Pending CoversClass entries and their use statements
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
@@ -148,41 +148,41 @@ class AecTest extends TestCase
             ->getAecWorker()
         ;
 
-        // Crear certificado falso con el RUT del emisor.
+        // Create fake certificate with the issuer RUT.
         $this->certificate = (new CertificateFaker(new CertificateLoader()))
             ->createFake(id: '76192083-9');
 
-        // Construir una factura afecta mínima para usar como DTE a ceder.
+        // Build a minimal taxable invoice to use as the DTE to assign.
         $this->dte = $this->buildFacturaAfecta($app);
     }
 
     /**
-     * Genera el AEC (Archivo Electrónico de Cesión) a partir de una factura afecta.
+     * Generates the AEC (Electronic Assignment File) from a taxable invoice.
      *
-     * Caso de uso: el emisor de una factura afecta (código 33) desea ceder el
-     * crédito representado en ese documento a un cesionario (factoring). El AEC
-     * agrupa tres documentos XML firmados en capas:
-     *   1. `DTECedido`: envuelve el XML del DTE original. ID: `LibreDTE_DTECedido`.
-     *   2. `Cesion`: datos del cedente, cesionario, monto cedido y vencimiento.
+     * Use case: the issuer of a taxable invoice (code 33) wants to assign the
+     * credit represented in that document to an assignee (factoring). The AEC
+     * groups three layered signed XML documents:
+     *   1. `DTECedido`: wraps the original DTE XML. ID: `LibreDTE_DTECedido`.
+     *   2. `Cesion`: assignor, assignee, assigned amount, and due date data.
      *      ID: `LibreDTE_Cesion_1`.
-     *   3. `AEC`: documento raíz que contiene los anteriores. ID: `LibreDTE_AEC`.
+     *   3. `AEC`: root document containing the above. ID: `LibreDTE_AEC`.
      *
-     * Campos requeridos en `cedente`:
-     *   - `RUT`: RUT del cedente.
-     *   - `RazonSocial`: razón social del cedente.
-     *   - `Direccion`: dirección del cedente (mínimo 5 caracteres).
-     *   - `eMail`: correo electrónico del cedente (mínimo 6 caracteres).
-     *   - `RUTAutorizado`: arreglo con `RUT` y `Nombre` de persona(s) autorizada(s).
+     * Required fields in `cedente`:
+     *   - `RUT`: assignor RUT.
+     *   - `RazonSocial`: assignor legal name.
+     *   - `Direccion`: assignor address (minimum 5 characters).
+     *   - `eMail`: assignor email (minimum 6 characters).
+     *   - `RUTAutorizado`: array with `RUT` and `Nombre` of authorized person(s).
      *
-     * Campos requeridos en `cesionario`:
-     *   - `RUT`: RUT del cesionario.
-     *   - `RazonSocial`: razón social del cesionario.
-     *   - `Direccion`: dirección del cesionario (mínimo 5 caracteres).
-     *   - `eMail`: correo electrónico del cesionario (mínimo 6 caracteres).
+     * Required fields in `cesionario`:
+     *   - `RUT`: assignee RUT.
+     *   - `RazonSocial`: assignee legal name.
+     *   - `Direccion`: assignee address (minimum 5 characters).
+     *   - `eMail`: assignee email (minimum 6 characters).
      *
-     * Campos requeridos en `cesion`:
-     *   - `MontoCesion`: monto del crédito cedido.
-     *   - `UltimoVencimiento`: fecha de último vencimiento (YYYY-MM-DD).
+     * Required fields in `cesion`:
+     *   - `MontoCesion`: assigned credit amount.
+     *   - `UltimoVencimiento`: last due date (YYYY-MM-DD).
      */
     public function testCesionFacturaAfecta(): void
     {
@@ -227,23 +227,23 @@ class AecTest extends TestCase
     }
 
     /**
-     * Re-cede un AEC existente añadiendo una segunda cesión.
+     * Re-assigns an existing AEC by adding a second assignment.
      *
-     * Caso de uso: el cesionario que recibió un AEC quiere ceder el mismo
-     * crédito a un tercero. El SII permite hasta 40 cesiones sobre el mismo
-     * DTE. El nuevo AEC reutiliza el `DTECedido` original e incorpora todas
-     * las `Cesion` anteriores más una nueva con `seq` auto-calculado (N+1).
+     * Use case: the assignee who received an AEC wants to assign the same
+     * credit to a third party. The SII allows up to 40 assignments on the same
+     * DTE. The new AEC reuses the original `DTECedido` and includes all prior
+     * `Cesion` entries plus a new one with auto-calculated `seq` (N+1).
      *
-     * Para construir el bag de re-cesión:
-     *   - `source`: el `Aec` existente (en lugar de un `DocumentInterface`).
-     *   - `cedente`: quien cede ahora (era el cesionario anterior).
-     *   - `cesionario`: quien recibe la nueva cesión.
-     *   - `cesion`: monto y vencimiento de la nueva cesión.
-     *   - `seq`: omitir para calcular automáticamente (2 en este caso).
+     * To build the re-assignment bag:
+     *   - `source`: the existing `Aec` (instead of a `DocumentInterface`).
+     *   - `cedente`: who assigns now (was the previous assignee).
+     *   - `cesionario`: who receives the new assignment.
+     *   - `cesion`: amount and due date of the new assignment.
+     *   - `seq`: omit to calculate automatically (2 in this case).
      */
     public function testRecesionFacturaAfecta(): void
     {
-        // Construir el AEC original (primera cesión).
+        // Build the original AEC (first assignment).
         $bagPrimera = new AecBag(
             source: $this->dte,
             cedente: [
@@ -270,7 +270,7 @@ class AecTest extends TestCase
         );
         $aecOriginal = $this->worker->build($bagPrimera);
 
-        // Re-ceder el AEC: el cesionario original (Factoring S.A.) cede a otro.
+        // Re-assign the AEC: the original assignee (Factoring S.A.) assigns to another party.
         $bagRecesion = new AecBag(
             source: $aecOriginal,
             cedente: [
@@ -301,7 +301,7 @@ class AecTest extends TestCase
         $this->assertInstanceOf(Aec::class, $aecRecedido);
         $this->assertSame('LibreDTE_AEC', $aecRecedido->getId());
 
-        // El XML debe contener ambas cesiones.
+        // The XML must contain both assignments.
         $xml = $aecRecedido->saveXml();
         $this->assertStringContainsString('LibreDTE_Cesion_1', $xml);
         $this->assertStringContainsString('LibreDTE_Cesion_2', $xml);
@@ -316,7 +316,7 @@ class AecTest extends TestCase
     }
 
     /**
-     * Construye una factura afecta (código 33) mínima para los tests.
+     * Builds a minimal taxable invoice (code 33) for tests.
      */
     private function buildFacturaAfecta(Application $app): DocumentInterface
     {

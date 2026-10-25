@@ -191,18 +191,18 @@ class ExchangeDocumentSendEmailTest extends TestCase
             $this->markTestSkipped('No existe configuración para enviar correo.');
         }
 
-        // Buscar los archivos con los casos para el test.
+        // Find files with test cases.
         $file = self::getFixturesPath() . '/yaml/documentos_ok/033_factura_afecta/033_001_simple.yaml';
 
-        // Cargar datos del caso de prueba.
+        // Load test case data.
         $yaml = file_get_contents($file);
         $data = Yaml::parse($yaml);
         $test = $data['Test'];
         unset($data['Test']);
         $test['caso'] = basename($file);
 
-        // Crear el documento.
-        // No se firma ni se timbra pues no es relevante para este envío.
+        // Create the document.
+        // Do not sign or stamp; not relevant for this send operation.
         $documentBag = new DocumentBag(
             inputData: $data,
             options: [
@@ -214,20 +214,20 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $this->builder->build($documentBag);
         $xml = $documentBag->getDocument()->saveXml();
 
-        // Renderizar el documento en PDF.
+        // Render the document to PDF.
         $pdf = (string) $this->renderer->render($documentBag);
 
-        // Correo de intercambio para el emisor y receptor.
+        // Exchange email for issuer and receiver.
         $documentBag->getEmisor()->setCorreoIntercambioDte($username);
         $documentBag->getReceptor()->setCorreoIntercambioDte($username);
 
-        // Crear remitente y receptor.
+        // Create sender and receiver.
         $sender = new Sender(new PartyIdentifier($documentBag->getEmisor()->getRut()));
         $sender->addEndpoint(new PartyEndpoint($documentBag->getEmisor()->getCorreoIntercambioDte()));
         $receiver = new Receiver(new PartyIdentifier($documentBag->getReceptor()->getRut()));
         $receiver->addEndpoint(new PartyEndpoint($documentBag->getReceptor()->getCorreoIntercambioDte()));
 
-        // Crear el sobre con el documento a enviar.
+        // Create the envelope with the document to send.
         $envelope = new Envelope(
             sender: $sender,
             receiver: $receiver
@@ -246,8 +246,8 @@ class ExchangeDocumentSendEmailTest extends TestCase
         );
         $envelope->addDocument($document);
 
-        // Enviar el documento. Los datos de transporte van en las opciones de
-        // la bolsa (comunes a todos los sobres que se envíen en esta llamada).
+        // Send the document. Transport settings go in the options of
+        // the bag (shared by all envelopes sent in this call).
         $exchangeBag = new ExchangeBag([
             'transport' => [
                 'username' => $username,
@@ -257,8 +257,8 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $exchangeBag->addEnvelope($envelope);
         $results = $this->exchange->handle($exchangeBag);
 
-        // Validar el estado del envío del único mensaje del único sobre de los
-        // resultados del envío.
+        // Assert send status for the single message of the single envelope in
+        // the send results.
         $this->assertTrue($results[0]->getStatuses()[0]->isOk());
     }
 }

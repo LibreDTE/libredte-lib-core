@@ -132,7 +132,7 @@ class LibroComprasTest extends TestCase
     #[DataProvider('dataProviderForTestFromArraySource')]
     public function testFromArraySource($input, $expected): void
     {
-        // Construir la bolsa de trabajo con los datos del libro.
+        // Build the work bag with book data.
         $bag = new BookBag(
             tipo: TipoLibro::COMPRAS,
             caratula: $input['caratula'] ?? [],
@@ -141,17 +141,17 @@ class LibroComprasTest extends TestCase
             emisor: $this->emisor,
         );
 
-        // Cargar los datos de entrada y normalizarlos.
+        // Load input data and normalize it.
         $bag = $this->loader->load($bag);
 
-        // Construir el libro de compras.
+        // Build the purchase book.
         $this->builder->build($bag);
         $book = $bag->getBook();
         assert($book instanceof LibroComprasVentasInterface);
         $this->assertInstanceOf(LibroComprasVentasInterface::class, $book);
 
-        // Verifica que el libro de compras generado supera la validación de
-        // esquema XSD y que la firma electrónica es válida.
+        // Verify the generated purchase book passes XSD schema validation
+        // and has a valid electronic signature.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
         $this->assertTrue(
@@ -159,7 +159,7 @@ class LibroComprasTest extends TestCase
             $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
         );
 
-        // Realizar las verificaciones sobre el contenido del libro generado.
+        // Run assertions on the generated book content.
         $data = $book->toArray();
         foreach ($expected as $key => $expectedValue) {
             $actualValue = Selector::get($data, $key);
@@ -195,7 +195,7 @@ class LibroComprasTest extends TestCase
     #[DataProvider('dataProviderForTestSimplificadoFromArraySource')]
     public function testSimplificadoFromArraySource($input, $expected): void
     {
-        // Construir la bolsa con la opción de libro simplificado.
+        // Build the bag with the simplified book option.
         $bag = new BookBag(
             tipo: TipoLibro::COMPRAS,
             caratula: $input['caratula'] ?? [],
@@ -205,24 +205,24 @@ class LibroComprasTest extends TestCase
             emisor: $this->emisor,
         );
 
-        // Cargar los datos de entrada y normalizarlos.
+        // Load input data and normalize it.
         $bag = $this->loader->load($bag);
 
-        // Construir el libro de compras simplificado.
+        // Build the simplified purchase book.
         $this->builder->build($bag);
         $book = $bag->getBook();
         assert($book instanceof LibroComprasVentasInterface);
         $this->assertInstanceOf(LibroComprasVentasInterface::class, $book);
 
-        // El libro simplificado declara el esquema correcto y no se firma.
+        // The simplified book declares the correct schema and is not signed.
         $this->assertTrue($book->isSimplificado());
         $this->assertSame('LibroCVS_v10.xsd', $book->getSchema());
         $this->assertStringNotContainsString('<Signature', $book->saveXml());
 
-        // Validar solo el esquema XSD (los libros simplificados no se firman).
+        // Validate XSD schema only (simplified books are not signed).
         $this->validator->validateSchema($bag);
 
-        // Realizar las verificaciones sobre el contenido del libro generado.
+        // Run assertions on the generated book content.
         $data = $book->toArray();
         foreach ($expected as $key => $expectedValue) {
             $actualValue = Selector::get($data, $key);

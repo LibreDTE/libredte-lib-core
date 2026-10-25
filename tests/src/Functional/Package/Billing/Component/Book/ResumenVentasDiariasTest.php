@@ -128,7 +128,7 @@ class ResumenVentasDiariasTest extends TestCase
     #[DataProvider('dataProviderForTestFromArraySource')]
     public function testFromArraySource($input, $expected): void
     {
-        // Construir la bolsa de trabajo con los datos del resumen.
+        // Build the work bag with summary data.
         $bag = new BookBag(
             tipo: TipoLibro::RVD,
             caratula: $input['caratula'] ?? [],
@@ -137,17 +137,17 @@ class ResumenVentasDiariasTest extends TestCase
             emisor: $this->emisor,
         );
 
-        // Cargar los datos de entrada y normalizarlos.
+        // Load input data and normalize it.
         $bag = $this->loader->load($bag);
 
-        // Construir el resumen de ventas diarias.
+        // Build the daily sales summary.
         $this->builder->build($bag);
         $book = $bag->getBook();
         assert($book instanceof ResumenVentasDiariasInterface);
         $this->assertInstanceOf(ResumenVentasDiariasInterface::class, $book);
 
-        // Verifica que el resumen generado supera la validación de esquema XSD
-        // y que la firma electrónica es válida.
+        // Verify the generated summary passes XSD schema validation
+        // and has a valid electronic signature.
         $this->validator->validateSchema($bag);
         $result = $this->validator->validateSignature($bag);
         $this->assertTrue(
@@ -155,7 +155,7 @@ class ResumenVentasDiariasTest extends TestCase
             $result->getError()?->getMessage() ?? 'No se pudo validar la firma electrónica.'
         );
 
-        // Realizar las verificaciones sobre el contenido del resumen generado.
+        // Run assertions on the generated summary content.
         $data = $book->toArray();
         foreach ($expected as $key => $expectedValue) {
             $actualValue = Selector::get($data, $key);

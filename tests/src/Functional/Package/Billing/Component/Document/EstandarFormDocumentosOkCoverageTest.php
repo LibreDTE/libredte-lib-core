@@ -26,46 +26,45 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
 /**
- * Verifica que `tests/fixtures/parsers/form/estandar` y
- * `tests/fixtures/yaml/documentos_ok` cubran los mismos casos.
+ * Verifies that `tests/fixtures/parsers/form/estandar` and
+ * `tests/fixtures/yaml/documentos_ok` cover the same cases.
  *
- * Ambos directorios representan, en dos formatos distintos, la misma
- * colección de casos de ejemplo — `parsers/form/estandar` en el formato
- * plano que arma un `<form>` HTML (ver `EstandarParserStrategy`),
- * `yaml/documentos_ok` en la estructura anidada oficial del SII (además,
- * este segundo es el catálogo real de `document.examples`, ver
- * `ExamplesWorker`). Cada caso debería existir en ambos con el mismo
- * nombre de archivo — este test no verifica que ambos produzcan el mismo
- * DTE (eso ya lo hacen, cada uno por su lado,
- * `DocumentBuilderParsersFixturesTest`/`EmitirIndividualmenteDocumentosOkTest`),
- * solo que no falte un caso completo de un lado.
+ * Both directories represent the same example case collection in two formats:
+ * `parsers/form/estandar` as a flat structure that maps to an HTML `<form>`
+ * (see `EstandarParserStrategy`), and `yaml/documentos_ok` in the official
+ * nested SII structure (also the real `document.examples` catalog; see
+ * `ExamplesWorker`). Each case should exist in both with the same file name.
+ * This test does not assert both produce the same DTE (that is covered separately
+ * by `DocumentBuilderParsersFixturesTest` and
+ * `EmitirIndividualmenteDocumentosOkTest`); it only ensures no full case is
+ * missing on either side.
  */
 #[CoversNothing]
 class FormEstandarDocumentosOkCoverageTest extends TestCase
 {
     /**
-     * Casos de `parsers/form/estandar` sin par en `yaml/documentos_ok` a
-     * propósito — no representan un documento completo/emitible, sino una
-     * particularidad del parser `form.estandar` en sí.
+     * `parsers/form/estandar` cases with no pair in `yaml/documentos_ok` on
+     * purpose — they do not represent a complete/issuable document, but a
+     * quirk of the `form.estandar` parser itself.
      */
     private const EXCLUDED_FORM_ESTANDAR_ONLY = [
-        // Prueba Folio presente en el arreglo pero vacío
+        // Test Folio present in the array but empty
         // (`EstandarParserStrategy::setInitialDTE()`,
-        // `array_key_exists('Folio', ...)`) — el documento resultante no
-        // tiene folio, no es un documento "OK" para emitir.
+        // `array_key_exists('Folio', ...)`) — the resulting document has no
+        // folio and is not an "OK" issuable document.
         '033_017_folio_manual_activado_sin_asignar',
     ];
 
     /**
-     * Casos de `yaml/documentos_ok` sin par en `parsers/form/estandar` a
-     * propósito — `form.estandar` no puede expresar estos documentos hoy
-     * (le faltan campos al parser, no es solo que falte el fixture).
+     * `yaml/documentos_ok` cases with no pair in `parsers/form/estandar` on
+     * purpose — `form.estandar` cannot express these documents today
+     * (the parser lacks fields; it is not just a missing fixture).
      */
     private const EXCLUDED_DOCUMENTOS_OK_ONLY = [
-        // Usa Encabezado.Transporte.Aduana (CodViaTransp/TotBultos/
-        // CodPaisRecep), FmaPagExp, CiudadOrigen/CiudadDest y
-        // TipoDespacho — ninguno soportado por
-        // EstandarParserStrategy::addExportData()/setInitialDTE() hoy.
+        // Uses Encabezado.Transporte.Aduana (CodViaTransp/TotBultos/
+        // CodPaisRecep), FmaPagExp, CiudadOrigen/CiudadDest, and
+        // TipoDespacho — none supported by
+        // EstandarParserStrategy::addExportData()/setInitialDTE() today.
         '110_003_transporte_terrestre_internacional',
     ];
 
@@ -107,7 +106,7 @@ class FormEstandarDocumentosOkCoverageTest extends TestCase
     }
 
     /**
-     * @return string[] Nombres de archivo (sin extensión) en `form/estandar`.
+     * @return string[] File names (without extension) in `form/estandar`.
      */
     private function casosFormEstandar(): array
     {
@@ -120,7 +119,7 @@ class FormEstandarDocumentosOkCoverageTest extends TestCase
     }
 
     /**
-     * @return string[] Nombres de archivo (sin extensión) en `documentos_ok`.
+     * @return string[] File names (without extension) in `documentos_ok`.
      */
     private function casosDocumentosOk(): array
     {

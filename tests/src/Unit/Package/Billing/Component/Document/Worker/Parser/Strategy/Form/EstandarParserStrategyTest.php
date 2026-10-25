@@ -39,13 +39,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Prueba de la estrategia "form.estandar" con casos de borde.
+ * Test for the "form.estandar" strategy with edge cases.
  *
- * Cada caso es un YAML en `parsers_edge/form/estandar` con los datos tal como
- * los entregaría un formulario (todo valor escalar es un string) y, en la
- * clave `Test`, los valores esperados del resultado del parser, incluyendo su
- * tipo de dato (`ExpectedValues`) o la excepción que debe lanzar (`Exception`,
- * nombre de la clase dentro del namespace de las excepciones del documento).
+ * Each case is a YAML file in `parsers_edge/form/estandar` with data as a form
+ * would submit it (every scalar value is a string) and, under the `Test` key,
+ * the expected parser output values, including data type (`ExpectedValues`) or
+ * the exception it must throw (`Exception`, class name within the document
+ * exception namespace).
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -125,8 +125,8 @@ class EstandarParserStrategyTest extends TestCase
     }
 
     /**
-     * Valida recursivamente los valores esperados en el resultado del parser,
-     * incluyendo el tipo de dato.
+     * Recursively validates expected values in the parser result,
+     * including data type.
      * @param array<array-key, mixed> $expected
      * @param array<array-key, mixed> $actual
      */

@@ -38,17 +38,17 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use ReflectionMethod;
 
 /**
- * Pruebas de la validación de la respuesta del SII al enviar un XML.
+ * Tests for validating the SII response when sending an XML.
  *
- * La validación es privada y la respuesta real se obtiene subiendo un archivo
- * al SII, por eso se prueba directamente con la respuesta ya decodificada.
+ * Validation is private and the real response is obtained by uploading a file
+ * to the SII, so it is tested directly with the already decoded response.
  */
 #[CoversClass(SendXmlDocumentJob::class)]
 #[UsesClass(SiiException::class)]
 class SendXmlDocumentJobTest extends TestCase
 {
     /**
-     * Valida la respuesta del SII (XML) como se hace al recibirla.
+     * Validates the SII response (XML) as when it is received.
      */
     private function validate(string $xml): void
     {

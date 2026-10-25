@@ -29,8 +29,7 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
- * Prueba del contenedor del lote de documentos y de sus orígenes (contenido o
- * archivo).
+ * Test for the document batch container and its sources (content or file).
  */
 #[CoversClass(DocumentBatch::class)]
 #[CoversClass(BatchProcessorException::class)]

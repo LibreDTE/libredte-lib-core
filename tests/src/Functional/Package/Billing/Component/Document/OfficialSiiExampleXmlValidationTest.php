@@ -60,94 +60,94 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * Validación del fixture oficial del SII: F60T33-ejemplo-oficial-SII.xml
+ * Validation of the official SII fixture: F60T33-ejemplo-oficial-SII.xml
  *
- * Este test trabaja exclusivamente con el ejemplo oficial del SII, un EnvioDTE
- * de prueba generado en 2003 (Folio 60, TipoDTE 33, RUT emisor 97975000-5).
- * El archivo contiene dos firmas XML DSIG:
+ * This test works exclusively with the official SII example, a test EnvioDTE
+ * generated in 2003 (Folio 60, TipoDTE 33, issuer RUT 97975000-5).
+ * The file contains two XML DSIG signatures:
  *
- *   - Firma 1 (documento): <Signature> dentro de <DTE>, referencia "#F60T33"
- *                          (el elemento <Documento ID="F60T33">).
- *   - Firma 2 (sobre):     <Signature> al final de <EnvioDTE>, referencia
- *                          "#SetDoc" (el elemento <SetDTE ID="SetDoc">).
+ *   - Signature 1 (document): <Signature> inside <DTE>, reference "#F60T33"
+ *                          (the <Documento ID="F60T33"> element).
+ *   - Signature 2 (envelope): <Signature> at the end of <EnvioDTE>, reference
+ *                          "#SetDoc" (the <SetDTE ID="SetDoc"> element).
  *
  * ============================================================================
- * ANÁLISIS DEL FIXTURE: INCONSISTENCIAS CONOCIDAS
+ * FIXTURE ANALYSIS: KNOWN INCONSISTENCIES
  * ============================================================================
  *
- * 1. MISMATCH DE CLAVES RSA EN EL BLOQUE <KeyInfo>
+ * 1. RSA KEY MISMATCH IN THE <KeyInfo> BLOCK
  * -------------------------------------------------
- * Ambas firmas contienen un bloque <KeyInfo> con dos representaciones de la
- * clave pública que NO corresponden al mismo par de claves:
+ * Both signatures contain a <KeyInfo> block with two representations of the
+ * public key that do NOT belong to the same key pair:
  *
- *   <RSAKeyValue>  Modulus (16 bytes iniciales hex): b4d1249e46f5907883d4...
- *   <X509Certificate> Modulus (16 bytes iniciales hex): bc59955875c6bf6c2902...
+ *   <RSAKeyValue>  Modulus (first 16 bytes hex): b4d1249e46f5907883d4...
+ *   <X509Certificate> Modulus (first 16 bytes hex): bc59955875c6bf6c2902...
  *
- * Las firmas del documento y el sobre fueron generadas con la clave privada
- * correspondiente al <RSAKeyValue>. El <X509Certificate> (a nombre de
- * "Wilibaldo Gonzalez Cabrera", válido 2003-10-01 / 2004-09-30, emitido por
- * E-CERTCHILE) contiene una clave pública DIFERENTE y no puede usarse para
- * verificar las firmas de este archivo.
+ * Document and envelope signatures were generated with the private key
+ * matching <RSAKeyValue>. The <X509Certificate> (in the name of
+ * "Wilibaldo Gonzalez Cabrera", valid 2003-10-01 / 2004-09-30, issued by
+ * E-CERTCHILE) contains a DIFFERENT public key and cannot be used to
+ * verify signatures in this file.
  *
- * Nuestro código (SignatureValidator) utiliza el <X509Certificate> para
- * verificar la firma, que es la práctica segura estándar (el certificado X.509
- * proporciona identidad y cadena de confianza). Como la clave del certificado
- * no coincide con la clave de firma, toda verificación de SignatureValue falla
- * con error OpenSSL "invalid padding" (error:0200008A / error:02000072).
- * Esto es el comportamiento CORRECTO del código: rechaza una firma cuya clave
- * de verificación no coincide con el certificado declarado.
+ * Our code (SignatureValidator) uses <X509Certificate> to
+ * verify the signature, which is standard secure practice (the X.509 certificate
+ * provides identity and trust chain). Because the certificate key
+ * does not match the signing key, every SignatureValue verification fails
+ * with OpenSSL error "invalid padding" (error:0200008A / error:02000072).
+ * This is CORRECT code behavior: it rejects a signature whose verification
+ * key does not match the declared certificate.
  *
- * 2. INCONSISTENCIA DE C14N EN EL SignedInfo
+ * 2. C14N INCONSISTENCY IN SignedInfo
  * ------------------------------------------
- * Ambas firmas declaran en <CanonicalizationMethod> el algoritmo C14N estándar:
+ * Both signatures declare standard C14N in <CanonicalizationMethod>:
  *   http://www.w3.org/TR/2001/REC-xml-c14n-20010315
  *
- * Sin embargo, al verificar con la clave del <RSAKeyValue>:
+ * However, when verifying with the <RSAKeyValue> key:
  *
- *   - Firma 1 (documento): solo valida con C14N EXCLUSIVO del SignedInfo.
- *     El SignedInfo del documento hereda xmlns:xsi de <EnvioDTE>. Con C14N
- *     estándar eso se propaga → firma no verifica. Con C14N exclusivo (que
- *     omite namespaces no utilizados en el subárbol) → firma verifica. La
- *     herramienta original de firma usó C14N exclusivo en la práctica aunque
- *     declaró C14N estándar.
+ *   - Signature 1 (document): validates only with EXCLUSIVE C14N of SignedInfo.
+ *     Document SignedInfo inherits xmlns:xsi from <EnvioDTE>. With standard C14N
+ *     that propagates → signature does not verify. With exclusive C14N (which
+ *     omits unused namespaces in the subtree) → signature verifies. The
+ *     original signing tool used exclusive C14N in practice although it
+ *     declared standard C14N.
  *
- *   - Firma 2 (sobre): solo valida con C14N ESTÁNDAR del SignedInfo.
- *     Su SignedInfo también hereda xmlns:xsi, pero la firma fue generada
- *     incluyendo ese namespace heredado (C14N estándar).
+ *   - Signature 2 (envelope): validates only with STANDARD C14N of SignedInfo.
+ *     Its SignedInfo also inherits xmlns:xsi, but the signature was generated
+ *     including that inherited namespace (standard C14N).
  *
- * 3. ESTADO DE LAS FIRMAS SEGÚN HERRAMIENTA EXTERNA (verificador XML DSIG)
+ * 3. SIGNATURE STATUS PER EXTERNAL TOOL (XML DSIG verifier)
  * -------------------------------------------------------------------------
- * Una herramienta online de validación de XML DSIG (que usa el <RSAKeyValue>
- * y aplica C14N exclusivo a todos los SignedInfo) reporta:
+ * An online XML DSIG validator (using <RSAKeyValue>
+ * and applying exclusive C14N to all SignedInfo) reports:
  *
- *   Signature 1 (documento): Verified / digest valid.
- *   Signature 2 (sobre):     Invalid  / digest valid.
+ *   Signature 1 (document): Verified / digest valid.
+ *   Signature 2 (envelope): Invalid  / digest valid.
  *
- * Esto coincide con los hallazgos: con RSAKeyValue + C14N exclusivo, el
- * documento verifica pero el sobre no (porque el sobre requiere C14N estándar).
+ * This matches the findings: with RSAKeyValue + exclusive C14N, the
+ * document verifies but the envelope does not (because the envelope requires standard C14N).
  *
  * ============================================================================
- * ESTADO ACTUAL DE LOS TESTS (todos pasan: 9/9)
+ * CURRENT TEST STATUS (all pass: 9/9)
  * ============================================================================
  *
- * DigestValue del documento (#F60T33): VÁLIDO.
- *   El fallback strip-namespaces + C14N de SignatureValidator::findMatchingDigestValue()
- *   computa correctamente el DigestValue hlmQtu/AyjUjTDhM3852wvRCr8w=.
+ * Document DigestValue (#F60T33): VALID.
+ *   The strip-namespaces + C14N fallback in SignatureValidator::findMatchingDigestValue()
+ *   correctly computes DigestValue hlmQtu/AyjUjTDhM3852wvRCr8w=.
  *
- * DigestValue del sobre (#SetDoc): VÁLIDO.
- *   El método principal de SignatureValidator::generateXmlDigestValue() lo
- *   computa correctamente: 4OTWXyRl5fw3htjTyZXQtYEsC3E=.
+ * Envelope DigestValue (#SetDoc): VALID.
+ *   The main SignatureValidator::generateXmlDigestValue() method
+ *   computes it correctly: 4OTWXyRl5fw3htjTyZXQtYEsC3E=.
  *
- * SignatureValue del documento: FALLA (SignatureException esperada).
- *   Razón: el código verifica con X509Certificate (clave bc59...) pero la
- *   firma fue generada con RSAKeyValue (clave b4d1...). Claves distintas →
- *   "invalid padding". Comportamiento correcto del código.
+ * Document SignatureValue: FAILS (expected SignatureException).
+ *   Reason: code verifies with X509Certificate (key bc59...) but the
+ *   signature was generated with RSAKeyValue (key b4d1...). Different keys →
+ *   "invalid padding". Correct code behavior.
  *
- * SignatureValue del sobre: FALLA (SignatureException esperada).
- *   Misma razón: mismatch de claves entre X509Certificate y RSAKeyValue.
- *   Adicionalmente, incluso si se usara el RSAKeyValue, la firma del sobre
- *   sería inválida con C14N exclusivo (que es lo que el tool externo también
- *   reporta como inválida).
+ * Envelope SignatureValue: FAILS (expected SignatureException).
+ *   Same reason: key mismatch between X509Certificate and RSAKeyValue.
+ *   Additionally, even if RSAKeyValue were used, the envelope signature
+ *   would be invalid with exclusive C14N (which the external tool also
+ *   reports as invalid).
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -173,17 +173,17 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(ReceptorFactory::class)]
 class ValidarXmlEjemploOficialSiiTest extends TestCase
 {
-    // Worker que tiene los servicios para trabajar con XML del proceso de
-    // interfaz de DTE (sobres de documentos, aka: DocumentEnvelope).
+    // Worker with services for DTE interface XML (document envelopes,
+    // aka DocumentEnvelope).
     private DispatcherWorkerInterface $dispatcher;
 
-    // Worker que tiene los servicios para validar un DTE.
+    // Worker with services to validate a DTE.
     private ValidatorWorkerInterface $validator;
 
-    // Worker del componente signature para la validación de firmas.
+    // Signature component worker for signature validation.
     private SignatureValidatorInterface $signatureValidator;
 
-    // Configuración inicial del test.
+    // Initial test setup.
     protected function setUp(): void
     {
         $app = Application::getInstance();
@@ -213,28 +213,27 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         );
     }
 
-    // Proveedor de los documentos XML con los casos de prueba que se deben
-    // realizar.
+    // Provider of XML documents with test cases to run.
     /**
      * @return array<string, array{string}>
      */
     public static function provideDocumentosSii(): array
     {
-        // Buscar los archivos con los casos para el test.
+        // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/xml/sii/*.xml';
         $files = glob($filesPath);
 
-        // Armar datos de prueba.
+        // Build test data.
         $documentosSii = [];
         foreach ($files as $file) {
             $documentosSii[basename($file)] = [$file];
         }
 
-        // Entregar los datos para las pruebas.
+        // Return data for tests.
         return $documentosSii;
     }
 
-    // Crea un sobre a partir de un archivo XML.
+    // Creates an envelope from an XML file.
     private function createEnvelope(string $file): DocumentEnvelopeInterface
     {
         $xml = file_get_contents($file);
@@ -243,9 +242,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         return $envelope;
     }
 
-    // Validación general de los datos del sobre.
-    // Verifica que se puedan extraer correctamente RutEmisor, RutEnvia,
-    // RutReceptor y FchResol de la carátula del EnvioDTE.
+    // General validation of envelope data.
+    // Asserts RutEmisor, RutEnvia, RutReceptor, and FchResol can be extracted
+    // correctly from the EnvioDTE cover page.
     #[DataProvider('provideDocumentosSii')]
     public function testValidateSobreGeneralData(string $file): void
     {
@@ -258,7 +257,7 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->assertNotEmpty($envelope->getSobreEnvio()->getAutorizacionDte()->getFechaResolucion());
     }
 
-    // Validación del esquema XML del sobre contra EnvioDTE_v10.xsd.
+    // Validate envelope XML schema against EnvioDTE_v10.xsd.
     #[DataProvider('provideDocumentosSii')]
     public function testValidateSobreSchema(string $file): void
     {
@@ -268,8 +267,8 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Validación del esquema XML del documento (DTE) que viene en el sobre
-    // contra el XSD correspondiente al tipo de documento (ej. DTE_v10.xsd).
+    // Validate XML schema of the document (DTE) in the envelope
+    // against the XSD for the document type (e.g. DTE_v10.xsd).
     /**
      * @param string $file
      */
@@ -283,14 +282,14 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    // Validates envelope signature DigestValue (Signature 2, reference #SetDoc).
     //
-    // RESULTADO ESPERADO: pasa sin excepción ni error.
+    // EXPECTED RESULT: passes without exception or error.
     //
-    // El DigestValue 4OTWXyRl5fw3htjTyZXQtYEsC3E= es calculado correctamente
-    // por SignatureValidator::generateXmlDigestValue() usando C14N estándar del
-    // elemento <SetDTE ID="SetDoc"> en el contexto del XmlDocument del sobre.
-    // Tanto la herramienta externa como nuestro código concuerdan: digest válido.
+    // DigestValue 4OTWXyRl5fw3htjTyZXQtYEsC3E= is calculated correctly
+    // by SignatureValidator::generateXmlDigestValue() using standard C14N of the
+    // <SetDTE ID="SetDoc"> element in the envelope XmlDocument context.
+    // External tool and our code agree: valid digest.
     /**
      * @param string $file
      */
@@ -313,24 +312,24 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el SignatureValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    // Validates envelope signature SignatureValue (Signature 2, reference #SetDoc).
     //
-    // RESULTADO ESPERADO: lanza SignatureException (comportamiento correcto).
+    // EXPECTED RESULT: throws SignatureException (correct behavior).
     //
-    // La verificación falla porque nuestro código usa el <X509Certificate>
-    // (módulo hex: bc59955875c6bf6c...) para verificar la firma, pero ésta fue
-    // generada con la clave privada del <RSAKeyValue> (módulo hex: b4d1249e46f590...).
-    // Son claves RSA distintas → OpenSSL retorna "invalid padding" al intentar
-    // descifrar la firma con la clave equivocada.
+    // Verification fails because our code uses <X509Certificate>
+    // (hex modulus: bc59955875c6bf6c...) to verify the signature, but it was
+    // generated with the <RSAKeyValue> private key (hex modulus: b4d1249e46f590...).
+    // Different RSA keys → OpenSSL returns "invalid padding" when trying to
+    // decrypt the signature with the wrong key.
     //
-    // Verificado manualmente: con RSAKeyValue + C14N estándar la firma del sobre
-    // sí verifica. Sin embargo el <X509Certificate> del fixture es incorrecto
-    // respecto al par de claves usado, lo que hace que este fixture no sea apto
-    // para testear la validación completa de SignatureValue.
+    // Manually verified: with RSAKeyValue + standard C14N the envelope signature
+    // does verify. However the fixture <X509Certificate> does not match the key
+    // pair in use, so this fixture is not suitable for testing full
+    // SignatureValue validation.
     //
-    // Nota: la herramienta externa (que aplica C14N exclusivo a todos los
-    // SignedInfo) también reporta esta firma como inválida, porque el sobre fue
-    // firmado con C14N estándar y esa herramienta usa exclusivo para ambas.
+    // Note: the external tool (which applies exclusive C14N to all
+    // SignedInfo) also reports this signature as invalid, because the envelope was
+    // signed with standard C14N and that tool uses exclusive for both.
     /**
      * @param string $file
      */
@@ -351,22 +350,22 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
     }
 
-    // Valida la firma completa del sobre vía DispatcherWorker::validateSignature().
+    // Validates full envelope signature via DispatcherWorker::validateSignature().
     //
-    // RESULTADO ESPERADO: retorna un resultado de validación de firma inválido.
+    // EXPECTED RESULT: returns an invalid signature validation result.
     //
-    // SignatureService::validateXml() itera todas las firmas del EnvioDTE en
-    // orden de aparición en el documento. Encuentra primero la Firma 1
-    // (documento, referencia #F60T33): el DigestValue pasa, pero el
-    // SignatureValue falla por mismatch de claves (X509Certificate ≠ RSAKeyValue),
-    // lanzando SignatureException antes de llegar a evaluar la Firma 2 (sobre).
+    // SignatureService::validateXml() iterates all EnvioDTE signatures in
+    // document appearance order. It finds Signature 1 first
+    // (document, reference #F60T33): DigestValue passes, but
+    // SignatureValue fails due to key mismatch (X509Certificate ≠ RSAKeyValue),
+    // throwing SignatureException before evaluating Signature 2 (envelope).
     //
-    // El nombre del test menciona "DigestValueError" porque así se llamaba el
-    // error en versiones anteriores del código cuando el DigestValue del
-    // documento también fallaba. Ese problema fue resuelto en SignatureValidator
-    // mediante el fallback strip-namespaces en findMatchingDigestValue(). El
-    // error que persiste hoy es exclusivamente de SignatureValue por el mismatch
-    // de claves del fixture.
+    // The test name mentions "DigestValueError" because that was the name of the
+    // error in earlier code versions when the DigestValue of the
+    // document also failed. That issue was fixed in SignatureValidator
+    // via the strip-namespaces fallback in findMatchingDigestValue(). The
+    // error that remains today is exclusively SignatureValue due to the fixture
+    // key mismatch.
     #[DataProvider('provideDocumentosSii')]
     public function testValidateSobreSignatureExceptionDigestValueError(string $file): void
     {
@@ -378,19 +377,19 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         }
     }
 
-    // Valida el DigestValue de la firma del documento (Firma 1, referencia #F60T33).
+    // Validates document signature DigestValue (Signature 1, reference #F60T33).
     //
-    // RESULTADO ESPERADO: pasa sin excepción ni error.
+    // EXPECTED RESULT: passes without exception or error.
     //
-    // El DigestValue hlmQtu/AyjUjTDhM3852wvRCr8w= es el SHA1 del elemento
-    // <Documento ID="F60T33"> canonicalizado sin declaraciones de namespace
-    // (el firmante original las omitió al generar el digest). El método principal
-    // generateXmlDigestValue() falla en primera instancia porque al extraer el
-    // DTE del sobre via C14N() se propagan namespaces heredados que el firmante
-    // no incluyó. El fallback findMatchingDigestValue() con la variante
-    // strip-namespaces + C14N estándar calcula el valor correcto y el test pasa.
+    // DigestValue hlmQtu/AyjUjTDhM3852wvRCr8w= is the SHA1 of element
+    // <Documento ID="F60T33"> canonicalized without namespace declarations
+    // (the original signer omitted them when generating the digest). The main
+    // generateXmlDigestValue() fails initially because extracting the
+    // DTE from the envelope via C14N() propagates inherited namespaces the signer
+    // did not include. The findMatchingDigestValue() fallback with variant
+    // strip-namespaces + standard C14N computes the correct value and the test passes.
     //
-    // Tanto la herramienta externa como nuestro código concuerdan: digest válido.
+    // External tool and our code agree: valid digest.
     /**
      * @param string $file
      */
@@ -415,20 +414,20 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    // Valida el SignatureValue de la firma del documento (Firma 1, referencia #F60T33).
+    // Validates document signature SignatureValue (Signature 1, reference #F60T33).
     //
-    // RESULTADO ESPERADO: lanza SignatureException (comportamiento correcto).
+    // EXPECTED RESULT: throws SignatureException (correct behavior).
     //
-    // La verificación falla por la misma razón que la firma del sobre: el código
-    // verifica con el <X509Certificate> (módulo hex: bc59955875c6bf6c...) pero
-    // la firma fue generada con el <RSAKeyValue> (módulo hex: b4d1249e46f590...).
+    // Verification fails for the same reason as the envelope signature: code
+    // verifies with <X509Certificate> (hex modulus: bc59955875c6bf6c...) but
+    // the signature was generated with <RSAKeyValue> (hex modulus: b4d1249e46f590...).
     //
-    // Verificado manualmente: con RSAKeyValue + C14N EXCLUSIVO del SignedInfo la
-    // firma del documento sí verifica. El firmante original usó C14N exclusivo
-    // en la práctica (omite el xmlns:xsi heredado del <EnvioDTE> ancestro), pero
-    // declaró C14N estándar en el XML. La herramienta externa, que también aplica
-    // C14N exclusivo, reporta esta firma como válida (Signature 1 Verified).
-    // Nuestro código no la puede verificar por el mismatch de claves del fixture.
+    // Manually verified: with RSAKeyValue + exclusive C14N of SignedInfo the
+    // document signature does verify. The original signer used exclusive C14N
+    // in practice (omits xmlns:xsi inherited from ancestor <EnvioDTE>), but
+    // declared standard C14N in XML. The external tool, which also applies
+    // exclusive C14N, reports this signature as valid (Signature 1 Verified).
+    // Our code cannot verify it due to the fixture key mismatch.
     /**
      * @param string $file
      */
@@ -451,17 +450,17 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
         $this->signatureValidator->validateXmlSignatureValue($signatureNode);
     }
 
-    // Valida la firma completa del documento vía ValidatorWorker::validateSignature().
+    // Validates full document signature via ValidatorWorker::validateSignature().
     //
-    // RESULTADO ESPERADO: retorna un resultado de validación de firma inválido.
+    // EXPECTED RESULT: returns an invalid signature validation result.
     //
-    // Análogo a testValidateSobreSignatureExceptionDigestValueError() pero usando
-    // el ValidatorWorker sobre el DocumentBag del DTE extraído. El DigestValue
-    // pasa (fallback strip-namespaces), pero el SignatureValue falla por el
-    // mismatch de claves del fixture (X509Certificate ≠ RSAKeyValue).
+    // Analogous to testValidateSobreSignatureExceptionDigestValueError() but using
+    // ValidatorWorker on the extracted DTE DocumentBag. DigestValue
+    // passes (strip-namespaces fallback), but SignatureValue fails due to the
+    // fixture key mismatch (X509Certificate ≠ RSAKeyValue).
     //
-    // El nombre del test menciona "DigestValueError" por el mismo motivo histórico
-    // explicado en testValidateSobreSignatureExceptionDigestValueError().
+    // The test name mentions "DigestValueError" for the same historical reason
+    // explained in testValidateSobreSignatureExceptionDigestValueError().
     /**
      * @param string $file
      */

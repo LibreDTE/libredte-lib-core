@@ -75,7 +75,7 @@ class SendXmlDocumentTest extends TestCase
             ->getSiiDteWorker()
         ;
 
-        // Cargar certificado digital.
+        // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
@@ -85,7 +85,7 @@ class SendXmlDocumentTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        // Crear solicitud que se usará de base.
+        // Create the request that will be used as a base.
         $this->siiRequest = new SiiRequest(
             certificate: $certificate,
             options: [
@@ -98,13 +98,13 @@ class SendXmlDocumentTest extends TestCase
 
     public function testSendXmlDteForUploadOkTrackId(): void
     {
-        // Corrorborar que el archivo XML del DTE exista.
+        // Assert the DTE XML file exists.
         $file = $this->xmlDir . '/upload/set_pruebas_basico.xml';
         if (!file_exists($file)) {
             $this->markTestSkipped(sprintf('Archivo %s no existe.', $file));
         }
 
-        // Cargar XML del DTE en un documento XML.
+        // Load DTE XML into an XML document.
         $xml = file_get_contents($file);
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml($xml);
@@ -117,6 +117,6 @@ class SendXmlDocumentTest extends TestCase
 
         $this->assertInstanceOf(SendXmlDocumentResponse::class, $response);
         $this->assertGreaterThan(0, $response->getTrackId());
-        // $message = sprintf('Track ID archivo %s es %d.', $file, $trackId);
+        // $message = sprintf('Track ID for file %s is %d.', $file, $trackId);
     }
 }

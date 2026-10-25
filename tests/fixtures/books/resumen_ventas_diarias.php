@@ -123,7 +123,7 @@ return [
                 ['TpoDoc' => 39, 'NroDoc' => 1, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
                 ['TpoDoc' => 39, 'NroDoc' => 2, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
                 ['TpoDoc' => 39, 'NroDoc' => 3, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
-                // Folio 5 rompe el rango continuo (falta el 4).
+                // Folio 5 breaks the continuous range (folio 4 is missing).
                 ['TpoDoc' => 39, 'NroDoc' => 5, 'FchDoc' => '2024-01-10', 'MntTotal' => 1000],
             ],
         ],

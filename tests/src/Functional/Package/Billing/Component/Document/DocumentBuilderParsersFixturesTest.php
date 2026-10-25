@@ -136,7 +136,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
- * Prueba del parser de datos de entrada para un documento tributario.
+ * Test for the input data parser for a tax document.
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -286,7 +286,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
     }
 
     /**
-     * Entrega los archivos con los casos para el test de los parsers.
+     * Returns files with cases for the parser test.
      *
      * @return array<string, array{string, string}>
      */
@@ -305,7 +305,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
                 }
                 $formatDir = $parserDir . '/' . $format;
                 foreach (scandir($formatDir) as $inputFile) {
-                    // Revisar si se debe agregar el archivo.
+                    // Check whether the file should be added.
                     $addFile = true;
                     if ($inputFile === '.' || $inputFile === '..') {
                         $addFile = false;
@@ -320,7 +320,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
                         continue;
                     }
 
-                    // Agregar el archivo.
+                    // Add the file.
                     $inputFilePath = $formatDir . '/' . $inputFile;
                     $id = sprintf(
                         '%s.%s:%s',
@@ -342,8 +342,8 @@ class DocumentBuilderParsersFixturesTest extends TestCase
     #[DataProvider('provideInputFiles')]
     public function testDocumentoParser(string $format, string $file): void
     {
-        // Construir el documento con los datos del archivo y la estrategia de
-        // parseo según el formato.
+        // Build the document from file data and the
+        // parsing strategy for the format.
         $data = file_get_contents($file);
         $bag = new DocumentBag(
             inputData: $data,
@@ -358,17 +358,17 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         );
         $this->builder->build($bag);
 
-        // Validar que se haya logrado crear un arreglo con los datos parseados.
+        // Assert an array with parsed data was created.
         $parsedData = $bag->getParsedData();
         $this->assertIsArray($parsedData);
         $this->assertNotEmpty($parsedData);
 
-        // Validar el documento en base a los datos parseados.
+        // Validate the document based on parsed data.
         $document = $bag->getDocument();
         $this->assertInstanceOf(DocumentInterface::class, $document);
 
-        // Crear CAF de pruebas y armar una nueva bolsa que incluya el CAF.
-        // Al usar build() se timbrará el documento previamente normalizado.
+        // Create test CAF and build a new bag that includes the CAF.
+        // Using build() stamps the previously normalized document.
         $tipoDoc = $bag->getTipoDocumento()->getCodigo();
         $folio = $bag->getFolio() ?? 1;
         $fakeCaf = $this->cafFaker->create($bag->getEmisor(), $tipoDoc, $folio, $folio);
@@ -379,9 +379,9 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $bag->setFolio($cafFolio->getFolio());
         $this->builder->build($bag);
 
-        // Crear certificado de pruebas y armar una nueva bolsa que incluya el
-        // certificado.
-        // Al usar build() se firmará el documento previamente timbrado.
+        // Create test certificate and build a new bag that includes the
+        // certificate.
+        // Using build() signs the previously stamped document.
         $certificate = $this->certificateFaker->createFake(id: $bag->getEmisor()->getRUT());
         $bag = $bag->withCertificate($certificate); // withCertificate() retorna una nueva DocumentBag.
         $this->builder->build($bag);
@@ -390,13 +390,13 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $xml = $bag->getDocument()->saveXml();
         file_put_contents($file . '.xml', $xml);
 
-        // Validar esquema del XML generado y la firma.
+        // Validate generated XML schema and signature.
         $this->validator->validateSchema($xml);
         $result = $this->validator->validateSignature($xml);
         $this->assertTrue($result->isValid());
 
-        // Renderizar el documento para corroborar que se puedan construir con
-        // la estrategia estándar.
+        // Render the document to confirm outputs can be built with
+        // the standard strategy.
         $pdf = (string) $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
         file_put_contents($file . '.pdf', $pdf);

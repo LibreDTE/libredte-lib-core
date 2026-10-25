@@ -34,11 +34,11 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
- * Pruebas de las respuestas del SII cuando traen elementos vacíos.
+ * Tests for SII responses that include empty elements.
  *
- * El SII responde elementos vacíos (`<SRV_CODE/>`) y el XML se decodifica con
- * el elemento vacío como texto vacío (`''`), no como `null`. Una respuesta no
- * debe cambiar de resultado, ni fallar, por eso.
+ * The SII returns empty elements (`<SRV_CODE/>`) and the XML is decoded with
+ * the empty element as empty string (`''`), not as `null`. A response must not
+ * change outcome or fail because of that.
  */
 #[CoversClass(AbstractSiiWsdlResponse::class)]
 #[CoversClass(CheckXmlDocumentSentStatusResponse::class)]
@@ -46,7 +46,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 class SiiEmptyElementsTest extends TestCase
 {
     /**
-     * Decodifica una respuesta del SII como se hace al recibirla.
+     * Decodes an SII response as when it is received.
      *
      * @return array<int|string, mixed>
      */

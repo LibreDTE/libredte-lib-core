@@ -54,11 +54,11 @@ class SiiAuthenticateFakeCertificateTest extends TestCase
     {
         $app = Application::getInstance();
 
-        // Generar un certificado falso.
+        // Generate a fake certificate.
         $certificateFaker = new CertificateFaker(new CertificateLoader());
         $certificate = $certificateFaker->createFake();
 
-        // Debe fallar la solicitud de token porque el certificado no es válido.
+        // Token request must fail because the certificate is not valid.
         $this->expectException(AuthenticateException::class);
 
         $token = $app

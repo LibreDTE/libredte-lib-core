@@ -40,8 +40,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 /**
- * Pruebas de la autenticación en el SII (semilla y token) con las respuestas
- * que el SII puede entregar, incluyendo valores vacíos.
+ * Tests for SII authentication (seed and token) with responses the SII may
+ * return, including empty values.
  */
 #[CoversClass(AuthenticateJob::class)]
 #[UsesClass(SiiException::class)]

@@ -120,22 +120,22 @@ class EnvioRecibosTest extends TestCase
     }
 
     /**
-     * Genera el XML `EnvioRecibos` con recibos de mercaderías o servicios.
+     * Generates the `EnvioRecibos` XML with goods or services receipts.
      *
-     * Caso de uso: el receptor de uno o más DTE quiere acreditar la recepción
-     * conforme de las mercaderías o servicios descritos en esos documentos.
-     * Cada `Recibo` se firma individualmente con el ID `LibreDTE_T{tipo}F{folio}`
-     * y el `SetRecibos` se firma como conjunto con ID `LibreDTE_SetDteRecibidos`.
+     * Use case: the receiver of one or more DTE wants to certify compliant
+     * receipt of the goods or services described in those documents.
+     * Each `Recibo` is signed individually with ID `LibreDTE_T{tipo}F{folio}`
+     * and `SetRecibos` is signed as a set with ID `LibreDTE_SetDteRecibidos`.
      *
-     * Campos requeridos por recibo:
-     *   - `TipoDoc`: código del tipo de DTE.
-     *   - `Folio`: número de folio del DTE.
-     *   - `FchEmis`: fecha de emisión (YYYY-MM-DD).
-     *   - `RUTEmisor`: RUT del emisor del DTE.
-     *   - `RUTRecep`: RUT del receptor del DTE.
-     *   - `MntTotal`: monto total del DTE.
-     *   - `Recinto`: lugar donde se materializa la recepción.
-     *   - `RutFirma`: RUT de quien firma el recibo.
+     * Required fields per receipt:
+     *   - `TipoDoc`: DTE type code.
+     *   - `Folio`: DTE folio number.
+     *   - `FchEmis`: issue date (YYYY-MM-DD).
+     *   - `RUTEmisor`: DTE issuer RUT.
+     *   - `RUTRecep`: DTE receiver RUT.
+     *   - `MntTotal`: DTE total amount.
+     *   - `Recinto`: place where receipt takes place.
+     *   - `RutFirma`: RUT of whoever signs the receipt.
      * @param list<array{
      *     TipoDoc: int,
      *     Folio: int,

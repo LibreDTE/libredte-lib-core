@@ -26,23 +26,22 @@ use LogicException;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
- * Clase base para todos los tests de la aplicación.
+ * Base class for all application tests.
  */
 abstract class TestCase extends PHPUnitTestCase
 {
     /**
-     * Directorio base para los recursos de prueba (fixtures) que se usarán en
-     * los tests.
+     * Base directory for test resources (fixtures) used in tests.
      *
      * @var string
      */
     protected static string $fixturesPath = __DIR__ . '/../fixtures';
 
     /**
-     * Obtiene la ruta hacia el directorio base de recursos de prueba (fixtures)
-     * o una ruta dentro de este directorio si se provee `$path`.
+     * Returns the path to the base test resources (fixtures) directory,
+     * or a path within that directory when `$path` is provided.
      *
-     * @param string|null $path Ruta dentro de `fixtures`.
+     * @param string|null $path Path within `fixtures`.
      * @return string
      */
     protected static function getFixturesPath(?string $path = null): string

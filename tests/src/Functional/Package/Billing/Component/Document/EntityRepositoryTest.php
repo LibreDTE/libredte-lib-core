@@ -135,30 +135,30 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
         $this->assertInstanceOf(AduanaPaisRepository::class, $repository);
 
-        // Un país por su código ISO 3166-1 alpha-2, sin importar las
-        // mayúsculas ni los espacios.
+        // A country by ISO 3166-1 alpha-2 code, regardless of
+        // case or spaces.
         $this->assertSame(563, $repository->findOneByCodigoISO('DE')->getCodigo());
         $this->assertSame('ALEMANIA', (string) $repository->findOneByCodigoISO(' de '));
         $this->assertSame('CL', $repository->find(997)->getCodigoISO());
         $this->assertSame('DE', $repository->find(563)->getCodigoISO());
 
-        // Países con una glosa distinta de su nombre.
+        // Countries whose label differs from their name.
         $this->assertSame(225, $repository->findOneByCodigoISO('US')->getCodigo());
         $this->assertSame(206, $repository->findOneByCodigoISO('DO')->getCodigo());
 
-        // Países que el SII llama distinto: Sahara Occidental, Palestina (el 322
-        // era el Yemen anterior a la unificación), Países Bajos y Belau.
+        // Countries the SII names differently: Western Sahara, Palestine (322 was
+        // pre-unification Yemen), Netherlands, and Palau.
         $this->assertSame(165, $repository->findOneByCodigoISO('EH')->getCodigo());
         $this->assertSame(322, $repository->findOneByCodigoISO('PS')->getCodigo());
         $this->assertSame('PAISES BAJOS', (string) $repository->findOneByCodigoISO('NL'));
         $this->assertSame('BELAU', (string) $repository->findOneByCodigoISO('PW'));
 
-        // Un país que el SII tiene dos veces tiene el código en el vigente.
+        // When the SII lists a country twice, the code is on the current entry.
         $this->assertSame(565, $repository->findOneByCodigoISO('GI')->getCodigo());
         $this->assertSame(346, $repository->findOneByCodigoISO('YE')->getCodigo());
 
-        // Sin país: código que no existe, que no es un código ISO, o que el
-        // SII no tiene (por ejemplo, Antártica).
+        // No country: code that does not exist, is not an ISO code, or the
+        // SII does not have (for example, Antarctica).
         $this->assertNull($repository->findOneByCodigoISO('ZZ'));
         $this->assertNull($repository->findOneByCodigoISO('AQ'));
         $this->assertNull($repository->findOneByCodigoISO('DEU'));
@@ -170,8 +170,8 @@ class EntityRepositoryTest extends TestCase
     {
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
 
-        // Países que ya no existen, grupos de territorios y códigos
-        // especiales no tienen código ISO.
+        // Defunct countries, territory groups, and special
+        // codes have no ISO code.
         foreach ([521, 529, 526, 151, 905, 998, 999, 888, 585, 323] as $codigo) {
             $this->assertNull($repository->find($codigo)->getCodigoISO(), (string) $codigo);
         }
@@ -191,8 +191,8 @@ class EntityRepositoryTest extends TestCase
             $codigos[] = $codigoISO;
         }
 
-        // Cada código ISO está en un solo país: si no, el país encontrado por
-        // un código dependería del orden de los datos.
+        // Each ISO code maps to one country; otherwise the country found by
+        // a code would depend on data order.
         $this->assertSame([], array_keys(array_filter(
             array_count_values($codigos),
             fn (int $cantidad): bool => $cantidad > 1
@@ -236,16 +236,16 @@ class EntityRepositoryTest extends TestCase
         $this->assertSame('Santiago', $repository->find('LAS CONDES')->getCiudad());
         $this->assertFalse($repository->find('NON_EXISTENT')->getCiudad());
 
-        // Buscar dirección regional usando comuna.
+        // Look up regional address using commune.
         $this->assertSame('ARICA', $repository->find('Arica')->getDireccionRegional());
         $this->assertSame('IQUIQUE', $repository->find('iquique')->getDireccionRegional());
         $this->assertSame('NO_EXISTE', $repository->find('No_Existe')->getDireccionRegional());
 
-        // Buscar dirección regional usando código sucursal.
+        // Look up regional address using branch code.
         $this->assertSame('SUC 123', $repository->find(123)->getDireccionRegional());
         $this->assertSame('SUC 456', $repository->find(456)->getDireccionRegional());
 
-        // Buscar dirección regional usando valor vacío.
+        // Look up regional address using empty value.
         $this->assertSame('N.N.', $repository->find('')->getDireccionRegional());
         $this->assertSame('N.N.', $repository->find(null)->getDireccionRegional());
     }
@@ -339,13 +339,13 @@ class EntityRepositoryTest extends TestCase
         );
 
         $documentos = $repository->getDocumentos();
-        $this->assertSame(68, count($documentos)); // Cambia si cambian los documentos en el repositorio.
+        $this->assertSame(68, count($documentos)); // Update if repository documents change.
 
         $documentos = $repository->getDocumentosTributarios();
-        $this->assertSame(34, count($documentos)); // Cambia si cambian los documentos tributarios en el repositorio.
+        $this->assertSame(34, count($documentos)); // Update if taxable documents in the repository change.
 
         $documentos = $repository->getDocumentosInformativos();
-        $this->assertSame(22, count($documentos)); // Cambia si cambian los documentos informativos en el repositorio.
+        $this->assertSame(22, count($documentos)); // Update if informational documents in the repository change.
 
         $documentos = $repository->getDocumentosTributariosElectronicos();
         $this->assertSame(12, count($documentos));

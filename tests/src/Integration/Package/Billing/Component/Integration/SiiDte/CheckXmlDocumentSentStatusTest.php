@@ -74,7 +74,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
             ->getSiiDteWorker()
         ;
 
-        // Cargar certificado digital.
+        // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
@@ -84,7 +84,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        // Crear solicitud que se usará de base.
+        // Create the request that will be used as a base.
         $this->siiRequest = new SiiRequest(
             certificate: $certificate,
             options: [
@@ -95,7 +95,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
 
     public function testUploadStatusRfr(): void
     {
-        $trackId = 230939274; // Error de firma.
+        $trackId = 230939274; // Signature error.
         $company = '76192083-9';
 
         $sentResponse = $this->siiDteWorker->checkXmlDocumentSentStatus(
@@ -109,7 +109,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
 
     public function testUploadStatusRfr2(): void
     {
-        $trackId = 231039586; // Error de firma.
+        $trackId = 231039586; // Signature error.
         $company = '76192083-9';
 
         $sentResponse = $this->siiDteWorker->checkXmlDocumentSentStatus(
@@ -123,7 +123,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
 
     public function testUploadStatusWrongEnvironment(): void
     {
-        $trackId = 9934380406; // Es de Producción.
+        $trackId = 9934380406; // From production environment.
         $company = '76192083-9';
 
         $sentResponse = $this->siiDteWorker->checkXmlDocumentSentStatus(
@@ -138,7 +138,7 @@ class CheckXmlDocumentSentStatusTest extends TestCase
 
     public function testUploadStatusEpr(): void
     {
-        $trackId = 76941002; // Set de pruebas con 8 documentos.
+        $trackId = 76941002; // Test set with 8 documents.
         $company = '76192083-9';
 
         $sentResponse = $this->siiDteWorker->checkXmlDocumentSentStatus(

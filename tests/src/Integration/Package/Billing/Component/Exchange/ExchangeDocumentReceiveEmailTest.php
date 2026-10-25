@@ -82,7 +82,7 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
             $this->markTestSkipped('No existe configuración para recibir correo.');
         }
 
-        // Crear la bolsa de intercambio (sin sobres pues recepción).
+        // Create the exchange bag (no envelopes, reception only).
         $exchangeBag = new ExchangeBag([
             'transport' => [
                 'username' => $username,
@@ -95,8 +95,8 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
         ]);
         $results = $this->exchange->handle($exchangeBag);
 
-        // Validar a mano cuando se pruebe funcionalidad otras cosas.
-        // Nota: Realizar validación real al ejecutar el test localmente.
+        // Validate manually when testing other functionality.
+        // Note: perform real validation when running the test locally.
         $this->addToAssertionCount(1);
         //$this->assertNotEmpty($results);
     }

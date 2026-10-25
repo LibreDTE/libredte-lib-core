@@ -67,24 +67,24 @@ class RespuestaEnvioTest extends TestCase
     }
 
     /**
-     * Genera el XML `RespuestaDTE` con `RecepcionEnvio`.
+     * Generates the `RespuestaDTE` XML with `RecepcionEnvio`.
      *
-     * Caso de uso: el receptor acusa recibo del envío completo (EnvioDTE) y
-     * reporta el estado de recepción del sobre y de cada DTE incluido en él.
-     * Se usa para indicar si el envío fue recibido correctamente o rechazado
-     * por error de schema, firma, RUT receptor incorrecto, etc.
+     * Use case: the receiver acknowledges receipt of the full shipment (EnvioDTE)
+     * and reports reception status for the envelope and each DTE included in it.
+     * Used to indicate whether the shipment was received correctly or rejected
+     * due to schema error, signature error, wrong receiver RUT, etc.
      *
-     * Campos requeridos en `recepcion_envio`:
-     *   - `NmbEnvio`: nombre del archivo enviado.
-     *   - `CodEnvio`: código de tracking del envío.
-     *   - `EnvioDTEID`: ID del nodo raíz del EnvioDTE recibido.
-     *   - `Digest`: hash SHA1 en base64 del EnvioDTE recibido.
-     *   - `RutEmisor`: RUT del emisor del EnvioDTE.
-     *   - `RutReceptor`: RUT del receptor del EnvioDTE.
-     *   - `EstadoRecepEnv`: código de estado (0 = conforme, 1..99 = rechazado).
-     *   - `RecepEnvGlosa`: descripción del estado.
-     *   - `NroDTE`: cantidad de DTE incluidos en el envío.
-     *   - `RecepcionDTE`: lista con el estado de recepción de cada DTE.
+     * Required fields in `recepcion_envio`:
+     *   - `NmbEnvio`: name of the sent file.
+     *   - `CodEnvio`: shipment tracking code.
+     *   - `EnvioDTEID`: root node ID of the received EnvioDTE.
+     *   - `Digest`: base64 SHA1 hash of the received EnvioDTE.
+     *   - `RutEmisor`: EnvioDTE issuer RUT.
+     *   - `RutReceptor`: EnvioDTE receiver RUT.
+     *   - `EstadoRecepEnv`: status code (0 = compliant, 1..99 = rejected).
+     *   - `RecepEnvGlosa`: status description.
+     *   - `NroDTE`: number of DTE included in the shipment.
+     *   - `RecepcionDTE`: list with reception status of each DTE.
      */
     public function testRecepcionEnvio(): void
     {
@@ -137,23 +137,23 @@ class RespuestaEnvioTest extends TestCase
     }
 
     /**
-     * Genera el XML `RespuestaDTE` con `ResultadoDTE`.
+     * Generates the `RespuestaDTE` XML with `ResultadoDTE`.
      *
-     * Caso de uso: el receptor comunica el resultado de la validación comercial
-     * de cada DTE recibido de forma individual (no del sobre en su conjunto).
-     * Se usa para indicar si cada DTE fue aceptado, aceptado con discrepancias
-     * o rechazado, junto con el motivo.
+     * Use case: the receiver reports the commercial validation outcome for each
+     * DTE received individually (not the envelope as a whole).
+     * Used to indicate whether each DTE was accepted, accepted with discrepancies,
+     * or rejected, along with the reason.
      *
-     * Campos requeridos en `resultado_dte`:
-     *   - `TipoDTE`: código del tipo de DTE.
-     *   - `Folio`: número de folio del DTE.
-     *   - `FchEmis`: fecha de emisión (YYYY-MM-DD).
-     *   - `RUTEmisor`: RUT del emisor del DTE.
-     *   - `RUTRecep`: RUT del receptor del DTE.
-     *   - `MntTotal`: monto total del DTE.
-     *   - `CodEnvio`: código de tracking del envío que contenía el DTE.
-     *   - `EstadoDTE`: código de resultado (0 = aceptado, 1 = con discrepancias, 2 = rechazado).
-     *   - `EstadoDTEGlosa`: descripción del resultado.
+     * Required fields in `resultado_dte`:
+     *   - `TipoDTE`: DTE type code.
+     *   - `Folio`: DTE folio number.
+     *   - `FchEmis`: issue date (YYYY-MM-DD).
+     *   - `RUTEmisor`: DTE issuer RUT.
+     *   - `RUTRecep`: DTE receiver RUT.
+     *   - `MntTotal`: DTE total amount.
+     *   - `CodEnvio`: tracking code of the shipment that contained the DTE.
+     *   - `EstadoDTE`: result code (0 = accepted, 1 = with discrepancies, 2 = rejected).
+     *   - `EstadoDTEGlosa`: result description.
      */
     public function testResultadoDte(): void
     {

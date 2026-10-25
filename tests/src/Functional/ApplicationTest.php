@@ -52,7 +52,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 
     public function testApplicationInitialization(): void
     {
-        // Verificar que se puede obtener una instancia de la aplicación.
+        // Verify that an application instance can be obtained.
         $app = Application::getInstance();
         $this->assertInstanceOf(Application::class, $app);
     }

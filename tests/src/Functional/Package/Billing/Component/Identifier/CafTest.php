@@ -96,89 +96,89 @@ class CafTest extends TestCase
     }
 
     /**
-     * Test que verifica la generación de un CAF falso con claves válidas.
+     * Test that verifies generation of a fake CAF with valid keys.
      */
     public function testCafFakerGeneratesValidKeys(): void
     {
-        // Generar el CAF.
+        // Generate the CAF.
         $emisor = new Emisor('76192083-9');
         $caf = $this->cafFaker->create($emisor, 33, 1, 100);
 
-        // Verificar que se pueda obtener el RUT del emisor.
+        // Verify the issuer RUT can be obtained.
         $this->assertSame('76192083-9', $caf->getEmisor()['rut']);
 
-        // Verificar el rango de folios.
+        // Verify the folio range.
         $this->assertSame(1, $caf->getFolioDesde());
         $this->assertSame(100, $caf->getFolioHasta());
 
-        // Verificar que las claves pública y privada no estén vacías.
+        // Verify public and private keys are not empty.
         $this->assertNotEmpty($caf->getPrivateKey());
         $this->assertNotEmpty($caf->getPublicKey());
 
-        // Verificar que el tipo de documento sea el esperado.
+        // Verify the document type is as expected.
         $this->assertSame(33, $caf->getTipoDocumento());
     }
 
     /**
-     * Test que verifica que los datos del CAF falso se generen correctamente.
+     * Test that verifies fake CAF data is generated correctly.
      */
     public function testCafFakerGeneratesCorrectXml(): void
     {
-        // Generar el CAF.
+        // Generate the CAF.
         $emisor = new Emisor('76192083-9');
         $caf = $this->cafFaker->create($emisor, 61, 200, 300);
 
-        // Verificar que los folios y el tipo de documento sean correctos.
+        // Verify folios and document type are correct.
         $this->assertSame(200, $caf->getFolioDesde());
         $this->assertSame(300, $caf->getFolioHasta());
         $this->assertSame(61, $caf->getTipoDocumento());
 
-        // Verificar que la fecha de autorización esté en el formato correcto.
+        // Verify the authorization date is in the correct format.
         $this->assertMatchesRegularExpression('/\d{4}-\d{2}-\d{2}/', $caf->getFechaAutorizacion());
     }
 
     /**
-     * Test que verifica que un CAF falso no sea validado por la firma del SII.
+     * Test that verifies a fake CAF is not validated by the SII signature.
      */
     public function testCafFakerFailsValidation(): void
     {
-        // Generar el CAF.
+        // Generate the CAF.
         $emisor = new Emisor('76192083-9');
         $caf = $this->cafFaker->create($emisor, 33, 1);
 
-        // Validar el CAF falso. Se validará clave pública y privada del CAF,
-        // pero no se validará la firma del CAF en si, pues es falsa.
+        // Validate the fake CAF. Public and private CAF keys are validated,
+        // but the CAF signature is not, because it is fake.
         $this->cafValidator->validate($caf);
 
         $this->addToAssertionCount(1);
     }
 
     /**
-     * Test para verificar que el CAF falso esté en el ambiente de LibreDTE.
+     * Test that verifies the fake CAF is in the LibreDTE environment.
      */
     public function testCafFakerGeneratesLibreDteAmbiente(): void
     {
-        // Generar el CAF.
+        // Generate the CAF.
         $emisor = new Emisor('76192083-9');
         $caf = $this->cafFaker->create($emisor, 33, 1);
 
-        // Verificar que el ambiente sea el de LibreDTE.
+        // Verify the environment is LibreDTE.
         $this->assertNull($caf->getEnvironment());
     }
 
     /**
-     * Test para verificar la generación de claves públicas y privadas válidas.
+     * Test that verifies generation of valid public and private keys.
      */
     public function testCafFakerGeneratesValidKeysContent(): void
     {
-        // Generar el CAF.
+        // Generate the CAF.
         $emisor = new Emisor('76192083-9');
         $caf = $this->cafFaker->create($emisor, 33, 1);
 
-        // Verificar que la clave privada es válida.
+        // Verify the private key is valid.
         $this->assertStringContainsString('PRIVATE KEY', $caf->getPrivateKey());
 
-        // Verificar que la clave pública es válida.
+        // Verify the public key is valid.
         $this->assertStringContainsString('PUBLIC KEY', $caf->getPublicKey());
     }
 

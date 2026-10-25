@@ -22,9 +22,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
-use Derafu\Certificate\Contract\CertificateFakerInterface;
+use Derafu\Array\ArrayPath;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Signature\Exception\SignatureException;
+use Derafu\Xml\Exception\XmlException;
+use Exception;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -32,30 +35,33 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractDocume
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRendererStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSpreadsheetBatchProcessorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
-use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BatchProcessorException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerException;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
+use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBatch;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessor\Strategy\Spreadsheet\CsvBatchProcessorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\BatchProcessorWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
-use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils as NormalizationUtils;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
@@ -64,7 +70,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\N
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaCompraJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExentaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaExportacionJob;
-//use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeLiquidacionFacturaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeGuiaDespachoJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoExportacionJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoJob;
@@ -76,7 +81,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strat
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaCompraNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExentaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaExportacionNormalizerStrategy;
-//use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\LiquidacionFacturaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\GuiaDespachoNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoExportacionNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy;
@@ -90,7 +94,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaCompraSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExentaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaExportacionSanitizerStrategy;
-//use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\LiquidacionFacturaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\GuiaDespachoSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoExportacionSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy;
@@ -103,16 +106,14 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaCompraValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExentaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaExportacionValidatorStrategy;
-//use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\LiquidacionFacturaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\GuiaDespachoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoExportacionValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaDebitoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
-use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
@@ -128,6 +129,7 @@ use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocumen
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
+use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
@@ -135,23 +137,30 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
+#[CoversClass(DocumentComponent::class)]
+#[CoversClass(AduanaMoneda::class)]
+#[CoversClass(DocumentBatch::class)]
+#[CoversClass(BatchProcessorException::class)]
+#[CoversClass(NormalizerException::class)]
+#[CoversClass(BatchProcessorWorker::class)]
+#[CoversClass(AbstractSpreadsheetBatchProcessorStrategy::class)]
+#[CoversClass(CsvBatchProcessorStrategy::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
 #[CoversClass(AbstractDocument::class)]
 #[CoversClass(AbstractNormalizerStrategy::class)]
-#[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(AbstractSanitizerStrategy::class)]
 #[CoversClass(AbstractValidatorStrategy::class)]
-#[CoversClass(DocumentComponent::class)]
-#[CoversClass(CodigoDocumento::class)]
 #[CoversClass(ImpuestoAdicionalRetencion::class)]
-#[CoversClass(TagXmlDocumento::class)]
+#[CoversClass(FormaPago::class)]
 #[CoversClass(TipoDocumento::class)]
+#[CoversClass(CodigoDocumento::class)]
+#[CoversClass(TagXmlDocumento::class)]
 #[CoversClass(ImpuestoAdicionalRetencionRepository::class)]
 #[CoversClass(DocumentBag::class)]
 #[CoversClass(BuilderWorker::class)]
 #[CoversClass(DocumentBagManagerWorker::class)]
 #[CoversClass(NormalizerWorker::class)]
-#[CoversClass(NormalizationUtils::class)]
+#[CoversClass(Utils::class)]
 #[CoversClass(NormalizeBoletaAfectaJob::class)]
 #[CoversClass(NormalizeBoletaExentaJob::class)]
 #[CoversClass(NormalizeDataPostDocumentNormalizationJob::class)]
@@ -161,284 +170,304 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(NormalizeFacturaExentaJob::class)]
 #[CoversClass(NormalizeFacturaExportacionJob::class)]
 #[CoversClass(NormalizeGuiaDespachoJob::class)]
-//#[CoversClass(NormalizeLiquidacionFacturaJob::class)]
-#[CoversClass(NormalizeNotaCreditoExportacionJob::class)]
 #[CoversClass(NormalizeNotaCreditoJob::class)]
-#[CoversClass(NormalizeNotaDebitoExportacionJob::class)]
+#[CoversClass(NormalizeNotaCreditoExportacionJob::class)]
 #[CoversClass(NormalizeNotaDebitoJob::class)]
-#[CoversClass(FacturaAfectaNormalizerStrategy::class)]
-#[CoversClass(FacturaExentaNormalizerStrategy::class)]
+#[CoversClass(NormalizeNotaDebitoExportacionJob::class)]
 #[CoversClass(BoletaAfectaNormalizerStrategy::class)]
 #[CoversClass(BoletaExentaNormalizerStrategy::class)]
-//#[CoversClass(LiquidacionFacturaNormalizerStrategy::class)]
+#[CoversClass(FacturaAfectaNormalizerStrategy::class)]
 #[CoversClass(FacturaCompraNormalizerStrategy::class)]
-#[CoversClass(GuiaDespachoNormalizerStrategy::class)]
-#[CoversClass(NotaDebitoNormalizerStrategy::class)]
-#[CoversClass(NotaCreditoNormalizerStrategy::class)]
+#[CoversClass(FacturaExentaNormalizerStrategy::class)]
 #[CoversClass(FacturaExportacionNormalizerStrategy::class)]
-#[CoversClass(NotaDebitoExportacionNormalizerStrategy::class)]
+#[CoversClass(GuiaDespachoNormalizerStrategy::class)]
+#[CoversClass(NotaCreditoNormalizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionNormalizerStrategy::class)]
-#[CoversClass(RendererWorker::class)]
-#[CoversClass(RenderResult::class)]
-#[CoversClass(RenderedDocument::class)]
+#[CoversClass(NotaDebitoNormalizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionNormalizerStrategy::class)]
 #[CoversClass(SanitizerWorker::class)]
-#[CoversClass(FacturaAfectaSanitizerStrategy::class)]
-#[CoversClass(FacturaExentaSanitizerStrategy::class)]
 #[CoversClass(BoletaAfectaSanitizerStrategy::class)]
 #[CoversClass(BoletaExentaSanitizerStrategy::class)]
-//#[CoversClass(LiquidacionFacturaSanitizerStrategy::class)]
+#[CoversClass(FacturaAfectaSanitizerStrategy::class)]
 #[CoversClass(FacturaCompraSanitizerStrategy::class)]
-#[CoversClass(GuiaDespachoSanitizerStrategy::class)]
-#[CoversClass(NotaDebitoSanitizerStrategy::class)]
-#[CoversClass(NotaCreditoSanitizerStrategy::class)]
+#[CoversClass(FacturaExentaSanitizerStrategy::class)]
 #[CoversClass(FacturaExportacionSanitizerStrategy::class)]
-#[CoversClass(NotaDebitoExportacionSanitizerStrategy::class)]
+#[CoversClass(GuiaDespachoSanitizerStrategy::class)]
+#[CoversClass(NotaCreditoSanitizerStrategy::class)]
 #[CoversClass(NotaCreditoExportacionSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoSanitizerStrategy::class)]
+#[CoversClass(NotaDebitoExportacionSanitizerStrategy::class)]
 #[CoversClass(ValidatorWorker::class)]
-#[CoversClass(FacturaAfectaValidatorStrategy::class)]
-#[CoversClass(FacturaExentaValidatorStrategy::class)]
 #[CoversClass(BoletaAfectaValidatorStrategy::class)]
 #[CoversClass(BoletaExentaValidatorStrategy::class)]
-//#[CoversClass(LiquidacionFacturaValidatorStrategy::class)]
+#[CoversClass(FacturaAfectaValidatorStrategy::class)]
 #[CoversClass(FacturaCompraValidatorStrategy::class)]
-#[CoversClass(GuiaDespachoValidatorStrategy::class)]
-#[CoversClass(NotaDebitoValidatorStrategy::class)]
-#[CoversClass(NotaCreditoValidatorStrategy::class)]
+#[CoversClass(FacturaExentaValidatorStrategy::class)]
 #[CoversClass(FacturaExportacionValidatorStrategy::class)]
-#[CoversClass(NotaDebitoExportacionValidatorStrategy::class)]
+#[CoversClass(GuiaDespachoValidatorStrategy::class)]
+#[CoversClass(NotaCreditoValidatorStrategy::class)]
 #[CoversClass(NotaCreditoExportacionValidatorStrategy::class)]
-#[CoversClass(Caf::class)]
-#[CoversClass(IdentifierComponent::class)]
-#[CoversClass(CafFaker::class)]
-#[CoversClass(CafFakerWorker::class)]
-#[CoversClass(CafLoaderWorker::class)]
+#[CoversClass(NotaDebitoValidatorStrategy::class)]
+#[CoversClass(NotaDebitoExportacionValidatorStrategy::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(Emisor::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(Receptor::class)]
 #[CoversClass(ReceptorFactory::class)]
+#[CoversClass(Caf::class)]
+#[CoversClass(CafManager::class)]
+#[CoversClass(CafFaker::class)]
+#[CoversClass(CafFakerWorker::class)]
+#[CoversClass(CafLoaderWorker::class)]
+#[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
-#[CoversClass(AduanaPais::class)]
-#[CoversClass(AduanaTransporte::class)]
-#[CoversClass(FormaPago::class)]
-#[CoversClass(Traslado::class)]
+#[CoversClass(RendererWorker::class)]
+#[CoversClass(RenderResult::class)]
+#[CoversClass(RenderedDocument::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
-class EmitirIndividualmenteDocumentosOkTest extends TestCase
+#[CoversClass(DocumentException::class)]
+#[CoversClass(AduanaModalidadVenta::class)]
+class EmisionMasivaTest extends TestCase
 {
-    private BuilderWorkerInterface $builder;
-
-    private CafFakerWorkerInterface $cafFaker;
-
-    private CertificateFakerInterface $certificateFaker;
-
-    private ValidatorWorkerInterface $validator;
-
-    private RendererWorkerInterface $renderer;
-
-    protected function setUp(): void
+    public function testCargarDocumentosDesdeArchivoCsv(): void
     {
         $app = Application::getInstance();
 
-        $this->builder = $app
+        $renderer = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
-            ->getBuilderWorker()
+            ->getRendererWorker()
         ;
 
-        $this->cafFaker = $app
-            ->getPackageRegistry()
-            ->getBillingPackage()
-            ->getIdentifierComponent()
-            ->getCafFakerWorker()
-        ;
-
-        $this->certificateFaker = new CertificateFaker(new CertificateLoader());
-
-        $this->validator = $app
+        $validator = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getDocumentComponent()
             ->getValidatorWorker()
         ;
 
-        $this->renderer = $app
-            ->getPackageRegistry()
-            ->getBillingPackage()
-            ->getDocumentComponent()
-            ->getRendererWorker()
-        ;
-    }
-
-    /**
-     * @return array<string, array{string}>
-     */
-    public static function provideDocumentosOk(): array
-    {
-        // Buscar los archivos con los casos para el test.
-        $filesPath = self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml';
-        $files = glob($filesPath);
-
-        // Armar datos de prueba.
-        $documentosOk = [];
-        foreach ($files as $file) {
-            $documentosOk[basename($file)] = [$file];
-        }
-
-        // Entregar los datos para las pruebas.
-        return $documentosOk;
-    }
-
-    #[DataProvider('provideDocumentosOk')]
-    public function testEmisionCompletaEjemplosDocumentosOk(string $file): void
-    {
-        // Cargar datos del caso de prueba.
-        $yaml = file_get_contents($file);
-        $data = Yaml::parse($yaml);
-        $test = $data['Test'];
-        unset($data['Test']);
-        $test['caso'] = basename($file);
-
-        // Instanciar al emisor del documento.
-        $emisor = new Emisor(
-            $data['Encabezado']['Emisor']['RUTEmisor'],
-            $data['Encabezado']['Emisor']['RznSoc']
-                ?? $data['Encabezado']['Emisor']['RznSocEmisor']
+        $file = self::getFixturesPath('emision_masiva/emision_masiva.csv');
+        $expected = Yaml::parseFile(
+            self::getFixturesPath('emision_masiva/emision_masiva.yaml')
         );
 
-        // Crear CAF de pruebas para el caso.
-        $caf = $this->cafFaker->create(
-            $emisor,
-            $data['Encabezado']['IdDoc']['TipoDTE'],
-            $data['Encabezado']['IdDoc']['Folio']
-        );
+        $documentsBag = $this->processFile($file);
 
-        // Crear certificado de pruebas para el caso.
-        $certificate = $this->certificateFaker->createFake(id: $emisor->getRUT());
+        $cantidad = count($documentsBag);
+        $this->assertSame($expected['cantidad'], $cantidad);
 
-        // Construir el documento con los datos del archivo YAML, el CAF y el
-        // certificado digital (construcción de DTE completa, timbrado y
-        // firmado).
-        $bag = new DocumentBag(
-            parsedData: $data,
-            caf: $caf,
-            certificate: $certificate
-        );
-        $this->builder->build($bag);
-
-        // Validar que se haya logrado crear los datos normalizados.
-        $normalizedData = $bag->getParsedData();
-        $this->assertIsArray($normalizedData);
-        $this->assertNotEmpty($normalizedData);
-
-        // Validar que se haya creado un DTE.
-        $document = $bag->getDocument();
-        $this->assertInstanceOf(DocumentInterface::class, $document);
-
-        // Validar los valores esperados del DTE con los reales obtenidos.
-        // Se usa getData() en vez de $normalizedData justamente para
-        // corroborar que al pasar por la construcción del XML no se haya
-        // alterado ningún dato (sobre todo en casos con tags con valores 0 o
-        // codificados).
-        $actualValues = $document->getData();
-        $this->validateExpectedValues(
-            $test['ExpectedValues'],
-            $actualValues,
-            $test['caso']
-        );
-
-        // Obtener el XML del DTE.
-        $xml = $bag->getDocument()->saveXml();
-        $needle = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-        $this->assertStringContainsString($needle, $xml);
-        file_put_contents($file . '.xml', $xml);
-
-        // Validar esquema del XML generado y la firma.
-        $this->validator->validateSchema($xml);
-        $result = $this->validator->validateSignature($xml);
-        $this->assertTrue($result->isValid());
-
-        // Renderizar el documento para corroborar que se puedan construir con
-        // la estrategia estándar en HTML.
-        $bag->getOptions()->set('renderer.format', 'html');
-        $html = (string) $this->renderer->render($bag);
-        $this->assertNotEmpty($html);
-        file_put_contents($file . '.html', $html);
-
-        // Renderizar el documento para corroborar que se puedan construir con
-        // la estrategia estándar en PDF.
-        $bag->getOptions()->set('renderer.format', 'pdf');
-        $pdf = (string) $this->renderer->render($bag);
-        $this->assertNotEmpty($pdf);
-        file_put_contents($file . '.pdf', $pdf);
-    }
-
-    /**
-     * Valida recursivamente los valores esperados en el arreglo de los datos
-     * reales entregados.
-     * @param array<array-key, mixed> $expectedValues
-     * @param array<array-key, mixed> $actualValues
-     */
-    private function validateExpectedValues(
-        array $expectedValues,
-        array $actualValues,
-        string $caso,
-        string $parentKey = ''
-    ): void {
-        foreach ($expectedValues as $key => $expectedValue) {
-            // Construir el nombre completo de la clave para los mensajes de
-            // error.
-            $fullKey = $parentKey ? $parentKey . '.' . $key : $key;
-
-            // Corroborar que el índice esté presente en los datos reales.
-            $this->assertArrayHasKey($key, $actualValues, sprintf(
-                'En el caso %s no existe el campo %s.',
-                $caso,
-                $fullKey
-            ));
-
-            // Si el valor esperado es un arreglo, llamar recursivamente.
-            if (is_array($expectedValue)) {
-                $this->validateExpectedValues(
-                    $expectedValue,
-                    $actualValues[$key],
-                    $caso,
-                    $fullKey
-                );
+        for ($i = 0; $i < $cantidad; $i++) {
+            $documentBag = $documentsBag[$i];
+            $dataExpected = $expected['documentos'][$i] ?? null;
+            if ($dataExpected === null) {
+                throw new LogicException(sprintf(
+                    'Falta definir los valores esperados del documento %d del archivo %s',
+                    $i + 1,
+                    $file
+                ));
             }
 
-            // Si el valor esperado no es un arreglo, se compara directamente.
-            else {
-                // Si el valor actual es un flotante, se revisa si se debe
-                // convertir a un entero para usar assertSame() con el tipo de
-                // datos correcto y que no falle porque se compara entero con
-                // float.
-                if (
-                    is_float($actualValues[$key])
-                    && floor($actualValues[$key]) == $actualValues[$key]
-                ) {
-                    $actualValues[$key] = (int) $actualValues[$key];
-                }
+            // Generate document XML.
+            $xml = $documentBag->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+            $this->assertNotEmpty($xml);
+            file_put_contents(
+                $file . '_' . $documentBag->getId() . '.xml',
+                $xml
+            );
 
-                // Realizar validación del valor.
+            // Validate document schema.
+            try {
+                $validator->validateSchema($xml);
+            } catch (Exception $e) {
+                throw new XmlException(sprintf(
+                    'La validación del XML del documento %d (%s) falló: %s',
+                    $i + 1,
+                    $documentBag->getId(),
+                    $e->getMessage()
+                ));
+            }
+
+            // Validate document signature.
+            try {
+                $result = $validator->validateSignature($xml);
+                if (!$result->isValid()) {
+                    throw $result->getError();
+                }
+            } catch (Exception $e) {
+                throw new SignatureException(sprintf(
+                    'La validación de la firma del documento %d (%s) falló: %s',
+                    $i + 1,
+                    $documentBag->getId(),
+                    $e->getMessage()
+                ));
+            }
+
+            // Generate the document PDF.
+            $pdf = (string) $renderer->render($documentBag);
+            $this->assertNotEmpty($pdf);
+            file_put_contents(
+                $file . '_' . $documentBag->getId() . '.pdf',
+                $pdf
+            );
+
+            // Validate expected document fields.
+            $dataActual = ArrayPath::flatten(
+                $documentBag->getDocument()->getData()
+            );
+            foreach ($dataExpected as $expectedKey => $expectedValue) {
+                $actualValue = $dataActual[$expectedKey] ?? null;
                 $this->assertSame(
                     $expectedValue,
-                    $actualValues[$key],
+                    $actualValue,
                     sprintf(
-                        'En el caso %s el valor %s para %s no cuadra con el valor esperado %s.',
-                        $caso,
-                        $actualValues[$key],
-                        $fullKey,
-                        $expectedValue
+                        'Error al validar que el valor de %s (%s) coincida con el esperado %s en el documento %d (%s).',
+                        $expectedKey,
+                        $actualValue,
+                        $expectedValue,
+                        $i + 1,
+                        $documentBag->getId()
                     )
                 );
             }
         }
+    }
+
+    /**
+     * @return array<string, array{string, mixed, mixed}>
+     */
+    public static function provideArchivosConErrores(): array
+    {
+        $dir = self::getFixturesPath('emision_masiva/errores');
+        $casos = Yaml::parseFile($dir . '/errores.yaml');
+
+        $archivos = [];
+        foreach ($casos as $archivo => $caso) {
+            $archivos[$archivo] = [
+                $dir . '/' . $archivo,
+                $caso['exception'],
+                $caso['message'],
+            ];
+        }
+
+        return $archivos;
+    }
+
+    #[DataProvider('provideArchivosConErrores')]
+    public function testArchivoConErroresLanzaExcepcion(
+        string $file,
+        string $exception,
+        string $message
+    ): void {
+        $this->expectException(
+            'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
+            . $exception
+        );
+        $this->expectExceptionMessage($message);
+
+        $this->processFile($file);
+    }
+
+    public function testArchivoSinDocumentosEntregaArregloVacio(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/sin_documentos.csv');
+
+        $this->assertSame([], $this->processFile($file));
+    }
+
+    public function testNombrePdfSeTruncaA100Caracteres(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
+
+        $documentsBag = $this->processFile($file);
+
+        $this->assertCount(1, $documentsBag);
+        $nombre = $documentsBag[0]->getParsedData()['LibreDTE']['pdf']['nombre'];
+        $this->assertSame(100, mb_strlen($nombre));
+    }
+
+    public function testArchivoEnIso88591SeConvierteAUtf8(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/iso_8859_1.csv');
+
+        $documentsBag = $this->processFile($file);
+
+        $this->assertCount(1, $documentsBag);
+        $parsed = $documentsBag[0]->getParsedData();
+        $this->assertSame(
+            'Peña Ñandú Ltda',
+            $parsed['Encabezado']['Receptor']['RznSocRecep']
+        );
+        $this->assertSame(
+            'Asesoría y Diseño',
+            $parsed['Encabezado']['Receptor']['GiroRecep']
+        );
+        $this->assertSame('Café', $parsed['Detalle'][0]['NmbItem']);
+        $this->assertSame(
+            'Descripción: á é í ó ú ñ',
+            $parsed['Detalle'][0]['DscItem']
+        );
+    }
+
+    public function testLoteComoContenidoEntregaLosMismosDocumentos(): void
+    {
+        $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
+        $batch = new DocumentBatch(inputData: file_get_contents($file));
+
+        $documentsBag = $this->processBatch($batch);
+
+        $this->assertCount(1, $documentsBag);
+        $this->assertNull($batch->getInputFile());
+    }
+
+    /**
+     * Processes a bulk issuance file with an issuer and test
+     * certificate.
+     *
+     * @return array<array-key, DocumentBagInterface>
+     */
+    private function processFile(string $file): array
+    {
+        return $this->processBatch(new DocumentBatch(inputFile: $file));
+    }
+
+    /**
+     * Processes a bulk issuance batch with an issuer and test
+     * certificate.
+     *
+     * @return array<array-key, DocumentBagInterface>
+     */
+    private function processBatch(DocumentBatch $batch): array
+    {
+        $emisor = new Emisor(
+            rut: 76192083,
+            razon_social: 'SASCO SpA',
+            giro: 'Tecnología, Informática y Telecomunicaciones',
+            actividad_economica: 726000,
+            direccion: 'DBG',
+            comuna: 'Santa Cruz'
+        );
+
+        // Generate a fake certificate.
+        $certificateFaker = new CertificateFaker(new CertificateLoader());
+        $certificate = $certificateFaker->createFake(id: $emisor->getRUT());
+
+        $batch->setEmisor($emisor);
+        $batch->setCertificate($certificate);
+
+        return Application::getInstance()
+            ->getPackageRegistry()
+            ->getBillingPackage()
+            ->getDocumentComponent()
+            ->getBatchProcessorWorker()
+            ->process($batch)
+            ->getDocumentBags()
+        ;
     }
 }

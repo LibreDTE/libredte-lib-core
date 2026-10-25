@@ -60,7 +60,7 @@ class AuthenticateTest extends TestCase
             ->getSiiLazyWorker()
         ;
 
-        // Cargar certificado digital.
+        // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
                 getenv('LIBREDTE_CERTIFICATE_FILE'),
@@ -70,7 +70,7 @@ class AuthenticateTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        // Solicitar token ambiente producción.
+        // Request production environment token.
         $token = $siiLazyWorker->authenticate(new SiiRequest($certificate));
         $this->assertNotEmpty($token);
     }

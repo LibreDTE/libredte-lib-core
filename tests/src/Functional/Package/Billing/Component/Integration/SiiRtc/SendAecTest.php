@@ -142,8 +142,8 @@ class SendAecTest extends TestCase
 {
     public function testSendAecFacturaAfecta(): void
     {
-        // Tratar de cargar el certificado digital. Si no se logra cargar el
-        // test se marcará como "saltado".
+        // Try to load the digital certificate. If loading fails, the test is
+        // marked as skipped.
         try {
             $certificateLoader = new CertificateLoader();
             $certificate = $certificateLoader->loadFromFile(
@@ -190,11 +190,11 @@ class SendAecTest extends TestCase
             ))
         ;
 
-        // Enviar el AEC al RTC del SII en el ambiente de certificación.
-        // Con un certificado real pero CAF falso, el SII autentica al usuario
-        // pero probablemente rechace el AEC. En ambos casos el test es válido:
-        // si retorna Track ID la comunicación fue exitosa; si lanza
-        // SendAecException el round-trip HTTP funcionó correctamente.
+        // Send the AEC to the SII RTC in the certification environment.
+        // With a real certificate but fake CAF, the SII authenticates the user
+        // but will likely reject the AEC. Both outcomes are valid for this test:
+        // if a Track ID is returned, communication succeeded; if SendAecException
+        // is thrown, the HTTP round-trip still worked correctly.
         $request = new SiiRequest($certificate, [
             'environment' => SiiEnvironment::STAGING,
         ]);
@@ -211,15 +211,15 @@ class SendAecTest extends TestCase
             $this->assertInstanceOf(SendAecResponse::class, $response);
             $this->assertGreaterThan(0, $response->getTrackId());
         } catch (SendAecException $e) {
-            // El SII rechazó el AEC (CAF falso no válido en producción/cert.),
-            // pero la comunicación HTTP con el servicio RTC funcionó.
+            // The SII rejected the AEC (fake CAF not valid in production/cert.),
+            // but HTTP communication with the RTC service worked.
             $this->addToAssertionCount(1);
         }
     }
 
     /**
-     * Construye una FacturaAfecta con un CAF falso generado para el emisor
-     * derivado del certificado real.
+     * Builds a FacturaAfecta with a fake CAF generated for the issuer
+     * derived from the real certificate.
      */
     private function buildFacturaAfecta(Application $app, CertificateInterface $certificate): DocumentInterface
     {

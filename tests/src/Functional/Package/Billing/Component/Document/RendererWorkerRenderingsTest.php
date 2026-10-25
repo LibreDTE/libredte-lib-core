@@ -85,9 +85,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 
 /**
- * Pruebas de las presentaciones (tributaria/cedible) y copias múltiples del
- * `RendererWorker`, incluyendo su integración real con la plantilla estándar
- * (no un doble/mock de la estrategia).
+ * Tests for (tax/copy) presentations and multiple copies of the
+ * `RendererWorker`, including real integration with the standard template
+ * (without doubling/mocking the strategy).
  */
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -158,9 +158,9 @@ class RendererPresentacionesTest extends TestCase
     }
 
     /**
-     * Crea (en borrador, sin CAF ni certificado, no relevante para estas
-     * pruebas) una factura afecta (33): tipo de documento que sí admite
-     * acuse de recibo.
+     * Creates (draft, without CAF or certificate, not relevant for these
+     * tests) a taxable invoice (33): document type that supports
+     * acknowledgment of receipt.
      */
     private function facturaAfecta(): DocumentBagInterface
     {
@@ -194,8 +194,8 @@ class RendererPresentacionesTest extends TestCase
     }
 
     /**
-     * Crea (en borrador) una boleta afecta (39): tipo de documento que NO
-     * admite acuse de recibo (`TipoDocumento::requiresAcuseRecibo()`).
+     * Creates (draft) a taxable receipt (39): document type that does NOT
+     * support acknowledgment of receipt (`TipoDocumento::requiresAcuseRecibo()`).
      */
     private function boletaAfecta(): DocumentBagInterface
     {
@@ -243,7 +243,7 @@ class RendererPresentacionesTest extends TestCase
         $this->assertSame($bag->getId() . '.html', $rendering->getFilename());
         $this->assertStringNotContainsString('CEDIBLE', $rendering->getContent());
 
-        // __toString() funciona porque hay exactamente 1 archivo.
+        // __toString() works because there is exactly one file.
         $this->assertSame($rendering->getContent(), (string) $result);
     }
 
@@ -272,7 +272,7 @@ class RendererPresentacionesTest extends TestCase
         $this->assertStringContainsString('CEDIBLE', $cedible->getContent());
         $this->assertStringContainsString('Acuse de recibo', $cedible->getContent());
 
-        // Con 2 archivos, __toString() ya no es ambiguo-resoluble: falla.
+        // With two files, __toString() is no longer unambiguously resolvable: it fails.
         $this->expectException(RenderResultException::class);
         (string) $result;
     }
@@ -287,15 +287,15 @@ class RendererPresentacionesTest extends TestCase
 
         $result = $this->biller->getRendererWorker()->render($bag);
 
-        // Una sola presentación (label), sin duplicar en memoria.
+        // Single presentation (label), without duplicating in memory.
         $this->assertCount(1, $result->getRenderings());
         $rendering = $result->getRendering('tributaria');
         $this->assertSame(3, $rendering->getCopies());
 
-        // __toString() sigue funcionando: hay 1 archivo único (3 copias del mismo).
+        // __toString() still works: one unique file (3 copies of the same).
         $this->assertSame($rendering->getContent(), (string) $result);
 
-        // La expansión (con número de copia y nombre ajustado) solo ocurre acá.
+        // Expansion (with copy number and adjusted name) only happens here.
         $array = $result->toArray();
         $this->assertCount(3, $array['renderings']);
 
