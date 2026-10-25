@@ -49,6 +49,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
 #[Worker(name: 'document_bag_manager', component: 'document', package: 'billing')]
 class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagManagerWorkerInterface
 {
+    /**
+     * @var class-string<DocumentBagInterface>
+     */
     protected $documentBagClass = DocumentBag::class;
 
     public function __construct(

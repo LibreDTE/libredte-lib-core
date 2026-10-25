@@ -91,7 +91,7 @@ enum TipoLibro: string
     /**
      * Retorna los datos del tipo de libro como un arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {

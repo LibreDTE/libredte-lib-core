@@ -149,7 +149,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getEnvironment(): SiiEnvironment
     {
-        return $this->options->get('environment');
+        return $this->options->getReader()->requireObject('environment', SiiEnvironment::class);
     }
 
     /**
@@ -157,7 +157,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getRetries(?int $retries = null): int
     {
-        $retriesInOptions = $this->options->get('retries');
+        $retriesInOptions = $this->options->getReader()->requireInt('retries');
 
         return max(0, min(
             $retries ?? $retriesInOptions,
@@ -170,7 +170,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getVerifySsl(): bool
     {
-        return $this->options->get('verify_ssl');
+        return $this->options->getReader()->requireBool('verify_ssl');
     }
 
     /**
@@ -178,7 +178,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getTokenDefaultCache(): string
     {
-        return $this->options->get('token.cache');
+        return $this->options->getReader()->requireString('token.cache');
     }
 
     /**
@@ -186,7 +186,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getTokenKey(): string
     {
-        $key = $this->options->get('token.key');
+        $key = $this->options->getReader()->requireString('token.key');
 
         if (!str_contains($key, '%s')) {
             throw new RuntimeException(
@@ -208,7 +208,7 @@ class SiiRequest implements SiiRequestInterface
      */
     public function getTokenTtl(): int
     {
-        return $this->options->get('token.ttl');
+        return $this->options->getReader()->requireInt('token.ttl');
     }
 
     /**

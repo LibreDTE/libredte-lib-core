@@ -111,13 +111,13 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     public function render(DocumentBagInterface $bag): RenderResultInterface
     {
         $options = $this->resolveOptions($bag->getRendererOptions());
-        $strategy = $this->getStrategy($options->get('strategy'));
+        $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
         assert($strategy instanceof RendererStrategyInterface);
 
         $bag = $this->documentBagManager->normalize($bag, all: true);
 
-        $format = (string) $options->get('format');
+        $format = $options->getReader()->requireString('format');
         $presentaciones = $this->resolvePresentaciones($options, $bag);
 
         if (empty($presentaciones)) {

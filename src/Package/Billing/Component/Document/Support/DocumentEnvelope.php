@@ -259,7 +259,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      */
     public function getDispatcherOptions(): array
     {
-        return $this->getOptions()->get('dispatcher')->all();
+        return $this->getOptions()->getReader()->requireArray('dispatcher');
     }
 
     /**
@@ -375,6 +375,10 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>&array{
+     *     xml: string
+     * }
      */
     public function toArray(): array
     {
@@ -391,6 +395,8 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

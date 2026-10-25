@@ -75,6 +75,9 @@ class SubmitDocumentAcceptanceResponse implements JsonSerializable
         return in_array($this->code, [0, 7, 8, 27], true);
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function toArray(): array
     {
         return [
@@ -83,6 +86,9 @@ class SubmitDocumentAcceptanceResponse implements JsonSerializable
         ];
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

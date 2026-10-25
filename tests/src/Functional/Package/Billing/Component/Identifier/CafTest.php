@@ -184,6 +184,9 @@ class CafTest extends TestCase
         $this->assertStringContainsString('PUBLIC KEY', $caf->getPublicKey());
     }
 
+    /**
+     * @return array<string, array{code: int, file: string}>
+     */
     public static function provideCafCertificacion(): array
     {
         $codes = [33, 34, 39, 41, 43, 46, 52, 56, 61, 110, 111, 112];

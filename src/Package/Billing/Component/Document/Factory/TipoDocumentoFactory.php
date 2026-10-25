@@ -37,7 +37,7 @@ class TipoDocumentoFactory implements TipoDocumentoFactoryInterface
     /**
      * Clase de la entidad de los tipos de documento.
      *
-     * @var string
+     * @var class-string<TipoDocumentoInterface>
      */
     private string $class = TipoDocumento::class;
 

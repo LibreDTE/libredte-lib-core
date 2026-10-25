@@ -122,7 +122,7 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
     public function load(BookBagInterface $bag): BookBagInterface
     {
         $options = $this->resolveOptions($bag->getLoaderOptions());
-        $format = $options->get('format');
+        $format = $options->getReader()->requireString('format');
         $strategyName = $bag->getTipo()->value . '.' . $format;
         $strategy = $this->getStrategy($strategyName);
 

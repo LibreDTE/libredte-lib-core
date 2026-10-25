@@ -476,6 +476,10 @@ class Caf implements CafInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>&array{
+     *     xml: string
+     * }
      */
     public function toArray(): array
     {
@@ -502,6 +506,8 @@ class Caf implements CafInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

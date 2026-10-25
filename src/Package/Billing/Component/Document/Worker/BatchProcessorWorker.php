@@ -142,7 +142,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $documentBag->setEmisor($emisor);
 
             // Completar el documento si así se solicitó.
-            if ($options->get('complete')) {
+            if ($options->getReader()->requireBool('complete')) {
                 $parsedData = $this->completeParsedData(
                     $batch,
                     $parsedData
@@ -189,7 +189,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $this->documentBagManagerWorker->normalize($documentBag);
 
             // Solicitar CAF y asignar certificado si se solicitó.
-            if ($options->get('stamp')) {
+            if ($options->getReader()->requireBool('stamp')) {
                 $folio = $documentBag->getFolio();
                 $folio = is_int($folio) ? $folio : null;
                 $tipoDoc = $documentBag->getTipoDocumento()->getCodigo();
@@ -240,7 +240,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     private function parseDocuments(DocumentBatchInterface $batch): array
     {
         $options = $this->resolveOptions($batch->getBatchProcessorOptions());
-        $strategy = $this->getStrategy($options->get('strategy'));
+        $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
         assert($strategy instanceof BatchProcessorStrategyInterface);
 

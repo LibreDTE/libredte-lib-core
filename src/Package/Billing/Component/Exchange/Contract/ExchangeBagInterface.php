@@ -78,7 +78,7 @@ interface ExchangeBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Convierte la bolsa a un array.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

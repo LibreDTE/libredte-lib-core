@@ -86,7 +86,13 @@ interface RenderedDocumentInterface extends JsonSerializable
      * con el resto de la biblioteca: la codificación a base64 para
      * serialización JSON ocurre solo en `jsonSerialize()`.
      *
-     * @return array
+     * @return array{
+     *     content: string,
+     *     mimeType: string,
+     *     filename: string|null,
+     *     label: string|null,
+     *     copies: int
+     * }
      */
     public function toArray(): array;
 }

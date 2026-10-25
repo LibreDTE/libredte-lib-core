@@ -112,6 +112,8 @@ class ListDocumentEventsResponse implements JsonSerializable
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

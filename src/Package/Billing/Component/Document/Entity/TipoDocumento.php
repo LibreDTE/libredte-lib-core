@@ -444,6 +444,8 @@ class TipoDocumento implements TipoDocumentoInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -476,6 +478,8 @@ class TipoDocumento implements TipoDocumentoInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

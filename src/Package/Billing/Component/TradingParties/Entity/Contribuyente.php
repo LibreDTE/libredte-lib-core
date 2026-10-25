@@ -342,6 +342,8 @@ class Contribuyente implements ContribuyenteInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -366,6 +368,8 @@ class Contribuyente implements ContribuyenteInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

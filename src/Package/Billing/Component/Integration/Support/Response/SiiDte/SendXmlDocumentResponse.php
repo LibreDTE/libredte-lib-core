@@ -48,11 +48,17 @@ class SendXmlDocumentResponse implements JsonSerializable
         return $this->trackId;
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function toArray(): array
     {
         return ['track_id' => $this->trackId];
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

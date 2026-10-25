@@ -84,7 +84,7 @@ class DocumentEvent implements JsonSerializable
     /**
      * Entrega el evento como arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -98,6 +98,8 @@ class DocumentEvent implements JsonSerializable
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

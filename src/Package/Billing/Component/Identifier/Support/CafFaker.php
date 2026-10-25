@@ -145,7 +145,7 @@ class CafFaker
     /**
      * Crea un CAF falso a partir de los datos asignados al CafFaker.
      *
-     * @return array El CAF falso en formato arreglo.
+     * @return array<array-key, mixed> El CAF falso en formato arreglo.
      */
     public function toArray(): array
     {

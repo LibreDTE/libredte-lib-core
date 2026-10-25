@@ -76,6 +76,9 @@ class EstandarParserStrategyTest extends TestCase
         $this->strategy = $strategy;
     }
 
+    /**
+     * @return array<string, array{string}>
+     */
     public static function provideCasosBorde(): array
     {
         $files = glob(
@@ -126,6 +129,8 @@ class EstandarParserStrategyTest extends TestCase
     /**
      * Valida recursivamente los valores esperados en el resultado del parser,
      * incluyendo el tipo de dato.
+     * @param array<array-key, mixed> $expected
+     * @param array<array-key, mixed> $actual
      */
     private function assertExpectedValues(
         array $expected,

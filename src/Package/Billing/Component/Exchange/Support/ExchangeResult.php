@@ -145,6 +145,8 @@ class ExchangeResult implements ExchangeResultInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -160,6 +162,8 @@ class ExchangeResult implements ExchangeResultInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

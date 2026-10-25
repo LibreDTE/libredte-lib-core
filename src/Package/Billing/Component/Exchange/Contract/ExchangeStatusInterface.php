@@ -99,7 +99,7 @@ interface ExchangeStatusInterface extends JsonSerializable
     /**
      * Convierte el estado a un array.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

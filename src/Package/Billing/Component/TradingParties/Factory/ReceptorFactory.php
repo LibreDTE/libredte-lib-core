@@ -39,7 +39,7 @@ class ReceptorFactory extends AbstractContribuyenteFactory implements ReceptorFa
     /**
      * Clase de la entidad de los receptores.
      *
-     * @var string
+     * @var class-string<ReceptorInterface>
      */
     private string $class = Receptor::class;
 

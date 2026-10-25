@@ -63,7 +63,7 @@ interface PartyInterface extends JsonSerializable
     /**
      * Convierte el participante a un array.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

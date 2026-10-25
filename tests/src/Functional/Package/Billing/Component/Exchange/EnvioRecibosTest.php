@@ -69,6 +69,24 @@ class EnvioRecibosTest extends TestCase
         $this->certificate = (new CertificateFaker(new CertificateLoader()))->createFake();
     }
 
+    /**
+     * @return array<string, array{
+     *     recibos: list<array{
+     *         TipoDoc: int,
+     *         Folio: int,
+     *         FchEmis: string,
+     *         RUTEmisor: string,
+     *         RUTRecep: string,
+     *         MntTotal: int,
+     *         Recinto: string,
+     *         RutFirma: string
+     *     }>,
+     *     expected: array{
+     *         id: string,
+     *         ids_recibos: list<string>
+     *     }
+     * }>
+     */
     public static function dataProviderForTestEnvioRecibos(): array
     {
         $reciboBase = [
@@ -120,6 +138,17 @@ class EnvioRecibosTest extends TestCase
      *   - `MntTotal`: monto total del DTE.
      *   - `Recinto`: lugar donde se materializa la recepción.
      *   - `RutFirma`: RUT de quien firma el recibo.
+     * @param list<array{
+     *     TipoDoc: int,
+     *     Folio: int,
+     *     FchEmis: string,
+     *     RUTEmisor: string,
+     *     RUTRecep: string,
+     *     MntTotal: int,
+     *     Recinto: string,
+     *     RutFirma: string
+     * }> $recibos
+     * @param array{id: string, ids_recibos: list<string>} $expected
      */
     #[DataProvider('dataProviderForTestEnvioRecibos')]
     public function testEnvioRecibos(array $recibos, array $expected): void

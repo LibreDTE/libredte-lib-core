@@ -72,6 +72,9 @@ class CheckDocumentAssignabilityResponse implements JsonSerializable
         return $this->code === 0;
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function toArray(): array
     {
         return [
@@ -80,6 +83,9 @@ class CheckDocumentAssignabilityResponse implements JsonSerializable
         ];
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

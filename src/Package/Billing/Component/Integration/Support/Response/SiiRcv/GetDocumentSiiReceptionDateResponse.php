@@ -66,11 +66,17 @@ class GetDocumentSiiReceptionDateResponse implements JsonSerializable
         return $this->receptionDate;
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function toArray(): array
     {
         return ['fecha_recepcion_sii' => $this->receptionDate];
     }
 
+    /**
+     * @return array<array-key, mixed>
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

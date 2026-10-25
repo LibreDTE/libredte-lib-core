@@ -40,7 +40,7 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
     /**
      * Clase de la entidad de los emisores.
      *
-     * @var string
+     * @var class-string<EmisorInterface>
      */
     private string $class = Emisor::class;
 

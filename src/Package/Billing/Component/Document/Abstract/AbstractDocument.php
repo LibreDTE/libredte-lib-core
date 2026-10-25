@@ -24,9 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
+use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayPath;
 use Derafu\Repository\Entity;
 use Derafu\Selector\Selector;
-use Derafu\Support\Arr;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use Derafu\Xml\Exception\XmlQueryException;
@@ -547,10 +548,14 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                 'Referencia',
             ];
             foreach ($arrayRequired as $path) {
-                Arr::ensureArrayAtPath($array, $path);
+                $array = ArrayPath::wrap($array, $path);
             }
 
-            $this->data = Arr::cast($array, preserveFormat: true);
+            $this->data = ArrayCaster::cast(
+                $array,
+                preserveNumericFormat: true,
+                preserveNumericPrecision: true,
+            );
         }
 
         // Entregar los datos del DTE.
@@ -685,6 +690,8 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

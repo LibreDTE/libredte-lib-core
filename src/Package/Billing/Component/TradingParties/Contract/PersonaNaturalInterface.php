@@ -57,7 +57,7 @@ interface PersonaNaturalInterface extends JsonSerializable
     /**
      * Entrega los datos de la persona natural en un arreglo.
      *
-     * @return array Arreglo con los datos de la persona natural.
+     * @return array<array-key, mixed> Arreglo con los datos de la persona natural.
      */
     public function toArray(): array;
 }

@@ -249,7 +249,7 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
     /**
      * Entrega los datos de la respuesta como un arreglo.
      *
-     * @return array Datos de la respuesta.
+     * @return array<array-key, mixed> Datos de la respuesta.
      */
     public function toArray(): array
     {
@@ -258,6 +258,8 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

@@ -109,7 +109,7 @@ interface DocumentBatchInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Convierte el lote a un array.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

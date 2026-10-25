@@ -43,6 +43,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(ParserWorker::class)]
 #[CoversClass(JsonParserStrategy::class)]class ApplicationTest extends TestCase
 {
+    /**
+     * @var array{services: array<string, class-string>}
+     */
     private array $testCases = [
         'services' => [
             'libredte.lib.billing' => BillingPackageInterface::class,

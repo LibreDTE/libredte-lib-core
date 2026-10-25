@@ -366,6 +366,8 @@ class Emisor extends Contribuyente implements EmisorInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {

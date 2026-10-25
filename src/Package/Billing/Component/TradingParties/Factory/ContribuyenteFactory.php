@@ -39,7 +39,7 @@ class ContribuyenteFactory extends AbstractContribuyenteFactory implements Contr
     /**
      * Clase de la entidad de los contribuyentes.
      *
-     * @var string
+     * @var class-string<ContribuyenteInterface>
      */
     protected string $class = Contribuyente::class;
 

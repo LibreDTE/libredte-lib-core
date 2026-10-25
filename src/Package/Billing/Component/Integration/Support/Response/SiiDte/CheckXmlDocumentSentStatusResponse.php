@@ -406,7 +406,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Entrega los datos de la respuesta como un arreglo.
      *
-     * @return array Datos de la respuesta.
+     * @return array<array-key, mixed> Datos de la respuesta.
      */
     public function toArray(): array
     {
@@ -415,6 +415,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

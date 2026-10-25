@@ -119,6 +119,8 @@ class PartyIdentifier implements PartyIdentifierInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -133,6 +135,8 @@ class PartyIdentifier implements PartyIdentifierInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

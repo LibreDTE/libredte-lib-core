@@ -139,6 +139,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     // marcador especial. createEnvelope() detecta ese marcador y llama a
     // markTestSkipped(), evitando el exit code 2 que PHPUnit 11 produce cuando
     // un DataProvider retorna un array vacío.
+    /**
+     * @return array<string, array{string}>
+     */
     public static function provideDocumentosOk(): array
     {
         // Buscar los archivos con los casos para el test.
@@ -207,6 +210,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
 
     // Validación del esquema XML del documento (DTE) que viene en el sobre
     // contra el XSD correspondiente al tipo de documento (ej. DTE_v10.xsd).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateDocumentoSchema($file): void
     {
@@ -219,6 +225,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Valida el DigestValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreDigestValue($file): void
     {
@@ -239,6 +248,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Valida el SignatureValue de la firma del sobre (Firma 2, referencia #SetDoc).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateSobreSignatureValue($file): void
     {
@@ -268,6 +280,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Valida el DigestValue de la firma del documento (Firma 1).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateDocumentoDigestValue($file): void
     {
@@ -290,6 +305,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Valida el SignatureValue de la firma del documento (Firma 1).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateDocumentoSignatureValue($file): void
     {
@@ -309,6 +327,9 @@ class ValidarXmlSobreEnvioDocumentosOkTest extends TestCase
     }
 
     // Valida la firma completa del documento vía ValidatorWorker::validateSignature().
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosOk')]
     public function testValidateDocumentoSignature($file): void
     {

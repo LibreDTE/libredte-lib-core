@@ -209,6 +209,9 @@ use Throwable;
 #[CoversClass(FakeReceptorProvider::class)]
 class CrearSobreEnvioAmbienteCertificacionSiiTest extends TestCase
 {
+    /**
+     * @return array<string, array{string, string}>
+     */
     public static function provideDocumentosOk(): array
     {
         // Buscar los archivos con los casos para el test.

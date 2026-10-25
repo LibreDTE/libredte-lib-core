@@ -209,7 +209,7 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     /**
      * Entrega los datos del sobre de documentos en un arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

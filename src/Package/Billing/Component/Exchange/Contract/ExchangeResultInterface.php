@@ -95,7 +95,7 @@ interface ExchangeResultInterface extends JsonSerializable
      * `ExchangeBag::addResult()` garantiza que todo sobre con un resultado
      * también quede agregado a los sobres de la bolsa.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

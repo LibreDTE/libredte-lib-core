@@ -92,6 +92,14 @@ class RenderedDocument implements RenderedDocumentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array{
+     *     content: string,
+     *     mimeType: string,
+     *     filename: string|null,
+     *     label: string|null,
+     *     copies: int
+     * }
      */
     public function toArray(): array
     {
@@ -106,6 +114,8 @@ class RenderedDocument implements RenderedDocumentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

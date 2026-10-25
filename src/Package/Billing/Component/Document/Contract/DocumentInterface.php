@@ -357,7 +357,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Entrega los datos del DTE como un arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

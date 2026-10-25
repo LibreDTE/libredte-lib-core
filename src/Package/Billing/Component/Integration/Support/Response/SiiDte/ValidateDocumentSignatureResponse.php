@@ -263,7 +263,7 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
     /**
      * Entrega los datos de la respuesta como un arreglo.
      *
-     * @return array Datos de la respuesta.
+     * @return array<array-key, mixed> Datos de la respuesta.
      */
     public function toArray(): array
     {
@@ -272,6 +272,8 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

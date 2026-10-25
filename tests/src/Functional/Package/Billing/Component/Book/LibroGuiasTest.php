@@ -24,11 +24,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Selector\Selector;
-use Derafu\Support\Arr;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
@@ -107,11 +107,24 @@ class LibroGuiasTest extends TestCase
         ]);
     }
 
+    /**
+     * @return array<string, array{
+     *     input: array{
+     *         caratula?: array<string, mixed>,
+     *         detalle?: array<int, array<string, mixed>>
+     *     },
+     *     expected: array<string, mixed>
+     * }>
+     */
     public static function dataProviderForTestFromArraySource(): array
     {
         return require self::getFixturesPath('books/libro_guias.php');
     }
 
+    /**
+     * @param array{caratula?: array<string, mixed>, detalle?: array<int, array<string, mixed>>} $input
+     * @param array<string, mixed> $expected
+     */
     #[DataProvider('dataProviderForTestFromArraySource')]
     public function testFromArraySource($input, $expected): void
     {
@@ -148,9 +161,9 @@ class LibroGuiasTest extends TestCase
             $actualValue = Selector::get($data, $key);
             if ($actualValue !== null) {
                 if (!is_array($expectedValue)) {
-                    $actualValue = Arr::cast([$actualValue])[0];
+                    $actualValue = ArrayCaster::cast([$actualValue])[0];
                 } else {
-                    $actualValue = Arr::cast($actualValue);
+                    $actualValue = ArrayCaster::cast($actualValue);
                 }
             }
             $this->assertSame($expectedValue, $actualValue, "Key: $key");

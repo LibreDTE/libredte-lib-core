@@ -39,7 +39,7 @@ class MandatarioFactory implements MandatarioFactoryInterface
     /**
      * Clase de la entidad de los mandatarios.
      *
-     * @var string
+     * @var class-string<MandatarioInterface>
      */
     private string $class = Mandatario::class;
 

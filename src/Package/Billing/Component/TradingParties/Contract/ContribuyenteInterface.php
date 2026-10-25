@@ -170,7 +170,7 @@ interface ContribuyenteInterface extends JsonSerializable
     /**
      * Entrega los datos del contribuyente en un arreglo.
      *
-     * @return array Arreglo con los datos del contribuyente.
+     * @return array<array-key, mixed> Arreglo con los datos del contribuyente.
      */
     public function toArray(): array;
 }

@@ -150,6 +150,8 @@ class ExchangeStatus implements ExchangeStatusInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -164,6 +166,8 @@ class ExchangeStatus implements ExchangeStatusInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

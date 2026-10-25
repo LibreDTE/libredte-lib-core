@@ -86,12 +86,12 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
         // Preparar opciones que se usarán para renderizar.
         $options = $this->resolveOptions($bag->getRendererOptions());
         $options = [
-            'template' => $options->get('template'),
+            'template' => $options->getReader()->requireString('template'),
             'filepath' => null,
-            'format' => $options->get('format'),
+            'format' => $options->getReader()->requireString('format'),
             'config' => [
-                'html' => $options->get('html', [])->all(),
-                'pdf' => $options->get('pdf', [])->all(),
+                'html' => $options->getReader()->getArray('html') ?? [],
+                'pdf' => $options->getReader()->getArray('pdf') ?? [],
             ],
         ];
 

@@ -355,7 +355,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getParserOptions(): array
     {
-        return $this->getOptions()->get('parser')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('parser') ?? [];
     }
 
     /**
@@ -363,7 +363,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getBuilderOptions(): array
     {
-        return $this->getOptions()->get('builder')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('builder') ?? [];
     }
 
     /**
@@ -371,7 +371,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getNormalizerOptions(): array
     {
-        return $this->getOptions()->get('normalizer')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('normalizer') ?? [];
     }
 
     /**
@@ -379,7 +379,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getSanitizerOptions(): array
     {
-        return $this->getOptions()->get('sanitizer')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('sanitizer') ?? [];
     }
 
     /**
@@ -387,7 +387,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getValidatorOptions(): array
     {
-        return $this->getOptions()->get('validator')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('validator') ?? [];
     }
 
     /**
@@ -395,7 +395,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getRendererOptions(): array
     {
-        return $this->getOptions()->get('renderer')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('renderer') ?? [];
     }
 
     /**
@@ -816,6 +816,11 @@ class DocumentBag implements DocumentBagInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>&array{
+     *     document_stamp: string|null,
+     *     document_xml: string|null
+     * }
      */
     public function toArray(): array
     {
@@ -840,6 +845,8 @@ class DocumentBag implements DocumentBagInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

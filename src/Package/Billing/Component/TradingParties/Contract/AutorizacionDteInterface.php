@@ -57,7 +57,7 @@ interface AutorizacionDteInterface
     /**
      * Entrega un arreglo con los índices: FchResol y NroResol.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

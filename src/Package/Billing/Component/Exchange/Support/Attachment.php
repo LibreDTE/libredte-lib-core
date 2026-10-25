@@ -91,6 +91,13 @@ class Attachment extends DataPart implements AttachmentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array{
+     *     data: string,
+     *     name: string|null,
+     *     type: string,
+     *     size: int
+     * }
      */
     public function toArray(): array
     {
@@ -104,6 +111,13 @@ class Attachment extends DataPart implements AttachmentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array{
+     *     data: string,
+     *     name: string|null,
+     *     type: string,
+     *     size: int
+     * }
      */
     public function jsonSerialize(): array
     {

@@ -210,7 +210,7 @@ interface CafInterface extends JsonSerializable
     /**
      * Entrega los datos del CAF como un arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

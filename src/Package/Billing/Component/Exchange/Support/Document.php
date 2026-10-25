@@ -185,6 +185,18 @@ class Document implements DocumentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>&array{
+     *     id: string,
+     *     content: string,
+     *     attachments: array<array-key, array{
+     *         data: string,
+     *         name: string|null,
+     *         type: string,
+     *         size: int
+     *     }>,
+     *     metadata: array<array-key, mixed>
+     * }
      */
     public function toArray(): array
     {

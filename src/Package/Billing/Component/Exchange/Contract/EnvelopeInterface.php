@@ -152,7 +152,20 @@ interface EnvelopeInterface extends JsonSerializable
     /**
      * Convierte el sobre a un array.
      *
-     * @return array
+     * @return array<array-key, mixed>&array{
+     *     documents: array<array-key, array<array-key, mixed>&array{
+     *         id: string,
+     *         content: string,
+     *         attachments: array<array-key, array{
+     *             data: string,
+     *             name: string|null,
+     *             type: string,
+     *             size: int
+     *         }>,
+     *         metadata: array<array-key, mixed>
+     *     }>,
+     *     metadata: array<array-key, mixed>
+     * }
      */
     public function toArray(): array;
 }

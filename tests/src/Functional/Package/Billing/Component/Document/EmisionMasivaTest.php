@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Array\ArrayPath;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Signature\Exception\SignatureException;
-use Derafu\Support\Arr;
 use Derafu\Xml\Exception\XmlException;
 use Exception;
 use libredte\lib\Core\Application;
@@ -39,6 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractRender
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractSpreadsheetBatchProcessorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractValidatorStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
@@ -319,7 +320,9 @@ class EmisionMasivaTest extends TestCase
             );
 
             // Validar campos esperados del documento.
-            $dataActual = Arr::dot($documentBag->getDocument()->getData());
+            $dataActual = ArrayPath::flatten(
+                $documentBag->getDocument()->getData()
+            );
             foreach ($dataExpected as $expectedKey => $expectedValue) {
                 $actualValue = $dataActual[$expectedKey] ?? null;
                 $this->assertSame(
@@ -338,6 +341,9 @@ class EmisionMasivaTest extends TestCase
         }
     }
 
+    /**
+     * @return array<string, array{string, mixed, mixed}>
+     */
     public static function provideArchivosConErrores(): array
     {
         $dir = self::getFixturesPath('emision_masiva/errores');
@@ -426,7 +432,7 @@ class EmisionMasivaTest extends TestCase
      * Procesa un archivo de emisión masiva con un emisor y un certificado de
      * pruebas.
      *
-     * @return array Bolsas con los documentos generados.
+     * @return array<array-key, DocumentBagInterface>
      */
     private function processFile(string $file): array
     {
@@ -437,7 +443,7 @@ class EmisionMasivaTest extends TestCase
      * Procesa un lote de emisión masiva con un emisor y un certificado de
      * pruebas.
      *
-     * @return array Bolsas con los documentos generados.
+     * @return array<array-key, DocumentBagInterface>
      */
     private function processBatch(DocumentBatch $batch): array
     {

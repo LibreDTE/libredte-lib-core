@@ -217,6 +217,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
 
     // Proveedor de los documentos XML con los casos de prueba que se deben
     // realizar.
+    /**
+     * @return array<string, array{string}>
+     */
     public static function provideDocumentosSii(): array
     {
         // Buscar los archivos con los casos para el test.
@@ -269,6 +272,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
 
     // Validación del esquema XML del documento (DTE) que viene en el sobre
     // contra el XSD correspondiente al tipo de documento (ej. DTE_v10.xsd).
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateDocumentoSchema($file): void
     {
@@ -287,6 +293,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // por SignatureValidator::generateXmlDigestValue() usando C14N estándar del
     // elemento <SetDTE ID="SetDoc"> en el contexto del XmlDocument del sobre.
     // Tanto la herramienta externa como nuestro código concuerdan: digest válido.
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateSobreDigestValue($file): void
     {
@@ -324,6 +333,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // Nota: la herramienta externa (que aplica C14N exclusivo a todos los
     // SignedInfo) también reporta esta firma como inválida, porque el sobre fue
     // firmado con C14N estándar y esa herramienta usa exclusivo para ambas.
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateSobreSignatureValueExceptionSignatureError($file): void
     {
@@ -381,6 +393,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // strip-namespaces + C14N estándar calcula el valor correcto y el test pasa.
     //
     // Tanto la herramienta externa como nuestro código concuerdan: digest válido.
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateDocumentoDigestValueExceptionDigestValueError($file): void
     {
@@ -416,6 +431,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     // declaró C14N estándar en el XML. La herramienta externa, que también aplica
     // C14N exclusivo, reporta esta firma como válida (Signature 1 Verified).
     // Nuestro código no la puede verificar por el mismatch de claves del fixture.
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateDocumentoSignatureValueExceptionSignatureError($file): void
     {
@@ -446,6 +464,9 @@ class ValidarXmlEjemploOficialSiiTest extends TestCase
     //
     // El nombre del test menciona "DigestValueError" por el mismo motivo histórico
     // explicado en testValidateSobreSignatureExceptionDigestValueError().
+    /**
+     * @param string $file
+     */
     #[DataProvider('provideDocumentosSii')]
     public function testValidateDocumentoSignatureExceptionDigestValueError($file): void
     {

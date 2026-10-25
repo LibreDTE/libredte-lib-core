@@ -278,6 +278,9 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
         ;
     }
 
+    /**
+     * @return array<string, array{string}>
+     */
     public static function provideDocumentosOk(): array
     {
         // Buscar los archivos con los casos para el test.
@@ -381,6 +384,8 @@ class EmitirIndividualmenteDocumentosOkTest extends TestCase
     /**
      * Valida recursivamente los valores esperados en el arreglo de los datos
      * reales entregados.
+     * @param array<array-key, mixed> $expectedValues
+     * @param array<array-key, mixed> $actualValues
      */
     private function validateExpectedValues(
         array $expectedValues,

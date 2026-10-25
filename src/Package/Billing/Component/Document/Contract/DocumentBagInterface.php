@@ -418,7 +418,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Entrega los datos de la bolsa como un arreglo.
      *
-     * @return array
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

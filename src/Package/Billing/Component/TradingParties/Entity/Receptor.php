@@ -201,6 +201,8 @@ class Receptor extends Contribuyente implements ReceptorInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {

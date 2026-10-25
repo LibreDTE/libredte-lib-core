@@ -233,7 +233,7 @@ class BookBag implements BookBagInterface
      */
     public function getLoaderOptions(): array
     {
-        return $this->getOptions()->get('loader')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('loader') ?? [];
     }
 
     /**
@@ -241,7 +241,7 @@ class BookBag implements BookBagInterface
      */
     public function getBuilderOptions(): array
     {
-        return $this->getOptions()->get('builder')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('builder') ?? [];
     }
 
     /**
@@ -249,7 +249,7 @@ class BookBag implements BookBagInterface
      */
     public function getRendererOptions(): array
     {
-        return $this->getOptions()->get('renderer')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('renderer') ?? [];
     }
 
     /**
@@ -257,7 +257,7 @@ class BookBag implements BookBagInterface
      */
     public function getValidatorOptions(): array
     {
-        return $this->getOptions()->get('validator')?->all() ?? [];
+        return $this->getOptions()->getReader()->getArray('validator') ?? [];
     }
 
     /**
@@ -343,6 +343,8 @@ class BookBag implements BookBagInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -358,6 +360,8 @@ class BookBag implements BookBagInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

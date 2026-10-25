@@ -62,7 +62,12 @@ interface AttachmentInterface extends JsonSerializable
     /**
      * Obtiene un arreglo con todos los atributos del archivo.
      *
-     * @return array
+     * @return array{
+     *     data: string,
+     *     name: string|null,
+     *     type: string,
+     *     size: int
+     * }
      */
     public function toArray(): array;
 }

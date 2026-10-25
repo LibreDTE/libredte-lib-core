@@ -100,6 +100,8 @@ class PartyEndpoint implements PartyEndpointInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -113,6 +115,8 @@ class PartyEndpoint implements PartyEndpointInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

@@ -290,7 +290,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
     /**
      * Entrega los archivos con los casos para el test de los parsers.
      *
-     * @return array
+     * @return array<string, array{string, string}>
      */
     public static function provideInputFiles(): array
     {

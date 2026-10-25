@@ -107,6 +107,8 @@ abstract class AbstractParty implements PartyInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function toArray(): array
     {
@@ -121,6 +123,8 @@ abstract class AbstractParty implements PartyInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {

@@ -248,11 +248,15 @@ class DocumentBatch implements DocumentBatchInterface
      */
     public function getBatchProcessorOptions(): array
     {
-        return $this->getOptions()->get('batch_processor')->all();
+        return $this->getOptions()->getReader()->requireArray('batch_processor');
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return array{
+     *     document_bags: array<array-key, DocumentBagInterface>
+     * }
      */
     public function toArray(): array
     {
@@ -263,6 +267,8 @@ class DocumentBatch implements DocumentBatchInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
      */
     public function jsonSerialize(): array
     {
