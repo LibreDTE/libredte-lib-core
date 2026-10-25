@@ -120,16 +120,13 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte.html">libredte</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib.html">lib</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core.html">Core</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-exception.html">Exception</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/libredte-lib-core-translation.html">Translation</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Exception
+    LibredteTranslationResourceProvider
 
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Exception">Exception</abbr>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -138,22 +135,27 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\Derafu\Translation\Contract\TranslationResourceProviderInterface">TranslationResourceProviderInterface</abbr>                    </span>
     
     </h2>
 
 <div class="phpdocumentor-label-line">
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
+
 
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Exception/Exception.php"><a href="files/src-exception-exception.html"><abbr title="src/Exception/Exception.php">Exception.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Translation/LibredteTranslationResourceProvider.php"><a href="files/src-translation-libredtetranslationresourceprovider.html"><abbr title="src/Translation/LibredteTranslationResourceProvider.php">LibredteTranslationResourceProvider.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Excepción general de la aplicación.</p>
+            <p class="phpdocumentor-summary">Provides the translations of this package: the messages of its exceptions.</p>
 
 
 
@@ -163,12 +165,19 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/libredte-lib-Core-Exception-Exception.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Derafu\Translation\Contract\TranslationResourceProviderInterface">TranslationResourceProviderInterface</abbr></dt>    </dl>
 
 
 
@@ -176,6 +185,20 @@
 
 
 
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#method_getDirectories">getDirectories()</a>
+    <span>
+                                &nbsp;: iterable&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
+
+    </dl>
 
 
 
@@ -183,7 +206,53 @@
 
         
 
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDirectories">
+        getDirectories()
+        <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#method_getDirectories" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Translation/LibredteTranslationResourceProvider.php"><a href="files/src-translation-libredtetranslationresourceprovider.html"><abbr title="src/Translation/LibredteTranslationResourceProvider.php">LibredteTranslationResourceProvider.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDirectories</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">iterable&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
         
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">iterable&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+            </section>
+
         
     </article>
                                 </section>
@@ -196,10 +265,17 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                            </ul>
+                                                                                <li><a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
             
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#method_getDirectories">getDirectories()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
@@ -217,7 +293,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/libredte-lib-Core-Exception-Exception.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -51,10 +51,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Contract-ApplicationInterface.html#method_getPackageRegistry"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Exception\\Exception",
-            "name": "Exception",
-            "summary": "Excepci\u00F3n\u0020general\u0020de\u0020la\u0020aplicaci\u00F3n.",
-            "url": "classes/libredte-lib-Core-Exception-Exception.html"
+            "fqsen": "\\libredte\\lib\\Core\\Exception\\LibredteException",
+            "name": "LibredteException",
+            "summary": "Base\u0020translatable\u0020exception\u0020for\u0020this\u0020library.",
+            "url": "classes/libredte-lib-Core-Exception-LibredteException.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\BillingPackage",
             "name": "BillingPackage",
@@ -13096,6 +13096,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020paquete\u0020\u0022system\u0022.",
             "url": "classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Translation\\LibredteTranslationResourceProvider",
+            "name": "LibredteTranslationResourceProvider",
+            "summary": "Provides\u0020the\u0020translations\u0020of\u0020this\u0020package\u003A\u0020the\u0020messages\u0020of\u0020its\u0020exceptions.",
+            "url": "classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Translation\\LibredteTranslationResourceProvider\u003A\u003AgetDirectories\u0028\u0029",
+            "name": "getDirectories",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Translation-LibredteTranslationResourceProvider.html#method_getDirectories"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -13885,5 +13895,10 @@ Search.appendIndex(
             "name": "System",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-system.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Translation",
+            "name": "Translation",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-translation.html"
         }            ]
 );
