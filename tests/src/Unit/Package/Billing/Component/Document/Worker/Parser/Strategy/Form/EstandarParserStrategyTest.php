@@ -33,9 +33,11 @@ use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserExcepti
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form\EstandarParserStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ParserWorker;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -56,6 +58,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(DocumentException::class)]
 #[CoversClass(ParserWorker::class)]
 #[CoversClass(EstandarParserStrategy::class)]
+#[UsesClass(RepositorySourceProvider::class)]
 class EstandarParserStrategyTest extends TestCase
 {
     private ParserStrategyInterface $strategy;

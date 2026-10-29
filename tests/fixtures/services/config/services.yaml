@@ -1,0 +1,7 @@
+imports:
+    - { resource: '../../../../resources/config/libredte-services.yaml' }
+
+services:
+    test.formatter:
+        alias: Derafu\Renderer\Contract\FormatterInterface
+        public: true

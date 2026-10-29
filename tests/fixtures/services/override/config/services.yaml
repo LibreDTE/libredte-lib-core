@@ -1,0 +1,11 @@
+imports:
+    - { resource: '../../consumer/config/services.yaml' }
+
+services:
+    Derafu\Renderer\Contract\FormatterHandlerProviderInterface $override:
+        class: libredte\lib\Tests\Functional\Fixture\ConsumerFormatterHandlerProvider
+        arguments:
+            $handlers:
+                billing_document: 'Replacement %s'
+        tags:
+            - { name: derafu_renderer.formatter_handler_provider, priority: 300 }

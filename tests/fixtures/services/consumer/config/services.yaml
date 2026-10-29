@@ -1,0 +1,18 @@
+imports:
+    - { resource: '../../config/services.yaml' }
+
+services:
+    Derafu\Twig\Contract\TemplatePathProviderInterface $consumer:
+        class: libredte\lib\Core\Provider\TemplatePathProvider
+        arguments:
+            $projectDir: '%kernel.project_dir%/../consumer'
+        tags:
+            - { name: derafu_twig.template_path_provider, priority: 300 }
+
+    Derafu\Renderer\Contract\FormatterHandlerProviderInterface $consumer:
+        class: libredte\lib\Tests\Functional\Fixture\ConsumerFormatterHandlerProvider
+        arguments:
+            $handlers:
+                consumer: 'Consumer %s'
+        tags:
+            - { name: derafu_renderer.formatter_handler_provider, priority: 200 }

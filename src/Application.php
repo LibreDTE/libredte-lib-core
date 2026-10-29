@@ -22,12 +22,17 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core;
 
+use Composer\InstalledVersions;
 use Derafu\Backbone\Contract\PackageRegistryInterface;
 use Derafu\Backbone\DependencyInjection\ServiceConfigurationCompilerPass;
 use Derafu\Backbone\DependencyInjection\ServiceProcessingCompilerPass;
 use Derafu\Kernel\Contract\EnvironmentInterface;
 use Derafu\Kernel\MicroKernel;
+use Derafu\Renderer\Contract\RendererInterface;
 use libredte\lib\Core\Contract\ApplicationInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -39,6 +44,11 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class Application extends MicroKernel implements ApplicationInterface
 {
     /**
+     * Directorio de esta biblioteca, independiente del proyecto consumidor.
+     */
+    public const string LIBRARY_DIR = __DIR__ . '/..';
+
+    /**
      * Instancia de la aplicación.
      *
      * @var self
@@ -46,11 +56,10 @@ class Application extends MicroKernel implements ApplicationInterface
     private static self $instance;
 
     /**
-     * Archivos de configuración.
+     * Archivos de configuración del proyecto indicado por Environment.
      *
-     * NOTE: LibreDTE no debe cargar archivos de configuración del proyecto que
-     * lo usa. Los archivos de configuración de LibreDTE se cargan de manera
-     * explícita en el método `Application::configure()`.
+     * El checkout importa el YAML público desde config/services.yaml; un
+     * proyecto consumidor puede importarlo desde su propia configuración.
      *
      * @var array<string,string>
      */
@@ -85,6 +94,46 @@ class Application extends MicroKernel implements ApplicationInterface
         $container->addCompilerPass(
             new ServiceConfigurationCompilerPass('libredte.lib.')
         );
+
+        // Conservar el acceso directo de Application al renderer compartido.
+        $container->getDefinition(RendererInterface::class)
+            ->setPublic(true)
+            ->setLazy(true);
+    }
+
+    /**
+     * Localiza la configuración del proyecto y de las dependencias instaladas.
+     *
+     * Los imports relativos del YAML publicado también deben funcionar cuando
+     * esta biblioteca se ejecuta desde su checkout, fuera de vendor/.
+     *
+     * @param ContainerBuilder $container Contenedor que recibe los servicios.
+     * @return DelegatingLoader Loader de los archivos PHP y YAML configurados.
+     */
+    protected function getDelegatingLoader(ContainerBuilder $container): DelegatingLoader
+    {
+        $directories = [$this->environment->getConfigDir()];
+        foreach ([
+            'derafu/xml',
+            'derafu/certificate',
+            'derafu/signature',
+            'derafu/mail',
+            'derafu/repository',
+            'derafu/renderer',
+        ] as $package) {
+            $directory = InstalledVersions::getInstallPath($package);
+            if ($directory !== null) {
+                $directories[] = $directory . '/resources/config';
+            }
+        }
+
+        $locator = new FileLocator($directories);
+        $loaders = [];
+        foreach (static::CONFIG_LOADERS as $loaderClass) {
+            $loaders[] = new $loaderClass($container, $locator);
+        }
+
+        return new DelegatingLoader(new LoaderResolver($loaders));
     }
 
     /**

@@ -76,8 +76,11 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\FormatterHandlerProvider;
+use libredte\lib\Core\Provider\TemplatePathProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -131,6 +134,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
+#[UsesClass(FormatterHandlerProvider::class)]
+#[UsesClass(TemplatePathProvider::class)]
 class BillingPackageTest extends TestCase
 {
     public function testBillingPackageBillerBill(): void

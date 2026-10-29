@@ -22,6 +22,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Repository\Service\ArrayRepositorySourceProvider;
+use Derafu\Repository\Service\CriteriaEvaluator;
+use Derafu\Repository\Factory\DataProviderRepositoryFactory;
+use Derafu\Repository\Service\DataSource\DataSourceResolverRegistry;
+use Derafu\Repository\Service\DataSource\FileDataSourceResolver;
+use Derafu\Repository\Service\DataSource\FileFormat\FileFormatReaderRegistry;
+use Derafu\Repository\Service\DataSource\FileFormat\PhpFileFormatReader;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Repository\Service\DataProvider;
 use Derafu\Repository\Service\RepositoryManager;
@@ -72,7 +79,7 @@ class EntityRepositoryTest extends TestCase
     {
         $repositoryPath = realpath(__DIR__ . '/../../../../../../../resources/data/repository');
         $dataProvider = new DataProvider(
-            sources: [
+            sourceProviders: [new ArrayRepositorySourceProvider([
                 AduanaClausulaVenta::class => $repositoryPath . '/aduana_clausulas_venta.php',
                 AduanaFormaPago::class => $repositoryPath . '/aduana_formas_pago.php',
                 AduanaModalidadVenta::class => $repositoryPath . '/aduana_modalidades_venta.php',
@@ -89,7 +96,10 @@ class EntityRepositoryTest extends TestCase
                 TipoDocumentoInterface::class => $repositoryPath . '/tipos_documento.php',
                 TagXml::class => $repositoryPath . '/tag_xml.php',
                 Traslado::class => $repositoryPath . '/traslados.php',
-            ],
+            ])],
+            sourceResolvers: new DataSourceResolverRegistry([
+                new FileDataSourceResolver(new FileFormatReaderRegistry([new PhpFileFormatReader()])),
+            ]),
             config: [
                 'normalization' => [
                     'idAttribute' => 'codigo',
@@ -97,7 +107,7 @@ class EntityRepositoryTest extends TestCase
                 ],
             ],
         );
-        $this->repositoryManager = new RepositoryManager($dataProvider);
+        $this->repositoryManager = new RepositoryManager(new DataProviderRepositoryFactory($dataProvider, new CriteriaEvaluator()), $dataProvider);
     }
 
     public function testEntityRepositoryAduanaClausulaVenta(): void

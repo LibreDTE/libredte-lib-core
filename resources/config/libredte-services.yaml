@@ -5,16 +5,24 @@
 #       - { resource: '../vendor/libredte/libredte-lib-core/resources/config/libredte-services.yaml' }
 
 # Import of services required by LibreDTE Lib Core.
+# Paths follow the installed vendor/libredte/libredte-lib-core layout.
+# Application also locates dependency configurations when run from a checkout.
 imports:
-  - { resource: '../../vendor/derafu/xml/resources/config/xml-services.yaml' }
-  - { resource: '../../vendor/derafu/certificate/resources/config/certificate-services.yaml' }
-  - { resource: '../../vendor/derafu/signature/resources/config/signature-services.yaml' }
-  - { resource: '../../vendor/derafu/mail/resources/config/mail-services.yaml' }
+  - { resource: '../../../../derafu/xml/resources/config/xml-services.yaml' }
+  - { resource: '../../../../derafu/certificate/resources/config/certificate-services.yaml' }
+  - { resource: '../../../../derafu/signature/resources/config/signature-services.yaml' }
+  - { resource: '../../../../derafu/mail/resources/config/mail-services.yaml' }
+  - { resource: '../../../../derafu/repository/resources/config/repository-services.yaml' }
+  - { resource: '../../../../derafu/renderer/resources/config/renderer-pdf-services.yaml' }
 
 # Parameter configuration.
 parameters:
     app.locale.default: 'es'
-    libredte.lib.core.project_dir: '%kernel.project_dir%'
+    libredte.lib.core.project_dir: !php/const libredte\lib\Core\Application::LIBRARY_DIR
+    derafu.repository.data_provider.config:
+        normalization:
+            idAttribute: codigo
+            nameAttribute: glosa
 
 # Configuration of services provided by the library.
 services:
@@ -393,64 +401,24 @@ services:
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider
 
-    # Derafu Repository.
-    Derafu\Repository\Contract\RepositoryManagerInterface:
-        public: true
-        class: Derafu\Repository\Service\RepositoryManager
+    # Fuentes de repositorios incluidas en LibreDTE Core.
+    libredte\lib\Core\Provider\RepositorySourceProvider:
         arguments:
-            $dataProvider: '@Derafu\Repository\Service\DataProvider'
-    Derafu\Repository\Service\DataProvider:
-        arguments:
-            $sources:
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_clausulas_venta.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaFormaPago:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_formas_pago.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_modalidades_venta.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_moneda.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_paises.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPuerto:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_puertos.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTipoBulto:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_tipos_bulto.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_transportes.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaUnidad:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/aduana_unidades.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/comunas.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/tipos_documento.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/formas_pago.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPagoExportacion:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/formas_pago_exportacion.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/impuestos_adicionales_retenciones.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/medios_pago.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/tag_xml.php'
-                libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado:
-                    '%libredte.lib.core.project_dir%/resources/data/repository/traslados.php'
-            $config:
-                normalization:
-                    idAttribute: codigo
-                    nameAttribute: glosa
+            $projectDir: '%libredte.lib.core.project_dir%'
+        tags: ['derafu_repository.source_provider']
 
-    # Derafu Renderer.
-    Derafu\Renderer\Contract\RendererInterface:
-        public: true
-        factory: ['Derafu\Renderer\Factory\RendererFactory', 'create']
-        lazy: true
+    # Plantillas y formatos aportados al renderer compartido.
+    libredte\lib\Core\Provider\TemplatePathProvider:
         arguments:
-            $options:
-                engines: ['twig', 'pdf']
-                paths:
-                    - '%libredte.lib.core.project_dir%/resources/templates'
-                formatters:
-                    billing_document: '@libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter'
-    libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter: ~
+            $projectDir: '%libredte.lib.core.project_dir%'
+        tags:
+            - { name: derafu_twig.template_path_provider, priority: 100 }
+
+    Derafu\Renderer\Contract\HandlerFormatterInterface $billing_document:
+        class: libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter
+
+    libredte\lib\Core\Provider\FormatterHandlerProvider:
+        arguments:
+            $handler: '@Derafu\Renderer\Contract\HandlerFormatterInterface $billing_document'
+        tags:
+            - { name: derafu_renderer.formatter_handler_provider, priority: 100 }
