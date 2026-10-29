@@ -22,15 +22,15 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Repository\Factory\DataProviderRepositoryFactory;
 use Derafu\Repository\Service\ArrayRepositorySourceProvider;
 use Derafu\Repository\Service\CriteriaEvaluator;
-use Derafu\Repository\Factory\DataProviderRepositoryFactory;
+use Derafu\Repository\Service\DataProvider;
 use Derafu\Repository\Service\DataSource\DataSourceResolverRegistry;
 use Derafu\Repository\Service\DataSource\FileDataSourceResolver;
 use Derafu\Repository\Service\DataSource\FileFormat\FileFormatReaderRegistry;
 use Derafu\Repository\Service\DataSource\FileFormat\PhpFileFormatReader;
-use Derafu\Repository\Contract\RepositoryManagerInterface;
-use Derafu\Repository\Service\DataProvider;
 use Derafu\Repository\Service\RepositoryManager;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\Document\GuiaDespachoInterface;
