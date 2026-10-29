@@ -151,7 +151,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -189,12 +189,19 @@ LibreDTE.</dd>    </dl>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/libredte-lib-Core-Application.html#constant_LIBRARY_DIR">LIBRARY_DIR</a>
+    <span>
+        &nbsp;: string&nbsp;= __DIR__ . &#039;/..&#039;                            </span>
+</dt>
+<dd>Directorio de esta biblioteca, independiente del proyecto consumidor.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -constant -protected">
     <a class="" href="classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES">CONFIG_FILES</a>
     <span>
         &nbsp;: array&lt;string, string&gt;&nbsp;= [&#039;services.yaml&#039; =&gt; &#039;yaml&#039;]                            </span>
 </dt>
-<dd>Archivos de configuración.</dd>
+<dd>Archivos de configuración del proyecto indicado por Environment.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -protected">
     <a class="" href="classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS">CONFIG_LOADERS</a>
@@ -255,6 +262,13 @@ LibreDTE.</dd>    </dl>
 </dt>
 <dd>Configura el contenedor de dependencias.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Application.html#method_getDelegatingLoader">getDelegatingLoader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Symfony\Component\Config\Loader\DelegatingLoader">DelegatingLoader</abbr>    </span>
+</dt>
+<dd>Localiza la configuración del proyecto y de las dependencias instaladas.</dd>
+
     </dl>
 
 
@@ -266,6 +280,37 @@ LibreDTE.</dd>    </dl>
             <a href="classes/libredte-lib-Core-Application.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_LIBRARY_DIR">
+        LIBRARY_DIR
+        <a href="classes/libredte-lib-Core-Application.html#constant_LIBRARY_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Directorio de esta biblioteca, independiente del proyecto consumidor.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">LIBRARY_DIR</span>
+    = <span class="phpdocumentor-signature__default-value">__DIR__ . &#039;/..&#039;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
                     <article class="phpdocumentor-element -constant -protected ">
     <h4 class="phpdocumentor-element__name" id="constant_CONFIG_FILES">
         CONFIG_FILES
@@ -276,11 +321,11 @@ LibreDTE.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Archivos de configuración.</p>
+        <p class="phpdocumentor-summary">Archivos de configuración del proyecto indicado por Environment.</p>
 
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -291,9 +336,8 @@ LibreDTE.</dd>    </dl>
 </code>
 
 
-        <section class="phpdocumentor-description"><p>NOTE: LibreDTE no debe cargar archivos de configuración del proyecto que
-lo usa. Los archivos de configuración de LibreDTE se cargan de manera
-explícita en el método <code class="prettyprint">Application::configure()</code>.</p>
+        <section class="phpdocumentor-description"><p>El checkout importa el YAML público desde config/services.yaml; un
+proyecto consumidor puede importarlo desde su propia configuración.</p>
 </section>
 
     
@@ -311,7 +355,7 @@ explícita en el método <code class="prettyprint">Application::configure()</cod
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -358,7 +402,7 @@ explícita en el método <code class="prettyprint">Application::configure()</cod
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -401,7 +445,7 @@ explícita en el método <code class="prettyprint">Application::configure()</cod
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">175</span>
 
     </aside>
 
@@ -464,7 +508,7 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
     </aside>
 
@@ -503,7 +547,7 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
@@ -548,7 +592,7 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -586,6 +630,64 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
     
     
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDelegatingLoader">
+        getDelegatingLoader()
+        <a href="classes/libredte-lib-Core-Application.html#method_getDelegatingLoader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Application.php"><a href="files/src-application.html"><abbr title="src/Application.php">Application.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Localiza la configuración del proyecto y de las dependencias instaladas.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getDelegatingLoader</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Symfony\Component\DependencyInjection\ContainerBuilder">ContainerBuilder</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$container</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\Config\Loader\DelegatingLoader">DelegatingLoader</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Los imports relativos del YAML publicado también deben funcionar cuando
+esta biblioteca se ejecuta desde su checkout, fuera de vendor/.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$container</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Symfony\Component\DependencyInjection\ContainerBuilder">ContainerBuilder</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Contenedor que recibe los servicios.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\Config\Loader\DelegatingLoader">DelegatingLoader</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Loader de los archivos PHP y YAML configurados.</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         
@@ -608,6 +710,7 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Application.html#constant_LIBRARY_DIR">LIBRARY_DIR</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES">CONFIG_FILES</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Application.html#constant_CONFIG_LOADERS">CONFIG_LOADERS</a></li>
                                             </ul>
@@ -627,6 +730,7 @@ contenedor de dependencias para obtener la aplicación de LibreDTE.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getPackageRegistry">getPackageRegistry()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getService">getService()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Application.html#method_configure">configure()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Application.html#method_getDelegatingLoader">getDelegatingLoader()</a></li>
                                     </ul>
             </li>
                     </ul>

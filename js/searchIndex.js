@@ -11,6 +11,11 @@ Search.appendIndex(
             "summary": "Configura\u0020el\u0020contenedor\u0020de\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Application.html#method_configure"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetDelegatingLoader\u0028\u0029",
+            "name": "getDelegatingLoader",
+            "summary": "Localiza\u0020la\u0020configuraci\u00F3n\u0020del\u0020proyecto\u0020y\u0020de\u0020las\u0020dependencias\u0020instaladas.",
+            "url": "classes/libredte-lib-Core-Application.html#method_getDelegatingLoader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003AgetPackageRegistry\u0028\u0029",
             "name": "getPackageRegistry",
             "summary": "Entrega\u0020el\u0020registro\u0020de\u0020paquetes\u0020de\u0020la\u0020aplicaci\u00F3n.",
@@ -26,9 +31,14 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020instancia\u0020de\u0020la\u0020aplicaci\u00F3n.",
             "url": "classes/libredte-lib-Core-Application.html#method_getInstance"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003ALIBRARY_DIR",
+            "name": "LIBRARY_DIR",
+            "summary": "Directorio\u0020de\u0020esta\u0020biblioteca,\u0020independiente\u0020del\u0020proyecto\u0020consumidor.",
+            "url": "classes/libredte-lib-Core-Application.html#constant_LIBRARY_DIR"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003ACONFIG_FILES",
             "name": "CONFIG_FILES",
-            "summary": "Archivos\u0020de\u0020configuraci\u00F3n.",
+            "summary": "Archivos\u0020de\u0020configuraci\u00F3n\u0020del\u0020proyecto\u0020indicado\u0020por\u0020Environment.",
             "url": "classes/libredte-lib-Core-Application.html#constant_CONFIG_FILES"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Application\u003A\u003ACONFIG_LOADERS",
@@ -13096,6 +13106,66 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020paquete\u0020\u0022system\u0022.",
             "url": "classes/libredte-lib-Core-PackageRegistry.html#method_getSystemPackage"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\FormatterHandlerProvider",
+            "name": "FormatterHandlerProvider",
+            "summary": "Aporta\u0020el\u0020formato\u0020tributario\u0020de\u0020Core\u0020al\u0020formatter\u0020compartido.",
+            "url": "classes/libredte-lib-Core-Provider-FormatterHandlerProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\FormatterHandlerProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-FormatterHandlerProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\FormatterHandlerProvider\u003A\u003AgetHandlers\u0028\u0029",
+            "name": "getHandlers",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Provider-FormatterHandlerProvider.html#method_getHandlers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\FormatterHandlerProvider\u003A\u003A\u0024handler",
+            "name": "handler",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-FormatterHandlerProvider.html#property_handler"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\RepositorySourceProvider",
+            "name": "RepositorySourceProvider",
+            "summary": "Declara\u0020las\u0020fuentes\u0020de\u0020los\u0020repositorios\u0020incluidos\u0020en\u0020LibreDTE\u0020Core.",
+            "url": "classes/libredte-lib-Core-Provider-RepositorySourceProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\RepositorySourceProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-RepositorySourceProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\RepositorySourceProvider\u003A\u003AgetSources\u0028\u0029",
+            "name": "getSources",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Provider-RepositorySourceProvider.html#method_getSources"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\RepositorySourceProvider\u003A\u003A\u0024projectDir",
+            "name": "projectDir",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-RepositorySourceProvider.html#property_projectDir"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\TemplatePathProvider",
+            "name": "TemplatePathProvider",
+            "summary": "Aporta\u0020las\u0020plantillas\u0020de\u0020Core\u0020al\u0020entorno\u0020Twig\u0020compartido.",
+            "url": "classes/libredte-lib-Core-Provider-TemplatePathProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\TemplatePathProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-TemplatePathProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\TemplatePathProvider\u003A\u003AgetPaths\u0028\u0029",
+            "name": "getPaths",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Provider-TemplatePathProvider.html#method_getPaths"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider\\TemplatePathProvider\u003A\u003A\u0024projectDir",
+            "name": "projectDir",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Provider-TemplatePathProvider.html#property_projectDir"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Translation\\LibredteTranslationResourceProvider",
             "name": "LibredteTranslationResourceProvider",
             "summary": "Provides\u0020the\u0020translations\u0020of\u0020this\u0020package\u003A\u0020the\u0020messages\u0020of\u0020its\u0020exceptions.",
@@ -13895,6 +13965,11 @@ Search.appendIndex(
             "name": "System",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-system.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Provider",
+            "name": "Provider",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-provider.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Translation",
             "name": "Translation",
