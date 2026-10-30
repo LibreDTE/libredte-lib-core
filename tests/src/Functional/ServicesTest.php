@@ -161,6 +161,37 @@ final class ServicesTest extends TestCase
         }
     }
 
+    public function testConsumerCheckoutResolvesCoreWithoutASiblingRepository(): void
+    {
+        $sandbox = sys_get_temp_dir() . '/libredte-core-checkout-' . bin2hex(random_bytes(8));
+        $directory = $sandbox . '/consumer';
+        $filesystem = new Filesystem();
+        $filesystem->mkdir([$directory . '/config', $directory . '/resources/config']);
+
+        try {
+            // Reproducir un checkout de consumidor: su YAML público conserva
+            // el import relativo del layout vendor, pero Core no está al lado.
+            $filesystem->dumpFile(
+                $directory . '/config/services.yaml',
+                "imports:\n    - { resource: '../resources/config/consumer-services.yaml' }\n"
+            );
+            $filesystem->dumpFile(
+                $directory . '/resources/config/consumer-services.yaml',
+                "imports:\n    - { resource: '../../../libredte-lib-core/resources/config/libredte-services.yaml' }\n"
+            );
+            self::assertDirectoryDoesNotExist($sandbox . '/libredte-lib-core');
+
+            $application = new Application(new Environment('test', true, ['PROJECT_DIR' => $directory]));
+            $manager = $application->getService(RepositoryManagerInterface::class);
+            self::assertInstanceOf(RepositoryManagerInterface::class, $manager);
+            $saleClause = $manager->getRepository(AduanaClausulaVenta::class)->find(5);
+            self::assertInstanceOf(AduanaClausulaVenta::class, $saleClause);
+            self::assertSame('FOB', $saleClause->getAttribute('glosa'));
+        } finally {
+            $filesystem->remove($sandbox);
+        }
+    }
+
     private function application(string $suffix = ''): Application
     {
         return new Application(new Environment('test', true, [

@@ -114,6 +114,7 @@ class Application extends MicroKernel implements ApplicationInterface
     {
         $directories = [$this->environment->getConfigDir()];
         foreach ([
+            'libredte/libredte-lib-core',
             'derafu/xml',
             'derafu/certificate',
             'derafu/signature',
