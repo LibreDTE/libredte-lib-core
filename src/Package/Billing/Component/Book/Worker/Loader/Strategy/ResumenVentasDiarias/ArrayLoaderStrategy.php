@@ -69,7 +69,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * son números enteros: el texto que llega de un CSV se convierte y uno que no
      * es un número es un error que dice en qué documento y en qué campo está. Si
      * no se informa el monto total, es la suma de los montos exento, neto y de
-     * IVA.
+     * IVA. Lo que no se informa queda en `false`.
      *
      * @param array<string, mixed> $detalle
      * @return array<string, mixed>
@@ -91,12 +91,12 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
 
         return [
             'TpoDoc' => $reader->requireAsInt('TpoDoc'),
-            'NroDoc' => $reader->getAsInt('NroDoc'),
+            'NroDoc' => $reader->getAsInt('NroDoc') ?? false,
             'FchDoc' => $reader->requireString('FchDoc'),
-            'TasaImp' => $reader->getAsNumber('TasaImp'),
-            'MntNeto' => $net,
-            'MntIVA' => $vat,
-            'MntExe' => $exempt,
+            'TasaImp' => $reader->getAsNumber('TasaImp') ?? false,
+            'MntNeto' => $net ?? false,
+            'MntIVA' => $vat ?? false,
+            'MntExe' => $exempt ?? false,
             'MntTotal' => $reader->getAsInt('MntTotal') ?? ($exempt ?? 0) + ($net ?? 0) + ($vat ?? 0),
         ];
     }
