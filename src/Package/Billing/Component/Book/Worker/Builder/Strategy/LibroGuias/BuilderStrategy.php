@@ -22,8 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroGuias;
 
+use Derafu\Array\ArrayDuplicates;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Value\ValueParser;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
@@ -52,12 +55,21 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $caratula = $bag->getCaratula();
         $detalles = $bag->getDetalle();
 
+        // Ninguna guía puede estar repetida en el detalle: el esquema no lo
+        // valida.
+        ArrayDuplicates::assertUnique(
+            $detalles,
+            $bag->getTipo()->getDocumentKey(),
+            ValueParser::parse(...)
+        );
+
         // Calcular resumen del período.
         $resumenPeriodo = $this->calculateResumenPeriodo($detalles);
 
         // Construir ID del documento.
-        $rut = str_replace('-', '', $caratula['RutEmisorLibro'] ?? '');
-        $periodo = str_replace('-', '', $caratula['PeriodoTributario'] ?? date('Y-m'));
+        $caratulaReader = self::reader($caratula);
+        $rut = str_replace('-', '', $caratulaReader->getAsString('RutEmisorLibro') ?? '');
+        $periodo = str_replace('-', '', $caratulaReader->getAsString('PeriodoTributario') ?? date('Y-m'));
         $id = sprintf('LibreDTE_LIBRO_GUIA_%s_%s_%s', $rut, $periodo, time());
 
         // Carátula normalizada.
@@ -102,48 +114,54 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
      */
     private function calculateResumenPeriodo(array $detalles): array
     {
-        $resumen = [
-            'TotFolAnulado' => false,
-            'TotGuiaAnulada' => false,
-            'TotGuiaVenta' => 0,
-            'TotMntGuiaVta' => 0,
-            'TotTraslado' => false,
-        ];
+        $annulledFolios = 0;
+        $annulledGuides = 0;
+        $salesCount = 0;
+        $salesAmount = 0;
+
+        // Traslados por tipo de operación, en el orden en que aparecen.
+        $transfers = [];
 
         foreach ($detalles as $d) {
-            $anulado = $d['Anulado'] ?? false;
-            $tpoOper = $d['TpoOper'] ?? false;
+            $row = self::reader($d);
+            $anulado = $row->getAsInt('Anulado') ?? 0;
+            $tpoOper = $row->getAsInt('TpoOper') ?? 0;
+            $amount = $row->getAsInt('MntTotal') ?? 0;
 
-            if ($anulado == 1) {
-                $resumen['TotFolAnulado'] = (int) $resumen['TotFolAnulado'] + 1;
-            } elseif ($anulado == 2) {
-                $resumen['TotGuiaAnulada'] = (int) $resumen['TotGuiaAnulada'] + 1;
-            } else {
-                if ($tpoOper == 1) {
-                    $resumen['TotGuiaVenta']++;
-                    $resumen['TotMntGuiaVta'] += (int) ($d['MntTotal'] ?? 0);
-                } elseif ($tpoOper) {
-                    if ($resumen['TotTraslado'] === false) {
-                        $resumen['TotTraslado'] = [];
-                    }
-                    if (!isset($resumen['TotTraslado'][$tpoOper])) {
-                        $resumen['TotTraslado'][$tpoOper] = [
-                            'TpoTraslado' => $tpoOper,
-                            'CantGuia' => 0,
-                            'MntGuia' => 0,
-                        ];
-                    }
-                    $resumen['TotTraslado'][$tpoOper]['CantGuia']++;
-                    $resumen['TotTraslado'][$tpoOper]['MntGuia'] += (int) ($d['MntTotal'] ?? 0);
-                }
+            if ($anulado === 1) {
+                $annulledFolios++;
+            } elseif ($anulado === 2) {
+                $annulledGuides++;
+            } elseif ($tpoOper === 1) {
+                $salesCount++;
+                $salesAmount += $amount;
+            } elseif ($tpoOper !== 0) {
+                $transfers[$tpoOper] ??= ['TpoTraslado' => $tpoOper, 'CantGuia' => 0, 'MntGuia' => 0];
+                $transfers[$tpoOper]['CantGuia']++;
+                $transfers[$tpoOper]['MntGuia'] += $amount;
             }
         }
 
-        // Re-indexar traslados para XML.
-        if (is_array($resumen['TotTraslado'])) {
-            $resumen['TotTraslado'] = array_values($resumen['TotTraslado']);
-        }
+        return [
+            'TotFolAnulado' => $annulledFolios ?: false,
+            'TotGuiaAnulada' => $annulledGuides ?: false,
+            'TotGuiaVenta' => $salesCount,
+            'TotMntGuiaVta' => $salesAmount,
+            // Re-indexar traslados para XML.
+            'TotTraslado' => $transfers === [] ? false : array_values($transfers),
+        ];
+    }
 
-        return $resumen;
+    /**
+     * Entrega un lector de los datos. En el detalle y en la carátula `false` y el
+     * texto vacío son lo que se pone cuando no hay un valor.
+     *
+     * @param array<array-key, mixed> $data
+     */
+    private static function reader(array $data): ArrayReader
+    {
+        return ArrayReader::fromArray(
+            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $data)
+        );
     }
 }

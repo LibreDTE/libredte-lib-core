@@ -22,11 +22,15 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy;
 
+use Derafu\Array\ArrayDuplicates;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Value\ValueParser;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroComprasVentas;
+use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 
 /**
  * Estrategia base de construcción para Libro de Compras/Ventas.
@@ -36,6 +40,28 @@ use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroComprasVentas;
  */
 abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrategy
 {
+    /**
+     * Tipos de documento que se pueden informar solo con su resumen: boletas,
+     * boletas exentas y pagos electrónicos.
+     *
+     * @var array<int, int>
+     */
+    public const TIPOS_RESUMEN_MANUAL = [35, 38, 48];
+
+    /**
+     * Dato de la carátula que exige cada tipo de libro.
+     *
+     * El esquema deja estos campos como opcionales: que sean obligatorios para
+     * estos tipos de libro no lo valida el esquema, por eso se valida al
+     * construir el libro.
+     *
+     * @var array<string, string>
+     */
+    public const CARATULA_REQUERIDA = [
+        'ESPECIAL' => 'FolioNotificacion',
+        'RECTIFICA' => 'CodAutRec',
+    ];
+
     /**
      * Valores por defecto de los totales del período por tipo de documento.
      *
@@ -95,8 +121,17 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         $caratula = $bag->getCaratula();
         $detalles = $bag->getDetalle();
 
+        // Ningún documento puede estar repetido en el detalle: el esquema no lo
+        // valida.
+        ArrayDuplicates::assertUnique(
+            $detalles,
+            $bag->getTipo()->getDocumentKey(),
+            ValueParser::parse(...)
+        );
+
         // Calcular resumen del período.
         $totalesPeriodo = $this->calculateTotalesPeriodo($detalles);
+        $totalesPeriodo = $this->addResumen($totalesPeriodo, $bag->getResumen());
         $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
 
         // Se actualizan los detalles por si se modificó algo al realizar el
@@ -105,7 +140,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         $bag->setDetalle($detalles);
 
         // Construir carátula normalizada.
-        $tipoOper = strtoupper($caratula['TipoOperacion'] ?? 'VENTA');
+        $tipoOper = strtoupper(self::reader($caratula)->getAsString('TipoOperacion') ?? 'VENTA');
         $caratulaNorm = array_merge([
             'RutEmisorLibro' => false,
             'RutEnvia' => false,
@@ -118,9 +153,22 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             'FolioNotificacion' => false,
         ], $caratula);
 
+        // Un libro especial lleva el folio de la notificación y uno de
+        // rectificación el código de autorización.
+        $caratulaReader = self::reader($caratulaNorm);
+        $tipoLibro = $caratulaReader->getAsString('TipoLibro') ?? '';
+        $campo = self::CARATULA_REQUERIDA[$tipoLibro] ?? null;
+        if ($campo !== null && in_array($caratulaNorm[$campo] ?? null, [null, false, ''], true)) {
+            throw new BookException([
+                'The cover of a book of type {type} must have {field}.',
+                'type' => $tipoLibro,
+                'field' => $campo,
+            ]);
+        }
+
         // Construir ID del documento.
-        $rut = str_replace('-', '', $caratulaNorm['RutEmisorLibro'] ?? '');
-        $periodo = str_replace('-', '', $caratulaNorm['PeriodoTributario'] ?? date('Y-m'));
+        $rut = str_replace('-', '', $caratulaReader->getAsString('RutEmisorLibro') ?? '');
+        $periodo = str_replace('-', '', $caratulaReader->getAsString('PeriodoTributario') ?? date('Y-m'));
         $id = sprintf('LibreDTE_LIBRO_%s_%s_%s_%s', $tipoOper, $rut, $periodo, time());
 
         // Generar estructura XML.
@@ -139,7 +187,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
                     'ResumenPeriodo' => $resumenPeriodo,
-                    'Detalle' => $detalle ? ($detalles ?: false) : false,
+                    'Detalle' => $detalle ? ($this->filterDetalle($detalles) ?: false) : false,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ],
@@ -149,169 +197,320 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
     }
 
     /**
-     * Calcula los totales del período agrupados por TpoDoc.
+     * Entrega las filas del detalle que van en el XML del libro.
+     *
+     * Por defecto son todas. Una estrategia puede dejar fuera algunas: sus
+     * totales igual se cuentan en el resumen del período.
      *
      * @param array<int, array<string, mixed>> $detalles
-     * @return array<int|string, array<string, mixed>>
+     * @return array<int, array<string, mixed>>
+     */
+    protected function filterDetalle(array $detalles): array
+    {
+        return $detalles;
+    }
+
+    /**
+     * Agrega al resumen del período el resumen manual: los totales de
+     * documentos que no están en el detalle.
+     *
+     * @param array<int, array<string, mixed>> $totales Totales calculados
+     * desde el detalle, por tipo de documento.
+     * @param array<int, array<string, mixed>> $resumen Resumen manual.
+     * @return array<int, array<string, mixed>>
+     * @throws BookException Si un elemento no tiene `TpoDoc` y `TotDoc`, si su
+     * tipo de documento no es uno de `TIPOS_RESUMEN_MANUAL`, si el tipo se repite
+     * en el resumen o si el tipo ya está en el detalle.
+     */
+    private function addResumen(array $totales, array $resumen): array
+    {
+        if ($resumen === []) {
+            return $totales;
+        }
+
+        $manual = [];
+        $number = 0;
+        foreach ($resumen as $total) {
+            $number++;
+            if (!isset($total['TpoDoc']) || !isset($total['TotDoc'])) {
+                throw new BookException([
+                    'Element {number} of the manual summary must have TpoDoc and TotDoc.',
+                    'number' => $number,
+                ]);
+            }
+
+            $tpoDoc = is_numeric($total['TpoDoc']) ? (int) $total['TpoDoc'] : 0;
+            if (!in_array($tpoDoc, self::TIPOS_RESUMEN_MANUAL, true)) {
+                throw new BookException([
+                    'The document type {type} can not have a manual summary: it must be one of {allowed}.',
+                    'type' => $total['TpoDoc'],
+                    'allowed' => implode(', ', self::TIPOS_RESUMEN_MANUAL),
+                ]);
+            }
+
+            if (isset($manual[$tpoDoc])) {
+                throw new BookException([
+                    'The document type {type} is repeated in the manual summary.',
+                    'type' => $tpoDoc,
+                ]);
+            }
+
+            if (isset($totales[$tpoDoc])) {
+                throw new BookException([
+                    'The document type {type} is in the detail of the book, so it can not have a manual summary.',
+                    'type' => $tpoDoc,
+                ]);
+            }
+
+            $manual[$tpoDoc] = array_merge($this->totalDefault, $total, ['TpoDoc' => $tpoDoc]);
+        }
+
+        $totales += $manual;
+        ksort($totales);
+
+        return $totales;
+    }
+
+    /**
+     * Calcula los totales del período agrupados por TpoDoc.
+     *
+     * Se quita el factor de proporcionalidad (`FctProp`) de los detalles, que no
+     * es parte del XML de un detalle.
+     *
+     * @param array<int, array<string, mixed>> $detalles
+     * @return array<int, array<string, mixed>>
      */
     private function calculateTotalesPeriodo(array &$detalles): array
     {
-        $totales = [];
+        $groups = [];
 
         foreach ($detalles as &$d) {
-            $tpoDoc = $d['TpoDoc'] ?? false;
-            if (!$tpoDoc) {
+            $row = self::reader($d);
+
+            $tpoDoc = $row->getAsInt('TpoDoc');
+            if ($tpoDoc === null || $tpoDoc === 0) {
                 continue;
             }
 
-            if (!isset($totales[$tpoDoc])) {
-                $totales[$tpoDoc] = array_merge($this->totalDefault, ['TpoDoc' => $tpoDoc]);
-            }
+            $groups[$tpoDoc] ??= $this->newGroup();
+            $group = &$groups[$tpoDoc];
 
-            $totales[$tpoDoc]['TotDoc']++;
+            $group['documents']++;
 
             // Documentos anulados solo incrementan el contador.
             if (!empty($d['Anulado']) && $d['Anulado'] === 'A') {
-                $totales[$tpoDoc]['TotAnulado'] = (int) $totales[$tpoDoc]['TotAnulado'] + 1;
+                $group['annulled'] = ($group['annulled'] ?? 0) + 1;
+                unset($group);
                 continue;
             }
 
             // Montos base.
-            $totales[$tpoDoc]['TotMntExe'] += (int) ($d['MntExe'] ?? 0);
-            $totales[$tpoDoc]['TotMntNeto'] += (int) ($d['MntNeto'] ?? 0);
-            if (!empty($d['MntIVA'])) {
-                $totales[$tpoDoc]['TotMntIVA'] += (int) $d['MntIVA'];
-            }
-            $totales[$tpoDoc]['TotMntTotal'] += (int) ($d['MntTotal'] ?? 0);
+            $group['exempt'] += $row->getAsInt('MntExe') ?? 0;
+            $group['net'] += $row->getAsInt('MntNeto') ?? 0;
+            $group['vat'] += $row->getAsInt('MntIVA') ?? 0;
+            $group['total'] += $row->getAsInt('MntTotal') ?? 0;
 
             // Activo fijo.
-            if (!empty($d['MntActivoFijo'])) {
-                $totales[$tpoDoc]['TotMntActivoFijo'] =
-                    (int) $totales[$tpoDoc]['TotMntActivoFijo']
-                    + (int) $d['MntActivoFijo']
-                ;
+            $fixedAsset = $row->getAsInt('MntActivoFijo') ?? 0;
+            if ($fixedAsset !== 0) {
+                $group['fixedAsset'] = ($group['fixedAsset'] ?? 0) + $fixedAsset;
             }
-            if (!empty($d['MntIVAActivoFijo'])) {
-                $totales[$tpoDoc]['TotMntIVAActivoFijo'] =
-                    (int) $totales[$tpoDoc]['TotMntIVAActivoFijo']
-                    + (int) $d['MntIVAActivoFijo']
-                ;
+            $fixedAssetVat = $row->getAsInt('MntIVAActivoFijo') ?? 0;
+            if ($fixedAssetVat !== 0) {
+                $group['fixedAssetVat'] = ($group['fixedAssetVat'] ?? 0) + $fixedAssetVat;
             }
 
             // IVA no recuperable.
-            if (!empty($d['IVANoRec'])) {
-                if ($totales[$tpoDoc]['TotIVANoRec'] === false) {
-                    $totales[$tpoDoc]['TotIVANoRec'] = [];
-                }
-                foreach ($d['IVANoRec'] as $iva) {
-                    $cod = $iva['CodIVANoRec'];
-                    if (!isset($totales[$tpoDoc]['TotIVANoRec'][$cod])) {
-                        $totales[$tpoDoc]['TotIVANoRec'][$cod] = [
-                            'CodIVANoRec' => $cod,
-                            'TotOpIVANoRec' => 0,
-                            'TotMntIVANoRec' => 0,
-                        ];
-                    }
-                    $totales[$tpoDoc]['TotIVANoRec'][$cod]['TotOpIVANoRec']++;
-                    $totales[$tpoDoc]['TotIVANoRec'][$cod]['TotMntIVANoRec'] +=
-                        (int) $iva['MntIVANoRec']
-                    ;
-                }
+            foreach (self::toList($d['IVANoRec'] ?? null) as $iva) {
+                $item = self::reader($iva);
+                $code = $item->getAsInt('CodIVANoRec') ?? 0;
+                $group['notRecoverable'][$code] ??= ['code' => $code, 'operations' => 0, 'amount' => 0];
+                $group['notRecoverable'][$code]['operations']++;
+                $group['notRecoverable'][$code]['amount'] += $item->getAsInt('MntIVANoRec') ?? 0;
             }
 
             // IVA de uso común.
             if (isset($d['FctProp'])) {
-                if (!empty($d['FctProp'])) {
-                    $totales[$tpoDoc]['TotIVAUsoComun'] =
-                        (int) $totales[$tpoDoc]['TotIVAUsoComun']
-                        + (int) $d['IVAUsoComun']
-                    ;
-                    $totales[$tpoDoc]['FctProp'] = $d['FctProp'] / 100;
-                    $totales[$tpoDoc]['TotCredIVAUsoComun'] =
-                        (int) $totales[$tpoDoc]['TotCredIVAUsoComun']
-                        + (int) round((int) $d['IVAUsoComun'] * ($d['FctProp'] / 100))
-                    ;
+                $proportion = $row->getAsNumber('FctProp') ?? 0;
+                if ($proportion != 0) {
+                    $commonVat = $row->getAsInt('IVAUsoComun') ?? 0;
+                    $group['commonVat'] = ($group['commonVat'] ?? 0) + $commonVat;
+                    $group['proportion'] = $proportion / 100;
+                    $group['commonCredit'] = ($group['commonCredit'] ?? 0) + (int) round($commonVat * ($proportion / 100));
                 }
                 unset($d['FctProp']);
             }
 
             // IVA fuera de plazo.
-            if (!empty($d['IVAFueraPlazo'])) {
-                $totales[$tpoDoc]['TotIVAFueraPlazo'] =
-                    (int) $totales[$tpoDoc]['TotIVAFueraPlazo']
-                    + (int) $d['IVAFueraPlazo']
-                ;
+            $latePayment = $row->getAsInt('IVAFueraPlazo') ?? 0;
+            if ($latePayment !== 0) {
+                $group['latePayment'] = ($group['latePayment'] ?? 0) + $latePayment;
             }
 
             // Otros impuestos.
-            if (!empty($d['OtrosImp'])) {
-                if ($totales[$tpoDoc]['TotOtrosImp'] === false) {
-                    $totales[$tpoDoc]['TotOtrosImp'] = [];
-                }
-                foreach ($d['OtrosImp'] as $imp) {
-                    $cod = $imp['CodImp'];
-                    if (!isset($totales[$tpoDoc]['TotOtrosImp'][$cod])) {
-                        $totales[$tpoDoc]['TotOtrosImp'][$cod] = [
-                            'CodImp' => $cod,
-                            'TotMntImp' => 0,
-                        ];
-                    }
-                    $totales[$tpoDoc]['TotOtrosImp'][$cod]['TotMntImp'] +=
-                        (int) $imp['MntImp']
-                    ;
-                }
+            foreach (self::toList($d['OtrosImp'] ?? null) as $imp) {
+                $item = self::reader($imp);
+                $code = $item->getAsInt('CodImp') ?? 0;
+                $group['otherTaxes'][$code] ??= ['code' => $code, 'amount' => 0];
+                $group['otherTaxes'][$code]['amount'] += $item->getAsInt('MntImp') ?? 0;
             }
 
             // Monto sin crédito.
-            if (!empty($d['MntSinCred'])) {
-                $totales[$tpoDoc]['TotImpSinCredito'] =
-                    (int) $totales[$tpoDoc]['TotImpSinCredito']
-                    + (int) $d['MntSinCred']
-                ;
+            $withoutCredit = $row->getAsInt('MntSinCred') ?? 0;
+            if ($withoutCredit !== 0) {
+                $group['withoutCredit'] = ($group['withoutCredit'] ?? 0) + $withoutCredit;
             }
 
             // IVA retenido.
-            if (!empty($d['IVARetTotal'])) {
-                $totales[$tpoDoc]['TotIVARetTotal'] =
-                    (int) $totales[$tpoDoc]['TotIVARetTotal']
-                    + (int) $d['IVARetTotal']
-                ;
+            $withheldTotal = $row->getAsInt('IVARetTotal') ?? 0;
+            if ($withheldTotal !== 0) {
+                $group['withheldTotal'] = ($group['withheldTotal'] ?? 0) + $withheldTotal;
             }
-            if (!empty($d['IVARetParcial'])) {
-                $totales[$tpoDoc]['TotIVARetParcial'] =
-                    (int) $totales[$tpoDoc]['TotIVARetParcial']
-                    + (int) $d['IVARetParcial']
-                ;
+            $withheldPartial = $row->getAsInt('IVARetParcial') ?? 0;
+            if ($withheldPartial !== 0) {
+                $group['withheldPartial'] = ($group['withheldPartial'] ?? 0) + $withheldPartial;
             }
-            if (!empty($d['IVANoRetenido'])) {
-                $totales[$tpoDoc]['TotIVANoRetenido'] =
-                    (int) $totales[$tpoDoc]['TotIVANoRetenido']
-                    + (int) $d['IVANoRetenido']
-                ;
+            $notWithheld = $row->getAsInt('IVANoRetenido') ?? 0;
+            if ($notWithheld !== 0) {
+                $group['notWithheld'] = ($group['notWithheld'] ?? 0) + $notWithheld;
             }
 
             // Impuesto vehículos.
-            if (!empty($d['ImpVehiculo'])) {
-                $totales[$tpoDoc]['TotImpVehiculo'] =
-                    (int) $totales[$tpoDoc]['TotImpVehiculo']
-                    + (int) $d['ImpVehiculo']
-                ;
+            $vehicle = $row->getAsInt('ImpVehiculo') ?? 0;
+            if ($vehicle !== 0) {
+                $group['vehicle'] = ($group['vehicle'] ?? 0) + $vehicle;
             }
+
+            unset($group);
         }
+        unset($d);
 
         // Ordenar por tipo de documento ascendente.
-        ksort($totales);
+        ksort($groups);
 
-        // Re-indexar subarreglos para XML.
-        foreach ($totales as &$t) {
-            if (is_array($t['TotIVANoRec'])) {
-                $t['TotIVANoRec'] = array_values($t['TotIVANoRec']);
-            }
-            if (is_array($t['TotOtrosImp'])) {
-                $t['TotOtrosImp'] = array_values($t['TotOtrosImp']);
-            }
+        $totales = [];
+        foreach ($groups as $tpoDoc => $group) {
+            $totales[$tpoDoc] = array_merge($this->totalDefault, [
+                'TpoDoc' => $tpoDoc,
+                'TotDoc' => $group['documents'],
+                'TotAnulado' => $group['annulled'] ?? false,
+                'TotMntExe' => $group['exempt'],
+                'TotMntNeto' => $group['net'],
+                'TotMntIVA' => $group['vat'],
+                'TotMntActivoFijo' => $group['fixedAsset'] ?? false,
+                'TotMntIVAActivoFijo' => $group['fixedAssetVat'] ?? false,
+                'TotIVANoRec' => $group['notRecoverable'] === [] ? false : array_values(array_map(
+                    static fn (array $iva): array => [
+                        'CodIVANoRec' => $iva['code'],
+                        'TotOpIVANoRec' => $iva['operations'],
+                        'TotMntIVANoRec' => $iva['amount'],
+                    ],
+                    $group['notRecoverable']
+                )),
+                'TotIVAUsoComun' => $group['commonVat'] ?? false,
+                'FctProp' => $group['proportion'] ?? false,
+                'TotCredIVAUsoComun' => $group['commonCredit'] ?? false,
+                'TotIVAFueraPlazo' => $group['latePayment'] ?? false,
+                'TotOtrosImp' => $group['otherTaxes'] === [] ? false : array_values(array_map(
+                    static fn (array $imp): array => ['CodImp' => $imp['code'], 'TotMntImp' => $imp['amount']],
+                    $group['otherTaxes']
+                )),
+                'TotIVARetTotal' => $group['withheldTotal'] ?? false,
+                'TotIVARetParcial' => $group['withheldPartial'] ?? false,
+                'TotImpSinCredito' => $group['withoutCredit'] ?? false,
+                'TotMntTotal' => $group['total'],
+                'TotIVANoRetenido' => $group['notWithheld'] ?? false,
+                'TotImpVehiculo' => $group['vehicle'] ?? false,
+            ]);
         }
 
         return $totales;
+    }
+
+    /**
+     * Entrega los acumuladores de un tipo de documento, vacíos. Un total que es
+     * `null` es uno que ningún documento aportó: queda como `false` en el XML.
+     *
+     * @return array{
+     *     documents: int,
+     *     annulled: int|null,
+     *     exempt: int,
+     *     net: int,
+     *     vat: int,
+     *     total: int,
+     *     fixedAsset: int|null,
+     *     fixedAssetVat: int|null,
+     *     notRecoverable: array<int, array{code: int, operations: int, amount: int}>,
+     *     commonVat: int|null,
+     *     proportion: int|float|null,
+     *     commonCredit: int|null,
+     *     latePayment: int|null,
+     *     otherTaxes: array<int, array{code: int, amount: int}>,
+     *     withoutCredit: int|null,
+     *     withheldTotal: int|null,
+     *     withheldPartial: int|null,
+     *     notWithheld: int|null,
+     *     vehicle: int|null
+     * }
+     */
+    private function newGroup(): array
+    {
+        return [
+            'documents' => 0,
+            'annulled' => null,
+            'exempt' => 0,
+            'net' => 0,
+            'vat' => 0,
+            'total' => 0,
+            'fixedAsset' => null,
+            'fixedAssetVat' => null,
+            'notRecoverable' => [],
+            'commonVat' => null,
+            'proportion' => null,
+            'commonCredit' => null,
+            'latePayment' => null,
+            'otherTaxes' => [],
+            'withoutCredit' => null,
+            'withheldTotal' => null,
+            'withheldPartial' => null,
+            'notWithheld' => null,
+            'vehicle' => null,
+        ];
+    }
+
+    /**
+     * Entrega un valor que puede ser un elemento o una lista de elementos como
+     * una lista de elementos (cada uno un arreglo). Lo que no está o no es un
+     * arreglo da una lista vacía.
+     *
+     * @return list<array<array-key, mixed>>
+     */
+    private static function toList(mixed $value): array
+    {
+        if (!is_array($value) || $value === []) {
+            return [];
+        }
+
+        $list = [];
+        foreach (array_is_list($value) ? $value : [$value] as $item) {
+            if (is_array($item)) {
+                $list[] = $item;
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * Entrega un lector de los datos. En el detalle y en la carátula `false` y el
+     * texto vacío son lo que se pone cuando no hay un valor.
+     *
+     * @param array<array-key, mixed> $data
+     */
+    private static function reader(array $data): ArrayReader
+    {
+        return ArrayReader::fromArray(
+            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $data)
+        );
     }
 }

@@ -35,4 +35,29 @@ use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\Abs
 #[Strategy(name: 'libro_ventas', worker: 'builder', component: 'book', package: 'billing')]
 class BuilderStrategy extends AbstractLibroComprasVentasBuilderStrategy implements BuilderStrategyInterface
 {
+    /**
+     * Tipos de documento que no van en el detalle del libro de ventas.
+     *
+     * El esquema acepta estos tipos en el detalle, pero la biblioteca los omite
+     * a propósito, como una regla propia: se informan solo en el resumen del
+     * período (sus totales igual se cuentan).
+     *
+     * @var array<int, int>
+     */
+    public const TIPOS_FUERA_DEL_DETALLE = [35, 38, 39, 41, 105, 500, 501, 919, 920, 922, 924];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function filterDetalle(array $detalles): array
+    {
+        return array_values(array_filter(
+            $detalles,
+            static fn (array $detalle): bool => !in_array(
+                (int) ($detalle['TpoDoc'] ?? 0),
+                self::TIPOS_FUERA_DEL_DETALLE,
+                true
+            )
+        ));
+    }
 }

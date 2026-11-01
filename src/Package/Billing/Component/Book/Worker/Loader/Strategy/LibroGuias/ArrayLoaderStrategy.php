@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
@@ -41,7 +42,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * Normaliza la carátula del libro de guías de despacho.
      *
      * @param BookBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      */
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
@@ -64,6 +65,14 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * Normaliza un detalle del libro de guías de despacho.
      *
      * El orden de las claves determina el orden de los elementos en el XML.
+     *
+     * Los montos son números enteros y la tasa es un número: el texto que llega
+     * de un CSV se acepta si se puede convertir, y uno que no es un número es un
+     * error que dice en qué guía y en qué campo está. Los valores del detalle no
+     * se reemplazan por los convertidos.
+     *
+     * @param array<string, mixed> $detalle
+     * @return array<string, mixed>
      */
     protected function normalizeDetalle(array $detalle): array
     {
@@ -86,22 +95,60 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
             'FchDocRef' => false,
         ], $detalle);
 
+        // Los montos y la tasa deben ser números.
+        $this->assertNumbers($detalle);
+
+        $row = self::reader($detalle);
+
         // Truncar razón social.
         if ($detalle['RznSoc']) {
-            $detalle['RznSoc'] = mb_substr((string) $detalle['RznSoc'], 0, 50);
+            $detalle['RznSoc'] = mb_substr($row->getAsString('RznSoc') ?? '', 0, 50);
         }
 
         // Calcular IVA si falta.
         if (!$detalle['IVA'] && $detalle['TasaImp'] && $detalle['MntNeto']) {
-            $detalle['IVA'] = (int) round($detalle['MntNeto'] * ($detalle['TasaImp'] / 100));
+            $detalle['IVA'] = (int) round(($row->getAsInt('MntNeto') ?? 0) * (($row->getAsNumber('TasaImp') ?? 0) / 100));
         }
 
         // Calcular monto total si falta.
         if ($detalle['MntTotal'] === false) {
-            $detalle['MntTotal'] = (int) $detalle['MntNeto'] + (int) $detalle['IVA'];
+            $detalle['MntTotal'] = ($row->getAsInt('MntNeto') ?? 0) + (self::reader($detalle)->getAsInt('IVA') ?? 0);
         }
 
         // Retornar el detalle normalizado.
         return $detalle;
+    }
+
+    /**
+     * Verifica que los montos y la tasa de una guía sean números.
+     *
+     * Un valor que no está (`false`, vacío o `null`) no se verifica. Si uno no es
+     * un número, el error dice en qué guía y en qué campo está.
+     *
+     * @param array<string, mixed> $detalle
+     */
+    private function assertNumbers(array $detalle): void
+    {
+        $reader = self::reader($detalle, sprintf('document %s', is_scalar($detalle['Folio'] ?? null) ? (string) $detalle['Folio'] : '?'));
+
+        foreach (['MntNeto', 'IVA', 'MntTotal', 'MntModificado'] as $field) {
+            $reader->getAsInt($field);
+        }
+
+        $reader->getAsNumber('TasaImp');
+    }
+
+    /**
+     * Entrega un lector de la fila. En el detalle `false` y el texto vacío son lo
+     * que se pone cuando no hay un valor.
+     *
+     * @param array<string, mixed> $detalle
+     */
+    private static function reader(array $detalle, ?string $source = null): ArrayReader
+    {
+        return ArrayReader::fromArray(
+            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $detalle),
+            $source
+        );
     }
 }

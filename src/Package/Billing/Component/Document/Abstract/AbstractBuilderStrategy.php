@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
 use DateTime;
 use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -147,6 +148,19 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
                 'folio' => $draft->getFolio(),
                 'document' => $draft->getId(),
                 'caf' => $caf->getId(),
+            ]);
+        }
+
+        // Verificar que el CAF haya sido autorizado al emisor del documento.
+        $rutCaf = $caf->getEmisor()['rut'];
+        $rutDocumento = $draft->getRutEmisor();
+        if (Rut::toArray($rutCaf) !== Rut::toArray($rutDocumento)) {
+            throw new BuilderException([
+                'CAF {caf} was authorized to issuer {caf_rut}, but document {document} is from issuer {rut}.',
+                'caf' => $caf->getId(),
+                'caf_rut' => $rutCaf,
+                'document' => $draft->getId(),
+                'rut' => $rutDocumento,
             ]);
         }
 

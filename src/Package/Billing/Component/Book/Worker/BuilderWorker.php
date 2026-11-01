@@ -104,6 +104,13 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
         assert($strategy instanceof BuilderStrategyInterface);
 
         try {
+            if ($bag->getResumen() !== [] && !$bag->getTipo()->acceptsResumen()) {
+                throw new BookException([
+                    'The book "{type}" does not have a manual summary.',
+                    'type' => $strategyName,
+                ]);
+            }
+
             $libro = $strategy->build($bag);
 
             // Firmar el XML si se proporcionó un certificado.

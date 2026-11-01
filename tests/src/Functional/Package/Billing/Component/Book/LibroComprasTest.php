@@ -52,9 +52,11 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuye
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Emisor;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\EmisorFactory;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(LoaderWorker::class)]
 #[CoversClass(BuilderWorker::class)]
@@ -76,6 +78,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(LibroComprasVentas::class)]
 #[CoversClass(ImpuestoAdicionalRetencion::class)]
 #[CoversClass(ImpuestoAdicionalRetencionRepository::class)]
+#[UsesClass(RepositorySourceProvider::class)]
 class LibroComprasTest extends TestCase
 {
     private LoaderWorkerInterface $loader;

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\ResumenVentasDiarias;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
@@ -30,8 +31,9 @@ use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\Abst
 /**
  * Estrategia `resumen_ventas_diarias.array` del `LoaderWorker`.
  *
- * Para el RVD (ConsumoFolios) los detalles se usan directamente sin
- * normalización previa: el BuilderWorker los procesa en `calculateResumen()`.
+ * Normaliza cada detalle del RVD (ConsumoFolios) a los tipos que usa el
+ * `BuilderWorker` en `calculateResumen()`: números enteros en los folios y los
+ * montos, y el tipo y la fecha del documento como datos obligatorios.
  */
 #[Strategy(name: 'resumen_ventas_diarias.array', worker: 'loader', component: 'book', package: 'billing')]
 class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderStrategyInterface
@@ -42,7 +44,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * Normaliza la carátula del resumen de ventas diarias.
      *
      * @param BookBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      */
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
@@ -63,13 +65,47 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      *
      * Normaliza un detalle del resumen de ventas diarias.
      *
-     * @param array $detalle
-     * @return array
+     * El tipo y la fecha del documento son obligatorios. El folio y los montos
+     * son números enteros: el texto que llega de un CSV se convierte y uno que no
+     * es un número es un error que dice en qué documento y en qué campo está. Si
+     * no se informa el monto total, es la suma de los montos exento, neto y de
+     * IVA.
+     *
+     * @param array<string, mixed> $detalle
+     * @return array<string, mixed>
      */
     protected function normalizeDetalle(array $detalle): array
     {
-        return array_merge([
-            // TODO: Normalizar detalle según lo que se usa en el BuilderStrategy.
-        ], $detalle);
+        // En los detalles `false` es lo que se pone cuando no hay un valor.
+        $row = array_map(static fn (mixed $value): mixed => $value === false ? null : $value, $detalle);
+
+        $reader = ArrayReader::fromArray($row, sprintf(
+            'document %s/%s',
+            self::describe($row['TpoDoc'] ?? null),
+            self::describe($row['NroDoc'] ?? null)
+        ));
+
+        $exempt = $reader->getAsInt('MntExe');
+        $net = $reader->getAsInt('MntNeto');
+        $vat = $reader->getAsInt('MntIVA');
+
+        return [
+            'TpoDoc' => $reader->requireAsInt('TpoDoc'),
+            'NroDoc' => $reader->getAsInt('NroDoc'),
+            'FchDoc' => $reader->requireString('FchDoc'),
+            'TasaImp' => $reader->getAsNumber('TasaImp'),
+            'MntNeto' => $net,
+            'MntIVA' => $vat,
+            'MntExe' => $exempt,
+            'MntTotal' => $reader->getAsInt('MntTotal') ?? ($exempt ?? 0) + ($net ?? 0) + ($vat ?? 0),
+        ];
+    }
+
+    /**
+     * Dice un valor del documento para nombrarlo en un mensaje.
+     */
+    private static function describe(mixed $value): string
+    {
+        return is_scalar($value) ? (string) $value : '?';
     }
 }

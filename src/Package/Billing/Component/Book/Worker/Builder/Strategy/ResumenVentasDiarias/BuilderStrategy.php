@@ -22,8 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\ResumenVentasDiarias;
 
+use Derafu\Array\ArrayDuplicates;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Value\ValueParser;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
@@ -52,6 +55,14 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $caratula = $bag->getCaratula();
         $detalles = $bag->getDetalle();
 
+        // Ningún documento puede estar repetido en el detalle: sus folios se
+        // contarían dos veces.
+        ArrayDuplicates::assertUnique(
+            $detalles,
+            $bag->getTipo()->getDocumentKey(),
+            ValueParser::parse(...)
+        );
+
         // Calcular fechas inicio y fin desde los detalles.
         $fchInicio = $this->calculateFechaInicial($detalles);
         $fchFinal = $this->calculateFechaFinal($detalles);
@@ -77,7 +88,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         ]);
 
         // Construir ID del documento.
-        $rut = str_replace('-', '', $caratulaNorm['RutEmisor'] ?? '');
+        $rut = str_replace('-', '', self::reader($caratulaNorm)->getString('RutEmisor') ?? '');
         $fecha = str_replace('-', '', $fchInicio);
         $id = sprintf('LibreDTE_CONSUMO_FOLIO_%s_%s_%s', $rut, $fecha, time());
 
@@ -93,7 +104,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
                 'DocumentoConsumoFolios' => [
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
-                    'Resumen' => array_values($resumen),
+                    'Resumen' => $resumen,
                 ],
             ],
         ]);
@@ -104,105 +115,135 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
     /**
      * Calcula la fecha del primer documento de los detalles.
      *
+     * Los detalles sin fecha no cuentan. Sin ninguna fecha es la de hoy.
+     *
      * @param array<int, array<string, mixed>> $detalles
      */
     private function calculateFechaInicial(array $detalles): string
     {
-        $fecha = '9999-12-31';
+        $fecha = null;
         foreach ($detalles as $d) {
-            if (isset($d['FchDoc']) && $d['FchDoc'] < $fecha) {
-                $fecha = $d['FchDoc'];
+            $fchDoc = self::reader($d)->getString('FchDoc');
+            if ($fchDoc !== null && ($fecha === null || $fchDoc < $fecha)) {
+                $fecha = $fchDoc;
             }
         }
-        return $fecha === '9999-12-31' ? date('Y-m-d') : $fecha;
+
+        return $fecha ?? date('Y-m-d');
     }
 
     /**
      * Calcula la fecha del último documento de los detalles.
      *
+     * Los detalles sin fecha no cuentan. Sin ninguna fecha es la de hoy.
+     *
      * @param array<int, array<string, mixed>> $detalles
      */
     private function calculateFechaFinal(array $detalles): string
     {
-        $fecha = '0000-01-01';
+        $fecha = null;
         foreach ($detalles as $d) {
-            if (isset($d['FchDoc']) && $d['FchDoc'] > $fecha) {
-                $fecha = $d['FchDoc'];
+            $fchDoc = self::reader($d)->getString('FchDoc');
+            if ($fchDoc !== null && ($fecha === null || $fchDoc > $fecha)) {
+                $fecha = $fchDoc;
             }
         }
-        return $fecha === '0000-01-01' ? date('Y-m-d') : $fecha;
+
+        return $fecha ?? date('Y-m-d');
     }
 
     /**
      * Calcula el resumen agrupado por TpoDoc con rangos de folios utilizados.
      *
      * @param array<int, array<string, mixed>> $detalles
-     * @return array<int|string, array<string, mixed>>
+     * @return list<array<string, mixed>>
      */
     private function calculateResumen(array $detalles): array
     {
-        $resumen = [];
-        $foliosPorTipo = [];
-
+        $groups = [];
         foreach ($detalles as $d) {
-            $tpoDoc = $d['TpoDoc'] ?? false;
-            if (!$tpoDoc) {
+            $row = self::reader($d);
+
+            $tpoDoc = $row->getAsInt('TpoDoc');
+            if ($tpoDoc === null || $tpoDoc === 0) {
                 continue;
             }
 
-            if (!isset($resumen[$tpoDoc])) {
-                $resumen[$tpoDoc] = [
-                    'TipoDocumento' => $tpoDoc,
-                    'MntNeto' => false,
-                    'MntIva' => false,
-                    'TasaIVA' => isset($d['TasaImp']) && $d['TasaImp'] ? $d['TasaImp'] : false,
-                    'MntExento' => false,
-                    'MntTotal' => 0,
-                    'FoliosEmitidos' => 0,
-                    'FoliosAnulados' => 0,
-                    'FoliosUtilizados' => false,
-                    'RangoUtilizados' => false,
-                ];
-                $foliosPorTipo[$tpoDoc] = [];
+            // La tasa es la del primer documento del tipo.
+            $groups[$tpoDoc] ??= [
+                'rate' => $row->getAsNumber('TasaImp'),
+                'net' => null,
+                'vat' => 0,
+                'exempt' => null,
+                'total' => 0,
+                'folios' => [],
+            ];
+
+            $net = $row->getAsInt('MntNeto');
+            if ($net !== null && $net !== 0) {
+                $groups[$tpoDoc]['net'] = ($groups[$tpoDoc]['net'] ?? 0) + $net;
+                $groups[$tpoDoc]['vat'] += $row->getAsInt('MntIVA') ?? 0;
             }
 
-            if (isset($d['MntNeto']) && $d['MntNeto']) {
-                $resumen[$tpoDoc]['MntNeto'] = (int) $resumen[$tpoDoc]['MntNeto'] + (int) $d['MntNeto'];
-                $mntIva = isset($d['MntIVA']) ? (int) $d['MntIVA'] : 0;
-                $resumen[$tpoDoc]['MntIva'] = (int) $resumen[$tpoDoc]['MntIva'] + $mntIva;
+            $exempt = $row->getAsInt('MntExe');
+            if ($exempt !== null && $exempt !== 0) {
+                $groups[$tpoDoc]['exempt'] = ($groups[$tpoDoc]['exempt'] ?? 0) + $exempt;
             }
 
-            if (isset($d['MntExe']) && $d['MntExe']) {
-                $resumen[$tpoDoc]['MntExento'] = (int) $resumen[$tpoDoc]['MntExento'] + (int) $d['MntExe'];
-            }
+            $groups[$tpoDoc]['total'] += $row->getAsInt('MntTotal') ?? 0;
 
-            $resumen[$tpoDoc]['MntTotal'] += (int) ($d['MntTotal'] ?? 0);
-            $resumen[$tpoDoc]['FoliosEmitidos']++;
-
-            if (isset($d['NroDoc'])) {
-                $foliosPorTipo[$tpoDoc][] = (int) $d['NroDoc'];
+            $folio = $row->getAsInt('NroDoc');
+            if ($folio !== null) {
+                $groups[$tpoDoc]['folios'][] = $folio;
             }
         }
 
-        // Post-procesamiento: calcular folios utilizados y rangos.
-        foreach ($resumen as $tpoDoc => &$r) {
-            $r['FoliosUtilizados'] = $r['FoliosEmitidos'] + $r['FoliosAnulados'];
-            $r['RangoUtilizados'] = $this->calculateRangos($foliosPorTipo[$tpoDoc] ?? []);
+        $resumen = [];
+        foreach ($groups as $tpoDoc => $group) {
+            $issued = $this->countIssued($detalles, $tpoDoc);
+            $resumen[] = [
+                'TipoDocumento' => $tpoDoc,
+                'MntNeto' => $group['net'] ?? false,
+                'MntIva' => $group['net'] !== null ? $group['vat'] : false,
+                'TasaIVA' => $group['rate'] ?: false,
+                'MntExento' => $group['exempt'] ?? false,
+                'MntTotal' => $group['total'],
+                'FoliosEmitidos' => $issued,
+                'FoliosAnulados' => 0,
+                'FoliosUtilizados' => $issued,
+                'RangoUtilizados' => $this->calculateRangos($group['folios']),
+            ];
         }
-        unset($r);
 
         return $resumen;
     }
 
     /**
+     * Cuenta los documentos de un tipo en los detalles.
+     *
+     * @param array<int, array<string, mixed>> $detalles
+     */
+    private function countIssued(array $detalles, int $tpoDoc): int
+    {
+        $count = 0;
+        foreach ($detalles as $d) {
+            if (self::reader($d)->getAsInt('TpoDoc') === $tpoDoc) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
      * Determina los rangos continuos de folios.
      *
-     * @param int[] $folios Lista de números de folio.
-     * @return array<int, array{Inicial: int, Final: int}>
+     * @param list<int> $folios Lista de números de folio.
+     * @return list<array{Inicial: int, Final: int}>
      */
     private function calculateRangos(array $folios): array
     {
-        if (empty($folios)) {
+        if ($folios === []) {
             return [];
         }
 
@@ -223,5 +264,18 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $rangos[] = ['Inicial' => $inicioRango, 'Final' => $anterior];
 
         return $rangos;
+    }
+
+    /**
+     * Entrega un lector de los datos. En los detalles y en la carátula `false`
+     * es lo que se pone cuando no hay un valor.
+     *
+     * @param array<string, mixed> $data
+     */
+    private static function reader(array $data): ArrayReader
+    {
+        return ArrayReader::fromArray(
+            array_map(static fn (mixed $value): mixed => $value === false ? null : $value, $data)
+        );
     }
 }

@@ -51,6 +51,43 @@ enum TipoLibro: string
     }
 
     /**
+     * Entrega las rutas del detalle que identifican a un documento en este tipo
+     * de libro: no puede haber dos documentos con los mismos valores.
+     *
+     * Son el tipo y el folio del documento en ventas; en compras, además, el RUT
+     * de quien lo emitió (dos proveedores pueden tener el mismo folio); el folio
+     * en guías; y el tipo y el folio del documento en el resumen de ventas
+     * diarias. El libro de boletas no tiene una clave que validar.
+     *
+     * @return array<int, string>
+     */
+    public function getDocumentKey(): array
+    {
+        return match($this) {
+            self::VENTAS => ['TpoDoc', 'NroDoc'],
+            self::COMPRAS => ['RUTDoc', 'TpoDoc', 'NroDoc'],
+            self::GUIAS => ['Folio'],
+            self::RVD => ['TpoDoc', 'NroDoc'],
+            self::BOLETAS => [],
+        };
+    }
+
+    /**
+     * Indica si el tipo de libro admite un resumen manual (los totales de
+     * documentos que no están en el detalle, como boletas en papel o pagos
+     * electrónicos). Solo el libro de ventas.
+     *
+     * @return bool
+     */
+    public function acceptsResumen(): bool
+    {
+        return match($this) {
+            self::VENTAS => true,
+            self::COMPRAS, self::BOLETAS, self::GUIAS, self::RVD => false,
+        };
+    }
+
+    /**
      * Retorna el código del tipo de libro.
      */
     public function getCodigo(): string

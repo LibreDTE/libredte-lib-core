@@ -118,6 +118,25 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getDetalle(): array;
 
     /**
+     * Asigna el resumen manual del libro.
+     *
+     * Son los totales por tipo de documento de documentos que no están en el
+     * detalle (por ejemplo, boletas en papel y pagos electrónicos). Cada
+     * elemento es un `TotalesPeriodo` con, al menos, `TpoDoc` y `TotDoc`.
+     *
+     * @param array<int, array<string, mixed>> $resumen
+     * @return static
+     */
+    public function setResumen(array $resumen): static;
+
+    /**
+     * Obtiene el resumen manual del libro.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getResumen(): array;
+
+    /**
      * Obtiene las opciones del `LoaderWorker`.
      *
      * La clave `format` determina el formato de entrada (por defecto 'array').

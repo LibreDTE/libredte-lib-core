@@ -39,6 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Book\Entity\LibroComprasVentas;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Support\BookBag;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\AbstractLibroComprasVentasBuilderStrategy;
+use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroVentas\BuilderStrategy as VentasBuilderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\BuilderWorker;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractLibroComprasVentasArrayLoaderStrategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\LoaderWorker;
@@ -65,6 +66,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(TipoLibro::class)]
 #[CoversClass(BookBag::class)]
 #[CoversClass(AbstractLibroComprasVentasBuilderStrategy::class)]
+#[CoversClass(VentasBuilderStrategy::class)]
 #[CoversClass(AbstractLibroComprasVentasArrayLoaderStrategy::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(AutorizacionDte::class)]

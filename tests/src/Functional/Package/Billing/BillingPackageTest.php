@@ -39,6 +39,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\BuilderException;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Document\Factory\TipoDocumentoFactory;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter;
@@ -116,6 +118,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(Contribuyente::class)]
+#[CoversClass(DocumentException::class)]
 #[CoversClass(LoaderWorker::class)]
 #[CoversClass(AbstractRendererStrategy::class)]
 #[CoversClass(RendererWorker::class)]
@@ -233,5 +236,59 @@ class BillingPackageTest extends TestCase
         $newBag->getOptions()->set('renderer.format', 'html');
         $renderedData = (string) $renderer->render($newBag);
         $this->assertNotEmpty($renderedData);
+    }
+
+    public function testBillingPackageBillerBillRefusesACafOfAnotherIssuer(): void
+    {
+        $RUTEmisor = '76192083-9';
+
+        $data = [
+            'Encabezado' => [
+                'IdDoc' => ['TipoDTE' => 33, 'Folio' => 1],
+                'Emisor' => [
+                    'RUTEmisor' => $RUTEmisor,
+                    'RznSoc' => 'SASCO SpA',
+                    'GiroEmis' => 'Tecnología, Informática y Telecomunicaciones',
+                    'Acteco' => 726000,
+                    'DirOrigen' => 'Santiago',
+                    'CmnaOrigen' => 'Santiago',
+                ],
+                'Receptor' => [
+                    'RUTRecep' => '60803000-K',
+                    'RznSocRecep' => 'Servicio de Impuestos Internos',
+                    'GiroRecep' => 'Gobierno',
+                    'DirRecep' => 'Santiago',
+                    'CmnaRecep' => 'Santiago',
+                ],
+            ],
+            'Detalle' => [
+                'NmbItem' => 'Servicio Plus de LibreDTE',
+                'QtyItem' => 12,
+                'PrcItem' => 40000,
+            ],
+        ];
+
+        // The CAF is of another issuer than the one of the document.
+        $caf = Application::getInstance()
+            ->getPackageRegistry()
+            ->getBillingPackage()
+            ->getIdentifierComponent()
+            ->getCafFakerWorker()
+            ->create(new Emisor('11111111-1'), 33, 1)
+        ;
+        $certificate = (new CertificateFaker(new CertificateLoader()))->createFake(id: $RUTEmisor);
+
+        $biller = Application::getInstance()
+            ->getPackageRegistry()
+            ->getBillingPackage()
+            ->getDocumentComponent()
+        ;
+
+        $this->expectException(BuilderException::class);
+        $this->expectExceptionMessageMatches(
+            '/was authorized to issuer 11111111-1, but document .* is from issuer 76192083-9\./'
+        );
+
+        $biller->bill($data, $caf, $certificate);
     }
 }

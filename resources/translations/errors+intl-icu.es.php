@@ -42,6 +42,8 @@ return [
         'Error de autenticación: TOKEN inválido, no existe o está expirado.',
     'CAF {caf} containing document number {folio} of document {document} is not valid; it expired on {date}.' =>
         'El CAF {caf} que contiene el folio {folio} del documento {document} no está vigente, venció el día {date}.',
+    'CAF {caf} was authorized to issuer {caf_rut}, but document {document} is from issuer {rut}.' =>
+        'El CAF {caf} fue autorizado al emisor {caf_rut}, pero el documento {document} es del emisor {rut}.',
     'CAF {id} failed private key validation (possible corrupt CAF file).' =>
         'El CAF {id} no pasó la validación de su clave privada (posible archivo CAF corrupto).',
     'CAF {id} failed public key validation (possible corrupt CAF file).' =>
@@ -140,6 +142,8 @@ return [
         'Falta indicar el campo {field}.',
     'Example "{id}" does not exist (referenced in DependsOn).' =>
         'El ejemplo "{id}" no existe (referenciado en DependsOn).',
+    'Element {number} of the manual summary must have TpoDoc and TotDoc.' =>
+        'El elemento {number} del resumen manual debe tener TpoDoc y TotDoc.',
     'Example "{id}" does not exist.' =>
         'El ejemplo "{id}" no existe.',
     'Could not receive the exchange: {detail}' =>
@@ -272,6 +276,8 @@ return [
         'Los atributos run, nombre y email del mandatario son obligatorios.',
     'The authenticated RUT has no permission to send on behalf of the assigning company.' =>
         'El RUT autenticado no tiene permiso para enviar en la empresa cedente.',
+    'The book "{type}" does not have a manual summary.' =>
+        'El libro "{type}" no tiene resumen manual.',
     'The book XML does not declare the xsi:schemaLocation attribute.' =>
         'El XML del libro no declara el atributo xsi:schemaLocation.',
     'The book type is not defined in class "{class}".' =>
@@ -280,6 +286,8 @@ return [
         'La empresa no está autorizada como emisor de DTE.',
     'The company is not authorized to send XML files to the SII. {detail}' =>
         'La empresa no está autorizada a enviar archivos XML al SII. {detail}',
+    'The cover of a book of type {type} must have {field}.' =>
+        'La carátula de un libro de tipo {type} debe tener {field}.',
     'The document XML does not include an assigned document number.' =>
         'El documento no tiene un folio asignado en el XML.',
     'The document XML does not include an assigned issue date.' =>
@@ -310,6 +318,12 @@ return [
         'Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.',
     'Must indicate the document type to issue.' =>
         'Falta indicar el tipo de documento a emitir.',
+    'The document type {type} can not have a manual summary: it must be one of {allowed}.' =>
+        'El tipo de documento {type} no puede tener un resumen manual: debe ser uno de {allowed}.',
+    'The document type {type} is in the detail of the book, so it can not have a manual summary.' =>
+        'El tipo de documento {type} está en el detalle del libro, por lo que no puede tener un resumen manual.',
+    'The document type {type} is repeated in the manual summary.' =>
+        'El tipo de documento {type} está repetido en el resumen manual.',
     'The envelope cover is not defined.' =>
         'La carátula del sobre no está definida.',
     'The envelope to send has no documents.' =>

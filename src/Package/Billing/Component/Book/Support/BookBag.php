@@ -93,6 +93,14 @@ class BookBag implements BookBagInterface
     private array $detalle;
 
     /**
+     * Resumen manual del libro: totales de documentos que no están en el
+     * detalle.
+     *
+     * @var array<int, array<string, mixed>>
+     */
+    private array $resumen;
+
+    /**
      * Certificado digital para la firma del XML.
      *
      * @var CertificateInterface|null
@@ -127,6 +135,11 @@ class BookBag implements BookBagInterface
      * @param array<string, mixed>|OptionsInterface|null $options Opciones de
      *   procesamiento. La clave `loader.format` elige el formato de entrada
      *   (por defecto 'array').
+     * @param array<int, array<string, mixed>> $resumen Resumen manual: los
+     *   totales por tipo de documento (`TotalesPeriodo`, con `TpoDoc` y
+     *   `TotDoc` como mínimo) de documentos que no están en el detalle, como
+     *   boletas en papel o pagos electrónicos. Solo lo admite el libro de
+     *   ventas.
      */
     public function __construct(
         TipoLibro $tipo,
@@ -137,11 +150,13 @@ class BookBag implements BookBagInterface
         ?CertificateInterface $certificate = null,
         BookInterface|null $book = null,
         EmisorInterface|null $emisor = null,
+        array $resumen = [],
     ) {
         $this->tipo = $tipo;
         $this->inputData = $inputData;
         $this->caratula = $caratula;
         $this->detalle = $detalle;
+        $this->resumen = $resumen;
         $this->certificate = $certificate;
         $this->book = $book;
         $this->emisor = $emisor;
@@ -224,6 +239,24 @@ class BookBag implements BookBagInterface
         }
 
         return $this->detalle;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setResumen(array $resumen): static
+    {
+        $this->resumen = $resumen;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResumen(): array
+    {
+        return $this->resumen;
     }
 
     /**
@@ -352,6 +385,7 @@ class BookBag implements BookBagInterface
             'book_type' => $this->getTipo()->toArray(),
             'caratula' => $this->getCaratula(),
             'detalle' => $this->getDetalle(),
+            'resumen' => $this->getResumen(),
             'options' => $this->getOptions()->all(),
         ];
     }

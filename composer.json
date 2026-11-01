@@ -45,6 +45,7 @@
         "derafu/renderer": "dev-main",
         "derafu/repository": "dev-main",
         "derafu/selector": "dev-main",
+        "derafu/value": "dev-main",
         "derafu/signature": "dev-main",
         "derafu/translation": "dev-main",
         "derafu/xml": "dev-main",
