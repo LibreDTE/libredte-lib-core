@@ -326,6 +326,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020detalles\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_getDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AsetResumen\u0028\u0029",
+            "name": "setResumen",
+            "summary": "Asigna\u0020el\u0020resumen\u0020manual\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_setResumen"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AgetResumen\u0028\u0029",
+            "name": "getResumen",
+            "summary": "Obtiene\u0020el\u0020resumen\u0020manual\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_getResumen"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AgetLoaderOptions\u0028\u0029",
             "name": "getLoaderOptions",
             "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020\u0060LoaderWorker\u0060.",
@@ -691,6 +701,16 @@ Search.appendIndex(
             "summary": "Retorna\u0020el\u0020XPath\u0020del\u0020resumen\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_getXpathResumen"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AgetDocumentKey\u0028\u0029",
+            "name": "getDocumentKey",
+            "summary": "Entrega\u0020las\u0020rutas\u0020del\u0020detalle\u0020que\u0020identifican\u0020a\u0020un\u0020documento\u0020en\u0020este\u0020tipo\nde\u0020libro\u003A\u0020no\u0020puede\u0020haber\u0020dos\u0020documentos\u0020con\u0020los\u0020mismos\u0020valores.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_getDocumentKey"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AacceptsResumen\u0028\u0029",
+            "name": "acceptsResumen",
+            "summary": "Indica\u0020si\u0020el\u0020tipo\u0020de\u0020libro\u0020admite\u0020un\u0020resumen\u0020manual\u0020\u0028los\u0020totales\u0020de\ndocumentos\u0020que\u0020no\u0020est\u00E1n\u0020en\u0020el\u0020detalle,\u0020como\u0020boletas\u0020en\u0020papel\u0020o\u0020pagos\nelectr\u00F3nicos\u0029.\u0020Solo\u0020el\u0020libro\u0020de\u0020ventas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Enum-TipoLibro.html#method_acceptsResumen"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Enum\\TipoLibro\u003A\u003AgetCodigo\u0028\u0029",
             "name": "getCodigo",
             "summary": "Retorna\u0020el\u0020c\u00F3digo\u0020del\u0020tipo\u0020de\u0020libro.",
@@ -836,6 +856,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020detalles\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AsetResumen\u0028\u0029",
+            "name": "setResumen",
+            "summary": "Asigna\u0020el\u0020resumen\u0020manual\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_setResumen"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AgetResumen\u0028\u0029",
+            "name": "getResumen",
+            "summary": "Obtiene\u0020el\u0020resumen\u0020manual\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getResumen"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AgetLoaderOptions\u0028\u0029",
             "name": "getLoaderOptions",
             "summary": "Obtiene\u0020las\u0020opciones\u0020del\u0020\u0060LoaderWorker\u0060.",
@@ -936,6 +966,11 @@ Search.appendIndex(
             "summary": "Detalles\u0020normalizadosdel\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#property_detalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024resumen",
+            "name": "resumen",
+            "summary": "Resumen\u0020manual\u0020del\u0020libro\u003A\u0020totales\u0020de\u0020documentos\u0020que\u0020no\u0020est\u00E1n\u0020en\u0020el\ndetalle.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#property_resumen"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024certificate",
             "name": "certificate",
             "summary": "Certificado\u0020digital\u0020para\u0020la\u0020firma\u0020del\u0020XML.",
@@ -966,10 +1001,45 @@ Search.appendIndex(
             "summary": "Construye\u0020el\u0020Libro\u0020de\u0020Compras\/Ventas\u0020a\u0020partir\u0020del\u0020bag\u0020normalizado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_build"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AfilterDetalle\u0028\u0029",
+            "name": "filterDetalle",
+            "summary": "Entrega\u0020las\u0020filas\u0020del\u0020detalle\u0020que\u0020van\u0020en\u0020el\u0020XML\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_filterDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AaddResumen\u0028\u0029",
+            "name": "addResumen",
+            "summary": "Agrega\u0020al\u0020resumen\u0020del\u0020per\u00EDodo\u0020el\u0020resumen\u0020manual\u003A\u0020los\u0020totales\u0020de\ndocumentos\u0020que\u0020no\u0020est\u00E1n\u0020en\u0020el\u0020detalle.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_addResumen"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AcalculateTotalesPeriodo\u0028\u0029",
             "name": "calculateTotalesPeriodo",
             "summary": "Calcula\u0020los\u0020totales\u0020del\u0020per\u00EDodo\u0020agrupados\u0020por\u0020TpoDoc.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_calculateTotalesPeriodo"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AnewGroup\u0028\u0029",
+            "name": "newGroup",
+            "summary": "Entrega\u0020los\u0020acumuladores\u0020de\u0020un\u0020tipo\u0020de\u0020documento,\u0020vac\u00EDos.\u0020Un\u0020total\u0020que\u0020es\n\u0060null\u0060\u0020es\u0020uno\u0020que\u0020ning\u00FAn\u0020documento\u0020aport\u00F3\u003A\u0020queda\u0020como\u0020\u0060false\u0060\u0020en\u0020el\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_newGroup"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AtoList\u0028\u0029",
+            "name": "toList",
+            "summary": "Entrega\u0020un\u0020valor\u0020que\u0020puede\u0020ser\u0020un\u0020elemento\u0020o\u0020una\u0020lista\u0020de\u0020elementos\u0020como\nuna\u0020lista\u0020de\u0020elementos\u0020\u0028cada\u0020uno\u0020un\u0020arreglo\u0029.\u0020Lo\u0020que\u0020no\u0020est\u00E1\u0020o\u0020no\u0020es\u0020un\narreglo\u0020da\u0020una\u0020lista\u0020vac\u00EDa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_toList"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020el\u0020detalle\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\u0020y\u0020el\ntexto\u0020vac\u00EDo\u0020son\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_reader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003ATIPOS_RESUMEN_MANUAL",
+            "name": "TIPOS_RESUMEN_MANUAL",
+            "summary": "Tipos\u0020de\u0020documento\u0020que\u0020se\u0020pueden\u0020informar\u0020solo\u0020con\u0020su\u0020resumen\u003A\u0020boletas,\nboletas\u0020exentas\u0020y\u0020pagos\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#constant_TIPOS_RESUMEN_MANUAL"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003ACARATULA_REQUERIDA",
+            "name": "CARATULA_REQUERIDA",
+            "summary": "Dato\u0020de\u0020la\u0020car\u00E1tula\u0020que\u0020exige\u0020cada\u0020tipo\u0020de\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#constant_CARATULA_REQUERIDA"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003A\u0024totalDefault",
             "name": "totalDefault",
@@ -1031,6 +1101,11 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020del\u0020per\u00EDodo\u0020del\u0020libro\u0020de\u0020gu\u00EDas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method_calculateResumenPeriodo"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020el\u0020detalle\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\u0020y\u0020el\ntexto\u0020vac\u00EDo\u0020son\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method_reader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
             "name": "xmlEncoder",
             "summary": "",
@@ -1040,6 +1115,16 @@ Search.appendIndex(
             "name": "BuilderStrategy",
             "summary": "Estrategia\u0020\u0060libro_ventas\u0060\u0020del\u0020\u0060BuilderWorker\u0060.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroVentas-BuilderStrategy.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroVentas\\BuilderStrategy\u003A\u003AfilterDetalle\u0028\u0029",
+            "name": "filterDetalle",
+            "summary": "Entrega\u0020las\u0020filas\u0020del\u0020detalle\u0020que\u0020van\u0020en\u0020el\u0020XML\u0020del\u0020libro.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroVentas-BuilderStrategy.html#method_filterDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroVentas\\BuilderStrategy\u003A\u003ATIPOS_FUERA_DEL_DETALLE",
+            "name": "TIPOS_FUERA_DEL_DETALLE",
+            "summary": "Tipos\u0020de\u0020documento\u0020que\u0020no\u0020van\u0020en\u0020el\u0020detalle\u0020del\u0020libro\u0020de\u0020ventas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroVentas-BuilderStrategy.html#constant_TIPOS_FUERA_DEL_DETALLE"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy",
             "name": "BuilderStrategy",
@@ -1071,10 +1156,20 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020agrupado\u0020por\u0020TpoDoc\u0020con\u0020rangos\u0020de\u0020folios\u0020utilizados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_calculateResumen"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003AcountIssued\u0028\u0029",
+            "name": "countIssued",
+            "summary": "Cuenta\u0020los\u0020documentos\u0020de\u0020un\u0020tipo\u0020en\u0020los\u0020detalles.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_countIssued"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003AcalculateRangos\u0028\u0029",
             "name": "calculateRangos",
             "summary": "Determina\u0020los\u0020rangos\u0020continuos\u0020de\u0020folios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_calculateRangos"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020los\u0020detalles\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\nes\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_reader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
             "name": "xmlEncoder",
@@ -1151,6 +1246,41 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020IVA\u0020retenido\u0020del\u0020detalle.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_calcularIvaRetenidoDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003ApercentOfNet\u0028\u0029",
+            "name": "percentOfNet",
+            "summary": "Calcula\u0020el\u0020porcentaje\u0020de\u0020la\u0020tasa\u0020sobre\u0020el\u0020monto\u0020neto\u0020del\u0020detalle,\u0020redondeado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_percentOfNet"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AintOf\u0028\u0029",
+            "name": "intOf",
+            "summary": "Entrega\u0020un\u0020monto\u0020de\u0020la\u0020fila\u0020como\u0020n\u00FAmero\u0020entero\u003A\u00200\u0020si\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_intOf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AtoList\u0028\u0029",
+            "name": "toList",
+            "summary": "Entrega\u0020un\u0020valor\u0020que\u0020puede\u0020ser\u0020un\u0020elemento\u0020o\u0020una\u0020lista\u0020de\u0020elementos\u0020como\nuna\u0020lista\u0020de\u0020elementos\u0020\u0028cada\u0020uno\u0020un\u0020arreglo\u0029.\u0020Lo\u0020que\u0020no\u0020est\u00E1\u0020o\u0020no\u0020es\u0020un\narreglo\u0020da\u0020una\u0020lista\u0020vac\u00EDa.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_toList"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AassertNumbers\u0028\u0029",
+            "name": "assertNumbers",
+            "summary": "Verifica\u0020que\u0020los\u0020montos\u0020y\u0020las\u0020tasas\u0020de\u0020una\u0020fila\u0020sean\u0020n\u00FAmeros.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_assertNumbers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020la\u0020fila.\u0020En\u0020el\u0020detalle\u0020\u0060false\u0060\u0020y\u0020el\u0020texto\u0020vac\u00EDo\u0020son\u0020lo\nque\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_reader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AAMOUNTS",
+            "name": "AMOUNTS",
+            "summary": "Campos\u0020del\u0020detalle\u0020que\u0020son\u0020montos\u003A\u0020n\u00FAmeros\u0020enteros.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#constant_AMOUNTS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003ARATES",
+            "name": "RATES",
+            "summary": "Campos\u0020del\u0020detalle\u0020que\u0020son\u0020tasas\u0020o\u0020factores\u003A\u0020n\u00FAmeros.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#constant_RATES"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003A\u0024repositoryManager",
             "name": "repositoryManager",
             "summary": "",
@@ -1191,6 +1321,16 @@ Search.appendIndex(
             "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_normalizeDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003AassertNumbers\u0028\u0029",
+            "name": "assertNumbers",
+            "summary": "Verifica\u0020que\u0020los\u0020montos\u0020y\u0020la\u0020tasa\u0020de\u0020una\u0020gu\u00EDa\u0020sean\u0020n\u00FAmeros.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_assertNumbers"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020la\u0020fila.\u0020En\u0020el\u0020detalle\u0020\u0060false\u0060\u0020y\u0020el\u0020texto\u0020vac\u00EDo\u0020son\u0020lo\nque\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_reader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroVentas\\ArrayLoaderStrategy",
             "name": "ArrayLoaderStrategy",
             "summary": "Estrategia\u0020\u0060libro_ventas.array\u0060\u0020del\u0020\u0060LoaderWorker\u0060.",
@@ -1210,6 +1350,11 @@ Search.appendIndex(
             "name": "normalizeDetalle",
             "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_normalizeDetalle"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\ResumenVentasDiarias\\ArrayLoaderStrategy\u003A\u003Adescribe\u0028\u0029",
+            "name": "describe",
+            "summary": "Dice\u0020un\u0020valor\u0020del\u0020documento\u0020para\u0020nombrarlo\u0020en\u0020un\u0020mensaje.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_describe"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker",
             "name": "LoaderWorker",
