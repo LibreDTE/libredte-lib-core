@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -201,7 +201,7 @@ manera sencilla y, sobre todo, extensible.</p>
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#property_optionsSchema">$optionsSchema</a>
     <span>
-                        &nbsp;: array&lt;string, mixed&gt;            </span>
+                        &nbsp;: array&lt;string, array&lt;string, mixed&gt;|bool&gt;            </span>
 </dt>
 <dd>Reglas de esquema de las opciones del documento.</dd>
 
@@ -357,6 +357,14 @@ documento tributario.</dd>
 <dd>Obtiene los datos del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDataReader">getDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null    </span>
+</dt>
+<dd>Obtiene un lector de los datos del documento o `null` si no se pueden
+generar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocument">getDocument()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>|null    </span>
@@ -443,11 +451,27 @@ LibreDTE.</dd>
 son parte de la estructura oficial que utiliza el SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteDataReader">getLibredteDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null    </span>
+</dt>
+<dd>Obtiene un lector de los datos de LibreDTE que están asociados al
+documento o `null` si no están asignados.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData">getNormalizedData()</a>
     <span>
                                 &nbsp;: array&lt;string, mixed&gt;|null    </span>
 </dt>
 <dd>Obtiene los datos normalizados del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedDataReader">getNormalizedDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null    </span>
+</dt>
+<dd>Obtiene un lector de los datos normalizados del documento o `null` si no
+están asignados.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizerOptions">getNormalizerOptions()</a>
@@ -469,6 +493,14 @@ son parte de la estructura oficial que utiliza el SII.</dd>
                                 &nbsp;: array&lt;string, mixed&gt;|null    </span>
 </dt>
 <dd>Obtiene los datos procesados (parseados) del documento.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedDataReader">getParsedDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null    </span>
+</dt>
+<dd>Obtiene un lector de los datos procesados (parseados) del documento o
+`null` si no están asignados.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParserOptions">getParserOptions()</a>
@@ -554,6 +586,14 @@ son parte de la estructura oficial que utiliza el SII.</dd>
 <dd>Obtiene los datos del documento o falla si no se pueden generar.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDataReader">requireDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>    </span>
+</dt>
+<dd>Obtiene un lector de los datos del documento o falla si no se pueden
+generar.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDocument">requireDocument()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface">DocumentInterface</abbr></a>    </span>
@@ -580,6 +620,14 @@ son parte de la estructura oficial que utiliza el SII.</dd>
                                 &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Obtiene los datos normalizados del documento o falla si no están asignados.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedDataReader">requireNormalizedDataReader()</a>
+    <span>
+                                &nbsp;: <abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>    </span>
+</dt>
+<dd>Obtiene un lector de los datos normalizados del documento o falla si no
+están asignados.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireTipoDocumento">requireTipoDocumento()</a>
@@ -715,6 +763,13 @@ son parte de la estructura oficial que utiliza el SII.</dd>
 <dd>Retorna una nueva bolsa con los datos del DTE e incluye un certificado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedTipoDte">getParsedTipoDte()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Obtiene el tipo de documento indicado en los datos procesados (parseados).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_missing">missing()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-DocumentException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException">DocumentException</abbr></a>    </span>
@@ -751,7 +806,7 @@ son parte de la estructura oficial que utiliza el SII.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -760,7 +815,7 @@ son parte de la estructura oficial que utiliza el SII.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">array&lt;string, mixed&gt;</span>
+            <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;builder&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;normalizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;parser&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;renderer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;sanitizer&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []], &#039;validator&#039; =&gt; [&#039;types&#039; =&gt; &#039;array&#039;, &#039;default&#039; =&gt; []]]</span></code>
 
@@ -793,7 +848,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">152</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
@@ -832,7 +887,7 @@ Electrónico (DTE) que se generará.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
@@ -870,7 +925,7 @@ Electrónico (DTE) que se generará.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">203</span>
+    <span class="phpdocumentor-element-found-in__line">206</span>
 
     </aside>
 
@@ -909,7 +964,7 @@ si existen en la bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
@@ -947,7 +1002,7 @@ si existen en la bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
@@ -986,7 +1041,7 @@ en esta bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">181</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
@@ -1024,7 +1079,7 @@ en esta bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -1065,7 +1120,7 @@ documento tributario.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 
     </aside>
 
@@ -1111,7 +1166,7 @@ parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -1155,7 +1210,7 @@ mismo que $parsedData pues no se tocarán los datos de entrada procesados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -1198,7 +1253,7 @@ datos no están normaliados, solo parseados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">188</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
@@ -1236,7 +1291,7 @@ datos no están normaliados, solo parseados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">195</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
@@ -1274,7 +1329,7 @@ datos no están normaliados, solo parseados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
@@ -1317,7 +1372,7 @@ datos no están normaliados, solo parseados.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">224</span>
+    <span class="phpdocumentor-element-found-in__line">227</span>
 
     </aside>
 
@@ -1442,7 +1497,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">879</span>
+    <span class="phpdocumentor-element-found-in__line">935</span>
 
     </aside>
 
@@ -1481,7 +1536,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">381</span>
+    <span class="phpdocumentor-element-found-in__line">423</span>
 
     </aside>
 
@@ -1520,7 +1575,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">457</span>
+    <span class="phpdocumentor-element-found-in__line">499</span>
 
     </aside>
 
@@ -1559,7 +1614,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">483</span>
+    <span class="phpdocumentor-element-found-in__line">525</span>
 
     </aside>
 
@@ -1598,7 +1653,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">588</span>
+    <span class="phpdocumentor-element-found-in__line">632</span>
 
     </aside>
 
@@ -1636,7 +1691,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">658</span>
+    <span class="phpdocumentor-element-found-in__line">702</span>
 
     </aside>
 
@@ -1667,6 +1722,46 @@ los normalizan y asignan al contenedor.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getDataReader">
+        getDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">752</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos del documento o `null` si no se pueden
+generar.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getDocument">
         getDocument()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocument" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1675,7 +1770,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">509</span>
+    <span class="phpdocumentor-element-found-in__line">551</span>
 
     </aside>
 
@@ -1714,7 +1809,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">755</span>
+    <span class="phpdocumentor-element-found-in__line">817</span>
 
     </aside>
 
@@ -1753,7 +1848,7 @@ los normalizan y asignan al contenedor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">708</span>
+    <span class="phpdocumentor-element-found-in__line">770</span>
 
     </aside>
 
@@ -1793,7 +1888,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">727</span>
+    <span class="phpdocumentor-element-found-in__line">789</span>
 
     </aside>
 
@@ -1832,7 +1927,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">747</span>
+    <span class="phpdocumentor-element-found-in__line">809</span>
 
     </aside>
 
@@ -1871,7 +1966,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">543</span>
+    <span class="phpdocumentor-element-found-in__line">585</span>
 
     </aside>
 
@@ -1910,7 +2005,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">567</span>
+    <span class="phpdocumentor-element-found-in__line">609</span>
 
     </aside>
 
@@ -1949,7 +2044,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">606</span>
+    <span class="phpdocumentor-element-found-in__line">650</span>
 
     </aside>
 
@@ -1988,7 +2083,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">820</span>
+    <span class="phpdocumentor-element-found-in__line">876</span>
 
     </aside>
 
@@ -2027,7 +2122,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">763</span>
+    <span class="phpdocumentor-element-found-in__line">825</span>
 
     </aside>
 
@@ -2066,7 +2161,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">288</span>
 
     </aside>
 
@@ -2105,7 +2200,7 @@ LibreDTE.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">365</span>
+    <span class="phpdocumentor-element-found-in__line">397</span>
 
     </aside>
 
@@ -2137,6 +2232,46 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getLibredteDataReader">
+        getLibredteDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">405</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos de LibreDTE que están asociados al
+documento o `null` si no están asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLibredteDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getNormalizedData">
         getNormalizedData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2145,7 +2280,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">337</span>
+    <span class="phpdocumentor-element-found-in__line">351</span>
 
     </aside>
 
@@ -2176,6 +2311,46 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getNormalizedDataReader">
+        getNormalizedDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">359</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos normalizados del documento o `null` si no
+están asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getNormalizedDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getNormalizerOptions">
         getNormalizerOptions()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizerOptions" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2184,7 +2359,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">389</span>
+    <span class="phpdocumentor-element-found-in__line">431</span>
 
     </aside>
 
@@ -2223,7 +2398,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">257</span>
+    <span class="phpdocumentor-element-found-in__line">260</span>
 
     </aside>
 
@@ -2262,7 +2437,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">311</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -2293,6 +2468,46 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getParsedDataReader">
+        getParsedDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">322</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos procesados (parseados) del documento o
+`null` si no están asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getParsedDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getParserOptions">
         getParserOptions()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParserOptions" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2301,7 +2516,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">415</span>
 
     </aside>
 
@@ -2340,7 +2555,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">632</span>
+    <span class="phpdocumentor-element-found-in__line">676</span>
 
     </aside>
 
@@ -2379,7 +2594,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">413</span>
+    <span class="phpdocumentor-element-found-in__line">455</span>
 
     </aside>
 
@@ -2418,7 +2633,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">397</span>
+    <span class="phpdocumentor-element-found-in__line">439</span>
 
     </aside>
 
@@ -2457,7 +2672,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">650</span>
+    <span class="phpdocumentor-element-found-in__line">694</span>
 
     </aside>
 
@@ -2496,7 +2711,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">551</span>
+    <span class="phpdocumentor-element-found-in__line">593</span>
 
     </aside>
 
@@ -2534,7 +2749,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">405</span>
+    <span class="phpdocumentor-element-found-in__line">447</span>
 
     </aside>
 
@@ -2573,7 +2788,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">431</span>
+    <span class="phpdocumentor-element-found-in__line">473</span>
 
     </aside>
 
@@ -2612,7 +2827,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">926</span>
+    <span class="phpdocumentor-element-found-in__line">994</span>
 
     </aside>
 
@@ -2651,7 +2866,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">465</span>
+    <span class="phpdocumentor-element-found-in__line">507</span>
 
     </aside>
 
@@ -2690,7 +2905,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">491</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
@@ -2729,7 +2944,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">700</span>
+    <span class="phpdocumentor-element-found-in__line">744</span>
 
     </aside>
 
@@ -2760,6 +2975,46 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_requireDataReader">
+        requireDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">762</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos del documento o falla si no se pueden
+generar.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_requireDocument">
         requireDocument()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDocument" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2768,7 +3023,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">517</span>
+    <span class="phpdocumentor-element-found-in__line">559</span>
 
     </aside>
 
@@ -2807,7 +3062,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">614</span>
+    <span class="phpdocumentor-element-found-in__line">658</span>
 
     </aside>
 
@@ -2846,7 +3101,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">296</span>
 
     </aside>
 
@@ -2885,7 +3140,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">347</span>
+    <span class="phpdocumentor-element-found-in__line">371</span>
 
     </aside>
 
@@ -2916,6 +3171,46 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_requireNormalizedDataReader">
+        requireNormalizedDataReader()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedDataReader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">379</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene un lector de los datos normalizados del documento o falla si no
+están asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireNormalizedDataReader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Array\ArrayReader">ArrayReader</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_requireTipoDocumento">
         requireTipoDocumento()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireTipoDocumento" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2924,7 +3219,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">559</span>
+    <span class="phpdocumentor-element-found-in__line">601</span>
 
     </aside>
 
@@ -2963,7 +3258,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">439</span>
+    <span class="phpdocumentor-element-found-in__line">481</span>
 
     </aside>
 
@@ -3002,7 +3297,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">447</span>
+    <span class="phpdocumentor-element-found-in__line">489</span>
 
     </aside>
 
@@ -3051,7 +3346,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">473</span>
+    <span class="phpdocumentor-element-found-in__line">515</span>
 
     </aside>
 
@@ -3100,7 +3395,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">499</span>
+    <span class="phpdocumentor-element-found-in__line">541</span>
 
     </aside>
 
@@ -3149,7 +3444,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">525</span>
+    <span class="phpdocumentor-element-found-in__line">567</span>
 
     </aside>
 
@@ -3198,7 +3493,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">596</span>
+    <span class="phpdocumentor-element-found-in__line">640</span>
 
     </aside>
 
@@ -3247,7 +3542,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">787</span>
+    <span class="phpdocumentor-element-found-in__line">843</span>
 
     </aside>
 
@@ -3296,7 +3591,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">265</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
@@ -3345,7 +3640,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">355</span>
+    <span class="phpdocumentor-element-found-in__line">387</span>
 
     </aside>
 
@@ -3395,7 +3690,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">332</span>
 
     </aside>
 
@@ -3444,7 +3739,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">301</span>
+    <span class="phpdocumentor-element-found-in__line">304</span>
 
     </aside>
 
@@ -3493,7 +3788,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">622</span>
+    <span class="phpdocumentor-element-found-in__line">666</span>
 
     </aside>
 
@@ -3542,7 +3837,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">640</span>
+    <span class="phpdocumentor-element-found-in__line">684</span>
 
     </aside>
 
@@ -3591,7 +3886,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">535</span>
+    <span class="phpdocumentor-element-found-in__line">577</span>
 
     </aside>
 
@@ -3639,7 +3934,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">421</span>
+    <span class="phpdocumentor-element-found-in__line">463</span>
 
     </aside>
 
@@ -3688,7 +3983,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">900</span>
+    <span class="phpdocumentor-element-found-in__line">968</span>
 
     </aside>
 
@@ -3727,7 +4022,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">836</span>
+    <span class="phpdocumentor-element-found-in__line">892</span>
 
     </aside>
 
@@ -3776,7 +4071,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">857</span>
+    <span class="phpdocumentor-element-found-in__line">913</span>
 
     </aside>
 
@@ -3817,6 +4112,49 @@ son parte de la estructura oficial que utiliza el SII.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getParsedTipoDte">
+        getParsedTipoDte()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedTipoDte" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">953</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el tipo de documento indicado en los datos procesados (parseados).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getParsedTipoDte</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">null</code> si los datos no indican el tipo de documento.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_missing">
         missing()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_missing" class="headerlink"><i class="fas fa-link"></i></a>
@@ -3825,7 +4163,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentBag.php"><a href="files/src-package-billing-component-document-support-documentbag.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentBag.php">DocumentBag.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">951</span>
+    <span class="phpdocumentor-element-found-in__line">1019</span>
 
     </aside>
 
@@ -3911,6 +4249,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getCertificate">getCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getCodigoTipoDocumento">getCodigoTipoDocumento()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getData">getData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDataReader">getDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocument">getDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentAuth">getDocumentAuth()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentData">getDocumentData()</a></li>
@@ -3923,10 +4262,13 @@ son parte de la estructura oficial que utiliza el SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getId">getId()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getInputData">getInputData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteData">getLibredteData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteDataReader">getLibredteDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData">getNormalizedData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedDataReader">getNormalizedDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizerOptions">getNormalizerOptions()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getOptionsSchema">getOptionsSchema()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedData">getParsedData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedDataReader">getParsedDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParserOptions">getParserOptions()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getReceptor">getReceptor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getRendererOptions">getRendererOptions()</a></li>
@@ -3939,10 +4281,12 @@ son parte de la estructura oficial que utiliza el SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireCaf">requireCaf()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireCertificate">requireCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireData">requireData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDataReader">requireDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDocument">requireDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireEmisor">requireEmisor()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireInputData">requireInputData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedData">requireNormalizedData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedDataReader">requireNormalizedDataReader()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireTipoDocumento">requireTipoDocumento()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireXmlDocument">requireXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_setCaf">setCaf()</a></li>
@@ -3962,6 +4306,7 @@ son parte de la estructura oficial que utiliza el SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_toArray">toArray()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_withCaf">withCaf()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_withCertificate">withCertificate()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedTipoDte">getParsedTipoDte()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_missing">missing()</a></li>
                                     </ul>
             </li>

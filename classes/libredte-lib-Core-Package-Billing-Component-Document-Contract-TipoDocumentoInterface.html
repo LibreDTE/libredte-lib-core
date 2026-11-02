@@ -201,14 +201,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getDefaultCredEC">getDefaultCredEC()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: float|null    </span>
 </dt>
 <dd>Entrega el valor del crédito de IVA para empresas constructoras.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getDefaultIndServicio">getDefaultIndServicio()</a>
     <span>
-                                &nbsp;: int|false    </span>
+                                &nbsp;: int|null    </span>
 </dt>
 <dd>Entrega el valor por defecto del indicador de servicio para el tipo de
 documento.</dd>
@@ -216,7 +216,7 @@ documento.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getDefaultTasaIVA">getDefaultTasaIVA()</a>
     <span>
-                                &nbsp;: float|false    </span>
+                                &nbsp;: float|null    </span>
 </dt>
 <dd>Entrega el valor por defecto de la tasa de IVA.</dd>
 
@@ -524,7 +524,7 @@ requiera realizar el envío de este tipo de documento.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDefaultCredEC</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+                    <span class="phpdocumentor-signature__name">getDefaultCredEC</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -537,7 +537,11 @@ requiera realizar el envío de este tipo de documento.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
+        <span class="phpdocumentor-signature__response_type">float|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">null</code> si el tipo de documento no tiene crédito.</p>
+</section>
+
             </section>
 
 </article>
@@ -564,7 +568,7 @@ documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDefaultIndServicio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|false</span></code>
+                    <span class="phpdocumentor-signature__name">getDefaultIndServicio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -577,7 +581,11 @@ documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int|false</span>
+        <span class="phpdocumentor-signature__response_type">int|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">null</code> si el tipo de documento no tiene indicador.</p>
+</section>
+
             </section>
 
 </article>
@@ -603,7 +611,7 @@ documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDefaultTasaIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|false</span></code>
+                    <span class="phpdocumentor-signature__name">getDefaultTasaIVA</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -619,7 +627,11 @@ el valor vigente del IVA. Actualmente un 19%.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float|false</span>
+        <span class="phpdocumentor-signature__response_type">float|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">null</code> si el tipo de documento no tiene IVA.</p>
+</section>
+
             </section>
 
 </article>

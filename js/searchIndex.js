@@ -1033,7 +1033,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AnewGroup\u0028\u0029",
             "name": "newGroup",
-            "summary": "Entrega\u0020los\u0020acumuladores\u0020de\u0020un\u0020tipo\u0020de\u0020documento,\u0020vac\u00EDos.\u0020Un\u0020total\u0020que\u0020es\n\u0060null\u0060\u0020es\u0020uno\u0020que\u0020ning\u00FAn\u0020documento\u0020aport\u00F3\u003A\u0020queda\u0020como\u0020\u0060false\u0060\u0020en\u0020el\u0020XML.",
+            "summary": "Entrega\u0020los\u0020acumuladores\u0020de\u0020un\u0020tipo\u0020de\u0020documento,\u0020vac\u00EDos.\u0020Un\u0020total\u0020que\u0020es\n\u0060null\u0060\u0020es\u0020uno\u0020que\u0020ning\u00FAn\u0020documento\u0020aport\u00F3\u003A\u0020no\u0020aparece\u0020en\u0020el\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_newGroup"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003ATIPOS_RESUMEN_MANUAL",
@@ -2076,6 +2076,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getParsedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetParsedDataReader\u0028\u0029",
+            "name": "getParsedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento\u0020o\n\u0060null\u0060\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getParsedDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetNormalizedData\u0028\u0029",
             "name": "setNormalizedData",
             "summary": "Asigna\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
@@ -2086,10 +2091,20 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetNormalizedDataReader\u0028\u0029",
+            "name": "getNormalizedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireNormalizedData\u0028\u0029",
             "name": "requireNormalizedData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireNormalizedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireNormalizedDataReader\u0028\u0029",
+            "name": "requireNormalizedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireNormalizedDataReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetLibredteData\u0028\u0029",
             "name": "setLibredteData",
@@ -2100,6 +2115,11 @@ Search.appendIndex(
             "name": "getLibredteData",
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetLibredteDataReader\u0028\u0029",
+            "name": "getLibredteDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\ndocumento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getLibredteDataReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetParserOptions\u0028\u0029",
             "name": "getParserOptions",
@@ -2266,10 +2286,20 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDataReader\u0028\u0029",
+            "name": "getDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020se\u0020pueden\ngenerar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireData\u0028\u0029",
             "name": "requireData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\u0020generar.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireDataReader\u0028\u0029",
+            "name": "requireDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\ngenerar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireDataReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentData\u0028\u0029",
             "name": "getDocumentData",
@@ -4566,6 +4596,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetParsedDataReader\u0028\u0029",
+            "name": "getParsedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento\u0020o\n\u0060null\u0060\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetNormalizedData\u0028\u0029",
             "name": "setNormalizedData",
             "summary": "Asigna\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
@@ -4576,10 +4611,20 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetNormalizedDataReader\u0028\u0029",
+            "name": "getNormalizedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireNormalizedData\u0028\u0029",
             "name": "requireNormalizedData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireNormalizedDataReader\u0028\u0029",
+            "name": "requireNormalizedDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedDataReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetLibredteData\u0028\u0029",
             "name": "setLibredteData",
@@ -4590,6 +4635,11 @@ Search.appendIndex(
             "name": "getLibredteData",
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\u0020documento\u0020pero\u0020no\nson\u0020parte\u0020de\u0020la\u0020estructura\u0020oficial\u0020que\u0020utiliza\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetLibredteDataReader\u0028\u0029",
+            "name": "getLibredteDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020de\u0020LibreDTE\u0020que\u0020est\u00E1n\u0020asociados\u0020al\ndocumento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getLibredteDataReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetParserOptions\u0028\u0029",
             "name": "getParserOptions",
@@ -4761,6 +4811,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\u0020generar.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDataReader\u0028\u0029",
+            "name": "getDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020se\u0020pueden\ngenerar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDataReader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireDataReader\u0028\u0029",
+            "name": "requireDataReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\ngenerar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDataReader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentData\u0028\u0029",
             "name": "getDocumentData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE.",
@@ -4810,6 +4870,11 @@ Search.appendIndex(
             "name": "getAlias",
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020que\u0020contiene\u0020la\u0020bolsa.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getAlias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetParsedTipoDte\u0028\u0029",
+            "name": "getParsedTipoDte",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020documento\u0020indicado\u0020en\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getParsedTipoDte"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
@@ -11790,6 +11855,11 @@ Search.appendIndex(
             "name": "AbstractContribuyenteFactory",
             "summary": "Clase\u0020abstracta\u0020para\u0020las\u0020implementaciones\u0020de\u0020f\u00E1bricas\u0020de\u0020contribuyentes,\nemisores\u0020y\u0020receptores\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Abstract-AbstractContribuyenteFactory.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Abstract\\AbstractContribuyenteFactory\u003A\u003AcreateReader\u0028\u0029",
+            "name": "createReader",
+            "summary": "Crea\u0020un\u0020lector\u0020de\u0020los\u0020datos\u0020de\u0020entrada\u0020de\u0020la\u0020f\u00E1brica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Abstract-AbstractContribuyenteFactory.html#method_createReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Abstract\\AbstractContribuyenteFactory\u003A\u003AnormalizeData\u0028\u0029",
             "name": "normalizeData",

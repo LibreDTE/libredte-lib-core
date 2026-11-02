@@ -276,7 +276,7 @@ documentos que no están en el detalle.</dd>
                                 &nbsp;: array{documents: int, annulled: int|null, exempt: int, net: int, vat: int, total: int, fixedAsset: int|null, fixedAssetVat: int|null, notRecoverable: array<int,array{code: int, operations: int, amount: int}>, commonVat: int|null, proportion: int|float|null, commonCredit: int|null, latePayment: int|null, otherTaxes: array<int,array{code: int, amount: int}>, withoutCredit: int|null, withheldTotal: int|null, withheldPartial: int|null, notWithheld: int|null, vehicle: int|null}    </span>
 </dt>
 <dd>Entrega los acumuladores de un tipo de documento, vacíos. Un total que es
-`null` es uno que ningún documento aportó: queda como `false` en el XML.</dd>
+`null` es uno que ningún documento aportó: no aparece en el XML.</dd>
 
     </dl>
 
@@ -393,7 +393,7 @@ boletas exentas y pagos electrónicos.</p>
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type">array&lt;string, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$totalDefault</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;TpoDoc&#039; =&gt; null, &#039;TotDoc&#039; =&gt; 0, &#039;TotAnulado&#039; =&gt; false, &#039;TotOpExe&#039; =&gt; false, &#039;TotMntExe&#039; =&gt; 0, &#039;TotMntNeto&#039; =&gt; 0, &#039;TotMntIVA&#039; =&gt; 0, &#039;TotIVAPropio&#039; =&gt; false, &#039;TotIVATerceros&#039; =&gt; false, &#039;TotLey18211&#039; =&gt; false, &#039;TotMntActivoFijo&#039; =&gt; false, &#039;TotMntIVAActivoFijo&#039; =&gt; false, &#039;TotIVANoRec&#039; =&gt; false, &#039;TotIVAUsoComun&#039; =&gt; false, &#039;FctProp&#039; =&gt; false, &#039;TotCredIVAUsoComun&#039; =&gt; false, &#039;TotIVAFueraPlazo&#039; =&gt; false, &#039;TotOtrosImp&#039; =&gt; false, &#039;TotIVARetTotal&#039; =&gt; false, &#039;TotIVARetParcial&#039; =&gt; false, &#039;TotImpSinCredito&#039; =&gt; false, &#039;TotMntTotal&#039; =&gt; 0, &#039;TotIVANoRetenido&#039; =&gt; false, &#039;TotMntNoFact&#039; =&gt; false, &#039;TotMntPeriodo&#039; =&gt; false, &#039;TotPsjNac&#039; =&gt; false, &#039;TotPsjInt&#039; =&gt; false, &#039;TotTabPuros&#039; =&gt; false, &#039;TotTabCigarrillos&#039; =&gt; false, &#039;TotTabElaborado&#039; =&gt; false, &#039;TotImpVehiculo&#039; =&gt; false]</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;TpoDoc&#039; =&gt; null, &#039;TotDoc&#039; =&gt; 0, &#039;TotAnulado&#039; =&gt; null, &#039;TotOpExe&#039; =&gt; null, &#039;TotMntExe&#039; =&gt; 0, &#039;TotMntNeto&#039; =&gt; 0, &#039;TotMntIVA&#039; =&gt; 0, &#039;TotIVAPropio&#039; =&gt; null, &#039;TotIVATerceros&#039; =&gt; null, &#039;TotLey18211&#039; =&gt; null, &#039;TotMntActivoFijo&#039; =&gt; null, &#039;TotMntIVAActivoFijo&#039; =&gt; null, &#039;TotIVANoRec&#039; =&gt; null, &#039;TotIVAUsoComun&#039; =&gt; null, &#039;FctProp&#039; =&gt; null, &#039;TotCredIVAUsoComun&#039; =&gt; null, &#039;TotIVAFueraPlazo&#039; =&gt; null, &#039;TotOtrosImp&#039; =&gt; null, &#039;TotIVARetTotal&#039; =&gt; null, &#039;TotIVARetParcial&#039; =&gt; null, &#039;TotImpSinCredito&#039; =&gt; null, &#039;TotMntTotal&#039; =&gt; 0, &#039;TotIVANoRetenido&#039; =&gt; null, &#039;TotMntNoFact&#039; =&gt; null, &#039;TotMntPeriodo&#039; =&gt; null, &#039;TotPsjNac&#039; =&gt; null, &#039;TotPsjInt&#039; =&gt; null, &#039;TotTabPuros&#039; =&gt; null, &#039;TotTabCigarrillos&#039; =&gt; null, &#039;TotTabElaborado&#039; =&gt; null, &#039;TotImpVehiculo&#039; =&gt; null]</span></code>
 
         <section class="phpdocumentor-description"><p>El orden de las claves determina el orden de los elementos en el XML.</p>
 </section>
@@ -746,7 +746,7 @@ es parte del XML de un detalle.</p>
     </aside>
 
         <p class="phpdocumentor-summary">Entrega los acumuladores de un tipo de documento, vacíos. Un total que es
-`null` es uno que ningún documento aportó: queda como `false` en el XML.</p>
+`null` es uno que ningún documento aportó: no aparece en el XML.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
