@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
@@ -105,7 +106,9 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
             }
 
             // Quitar la declaración XML para embeber en el documento principal.
-            $signedRecibos[] = trim(preg_replace('/^<\?xml[^>]*\?>\s*/', '', $reciboXml));
+            $signedRecibos[] = trim(ValueCaster::requireString(
+                preg_replace('/^<\?xml[^>]*\?>\s*/', '', $reciboXml)
+            ));
         }
 
         // Insertar recibos firmados en el XML principal reemplazando el placeholder.

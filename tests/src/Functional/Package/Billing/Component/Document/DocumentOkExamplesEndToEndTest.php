@@ -356,7 +356,9 @@ class DocumentOkExamplesEndToEndTest extends TestCase
         );
 
         // Get the DTE XML.
-        $xml = $bag->getDocument()->saveXml();
+        $dteDocument = $bag->getDocument();
+        $this->assertNotNull($dteDocument);
+        $xml = $dteDocument->saveXml();
         $needle = '<?xml version="1.0" encoding="ISO-8859-1"?>';
         $this->assertStringContainsString($needle, $xml);
         file_put_contents($file . '.xml', $xml);

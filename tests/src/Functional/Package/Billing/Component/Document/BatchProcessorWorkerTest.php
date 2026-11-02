@@ -277,7 +277,9 @@ class BatchProcessorWorkerTest extends TestCase
             }
 
             // Generate document XML.
-            $xml = $documentBag->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+            $xmlDocument = $documentBag->getXmlDocument();
+            $this->assertNotNull($xmlDocument);
+            $xml = $xmlDocument->setEncoding('ISO-8859-1')->saveXml();
             $this->assertNotEmpty($xml);
             file_put_contents(
                 $file . '_' . $documentBag->getId() . '.xml',
@@ -300,7 +302,10 @@ class BatchProcessorWorkerTest extends TestCase
             try {
                 $result = $validator->validateSignature($xml);
                 if (!$result->isValid()) {
-                    throw $result->getError();
+                    throw ValueCaster::requireObject(
+                        $result->getError(),
+                        SignatureException::class
+                    );
                 }
             } catch (Exception $e) {
                 throw new SignatureException(sprintf(
@@ -320,9 +325,9 @@ class BatchProcessorWorkerTest extends TestCase
             );
 
             // Validate expected document fields.
-            $actualData = ArrayPath::flatten(
-                $documentBag->getDocument()->getData()
-            );
+            $document = $documentBag->getDocument();
+            $this->assertNotNull($document);
+            $actualData = ArrayPath::flatten($document->getData());
             foreach ($expectedData as $expectedKey => $expectedValue) {
                 $actualValue = $actualData[$expectedKey] ?? null;
                 $this->assertSame(
@@ -390,7 +395,9 @@ class BatchProcessorWorkerTest extends TestCase
         $documentsBag = $this->processFile($file);
 
         $this->assertCount(1, $documentsBag);
-        $pdfFileName = $documentsBag[0]->getParsedData()['LibreDTE']['pdf']['nombre'];
+        $parsed = $documentsBag[0]->getParsedData();
+        $this->assertNotNull($parsed);
+        $pdfFileName = $parsed['LibreDTE']['pdf']['nombre'];
         $this->assertSame(100, mb_strlen($pdfFileName));
     }
 
@@ -402,6 +409,7 @@ class BatchProcessorWorkerTest extends TestCase
 
         $this->assertCount(1, $documentsBag);
         $parsed = $documentsBag[0]->getParsedData();
+        $this->assertNotNull($parsed);
         $this->assertSame(
             'Peña Ñandú Ltda',
             $parsed['Encabezado']['Receptor']['RznSocRecep']

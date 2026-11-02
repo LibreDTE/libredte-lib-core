@@ -59,7 +59,7 @@ abstract class AbstractNormalizerStrategy extends AbstractStrategy implements No
         $this->normalizeDataPostDocumentNormalizationJob->execute($bag);
 
         // Entregar los datos normalizados.
-        return $bag->getNormalizedData();
+        return $bag->requireNormalizedData();
     }
 
     /**

@@ -113,14 +113,14 @@ class EntityRepositoryTest extends TestCase
     public function testEntityRepositoryAduanaClausulaVenta(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaClausulaVenta::class);
-        $this->assertSame('FOB', $repository->find(5)->getGlosa());
+        $this->assertSame('FOB', $repository->find(5)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'CIF'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaFormaPago(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaFormaPago::class);
-        $this->assertSame('S/PAGO', $repository->find(21)->getGlosa());
+        $this->assertSame('S/PAGO', $repository->find(21)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'COB1'])[0]->getCodigo());
     }
 
@@ -129,14 +129,14 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(
             AduanaModalidadVenta::class
         );
-        $this->assertSame('Sin pago', $repository->find(9)->getGlosa());
+        $this->assertSame('Sin pago', $repository->find(9)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'A firme'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaPais(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaPais::class);
-        $this->assertSame('ESTONIA', $repository->find(549)->getGlosa());
+        $this->assertSame('ESTONIA', $repository->find(549)?->getGlosa());
         $this->assertSame(563, $repository->findBy(['glosa' => 'ALEMANIA'])[0]->getCodigo());
     }
 
@@ -147,25 +147,25 @@ class EntityRepositoryTest extends TestCase
 
         // A country by ISO 3166-1 alpha-2 code, regardless of
         // case or spaces.
-        $this->assertSame(563, $repository->findOneByCodigoISO('DE')->getCodigo());
+        $this->assertSame(563, $repository->findOneByCodigoISO('DE')?->getCodigo());
         $this->assertSame('ALEMANIA', (string) $repository->findOneByCodigoISO(' de '));
-        $this->assertSame('CL', $repository->find(997)->getCodigoISO());
-        $this->assertSame('DE', $repository->find(563)->getCodigoISO());
+        $this->assertSame('CL', $repository->find(997)?->getCodigoISO());
+        $this->assertSame('DE', $repository->find(563)?->getCodigoISO());
 
         // Countries whose label differs from their name.
-        $this->assertSame(225, $repository->findOneByCodigoISO('US')->getCodigo());
-        $this->assertSame(206, $repository->findOneByCodigoISO('DO')->getCodigo());
+        $this->assertSame(225, $repository->findOneByCodigoISO('US')?->getCodigo());
+        $this->assertSame(206, $repository->findOneByCodigoISO('DO')?->getCodigo());
 
         // Countries the SII names differently: Western Sahara, Palestine (322 was
         // pre-unification Yemen), Netherlands, and Palau.
-        $this->assertSame(165, $repository->findOneByCodigoISO('EH')->getCodigo());
-        $this->assertSame(322, $repository->findOneByCodigoISO('PS')->getCodigo());
+        $this->assertSame(165, $repository->findOneByCodigoISO('EH')?->getCodigo());
+        $this->assertSame(322, $repository->findOneByCodigoISO('PS')?->getCodigo());
         $this->assertSame('PAISES BAJOS', (string) $repository->findOneByCodigoISO('NL'));
         $this->assertSame('BELAU', (string) $repository->findOneByCodigoISO('PW'));
 
         // When the SII lists a country twice, the code is on the current entry.
-        $this->assertSame(565, $repository->findOneByCodigoISO('GI')->getCodigo());
-        $this->assertSame(346, $repository->findOneByCodigoISO('YE')->getCodigo());
+        $this->assertSame(565, $repository->findOneByCodigoISO('GI')?->getCodigo());
+        $this->assertSame(346, $repository->findOneByCodigoISO('YE')?->getCodigo());
 
         // No country: code that does not exist, is not an ISO code, or the
         // SII does not have (for example, Antarctica).
@@ -183,7 +183,9 @@ class EntityRepositoryTest extends TestCase
         // Defunct countries, territory groups, and special
         // codes have no ISO code.
         foreach ([521, 529, 526, 151, 905, 998, 999, 888, 585, 323] as $code) {
-            $this->assertNull($repository->find($code)->getCodigoISO(), (string) $code);
+            $pais = $repository->find($code);
+            $this->assertNotNull($pais, (string) $code);
+            $this->assertNull($pais->getCodigoISO(), (string) $code);
         }
     }
 
@@ -213,27 +215,27 @@ class EntityRepositoryTest extends TestCase
     public function testEntityRepositoryAduanaPuerto(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaPuerto::class);
-        $this->assertSame('HELSINSKI', $repository->find(581)->getGlosa());
+        $this->assertSame('HELSINSKI', $repository->find(581)?->getGlosa());
         $this->assertSame(111, $repository->findBy(['glosa' => 'MONTREAL'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaTipoBulto(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaTipoBulto::class);
-        $this->assertSame('ATAUD', $repository->find(86)->getGlosa());
+        $this->assertSame('ATAUD', $repository->find(86)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'POLVO'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryAduanaTransporte(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaTransporte::class);
-        $this->assertSame('Aéreo', $repository->find(4)->getGlosa());
+        $this->assertSame('Aéreo', $repository->find(4)?->getGlosa());
     }
 
     public function testEntityRepositoryAduanaUnidad(): void
     {
         $repository = $this->repositoryManager->getRepository(AduanaUnidad::class);
-        $this->assertSame('MT2', $repository->find(15)->getGlosa());
+        $this->assertSame('MT2', $repository->find(15)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'TMB'])[0]->getCodigo());
     }
 
@@ -242,35 +244,35 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(Comuna::class);
         //$this->assertSame('', $repository->find()->getGlosa());
 
-        $this->assertSame('Santiago', $repository->find('HUECHURABA')->getCiudad());
-        $this->assertSame('Santiago', $repository->find('LAS CONDES')->getCiudad());
-        $this->assertFalse($repository->find('NON_EXISTENT')->getCiudad());
+        $this->assertSame('Santiago', $repository->find('HUECHURABA')?->getCiudad());
+        $this->assertSame('Santiago', $repository->find('LAS CONDES')?->getCiudad());
+        $this->assertFalse($repository->find('NON_EXISTENT')?->getCiudad());
 
         // Look up regional address using commune.
-        $this->assertSame('ARICA', $repository->find('Arica')->getDireccionRegional());
-        $this->assertSame('IQUIQUE', $repository->find('iquique')->getDireccionRegional());
-        $this->assertSame('NO_EXISTE', $repository->find('No_Existe')->getDireccionRegional());
+        $this->assertSame('ARICA', $repository->find('Arica')?->getDireccionRegional());
+        $this->assertSame('IQUIQUE', $repository->find('iquique')?->getDireccionRegional());
+        $this->assertSame('NO_EXISTE', $repository->find('No_Existe')?->getDireccionRegional());
 
         // Look up regional address using branch code.
-        $this->assertSame('SUC 123', $repository->find(123)->getDireccionRegional());
-        $this->assertSame('SUC 456', $repository->find(456)->getDireccionRegional());
+        $this->assertSame('SUC 123', $repository->find(123)?->getDireccionRegional());
+        $this->assertSame('SUC 456', $repository->find(456)?->getDireccionRegional());
 
         // Look up regional address using empty value.
-        $this->assertSame('N.N.', $repository->find('')->getDireccionRegional());
-        $this->assertSame('N.N.', $repository->find(null)->getDireccionRegional());
+        $this->assertSame('N.N.', $repository->find('')?->getDireccionRegional());
+        $this->assertSame('N.N.', $repository->find(null)?->getDireccionRegional());
     }
 
     public function testEntityRepositoryTagXml(): void
     {
         $repository = $this->repositoryManager->getRepository(TagXml::class);
-        $this->assertSame('Peso neto', $repository->find('PesoNeto')->getGlosa());
+        $this->assertSame('Peso neto', $repository->find('PesoNeto')?->getGlosa());
         $this->assertSame('FmaPagExp', $repository->findBy(['glosa' => 'Forma pago exp.'])[0]->getCodigo());
     }
 
     public function testEntityRepositoryFormaPago(): void
     {
         $repository = $this->repositoryManager->getRepository(FormaPago::class);
-        $this->assertSame('Crédito', $repository->find(2)->getGlosa());
+        $this->assertSame('Crédito', $repository->find(2)?->getGlosa());
         $this->assertSame(1, $repository->findBy(['glosa' => 'Contado'])[0]->getCodigo());
     }
 
@@ -279,7 +281,7 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(
             FormaPagoExportacion::class
         );
-        $this->assertSame('Cobranza más de 1 año', $repository->find(2)->getGlosa());
+        $this->assertSame('Cobranza más de 1 año', $repository->find(2)?->getGlosa());
         $this->assertSame(21, $repository->findBy(['glosa' => 'Sin pago'])[0]->getCodigo());
     }
 
@@ -291,14 +293,14 @@ class EntityRepositoryTest extends TestCase
 
         $this->assertSame(
             'Cervezas y Bebidas Alcoh.',
-            $repository->find(26)->getGlosa()
+            $repository->find(26)?->getGlosa()
         );
 
-        $this->assertSame('R', $repository->find(15)->getTipo());
-        $this->assertSame('A', $repository->find(17)->getTipo());
-        $this->assertFalse($repository->find(999)->getTipo());
+        $this->assertSame('R', $repository->find(15)?->getTipo());
+        $this->assertSame('A', $repository->find(17)?->getTipo());
+        $this->assertFalse($repository->find(999)?->getTipo());
         $this->assertSame('IVA retenido', $repository->find(15)->getGlosa());
-        $this->assertSame('Licores, Piscos, Whisky', $repository->find(24)->getGlosa());
+        $this->assertSame('Licores, Piscos, Whisky', $repository->find(24)?->getGlosa());
         $this->assertSame('Impto. cód. 999', $repository->find(999)->getGlosa());
         $this->assertSame(19.0, $repository->find(15)->getTasa());
         $this->assertSame(31.5, $repository->find(24)->getTasa());
@@ -310,7 +312,7 @@ class EntityRepositoryTest extends TestCase
         $repository = $this->repositoryManager->getRepository(MedioPago::class);
         $this->assertSame(
             'Tarjeta de crédito o débito',
-            $repository->find('TC')->glosa
+            $repository->find('TC')?->glosa
         );
         $this->assertSame('EF', $repository->findBy(['glosa' => 'Efectivo'])[0]->getCodigo());
     }
@@ -325,27 +327,27 @@ class EntityRepositoryTest extends TestCase
 
         $this->assertSame(
             'Factura no afecta o exenta electrónica',
-            $repository->find(34)->getNombre()
+            $repository->find(34)?->getNombre()
         );
 
         $this->assertSame(
             'Referencia no oficial del SII.',
-            $repository->find('HES')->getCategoria()->getNombre()
+            $repository->find('HES')?->getCategoria()?->getNombre()
         );
 
         $this->assertSame(
             'boleta_afecta',
-            $repository->find(39)->getAlias()
+            $repository->find(39)?->getAlias()
         );
 
         $this->assertSame(
             41,
-            $repository->findByAlias('boleta_exenta')->getCodigo()
+            $repository->findByAlias('boleta_exenta')?->getCodigo()
         );
 
         $this->assertSame(
             52,
-            $repository->findByInterface(GuiaDespachoInterface::class)->getCodigo()
+            $repository->findByInterface(GuiaDespachoInterface::class)?->getCodigo()
         );
 
         $documentos = $repository->getDocumentos();
@@ -386,7 +388,7 @@ class EntityRepositoryTest extends TestCase
     public function testEntityRepositoryTraslado(): void
     {
         $repository = $this->repositoryManager->getRepository(Traslado::class);
-        $this->assertSame('Traslados internos', $repository->find(5)->getGlosa());
+        $this->assertSame('Traslados internos', $repository->find(5)?->getGlosa());
         $this->assertSame(9, $repository->findBy(['glosa' => 'Venta para exportación'])[0]->getCodigo());
     }
 }

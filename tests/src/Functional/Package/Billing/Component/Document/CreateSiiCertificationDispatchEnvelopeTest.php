@@ -311,7 +311,9 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
         $this->assertTrue($result->isValid());
 
         // Add resolution date and resolution number to the issuer.
-        $documentBag->getEmisor()->setAutorizacionDte(
+        $emisor = $documentBag->getEmisor();
+        $this->assertNotNull($emisor);
+        $emisor->setAutorizacionDte(
             new AutorizacionDte(ValueCaster::requireString(getenv('LIBREDTE_ENV_TEST_AUTH_DATE')))
         );
 
@@ -337,7 +339,9 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
         }
 
         // Guardar el XML.
-        $xmlEnvelope = $envelope->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml();
+        $envelopeXmlDocument = $envelope->getXmlDocument();
+        $this->assertNotNull($envelopeXmlDocument);
+        $xmlEnvelope = $envelopeXmlDocument->setEncoding('ISO-8859-1')->saveXml();
         file_put_contents($yamlFile . '-sobre.xml', $xmlEnvelope);
 
         $this->addToAssertionCount(1);

@@ -208,6 +208,14 @@ class DocumentBatch implements DocumentBatchInterface
     /**
      * {@inheritDoc}
      */
+    public function requireEmisor(): EmisorInterface
+    {
+        return $this->getEmisor() ?? throw $this->missing('emisor');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCertificate(?CertificateInterface $certificate): static
     {
         $this->certificate = $certificate;
@@ -275,5 +283,18 @@ class DocumentBatch implements DocumentBatchInterface
         $data['document_bags'] = array_map(fn (DocumentBagInterface $bag) => $bag->jsonSerialize(), $data['document_bags']);
 
         return $data;
+    }
+
+    /**
+     * Crea la excepción de un dato que no está asignado.
+     *
+     * @param string $item Nombre del dato que falta.
+     */
+    private function missing(string $item): BatchProcessorException
+    {
+        return new BatchProcessorException([
+            'The document batch does not have {item}.',
+            'item' => $item,
+        ]);
     }
 }

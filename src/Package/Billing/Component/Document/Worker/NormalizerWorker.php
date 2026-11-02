@@ -63,7 +63,7 @@ class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterfa
         }
 
         // Buscar la estrategia para normalizar el tipo de documento tributario.
-        $strategy = $this->getStrategy($bag->getTipoDocumento()->getAlias());
+        $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
         assert($strategy instanceof NormalizerStrategyInterface);
 
         // Normalizar el documento usando la estrategia.

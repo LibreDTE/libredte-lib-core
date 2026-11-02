@@ -214,20 +214,30 @@ class ExchangeDocumentSendEmailTest extends TestCase
             ]
         );
         $this->builder->build($documentBag);
-        $xml = $documentBag->getDocument()->saveXml();
+        $dteDocument = $documentBag->getDocument();
+        $this->assertNotNull($dteDocument);
+        $xml = $dteDocument->saveXml();
 
         // Render the document to PDF.
         $pdf = (string) $this->renderer->render($documentBag);
 
         // Exchange email for issuer and receiver.
-        $documentBag->getEmisor()->setCorreoIntercambioDte($username);
-        $documentBag->getReceptor()->setCorreoIntercambioDte($username);
+        $emisor = $documentBag->getEmisor();
+        $receptor = $documentBag->getReceptor();
+        $this->assertNotNull($emisor);
+        $this->assertNotNull($receptor);
+        $emisor->setCorreoIntercambioDte($username);
+        $receptor->setCorreoIntercambioDte($username);
 
         // Create sender and receiver.
-        $sender = new Sender(new PartyIdentifier($documentBag->getEmisor()->getRut()));
-        $sender->addEndpoint(new PartyEndpoint($documentBag->getEmisor()->getCorreoIntercambioDte()));
-        $receiver = new Receiver(new PartyIdentifier($documentBag->getReceptor()->getRut()));
-        $receiver->addEndpoint(new PartyEndpoint($documentBag->getReceptor()->getCorreoIntercambioDte()));
+        $sender = new Sender(new PartyIdentifier($emisor->getRut()));
+        $sender->addEndpoint(new PartyEndpoint(
+            ValueCaster::requireString($emisor->getCorreoIntercambioDte())
+        ));
+        $receiver = new Receiver(new PartyIdentifier($receptor->getRut()));
+        $receiver->addEndpoint(new PartyEndpoint(
+            ValueCaster::requireString($receptor->getCorreoIntercambioDte())
+        ));
 
         // Create the envelope with the document to send.
         $envelope = new Envelope(
@@ -237,11 +247,11 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $document = new Document(
             attachments: [
                 new Attachment(
-                    filename: $documentBag->getDocument()->getId() . '.xml',
+                    filename: $dteDocument->getId() . '.xml',
                     body: $xml
                 ),
                 new Attachment(
-                    filename: $documentBag->getDocument()->getId() . '.pdf',
+                    filename: $dteDocument->getId() . '.pdf',
                     body: $pdf
                 ),
             ]

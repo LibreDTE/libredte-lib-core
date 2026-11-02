@@ -41,7 +41,7 @@ trait NormalizeDescuentosRecargosTrait
      */
     protected function normalizeDescuentosRecargos(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         if (!empty($data['DscRcgGlobal'])) {
             if (!isset($data['DscRcgGlobal'][0])) {
@@ -60,7 +60,7 @@ trait NormalizeDescuentosRecargosTrait
                     'ValorDROtrMnda' => false,
                     'IndExeDR' => false,
                 ], $dr);
-                if ($bag->getTipoDocumento()->isExportacion()) {
+                if ($bag->requireTipoDocumento()->isExportacion()) {
                     $dr['IndExeDR'] = 1;
                 }
 

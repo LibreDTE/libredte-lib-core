@@ -37,7 +37,7 @@ interface CafFakerWorkerInterface extends WorkerInterface
      *
      * @param EmisorInterface $emisor Emisor al que se creará el CAF falso.
      * @param int $codigoDocumento Código del tipo de documento.
-     * @param int|null $folioDesde Número de folio inicial.
+     * @param int $folioDesde Número de folio inicial.
      * @param int|null $folioHasta Número de folio final. Si es `null`, se usa
      * el mismo valor de $folioDesde.
      * @return CafInterface CAF ficticio generado para el emisor.
@@ -47,7 +47,7 @@ interface CafFakerWorkerInterface extends WorkerInterface
     public function create(
         EmisorInterface $emisor,
         int $codigoDocumento,
-        ?int $folioDesde = 1,
+        int $folioDesde = 1,
         ?int $folioHasta = null
     ): CafInterface;
 }

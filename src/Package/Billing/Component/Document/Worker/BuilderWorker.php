@@ -68,12 +68,12 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
     {
         // Buscar la estrategia para crear el documento tributario.
         $strategy = $this->getStrategy(
-            $bag->getTipoDocumento()->getAlias()
+            $bag->requireTipoDocumento()->requireAlias()
         );
         assert($strategy instanceof BuilderStrategyInterface);
 
         // Construir el documento usando la estrategia.
-        $document = $strategy->create($bag->getXmlDocument());
+        $document = $strategy->create($bag->requireXmlDocument());
         $bag->setDocument($document);
 
         // Entregar la bolsa con el DTE construído.

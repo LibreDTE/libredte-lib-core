@@ -56,7 +56,7 @@ class Attachment extends DataPart implements AttachmentInterface
         ?string $encoding = null,
         ?int $size = null
     ) {
-        if ($contentType === null) {
+        if ($contentType === null && $filename !== null) {
             $contentType = $this->guessContentType($filename);
         }
 

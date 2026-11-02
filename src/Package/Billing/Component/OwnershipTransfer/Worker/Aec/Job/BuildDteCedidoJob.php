@@ -80,11 +80,7 @@ class BuildDteCedidoJob extends AbstractJob implements JobInterface
         // encoding a ISO-8859-1 (aunque el documento ya debería tenerlo así)
         // para garantizar que quede en la misma codificación que la plantilla
         // de arriba sin importar el estado previo del XmlDocument del $dte.
-        $dteXml = trim(preg_replace(
-            '/^<\?xml[^>]*\?>\s*/',
-            '',
-            $dte->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
-        ));
+        $dteXml = $dte->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
 
         // Reemplazar el placeholder con el XML del DTE.
         $xml = str_replace('<DTE>' . $placeholder . '</DTE>', $dteXml, $xml);

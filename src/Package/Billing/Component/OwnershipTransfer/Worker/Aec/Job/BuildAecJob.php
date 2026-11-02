@@ -98,12 +98,8 @@ class BuildAecJob extends AbstractJob implements JobInterface
             $seq
         );
 
-        $dteCedidoXml = $this->stripXmlDeclaration(
-            $dteCedido->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
-        );
-        $cesionXml = $this->stripXmlDeclaration(
-            $cesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
-        );
+        $dteCedidoXml = $dteCedido->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
+        $cesionXml = $cesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
 
         return $this->assembleAndSign(
             $bag->getCedente(),
@@ -167,9 +163,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
             $certificate,
             $seq
         );
-        $newCesionXml = $this->stripXmlDeclaration(
-            $newCesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml()
-        );
+        $newCesionXml = $newCesionDoc->getXmlDocument()->setEncoding('ISO-8859-1')->getXml();
 
         return $this->assembleAndSign(
             $bag->getCedente(),
@@ -256,13 +250,5 @@ class BuildAecJob extends AbstractJob implements JobInterface
             'ISO-8859-1',
             'UTF-8'
         ));
-    }
-
-    /**
-     * Elimina la declaración `<?xml...?>` de un string XML.
-     */
-    private function stripXmlDeclaration(string $xml): string
-    {
-        return trim(preg_replace('/^<\?xml[^>]*\?>\s*/', '', $xml));
     }
 }

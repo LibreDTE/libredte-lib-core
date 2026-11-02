@@ -46,7 +46,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         $this->normalizeIdDocMntPagos($data);
         $this->normalizeOtraMoneda($data);

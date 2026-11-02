@@ -687,7 +687,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      *
      * @param array<string, mixed> &$documento Documento al que se agregará la información de
      * transporte. Se pasa por referencia para modificarlo.
-     * @param array<int, string> $transporte Datos de transporte a procesar. Los índices son:
+     * @param array<int, string|null> $transporte Datos de transporte a procesar. Los índices son:
      *   - 0: Patente del vehículo (opcional).
      *   - 1: RUT del transportista (opcional).
      *   - 2: RUT del chofer (opcional).

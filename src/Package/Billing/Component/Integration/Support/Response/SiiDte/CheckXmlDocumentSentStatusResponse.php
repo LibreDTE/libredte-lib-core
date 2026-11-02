@@ -113,10 +113,13 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         // Si no existen los datos normalizados de la respuesta se normalizan.
         if (!isset($this->data)) {
             // Si hay número de atención se normaliza.
-            [$number, $datetime] = !empty($this->headers['NUM_ATENCION'])
-                ? $this->parseNumeroAtencion($this->headers['NUM_ATENCION'])
-                : null
-            ;
+            $number = null;
+            $datetime = null;
+            if (!empty($this->headers['NUM_ATENCION'])) {
+                [$number, $datetime] = $this->parseNumeroAtencion(
+                    $this->headers['NUM_ATENCION']
+                );
+            }
 
             // Determinar Track ID.
             $track_id = $this->headers['TRACKID']

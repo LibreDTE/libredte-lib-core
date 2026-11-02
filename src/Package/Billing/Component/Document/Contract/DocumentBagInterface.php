@@ -26,6 +26,7 @@ use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -52,6 +53,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return string|null
      */
     public function getInputData(): ?string;
+
+    /**
+     * Obtiene los datos de entrada del documento o falla si no están asignados.
+     *
+     * @return string
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireInputData(): string;
 
     /**
      * Asigna los datos procesados (parseados) del documento.
@@ -82,6 +91,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return array<string, mixed>|null
      */
     public function getNormalizedData(): ?array;
+
+    /**
+     * Obtiene los datos normalizados del documento o falla si no están asignados.
+     *
+     * @return array<string, mixed>
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireNormalizedData(): array;
 
     /**
      * Asigna los datos de LibreDTE que están asociados al documento pero no
@@ -158,6 +175,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getXmlDocument(): ?XmlDocumentInterface;
 
     /**
+     * Obtiene el documento XML o falla si no está asignado.
+     *
+     * @return XmlDocumentInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireXmlDocument(): XmlDocumentInterface;
+
+    /**
      * Asigna el CAF para timbrar el documento.
      *
      * @param CafInterface|null $caf
@@ -171,6 +196,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return CafInterface|null
      */
     public function getCaf(): ?CafInterface;
+
+    /**
+     * Obtiene el CAF o falla si no está asignado.
+     *
+     * @return CafInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireCaf(): CafInterface;
 
     /**
      * Asigna el certificado para firmar el documento.
@@ -188,6 +221,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getCertificate(): ?CertificateInterface;
 
     /**
+     * Obtiene el certificado o falla si no está asignado.
+     *
+     * @return CertificateInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireCertificate(): CertificateInterface;
+
+    /**
      * Asigna el documento tributario electrónico.
      *
      * @param DocumentInterface|null $document
@@ -201,6 +242,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return DocumentInterface|null
      */
     public function getDocument(): ?DocumentInterface;
+
+    /**
+     * Obtiene el documento tributario electrónico o falla si no está asignado.
+     *
+     * @return DocumentInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireDocument(): DocumentInterface;
 
     /**
      * Asigna el tipo de documento tributario electrónico.
@@ -228,6 +277,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getTipoDocumento(): ?TipoDocumentoInterface;
 
     /**
+     * Obtiene el tipo de documento tributario electrónico o falla si no está asignado.
+     *
+     * @return TipoDocumentoInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireTipoDocumento(): TipoDocumentoInterface;
+
+    /**
      * Obtiene el código numérico del documento tributario electrónico.
      *
      * @return int|null
@@ -253,6 +310,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return EmisorInterface|null
      */
     public function getEmisor(): ?EmisorInterface;
+
+    /**
+     * Obtiene el emisor del documento o falla si no está asignado.
+     *
+     * @return EmisorInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireEmisor(): EmisorInterface;
 
     /**
      * Asigna el receptor del documento.
@@ -303,6 +368,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return array<string, mixed>|null
      */
     public function getData(): ?array;
+
+    /**
+     * Obtiene los datos del documento o falla si no se pueden generar.
+     *
+     * @return array<string, mixed>
+     * @throws DocumentException Si la bolsa no tiene datos normalizados.
+     */
+    public function requireData(): array;
 
     /**
      * Obtiene los datos del documento agregando los datos específicos de

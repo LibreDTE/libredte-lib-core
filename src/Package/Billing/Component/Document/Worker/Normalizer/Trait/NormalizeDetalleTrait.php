@@ -41,7 +41,7 @@ trait NormalizeDetalleTrait
      */
     protected function normalizeDetalle(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // El detalle es obligatorio: todo documento debe tener al menos un ítem.
         if (empty($data['Detalle'])) {
@@ -94,7 +94,7 @@ trait NormalizeDetalleTrait
             }
 
             // Normalizar.
-            if ($bag->getTipoDocumento()->isExportacion()) {
+            if ($bag->requireTipoDocumento()->isExportacion()) {
                 $d['IndExe'] = 1;
             }
             if (
@@ -180,7 +180,7 @@ trait NormalizeDetalleTrait
             // Sumar valor del monto a MntNeto o MntExe según corresponda.
             if ($d['MontoItem']) {
                 // Si no es boleta.
-                if (!$bag->getTipoDocumento()->isBoleta()) {
+                if (!$bag->requireTipoDocumento()->isBoleta()) {
                     // Si es exento o no facturable.
                     if (!empty($d['IndExe'])) {
                         if ($d['IndExe'] == 1) {

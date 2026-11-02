@@ -374,7 +374,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Construir el XmlDocument a partir de los datos normalizados.
         elseif ($bag->getNormalizedData()) {
-            $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
+            $tagXml = $bag->requireTipoDocumento()->requireTagXml()->getNombre();
             $xmlDocumentData = [
                 'DTE' => [
                     '@attributes' => [

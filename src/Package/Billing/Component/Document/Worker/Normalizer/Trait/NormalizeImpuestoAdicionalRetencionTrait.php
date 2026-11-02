@@ -22,8 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 
 /**
  * Reglas de normalización para documentos con impuesto adicional o retención.
@@ -38,7 +40,7 @@ trait NormalizeImpuestoAdicionalRetencionTrait
      */
     protected function normalizeImpuestoAdicionalRetencion(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Copiar montos.
         $montos = [];
@@ -81,12 +83,14 @@ trait NormalizeImpuestoAdicionalRetencionTrait
             }
 
             // Se normaliza.
-            $tasa = $this
-                ->repositoryManager
-                ->getRepository(ImpuestoAdicionalRetencion::class)
-                ->find($codigo)
-                ->getTasa()
-            ;
+            // El repositorio entrega una entidad "falsa" si el código no
+            // existe, por lo que su find() nunca retorna null.
+            $tasa = ValueCaster::requireObject(
+                $this->repositoryManager->getRepository(
+                    ImpuestoAdicionalRetencion::class
+                ),
+                ImpuestoAdicionalRetencionRepository::class
+            )->find($codigo)->getTasa();
             $data['Encabezado']['Totales']['ImptoReten'][$i] = array_merge([
                 'TipoImp' => $codigo,
                 'TasaImp' => $tasa,

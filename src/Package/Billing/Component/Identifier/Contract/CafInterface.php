@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Contract;
 
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
@@ -121,6 +122,14 @@ interface CafInterface extends JsonSerializable
      * si no aplica.
      */
     public function getFechaVencimiento(): ?string;
+
+    /**
+     * Obtiene la fecha de vencimiento del CAF o falla si el CAF no vence.
+     *
+     * @return string Fecha de vencimiento en formato YYYY-MM-DD.
+     * @throws CafException Si el CAF no tiene fecha de vencimiento.
+     */
+    public function requireFechaVencimiento(): string;
 
     /**
      * Entrega la cantidad de meses que han pasado desde la solicitud del CAF.

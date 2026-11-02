@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Contract;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\IntegrationException;
 
 /**
  * Interfaz para una solicitud al SII.
@@ -84,4 +85,12 @@ interface SiiRequestInterface extends OptionsAwareInterface
      * @return CertificateInterface|null
      */
     public function getCertificate(): ?CertificateInterface;
+
+    /**
+     * Obtiene el certificado de la solicitud o falla si no está asignado.
+     *
+     * @return CertificateInterface
+     * @throws IntegrationException Si la solicitud no tiene certificado.
+     */
+    public function requireCertificate(): CertificateInterface;
 }

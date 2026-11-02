@@ -266,7 +266,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         DocumentEnvelopeInterface|XmlDocumentInterface|string $source
     ): XmlDocumentInterface {
         if ($source instanceof DocumentEnvelopeInterface) {
-            $xmlDocument = $source->getXmlDocument();
+            $xmlDocument = $source->requireXmlDocument();
         } elseif ($source instanceof XmlDocumentInterface) {
             $xmlDocument = $source;
         } else {
@@ -313,7 +313,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         // Emisor del sobre se asume siempre como el emisor del primer documento.
         // Es una suposición válida siempre y cuando todos los documentos que se
         // envían sean del mismo emisor.
-        $emisor = $envelope->getDocuments()[0]->getEmisor();
+        $emisor = $envelope->getDocuments()[0]->requireEmisor();
 
         // Asignar la autorización de la carátula del documento XML al emisor.
         if ($envelope->getXmlDocument()) {
@@ -458,7 +458,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
                     '<?xml version="1.0"?>',
                 ],
                 '',
-                $document->getDocument()->getXml()
+                $document->requireDocument()->getXml()
             ));
         }
 
@@ -508,8 +508,8 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     {
         // Contar los documentos por cada tipo.
         $subtotales = [];
-        foreach ($envelope->getDocuments() as $document) {
-            $codigo = $document->getTipoDocumento()->getCodigo();
+        foreach ($envelope->requireDocuments() as $document) {
+            $codigo = $document->requireTipoDocumento()->getCodigo();
             if (!isset($subtotales[$codigo])) {
                 $subtotales[$codigo] = 0;
             }
@@ -546,7 +546,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         }
 
         // El certificado digital para realizar la firma.
-        $certificate = $envelope->getCertificate();
+        $certificate = $envelope->requireCertificate();
 
         // Asignar marca de tiempo si no se pasó una.
         $timestamp = $caratula['TmstFirmaEnv'];
@@ -563,7 +563,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         }
 
         // Obtener el documento XML a firmar.
-        $xmlDocument = $envelope->getXmlDocument();
+        $xmlDocument = $envelope->requireXmlDocument();
 
         // Firmar el documento XML del sobre y retornar el XML firmado.
         $xmlSigned = $this->signatureService->signXml(

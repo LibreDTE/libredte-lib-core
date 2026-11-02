@@ -290,6 +290,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireInputData(): string
+    {
+        return $this->getInputData() ?? throw $this->missing('inputData');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setParsedData(?array $parsedData): static
     {
         $this->parsedData = $parsedData;
@@ -329,6 +337,16 @@ class DocumentBag implements DocumentBagInterface
     public function getNormalizedData(): ?array
     {
         return $this->normalizedData;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return array<string, mixed>
+     */
+    public function requireNormalizedData(): array
+    {
+        return $this->getNormalizedData() ?? throw $this->missing('normalizedData');
     }
 
     /**
@@ -418,6 +436,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireXmlDocument(): XmlDocumentInterface
+    {
+        return $this->getXmlDocument() ?? throw $this->missing('xmlDocument');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCaf(?CafInterface $caf): static
     {
         $this->caf = $caf;
@@ -431,6 +457,14 @@ class DocumentBag implements DocumentBagInterface
     public function getCaf(): ?CafInterface
     {
         return $this->caf;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireCaf(): CafInterface
+    {
+        return $this->getCaf() ?? throw $this->missing('caf');
     }
 
     /**
@@ -454,6 +488,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireCertificate(): CertificateInterface
+    {
+        return $this->getCertificate() ?? throw $this->missing('certificate');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setDocument(?DocumentInterface $document): static
     {
         $this->document = $document;
@@ -467,6 +509,14 @@ class DocumentBag implements DocumentBagInterface
     public function getDocument(): ?DocumentInterface
     {
         return $this->document;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireDocument(): DocumentInterface
+    {
+        return $this->getDocument() ?? throw $this->missing('document');
     }
 
     /**
@@ -501,6 +551,14 @@ class DocumentBag implements DocumentBagInterface
     public function getTipoDocumento(): ?TipoDocumentoInterface
     {
         return $this->getDocumentType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireTipoDocumento(): TipoDocumentoInterface
+    {
+        return $this->getTipoDocumento() ?? throw $this->missing('tipoDocumento');
     }
 
     /**
@@ -548,6 +606,14 @@ class DocumentBag implements DocumentBagInterface
     public function getEmisor(): ?EmisorInterface
     {
         return $this->emisor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireEmisor(): EmisorInterface
+    {
+        return $this->getEmisor() ?? throw $this->missing('emisor');
     }
 
     /**
@@ -602,7 +668,7 @@ class DocumentBag implements DocumentBagInterface
         }
 
         // Se arma la estructura del nodo Documento.
-        $tagXml = $this->getTipoDocumento()->getTagXml()->getNombre();
+        $tagXml = $this->requireTipoDocumento()->requireTagXml()->getNombre();
         $this->data = [
             'DTE' => [
                 '@attributes' => [
@@ -624,6 +690,16 @@ class DocumentBag implements DocumentBagInterface
 
         // Se entrega la estructura con los datos.
         return $this->data;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return array<string, mixed>
+     */
+    public function requireData(): array
+    {
+        return $this->getData() ?? throw $this->missing('data');
     }
 
     /**
@@ -691,15 +767,15 @@ class DocumentBag implements DocumentBagInterface
         if (is_int($folio)) {
             return sprintf(
                 'LibreDTE_%s_T%03dF%012d',
-                $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
-                $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
+                $this->requireNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
+                $this->requireNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
                 $folio
             );
         } else {
             return sprintf(
                 'LibreDTE_%s_%03d-%s',
-                $this->getNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
-                $this->getNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
+                $this->requireNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
+                $this->requireNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
                 $folio
             );
         }
@@ -864,5 +940,19 @@ class DocumentBag implements DocumentBagInterface
         }
 
         return $array;
+    }
+
+    /**
+     * Crea la excepción de un dato que la bolsa no tiene asignado.
+     *
+     * @param string $item Nombre del dato que falta.
+     * @return DocumentException
+     */
+    private function missing(string $item): DocumentException
+    {
+        return new DocumentException([
+            'The document bag does not have {item}.',
+            'item' => $item,
+        ]);
     }
 }

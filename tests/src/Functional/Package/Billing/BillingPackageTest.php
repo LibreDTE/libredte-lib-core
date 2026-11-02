@@ -208,6 +208,7 @@ class BillingPackageTest extends TestCase
 
         // Assert the document total amount.
         $document = $bag->getDocument();
+        $this->assertNotNull($document);
         $this->assertSame(571200, $document->getMontoTotal());
 
         // Validate the generated document schema.
@@ -222,7 +223,7 @@ class BillingPackageTest extends TestCase
         // Load the XML with the loader and assert the total.
         $xml = $document->saveXml();
         $newBag = $biller->getLoaderWorker()->loadXml($xml);
-        $this->assertSame(571200, $newBag->getDocument()->getMontoTotal());
+        $this->assertSame(571200, $newBag->getDocument()?->getMontoTotal());
 
         // Validate the loaded document schema.
         // Here the XML is validated by passing the XML string.

@@ -95,7 +95,7 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
         assert($strategy instanceof ParserStrategyInterface);
 
         try {
-            $parsedData = $strategy->parse($bag->getInputData());
+            $parsedData = $strategy->parse($bag->requireInputData());
         } catch (Throwable $e) {
             throw new ParserException(
                 message: [

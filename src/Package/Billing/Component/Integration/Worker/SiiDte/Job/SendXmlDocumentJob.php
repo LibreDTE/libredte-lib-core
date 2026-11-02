@@ -77,7 +77,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         }
 
         // Validar los RUT que se utilizarán para el envío y descomponerlos.
-        $sender = $request->getCertificate()->getId();
+        $sender = $request->requireCertificate()->getId();
         Rut::validate($sender);
         Rut::validate($company);
         [$rutSender, $dvSender] = Rut::toArray($sender);
@@ -150,7 +150,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             case 1:
                 throw new SendXmlDocumentException([
                     'User {user} does not have permission to send XML to the SII. {detail}',
-                    'user' => $request->getCertificate()->getId(),
+                    'user' => $request->requireCertificate()->getId(),
                     'detail' => $detail,
                 ]);
             case 2:
@@ -166,7 +166,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             case 5:
                 throw new SendXmlDocumentException([
                     'User {user} is not authenticated (token may be expired). {detail}',
-                    'user' => $request->getCertificate()->getId(),
+                    'user' => $request->requireCertificate()->getId(),
                     'detail' => $detail,
                 ]);
             case 6:

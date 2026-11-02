@@ -171,7 +171,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      */
     public function process(DocumentBatchInterface $batch): DocumentBatchInterface
     {
-        $emisor = $batch->getEmisor();
+        $emisor = $batch->requireEmisor();
         $options = $this->resolveOptions($batch->getBatchProcessorOptions());
 
         // Parsear los datos de entrada del lote. Con esto el lote queda con la
@@ -195,7 +195,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
                 $folio = $documentBag->getFolio();
                 $folio = is_int($folio) ? $folio : null;
                 $tipoDoc = ValueCaster::requireInt(
-                    $documentBag->getTipoDocumento()->getCodigo()
+                    $documentBag->requireTipoDocumento()->getCodigo()
                 );
 
                 if ($folio === null) {

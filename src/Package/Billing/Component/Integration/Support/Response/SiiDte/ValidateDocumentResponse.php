@@ -148,10 +148,13 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
         // Si no existen los datos normalizados de la respuesta se normalizan.
         if (!isset($this->data)) {
             // Si hay número de atención se normaliza.
-            [$number, $datetime] = !empty($this->headers['NUM_ATENCION'])
-                ? $this->parseNumeroAtencion($this->headers['NUM_ATENCION'])
-                : null
-            ;
+            $number = null;
+            $datetime = null;
+            if (!empty($this->headers['NUM_ATENCION'])) {
+                [$number, $datetime] = $this->parseNumeroAtencion(
+                    $this->headers['NUM_ATENCION']
+                );
+            }
 
             // RUT de la empresa emisora del documento.
             $rutExists = isset($this->requestData['RutCompania'])

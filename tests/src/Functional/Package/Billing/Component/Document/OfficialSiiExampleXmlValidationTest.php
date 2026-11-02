@@ -252,11 +252,12 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
-        $this->assertSame(1, count($documents));
-        $this->assertNotEmpty($envelope->getSobreEnvio()->getRutEmisor());
-        $this->assertNotEmpty($envelope->getSobreEnvio()->getRunMandatario());
-        $this->assertNotEmpty($envelope->getSobreEnvio()->getRutReceptor());
-        $this->assertNotEmpty($envelope->getSobreEnvio()->getAutorizacionDte()->getFechaResolucion());
+        $this->assertNotNull($documents);
+        $this->assertCount(1, $documents);
+        $this->assertNotEmpty($envelope->getSobreEnvio()?->getRutEmisor());
+        $this->assertNotEmpty($envelope->getSobreEnvio()?->getRunMandatario());
+        $this->assertNotEmpty($envelope->getSobreEnvio()?->getRutReceptor());
+        $this->assertNotEmpty($envelope->getSobreEnvio()?->getAutorizacionDte()->getFechaResolucion());
     }
 
     // Validate envelope XML schema against EnvioDTE_v10.xsd.
@@ -279,6 +280,8 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
+        $this->assertNotNull($documents);
+        $this->assertArrayHasKey(0, $documents);
         $document = $documents[0];
         $this->validator->validateSchema($document);
         $this->addToAssertionCount(1);
@@ -300,15 +303,18 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $signatureElement = $envelope->getXmlDocument()->getDomDocument()->getElementsByTagName(
+        $xmlDocument = $envelope->getXmlDocument();
+        $this->assertNotNull($xmlDocument);
+        $signatureElement = $xmlDocument->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(1);
+        $this->assertNotNull($signatureElement);
         $signatureNode = $this->signatureValidator->createSignatureNode(
             $signatureElement->C14N()
         );
 
         $this->signatureValidator->validateXmlDigestValue(
-            $envelope->getXmlDocument(),
+            $xmlDocument,
             $signatureNode
         );
         $this->addToAssertionCount(1);
@@ -340,9 +346,12 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
 
-        $signatureElement = $envelope->getXmlDocument()->getDomDocument()->getElementsByTagName(
+        $xmlDocument = $envelope->getXmlDocument();
+        $this->assertNotNull($xmlDocument);
+        $signatureElement = $xmlDocument->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(1);
+        $this->assertNotNull($signatureElement);
         $signatureNode = $this->signatureValidator->createSignatureNode(
             $signatureElement->C14N()
         );
@@ -400,17 +409,22 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
+        $this->assertNotNull($documents);
+        $this->assertArrayHasKey(0, $documents);
         $document = $documents[0];
 
-        $signatureElement = $document->getXmlDocument()->getDomDocument()->getElementsByTagName(
+        $xmlDocument = $document->getXmlDocument();
+        $this->assertNotNull($xmlDocument);
+        $signatureElement = $xmlDocument->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(0);
+        $this->assertNotNull($signatureElement);
         $signatureNode = $this->signatureValidator->createSignatureNode(
             $signatureElement->C14N()
         );
 
         $this->signatureValidator->validateXmlDigestValue(
-            $document->getXmlDocument(),
+            $xmlDocument,
             $signatureNode
         );
         $this->addToAssertionCount(1);
@@ -438,11 +452,16 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
+        $this->assertNotNull($documents);
+        $this->assertArrayHasKey(0, $documents);
         $document = $documents[0];
 
-        $signatureElement = $document->getXmlDocument()->getDomDocument()->getElementsByTagName(
+        $xmlDocument = $document->getXmlDocument();
+        $this->assertNotNull($xmlDocument);
+        $signatureElement = $xmlDocument->getDomDocument()->getElementsByTagName(
             'Signature'
         )->item(0);
+        $this->assertNotNull($signatureElement);
         $signatureNode = $this->signatureValidator->createSignatureNode(
             $signatureElement->C14N()
         );
@@ -471,6 +490,8 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         $envelope = $this->createEnvelope($file);
         $documents = $envelope->getDocuments();
+        $this->assertNotNull($documents);
+        $this->assertArrayHasKey(0, $documents);
         $document = $documents[0];
 
         $result = $this->validator->validateSignature($document);

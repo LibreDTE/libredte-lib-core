@@ -27,6 +27,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 
 /**
  * Interfaz para la entidad de tipo de documento tributario.
@@ -124,6 +125,14 @@ interface TipoDocumentoInterface extends JsonSerializable
     public function getTagXml(): ?TagXmlDocumento;
 
     /**
+     * Entrega el tag XML del tipo de documento o falla si no tiene.
+     *
+     * @return TagXmlDocumento
+     * @throws DocumentException Si el tipo de documento no tiene tag XML.
+     */
+    public function requireTagXml(): TagXmlDocumento;
+
+    /**
      * Indica si el documento está disponible en LibreDTE para ser usado.
      *
      * @return bool
@@ -136,6 +145,14 @@ interface TipoDocumentoInterface extends JsonSerializable
      * @return string|null
      */
     public function getAlias(): ?string;
+
+    /**
+     * Entrega el alias del tipo de documento o falla si no tiene.
+     *
+     * @return string
+     * @throws DocumentException Si el tipo de documento no tiene alias.
+     */
+    public function requireAlias(): string;
 
     /**
      * Entrega la interfaz PHP que la clase asociada el tipo de documento debe

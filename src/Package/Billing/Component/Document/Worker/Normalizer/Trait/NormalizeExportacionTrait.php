@@ -38,7 +38,7 @@ trait NormalizeExportacionTrait
      */
     protected function normalizeExportacion(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Agregar modalidad de venta por defecto si no existe.
         if (
@@ -60,7 +60,7 @@ trait NormalizeExportacionTrait
             $formaPago = ValueCaster::toString(
                 $data['Encabezado']['IdDoc']['FmaPago']
             );
-            if (isset($formas[$formaPago])) {
+            if ($formaPago !== null && isset($formas[$formaPago])) {
                 $data['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$formaPago];
             }
             $data['Encabezado']['IdDoc']['FmaPago'] = false;

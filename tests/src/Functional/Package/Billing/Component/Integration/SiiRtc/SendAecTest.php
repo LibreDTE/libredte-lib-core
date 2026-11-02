@@ -268,11 +268,15 @@ class SendAecTest extends TestCase
             certificate: $certificate,
         );
 
-        return $billingPackage
+        $bag = $billingPackage
             ->getDocumentComponent()
             ->getBuilderWorker()
             ->build($bag)
-            ->getDocument()
         ;
+
+        return ValueCaster::requireObject(
+            $bag->getDocument(),
+            DocumentInterface::class
+        );
     }
 }

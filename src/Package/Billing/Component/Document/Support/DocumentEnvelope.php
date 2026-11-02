@@ -144,7 +144,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      */
     public function getTipoSobre(): TipoSobre
     {
-        return $this->tipo_sobre;
+        return $this->tipo_sobre ?? throw $this->missing('tipoSobre');
     }
 
     /**
@@ -186,6 +186,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
+    public function requireXmlDocument(): XmlDocumentInterface
+    {
+        return $this->getXmlDocument() ?? throw $this->missing('xmlDocument');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setDocuments(array $documents): static
     {
         foreach ($documents as $document) {
@@ -206,7 +214,15 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
-    public function addDocument(?DocumentBagInterface $document): static
+    public function requireDocuments(): array
+    {
+        return $this->getDocuments() ?? throw $this->missing('documents');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addDocument(DocumentBagInterface $document): static
     {
         // Si ya se agregó la carátula no se permite agregar nuevos documentos.
         if (isset($this->caratula)) {
@@ -223,14 +239,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         // Si no está definido el tipo de sobre el primer documento que se
         // agregue lo definirá.
         if (!isset($this->tipo_sobre)) {
-            $this->tipo_sobre = $document->getTipoDocumento()->getTipoSobre();
+            $this->tipo_sobre = $document->requireTipoDocumento()->getTipoSobre();
         }
 
         // Validar que el tipo de documento se pueda agregar al sobre.
-        if ($document->getTipoDocumento()->getTipoSobre() !== $this->tipo_sobre) {
+        if ($document->requireTipoDocumento()->getTipoSobre() !== $this->tipo_sobre) {
             throw new DispatcherException([
                 'Document type {documentType} cannot be added to an envelope of type {envelopeType}.',
-                'documentType' => $document->getTipoDocumento()->getNombre(),
+                'documentType' => $document->requireTipoDocumento()->getNombre(),
                 'envelopeType' => $this->getTipoSobre()->getNombre(),
             ]);
         }
@@ -335,6 +351,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
+    public function requireCertificate(): CertificateInterface
+    {
+        return $this->getCertificate() ?? throw $this->missing('certificate');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCaratula(array $caratula): static
     {
         $this->caratula = $caratula;
@@ -361,7 +385,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         $envelope = new $class();
 
         $envelope->setXmlDocument($this->getXmlDocument());
-        $envelope->setDocuments($this->getDocuments());
+        $envelope->setDocuments($this->requireDocuments());
         $envelope->setOptions($this->getOptions());
         $envelope->setEmisor($this->getEmisor());
         $envelope->setMandatario($this->getMandatario());
@@ -382,7 +406,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     {
         return [
             'tag' => $this->getTipoSobre()->getTagXml(),
-            'xml' => $this->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml(),
+            'xml' => $this->requireXmlDocument()->setEncoding('ISO-8859-1')->saveXml(),
             'documents' => array_map(
                 fn (DocumentBagInterface $document) => $document->toArray(),
                 $this->documents ?? []
@@ -406,5 +430,18 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         );
 
         return $array;
+    }
+
+    /**
+     * Crea la excepción de un dato que no está asignado.
+     *
+     * @param string $item Nombre del dato que falta.
+     */
+    private function missing(string $item): DispatcherException
+    {
+        return new DispatcherException([
+            'The envelope does not have {item}.',
+            'item' => $item,
+        ]);
     }
 }

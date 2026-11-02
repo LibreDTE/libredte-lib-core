@@ -26,6 +26,7 @@ use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
+use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
@@ -183,6 +184,14 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return BookInterface|null
      */
     public function getBook(): ?BookInterface;
+
+    /**
+     * Obtiene el libro o falla si no está asignado.
+     *
+     * @return BookInterface
+     * @throws BookException Si la bolsa no tiene libro.
+     */
+    public function requireBook(): BookInterface;
 
     /**
      * Asigna el certificado digital para firmar el XML del libro.

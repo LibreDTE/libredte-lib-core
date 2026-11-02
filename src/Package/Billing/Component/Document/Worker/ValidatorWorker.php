@@ -113,7 +113,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         }
 
         // Buscar la estrategia para validar el tipo de documento tributario.
-        $strategy = $this->getStrategy($bag->getTipoDocumento()->getAlias());
+        $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
         assert($strategy instanceof ValidatorStrategyInterface);
 
         // Validar el documento usando la estrategia.
@@ -133,7 +133,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     ): XmlDocumentInterface {
         // Obtener el documento XML.
         if ($source instanceof DocumentBagInterface) {
-            $xmlDocument = $source->getXmlDocument();
+            $xmlDocument = $source->requireXmlDocument();
         } elseif ($source instanceof XmlDocumentInterface) {
             $xmlDocument = $source;
         } else {
@@ -149,15 +149,15 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
         // Las boletas no se validan de manera individual (el DTE). Se validan
         // a través del EnvioBOLETA.
-        if ($bag->getTipoDocumento()->isBoleta()) {
-            return $bag->getXmlDocument();
+        if ($bag->requireTipoDocumento()->isBoleta()) {
+            return $bag->requireXmlDocument();
         }
 
         // Validar esquema de otros DTE (no boletas).
         $schema = dirname(__DIR__, 6) . '/resources/schemas/DTE_v10.xsd';
-        $this->xmlService->validate($bag->getXmlDocument(), $schema);
+        $this->xmlService->validate($bag->requireXmlDocument(), $schema);
 
-        return $bag->getXmlDocument();
+        return $bag->requireXmlDocument();
     }
 
     /**
@@ -172,7 +172,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         DocumentBagInterface|XmlDocumentInterface|string $source
     ): SignatureValidationResultInterface {
         $xml = $source instanceof DocumentBagInterface
-            ? $source->getXmlDocument()
+            ? $source->requireXmlDocument()
             : $source
         ;
 

@@ -45,6 +45,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdiciona
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
 
 /**
  * Servicio para traducir los datos de los documentos a su representación para
@@ -81,15 +82,18 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'RUTSolicita' => 'alias:RUTEmisor',
             'RUTTrans' => 'alias:RUTEmisor',
             'RUTChofer' => 'alias:RUTEmisor',
-            // Comuna.
+            // Comuna. El repositorio de comunas entrega una comuna "falsa" si
+            // la solicitada no existe, por lo que su find() nunca retorna null.
             'CdgSIISucur' => fn (string $comuna) =>
-                $this->repositoryManager->getRepository(
-                    Comuna::class
+                ValueCaster::requireObject(
+                    $this->repositoryManager->getRepository(Comuna::class),
+                    ComunaRepository::class
                 )->find($comuna)->getDireccionRegional()
             ,
             'CiudadOrigen' => fn (string $comuna) =>
-                $this->repositoryManager->getRepository(
-                    Comuna::class
+                ValueCaster::requireObject(
+                    $this->repositoryManager->getRepository(Comuna::class),
+                    ComunaRepository::class
                 )->find($comuna)->getCiudad()
             ,
             'CiudadRecep' => 'alias:CiudadOrigen',
@@ -115,6 +119,11 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                 $xmlTagEntity = $this->repositoryManager->getRepository(
                     TagXml::class
                 )->find($tagXml);
+                // Nota: un tag desconocido se omite en silencio (se retorna
+                // '') en lugar de informarse como error.
+                if ($xmlTagEntity === null) {
+                    return '';
+                }
                 $name = $xmlTagEntity->getGlosa();
                 $entityClass = $xmlTagEntity->getEntity();
                 if ($entityClass) {

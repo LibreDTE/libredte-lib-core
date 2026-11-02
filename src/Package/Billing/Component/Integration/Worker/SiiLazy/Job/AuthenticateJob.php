@@ -155,7 +155,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         try {
             $xmlRequestSigned = $this->signatureService->signXml(
                 $xmlRequest,
-                $request->getCertificate()
+                $request->requireCertificate()
             );
         } catch (SignatureException $e) {
             throw new AuthenticateException([
@@ -182,7 +182,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
             $glosa = $response['SII:RESPUESTA']['SII:RESP_HDR']['GLOSA'] ?? null;
             throw new AuthenticateException([
                 'Could not obtain the token to authenticate user {user} with the SII. {detail}',
-                'user' => $request->getCertificate()->getId(),
+                'user' => $request->requireCertificate()->getId(),
                 'detail' => $glosa,
             ]);
         }

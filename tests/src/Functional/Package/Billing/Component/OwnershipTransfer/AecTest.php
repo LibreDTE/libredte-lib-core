@@ -25,6 +25,7 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\OwnershipTrans
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -379,6 +380,9 @@ class AecTest extends TestCase
 
         $builder->build($bag);
 
-        return $bag->getDocument();
+        return ValueCaster::requireObject(
+            $bag->getDocument(),
+            DocumentInterface::class
+        );
     }
 }

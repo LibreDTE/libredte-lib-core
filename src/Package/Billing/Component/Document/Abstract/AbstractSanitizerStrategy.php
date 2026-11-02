@@ -42,7 +42,7 @@ abstract class AbstractSanitizerStrategy extends AbstractStrategy implements San
         $this->sanitizeEssentials($bag);
         $this->sanitizeDocument($bag);
 
-        return $bag->getNormalizedData();
+        return $bag->requireNormalizedData();
     }
 
     /**

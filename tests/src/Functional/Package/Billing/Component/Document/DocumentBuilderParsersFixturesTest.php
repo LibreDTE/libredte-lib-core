@@ -377,11 +377,13 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 
         // Create test CAF and build a new bag that includes the CAF.
         // Using build() stamps the previously normalized document.
-        $tipoDoc = ValueCaster::requireInt(
-            $bag->getTipoDocumento()->getCodigo()
-        );
+        $tipoDocumento = $bag->getTipoDocumento();
+        $this->assertNotNull($tipoDocumento);
+        $tipoDoc = ValueCaster::requireInt($tipoDocumento->getCodigo());
         $folio = ValueCaster::requireInt($bag->getFolio() ?? 1);
-        $fakeCaf = $this->cafFaker->create($bag->getEmisor(), $tipoDoc, $folio, $folio);
+        $emisor = $bag->getEmisor();
+        $this->assertNotNull($emisor);
+        $fakeCaf = $this->cafFaker->create($emisor, $tipoDoc, $folio, $folio);
         $cafManager = new CafManager();
         $cafManager->add($fakeCaf->saveXml());
         $cafFolio = $cafManager->consume($tipoDoc);
@@ -392,12 +394,16 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         // Create test certificate and build a new bag that includes the
         // certificate.
         // Using build() signs the previously stamped document.
-        $certificate = $this->certificateFaker->createFake(id: $bag->getEmisor()->getRUT());
+        $emisor = $bag->getEmisor();
+        $this->assertNotNull($emisor);
+        $certificate = $this->certificateFaker->createFake(id: $emisor->getRUT());
         $bag = $bag->withCertificate($certificate); // withCertificate() retorna una nueva DocumentBag.
         $this->builder->build($bag);
 
         // Guardar el XML.
-        $xml = $bag->getDocument()->saveXml();
+        $document = $bag->getDocument();
+        $this->assertNotNull($document);
+        $xml = $document->saveXml();
         file_put_contents($file . '.xml', $xml);
 
         // Validate generated XML schema and signature.

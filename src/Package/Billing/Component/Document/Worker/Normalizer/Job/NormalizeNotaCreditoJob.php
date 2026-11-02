@@ -54,7 +54,7 @@ class NormalizeNotaCreditoJob extends AbstractJob implements JobInterface
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Completar con nodos por defecto.
         $data = array_replace_recursive([
@@ -66,7 +66,7 @@ class NormalizeNotaCreditoJob extends AbstractJob implements JobInterface
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => 0,
-                    'TasaIVA' => $bag->getTipoDocumento()->getDefaultTasaIVA(),
+                    'TasaIVA' => $bag->requireTipoDocumento()->getDefaultTasaIVA(),
                     'IVA' => false,
                     'ImptoReten' => false,
                     'IVANoRet' => false,
@@ -85,7 +85,7 @@ class NormalizeNotaCreditoJob extends AbstractJob implements JobInterface
         $this->normalizeImpuestoAdicionalRetencion($bag);
         $this->normalizeIvaMntTotal($bag);
 
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Corregir monto neto e iva.
         if (!$data['Encabezado']['Totales']['MntNeto']) {

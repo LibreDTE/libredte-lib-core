@@ -273,6 +273,18 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * {@inheritDoc}
      */
+    public function requireRazonSocialReceptor(): string
+    {
+        return $this->getRazonSocialReceptor() ?? throw new XmlQueryException(
+            'The document XML does not include an assigned recipient business name.',
+            xmlDocument: $this->xmlDocument,
+            xpathExpression: '//Encabezado/Receptor/RznSocRecep'
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getFechaEmision(): string
     {
         $value = $this->xmlDocument->query('//Encabezado/IdDoc/FchEmis');
@@ -597,7 +609,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                     'F' => $this->getFolio(),
                     'FE' => $this->getFechaEmision(),
                     'RR' => $this->getRutReceptor(),
-                    'RSR' => mb_substr($this->getRazonSocialReceptor(), 0, 40),
+                    'RSR' => mb_substr($this->requireRazonSocialReceptor(), 0, 40),
                     'MNT' => $this->getMontoTotal(),
                     'IT1' => mb_substr(
                         $this->getDetalle(0)['NmbItem'] ?? '',
@@ -651,6 +663,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getEnvironment(): ?SiiEnvironment
     {
         $idk = $this->getCafIdk();
+
+        if ($idk === null) {
+            return null;
+        }
 
         return $idk === CafFaker::IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
     }

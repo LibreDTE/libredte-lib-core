@@ -47,7 +47,7 @@ class NormalizeLiquidacionFacturaJob extends AbstractJob implements JobInterface
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // TODO: Implementar la normalización de los datos en $data.
 

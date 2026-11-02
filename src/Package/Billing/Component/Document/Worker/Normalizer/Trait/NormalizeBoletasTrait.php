@@ -37,7 +37,7 @@ trait NormalizeBoletasTrait
      */
     protected function normalizeBoletas(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Cambiar tags de DTE a boleta si se pasaron.
         if ($data['Encabezado']['Emisor']['RznSoc']) {

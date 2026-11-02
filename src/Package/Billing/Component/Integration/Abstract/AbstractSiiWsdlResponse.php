@@ -158,7 +158,11 @@ abstract class AbstractSiiWsdlResponse
     protected function parseNumeroAtencion(string $input): array
     {
         // Normalizar espacios.
-        $input = preg_replace('/\s+/', ' ', trim($input));
+        $input = preg_replace('/\s+/', ' ', trim($input))
+            ?? throw new InvalidArgumentException([
+                'Attention number format "{input}" is incorrect.',
+                'input' => $input,
+            ]);
 
         // Número de atención sin fecha (nuevo formato).
         if (!str_contains($input, ' ') && is_numeric($input)) {

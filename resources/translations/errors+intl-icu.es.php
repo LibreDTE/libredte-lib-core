@@ -44,6 +44,10 @@ return [
         'El CAF {caf} que contiene el folio {folio} del documento {document} no está vigente, venció el día {date}.',
     'CAF {caf} was authorized to issuer {caf_rut}, but document {document} is from issuer {rut}.' =>
         'El CAF {caf} fue autorizado al emisor {caf_rut}, pero el documento {document} es del emisor {rut}.',
+    'The CAF XML could not be loaded.' =>
+        'No se pudo cargar el XML del CAF.',
+    'The CAF {id} does not have an expiration date.' =>
+        'El CAF {id} no tiene fecha de vencimiento.',
     'CAF {id} failed private key validation (possible corrupt CAF file).' =>
         'El CAF {id} no pasó la validación de su clave privada (posible archivo CAF corrupto).',
     'CAF {id} failed public key validation (possible corrupt CAF file).' =>
@@ -234,6 +238,8 @@ return [
         'Se debe especificar el usuario y la contraseña de SMTP.',
     'The AEC XML to send to the SII cannot be empty.' =>
         'El XML del AEC que se desea enviar al SII no puede estar vacío.',
+    'The book bag does not have {item}.' =>
+        'La bolsa del libro no tiene {item}.',
     'The CAF XML does not include an assigned IDK.' =>
         'El CAF no tiene un IDK asignado en el XML.',
     'The CAF XML does not include an assigned authorization date.' =>
@@ -256,8 +262,22 @@ return [
         'El CAF no tiene una clave pública asignada en el XML.',
     'The CAF XML does not include an assigned signature.' =>
         'El CAF no tiene una firma asignada en el XML.',
+    'The document batch does not have {item}.' =>
+        'El lote de documentos no tiene {item}.',
+    'The document bag does not have {item}.' =>
+        'La bolsa del documento no tiene {item}.',
+    'The document type {code} does not have an alias.' =>
+        'El tipo de documento {code} no tiene un alias.',
+    'The document type {code} does not have an XML tag.' =>
+        'El tipo de documento {code} no tiene un tag XML.',
+    'The document XML does not include an assigned recipient business name.' =>
+        'El XML del documento no incluye una razón social del receptor asignada.',
+    'The envelope does not have {item}.' =>
+        'El sobre no tiene {item}.',
     'The SII AEC upload response does not include a valid status code.' =>
         'La respuesta del envío del AEC al SII no trae un código de estado válido.',
+    'The SII request does not have {item}.' =>
+        'La solicitud al SII no tiene {item}.',
     'The SII XML upload response does not include a valid status code.' =>
         'La respuesta del envío del XML al SII no trae un código de estado válido.',
     'The SII has no reception date on record for the queried document.' =>

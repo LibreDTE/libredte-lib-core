@@ -111,12 +111,12 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         // Crear el documento XML del DTE y agregar a la bolsa si no se agregó
         // previamente (al firmar).
         if (!$bag->getXmlDocument()) {
-            $xmlDocument = $this->xmlService->encode($bag->getData());
+            $xmlDocument = $this->xmlService->encode($bag->requireData());
             $bag->setXmlDocument($xmlDocument);
         }
 
         // Crear el DTE y agregar a la bolsa.
-        $document = $this->create($bag->getXmlDocument());
+        $document = $this->create($bag->requireXmlDocument());
         $bag->setDocument($document);
 
         // Entregar la instancia del documento tributario creado.
@@ -132,12 +132,12 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
     protected function stamp(DocumentBagInterface $bag): void
     {
         // Obtener el CAF de la bolsa.
-        $caf = $bag->getCaf();
+        $caf = $bag->requireCaf();
 
         // Generar un borrador del DTE para manipular sus datos. Los datos
         // normalizados son el contenido del documento, un XML necesita un solo
         // elemento raíz, por eso se envuelven en la misma estructura del DTE.
-        $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
+        $tagXml = $bag->requireTipoDocumento()->requireTagXml()->getNombre();
         $xmlDocument = $this->xmlService->encode([
             'DTE' => [$tagXml => $bag->getNormalizedData()],
         ]);
@@ -176,7 +176,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
                 'caf' => $caf->getId(),
                 'folio' => $draft->getFolio(),
                 'document' => $draft->getId(),
-                'date' => (new DateTime($caf->getFechaVencimiento()))->format('d/m/Y'),
+                'date' => (new DateTime($caf->requireFechaVencimiento()))->format('d/m/Y'),
             ]);
         }
 
@@ -222,7 +222,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
      */
     protected function sign(DocumentBagInterface $bag): void
     {
-        $certificate = $bag->getCertificate();
+        $certificate = $bag->requireCertificate();
 
         // Asignar marca de tiempo si no se pasó una.
         $timestamp = $bag->getBuilderOptions()['timestamp'] ?? date('Y-m-d\TH:i:s');
@@ -240,7 +240,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
 
         // Agregar timestamp.
         $data = $bag->getData();
-        $tagXml = $bag->getTipoDocumento()->getTagXml()->getNombre();
+        $tagXml = $bag->requireTipoDocumento()->requireTagXml()->getNombre();
         $data['DTE'][$tagXml]['TmstFirma'] = $timestamp;
         $xmlDocument = $this->xmlService->encode($data);
 

@@ -28,6 +28,7 @@ use Derafu\Config\Trait\OptionsAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
+use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
@@ -312,6 +313,14 @@ class BookBag implements BookBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireBook(): BookInterface
+    {
+        return $this->getBook() ?? throw $this->missing('book');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCertificate(CertificateInterface $certificate): static
     {
         $this->certificate = $certificate;
@@ -401,5 +410,18 @@ class BookBag implements BookBagInterface
         $array['book'] = $this->getBook()?->jsonSerialize();
 
         return $array;
+    }
+
+    /**
+     * Crea la excepción de un dato que no está asignado.
+     *
+     * @param string $item Nombre del dato que falta.
+     */
+    private function missing(string $item): BookException
+    {
+        return new BookException([
+            'The book bag does not have {item}.',
+            'item' => $item,
+        ]);
     }
 }

@@ -22,8 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
+use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
 /**
@@ -50,12 +52,12 @@ trait NormalizeIvaMntTotalTrait
      */
     protected function normalizeIvaMntTotal(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Si es una boleta y no están los datos de monto neto ni IVA se
         // calculan.
         if (
-            $bag->getTipoDocumento()->isBoleta()
+            $bag->requireTipoDocumento()->isBoleta()
             && (
                 empty($data['Encabezado']['IdDoc']['IndMntNeto'])
                 || $data['Encabezado']['IdDoc']['IndMntNeto'] != 2
@@ -77,7 +79,7 @@ trait NormalizeIvaMntTotalTrait
                 ) = Utils::calculateNetoIVA(
                     $total,
                     $data['Encabezado']['Totales']['TasaIVA']
-                        ?? $bag->getTipoDocumento()->getDefaultTasaIVA()
+                        ?? $bag->requireTipoDocumento()->getDefaultTasaIVA()
                 );
             }
         }
@@ -139,12 +141,14 @@ trait NormalizeIvaMntTotalTrait
         // Si hay impuesto retenido o adicional se contabiliza en el total.
         if (!empty($data['Encabezado']['Totales']['ImptoReten'])) {
             foreach ($data['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
-                $tipo = $this
-                    ->repositoryManager
-                    ->getRepository(ImpuestoAdicionalRetencion::class)
-                    ->find($ImptoReten['TipoImp'])
-                    ->getTipo()
-                ;
+                // El repositorio entrega una entidad "falsa" si el código no
+                // existe, por lo que su find() nunca retorna null.
+                $tipo = ValueCaster::requireObject(
+                    $this->repositoryManager->getRepository(
+                        ImpuestoAdicionalRetencion::class
+                    ),
+                    ImpuestoAdicionalRetencionRepository::class
+                )->find($ImptoReten['TipoImp'])->getTipo();
                 // Si es una retención, se resta al total y se traspasa a IVA
                 // no retenido en caso que corresponda.
                 if ($tipo === 'R') {
@@ -203,7 +207,7 @@ trait NormalizeIvaMntTotalTrait
         // cambia a valor entero. El monto total no es decimal en documentos
         // nacionales.
         if (is_numeric($data['Encabezado']['Totales']['MntTotal'] ?? null)) {
-            if (!$bag->getTipoDocumento()->isExportacion()) {
+            if (!$bag->requireTipoDocumento()->isExportacion()) {
                 $data['Encabezado']['Totales']['MntTotal'] =
                     (int) $data['Encabezado']['Totales']['MntTotal']
                 ;

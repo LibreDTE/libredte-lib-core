@@ -29,6 +29,7 @@ use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicExcepti
 use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\IntegrationException;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -215,5 +216,26 @@ class SiiRequest implements SiiRequestInterface
     public function getCertificate(): ?CertificateInterface
     {
         return $this->certificate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireCertificate(): CertificateInterface
+    {
+        return $this->getCertificate() ?? throw $this->missing('certificate');
+    }
+
+    /**
+     * Crea la excepción de un dato que no está asignado.
+     *
+     * @param string $item Nombre del dato que falta.
+     */
+    private function missing(string $item): IntegrationException
+    {
+        return new IntegrationException([
+            'The SII request does not have {item}.',
+            'item' => $item,
+        ]);
     }
 }

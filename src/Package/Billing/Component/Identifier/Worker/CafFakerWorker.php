@@ -67,7 +67,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
     public function create(
         EmisorInterface $emisor,
         int $codigoDocumento,
-        ?int $folioDesde = 1,
+        int $folioDesde = 1,
         ?int $folioHasta = null
     ): CafInterface {
         $xml = $this->createXml(

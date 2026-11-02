@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Repository\Contract\EntityInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\Exception\XmlQueryException;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
@@ -126,6 +127,14 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * @return string|null
      */
     public function getRazonSocialReceptor(): ?string;
+
+    /**
+     * Obtiene la razón social del receptor o falla si el documento no la tiene.
+     *
+     * @return string
+     * @throws XmlQueryException Si el documento no tiene razón social del receptor.
+     */
+    public function requireRazonSocialReceptor(): string;
 
     /**
      * Entrega la fecha de emisión asignada al documento tributario.

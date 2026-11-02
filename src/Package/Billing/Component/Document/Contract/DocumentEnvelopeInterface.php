@@ -27,6 +27,7 @@ use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -82,6 +83,14 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     public function getXmlDocument(): ?XmlDocumentInterface;
 
     /**
+     * Obtiene el documento XML del sobre o falla si no está asignado.
+     *
+     * @return XmlDocumentInterface
+     * @throws DispatcherException Si el sobre no tiene documento XML.
+     */
+    public function requireXmlDocument(): XmlDocumentInterface;
+
+    /**
      * Asigna todos los documentos del sobre de una vez.
      *
      * @param DocumentBagInterface[] $documents
@@ -95,6 +104,14 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
      * @return DocumentBagInterface[]|null
      */
     public function getDocuments(): ?array;
+
+    /**
+     * Obtiene los documentos del sobre o falla si no tiene.
+     *
+     * @return DocumentBagInterface[]
+     * @throws DispatcherException Si el sobre no tiene documentos.
+     */
+    public function requireDocuments(): array;
 
     /**
      * Agrega un nuevo documento al sobre de documentos.
@@ -172,6 +189,14 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
      * @return CertificateInterface|null
      */
     public function getCertificate(): ?CertificateInterface;
+
+    /**
+     * Obtiene el certificado del sobre o falla si no está asignado.
+     *
+     * @return CertificateInterface
+     * @throws DispatcherException Si el sobre no tiene certificado.
+     */
+    public function requireCertificate(): CertificateInterface;
 
     /**
      * Retorna una nueva sobre con los datos del sobre actual e incluye un

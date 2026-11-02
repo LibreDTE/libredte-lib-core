@@ -28,6 +28,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\OperacionDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TagXmlDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\TipoDocumentoRepository;
 
 /**
@@ -312,6 +313,17 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
+    public function requireTagXml(): TagXmlDocumento
+    {
+        return $this->getTagXml() ?? throw new DocumentException([
+            'The document type {code} does not have an XML tag.',
+            'code' => $this->getCodigo(),
+        ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function isDisponible(): bool
     {
         return $this->disponible;
@@ -323,6 +335,17 @@ class TipoDocumento implements TipoDocumentoInterface
     public function getAlias(): ?string
     {
         return $this->alias;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireAlias(): string
+    {
+        return $this->getAlias() ?? throw new DocumentException([
+            'The document type {code} does not have an alias.',
+            'code' => $this->getCodigo(),
+        ]);
     }
 
     /**

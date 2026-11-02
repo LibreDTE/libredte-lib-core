@@ -68,6 +68,14 @@ interface DocumentBatchInterface extends OptionsAwareInterface, JsonSerializable
     public function getEmisor(): ?EmisorInterface;
 
     /**
+     * Obtiene el emisor del documento o falla si no está asignado.
+     *
+     * @return EmisorInterface
+     * @throws BatchProcessorException Si el lote no tiene emisor.
+     */
+    public function requireEmisor(): EmisorInterface;
+
+    /**
      * Asigna el certificado para firmar el documento.
      *
      * @param CertificateInterface|null $certificate

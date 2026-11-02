@@ -52,7 +52,7 @@ class NormalizeFacturaExentaJob extends AbstractJob implements JobInterface
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Completar con nodos por defecto.
         $data = array_replace_recursive([

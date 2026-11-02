@@ -80,7 +80,7 @@ class Caf implements CafInterface
                 '<?xml version="1.0" encoding="ISO-8859-1"?>',
                 $xml,
                 1
-            );
+            ) ?? throw new CafException('The CAF XML could not be loaded.');
 
             $this->xmlDocument = new XmlDocument();
             $this->xmlDocument->loadXml($xml);
@@ -271,6 +271,17 @@ class Caf implements CafInterface
         return date('Y-m-d', ValueCaster::requireInt(
             strtotime($fecha_autorizacion . ' + 180 days')
         ));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireFechaVencimiento(): string
+    {
+        return $this->getFechaVencimiento() ?? throw new CafException([
+            'The CAF {id} does not have an expiration date.',
+            'id' => $this->getId(),
+        ]);
     }
 
     /**

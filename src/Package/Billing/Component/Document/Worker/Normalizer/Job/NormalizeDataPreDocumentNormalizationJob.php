@@ -66,18 +66,18 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         $this->normalizeDefaultTags(
             $data,
-            $bag->getTipoDocumento()->getDefaultIndServicio()
+            $bag->requireTipoDocumento()->getDefaultIndServicio()
         );
         $this->normalizeIdDocFechas($data);
         $this->normalizeDescuentosRecargosGlobales($data);
         $this->normalizeReferencias($data);
         $this->normalizeTpoTranVenta(
             $data,
-            $bag->getTipoDocumento()->requiresTpoTranVenta()
+            $bag->requireTipoDocumento()->requiresTpoTranVenta()
         );
         $this->normalizeEmisor($data);
         $this->normalizeReceptor($data);

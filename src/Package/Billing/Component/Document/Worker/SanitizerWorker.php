@@ -63,7 +63,7 @@ class SanitizerWorker extends AbstractWorker implements SanitizerWorkerInterface
         }
 
         // Buscar la estrategia para sanitizar el tipo de documento tributario.
-        $strategy = $this->getStrategy($bag->getTipoDocumento()->getAlias());
+        $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
         assert($strategy instanceof SanitizerStrategyInterface);
 
         // Sanitizar el documento usando la estrategia.

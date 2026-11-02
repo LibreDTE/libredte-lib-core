@@ -37,7 +37,7 @@ trait NormalizeTransporteTrait
      */
     protected function normalizeTransporte(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         if (!empty($data['Encabezado']['Transporte'])) {
             $data['Encabezado']['Transporte'] = array_merge([

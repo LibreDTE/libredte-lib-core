@@ -38,7 +38,7 @@ abstract class AbstractValidatorStrategy extends AbstractStrategy implements Val
      */
     public function validate(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
 
         // Validar el del Emisor y Receptor.
         Rut::validate($data['Encabezado']['Emisor']['RUTEmisor']);
