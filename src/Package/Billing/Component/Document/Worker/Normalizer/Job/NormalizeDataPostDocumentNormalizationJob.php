@@ -22,9 +22,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
@@ -55,7 +59,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
         // Si no estaban previamente en la bolsa, se agregan antes de quitarlos.
         if (array_key_exists('LibreDTE', $data)) {
             if (!$bag->getLibredteData()) {
-                $bag->setLibredteData((array) $data['LibreDTE']);
+                $bag->setLibredteData(ValueType::map()->parse($data['LibreDTE'] ?? [], 'LibreDTE'));
             }
             unset($data['LibreDTE']);
         }
@@ -67,52 +71,69 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
     /**
      * Normalizar montos de pagos programados.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     private function normalizeIdDocMntPagos(array &$data): void
     {
-        if (!is_array($data['Encabezado']['IdDoc']['MntPagos'])) {
+        $writer = ArrayWriter::fromReference($data);
+
+        $mntPagos = $writer->getReader()->get('Encabezado.IdDoc.MntPagos', ValueType::mixed());
+        if (!is_array($mntPagos)) {
             return;
         }
 
-        if (!isset($data['Encabezado']['IdDoc']['MntPagos'][0])) {
-            $data['Encabezado']['IdDoc']['MntPagos'] = [
-                $data['Encabezado']['IdDoc']['MntPagos'],
-            ];
+        if (!isset($mntPagos[0])) {
+            $writer->set('Encabezado.IdDoc.MntPagos', [$mntPagos]);
         }
 
-        foreach ($data['Encabezado']['IdDoc']['MntPagos'] as &$MntPagos) {
-            $MntPagos = array_merge([
+        $pagos = $writer->getReader()->get(
+            'Encabezado.IdDoc.MntPagos',
+            ValueType::arrayOf(ValueType::map()),
+            []
+        );
+        foreach ($pagos as $key => $pago) {
+            $pago = array_merge([
                 'FchPago' => null,
                 'MntPago' => null,
                 'GlosaPagos' => null,
-            ], $MntPagos);
-            if ($MntPagos['MntPago'] === null) {
-                $MntPagos['MntPago'] = $data['Encabezado']['Totales']['MntTotal'];
+            ], $pago);
+            if ($pago['MntPago'] === null) {
+                $pago['MntPago'] = $writer->getReader()->get(
+                    'Encabezado.Totales.MntTotal',
+                    ValueType::mixed()
+                );
             }
+            $writer->set('Encabezado.IdDoc.MntPagos.' . $key, $pago);
         }
     }
 
     /**
      * Si existe OtraMoneda se verifican los tipos de cambio y totales.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     private function normalizeOtraMoneda(array &$data): void
     {
-        if (empty($data['Encabezado']['OtraMoneda'])) {
+        $writer = ArrayWriter::fromReference($data);
+
+        if (empty($writer->getReader()->get('Encabezado.OtraMoneda', ValueType::mixed()))) {
             return;
         }
 
-        if (!isset($data['Encabezado']['OtraMoneda'][0])) {
-            $data['Encabezado']['OtraMoneda'] = [
-                $data['Encabezado']['OtraMoneda'],
-            ];
-        }
+        // Una sola moneda se decodifica como un arreglo y no como una lista,
+        // se normaliza siempre a una lista.
+        $data = ArrayPath::wrap($data, 'Encabezado.OtraMoneda');
 
-        foreach ($data['Encabezado']['OtraMoneda'] as &$OtraMoneda) {
+        $monedas = $writer->getReader()->get(
+            'Encabezado.OtraMoneda',
+            ValueType::arrayOf(ValueType::map()),
+            []
+        );
+        foreach ($monedas as $key => $moneda) {
+            $path = 'Encabezado.OtraMoneda.' . $key;
+
             // Colocar campos por defecto.
             $OtraMoneda = array_merge([
                 'TpoMoneda' => null,
@@ -125,25 +146,24 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
                 'ImpRetOtrMnda' => null,
                 'IVANoRetOtrMnda' => null,
                 'MntTotOtrMnda' => null,
-            ], $OtraMoneda);
+            ], $moneda);
 
             // Si no hay tipo de cambio no seguir.
             if (!isset($OtraMoneda['TpoCambio'])) {
+                $writer->set($path, $OtraMoneda);
                 continue;
             }
 
             // Buscar si los valores están asignados, si no lo están se
             // asignan usando el tipo de cambio que exista para la moneda.
+            $tpoCambio = ArrayReader::fromArray($OtraMoneda, $path)->requireAsNumber('TpoCambio');
             foreach (['MntNeto', 'MntExe', 'IVA', 'IVANoRet'] as $monto) {
+                $total = $writer->getReader()->getAsNumber('Encabezado.Totales.' . $monto);
                 if (
                     empty($OtraMoneda[$monto.'OtrMnda'])
-                    && !empty($data['Encabezado']['Totales'][$monto])
+                    && !empty($total)
                 ) {
-                    $OtraMoneda[$monto.'OtrMnda'] = round(
-                        $data['Encabezado']['Totales'][$monto]
-                            * $OtraMoneda['TpoCambio'],
-                        4
-                    );
+                    $OtraMoneda[$monto.'OtrMnda'] = round($total * $tpoCambio, 4);
                 }
             }
 
@@ -164,7 +184,8 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
 
             // Calcular el monto total.
             if (empty($OtraMoneda['MntTotOtrMnda'])) {
-                $OtraMoneda['MntTotOtrMnda'] = 0;
+                $montos = ArrayReader::fromArray($OtraMoneda, $path);
+                $totalOtraMoneda = 0;
                 $cols = [
                     'MntNetoOtrMnda',
                     'MntExeOtrMnda',
@@ -175,7 +196,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
                 ];
                 foreach ($cols as $monto) {
                     if (!empty($OtraMoneda[$monto])) {
-                        $OtraMoneda['MntTotOtrMnda'] += $OtraMoneda[$monto];
+                        $totalOtraMoneda += $montos->requireAsNumber($monto);
                     }
                 }
 
@@ -186,17 +207,18 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
 
                 // Aproximar el total si es en pesos chilenos.
                 if ($OtraMoneda['TpoMoneda'] === 'PESO CL') {
-                    $OtraMoneda['MntTotOtrMnda'] = round(
-                        $OtraMoneda['MntTotOtrMnda'],
-                        0
-                    );
+                    $totalOtraMoneda = round($totalOtraMoneda, 0);
                 }
+
+                $OtraMoneda['MntTotOtrMnda'] = $totalOtraMoneda;
             }
 
             // Si el tipo de cambio es 0, se quita.
             if ($OtraMoneda['TpoCambio'] == 0) {
                 $OtraMoneda['TpoCambio'] = null;
             }
+
+            $writer->set($path, $OtraMoneda);
         }
     }
 }

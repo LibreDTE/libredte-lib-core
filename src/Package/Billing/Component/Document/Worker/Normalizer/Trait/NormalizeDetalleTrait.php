@@ -22,6 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\NormalizerException;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
@@ -42,26 +46,42 @@ trait NormalizeDetalleTrait
     protected function normalizeDetalle(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
         // El detalle es obligatorio: todo documento debe tener al menos un ítem.
-        if (empty($data['Detalle'])) {
+        $detalle = $writer->getReader()->get('Detalle', ValueType::mixed());
+        if (empty($detalle)) {
             throw new NormalizerException(
                 'The document detail (Detalle) must be indicated: there must be at least one item.'
             );
         }
 
-        if (!isset($data['Detalle'][0])) {
-            $data['Detalle'] = [
-                $data['Detalle'],
-            ];
+        if (!isset(ValueType::array()->parse($detalle, 'Detalle')[0])) {
+            $writer->set('Detalle', [$detalle]);
         }
 
-        $sumarMontoNF = !isset($data['Encabezado']['Totales']['MontoNF']);
+        $sumarMontoNF = $writer->getReader()->get('Encabezado.Totales.MontoNF', ValueType::mixed()) === null;
+        $tpoMoneda = $writer->getReader()->getAsString('Encabezado.Totales.TpoMoneda');
+        $isExportacion = $bag->requireTipoDocumento()->isExportacion();
+        $isBoleta = $bag->requireTipoDocumento()->isBoleta();
 
-        $item = 1;
-        foreach ($data['Detalle'] as &$d) {
+        // Suma un monto a un total del documento. Un total vacío se parte en
+        // 0 solo si se indica.
+        $sumar = static function (string $total, int|float $monto, bool $partirEnCero) use ($writer): void {
+            $path = 'Encabezado.Totales.' . $total;
+            if ($partirEnCero && empty($writer->getReader()->get($path, ValueType::mixed()))) {
+                $writer->set($path, 0);
+            }
+            $actual = $writer->getReader()->getAsNumber($path) ?? 0;
+            $writer->set($path, $actual + $monto);
+        };
+
+        $linea = 1;
+        $items = $writer->getReader()->get('Detalle', ValueType::arrayOf(ValueType::map()), []);
+        foreach ($items as $key => $item) {
+            $path = 'Detalle.' . $key;
             $d = array_merge([
-                'NroLinDet' => $item++,
+                'NroLinDet' => $linea++,
                 'CdgItem' => null,
                 'IndExe' => null,
                 'Retenedor' => null,
@@ -82,21 +102,21 @@ trait NormalizeDetalleTrait
                 'RecargoMonto' => null,
                 'CodImpAdic' => null,
                 'MontoItem' => null,
-            ], $d);
+            ], $item);
 
             // Corregir datos.
-            $d['NmbItem'] = mb_substr($d['NmbItem'], 0, 80);
+            $d['NmbItem'] = mb_substr(ArrayReader::fromArray($d, $path)->requireString('NmbItem'), 0, 80);
             if (!empty($d['DscItem'])) {
-                $d['DscItem'] = mb_substr($d['DscItem'], 0, 1000);
+                $d['DscItem'] = mb_substr(ArrayReader::fromArray($d, $path)->requireString('DscItem'), 0, 1000);
             }
 
             // Normalizar.
-            if ($bag->requireTipoDocumento()->isExportacion()) {
+            if ($isExportacion) {
                 $d['IndExe'] = 1;
             }
             if (
                 !empty($d['IndExe'])
-                && !in_array((int) $d['IndExe'], [1, 2], true)
+                && !in_array(ValueCaster::toInt($d['IndExe']), [1, 2], true)
             ) {
                 throw new NormalizerException([
                     'Item {line} has IndExe = {indExe}, which is not supported (only 1 and 2 are supported).',
@@ -117,19 +137,17 @@ trait NormalizeDetalleTrait
                 }
             }
             if ($d['Retenedor'] !== null) {
-                if (!is_array($d['Retenedor'])) {
-                    $d['Retenedor'] = ['IndAgente' => 'R'];
-                }
+                $retenedor = is_array($d['Retenedor']) ? $d['Retenedor'] : ['IndAgente' => 'R'];
                 $d['Retenedor'] = array_merge([
                     'IndAgente' => 'R',
                     'MntBaseFaena' => null,
                     'MntMargComer' => null,
                     'PrcConsFinal' => null,
-                ], $d['Retenedor']);
+                ], $retenedor);
             }
             if ($d['CdgItem'] !== null && !is_array($d['CdgItem'])) {
                 $d['CdgItem'] = [
-                    'TpoCodigo' => empty($d['Retenedor']['IndAgente'])
+                    'TpoCodigo' => empty(ArrayReader::fromArray($d, $path)->get('Retenedor.IndAgente', ValueType::mixed()))
                         ? 'INT1'
                         : 'CPCS'
                     ,
@@ -141,32 +159,30 @@ trait NormalizeDetalleTrait
                     $d['QtyItem'] = 1;
                 }
                 if (empty($d['MontoItem'])) {
-                    $d['MontoItem'] = Utils::round(
-                        (float) $d['QtyItem'] * (float)$d['PrcItem'],
-                        $data['Encabezado']['Totales']['TpoMoneda']
+                    $row = ArrayReader::fromArray($d, $path);
+                    $montoItem = Utils::round(
+                        $row->requireAsFloat('QtyItem') * $row->requireAsFloat('PrcItem'),
+                        $tpoMoneda
                     );
 
                     // Aplicar descuento.
                     if ($d['DescuentoPct']) {
                         $d['DescuentoMonto'] = round(
-                            $d['MontoItem'] * (float) $d['DescuentoPct'] / 100
+                            $montoItem * $row->requireAsFloat('DescuentoPct') / 100
                         );
                     }
-                    $d['MontoItem'] -= $d['DescuentoMonto'];
+                    $montoItem -= ArrayReader::fromArray($d, $path)->getAsNumber('DescuentoMonto') ?? 0;
 
                     // Aplicar recargo.
                     if ($d['RecargoPct']) {
                         $d['RecargoMonto'] = round(
-                            $d['MontoItem'] * (float) $d['RecargoPct'] / 100
+                            $montoItem * $row->requireAsFloat('RecargoPct') / 100
                         );
                     }
-                    $d['MontoItem'] += $d['RecargoMonto'];
+                    $montoItem += ArrayReader::fromArray($d, $path)->getAsNumber('RecargoMonto') ?? 0;
 
                     // Aproximar monto del item.
-                    $d['MontoItem'] = Utils::round(
-                        $d['MontoItem'],
-                        $data['Encabezado']['Totales']['TpoMoneda']
-                    );
+                    $d['MontoItem'] = Utils::round($montoItem, $tpoMoneda);
                 }
             }
             // Si el monto del item es vacío se estandariza como "0".
@@ -176,34 +192,24 @@ trait NormalizeDetalleTrait
 
             // Sumar valor del monto a MntNeto o MntExe según corresponda.
             if ($d['MontoItem']) {
+                $montoItem = ArrayReader::fromArray($d, $path)->requireAsNumber('MontoItem');
+
                 // Si no es boleta.
-                if (!$bag->requireTipoDocumento()->isBoleta()) {
+                if (!$isBoleta) {
                     // Si es exento o no facturable.
                     if (!empty($d['IndExe'])) {
                         if ($d['IndExe'] == 1) {
-                            $data['Encabezado']['Totales']['MntExe'] +=
-                                $d['MontoItem']
-                            ;
+                            $sumar('MntExe', $montoItem, false);
                         } elseif ($d['IndExe'] == 2) {
                             if ($sumarMontoNF) {
-                                if (empty($data['Encabezado']['Totales']['MontoNF'])) {
-                                    $data['Encabezado']['Totales']['MontoNF'] = 0;
-                                }
-                                $data['Encabezado']['Totales']['MontoNF'] +=
-                                    $d['MontoItem']
-                                ;
+                                $sumar('MontoNF', $montoItem, true);
                             }
                         }
                     }
 
                     // Si es afecto, se agrega al monto neto.
                     else {
-                        if (empty($data['Encabezado']['Totales']['MntNeto'])) {
-                            $data['Encabezado']['Totales']['MntNeto'] = 0;
-                        }
-                        $data['Encabezado']['Totales']['MntNeto'] +=
-                            $d['MontoItem']
-                        ;
+                        $sumar('MntNeto', $montoItem, true);
                     }
                 }
 
@@ -212,32 +218,23 @@ trait NormalizeDetalleTrait
                     // Si es exento o no facturable.
                     if (!empty($d['IndExe'])) {
                         if ($d['IndExe'] == 1) {
-                            $data['Encabezado']['Totales']['MntExe'] +=
-                                $d['MontoItem']
-                            ;
-                            $data['Encabezado']['Totales']['MntTotal'] +=
-                                $d['MontoItem']
-                            ;
+                            $sumar('MntExe', $montoItem, false);
+                            $sumar('MntTotal', $montoItem, false);
                         } elseif ($d['IndExe'] == 2) {
                             if ($sumarMontoNF) {
-                                if (empty($data['Encabezado']['Totales']['MontoNF'])) {
-                                    $data['Encabezado']['Totales']['MontoNF'] = 0;
-                                }
-                                $data['Encabezado']['Totales']['MontoNF'] +=
-                                    $d['MontoItem']
-                                ;
+                                $sumar('MontoNF', $montoItem, true);
                             }
                         }
                     }
 
                     // Si es afecto, sólo agregar al monto total.
                     else {
-                        $data['Encabezado']['Totales']['MntTotal'] +=
-                            $d['MontoItem']
-                        ;
+                        $sumar('MntTotal', $montoItem, false);
                     }
                 }
             }
+
+            $writer->set($path, $d);
         }
 
         // Actualizar los datos normalizados.

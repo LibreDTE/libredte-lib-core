@@ -64,7 +64,7 @@ class Utils
      *
      * Estos casos son "normales", pues por aproximaciones "no da".
      *
-     * @param int $total Total que representa el monto neto más el IVA.
+     * @param int|float $total Total que representa el monto neto más el IVA.
      * @param int|float|null $tasa Tasa del IVA o `null` si no corresponde.
      * @return array{0: int|float, 1: int|float} Arreglo con el neto y el IVA en
      * índices 0 y 1.

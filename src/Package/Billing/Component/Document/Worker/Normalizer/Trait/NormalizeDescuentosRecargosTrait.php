@@ -22,6 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
 
@@ -42,15 +46,22 @@ trait NormalizeDescuentosRecargosTrait
     protected function normalizeDescuentosRecargos(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
-        if (!empty($data['DscRcgGlobal'])) {
-            if (!isset($data['DscRcgGlobal'][0])) {
-                $data['DscRcgGlobal'] = [
-                    $data['DscRcgGlobal'],
-                ];
-            }
+        if (!empty($writer->getReader()->get('DscRcgGlobal', ValueType::mixed()))) {
+            // Un solo descuento o recargo se decodifica como un arreglo y no
+            // como una lista, se normaliza siempre a una lista.
+            $data = ArrayPath::wrap($data, 'DscRcgGlobal');
 
-            foreach ($data['DscRcgGlobal'] as &$dr) {
+            $items = $writer->getReader()->get(
+                'DscRcgGlobal',
+                ValueType::arrayOf(ValueType::map()),
+                []
+            );
+            $tipoDte = $writer->getReader()->get('Encabezado.IdDoc.TipoDTE', ValueType::mixed());
+            $isExportacion = $bag->requireTipoDocumento()->isExportacion();
+
+            foreach ($items as $key => $item) {
                 $dr = array_merge([
                     'NroLinDR' => null,
                     'TpoMov' => null,
@@ -59,14 +70,19 @@ trait NormalizeDescuentosRecargosTrait
                     'ValorDR' => null,
                     'ValorDROtrMnda' => null,
                     'IndExeDR' => null,
-                ], $dr);
-                if ($bag->requireTipoDocumento()->isExportacion()) {
+                ], $item);
+                if ($isExportacion) {
                     $dr['IndExeDR'] = 1;
                 }
 
+                // El descuento o recargo queda con sus valores por defecto
+                // aunque más abajo se omita.
+                $path = 'DscRcgGlobal.' . $key;
+                $writer->set($path, $dr);
+
                 // Determinar a que aplicar el descuento/recargo.
                 if (!isset($dr['IndExeDR'])) {
-                    $monto = $data['Encabezado']['IdDoc']['TipoDTE'] === 39
+                    $monto = $tipoDte === 39
                         ? 'MntTotal'
                         : 'MntNeto'
                     ;
@@ -76,52 +92,55 @@ trait NormalizeDescuentosRecargosTrait
                         : 'MontoNF' # IndExeDR == 2
                     ;
                 }
+                $montoPath = 'Encabezado.Totales.' . $monto;
 
                 // Si no hay monto al que aplicar el descuento se omite.
-                if (empty($data['Encabezado']['Totales'][$monto])) {
+                if (empty($writer->getReader()->get($montoPath, ValueType::mixed()))) {
                     continue;
                 }
 
                 // Calcular valor del descuento o recargo.
+                $tpoMoneda = $writer->getReader()->getAsString('Encabezado.Totales.TpoMoneda');
                 if ($dr['TpoValor'] === '$') {
                     $dr['ValorDR'] = Utils::round(
-                        $dr['ValorDR'],
-                        $data['Encabezado']['Totales']['TpoMoneda'],
+                        ArrayReader::fromArray($dr, $path)->requireAsNumber('ValorDR'),
+                        $tpoMoneda,
                         2
                     );
+                    $writer->set($path . '.ValorDR', $dr['ValorDR']);
                 }
+                $valorDR = ArrayReader::fromArray($dr, $path);
+                $total = $writer->getReader()->getAsNumber($montoPath) ?? 0;
                 $valor = $dr['TpoValor'] === '%'
                     ? Utils::round(
-                        ($dr['ValorDR'] / 100) * $data['Encabezado']['Totales'][$monto],
-                        $data['Encabezado']['Totales']['TpoMoneda']
+                        ($valorDR->requireAsNumber('ValorDR') / 100) * $total,
+                        $tpoMoneda
                     )
-                    : $dr['ValorDR']
+                    : ($valorDR->getAsNumber('ValorDR') ?? 0)
                 ;
 
                 // Aplicar descuento.
                 if ($dr['TpoMov'] === 'D') {
-                    $data['Encabezado']['Totales'][$monto] -= $valor;
+                    $total -= $valor;
                 }
 
                 // Aplicar recargo.
                 elseif ($dr['TpoMov'] === 'R') {
-                    $data['Encabezado']['Totales'][$monto] += $valor;
+                    $total += $valor;
                 }
-                $data['Encabezado']['Totales'][$monto] = Utils::round(
-                    $data['Encabezado']['Totales'][$monto],
-                    $data['Encabezado']['Totales']['TpoMoneda']
-                );
+                $writer->set($montoPath, Utils::round($total, $tpoMoneda));
 
                 // Si el descuento global se aplica a una boleta exenta se
                 // copia el valor exento al total.
                 if (
-                    $data['Encabezado']['IdDoc']['TipoDTE'] === 41
+                    $tipoDte === 41
                     && isset($dr['IndExeDR'])
                     && $dr['IndExeDR'] == 1
                 ) {
-                    $data['Encabezado']['Totales']['MntTotal'] =
-                        $data['Encabezado']['Totales']['MntExe']
-                    ;
+                    $writer->set(
+                        'Encabezado.Totales.MntTotal',
+                        $writer->getReader()->get('Encabezado.Totales.MntExe', ValueType::mixed())
+                    );
                 }
             }
         }

@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayWriter;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
@@ -38,9 +40,11 @@ trait NormalizeTransporteTrait
     protected function normalizeTransporte(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
-        if (!empty($data['Encabezado']['Transporte'])) {
-            $data['Encabezado']['Transporte'] = array_merge([
+        $transporte = $writer->getReader()->get('Encabezado.Transporte', ValueType::mixed());
+        if (!empty($transporte)) {
+            $writer->set('Encabezado.Transporte', array_merge([
                 'Patente' => null,
                 'PatenteCarro' => null,
                 'RUTTrans' => null,
@@ -52,7 +56,7 @@ trait NormalizeTransporteTrait
                 'FchSalida' => null,
                 'HraSalida' => null,
                 'FchLlegada' => null,
-            ], $data['Encabezado']['Transporte']);
+            ], ValueType::map()->parse($transporte, 'Encabezado.Transporte')));
         }
 
         // Actualizar los datos normalizados.

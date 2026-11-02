@@ -22,6 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayWriter;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
@@ -38,69 +41,76 @@ trait NormalizeBoletasTrait
     protected function normalizeBoletas(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
         // Cambiar tags de DTE a boleta si se pasaron.
-        if ($data['Encabezado']['Emisor']['RznSoc']) {
-            $data['Encabezado']['Emisor']['RznSocEmisor'] =
-                $data['Encabezado']['Emisor']['RznSoc']
-            ;
-            $data['Encabezado']['Emisor']['RznSoc'] = null;
+        $razonSocial = $writer->getReader()->get('Encabezado.Emisor.RznSoc', ValueType::mixed());
+        if ($razonSocial) {
+            $writer->set('Encabezado.Emisor.RznSocEmisor', $razonSocial);
+            $writer->set('Encabezado.Emisor.RznSoc', null);
         }
-        if ($data['Encabezado']['Emisor']['GiroEmis']) {
-            $data['Encabezado']['Emisor']['GiroEmisor'] =
-                $data['Encabezado']['Emisor']['GiroEmis']
-            ;
-            $data['Encabezado']['Emisor']['GiroEmis'] = null;
+        $giro = $writer->getReader()->get('Encabezado.Emisor.GiroEmis', ValueType::mixed());
+        if ($giro) {
+            $writer->set('Encabezado.Emisor.GiroEmisor', $giro);
+            $writer->set('Encabezado.Emisor.GiroEmis', null);
         }
-        $data['Encabezado']['Emisor']['Acteco'] = null;
-        $data['Encabezado']['Emisor']['Telefono'] = null;
-        $data['Encabezado']['Emisor']['CorreoEmisor'] = null;
-        $data['Encabezado']['Emisor']['CdgVendedor'] = null;
-        $data['Encabezado']['Receptor']['GiroRecep'] = null;
-        if (!empty($data['Encabezado']['Receptor']['CorreoRecep'])) {
-            if ($data['Referencia'] === null) {
-                $data['Referencia'] = [];
+        $writer->set('Encabezado.Emisor.Acteco', null);
+        $writer->set('Encabezado.Emisor.Telefono', null);
+        $writer->set('Encabezado.Emisor.CorreoEmisor', null);
+        $writer->set('Encabezado.Emisor.CdgVendedor', null);
+        $writer->set('Encabezado.Receptor.GiroRecep', null);
+        $correoRecep = $writer->getReader()->get('Encabezado.Receptor.CorreoRecep', ValueType::mixed());
+        if (!empty($correoRecep)) {
+            $referencia = $writer->getReader()->get('Referencia', ValueType::mixed());
+            if ($referencia === null) {
+                $writer->set('Referencia', []);
+                $referencia = [];
             }
-            $data['Referencia'][] = [
-                'NroLinRef' => !empty($data['Referencia'])
-                    ? (count($data['Referencia']) + 1)
-                : 1,
+            $writer->append('Referencia', [
+                'NroLinRef' => !empty($referencia)
+                    ? (count(ValueType::array()->parse($referencia, 'Referencia')) + 1)
+                    : 1,
                 'RazonRef' => mb_substr(
                     sprintf(
                         'Email receptor: %s',
-                        $data['Encabezado']['Receptor']['CorreoRecep']
+                        ValueCaster::toString($correoRecep)
                     ),
                     0,
                     90
                 ),
-            ];
+            ]);
         }
-        $data['Encabezado']['Receptor']['CorreoRecep'] = null;
+        $writer->set('Encabezado.Receptor.CorreoRecep', null);
 
         // Quitar otros tags que no son parte de las boletas.
-        $data['Encabezado']['IdDoc']['FmaPago'] = null;
-        $data['Encabezado']['IdDoc']['FchCancel'] = null;
-        $data['Encabezado']['IdDoc']['MedioPago'] = null;
-        $data['Encabezado']['IdDoc']['TpoCtaPago'] = null;
-        $data['Encabezado']['IdDoc']['NumCtaPago'] = null;
-        $data['Encabezado']['IdDoc']['BcoPago'] = null;
-        $data['Encabezado']['IdDoc']['TermPagoGlosa'] = null;
-        $data['Encabezado']['RUTSolicita'] = null;
-        $data['Encabezado']['IdDoc']['TpoTranCompra'] = null;
-        $data['Encabezado']['IdDoc']['TpoTranVenta'] = null;
-        $data['Encabezado']['Transporte'] = null;
+        $writer->set('Encabezado.IdDoc.FmaPago', null);
+        $writer->set('Encabezado.IdDoc.FchCancel', null);
+        $writer->set('Encabezado.IdDoc.MedioPago', null);
+        $writer->set('Encabezado.IdDoc.TpoCtaPago', null);
+        $writer->set('Encabezado.IdDoc.NumCtaPago', null);
+        $writer->set('Encabezado.IdDoc.BcoPago', null);
+        $writer->set('Encabezado.IdDoc.TermPagoGlosa', null);
+        $writer->set('Encabezado.RUTSolicita', null);
+        $writer->set('Encabezado.IdDoc.TpoTranCompra', null);
+        $writer->set('Encabezado.IdDoc.TpoTranVenta', null);
+        $writer->set('Encabezado.Transporte', null);
 
         // Ajustar las referencias si existen.
-        if (!empty($data['Referencia'])) {
-            if (!isset($data['Referencia'][0])) {
-                $data['Referencia'] = [
-                    $data['Referencia'],
-                ];
+        $referencias = $writer->getReader()->get('Referencia', ValueType::mixed());
+        if (!empty($referencias)) {
+            $referencias = ValueType::array()->parse($referencias, 'Referencia');
+            if (!isset($referencias[0])) {
+                $writer->set('Referencia', [$referencias]);
             }
-            foreach ($data['Referencia'] as &$r) {
+            $items = $writer->getReader()->get(
+                'Referencia',
+                ValueType::arrayOf(ValueType::map()),
+                []
+            );
+            foreach ($items as $key => $r) {
                 foreach (['FchRef'] as $c) {
                     if (isset($r[$c])) {
-                        unset($r[$c]);
+                        $writer->remove('Referencia.' . $key . '.' . $c);
                     }
                 }
             }

@@ -22,7 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdicionalRetencion;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ImpuestoAdicionalRetencionRepository;
@@ -41,45 +44,53 @@ trait NormalizeImpuestoAdicionalRetencionTrait
     protected function normalizeImpuestoAdicionalRetencion(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
+        $imptoRetenPath = 'Encabezado.Totales.ImptoReten';
 
         // Copiar montos.
         $montos = [];
-        foreach ($data['Detalle'] as &$d) {
+        $detalle = $writer->getReader()->get('Detalle', ValueType::arrayOf(ValueType::map()), []);
+        foreach ($detalle as $d) {
             if (!empty($d['CodImpAdic'])) {
-                if (!isset($montos[$d['CodImpAdic']])) {
-                    $montos[$d['CodImpAdic']] = 0;
+                $codigo = ValueCaster::requireInt(ValueCaster::toInt($d['CodImpAdic']));
+                if (!isset($montos[$codigo])) {
+                    $montos[$codigo] = 0;
                 }
-                $montos[$d['CodImpAdic']] += $d['MontoItem'];
+                $montos[$codigo] += ArrayReader::fromArray($d)->getAsNumber('MontoItem') ?? 0;
             }
         }
 
         // Si hay montos y no hay total para impuesto retenido se arma.
         if (!empty($montos)) {
-            if (!is_array($data['Encabezado']['Totales']['ImptoReten'])) {
-                $data['Encabezado']['Totales']['ImptoReten'] = [];
-            } elseif (!isset($data['Encabezado']['Totales']['ImptoReten'][0])) {
-                $data['Encabezado']['Totales']['ImptoReten'] = [
-                    $data['Encabezado']['Totales']['ImptoReten'],
-                ];
+            $imptoReten = $writer->getReader()->get($imptoRetenPath, ValueType::mixed());
+            if (!is_array($imptoReten)) {
+                $writer->set($imptoRetenPath, []);
+            } elseif (!isset($imptoReten[0])) {
+                $writer->set($imptoRetenPath, [$imptoReten]);
             }
         }
 
         // Armar impuesto adicional o retención en los totales.
         foreach ($montos as $codigo => $neto) {
             // Buscar si existe el impuesto en los totales.
+            $impuestos = $writer->getReader()->get(
+                $imptoRetenPath,
+                ValueType::arrayOf(ValueType::map()),
+                []
+            );
             $i = 0;
-            foreach ($data['Encabezado']['Totales']['ImptoReten'] as &$ImptoReten) {
-                if ($ImptoReten['TipoImp'] == $codigo) {
+            foreach ($impuestos as $ImptoReten) {
+                if (($ImptoReten['TipoImp'] ?? null) == $codigo) {
                     break;
                 }
                 $i++;
             }
 
             // Si no existe se crea.
-            if (!isset($data['Encabezado']['Totales']['ImptoReten'][$i])) {
-                $data['Encabezado']['Totales']['ImptoReten'][] = [
+            if (!isset($impuestos[$i])) {
+                $writer->append($imptoRetenPath, [
                     'TipoImp' => $codigo,
-                ];
+                ]);
             }
 
             // Se normaliza.
@@ -91,33 +102,35 @@ trait NormalizeImpuestoAdicionalRetencionTrait
                 ),
                 ImpuestoAdicionalRetencionRepository::class
             )->find($codigo)->getTasa();
-            $data['Encabezado']['Totales']['ImptoReten'][$i] = array_merge([
+            $path = $imptoRetenPath . '.' . $i;
+            $impuesto = array_merge([
                 'TipoImp' => $codigo,
                 'TasaImp' => $tasa,
                 'MontoImp' => null,
-            ], $data['Encabezado']['Totales']['ImptoReten'][$i]);
+            ], $writer->getReader()->requireMap($path));
 
             // Si el monto no existe se asigna.
-            if ($data['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp'] === null) {
-                $data['Encabezado']['Totales']['ImptoReten'][$i]['MontoImp'] = round(
-                    $neto * $data['Encabezado']['Totales']['ImptoReten'][$i]['TasaImp'] / 100
+            if ($impuesto['MontoImp'] === null) {
+                $impuesto['MontoImp'] = round(
+                    $neto * (ArrayReader::fromArray($impuesto)->getAsNumber('TasaImp') ?? 0) / 100
                 );
             }
+            $writer->set($path, $impuesto);
         }
 
         // Quitar los códigos que no existen en el detalle.
-        if (
-            isset($data['Encabezado']['Totales']['ImptoReten'])
-            && is_array($data['Encabezado']['Totales']['ImptoReten'])
-        ) {
+        $imptoReten = $writer->getReader()->get($imptoRetenPath, ValueType::mixed());
+        if (is_array($imptoReten)) {
+            $impuestos = ValueType::arrayOf(ValueType::map())->parse($imptoReten, $imptoRetenPath);
             $codigos = array_keys($montos);
-            $n_impuestos = count($data['Encabezado']['Totales']['ImptoReten']);
+            $n_impuestos = count($impuestos);
             for ($i = 0; $i < $n_impuestos; $i++) {
-                if (!in_array($data['Encabezado']['Totales']['ImptoReten'][$i]['TipoImp'], $codigos)) {
-                    unset($data['Encabezado']['Totales']['ImptoReten'][$i]);
+                if (!in_array($impuestos[$i]['TipoImp'], $codigos)) {
+                    unset($impuestos[$i]);
                 }
             }
-            sort($data['Encabezado']['Totales']['ImptoReten']);
+            sort($impuestos);
+            $writer->set($imptoRetenPath, $impuestos);
         }
 
         // Actualizar los datos normalizados.

@@ -22,10 +22,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDescuentosRecargosTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDetalleTrait;
@@ -86,11 +88,12 @@ class NormalizeNotaDebitoJob extends AbstractJob implements JobInterface
         $this->normalizeIvaMntTotal($bag);
 
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
         // Corregir monto neto e IVA.
-        if (!$data['Encabezado']['Totales']['MntNeto']) {
-            $data['Encabezado']['Totales']['MntNeto'] = 0;
-            $data['Encabezado']['Totales']['TasaIVA'] = null;
+        if (!$writer->getReader()->get('Encabezado.Totales.MntNeto', ValueType::mixed())) {
+            $writer->set('Encabezado.Totales.MntNeto', 0);
+            $writer->set('Encabezado.Totales.TasaIVA', null);
         }
 
         // Actualizar los datos normalizados.

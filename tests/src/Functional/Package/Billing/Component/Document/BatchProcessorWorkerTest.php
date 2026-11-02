@@ -131,6 +131,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\FormatterHandlerProvider;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
+use libredte\lib\Core\Provider\TemplatePathProvider;
 use libredte\lib\Tests\TestCase;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -237,6 +240,9 @@ use Throwable;
 #[CoversClass(OperacionDocumento::class)]
 #[CoversClass(DocumentException::class)]
 #[CoversClass(AduanaModalidadVenta::class)]
+#[CoversClass(FormatterHandlerProvider::class)]
+#[CoversClass(RepositorySourceProvider::class)]
+#[CoversClass(TemplatePathProvider::class)]
 class BatchProcessorWorkerTest extends TestCase
 {
     public function testLoadDocumentsFromCsvFile(): void

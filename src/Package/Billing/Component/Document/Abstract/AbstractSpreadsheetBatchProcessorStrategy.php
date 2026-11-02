@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Support\Date;
@@ -200,8 +202,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
 
                     // Verificar que el folio no esté repetido para el tipo de
                     // documento.
-                    $tipo = $documento['Encabezado']['IdDoc']['TipoDTE'];
-                    $folio = $documento['Encabezado']['IdDoc']['Folio'];
+                    $documentReader = ArrayReader::fromArray($documento);
+                    $tipo = $documentReader->requireAsInt('Encabezado.IdDoc.TipoDTE');
+                    $folio = $documentReader->requireAsInt('Encabezado.IdDoc.Folio');
                     if (isset($folios[$tipo][$folio])) {
                         throw new BatchProcessorException([
                             'Document number {folio} for document type {type} is duplicated in the file.',
@@ -340,6 +343,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
 
         // Crear la estructura base del documento.
         $documento = $this->setInitialDTE($data);
+        $writer = ArrayWriter::fromReference($documento);
 
         // Validar correo electrónico.
         if (!empty($data[8])) {
@@ -349,15 +353,15 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'email' => $data[8],
                 ]);
             }
-            $documento['Encabezado']['Receptor']['CorreoRecep'] = mb_substr(
+            $writer->set('Encabezado.Receptor.CorreoRecep', mb_substr(
                 trim($data[8]),
                 0,
                 80
-            );
+            ));
         }
 
         // Manejar tipos de moneda para documentos de exportación.
-        if (in_array($documento['Encabezado']['IdDoc']['TipoDTE'], [110,111,112])) {
+        if (in_array($writer->getReader()->getAsInt('Encabezado.IdDoc.TipoDTE'), [110,111,112])) {
             // Agregar moneda.
             if (empty($data[33])) {
                 $data[33] = 'USD';
@@ -369,15 +373,15 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'currency' => $data[33],
                 ]);
             }
-            $documento['Encabezado']['Totales']['TpoMoneda'] = $moneda;
+            $writer->set('Encabezado.Totales.TpoMoneda', $moneda);
 
             // Agregar ID del receptor.
             if (!empty($data[34])) {
-                $documento['Encabezado']['Receptor']['Extranjero']['NumId'] = mb_substr(
+                $writer->set('Encabezado.Receptor.Extranjero.NumId', mb_substr(
                     trim($data[34]),
                     0,
                     20
-                );
+                ));
             }
         }
 
@@ -393,11 +397,11 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         // Asignar el nombre del PDF si se proporciona.
         // Esto permite asociar un archivo PDF específico al documento.
         if (!empty($data[36])) {
-            $documento['LibreDTE']['pdf']['nombre'] = mb_substr(
+            $writer->set('LibreDTE.pdf.nombre', mb_substr(
                 trim($data[36]),
                 0,
                 100
-            );
+            ));
         }
 
         // Procesar forma de pago.
@@ -408,7 +412,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'code' => $data[37],
                 ]);
             }
-            $documento['Encabezado']['IdDoc']['FmaPago'] = (int) $data[37];
+            $writer->set('Encabezado.IdDoc.FmaPago', (int) $data[37]);
         }
 
         // Agregar ítems, transporte y referencias.
@@ -446,7 +450,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
     /**
      * Agrega un descuento global al documento.
      *
-     * @param array<string, mixed> &$documento Documento al que se agregará el descuento.
+     * @param array<array-key, mixed> &$documento Documento al que se agregará el descuento.
      * Se pasa por referencia para modificarlo.
      * @param string $descuento Porcentaje (por ejemplo `10%`) o monto (por
      * ejemplo `1000`) del descuento.
@@ -482,7 +486,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
             $descuentoGlobal['IndExeDR'] = 1;
         }
 
-        $documento['DscRcgGlobal'][] = $descuentoGlobal;
+        ArrayWriter::fromReference($documento)->append('DscRcgGlobal', $descuentoGlobal);
     }
 
     /**
@@ -573,7 +577,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * Procesa los datos de un ítem y lo agrega al arreglo de detalles. Valida
      * que los campos mínimos estén presentes y ajusta la longitud de los datos.
      *
-     * @param array<string, mixed> &$documento Documento al que se agregará el ítem. Modificado
+     * @param array<array-key, mixed> &$documento Documento al que se agregará el ítem. Modificado
      * directamente.
      * @param array<int, string|null> $item Datos del ítem. Los índices corresponden a:
      *   - 0: Código del ítem (opcional).
@@ -675,7 +679,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
 
         // Agregar el detalle al documento.
-        $documento['Detalle'][] = $detalle;
+        ArrayWriter::fromReference($documento)->append('Detalle', $detalle);
     }
 
     /**
@@ -685,7 +689,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * `Transporte` dentro del documento. Los datos incluyen información de
      * patente, transportista, chofer, destino y fechas del traslado.
      *
-     * @param array<string, mixed> &$documento Documento al que se agregará la información de
+     * @param array<array-key, mixed> &$documento Documento al que se agregará la información de
      * transporte. Se pasa por referencia para modificarlo.
      * @param array<int, string|null> $transporte Datos de transporte a procesar. Los índices son:
      *   - 0: Patente del vehículo (opcional).
@@ -718,19 +722,21 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
 
         // Procesar cada dato de transporte y agregarlo al documento si está
         // presente.
+        $writer = ArrayWriter::fromReference($documento);
+        $base = 'Encabezado.Transporte.';
         if ($transporte[0]) {
-            $documento['Encabezado']['Transporte']['Patente'] = mb_substr(
+            $writer->set($base . 'Patente', mb_substr(
                 trim($transporte[0]),
                 0,
                 8
-            );
+            ));
         }
         if ($transporte[1]) {
-            $documento['Encabezado']['Transporte']['RUTTrans'] = mb_substr(
+            $writer->set($base . 'RUTTrans', mb_substr(
                 str_replace('.', '', trim($transporte[1])),
                 0,
                 10
-            );
+            ));
         }
         if ($transporte[2] || $transporte[3]) {
             if (!$transporte[2]) {
@@ -739,65 +745,57 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
             if (!$transporte[3]) {
                 throw new BatchProcessorException('Missing driver name.');
             }
-            $documento['Encabezado']['Transporte']['Chofer']['RUTChofer'] =
-                mb_substr(
-                    str_replace('.', '', trim($transporte[2])),
-                    0,
-                    10
-                )
-            ;
-            $documento['Encabezado']['Transporte']['Chofer']['NombreChofer'] =
-                mb_substr(
-                    trim($transporte[3]),
-                    0,
-                    30
-                )
-            ;
+            $writer->set($base . 'Chofer.RUTChofer', mb_substr(
+                str_replace('.', '', trim($transporte[2])),
+                0,
+                10
+            ));
+            $writer->set($base . 'Chofer.NombreChofer', mb_substr(
+                trim($transporte[3]),
+                0,
+                30
+            ));
         }
         if ($transporte[4]) {
-            $documento['Encabezado']['Transporte']['DirDest'] = mb_substr(
+            $writer->set($base . 'DirDest', mb_substr(
                 trim($transporte[4]),
                 0,
                 70
-            );
+            ));
         }
         if ($transporte[5]) {
-            $documento['Encabezado']['Transporte']['CmnaDest'] = mb_substr(
+            $writer->set($base . 'CmnaDest', mb_substr(
                 trim($transporte[5]),
                 0,
                 20
-            );
+            ));
         }
         if ($transporte[6]) {
-            $documento['Encabezado']['Transporte']['PatenteCarro'] = mb_substr(
+            $writer->set($base . 'PatenteCarro', mb_substr(
                 trim($transporte[6]),
                 0,
                 8
-            );
+            ));
         }
         if (
             $transporte[7]
             && Date::validateAndConvert(trim($transporte[7]), 'Y-m-d') !== null
         ) {
-            $documento['Encabezado']['Transporte']['FchSalida'] = trim(
-                $transporte[7]
-            );
+            $writer->set($base . 'FchSalida', trim($transporte[7]));
         }
         if ($transporte[8]) {
             // Si la hora viene como HH:MM se completa con los segundos.
-            $documento['Encabezado']['Transporte']['HraSalida'] = preg_replace(
+            $writer->set($base . 'HraSalida', preg_replace(
                 '/^(\d{2}:\d{2})$/',
                 '$1:00',
                 trim($transporte[8])
-            );
+            ));
         }
         if (
             $transporte[9]
             && Date::validateAndConvert(trim($transporte[9]), 'Y-m-d') !== null
         ) {
-            $documento['Encabezado']['Transporte']['FchLlegada'] = trim(
-                $transporte[9]
-            );
+            $writer->set($base . 'FchLlegada', trim($transporte[9]));
         }
     }
 
@@ -808,7 +806,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * dentro del documento. Valida los campos obligatorios y ajusta su longitud
      * si es necesario.
      *
-     * @param array<string, mixed> &$documento Documento al que se agregará la referencia.
+     * @param array<array-key, mixed> &$documento Documento al que se agregará la referencia.
      * Se pasa por referencia para modificarlo.
      * @param array<int, string> $referencia Datos de la referencia a agregar. Los índices
      * deben ser:
@@ -864,7 +862,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         if (!empty($referencia[4])) {
             $Referencia['RazonRef'] = mb_substr(trim($referencia[4]), 0, 90);
         }
-        $documento['Referencia'][] = $Referencia;
+        ArrayWriter::fromReference($documento)->append('Referencia', $Referencia);
     }
 
     /**

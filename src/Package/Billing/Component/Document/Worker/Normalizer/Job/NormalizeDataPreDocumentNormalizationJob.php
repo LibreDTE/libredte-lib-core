@@ -23,11 +23,14 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
 use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Enum\Comuna;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface;
@@ -177,17 +180,18 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Si alguna de las fechas de la identificación del documento se pasó como
      * entero es un timestamp y se convierte a string.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     private function normalizeIdDocFechas(array &$data): void
     {
+        $writer = ArrayWriter::fromReference($data);
+
         foreach (['FchEmis', 'FchCancel', 'FchVenc'] as $tag) {
-            if (is_numeric($data['Encabezado']['IdDoc'][$tag])) {
-                $data['Encabezado']['IdDoc'][$tag] = date(
-                    'Y-m-d',
-                    ValueCaster::requireInt($data['Encabezado']['IdDoc'][$tag])
-                );
+            $path = 'Encabezado.IdDoc.' . $tag;
+            $fecha = $writer->getReader()->get($path, ValueType::mixed());
+            if (is_numeric($fecha)) {
+                $writer->set($path, date('Y-m-d', ValueCaster::requireInt($fecha)));
             }
         }
     }
@@ -195,49 +199,51 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
     /**
      * Si existe descuento o recargo global se normalizan.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     private function normalizeDescuentosRecargosGlobales(array &$data): void
     {
-        if (empty($data['DscRcgGlobal'])) {
+        $writer = ArrayWriter::fromReference($data);
+
+        if (empty($writer->getReader()->get('DscRcgGlobal', ValueType::mixed()))) {
             return;
         }
 
-        if (!isset($data['DscRcgGlobal'][0])) {
-            $data['DscRcgGlobal'] = [
-                $data['DscRcgGlobal'],
-            ];
-        }
+        // Un solo descuento o recargo se decodifica como un arreglo y no como
+        // una lista, se normaliza siempre a una lista.
+        $data = ArrayPath::wrap($data, 'DscRcgGlobal');
 
         $NroLinDR = 1;
-        foreach ($data['DscRcgGlobal'] as &$dr) {
-            $dr = array_merge([
+        $items = $writer->getReader()->get('DscRcgGlobal', ValueType::arrayOf(ValueType::map()), []);
+        foreach ($items as $key => $dr) {
+            $writer->set('DscRcgGlobal.' . $key, array_merge([
                 'NroLinDR' => $NroLinDR++,
-            ], $dr);
+            ], $dr));
         }
     }
 
     /**
      * Si existe una o más referencias se normalizan.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     private function normalizeReferencias(array &$data): void
     {
-        if (empty($data['Referencia'])) {
+        $writer = ArrayWriter::fromReference($data);
+
+        if (empty($writer->getReader()->get('Referencia', ValueType::mixed()))) {
             return;
         }
 
-        if (!isset($data['Referencia'][0])) {
-            $data['Referencia'] = [
-                $data['Referencia'],
-            ];
-        }
+        // Una sola referencia se decodifica como un arreglo y no como una
+        // lista, se normaliza siempre a una lista.
+        $data = ArrayPath::wrap($data, 'Referencia');
 
         $NroLinRef = 1;
-        foreach ($data['Referencia'] as &$r) {
+        $items = $writer->getReader()->get('Referencia', ValueType::arrayOf(ValueType::map()), []);
+        foreach ($items as $key => $item) {
             $r = array_merge([
                 'NroLinRef' => $NroLinRef++,
                 'TpoDocRef' => null,
@@ -247,13 +253,15 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
                 'FchRef' => date('Y-m-d'),
                 'CodRef' => null,
                 'RazonRef' => null,
-            ], $r);
+            ], $item);
 
             // Si la fecha de la referencia se pasó como entero es un timestamp
             // y se convierte a string.
             if (is_numeric($r['FchRef'])) {
                 $r['FchRef'] = date('Y-m-d', ValueCaster::requireInt($r['FchRef']));
             }
+
+            $writer->set('Referencia.' . $key, $r);
         }
     }
 
@@ -263,7 +271,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Si no existe y el documento lo requiere se asigna "Ventas del giro" como
      * valor por defecto.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @param bool $requiereTpoTranVenta
      * @return void
      */
@@ -271,11 +279,13 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         array &$data,
         bool $requiereTpoTranVenta
     ): void {
+        $writer = ArrayWriter::fromReference($data);
+
         if (
             $requiereTpoTranVenta
-            && empty($data['Encabezado']['IdDoc']['TpoTranVenta'])
+            && empty($writer->getReader()->get('Encabezado.IdDoc.TpoTranVenta', ValueType::mixed()))
         ) {
-            $data['Encabezado']['IdDoc']['TpoTranVenta'] = 1;
+            $writer->set('Encabezado.IdDoc.TpoTranVenta', 1);
         }
     }
 
@@ -283,139 +293,98 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Normaliza los datos del emisor completando los datos requeridos que
      * puedan faltar usando un proveedor de datos de emisor.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     public function normalizeEmisor(array &$data): void
     {
+        $writer = ArrayWriter::fromReference($data);
+
         // Crear emisor con los datos del documento.
-        $emisor = $this->emisorFactory->create($data['Encabezado']['Emisor']);
+        $emisor = $this->emisorFactory->create(
+            $writer->getReader()->requireMap('Encabezado.Emisor')
+        );
 
         // Obtener datos del emisor.
         $emisor = $this->emisorProvider->retrieve($emisor);
 
         // Actualizar $data si es necesario.
-        $data['Encabezado']['Emisor']['RUTEmisor'] =
-            ($data['Encabezado']['Emisor']['RUTEmisor'] ?? null)
-            ?: $emisor->getRut()
-        ;
-        $data['Encabezado']['Emisor']['RznSoc'] =
-            ($data['Encabezado']['Emisor']['RznSoc'] ?? null)
-            ?: $emisor->getRazonSocial()
-        ;
-        $data['Encabezado']['Emisor']['GiroEmis'] =
-            ($data['Encabezado']['Emisor']['GiroEmis'] ?? null)
-            ?: ($emisor->getGiro() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['Telefono'] =
-            ($data['Encabezado']['Emisor']['Telefono'] ?? null)
-            ?: ($emisor->getTelefono() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['CorreoEmisor'] =
-            ($data['Encabezado']['Emisor']['CorreoEmisor'] ?? null)
-            ?: ($emisor->getEmail() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['Acteco'] =
-            ($data['Encabezado']['Emisor']['Acteco'] ?? null)
-            ?: ($emisor->getActividadEconomica() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['DirOrigen'] =
-            ($data['Encabezado']['Emisor']['DirOrigen'] ?? null)
-            ?: ($emisor->getDireccion() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['CmnaOrigen'] =
-            ($data['Encabezado']['Emisor']['CmnaOrigen'] ?? null)
-            ?: ($emisor->getComuna() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['CdgSIISucur'] =
-            ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? null)
-            ?: ($emisor->getCodigoSucursal() ?? null)
-        ;
-        $data['Encabezado']['Emisor']['CdgVendedor'] =
-            ($data['Encabezado']['Emisor']['CdgVendedor'] ?? null)
-            ?: ($emisor->getVendedor() ?? null)
-        ;
+        $defaults = [
+            'RUTEmisor' => $emisor->getRut(),
+            'RznSoc' => $emisor->getRazonSocial(),
+            'GiroEmis' => $emisor->getGiro(),
+            'Telefono' => $emisor->getTelefono(),
+            'CorreoEmisor' => $emisor->getEmail(),
+            'Acteco' => $emisor->getActividadEconomica(),
+            'DirOrigen' => $emisor->getDireccion(),
+            'CmnaOrigen' => $emisor->getComuna(),
+            'CdgSIISucur' => $emisor->getCodigoSucursal(),
+            'CdgVendedor' => $emisor->getVendedor(),
+        ];
+        foreach ($defaults as $field => $default) {
+            $path = 'Encabezado.Emisor.' . $field;
+            $writer->set($path, $writer->getReader()->get($path, ValueType::mixed()) ?: $default);
+        }
 
         // Si la comuna es un número se asume que es el código oficial.
-        if (is_numeric($data['Encabezado']['Emisor']['CmnaOrigen'])) {
-            $comuna = Comuna::tryFrom(
-                (int) $data['Encabezado']['Emisor']['CmnaOrigen']
-            );
-
-            if ($comuna !== null) {
-                $data['Encabezado']['Emisor']['CmnaOrigen'] =
-                    $comuna->getNombre()
-                ;
-            } else {
-                $data['Encabezado']['Emisor']['CmnaOrigen'] =
-                    (string) $data['Encabezado']['Emisor']['CmnaOrigen']
-                ;
-            }
-        }
+        $this->normalizeComuna($writer, 'Encabezado.Emisor.CmnaOrigen');
     }
 
     /**
      * Normaliza los datos del receptor completando los datos requeridos que
      * puedan faltar usando un proveedor de datos de receptor.
      *
-     * @param array<string, mixed> $data
+     * @param array<array-key, mixed> $data
      * @return void
      */
     public function normalizeReceptor(array &$data): void
     {
+        $writer = ArrayWriter::fromReference($data);
+
         // Crear receptor con los datos del documento.
         $receptor = $this->receptorFactory->create(
-            $data['Encabezado']['Receptor']
+            $writer->getReader()->requireMap('Encabezado.Receptor')
         );
 
         // Obtener datos del receptor.
         $receptor = $this->receptorProvider->retrieve($receptor);
 
         // Actualizar $data si es necesario.
-        $data['Encabezado']['Receptor']['RUTRecep'] =
-            ($data['Encabezado']['Receptor']['RUTRecep'] ?? null)
-            ?: $receptor->getRut()
-        ;
-        $data['Encabezado']['Receptor']['RznSocRecep'] =
-            ($data['Encabezado']['Receptor']['RznSocRecep'] ?? null)
-            ?: $receptor->getRazonSocial()
-        ;
-        $data['Encabezado']['Receptor']['GiroRecep'] =
-            ($data['Encabezado']['Receptor']['GiroRecep'] ?? null)
-            ?: ($receptor->getGiro() ?? null)
-        ;
-        $data['Encabezado']['Receptor']['Contacto'] =
-            ($data['Encabezado']['Receptor']['Contacto'] ?? null)
-            ?: ($receptor->getTelefono() ?? null)
-        ;
-        $data['Encabezado']['Receptor']['CorreoRecep'] =
-            ($data['Encabezado']['Receptor']['CorreoRecep'] ?? null)
-            ?: ($receptor->getEmail() ?? null)
-        ;
-        $data['Encabezado']['Receptor']['DirRecep'] =
-            ($data['Encabezado']['Receptor']['DirRecep'] ?? null)
-            ?: ($receptor->getDireccion() ?? null)
-        ;
-        $data['Encabezado']['Receptor']['CmnaRecep'] =
-            ($data['Encabezado']['Receptor']['CmnaRecep'] ?? null)
-            ?: ($receptor->getComuna() ?? null)
-        ;
+        $defaults = [
+            'RUTRecep' => $receptor->getRut(),
+            'RznSocRecep' => $receptor->getRazonSocial(),
+            'GiroRecep' => $receptor->getGiro(),
+            'Contacto' => $receptor->getTelefono(),
+            'CorreoRecep' => $receptor->getEmail(),
+            'DirRecep' => $receptor->getDireccion(),
+            'CmnaRecep' => $receptor->getComuna(),
+        ];
+        foreach ($defaults as $field => $default) {
+            $path = 'Encabezado.Receptor.' . $field;
+            $writer->set($path, $writer->getReader()->get($path, ValueType::mixed()) ?: $default);
+        }
 
         // Si la comuna es un número se asume que es el código oficial.
-        if (is_numeric($data['Encabezado']['Receptor']['CmnaRecep'])) {
-            $comuna = Comuna::tryFrom(
-                (int) $data['Encabezado']['Receptor']['CmnaRecep']
-            );
+        $this->normalizeComuna($writer, 'Encabezado.Receptor.CmnaRecep');
+    }
 
-            if ($comuna !== null) {
-                $data['Encabezado']['Receptor']['CmnaRecep'] =
-                    $comuna->getNombre()
-                ;
-            } else {
-                $data['Encabezado']['Receptor']['CmnaRecep'] =
-                    (string) $data['Encabezado']['Receptor']['CmnaRecep']
-                ;
-            }
+    /**
+     * Si la comuna es un número se asume que es el código oficial y se
+     * reemplaza por su nombre.
+     *
+     * @param ArrayWriter $writer Escritor de los datos del documento.
+     * @param string $path Ruta de la comuna en los datos.
+     * @return void
+     */
+    private function normalizeComuna(ArrayWriter $writer, string $path): void
+    {
+        $comuna = $writer->getReader()->get($path, ValueType::mixed());
+        if (!is_numeric($comuna)) {
+            return;
         }
+
+        $codigo = Comuna::tryFrom((int) $comuna);
+
+        $writer->set($path, $codigo !== null ? $codigo->getNombre() : (string) $comuna);
     }
 }

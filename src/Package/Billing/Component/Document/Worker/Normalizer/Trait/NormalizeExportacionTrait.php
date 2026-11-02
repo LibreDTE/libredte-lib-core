@@ -22,7 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayWriter;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
@@ -39,48 +42,54 @@ trait NormalizeExportacionTrait
     protected function normalizeExportacion(DocumentBagInterface $bag): void
     {
         $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
         // Agregar modalidad de venta por defecto si no existe.
+        $indServicio = $writer->getReader()->get('Encabezado.IdDoc.IndServicio', ValueType::mixed());
         if (
-            empty($data['Encabezado']['Transporte']['Aduana']['CodModVenta'])
+            empty($writer->getReader()->get('Encabezado.Transporte.Aduana.CodModVenta', ValueType::mixed()))
             && (
-                !isset($data['Encabezado']['IdDoc']['IndServicio'])
-                || !in_array($data['Encabezado']['IdDoc']['IndServicio'], [3, 4, 5])
+                $indServicio === null
+                || !in_array($indServicio, [3, 4, 5])
             )
         ) {
-            $data['Encabezado']['Transporte']['Aduana']['CodModVenta'] = 1;
+            $writer->set('Encabezado.Transporte.Aduana.CodModVenta', 1);
         }
 
         // Quitar campos que no son parte del documento de exportacion.
-        $data['Encabezado']['Receptor']['CmnaRecep'] = null;
+        $writer->set('Encabezado.Receptor.CmnaRecep', null);
 
         // Colocar forma de pago de exportación.
-        if (!empty($data['Encabezado']['IdDoc']['FmaPago'])) {
+        $fmaPago = $writer->getReader()->get('Encabezado.IdDoc.FmaPago', ValueType::mixed());
+        if (!empty($fmaPago)) {
             $formas = [3 => 21];
-            $formaPago = ValueCaster::toString(
-                $data['Encabezado']['IdDoc']['FmaPago']
-            );
+            $formaPago = ValueCaster::toString($fmaPago);
             if ($formaPago !== null && isset($formas[$formaPago])) {
-                $data['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$formaPago];
+                $writer->set('Encabezado.IdDoc.FmaPagExp', $formas[$formaPago]);
             }
-            $data['Encabezado']['IdDoc']['FmaPago'] = null;
+            $writer->set('Encabezado.IdDoc.FmaPago', null);
         }
 
         // Si es entrega gratuita se coloca el tipo de cambio en CLP en 0 para
         // que total sea 0.
+        $fmaPagExp = $writer->getReader()->get('Encabezado.IdDoc.FmaPagExp', ValueType::mixed());
+        $otraMoneda = $writer->getReader()->get('Encabezado.OtraMoneda', ValueType::mixed());
         if (
-            !empty($data['Encabezado']['IdDoc']['FmaPagExp'])
-            && $data['Encabezado']['IdDoc']['FmaPagExp'] == 21
-            && !empty($data['Encabezado']['OtraMoneda'])
+            !empty($fmaPagExp)
+            && $fmaPagExp == 21
+            && !empty($otraMoneda)
         ) {
-            if (!isset($data['Encabezado']['OtraMoneda'][0])) {
-                $data['Encabezado']['OtraMoneda'] = [
-                    $data['Encabezado']['OtraMoneda'],
-                ];
-            }
-            foreach ($data['Encabezado']['OtraMoneda'] as &$OtraMoneda) {
-                if ($OtraMoneda['TpoMoneda'] === 'PESO CL') {
-                    $OtraMoneda['TpoCambio'] = 0;
+            // Una sola moneda se decodifica como un arreglo y no como una
+            // lista, se normaliza siempre a una lista.
+            $data = ArrayPath::wrap($data, 'Encabezado.OtraMoneda');
+            $monedas = $writer->getReader()->get(
+                'Encabezado.OtraMoneda',
+                ValueType::arrayOf(ValueType::map()),
+                []
+            );
+            foreach ($monedas as $key => $moneda) {
+                if (($moneda['TpoMoneda'] ?? null) === 'PESO CL') {
+                    $writer->set('Encabezado.OtraMoneda.' . $key . '.TpoCambio', 0);
                 }
             }
         }
