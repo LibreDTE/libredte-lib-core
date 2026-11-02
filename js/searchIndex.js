@@ -5886,6 +5886,11 @@ Search.appendIndex(
             "summary": "Normaliza\u0020los\u0020datos\u0020del\u0020receptor\u0020completando\u0020los\u0020datos\u0020requeridos\u0020que\npuedan\u0020faltar\u0020usando\u0020un\u0020proveedor\u0020de\u0020datos\u0020de\u0020receptor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeReceptor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeComuna\u0028\u0029",
+            "name": "normalizeComuna",
+            "summary": "Si\u0020la\u0020comuna\u0020es\u0020un\u0020n\u00FAmero\u0020se\u0020asume\u0020que\u0020es\u0020el\u0020c\u00F3digo\u0020oficial\u0020y\u0020se\nreemplaza\u0020por\u0020su\u0020nombre.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeComuna"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003A\u0024emisorProvider",
             "name": "emisorProvider",
             "summary": "",
