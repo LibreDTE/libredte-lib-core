@@ -30,6 +30,7 @@ use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -193,7 +194,9 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             if ($options->getReader()->requireBool('stamp')) {
                 $folio = $documentBag->getFolio();
                 $folio = is_int($folio) ? $folio : null;
-                $tipoDoc = $documentBag->getTipoDocumento()->getCodigo();
+                $tipoDoc = ValueCaster::requireInt(
+                    $documentBag->getTipoDocumento()->getCodigo()
+                );
 
                 if ($folio === null) {
                     // Auto-asignar el siguiente folio disponible del lote.

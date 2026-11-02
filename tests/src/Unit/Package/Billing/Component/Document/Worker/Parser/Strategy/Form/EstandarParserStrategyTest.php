@@ -24,6 +24,8 @@ namespace libredte\lib\Tests\Unit\Package\Billing\Component\Document\Worker\Pars
 
 use Derafu\Array\Exception\TypeMismatchException as ArrayTypeMismatchException;
 use Derafu\Value\Exception\TypeMismatchException as ValueTypeMismatchException;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
@@ -40,6 +42,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Yaml\Yaml;
+use Throwable;
 
 /**
  * Test for the "form.estandar" strategy with edge cases.
@@ -83,9 +86,9 @@ class EstandarParserStrategyTest extends TestCase
      */
     public static function provideEdgeCases(): array
     {
-        $files = glob(
+        $files = ValueType::listOf(ValueType::string())->parse(glob(
             self::getFixturesPath() . '/parsers_edge/form/estandar/*.yaml'
-        );
+        ));
 
         $edgeCases = [];
         foreach ($files as $file) {
@@ -98,15 +101,15 @@ class EstandarParserStrategyTest extends TestCase
     #[DataProvider('provideEdgeCases')]
     public function testEdgeCase(string $file): void
     {
-        $data = Yaml::parse(file_get_contents($file));
+        $data = Yaml::parse(ValueCaster::requireString(file_get_contents($file)));
         $test = $data['Test'];
         unset($data['Test']);
 
         if (isset($test['Exception'])) {
-            $this->expectException(
-                'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
-                . $test['Exception']
-            );
+            $class = 'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
+                . $test['Exception'];
+            $this->assertTrue(is_subclass_of($class, Throwable::class), $class);
+            $this->expectException($class);
             $this->strategy->parse($data);
 
             return;

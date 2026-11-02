@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests;
 
+use Derafu\Value\ValueCaster;
 use LogicException;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
@@ -46,7 +47,7 @@ abstract class TestCase extends PHPUnitTestCase
      */
     protected static function getFixturesPath(?string $path = null): string
     {
-        $fixturesPath = realpath(static::$fixturesPath);
+        $fixturesPath = ValueCaster::requireString(realpath(static::$fixturesPath));
 
         if ($path === null) {
             return $fixturesPath;

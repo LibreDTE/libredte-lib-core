@@ -25,6 +25,7 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 use Derafu\Signature\Contract\SignatureValidatorInterface;
 use Derafu\Signature\Service\SignatureGenerator;
 use Derafu\Signature\Service\SignatureValidator;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Service\XmlDecoder;
 use Derafu\Xml\Service\XmlEncoder;
 use Derafu\Xml\Service\XmlService;
@@ -172,7 +173,7 @@ class DocumentosOkEnvelopeXmlValidationTest extends TestCase
             );
         }
 
-        $xml = file_get_contents($file);
+        $xml = ValueCaster::requireString(file_get_contents($file));
         $envelope = $this->dispatcher->loadXml($xml);
 
         return $envelope;

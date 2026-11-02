@@ -27,6 +27,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 
 /**
  * Repositorio para trabajar con los países de aduana.
+ *
+ * @extends Repository<AduanaPais>
  */
 class AduanaPaisRepository extends Repository
 {

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Identifier;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
@@ -210,7 +211,7 @@ class CafTest extends TestCase
             $this->markTestSkipped();
         }
 
-        $xml = file_get_contents($file);
+        $xml = ValueCaster::requireString(file_get_contents($file));
         $caf = $this->cafLoader->load($xml);
 
         $this->cafValidator->validate($caf);

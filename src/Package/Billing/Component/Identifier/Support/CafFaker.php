@@ -22,7 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Support;
 
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
+use OpenSSLAsymmetricKey;
 
 /**
  * Clase que permite generar un CAF falso (FakeCaf) para pruebas.
@@ -134,10 +137,14 @@ class CafFaker
      */
     private function generateKeys(): void
     {
-        $res = openssl_pkey_new();
+        $res = ValueCaster::requireObject(
+            openssl_pkey_new(),
+            OpenSSLAsymmetricKey::class
+        );
         openssl_pkey_export($res, $privateKey);
         $this->privateKey = $privateKey;
-        $this->publicKey = openssl_pkey_get_details($res)['key'];
+        $details = ValueType::array()->parse(openssl_pkey_get_details($res));
+        $this->publicKey = ValueCaster::requireString($details['key']);
     }
 
     /**

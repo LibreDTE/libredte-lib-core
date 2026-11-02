@@ -25,6 +25,8 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 use Derafu\Certificate\Contract\CertificateFakerInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -283,7 +285,7 @@ class DocumentOkExamplesEndToEndTest extends TestCase
     {
         // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml';
-        $files = glob($filesPath);
+        $files = ValueType::listOf(ValueType::string())->parse(glob($filesPath));
 
         // Build test data.
         $documentOkExamples = [];
@@ -299,7 +301,7 @@ class DocumentOkExamplesEndToEndTest extends TestCase
     public function testFullPipelineForDocumentOkExample(string $file): void
     {
         // Load test case data.
-        $yaml = file_get_contents($file);
+        $yaml = ValueCaster::requireString(file_get_contents($file));
         $data = Yaml::parse($yaml);
         $test = $data['Test'];
         unset($data['Test']);

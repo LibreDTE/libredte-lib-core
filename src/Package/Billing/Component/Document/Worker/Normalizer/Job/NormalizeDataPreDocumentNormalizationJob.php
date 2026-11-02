@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Enum\Comuna;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface;
@@ -182,7 +183,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
             if (is_numeric($data['Encabezado']['IdDoc'][$tag])) {
                 $data['Encabezado']['IdDoc'][$tag] = date(
                     'Y-m-d',
-                    $data['Encabezado']['IdDoc'][$tag]
+                    ValueCaster::requireInt($data['Encabezado']['IdDoc'][$tag])
                 );
             }
         }
@@ -248,7 +249,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
             // Si la fecha de la referencia se pasó como entero es un timestamp
             // y se convierte a string.
             if (is_numeric($r['FchRef'])) {
-                $r['FchRef'] = date('Y-m-d', $r['FchRef']);
+                $r['FchRef'] = date('Y-m-d', ValueCaster::requireInt($r['FchRef']));
             }
         }
     }

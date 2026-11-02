@@ -40,7 +40,7 @@ class SubmitDocumentAcceptanceResponse implements JsonSerializable
     private string $description;
 
     /**
-     * @param array<string, mixed> $response Datos de la respuesta del SII.
+     * @param array<array-key, mixed> $response Datos de la respuesta del SII.
      */
     public function __construct(array $response/*, array $request = []*/)
     {

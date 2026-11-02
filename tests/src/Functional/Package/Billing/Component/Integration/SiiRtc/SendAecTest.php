@@ -24,6 +24,7 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Integration\Si
 
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -147,8 +148,8 @@ class SendAecTest extends TestCase
         try {
             $certificateLoader = new CertificateLoader();
             $certificate = $certificateLoader->loadFromFile(
-                getenv('LIBREDTE_CERTIFICATE_FILE'),
-                getenv('LIBREDTE_CERTIFICATE_PASS')
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_FILE')),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_PASS'))
             );
         } catch (Throwable $e) {
             $this->markTestSkipped($e->getMessage());

@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
@@ -116,7 +117,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * Valida la respuesta recibida desde el SII al enviar un XML.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param array<string, mixed> $response Arreglo con los datos del XML de la respuesta.
+     * @param array<array-key, mixed> $response Arreglo con los datos del XML de la respuesta.
      * @return void
      * @throws SiiDteException Si el envío tuvo algún problema.
      */
@@ -238,7 +239,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         // Inicializar curl.
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_URL, ValueType::nonEmptyString()->parse($url));
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

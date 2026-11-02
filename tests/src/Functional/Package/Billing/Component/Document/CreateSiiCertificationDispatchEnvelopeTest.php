@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -220,7 +222,7 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
             $filesPath = self::getFixturesPath()
                 . "/yaml/documentos_ok/{$code}_*/{$code}_001_*.yaml"
             ;
-            $files = array_merge($files, glob($filesPath));
+            $files = array_merge($files, ValueType::listOf(ValueType::string())->parse(glob($filesPath)));
         }
 
         // Build test data.
@@ -261,8 +263,8 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
         try {
             $certificateLoader = new CertificateLoader();
             $certificate = $certificateLoader->loadFromFile(
-                getenv('LIBREDTE_CERTIFICATE_FILE'),
-                getenv('LIBREDTE_CERTIFICATE_PASS')
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_FILE')),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_PASS'))
             );
         } catch (Throwable $e) {
             $this->markTestSkipped($e->getMessage());
@@ -275,11 +277,11 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
             ->getIdentifierComponent()
             ->getCafLoaderWorker()
         ;
-        $cafData = file_get_contents($cafFile);
+        $cafData = ValueCaster::requireString(file_get_contents($cafFile));
         $caf = $cafLoader->load($cafData);
 
         // Load test case data.
-        $yamlData = file_get_contents($yamlFile);
+        $yamlData = ValueCaster::requireString(file_get_contents($yamlFile));
         $data = Yaml::parse($yamlData);
         unset($data['Test']);
 
@@ -289,7 +291,13 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
         $data['Encabezado']['Emisor']['RUTEmisor'] = $caf->getEmisor()['rut'];
 
         // Bill the document.
-        $documentBag = $biller->bill($data, $caf, $certificate);
+        $documentBag = new DocumentBag(
+            inputData: $data,
+            caf: $caf,
+            certificate: $certificate
+        );
+        $biller->getParserWorker()->parse($documentBag);
+        $biller->getBuilderWorker()->build($documentBag);
 
         // Validate document schema and signature.
         $validator = $app
@@ -304,7 +312,7 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
 
         // Add resolution date and resolution number to the issuer.
         $documentBag->getEmisor()->setAutorizacionDte(
-            new AutorizacionDte(getenv('LIBREDTE_ENV_TEST_AUTH_DATE'))
+            new AutorizacionDte(ValueCaster::requireString(getenv('LIBREDTE_ENV_TEST_AUTH_DATE')))
         );
 
         // Create envelope, add document, and set cover page.

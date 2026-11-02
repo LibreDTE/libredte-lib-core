@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Identifier\Entity;
 
 use DateTime;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlQueryException;
 use Derafu\Xml\XmlDocument;
@@ -152,8 +154,8 @@ class Caf implements CafInterface
         }
 
         return [
-            'rut' => $RE,
-            'razon_social' => $RS,
+            'rut' => ValueCaster::requireString($RE),
+            'razon_social' => ValueCaster::requireString($RS),
         ];
     }
 
@@ -245,7 +247,7 @@ class Caf implements CafInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -266,7 +268,9 @@ class Caf implements CafInterface
         }
 
         // Los folios vencen en 6 meses (6 * 30 días).
-        return date('Y-m-d', strtotime($fecha_autorizacion. ' + 180 days'));
+        return date('Y-m-d', ValueCaster::requireInt(
+            strtotime($fecha_autorizacion . ' + 180 days')
+        ));
     }
 
     /**
@@ -367,7 +371,7 @@ class Caf implements CafInterface
             );
         }
 
-        return $value;
+        return ValueType::map()->parse($value);
     }
 
     /**
@@ -384,6 +388,8 @@ class Caf implements CafInterface
                 xpathExpression: '//AUTORIZACION/RSAPUBK'
             );
         }
+
+        $publicKey = ValueCaster::requireString($publicKey);
 
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
@@ -427,6 +433,8 @@ class Caf implements CafInterface
             );
         }
 
+        $privateKey = ValueCaster::requireString($privateKey);
+
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
             !str_contains($privateKey, "\n")
@@ -469,7 +477,7 @@ class Caf implements CafInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**

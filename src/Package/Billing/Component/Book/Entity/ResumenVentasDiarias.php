@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ResumenVentasDiariasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -46,7 +47,9 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getId(): string
     {
-        return (string) ($this->getXmlDocument()->query('//DocumentoConsumoFolios/@ID') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//DocumentoConsumoFolios/@ID') ?? ''
+        );
     }
 
     /**
@@ -54,7 +57,9 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaInicial(): string
     {
-        return (string) ($this->getXmlDocument()->query('//Caratula/FchInicio') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//Caratula/FchInicio') ?? ''
+        );
     }
 
     /**
@@ -62,7 +67,9 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaFinal(): string
     {
-        return (string) ($this->getXmlDocument()->query('//Caratula/FchFinal') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//Caratula/FchFinal') ?? ''
+        );
     }
 
     /**

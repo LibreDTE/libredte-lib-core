@@ -28,6 +28,8 @@ use Derafu\Repository\Entity;
 
 /**
  * Entidad de una moneda de aduana (documentos de exportación).
+
+ * @method string getGlosa() Glosa del registro (acceso mágico de `Entity`).
  */
 class AduanaMoneda extends Entity
 {

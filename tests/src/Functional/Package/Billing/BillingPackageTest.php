@@ -198,7 +198,13 @@ class BillingPackageTest extends TestCase
         ;
 
         // Bill with the data, CAF, and certificate.
-        $bag = $biller->bill($data, $caf, $certificate);
+        $bag = new DocumentBag(
+            inputData: $data,
+            caf: $caf,
+            certificate: $certificate
+        );
+        $biller->getParserWorker()->parse($bag);
+        $biller->getBuilderWorker()->build($bag);
 
         // Assert the document total amount.
         $document = $bag->getDocument();
@@ -289,6 +295,12 @@ class BillingPackageTest extends TestCase
             '/was authorized to issuer 11111111-1, but document .* is from issuer 76192083-9\./'
         );
 
-        $biller->bill($data, $caf, $certificate);
+        $bag = new DocumentBag(
+            inputData: $data,
+            caf: $caf,
+            certificate: $certificate
+        );
+        $biller->getParserWorker()->parse($bag);
+        $biller->getBuilderWorker()->build($bag);
     }
 }

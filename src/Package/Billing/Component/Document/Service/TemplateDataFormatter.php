@@ -28,6 +28,7 @@ use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Renderer\Abstract\AbstractHandlerFormatter;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Support\Date;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
@@ -99,7 +100,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'FchCancel' => 'alias:FchEmis',
             // Fechas cortas.
             'PeriodoDesde' => function (string $fecha) {
-                $timestamp = strtotime($fecha);
+                $timestamp = ValueCaster::requireInt(strtotime($fecha));
                 return date('d/m/Y', $timestamp);
             },
             'PeriodoHasta' => 'alias:PeriodoDesde',
@@ -117,9 +118,11 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                 $name = $xmlTagEntity->getGlosa();
                 $entityClass = $xmlTagEntity->getEntity();
                 if ($entityClass) {
-                    $description = $this->repositoryManager->getRepository(
-                        $entityClass
-                    )->find($value)->getGlosa();
+                    $description = ValueCaster::requireString(
+                        $this->repositoryManager->getRepository(
+                            $entityClass
+                        )->find($value)
+                    );
                 } else {
                     $description = $this->handle($tagXml, $value);
                 }

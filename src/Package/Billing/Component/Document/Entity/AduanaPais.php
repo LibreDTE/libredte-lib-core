@@ -28,6 +28,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Repository\AduanaPaisRe
 
 /**
  * Entidad de país de aduana (documentos de exportación).
+ *
+ * @method string getGlosa() Glosa del registro (acceso mágico de `Entity`).
  */
 #[DRM\Entity(repositoryClass: AduanaPaisRepository::class)]
 class AduanaPais extends Entity

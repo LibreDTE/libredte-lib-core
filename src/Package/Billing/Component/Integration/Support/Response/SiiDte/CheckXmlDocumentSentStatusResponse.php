@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Value\ValueCaster;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii;
@@ -271,7 +272,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     {
         // Asignar el código del estado y asumir que hubo error en el proceso
         // de envío del documento al SII.
-        $status = $headers['ESTADO'];
+        $status = ValueCaster::requireString($headers['ESTADO']);
         $error = true;
         $description = null;
 

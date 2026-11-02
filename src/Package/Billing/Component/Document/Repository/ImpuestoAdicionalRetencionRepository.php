@@ -27,6 +27,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\ImpuestoAdiciona
 
 /**
  * Repositorio para trabajar con los impuestos adicionales y retenciones.
+ *
+ * @extends Repository<ImpuestoAdicionalRetencion>
  */
 class ImpuestoAdicionalRetencionRepository extends Repository
 {

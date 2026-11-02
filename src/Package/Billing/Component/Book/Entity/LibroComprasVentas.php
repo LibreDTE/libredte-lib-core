@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -53,7 +54,9 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
     public function getTipoOperacion(): TipoOperacion
     {
         $operacion = TipoOperacion::tryFrom(strtoupper(
-            (string) $this->getXmlDocument()->query('//Caratula/TipoOperacion')
+            ValueCaster::getString(
+                $this->getXmlDocument()->query('//Caratula/TipoOperacion')
+            ) ?? ''
         ));
 
         if ($operacion === null) {

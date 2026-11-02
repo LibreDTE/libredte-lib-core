@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Respon
 
 use Derafu\Enum\Contract\StatusInterface;
 use Derafu\Enum\Status;
+use Derafu\Value\ValueCaster;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -118,7 +119,7 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
     private function parseEstado(array $headers): array
     {
         // Asignar el código del estado.
-        $status = $headers['SII:ESTADO'];
+        $status = ValueCaster::requireString($headers['SII:ESTADO']);
         $description = $headers['SII:GLOSA'] ?? null;
 
         // Si existe una glosa para el estado se reemplaza la recibida del SII.

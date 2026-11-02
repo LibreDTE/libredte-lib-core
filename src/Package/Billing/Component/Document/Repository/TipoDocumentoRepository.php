@@ -28,6 +28,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Enum\CategoriaDocumento
 
 /**
  * Repositorio para trabajar con los tipos de documentos.
+ *
+ * @extends Repository<TipoDocumentoInterface>
  */
 class TipoDocumentoRepository extends Repository
 {

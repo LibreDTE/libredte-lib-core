@@ -29,6 +29,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\HandlerInterface;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
@@ -368,7 +369,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         if ($envelope->getXmlDocument()) {
             $caratula = $envelope->getXmlDocument()->query('//Caratula');
             if ($caratula !== null) {
-                $envelope->setCaratula($caratula);
+                $envelope->setCaratula(ValueType::map()->parse($caratula));
             }
 
             return;
@@ -500,7 +501,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * Esto se usa para para generar los tags del XML `SubTotDTE`.
      *
      * @param DocumentEnvelopeInterface $envelope
-     * @return array<int, array{TpoDTE: int, NroDTE: int}> Arreglo con el resumen
+     * @return array<int, array{TpoDTE: int|string, NroDTE: int}> Arreglo con el resumen
      * de documentos por tipo.
      */
     protected function getResumen(DocumentEnvelopeInterface $envelope): array

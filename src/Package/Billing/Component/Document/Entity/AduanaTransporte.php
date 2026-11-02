@@ -26,6 +26,8 @@ use Derafu\Repository\Entity;
 
 /**
  * Entidad de transporte de aduana (documentos de exportación).
+ *
+ * @method string getGlosa() Glosa del registro (acceso mágico de `Entity`).
  */
 class AduanaTransporte extends Entity
 {

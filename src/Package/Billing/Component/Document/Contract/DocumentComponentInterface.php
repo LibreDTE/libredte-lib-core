@@ -23,10 +23,6 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
 use Derafu\Backbone\Contract\ComponentInterface;
-use Derafu\Certificate\Contract\CertificateInterface;
-use Derafu\Config\Contract\OptionsInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
-use stdClass;
 
 /**
  * Interfaz para `DocumentComponent`.
@@ -109,32 +105,4 @@ interface DocumentComponentInterface extends ComponentInterface
      * @return ValidatorWorkerInterface
      */
     public function getValidatorWorker(): ValidatorWorkerInterface;
-
-    /**
-     * Ejecuta el proceso de facturación sobre los datos.
-     *
-     * Si se pasa un CAF el documento será timbrado.
-     *
-     * Si se pasa un CAF el documento será firmado.
-     *
-     * @param string|array<string, mixed>|stdClass $data
-     * @param string|CafInterface|null $caf
-     * @param string|array<string, mixed>|CertificateInterface|null $certificate
-     * @param array<string, mixed>|OptionsInterface $options
-     * @return DocumentBagInterface
-     */
-    public function bill(
-        string|array|stdClass $data,
-        string|CafInterface|null $caf = null,
-        string|array|CertificateInterface|null $certificate = null,
-        array|OptionsInterface $options = []
-    ): DocumentBagInterface;
-
-    /**
-     * Carga un XML de documento tributario o sobre de documentos tributarios.
-     *
-     * @param string $xml XML de un documento o sobre con uno o más documentos.
-     * @return array<DocumentBagInterface> Bolsas con los documentos cargados.
-     */
-    public function loadXml(string $xml): array;
 }

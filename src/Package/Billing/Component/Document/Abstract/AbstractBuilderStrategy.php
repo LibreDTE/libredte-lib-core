@@ -27,6 +27,7 @@ use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Exception\SignatureException;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
@@ -65,9 +66,10 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
     public function create(XmlDocumentInterface $xmlDocument): DocumentInterface
     {
         $class = $this->documentClass;
-        $document = new $class($xmlDocument);
-
-        return $document;
+        return ValueCaster::requireObject(
+            new $class($xmlDocument),
+            DocumentInterface::class
+        );
     }
 
     /**

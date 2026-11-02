@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -334,7 +335,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
             $normalizedData = $this->xmlService->decode(
                 $bag->getXmlDocument()
             );
-            $bag->setNormalizedData($normalizedData);
+            $bag->setNormalizedData(ValueType::map()->parse($normalizedData));
         }
 
         // Construir los datos normalizados a partir del DTE.
@@ -344,7 +345,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
             $normalizedData = $this->xmlService->decode(
                 $bag->getDocument()->getXmlDocument()
             );
-            $bag->setNormalizedData($normalizedData);
+            $bag->setNormalizedData(ValueType::map()->parse($normalizedData));
         }
     }
 
@@ -446,8 +447,10 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos del XmlDocument.
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->emisorFactory->create(
-                $bag->getXmlDocument()->query(
-                    '//Encabezado/Emisor'
+                ValueType::map()->parse(
+                    $bag->getXmlDocument()->query(
+                        '//Encabezado/Emisor'
+                    )
                 )
             );
             $bag->setEmisor($emisor);
@@ -499,8 +502,10 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos del XmlDocument.
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->receptorFactory->create(
-                $bag->getXmlDocument()->query(
-                    '//Encabezado/Receptor'
+                ValueType::map()->parse(
+                    $bag->getXmlDocument()->query(
+                        '//Encabezado/Receptor'
+                    )
                 )
             );
             $bag->setReceptor($emisor);

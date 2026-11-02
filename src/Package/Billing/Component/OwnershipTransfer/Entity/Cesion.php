@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Abstract\AbstractOwnershipTransferDocument;
 
 /**
@@ -37,7 +38,9 @@ class Cesion extends AbstractOwnershipTransferDocument
      */
     public function getId(): string
     {
-        return (string) ($this->getXmlDocument()->query('//DocumentoCesion/@ID') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//DocumentoCesion/@ID') ?? ''
+        );
     }
 
     /**

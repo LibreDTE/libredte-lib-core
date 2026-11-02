@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Integration\Package\Billing\Component\Exchange;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -58,7 +59,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractParty;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\PartyEndpoint;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\PartyIdentifier;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\Receiver;
@@ -155,7 +156,7 @@ class ExchangeDocumentSendEmailTest extends TestCase
 
     private RendererWorkerInterface $renderer;
 
-    private ExchangeComponentInterface $exchange;
+    private SenderWorkerInterface $sender;
 
     protected function setUp(): void
     {
@@ -175,10 +176,11 @@ class ExchangeDocumentSendEmailTest extends TestCase
             ->getRendererWorker()
         ;
 
-        $this->exchange = $app
+        $this->sender = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getExchangeComponent()
+            ->getSenderWorker()
         ;
     }
 
@@ -195,7 +197,7 @@ class ExchangeDocumentSendEmailTest extends TestCase
         $file = self::getFixturesPath() . '/yaml/documentos_ok/033_factura_afecta/033_001_simple.yaml';
 
         // Load test case data.
-        $yaml = file_get_contents($file);
+        $yaml = ValueCaster::requireString(file_get_contents($file));
         $data = Yaml::parse($yaml);
         $test = $data['Test'];
         unset($data['Test']);
@@ -255,7 +257,7 @@ class ExchangeDocumentSendEmailTest extends TestCase
             ],
         ]);
         $exchangeBag->addEnvelope($envelope);
-        $results = $this->exchange->handle($exchangeBag);
+        $results = $this->sender->handle($exchangeBag);
 
         // Assert send status for the single message of the single envelope in
         // the send results.

@@ -26,6 +26,9 @@ use Derafu\Repository\Entity;
 
 /**
  * Entidad de modalidad de venta de aduana (documentos de exportación).
+ *
+ * @method string getGlosa() Glosa del registro (acceso mágico de `Entity`).
+ * @method int|string getCodigo() Código del registro (acceso mágico de `Entity`).
  */
 class AduanaModalidadVenta extends Entity
 {

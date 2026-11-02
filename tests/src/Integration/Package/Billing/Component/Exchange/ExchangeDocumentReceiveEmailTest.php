@@ -27,7 +27,7 @@ use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractParty;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractReceiverHandler;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\PartyIdentifier;
 use libredte\lib\Core\Package\Billing\Component\Exchange\ExchangeComponent;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\Attachment;
@@ -60,16 +60,17 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(ExchangeResult::class)]
 class ExchangeDocumentReceiveEmailTest extends TestCase
 {
-    private ExchangeComponentInterface $exchange;
+    private ReceiverWorkerInterface $receiver;
 
     protected function setUp(): void
     {
         $app = Application::getInstance();
 
-        $this->exchange = $app
+        $this->receiver = $app
             ->getPackageRegistry()
             ->getBillingPackage()
             ->getExchangeComponent()
+            ->getReceiverWorker()
         ;
     }
 
@@ -93,7 +94,7 @@ class ExchangeDocumentReceiveEmailTest extends TestCase
                 ],
             ],
         ]);
-        $results = $this->exchange->handle($exchangeBag);
+        $results = $this->receiver->handle($exchangeBag);
 
         // Validate manually when testing other functionality.
         // Note: perform real validation when running the test locally.

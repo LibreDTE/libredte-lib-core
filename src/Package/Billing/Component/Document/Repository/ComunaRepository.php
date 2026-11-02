@@ -27,6 +27,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 
 /**
  * Repositorio para trabajar con las comunas.
+ *
+ * @extends Repository<Comuna>
  */
 class ComunaRepository extends Repository
 {

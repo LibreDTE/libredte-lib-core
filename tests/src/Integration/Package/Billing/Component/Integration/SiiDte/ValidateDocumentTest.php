@@ -24,6 +24,7 @@ namespace libredte\lib\Tests\Integration\Package\Billing\Component\Integration\S
 
 use Derafu\Certificate\Exception\CertificateException;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
@@ -77,8 +78,8 @@ class ValidateDocumentTest extends TestCase
         // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
-                getenv('LIBREDTE_CERTIFICATE_FILE'),
-                getenv('LIBREDTE_CERTIFICATE_PASS'),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_FILE')),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_PASS')),
             );
         } catch (CertificateException $e) {
             $this->markTestSkipped($e->getMessage());

@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy;
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 
 /**
@@ -35,8 +36,12 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      */
     public function load(BookBagInterface $bag): BookBagInterface
     {
+        $rows = (array) $bag->getInputData();
+
         return $this->normalize($bag->setDetalle(
-            (array) $bag->getInputData() ?: $bag->getDetalle()
+            ValueType::listOf(ValueType::map())->parse(
+                $rows ?: $bag->getDetalle()
+            )
         ));
     }
 

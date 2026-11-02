@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Abstract;
 
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -110,7 +111,9 @@ abstract class AbstractBook implements BookInterface
      */
     public function getId(): string
     {
-        return (string) ($this->getXmlDocument()->query('//EnvioLibro/@ID') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//EnvioLibro/@ID') ?? ''
+        );
     }
 
     /**

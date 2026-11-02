@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
@@ -57,7 +58,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
     public function load(string|XmlDocumentInterface $xml): CafInterface
     {
         $class = $this->cafClass;
-        $caf = new $class($xml);
+        $caf = ValueCaster::requireObject(new $class($xml), CafInterface::class);
 
         $this->validateTipoDocumento($caf->getTipoDocumento());
 

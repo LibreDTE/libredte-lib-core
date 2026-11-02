@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Respon
 
 use Derafu\Enum\Contract\StatusInterface;
 use Derafu\Enum\Status;
+use Derafu\Value\ValueCaster;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -208,7 +209,7 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
     {
         // Asignar el código del estado y asumir que hubo error en la
         // validación del documento por parte del SII.
-        $status = $headers['ESTADO'];
+        $status = ValueCaster::requireString($headers['ESTADO']);
         $received = null;
         $description = null;
 

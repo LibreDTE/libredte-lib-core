@@ -24,6 +24,7 @@ namespace libredte\lib\Tests\Integration\Package\Billing\Component\Integration\S
 
 use Derafu\Certificate\Exception\CertificateException;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
@@ -78,8 +79,8 @@ class SendXmlDocumentTest extends TestCase
         // Load digital certificate.
         try {
             $certificate = $certificateLoader->loadFromFile(
-                getenv('LIBREDTE_CERTIFICATE_FILE'),
-                getenv('LIBREDTE_CERTIFICATE_PASS'),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_FILE')),
+                ValueCaster::requireString(getenv('LIBREDTE_CERTIFICATE_PASS')),
             );
         } catch (CertificateException $e) {
             $this->markTestSkipped($e->getMessage());
@@ -105,7 +106,7 @@ class SendXmlDocumentTest extends TestCase
         }
 
         // Load DTE XML into an XML document.
-        $xml = file_get_contents($file);
+        $xml = ValueCaster::requireString(file_get_contents($file));
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml($xml);
 

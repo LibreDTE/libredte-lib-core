@@ -27,10 +27,12 @@ use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
+use Derafu\Xml\XPathQuery;
 use DOMDocument;
-use DOMXPath;
+use DOMNode;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag;
@@ -124,8 +126,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
         // Cargar el AEC existente en un DOMDocument para extraer sus nodos.
         $dom = new DOMDocument();
         $dom->loadXML($existingAec->getXmlDocument()->setEncoding('ISO-8859-1')->saveXml());
-        $xpath = new DOMXPath($dom);
-        $xpath->registerNamespace('s', self::NS);
+        $xpath = new XPathQuery($dom, ['s' => self::NS]);
 
         // Extraer el nodo DTECedido completo. Importante: DOMDocument::
         // saveXML($node) con un nodo específico (a diferencia de sin
@@ -133,34 +134,28 @@ class BuildAecJob extends AbstractJob implements JobInterface
         // fragmento en UTF-8, sin importar $dom->encoding — se debe
         // convertir explícitamente para que quede consistente con el resto
         // del AEC, que se ensambla y firma en ISO-8859-1.
-        $dteCedidoNode = $xpath->query('//s:Cesiones/s:DTECedido')->item(0);
-        $dteCedidoXml = mb_convert_encoding(
-            $dom->saveXML($dteCedidoNode),
-            'ISO-8859-1',
-            'UTF-8'
+        $dteCedidoXml = $this->saveNodeXml(
+            $dom,
+            $xpath->getNodes('//s:Cesiones/s:DTECedido')->item(0)
         );
 
         // Extraer todos los nodos Cesion existentes (mismo motivo de arriba).
-        $cesionNodes = $xpath->query('//s:Cesiones/s:Cesion');
         $existingCesionesXml = [];
-        foreach ($cesionNodes as $node) {
-            $existingCesionesXml[] = mb_convert_encoding(
-                $dom->saveXML($node),
-                'ISO-8859-1',
-                'UTF-8'
-            );
+        foreach ($xpath->getNodes('//s:Cesiones/s:Cesion') as $node) {
+            $existingCesionesXml[] = $this->saveNodeXml($dom, $node);
         }
         $existingCount = count($existingCesionesXml);
         $seq = $bag->getSeq() ?? $existingCount + 1;
 
         // Extraer los datos de IdDTE de la primera Cesion para construir la nueva.
+        $idDteBase = '//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/';
         $idDte = [
-            'TipoDTE' => (int) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:TipoDTE')->item(0)?->textContent,
-            'RUTEmisor' => (string) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:RUTEmisor')->item(0)?->textContent,
-            'RUTReceptor' => (string) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:RUTReceptor')->item(0)?->textContent,
-            'Folio' => (int) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:Folio')->item(0)?->textContent,
-            'FchEmis' => (string) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:FchEmis')->item(0)?->textContent,
-            'MntTotal' => (int) $xpath->query('//s:Cesiones/s:Cesion[1]/s:DocumentoCesion/s:IdDTE/s:MntTotal')->item(0)?->textContent,
+            'TipoDTE' => (int) $xpath->getValue($idDteBase . 's:TipoDTE'),
+            'RUTEmisor' => (string) $xpath->getValue($idDteBase . 's:RUTEmisor'),
+            'RUTReceptor' => (string) $xpath->getValue($idDteBase . 's:RUTReceptor'),
+            'Folio' => (int) $xpath->getValue($idDteBase . 's:Folio'),
+            'FchEmis' => (string) $xpath->getValue($idDteBase . 's:FchEmis'),
+            'MntTotal' => (int) $xpath->getValue($idDteBase . 's:MntTotal'),
         ];
 
         // Construir la nueva Cesion firmada.
@@ -244,6 +239,23 @@ class BuildAecJob extends AbstractJob implements JobInterface
         $xmlDocument->loadXml($xml);
 
         return new Aec($xmlDocument);
+    }
+
+    /**
+     * Entrega el XML de un nodo, en ISO-8859-1.
+     *
+     * @param DOMDocument $dom Documento al que pertenece el nodo.
+     * @param mixed $node Nodo que se guardará. Debe ser un `DOMNode`.
+     */
+    private function saveNodeXml(DOMDocument $dom, mixed $node): string
+    {
+        $xml = $dom->saveXML(ValueCaster::requireObject($node, DOMNode::class));
+
+        return ValueCaster::requireString(mb_convert_encoding(
+            ValueCaster::requireString($xml),
+            'ISO-8859-1',
+            'UTF-8'
+        ));
     }
 
     /**

@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
@@ -126,7 +127,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
 
         // Generar la estructura del CAF falso como arreglo.
         $class = $this->cafFakerClass;
-        return (new $class())
+        return ValueCaster::requireObject(new $class(), CafFaker::class)
             ->setEmisor($emisor->getRut(), $emisor->getRazonSocial())
             ->setTipoDocumento($codigoDocumento)
             ->setRangoFolios($folioDesde, $folioHasta)

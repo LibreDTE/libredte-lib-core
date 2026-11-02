@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
@@ -116,6 +117,6 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
             ]);
         }
 
-        return file_get_contents($filepath);
+        return ValueCaster::requireString(file_get_contents($filepath));
     }
 }

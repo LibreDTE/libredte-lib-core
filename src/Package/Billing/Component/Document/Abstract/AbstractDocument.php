@@ -27,6 +27,8 @@ use Derafu\Array\ArrayPath;
 use Derafu\Repository\Entity;
 use Derafu\Selector\Selector;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use Derafu\Xml\Exception\XmlQueryException;
@@ -187,7 +189,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueType::map()->parse($value);
     }
 
     /**
@@ -205,7 +207,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -237,7 +239,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueType::map()->parse($value);
     }
 
     /**
@@ -255,7 +257,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -263,7 +265,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRazonSocialReceptor(): ?string
     {
-        return $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep');
+        return ValueCaster::getString(
+            $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep')
+        );
     }
 
     /**
@@ -281,7 +285,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -299,7 +303,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             );
         }
 
-        return $value;
+        return ValueType::map()->parse($value);
     }
 
     /**
@@ -387,7 +391,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             ?? 'PESO CL'
         ;
 
-        return (string) $moneda;
+        return ValueCaster::requireString($moneda);
     }
 
     /**
@@ -450,6 +454,8 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         if ($value === null) {
             return null;
         }
+
+        $value = ValueType::array()->parse($value);
 
         if (!isset($value[0])) {
             $value = [$value];
@@ -518,7 +524,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             $referencias = [$referencias];
         }
 
-        return $referencias;
+        return ValueType::listOf(ValueType::map())->parse($referencias);
     }
 
     /**
@@ -622,7 +628,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             return null;
         }
 
-        return (string) trim(str_replace("\n", '', $firma));
+        return (string) trim(str_replace("\n", '', ValueCaster::requireString($firma)));
     }
 
     /**

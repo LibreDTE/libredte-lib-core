@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 
 /**
@@ -56,10 +57,11 @@ trait NormalizeExportacionTrait
         // Colocar forma de pago de exportación.
         if (!empty($data['Encabezado']['IdDoc']['FmaPago'])) {
             $formas = [3 => 21];
-            if (isset($formas[$data['Encabezado']['IdDoc']['FmaPago']])) {
-                $data['Encabezado']['IdDoc']['FmaPagExp'] =
-                    $formas[$data['Encabezado']['IdDoc']['FmaPago']]
-                ;
+            $formaPago = ValueCaster::toString(
+                $data['Encabezado']['IdDoc']['FmaPago']
+            );
+            if (isset($formas[$formaPago])) {
+                $data['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$formaPago];
             }
             $data['Encabezado']['IdDoc']['FmaPago'] = false;
         }

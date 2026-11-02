@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
@@ -119,7 +120,7 @@ class SendAecJob extends AbstractJob implements JobInterface
      *   9  → Error interno del SII.
      *   10 → Error interno del SII.
      *
-     * @param array<string, mixed> $response Arreglo decodificado de la respuesta XML del SII.
+     * @param array<array-key, mixed> $response Arreglo decodificado de la respuesta XML del SII.
      * @throws SendAecException Si el STATUS indica un error.
      */
     private function validateResponse(array $response): void
@@ -191,7 +192,7 @@ class SendAecJob extends AbstractJob implements JobInterface
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_URL, ValueType::nonEmptyString()->parse($url));
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Respon
 
 use Derafu\Enum\Contract\StatusInterface;
 use Derafu\Enum\Status;
+use Derafu\Value\ValueCaster;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -223,7 +224,9 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
                 break;
             }
         }
-        $status ??= $headers['SII:ESTADO'];
+        $status = ValueCaster::requireString(
+            $status ?? $headers['SII:ESTADO']
+        );
         $received = ($body['RECIBIDO'] ?? 'NO') === 'SI';
         $description = null;
 

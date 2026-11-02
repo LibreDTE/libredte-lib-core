@@ -1098,12 +1098,6 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Retornar el tax.
-        return $result instanceof TipoDocumentoInterface
-            ? $result->getDefaultTasaIVA()
-            : throw new ParserException([
-                'Could not retrieve VAT for document type {type}.',
-                'type' => $documentType,
-            ])
-        ;
+        return $result->getDefaultTasaIVA();
     }
 }

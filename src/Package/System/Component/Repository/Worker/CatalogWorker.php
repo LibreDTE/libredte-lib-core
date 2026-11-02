@@ -141,7 +141,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * resolución a una excepción propia de este worker.
      *
      * @param string $repository Identificador del repositorio.
-     * @return RepositoryInterface
+     * @return RepositoryInterface<object>
      * @throws CatalogException Si el repositorio no existe o no se puede
      * resolver.
      */

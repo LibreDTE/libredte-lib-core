@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Enum;
 
+use Derafu\Value\ValueCaster;
+
 /**
  * Enum del ambiente del SII cuando está disponible más de uno.
  *
@@ -186,7 +188,9 @@ enum SiiEnvironment: int
         $wsdlPath = dirname(__DIR__, 6);
         $filepath = sprintf('%s/%s/%s.wsdl', $wsdlPath, $server, $service);
 
-        return is_readable($filepath) ? realpath($filepath) : null;
+        return is_readable($filepath)
+            ? ValueCaster::requireString(realpath($filepath))
+            : null;
     }
 
     /**

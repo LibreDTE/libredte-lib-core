@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Entity;
 
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeDocument;
 
 /**
@@ -60,7 +61,9 @@ class RespuestaEnvio extends AbstractExchangeDocument
      */
     public function getId(): string
     {
-        return (string) ($this->getXmlDocument()->query('//Resultado/@ID') ?? '');
+        return ValueCaster::requireString(
+            $this->getXmlDocument()->query('//Resultado/@ID') ?? ''
+        );
     }
 
     /**

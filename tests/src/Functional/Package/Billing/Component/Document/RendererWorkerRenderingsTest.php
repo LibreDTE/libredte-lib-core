@@ -164,7 +164,7 @@ class RendererWorkerRenderingsTest extends TestCase
      */
     private function facturaAfecta(): DocumentBagInterface
     {
-        return $this->biller->bill([
+        $bag = new DocumentBag(inputData: [
             'Encabezado' => [
                 'IdDoc' => [
                     'TipoDTE' => 33,
@@ -191,6 +191,10 @@ class RendererWorkerRenderingsTest extends TestCase
                 'PrcItem' => 40000,
             ],
         ]);
+        $this->biller->getParserWorker()->parse($bag);
+        $this->biller->getBuilderWorker()->build($bag);
+
+        return $bag;
     }
 
     /**
@@ -199,7 +203,7 @@ class RendererWorkerRenderingsTest extends TestCase
      */
     private function boletaAfecta(): DocumentBagInterface
     {
-        return $this->biller->bill([
+        $bag = new DocumentBag(inputData: [
             'Encabezado' => [
                 'IdDoc' => [
                     'TipoDTE' => 39,
@@ -225,6 +229,10 @@ class RendererWorkerRenderingsTest extends TestCase
                 'PrcItem' => 1190,
             ],
         ]);
+        $this->biller->getParserWorker()->parse($bag);
+        $this->biller->getBuilderWorker()->build($bag);
+
+        return $bag;
     }
 
     public function testDefaultRenderingIsSingleTributariaWithoutLabelSuffix(): void

@@ -26,6 +26,9 @@ use Derafu\Repository\Entity;
 
 /**
  * Entidad de traslados.
+ *
+ * @method string getGlosa() Glosa del registro (acceso mágico de `Entity`).
+ * @method int|string getCodigo() Código del registro (acceso mágico de `Entity`).
  */
 class Traslado extends Entity
 {

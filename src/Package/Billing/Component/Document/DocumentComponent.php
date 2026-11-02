@@ -24,13 +24,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Document;
 
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
-use Derafu\Certificate\Contract\CertificateInterface;
-use Derafu\Config\Contract\OptionsInterface;
-use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DispatcherWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ExamplesWorkerInterface;
@@ -40,10 +36,6 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerIn
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
-use stdClass;
 
 /**
  * Componente "billing.document".
@@ -65,8 +57,7 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
         private ParserWorkerInterface $parserWorker,
         private RendererWorkerInterface $rendererWorker,
         private SanitizerWorkerInterface $sanitizerWorker,
-        private ValidatorWorkerInterface $validatorWorker,
-        private CafLoaderWorkerInterface $cafLoader
+        private ValidatorWorkerInterface $validatorWorker
     ) {
     }
 
@@ -176,52 +167,5 @@ class DocumentComponent extends AbstractComponent implements DocumentComponentIn
     public function getValidatorWorker(): ValidatorWorkerInterface
     {
         return $this->validatorWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function bill(
-        string|array|stdClass $data,
-        string|CafInterface|null $caf = null,
-        string|array|CertificateInterface|null $certificate = null,
-        array|OptionsInterface $options = []
-    ): DocumentBagInterface {
-        // Si el CAF es un string se debe construir el CAF.
-        if (is_string($caf)) {
-            $caf = $this->cafLoader->load($caf);
-        }
-
-        // Crear contenedor del documento.
-        $bag = new DocumentBag(
-            inputData: $data,
-            options: $options,
-            caf: $caf,
-            certificate: $certificate
-        );
-
-        // Parsear los datos de entrada pasados para crear el documento.
-        $this->parserWorker->parse($bag);
-
-        // Construir el documento tributario.
-        $this->builderWorker->build($bag);
-
-        // Entregar contenedor del documento.
-        return $bag;
-    }
-
-    public function loadXml(string $xml): array
-    {
-        $xmlDocument = new XmlDocument();
-        $xmlDocument->loadXml($xml);
-
-        if ($xmlDocument->getDocumentElement()->tagName === 'DTE') {
-            $bag = $this->loaderWorker->loadXml($xmlDocument);
-            return [$bag];
-        }
-
-        $envelope = $this->dispatcherWorker->loadXml($xmlDocument);
-
-        return $envelope->getDocuments();
     }
 }

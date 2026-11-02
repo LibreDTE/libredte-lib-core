@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Value\ValueType;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
@@ -110,7 +111,9 @@ class EstandarFormDocumentosOkCoverageTest extends TestCase
      */
     private function formEstandarCaseNames(): array
     {
-        $files = glob(self::getFixturesPath() . '/parsers/form/estandar/*.yaml');
+        $files = ValueType::listOf(ValueType::string())->parse(
+            glob(self::getFixturesPath() . '/parsers/form/estandar/*.yaml')
+        );
 
         return array_map(
             fn (string $file): string => basename($file, '.yaml'),
@@ -123,7 +126,9 @@ class EstandarFormDocumentosOkCoverageTest extends TestCase
      */
     private function documentosOkCaseNames(): array
     {
-        $files = glob(self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml');
+        $files = ValueType::listOf(ValueType::string())->parse(
+            glob(self::getFixturesPath() . '/yaml/documentos_ok/*/*.yaml')
+        );
 
         return array_map(
             fn (string $file): string => basename($file, '.yaml'),

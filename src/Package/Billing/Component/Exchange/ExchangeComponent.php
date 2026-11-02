@@ -25,7 +25,6 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange;
 use Derafu\Backbone\Abstract\AbstractComponent;
 use Derafu\Backbone\Attribute\Component;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\DocumentResponseWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeComponentInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
@@ -85,33 +84,5 @@ class ExchangeComponent extends AbstractComponent implements ExchangeComponentIn
     public function getDocumentResponseWorker(): DocumentResponseWorkerInterface
     {
         return $this->documentResponseWorker;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function receive(ExchangeBagInterface $bag): array
-    {
-        return $this->receiverWorker->receive($bag);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function send(ExchangeBagInterface $bag): array
-    {
-        return $this->senderWorker->send($bag);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function handle(ExchangeBagInterface $bag): array
-    {
-        if (!$bag->hasEnvelopes()) {
-            return $this->receiverWorker->handle($bag);
-        } else {
-            return $this->senderWorker->handle($bag);
-        }
     }
 }

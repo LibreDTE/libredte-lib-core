@@ -26,6 +26,8 @@ use Derafu\Signature\Contract\SignatureValidatorInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Signature\Service\SignatureGenerator;
 use Derafu\Signature\Service\SignatureValidator;
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Service\XmlDecoder;
 use Derafu\Xml\Service\XmlEncoder;
 use Derafu\Xml\Service\XmlService;
@@ -221,7 +223,7 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     {
         // Find files with test cases.
         $filesPath = self::getFixturesPath() . '/xml/sii/*.xml';
-        $files = glob($filesPath);
+        $files = ValueType::listOf(ValueType::string())->parse(glob($filesPath));
 
         // Build test data.
         $siiExampleDocuments = [];
@@ -236,7 +238,7 @@ class OfficialSiiExampleXmlValidationTest extends TestCase
     // Creates an envelope from an XML file.
     private function createEnvelope(string $file): DocumentEnvelopeInterface
     {
-        $xml = file_get_contents($file);
+        $xml = ValueCaster::requireString(file_get_contents($file));
         $envelope = $this->dispatcher->loadXml($xml);
 
         return $envelope;

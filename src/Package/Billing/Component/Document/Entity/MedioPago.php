@@ -26,6 +26,9 @@ use Derafu\Repository\Entity;
 
 /**
  * Entidad de medio de pago.
+ *
+ * @method int|string getCodigo() Código del registro (acceso mágico de `Entity`).
+ * @property string $glosa Glosa del registro (acceso mágico de `Entity`).
  */
 class MedioPago extends Entity
 {

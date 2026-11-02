@@ -29,6 +29,7 @@ use Derafu\Backbone\DependencyInjection\ServiceProcessingCompilerPass;
 use Derafu\Kernel\Contract\EnvironmentInterface;
 use Derafu\Kernel\MicroKernel;
 use Derafu\Renderer\Contract\RendererInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Contract\ApplicationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
@@ -144,7 +145,10 @@ class Application extends MicroKernel implements ApplicationInterface
      */
     public function getPackageRegistry(): PackageRegistry
     {
-        return $this->getContainer()->get(PackageRegistryInterface::class);
+        return ValueCaster::requireObject(
+            $this->getContainer()->get(PackageRegistryInterface::class),
+            PackageRegistry::class
+        );
     }
 
     /**

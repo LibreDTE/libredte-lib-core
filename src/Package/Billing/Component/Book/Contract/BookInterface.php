@@ -78,21 +78,21 @@ interface BookInterface extends JsonSerializable
     /**
      * Entrega la carátula del libro.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, mixed>
      */
     public function getCaratula(): array;
 
     /**
      * Entrega el resumen del libro.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, mixed>
      */
     public function getResumen(): array;
 
     /**
      * Entrega los registros de detalle del libro.
      *
-     * @return array<int, array<string, mixed>>
+     * @return array<array-key, mixed>
      */
     public function getDetalle(): array;
 
@@ -139,7 +139,7 @@ interface BookInterface extends JsonSerializable
     /**
      * Entrega los datos del libro como un arreglo.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, mixed>
      */
     public function toArray(): array;
 }

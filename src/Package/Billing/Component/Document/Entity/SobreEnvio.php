@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlQueryException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
@@ -99,7 +101,7 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -117,7 +119,7 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -135,7 +137,7 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -163,7 +165,10 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return new AutorizacionDte($fecha_resolucion, (int) $numero_resolucion);
+        return new AutorizacionDte(
+            ValueCaster::requireString($fecha_resolucion),
+            (int) $numero_resolucion
+        );
     }
 
     /**
@@ -181,7 +186,7 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return $value;
+        return ValueCaster::requireString($value);
     }
 
     /**
@@ -199,7 +204,9 @@ class SobreEnvio implements SobreEnvioInterface
             );
         }
 
-        return isset($SubTotDTE[0]) ? $SubTotDTE : [$SubTotDTE];
+        return ValueType::listOf(ValueType::map())->parse(
+            isset($SubTotDTE[0]) ? $SubTotDTE : [$SubTotDTE]
+        );
     }
 
     /**

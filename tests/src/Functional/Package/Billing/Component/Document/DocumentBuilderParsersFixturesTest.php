@@ -26,6 +26,7 @@ use Derafu\Certificate\Contract\CertificateFakerInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Config\Options;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -351,7 +352,7 @@ class DocumentBuilderParsersFixturesTest extends TestCase
     {
         // Build the document from file data and the
         // parsing strategy for the format.
-        $data = file_get_contents($file);
+        $data = ValueCaster::requireString(file_get_contents($file));
         $bag = new DocumentBag(
             inputData: $data,
             options: new Options([
@@ -376,8 +377,10 @@ class DocumentBuilderParsersFixturesTest extends TestCase
 
         // Create test CAF and build a new bag that includes the CAF.
         // Using build() stamps the previously normalized document.
-        $tipoDoc = $bag->getTipoDocumento()->getCodigo();
-        $folio = $bag->getFolio() ?? 1;
+        $tipoDoc = ValueCaster::requireInt(
+            $bag->getTipoDocumento()->getCodigo()
+        );
+        $folio = ValueCaster::requireInt($bag->getFolio() ?? 1);
         $fakeCaf = $this->cafFaker->create($bag->getEmisor(), $tipoDoc, $folio, $folio);
         $cafManager = new CafManager();
         $cafManager->add($fakeCaf->saveXml());

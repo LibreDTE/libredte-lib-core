@@ -65,7 +65,7 @@ abstract class AbstractSiiWsdlResponse
     /**
      * Constructor que recibe la respuesta del SII y los datos de la solicitud.
      *
-     * @param array<string, mixed> $response Datos de la respuesta a la solicitud enviada.
+     * @param array<array-key, mixed> $response Datos de la respuesta a la solicitud enviada.
      * @param array<string, mixed> $request Datos de la solicitud original enviada.
      * @throws SiiDteException Si la respuesta del SII no incluye las
      * cabeceras `SII:RESPUESTA.SII:RESP_HDR` esperadas.

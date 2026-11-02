@@ -26,6 +26,7 @@ use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
@@ -270,7 +271,7 @@ class DocumentBag implements DocumentBagInterface
         }
 
         if (!is_string($inputData)) {
-            $inputData = json_encode($inputData);
+            $inputData = ValueCaster::requireString(json_encode($inputData));
         }
 
         $this->inputData = $inputData;

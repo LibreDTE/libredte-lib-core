@@ -94,7 +94,7 @@ interface SobreEnvioInterface
      * Se informa el código del tipo de documento y cantidad de documentos por
      * cada tipo.
      *
-     * @return array<int, int>
+     * @return array<int, array<string, mixed>>
      */
     public function getResumen(): array;
 

@@ -26,6 +26,7 @@ use Derafu\Array\ArrayPath;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Signature\Exception\SignatureException;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Exception\XmlException;
 use Exception;
 use libredte\lib\Core\Application;
@@ -133,6 +134,7 @@ use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
+use Throwable;
 
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
@@ -365,10 +367,10 @@ class BatchProcessorWorkerTest extends TestCase
         string $exception,
         string $message
     ): void {
-        $this->expectException(
-            'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
-            . $exception
-        );
+        $class = 'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
+            . $exception;
+        $this->assertTrue(is_subclass_of($class, Throwable::class), $class);
+        $this->expectException($class);
         $this->expectExceptionMessage($message);
 
         $this->processFile($file);
@@ -418,7 +420,7 @@ class BatchProcessorWorkerTest extends TestCase
     public function testBatchFromContentReturnsSameDocuments(): void
     {
         $file = self::getFixturesPath('emision_masiva/nombre_pdf_largo.csv');
-        $batch = new DocumentBatch(inputData: file_get_contents($file));
+        $batch = new DocumentBatch(inputData: ValueCaster::requireString(file_get_contents($file)));
 
         $documentsBag = $this->processBatch($batch);
 
