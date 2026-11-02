@@ -46,6 +46,14 @@ class JsonParserStrategy extends AbstractStrategy implements ParserStrategyInter
             );
         }
 
+        // Un JSON válido puede ser un texto, un número, etc.: debe ser un
+        // objeto o un arreglo.
+        if (!is_array($array)) {
+            throw new ParserException(
+                'The input data must be a JSON object or array.'
+            );
+        }
+
         return $array;
     }
 }

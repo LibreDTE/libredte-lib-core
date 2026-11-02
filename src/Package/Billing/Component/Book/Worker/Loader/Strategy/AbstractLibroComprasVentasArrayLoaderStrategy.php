@@ -22,8 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy;
 
+use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayPath;
 use Derafu\Array\ArrayReader;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoOperacion;
@@ -173,7 +176,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
 
         // Truncar razón social.
         if ($detalle['RznSoc']) {
-            $detalle['RznSoc'] = mb_substr(self::reader($detalle)->getAsString('RznSoc') ?? '', 0, 50);
+            $detalle['RznSoc'] = mb_substr(ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->getAsString('RznSoc') ?? '', 0, 50);
         }
 
         // Calcular IVA de uso común si hay factor de proporcionalidad.
@@ -186,21 +189,23 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             $detalle['MntIVA'] = $this->percentOfNet($detalle);
         }
 
-        // Normalizar IVA no recuperable a lista.
-        if (!empty($detalle['IVANoRec'])) {
-            $detalle['IVANoRec'] = self::toList($detalle['IVANoRec']);
-        }
-
-        // Normalizar otros impuestos a lista.
-        if (!empty($detalle['OtrosImp'])) {
-            $detalle['OtrosImp'] = self::toList($detalle['OtrosImp']);
+        // Normalizar IVA no recuperable y otros impuestos a lista.
+        foreach (['IVANoRec', 'OtrosImp'] as $field) {
+            if (!empty($detalle[$field])) {
+                $detalle = ArrayPath::wrap($detalle, $field);
+            }
         }
 
         // Los montos y las tasas de los impuestos que van en listas.
-        foreach (['IVANoRec' => [['MntIVANoRec'], []], 'OtrosImp' => [['MntImp'], ['TasaImp']]] as $field => [$amounts, $rates]) {
-            foreach (self::toList($detalle[$field]) as $item) {
-                $this->assertNumbers(array_merge(['TpoDoc' => $detalle['TpoDoc'], 'NroDoc' => $detalle['NroDoc']], $item), $amounts, $rates);
-            }
+        $listType = ValueType::listOf(ValueType::array());
+        $impuestos = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']));
+        $ivaNoRec = $impuestos->get('IVANoRec', $listType) ?? [];
+        $otrosImp = $impuestos->get('OtrosImp', $listType) ?? [];
+        foreach ($ivaNoRec as $item) {
+            $this->assertNumbers(array_merge(['TpoDoc' => $detalle['TpoDoc'], 'NroDoc' => $detalle['NroDoc']], $item), ['MntIVANoRec'], []);
+        }
+        foreach ($otrosImp as $item) {
+            $this->assertNumbers(array_merge(['TpoDoc' => $detalle['TpoDoc'], 'NroDoc' => $detalle['NroDoc']], $item), ['MntImp'], ['TasaImp']);
         }
 
         // Determinar si hay IVA retenido y si es total o parcial.
@@ -213,30 +218,31 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             // Si el IVA retenido es parcial.
             else {
                 $detalle['IVARetParcial'] = $ivaRetenido;
-                $detalle['IVANoRetenido'] = self::intOf($detalle, 'MntIVA') - $ivaRetenido;
+                $detalle['IVANoRetenido'] = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->getAsInt('MntIVA', 0) - $ivaRetenido;
             }
         }
 
         // Calcular monto total si falta.
         if ($detalle['MntTotal'] === false) {
-            $total = self::intOf($detalle, 'MntExe') + self::intOf($detalle, 'MntNeto') + self::intOf($detalle, 'MntIVA');
-            foreach (self::toList($detalle['IVANoRec']) as $iva) {
-                $total += self::intOf($iva, 'MntIVANoRec');
+            $montos = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']));
+            $total = $montos->getAsInt('MntExe', 0) + $montos->getAsInt('MntNeto', 0) + $montos->getAsInt('MntIVA', 0);
+            foreach ($ivaNoRec as $iva) {
+                $total += ArrayReader::fromArray($iva)->getAsInt('MntIVANoRec', 0);
             }
             if (isset($detalle['FctProp'])) {
-                $total += self::intOf($detalle, 'IVAUsoComun');
+                $total += $montos->getAsInt('IVAUsoComun', 0);
             }
             if (!empty($detalle['IVARetTotal'])) {
-                $total -= self::intOf($detalle, 'IVARetTotal');
+                $total -= $montos->getAsInt('IVARetTotal', 0);
             }
             if (!empty($detalle['IVARetParcial'])) {
-                $total -= self::intOf($detalle, 'IVARetParcial');
+                $total -= $montos->getAsInt('IVARetParcial', 0);
             }
-            $total += self::intOf($detalle, 'MntSinCred')
-                + self::intOf($detalle, 'TabPuros')
-                + self::intOf($detalle, 'TabCigarrillos')
-                + self::intOf($detalle, 'TabElaborado')
-                + self::intOf($detalle, 'ImpVehiculo');
+            $total += $montos->getAsInt('MntSinCred', 0)
+                + $montos->getAsInt('TabPuros', 0)
+                + $montos->getAsInt('TabCigarrillos', 0)
+                + $montos->getAsInt('TabElaborado', 0)
+                + $montos->getAsInt('ImpVehiculo', 0);
             $detalle['MntTotal'] = $total;
         }
 
@@ -270,7 +276,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
      */
     private function calcularIvaRetenidoDetalle(array $detalle): int
     {
-        $otrosImp = self::toList($detalle['OtrosImp'] ?? []);
+        $otrosImp = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->get('OtrosImp', ValueType::listOf(ValueType::array())) ?? [];
         if ($otrosImp === []) {
             return 0;
         }
@@ -286,7 +292,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             assert($impuesto instanceof ImpuestoAdicionalRetencion);
 
             if ($impuesto->getTipo() === 'R') {
-                $ivaRetenido += self::intOf($otroImp, 'MntImp');
+                $ivaRetenido += ArrayReader::fromArray($otroImp)->getAsInt('MntImp', 0);
             }
         }
 
@@ -300,42 +306,9 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
      */
     private function percentOfNet(array $detalle): int
     {
-        $row = self::reader($detalle);
+        $row = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']));
 
         return (int) round(($row->getAsInt('MntNeto') ?? 0) * (($row->getAsNumber('TasaImp') ?? 0) / 100));
-    }
-
-    /**
-     * Entrega un monto de la fila como número entero: 0 si no hay un valor.
-     *
-     * @param array<array-key, mixed> $row
-     */
-    private static function intOf(array $row, string $field): int
-    {
-        return self::reader($row)->getAsInt($field) ?? 0;
-    }
-
-    /**
-     * Entrega un valor que puede ser un elemento o una lista de elementos como
-     * una lista de elementos (cada uno un arreglo). Lo que no está o no es un
-     * arreglo da una lista vacía.
-     *
-     * @return list<array<array-key, mixed>>
-     */
-    private static function toList(mixed $value): array
-    {
-        if (!is_array($value) || $value === []) {
-            return [];
-        }
-
-        $list = [];
-        foreach (array_is_list($value) ? $value : [$value] as $item) {
-            if (is_array($item)) {
-                $list[] = $item;
-            }
-        }
-
-        return $list;
     }
 
     /**
@@ -350,7 +323,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
      */
     private function assertNumbers(array $row, array $amounts, array $rates): void
     {
-        $reader = self::reader($row, sprintf(
+        $reader = ArrayReader::fromArray(ArrayCaster::nullify($row, [false, '']), sprintf(
             'document %s/%s',
             is_scalar($row['TpoDoc'] ?? null) ? (string) $row['TpoDoc'] : '?',
             is_scalar($row['NroDoc'] ?? null) ? (string) $row['NroDoc'] : '?'
@@ -363,19 +336,5 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
         foreach ($rates as $field) {
             $reader->getAsNumber($field);
         }
-    }
-
-    /**
-     * Entrega un lector de la fila. En el detalle `false` y el texto vacío son lo
-     * que se pone cuando no hay un valor.
-     *
-     * @param array<array-key, mixed> $row
-     */
-    private static function reader(array $row, ?string $source = null): ArrayReader
-    {
-        return ArrayReader::fromArray(
-            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $row),
-            $source
-        );
     }
 }

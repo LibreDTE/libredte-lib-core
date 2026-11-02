@@ -34,7 +34,8 @@ interface ParserStrategyInterface extends StrategyInterface
      * Realiza la transformación de los datos del documento.
      *
      * @param string $data Datos de entrada del formato original.
-     * @return array Arreglo transformado a la estructura oficial del SII.
+     * @return array<array-key, mixed> Arreglo transformado a la estructura
+     * oficial del SII.
      */
     public function parse(string $data): array;
 }

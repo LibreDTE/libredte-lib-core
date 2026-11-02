@@ -22,10 +22,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayDuplicates;
+use Derafu\Array\ArrayPath;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Value\ValueParser;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
@@ -140,7 +143,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         $bag->setDetalle($detalles);
 
         // Construir carátula normalizada.
-        $tipoOper = strtoupper(self::reader($caratula)->getAsString('TipoOperacion') ?? 'VENTA');
+        $tipoOper = strtoupper(ArrayReader::fromArray(ArrayCaster::nullify($caratula, [false, '']))->getAsString('TipoOperacion') ?? 'VENTA');
         $caratulaNorm = array_merge([
             'RutEmisorLibro' => false,
             'RutEnvia' => false,
@@ -155,7 +158,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
 
         // Un libro especial lleva el folio de la notificación y uno de
         // rectificación el código de autorización.
-        $caratulaReader = self::reader($caratulaNorm);
+        $caratulaReader = ArrayReader::fromArray(ArrayCaster::nullify($caratulaNorm, [false, '']));
         $tipoLibro = $caratulaReader->getAsString('TipoLibro') ?? '';
         $campo = self::CARATULA_REQUERIDA[$tipoLibro] ?? null;
         if ($campo !== null && in_array($caratulaNorm[$campo] ?? null, [null, false, ''], true)) {
@@ -239,7 +242,8 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                 ]);
             }
 
-            $tpoDoc = is_numeric($total['TpoDoc']) ? (int) $total['TpoDoc'] : 0;
+            // Un texto sigue siendo texto y no es uno de los tipos permitidos.
+            $tpoDoc = ValueParser::parse($total['TpoDoc']);
             if (!in_array($tpoDoc, self::TIPOS_RESUMEN_MANUAL, true)) {
                 throw new BookException([
                     'The document type {type} can not have a manual summary: it must be one of {allowed}.',
@@ -284,8 +288,17 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
     {
         $groups = [];
 
+        $listType = ValueType::listOf(ValueType::array());
+
         foreach ($detalles as &$d) {
-            $row = self::reader($d);
+            // IVA no recuperable y otros impuestos, como lista de impuestos.
+            foreach (['IVANoRec', 'OtrosImp'] as $field) {
+                if (!empty($d[$field])) {
+                    $d = ArrayPath::wrap($d, $field);
+                }
+            }
+
+            $row = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']));
 
             $tpoDoc = $row->getAsInt('TpoDoc');
             if ($tpoDoc === null || $tpoDoc === 0) {
@@ -321,8 +334,8 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             }
 
             // IVA no recuperable.
-            foreach (self::toList($d['IVANoRec'] ?? null) as $iva) {
-                $item = self::reader($iva);
+            foreach ($row->get('IVANoRec', $listType) ?? [] as $iva) {
+                $item = ArrayReader::fromArray($iva);
                 $code = $item->getAsInt('CodIVANoRec') ?? 0;
                 $group['notRecoverable'][$code] ??= ['code' => $code, 'operations' => 0, 'amount' => 0];
                 $group['notRecoverable'][$code]['operations']++;
@@ -348,8 +361,8 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             }
 
             // Otros impuestos.
-            foreach (self::toList($d['OtrosImp'] ?? null) as $imp) {
-                $item = self::reader($imp);
+            foreach ($row->get('OtrosImp', $listType) ?? [] as $imp) {
+                $item = ArrayReader::fromArray($imp);
                 $code = $item->getAsInt('CodImp') ?? 0;
                 $group['otherTaxes'][$code] ??= ['code' => $code, 'amount' => 0];
                 $group['otherTaxes'][$code]['amount'] += $item->getAsInt('MntImp') ?? 0;
@@ -476,41 +489,5 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             'notWithheld' => null,
             'vehicle' => null,
         ];
-    }
-
-    /**
-     * Entrega un valor que puede ser un elemento o una lista de elementos como
-     * una lista de elementos (cada uno un arreglo). Lo que no está o no es un
-     * arreglo da una lista vacía.
-     *
-     * @return list<array<array-key, mixed>>
-     */
-    private static function toList(mixed $value): array
-    {
-        if (!is_array($value) || $value === []) {
-            return [];
-        }
-
-        $list = [];
-        foreach (array_is_list($value) ? $value : [$value] as $item) {
-            if (is_array($item)) {
-                $list[] = $item;
-            }
-        }
-
-        return $list;
-    }
-
-    /**
-     * Entrega un lector de los datos. En el detalle y en la carátula `false` y el
-     * texto vacío son lo que se pone cuando no hay un valor.
-     *
-     * @param array<array-key, mixed> $data
-     */
-    private static function reader(array $data): ArrayReader
-    {
-        return ArrayReader::fromArray(
-            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $data)
-        );
     }
 }

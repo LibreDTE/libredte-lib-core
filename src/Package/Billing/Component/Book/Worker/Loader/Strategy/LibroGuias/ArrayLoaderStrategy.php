@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroGuias;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
@@ -98,7 +99,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
         // Los montos y la tasa deben ser números.
         $this->assertNumbers($detalle);
 
-        $row = self::reader($detalle);
+        $row = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']));
 
         // Truncar razón social.
         if ($detalle['RznSoc']) {
@@ -112,7 +113,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
 
         // Calcular monto total si falta.
         if ($detalle['MntTotal'] === false) {
-            $detalle['MntTotal'] = ($row->getAsInt('MntNeto') ?? 0) + (self::reader($detalle)->getAsInt('IVA') ?? 0);
+            $detalle['MntTotal'] = ($row->getAsInt('MntNeto') ?? 0) + (ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->getAsInt('IVA') ?? 0);
         }
 
         // Retornar el detalle normalizado.
@@ -129,26 +130,12 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      */
     private function assertNumbers(array $detalle): void
     {
-        $reader = self::reader($detalle, sprintf('document %s', is_scalar($detalle['Folio'] ?? null) ? (string) $detalle['Folio'] : '?'));
+        $reader = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']), sprintf('document %s', is_scalar($detalle['Folio'] ?? null) ? (string) $detalle['Folio'] : '?'));
 
         foreach (['MntNeto', 'IVA', 'MntTotal', 'MntModificado'] as $field) {
             $reader->getAsInt($field);
         }
 
         $reader->getAsNumber('TasaImp');
-    }
-
-    /**
-     * Entrega un lector de la fila. En el detalle `false` y el texto vacío son lo
-     * que se pone cuando no hay un valor.
-     *
-     * @param array<string, mixed> $detalle
-     */
-    private static function reader(array $detalle, ?string $source = null): ArrayReader
-    {
-        return ArrayReader::fromArray(
-            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $detalle),
-            $source
-        );
     }
 }

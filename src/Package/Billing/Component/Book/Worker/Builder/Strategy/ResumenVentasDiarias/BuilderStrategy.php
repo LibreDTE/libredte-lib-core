@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\ResumenVentasDiarias;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayDuplicates;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
@@ -88,7 +89,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         ]);
 
         // Construir ID del documento.
-        $rut = str_replace('-', '', self::reader($caratulaNorm)->getString('RutEmisor') ?? '');
+        $rut = str_replace('-', '', ArrayReader::fromArray(ArrayCaster::nullify($caratulaNorm, [false, '']))->getString('RutEmisor') ?? '');
         $fecha = str_replace('-', '', $fchInicio);
         $id = sprintf('LibreDTE_CONSUMO_FOLIO_%s_%s_%s', $rut, $fecha, time());
 
@@ -123,7 +124,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
     {
         $fecha = null;
         foreach ($detalles as $d) {
-            $fchDoc = self::reader($d)->getString('FchDoc');
+            $fchDoc = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']))->getString('FchDoc');
             if ($fchDoc !== null && ($fecha === null || $fchDoc < $fecha)) {
                 $fecha = $fchDoc;
             }
@@ -143,7 +144,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
     {
         $fecha = null;
         foreach ($detalles as $d) {
-            $fchDoc = self::reader($d)->getString('FchDoc');
+            $fchDoc = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']))->getString('FchDoc');
             if ($fchDoc !== null && ($fecha === null || $fchDoc > $fecha)) {
                 $fecha = $fchDoc;
             }
@@ -162,7 +163,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
     {
         $groups = [];
         foreach ($detalles as $d) {
-            $row = self::reader($d);
+            $row = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']));
 
             $tpoDoc = $row->getAsInt('TpoDoc');
             if ($tpoDoc === null || $tpoDoc === 0) {
@@ -227,7 +228,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
     {
         $count = 0;
         foreach ($detalles as $d) {
-            if (self::reader($d)->getAsInt('TpoDoc') === $tpoDoc) {
+            if (ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']))->getAsInt('TpoDoc') === $tpoDoc) {
                 $count++;
             }
         }
@@ -264,18 +265,5 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $rangos[] = ['Inicial' => $inicioRango, 'Final' => $anterior];
 
         return $rangos;
-    }
-
-    /**
-     * Entrega un lector de los datos. En los detalles y en la carátula `false`
-     * es lo que se pone cuando no hay un valor.
-     *
-     * @param array<string, mixed> $data
-     */
-    private static function reader(array $data): ArrayReader
-    {
-        return ArrayReader::fromArray(
-            array_map(static fn (mixed $value): mixed => $value === false ? null : $value, $data)
-        );
     }
 }

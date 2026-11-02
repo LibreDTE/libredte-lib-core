@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Default;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use Derafu\Xml\Contract\XmlServiceInterface;
@@ -52,13 +53,15 @@ class XmlParserStrategy extends AbstractStrategy implements ParserStrategyInterf
         // Cargar los datos del XML a un arreglo.
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml($data);
-        $array = $this->xmlService->decode($xmlDocument);
+        $array = ArrayReader::fromArray(
+            $this->xmlService->decode($xmlDocument),
+            'XML'
+        );
 
         // Obtener los datos del documento a generar.
-        $documentoData = $array['DTE']['Documento']
-            ?? $array['DTE']['Exportaciones']
-            ?? $array['DTE']['Liquidacion']
-            ?? null
+        $documentoData = $array->getMap('DTE.Documento')
+            ?? $array->getMap('DTE.Exportaciones')
+            ?? $array->getMap('DTE.Liquidacion')
         ;
 
         // Si el XML no tiene los tags válidos se lanza una excepción.

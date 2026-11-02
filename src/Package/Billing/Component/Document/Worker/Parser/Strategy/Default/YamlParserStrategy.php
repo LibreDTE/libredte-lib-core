@@ -25,6 +25,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Str
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
+use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -38,7 +40,22 @@ class YamlParserStrategy extends AbstractStrategy implements ParserStrategyInter
      */
     public function parse(string $data): array
     {
-        $array = Yaml::parse($data);
+        try {
+            $array = Yaml::parse($data);
+        } catch (ParseException $e) {
+            throw new ParserException([
+                'The provided YAML is invalid: {detail}',
+                'detail' => $e->getMessage(),
+            ], 0, $e);
+        }
+
+        // Un YAML válido puede ser un texto, un número o estar vacío: debe ser
+        // un mapa o una lista.
+        if (!is_array($array)) {
+            throw new ParserException(
+                'The input data must be a YAML mapping or list.'
+            );
+        }
 
         return $array;
     }

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroVentas;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\AbstractLibroComprasVentasBuilderStrategy;
@@ -54,7 +55,7 @@ class BuilderStrategy extends AbstractLibroComprasVentasBuilderStrategy implemen
         return array_values(array_filter(
             $detalles,
             static fn (array $detalle): bool => !in_array(
-                (int) ($detalle['TpoDoc'] ?? 0),
+                ArrayReader::fromArray($detalle, 'detalle')->requireAsInt('TpoDoc'),
                 self::TIPOS_FUERA_DEL_DETALLE,
                 true
             )

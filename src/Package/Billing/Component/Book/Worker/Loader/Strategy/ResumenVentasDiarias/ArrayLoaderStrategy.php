@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strateg
 
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\AbstractArrayLoaderStrategy;
@@ -81,8 +82,8 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
 
         $reader = ArrayReader::fromArray($row, sprintf(
             'document %s/%s',
-            self::describe($row['TpoDoc'] ?? null),
-            self::describe($row['NroDoc'] ?? null)
+            ValueType::toString()->nullable()->parse($row['TpoDoc'] ?? null, 'TpoDoc') ?? '?',
+            ValueType::toString()->nullable()->parse($row['NroDoc'] ?? null, 'NroDoc') ?? '?'
         ));
 
         $exempt = $reader->getAsInt('MntExe');
@@ -99,13 +100,5 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
             'MntExe' => $exempt ?? false,
             'MntTotal' => $reader->getAsInt('MntTotal') ?? ($exempt ?? 0) + ($net ?? 0) + ($vat ?? 0),
         ];
-    }
-
-    /**
-     * Dice un valor del documento para nombrarlo en un mensaje.
-     */
-    private static function describe(mixed $value): string
-    {
-        return is_scalar($value) ? (string) $value : '?';
     }
 }

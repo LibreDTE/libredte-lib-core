@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroGuias;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayDuplicates;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
@@ -67,7 +68,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $resumenPeriodo = $this->calculateResumenPeriodo($detalles);
 
         // Construir ID del documento.
-        $caratulaReader = self::reader($caratula);
+        $caratulaReader = ArrayReader::fromArray(ArrayCaster::nullify($caratula, [false, '']));
         $rut = str_replace('-', '', $caratulaReader->getAsString('RutEmisorLibro') ?? '');
         $periodo = str_replace('-', '', $caratulaReader->getAsString('PeriodoTributario') ?? date('Y-m'));
         $id = sprintf('LibreDTE_LIBRO_GUIA_%s_%s_%s', $rut, $periodo, time());
@@ -123,7 +124,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $transfers = [];
 
         foreach ($detalles as $d) {
-            $row = self::reader($d);
+            $row = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']));
             $anulado = $row->getAsInt('Anulado') ?? 0;
             $tpoOper = $row->getAsInt('TpoOper') ?? 0;
             $amount = $row->getAsInt('MntTotal') ?? 0;
@@ -150,18 +151,5 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
             // Re-indexar traslados para XML.
             'TotTraslado' => $transfers === [] ? false : array_values($transfers),
         ];
-    }
-
-    /**
-     * Entrega un lector de los datos. En el detalle y en la carátula `false` y el
-     * texto vacío son lo que se pone cuando no hay un valor.
-     *
-     * @param array<array-key, mixed> $data
-     */
-    private static function reader(array $data): ArrayReader
-    {
-        return ArrayReader::fromArray(
-            array_map(static fn (mixed $value): mixed => $value === false || $value === '' ? null : $value, $data)
-        );
     }
 }

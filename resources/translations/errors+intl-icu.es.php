@@ -336,6 +336,10 @@ return [
         'No es posible asignar el folio si no existen datos parseados o normalizados.',
     'The input data is not valid JSON.' =>
         'Los datos de entrada no son un JSON válido.',
+    'The input data must be a JSON object or array.' =>
+        'Los datos de entrada deben ser un objeto o un arreglo JSON.',
+    'The input data must be a YAML mapping or list.' =>
+        'Los datos de entrada deben ser un mapa o una lista YAML.',
     'The item quantity cannot be 0 when the price is not 0.' =>
         'La cantidad del ítem no puede ser 0 si el precio es distinto de 0.',
     'The operation type "{operation}" is not valid.' =>

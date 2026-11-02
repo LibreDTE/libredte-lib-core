@@ -22,9 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Package\Billing\Component\Document\Worker\Parser\Strategy\Form;
 
+use Derafu\Array\Exception\TypeMismatchException as ArrayTypeMismatchException;
+use Derafu\Value\Exception\TypeMismatchException as ValueTypeMismatchException;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
-use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TipoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
@@ -61,7 +62,7 @@ use Symfony\Component\Yaml\Yaml;
 #[UsesClass(RepositorySourceProvider::class)]
 class EstandarParserStrategyTest extends TestCase
 {
-    private ParserStrategyInterface $strategy;
+    private EstandarParserStrategy $strategy;
 
     protected function setUp(): void
     {
@@ -72,7 +73,7 @@ class EstandarParserStrategyTest extends TestCase
             ->getParserWorker()
             ->getStrategy('form.estandar')
         ;
-        assert($strategy instanceof ParserStrategyInterface);
+        assert($strategy instanceof EstandarParserStrategy);
 
         $this->strategy = $strategy;
     }
@@ -120,11 +121,78 @@ class EstandarParserStrategyTest extends TestCase
         );
     }
 
+    /**
+     * @return array<string, array{array<string, mixed>, string, class-string<\Throwable>}>
+     */
+    public static function provideFieldsWithAWrongType(): array
+    {
+        $payments = ['FmaPago' => '2', 'FchPago' => ['2025-02-01']];
+
+        return [
+            'activity code that is not a number' => [['Acteco' => 'abc'], 'Acteco', ArrayTypeMismatchException::class],
+            'items that are not a list' => [['NmbItem' => 'solo texto'], 'NmbItem', ArrayTypeMismatchException::class],
+            'payment dates that are not a list' => [['FmaPago' => '2', 'FchPago' => '2025-02-01'], 'FchPago', ArrayTypeMismatchException::class],
+            'payment amount that is not a number' => [$payments + ['MntPago' => ['abc']], 'MntPago', ValueTypeMismatchException::class],
+            'exchange rate that is not a number' => [['TpoDoc' => '110', 'TpoCambio' => 'abc', 'FmaPago' => ''], 'TpoCambio', ArrayTypeMismatchException::class],
+            'additional tax rate that is not a number' => [[
+                'CodImpAdic' => ['24'],
+                'impuesto_adicional_tasa_24' => 'abc',
+                'NmbItem' => ['A'],
+                'PrcItem' => ['10'],
+                'QtyItem' => ['1'],
+                'IndExe' => [''],
+                'FmaPago' => '',
+            ], 'impuesto_adicional_tasa_24', ArrayTypeMismatchException::class],
+            'item discount that is not a number' => [['ValorDR' => ['abc', ''], 'TpoValor' => ['$', ''], 'FmaPago' => ''], 'ValorDR', ValueTypeMismatchException::class],
+            'global discount that is not a number' => [['ValorDR_global' => 'abc', 'TpoValor_global' => '$', 'FmaPago' => ''], 'ValorDR_global', ArrayTypeMismatchException::class],
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $change
+     * @param class-string<\Throwable> $exception
+     */
+    #[DataProvider('provideFieldsWithAWrongType')]
+    public function testFieldWithAWrongTypeIsReportedWithItsName(array $change, string $field, string $exception): void
+    {
+        $data = Yaml::parseFile(
+            self::getFixturesPath() . '/parsers_edge/form/estandar/033_pago_credito_impuesto_tipos_datos.yaml'
+        );
+        unset($data['Test']);
+
+        $this->expectException($exception);
+        $this->expectExceptionMessage('"' . $field . '"');
+
+        $this->strategy->parse(array_merge($data, $change));
+    }
+
     public function testEmptyYamlThrowsParserException(): void
     {
         $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Direct access to the preview is not allowed.');
 
         $this->strategy->parse('');
+    }
+
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function provideYamlThatIsNotAMapping(): array
+    {
+        return [
+            'text' => ['hola'],
+            'number' => ['5'],
+            'boolean' => ['true'],
+        ];
+    }
+
+    #[DataProvider('provideYamlThatIsNotAMapping')]
+    public function testYamlThatIsNotAMappingThrowsParserException(string $yaml): void
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('must be a YAML mapping or list');
+
+        $this->strategy->parse($yaml);
     }
 
     /**

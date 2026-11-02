@@ -22,9 +22,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Strategy\Form;
 
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException;
@@ -53,8 +56,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
     /**
      * Realiza la transformación de los datos del documento.
      *
-     * @param string|array $data Datos de entrada del formulario.
-     * @return array Arreglo transformado a la estructura oficial del SII.
+     * @param string|array<string, mixed> $data Datos de entrada del formulario.
+     * @return array<string, mixed> Arreglo transformado a la estructura oficial del
+     * SII.
      */
     public function parse(string|array $data): array
     {
@@ -81,9 +85,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      * Verifica si los datos son una cadena YAML y los decodifica a un arreglo
      * asociativo. Si los datos ya son un arreglo, los retorna sin cambios.
      *
-     * @param string|array $data Datos a procesar. Puede ser YAML o un arreglo.
-     * @return array Datos decodificados como arreglo asociativo.
-     * @throws ParserException Si la cadena YAML proporcionada no es válida.
+     * @param string|array<string, mixed> $data Datos a procesar. Puede ser YAML o un arreglo.
+     * @return array<array-key, mixed> Datos decodificados como arreglo asociativo.
+     * @throws ParserException Si la cadena YAML proporcionada no es válida o no
+     * es un mapa ni una lista.
      */
     private function decodeData(string|array $data): array
     {
@@ -102,7 +107,19 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             ]);
         }
 
-        return is_array($decoded) ? $decoded : [];
+        // Un documento YAML vacío son datos vacíos. Un texto o un número no
+        // son un mapa ni una lista de datos.
+        if ($decoded === null) {
+            return [];
+        }
+
+        if (!is_array($decoded)) {
+            throw new ParserException(
+                'The input data must be a YAML mapping or list.'
+            );
+        }
+
+        return $decoded;
     }
 
     /**
@@ -111,8 +128,8 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      * Este método realiza diversas operaciones sobre los datos del DTE, como la
      * adición de pagos programados, datos de traslado, detalles y referencias.
      *
-     * @param array $data Datos del DTE a procesar.
-     * @param array &$dte Referencia al arreglo del DTE donde se agregarán los
+     * @param array<string, mixed> $data Datos del DTE a procesar.
+     * @param array<array-key, mixed> &$dte Referencia al arreglo del DTE donde se agregarán los
      * datos.
      *
      * @return void
@@ -160,7 +177,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - El tipo de documento (`TpoDoc`) es obligatorio.
      *   - Los campos mínimos varían según el tipo de documento.
      *
-     * @param array $data Datos del formulario enviados para procesar el
+     * @param array<string, mixed> $data Datos del formulario enviados para procesar el
      * documento.
      * @throws ParserException Si falta algún dato obligatorio o el acceso es
      * directo.
@@ -225,13 +242,15 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Receptor: Detalles del receptor, como RUT y razón social.
      *   - RUTSolicita: Información del solicitante, si aplica.
      *
-     * @param array $data Datos de entrada para generar la estructura del DTE.
-     * @param array &$dte Referencia donde se almacenará la estructura generada.
+     * @param array<string, mixed> $data Datos de entrada para generar la estructura del DTE.
+     * @param array<array-key, mixed> &$dte Referencia donde se almacenará la estructura generada.
      *
      * @return void
      */
     private function setInitialDTE(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+
         // Crear la estructura base del DTE.
         $dte = [
             'Encabezado' => [
@@ -320,7 +339,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ? $data['CorreoEmisor']
                         : false
                     ,
-                    'Acteco' => (int) $data['Acteco'],
+                    'Acteco' => $input->requireAsInt('Acteco'),
                     'CdgSIISucur' => !empty($data['CdgSIISucur'])
                         ? $data['CdgSIISucur']
                         : false
@@ -377,7 +396,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     ,
                 ],
                 'RUTSolicita' => !empty($data['RUTSolicita'])
-                    ? str_replace('.', '', (string) $data['RUTSolicita'])
+                    ? str_replace('.', '', $input->requireAsString('RUTSolicita'))
                     : false
                 ,
             ],
@@ -399,44 +418,51 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Si hay pagos definidos, procesa las fechas, montos y glosas de los
      *     pagos.
      *
-     * @param array $data Datos de entrada que incluyen información de pagos.
-     * @param array $dte  Arreglo del DTE en el cual se agregarán los pagos.
+     * @param array<string, mixed> $data Datos de entrada que incluyen información de pagos.
+     * @param array<array-key, mixed> &$dte Arreglo del DTE en el cual se agregarán los pagos.
      *
      * @return void
      */
     private function addScheduledPayment(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Agregar pagos programados si es venta a crédito y no es boleta.
         if (
             !empty($data['FmaPago'])
             && $data['FmaPago'] == 2
-            && !in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [39, 41])
+            && !in_array($tipoDte, [39, 41])
         ) {
             // Si no hay pagos explícitos se copia la fecha de vencimiento y el
             // monto total se determinará en el proceso de normalización
             if (empty($data['FchPago'])) {
                 if (!empty($data['FchVenc']) && $data['FchVenc'] > $data['FchEmis']) {
-                    $dte['Encabezado']['IdDoc']['MntPagos'] = [
+                    $dte = ArrayPath::set($dte, ['Encabezado', 'IdDoc', 'MntPagos'], [
                         'FchPago' => $data['FchVenc'],
                         'GlosaPagos' => 'Fecha de pago igual al vencimiento',
-                    ];
+                    ]);
                 }
             }
             // Si hay montos a pagar programados explícitamente.
             else {
-                $dte['Encabezado']['IdDoc']['MntPagos'] = [];
-                $n_pagos = count($data['FchPago']);
+                $fchPago = $input->requireArray('FchPago');
+                $pagos = [];
+                $n_pagos = count($fchPago);
                 for ($i = 0; $i < $n_pagos; $i++) {
-                    $dte['Encabezado']['IdDoc']['MntPagos'][] = [
-                        'FchPago' => $data['FchPago'][$i],
-                        'MntPago' => !empty($data['MntPago'][$i])
-                            ? (int) round((float) $data['MntPago'][$i])
+                    $montoPago = $input->get('MntPago.' . $i, ValueType::mixed());
+                    $glosaPagos = $input->get('GlosaPagos.' . $i, ValueType::mixed());
+                    $pagos[] = [
+                        'FchPago' => $fchPago[$i] ?? null,
+                        'MntPago' => !empty($montoPago)
+                            ? (int) round(ValueType::toFloat()->parse($montoPago, 'MntPago', 'form'))
                             : false,
-                        'GlosaPagos' => !empty($data['GlosaPagos'][$i])
-                            ? $data['GlosaPagos'][$i]
+                        'GlosaPagos' => !empty($glosaPagos)
+                            ? $glosaPagos
                             : false,
                     ];
                 }
+                $dte = ArrayPath::set($dte, ['Encabezado', 'IdDoc', 'MntPagos'], $pagos);
             }
         }
     }
@@ -454,20 +480,27 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Si hay información de transporte (patente, transportista, chofer o
      *     destino), esta se incluye en la sección de transporte del DTE.
      *
-     * @param array $data Datos de entrada que incluyen información de traslado.
-     * @param array $dte  Arreglo del DTE al cual se agregará la información.
+     * @param array<string, mixed> $data Datos de entrada que incluyen información de traslado.
+     * @param array<array-key, mixed> &$dte Arreglo del DTE al cual se agregará la información.
      *
      * @return void
      */
     private function addTransferData(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Si no es guía de despacho no se agregan los datos de transporte.
-        if ($dte['Encabezado']['IdDoc']['TipoDTE'] != 52) {
+        if ($tipoDte != 52) {
             return;
         }
 
         // Si no hay información relevante de transporte se retorna.
-        $dte['Encabezado']['IdDoc']['IndTraslado'] = $data['IndTraslado'] ?? false;
+        $dte = ArrayPath::set(
+            $dte,
+            ['Encabezado', 'IdDoc', 'IndTraslado'],
+            $data['IndTraslado'] ?? false
+        );
         if (!(
             !empty($data['Patente'])
             || !empty($data['RUTTrans'])
@@ -479,7 +512,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Añadir la información de transporte.
-        $dte['Encabezado']['Transporte'] = [
+        $dte = ArrayPath::set($dte, ['Encabezado', 'Transporte'], [
             'Patente' => !empty($data['Patente'])
                 ? $data['Patente']
                 : false,
@@ -487,7 +520,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 ? $data['PatenteCarro']
                 : false,
             'RUTTrans' => !empty($data['RUTTrans'])
-                ? str_replace('.', '', (string) $data['RUTTrans'])
+                ? str_replace('.', '', $input->requireAsString('RUTTrans'))
                 : false,
             'Chofer' => (
                 !empty($data['RUTChofer']) && !empty($data['NombreChofer'])
@@ -495,7 +528,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     'RUTChofer' => str_replace(
                         '.',
                         '',
-                        (string) $data['RUTChofer']
+                        $input->requireAsString('RUTChofer')
                     ),
                     'NombreChofer' => $data['NombreChofer'],
                 ]
@@ -514,13 +547,13 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 ? preg_replace(
                     '/^(\d{2}:\d{2})$/',
                     '$1:00',
-                    (string) $data['HraSalida']
+                    $input->requireAsString('HraSalida')
                 )
                 : false,
             'FchLlegada' => !empty($data['FchLlegada'])
                 ? $data['FchLlegada']
                 : false,
-        ];
+        ]);
     }
 
     /**
@@ -537,14 +570,16 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *     (`TipoDTE`).
      *   - Asigna el indicador de servicio al DTE solo si el valor es válido.
      *
-     * @param array $data Datos de entrada que incluyen el indicador de
+     * @param array<string, mixed> $data Datos de entrada que incluyen el indicador de
      * servicio.
-     * @param array $dte  Arreglo del DTE al cual se agregará el indicador.
+     * @param array<array-key, mixed> &$dte Arreglo del DTE al cual se agregará el indicador.
      *
      * @return void
      */
     private function addServiceIndicator(array $data, array &$dte): void
     {
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Si no hay indicador de servicio se retorna.
         if (empty($data['IndServicio'])) {
             return;
@@ -552,7 +587,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Cambiar el tipo de indicador en boletas
         // (Valores invertidos respecto a facturas).
-        if (in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [39, 41])) {
+        if (in_array($tipoDte, [39, 41])) {
             if ($data['IndServicio'] == 1) {
                 $data['IndServicio'] = 2;
             } elseif ($data['IndServicio'] == 2) {
@@ -562,12 +597,12 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Quitar indicador de servicio si se pasó para un tipo de documento que
         // no corresponde.
-        if (in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [39, 41])) {
+        if (in_array($tipoDte, [39, 41])) {
             if (!in_array($data['IndServicio'], [1, 2, 3, 4])) {
                 $data['IndServicio'] = false;
             }
         } elseif (
-            in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [110, 111, 112])
+            in_array($tipoDte, [110, 111, 112])
         ) {
             if (!in_array($data['IndServicio'], [1, 3, 4, 5])) {
                 $data['IndServicio'] = false;
@@ -580,7 +615,11 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Asignar el indicador de servicio al DTE si es válido.
         if ($data['IndServicio']) {
-            $dte['Encabezado']['IdDoc']['IndServicio'] = $data['IndServicio'];
+            $dte = ArrayPath::set(
+                $dte,
+                ['Encabezado', 'IdDoc', 'IndServicio'],
+                $data['IndServicio']
+            );
         }
     }
 
@@ -600,35 +639,46 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Establece el tipo de moneda (`TpoMoneda`) y, si aplica, el tipo de
      *     cambio (`TpoCambio`).
      *
-     * @param array $data Datos que incluyen información de exportación.
-     * @param array $dte  Estructura del DTE donde se agregarán los datos.
+     * @param array<string, mixed> $data Datos que incluyen información de exportación.
+     * @param array<array-key, mixed> &$dte Estructura del DTE donde se agregarán los datos.
      *
      * @return void
      */
     private function addExportData(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Si no es documento de exportación se retorna.
-        if (!in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [110, 111, 112])) {
+        if (!in_array($tipoDte, [110, 111, 112])) {
             return;
         }
 
         // Agregar datos de exportación.
         if (!empty($data['NumId'])) {
-            $dte['Encabezado']['Receptor']['Extranjero']['NumId'] =
+            $dte = ArrayPath::set(
+                $dte,
+                ['Encabezado', 'Receptor', 'Extranjero', 'NumId'],
                 $data['NumId']
-            ;
+            );
         }
         if (!empty($data['Nacionalidad'])) {
-            $dte['Encabezado']['Receptor']['Extranjero']['Nacionalidad'] =
+            $dte = ArrayPath::set(
+                $dte,
+                ['Encabezado', 'Receptor', 'Extranjero', 'Nacionalidad'],
                 $data['Nacionalidad']
-            ;
+            );
         }
-        $dte['Encabezado']['Totales']['TpoMoneda'] = $data['TpoMoneda'] ?? false;
+        $dte = ArrayPath::set(
+            $dte,
+            ['Encabezado', 'Totales', 'TpoMoneda'],
+            $data['TpoMoneda'] ?? false
+        );
         if (!empty($data['TpoCambio'])) {
-            $dte['Encabezado']['OtraMoneda'] = [
+            $dte = ArrayPath::set($dte, ['Encabezado', 'OtraMoneda'], [
                 'TpoMoneda' => 'PESO CL',
-                'TpoCambio' => (float)$data['TpoCambio'],
-            ];
+                'TpoCambio' => $input->requireAsFloat('TpoCambio'),
+            ]);
         }
     }
 
@@ -647,10 +697,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Valida que las boletas no contengan impuestos adicionales.
      *   - Clasifica los ítems como afectos o exentos.
      *
-     * @param array $data Datos que incluyen los detalles de los ítems.
-     * @param array $dte  Estructura del DTE donde se agregarán los detalles.
+     * @param array<string, mixed> $data Datos que incluyen los detalles de los ítems.
+     * @param array<array-key, mixed> &$dte Estructura del DTE donde se agregarán los detalles.
      *
-     * @return array Arreglo con:
+     * @return array{int, int} Arreglo con:
      *   - El número de ítems afectos.
      *   - El número de ítems exentos.
      *
@@ -659,29 +709,34 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      */
     private function addDetails(array $data, array &$dte): array
     {
+        $input = ArrayReader::fromArray($data, 'form');
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Inicializar contadores y lista de detalles.
-        $n_detalles = count($data['NmbItem']);
-        $dte['Detalle'] = [];
+        $n_detalles = count($input->requireArray('NmbItem'));
+        $detalles = [];
         $n_itemAfecto = 0;
         $n_itemExento = 0;
 
         // Obtener el IVA.
-        $iva_sii = $this->getTax((int) $data['TpoDoc']);
+        $iva_sii = $this->getTax($input->requireAsInt('TpoDoc'));
 
         // Procesar cada ítem.
         for ($i = 0; $i < $n_detalles; $i++) {
             $detalle = [];
 
             // Agregar código del ítem.
-            if (!empty($data['VlrCodigo'][$i])) {
-                if (!empty($data['TpoCodigo'][$i])) {
-                    $TpoCodigo = $data['TpoCodigo'][$i];
+            $vlrCodigo = $input->get('VlrCodigo.' . $i, ValueType::mixed());
+            if (!empty($vlrCodigo)) {
+                $tpoCodigo = $input->get('TpoCodigo.' . $i, ValueType::mixed());
+                if (!empty($tpoCodigo)) {
+                    $TpoCodigo = $tpoCodigo;
                 } else {
                     $TpoCodigo = 'INT1';
                 }
                 $detalle['CdgItem'] = [
                     'TpoCodigo' => $TpoCodigo,
-                    'VlrCodigo' => $data['VlrCodigo'][$i],
+                    'VlrCodigo' => $vlrCodigo,
                 ];
             }
 
@@ -698,8 +753,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             $float_keys = ['QtyItem', 'PrcItem'];
             $int_keys = ['IndExe', 'CodImpAdic'];
             foreach ($item_data_keys as $key) {
-                if (isset($data[$key][$i])) {
-                    $value = trim((string) $data[$key][$i]);
+                $raw = $input->get($key . '.' . $i, ValueType::mixed());
+                if ($raw !== null) {
+                    $value = trim(ValueType::toString()->parse($raw, $key, 'form'));
                     if (!empty($value)) {
                         if (in_array($key, $float_keys) && is_numeric($value)) {
                             $value = (float) $value;
@@ -713,12 +769,12 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
             // Si es boleta y el ítem no es exento, agregar IVA al precio.
             if (
-                $dte['Encabezado']['IdDoc']['TipoDTE'] == 39
+                $tipoDte == 39
                 && (!isset($detalle['IndExe']) || $detalle['IndExe'] == false)
             ) {
                 // IVA.
                 $iva = round(
-                    (float) ($detalle['PrcItem'] ?? 0) * ($iva_sii / 100)
+                    ValueType::toFloat()->parse($detalle['PrcItem'] ?? 0, 'PrcItem', 'form') * ($iva_sii / 100)
                 );
 
                 // Impuesto adicional (no se permiten impuestos adicionales en
@@ -739,20 +795,23 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             }
 
             // Agregar descuentos.
-            if (!empty($data['ValorDR'][$i]) && !empty($data['TpoValor'][$i])) {
-                if ($data['TpoValor'][$i] == '%') {
+            $valorDR = $input->get('ValorDR.' . $i, ValueType::mixed());
+            $tpoValor = $input->get('TpoValor.' . $i, ValueType::mixed());
+            if (!empty($valorDR) && !empty($tpoValor)) {
+                if ($tpoValor == '%') {
                     $detalle['DescuentoPct'] = round(
-                        (float) $data['ValorDR'][$i],
+                        ValueType::toFloat()->parse($valorDR, 'ValorDR', 'form'),
                         2
                     );
                 } else {
                     $detalle['DescuentoMonto'] = (int) round(
-                        (float) $data['ValorDR'][$i]
+                        ValueType::toFloat()->parse($valorDR, 'ValorDR', 'form')
                     );
+
                     // Si es boleta y el item no es exento se le agrega el IVA
                     // al descuento.
                     if (
-                        $dte['Encabezado']['IdDoc']['TipoDTE'] == 39
+                        $tipoDte == 39
                         && (!isset($detalle['IndExe']) || !$detalle['IndExe'])
                     ) {
                         $iva_descuento = round(
@@ -764,7 +823,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             }
 
             // Agregar detalle al listado.
-            $dte['Detalle'][] = $detalle;
+            $detalles[] = $detalle;
 
             // Contabilizar item afecto o exento.
             if (empty($detalle['IndExe'])) {
@@ -773,6 +832,8 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                 $n_itemExento++;
             }
         }
+
+        $dte = ArrayPath::set($dte, ['Detalle'], $detalles);
 
         return [$n_itemAfecto, $n_itemExento];
     }
@@ -790,22 +851,22 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Obtiene la tasa de cada impuesto de los datos de entrada.
      *   - Si hay impuestos adicionales, los agrega en `ImptoReten`.
      *
-     * @param array $data Datos con tasas de impuestos adicionales.
-     * @param array $dte  Estructura del DTE para agregar los impuestos.
+     * @param array<string, mixed> $data Datos con tasas de impuestos adicionales.
+     * @param array<array-key, mixed> &$dte Estructura del DTE para agregar los impuestos.
      *
      * @return void
      */
     private function addAdditionalTaxes(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+
         // Si hay impuestos adicionales se copian los datos a totales para que
         // se calculen los montos.
         $CodImpAdic = [];
-        foreach ($dte['Detalle'] as $d) {
-            if (
-                !empty($d['CodImpAdic'])
-                && !in_array($d['CodImpAdic'], $CodImpAdic)
-            ) {
-                $CodImpAdic[] = (int) $d['CodImpAdic'];
+        foreach (ArrayReader::fromArray($dte)->getReaders('Detalle') ?? [] as $d) {
+            $codigo = $d->getAsInt('CodImpAdic');
+            if (!empty($codigo) && !in_array($codigo, $CodImpAdic)) {
+                $CodImpAdic[] = $codigo;
             }
         }
 
@@ -815,16 +876,16 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
             if (!empty($data['impuesto_adicional_tasa_' . $codigo])) {
                 $ImptoReten[] = [
                     'TipoImp' => $codigo,
-                    'TasaImp' => (float) $data[
+                    'TasaImp' => $input->requireAsFloat(
                         'impuesto_adicional_tasa_' . $codigo
-                    ],
+                    ),
                 ];
             }
         }
 
         // Agregar impuestos adicionales a los totales si existen.
         if ($ImptoReten) {
-            $dte['Encabezado']['Totales']['ImptoReten'] = $ImptoReten;
+            $dte = ArrayPath::set($dte, ['Encabezado', 'Totales', 'ImptoReten'], $ImptoReten);
         }
     }
 
@@ -841,13 +902,15 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - El tipo de documento (`TipoDTE`) debe ser factura, guía o nota.
      *   - El campo `CredEC` debe estar presente en los datos de entrada.
      *
-     * @param array $data Datos que incluyen configuración del emisor.
-     * @param array $dte  Estructura del DTE donde se marcará `CredEC`.
+     * @param array<string, mixed> $data Datos que incluyen configuración del emisor.
+     * @param array<array-key, mixed> &$dte Estructura del DTE donde se marcará `CredEC`.
      *
      * @return void
      */
     private function addConstructionCompany(array $data, array &$dte): void
     {
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Si la empresa es constructora se marca para obtener el crédito del
         // 65%.
         $config_extra_constructora = !empty($data['constructora'])
@@ -856,10 +919,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         ;
         if (
             $config_extra_constructora
-            && in_array($dte['Encabezado']['IdDoc']['TipoDTE'], [33, 52, 56, 61])
+            && in_array($tipoDte, [33, 52, 56, 61])
             && !empty($data['CredEC'])
         ) {
-            $dte['Encabezado']['Totales']['CredEC'] = true;
+            $dte = ArrayPath::set($dte, ['Encabezado', 'Totales', 'CredEC'], true);
         }
     }
 
@@ -878,8 +941,8 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *     descuento.
      *   - Aplica descuentos globales a ítems afectos, exentos o ambos.
      *
-     * @param array $data         Datos con información del descuento global.
-     * @param array $dte          Estructura del DTE para agregar los descuentos.
+     * @param array<string, mixed> $data         Datos con información del descuento global.
+     * @param array<array-key, mixed> &$dte         Estructura del DTE para agregar los descuentos.
      * @param int   $n_itemAfecto Número de ítems afectos en el documento.
      * @param int   $n_itemExento Número de ítems exentos en el documento.
      *
@@ -891,17 +954,20 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         int $n_itemAfecto,
         int $n_itemExento
     ): void {
+        $input = ArrayReader::fromArray($data, 'form');
+        $tipoDte = ArrayReader::fromArray($dte)->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         // Si no hay descuentos globales se retorna.
         if (empty($data['ValorDR_global']) || empty($data['TpoValor_global'])) {
             return;
         }
 
         // Obtener el IVA.
-        $iva_sii = $this->getTax((int) $data['TpoDoc']);
+        $iva_sii = $this->getTax($input->requireAsInt('TpoDoc'));
 
         // Agregar descuentos globales.
         $TpoValor_global = $data['TpoValor_global'];
-        $ValorDR_global = (float) $data['ValorDR_global'];
+        $ValorDR_global = $input->requireAsFloat('ValorDR_global');
 
         // Un descuento global en monto no se puede repartir entre ítems afectos
         // y exentos.
@@ -918,29 +984,30 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Para boletas con valor en moneda, ajustar con el IVA.
         if (
-            $dte['Encabezado']['IdDoc']['TipoDTE'] == 39
+            $tipoDte == 39
             && $TpoValor_global == '$'
         ) {
             $ValorDR_global = round($ValorDR_global * (1 + $iva_sii / 100));
         }
 
         // Agregar descuentos globales al DTE.
-        $dte['DscRcgGlobal'] = [];
+        $descuentos = [];
         if ($n_itemAfecto) {
-            $dte['DscRcgGlobal'][] = [
+            $descuentos[] = [
                 'TpoMov' => 'D',
                 'TpoValor' => $TpoValor_global,
                 'ValorDR' => $ValorDR_global,
             ];
         }
         if ($n_itemExento) {
-            $dte['DscRcgGlobal'][] = [
+            $descuentos[] = [
                 'TpoMov' => 'D',
                 'TpoValor' => $TpoValor_global,
                 'ValorDR' => $ValorDR_global,
                 'IndExeDR' => 1,
             ];
         }
+        $dte = ArrayPath::set($dte, ['DscRcgGlobal'], $descuentos);
     }
 
     /**
@@ -957,41 +1024,46 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *     (`IndGlobal == 1`).
      *   - Añade las referencias procesadas al arreglo `Referencia` del DTE.
      *
-     * @param array $data Datos con información de las referencias.
-     * @param array $dte  Estructura del DTE donde se agregarán las referencias.
+     * @param array<string, mixed> $data Datos con información de las referencias.
+     * @param array<array-key, mixed> &$dte Estructura del DTE donde se agregarán las referencias.
      *
      * @return void
      */
     private function addReferences(array $data, array &$dte): void
     {
+        $input = ArrayReader::fromArray($data, 'form');
+
         // Si no hay referencias se retorna.
-        if (!isset($data['TpoDocRef'][0])) {
+        if ($input->get('TpoDocRef.0', ValueType::mixed()) === null) {
             return;
         }
 
         // Procesar cada referencia.
-        $n_referencias = count($data['TpoDocRef']);
-        $dte['Referencia'] = [];
+        $n_referencias = count($input->requireArray('TpoDocRef'));
+        $referencias = [];
         for ($i = 0; $i < $n_referencias; $i++) {
-            $folioRef = $data['FolioRef'][$i] ?? false;
-            $dte['Referencia'][] = [
-                'TpoDocRef' => $data['TpoDocRef'][$i],
+            $folioRef = $input->get('FolioRef.' . $i, ValueType::mixed()) ?? false;
+            $codRef = $input->get('CodRef.' . $i, ValueType::mixed());
+            $razonRef = $input->get('RazonRef.' . $i, ValueType::mixed());
+            $referencias[] = [
+                'TpoDocRef' => $input->get('TpoDocRef.' . $i, ValueType::mixed()),
                 'IndGlobal' => (is_numeric($folioRef) && $folioRef == 0)
                     ? 1
                     : false
                 ,
                 'FolioRef' => $folioRef,
-                'FchRef' => $data['FchRef'][$i] ?? false,
-                'CodRef' => !empty($data['CodRef'][$i])
-                    ? $data['CodRef'][$i]
+                'FchRef' => $input->get('FchRef.' . $i, ValueType::mixed()) ?? false,
+                'CodRef' => !empty($codRef)
+                    ? $codRef
                     : false
                 ,
-                'RazonRef' => !empty($data['RazonRef'][$i])
-                    ? $data['RazonRef'][$i]
+                'RazonRef' => !empty($razonRef)
+                    ? $razonRef
                     : false
                 ,
             ];
         }
+        $dte = ArrayPath::set($dte, ['Referencia'], $referencias);
     }
 
     /**
@@ -1026,6 +1098,12 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         }
 
         // Retornar el tax.
-        return $result->getDefaultTasaIVA();
+        return $result instanceof TipoDocumentoInterface
+            ? $result->getDefaultTasaIVA()
+            : throw new ParserException([
+                'Could not retrieve VAT for document type {type}.',
+                'type' => $documentType,
+            ])
+        ;
     }
 }
