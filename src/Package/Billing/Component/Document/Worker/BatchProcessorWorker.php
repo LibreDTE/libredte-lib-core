@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
@@ -31,6 +33,7 @@ use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -281,46 +284,26 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             return $data;
         }
 
-        $data['Encabezado']['Emisor']['RUTEmisor'] =
-            ($data['Encabezado']['Emisor']['RUTEmisor'] ?? false)
-            ?: $emisor->getRut()
-        ;
-        $data['Encabezado']['Emisor']['RznSoc'] =
-            ($data['Encabezado']['Emisor']['RznSoc'] ?? false)
-            ?: $emisor->getRazonSocial()
-        ;
-        $data['Encabezado']['Emisor']['GiroEmis'] =
-            ($data['Encabezado']['Emisor']['GiroEmis'] ?? false)
-            ?: ($emisor->getGiro() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['Telefono'] =
-            ($data['Encabezado']['Emisor']['Telefono'] ?? false)
-            ?: ($emisor->getTelefono() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['CorreoEmisor'] =
-            ($data['Encabezado']['Emisor']['CorreoEmisor'] ?? false)
-            ?: ($emisor->getEmail() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['Acteco'] =
-            ($data['Encabezado']['Emisor']['Acteco'] ?? false)
-            ?: ($emisor->getActividadEconomica() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['DirOrigen'] =
-            ($data['Encabezado']['Emisor']['DirOrigen'] ?? false)
-            ?: ($emisor->getDireccion() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['CmnaOrigen'] =
-            ($data['Encabezado']['Emisor']['CmnaOrigen'] ?? false)
-            ?: ($emisor->getComuna() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['CdgSIISucur'] =
-            ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? false)
-            ?: ($emisor->getCodigoSucursal() ?? false)
-        ;
-        $data['Encabezado']['Emisor']['CdgVendedor'] =
-            ($data['Encabezado']['Emisor']['CdgVendedor'] ?? false)
-            ?: ($emisor->getVendedor() ?? false)
-        ;
+        // Los datos del lote completan los que el documento no trae.
+        $defaults = [
+            'RUTEmisor' => $emisor->getRut(),
+            'RznSoc' => $emisor->getRazonSocial(),
+            'GiroEmis' => $emisor->getGiro(),
+            'Telefono' => $emisor->getTelefono(),
+            'CorreoEmisor' => $emisor->getEmail(),
+            'Acteco' => $emisor->getActividadEconomica(),
+            'DirOrigen' => $emisor->getDireccion(),
+            'CmnaOrigen' => $emisor->getComuna(),
+            'CdgSIISucur' => $emisor->getCodigoSucursal(),
+            'CdgVendedor' => $emisor->getVendedor(),
+        ];
+
+        $reader = ArrayReader::fromArray($data, 'document');
+        $writer = ArrayWriter::fromReference($data);
+        foreach ($defaults as $field => $default) {
+            $path = 'Encabezado.Emisor.' . $field;
+            $writer->set($path, $reader->get($path, ValueType::mixed()) ?: $default);
+        }
 
         return $data;
     }

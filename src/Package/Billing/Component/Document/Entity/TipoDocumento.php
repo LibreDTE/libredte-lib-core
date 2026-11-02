@@ -434,27 +434,27 @@ class TipoDocumento implements TipoDocumentoInterface
     /**
      * {@inheritDoc}
      */
-    public function getDefaultTasaIVA(): float|false
+    public function getDefaultTasaIVA(): ?float
     {
         $TasaIVA = 19;
 
-        return !in_array($this->codigo, [34, 41, 110, 111, 112]) ? $TasaIVA : false;
+        return !in_array($this->codigo, [34, 41, 110, 111, 112]) ? $TasaIVA : null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDefaultCredEC(): float|false
+    public function getDefaultCredEC(): ?float
     {
-        return !in_array($this->codigo, [39, 41, 46, 110, 111, 112]) ? 0.65 : false;
+        return !in_array($this->codigo, [39, 41, 46, 110, 111, 112]) ? 0.65 : null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDefaultIndServicio(): int|false
+    public function getDefaultIndServicio(): ?int
     {
-        return $this->isBoleta() ? 3 : false;
+        return $this->isBoleta() ? 3 : null;
     }
 
     /*

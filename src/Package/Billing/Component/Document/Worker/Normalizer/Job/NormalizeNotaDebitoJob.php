@@ -59,18 +59,18 @@ class NormalizeNotaDebitoJob extends AbstractJob implements JobInterface
         // Completar con nodos por defecto.
         $data = array_replace_recursive([
             'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
+                'IdDoc' => null,
+                'Emisor' => null,
+                'Receptor' => null,
+                'RUTSolicita' => null,
                 'Totales' => [
                     'MntNeto' => 0,
                     'MntExe' => 0,
                     'TasaIVA' => $bag->requireTipoDocumento()->getDefaultTasaIVA(),
-                    'IVA' => false,
-                    'ImptoReten' => false,
-                    'IVANoRet' => false,
-                    'CredEC' => false,
+                    'IVA' => null,
+                    'ImptoReten' => null,
+                    'IVANoRet' => null,
+                    'CredEC' => null,
                     'MntTotal' => 0,
                 ],
             ],
@@ -90,7 +90,7 @@ class NormalizeNotaDebitoJob extends AbstractJob implements JobInterface
         // Corregir monto neto e IVA.
         if (!$data['Encabezado']['Totales']['MntNeto']) {
             $data['Encabezado']['Totales']['MntNeto'] = 0;
-            $data['Encabezado']['Totales']['TasaIVA'] = false;
+            $data['Encabezado']['Totales']['TasaIVA'] = null;
         }
 
         // Actualizar los datos normalizados.

@@ -22,9 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ExamplesWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\ExamplesException;
 use Symfony\Component\Yaml\Yaml;
@@ -73,8 +75,8 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
         $dependsOnById = [];
         foreach ($files as $file) {
             $id = $this->toId($file);
-            $data = Yaml::parseFile($file);
-            $dependsOnById[$id] = $data['Test']['DependsOn'] ?? [];
+            $data = ArrayReader::fromValue(Yaml::parseFile($file), $file);
+            $dependsOnById[$id] = $data->getStringList('Test.DependsOn') ?? [];
         }
 
         $orderedIds = $this->sortByDependencies($dependsOnById);
@@ -181,14 +183,14 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
             ]);
         }
 
-        $data = (array) Yaml::parseFile($file);
+        $data = ValueType::map()->parse(Yaml::parseFile($file), '', $file);
         $example = $data;
         unset($example['Test']);
 
         return [
             'id' => $id,
             'example' => $example,
-            'expected' => $data['Test']['ExpectedValues'] ?? [],
+            'expected' => ArrayReader::fromArray($data, $file)->getMap('Test.ExpectedValues') ?? [],
         ];
     }
 

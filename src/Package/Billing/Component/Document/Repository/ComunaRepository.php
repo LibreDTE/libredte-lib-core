@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Repository;
 
 use Derafu\Repository\Repository;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
 
 /**
@@ -38,7 +39,7 @@ class ComunaRepository extends Repository
     public function find($id, $lockMode = null, $lockVersion = null): Comuna
     {
         // Buscar la entidad solicitada.
-        $id = mb_strtoupper((string) $id, 'UTF-8');
+        $id = mb_strtoupper(ValueCaster::toString($id) ?? '', 'UTF-8');
         $entity = parent::find($id, $lockMode, $lockVersion);
 
         // Si la entidad existe se retorna directamente.

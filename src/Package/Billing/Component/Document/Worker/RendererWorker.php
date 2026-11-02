@@ -28,6 +28,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
@@ -180,7 +181,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 
         $presentaciones = [];
         foreach ($renderings as $key => $copies) {
-            $copies = (int) $copies;
+            $copies = ValueCaster::toInt($copies) ?? 0;
             if ($copies < 1) {
                 continue;
             }

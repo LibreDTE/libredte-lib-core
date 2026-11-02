@@ -37,7 +37,7 @@ class Comuna extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('nombre');
+        return $this->getReader()->requireString('nombre');
     }
 
     /**
@@ -47,7 +47,7 @@ class Comuna extends Entity
      */
     public function getCodigo(): string
     {
-        return (string) $this->getAttribute('codigo');
+        return $this->getReader()->requireAsString('codigo');
     }
 
     /**
@@ -58,7 +58,7 @@ class Comuna extends Entity
     public function getNombre(): string
     {
         if ($this->hasAttribute('nombre')) {
-            return $this->getAttribute('nombre');
+            return $this->getReader()->requireString('nombre');
         }
 
         return '';
@@ -67,16 +67,16 @@ class Comuna extends Entity
     /**
      * Obtiene la ciudad asociada a la comuna.
      *
-     * @return string|false Nombre de la ciudad asociada o `false` si no se
+     * @return string|null Nombre de la ciudad asociada o `null` si no se
      * encuentra.
      */
-    public function getCiudad(): string|false
+    public function getCiudad(): ?string
     {
         if ($this->hasAttribute('ciudad')) {
-            return $this->getAttribute('ciudad');
+            return $this->getReader()->requireString('ciudad');
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -103,7 +103,7 @@ class Comuna extends Entity
 
         if (!is_numeric($comuna)) {
             if ($this->hasAttribute('direccion_regional')) {
-                return $this->getAttribute('direccion_regional');
+                return $this->getReader()->requireString('direccion_regional');
             }
 
             return $comuna;

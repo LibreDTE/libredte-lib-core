@@ -75,11 +75,11 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
 
         // Carátula normalizada.
         $caratulaNorm = array_merge([
-            'RutEmisorLibro' => false,
-            'RutEnvia' => false,
+            'RutEmisorLibro' => null,
+            'RutEnvia' => null,
             'PeriodoTributario' => date('Y-m'),
-            'FchResol' => false,
-            'NroResol' => false,
+            'FchResol' => null,
+            'NroResol' => null,
             'TipoLibro' => 'ESPECIAL',
             'TipoEnvio' => 'TOTAL',
             'FolioNotificacion' => null,
@@ -98,7 +98,7 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
                     'ResumenPeriodo' => $resumenPeriodo,
-                    'Detalle' => $detalles ?: false,
+                    'Detalle' => $detalles ?: null,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ],
@@ -144,12 +144,12 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         }
 
         return [
-            'TotFolAnulado' => $annulledFolios ?: false,
-            'TotGuiaAnulada' => $annulledGuides ?: false,
+            'TotFolAnulado' => $annulledFolios ?: null,
+            'TotGuiaAnulada' => $annulledGuides ?: null,
             'TotGuiaVenta' => $salesCount,
             'TotMntGuiaVta' => $salesAmount,
             // Re-indexar traslados para XML.
-            'TotTraslado' => $transfers === [] ? false : array_values($transfers),
+            'TotTraslado' => $transfers === [] ? null : array_values($transfers),
         ];
     }
 }

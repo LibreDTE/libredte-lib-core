@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
 
+use Derafu\Array\ArrayReader;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRcv\GetDocumentSiiReceptionDateException;
 
@@ -43,7 +44,7 @@ class GetDocumentSiiReceptionDateResponse implements JsonSerializable
      */
     public function __construct(array $response/*, array $request = []*/)
     {
-        $rawDate = (string) ($response['data'] ?? '');
+        $rawDate = ArrayReader::fromArray($response, 'SII response')->getAsString('data') ?? '';
 
         // El SII responde `<data/>` (vacío) cuando el documento consultado no
         // tiene fecha de recepción registrada (folio inexistente o aún no

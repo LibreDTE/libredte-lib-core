@@ -59,17 +59,17 @@ class NormalizeFacturaCompraJob extends AbstractJob implements JobInterface
         // Completar con nodos por defecto.
         $data = array_replace_recursive([
             'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
+                'IdDoc' => null,
+                'Emisor' => null,
+                'Receptor' => null,
+                'RUTSolicita' => null,
                 'Totales' => [
                     'MntNeto' => 0,
-                    'MntExe' => false,
+                    'MntExe' => null,
                     'TasaIVA' => $bag->requireTipoDocumento()->getDefaultTasaIVA(),
                     'IVA' => 0,
-                    'ImptoReten' => false,
-                    'IVANoRet' => false,
+                    'ImptoReten' => null,
+                    'IVANoRet' => null,
                     'MntTotal' => 0,
                 ],
             ],

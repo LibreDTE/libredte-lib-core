@@ -39,7 +39,7 @@ class AduanaPais extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('glosa');
+        return $this->getReader()->requireString('glosa');
     }
 
     /**
@@ -49,7 +49,7 @@ class AduanaPais extends Entity
      */
     public function getCodigo(): int
     {
-        return (int) $this->getAttribute('codigo');
+        return $this->getReader()->requireAsInt('codigo');
     }
 
     /**
@@ -62,6 +62,6 @@ class AduanaPais extends Entity
      */
     public function getCodigoISO(): ?string
     {
-        return $this->getAttribute('codigo_iso');
+        return $this->getReader()->getString('codigo_iso');
     }
 }

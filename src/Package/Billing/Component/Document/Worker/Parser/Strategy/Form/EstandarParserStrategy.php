@@ -258,146 +258,146 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     'TipoDTE' => $data['TpoDoc'],
                     'Folio' => array_key_exists('Folio', $data)
                         ? $data['Folio']
-                        : false
+                        : null
                     ,
                     'FchEmis' => $data['FchEmis'],
                     'TpoTranCompra' => !empty($data['TpoTranCompra'])
                         ? $data['TpoTranCompra']
-                        : false
+                        : null
                     ,
                     'TpoTranVenta' => !empty($data['TpoTranVenta'])
                         ? $data['TpoTranVenta']
-                        : false
+                        : null
                     ,
                     'FmaPago' => !empty($data['FmaPago'])
                         ? $data['FmaPago']
-                        : false
+                        : null
                     ,
                     'FchCancel' => (
                         !empty($data['FchVenc'])
                         && $data['FchVenc'] < $data['FchEmis']
                     )
                         ? $data['FchVenc']
-                        : false
+                        : null
                     ,
                     'PeriodoDesde' => !empty($data['PeriodoDesde'])
                         ? $data['PeriodoDesde']
-                        : false
+                        : null
                     ,
                     'PeriodoHasta' => !empty($data['PeriodoHasta'])
                         ? $data['PeriodoHasta']
-                        : false
+                        : null
                     ,
                     'MedioPago' => !empty($data['MedioPago'])
                         ? $data['MedioPago']
-                        : false
+                        : null
                     ,
                     'TpoCtaPago' => !empty($data['TpoCtaPago'])
                         ? $data['TpoCtaPago']
-                        : false
+                        : null
                     ,
                     'NumCtaPago' => !empty($data['NumCtaPago'])
                         ? $data['NumCtaPago']
-                        : false
+                        : null
                     ,
                     'BcoPago' => !empty($data['BcoPago'])
                         ? $data['BcoPago']
-                        : false
+                        : null
                     ,
                     'TermPagoGlosa' => !empty($data['TermPagoGlosa'])
                         ? $data['TermPagoGlosa']
-                        : false
+                        : null
                     ,
                     'FchVenc' => (
                         !empty($data['FchVenc'])
                         && $data['FchVenc'] > $data['FchEmis']
                     )
                         ? $data['FchVenc']
-                        : false
+                        : null
                     ,
                 ],
                 'Emisor' => [
                     'RUTEmisor' => !empty($data['RUTEmisor'])
                         ? $data['RUTEmisor']
-                        : false
+                        : null
                     ,
                     'RznSoc' => (
                         $data['RznSoc']
                         ?? $data['RznSocEmisor']
                         ?? null
-                    ) ?: false,
+                    ) ?: null,
                     'GiroEmis' => (
                         $data['GiroEmis']
                         ?? $data['GiroEmisor']
                         ?? null
-                    ) ?: false,
+                    ) ?: null,
                     'Telefono' => !empty($data['TelefonoEmisor'])
                         ? $data['TelefonoEmisor']
-                        : false
+                        : null
                     ,
                     'CorreoEmisor' => !empty($data['CorreoEmisor'])
                         ? $data['CorreoEmisor']
-                        : false
+                        : null
                     ,
                     'Acteco' => $input->requireAsInt('Acteco'),
                     'CdgSIISucur' => !empty($data['CdgSIISucur'])
                         ? $data['CdgSIISucur']
-                        : false
+                        : null
                     ,
                     'DirOrigen' => !empty($data['DirOrigen'])
                         ? $data['DirOrigen']
-                        : false
+                        : null
                     ,
                     'CmnaOrigen' => !empty($data['CmnaOrigen'])
                         ? $data['CmnaOrigen']
-                        : false
+                        : null
                     ,
                     'CdgVendedor' => !empty($data['CdgVendedor'])
                         ? $data['CdgVendedor']
-                        : false
+                        : null
                     ,
                 ],
                 'Receptor' => [
                     'RUTRecep' => !empty($data['RUTRecep'])
                         ? $data['RUTRecep']
-                        : false
+                        : null
                     ,
                     'CdgIntRecep' => !empty($data['CdgIntRecep'])
                         ? $data['CdgIntRecep']
-                        : false
+                        : null
                     ,
                     'RznSocRecep' => !empty($data['RznSocRecep'])
                         ? $data['RznSocRecep']
-                        : false
+                        : null
                     ,
                     'GiroRecep' => !empty($data['GiroRecep'])
                         ? $data['GiroRecep']
-                        : false
+                        : null
                     ,
                     'Contacto' => !empty($data['Contacto'])
                         ? $data['Contacto']
-                        : false
+                        : null
                     ,
                     'CorreoRecep' => !empty($data['CorreoRecep'])
                         ? $data['CorreoRecep']
-                        : false
+                        : null
                     ,
                     'DirRecep' => !empty($data['DirRecep'])
                         ? $data['DirRecep']
-                        : false
+                        : null
                     ,
                     'CmnaRecep' => !empty($data['CmnaRecep'])
                         ? $data['CmnaRecep']
-                        : false
+                        : null
                     ,
                     'CiudadRecep' => !empty($data['CiudadRecep'])
                         ? $data['CiudadRecep']
-                        : false
+                        : null
                     ,
                 ],
                 'RUTSolicita' => !empty($data['RUTSolicita'])
                     ? str_replace('.', '', $input->requireAsString('RUTSolicita'))
-                    : false
+                    : null
                 ,
             ],
         ];
@@ -456,10 +456,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         'FchPago' => $fchPago[$i] ?? null,
                         'MntPago' => !empty($montoPago)
                             ? (int) round(ValueType::toFloat()->parse($montoPago, 'MntPago', 'form'))
-                            : false,
+                            : null,
                         'GlosaPagos' => !empty($glosaPagos)
                             ? $glosaPagos
-                            : false,
+                            : null,
                     ];
                 }
                 $dte = ArrayPath::set($dte, ['Encabezado', 'IdDoc', 'MntPagos'], $pagos);
@@ -499,7 +499,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $dte = ArrayPath::set(
             $dte,
             ['Encabezado', 'IdDoc', 'IndTraslado'],
-            $data['IndTraslado'] ?? false
+            $data['IndTraslado'] ?? null
         );
         if (!(
             !empty($data['Patente'])
@@ -515,13 +515,13 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $dte = ArrayPath::set($dte, ['Encabezado', 'Transporte'], [
             'Patente' => !empty($data['Patente'])
                 ? $data['Patente']
-                : false,
+                : null,
             'PatenteCarro' => !empty($data['PatenteCarro'])
                 ? $data['PatenteCarro']
-                : false,
+                : null,
             'RUTTrans' => !empty($data['RUTTrans'])
                 ? str_replace('.', '', $input->requireAsString('RUTTrans'))
-                : false,
+                : null,
             'Chofer' => (
                 !empty($data['RUTChofer']) && !empty($data['NombreChofer'])
             ) ? [
@@ -532,16 +532,16 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     ),
                     'NombreChofer' => $data['NombreChofer'],
                 ]
-                : false,
+                : null,
             'DirDest' => !empty($data['DirDest'])
                 ? $data['DirDest']
-                : false,
+                : null,
             'CmnaDest' => !empty($data['CmnaDest'])
                 ? $data['CmnaDest']
-                : false,
+                : null,
             'FchSalida' => !empty($data['FchSalida'])
                 ? $data['FchSalida']
-                : false,
+                : null,
             // Si la hora viene como HH:MM se completa con los segundos.
             'HraSalida' => !empty($data['HraSalida'])
                 ? preg_replace(
@@ -549,10 +549,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                     '$1:00',
                     $input->requireAsString('HraSalida')
                 )
-                : false,
+                : null,
             'FchLlegada' => !empty($data['FchLlegada'])
                 ? $data['FchLlegada']
-                : false,
+                : null,
         ]);
     }
 
@@ -599,17 +599,17 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         // no corresponde.
         if (in_array($tipoDte, [39, 41])) {
             if (!in_array($data['IndServicio'], [1, 2, 3, 4])) {
-                $data['IndServicio'] = false;
+                $data['IndServicio'] = null;
             }
         } elseif (
             in_array($tipoDte, [110, 111, 112])
         ) {
             if (!in_array($data['IndServicio'], [1, 3, 4, 5])) {
-                $data['IndServicio'] = false;
+                $data['IndServicio'] = null;
             }
         } else {
             if (!in_array($data['IndServicio'], [1, 2, 3])) {
-                $data['IndServicio'] = false;
+                $data['IndServicio'] = null;
             }
         }
 
@@ -672,7 +672,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $dte = ArrayPath::set(
             $dte,
             ['Encabezado', 'Totales', 'TpoMoneda'],
-            $data['TpoMoneda'] ?? false
+            $data['TpoMoneda'] ?? null
         );
         if (!empty($data['TpoCambio'])) {
             $dte = ArrayPath::set($dte, ['Encabezado', 'OtraMoneda'], [
@@ -915,7 +915,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         // 65%.
         $config_extra_constructora = !empty($data['constructora'])
             ? $data['constructora']
-            : false
+            : null
         ;
         if (
             $config_extra_constructora
@@ -1042,24 +1042,24 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $n_referencias = count($input->requireArray('TpoDocRef'));
         $referencias = [];
         for ($i = 0; $i < $n_referencias; $i++) {
-            $folioRef = $input->get('FolioRef.' . $i, ValueType::mixed()) ?? false;
+            $folioRef = $input->get('FolioRef.' . $i, ValueType::mixed());
             $codRef = $input->get('CodRef.' . $i, ValueType::mixed());
             $razonRef = $input->get('RazonRef.' . $i, ValueType::mixed());
             $referencias[] = [
                 'TpoDocRef' => $input->get('TpoDocRef.' . $i, ValueType::mixed()),
                 'IndGlobal' => (is_numeric($folioRef) && $folioRef == 0)
                     ? 1
-                    : false
+                    : null
                 ,
                 'FolioRef' => $folioRef,
-                'FchRef' => $input->get('FchRef.' . $i, ValueType::mixed()) ?? false,
+                'FchRef' => $input->get('FchRef.' . $i, ValueType::mixed()),
                 'CodRef' => !empty($codRef)
                     ? $codRef
-                    : false
+                    : null
                 ,
                 'RazonRef' => !empty($razonRef)
                     ? $razonRef
-                    : false
+                    : null
                 ,
             ];
         }
@@ -1078,10 +1078,10 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
      *   - Si se encuentra, retorna la tasa predeterminada de IVA.
      *
      * @param int $documentType ID del tipo de documento a consultar.
-     * @return float|false La tasa de IVA del documento si tiene una asociada.
+     * @return float|null La tasa de IVA del documento si tiene una asociada.
      * @throws ParserException Si el documento solicitado no fue encontrado.
      */
-    private function getTax(int $documentType): float|false
+    private function getTax(int $documentType): ?float
     {
         // Buscar el documento en el repositorio.
         $result = $this->repositoryManager

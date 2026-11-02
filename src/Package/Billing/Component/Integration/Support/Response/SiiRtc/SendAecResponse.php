@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc;
 
+use Derafu\Array\ArrayReader;
 use JsonSerializable;
 
 /**
@@ -40,7 +41,9 @@ class SendAecResponse implements JsonSerializable
     public function __construct(array $response/*, array $request = []*/)
     {
         $inner = reset($response);
-        $this->trackId = is_array($inner) ? (int) ($inner['TRACKID'] ?? 0) : 0;
+        $this->trackId = is_array($inner)
+            ? ArrayReader::fromArray($inner, 'SII response')->getAsInt('TRACKID', 0)
+            : 0;
     }
 
     /**

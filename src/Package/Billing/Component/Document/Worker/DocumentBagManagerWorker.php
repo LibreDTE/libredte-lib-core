@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
@@ -220,16 +221,22 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         }
 
         $parsedData = $bag->getParsedData();
+        $parsed = $bag->getParsedDataReader();
 
         // Verificar si es necesario y si se puede asignar.
-        if (!empty($parsedData['Encabezado']['Emisor']['RUTEmisor']) || !$bag->getEmisor()) {
+        $rutEmisor = $parsed?->get('Encabezado.Emisor.RUTEmisor', ValueType::mixed());
+        if (!empty($rutEmisor) || !$bag->getEmisor()) {
             return;
         }
 
         // Asignar los datos del emisor a los datos parseados.
-        $parsedData['Encabezado']['Emisor'] = array_merge(
-            $bag->getEmisor()->toDteArray(),
-            $parsedData['Encabezado']['Emisor'] ?? []
+        $parsedData ??= [];
+        ArrayWriter::fromReference($parsedData)->set(
+            'Encabezado.Emisor',
+            array_merge(
+                $bag->getEmisor()->toDteArray(),
+                $parsed?->getArray('Encabezado.Emisor') ?? []
+            )
         );
         $bag->setParsedData($parsedData);
 
@@ -258,12 +265,17 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         $parsedData = $bag->getParsedData();
 
         // Verificar si es necesario y si se puede asignar.
-        if (!empty($parsedData['Encabezado']['Receptor']) || !$bag->getReceptor()) {
+        $receptorData = $bag->getParsedDataReader()?->get('Encabezado.Receptor', ValueType::mixed());
+        if (!empty($receptorData) || !$bag->getReceptor()) {
             return;
         }
 
         // Asignar los datos del receptor a los datos parseados.
-        $parsedData['Encabezado']['Receptor'] = $bag->getReceptor()->toDteArray();
+        $parsedData ??= [];
+        ArrayWriter::fromReference($parsedData)->set(
+            'Encabezado.Receptor',
+            $bag->getReceptor()->toDteArray()
+        );
         $bag->setParsedData($parsedData);
 
         // Asignar el receptor a la bolsa.
@@ -459,7 +471,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos normalizados.
         elseif ($bag->getNormalizedData()) {
             $emisor = $this->emisorFactory->create(
-                $bag->getNormalizedData()['Encabezado']['Emisor']
+                $bag->requireNormalizedDataReader()->requireMap('Encabezado.Emisor')
             );
             $bag->setEmisor($emisor);
         }
@@ -467,7 +479,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos parseados.
         elseif ($bag->getParsedData()) {
             $emisor = $this->emisorFactory->create(
-                $bag->getParsedData()['Encabezado']['Emisor']
+                $bag->getParsedDataReader()?->requireMap('Encabezado.Emisor') ?? []
             );
             $bag->setEmisor($emisor);
         }
@@ -514,7 +526,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos normalizados.
         elseif ($bag->getNormalizedData()) {
             $emisor = $this->receptorFactory->create(
-                $bag->getNormalizedData()['Encabezado']['Receptor']
+                $bag->requireNormalizedDataReader()->requireMap('Encabezado.Receptor')
             );
             $bag->setReceptor($emisor);
         }
@@ -522,7 +534,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos parseados.
         elseif ($bag->getParsedData()) {
             $emisor = $this->receptorFactory->create(
-                $bag->getParsedData()['Encabezado']['Receptor']
+                $bag->getParsedDataReader()?->requireMap('Encabezado.Receptor') ?? []
             );
             $bag->setReceptor($emisor);
         }

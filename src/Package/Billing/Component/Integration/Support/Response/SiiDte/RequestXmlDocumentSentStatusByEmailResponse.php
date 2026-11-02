@@ -22,9 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Enum\Contract\StatusInterface;
 use Derafu\Enum\Status;
-use Derafu\Value\ValueCaster;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 
@@ -84,14 +84,10 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
         // Si no existen los datos normalizados de la respuesta se normalizan.
         if (!isset($this->data)) {
             // RUT de la empresa emisora del documento.
-            $rutExists = isset($this->requestData['RutEmpresa'])
-                && isset($this->requestData['DvEmpresa'])
-            ;
-            $company = $rutExists
-                ? $this->requestData['RutEmpresa']
-                    . '-' . $this->requestData['DvEmpresa']
-                : null
-            ;
+            $request = ArrayReader::fromArray($this->requestData, 'SII request');
+            $rut = $request->getAsString('RutEmpresa');
+            $dv = $request->getAsString('DvEmpresa');
+            $company = $rut !== null && $dv !== null ? $rut . '-' . $dv : null;
 
             // Normalizar el estado de la consulta del envío.
             [$status, $description] = $this->parseEstado($this->headers);
@@ -119,8 +115,9 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
     private function parseEstado(array $headers): array
     {
         // Asignar el código del estado.
-        $status = ValueCaster::requireString($headers['SII:ESTADO']);
-        $description = $headers['SII:GLOSA'] ?? null;
+        $reader = ArrayReader::fromArray($headers, 'SII response headers');
+        $status = $reader->requireString('SII:ESTADO');
+        $description = $reader->getAsString('SII:GLOSA');
 
         // Si existe una glosa para el estado se reemplaza la recibida del SII.
         if (isset(self::STATUSES[$status])) {

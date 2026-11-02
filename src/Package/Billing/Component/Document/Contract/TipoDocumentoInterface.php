@@ -236,24 +236,24 @@ interface TipoDocumentoInterface extends JsonSerializable
      * La regla es: documentos exentos y de exportación sin IVA. El resto con
      * el valor vigente del IVA. Actualmente un 19%.
      *
-     * @return float|false
+     * @return float|null `null` si el tipo de documento no tiene IVA.
      */
-    public function getDefaultTasaIVA(): float|false;
+    public function getDefaultTasaIVA(): ?float;
 
     /**
      * Entrega el valor del crédito de IVA para empresas constructoras.
      *
-     * @return float
+     * @return float|null `null` si el tipo de documento no tiene crédito.
      */
-    public function getDefaultCredEC(): float|false;
+    public function getDefaultCredEC(): ?float;
 
     /**
      * Entrega el valor por defecto del indicador de servicio para el tipo de
      * documento.
      *
-     * @return int|false
+     * @return int|null `null` si el tipo de documento no tiene indicador.
      */
-    public function getDefaultIndServicio(): int|false;
+    public function getDefaultIndServicio(): ?int;
 
     /*
     |--------------------------------------------------------------------------

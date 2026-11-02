@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
 
+use Derafu\Array\ArrayReader;
 use JsonSerializable;
 
 /**
@@ -44,9 +45,10 @@ class CheckDocumentAssignabilityResponse implements JsonSerializable
      */
     public function __construct(array $response/*, array $request = []*/)
     {
-        $return = $response['return'] ?? $response;
-        $this->code = (int) ($return['codResp'] ?? 0);
-        $this->description = (string) ($return['descResp'] ?? '');
+        $reader = ArrayReader::fromArray($response, 'SII response');
+        $return = $reader->getReader('return') ?? $reader;
+        $this->code = $return->getAsInt('codResp', 0);
+        $this->description = $return->getAsString('descResp') ?? '';
     }
 
     /**

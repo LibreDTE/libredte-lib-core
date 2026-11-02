@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Factory;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ContribuyenteFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ContribuyenteInterface;
@@ -48,7 +49,9 @@ class ContribuyenteFactory extends AbstractContribuyenteFactory implements Contr
     {
         $data = $this->normalizeData($data);
 
-        [$data['rut'], $data['dv']] = Rut::toArray($data['rut']);
+        [$data['rut'], $data['dv']] = Rut::toArray(
+            ValueCaster::requireString($data['rut'])
+        );
 
         return Factory::create($data, $this->class);
     }

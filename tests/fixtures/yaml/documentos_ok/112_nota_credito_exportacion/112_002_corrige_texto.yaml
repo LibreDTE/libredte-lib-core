@@ -28,6 +28,8 @@ Detalle:
 - IndExe: 1
   NmbItem: DONDE DICE Calle 124, Hong Kong, China DEBE DECIR Calle 123, Hong Kong, China
   QtyItem: 1
+  # PrcItem: El valor false es para ejercitar su conversión a null al
+  # normalizar. En un caso real se debe usar null.
   PrcItem: false
 Referencia:
 - TpoDocRef: 813

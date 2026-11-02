@@ -22,7 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
+use Derafu\Array\ArrayPath;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -82,6 +84,13 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
      */
     public function getTotalesPeriodo(): array
     {
-        return $this->getResumen()['TotalesPeriodo'] ?? [];
+        // Un solo tipo de documento se decodifica como un arreglo y no como una
+        // lista, se entrega siempre una lista.
+        $resumen = ArrayPath::wrap($this->getResumen(), 'TotalesPeriodo');
+
+        return ValueType::listOf(ValueType::map())->parse(
+            $resumen['TotalesPeriodo'] ?? [],
+            'TotalesPeriodo'
+        );
     }
 }

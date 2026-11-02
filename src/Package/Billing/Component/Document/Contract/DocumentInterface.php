@@ -357,7 +357,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Realiza una consulta XPath al XML del DTE.
      *
      * @param string $query Consulta XPath con marcadores nombrados (ej.: ":param").
-     * @param array<string, mixed> $params Arreglo de parámetros en formato ['param' => 'value'].
+     * @param array<string, string> $params Arreglo de parámetros en formato ['param' => 'value'].
      * @return string|array<int|string, mixed>|null Resultado de la consulta.
      */
     public function query(string $query, array $params = []): string|array|null;

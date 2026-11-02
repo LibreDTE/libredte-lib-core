@@ -332,8 +332,6 @@ return [
         'Falta indicar el detalle del documento (Detalle): debe tener al menos un ítem.',
     'The document number must be an integer greater than 0.' =>
         'El folio del documento debe ser un número entero mayor a 0.',
-    'Must indicate the document number.' =>
-        'Falta indicar el folio del documento.',
     'The document type (TipoDTE) must be indicated in the DTE data.' =>
         'Falta indicar el tipo de documento (TipoDTE) en los datos del DTE.',
     'Must indicate the document type to issue.' =>

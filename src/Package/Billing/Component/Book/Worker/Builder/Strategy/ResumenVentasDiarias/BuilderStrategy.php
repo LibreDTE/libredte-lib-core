@@ -74,13 +74,13 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         // Construir carátula normalizada.
         $caratulaNorm = array_merge([
             '@attributes' => ['version' => '1.0'],
-            'RutEmisor' => false,
-            'RutEnvia' => false,
-            'FchResol' => false,
-            'NroResol' => false,
+            'RutEmisor' => null,
+            'RutEnvia' => null,
+            'FchResol' => null,
+            'NroResol' => null,
             'FchInicio' => $fchInicio,
             'FchFinal' => $fchFinal,
-            'Correlativo' => false,
+            'Correlativo' => null,
             'SecEnvio' => 1,
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula, [
@@ -204,10 +204,10 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
             $issued = $this->countIssued($detalles, $tpoDoc);
             $resumen[] = [
                 'TipoDocumento' => $tpoDoc,
-                'MntNeto' => $group['net'] ?? false,
-                'MntIva' => $group['net'] !== null ? $group['vat'] : false,
-                'TasaIVA' => $group['rate'] ?: false,
-                'MntExento' => $group['exempt'] ?? false,
+                'MntNeto' => $group['net'] ?? null,
+                'MntIva' => $group['net'] !== null ? $group['vat'] : null,
+                'TasaIVA' => $group['rate'] ?: null,
+                'MntExento' => $group['exempt'] ?? null,
                 'MntTotal' => $group['total'],
                 'FoliosEmitidos' => $issued,
                 'FoliosAnulados' => 0,

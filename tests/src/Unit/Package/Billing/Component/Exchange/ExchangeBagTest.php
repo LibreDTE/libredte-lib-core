@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Unit\Package\Billing\Component\Exchange;
 
 use DateTimeImmutable;
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Exception;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractParty;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\PartyIdentifier;
@@ -208,19 +210,24 @@ class ExchangeBagTest extends TestCase
         // Document content and attachment data must be base64 in jsonSerialize(),
         // unlike toArray() (which leaves them raw) — same pattern as
         // DocumentEnvelope::jsonSerialize().
+        $contentKey = 'envelopes.0.documents.0.content';
+        $dataKey = 'envelopes.0.documents.0.attachments.0.data';
+        $arrayReader = ArrayReader::fromArray($array);
+        $jsonReader = ArrayReader::fromArray($json);
         $this->assertSame(
-            base64_encode($array['envelopes'][0]['documents'][0]['content']),
-            $json['envelopes'][0]['documents'][0]['content'],
+            base64_encode($arrayReader->requireString($contentKey)),
+            $jsonReader->requireString($contentKey),
         );
         $this->assertSame(
-            base64_encode($array['envelopes'][0]['documents'][0]['attachments'][0]['data']),
-            $json['envelopes'][0]['documents'][0]['attachments'][0]['data'],
+            base64_encode($arrayReader->requireString($dataKey)),
+            $jsonReader->requireString($dataKey),
         );
 
         // The rest of the array must be identical between toArray() and
         // jsonSerialize().
-        $json['envelopes'][0]['documents'][0]['content'] = $array['envelopes'][0]['documents'][0]['content'];
-        $json['envelopes'][0]['documents'][0]['attachments'][0]['data'] = $array['envelopes'][0]['documents'][0]['attachments'][0]['data'];
+        $jsonWriter = ArrayWriter::fromReference($json);
+        $jsonWriter->set($contentKey, $arrayReader->requireString($contentKey));
+        $jsonWriter->set($dataKey, $arrayReader->requireString($dataKey));
         $this->assertSame($array, $json);
     }
 }

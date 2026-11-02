@@ -22,11 +22,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Support;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
@@ -54,7 +57,7 @@ class DocumentBag implements DocumentBagInterface
      * opciones. No se define el esquema de cada opción pues cada clase que
      * utilice estas opciones deberá resolver y validar sus propias opciones.
      *
-     * @var array<string, mixed>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         'builder' => [
@@ -316,12 +319,23 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getParsedDataReader(): ?ArrayReader
+    {
+        $data = $this->getParsedData();
+
+        return $data === null ? null : ArrayReader::fromArray($data, 'parsed data');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setNormalizedData(?array $normalizedData): static
     {
         if ($normalizedData !== null) {
-            $normalizedData = $normalizedData['DTE']['Documento']
-                ?? $normalizedData['DTE']['Exportaciones']
-                ?? $normalizedData['DTE']['Liquidacion']
+            $reader = ArrayReader::fromArray($normalizedData, 'normalized data');
+            $normalizedData = $reader->getMap('DTE.Documento')
+                ?? $reader->getMap('DTE.Exportaciones')
+                ?? $reader->getMap('DTE.Liquidacion')
                 ?? $normalizedData
             ;
         }
@@ -341,12 +355,30 @@ class DocumentBag implements DocumentBagInterface
 
     /**
      * {@inheritDoc}
+     */
+    public function getNormalizedDataReader(): ?ArrayReader
+    {
+        $data = $this->getNormalizedData();
+
+        return $data === null ? null : ArrayReader::fromArray($data, 'normalized data');
+    }
+
+    /**
+     * {@inheritDoc}
      *
      * @return array<string, mixed>
      */
     public function requireNormalizedData(): array
     {
         return $this->getNormalizedData() ?? throw $this->missing('normalizedData');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireNormalizedDataReader(): ArrayReader
+    {
+        return ArrayReader::fromArray($this->requireNormalizedData(), 'normalized data');
     }
 
     /**
@@ -365,6 +397,16 @@ class DocumentBag implements DocumentBagInterface
     public function getLibredteData(): ?array
     {
         return $this->libredteData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLibredteDataReader(): ?ArrayReader
+    {
+        $data = $this->getLibredteData();
+
+        return $data === null ? null : ArrayReader::fromArray($data, 'LibreDTE data');
     }
 
     /**
@@ -566,8 +608,8 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getDocumentTypeId(): ?int
     {
-        $TipoDTE = $this->parsedData['Encabezado']['IdDoc']['TipoDTE']
-            ?? $this->normalizedData['Encabezado']['IdDoc']['TipoDTE']
+        $TipoDTE = $this->getParsedDataReader()?->get('Encabezado.IdDoc.TipoDTE', ValueType::mixed())
+            ?? $this->getNormalizedDataReader()?->get('Encabezado.IdDoc.TipoDTE', ValueType::mixed())
             ?? $this->xmlDocument?->query('//Encabezado/IdDoc/TipoDTE')
             ?? $this->document?->getCodigo()
             ?? null
@@ -579,7 +621,9 @@ class DocumentBag implements DocumentBagInterface
             );
         }
 
-        return (int) $TipoDTE;
+        // Un tipo que no es numérico (por ejemplo, el alias de un documento) no
+        // tiene código: se entrega 0 y el error es que no existe ese tipo.
+        return is_numeric($TipoDTE) ? (int) $TipoDTE : 0;
     }
 
     /**
@@ -705,6 +749,24 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function getDataReader(): ?ArrayReader
+    {
+        $data = $this->getData();
+
+        return $data === null ? null : ArrayReader::fromArray($data, 'document data');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireDataReader(): ArrayReader
+    {
+        return ArrayReader::fromArray($this->requireData(), 'document data');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDocumentData(): ?array
     {
         if (!isset($this->document)) {
@@ -712,7 +774,7 @@ class DocumentBag implements DocumentBagInterface
         }
 
         $documentData = $this->document->getData();
-        $documentExtra = $this->libredteData['extra']['dte'] ?? null;
+        $documentExtra = $this->getLibredteDataReader()?->getArray('extra.dte');
 
         if (empty($documentExtra)) {
             return $documentData;
@@ -730,7 +792,7 @@ class DocumentBag implements DocumentBagInterface
             return null;
         }
 
-        $extra = $this->libredteData['extra'] ?? null;
+        $extra = $this->getLibredteDataReader()?->getMap('extra');
 
         if (empty($extra)) {
             return null;
@@ -764,20 +826,14 @@ class DocumentBag implements DocumentBagInterface
     {
         $folio = $this->getFolio();
 
+        $data = $this->requireNormalizedDataReader();
+        $rut = $data->requireAsString('Encabezado.Emisor.RUTEmisor');
+        $tipo = $data->requireAsInt('Encabezado.IdDoc.TipoDTE');
+
         if (is_int($folio)) {
-            return sprintf(
-                'LibreDTE_%s_T%03dF%012d',
-                $this->requireNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
-                $this->requireNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
-                $folio
-            );
+            return sprintf('LibreDTE_%s_T%03dF%012d', $rut, $tipo, $folio);
         } else {
-            return sprintf(
-                'LibreDTE_%s_%03d-%s',
-                $this->requireNormalizedData()['Encabezado']['Emisor']['RUTEmisor'],
-                $this->requireNormalizedData()['Encabezado']['IdDoc']['TipoDTE'],
-                $folio
-            );
+            return sprintf('LibreDTE_%s_%03d-%s', $rut, $tipo, $folio);
         }
     }
 
@@ -802,12 +858,12 @@ class DocumentBag implements DocumentBagInterface
         }
 
         if ($parsedData !== null) {
-            $parsedData['Encabezado']['IdDoc']['Folio'] = $folio;
+            ArrayWriter::fromReference($parsedData)->set('Encabezado.IdDoc.Folio', $folio);
             $this->setParsedData($parsedData);
         }
 
         if ($normalizedData !== null) {
-            $normalizedData['Encabezado']['IdDoc']['Folio'] = $folio;
+            ArrayWriter::fromReference($normalizedData)->set('Encabezado.IdDoc.Folio', $folio);
             $this->setNormalizedData($normalizedData);
         }
 
@@ -819,15 +875,15 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getFolio(): int|string|null
     {
-        $data = $this->getNormalizedData() ?? $this->getParsedData();
+        $data = $this->getNormalizedDataReader() ?? $this->getParsedDataReader();
 
-        $folio = $data['Encabezado']['IdDoc']['Folio'] ?? null;
+        $folio = $data?->get('Encabezado.IdDoc.Folio', ValueType::mixed());
 
         if (!$folio) {
             return null;
         }
 
-        return is_numeric($folio) ? (int) $folio : (string) $folio;
+        return is_numeric($folio) ? (int) $folio : ValueCaster::toString($folio);
     }
 
     /**
@@ -884,9 +940,21 @@ class DocumentBag implements DocumentBagInterface
                     ? 'documento_' .  $this->getTipoDocumento()->getCodigo()
                     : null
             )
-            ?? $this->getParsedData()['Encabezado']['IdDoc']['TipoDTE']
+            ?? $this->getParsedTipoDte()
             ?? 'documento_desconocido'
         ;
+    }
+
+    /**
+     * Obtiene el tipo de documento indicado en los datos procesados (parseados).
+     *
+     * @return string|null `null` si los datos no indican el tipo de documento.
+     */
+    private function getParsedTipoDte(): ?string
+    {
+        $tipo = $this->getParsedDataReader()?->get('Encabezado.IdDoc.TipoDTE', ValueType::mixed());
+
+        return $tipo === null ? null : ValueCaster::requireString($tipo);
     }
 
     /**

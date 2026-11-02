@@ -37,7 +37,7 @@ class ImpuestoAdicionalRetencion extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('glosa');
+        return $this->getGlosa();
     }
 
     /**
@@ -47,22 +47,22 @@ class ImpuestoAdicionalRetencion extends Entity
      */
     public function getCodigo(): int
     {
-        return (int) $this->getAttribute('codigo');
+        return $this->getReader()->requireAsInt('codigo');
     }
 
     /**
      * Obtiene el tipo de entidad: impuesto adicional o retención.
      *
-     * @return string|false A: adicional, R: retención o `false` si no se pudo
+     * @return string|null A: adicional, R: retención o `null` si no se pudo
      * determinar.
      */
-    public function getTipo(): string|false
+    public function getTipo(): ?string
     {
         if ($this->hasAttribute('tipo')) {
-            return $this->getAttribute('tipo');
+            return $this->getReader()->requireString('tipo');
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -73,7 +73,7 @@ class ImpuestoAdicionalRetencion extends Entity
     public function getGlosa(): string
     {
         if ($this->hasAttribute('glosa')) {
-            return $this->getAttribute('glosa');
+            return $this->getReader()->requireString('glosa');
         }
 
         return 'Impto. cód. ' . $this->getCodigo();
@@ -82,14 +82,14 @@ class ImpuestoAdicionalRetencion extends Entity
     /**
      * Obtiene la tasa del impuesto adicional o retención.
      *
-     * @return float|false Tasa del impuesto o =false si no se pudo determinar.
+     * @return float|null Tasa del impuesto o `null` si no se pudo determinar.
      */
-    public function getTasa(): float|false
+    public function getTasa(): ?float
     {
         if ($this->hasAttribute('tasa')) {
-            return (float) $this->getAttribute('tasa');
+            return $this->getReader()->requireAsFloat('tasa');
         }
 
-        return false;
+        return null;
     }
 }

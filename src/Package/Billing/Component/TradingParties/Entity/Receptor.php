@@ -169,11 +169,11 @@ class Receptor extends Contribuyente implements ReceptorInterface
         // Determinar el tag Extranjero del XML del DTE.
         if ($this->getNacionalidad() !== null || $this->getIdentificadorExtranjero() !== null) {
             $Extranjero = [
-                'NumId' => $this->getIdentificadorExtranjero() ?? false,
-                'Nacionalidad' => $this->getNacionalidad() ?? false,
+                'NumId' => $this->getIdentificadorExtranjero(),
+                'Nacionalidad' => $this->getNacionalidad(),
             ];
         } else {
-            $Extranjero = false;
+            $Extranjero = null;
         }
 
         // Entregar los datos del receptor como el nodo Receptor del XML del DTE.
@@ -182,15 +182,14 @@ class Receptor extends Contribuyente implements ReceptorInterface
             'CdgIntRecep' => $this->getCodigoInterno(),
             'RznSocRecep' => $this->getRazonSocial(),
             'Extranjero' => $Extranjero,
-            'GiroRecep' => $this->getGiro() ?? false,
-            'Contacto' => $this->getTelefono() ?? false,
+            'GiroRecep' => $this->getGiro(),
+            'Contacto' => $this->getTelefono(),
             'CorreoRecep' => $this->getEmail()
                 ?? $this->getCorreoIntercambioDte()
-                ?? false
             ,
-            'DirRecep' => $this->getDireccion() ?? false,
-            'CmnaRecep' => $this->getComuna() ?? false,
-            'CiudadRecep' => $this->getCiudad() ?? false,
+            'DirRecep' => $this->getDireccion(),
+            'CmnaRecep' => $this->getComuna(),
+            'CiudadRecep' => $this->getCiudad(),
             // 'DirPostal' => $this->,
             // 'CmnaPostal' => $this->,
             // 'CiudadPostal' => $this->,

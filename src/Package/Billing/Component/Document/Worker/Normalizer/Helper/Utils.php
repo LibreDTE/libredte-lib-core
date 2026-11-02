@@ -36,14 +36,14 @@ class Utils
      * defecto se mantienen 4 decimales.
      *
      * @param int|float $amount Valor que se desea redondear.
-     * @param string|null|false $currency La moneda en la que está el valor.
+     * @param string|null $currency La moneda en la que está el valor.
      * @param int $decimals Cantidad de decimales a mantener cuando la moneda
      * no es peso chileno.
      * @return int|float Valor redondeado según la moneda y decimales a usar.
      */
     public static function round(
         int|float $amount,
-        string|null|false $currency = null,
+        ?string $currency = null,
         int $decimals = 4
     ): int|float {
         return (!$currency || $currency === 'PESO CL')
@@ -65,14 +65,14 @@ class Utils
      * Estos casos son "normales", pues por aproximaciones "no da".
      *
      * @param int $total Total que representa el monto neto más el IVA.
-     * @param int|float|false $tasa Tasa del IVA o `false` si no corresponde.
+     * @param int|float|null $tasa Tasa del IVA o `null` si no corresponde.
      * @return array{0: int|float, 1: int|float} Arreglo con el neto y el IVA en
      * índices 0 y 1.
      */
-    public static function calculateNetoIVA($total, int|float|false $tasa): array
+    public static function calculateNetoIVA($total, int|float|null $tasa): array
     {
         // Si no existe tasa es porque no hay Neto ni IVA (doc exento).
-        if ($tasa === 0 || $tasa === false) {
+        if ($tasa === 0 || $tasa === null) {
             return [0, 0];
         }
 

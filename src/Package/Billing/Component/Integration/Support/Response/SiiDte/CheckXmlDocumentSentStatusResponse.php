@@ -22,7 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii;
@@ -117,7 +119,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             $datetime = null;
             if (!empty($this->headers['NUM_ATENCION'])) {
                 [$number, $datetime] = $this->parseNumeroAtencion(
-                    $this->headers['NUM_ATENCION']
+                    ValueCaster::requireString($this->headers['NUM_ATENCION'])
                 );
             }
 
@@ -128,10 +130,10 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             ;
 
             // RUT de la empresa que realizó la consulta del envío.
-            $company = isset($this->requestData['Rut']) && isset($this->requestData['Dv'])
-                ? $this->requestData['Rut'] . '-' . $this->requestData['Dv']
-                : null
-            ;
+            $request = ArrayReader::fromArray($this->requestData, 'SII request');
+            $rut = $request->getAsString('Rut');
+            $dv = $request->getAsString('Dv');
+            $company = $rut !== null && $dv !== null ? $rut . '-' . $dv : null;
 
             // Normalizar el estado de la consulta del envío.
             [$status, $error, $description] = $this->parseEstado($this->headers);
@@ -166,9 +168,11 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     public function getReviewStatus(): string
     {
-        $data = $this->getData();
+        $data = ArrayReader::fromArray($this->getData(), 'SII response');
+        $status = $data->requireString('status');
+        $description = $data->getString('description');
 
-        if ($data['status'] === 'EPR') {
+        if ($status === 'EPR') {
             if ($this->hasRejectedDocuments()) {
                 return 'RCH - DTE Rechazado';
             }
@@ -178,9 +182,9 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             }
         }
 
-        return $data['description']
-            ? ($data['status'] . ' - ' . $data['description'])
-            : $data['status']
+        return $description
+            ? ($status . ' - ' . $description)
+            : $status
         ;
     }
 
@@ -192,10 +196,10 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     public function getEstadoEnvioSii(): ?EstadoEnvioSii
     {
-        $data = $this->getData();
+        $status = ArrayReader::fromArray($this->getData())->requireString('status');
 
-        if ($data['status'] !== 'EPR') {
-            return EstadoEnvioSii::tryFromSiiCodigo($data['status']);
+        if ($status !== 'EPR') {
+            return EstadoEnvioSii::tryFromSiiCodigo($status);
         }
 
         if ($this->hasRejectedDocuments()) {
@@ -216,13 +220,13 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     public function getReviewDetail(): ?string
     {
-        $data = $this->getData();
+        $status = ArrayReader::fromArray($this->getData())->requireString('status');
 
-        if ($data['status'] === 'EPR') {
+        if ($status === 'EPR') {
             if ($this->allDocumentsAreAccepted()) {
                 return 'DTE aceptado';
             }
-        } elseif ($data['status'] === 'LOK') {
+        } elseif ($status === 'LOK') {
             return 'Cuadrado';
         }
 
@@ -236,9 +240,9 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     private function allDocumentsAreAccepted(): bool
     {
-        $data = $this->getData();
+        $resume = ArrayReader::fromArray($this->getData())->requireReader('resume');
 
-        return $data['resume']['reported'] === $data['resume']['accepted'];
+        return $resume->requireInt('reported') === $resume->requireInt('accepted');
     }
 
     /**
@@ -248,9 +252,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     private function hasRejectedDocuments(): bool
     {
-        $data = $this->getData();
-
-        return $data['resume']['rejected'] > 0;
+        return ArrayReader::fromArray($this->getData())->requireReader('resume')->requireInt('rejected') > 0;
     }
 
     /**
@@ -260,9 +262,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      */
     private function hasRepairsDocuments(): bool
     {
-        $data = $this->getData();
-
-        return $data['resume']['repairs'] > 0;
+        return ArrayReader::fromArray($this->getData())->requireReader('resume')->requireInt('repairs') > 0;
     }
 
     /**
@@ -275,7 +275,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     {
         // Asignar el código del estado y asumir que hubo error en el proceso
         // de envío del documento al SII.
-        $status = ValueCaster::requireString($headers['ESTADO']);
+        $reader = ArrayReader::fromArray($headers, 'SII response headers');
+        $status = $reader->requireString('ESTADO');
         $error = true;
         $description = null;
 
@@ -284,13 +285,13 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         // que normalmente debería entregar el SII en la respuesta.
         if (isset(self::STATUSES[$status])) {
             $error = $status[0] === 'R';
-            $description = $headers['GLOSA'] ?? null;
+            $description = $reader->getAsString('GLOSA');
         }
 
         // Si el estado es un error de token se asigna.
         elseif (isset(self::ERRORS['TOKEN'][$status])) {
             //$description = self::ERRORS['TOKEN'][$code];
-            $description = $headers['GLOSA'] ?? null;
+            $description = $reader->getAsString('GLOSA');
         }
 
         // El error es uno de los números negativos. Donde hay 3 opciones:
@@ -298,12 +299,13 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         elseif ($status == '-11') {
             $errors = [];
             foreach (['SRV_CODE', 'SQL_CODE', 'ERR_CODE'] as $errorType) {
-                if (($headers[$errorType] ?? '') !== '') {
-                    $errors[] = self::ERRORS[$errorType][$headers[$errorType]]
+                $code = $reader->getAsString($errorType) ?? '';
+                if ($code !== '') {
+                    $errors[] = self::ERRORS[$errorType][$code]
                         ?? sprintf(
                             'Error %s #%s',
                             $errorType,
-                            $headers[$errorType]
+                            $code
                         )
                     ;
                 }
@@ -332,7 +334,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
      * Parsea los documentos de la respuesta del SII.
      *
      * @param array<string, mixed> $body Cuerpo de la respuesta del SII.
-     * @return array<int, array<string, mixed>> Arreglo con los documentos normalizados.
+     * @return array<array-key, array<string, mixed>> Arreglo con los documentos
+     * normalizados, indexados por el código del tipo de documento.
      */
     private function parseDocumentos(array $body): array
     {
@@ -352,19 +355,22 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         $keys = array_keys($keysMap);
 
         // Normalizar a arreglo de documentos (y otros datos) si no lo son.
-        if (!is_array($body[$keys[0]])) {
-            foreach ($keys as $key) {
-                $body[$key] = [$body[$key] ?? ''];
-            }
+        $wrap = !is_array($body[$keys[0]]);
+        $columns = [];
+        foreach ($keys as $key) {
+            $columns[$key] = $wrap
+                ? [$body[$key] ?? '']
+                : ValueType::list()->parse($body[$key] ?? null, $key, 'SII response body')
+            ;
         }
 
         // Iterar y armar estado de los documentos.
-        $n_documents = count($body[$keys[0]]);
+        $n_documents = count($columns[$keys[0]]);
         $documents = [];
         for ($i = 0; $i < $n_documents; $i++) {
             $document = [];
             foreach ($keysMap as $source => $destination) {
-                $value = $body[$source][$i];
+                $value = $columns[$source][$i];
                 // Un contador que viene vacío (el elemento vacío se decodifica
                 // como texto vacío) es cero.
                 $document[$destination] = $value === '' && $source !== $keys[0]
@@ -372,7 +378,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
                     : $value
                 ;
             }
-            $documents[$body[$keys[0]][$i]] = $document;
+            $documents[ValueCaster::toString($columns[$keys[0]][$i]) ?? ''] = $document;
         }
 
         // Entregar documentos encontrados.
@@ -382,7 +388,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Calcula el resumen de los documentos procesados.
      *
-     * @param array<int, array<string, mixed>> $documents Arreglo con los documentos.
+     * @param array<array-key, array<string, mixed>> $documents Arreglo con los documentos.
      * @return array{reported: int, accepted: int, rejected: int, repairs: int}
      * Resumen con el total de reportados, aceptados, rechazados y reparos.
      */
@@ -398,7 +404,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
 
         foreach ($documents as $document) {
             foreach ($keys as $key) {
-                $resume[$key] += ($document[$key] ?? 0);
+                $resume[$key] += ArrayReader::fromArray($document)->getAsInt($key, 0);
             }
         }
 

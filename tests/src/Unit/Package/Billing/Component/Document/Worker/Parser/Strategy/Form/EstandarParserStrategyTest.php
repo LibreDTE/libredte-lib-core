@@ -101,13 +101,18 @@ class EstandarParserStrategyTest extends TestCase
     #[DataProvider('provideEdgeCases')]
     public function testEdgeCase(string $file): void
     {
-        $data = Yaml::parse(ValueCaster::requireString(file_get_contents($file)));
-        $test = $data['Test'];
+        $caseName = basename($file);
+        $data = ValueType::map()->parse(
+            Yaml::parse(ValueCaster::requireString(file_get_contents($file))),
+            '',
+            $caseName
+        );
+        $test = ValueType::map()->parse($data['Test'] ?? null, 'Test', $caseName);
         unset($data['Test']);
 
         if (isset($test['Exception'])) {
             $class = 'libredte\lib\Core\Package\Billing\Component\Document\Exception\\'
-                . $test['Exception'];
+                . ValueType::string()->parse($test['Exception'], 'Test.Exception', $caseName);
             $this->assertTrue(is_subclass_of($class, Throwable::class), $class);
             $this->expectException($class);
             $this->strategy->parse($data);
@@ -118,9 +123,9 @@ class EstandarParserStrategyTest extends TestCase
         $result = $this->strategy->parse($data);
 
         $this->assertExpectedValues(
-            $test['ExpectedValues'],
+            ValueType::array()->parse($test['ExpectedValues'] ?? null, 'Test.ExpectedValues', $caseName),
             $result,
-            basename($file)
+            $caseName
         );
     }
 
@@ -158,9 +163,9 @@ class EstandarParserStrategyTest extends TestCase
     #[DataProvider('provideFieldsWithAWrongType')]
     public function testFieldWithAWrongTypeIsReportedWithItsName(array $change, string $field, string $exception): void
     {
-        $data = Yaml::parseFile(
+        $data = ValueType::map()->parse(Yaml::parseFile(
             self::getFixturesPath() . '/parsers_edge/form/estandar/033_pago_credito_impuesto_tipos_datos.yaml'
-        );
+        ));
         unset($data['Test']);
 
         $this->expectException($exception);

@@ -44,21 +44,21 @@ trait NormalizeBoletasTrait
             $data['Encabezado']['Emisor']['RznSocEmisor'] =
                 $data['Encabezado']['Emisor']['RznSoc']
             ;
-            $data['Encabezado']['Emisor']['RznSoc'] = false;
+            $data['Encabezado']['Emisor']['RznSoc'] = null;
         }
         if ($data['Encabezado']['Emisor']['GiroEmis']) {
             $data['Encabezado']['Emisor']['GiroEmisor'] =
                 $data['Encabezado']['Emisor']['GiroEmis']
             ;
-            $data['Encabezado']['Emisor']['GiroEmis'] = false;
+            $data['Encabezado']['Emisor']['GiroEmis'] = null;
         }
-        $data['Encabezado']['Emisor']['Acteco'] = false;
-        $data['Encabezado']['Emisor']['Telefono'] = false;
-        $data['Encabezado']['Emisor']['CorreoEmisor'] = false;
-        $data['Encabezado']['Emisor']['CdgVendedor'] = false;
-        $data['Encabezado']['Receptor']['GiroRecep'] = false;
+        $data['Encabezado']['Emisor']['Acteco'] = null;
+        $data['Encabezado']['Emisor']['Telefono'] = null;
+        $data['Encabezado']['Emisor']['CorreoEmisor'] = null;
+        $data['Encabezado']['Emisor']['CdgVendedor'] = null;
+        $data['Encabezado']['Receptor']['GiroRecep'] = null;
         if (!empty($data['Encabezado']['Receptor']['CorreoRecep'])) {
-            if ($data['Referencia'] === false) {
+            if ($data['Referencia'] === null) {
                 $data['Referencia'] = [];
             }
             $data['Referencia'][] = [
@@ -75,20 +75,20 @@ trait NormalizeBoletasTrait
                 ),
             ];
         }
-        $data['Encabezado']['Receptor']['CorreoRecep'] = false;
+        $data['Encabezado']['Receptor']['CorreoRecep'] = null;
 
         // Quitar otros tags que no son parte de las boletas.
-        $data['Encabezado']['IdDoc']['FmaPago'] = false;
-        $data['Encabezado']['IdDoc']['FchCancel'] = false;
-        $data['Encabezado']['IdDoc']['MedioPago'] = false;
-        $data['Encabezado']['IdDoc']['TpoCtaPago'] = false;
-        $data['Encabezado']['IdDoc']['NumCtaPago'] = false;
-        $data['Encabezado']['IdDoc']['BcoPago'] = false;
-        $data['Encabezado']['IdDoc']['TermPagoGlosa'] = false;
-        $data['Encabezado']['RUTSolicita'] = false;
-        $data['Encabezado']['IdDoc']['TpoTranCompra'] = false;
-        $data['Encabezado']['IdDoc']['TpoTranVenta'] = false;
-        $data['Encabezado']['Transporte'] = false;
+        $data['Encabezado']['IdDoc']['FmaPago'] = null;
+        $data['Encabezado']['IdDoc']['FchCancel'] = null;
+        $data['Encabezado']['IdDoc']['MedioPago'] = null;
+        $data['Encabezado']['IdDoc']['TpoCtaPago'] = null;
+        $data['Encabezado']['IdDoc']['NumCtaPago'] = null;
+        $data['Encabezado']['IdDoc']['BcoPago'] = null;
+        $data['Encabezado']['IdDoc']['TermPagoGlosa'] = null;
+        $data['Encabezado']['RUTSolicita'] = null;
+        $data['Encabezado']['IdDoc']['TpoTranCompra'] = null;
+        $data['Encabezado']['IdDoc']['TpoTranVenta'] = null;
+        $data['Encabezado']['Transporte'] = null;
 
         // Ajustar las referencias si existen.
         if (!empty($data['Referencia'])) {

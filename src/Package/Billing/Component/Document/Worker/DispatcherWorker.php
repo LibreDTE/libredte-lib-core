@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use DateTime;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
@@ -317,13 +318,16 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
         // Asignar la autorización de la carátula del documento XML al emisor.
         if ($envelope->getXmlDocument()) {
-            $caratula = $envelope->getXmlDocument()->query('//Caratula');
-            $RutEmisor = $caratula['RutEmisor'] ?? null;
-            $FchResol = $caratula['FchResol'] ?? null;
-            $NroResol = $caratula['NroResol'] ?? null;
+            $caratula = ArrayReader::fromValue(
+                $envelope->getXmlDocument()->query('//Caratula') ?? [],
+                '//Caratula'
+            );
+            $RutEmisor = $caratula->getAsString('RutEmisor');
+            $FchResol = $caratula->getAsString('FchResol');
+            $NroResol = $caratula->getAsInt('NroResol', 0);
             if ($RutEmisor === $emisor->getRut() && $FchResol !== null) {
                 $emisor->setAutorizacionDte(
-                    new AutorizacionDte($FchResol, (int) $NroResol)
+                    new AutorizacionDte($FchResol, $NroResol)
                 );
             }
         }
@@ -549,7 +553,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $certificate = $envelope->requireCertificate();
 
         // Asignar marca de tiempo si no se pasó una.
-        $timestamp = $caratula['TmstFirmaEnv'];
+        $timestamp = ArrayReader::fromArray($caratula, 'envelope cover')->requireString('TmstFirmaEnv');
 
         // Corroborar que el certificado esté vigente según el timestamp usado.
         if (!$certificate->isActive($timestamp)) {

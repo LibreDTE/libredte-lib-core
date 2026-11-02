@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Array\ArrayReader;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -304,16 +305,16 @@ class RendererWorkerRenderingsTest extends TestCase
         $this->assertSame($rendering->getContent(), (string) $result);
 
         // Expansion (with copy number and adjusted name) only happens here.
-        $array = $result->toArray();
-        $this->assertCount(3, $array['renderings']);
+        $entries = ArrayReader::fromArray($result->toArray())->requireReaders('renderings');
+        $this->assertCount(3, $entries);
 
-        foreach ($array['renderings'] as $i => $entry) {
+        foreach ($entries as $i => $entry) {
             $copyNumber = $i + 1;
-            $this->assertSame($copyNumber, $entry['copyNumber']);
-            $this->assertSame($rendering->getContent(), $entry['content']);
+            $this->assertSame($copyNumber, $entry->requireInt('copyNumber'));
+            $this->assertSame($rendering->getContent(), $entry->requireString('content'));
             $this->assertSame(
                 $bag->getId() . '_' . $copyNumber . '.html',
-                $entry['filename']
+                $entry->requireString('filename')
             );
         }
     }

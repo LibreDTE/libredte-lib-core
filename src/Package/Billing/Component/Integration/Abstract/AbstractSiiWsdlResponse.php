@@ -22,7 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Abstract;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Translation\Exception\Logic\TranslatableInvalidArgumentException as InvalidArgumentException;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 
 /**
@@ -72,16 +74,19 @@ abstract class AbstractSiiWsdlResponse
      */
     public function __construct(array $response, array $request = [])
     {
-        $headers = $response['SII:RESPUESTA']['SII:RESP_HDR'] ?? [];
+        $reader = ArrayReader::fromArray($response, 'SII response');
+        $headers = $reader->get('SII:RESPUESTA.SII:RESP_HDR', ValueType::mixed()) ?? [];
         if (empty($headers)) {
             throw new SiiDteException(
                 'The SII response does not include the expected headers.'
             );
         }
 
-        $this->headers = $headers;
-        $body = $response['SII:RESPUESTA']['SII:RESP_BODY'] ?? [];
-        $this->body = is_array($body) ? $body : [];
+        $this->headers = ValueType::map()->parse($headers, 'SII:RESPUESTA.SII:RESP_HDR');
+        $body = $reader->get('SII:RESPUESTA.SII:RESP_BODY', ValueType::mixed()) ?? [];
+        $this->body = is_array($body)
+            ? ValueType::map()->parse($body, 'SII:RESPUESTA.SII:RESP_BODY')
+            : [];
         $this->requestData = $request;
     }
 
@@ -119,9 +124,7 @@ abstract class AbstractSiiWsdlResponse
      */
     public function getStatus(): string
     {
-        $data = $this->getData();
-
-        return $data['status'];
+        return ArrayReader::fromArray($this->getData())->requireString('status');
     }
 
     /**
@@ -131,9 +134,7 @@ abstract class AbstractSiiWsdlResponse
      */
     public function getDescription(): string
     {
-        $data = $this->getData();
-
-        return $data['description'];
+        return ArrayReader::fromArray($this->getData())->requireString('description');
     }
 
     /**

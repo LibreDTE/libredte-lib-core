@@ -86,7 +86,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
             $MntPagos = array_merge([
                 'FchPago' => null,
                 'MntPago' => null,
-                'GlosaPagos' => false,
+                'GlosaPagos' => null,
             ], $MntPagos);
             if ($MntPagos['MntPago'] === null) {
                 $MntPagos['MntPago'] = $data['Encabezado']['Totales']['MntTotal'];
@@ -115,16 +115,16 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
         foreach ($data['Encabezado']['OtraMoneda'] as &$OtraMoneda) {
             // Colocar campos por defecto.
             $OtraMoneda = array_merge([
-                'TpoMoneda' => false,
-                'TpoCambio' => false,
-                'MntNetoOtrMnda' => false,
-                'MntExeOtrMnda' => false,
-                'MntFaeCarneOtrMnda' => false,
-                'MntMargComOtrMnda' => false,
-                'IVAOtrMnda' => false,
-                'ImpRetOtrMnda' => false,
-                'IVANoRetOtrMnda' => false,
-                'MntTotOtrMnda' => false,
+                'TpoMoneda' => null,
+                'TpoCambio' => null,
+                'MntNetoOtrMnda' => null,
+                'MntExeOtrMnda' => null,
+                'MntFaeCarneOtrMnda' => null,
+                'MntMargComOtrMnda' => null,
+                'IVAOtrMnda' => null,
+                'ImpRetOtrMnda' => null,
+                'IVANoRetOtrMnda' => null,
+                'MntTotOtrMnda' => null,
             ], $OtraMoneda);
 
             // Si no hay tipo de cambio no seguir.
@@ -151,15 +151,15 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
             // ImpRetOtrMnda.
             if (empty($OtraMoneda['MntFaeCarneOtrMnda'])) {
                 // TODO: Implementar cálculo de MntFaeCarneOtrMnda.
-                $OtraMoneda['MntFaeCarneOtrMnda'] = false;
+                $OtraMoneda['MntFaeCarneOtrMnda'] = null;
             }
             if (empty($OtraMoneda['MntMargComOtrMnda'])) {
                 // TODO: Implementar cálculo de MntMargComOtrMnda.
-                $OtraMoneda['MntMargComOtrMnda'] = false;
+                $OtraMoneda['MntMargComOtrMnda'] = null;
             }
             if (empty($OtraMoneda['ImpRetOtrMnda'])) {
                 // TODO: Implementar cálculo de ImpRetOtrMnda.
-                $OtraMoneda['ImpRetOtrMnda'] = false;
+                $OtraMoneda['ImpRetOtrMnda'] = null;
             }
 
             // Calcular el monto total.
@@ -195,7 +195,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
 
             // Si el tipo de cambio es 0, se quita.
             if ($OtraMoneda['TpoCambio'] == 0) {
-                $OtraMoneda['TpoCambio'] = false;
+                $OtraMoneda['TpoCambio'] = null;
             }
         }
     }

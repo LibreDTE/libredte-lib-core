@@ -24,10 +24,12 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Str
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Mail\Contract\MailPackageInterface;
 use Derafu\Mail\Model\Envelope as MailEnvelope;
 use Derafu\Mail\Model\Message as MailMessage;
 use Derafu\Mail\Model\Postman as MailPostman;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -94,8 +96,13 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         }
 
         // Agregar otros destinatarios si existen en la bolsa.
+        $metadata = $envelope->getMetadata()->getReader();
+        $emailType = ValueType::listOf(ValueType::oneOf(
+            ValueType::string(),
+            ValueType::instanceOf(Address::class)
+        ));
         foreach (['to', 'cc', 'bcc'] as $dest) {
-            $emails = $envelope->getMetadata()->get($dest, []);
+            $emails = $metadata->get($dest, $emailType, []);
             foreach ($emails as $email) {
                 match ($dest) {
                     'to' => $message->addTo($email),
@@ -106,7 +113,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         }
 
         // Agregar asunto al mensaje.
-        $subject = $envelope->getMetadata()->get('subject')
+        $subject = $metadata->getString('subject')
             ?? sprintf(
                 'Envío de documentos electrónicos de %s',
                 $envelope->getSender()->getIdentifier()->getId()
@@ -115,13 +122,13 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         $message->subject($subject);
 
         // Agregar mensaje renderizado como texto.
-        $text = $envelope->getMetadata()->get('text');
+        $text = $metadata->getString('text');
         if ($text !== null) {
             $message->text($text);
         }
 
         // Agregar mensaje renderizado como HTML.
-        $html = $envelope->getMetadata()->get('html');
+        $html = $metadata->getString('html');
         if ($html !== null) {
             $message->html($html);
         }
@@ -194,6 +201,10 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
     private function resolveTransportOptions(ExchangeBagInterface $bag): array
     {
         $options = $bag->getOptions()->get('transport', []);
+        $options = ValueType::array()->parse(
+            $options instanceof OptionsInterface ? $options->all() : $options,
+            'transport'
+        );
 
         if (empty($options['username']) || empty($options['password'])) {
             throw new ExchangeException(
@@ -201,7 +212,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
             );
         }
 
-        return is_array($options) ? $options : $options->all();
+        return $options;
     }
 
     /**
@@ -228,7 +239,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
      * Resuelve y entrega los datos de los receptores.
      *
      * @param EnvelopeInterface $envelope
-     * @return array<string, mixed>
+     * @return array<array-key, Address>
      * @throws ExchangeException Si no se encuentra al menos un receptor.
      */
     private function resolveRecipients(EnvelopeInterface $envelope): array

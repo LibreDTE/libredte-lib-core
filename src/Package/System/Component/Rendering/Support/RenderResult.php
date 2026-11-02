@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\System\Component\Rendering\Support;
 
+use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface;
 use libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderResultInterface;
 use libredte\lib\Core\Package\System\Component\Rendering\Exception\RenderResultException;
@@ -135,7 +137,10 @@ class RenderResult implements RenderResultInterface
     {
         return [
             'renderings' => $this->expand(
-                fn (RenderedDocumentInterface $rendering) => $rendering->jsonSerialize()
+                fn (RenderedDocumentInterface $rendering) => ValueType::map()->parse(
+                    $rendering->jsonSerialize(),
+                    'rendering'
+                )
             ),
         ];
     }
@@ -166,7 +171,7 @@ class RenderResult implements RenderResultInterface
 
                 if ($copies > 1 && $copy['filename'] !== null) {
                     $copy['filename'] = $this->appendCopyNumber(
-                        $copy['filename'],
+                        ValueCaster::requireString($copy['filename']),
                         $copyNumber
                     );
                 }

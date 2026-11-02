@@ -59,13 +59,13 @@ class NormalizeBoletaExentaJob extends AbstractJob implements JobInterface
         // Completar con nodos por defecto.
         $data = array_replace_recursive([
             'Encabezado' => [
-                'IdDoc' => false,
+                'IdDoc' => null,
                 'Emisor' => [
-                    'RUTEmisor' => false,
-                    'RznSocEmisor' => false,
-                    'GiroEmisor' => false,
+                    'RUTEmisor' => null,
+                    'RznSocEmisor' => null,
+                    'GiroEmisor' => null,
                 ],
-                'Receptor' => false,
+                'Receptor' => null,
                 'Totales' => [
                     'MntExe' => 0,
                     'MntTotal' => 0,

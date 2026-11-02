@@ -48,14 +48,14 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
-            'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
-            'RutEnvia'          => $bag->getCertificate()?->getId() ?? false,
+            'RutEmisorLibro'    => $bag->getEmisor()?->getRut(),
+            'RutEnvia'          => $bag->getCertificate()?->getId(),
             'PeriodoTributario' => date('Y-m'),
-            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? false,
-            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? false,
+            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? null,
+            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? null,
             'TipoLibro'         => 'ESPECIAL',
             'TipoEnvio'         => 'TOTAL',
-            'NroSegmento'       => false,
+            'NroSegmento'       => null,
             'FolioNotificacion' => 1,
         ], $bag->getCaratula());
     }
@@ -79,22 +79,22 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
     {
         // Valores por defecto.
         $detalle = array_merge([
-            'Folio' => false,
-            'Anulado' => false,
-            'Operacion' => false,
-            'TpoOper' => false,
+            'Folio' => null,
+            'Anulado' => null,
+            'Operacion' => null,
+            'TpoOper' => null,
             'FchDoc' => date('Y-m-d'),
-            'RUTDoc' => false,
-            'RznSoc' => false,
-            'MntNeto' => false,
+            'RUTDoc' => null,
+            'RznSoc' => null,
+            'MntNeto' => null,
             'TasaImp' => 0,
             'IVA' => 0,
-            'MntTotal' => false,
-            'MntModificado' => false,
-            'TpoDocRef' => false,
-            'FolioDocRef' => false,
-            'FchDocRef' => false,
-        ], $detalle);
+            'MntTotal' => null,
+            'MntModificado' => null,
+            'TpoDocRef' => null,
+            'FolioDocRef' => null,
+            'FchDocRef' => null,
+        ], ArrayCaster::nullify($detalle, [false]));
 
         // Los montos y la tasa deben ser números.
         $this->assertNumbers($detalle);
@@ -112,7 +112,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
         }
 
         // Calcular monto total si falta.
-        if ($detalle['MntTotal'] === false) {
+        if ($detalle['MntTotal'] === null) {
             $detalle['MntTotal'] = ($row->getAsInt('MntNeto') ?? 0) + (ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->getAsInt('IVA') ?? 0);
         }
 

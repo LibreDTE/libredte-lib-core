@@ -75,35 +75,35 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
     private array $totalDefault = [
         'TpoDoc' => null,
         'TotDoc' => 0,
-        'TotAnulado' => false,
-        'TotOpExe' => false,
+        'TotAnulado' => null,
+        'TotOpExe' => null,
         'TotMntExe' => 0,
         'TotMntNeto' => 0,
         'TotMntIVA' => 0,
-        'TotIVAPropio' => false,
-        'TotIVATerceros' => false,
-        'TotLey18211' => false,
-        'TotMntActivoFijo' => false,
-        'TotMntIVAActivoFijo' => false,
-        'TotIVANoRec' => false,
-        'TotIVAUsoComun' => false,
-        'FctProp' => false,
-        'TotCredIVAUsoComun' => false,
-        'TotIVAFueraPlazo' => false,
-        'TotOtrosImp' => false,
-        'TotIVARetTotal' => false,
-        'TotIVARetParcial' => false,
-        'TotImpSinCredito' => false,
+        'TotIVAPropio' => null,
+        'TotIVATerceros' => null,
+        'TotLey18211' => null,
+        'TotMntActivoFijo' => null,
+        'TotMntIVAActivoFijo' => null,
+        'TotIVANoRec' => null,
+        'TotIVAUsoComun' => null,
+        'FctProp' => null,
+        'TotCredIVAUsoComun' => null,
+        'TotIVAFueraPlazo' => null,
+        'TotOtrosImp' => null,
+        'TotIVARetTotal' => null,
+        'TotIVARetParcial' => null,
+        'TotImpSinCredito' => null,
         'TotMntTotal' => 0,
-        'TotIVANoRetenido' => false,
-        'TotMntNoFact' => false,
-        'TotMntPeriodo' => false,
-        'TotPsjNac' => false,
-        'TotPsjInt' => false,
-        'TotTabPuros' => false,
-        'TotTabCigarrillos' => false,
-        'TotTabElaborado' => false,
-        'TotImpVehiculo' => false,
+        'TotIVANoRetenido' => null,
+        'TotMntNoFact' => null,
+        'TotMntPeriodo' => null,
+        'TotPsjNac' => null,
+        'TotPsjInt' => null,
+        'TotTabPuros' => null,
+        'TotTabCigarrillos' => null,
+        'TotTabElaborado' => null,
+        'TotImpVehiculo' => null,
     ];
 
     public function __construct(
@@ -135,7 +135,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         // Calcular resumen del período.
         $totalesPeriodo = $this->calculateTotalesPeriodo($detalles);
         $totalesPeriodo = $this->addResumen($totalesPeriodo, $bag->getResumen());
-        $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : false;
+        $resumenPeriodo = $totalesPeriodo ? ['TotalesPeriodo' => $totalesPeriodo] : null;
 
         // Se actualizan los detalles por si se modificó algo al realizar el
         // cálculo de totales. Por ejemplo, si se quitó el factor de
@@ -145,15 +145,15 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
         // Construir carátula normalizada.
         $tipoOper = strtoupper(ArrayReader::fromArray(ArrayCaster::nullify($caratula, [false, '']))->getAsString('TipoOperacion') ?? 'VENTA');
         $caratulaNorm = array_merge([
-            'RutEmisorLibro' => false,
-            'RutEnvia' => false,
+            'RutEmisorLibro' => null,
+            'RutEnvia' => null,
             'PeriodoTributario' => date('Y-m'),
-            'FchResol' => false,
-            'NroResol' => false,
+            'FchResol' => null,
+            'NroResol' => null,
             'TipoOperacion' => 'VENTA',
             'TipoLibro' => 'MENSUAL',
             'TipoEnvio' => 'TOTAL',
-            'FolioNotificacion' => false,
+            'FolioNotificacion' => null,
         ], $caratula);
 
         // Un libro especial lleva el folio de la notificación y uno de
@@ -190,7 +190,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
                     'ResumenPeriodo' => $resumenPeriodo,
-                    'Detalle' => $detalle ? ($this->filterDetalle($detalles) ?: false) : false,
+                    'Detalle' => $detalle ? ($this->filterDetalle($detalles) ?: null) : null,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ],
@@ -406,13 +406,13 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
             $totales[$tpoDoc] = array_merge($this->totalDefault, [
                 'TpoDoc' => $tpoDoc,
                 'TotDoc' => $group['documents'],
-                'TotAnulado' => $group['annulled'] ?? false,
+                'TotAnulado' => $group['annulled'] ?? null,
                 'TotMntExe' => $group['exempt'],
                 'TotMntNeto' => $group['net'],
                 'TotMntIVA' => $group['vat'],
-                'TotMntActivoFijo' => $group['fixedAsset'] ?? false,
-                'TotMntIVAActivoFijo' => $group['fixedAssetVat'] ?? false,
-                'TotIVANoRec' => $group['notRecoverable'] === [] ? false : array_values(array_map(
+                'TotMntActivoFijo' => $group['fixedAsset'] ?? null,
+                'TotMntIVAActivoFijo' => $group['fixedAssetVat'] ?? null,
+                'TotIVANoRec' => $group['notRecoverable'] === [] ? null : array_values(array_map(
                     static fn (array $iva): array => [
                         'CodIVANoRec' => $iva['code'],
                         'TotOpIVANoRec' => $iva['operations'],
@@ -420,20 +420,20 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
                     ],
                     $group['notRecoverable']
                 )),
-                'TotIVAUsoComun' => $group['commonVat'] ?? false,
-                'FctProp' => $group['proportion'] ?? false,
-                'TotCredIVAUsoComun' => $group['commonCredit'] ?? false,
-                'TotIVAFueraPlazo' => $group['latePayment'] ?? false,
-                'TotOtrosImp' => $group['otherTaxes'] === [] ? false : array_values(array_map(
+                'TotIVAUsoComun' => $group['commonVat'] ?? null,
+                'FctProp' => $group['proportion'] ?? null,
+                'TotCredIVAUsoComun' => $group['commonCredit'] ?? null,
+                'TotIVAFueraPlazo' => $group['latePayment'] ?? null,
+                'TotOtrosImp' => $group['otherTaxes'] === [] ? null : array_values(array_map(
                     static fn (array $imp): array => ['CodImp' => $imp['code'], 'TotMntImp' => $imp['amount']],
                     $group['otherTaxes']
                 )),
-                'TotIVARetTotal' => $group['withheldTotal'] ?? false,
-                'TotIVARetParcial' => $group['withheldPartial'] ?? false,
-                'TotImpSinCredito' => $group['withoutCredit'] ?? false,
+                'TotIVARetTotal' => $group['withheldTotal'] ?? null,
+                'TotIVARetParcial' => $group['withheldPartial'] ?? null,
+                'TotImpSinCredito' => $group['withoutCredit'] ?? null,
                 'TotMntTotal' => $group['total'],
-                'TotIVANoRetenido' => $group['notWithheld'] ?? false,
-                'TotImpVehiculo' => $group['vehicle'] ?? false,
+                'TotIVANoRetenido' => $group['notWithheld'] ?? null,
+                'TotImpVehiculo' => $group['vehicle'] ?? null,
             ]);
         }
 
@@ -442,7 +442,7 @@ abstract class AbstractLibroComprasVentasBuilderStrategy extends AbstractStrateg
 
     /**
      * Entrega los acumuladores de un tipo de documento, vacíos. Un total que es
-     * `null` es uno que ningún documento aportó: queda como `false` en el XML.
+     * `null` es uno que ningún documento aportó: no aparece en el XML.
      *
      * @return array{
      *     documents: int,

@@ -48,7 +48,7 @@ class CafFaker
     /**
      * Datos del contribuyente emisor del CAF.
      *
-     * @var array<string, mixed>
+     * @var array{rut: string, razonSocial: string}
      */
     private array $emisor;
 

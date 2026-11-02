@@ -246,7 +246,7 @@ class EntityRepositoryTest extends TestCase
 
         $this->assertSame('Santiago', $repository->find('HUECHURABA')?->getCiudad());
         $this->assertSame('Santiago', $repository->find('LAS CONDES')?->getCiudad());
-        $this->assertFalse($repository->find('NON_EXISTENT')?->getCiudad());
+        $this->assertNull($repository->find('NON_EXISTENT')?->getCiudad());
 
         // Look up regional address using commune.
         $this->assertSame('ARICA', $repository->find('Arica')?->getDireccionRegional());
@@ -298,13 +298,13 @@ class EntityRepositoryTest extends TestCase
 
         $this->assertSame('R', $repository->find(15)?->getTipo());
         $this->assertSame('A', $repository->find(17)?->getTipo());
-        $this->assertFalse($repository->find(999)?->getTipo());
+        $this->assertNull($repository->find(999)?->getTipo());
         $this->assertSame('IVA retenido', $repository->find(15)->getGlosa());
         $this->assertSame('Licores, Piscos, Whisky', $repository->find(24)?->getGlosa());
-        $this->assertSame('Impto. cód. 999', $repository->find(999)->getGlosa());
+        $this->assertSame('Impto. cód. 999', $repository->find(999)?->getGlosa());
         $this->assertSame(19.0, $repository->find(15)->getTasa());
         $this->assertSame(31.5, $repository->find(24)->getTasa());
-        $this->assertFalse($repository->find(999)->getTasa());
+        $this->assertNull($repository->find(999)->getTasa());
     }
 
     public function testEntityRepositoryMedioPago(): void
@@ -362,6 +362,7 @@ class EntityRepositoryTest extends TestCase
         $documentos = $repository->getDocumentosTributariosElectronicos();
         $this->assertSame(12, count($documentos));
         foreach ($documentos as $doc) {
+            $this->assertInstanceOf(TipoDocumento::class, $doc);
             $this->assertNotEmpty(
                 $doc->getAlias(),
                 sprintf(

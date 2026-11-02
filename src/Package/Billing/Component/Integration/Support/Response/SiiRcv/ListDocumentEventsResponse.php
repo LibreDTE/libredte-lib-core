@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
 
+use Derafu\Array\ArrayReader;
+use Derafu\Value\ValueType;
 use JsonSerializable;
 
 /**
@@ -45,19 +47,24 @@ class ListDocumentEventsResponse implements JsonSerializable
     {
         $this->events = [];
 
-        $return = $response['return'] ?? $response;
-        $items = $return['listaEventosDoc'] ?? [];
+        $reader = ArrayReader::fromArray($response, 'SII response');
+        $return = $reader->getReader('return') ?? $reader;
+        $items = $return->get('listaEventosDoc', ValueType::mixed()) ?? [];
 
         if (!empty($items)) {
+            $items = ValueType::array()->parse($items, 'listaEventosDoc');
             if (isset($items['codEvento'])) {
                 $items = [$items];
             }
-            foreach ($items as $event) {
+            $items = ValueType::listOf(ValueType::map())->parse($items, 'listaEventosDoc');
+            foreach ($items as $item) {
+                $event = ArrayReader::fromArray($item, 'listaEventosDoc');
                 $this->events[] = new DocumentEvent(
-                    codigo: (string) ($event['codEvento'] ?? ''),
-                    glosa: (string) ($event['descEvento'] ?? ''),
-                    responsable: ($event['rutResponsable'] ?? '') . '-' . ($event['dvResponsable'] ?? ''),
-                    fecha: self::normalizeFecha((string) ($event['fechaEvento'] ?? '')),
+                    codigo: $event->getAsString('codEvento') ?? '',
+                    glosa: $event->getAsString('descEvento') ?? '',
+                    responsable: ($event->getAsString('rutResponsable') ?? '')
+                        . '-' . ($event->getAsString('dvResponsable') ?? ''),
+                    fecha: self::normalizeFecha($event->getAsString('fechaEvento') ?? ''),
                 );
             }
         }

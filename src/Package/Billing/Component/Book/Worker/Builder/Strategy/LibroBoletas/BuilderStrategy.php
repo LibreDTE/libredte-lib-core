@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Builder\Strategy\LibroBoletas;
 
+use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use Derafu\Xml\Contract\XmlEncoderInterface;
@@ -56,17 +58,18 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $resumenPeriodo = $this->calculateResumenPeriodo($detalles);
 
         // Construir ID del documento.
-        $rut = str_replace('-', '', $caratula['RutEmisorLibro'] ?? '');
-        $periodo = str_replace('-', '', $caratula['PeriodoTributario'] ?? date('Y-m'));
+        $caratulaReader = ArrayReader::fromArray(ArrayCaster::nullify($caratula, [false, '']));
+        $rut = str_replace('-', '', $caratulaReader->getAsString('RutEmisorLibro') ?? '');
+        $periodo = str_replace('-', '', $caratulaReader->getAsString('PeriodoTributario') ?? date('Y-m'));
         $id = sprintf('LibreDTE_LIBRO_BOLETA_%s_%s_%s', $rut, $periodo, time());
 
         // Carátula normalizada.
         $caratulaNorm = array_merge([
-            'RutEmisorLibro' => false,
-            'RutEnvia' => false,
+            'RutEmisorLibro' => null,
+            'RutEnvia' => null,
             'PeriodoTributario' => date('Y-m'),
-            'FchResol' => false,
-            'NroResol' => false,
+            'FchResol' => null,
+            'NroResol' => null,
             'TipoLibro' => 'ESPECIAL',
             'TipoEnvio' => 'TOTAL',
             'FolioNotificacion' => null,
@@ -84,8 +87,8 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
                 'EnvioLibro' => [
                     '@attributes' => ['ID' => $id],
                     'Caratula' => $caratulaNorm,
-                    'ResumenPeriodo' => $resumenPeriodo ?: false,
-                    'Detalle' => $detalles ?: false,
+                    'ResumenPeriodo' => $resumenPeriodo ?: null,
+                    'Detalle' => $detalles ?: null,
                     'TmstFirma' => date('Y-m-d\TH:i:s'),
                 ],
             ],
@@ -105,33 +108,35 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
         $resumen = [];
 
         foreach ($detalles as $d) {
-            $tpoDoc = $d['TpoDoc'];
-            $tpoServ = $d['TpoServ'] ?? 3;
+            $row = ArrayReader::fromArray(ArrayCaster::nullify($d, [false, '']));
+            $tpoDoc = $row->requireAsInt('TpoDoc');
+            $tpoServ = $row->getAsInt('TpoServ', 3);
+            $anulado = $row->getAsString('Anulado');
 
             if (!isset($resumen[$tpoDoc])) {
                 $resumen[$tpoDoc] = [
                     'TpoDoc' => $tpoDoc,
-                    'TotAnulado' => false,
+                    'TotAnulado' => null,
                     'TotalesServicio' => [],
                 ];
             }
 
-            if (empty($d['Anulado'])) {
+            if (!$anulado) {
                 if (!isset($resumen[$tpoDoc]['TotalesServicio'][$tpoServ])) {
                     $resumen[$tpoDoc]['TotalesServicio'][$tpoServ] = [
                         'TpoServ' => $tpoServ,
-                        'PeriodoDevengado' => false,
-                        'TotDoc' => false,
-                        'TotMntExe' => false,
+                        'PeriodoDevengado' => null,
+                        'TotDoc' => null,
+                        'TotMntExe' => null,
                         'TotMntNeto' => 0,
                         'TasaIVA' => 0,
                         'TotMntIVA' => 0,
-                        'TotMntTotal' => false,
-                        'TotMntNoFact' => false,
-                        'TotMntPeriodo' => false,
-                        'TotSaldoAnt' => false,
-                        'TotVlrPagar' => false,
-                        'TotTicket' => false,
+                        'TotMntTotal' => null,
+                        'TotMntNoFact' => null,
+                        'TotMntPeriodo' => null,
+                        'TotSaldoAnt' => null,
+                        'TotVlrPagar' => null,
+                        'TotTicket' => null,
                     ];
                 }
 
@@ -148,20 +153,21 @@ class BuilderStrategy extends AbstractStrategy implements BuilderStrategyInterfa
                     'TotTicketBoleta' => 'TotTicket',
                 ];
                 foreach ($vals as $ori => $des) {
-                    if ($d[$ori]) {
-                        $svc[$des] += $d[$ori];
+                    $amount = $row->getAsInt($ori);
+                    if ($amount) {
+                        $svc[$des] += $amount;
                     }
                 }
 
                 $tasa = 19;
-                $neto = (int) round(((int) $d['MntTotal'] - (int) $d['MntExe']) / (1 + $tasa / 100));
+                $neto = (int) round((($row->getAsInt('MntTotal') ?? 0) - ($row->getAsInt('MntExe') ?? 0)) / (1 + $tasa / 100));
                 if ($neto) {
                     $svc['TotMntNeto'] += $neto;
                     $svc['TasaIVA'] = $tasa;
                     $svc['TotMntIVA'] = (int) $svc['TotMntTotal'] - (int) $svc['TotMntExe'] - $svc['TotMntNeto'];
                 }
                 unset($svc);
-            } elseif ($d['Anulado'] === 'A') {
+            } elseif ($anulado === 'A') {
                 $resumen[$tpoDoc]['TotAnulado'] = (int) $resumen[$tpoDoc]['TotAnulado'] + 1;
             }
         }

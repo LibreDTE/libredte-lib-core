@@ -38,7 +38,7 @@ class AduanaMoneda extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('glosa');
+        return $this->getReader()->requireString('glosa');
     }
 
     /**
@@ -48,7 +48,7 @@ class AduanaMoneda extends Entity
      */
     public function getCodigoISO(): string
     {
-        return $this->getAttribute('codigo_iso');
+        return $this->getReader()->requireString('codigo_iso');
     }
 
     /**

@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler;
 
 use Derafu\Backbone\Attribute\Handler;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractSenderHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
@@ -74,8 +76,10 @@ class EmailSenderHandler extends AbstractSenderHandler implements ExchangeHandle
         // Se necesitan los datos de transporte, comunes a todos los sobres
         // que se envíen en esta llamada.
         $transport = $bag->getOptions()->get('transport');
-        $transport = is_array($transport) ? $transport : $transport?->all();
-        if (empty($transport)) {
+        if ($transport instanceof OptionsInterface) {
+            $transport = $transport->all();
+        }
+        if ($transport === null || ValueType::array()->parse($transport, 'transport') === []) {
             return false;
         }
 

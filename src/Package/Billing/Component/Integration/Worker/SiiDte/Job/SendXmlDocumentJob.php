@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job;
 
+use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -125,7 +127,8 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         SiiRequestInterface $request,
         array $response
     ): void {
-        $status = $response['RECEPCIONDTE']['STATUS'] ?? null;
+        $reader = ArrayReader::fromArray($response, 'SII XML upload response');
+        $status = $reader->getAsString('RECEPCIONDTE.STATUS');
 
         // Si el estado es `null` (o vacío, el elemento vacío se decodifica como
         // texto vacío) la respuesta del SII no es válida. Lo cual indicaría que
@@ -143,7 +146,12 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             return;
         }
 
-        $error = $response['DETAIL']['ERROR'] ?? null;
+        // Un solo error se decodifica como texto y no como una lista, se
+        // entrega siempre una lista.
+        $error = ArrayReader::fromArray(
+            ArrayPath::wrap($response, 'DETAIL.ERROR'),
+            'SII XML upload response'
+        )->getStringList('DETAIL.ERROR');
         $detail = $error !== null ? implode(' ', $error) : '';
 
         switch ((int) $status) {

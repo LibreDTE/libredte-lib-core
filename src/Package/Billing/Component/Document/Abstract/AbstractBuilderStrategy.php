@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
 use DateTime;
+use Derafu\Array\ArrayReader;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Signature\Contract\SignatureServiceInterface;
@@ -167,7 +169,8 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         }
 
         // Asignar marca de tiempo si no se pasó una.
-        $timestamp = $bag->getBuilderOptions()['timestamp'] ?? date('Y-m-d\TH:i:s');
+        $timestamp = ArrayReader::fromArray($bag->getBuilderOptions())->getString('timestamp')
+            ?? date('Y-m-d\TH:i:s');
 
         // Corroborar que el CAF esté vigente según el timestamp usado.
         if (!$caf->isVigente($timestamp)) {
@@ -183,8 +186,12 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         // Preparar datos del timbre.
         $tedData = $draft->getTemplateTED();
         $cafArray = $this->xmlService->decode($caf->getXmlDocument());
-        $tedData['TED']['DD']['CAF'] = $cafArray['AUTORIZACION']['CAF'];
-        $tedData['TED']['DD']['TSTED'] = $timestamp;
+        $tedWriter = ArrayWriter::fromReference($tedData);
+        $tedWriter->set(
+            'TED.DD.CAF',
+            ArrayReader::fromArray($cafArray, 'CAF')->requireArray('AUTORIZACION.CAF')
+        );
+        $tedWriter->set('TED.DD.TSTED', $timestamp);
 
         // Armar XML del timbre y obtener los datos a timbrar (tag DD: datos
         // del documento).
@@ -208,7 +215,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         }
 
         // Agregar timbre al TED.
-        $tedData['TED']['FRMT']['@value'] = $timbre;
+        $tedWriter->set('TED.FRMT.@value', $timbre);
 
         // Actualizar los datos del documento incorporando el timbre calculado.
         $bag->setTimbre($tedData);
@@ -225,7 +232,8 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $certificate = $bag->requireCertificate();
 
         // Asignar marca de tiempo si no se pasó una.
-        $timestamp = $bag->getBuilderOptions()['timestamp'] ?? date('Y-m-d\TH:i:s');
+        $timestamp = ArrayReader::fromArray($bag->getBuilderOptions())->getString('timestamp')
+            ?? date('Y-m-d\TH:i:s');
 
         // Corroborar que el certificado esté vigente según el timestamp usado.
         if (!$certificate->isActive($timestamp)) {
@@ -239,9 +247,9 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         }
 
         // Agregar timestamp.
-        $data = $bag->getData();
+        $data = $bag->requireData();
         $tagXml = $bag->requireTipoDocumento()->requireTagXml()->getNombre();
-        $data['DTE'][$tagXml]['TmstFirma'] = $timestamp;
+        ArrayWriter::fromReference($data)->set('DTE.' . $tagXml . '.TmstFirma', $timestamp);
         $xmlDocument = $this->xmlService->encode($data);
 
         // Firmar el tag que contiene el documento y retornar el XML firmado.

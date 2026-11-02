@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
 use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Repository\Entity;
 use Derafu\Selector\Selector;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
@@ -473,9 +474,10 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             $value = [$value];
         }
 
-        foreach ($value as $OtraMoneda) {
-            if ($OtraMoneda['TpoMoneda'] === $moneda) {
-                return (float) $OtraMoneda['TpoCambio'];
+        foreach (ValueType::listOf(ValueType::map())->parse($value, 'OtraMoneda') as $OtraMoneda) {
+            $otraMoneda = ArrayReader::fromArray($OtraMoneda, 'OtraMoneda');
+            if ($otraMoneda->getString('TpoMoneda') === $moneda) {
+                return $otraMoneda->requireAsFloat('TpoCambio');
             }
         }
 
@@ -547,12 +549,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
         // Si los datos del DTE no están determinados se crean de una manera
         // estandarizada compatible con los datos de entrada normalizados.
         if (!isset($this->data)) {
-            $array = $this->xmlDocument->toArray();
+            $xml = ArrayReader::fromArray($this->xmlDocument->toArray(), 'DTE');
 
-            $array = $array['DTE']['Documento']
-                ?? $array['DTE']['Exportaciones']
-                ?? $array['DTE']['Liquidacion']
-                ?? $array
+            $array = $xml->getMap('DTE.Documento')
+                ?? $xml->getMap('DTE.Exportaciones')
+                ?? $xml->getMap('DTE.Liquidacion')
+                ?? $xml->toArray()
             ;
 
             unset($array['TED'], $array['TmstFirma']);
@@ -612,7 +614,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
                     'RSR' => mb_substr($this->requireRazonSocialReceptor(), 0, 40),
                     'MNT' => $this->getMontoTotal(),
                     'IT1' => mb_substr(
-                        $this->getDetalle(0)['NmbItem'] ?? '',
+                        ArrayReader::fromArray($this->getDetalle(0))->getAsString('NmbItem') ?? '',
                         0,
                         40
                     ),
@@ -716,10 +718,12 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function jsonSerialize(): array
     {
         $array = $this->toArray();
-        if ($array['ted'] !== null) {
-            $array['ted'] = base64_encode($array['ted']);
+        $reader = ArrayReader::fromArray($array);
+        $ted = $reader->getString('ted');
+        if ($ted !== null) {
+            $array['ted'] = base64_encode($ted);
         }
-        $array['xml'] = base64_encode($array['xml']);
+        $array['xml'] = base64_encode($reader->requireString('xml'));
 
         return $array;
     }

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -31,6 +32,7 @@ use Derafu\Cache\Memoizer;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
@@ -102,7 +104,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         // Obtener el token desde la caché. Si no hay uno o está expirado, se
         // calcula una sola vez (incluso ante accesos concurrentes) y se
         // guarda en la caché.
-        return $this->memoizer->remember(
+        return ValueCaster::requireString($this->memoizer->remember(
             $cache,
             $cacheKey,
             function () use ($request) {
@@ -117,7 +119,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
                 return $this->getTokenFromSii($request);
             },
             $request->getTokenTtl()
-        );
+        ));
     }
 
     /**
@@ -173,13 +175,16 @@ class AuthenticateJob extends AbstractJob implements JobInterface
         );
 
         // Extraer respuesta de la solicitud del token.
-        $response = $this->xmlService->decode($xmlResponse);
-        $estado = $response['SII:RESPUESTA']['SII:RESP_HDR']['ESTADO'] ?? null;
-        $token = $response['SII:RESPUESTA']['SII:RESP_BODY']['TOKEN'] ?? null;
+        $response = ArrayReader::fromArray(
+            $this->xmlService->decode($xmlResponse),
+            'GetTokenFromSeed'
+        );
+        $estado = $response->getAsString('SII:RESPUESTA.SII:RESP_HDR.ESTADO');
+        $token = $response->getAsString('SII:RESPUESTA.SII:RESP_BODY.TOKEN');
 
         // Validar respuesta de la solicitud del token.
         if ($estado !== '00' || $token === null || $token === '') {
-            $glosa = $response['SII:RESPUESTA']['SII:RESP_HDR']['GLOSA'] ?? null;
+            $glosa = $response->getAsString('SII:RESPUESTA.SII:RESP_HDR.GLOSA');
             throw new AuthenticateException([
                 'Could not obtain the token to authenticate user {user} with the SII. {detail}',
                 'user' => $request->requireCertificate()->getId(),
@@ -216,9 +221,12 @@ class AuthenticateJob extends AbstractJob implements JobInterface
             'CrSeed',
             'getSeed'
         );
-        $response = $this->xmlService->decode($xmlResponse);
-        $estado = $response['SII:RESPUESTA']['SII:RESP_HDR']['ESTADO'] ?? null;
-        $semilla = $response['SII:RESPUESTA']['SII:RESP_BODY']['SEMILLA'] ?? null;
+        $response = ArrayReader::fromArray(
+            $this->xmlService->decode($xmlResponse),
+            'CrSeed'
+        );
+        $estado = $response->getAsString('SII:RESPUESTA.SII:RESP_HDR.ESTADO');
+        $semilla = $response->getAsString('SII:RESPUESTA.SII:RESP_BODY.SEMILLA');
 
         if ($estado !== '00' || $semilla === null || $semilla === '') {
             throw new AuthenticateException(
@@ -226,7 +234,7 @@ class AuthenticateJob extends AbstractJob implements JobInterface
             );
         }
 
-        return (int) $semilla;
+        return $response->requireAsInt('SII:RESPUESTA.SII:RESP_BODY.SEMILLA');
     }
 
     /**

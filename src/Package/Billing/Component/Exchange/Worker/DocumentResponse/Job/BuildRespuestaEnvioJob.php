@@ -22,10 +22,12 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\RespuestaEnvio;
@@ -57,15 +59,16 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
      */
     public function build(ExchangeDocumentBag $bag): RespuestaEnvio
     {
-        $data = $bag->getData();
+        $data = ArrayReader::fromArray($bag->getData(), 'RespuestaEnvio');
         $certificate = $bag->getCertificate();
 
-        $recepcionEnvio = $data['recepcion_envio'] ?? null;
-        $resultadoDte = $data['resultado_dte'] ?? null;
+        $listType = ValueType::listOf(ValueType::map());
+        $recepcionEnvio = $data->get('recepcion_envio', $listType);
+        $resultadoDte = $data->get('resultado_dte', $listType) ?? [];
 
         $nroDetalles = $recepcionEnvio !== null
-            ? count((array) $recepcionEnvio)
-            : count((array) $resultadoDte);
+            ? count($recepcionEnvio)
+            : count($resultadoDte);
 
         $caratula = $this->normalizeCaratula($bag->getCaratula(), $nroDetalles);
 
@@ -76,11 +79,11 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
 
         if ($recepcionEnvio !== null) {
             $resultado['RecepcionEnvio'] = $this->normalizeRecepcionEnvio(
-                (array) $recepcionEnvio
+                $recepcionEnvio
             );
         } else {
             $resultado['ResultadoDTE'] = $this->normalizeResultadoDte(
-                (array) $resultadoDte
+                $resultadoDte
             );
         }
 
@@ -121,13 +124,13 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
     {
         return array_merge([
             '@attributes' => ['version' => '1.0'],
-            'RutResponde' => false,
-            'RutRecibe' => false,
+            'RutResponde' => null,
+            'RutRecibe' => null,
             'IdRespuesta' => 0,
             'NroDetalles' => $nroDetalles,
-            'NmbContacto' => false,
-            'FonoContacto' => false,
-            'MailContacto' => false,
+            'NmbContacto' => null,
+            'FonoContacto' => null,
+            'MailContacto' => null,
             'TmstFirmaResp' => date('Y-m-d\TH:i:s'),
         ], $caratula);
     }
@@ -143,17 +146,17 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
         $normalized = [];
         foreach ($recepcionEnvio as $recepcion) {
             $normalized[] = array_merge([
-                'NmbEnvio' => false,
+                'NmbEnvio' => null,
                 'FchRecep' => date('Y-m-d\TH:i:s'),
                 'CodEnvio' => 0,
-                'EnvioDTEID' => false,
-                'Digest' => false,
-                'RutEmisor' => false,
-                'RutReceptor' => false,
-                'EstadoRecepEnv' => false,
-                'RecepEnvGlosa' => false,
-                'NroDTE' => false,
-                'RecepcionDTE' => false,
+                'EnvioDTEID' => null,
+                'Digest' => null,
+                'RutEmisor' => null,
+                'RutReceptor' => null,
+                'EstadoRecepEnv' => null,
+                'RecepEnvGlosa' => null,
+                'NroDTE' => null,
+                'RecepcionDTE' => null,
             ], $recepcion);
         }
 
@@ -171,16 +174,16 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
         $normalized = [];
         foreach ($resultadoDte as $resultado) {
             $normalized[] = array_merge([
-                'TipoDTE' => false,
-                'Folio' => false,
-                'FchEmis' => false,
-                'RUTEmisor' => false,
-                'RUTRecep' => false,
-                'MntTotal' => false,
-                'CodEnvio' => false,
-                'EstadoDTE' => false,
-                'EstadoDTEGlosa' => false,
-                'CodRchDsc' => false,
+                'TipoDTE' => null,
+                'Folio' => null,
+                'FchEmis' => null,
+                'RUTEmisor' => null,
+                'RUTRecep' => null,
+                'MntTotal' => null,
+                'CodEnvio' => null,
+                'EstadoDTE' => null,
+                'EstadoDTEGlosa' => null,
+                'CodRchDsc' => null,
             ], $resultado);
         }
 

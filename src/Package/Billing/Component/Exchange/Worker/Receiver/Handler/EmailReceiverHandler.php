@@ -23,6 +23,8 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Handler;
 
 use Derafu\Backbone\Attribute\Handler;
+use Derafu\Config\Contract\OptionsInterface;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractReceiverHandler;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
@@ -44,8 +46,10 @@ class EmailReceiverHandler extends AbstractReceiverHandler implements ExchangeHa
     {
         // Se necesitan los datos de transporte.
         $transport = $bag->getOptions()->get('transport');
-        $transport = is_array($transport) ? $transport : $transport?->all();
-        if (empty($transport)) {
+        if ($transport instanceof OptionsInterface) {
+            $transport = $transport->all();
+        }
+        if ($transport === null || ValueType::array()->parse($transport, 'transport') === []) {
             return false;
         }
 

@@ -76,18 +76,18 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
-            'RutEmisorLibro'    => $bag->getEmisor()?->getRut() ?? false,
-            'RutEnvia'          => $bag->getCertificate()?->getId() ?? false,
+            'RutEmisorLibro'    => $bag->getEmisor()?->getRut(),
+            'RutEnvia'          => $bag->getCertificate()?->getId(),
             'PeriodoTributario' => date('Y-m'),
-            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? false,
-            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? false,
+            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? null,
+            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? null,
             'TipoOperacion'     => $bag->getTipo() === TipoLibro::VENTAS
                 ? TipoOperacion::VENTA->value
                 : TipoOperacion::COMPRA->value
             ,
             'TipoLibro'         => 'MENSUAL',
             'TipoEnvio'         => 'TOTAL',
-            'FolioNotificacion' => false,
+            'FolioNotificacion' => null,
         ], $bag->getCaratula());
     }
 
@@ -111,56 +111,56 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
     {
         // Valores por defecto.
         $default = [
-            'TpoDoc' => false,
-            'Emisor' => false,
-            'IndFactCompra' => false,
-            'NroDoc' => false,
-            'Anulado' => false,
-            'Operacion' => false,
+            'TpoDoc' => null,
+            'Emisor' => null,
+            'IndFactCompra' => null,
+            'NroDoc' => null,
+            'Anulado' => null,
+            'Operacion' => null,
             'TpoImp' => 1,
-            'TasaImp' => false,
-            'NumInt' => false,
-            'IndServicio' => false,
-            'IndSinCosto' => false,
-            'FchDoc' => false,
-            'CdgSIISucur' => false,
-            'RUTDoc' => false,
-            'RznSoc' => false,
-            'Extranjero' => false,
-            'TpoDocRef' => false,
-            'FolioDocRef' => false,
-            'MntExe' => false,
-            'MntNeto' => false,
-            'MntIVA' => false,
-            'MntActivoFijo' => false,
-            'MntIVAActivoFijo' => false,
-            'IVANoRec' => false,
-            'IVAUsoComun' => false,
-            'IVAFueraPlazo' => false,
-            'IVAPropio' => false,
-            'IVATerceros' => false,
-            'Ley18211' => false,
-            'OtrosImp' => false,
-            'MntSinCred' => false,
-            'IVARetTotal' => false,
-            'IVARetParcial' => false,
-            'CredEC' => false,
-            'DepEnvase' => false,
-            'Liquidaciones' => false,
-            'MntTotal' => false,
-            'IVANoRetenido' => false,
-            'MntNoFact' => false,
-            'MntPeriodo' => false,
-            'PsjNac' => false,
-            'PsjInt' => false,
-            'TabPuros' => false,
-            'TabCigarrillos' => false,
-            'TabElaborado' => false,
-            'ImpVehiculo' => false,
+            'TasaImp' => null,
+            'NumInt' => null,
+            'IndServicio' => null,
+            'IndSinCosto' => null,
+            'FchDoc' => null,
+            'CdgSIISucur' => null,
+            'RUTDoc' => null,
+            'RznSoc' => null,
+            'Extranjero' => null,
+            'TpoDocRef' => null,
+            'FolioDocRef' => null,
+            'MntExe' => null,
+            'MntNeto' => null,
+            'MntIVA' => null,
+            'MntActivoFijo' => null,
+            'MntIVAActivoFijo' => null,
+            'IVANoRec' => null,
+            'IVAUsoComun' => null,
+            'IVAFueraPlazo' => null,
+            'IVAPropio' => null,
+            'IVATerceros' => null,
+            'Ley18211' => null,
+            'OtrosImp' => null,
+            'MntSinCred' => null,
+            'IVARetTotal' => null,
+            'IVARetParcial' => null,
+            'CredEC' => null,
+            'DepEnvase' => null,
+            'Liquidaciones' => null,
+            'MntTotal' => null,
+            'IVANoRetenido' => null,
+            'MntNoFact' => null,
+            'MntPeriodo' => null,
+            'PsjNac' => null,
+            'PsjInt' => null,
+            'TabPuros' => null,
+            'TabCigarrillos' => null,
+            'TabElaborado' => null,
+            'ImpVehiculo' => null,
         ];
 
         // Normalizar los campos del detalle.
-        $detalle = array_merge($default, $detalle);
+        $detalle = array_merge($default, ArrayCaster::nullify($detalle, [false]));
 
         // Si está anulado, se mantiene solo el mínimo requerido.
         if (!empty($detalle['Anulado']) && $detalle['Anulado'] === 'A') {
@@ -181,10 +181,10 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
 
         // Calcular IVA de uso común si hay factor de proporcionalidad.
         if (isset($detalle['FctProp'])) {
-            if ($detalle['IVAUsoComun'] === false) {
+            if ($detalle['IVAUsoComun'] === null) {
                 $detalle['IVAUsoComun'] = $this->percentOfNet($detalle);
             }
-        } elseif ($detalle['MntIVA'] === false && !is_array($detalle['IVANoRec']) && $detalle['IVAUsoComun'] === false && $detalle['TasaImp'] && $detalle['MntNeto']) {
+        } elseif ($detalle['MntIVA'] === null && !is_array($detalle['IVANoRec']) && $detalle['IVAUsoComun'] === null && $detalle['TasaImp'] && $detalle['MntNeto']) {
             // Calcular IVA si falta y no hay IVA no recuperable.
             $detalle['MntIVA'] = $this->percentOfNet($detalle);
         }
@@ -218,12 +218,12 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             // Si el IVA retenido es parcial.
             else {
                 $detalle['IVARetParcial'] = $ivaRetenido;
-                $detalle['IVANoRetenido'] = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']))->getAsInt('MntIVA', 0) - $ivaRetenido;
+                $detalle['IVANoRetenido'] = $impuestos->getAsInt('MntIVA', 0) - $ivaRetenido;
             }
         }
 
         // Calcular monto total si falta.
-        if ($detalle['MntTotal'] === false) {
+        if ($detalle['MntTotal'] === null) {
             $montos = ArrayReader::fromArray(ArrayCaster::nullify($detalle, [false, '']));
             $total = $montos->getAsInt('MntExe', 0) + $montos->getAsInt('MntNeto', 0) + $montos->getAsInt('MntIVA', 0);
             foreach ($ivaNoRec as $iva) {
@@ -247,18 +247,18 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
         }
 
         // Si hay monto neto pero MntIVA no fue asignado, declararlo como 0.
-        if ($detalle['MntNeto'] !== false && $detalle['MntIVA'] === false) {
+        if ($detalle['MntNeto'] !== null && $detalle['MntIVA'] === null) {
             $detalle['MntIVA'] = 0;
         }
 
         // Si no hay monto neto, quitar campos de IVA.
-        if ($detalle['MntNeto'] === false) {
-            $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = false;
+        if ($detalle['MntNeto'] === null) {
+            $detalle['MntNeto'] = $detalle['TasaImp'] = $detalle['MntIVA'] = null;
         }
 
         // Limpiar código de sucursal si es 0 o vacío.
         if (!$detalle['CdgSIISucur']) {
-            $detalle['CdgSIISucur'] = false;
+            $detalle['CdgSIISucur'] = null;
         }
 
         // Retornar el detalle normalizado.

@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Factory;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface;
@@ -48,7 +49,9 @@ class ReceptorFactory extends AbstractContribuyenteFactory implements ReceptorFa
     {
         $data = $this->normalizeData($data);
 
-        [$data['rut'], $data['dv']] = Rut::toArray($data['rut']);
+        [$data['rut'], $data['dv']] = Rut::toArray(
+            ValueCaster::requireString($data['rut'])
+        );
 
         return Factory::create($data, $this->class);
     }
@@ -59,29 +62,21 @@ class ReceptorFactory extends AbstractContribuyenteFactory implements ReceptorFa
     protected function normalizeData(array $data): array
     {
         $normalized = parent::normalizeData($data);
+        $reader = $this->createReader($data);
 
         $normalized['codigo_interno'] = (
-            (string) (
-                $data['codigo_interno']
-                ?? $data['CdgIntRecep']
-                ?? null
-            )
+            $reader->getAsString('codigo_interno')
+            ?? $reader->getAsString('CdgIntRecep')
         ) ?: null;
 
         $normalized['nacionalidad'] = (
-            (string) (
-                $data['nacionalidad']
-                ?? $data['Nacionalidad']
-                ?? null
-            )
+            $reader->getAsString('nacionalidad')
+            ?? $reader->getAsString('Nacionalidad')
         ) ?: null;
 
         $normalized['identificador_extranjero'] = (
-            (string) (
-                $data['identificador_extranjero']
-                ?? $data['NumId']
-                ?? null
-            )
+            $reader->getAsString('identificador_extranjero')
+            ?? $reader->getAsString('NumId')
         ) ?: null;
 
         return $normalized;

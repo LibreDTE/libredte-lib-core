@@ -272,7 +272,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         // que los caracteres especiales se obtengan como "ï¿½", por lo cual se
         // reemplazan en la respuesta por "?" para que sea "un poco" más
         // legible la respuesta del SII.
-        $responseBody = str_replace(['ï¿½', '�'], '?', $responseBody);
+        $responseBody = str_replace(['ï¿½', '�'], '?', ValueCaster::requireString($responseBody));
 
         // Entregar el resultado como un documento XML.
         $xmlDocument = new XmlDocument();

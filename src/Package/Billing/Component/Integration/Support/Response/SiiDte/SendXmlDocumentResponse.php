@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Array\ArrayReader;
 use JsonSerializable;
 
 /**
@@ -38,7 +39,7 @@ class SendXmlDocumentResponse implements JsonSerializable
      */
     public function __construct(array $response/*, array $request = []*/)
     {
-        $this->trackId = (int) ($response['RECEPCIONDTE']['TRACKID'] ?? 0);
+        $this->trackId = ArrayReader::fromArray($response, 'SII response')->getAsInt('RECEPCIONDTE.TRACKID', 0);
     }
 
     /**

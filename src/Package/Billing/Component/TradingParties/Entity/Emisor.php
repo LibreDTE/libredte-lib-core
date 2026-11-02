@@ -323,7 +323,7 @@ class Emisor extends Contribuyente implements EmisorInterface
                 $Acteco = $Acteco[0];
             }
         } else {
-            $Acteco = false;
+            $Acteco = null;
         }
 
         // Determinar el tag Telefono del XML del DTE.
@@ -335,27 +335,26 @@ class Emisor extends Contribuyente implements EmisorInterface
                 $Telefono = $Telefono[0];
             }
         } else {
-            $Telefono = false;
+            $Telefono = null;
         }
 
         // Entregar los datos del emisor como el nodo Emisor del XML del DTE.
         return [
             'RUTEmisor' => $this->getRut(),
             'RznSoc' => $this->getRazonSocial(),
-            'GiroEmis' => $this->getGiro() ?? false,
+            'GiroEmis' => $this->getGiro(),
             'Telefono' => $Telefono,
             'CorreoEmisor' => $this->getEmail()
                 ?? $this->getCorreoIntercambioDte()
-                ?? false
             ,
             'Acteco' => $Acteco,
             // 'GuiaExport' => $this->,
-            'Sucursal' => $this->getSucursal() ?? false,
-            'CdgSIISucur' => $this->getCodigoSucursal() ?? false,
-            'DirOrigen' => $this->getDireccion() ?? false,
-            'CmnaOrigen' => $this->getComuna() ?? false,
-            'CiudadOrigen' => $this->getCiudad() ?? false,
-            'CdgVendedor' => $this->getVendedor() ?? false,
+            'Sucursal' => $this->getSucursal(),
+            'CdgSIISucur' => $this->getCodigoSucursal(),
+            'DirOrigen' => $this->getDireccion(),
+            'CmnaOrigen' => $this->getComuna(),
+            'CiudadOrigen' => $this->getCiudad(),
+            'CdgVendedor' => $this->getVendedor(),
             // 'IdAdicEmisor' => $this->,
             // 'RUTProveedor' => $this->,
             // 'RznSocProveedor' => $this->,

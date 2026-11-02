@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -66,7 +67,9 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      */
     public function execute(DocumentBagInterface $bag): void
     {
-        $data = $bag->requireNormalizedData();
+        // Los datos pueden traer `false` como valor ausente. Desde acá la
+        // ausencia de un valor es `null`.
+        $data = ArrayCaster::nullify($bag->requireNormalizedData(), [false]);
 
         $this->normalizeDefaultTags(
             $data,
@@ -89,84 +92,84 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Completar con campos por defecto.
      *
      * @param array<array-key, mixed> $data
-     * @param int|false $IndServicio
+     * @param int|null $IndServicio
      * @return void
      */
     private function normalizeDefaultTags(
         array &$data,
-        int|false $IndServicio
+        ?int $IndServicio
     ): void {
         $data = array_replace_recursive([
             'Encabezado' => [
                 'IdDoc' => [
-                    'TipoDTE' => false,
-                    'Folio' => false,
+                    'TipoDTE' => null,
+                    'Folio' => null,
                     'FchEmis' => date('Y-m-d'),
-                    'IndNoRebaja' => false,
-                    'TipoDespacho' => false,
-                    'IndTraslado' => false,
-                    'TpoImpresion' => false,
+                    'IndNoRebaja' => null,
+                    'TipoDespacho' => null,
+                    'IndTraslado' => null,
+                    'TpoImpresion' => null,
                     'IndServicio' => $IndServicio,
-                    'MntBruto' => false,
-                    'TpoTranCompra' => false,
-                    'TpoTranVenta' => false,
-                    'FmaPago' => false,
-                    'FmaPagExp' => false,
-                    'MntCancel' => false,
-                    'SaldoInsol' => false,
-                    'FchCancel' => false,
-                    'MntPagos' => false,
-                    'PeriodoDesde' => false,
-                    'PeriodoHasta' => false,
-                    'MedioPago' => false,
-                    'TpoCtaPago' => false,
-                    'NumCtaPago' => false,
-                    'BcoPago' => false,
-                    'TermPagoCdg' => false,
-                    'TermPagoGlosa' => false,
-                    'TermPagoDias' => false,
-                    'FchVenc' => false,
+                    'MntBruto' => null,
+                    'TpoTranCompra' => null,
+                    'TpoTranVenta' => null,
+                    'FmaPago' => null,
+                    'FmaPagExp' => null,
+                    'MntCancel' => null,
+                    'SaldoInsol' => null,
+                    'FchCancel' => null,
+                    'MntPagos' => null,
+                    'PeriodoDesde' => null,
+                    'PeriodoHasta' => null,
+                    'MedioPago' => null,
+                    'TpoCtaPago' => null,
+                    'NumCtaPago' => null,
+                    'BcoPago' => null,
+                    'TermPagoCdg' => null,
+                    'TermPagoGlosa' => null,
+                    'TermPagoDias' => null,
+                    'FchVenc' => null,
                 ],
                 'Emisor' => [
-                    'RUTEmisor' => false,
-                    'RznSoc' => false,
-                    'GiroEmis' => false,
-                    'Telefono' => false,
-                    'CorreoEmisor' => false,
-                    'Acteco' => false,
-                    'GuiaExport' => false,
-                    'Sucursal' => false,
-                    'CdgSIISucur' => false,
-                    'DirOrigen' => false,
-                    'CmnaOrigen' => false,
-                    'CiudadOrigen' => false,
-                    'CdgVendedor' => false,
-                    'IdAdicEmisor' => false,
+                    'RUTEmisor' => null,
+                    'RznSoc' => null,
+                    'GiroEmis' => null,
+                    'Telefono' => null,
+                    'CorreoEmisor' => null,
+                    'Acteco' => null,
+                    'GuiaExport' => null,
+                    'Sucursal' => null,
+                    'CdgSIISucur' => null,
+                    'DirOrigen' => null,
+                    'CmnaOrigen' => null,
+                    'CiudadOrigen' => null,
+                    'CdgVendedor' => null,
+                    'IdAdicEmisor' => null,
                 ],
                 'Receptor' => [
-                    'RUTRecep' => false,
-                    'CdgIntRecep' => false,
-                    'RznSocRecep' => false,
-                    'Extranjero' => false,
-                    'GiroRecep' => false,
-                    'Contacto' => false,
-                    'CorreoRecep' => false,
-                    'DirRecep' => false,
-                    'CmnaRecep' => false,
-                    'CiudadRecep' => false,
-                    'DirPostal' => false,
-                    'CmnaPostal' => false,
-                    'CiudadPostal' => false,
+                    'RUTRecep' => null,
+                    'CdgIntRecep' => null,
+                    'RznSocRecep' => null,
+                    'Extranjero' => null,
+                    'GiroRecep' => null,
+                    'Contacto' => null,
+                    'CorreoRecep' => null,
+                    'DirRecep' => null,
+                    'CmnaRecep' => null,
+                    'CiudadRecep' => null,
+                    'DirPostal' => null,
+                    'CmnaPostal' => null,
+                    'CiudadPostal' => null,
                 ],
                 'Totales' => [
-                    'TpoMoneda' => false,
+                    'TpoMoneda' => null,
                 ],
             ],
-            'Detalle' => false,
-            'SubTotInfo' => false,
-            'DscRcgGlobal' => false,
-            'Referencia' => false,
-            'Comisiones' => false,
+            'Detalle' => null,
+            'SubTotInfo' => null,
+            'DscRcgGlobal' => null,
+            'Referencia' => null,
+            'Comisiones' => null,
         ], $data);
     }
 
@@ -237,13 +240,13 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         foreach ($data['Referencia'] as &$r) {
             $r = array_merge([
                 'NroLinRef' => $NroLinRef++,
-                'TpoDocRef' => false,
-                'IndGlobal' => false,
-                'FolioRef' => false,
-                'RUTOtr' => false,
+                'TpoDocRef' => null,
+                'IndGlobal' => null,
+                'FolioRef' => null,
+                'RUTOtr' => null,
                 'FchRef' => date('Y-m-d'),
-                'CodRef' => false,
-                'RazonRef' => false,
+                'CodRef' => null,
+                'RazonRef' => null,
             ], $r);
 
             // Si la fecha de la referencia se pasó como entero es un timestamp
@@ -293,44 +296,44 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
 
         // Actualizar $data si es necesario.
         $data['Encabezado']['Emisor']['RUTEmisor'] =
-            ($data['Encabezado']['Emisor']['RUTEmisor'] ?? false)
+            ($data['Encabezado']['Emisor']['RUTEmisor'] ?? null)
             ?: $emisor->getRut()
         ;
         $data['Encabezado']['Emisor']['RznSoc'] =
-            ($data['Encabezado']['Emisor']['RznSoc'] ?? false)
+            ($data['Encabezado']['Emisor']['RznSoc'] ?? null)
             ?: $emisor->getRazonSocial()
         ;
         $data['Encabezado']['Emisor']['GiroEmis'] =
-            ($data['Encabezado']['Emisor']['GiroEmis'] ?? false)
-            ?: ($emisor->getGiro() ?? false)
+            ($data['Encabezado']['Emisor']['GiroEmis'] ?? null)
+            ?: ($emisor->getGiro() ?? null)
         ;
         $data['Encabezado']['Emisor']['Telefono'] =
-            ($data['Encabezado']['Emisor']['Telefono'] ?? false)
-            ?: ($emisor->getTelefono() ?? false)
+            ($data['Encabezado']['Emisor']['Telefono'] ?? null)
+            ?: ($emisor->getTelefono() ?? null)
         ;
         $data['Encabezado']['Emisor']['CorreoEmisor'] =
-            ($data['Encabezado']['Emisor']['CorreoEmisor'] ?? false)
-            ?: ($emisor->getEmail() ?? false)
+            ($data['Encabezado']['Emisor']['CorreoEmisor'] ?? null)
+            ?: ($emisor->getEmail() ?? null)
         ;
         $data['Encabezado']['Emisor']['Acteco'] =
-            ($data['Encabezado']['Emisor']['Acteco'] ?? false)
-            ?: ($emisor->getActividadEconomica() ?? false)
+            ($data['Encabezado']['Emisor']['Acteco'] ?? null)
+            ?: ($emisor->getActividadEconomica() ?? null)
         ;
         $data['Encabezado']['Emisor']['DirOrigen'] =
-            ($data['Encabezado']['Emisor']['DirOrigen'] ?? false)
-            ?: ($emisor->getDireccion() ?? false)
+            ($data['Encabezado']['Emisor']['DirOrigen'] ?? null)
+            ?: ($emisor->getDireccion() ?? null)
         ;
         $data['Encabezado']['Emisor']['CmnaOrigen'] =
-            ($data['Encabezado']['Emisor']['CmnaOrigen'] ?? false)
-            ?: ($emisor->getComuna() ?? false)
+            ($data['Encabezado']['Emisor']['CmnaOrigen'] ?? null)
+            ?: ($emisor->getComuna() ?? null)
         ;
         $data['Encabezado']['Emisor']['CdgSIISucur'] =
-            ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? false)
-            ?: ($emisor->getCodigoSucursal() ?? false)
+            ($data['Encabezado']['Emisor']['CdgSIISucur'] ?? null)
+            ?: ($emisor->getCodigoSucursal() ?? null)
         ;
         $data['Encabezado']['Emisor']['CdgVendedor'] =
-            ($data['Encabezado']['Emisor']['CdgVendedor'] ?? false)
-            ?: ($emisor->getVendedor() ?? false)
+            ($data['Encabezado']['Emisor']['CdgVendedor'] ?? null)
+            ?: ($emisor->getVendedor() ?? null)
         ;
 
         // Si la comuna es un número se asume que es el código oficial.
@@ -370,32 +373,32 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
 
         // Actualizar $data si es necesario.
         $data['Encabezado']['Receptor']['RUTRecep'] =
-            ($data['Encabezado']['Receptor']['RUTRecep'] ?? false)
+            ($data['Encabezado']['Receptor']['RUTRecep'] ?? null)
             ?: $receptor->getRut()
         ;
         $data['Encabezado']['Receptor']['RznSocRecep'] =
-            ($data['Encabezado']['Receptor']['RznSocRecep'] ?? false)
+            ($data['Encabezado']['Receptor']['RznSocRecep'] ?? null)
             ?: $receptor->getRazonSocial()
         ;
         $data['Encabezado']['Receptor']['GiroRecep'] =
-            ($data['Encabezado']['Receptor']['GiroRecep'] ?? false)
-            ?: ($receptor->getGiro() ?? false)
+            ($data['Encabezado']['Receptor']['GiroRecep'] ?? null)
+            ?: ($receptor->getGiro() ?? null)
         ;
         $data['Encabezado']['Receptor']['Contacto'] =
-            ($data['Encabezado']['Receptor']['Contacto'] ?? false)
-            ?: ($receptor->getTelefono() ?? false)
+            ($data['Encabezado']['Receptor']['Contacto'] ?? null)
+            ?: ($receptor->getTelefono() ?? null)
         ;
         $data['Encabezado']['Receptor']['CorreoRecep'] =
-            ($data['Encabezado']['Receptor']['CorreoRecep'] ?? false)
-            ?: ($receptor->getEmail() ?? false)
+            ($data['Encabezado']['Receptor']['CorreoRecep'] ?? null)
+            ?: ($receptor->getEmail() ?? null)
         ;
         $data['Encabezado']['Receptor']['DirRecep'] =
-            ($data['Encabezado']['Receptor']['DirRecep'] ?? false)
-            ?: ($receptor->getDireccion() ?? false)
+            ($data['Encabezado']['Receptor']['DirRecep'] ?? null)
+            ?: ($receptor->getDireccion() ?? null)
         ;
         $data['Encabezado']['Receptor']['CmnaRecep'] =
-            ($data['Encabezado']['Receptor']['CmnaRecep'] ?? false)
-            ?: ($receptor->getComuna() ?? false)
+            ($data['Encabezado']['Receptor']['CmnaRecep'] ?? null)
+            ?: ($receptor->getComuna() ?? null)
         ;
 
         // Si la comuna es un número se asume que es el código oficial.

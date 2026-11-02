@@ -23,10 +23,12 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
 use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Signature\Exception\SignatureException;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Exception\XmlException;
 use Exception;
 use libredte\lib\Core\Application;
@@ -256,18 +258,21 @@ class BatchProcessorWorkerTest extends TestCase
         ;
 
         $file = self::getFixturesPath('emision_masiva/emision_masiva.csv');
-        $expected = Yaml::parseFile(
-            self::getFixturesPath('emision_masiva/emision_masiva.yaml')
+        $expected = ArrayReader::fromValue(
+            Yaml::parseFile(
+                self::getFixturesPath('emision_masiva/emision_masiva.yaml')
+            ),
+            'emision_masiva.yaml'
         );
 
         $documentsBag = $this->processFile($file);
 
         $documentCount = count($documentsBag);
-        $this->assertSame($expected['cantidad'], $documentCount);
+        $this->assertSame($expected->requireInt('cantidad'), $documentCount);
 
         for ($i = 0; $i < $documentCount; $i++) {
             $documentBag = $documentsBag[$i];
-            $expectedData = $expected['documentos'][$i] ?? null;
+            $expectedData = $expected->getMap('documentos.' . $i);
             if ($expectedData === null) {
                 throw new LogicException(sprintf(
                     'Expected values for document %d in file %s are not defined',
@@ -336,8 +341,8 @@ class BatchProcessorWorkerTest extends TestCase
                     sprintf(
                         'Field %s (%s) does not match expected %s in document %d (%s).',
                         $expectedKey,
-                        $actualValue,
-                        $expectedValue,
+                        ValueCaster::toString($actualValue),
+                        ValueCaster::toString($expectedValue),
                         $i + 1,
                         $documentBag->getId()
                     )
@@ -347,19 +352,24 @@ class BatchProcessorWorkerTest extends TestCase
     }
 
     /**
-     * @return array<string, array{string, mixed, mixed}>
+     * @return array<string, array{string, string, string}>
      */
     public static function provideErrorFiles(): array
     {
         $dir = self::getFixturesPath('emision_masiva/errores');
-        $cases = Yaml::parseFile($dir . '/errores.yaml');
+        $cases = ValueType::mapOf(ValueType::map())->parse(
+            Yaml::parseFile($dir . '/errores.yaml'),
+            '',
+            'errores.yaml'
+        );
 
         $files = [];
         foreach ($cases as $fileName => $caseDefinition) {
+            $case = ArrayReader::fromArray($caseDefinition, $fileName);
             $files[$fileName] = [
                 $dir . '/' . $fileName,
-                $caseDefinition['exception'],
-                $caseDefinition['message'],
+                $case->requireString('exception'),
+                $case->requireString('message'),
             ];
         }
 
@@ -397,7 +407,7 @@ class BatchProcessorWorkerTest extends TestCase
         $this->assertCount(1, $documentsBag);
         $parsed = $documentsBag[0]->getParsedData();
         $this->assertNotNull($parsed);
-        $pdfFileName = $parsed['LibreDTE']['pdf']['nombre'];
+        $pdfFileName = ArrayReader::fromArray($parsed)->requireString('LibreDTE.pdf.nombre');
         $this->assertSame(100, mb_strlen($pdfFileName));
     }
 
@@ -410,18 +420,19 @@ class BatchProcessorWorkerTest extends TestCase
         $this->assertCount(1, $documentsBag);
         $parsed = $documentsBag[0]->getParsedData();
         $this->assertNotNull($parsed);
+        $reader = ArrayReader::fromArray($parsed);
         $this->assertSame(
             'Peña Ñandú Ltda',
-            $parsed['Encabezado']['Receptor']['RznSocRecep']
+            $reader->requireString('Encabezado.Receptor.RznSocRecep')
         );
         $this->assertSame(
             'Asesoría y Diseño',
-            $parsed['Encabezado']['Receptor']['GiroRecep']
+            $reader->requireString('Encabezado.Receptor.GiroRecep')
         );
-        $this->assertSame('Café', $parsed['Detalle'][0]['NmbItem']);
+        $this->assertSame('Café', $reader->requireString('Detalle.0.NmbItem'));
         $this->assertSame(
             'Descripción: á é í ó ú ñ',
-            $parsed['Detalle'][0]['DscItem']
+            $reader->requireString('Detalle.0.DscItem')
         );
     }
 

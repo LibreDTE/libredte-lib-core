@@ -52,20 +52,20 @@ trait NormalizeDescuentosRecargosTrait
 
             foreach ($data['DscRcgGlobal'] as &$dr) {
                 $dr = array_merge([
-                    'NroLinDR' => false,
-                    'TpoMov' => false,
-                    'GlosaDR' => false,
-                    'TpoValor' => false,
-                    'ValorDR' => false,
-                    'ValorDROtrMnda' => false,
-                    'IndExeDR' => false,
+                    'NroLinDR' => null,
+                    'TpoMov' => null,
+                    'GlosaDR' => null,
+                    'TpoValor' => null,
+                    'ValorDR' => null,
+                    'ValorDROtrMnda' => null,
+                    'IndExeDR' => null,
                 ], $dr);
                 if ($bag->requireTipoDocumento()->isExportacion()) {
                     $dr['IndExeDR'] = 1;
                 }
 
                 // Determinar a que aplicar el descuento/recargo.
-                if (!isset($dr['IndExeDR']) || $dr['IndExeDR'] === false) {
+                if (!isset($dr['IndExeDR'])) {
                     $monto = $data['Encabezado']['IdDoc']['TipoDTE'] === 39
                         ? 'MntTotal'
                         : 'MntNeto'

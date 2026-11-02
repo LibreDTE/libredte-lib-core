@@ -43,7 +43,7 @@ abstract class AbstractExchangeWorker extends AbstractWorker implements WorkerIn
     public function handle(ExchangeBagInterface $bag): array
     {
         // Obtener el listado de handlers que se deben utilizar con la bolsa.
-        $handlers = $bag->getOptions()->get('handlers', null)
+        $handlers = $bag->getOptions()->getReader()->getStringList('handlers')
             ?? array_keys($this->getHandlers())
         ;
         $bag->getOptions()->clear('handlers');

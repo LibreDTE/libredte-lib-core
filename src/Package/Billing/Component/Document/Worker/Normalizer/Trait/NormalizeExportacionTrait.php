@@ -52,7 +52,7 @@ trait NormalizeExportacionTrait
         }
 
         // Quitar campos que no son parte del documento de exportacion.
-        $data['Encabezado']['Receptor']['CmnaRecep'] = false;
+        $data['Encabezado']['Receptor']['CmnaRecep'] = null;
 
         // Colocar forma de pago de exportación.
         if (!empty($data['Encabezado']['IdDoc']['FmaPago'])) {
@@ -63,7 +63,7 @@ trait NormalizeExportacionTrait
             if ($formaPago !== null && isset($formas[$formaPago])) {
                 $data['Encabezado']['IdDoc']['FmaPagExp'] = $formas[$formaPago];
             }
-            $data['Encabezado']['IdDoc']['FmaPago'] = false;
+            $data['Encabezado']['IdDoc']['FmaPago'] = null;
         }
 
         // Si es entrega gratuita se coloca el tipo de cambio en CLP en 0 para

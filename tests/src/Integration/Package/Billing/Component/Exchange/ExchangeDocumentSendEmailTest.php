@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Integration\Package\Billing\Component\Exchange;
 
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -87,6 +88,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\FormatterHandlerProvider;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
+use libredte\lib\Core\Provider\TemplatePathProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Yaml\Yaml;
@@ -150,6 +154,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
 #[CoversClass(TemplateDataFormatter::class)]
+#[CoversClass(FormatterHandlerProvider::class)]
+#[CoversClass(RepositorySourceProvider::class)]
+#[CoversClass(TemplatePathProvider::class)]
 class ExchangeDocumentSendEmailTest extends TestCase
 {
     private BuilderWorkerInterface $builder;
@@ -198,10 +205,8 @@ class ExchangeDocumentSendEmailTest extends TestCase
 
         // Load test case data.
         $yaml = ValueCaster::requireString(file_get_contents($file));
-        $data = Yaml::parse($yaml);
-        $test = $data['Test'];
+        $data = ValueType::map()->parse(Yaml::parse($yaml), '', basename($file));
         unset($data['Test']);
-        $test['caso'] = basename($file);
 
         // Create the document.
         // Do not sign or stamp; not relevant for this send operation.

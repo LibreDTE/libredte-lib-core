@@ -61,22 +61,22 @@ class NormalizeFacturaAfectaJob extends AbstractJob implements JobInterface
         // Completar con campos por defecto.
         $data = array_replace_recursive([
             'Encabezado' => [
-                'IdDoc' => false,
-                'Emisor' => false,
-                'RUTMandante' => false,
-                'Receptor' => false,
-                'RUTSolicita' => false,
-                'Transporte' => false,
+                'IdDoc' => null,
+                'Emisor' => null,
+                'RUTMandante' => null,
+                'Receptor' => null,
+                'RUTSolicita' => null,
+                'Transporte' => null,
                 'Totales' => [
                     'MntNeto' => 0,
-                    'MntExe' => false,
+                    'MntExe' => null,
                     'TasaIVA' => $bag->requireTipoDocumento()->getDefaultTasaIVA(),
                     'IVA' => 0,
-                    'ImptoReten' => false,
-                    'CredEC' => false,
+                    'ImptoReten' => null,
+                    'CredEC' => null,
                     'MntTotal' => 0,
                 ],
-                'OtraMoneda' => false,
+                'OtraMoneda' => null,
             ],
         ], $data);
 

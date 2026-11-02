@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Worker\Loader\Strategy\LibroBoletas;
 
+use Derafu\Array\ArrayCaster;
 use Derafu\Backbone\Attribute\Strategy;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
@@ -53,14 +54,14 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
-            'RutEmisorLibro' => $bag->getEmisor()?->getRut() ?? false,
-            'RutEnvia' => $bag->getCertificate()?->getId() ?? false,
+            'RutEmisorLibro' => $bag->getEmisor()?->getRut(),
+            'RutEnvia' => $bag->getCertificate()?->getId(),
             'PeriodoTributario' => date('Y-m'),
-            'FchResol' => $bag->getBookAuth()['FchResol'] ?? false,
-            'NroResol' => $bag->getBookAuth()['NroResol'] ?? false,
+            'FchResol' => $bag->getBookAuth()['FchResol'] ?? null,
+            'NroResol' => $bag->getBookAuth()['NroResol'] ?? null,
             'TipoLibro' => 'ESPECIAL',
             'TipoEnvio' => 'TOTAL',
-            'NroSegmento' => false,
+            'NroSegmento' => null,
             'FolioNotificacion' => 1,
         ], $bag->getCaratula());
     }
@@ -76,24 +77,24 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
     {
         // Valores por defecto.
         return array_merge([
-            'TpoDoc' => false,
-            'FolioDoc' => false,
-            'Anulado' => false,
+            'TpoDoc' => null,
+            'FolioDoc' => null,
+            'Anulado' => null,
             'TpoServ' => 3,
-            'FchEmiDoc' => false,
-            'FchVencDoc' => false,
-            'PeriodoDesde' => false,
-            'PeriodoHasta' => false,
-            'CdgSIISucur' => false,
-            'RUTCliente' => false,
-            'CodIntCli' => false,
-            'MntExe' => false,
-            'MntTotal' => false,
-            'MntNoFact' => false,
-            'MntPeriodo' => false,
-            'SaldoAnt' => false,
-            'VlrPagar' => false,
-            'TotTicketBoleta' => false,
-        ], $detalle);
+            'FchEmiDoc' => null,
+            'FchVencDoc' => null,
+            'PeriodoDesde' => null,
+            'PeriodoHasta' => null,
+            'CdgSIISucur' => null,
+            'RUTCliente' => null,
+            'CodIntCli' => null,
+            'MntExe' => null,
+            'MntTotal' => null,
+            'MntNoFact' => null,
+            'MntPeriodo' => null,
+            'SaldoAnt' => null,
+            'VlrPagar' => null,
+            'TotTicketBoleta' => null,
+        ], ArrayCaster::nullify($detalle, [false]));
     }
 }

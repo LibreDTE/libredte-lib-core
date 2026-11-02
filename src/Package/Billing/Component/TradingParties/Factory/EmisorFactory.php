@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Factory;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
@@ -49,26 +50,26 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
     {
         $normalized = $this->normalizeData($data);
 
-        [$normalized['rut'], $normalized['dv']] = Rut::toArray($normalized['rut']);
+        [$normalized['rut'], $normalized['dv']] = Rut::toArray(
+            ValueCaster::requireString($normalized['rut'])
+        );
 
         $emisor = Factory::create($normalized, $this->class);
 
-        $autorizacion_dte = $data['autorizacion_dte']
-            ?? $data['autorizacionDte']
-            ?? null
+        $reader = $this->createReader($data);
+        $autorizacion_dte = $reader->getReader('autorizacion_dte')
+            ?? $reader->getReader('autorizacionDte')
         ;
 
-        if (!empty($autorizacion_dte)) {
+        if ($autorizacion_dte !== null && $autorizacion_dte->toArray() !== []) {
             $emisor->setAutorizacionDte(
                 new AutorizacionDte(
-                    $autorizacion_dte['fecha_resolucion']
-                        ?? $autorizacion_dte['FchResol']
+                    $autorizacion_dte->getAsString('fecha_resolucion')
+                        ?? $autorizacion_dte->getAsString('FchResol')
                         ?? '',
-                    (int) (
-                        $autorizacion_dte['numero_resolucion']
-                        ?? $autorizacion_dte['NroResol']
+                    $autorizacion_dte->getAsInt('numero_resolucion')
+                        ?? $autorizacion_dte->getAsInt('NroResol')
                         ?? 0
-                    )
                 )
             );
         }
@@ -82,37 +83,24 @@ class EmisorFactory extends AbstractContribuyenteFactory implements EmisorFactor
     protected function normalizeData(array $data): array
     {
         $normalized = parent::normalizeData($data);
+        $reader = $this->createReader($data);
 
         $normalized['sucursal'] = (
-            (string) (
-                $data['sucursal']
-                ?? $data['Sucursal']
-                ?? null
-            )
+            $reader->getAsString('sucursal')
+            ?? $reader->getAsString('Sucursal')
         ) ?: null;
 
         $normalized['codigo_sucursal'] = (
-            (int) (
-                $data['codigo_sucursal']
-                ?? $data['CdgSIISucur']
-                ?? null
-            )
+            $reader->getAsInt('codigo_sucursal')
+            ?? $reader->getAsInt('CdgSIISucur')
         ) ?: null;
 
         $normalized['vendedor'] = (
-            (string) (
-                $data['vendedor']
-                ?? $data['CdgVendedor']
-                ?? null
-            )
+            $reader->getAsString('vendedor')
+            ?? $reader->getAsString('CdgVendedor')
         ) ?: null;
 
-        $normalized['logo'] = (
-            (string) (
-                $data['logo']
-                ?? null
-            )
-        ) ?: null;
+        $normalized['logo'] = $reader->getAsString('logo') ?: null;
 
         return $normalized;
     }

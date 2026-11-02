@@ -92,7 +92,7 @@ interface BookInterface extends JsonSerializable
     /**
      * Entrega los registros de detalle del libro.
      *
-     * @return array<array-key, mixed>
+     * @return array<int, array<string, mixed>>
      */
     public function getDetalle(): array;
 

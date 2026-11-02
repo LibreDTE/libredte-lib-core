@@ -122,9 +122,9 @@ abstract class AbstractOwnershipTransferDocument implements JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        $array = $this->toArray();
-        $array['xml'] = base64_encode($array['xml']);
-
-        return $array;
+        return [
+            ...$this->toArray(),
+            'xml' => base64_encode($this->saveXml()),
+        ];
     }
 }

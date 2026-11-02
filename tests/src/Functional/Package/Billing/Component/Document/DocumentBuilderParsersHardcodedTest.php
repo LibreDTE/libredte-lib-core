@@ -63,6 +63,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\ReceptorF
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
@@ -104,6 +105,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(FakeEmisorProvider::class)]
 #[CoversClass(FakeReceptorProvider::class)]
+#[CoversClass(RepositorySourceProvider::class)]
 class DocumentBuilderParsersHardcodedTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

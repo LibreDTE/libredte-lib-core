@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Array\ArrayWriter;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
@@ -282,13 +283,14 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
 
         // Load test case data.
         $yamlData = ValueCaster::requireString(file_get_contents($yamlFile));
-        $data = Yaml::parse($yamlData);
+        $data = ValueType::map()->parse(Yaml::parse($yamlData), '', basename($yamlFile));
         unset($data['Test']);
 
         // Adjust folio with the CAF first value and issuer RUT that
         // is configured as an environment variable.
-        $data['Encabezado']['IdDoc']['Folio'] = $caf->getFolioHasta();
-        $data['Encabezado']['Emisor']['RUTEmisor'] = $caf->getEmisor()['rut'];
+        $writer = ArrayWriter::fromReference($data);
+        $writer->set('Encabezado.IdDoc.Folio', $caf->getFolioHasta());
+        $writer->set('Encabezado.Emisor.RUTEmisor', $caf->getEmisor()['rut']);
 
         // Bill the document.
         $documentBag = new DocumentBag(

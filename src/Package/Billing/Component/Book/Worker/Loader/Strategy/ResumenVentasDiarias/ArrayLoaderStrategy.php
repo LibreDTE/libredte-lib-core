@@ -50,12 +50,12 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
     protected function normalizeCaratula(BookBagInterface $bag): array
     {
         return array_merge([
-            'RutEmisor' => $bag->getEmisor()?->getRut() ?? false,
-            'RutEnvia' => $bag->getCertificate()?->getId() ?? false,
-            'FchResol' => $bag->getBookAuth()['FchResol'] ?? false,
-            'NroResol' => $bag->getBookAuth()['NroResol'] ?? false,
-            'FchInicio' => false,
-            'FchFinal' => false,
+            'RutEmisor' => $bag->getEmisor()?->getRut(),
+            'RutEnvia' => $bag->getCertificate()?->getId(),
+            'FchResol' => $bag->getBookAuth()['FchResol'] ?? null,
+            'NroResol' => $bag->getBookAuth()['NroResol'] ?? null,
+            'FchInicio' => null,
+            'FchFinal' => null,
             'Correlativo' => 1,
             'SecEnvio' => 1,
         ], $bag->getCaratula());
@@ -70,14 +70,14 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * son números enteros: el texto que llega de un CSV se convierte y uno que no
      * es un número es un error que dice en qué documento y en qué campo está. Si
      * no se informa el monto total, es la suma de los montos exento, neto y de
-     * IVA. Lo que no se informa queda en `false`.
+     * IVA. Lo que no se informa queda en `null`.
      *
      * @param array<string, mixed> $detalle
      * @return array<string, mixed>
      */
     protected function normalizeDetalle(array $detalle): array
     {
-        // En los detalles `false` es lo que se pone cuando no hay un valor.
+        // Un `false` en los detalles se trata como un valor que no se informó.
         $row = array_map(static fn (mixed $value): mixed => $value === false ? null : $value, $detalle);
 
         $reader = ArrayReader::fromArray($row, sprintf(
@@ -92,12 +92,12 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
 
         return [
             'TpoDoc' => $reader->requireAsInt('TpoDoc'),
-            'NroDoc' => $reader->getAsInt('NroDoc') ?? false,
+            'NroDoc' => $reader->getAsInt('NroDoc') ?? null,
             'FchDoc' => $reader->requireString('FchDoc'),
-            'TasaImp' => $reader->getAsNumber('TasaImp') ?? false,
-            'MntNeto' => $net ?? false,
-            'MntIVA' => $vat ?? false,
-            'MntExe' => $exempt ?? false,
+            'TasaImp' => $reader->getAsNumber('TasaImp') ?? null,
+            'MntNeto' => $net ?? null,
+            'MntIVA' => $vat ?? null,
+            'MntExe' => $exempt ?? null,
             'MntTotal' => $reader->getAsInt('MntTotal') ?? ($exempt ?? 0) + ($net ?? 0) + ($vat ?? 0),
         ];
     }

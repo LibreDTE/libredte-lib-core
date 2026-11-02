@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Enum\Contract\StatusInterface;
 use Derafu\Enum\Status;
 use Derafu\Value\ValueCaster;
@@ -155,29 +156,20 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
             $datetime = null;
             if (!empty($this->headers['NUM_ATENCION'])) {
                 [$number, $datetime] = $this->parseNumeroAtencion(
-                    $this->headers['NUM_ATENCION']
+                    ValueCaster::requireString($this->headers['NUM_ATENCION'])
                 );
             }
 
             // RUT de la empresa emisora del documento.
-            $rutExists = isset($this->requestData['RutCompania'])
-                && isset($this->requestData['DvCompania'])
-            ;
-            $company = $rutExists
-                ? $this->requestData['RutCompania']
-                    . '-' . $this->requestData['DvCompania']
-                : null
-            ;
+            $request = ArrayReader::fromArray($this->requestData, 'SII request');
+            $rut = $request->getAsString('RutCompania');
+            $dv = $request->getAsString('DvCompania');
+            $company = $rut !== null && $dv !== null ? $rut . '-' . $dv : null;
 
             // RUT del receptor del documento.
-            $rutExists = isset($this->requestData['RutReceptor'])
-                && isset($this->requestData['DvReceptor'])
-            ;
-            $recipient = $rutExists
-                ? $this->requestData['RutReceptor']
-                    . '-' . $this->requestData['DvReceptor']
-                : null
-            ;
+            $rut = $request->getAsString('RutReceptor');
+            $dv = $request->getAsString('DvReceptor');
+            $recipient = $rut !== null && $dv !== null ? $rut . '-' . $dv : null;
 
             // Normalizar el estado de la consulta del envío.
             [$status, $received, $description] = $this->parseEstado(

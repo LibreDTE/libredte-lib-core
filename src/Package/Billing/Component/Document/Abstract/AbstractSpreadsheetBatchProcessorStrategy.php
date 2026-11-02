@@ -506,61 +506,61 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'FchEmis' => (
                         !empty($data[2]) && Date::validateAndConvert($data[2], 'Y-m-d') !== null
                     ) ? $data[2] : date('Y-m-d'),
-                    'TpoTranCompra' => false,
-                    'TpoTranVenta' => false,
-                    'FmaPago' => false,
-                    'FchCancel' => false,
+                    'TpoTranCompra' => null,
+                    'TpoTranVenta' => null,
+                    'FmaPago' => null,
+                    'FchCancel' => null,
                     'PeriodoDesde' => !empty($data[20]) && Date::validateAndConvert($data[20], 'Y-m-d') !== null
                         ? $data[20]
-                        : false,
+                        : null,
                     'PeriodoHasta' => !empty($data[21]) && Date::validateAndConvert($data[21], 'Y-m-d') !== null
                         ? $data[21]
-                        : false,
-                    'MedioPago' => false,
-                    'TpoCtaPago' => false,
-                    'NumCtaPago' => false,
-                    'BcoPago' => false,
+                        : null,
+                    'MedioPago' => null,
+                    'TpoCtaPago' => null,
+                    'NumCtaPago' => null,
+                    'BcoPago' => null,
                     'TermPagoGlosa' => !empty($data[19])
                         ? mb_substr(trim($data[19]), 0, 100)
-                        : false,
+                        : null,
                     'FchVenc' => !empty($data[3]) && Date::validateAndConvert($data[3], 'Y-m-d') !== null
                         ? $data[3]
-                        : false,
+                        : null,
                 ],
                 'Emisor' => [
-                    'RUTEmisor' => false,
-                    'RznSoc' => false,
-                    'GiroEmis' => false,
-                    'Telefono' => false,
-                    'CorreoEmisor' => false,
-                    'Acteco' => false,
-                    'CdgSIISucur' => false,
-                    'DirOrigen' => false,
-                    'CmnaOrigen' => false,
-                    'CdgVendedor' => false,
+                    'RUTEmisor' => null,
+                    'RznSoc' => null,
+                    'GiroEmis' => null,
+                    'Telefono' => null,
+                    'CorreoEmisor' => null,
+                    'Acteco' => null,
+                    'CdgSIISucur' => null,
+                    'DirOrigen' => null,
+                    'CmnaOrigen' => null,
+                    'CdgVendedor' => null,
                 ],
                 'Receptor' => [
                     'RUTRecep' => str_replace('.', '', $data[4]),
-                    'CdgIntRecep' => false,
+                    'CdgIntRecep' => null,
                     'RznSocRecep' => !empty($data[5])
                         ? mb_substr(trim($data[5]), 0, 100)
-                        : false,
+                        : null,
                     'GiroRecep' => !empty($data[6])
                         ? mb_substr(trim($data[6]), 0, 40)
-                        : false,
+                        : null,
                     'Contacto' => !empty($data[7])
                         ? mb_substr(trim($data[7]), 0, 20)
-                        : false,
-                    'CorreoRecep' => false,
+                        : null,
+                    'CorreoRecep' => null,
                     'DirRecep' => !empty($data[9])
                         ? mb_substr(trim($data[9]), 0, 70)
-                        : false,
+                        : null,
                     'CmnaRecep' => !empty($data[10])
                         ? mb_substr(trim($data[10]), 0, 20)
-                        : false,
-                    'CiudadRecep' => false,
+                        : null,
+                    'CiudadRecep' => null,
                 ],
-                'RUTSolicita' => false,
+                'RUTSolicita' => null,
             ],
             'Detalle' => [],
         ];

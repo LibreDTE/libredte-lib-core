@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Renderer\Contract\RendererInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererStrategyInterface;
 
@@ -63,7 +64,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
         [$data, $options] = $this->createDataAndOptions($bag);
 
         return $this->renderer->render(
-            $options['filepath'],
+            ValueCaster::requireString($options['filepath']),
             $data,
             $options
         );

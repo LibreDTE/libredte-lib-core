@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -128,7 +129,7 @@ class SendAecJob extends AbstractJob implements JobInterface
         $inner = reset($response);
         $data = is_array($inner) ? $inner : $response;
 
-        $status = $data['STATUS'] ?? null;
+        $status = ArrayReader::fromArray($data, 'SII AEC upload response')->getAsInt('STATUS');
 
         if ($status === null) {
             throw new SendAecException(
@@ -136,11 +137,11 @@ class SendAecJob extends AbstractJob implements JobInterface
             );
         }
 
-        if ((int) $status === 0) {
+        if ($status === 0) {
             return;
         }
 
-        switch ((int) $status) {
+        switch ($status) {
             case 1:
                 throw new SendAecException(
                     'The authenticated RUT has no permission to send on behalf of the assigning company.'

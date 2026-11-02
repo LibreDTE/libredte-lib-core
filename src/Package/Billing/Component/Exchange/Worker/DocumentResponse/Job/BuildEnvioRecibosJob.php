@@ -22,11 +22,14 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\DocumentResponse\Job;
 
+use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlEncoderInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Entity\EnvioRecibos;
@@ -89,8 +92,10 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
         // Generar y firmar cada recibo individualmente.
         $signedRecibos = [];
         foreach ($recibosData as $recibo) {
-            $tipo = (int) ($recibo['TipoDoc'] ?? 0);
-            $folio = (int) ($recibo['Folio'] ?? 0);
+            $recibo = ValueType::map()->parse($recibo, 'recibo', 'EnvioRecibos');
+            $reader = ArrayReader::fromArray(ArrayCaster::nullify($recibo, [false]), 'EnvioRecibos');
+            $tipo = $reader->getAsInt('TipoDoc', 0);
+            $folio = $reader->getAsInt('Folio', 0);
             $id = sprintf('LibreDTE_T%dF%d', $tipo, $folio);
 
             $reciboData = $this->normalizeRecibo($recibo, $id);
@@ -143,11 +148,11 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
     {
         return array_merge([
             '@attributes' => ['version' => '1.0'],
-            'RutResponde' => false,
-            'RutRecibe' => false,
-            'NmbContacto' => false,
-            'FonoContacto' => false,
-            'MailContacto' => false,
+            'RutResponde' => null,
+            'RutRecibe' => null,
+            'NmbContacto' => null,
+            'FonoContacto' => null,
+            'MailContacto' => null,
             'TmstFirmaEnv' => date('Y-m-d\TH:i:s'),
         ], $caratula);
     }
@@ -165,14 +170,14 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
             '@attributes' => ['version' => '1.0'],
             'DocumentoRecibo' => array_merge([
                 '@attributes' => ['ID' => $id],
-                'TipoDoc' => false,
-                'Folio' => false,
-                'FchEmis' => false,
-                'RUTEmisor' => false,
-                'RUTRecep' => false,
-                'MntTotal' => false,
-                'Recinto' => false,
-                'RutFirma' => false,
+                'TipoDoc' => null,
+                'Folio' => null,
+                'FchEmis' => null,
+                'RUTEmisor' => null,
+                'RUTRecep' => null,
+                'MntTotal' => null,
+                'Recinto' => null,
+                'RutFirma' => null,
                 'Declaracion' => 'El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4, y la letra c) del Art. 5 de la Ley 19.983, acredita que la entrega de mercaderias o servicio(s) prestado(s) ha(n) sido recibido(s).',
                 'TmstFirmaRecibo' => date('Y-m-d\TH:i:s'),
             ], $recibo),

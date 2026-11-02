@@ -37,7 +37,7 @@ class TagXml extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('glosa');
+        return $this->getReader()->requireString('glosa');
     }
 
     /**
@@ -54,6 +54,6 @@ class TagXml extends Entity
             return null;
         }
 
-        return $this->getAttribute('entity');
+        return $this->getReader()->getString('entity');
     }
 }

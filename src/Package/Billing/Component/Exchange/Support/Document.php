@@ -103,7 +103,7 @@ class Document implements DocumentInterface
      */
     public function getID(): string
     {
-        $id = $this->metadata->get('id');
+        $id = $this->metadata->getReader()->getString('id');
 
         if ($id !== null) {
             return $id;

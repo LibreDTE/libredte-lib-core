@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Contract;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -78,6 +79,15 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getParsedData(): ?array;
 
     /**
+     * Obtiene un lector de los datos procesados (parseados) del documento o
+     * `null` si no están asignados.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     */
+    public function getParsedDataReader(): ?ArrayReader;
+
+    /**
      * Asigna los datos normalizados del documento.
      *
      * @param array<string, mixed>|null $normalizedData
@@ -93,12 +103,32 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getNormalizedData(): ?array;
 
     /**
+     * Obtiene un lector de los datos normalizados del documento o `null` si no
+     * están asignados.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     */
+    public function getNormalizedDataReader(): ?ArrayReader;
+
+    /**
      * Obtiene los datos normalizados del documento o falla si no están asignados.
      *
      * @return array<string, mixed>
      * @throws DocumentException Si la bolsa no lo tiene asignado.
      */
     public function requireNormalizedData(): array;
+
+    /**
+     * Obtiene un lector de los datos normalizados del documento o falla si no
+     * están asignados.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     *
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireNormalizedDataReader(): ArrayReader;
 
     /**
      * Asigna los datos de LibreDTE que están asociados al documento pero no
@@ -116,6 +146,15 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @return array<string, mixed>|null
      */
     public function getLibredteData(): ?array;
+
+    /**
+     * Obtiene un lector de los datos de LibreDTE que están asociados al
+     * documento o `null` si no están asignados.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     */
+    public function getLibredteDataReader(): ?ArrayReader;
 
     /**
      * Obtiene las opciones del procesador (parser) del documento.
@@ -370,12 +409,32 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getData(): ?array;
 
     /**
+     * Obtiene un lector de los datos del documento o `null` si no se pueden
+     * generar.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     */
+    public function getDataReader(): ?ArrayReader;
+
+    /**
      * Obtiene los datos del documento o falla si no se pueden generar.
      *
      * @return array<string, mixed>
      * @throws DocumentException Si la bolsa no tiene datos normalizados.
      */
     public function requireData(): array;
+
+    /**
+     * Obtiene un lector de los datos del documento o falla si no se pueden
+     * generar.
+     *
+     * El lector es una instantánea de los datos: se debe pedir uno nuevo
+     * después de modificarlos para leer los cambios.
+     *
+     * @throws DocumentException Si la bolsa no tiene datos normalizados.
+     */
+    public function requireDataReader(): ArrayReader;
 
     /**
      * Obtiene los datos del documento agregando los datos específicos de
@@ -443,7 +502,8 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * Cuando es un folio alfanumérico (string) se asume que es un folio de una
      * cotización de LibreDTE.
      *
-     * Cuando el folio no existe (es `false` o `0`) se entregará `null`.
+     * Cuando el folio no existe (falta, o es `null`, `false` o `0`) se
+     * entregará `null`.
      *
      * El folio puede provenir del documento normalizado (si existe) o del
      * documento parseado (si aun no se normaliza).

@@ -22,11 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\L10n\Cl\Rut\Rut;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerStrategyInterface;
-use libredte\lib\Core\Package\Billing\Component\Document\Exception\SanitizerException;
 
 /**
  * Clase abstracta (base) para las estrategias de sanitización de documentos
@@ -61,62 +61,40 @@ abstract class AbstractSanitizerStrategy extends AbstractStrategy implements San
      */
     protected function sanitizeEssentials(DocumentBagInterface $bag): void
     {
-        $data = $bag->getNormalizedData();
+        $data = $bag->requireNormalizedData();
+        $writer = ArrayWriter::fromReference($data);
 
-        // Si no viene un folio asignado error.
-        if (!isset($data['Encabezado']['IdDoc']['Folio'])) {
-            throw new SanitizerException(
-                'Must indicate the document number.'
-            );
-        }
+        // Los campos se sanitizan de manera independiente, por lo que se leen
+        // todos desde el mismo lector.
+        $reader = $bag->requireNormalizedDataReader();
 
         // Formatear los RUT.
-        $data['Encabezado']['Emisor']['RUTEmisor'] = Rut::format(
-            $data['Encabezado']['Emisor']['RUTEmisor']
-        );
-        $data['Encabezado']['Receptor']['RUTRecep'] = Rut::format(
-            $data['Encabezado']['Receptor']['RUTRecep']
-        );
+        foreach (['Emisor.RUTEmisor', 'Receptor.RUTRecep'] as $field) {
+            $path = 'Encabezado.' . $field;
+            $writer->set($path, Rut::format($reader->requireAsString($path)));
+        }
 
         // Limpiar datos del emisor.
-        if (!empty($data['Encabezado']['Emisor']['Acteco'])) {
-            if (strlen((string)$data['Encabezado']['Emisor']['Acteco']) === 5) {
-                $data['Encabezado']['Emisor']['Acteco'] =
-                    '0' . $data['Encabezado']['Emisor']['Acteco']
-                ;
-            }
+        $acteco = $reader->getAsString('Encabezado.Emisor.Acteco');
+        if (!empty($acteco) && strlen($acteco) === 5) {
+            $writer->set('Encabezado.Emisor.Acteco', '0' . $acteco);
         }
 
         // Limpiar datos del receptor.
-        if (!empty($data['Encabezado']['Receptor']['RznSocRecep'])) {
-            $data['Encabezado']['Receptor']['RznSocRecep'] =
-                mb_substr($data['Encabezado']['Receptor']['RznSocRecep'], 0, 100)
-            ;
-        }
-        if (!empty($data['Encabezado']['Receptor']['GiroRecep'])) {
-            $data['Encabezado']['Receptor']['GiroRecep'] =
-                mb_substr($data['Encabezado']['Receptor']['GiroRecep'], 0, 40)
-            ;
-        }
-        if (!empty($data['Encabezado']['Receptor']['Contacto'])) {
-            $data['Encabezado']['Receptor']['Contacto'] =
-                mb_substr($data['Encabezado']['Receptor']['Contacto'], 0, 80)
-            ;
-        }
-        if (!empty($data['Encabezado']['Receptor']['CorreoRecep'])) {
-            $data['Encabezado']['Receptor']['CorreoRecep'] =
-                mb_substr($data['Encabezado']['Receptor']['CorreoRecep'], 0, 80)
-            ;
-        }
-        if (!empty($data['Encabezado']['Receptor']['DirRecep'])) {
-            $data['Encabezado']['Receptor']['DirRecep'] =
-                mb_substr($data['Encabezado']['Receptor']['DirRecep'], 0, 70)
-            ;
-        }
-        if (!empty($data['Encabezado']['Receptor']['CmnaRecep'])) {
-            $data['Encabezado']['Receptor']['CmnaRecep'] =
-                mb_substr($data['Encabezado']['Receptor']['CmnaRecep'], 0, 20)
-            ;
+        $maxLengths = [
+            'RznSocRecep' => 100,
+            'GiroRecep' => 40,
+            'Contacto' => 80,
+            'CorreoRecep' => 80,
+            'DirRecep' => 70,
+            'CmnaRecep' => 20,
+        ];
+        foreach ($maxLengths as $field => $maxLength) {
+            $path = 'Encabezado.Receptor.' . $field;
+            $value = $reader->getAsString($path);
+            if (!empty($value)) {
+                $writer->set($path, mb_substr($value, 0, $maxLength));
+            }
         }
 
         // Actualizar los datos normalizados con los sanitizados.

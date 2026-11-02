@@ -22,7 +22,10 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract;
 
+use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayReader;
 use Derafu\L10n\Cl\Rut\Rut;
+use Derafu\Value\ValueType;
 
 /**
  * Clase abstracta para las implementaciones de fábricas de contribuyentes,
@@ -30,6 +33,18 @@ use Derafu\L10n\Cl\Rut\Rut;
  */
 abstract class AbstractContribuyenteFactory
 {
+    /**
+     * Crea un lector de los datos de entrada de la fábrica.
+     *
+     * Un `false` en los datos es un valor que no se informó, igual que `null`.
+     *
+     * @param array<string, mixed> $data
+     */
+    protected function createReader(array $data): ArrayReader
+    {
+        return ArrayReader::fromArray(ArrayCaster::nullify($data, [false]));
+    }
+
     /**
      * Normaliza los datos del contribuyente que podrían venir en diferentes
      * índices.
@@ -39,13 +54,14 @@ abstract class AbstractContribuyenteFactory
      */
     protected function normalizeData(array $data): array
     {
+        $reader = $this->createReader($data);
         $normalized = [];
 
+        $rutType = ValueType::oneOf(ValueType::int(), ValueType::string());
         $normalized['rut'] = (
-            $data['rut']
-            ?? $data['RUTEmisor']
-            ?? $data['RUTRecep']
-            ?? null
+            $reader->get('rut', $rutType)
+            ?? $reader->get('RUTEmisor', $rutType)
+            ?? $reader->get('RUTRecep', $rutType)
         ) ?: '66666666-6';
 
         if (is_int($normalized['rut'])) {
@@ -53,76 +69,52 @@ abstract class AbstractContribuyenteFactory
         }
 
         $normalized['razon_social'] = (
-            (string) (
-                $data['razon_social']
-                ?? $data['RznSoc']
-                ?? $data['RznSocEmisor']
-                ?? $data['RznSocRecep']
-                ?? null
-            )
+            $reader->getAsString('razon_social')
+            ?? $reader->getAsString('RznSoc')
+            ?? $reader->getAsString('RznSocEmisor')
+            ?? $reader->getAsString('RznSocRecep')
         ) ?: null;
 
         $normalized['giro'] = (
-            (string) (
-                $data['giro']
-                ?? $data['GiroEmis']
-                ?? $data['GiroEmisor']
-                ?? $data['GiroRecep']
-                ?? null
-            )
+            $reader->getAsString('giro')
+            ?? $reader->getAsString('GiroEmis')
+            ?? $reader->getAsString('GiroEmisor')
+            ?? $reader->getAsString('GiroRecep')
         ) ?: null;
 
         $normalized['actividad_economica'] = (
-            (int) (
-                $data['actividad_economica']
-                ?? $data['Acteco']
-                ?? null
-            )
+            $reader->getAsInt('actividad_economica')
+            ?? $reader->getAsInt('Acteco')
         ) ?: null;
 
         $normalized['telefono'] = (
-            (string) (
-                $data['telefono']
-                ?? $data['Telefono']
-                ?? $data['Contacto']
-                ?? null
-            )
+            $reader->getAsString('telefono')
+            ?? $reader->getAsString('Telefono')
+            ?? $reader->getAsString('Contacto')
         ) ?: null;
 
         $normalized['email'] = (
-            (string) (
-                $data['email']
-                ?? $data['CorreoEmisor']
-                ?? $data['CorreoRecep']
-                ?? null
-            )
+            $reader->getAsString('email')
+            ?? $reader->getAsString('CorreoEmisor')
+            ?? $reader->getAsString('CorreoRecep')
         ) ?: null;
 
         $normalized['direccion'] = (
-            (string) (
-                $data['direccion']
-                ?? $data['DirOrigen']
-                ?? $data['DirRecep']
-                ?? null
-            )
+            $reader->getAsString('direccion')
+            ?? $reader->getAsString('DirOrigen')
+            ?? $reader->getAsString('DirRecep')
         ) ?: null;
 
         $normalized['comuna'] = (
-            (string) (
-                $data['comuna']
-                ?? $data['CmnaOrigen']
-                ?? $data['CmnaRecep']
-                ?? null
-            )
+            $reader->getAsString('comuna')
+            ?? $reader->getAsString('CmnaOrigen')
+            ?? $reader->getAsString('CmnaRecep')
         ) ?: null;
 
         $normalized['ciudad'] = (
-            (string) (
-                $data['ciudad']
-                ?? $data['CiudadOrigen']
-                ?? $data['CiudadRecep']
-                ?? null
-            )
+            $reader->getAsString('ciudad')
+            ?? $reader->getAsString('CiudadOrigen')
+            ?? $reader->getAsString('CiudadRecep')
         ) ?: null;
 
         return $normalized;

@@ -163,6 +163,7 @@ class ResumenVentasDiariasTest extends TestCase
                 if (!is_array($expectedValue)) {
                     $actualValue = ArrayCaster::cast([$actualValue])[0];
                 } else {
+                    $this->assertIsArray($actualValue, "Key: $key");
                     $actualValue = ArrayCaster::cast($actualValue);
                 }
             }

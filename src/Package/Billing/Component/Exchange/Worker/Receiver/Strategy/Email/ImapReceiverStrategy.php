@@ -23,13 +23,16 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email;
 
 use DateTimeImmutable;
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Mail\Contract\EnvelopeInterface as MailEnvelopeInterface;
 use Derafu\Mail\Contract\MailPackageInterface;
 use Derafu\Mail\Contract\MessageInterface as MailMessageInterface;
 use Derafu\Mail\Model\Postman as MailPostman;
 use Derafu\Support\Str;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverStrategyInterface;
@@ -220,6 +223,10 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
     {
         // Buscar opciones de transporte en la bolsa del intercambio.
         $options = $bag->getOptions()->get('transport', []);
+        $options = ValueType::array()->parse(
+            $options instanceof OptionsInterface ? $options->all() : $options,
+            'transport'
+        );
 
         // Validar que esté el nombre de usuario y contraseña.
         if (empty($options['username']) || empty($options['password'])) {
@@ -229,27 +236,28 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         }
 
         // Determinar desde cuándo se debe realizar la búsqueda de correos.
-        if (($options['search.criteria'] ?? null) === null) {
-            $daysAgo = $options['search.daysAgo'] ?? 7;
+        $writer = ArrayWriter::fromReference($options, 'transport');
+        if ($writer->getReader()->getAsString('search.criteria') === null) {
+            $daysAgo = $writer->getReader()->getAsInt('search.daysAgo', 7);
             $since = (new DateTimeImmutable())->modify("-$daysAgo days")->format('Y-m-d');
-            $options['search.criteria'] = 'UNSEEN SINCE ' . $since;
-            unset($options['search.daysAgo']);
+            $writer->set('search.criteria', 'UNSEEN SINCE ' . $since);
+            $writer->remove('search.daysAgo');
         }
 
         // Si no se indicó lo contrario los correos serán marcados como leídos
         // después de ser procesados.
-        if (!isset($options['search']['markAsSeen'])) {
-            $options['search']['markAsSeen'] = true;
+        if (!$writer->getReader()->hasValue('search.markAsSeen')) {
+            $writer->set('search.markAsSeen', true);
         }
 
         // Obtiene exclusivamente el cuerpo del correo (texto o html) y archivos
         // XML que vengan como adjuntos.
-        $options['search']['attachmentFilters'] = [
+        $writer->set('search.attachmentFilters', [
             'subtype' => ['PLAIN', 'HTML', 'XML'],
             'extension' => ['xml'],
-        ];
+        ]);
 
         // Entregar las opciones resueltas.
-        return is_array($options) ? $options : $options->all();
+        return $options;
     }
 }

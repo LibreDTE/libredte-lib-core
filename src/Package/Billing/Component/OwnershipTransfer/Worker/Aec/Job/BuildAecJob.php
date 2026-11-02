@@ -204,8 +204,8 @@ class BuildAecJob extends AbstractJob implements JobInterface
                     '@attributes' => ['ID' => 'LibreDTE_AEC'],
                     'Caratula' => [
                         '@attributes' => ['version' => '1.0'],
-                        'RutCedente' => $cedente['RUT'] ?? false,
-                        'RutCesionario' => $cesionario['RUT'] ?? false,
+                        'RutCedente' => $cedente['RUT'] ?? null,
+                        'RutCesionario' => $cesionario['RUT'] ?? null,
                         'TmstFirmaEnvio' => date('Y-m-d\TH:i:s'),
                     ],
                     'Cesiones' => $cesionesPlaceholder,

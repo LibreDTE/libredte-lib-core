@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateFakerInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
@@ -302,23 +303,24 @@ class DocumentOkExamplesEndToEndTest extends TestCase
     {
         // Load test case data.
         $yaml = ValueCaster::requireString(file_get_contents($file));
-        $data = Yaml::parse($yaml);
-        $test = $data['Test'];
+        $caseName = basename($file);
+        $data = ValueType::map()->parse(Yaml::parse($yaml), '', $caseName);
+        $test = ValueType::map()->parse($data['Test'] ?? null, 'Test', $caseName);
         unset($data['Test']);
-        $test['caseName'] = basename($file);
+        $reader = ArrayReader::fromArray($data, $caseName);
 
         // Instantiate the document issuer.
         $emisor = new Emisor(
-            $data['Encabezado']['Emisor']['RUTEmisor'],
-            $data['Encabezado']['Emisor']['RznSoc']
-                ?? $data['Encabezado']['Emisor']['RznSocEmisor']
+            $reader->requireAsString('Encabezado.Emisor.RUTEmisor'),
+            $reader->getAsString('Encabezado.Emisor.RznSoc')
+                ?? $reader->getAsString('Encabezado.Emisor.RznSocEmisor')
         );
 
         // Create test CAF for the case.
         $caf = $this->cafFaker->create(
             $emisor,
-            $data['Encabezado']['IdDoc']['TipoDTE'],
-            $data['Encabezado']['IdDoc']['Folio']
+            $reader->requireAsInt('Encabezado.IdDoc.TipoDTE'),
+            $reader->requireAsInt('Encabezado.IdDoc.Folio')
         );
 
         // Create test certificate for the case.
@@ -350,9 +352,9 @@ class DocumentOkExamplesEndToEndTest extends TestCase
         // codificados).
         $actualValues = $document->getData();
         $this->validateExpectedValues(
-            $test['ExpectedValues'],
+            ValueType::array()->parse($test['ExpectedValues'] ?? null, 'Test.ExpectedValues', $caseName),
             $actualValues,
-            $test['caseName']
+            $caseName
         );
 
         // Get the DTE XML.
@@ -408,6 +410,11 @@ class DocumentOkExamplesEndToEndTest extends TestCase
 
             // If the expected value is an array, call recursively.
             if (is_array($expectedValue)) {
+                $this->assertIsArray($actualValues[$key], sprintf(
+                    'Case %s: value for %s must be an array.',
+                    $caseName,
+                    $fullKey
+                ));
                 $this->validateExpectedValues(
                     $expectedValue,
                     $actualValues[$key],
@@ -435,9 +442,9 @@ class DocumentOkExamplesEndToEndTest extends TestCase
                     sprintf(
                         'Case %s: value %s for %s does not match expected %s.',
                         $caseName,
-                        $actualValues[$key],
+                        get_debug_type($actualValues[$key]) === 'array' ? 'array' : ValueCaster::toString($actualValues[$key]),
                         $fullKey,
-                        $expectedValue
+                        ValueCaster::toString($expectedValue)
                     )
                 );
             }

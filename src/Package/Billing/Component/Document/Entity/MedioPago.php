@@ -37,6 +37,6 @@ class MedioPago extends Entity
      */
     public function __toString(): string
     {
-        return $this->getAttribute('glosa');
+        return $this->getReader()->requireString('glosa');
     }
 }

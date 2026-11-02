@@ -28,6 +28,8 @@ Encabezado:
 Detalle:
 - NmbItem: Corrige Giro
   QtyItem: 1
+  # PrcItem: El valor false es para ejercitar su conversión a null al
+  # normalizar. En un caso real se debe usar null.
   PrcItem: false
 Referencia:
 - TpoDocRef: 33

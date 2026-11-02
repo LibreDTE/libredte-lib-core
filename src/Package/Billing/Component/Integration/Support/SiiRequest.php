@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
@@ -42,7 +43,12 @@ class SiiRequest implements SiiRequestInterface
     /**
      * Reglas de esquema de las opciones de la solicitud al SII.
      *
-     * @var array<string, mixed>
+     * @var array{
+     *     environment: array<string, mixed>,
+     *     retries: array<string, mixed>,
+     *     verify_ssl: array<string, mixed>,
+     *     token: array<string, mixed>
+     * }
      */
     protected array $optionsSchema = [
         // Por defecto la conexión es a los servidores de producción del SII.
@@ -160,7 +166,7 @@ class SiiRequest implements SiiRequestInterface
 
         return max(0, min(
             $retries ?? $retriesInOptions,
-            $this->optionsSchema['retries']['default']
+            ArrayReader::fromArray($this->optionsSchema)->requireInt('retries.default')
         ));
     }
 

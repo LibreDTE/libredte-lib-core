@@ -47,7 +47,7 @@ class DocumentBatch implements DocumentBatchInterface
      * opciones. No se define el esquema de cada opción pues cada clase que
      * utilice estas opciones deberá resolver y validar sus propias opciones.
      *
-     * @var array<string, mixed>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         'batch_processor' => [

@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\TradingParties\Factory;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Support\Factory;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario;
@@ -48,7 +49,9 @@ class MandatarioFactory implements MandatarioFactoryInterface
     {
         $data = $this->normalizeData($data);
 
-        [$data['run'], $data['dv']] = Rut::toArray($data['run']);
+        [$data['run'], $data['dv']] = Rut::toArray(
+            ValueCaster::requireString($data['run'])
+        );
 
         return Factory::create($data, $this->class);
     }

@@ -56,35 +56,32 @@ trait NormalizeDetalleTrait
             ];
         }
 
-        $sumarMontoNF = (
-            !isset($data['Encabezado']['Totales']['MontoNF'])
-            || $data['Encabezado']['Totales']['MontoNF'] === false
-        );
+        $sumarMontoNF = !isset($data['Encabezado']['Totales']['MontoNF']);
 
         $item = 1;
         foreach ($data['Detalle'] as &$d) {
             $d = array_merge([
                 'NroLinDet' => $item++,
-                'CdgItem' => false,
-                'IndExe' => false,
-                'Retenedor' => false,
-                'NmbItem' => false,
-                'DscItem' => false,
-                'QtyRef' => false,
-                'UnmdRef' => false,
-                'PrcRef' => false,
-                'QtyItem' => false,
-                'Subcantidad' => false,
-                'FchElabor' => false,
-                'FchVencim' => false,
-                'UnmdItem' => false,
-                'PrcItem' => false,
-                'DescuentoPct' => false,
-                'DescuentoMonto' => false,
-                'RecargoPct' => false,
-                'RecargoMonto' => false,
-                'CodImpAdic' => false,
-                'MontoItem' => false,
+                'CdgItem' => null,
+                'IndExe' => null,
+                'Retenedor' => null,
+                'NmbItem' => null,
+                'DscItem' => null,
+                'QtyRef' => null,
+                'UnmdRef' => null,
+                'PrcRef' => null,
+                'QtyItem' => null,
+                'Subcantidad' => null,
+                'FchElabor' => null,
+                'FchVencim' => null,
+                'UnmdItem' => null,
+                'PrcItem' => null,
+                'DescuentoPct' => null,
+                'DescuentoMonto' => null,
+                'RecargoPct' => null,
+                'RecargoMonto' => null,
+                'CodImpAdic' => null,
+                'MontoItem' => null,
             ], $d);
 
             // Corregir datos.
@@ -109,28 +106,28 @@ trait NormalizeDetalleTrait
             }
             if (is_array($d['CdgItem'])) {
                 $d['CdgItem'] = array_merge([
-                    'TpoCodigo' => false,
-                    'VlrCodigo' => false,
+                    'TpoCodigo' => null,
+                    'VlrCodigo' => null,
                 ], $d['CdgItem']);
                 if (
-                    $d['Retenedor'] === false
+                    $d['Retenedor'] === null
                     && $d['CdgItem']['TpoCodigo'] === 'CPCS'
                 ) {
                     $d['Retenedor'] = true;
                 }
             }
-            if ($d['Retenedor'] !== false) {
+            if ($d['Retenedor'] !== null) {
                 if (!is_array($d['Retenedor'])) {
                     $d['Retenedor'] = ['IndAgente' => 'R'];
                 }
                 $d['Retenedor'] = array_merge([
                     'IndAgente' => 'R',
-                    'MntBaseFaena' => false,
-                    'MntMargComer' => false,
-                    'PrcConsFinal' => false,
+                    'MntBaseFaena' => null,
+                    'MntMargComer' => null,
+                    'PrcConsFinal' => null,
                 ], $d['Retenedor']);
             }
-            if ($d['CdgItem'] !== false && !is_array($d['CdgItem'])) {
+            if ($d['CdgItem'] !== null && !is_array($d['CdgItem'])) {
                 $d['CdgItem'] = [
                     'TpoCodigo' => empty($d['Retenedor']['IndAgente'])
                         ? 'INT1'
