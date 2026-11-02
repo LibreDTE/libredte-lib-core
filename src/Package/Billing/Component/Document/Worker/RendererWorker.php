@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Config\Contract\OptionsInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
@@ -47,6 +48,12 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param DocumentBagManagerWorkerInterface $documentBagManager
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         private DocumentBagManagerWorkerInterface $documentBagManager,
         iterable $strategies = []
@@ -57,7 +64,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,

@@ -55,7 +55,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param string $service Nombre del servicio del SII que se consumirá.
      * @param string $function Nombre de la función que se ejecutará en el
      * servicio web del SII.
-     * @param array|int $args Argumentos que se pasarán al servicio web.
+     * @param array<array-key, mixed>|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retries Intentos que se realizarán como máximo para
      * obtener respuesta.
      * @param string|null $token Token de autenticación. Si se provee, se
@@ -140,8 +140,8 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      *
      * @param string $wsdl WSDL del servicio del SII que se consumirá.
      * @param string $function Nombre de la función que se ejecutará,
-     * @param array $args Argumentos que se pasarán al servicio web.
-     * @param array $soapClientOptions Opciones del cliente SOAP.
+     * @param array<array-key, mixed> $args Argumentos que se pasarán al servicio web.
+     * @param array<string, mixed> $soapClientOptions Opciones del cliente SOAP.
      * @param int $retries Intentos que se realizarán como máximo.
      * @param string|null $token Token de autenticación para establecer como
      * cookie TOKEN en el cliente SOAP.
@@ -280,7 +280,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * Define las opciones para consumir el servicio web del SII mediante SOAP.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @return array Arreglo con las opciones para SoapClient.
+     * @return array<string, mixed> Arreglo con las opciones para SoapClient.
      */
     private function createSoapClientOptions(SiiRequestInterface $request): array
     {

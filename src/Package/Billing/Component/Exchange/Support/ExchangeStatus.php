@@ -61,7 +61,7 @@ class ExchangeStatus implements ExchangeStatusInterface
      *
      * @param string $strategy
      * @param Throwable|null $error
-     * @param BagInterface|array $metadata
+     * @param BagInterface|array<string, mixed> $metadata
      */
     public function __construct(
         string $strategy,

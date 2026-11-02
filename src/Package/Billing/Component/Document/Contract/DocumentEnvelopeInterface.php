@@ -107,7 +107,7 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     /**
      * Obtiene las opciones del despachador del sobre de documentos al SII.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDispatcherOptions(): array;
 
@@ -192,7 +192,7 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     /**
      * Asigna los datos de la carátula del sobre de documentos.
      *
-     * @param array $caratula
+     * @param array<string, mixed> $caratula
      * @return static
      */
     public function setCaratula(array $caratula): static;
@@ -200,7 +200,7 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     /**
      * Obtiene los datos de la carátula del sobre de documentos.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getCaratula(): ?array;
 

@@ -125,8 +125,8 @@ class Envelope implements EnvelopeInterface
      * @param string|null $businessMessageID
      * @param string|null $originalBusinessMessageID
      * @param DateTimeInterface|null $creationDateAndTime
-     * @param array $documents
-     * @param BagInterface|array $metadata
+     * @param array<int, DocumentInterface> $documents
+     * @param BagInterface|array<string, mixed> $metadata
      */
     public function __construct(
         SenderInterface $sender,
@@ -323,6 +323,8 @@ class Envelope implements EnvelopeInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

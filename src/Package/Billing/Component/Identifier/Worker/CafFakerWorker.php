@@ -111,7 +111,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * @param int $codigoDocumento
      * @param int $folioDesde
      * @param int|null $folioHasta
-     * @return array
+     * @return array<string, mixed>
      */
     protected function createArray(
         EmisorInterface $emisor,

@@ -80,8 +80,8 @@ class Emisor extends Contribuyente implements EmisorInterface
      * @param string|int $rut RUT del contribuyente.
      * @param string|null $razon_social Razón social del contribuyente.
      * @param string|null $giro Giro comercial del contribuyente.
-     * @param int|array|null $actividad_economica Código de actividad económica.
-     * @param string|array|null $telefono Teléfonos del contribuyente.
+     * @param int|int[]|null $actividad_economica Código de actividad económica.
+     * @param string|string[]|null $telefono Teléfonos del contribuyente.
      * @param string|null $email Correo electrónico del contribuyente.
      * @param string|null $direccion Dirección tributaria del contribuyente.
      * @param string|null $comuna Comuna tributaria.

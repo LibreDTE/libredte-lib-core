@@ -64,7 +64,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
     /**
      * Mapa de campos a handlers para los documentos tributarios electrónicos.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function createHandlers(): array
     {

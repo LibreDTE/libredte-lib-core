@@ -35,7 +35,7 @@ interface NormalizerWorkerInterface extends WorkerInterface, StrategiesAwareInte
      * Realiza la normalización del documento.
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a normalizar.
-     * @return array Datos del documento normalizados.
+     * @return array<string, mixed> Datos del documento normalizados.
      * @throws NormalizerException
      */
     public function normalize(DocumentBagInterface $bag): array;

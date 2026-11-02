@@ -34,8 +34,8 @@ abstract class AbstractContribuyenteFactory
      * Normaliza los datos del contribuyente que podrían venir en diferentes
      * índices.
      *
-     * @param array $data
-     * @return array
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
      */
     protected function normalizeData(array $data): array
     {

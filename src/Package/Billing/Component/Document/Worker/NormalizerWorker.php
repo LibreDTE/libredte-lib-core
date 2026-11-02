@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerStrategyInterface;
@@ -38,6 +39,11 @@ class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterfa
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         iterable $strategies = []
     ) {

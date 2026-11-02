@@ -48,7 +48,7 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
      * Nota: los segmentos no están soportados en esta implementación.
      *
      * @param BookBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      */
     protected function normalizeCaratula(BookBagInterface $bag): array
     {

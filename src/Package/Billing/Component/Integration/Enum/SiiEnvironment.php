@@ -45,7 +45,7 @@ enum SiiEnvironment: int
      * electrónicos (DTE) para producción (palena) y certificación/pruebas
      * (maullin).
      *
-     * @var array
+     * @var array<string, array<int, string>>
      */
     private const SERVERS = [
         'default' => [

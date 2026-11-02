@@ -72,10 +72,10 @@ interface CatalogWorkerInterface extends WorkerInterface
      * Busca elementos de un repositorio según criterios de coincidencia.
      *
      * @param string $repository Identificador del repositorio.
-     * @param array $criteria Criterios de búsqueda, formato `['campo' =>
+     * @param array<string, mixed> $criteria Criterios de búsqueda, formato `['campo' =>
      * 'valor']` (o `['campo' => ['valor1', 'valor2']]` para coincidencia con
      * cualquiera de varios valores).
-     * @param array|null $orderBy Orden de los resultados, formato `['campo'
+     * @param array<string, mixed>|null $orderBy Orden de los resultados, formato `['campo'
      * => 'ASC'|'DESC']`.
      * @param int|null $limit Cantidad máxima de resultados.
      * @param int|null $offset Cantidad de resultados a saltar.
@@ -96,8 +96,8 @@ interface CatalogWorkerInterface extends WorkerInterface
      * coincidencia.
      *
      * @param string $repository Identificador del repositorio.
-     * @param array $criteria Criterios de búsqueda (ver `findBy()`).
-     * @param array|null $orderBy Orden usado para elegir el primer resultado.
+     * @param array<string, mixed> $criteria Criterios de búsqueda (ver `findBy()`).
+     * @param array<string, mixed>|null $orderBy Orden usado para elegir el primer resultado.
      * @return object|null El primer elemento que cumple los criterios o
      * `null` si no hay ninguno.
      * @throws CatalogException Si el repositorio no existe o no se puede
@@ -113,7 +113,7 @@ interface CatalogWorkerInterface extends WorkerInterface
      * Cuenta los elementos de un repositorio que cumplen ciertos criterios.
      *
      * @param string $repository Identificador del repositorio.
-     * @param array $criteria Criterios de búsqueda (ver `findBy()`). Vacío
+     * @param array<string, mixed> $criteria Criterios de búsqueda (ver `findBy()`). Vacío
      * para contar todos los elementos del repositorio.
      * @return int
      * @throws CatalogException Si el repositorio no existe o no se puede

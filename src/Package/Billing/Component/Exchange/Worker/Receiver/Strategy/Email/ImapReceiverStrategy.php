@@ -213,7 +213,7 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
      * Resuelve y entrega los datos de transporte.
      *
      * @param ExchangeBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      * @throws ExchangeException Si no se encuentran los datos de transporte.
      */
     private function resolveTransportOptions(ExchangeBagInterface $bag): array

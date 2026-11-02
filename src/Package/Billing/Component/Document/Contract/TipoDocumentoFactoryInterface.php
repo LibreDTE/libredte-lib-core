@@ -30,7 +30,7 @@ interface TipoDocumentoFactoryInterface
     /**
      * Crea una entidad de tipo de documento a partir de sus datos.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return TipoDocumentoInterface
      */
     public function create(array $data): TipoDocumentoInterface;

@@ -40,7 +40,7 @@ interface BatchProcessorStrategyInterface extends StrategyInterface
      * documentos tributarios electrónicos.
      *
      * @param DocumentBatchInterface $batch Contenedor del lote a parsear.
-     * @return array Arreglo con los datos de cada documento parseado.
+     * @return array<int, array<string, mixed>> Arreglo con los datos de cada documento parseado.
      * @throws BatchProcessorException
      */
     public function parse(DocumentBatchInterface $batch): array;

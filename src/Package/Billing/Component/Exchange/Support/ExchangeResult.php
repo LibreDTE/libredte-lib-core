@@ -66,7 +66,7 @@ class ExchangeResult implements ExchangeResultInterface
      * Constructor del resultado del intercambio de un sobre.
      *
      * @param EnvelopeInterface $envelope
-     * @param BagInterface|array $metadata
+     * @param BagInterface|array<string, mixed> $metadata
      */
     public function __construct(
         EnvelopeInterface $envelope,

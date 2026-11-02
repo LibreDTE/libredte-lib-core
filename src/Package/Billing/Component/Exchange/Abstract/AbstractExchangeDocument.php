@@ -105,7 +105,7 @@ abstract class AbstractExchangeDocument implements JsonSerializable
     /**
      * Entrega el documento como arreglo.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -117,6 +117,8 @@ abstract class AbstractExchangeDocument implements JsonSerializable
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

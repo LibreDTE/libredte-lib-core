@@ -25,6 +25,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
@@ -39,6 +42,14 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param DocumentBagManagerWorkerInterface $documentBagManager
+     * @param iterable<array-key, JobInterface> $jobs
+     * @param iterable<array-key, HandlerInterface> $handlers
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         private DocumentBagManagerWorkerInterface $documentBagManager,
         iterable $jobs = [],

@@ -25,6 +25,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
@@ -45,6 +48,16 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param DocumentBagManagerWorkerInterface $documentBagManager
+     * @param XmlServiceInterface $xmlService
+     * @param SignatureServiceInterface $signatureService
+     * @param iterable<array-key, JobInterface> $jobs
+     * @param iterable<array-key, HandlerInterface> $handlers
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         private DocumentBagManagerWorkerInterface $documentBagManager,
         private XmlServiceInterface $xmlService,

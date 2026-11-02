@@ -128,6 +128,8 @@ class RenderResult implements RenderResultInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
@@ -147,8 +149,8 @@ class RenderResult implements RenderResultInterface
      * `$serializer`), no una vez por copia: expandir es solo repetir el
      * mismo arreglo ya calculado.
      *
-     * @param callable(RenderedDocumentInterface): array $serializer
-     * @return array
+     * @param callable(RenderedDocumentInterface): array<string, mixed> $serializer
+     * @return array<int, array<string, mixed>>
      */
     private function expand(callable $serializer): array
     {

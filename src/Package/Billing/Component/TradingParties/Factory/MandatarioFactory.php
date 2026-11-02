@@ -56,8 +56,8 @@ class MandatarioFactory implements MandatarioFactoryInterface
     /**
      * Normaliza los datos del mandatario para su creación.
      *
-     * @param array $data
-     * @return array
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
      */
     protected function normalizeData(array $data): array
     {

@@ -100,7 +100,7 @@ interface DocumentBatchInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene las opciones del procesamiento en lote.
      *
-     * @return array Opciones del batch processor.
+     * @return array<string, mixed> Opciones del batch processor.
      */
     public function getBatchProcessorOptions(): array;
 

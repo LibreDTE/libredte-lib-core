@@ -76,7 +76,7 @@ class Document implements DocumentInterface
      * @param string $content
      * @param AttachmentInterface[] $attachments
      * @param DocumentType $type
-     * @param BagInterface|array $metadata
+     * @param BagInterface|array<string, mixed> $metadata
      */
     public function __construct(
         string $content = '',
@@ -212,6 +212,8 @@ class Document implements DocumentInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

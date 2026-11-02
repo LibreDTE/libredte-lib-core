@@ -38,6 +38,9 @@ class ListDocumentEventsResponse implements JsonSerializable
      */
     private array $events;
 
+    /**
+     * @param array<string, mixed> $response Datos de la respuesta del SII.
+     */
     public function __construct(array $response/*, array $request = []*/)
     {
         $this->events = [];

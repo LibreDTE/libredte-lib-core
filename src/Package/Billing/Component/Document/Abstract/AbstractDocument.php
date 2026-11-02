@@ -60,7 +60,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     /**
      * Datos del documento tributario estandarizados.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private array $data;
 

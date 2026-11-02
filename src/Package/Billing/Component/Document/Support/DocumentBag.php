@@ -53,7 +53,7 @@ class DocumentBag implements DocumentBagInterface
      * opciones. No se define el esquema de cada opción pues cada clase que
      * utilice estas opciones deberá resolver y validar sus propias opciones.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $optionsSchema = [
         'builder' => [
@@ -101,7 +101,7 @@ class DocumentBag implements DocumentBagInterface
      * Estos son los datos que se usarán para construir el documento. Estos
      * datos no están normaliados, solo parseados.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $parsedData;
 
@@ -116,7 +116,7 @@ class DocumentBag implements DocumentBagInterface
      * Importante: si se desactiva la normalización este arreglo contendrá lo
      * mismo que $parsedData pues no se tocarán los datos de entrada procesados.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $normalizedData;
 
@@ -131,7 +131,7 @@ class DocumentBag implements DocumentBagInterface
      *   - Tags de facturas en PDF de boletas. Ejemplo: TermPagoGlosa.
      *   - Datos adicionales para los PDF. Ejemplo: historial.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $libredteData;
 
@@ -189,7 +189,7 @@ class DocumentBag implements DocumentBagInterface
     /**
      * Arreglo con la estructura del nodo TED del documento.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $timbre = null;
 
@@ -197,7 +197,7 @@ class DocumentBag implements DocumentBagInterface
      * Arreglo con los datos normalizados consolidados con el timbre y la firma
      * si existen en la bolsa.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $data = null;
 
@@ -207,11 +207,11 @@ class DocumentBag implements DocumentBagInterface
      * Recibe los datos en diferentes formatos para pasarlos a los setters que
      * los normalizan y asignan al contenedor.
      *
-     * @param string|array|stdClass|null $inputData
-     * @param array|null $parsedData
-     * @param array|null $normalizedData
-     * @param array|null $libredteData
-     * @param array|OptionsInterface $options
+     * @param string|array<string, mixed>|stdClass|null $inputData
+     * @param array<string, mixed>|null $parsedData
+     * @param array<string, mixed>|null $normalizedData
+     * @param array<string, mixed>|null $libredteData
+     * @param array<string, mixed>|OptionsInterface $options
      * @param XmlDocumentInterface|null $xmlDocument
      * @param CafInterface|null $caf
      * @param CertificateInterface|null $certificate

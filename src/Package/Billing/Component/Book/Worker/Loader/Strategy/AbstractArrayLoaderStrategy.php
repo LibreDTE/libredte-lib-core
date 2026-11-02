@@ -60,7 +60,7 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      * Normaliza la carátula del libro.
      *
      * @param BookBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      */
     abstract protected function normalizeCaratula(BookBagInterface $bag): array;
 
@@ -70,8 +70,8 @@ abstract class AbstractArrayLoaderStrategy extends AbstractStrategy
      * El orden de las claves determina el orden de los elementos en el XML,
      * que debe respetar el esquema XSD del libro.
      *
-     * @param array $detalle
-     * @return array
+     * @param array<string, mixed> $detalle
+     * @return array<string, mixed>
      */
     abstract protected function normalizeDetalle(array $detalle): array;
 }

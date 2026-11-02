@@ -95,16 +95,31 @@ class AecBag
         return $this->source instanceof Aec;
     }
 
+    /**
+     * Entrega los datos del cedente.
+     *
+     * @return array<string, mixed>
+     */
     public function getCedente(): array
     {
         return $this->cedente;
     }
 
+    /**
+     * Entrega los datos del cesionario.
+     *
+     * @return array<string, mixed>
+     */
     public function getCesionario(): array
     {
         return $this->cesionario;
     }
 
+    /**
+     * Entrega los datos del cesión.
+     *
+     * @return array<string, mixed>
+     */
     public function getCesion(): array
     {
         return $this->cesion;

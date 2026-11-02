@@ -116,7 +116,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * Valida la respuesta recibida desde el SII al enviar un XML.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param array $response Arreglo con los datos del XML de la respuesta.
+     * @param array<string, mixed> $response Arreglo con los datos del XML de la respuesta.
      * @return void
      * @throws SiiDteException Si el envío tuvo algún problema.
      */
@@ -211,7 +211,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      *   - Certificación: https://maullin.sii.cl/cgi_dte/UPL/DTEauth?1
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
-     * @param array $data Arreglo con los datos del formulario del SII,
+     * @param array<string, mixed> $data Arreglo con los datos del formulario del SII,
      * incluyendo el archivo XML que se subirá.
      * @param int $retries
      * @return XmlDocumentInterface Respuesta del SII al enviar el XML.
@@ -290,7 +290,8 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      *
      * @param string $xml Documento XML que se guardará en el archivo..
      * @param bool $compress Indica si se debe crear un archivo comprimido.
-     * @return array Arreglo con la ruta al archivo creado y su mimetype.
+     * @return array{0: string, 1: string} Arreglo con la ruta al archivo creado y
+     * su mimetype.
      */
     private function createXmlFile(string $xml, bool $compress): array
     {

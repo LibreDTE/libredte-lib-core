@@ -25,6 +25,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Translation\Exception\Core\TranslatableRuntimeException as RuntimeException;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
@@ -54,7 +57,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,
@@ -78,9 +81,9 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * @param CafFakerWorkerInterface $cafFaker
      * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
      * @param BuilderWorkerInterface $builderWorker
-     * @param iterable $jobs
-     * @param iterable $handlers
-     * @param iterable $strategies
+     * @param iterable<array-key, JobInterface> $jobs
+     * @param iterable<array-key, HandlerInterface> $handlers
+     * @param iterable<array-key, StrategyInterface> $strategies
      */
     public function __construct(
         private CafFakerWorkerInterface $cafFaker,
@@ -233,7 +236,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * solicitado, y entrega los datos de los documentos que se deben crear.
      *
      * @param DocumentBatchInterface $batch
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
     private function parseDocuments(DocumentBatchInterface $batch): array
     {
@@ -261,8 +264,8 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * Completa los datos del documento parseado desde el archivo masivo.
      *
      * @param DocumentBatchInterface $batch
-     * @param array $data
-     * @return array
+     * @param array<string, mixed> $data
+     * @return array<string, mixed>
      */
     private function completeParsedData(
         DocumentBatchInterface $batch,

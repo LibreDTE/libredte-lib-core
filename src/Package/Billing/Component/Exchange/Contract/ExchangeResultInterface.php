@@ -63,7 +63,7 @@ interface ExchangeResultInterface extends JsonSerializable
     /**
      * Asigna los metadatos del resultado.
      *
-     * @param BagInterface|array $metadata
+     * @param BagInterface|array<string, mixed> $metadata
      * @return static
      */
     public function setMetadata(BagInterface|array $metadata): static;

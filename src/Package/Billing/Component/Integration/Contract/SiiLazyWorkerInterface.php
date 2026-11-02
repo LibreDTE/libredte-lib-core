@@ -42,7 +42,7 @@ interface SiiLazyWorkerInterface extends WorkerInterface
      * @param string $service Nombre del servicio del SII que se consumirá.
      * @param string $function Nombre de la función que se ejecutará en el
      * servicio web del SII.
-     * @param array|int $args Argumentos que se pasarán al servicio web.
+     * @param array<array-key, mixed>|int $args Argumentos que se pasarán al servicio web.
      * @param int|null $retries Intentos que se realizarán como máximo para
      * obtener respuesta.
      * @param string|null $token Token de autenticación. Si se provee, se

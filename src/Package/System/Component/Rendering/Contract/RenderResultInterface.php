@@ -87,7 +87,7 @@ interface RenderResultInterface extends Stringable, JsonSerializable
      * vez), cada una con un `copyNumber` (desde 1) y, si hay más de una
      * copia, el `filename` ajustado para no colisionar entre copias.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array;
 }

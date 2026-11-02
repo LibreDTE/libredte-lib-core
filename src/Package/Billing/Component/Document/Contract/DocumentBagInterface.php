@@ -41,7 +41,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      *
      * Si los datos no son string se serializan como JSON.
      *
-     * @param string|array|stdClass|null $inputData
+     * @param string|array<string, mixed>|stdClass|null $inputData
      * @return static
      */
     public function setInputData(string|array|stdClass|null $inputData): static;
@@ -56,7 +56,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Asigna los datos procesados (parseados) del documento.
      *
-     * @param array|null $parsedData
+     * @param array<string, mixed>|null $parsedData
      * @return static
      */
     public function setParsedData(?array $parsedData): static;
@@ -64,14 +64,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene los datos procesados (parseados) del documento.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getParsedData(): ?array;
 
     /**
      * Asigna los datos normalizados del documento.
      *
-     * @param array|null $normalizedData
+     * @param array<string, mixed>|null $normalizedData
      * @return static
      */
     public function setNormalizedData(?array $normalizedData): static;
@@ -79,7 +79,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene los datos normalizados del documento.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getNormalizedData(): ?array;
 
@@ -87,7 +87,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * Asigna los datos de LibreDTE que están asociados al documento pero no
      * son parte de la estructura oficial que utiliza el SII.
      *
-     * @param array|null $libredteData
+     * @param array<string, mixed>|null $libredteData
      * @return static
      */
     public function setLibredteData(?array $libredteData): static;
@@ -96,49 +96,49 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * Obtiene los datos de LibreDTE que están asociados al documento pero no
      * son parte de la estructura oficial que utiliza el SII.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getLibredteData(): ?array;
 
     /**
      * Obtiene las opciones del procesador (parser) del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getParserOptions(): array;
 
     /**
      * Obtiene las opciones del constructor del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getBuilderOptions(): array;
 
     /**
      * Obtiene las opciones del normalizador del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getNormalizerOptions(): array;
 
     /**
      * Obtiene las opciones del sanitizador del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getSanitizerOptions(): array;
 
     /**
      * Obtiene las opciones del validador del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getValidatorOptions(): array;
 
     /**
      * Obtiene las opciones del renderizador del documento.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getRendererOptions(): array;
 
@@ -274,7 +274,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      *
      * Este es el nodo TED del documento.
      *
-     * @param array|null $timbre
+     * @param array<string, mixed>|null $timbre
      * @return static
      */
     public function setTimbre(?array $timbre): static;
@@ -284,7 +284,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      *
      * Este es el nodo TED del documento.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getTimbre(): ?array;
 
@@ -300,7 +300,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * datos del documento completo, con los datos específicos de LibreDTE, usar
      * el método getDocumentData().
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getData(): ?array;
 
@@ -314,7 +314,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * Por otro lado, si se quieren los datos normalizados preparados para firma
      * se debe utilizar getData().
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getDocumentData(): ?array;
 
@@ -326,7 +326,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * documento tributario para completar tags entre diferentes tipos de
      * documentos. O sea, todo lo extra, menos el índice `dte`.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getDocumentExtra(): ?array;
 
@@ -340,7 +340,7 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene los datos de la autorización del emisor para emitir DTE.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getDocumentAuth(): ?array;
 

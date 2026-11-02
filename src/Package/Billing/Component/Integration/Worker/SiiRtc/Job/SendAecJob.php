@@ -119,7 +119,7 @@ class SendAecJob extends AbstractJob implements JobInterface
      *   9  → Error interno del SII.
      *   10 → Error interno del SII.
      *
-     * @param array $response Arreglo decodificado de la respuesta XML del SII.
+     * @param array<string, mixed> $response Arreglo decodificado de la respuesta XML del SII.
      * @throws SendAecException Si el STATUS indica un error.
      */
     private function validateResponse(array $response): void
@@ -171,9 +171,9 @@ class SendAecJob extends AbstractJob implements JobInterface
      *   - Certificación: https://maullin.sii.cl/cgi_rtc/RTC/RTCDocum.cgi?2
      *
      * @param SiiRequestInterface $request
-     * @param array $data Campos del formulario multipart, incluido el archivo.
+     * @param array<string, mixed> $data Campos del formulario multipart, incluido el archivo.
      * @param int $retries Número de reintentos.
-     * @return array Respuesta del SII decodificada como arreglo.
+     * @return array<string, mixed> Respuesta del SII decodificada como arreglo.
      * @throws SiiRtcException Si no se puede autenticar o si el HTTP falla.
      */
     private function uploadAec(

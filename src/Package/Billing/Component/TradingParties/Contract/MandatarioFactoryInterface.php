@@ -30,7 +30,7 @@ interface MandatarioFactoryInterface
     /**
      * Crea una entidad de mandatario a partir de sus datos.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return MandatarioInterface
      */
     public function create(array $data): MandatarioInterface;

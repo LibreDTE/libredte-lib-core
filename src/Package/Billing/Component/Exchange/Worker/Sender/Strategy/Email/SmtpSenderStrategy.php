@@ -188,7 +188,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
      * llamada separada por cada transporte.
      *
      * @param ExchangeBagInterface $bag
-     * @return array
+     * @return array<string, mixed>
      * @throws ExchangeException Si no se encuentran los datos de transporte.
      */
     private function resolveTransportOptions(ExchangeBagInterface $bag): array
@@ -228,7 +228,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
      * Resuelve y entrega los datos de los receptores.
      *
      * @param EnvelopeInterface $envelope
-     * @return array
+     * @return array<string, mixed>
      * @throws ExchangeException Si no se encuentra al menos un receptor.
      */
     private function resolveRecipients(EnvelopeInterface $envelope): array

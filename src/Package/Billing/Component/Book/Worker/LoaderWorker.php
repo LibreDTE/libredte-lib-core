@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
@@ -67,6 +68,11 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
         ],
     ];
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(iterable $strategies = [])
     {
         $this->setStrategies($strategies);

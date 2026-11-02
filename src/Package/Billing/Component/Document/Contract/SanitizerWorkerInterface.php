@@ -35,7 +35,7 @@ interface SanitizerWorkerInterface extends WorkerInterface, StrategiesAwareInter
      * Realiza la sanitización del documento.
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a sanitizar.
-     * @return array Datos sanitizados del documento.
+     * @return array<string, mixed> Datos sanitizados del documento.
      * @throws SanitizerException
      */
     public function sanitize(DocumentBagInterface $bag): array;

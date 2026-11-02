@@ -57,7 +57,7 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
      * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
      * `LoaderWorker`.
      *
-     * @param array|string $inputData
+     * @param array<string, mixed>|string $inputData
      * @return static
      */
     public function setInputData(array|string $inputData): static;
@@ -69,7 +69,7 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
      * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
      * `LoaderWorker`.
      *
-     * @return array|string
+     * @return array<string, mixed>|string
      */
     public function getInputData(): array|string;
 
@@ -228,14 +228,14 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
     /**
      * Obtiene los datos del libro.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getData(): ?array;
 
     /**
      * Obtiene los datos de la autorización del emisor para emitir el libro.
      *
-     * @return array|null
+     * @return array<string, mixed>|null
      */
     public function getBookAuth(): ?array;
 

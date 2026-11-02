@@ -76,7 +76,7 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
     /**
      * Obtiene los datos normalizados de la respuesta.
      *
-     * @return array Datos normalizados de la respuesta del SII.
+     * @return array<string, mixed> Datos normalizados de la respuesta del SII.
      */
     public function getData(): array
     {
@@ -112,8 +112,8 @@ class RequestXmlDocumentSentStatusByEmailResponse extends AbstractSiiWsdlRespons
     /**
      * Parsea el estado de la respuesta del SII.
      *
-     * @param array $headers Encabezados de la respuesta.
-     * @return array Arreglo con el estado, error y descripción.
+     * @param array<string, mixed> $headers Encabezados de la respuesta.
+     * @return array{0: string, 1: string|null}
      */
     private function parseEstado(array $headers): array
     {

@@ -41,7 +41,7 @@ class SiiRequest implements SiiRequestInterface
     /**
      * Reglas de esquema de las opciones de la solicitud al SII.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $optionsSchema = [
         // Por defecto la conexión es a los servidores de producción del SII.
@@ -116,7 +116,7 @@ class SiiRequest implements SiiRequestInterface
      * Constructor de la configuración de conexión.
      *
      * @param CertificateInterface|null $certificate
-     * @param array|OptionsInterface $options Opciones de la solicitud.
+     * @param array<string, mixed>|OptionsInterface $options Opciones de la solicitud.
      */
     public function __construct(
         ?CertificateInterface $certificate = null,

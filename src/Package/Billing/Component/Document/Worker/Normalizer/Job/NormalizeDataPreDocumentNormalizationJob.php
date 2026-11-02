@@ -87,7 +87,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
     /**
      * Completar con campos por defecto.
      *
-     * @param array $data
+     * @param array<array-key, mixed> $data
      * @param int|false $IndServicio
      * @return void
      */
@@ -173,7 +173,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Si alguna de las fechas de la identificación del documento se pasó como
      * entero es un timestamp y se convierte a string.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     private function normalizeIdDocFechas(array &$data): void
@@ -191,7 +191,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
     /**
      * Si existe descuento o recargo global se normalizan.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     private function normalizeDescuentosRecargosGlobales(array &$data): void
@@ -217,7 +217,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
     /**
      * Si existe una o más referencias se normalizan.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     private function normalizeReferencias(array &$data): void
@@ -259,7 +259,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Si no existe y el documento lo requiere se asigna "Ventas del giro" como
      * valor por defecto.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @param bool $requiereTpoTranVenta
      * @return void
      */
@@ -279,7 +279,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Normaliza los datos del emisor completando los datos requeridos que
      * puedan faltar usando un proveedor de datos de emisor.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     public function normalizeEmisor(array &$data): void
@@ -354,7 +354,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
      * Normaliza los datos del receptor completando los datos requeridos que
      * puedan faltar usando un proveedor de datos de receptor.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     public function normalizeReceptor(array &$data): void

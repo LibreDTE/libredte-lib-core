@@ -136,7 +136,7 @@ interface EmisorInterface extends ContribuyenteInterface, AutorizacionDteInfoInt
     /**
      * Entrega los datos del emisor en un arreglo compatible con el XML del DTE.
      *
-     * @return array Arreglo con los datos del emisor en formato del DTE.
+     * @return array<string, mixed> Arreglo con los datos del emisor en formato del DTE.
      */
     public function toDteArray(): array;
 }

@@ -35,7 +35,7 @@ class EstandarRendererStrategy extends AbstractRendererStrategy implements Rende
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,

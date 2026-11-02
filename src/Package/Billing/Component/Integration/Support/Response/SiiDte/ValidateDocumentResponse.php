@@ -140,7 +140,7 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
     /**
      * Obtiene los datos normalizados de la respuesta.
      *
-     * @return array Datos normalizados de la respuesta del SII.
+     * @return array<string, mixed> Datos normalizados de la respuesta del SII.
      */
     public function getData(): array
     {
@@ -179,8 +179,8 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
 
             // Armar los datos normalizados.
             $this->data = [
-                'query_number' => $number ?? null,
-                'query_datetime' => $datetime ?? null,
+                'query_number' => $number,
+                'query_datetime' => $datetime,
                 'company' => $company,
                 'document' => $this->requestData['TipoDte'] ?? null,
                 'number' => $this->requestData['FolioDte'] ?? null,
@@ -201,8 +201,8 @@ class ValidateDocumentResponse extends AbstractSiiWsdlResponse implements JsonSe
     /**
      * Parsea el estado de la respuesta del SII.
      *
-     * @param array $headers Encabezados de la respuesta.
-     * @return array Arreglo con el estado, error y descripción.
+     * @param array<string, mixed> $headers Encabezados de la respuesta.
+     * @return array{0: string, 1: bool|null, 2: string|null}
      */
     private function parseEstado(array $headers): array
     {

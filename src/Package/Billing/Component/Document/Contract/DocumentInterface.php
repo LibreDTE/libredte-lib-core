@@ -88,7 +88,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Obtiene el contribuyente emisor del documento.
      *
-     * @return array Datos del emisor en el DTE.
+     * @return array<string, mixed> Datos del emisor en el DTE.
      */
     public function getEmisor(): array;
 
@@ -109,7 +109,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Obtiene el contribuyente receptor del documento.
      *
-     * @return array Datos del receptor en el DTE.
+     * @return array<string, mixed> Datos del receptor en el DTE.
      */
     public function getReceptor(): array;
 
@@ -140,7 +140,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
     /**
      * Entrega todos los valores del tag "Totales".
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getTotales(): array;
 
@@ -260,14 +260,14 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      *
      * @param int|null $index Índice de la línea de detalle solicitada o
      * `null` (por defecto) para obtener todas las líneas.
-     * @return array
+     * @return ($index is null ? array<int, array<string, mixed>> : array<string, mixed>)
      */
     public function getDetalle(?int $index = null): array;
 
     /**
      * Entrega las referencias del documento.
      *
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
     public function getReferencias(): array;
 
@@ -277,7 +277,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Este método estandariza los datos para entregarlos en un formato
      * compatible con los datos de entrada normalizados al crear un DTE.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getData(): array;
 
@@ -301,7 +301,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      *
      *   - TED.FRMT.@value
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getTemplateTED(): array;
 
@@ -348,7 +348,8 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * Realiza una consulta XPath al XML del DTE.
      *
      * @param string $query Consulta XPath con marcadores nombrados (ej.: ":param").
-     * @param array $params Arreglo de parámetros en formato ['param' => 'value'].
+     * @param array<string, mixed> $params Arreglo de parámetros en formato ['param' => 'value'].
+     * @return string|array<int|string, mixed>|null Resultado de la consulta.
      */
     public function query(string $query, array $params = []): string|array|null;
 

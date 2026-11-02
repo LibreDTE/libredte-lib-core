@@ -30,7 +30,7 @@ interface ContribuyenteFactoryInterface
     /**
      * Crea una entidad de contribuyente a partir de sus datos.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return ContribuyenteInterface
      */
     public function create(array $data): ContribuyenteInterface;

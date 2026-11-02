@@ -45,7 +45,7 @@ class CafFaker
     /**
      * Datos del contribuyente emisor del CAF.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private array $emisor;
 
@@ -59,7 +59,7 @@ class CafFaker
     /**
      * Rango de folios.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     private array $rangoFolios;
 

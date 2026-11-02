@@ -76,7 +76,7 @@ interface ReceptorInterface extends ContribuyenteInterface, CorreoIntercambioDte
      * Entrega los datos del receptor en un arreglo compatible con el XML del
      * DTE.
      *
-     * @return array Arreglo con los datos del receptor en formato del DTE.
+     * @return array<string, mixed> Arreglo con los datos del receptor en formato del DTE.
      */
     public function toDteArray(): array;
 }

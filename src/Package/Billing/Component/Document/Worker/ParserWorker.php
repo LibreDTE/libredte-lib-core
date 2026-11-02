@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
@@ -40,6 +41,11 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         iterable $strategies = []
     ) {
@@ -49,7 +55,7 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         'strategy' => [

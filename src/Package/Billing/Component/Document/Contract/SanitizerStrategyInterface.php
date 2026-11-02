@@ -36,7 +36,7 @@ interface SanitizerStrategyInterface extends StrategyInterface
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a
      * sanitizar.
-     * @return array
+     * @return array<string, mixed>
      * @throws SanitizerException
      */
     public function sanitize(DocumentBagInterface $bag): array;

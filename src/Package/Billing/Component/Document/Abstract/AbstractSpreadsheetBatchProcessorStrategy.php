@@ -273,7 +273,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      *
      * También agrega ítems, transporte y referencias al documento.
      *
-     * @param array $data Datos para crear el documento. Los índices corresponden a:
+     * @param array<int, string> $data Datos para crear el documento. Los índices corresponden a:
      *   - 0: Tipo de documento (obligatorio).
      *   - 1: Folio del documento (obligatorio).
      *   - 2: Fecha de emisión (opcional).
@@ -292,7 +292,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      *   - 37: Forma de pago (opcional, 1, 2 o 3).
      *   - 38: Código de impuesto adicional (opcional).
      *   - 39: Descuento global afecto (opcional, porcentaje o monto).
-     * @return array Estructura del documento generado.
+     * @return array<string, mixed> Estructura del documento generado.
      * @throws BatchProcessorException Si faltan datos mínimos o son inválidos.
      */
     private function createDocument(array $data): array
@@ -446,7 +446,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
     /**
      * Agrega un descuento global al documento.
      *
-     * @param array &$documento Documento al que se agregará el descuento.
+     * @param array<string, mixed> &$documento Documento al que se agregará el descuento.
      * Se pasa por referencia para modificarlo.
      * @param string $descuento Porcentaje (por ejemplo `10%`) o monto (por
      * ejemplo `1000`) del descuento.
@@ -493,8 +493,8 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * predeterminados para los campos opcionales y procesa algunos datos de
      * entrada.
      *
-     * @param array $data Datos de entrada para generar la estructura del DTE.
-     * @return array Arreglo con la estructura inicial del DTE.
+     * @param array<int, string> $data Datos de entrada para generar la estructura del DTE.
+     * @return array<string, mixed> Arreglo con la estructura inicial del DTE.
      */
     private function setInitialDTE(array $data): array
     {
@@ -573,9 +573,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * Procesa los datos de un ítem y lo agrega al arreglo de detalles. Valida
      * que los campos mínimos estén presentes y ajusta la longitud de los datos.
      *
-     * @param array &$documento Documento al que se agregará el ítem. Modificado
+     * @param array<string, mixed> &$documento Documento al que se agregará el ítem. Modificado
      * directamente.
-     * @param array $item  Datos del ítem. Los índices corresponden a:
+     * @param array<int, string|null> $item Datos del ítem. Los índices corresponden a:
      *   - 0: Código del ítem (opcional).
      *   - 1: Indicador de exención (opcional).
      *   - 2: Nombre del ítem (obligatorio).
@@ -685,9 +685,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * `Transporte` dentro del documento. Los datos incluyen información de
      * patente, transportista, chofer, destino y fechas del traslado.
      *
-     * @param array &$documento Documento al que se agregará la información de
+     * @param array<string, mixed> &$documento Documento al que se agregará la información de
      * transporte. Se pasa por referencia para modificarlo.
-     * @param array $transporte Datos de transporte a procesar. Los índices son:
+     * @param array<int, string> $transporte Datos de transporte a procesar. Los índices son:
      *   - 0: Patente del vehículo (opcional).
      *   - 1: RUT del transportista (opcional).
      *   - 2: RUT del chofer (opcional).
@@ -808,9 +808,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      * dentro del documento. Valida los campos obligatorios y ajusta su longitud
      * si es necesario.
      *
-     * @param array &$documento Documento al que se agregará la referencia.
+     * @param array<string, mixed> &$documento Documento al que se agregará la referencia.
      * Se pasa por referencia para modificarlo.
-     * @param array $referencia Datos de la referencia a agregar. Los índices
+     * @param array<int, string> $referencia Datos de la referencia a agregar. Los índices
      * deben ser:
      *   - 0: Tipo del documento referenciado (obligatorio).
      *   - 1: Folio del documento referenciado (obligatorio).

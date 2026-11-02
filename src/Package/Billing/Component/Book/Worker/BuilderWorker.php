@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Book\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
@@ -52,6 +53,12 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
 {
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param SignatureServiceInterface $signatureService
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         private SignatureServiceInterface $signatureService,
         iterable $strategies = [],

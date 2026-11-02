@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Contract\WorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
+use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
 
 /**
  * Clase base para los workers de intercambio: ReceiverWorker y SenderWorker.
@@ -33,7 +34,11 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandle
 abstract class AbstractExchangeWorker extends AbstractWorker implements WorkerInterface
 {
     /**
-     * {@inheritDoc}
+     * Entrega la bolsa a cada handler para que maneje su transporte.
+     *
+     * @param ExchangeBagInterface $bag Bolsa con los sobres y opciones para
+     * el intercambio.
+     * @return ExchangeResultInterface[] Los resultados de procesar los sobres.
      */
     public function handle(ExchangeBagInterface $bag): array
     {

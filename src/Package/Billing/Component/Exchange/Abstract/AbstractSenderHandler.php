@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Backbone\Abstract\AbstractHandler;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
@@ -40,7 +41,7 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
      * Constructor del handler.
      *
      * @param SenderWorkerInterface $senderWorker
-     * @param array $strategies Estrategias que este handler puede manejar.
+     * @param iterable<array-key, StrategyInterface> $strategies Estrategias que este handler puede manejar.
      */
     public function __construct(
         private SenderWorkerInterface $senderWorker,

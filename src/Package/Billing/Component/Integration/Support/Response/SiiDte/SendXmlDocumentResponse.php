@@ -33,6 +33,9 @@ class SendXmlDocumentResponse implements JsonSerializable
 {
     private readonly int $trackId;
 
+    /**
+     * @param array<string, mixed> $response Datos de la respuesta del SII.
+     */
     public function __construct(array $response/*, array $request = []*/)
     {
         $this->trackId = (int) ($response['RECEPCIONDTE']['TRACKID'] ?? 0);

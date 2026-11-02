@@ -59,7 +59,8 @@ interface ExamplesWorkerInterface extends WorkerInterface
      * documento con la aserción de la suite de tests.
      *
      * @param string $id Identificador del ejemplo (ver `list()`).
-     * @return array{id: string, example: array, expected: array} Datos del
+     * @return array{id: string, example: array<string, mixed>, expected: array<string, mixed>}
+     * Datos del
      * ejemplo.
      * @throws ExamplesException Si el ejemplo solicitado no existe.
      */

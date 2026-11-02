@@ -36,7 +36,7 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         '__allowUndefinedKeys' => true,
@@ -74,7 +74,8 @@ abstract class AbstractRendererStrategy extends AbstractStrategy implements Rend
      *
      * @param DocumentBagInterface $bag Bolsa con los datos del documento a
      * renderizar.
-     * @return array Datos que se pasarán a la plantilla al renderizar.
+     * @return array{0: array<string, mixed>, 1: array<string, mixed>} Datos que
+     * se pasarán a la plantilla (0) y opciones del renderizado (1).
      */
     protected function createDataAndOptions(DocumentBagInterface $bag): array
     {

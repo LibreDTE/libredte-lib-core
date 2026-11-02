@@ -198,6 +198,8 @@ abstract class AbstractBook implements BookInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

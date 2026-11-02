@@ -30,7 +30,7 @@ interface ReceptorFactoryInterface
     /**
      * Crea una entidad de receptor a partir de sus datos.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return ReceptorInterface
      */
     public function create(array $data): ReceptorInterface;

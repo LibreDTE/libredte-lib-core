@@ -26,6 +26,8 @@ use DateTime;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
@@ -46,6 +48,15 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario
 #[Worker(name: 'dispatcher', component: 'document', package: 'billing')]
 class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterface
 {
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param XmlServiceInterface $xmlService
+     * @param SignatureServiceInterface $signatureService
+     * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
+     * @param iterable<array-key, JobInterface> $jobs
+     * @param iterable<array-key, HandlerInterface> $handlers
+     */
     public function __construct(
         private XmlServiceInterface $xmlService,
         private SignatureServiceInterface $signatureService,
@@ -489,7 +500,8 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * Esto se usa para para generar los tags del XML `SubTotDTE`.
      *
      * @param DocumentEnvelopeInterface $envelope
-     * @return array Arreglo con el resumen de documentos por tipo.
+     * @return array<int, array{TpoDTE: int, NroDTE: int}> Arreglo con el resumen
+     * de documentos por tipo.
      */
     protected function getResumen(DocumentEnvelopeInterface $envelope): array
     {

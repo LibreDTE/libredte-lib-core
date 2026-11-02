@@ -24,6 +24,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Worker;
 
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
+use Derafu\Backbone\Contract\HandlerInterface;
+use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\HandlersAwareTrait;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
@@ -44,6 +46,12 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
     use HandlersAwareTrait;
     use StrategiesAwareTrait;
 
+    /**
+     * Constructor del worker y sus dependencias.
+     *
+     * @param iterable<array-key, HandlerInterface> $handlers
+     * @param iterable<array-key, StrategyInterface> $strategies
+     */
     public function __construct(
         iterable $handlers = [],
         iterable $strategies = []
@@ -55,7 +63,7 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
     /**
      * Esquema de las opciones.
      *
-     * @var array<string,array|bool>
+     * @var array<string, array<string, mixed>|bool>
      */
     protected array $optionsSchema = [
         'strategy' => [

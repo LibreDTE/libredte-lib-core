@@ -36,7 +36,7 @@ interface NormalizerStrategyInterface extends StrategyInterface
      *
      * @param DocumentBagInterface $bag Contenedor con los datos del documento a
      * normalizar.
-     * @return array
+     * @return array<string, mixed>
      * @throws NormalizerException
      */
     public function normalize(DocumentBagInterface $bag): array;

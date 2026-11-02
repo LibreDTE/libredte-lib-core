@@ -46,7 +46,7 @@ class ExchangeBag implements ExchangeBagInterface
      * opciones. No se define el esquema de cada opción pues cada clase que
      * utilice estas opciones deberá resolver y validar sus propias opciones.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $optionsSchema = [
         'strategy' => [
@@ -75,7 +75,7 @@ class ExchangeBag implements ExchangeBagInterface
     /**
      * Constructor de la bolsa de intercambio.
      *
-     * @param array $options
+     * @param array<string, mixed> $options
      */
     public function __construct(OptionsInterface|array $options = [])
     {
@@ -177,6 +177,8 @@ class ExchangeBag implements ExchangeBagInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {

@@ -66,7 +66,8 @@ class Utils
      *
      * @param int $total Total que representa el monto neto más el IVA.
      * @param int|float|false $tasa Tasa del IVA o `false` si no corresponde.
-     * @return array Arreglo con el neto y el IVA en índices 0 y 1.
+     * @return array{0: int|float, 1: int|float} Arreglo con el neto y el IVA en
+     * índices 0 y 1.
      */
     public static function calculateNetoIVA($total, int|float|false $tasa): array
     {

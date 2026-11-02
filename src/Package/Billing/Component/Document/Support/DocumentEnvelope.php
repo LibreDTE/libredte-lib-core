@@ -51,7 +51,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      * opciones. No se define el esquema de cada opción pues cada clase que
      * utilice estas opciones deberá resolver y validar sus propias opciones.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $optionsSchema = [
         'dispatcher' => [
@@ -119,7 +119,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * Datos de la carátula del sobre.
      *
-     * @var array|null
+     * @var array<string, mixed>|null
      */
     private ?array $caratula = null;
 

@@ -62,7 +62,8 @@ interface CafInterface extends JsonSerializable
     /**
      * Obtiene el contribuyente emisor del CAF.
      *
-     * @return array Arreglo con el RUT y razón social del contribuyente emisor.
+     * @return array{rut: string, razon_social: string} Arreglo con el RUT y razón
+     * social del contribuyente emisor.
      */
     public function getEmisor(): array;
 
@@ -180,7 +181,7 @@ interface CafInterface extends JsonSerializable
     /**
      * Entrega los datos del código de autorización de folios (CAF).
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getAutorizacion(): array;
 

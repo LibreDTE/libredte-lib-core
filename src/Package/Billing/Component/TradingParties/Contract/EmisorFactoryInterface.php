@@ -30,7 +30,7 @@ interface EmisorFactoryInterface
     /**
      * Crea una entidad de emisor a partir de sus datos.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return EmisorInterface
      */
     public function create(array $data): EmisorInterface;

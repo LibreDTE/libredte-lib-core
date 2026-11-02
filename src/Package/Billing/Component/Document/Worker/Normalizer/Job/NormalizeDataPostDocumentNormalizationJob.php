@@ -67,7 +67,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
     /**
      * Normalizar montos de pagos programados.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     private function normalizeIdDocMntPagos(array &$data): void
@@ -97,7 +97,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
     /**
      * Si existe OtraMoneda se verifican los tipos de cambio y totales.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      * @return void
      */
     private function normalizeOtraMoneda(array &$data): void

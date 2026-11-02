@@ -117,10 +117,10 @@ interface DocumentComponentInterface extends ComponentInterface
      *
      * Si se pasa un CAF el documento será firmado.
      *
-     * @param string|array|stdClass $data
+     * @param string|array<string, mixed>|stdClass $data
      * @param string|CafInterface|null $caf
-     * @param string|array|CertificateInterface|null $certificate
-     * @param array|OptionsInterface $options
+     * @param string|array<string, mixed>|CertificateInterface|null $certificate
+     * @param array<string, mixed>|OptionsInterface $options
      * @return DocumentBagInterface
      */
     public function bill(

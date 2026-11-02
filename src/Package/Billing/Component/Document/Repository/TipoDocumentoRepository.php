@@ -35,7 +35,7 @@ class TipoDocumentoRepository extends Repository
      * Entrega el listado de todos los documentos registrados en el repositorio
      * de datos.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentos(): array
     {
@@ -51,7 +51,7 @@ class TipoDocumentoRepository extends Repository
      *   - Documentos tributarios electrónicos.
      *   - Documentos tributarios adicionales (otros documentos, ej: rango 9XX).
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentosTributarios(): array
     {
@@ -68,7 +68,7 @@ class TipoDocumentoRepository extends Repository
      *   - Documentos informativos oficiales del SII (categoría "I").
      *   - Documentos informativos no oficiales del SII (categoría "R").
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentosInformativos(): array
     {
@@ -83,7 +83,7 @@ class TipoDocumentoRepository extends Repository
     /**
      * Entrega el listado de documentos tributarios electrónicos del SII.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentosTributariosElectronicos(): array
     {
@@ -96,7 +96,7 @@ class TipoDocumentoRepository extends Repository
     /**
      * Entrega el listado de documentos tributarios electrónicos del SII.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentosTributariosElectronicosCedibles(): array
     {
@@ -111,7 +111,7 @@ class TipoDocumentoRepository extends Repository
      * Entrega el listado de documentos tributarios electrónicos que pueden ser
      * emitidos utilizando LibreDTE.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getDocumentosDisponibles(): array
     {

@@ -33,21 +33,21 @@ abstract class AbstractSiiWsdlResponse
     /**
      * Cabeceras que vienen en el XML de respuesta de la solicitud al SII.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $headers;
 
     /**
      * Cuerpo que viene en en XML de respuesta de la solicitud al SII.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $body;
 
     /**
      * Datos de las cabeceras y cuerpo normalizados para fácil manipulación.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $data;
 
@@ -58,15 +58,15 @@ abstract class AbstractSiiWsdlResponse
      * completo de la solicitud y respuesta del estado del documento al SII en
      * un único lugar (instancia).
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $requestData;
 
     /**
      * Constructor que recibe la respuesta del SII y los datos de la solicitud.
      *
-     * @param array $response Datos de la respuesta a la solicitud enviada.
-     * @param array $request Datos de la solicitud original enviada.
+     * @param array<string, mixed> $response Datos de la respuesta a la solicitud enviada.
+     * @param array<string, mixed> $request Datos de la solicitud original enviada.
      * @throws SiiDteException Si la respuesta del SII no incluye las
      * cabeceras `SII:RESPUESTA.SII:RESP_HDR` esperadas.
      */
@@ -88,7 +88,7 @@ abstract class AbstractSiiWsdlResponse
     /**
      * Obtiene los encabezados de la respuesta del SII.
      *
-     * @return array Los encabezados de la respuesta.
+     * @return array<string, mixed> Los encabezados de la respuesta.
      */
     public function getHeaders(): array
     {
@@ -98,7 +98,7 @@ abstract class AbstractSiiWsdlResponse
     /**
      * Obtiene el cuerpo de la respuesta del SII.
      *
-     * @return array El cuerpo de la respuesta.
+     * @return array<string, mixed> El cuerpo de la respuesta.
      */
     public function getBody(): array
     {
@@ -108,7 +108,7 @@ abstract class AbstractSiiWsdlResponse
     /**
      * Obtiene los datos normalizados de la respuesta.
      *
-     * @return array Datos normalizados de la respuesta del SII.
+     * @return array<string, mixed> Datos normalizados de la respuesta del SII.
      */
     abstract public function getData();
 
@@ -152,7 +152,8 @@ abstract class AbstractSiiWsdlResponse
      * Parsea el número de atención y la fecha/hora de un string.
      *
      * @param string $input Cadena con el número de atención y fecha/hora.
-     * @return array Arreglo con el número y la fecha/hora en formato ISO.
+     * @return array{0: int, 1: string} Arreglo con el número y la fecha/hora en
+     * formato ISO.
      */
     protected function parseNumeroAtencion(string $input): array
     {

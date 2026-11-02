@@ -46,7 +46,7 @@ interface DocumentBagManagerWorkerInterface extends WorkerInterface
      *   - `DocumentInterface`: Una instancia del documento tributario con sus
      *     datos normalizados.
      *
-     * @param string|array|XmlDocumentInterface|DocumentInterface $source Datos de origen.
+     * @param string|array<string, mixed>|XmlDocumentInterface|DocumentInterface $source Datos de origen.
      * @param bool $normalizeAll Indica si se deben normalizar todos los datos
      * de la bolsa al crearla o solo los mínimos.
      * @return DocumentBagInterface

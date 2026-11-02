@@ -143,7 +143,7 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
     /**
      * Obtiene los datos normalizados de la respuesta.
      *
-     * @return array Datos normalizados de la respuesta del SII.
+     * @return array<string, mixed> Datos normalizados de la respuesta del SII.
      */
     public function getData(): array
     {
@@ -183,8 +183,8 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
 
             // Armar los datos normalizados.
             $this->data = [
-                'query_number' => $number ?? null,
-                'query_datetime' => $datetime ?? null,
+                'query_number' => $number,
+                'query_datetime' => $datetime,
                 'company' => $company,
                 'document' => $this->requestData['TipoDte'] ?? null,
                 'number' => $this->requestData['FolioDte'] ?? null,
@@ -206,9 +206,9 @@ class ValidateDocumentSignatureResponse extends AbstractSiiWsdlResponse implemen
     /**
      * Parsea el estado de la respuesta del SII.
      *
-     * @param array $headers Encabezados de la respuesta.
-     * @param array $body Cuerpo de la respuesta.
-     * @return array Arreglo con el estado, error y descripción.
+     * @param array<string, mixed> $headers Encabezados de la respuesta.
+     * @param array<string, mixed> $body Cuerpo de la respuesta.
+     * @return array{0: string, 1: bool|null, 2: string|null}
      */
     private function parseEstado(array $headers, array $body): array
     {

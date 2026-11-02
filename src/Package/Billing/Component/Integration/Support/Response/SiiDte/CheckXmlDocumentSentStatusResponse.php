@@ -105,7 +105,7 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Obtiene los datos normalizados de la respuesta.
      *
-     * @return array Datos normalizados de la respuesta del SII.
+     * @return array<string, mixed> Datos normalizados de la respuesta del SII.
      */
     public function getData(): array
     {
@@ -138,8 +138,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
 
             // Armar los datos normalizados.
             $this->data = [
-                'query_number' => $number ?? null,
-                'query_datetime' => $datetime ?? null,
+                'query_number' => $number,
+                'query_datetime' => $datetime,
                 'track_id' => $track_id,
                 'company' => $company,
                 'status' => $status,
@@ -264,8 +264,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Parsea el estado de la respuesta del SII.
      *
-     * @param array $headers Encabezados de la respuesta.
-     * @return array Arreglo con el estado, error y descripción.
+     * @param array<string, mixed> $headers Encabezados de la respuesta.
+     * @return array{0: string, 1: bool, 2: string|null}
      */
     private function parseEstado(array $headers): array
     {
@@ -327,8 +327,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Parsea los documentos de la respuesta del SII.
      *
-     * @param array $body Cuerpo de la respuesta del SII.
-     * @return array Arreglo con los documentos normalizados.
+     * @param array<string, mixed> $body Cuerpo de la respuesta del SII.
+     * @return array<int, array<string, mixed>> Arreglo con los documentos normalizados.
      */
     private function parseDocumentos(array $body): array
     {
@@ -378,9 +378,9 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     /**
      * Calcula el resumen de los documentos procesados.
      *
-     * @param array $documents Arreglo con los documentos.
-     * @return array Resumen con el total de reportados, aceptados, rechazados
-     * y reparos.
+     * @param array<int, array<string, mixed>> $documents Arreglo con los documentos.
+     * @return array{reported: int, accepted: int, rejected: int, repairs: int}
+     * Resumen con el total de reportados, aceptados, rechazados y reparos.
      */
     private function calculateResumen(array $documents): array
     {

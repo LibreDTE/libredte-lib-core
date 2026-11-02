@@ -123,7 +123,7 @@ interface EnvelopeInterface extends JsonSerializable
     /**
      * Asigna los metadatos del sobre.
      *
-     * @param BagInterface|array $metadata
+     * @param BagInterface|array<string, mixed> $metadata
      * @return static
      */
     public function setMetadata(BagInterface|array $metadata): static;
