@@ -366,6 +366,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020libro\u0020resultante\u0020de\u0020la\u0020construcci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_getBook"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003ArequireBook\u0028\u0029",
+            "name": "requireBook",
+            "summary": "Obtiene\u0020el\u0020libro\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Contract-BookBagInterface.html#method_requireBook"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Contract\\BookBagInterface\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
             "summary": "Asigna\u0020el\u0020certificado\u0020digital\u0020para\u0020firmar\u0020el\u0020XML\u0020del\u0020libro.",
@@ -896,6 +901,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020libro\u0020resultante\u0020de\u0020la\u0020construcci\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_getBook"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003ArequireBook\u0028\u0029",
+            "name": "requireBook",
+            "summary": "Obtiene\u0020el\u0020libro\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_requireBook"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
             "summary": "Asigna\u0020el\u0020certificado\u0020digital\u0020para\u0020firmar\u0020el\u0020XML\u0020del\u0020libro.",
@@ -940,6 +950,11 @@ Search.appendIndex(
             "name": "jsonSerialize",
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003Amissing\u0028\u0029",
+            "name": "missing",
+            "summary": "Crea\u0020la\u0020excepci\u00F3n\u0020de\u0020un\u0020dato\u0020que\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Support-BookBag.html#method_missing"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Support\\BookBag\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -1511,6 +1526,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020receptor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getRazonSocialReceptor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003ArequireRazonSocialReceptor\u0028\u0029",
+            "name": "requireRazonSocialReceptor",
+            "summary": "Obtiene\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020receptor\u0020o\u0020falla\u0020si\u0020el\u0020documento\u0020no\u0020la\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_requireRazonSocialReceptor"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AgetFechaEmision\u0028\u0029",
             "name": "getFechaEmision",
             "summary": "Entrega\u0020la\u0020fecha\u0020de\u0020emisi\u00F3n\u0020asignada\u0020al\u0020documento\u0020tributario.",
@@ -2041,6 +2061,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getInputData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireInputData\u0028\u0029",
+            "name": "requireInputData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireInputData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetParsedData\u0028\u0029",
             "name": "setParsedData",
             "summary": "Asigna\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento.",
@@ -2060,6 +2085,11 @@ Search.appendIndex(
             "name": "getNormalizedData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getNormalizedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireNormalizedData\u0028\u0029",
+            "name": "requireNormalizedData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireNormalizedData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetLibredteData\u0028\u0029",
             "name": "setLibredteData",
@@ -2111,6 +2141,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020documento\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireXmlDocument\u0028\u0029",
+            "name": "requireXmlDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireXmlDocument"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetCaf\u0028\u0029",
             "name": "setCaf",
             "summary": "Asigna\u0020el\u0020CAF\u0020para\u0020timbrar\u0020el\u0020documento.",
@@ -2120,6 +2155,11 @@ Search.appendIndex(
             "name": "getCaf",
             "summary": "Obtiene\u0020el\u0020CAF\u0020para\u0020timbrar\u0020el\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getCaf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireCaf\u0028\u0029",
+            "name": "requireCaf",
+            "summary": "Obtiene\u0020el\u0020CAF\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireCaf"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
@@ -2131,6 +2171,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020certificado\u0020para\u0020firmar\u0020el\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireCertificate"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetDocument\u0028\u0029",
             "name": "setDocument",
             "summary": "Asigna\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -2140,6 +2185,11 @@ Search.appendIndex(
             "name": "getDocument",
             "summary": "Obtiene\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireDocument\u0028\u0029",
+            "name": "requireDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireDocument"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetDocumentType\u0028\u0029",
             "name": "setDocumentType",
@@ -2161,6 +2211,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getTipoDocumento"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireTipoDocumento\u0028\u0029",
+            "name": "requireTipoDocumento",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020documento\u0020tributario\u0020electr\u00F3nico\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireTipoDocumento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentTypeId\u0028\u0029",
             "name": "getDocumentTypeId",
             "summary": "Obtiene\u0020el\u0020c\u00F3digo\u0020num\u00E9rico\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -2180,6 +2235,11 @@ Search.appendIndex(
             "name": "getEmisor",
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireEmisor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetReceptor\u0028\u0029",
             "name": "setReceptor",
@@ -2205,6 +2265,11 @@ Search.appendIndex(
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireData\u0028\u0029",
+            "name": "requireData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\u0020generar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentData\u0028\u0029",
             "name": "getDocumentData",
@@ -2300,6 +2365,11 @@ Search.appendIndex(
             "name": "getEmisor",
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_getEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBatchInterface.html#method_requireEmisor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBatchInterface\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
@@ -2426,6 +2496,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020que\u0020representa\u0020al\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireXmlDocument\u0028\u0029",
+            "name": "requireXmlDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireXmlDocument"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AsetDocuments\u0028\u0029",
             "name": "setDocuments",
             "summary": "Asigna\u0020todos\u0020los\u0020documentos\u0020del\u0020sobre\u0020de\u0020una\u0020vez.",
@@ -2435,6 +2510,11 @@ Search.appendIndex(
             "name": "getDocuments",
             "summary": "Obtiene\u0020todos\u0020los\u0020documentos\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getDocuments"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireDocuments\u0028\u0029",
+            "name": "requireDocuments",
+            "summary": "Obtiene\u0020los\u0020documentos\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireDocuments"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AaddDocument\u0028\u0029",
             "name": "addDocument",
@@ -2485,6 +2565,11 @@ Search.appendIndex(
             "name": "getCertificate",
             "summary": "Obtiene\u0020el\u0020certificado\u0020para\u0020firmar\u0020el\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireCertificate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AwithCertificate\u0028\u0029",
             "name": "withCertificate",
@@ -2575,6 +2660,11 @@ Search.appendIndex(
             "name": "getRazonSocialReceptor",
             "summary": "Obtiene\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020receptor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_getRazonSocialReceptor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003ArequireRazonSocialReceptor\u0028\u0029",
+            "name": "requireRazonSocialReceptor",
+            "summary": "Obtiene\u0020la\u0020raz\u00F3n\u0020social\u0020del\u0020receptor\u0020o\u0020falla\u0020si\u0020el\u0020documento\u0020no\u0020la\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentInterface.html#method_requireRazonSocialReceptor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentInterface\u003A\u003AgetFechaEmision\u0028\u0029",
             "name": "getFechaEmision",
@@ -3046,6 +3136,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020tag\u0020que\u0020debe\u0020ser\u0020usado\u0020al\u0020construir\u0020el\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getTagXml"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003ArequireTagXml\u0028\u0029",
+            "name": "requireTagXml",
+            "summary": "Entrega\u0020el\u0020tag\u0020XML\u0020del\u0020tipo\u0020de\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_requireTagXml"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AisDisponible\u0028\u0029",
             "name": "isDisponible",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020est\u00E1\u0020disponible\u0020en\u0020LibreDTE\u0020para\u0020ser\u0020usado.",
@@ -3055,6 +3150,11 @@ Search.appendIndex(
             "name": "getAlias",
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020basado\u0020en\u0020el\u0020ID.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_getAlias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003ArequireAlias\u0028\u0029",
+            "name": "requireAlias",
+            "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-TipoDocumentoInterface.html#method_requireAlias"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\TipoDocumentoInterface\u003A\u003AgetInterface\u0028\u0029",
             "name": "getInterface",
@@ -3806,6 +3906,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020tag\u0020que\u0020debe\u0020ser\u0020usado\u0020al\u0020construir\u0020el\u0020XML\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_getTagXml"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequireTagXml\u0028\u0029",
+            "name": "requireTagXml",
+            "summary": "Entrega\u0020el\u0020tag\u0020XML\u0020del\u0020tipo\u0020de\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_requireTagXml"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AisDisponible\u0028\u0029",
             "name": "isDisponible",
             "summary": "Indica\u0020si\u0020el\u0020documento\u0020est\u00E1\u0020disponible\u0020en\u0020LibreDTE\u0020para\u0020ser\u0020usado.",
@@ -3815,6 +3920,11 @@ Search.appendIndex(
             "name": "getAlias",
             "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020basado\u0020en\u0020el\u0020ID.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_getAlias"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003ArequireAlias\u0028\u0029",
+            "name": "requireAlias",
+            "summary": "Entrega\u0020el\u0020alias\u0020del\u0020tipo\u0020de\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-TipoDocumento.html#method_requireAlias"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\TipoDocumento\u003A\u003AgetInterface\u0028\u0029",
             "name": "getInterface",
@@ -4441,6 +4551,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getInputData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireInputData\u0028\u0029",
+            "name": "requireInputData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireInputData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetParsedData\u0028\u0029",
             "name": "setParsedData",
             "summary": "Asigna\u0020los\u0020datos\u0020procesados\u0020\u0028parseados\u0029\u0020del\u0020documento.",
@@ -4460,6 +4575,11 @@ Search.appendIndex(
             "name": "getNormalizedData",
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getNormalizedData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireNormalizedData\u0028\u0029",
+            "name": "requireNormalizedData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireNormalizedData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetLibredteData\u0028\u0029",
             "name": "setLibredteData",
@@ -4511,6 +4631,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020documento\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireXmlDocument\u0028\u0029",
+            "name": "requireXmlDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireXmlDocument"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetCaf\u0028\u0029",
             "name": "setCaf",
             "summary": "Asigna\u0020el\u0020CAF\u0020para\u0020timbrar\u0020el\u0020documento.",
@@ -4520,6 +4645,11 @@ Search.appendIndex(
             "name": "getCaf",
             "summary": "Obtiene\u0020el\u0020CAF\u0020para\u0020timbrar\u0020el\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getCaf"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireCaf\u0028\u0029",
+            "name": "requireCaf",
+            "summary": "Obtiene\u0020el\u0020CAF\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireCaf"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
@@ -4531,6 +4661,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020certificado\u0020para\u0020firmar\u0020el\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireCertificate"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetDocument\u0028\u0029",
             "name": "setDocument",
             "summary": "Asigna\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -4540,6 +4675,11 @@ Search.appendIndex(
             "name": "getDocument",
             "summary": "Obtiene\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireDocument\u0028\u0029",
+            "name": "requireDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020tributario\u0020electr\u00F3nico\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDocument"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetDocumentType\u0028\u0029",
             "name": "setDocumentType",
@@ -4561,6 +4701,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getTipoDocumento"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireTipoDocumento\u0028\u0029",
+            "name": "requireTipoDocumento",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020documento\u0020tributario\u0020electr\u00F3nico\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireTipoDocumento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentTypeId\u0028\u0029",
             "name": "getDocumentTypeId",
             "summary": "Obtiene\u0020el\u0020c\u00F3digo\u0020num\u00E9rico\u0020del\u0020documento\u0020tributario\u0020electr\u00F3nico.",
@@ -4580,6 +4725,11 @@ Search.appendIndex(
             "name": "getEmisor",
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getEmisor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireEmisor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetReceptor\u0028\u0029",
             "name": "setReceptor",
@@ -4605,6 +4755,11 @@ Search.appendIndex(
             "name": "getData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireData\u0028\u0029",
+            "name": "requireData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020se\u0020pueden\u0020generar.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentData\u0028\u0029",
             "name": "getDocumentData",
@@ -4665,6 +4820,11 @@ Search.appendIndex(
             "name": "jsonSerialize",
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003Amissing\u0028\u0029",
+            "name": "missing",
+            "summary": "Crea\u0020la\u0020excepci\u00F3n\u0020de\u0020un\u0020dato\u0020que\u0020la\u0020bolsa\u0020no\u0020tiene\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_missing"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -4771,6 +4931,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_getEmisor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_requireEmisor"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
             "summary": "Asigna\u0020el\u0020certificado\u0020para\u0020firmar\u0020el\u0020documento.",
@@ -4805,6 +4970,11 @@ Search.appendIndex(
             "name": "jsonSerialize",
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003Amissing\u0028\u0029",
+            "name": "missing",
+            "summary": "Crea\u0020la\u0020excepci\u00F3n\u0020de\u0020un\u0020dato\u0020que\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBatch.html#method_missing"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBatch\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -4876,6 +5046,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020que\u0020representa\u0020al\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireXmlDocument\u0028\u0029",
+            "name": "requireXmlDocument",
+            "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireXmlDocument"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetDocuments\u0028\u0029",
             "name": "setDocuments",
             "summary": "Asigna\u0020todos\u0020los\u0020documentos\u0020del\u0020sobre\u0020de\u0020una\u0020vez.",
@@ -4885,6 +5060,11 @@ Search.appendIndex(
             "name": "getDocuments",
             "summary": "Obtiene\u0020todos\u0020los\u0020documentos\u0020del\u0020sobre.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getDocuments"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireDocuments\u0028\u0029",
+            "name": "requireDocuments",
+            "summary": "Obtiene\u0020los\u0020documentos\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020tiene.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireDocuments"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AaddDocument\u0028\u0029",
             "name": "addDocument",
@@ -4936,6 +5116,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020certificado\u0020para\u0020firmar\u0020el\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020del\u0020sobre\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCertificate"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetCaratula\u0028\u0029",
             "name": "setCaratula",
             "summary": "Asigna\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos.",
@@ -4960,6 +5145,11 @@ Search.appendIndex(
             "name": "jsonSerialize",
             "summary": "\u007B\u0040inheritDoc\u007D",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003Amissing\u0028\u0029",
+            "name": "missing",
+            "summary": "Crea\u0020la\u0020excepci\u00F3n\u0020de\u0020un\u0020dato\u0020que\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_missing"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
@@ -8901,6 +9091,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020fecha\u0020de\u0020vencimiento\u0020del\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_getFechaVencimiento"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003ArequireFechaVencimiento\u0028\u0029",
+            "name": "requireFechaVencimiento",
+            "summary": "Obtiene\u0020la\u0020fecha\u0020de\u0020vencimiento\u0020del\u0020CAF\u0020o\u0020falla\u0020si\u0020el\u0020CAF\u0020no\u0020vence.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_requireFechaVencimiento"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AgetMesesAutorizacion\u0028\u0029",
             "name": "getMesesAutorizacion",
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020meses\u0020que\u0020han\u0020pasado\u0020desde\u0020la\u0020solicitud\u0020del\u0020CAF.",
@@ -9125,6 +9320,11 @@ Search.appendIndex(
             "name": "getFechaVencimiento",
             "summary": "Obtiene\u0020la\u0020fecha\u0020de\u0020vencimiento\u0020del\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_getFechaVencimiento"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003ArequireFechaVencimiento\u0028\u0029",
+            "name": "requireFechaVencimiento",
+            "summary": "Obtiene\u0020la\u0020fecha\u0020de\u0020vencimiento\u0020del\u0020CAF\u0020o\u0020falla\u0020si\u0020el\u0020CAF\u0020no\u0020vence.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_requireFechaVencimiento"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AgetMesesAutorizacion\u0028\u0029",
             "name": "getMesesAutorizacion",
@@ -9700,6 +9900,11 @@ Search.appendIndex(
             "name": "getCertificate",
             "summary": "Obtiene\u0020el\u0020certificado\u0020digital\u0020asociado\u0020a\u0020la\u0020solicitud.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020de\u0020la\u0020solicitud\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_requireCertificate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiResponseInterface",
             "name": "SiiResponseInterface",
@@ -10611,6 +10816,16 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020certificado\u0020digital\u0020asociado\u0020a\u0020la\u0020solicitud.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003ArequireCertificate\u0028\u0029",
+            "name": "requireCertificate",
+            "summary": "Obtiene\u0020el\u0020certificado\u0020de\u0020la\u0020solicitud\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_requireCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003Amissing\u0028\u0029",
+            "name": "missing",
+            "summary": "Crea\u0020la\u0020excepci\u00F3n\u0020de\u0020un\u0020dato\u0020que\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_missing"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003A\u0024optionsSchema",
             "name": "optionsSchema",
             "summary": "Reglas\u0020de\u0020esquema\u0020de\u0020las\u0020opciones\u0020de\u0020la\u0020solicitud\u0020al\u0020SII.",
@@ -11450,11 +11665,6 @@ Search.appendIndex(
             "name": "saveNodeXml",
             "summary": "Entrega\u0020el\u0020XML\u0020de\u0020un\u0020nodo,\u0020en\u0020ISO\u002D8859\u002D1.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_saveNodeXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AstripXmlDeclaration\u0028\u0029",
-            "name": "stripXmlDeclaration",
-            "summary": "Elimina\u0020la\u0020declaraci\u00F3n\u0020\u0060\u003C\u003Fxml...\u003F\u003E\u0060\u0020de\u0020un\u0020string\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_stripXmlDeclaration"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003ANS",
             "name": "NS",
