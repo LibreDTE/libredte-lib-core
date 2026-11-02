@@ -1021,16 +1021,6 @@ Search.appendIndex(
             "summary": "Entrega\u0020los\u0020acumuladores\u0020de\u0020un\u0020tipo\u0020de\u0020documento,\u0020vac\u00EDos.\u0020Un\u0020total\u0020que\u0020es\n\u0060null\u0060\u0020es\u0020uno\u0020que\u0020ning\u00FAn\u0020documento\u0020aport\u00F3\u003A\u0020queda\u0020como\u0020\u0060false\u0060\u0020en\u0020el\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_newGroup"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003AtoList\u0028\u0029",
-            "name": "toList",
-            "summary": "Entrega\u0020un\u0020valor\u0020que\u0020puede\u0020ser\u0020un\u0020elemento\u0020o\u0020una\u0020lista\u0020de\u0020elementos\u0020como\nuna\u0020lista\u0020de\u0020elementos\u0020\u0028cada\u0020uno\u0020un\u0020arreglo\u0029.\u0020Lo\u0020que\u0020no\u0020est\u00E1\u0020o\u0020no\u0020es\u0020un\narreglo\u0020da\u0020una\u0020lista\u0020vac\u00EDa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_toList"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003Areader\u0028\u0029",
-            "name": "reader",
-            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020el\u0020detalle\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\u0020y\u0020el\ntexto\u0020vac\u00EDo\u0020son\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-AbstractLibroComprasVentasBuilderStrategy.html#method_reader"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\AbstractLibroComprasVentasBuilderStrategy\u003A\u003ATIPOS_RESUMEN_MANUAL",
             "name": "TIPOS_RESUMEN_MANUAL",
             "summary": "Tipos\u0020de\u0020documento\u0020que\u0020se\u0020pueden\u0020informar\u0020solo\u0020con\u0020su\u0020resumen\u003A\u0020boletas,\nboletas\u0020exentas\u0020y\u0020pagos\u0020electr\u00F3nicos.",
@@ -1101,11 +1091,6 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020resumen\u0020del\u0020per\u00EDodo\u0020del\u0020libro\u0020de\u0020gu\u00EDas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method_calculateResumenPeriodo"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003Areader\u0028\u0029",
-            "name": "reader",
-            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020el\u0020detalle\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\u0020y\u0020el\ntexto\u0020vac\u00EDo\u0020son\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-LibroGuias-BuilderStrategy.html#method_reader"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\LibroGuias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
             "name": "xmlEncoder",
             "summary": "",
@@ -1165,11 +1150,6 @@ Search.appendIndex(
             "name": "calculateRangos",
             "summary": "Determina\u0020los\u0020rangos\u0020continuos\u0020de\u0020folios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_calculateRangos"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003Areader\u0028\u0029",
-            "name": "reader",
-            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020los\u0020datos.\u0020En\u0020los\u0020detalles\u0020y\u0020en\u0020la\u0020car\u00E1tula\u0020\u0060false\u0060\nes\u0020lo\u0020que\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Builder-Strategy-ResumenVentasDiarias-BuilderStrategy.html#method_reader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Builder\\Strategy\\ResumenVentasDiarias\\BuilderStrategy\u003A\u003A\u0024xmlEncoder",
             "name": "xmlEncoder",
@@ -1251,25 +1231,10 @@ Search.appendIndex(
             "summary": "Calcula\u0020el\u0020porcentaje\u0020de\u0020la\u0020tasa\u0020sobre\u0020el\u0020monto\u0020neto\u0020del\u0020detalle,\u0020redondeado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_percentOfNet"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AintOf\u0028\u0029",
-            "name": "intOf",
-            "summary": "Entrega\u0020un\u0020monto\u0020de\u0020la\u0020fila\u0020como\u0020n\u00FAmero\u0020entero\u003A\u00200\u0020si\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_intOf"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AtoList\u0028\u0029",
-            "name": "toList",
-            "summary": "Entrega\u0020un\u0020valor\u0020que\u0020puede\u0020ser\u0020un\u0020elemento\u0020o\u0020una\u0020lista\u0020de\u0020elementos\u0020como\nuna\u0020lista\u0020de\u0020elementos\u0020\u0028cada\u0020uno\u0020un\u0020arreglo\u0029.\u0020Lo\u0020que\u0020no\u0020est\u00E1\u0020o\u0020no\u0020es\u0020un\narreglo\u0020da\u0020una\u0020lista\u0020vac\u00EDa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_toList"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AassertNumbers\u0028\u0029",
             "name": "assertNumbers",
             "summary": "Verifica\u0020que\u0020los\u0020montos\u0020y\u0020las\u0020tasas\u0020de\u0020una\u0020fila\u0020sean\u0020n\u00FAmeros.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_assertNumbers"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003Areader\u0028\u0029",
-            "name": "reader",
-            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020la\u0020fila.\u0020En\u0020el\u0020detalle\u0020\u0060false\u0060\u0020y\u0020el\u0020texto\u0020vac\u00EDo\u0020son\u0020lo\nque\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-AbstractLibroComprasVentasArrayLoaderStrategy.html#method_reader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\AbstractLibroComprasVentasArrayLoaderStrategy\u003A\u003AAMOUNTS",
             "name": "AMOUNTS",
@@ -1326,11 +1291,6 @@ Search.appendIndex(
             "summary": "Verifica\u0020que\u0020los\u0020montos\u0020y\u0020la\u0020tasa\u0020de\u0020una\u0020gu\u00EDa\u0020sean\u0020n\u00FAmeros.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_assertNumbers"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroGuias\\ArrayLoaderStrategy\u003A\u003Areader\u0028\u0029",
-            "name": "reader",
-            "summary": "Entrega\u0020un\u0020lector\u0020de\u0020la\u0020fila.\u0020En\u0020el\u0020detalle\u0020\u0060false\u0060\u0020y\u0020el\u0020texto\u0020vac\u00EDo\u0020son\u0020lo\nque\u0020se\u0020pone\u0020cuando\u0020no\u0020hay\u0020un\u0020valor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-LibroGuias-ArrayLoaderStrategy.html#method_reader"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\LibroVentas\\ArrayLoaderStrategy",
             "name": "ArrayLoaderStrategy",
             "summary": "Estrategia\u0020\u0060libro_ventas.array\u0060\u0020del\u0020\u0060LoaderWorker\u0060.",
@@ -1350,11 +1310,6 @@ Search.appendIndex(
             "name": "normalizeDetalle",
             "summary": "Normaliza\u0020un\u0020registro\u0020del\u0020detalle\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_normalizeDetalle"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\Loader\\Strategy\\ResumenVentasDiarias\\ArrayLoaderStrategy\u003A\u003Adescribe\u0028\u0029",
-            "name": "describe",
-            "summary": "Dice\u0020un\u0020valor\u0020del\u0020documento\u0020para\u0020nombrarlo\u0020en\u0020un\u0020mensaje.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-Loader-Strategy-ResumenVentasDiarias-ArrayLoaderStrategy.html#method_describe"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker",
             "name": "LoaderWorker",
