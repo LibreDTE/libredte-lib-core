@@ -201,7 +201,7 @@ tributarios utilizando plantillas.</p>
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#property_optionsSchema">$optionsSchema</a>
     <span>
-                        &nbsp;: array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;            </span>
+                        &nbsp;: array&lt;string, array&lt;string, mixed&gt;|bool&gt;            </span>
 </dt>
 <dd>Esquema de las opciones.</dd>
 
@@ -242,7 +242,7 @@ tributarios utilizando plantillas.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractRendererStrategy.html#method_createDataAndOptions">createDataAndOptions()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array{0: array<string,mixed>, 1: array<string,mixed>}    </span>
 </dt>
 <dd>Crea los datos que se pasarán a la plantilla que se renderizará.</dd>
 
@@ -285,7 +285,7 @@ tributarios utilizando plantillas.</p>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string|int, mixed&gt;|bool&gt;</span>
+            <span class="phpdocumentor-signature__type">array&lt;string, array&lt;string, mixed&gt;|bool&gt;</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;__allowUndefinedKeys&#039; =&gt; true]</span></code>
 
@@ -495,7 +495,7 @@ renderizar.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php"><a href="files/src-package-billing-component-document-abstract-abstractrendererstrategy.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractRendererStrategy.php">AbstractRendererStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -503,7 +503,7 @@ renderizar.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createDataAndOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">createDataAndOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{0: array<string,mixed>, 1: array<string,mixed>}</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -529,9 +529,10 @@ renderizar.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array{0: array<string,mixed>, 1: array<string,mixed>}</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Datos que se pasarán a la plantilla al renderizar.</p>
+                <section class="phpdocumentor-description"><p>Datos que
+se pasarán a la plantilla (0) y opciones del renderizado (1).</p>
 </section>
 
             </section>

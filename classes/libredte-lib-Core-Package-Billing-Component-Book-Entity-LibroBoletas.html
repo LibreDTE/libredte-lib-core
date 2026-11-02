@@ -230,14 +230,14 @@ y tipo de servicio (<code class="prettyprint">TpoServ</code>).</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getCaratula">getCaratula()</a>
     <span>
-                                &nbsp;: array&lt;string, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Entrega la carátula del libro.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getDetalle">getDetalle()</a>
     <span>
-                                &nbsp;: array&lt;string|int, array&lt;string|int, mixed&gt;&gt;    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Entrega los registros de detalle del libro.</dd>
 
@@ -251,7 +251,7 @@ y tipo de servicio (<code class="prettyprint">TpoServ</code>).</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getResumen">getResumen()</a>
     <span>
-                                &nbsp;: array&lt;string, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Entrega el resumen del libro.</dd>
 
@@ -300,7 +300,7 @@ y tipo de servicio (<code class="prettyprint">TpoServ</code>).</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_jsonSerialize">jsonSerialize()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
 
@@ -391,7 +391,7 @@ y tipo de servicio (<code class="prettyprint">TpoServ</code>).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -439,7 +439,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
@@ -478,7 +478,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">119</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
@@ -486,7 +486,7 @@ asociado al libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCaratula</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getCaratula</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -499,7 +499,7 @@ asociado al libro.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -517,7 +517,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
@@ -525,7 +525,7 @@ asociado al libro.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDetalle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getDetalle</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -538,7 +538,7 @@ asociado al libro.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -556,7 +556,7 @@ asociado al libro.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
@@ -599,7 +599,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -607,7 +607,7 @@ deben sobrescribir este método.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getResumen</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getResumen</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -620,7 +620,7 @@ deben sobrescribir este método.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -638,7 +638,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">178</span>
 
     </aside>
 
@@ -724,7 +724,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -763,7 +763,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -806,7 +806,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -845,7 +845,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
     </aside>
 
@@ -884,7 +884,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">207</span>
 
     </aside>
 
@@ -892,7 +892,7 @@ deben sobrescribir este método.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -905,7 +905,7 @@ deben sobrescribir este método.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -923,7 +923,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
@@ -966,7 +966,7 @@ deben sobrescribir este método.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php"><a href="files/src-package-billing-component-book-abstract-abstractbook.html"><abbr title="src/Package/Billing/Component/Book/Abstract/AbstractBook.php">AbstractBook.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 

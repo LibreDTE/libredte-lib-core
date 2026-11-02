@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -237,6 +237,7 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Constructor del worker y sus dependencias.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#method_build">build()</a>
@@ -282,7 +283,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -324,14 +325,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor del worker y sus dependencias.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentBagManager</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobs</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handlers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategies</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagManagerWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagManagerWorkerInterface">DocumentBagManagerWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentBagManager</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobs</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\HandlerInterface">HandlerInterface</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handlers</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\StrategyInterface">StrategyInterface</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategies</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -348,21 +350,21 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$jobs</span>
-                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\JobInterface">JobInterface</abbr>&gt;</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$handlers</span>
-                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\HandlerInterface">HandlerInterface</abbr>&gt;</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$strategies</span>
-                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-argument-list__argument__type">iterable&lt;string|int, <abbr title="\Derafu\Backbone\Contract\StrategyInterface">StrategyInterface</abbr>&gt;</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -389,7 +391,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -460,7 +462,7 @@ o timbrado y firmado, según los datos pasados).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-document-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 

@@ -1163,7 +1163,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\BuilderWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-BuilderWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\BuilderWorker\u003A\u003Abuild\u0028\u0029",
@@ -1318,7 +1318,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Worker-LoaderWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Worker\\LoaderWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
@@ -2391,16 +2391,6 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.validator\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_getValidatorWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface\u003A\u003Abill\u0028\u0029",
-            "name": "bill",
-            "summary": "Ejecuta\u0020el\u0020proceso\u0020de\u0020facturaci\u00F3n\u0020sobre\u0020los\u0020datos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_bill"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentComponentInterface\u003A\u003AloadXml\u0028\u0029",
-            "name": "loadXml",
-            "summary": "Carga\u0020un\u0020XML\u0020de\u0020documento\u0020tributario\u0020o\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentComponentInterface.html#method_loadXml"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface",
             "name": "DocumentEnvelopeInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020sobre\u0020\u0028contenedor\u0029\u0020de\u0020documentos\u0020tributarios\u0020para\u0020el\u0020proceso\nde\u0020env\u00EDo\u0020al\u0020SII\u0020e\u0020intercambio\u0020entre\u0020contribuyentes.",
@@ -3286,16 +3276,6 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.document.validator\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_getValidatorWorker"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003Abill\u0028\u0029",
-            "name": "bill",
-            "summary": "Ejecuta\u0020el\u0020proceso\u0020de\u0020facturaci\u00F3n\u0020sobre\u0020los\u0020datos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_bill"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003AloadXml\u0028\u0029",
-            "name": "loadXml",
-            "summary": "Carga\u0020un\u0020XML\u0020de\u0020documento\u0020tributario\u0020o\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#method_loadXml"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003A\u0024batchProcessorWorker",
             "name": "batchProcessorWorker",
             "summary": "",
@@ -3350,11 +3330,6 @@ Search.appendIndex(
             "name": "validatorWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#property_validatorWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\DocumentComponent\u003A\u003A\u0024cafLoader",
-            "name": "cafLoader",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-DocumentComponent.html#property_cafLoader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\AduanaClausulaVenta",
             "name": "AduanaClausulaVenta",
@@ -5228,7 +5203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BuilderWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\BuilderWorker\u003A\u003Acreate\u0028\u0029",
@@ -5253,7 +5228,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003Acreate\u0028\u0029",
@@ -6313,7 +6288,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-NormalizerWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\NormalizerWorker\u003A\u003Anormalize\u0028\u0029",
@@ -6458,7 +6433,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ParserWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ParserWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
@@ -6493,7 +6468,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-RendererWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\RendererWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
@@ -6658,7 +6633,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-SanitizerWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\SanitizerWorker\u003A\u003Asanitize\u0028\u0029",
@@ -6793,7 +6768,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ValidatorWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ValidatorWorker\u003A\u003Avalidate\u0028\u0029",
@@ -6888,7 +6863,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractExchangeWorker\u003A\u003Ahandle\u0028\u0029",
             "name": "handle",
-            "summary": "\u007B\u0040inheritDoc\u007D",
+            "summary": "Entrega\u0020la\u0020bolsa\u0020a\u0020cada\u0020handler\u0020para\u0020que\u0020maneje\u0020su\u0020transporte.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Abstract-AbstractExchangeWorker.html#method_handle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Abstract\\AbstractParty",
@@ -7250,21 +7225,6 @@ Search.appendIndex(
             "name": "getDocumentResponseWorker",
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.exchange.document_response\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeComponentInterface.html#method_getDocumentResponseWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeComponentInterface\u003A\u003Areceive\u0028\u0029",
-            "name": "receive",
-            "summary": "Recibe\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio\u0020mediante\u0020la\nestrategia\u0020definida\u0020en\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeComponentInterface.html#method_receive"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeComponentInterface\u003A\u003Asend\u0028\u0029",
-            "name": "send",
-            "summary": "Env\u00EDa\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio\u0020mediante\u0020la\nestrategia\u0020definida\u0020en\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeComponentInterface.html#method_send"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeComponentInterface\u003A\u003Ahandle\u0028\u0029",
-            "name": "handle",
-            "summary": "Procesa\u0020una\u0020bolsa\u0020de\u0020intercambio,\u0020sus\u0020sobres\u0020y\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeComponentInterface.html#method_handle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Contract\\ExchangeHandlerInterface",
             "name": "ExchangeHandlerInterface",
@@ -7940,21 +7900,6 @@ Search.appendIndex(
             "name": "getDocumentResponseWorker",
             "summary": "Entrega\u0020el\u0020worker\u0020\u0022billing.exchange.document_response\u0022.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-ExchangeComponent.html#method_getDocumentResponseWorker"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\ExchangeComponent\u003A\u003Areceive\u0028\u0029",
-            "name": "receive",
-            "summary": "Recibe\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio\u0020mediante\u0020la\nestrategia\u0020definida\u0020en\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-ExchangeComponent.html#method_receive"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\ExchangeComponent\u003A\u003Asend\u0028\u0029",
-            "name": "send",
-            "summary": "Env\u00EDa\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio\u0020mediante\u0020la\nestrategia\u0020definida\u0020en\u0020la\u0020bolsa.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-ExchangeComponent.html#method_send"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\ExchangeComponent\u003A\u003Ahandle\u0028\u0029",
-            "name": "handle",
-            "summary": "Procesa\u0020una\u0020bolsa\u0020de\u0020intercambio,\u0020sus\u0020sobres\u0020y\u0020documentos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-ExchangeComponent.html#method_handle"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\ExchangeComponent\u003A\u003A\u0024receiverWorker",
             "name": "receiverWorker",
@@ -8708,7 +8653,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\ReceiverWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
@@ -8848,7 +8793,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\u0020del\u0020worker\u0020y\u0020sus\u0020dependencias.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-SenderWorker.html#method___construct"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker\u003A\u003AgetOptionsSchema\u0028\u0029",
@@ -11418,17 +11363,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCedente\u0028\u0029",
             "name": "getCedente",
-            "summary": "",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020cedente.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCedente"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCesionario\u0028\u0029",
             "name": "getCesionario",
-            "summary": "",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020cesionario.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCesionario"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCesion\u0028\u0029",
             "name": "getCesion",
-            "summary": "",
+            "summary": "Entrega\u0020los\u0020datos\u0020del\u0020cesi\u00F3n.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Support-AecBag.html#method_getCesion"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Support\\AecBag\u003A\u003AgetCertificate\u0028\u0029",
@@ -11500,6 +11445,11 @@ Search.appendIndex(
             "name": "assembleAndSign",
             "summary": "Ensambla\u0020el\u0020XML\u0020del\u0020AEC\u0020con\u0020los\u0020nodos\u0020ya\u0020firmados\u0020y\u0020lo\u0020firma.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_assembleAndSign"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AsaveNodeXml\u0028\u0029",
+            "name": "saveNodeXml",
+            "summary": "Entrega\u0020el\u0020XML\u0020de\u0020un\u0020nodo,\u0020en\u0020ISO\u002D8859\u002D1.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-OwnershipTransfer-Worker-Aec-Job-BuildAecJob.html#method_saveNodeXml"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Worker\\Aec\\Job\\BuildAecJob\u003A\u003AstripXmlDeclaration\u0028\u0029",
             "name": "stripXmlDeclaration",

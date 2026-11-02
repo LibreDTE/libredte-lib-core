@@ -265,21 +265,21 @@ instancia de un documento.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getData">getData()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Entrega los datos del DTE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getDetalle">getDetalle()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: ($index is null ? array<int,array<string,mixed>> : array<string,mixed>)    </span>
 </dt>
 <dd>Entrega el detalle del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getEmisor">getEmisor()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Obtiene el contribuyente emisor del documento.</dd>
 
@@ -384,14 +384,14 @@ instancia de un documento.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getReceptor">getReceptor()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Obtiene el contribuyente receptor del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getReferencias">getReferencias()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;int, array&lt;string, mixed&gt;&gt;    </span>
 </dt>
 <dd>Entrega las referencias del documento.</dd>
 
@@ -426,7 +426,7 @@ instancia de un documento.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTemplateTED">getTemplateTED()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Entrega un arreglo con una plantilla con la estructura del TED.</dd>
 
@@ -454,7 +454,7 @@ instancia de un documento.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getTotales">getTotales()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Entrega todos los valores del tag &quot;Totales&quot;.</dd>
 
@@ -483,7 +483,7 @@ al inicio y final.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_query">query()</a>
     <span>
-                                &nbsp;: string|array&lt;string|int, mixed&gt;|null    </span>
+                                &nbsp;: string|array&lt;int|string, mixed&gt;|null    </span>
 </dt>
 <dd>Realiza una consulta XPath al XML del DTE.</dd>
 
@@ -570,7 +570,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -613,7 +613,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -658,7 +658,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -697,7 +697,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">470</span>
+    <span class="phpdocumentor-element-found-in__line">476</span>
 
     </aside>
 
@@ -757,7 +757,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">663</span>
+    <span class="phpdocumentor-element-found-in__line">669</span>
 
     </aside>
 
@@ -804,7 +804,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">655</span>
+    <span class="phpdocumentor-element-found-in__line">661</span>
 
     </aside>
 
@@ -844,7 +844,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">146</span>
 
     </aside>
 
@@ -883,7 +883,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">527</span>
+    <span class="phpdocumentor-element-found-in__line">533</span>
 
     </aside>
 
@@ -891,7 +891,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -904,7 +904,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -922,7 +922,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">491</span>
+    <span class="phpdocumentor-element-found-in__line">497</span>
 
     </aside>
 
@@ -930,7 +930,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getDetalle</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">($index is null ? array<int,array<string,mixed>> : array<string,mixed>)</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -956,7 +956,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">($index is null ? array<int,array<string,mixed>> : array<string,mixed>)</span>
             </section>
 
 </article>
@@ -974,7 +974,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">178</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -982,7 +982,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getEmisor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getEmisor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -995,7 +995,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Datos del emisor en el DTE.</p>
 </section>
@@ -1017,7 +1017,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">645</span>
+    <span class="phpdocumentor-element-found-in__line">651</span>
 
     </aside>
 
@@ -1056,7 +1056,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">396</span>
+    <span class="phpdocumentor-element-found-in__line">400</span>
 
     </aside>
 
@@ -1095,7 +1095,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">272</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -1134,7 +1134,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">617</span>
+    <span class="phpdocumentor-element-found-in__line">623</span>
 
     </aside>
 
@@ -1173,7 +1173,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">152</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -1212,7 +1212,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
@@ -1251,7 +1251,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">423</span>
+    <span class="phpdocumentor-element-found-in__line">427</span>
 
     </aside>
 
@@ -1290,7 +1290,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">384</span>
+    <span class="phpdocumentor-element-found-in__line">388</span>
 
     </aside>
 
@@ -1329,7 +1329,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">312</span>
 
     </aside>
 
@@ -1368,7 +1368,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">344</span>
+    <span class="phpdocumentor-element-found-in__line">348</span>
 
     </aside>
 
@@ -1407,7 +1407,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">330</span>
+    <span class="phpdocumentor-element-found-in__line">334</span>
 
     </aside>
 
@@ -1446,7 +1446,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">358</span>
+    <span class="phpdocumentor-element-found-in__line">362</span>
 
     </aside>
 
@@ -1489,7 +1489,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">415</span>
+    <span class="phpdocumentor-element-found-in__line">419</span>
 
     </aside>
 
@@ -1528,7 +1528,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">264</span>
+    <span class="phpdocumentor-element-found-in__line">266</span>
 
     </aside>
 
@@ -1567,7 +1567,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">228</span>
+    <span class="phpdocumentor-element-found-in__line">230</span>
 
     </aside>
 
@@ -1575,7 +1575,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getReceptor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getReceptor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1588,7 +1588,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Datos del receptor en el DTE.</p>
 </section>
@@ -1610,7 +1610,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">509</span>
+    <span class="phpdocumentor-element-found-in__line">515</span>
 
     </aside>
 
@@ -1618,7 +1618,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getReferencias</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getReferencias</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, mixed&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1631,7 +1631,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, mixed&gt;&gt;</span>
             </section>
 
 </article>
@@ -1649,7 +1649,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
@@ -1688,7 +1688,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">246</span>
+    <span class="phpdocumentor-element-found-in__line">248</span>
 
     </aside>
 
@@ -1727,7 +1727,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">216</span>
 
     </aside>
 
@@ -1766,7 +1766,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">566</span>
+    <span class="phpdocumentor-element-found-in__line">572</span>
 
     </aside>
 
@@ -1805,7 +1805,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">581</span>
+    <span class="phpdocumentor-element-found-in__line">587</span>
 
     </aside>
 
@@ -1813,7 +1813,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getTemplateTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getTemplateTED</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1826,7 +1826,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -1844,7 +1844,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">446</span>
+    <span class="phpdocumentor-element-found-in__line">450</span>
 
     </aside>
 
@@ -1895,7 +1895,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">170</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -1934,7 +1934,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">431</span>
+    <span class="phpdocumentor-element-found-in__line">435</span>
 
     </aside>
 
@@ -1973,7 +1973,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">290</span>
+    <span class="phpdocumentor-element-found-in__line">294</span>
 
     </aside>
 
@@ -1981,7 +1981,7 @@ instancia de un documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getTotales</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getTotales</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1994,7 +1994,7 @@ instancia de un documento.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -2012,7 +2012,7 @@ instancia de un documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
@@ -2052,7 +2052,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -2091,7 +2091,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">694</span>
+    <span class="phpdocumentor-element-found-in__line">700</span>
 
     </aside>
 
@@ -2130,7 +2130,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">671</span>
+    <span class="phpdocumentor-element-found-in__line">677</span>
 
     </aside>
 
@@ -2138,7 +2138,7 @@ al inicio y final.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">query</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span></code>
+                    <span class="phpdocumentor-signature__name">query</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$query</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|array&lt;int|string, mixed&gt;|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2172,7 +2172,11 @@ al inicio y final.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__response_type">string|array&lt;int|string, mixed&gt;|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado de la consulta.</p>
+</section>
+
             </section>
 
 </article>
@@ -2190,7 +2194,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -2229,7 +2233,7 @@ al inicio y final.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php"><a href="files/src-package-billing-component-document-abstract-abstractdocument.html"><abbr title="src/Package/Billing/Component/Document/Abstract/AbstractDocument.php">AbstractDocument.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">679</span>
+    <span class="phpdocumentor-element-found-in__line">685</span>
 
     </aside>
 

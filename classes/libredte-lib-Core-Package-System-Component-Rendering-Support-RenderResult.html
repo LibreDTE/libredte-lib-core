@@ -254,14 +254,14 @@ tributario, o de cualquier otro contenido renderizado).</dd>    </dl>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_jsonSerialize">jsonSerialize()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>{@inheritDoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_toArray">toArray()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
 <dd>Obtiene un arreglo con todos los archivos generados por el
 renderizado.</dd>
@@ -277,7 +277,7 @@ extensión (ej. `factura.pdf` =&gt; `factura_2.pdf`).</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-System-Component-Rendering-Support-RenderResult.html#method_expand">expand()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;int, array&lt;string, mixed&gt;&gt;    </span>
 </dt>
 <dd>Expande cada archivo renderizado en tantas entradas como copias
 represente, agregando el número de copia y, si hay más de una copia,
@@ -622,7 +622,7 @@ por el renderizado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Rendering/Support/RenderResult.php"><a href="files/src-package-system-component-rendering-support-renderresult.html"><abbr title="src/Package/System/Component/Rendering/Support/RenderResult.php">RenderResult.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
@@ -630,7 +630,7 @@ por el renderizado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">jsonSerialize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -643,7 +643,7 @@ por el renderizado.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -670,7 +670,7 @@ renderizado.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -683,7 +683,7 @@ renderizado.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
             </section>
 
 </article>
@@ -701,7 +701,7 @@ renderizado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Rendering/Support/RenderResult.php"><a href="files/src-package-system-component-rendering-support-renderresult.html"><abbr title="src/Package/System/Component/Rendering/Support/RenderResult.php">RenderResult.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -758,7 +758,7 @@ extensión (ej. `factura.pdf` =&gt; `factura_2.pdf`).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Rendering/Support/RenderResult.php"><a href="files/src-package-system-component-rendering-support-renderresult.html"><abbr title="src/Package/System/Component/Rendering/Support/RenderResult.php">RenderResult.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">153</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
@@ -768,7 +768,7 @@ ajustando el nombre del archivo para no colisionar entre copias.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">expand</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">callable(<a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface">RenderedDocumentInterface</abbr></a>): array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$serializer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">expand</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">callable(<a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface">RenderedDocumentInterface</abbr></a>): array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$serializer</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, mixed&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -782,7 +782,7 @@ mismo arreglo ya calculado.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$serializer</span>
-                : <span class="phpdocumentor-argument-list__argument__type">callable(<a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface">RenderedDocumentInterface</abbr></a>): array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-argument-list__argument__type">callable(<a href="classes/libredte-lib-Core-Package-System-Component-Rendering-Contract-RenderedDocumentInterface.html"><abbr title="\libredte\lib\Core\Package\System\Component\Rendering\Contract\RenderedDocumentInterface">RenderedDocumentInterface</abbr></a>): array&lt;string, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -795,7 +795,7 @@ mismo arreglo ya calculado.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, array&lt;string, mixed&gt;&gt;</span>
             </section>
 
 </article>
