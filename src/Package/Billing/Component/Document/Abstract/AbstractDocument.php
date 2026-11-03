@@ -28,11 +28,11 @@ use Derafu\Array\ArrayReader;
 use Derafu\Repository\Entity;
 use Derafu\Selector\Selector;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
-use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Exception\XmlException;
 use Derafu\Xml\Exception\XmlQueryException;
+use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
@@ -79,7 +79,9 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
 
         // Validar que el código que está en el XmlDocument sea el que la clase
         // de la estrategia espera.
-        $xmlDocumentTipoDTE = (int) $xmlDocument->query('//Encabezado/IdDoc/TipoDTE');
+        $xmlDocumentTipoDTE = $xmlDocument->getReader(source: 'document XML')
+            ->getAsInt('//Encabezado/IdDoc/TipoDTE', 0)
+        ;
         if ($xmlDocumentTipoDTE !== $this->getCodigo()) {
             throw new LogicException([
                 'Code {code} of the XmlDocument loaded in {class} does not match the expected value; it should be code {expected}.',
@@ -104,6 +106,16 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
     public function getXmlDocument(): XmlDocumentInterface
     {
         return $this->xmlDocument;
+    }
+
+    /**
+     * Obtiene un lector del documento XML.
+     *
+     * @return XPathReader
+     */
+    private function reader(): XPathReader
+    {
+        return $this->xmlDocument->getReader(source: 'document XML');
     }
 
     /**
@@ -154,17 +166,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getFolio(): int
     {
-        $value = $this->xmlDocument->query('//Encabezado/IdDoc/Folio');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned document number.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/IdDoc/Folio'
-            );
-        }
-
-        return (int) $value;
+        return $this->reader()->requireAsInt('//Encabezado/IdDoc/Folio');
     }
 
     /**
@@ -180,17 +182,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getEmisor(): array
     {
-        $value = $this->xmlDocument->query('//Encabezado/Emisor');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned issuer.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Emisor'
-            );
-        }
-
-        return ValueType::map()->parse($value);
+        return $this->reader()->requireMap('//Encabezado/Emisor');
     }
 
     /**
@@ -198,17 +190,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRutEmisor(): string
     {
-        $value = $this->xmlDocument->query('//Encabezado/Emisor/RUTEmisor');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned issuer RUT.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Emisor/RUTEmisor'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//Encabezado/Emisor/RUTEmisor');
     }
 
     /**
@@ -216,13 +198,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getSucursalSii(): ?int
     {
-        $value = $this->xmlDocument->query('//Encabezado/Emisor/CdgSIISucur');
-
-        if ($value === null) {
-            return null;
-        }
-
-        return (int) $value;
+        return $this->reader()->getAsInt('//Encabezado/Emisor/CdgSIISucur');
     }
 
     /**
@@ -230,17 +206,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getReceptor(): array
     {
-        $value = $this->xmlDocument->query('//Encabezado/Receptor');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned recipient.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Receptor'
-            );
-        }
-
-        return ValueType::map()->parse($value);
+        return $this->reader()->requireMap('//Encabezado/Receptor');
     }
 
     /**
@@ -248,17 +214,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRutReceptor(): string
     {
-        $value = $this->xmlDocument->query('//Encabezado/Receptor/RUTRecep');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned recipient RUT.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Receptor/RUTRecep'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//Encabezado/Receptor/RUTRecep');
     }
 
     /**
@@ -266,9 +222,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getRazonSocialReceptor(): ?string
     {
-        return ValueCaster::getString(
-            $this->xmlDocument->query('//Encabezado/Receptor/RznSocRecep')
-        );
+        return $this->reader()->getString('//Encabezado/Receptor/RznSocRecep');
     }
 
     /**
@@ -276,11 +230,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function requireRazonSocialReceptor(): string
     {
-        return $this->getRazonSocialReceptor() ?? throw new XmlQueryException(
-            'The document XML does not include an assigned recipient business name.',
-            xmlDocument: $this->xmlDocument,
-            xpathExpression: '//Encabezado/Receptor/RznSocRecep'
-        );
+        return $this->reader()->requireString('//Encabezado/Receptor/RznSocRecep');
     }
 
     /**
@@ -288,17 +238,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getFechaEmision(): string
     {
-        $value = $this->xmlDocument->query('//Encabezado/IdDoc/FchEmis');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned issue date.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/IdDoc/FchEmis'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//Encabezado/IdDoc/FchEmis');
     }
 
     /**
@@ -306,17 +246,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getTotales(): array
     {
-        $value = $this->xmlDocument->query('//Encabezado/Totales');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include assigned totals.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Totales'
-            );
-        }
-
-        return ValueType::map()->parse($value);
+        return $this->reader()->requireMap('//Encabezado/Totales');
     }
 
     /**
@@ -324,21 +254,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoExento(): int|float|null
     {
-        $value = $this->xmlDocument->query('//Encabezado/Totales/MntExe');
-
-        if ($value === null) {
-            return null;
-        }
-
-        $monto = (float) $value;
-
-        // Verificar si el monto es equivalente a un entero.
-        if (floor($monto) == $monto) {
-            return (int) $monto;
-        }
-
-        // Entregar como flotante.
-        return $monto;
+        return $this->reader()->getAsNumber('//Encabezado/Totales/MntExe');
     }
 
     /**
@@ -346,13 +262,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoNeto(): ?int
     {
-        $value = $this->xmlDocument->query('//Encabezado/Totales/MntNeto');
-
-        if ($value === null) {
-            return null;
-        }
-
-        return (int) $value;
+        return $this->reader()->getAsInt('//Encabezado/Totales/MntNeto');
     }
 
     /**
@@ -360,13 +270,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoIVA(): ?int
     {
-        $value = $this->xmlDocument->query('//Encabezado/Totales/IVA');
-
-        if ($value === null) {
-            return null;
-        }
-
-        return (int) $value;
+        return $this->reader()->getAsInt('//Encabezado/Totales/IVA');
     }
 
     /**
@@ -374,25 +278,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMontoTotal(): int|float
     {
-        $value = $this->xmlDocument->query('//Encabezado/Totales/MntTotal');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The document XML does not include an assigned total amount.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//Encabezado/Totales/MntTotal'
-            );
-        }
-
-        $monto = (float) $value;
-
-        // Verificar si el monto es equivalente a un entero.
-        if (floor($monto) == $monto) {
-            return (int) $monto;
-        }
-
-        // Entregar como flotante.
-        return $monto;
+        return $this->reader()->requireAsNumber('//Encabezado/Totales/MntTotal');
     }
 
     /**
@@ -400,11 +286,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getMoneda(): string
     {
-        $moneda = $this->xmlDocument->query('//Encabezado/Totales/TpoMoneda')
-            ?? 'PESO CL'
-        ;
-
-        return ValueCaster::requireString($moneda);
+        return $this->reader()->getString('//Encabezado/Totales/TpoMoneda', 'PESO CL');
     }
 
     /**
@@ -462,20 +344,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getTipoDeCambio(string $moneda = 'PESO CL'): ?float
     {
-        $value = $this->xmlDocument->query('//Encabezado/OtraMoneda');
-
-        if ($value === null) {
-            return null;
-        }
-
-        $value = ValueType::array()->parse($value);
-
-        if (!isset($value[0])) {
-            $value = [$value];
-        }
-
-        foreach (ValueType::listOf(ValueType::map())->parse($value, 'OtraMoneda') as $OtraMoneda) {
-            $otraMoneda = ArrayReader::fromArray($OtraMoneda, 'OtraMoneda');
+        foreach ($this->reader()->getReaders('//Encabezado/OtraMoneda') ?? [] as $otraMoneda) {
             if ($otraMoneda->getString('TpoMoneda') === $moneda) {
                 return $otraMoneda->requireAsFloat('TpoCambio');
             }
@@ -510,15 +379,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getDetalle(?int $index = null): array
     {
-        $detalle = $this->xmlDocument->query('//Detalle');
-
-        if ($detalle === null) {
-            return [];
-        }
-
-        if (!isset($detalle[0])) {
-            $detalle = [$detalle];
-        }
+        $detalle = $this->reader()->getListOf('//Detalle', ValueType::map()) ?? [];
 
         return $index !== null ? ($detalle[$index] ?? []) : $detalle;
     }
@@ -528,17 +389,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getReferencias(): array
     {
-        $referencias = $this->xmlDocument->query('//Referencia');
-
-        if ($referencias === null) {
-            return [];
-        }
-
-        if (!isset($referencias[0])) {
-            $referencias = [$referencias];
-        }
-
-        return ValueType::listOf(ValueType::map())->parse($referencias);
+        return $this->reader()->getListOf('//Referencia', ValueType::map()) ?? [];
     }
 
     /**
@@ -636,13 +487,13 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     public function getFirma(): ?string
     {
-        $firma = $this->xmlDocument->query('/DTE/Signature/SignatureValue');
+        $firma = $this->reader()->getString('/DTE/Signature/SignatureValue');
 
         if ($firma === null) {
             return null;
         }
 
-        return (string) trim(str_replace("\n", '', ValueCaster::requireString($firma)));
+        return trim(str_replace("\n", '', $firma));
     }
 
     /**
@@ -650,13 +501,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
      */
     private function getCafIdk(): ?int
     {
-        $value = $this->xmlDocument->query('//TED/DD/CAF/DA/IDK');
-
-        if ($value === null) {
-            return null;
-        }
-
-        return (int) $value;
+        return $this->reader()->getAsInt('//TED/DD/CAF/DA/IDK');
     }
 
     /**

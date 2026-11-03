@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
-use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\ResumenVentasDiariasInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -47,9 +46,10 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getId(): string
     {
-        return ValueCaster::requireString(
-            $this->getXmlDocument()->query('//DocumentoConsumoFolios/@ID') ?? ''
-        );
+        return $this->getXmlDocument()
+            ->getReader(source: 'daily sales summary XML')
+            ->getString('//DocumentoConsumoFolios/@ID', '')
+        ;
     }
 
     /**
@@ -57,9 +57,10 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaInicial(): string
     {
-        return ValueCaster::requireString(
-            $this->getXmlDocument()->query('//Caratula/FchInicio') ?? ''
-        );
+        return $this->getXmlDocument()
+            ->getReader(source: 'daily sales summary XML')
+            ->getString('//Caratula/FchInicio', '')
+        ;
     }
 
     /**
@@ -67,9 +68,10 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getFechaFinal(): string
     {
-        return ValueCaster::requireString(
-            $this->getXmlDocument()->query('//Caratula/FchFinal') ?? ''
-        );
+        return $this->getXmlDocument()
+            ->getReader(source: 'daily sales summary XML')
+            ->getString('//Caratula/FchFinal', '')
+        ;
     }
 
     /**
@@ -77,6 +79,9 @@ class ResumenVentasDiarias extends AbstractBook implements ResumenVentasDiariasI
      */
     public function getSecuencia(): int
     {
-        return (int) ($this->getXmlDocument()->query('//Caratula/SecEnvio') ?? 1);
+        return $this->getXmlDocument()
+            ->getReader(source: 'daily sales summary XML')
+            ->getAsInt('//Caratula/SecEnvio', 1)
+        ;
     }
 }

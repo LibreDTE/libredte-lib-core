@@ -24,10 +24,9 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Entity;
 
 use DateTime;
 use Derafu\Value\ValueCaster;
-use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
-use Derafu\Xml\Exception\XmlQueryException;
 use Derafu\Xml\XmlDocument;
+use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
@@ -100,6 +99,16 @@ class Caf implements CafInterface
     }
 
     /**
+     * Obtiene un lector del documento XML.
+     *
+     * @return XPathReader
+     */
+    private function reader(): XPathReader
+    {
+        return $this->xmlDocument->getReader(source: 'CAF XML');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function saveXml(): string
@@ -133,29 +142,11 @@ class Caf implements CafInterface
      */
     public function getEmisor(): array
     {
-        $RE = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RE');
-
-        if ($RE === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned issuer RUT.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/RE'
-            );
-        }
-
-        $RS = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RS');
-
-        if ($RS === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned issuer business name.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/RS'
-            );
-        }
+        $reader = $this->reader();
 
         return [
-            'rut' => ValueCaster::requireString($RE),
-            'razon_social' => ValueCaster::requireString($RS),
+            'rut' => $reader->requireString('//AUTORIZACION/CAF/DA/RE'),
+            'razon_social' => $reader->requireString('//AUTORIZACION/CAF/DA/RS'),
         ];
     }
 
@@ -164,17 +155,7 @@ class Caf implements CafInterface
      */
     public function getTipoDocumento(): int
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/TD');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned document type.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/TD'
-            );
-        }
-
-        return (int) $value;
+        return $this->reader()->requireAsInt('//AUTORIZACION/CAF/DA/TD');
     }
 
     /**
@@ -182,17 +163,7 @@ class Caf implements CafInterface
      */
     public function getFolioDesde(): int
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/D');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned starting document number.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/RNG/D'
-            );
-        }
-
-        return (int) $value;
+        return $this->reader()->requireAsInt('//AUTORIZACION/CAF/DA/RNG/D');
     }
 
     /**
@@ -200,17 +171,7 @@ class Caf implements CafInterface
      */
     public function getFolioHasta(): int
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/RNG/H');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned ending document number.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/RNG/H'
-            );
-        }
-
-        return (int) $value;
+        return $this->reader()->requireAsInt('//AUTORIZACION/CAF/DA/RNG/H');
     }
 
     /**
@@ -237,17 +198,7 @@ class Caf implements CafInterface
      */
     public function getFechaAutorizacion(): string
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/FA');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned authorization date.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/FA'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//AUTORIZACION/CAF/DA/FA');
     }
 
     /**
@@ -336,17 +287,7 @@ class Caf implements CafInterface
      */
     public function getIdk(): int
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/DA/IDK');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned IDK.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/DA/IDK'
-            );
-        }
-
-        return (int) $value;
+        return $this->reader()->requireAsInt('//AUTORIZACION/CAF/DA/IDK');
     }
 
     /**
@@ -372,17 +313,7 @@ class Caf implements CafInterface
      */
     public function getAutorizacion(): array
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned authorization.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF'
-            );
-        }
-
-        return ValueType::map()->parse($value);
+        return $this->reader()->requireMap('//AUTORIZACION/CAF');
     }
 
     /**
@@ -390,17 +321,7 @@ class Caf implements CafInterface
      */
     public function getPublicKey(): string
     {
-        $publicKey = $this->xmlDocument->query('//AUTORIZACION/RSAPUBK');
-
-        if ($publicKey === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned public key.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/RSAPUBK'
-            );
-        }
-
-        $publicKey = ValueCaster::requireString($publicKey);
+        $publicKey = $this->reader()->requireString('//AUTORIZACION/RSAPUBK');
 
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
@@ -434,17 +355,7 @@ class Caf implements CafInterface
      */
     public function getPrivateKey(): string
     {
-        $privateKey = $this->xmlDocument->query('//AUTORIZACION/RSASK');
-
-        if ($privateKey === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned private key.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/RSASK'
-            );
-        }
-
-        $privateKey = ValueCaster::requireString($privateKey);
+        $privateKey = $this->reader()->requireString('//AUTORIZACION/RSASK');
 
         // Restaurar el formato PEM correcto con saltos de línea.
         if (
@@ -478,17 +389,7 @@ class Caf implements CafInterface
      */
     public function getFirma(): string
     {
-        $value = $this->xmlDocument->query('//AUTORIZACION/CAF/FRMA');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The CAF XML does not include an assigned signature.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//AUTORIZACION/CAF/FRMA'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//AUTORIZACION/CAF/FRMA');
     }
 
     /**

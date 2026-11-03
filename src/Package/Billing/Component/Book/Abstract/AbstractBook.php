@@ -23,9 +23,9 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Abstract;
 
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
-use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
 use libredte\lib\Core\Package\Billing\Component\Book\Exception\BookException;
@@ -79,6 +79,16 @@ abstract class AbstractBook implements BookInterface
     }
 
     /**
+     * Obtiene un lector del documento XML.
+     *
+     * @return XPathReader
+     */
+    private function reader(): XPathReader
+    {
+        return $this->xmlDocument->getReader(source: 'book XML');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getSignatureNamespace(): ?string
@@ -112,9 +122,7 @@ abstract class AbstractBook implements BookInterface
      */
     public function getId(): string
     {
-        return ValueCaster::requireString(
-            $this->getXmlDocument()->query('//EnvioLibro/@ID') ?? ''
-        );
+        return $this->reader()->getString('//EnvioLibro/@ID', '');
     }
 
     /**
@@ -122,7 +130,7 @@ abstract class AbstractBook implements BookInterface
      */
     public function getCaratula(): array
     {
-        return (array) ($this->getXmlDocument()->query('//Caratula') ?? []);
+        return $this->reader()->getMap('//Caratula') ?? [];
     }
 
     /**
@@ -130,17 +138,10 @@ abstract class AbstractBook implements BookInterface
      */
     public function getResumen(): array
     {
-        $resumen = (array) (
-            $this->getXmlDocument()->query(
-                $this->getTipo()->getXpathResumen()
-            ) ?? []
-        );
-
-        if (!empty($resumen) && !isset($resumen[0])) {
-            $resumen = [$resumen];
-        }
-
-        return $resumen;
+        return $this->reader()->getListOf(
+            $this->getTipo()->getXpathResumen(),
+            ValueType::map()
+        ) ?? [];
     }
 
     /**
@@ -148,13 +149,7 @@ abstract class AbstractBook implements BookInterface
      */
     public function getDetalle(): array
     {
-        $detalle = (array) ($this->getXmlDocument()->query('//Detalle') ?? []);
-
-        if (!empty($detalle) && !isset($detalle[0])) {
-            $detalle = [$detalle];
-        }
-
-        return ValueType::listOf(ValueType::map())->parse($detalle, 'Detalle');
+        return $this->reader()->getListOf('//Detalle', ValueType::map()) ?? [];
     }
 
     /**

@@ -26,6 +26,7 @@ use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsAwareInterface;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XPathReader;
 use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
@@ -220,6 +221,24 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
      * @throws DocumentException Si la bolsa no lo tiene asignado.
      */
     public function requireXmlDocument(): XmlDocumentInterface;
+
+    /**
+     * Obtiene un lector del documento XML o `null` si no está asignado.
+     *
+     * El lector lee el documento XML cada vez que se le pide un dato, por lo
+     * que ve los cambios que se hagan en el documento.
+     */
+    public function getXmlReader(): ?XPathReader;
+
+    /**
+     * Obtiene un lector del documento XML o falla si no está asignado.
+     *
+     * El lector lee el documento XML cada vez que se le pide un dato, por lo
+     * que ve los cambios que se hagan en el documento.
+     *
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireXmlReader(): XPathReader;
 
     /**
      * Asigna el CAF para timbrar el documento.

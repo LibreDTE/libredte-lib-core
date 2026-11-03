@@ -30,7 +30,6 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\HandlerInterface;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Signature\Contract\SignatureServiceInterface;
-use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
@@ -318,13 +317,10 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
         // Asignar la autorización de la carátula del documento XML al emisor.
         if ($envelope->getXmlDocument()) {
-            $caratula = ArrayReader::fromValue(
-                $envelope->getXmlDocument()->query('//Caratula') ?? [],
-                '//Caratula'
-            );
-            $RutEmisor = $caratula->getAsString('RutEmisor');
-            $FchResol = $caratula->getAsString('FchResol');
-            $NroResol = $caratula->getAsInt('NroResol', 0);
+            $caratula = $envelope->getXmlDocument()->getReader(source: 'envelope XML');
+            $RutEmisor = $caratula->getAsString('//Caratula/RutEmisor');
+            $FchResol = $caratula->getAsString('//Caratula/FchResol');
+            $NroResol = $caratula->getAsInt('//Caratula/NroResol', 0);
             if ($RutEmisor === $emisor->getRut() && $FchResol !== null) {
                 $emisor->setAutorizacionDte(
                     new AutorizacionDte($FchResol, $NroResol)
@@ -371,9 +367,12 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         // en vez de armarse desde cero) su carátula se lee directamente desde
         // ese XML en lugar de reconstruirla.
         if ($envelope->getXmlDocument()) {
-            $caratula = $envelope->getXmlDocument()->query('//Caratula');
+            $caratula = $envelope->getXmlDocument()
+                ->getReader(source: 'envelope XML')
+                ->getMap('//Caratula')
+            ;
             if ($caratula !== null) {
-                $envelope->setCaratula(ValueType::map()->parse($caratula));
+                $envelope->setCaratula($caratula);
             }
 
             return;

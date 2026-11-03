@@ -22,10 +22,9 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Entity;
 
-use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
-use Derafu\Xml\Exception\XmlQueryException;
+use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\AutorizacionDteInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
@@ -71,6 +70,16 @@ class SobreEnvio implements SobreEnvioInterface
     }
 
     /**
+     * Obtiene un lector del documento XML.
+     *
+     * @return XPathReader
+     */
+    private function reader(): XPathReader
+    {
+        return $this->xmlDocument->getReader(source: 'shipping envelope XML');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function saveXml(): string
@@ -91,17 +100,7 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRutEmisor(): string
     {
-        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutEmisor');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned issuer RUT.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/RutEmisor'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//SetDTE/Caratula/RutEmisor');
     }
 
     /**
@@ -109,17 +108,7 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRunMandatario(): string
     {
-        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutEnvia');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned agent RUN.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/RutEnvia'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//SetDTE/Caratula/RutEnvia');
     }
 
     /**
@@ -127,17 +116,7 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getRutReceptor(): string
     {
-        $value = $this->xmlDocument->query('//SetDTE/Caratula/RutReceptor');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned recipient RUT.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/RutReceptor'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//SetDTE/Caratula/RutReceptor');
     }
 
     /**
@@ -145,29 +124,11 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getAutorizacionDte(): AutorizacionDteInterface
     {
-        $fecha_resolucion = $this->xmlDocument->query('//SetDTE/Caratula/FchResol');
-
-        if ($fecha_resolucion === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned resolution date.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/FchResol'
-            );
-        }
-
-        $numero_resolucion = $this->xmlDocument->query('//SetDTE/Caratula/NroResol');
-
-        if ($numero_resolucion === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned resolution number.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/NroResol'
-            );
-        }
+        $reader = $this->reader();
 
         return new AutorizacionDte(
-            ValueCaster::requireString($fecha_resolucion),
-            (int) $numero_resolucion
+            $reader->requireString('//SetDTE/Caratula/FchResol'),
+            $reader->requireAsInt('//SetDTE/Caratula/NroResol')
         );
     }
 
@@ -176,17 +137,7 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getFechaFirma(): string
     {
-        $value = $this->xmlDocument->query('//SetDTE/Caratula/TmstFirmaEnv');
-
-        if ($value === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned signature date.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/TmstFirmaEnv'
-            );
-        }
-
-        return ValueCaster::requireString($value);
+        return $this->reader()->requireString('//SetDTE/Caratula/TmstFirmaEnv');
     }
 
     /**
@@ -194,18 +145,9 @@ class SobreEnvio implements SobreEnvioInterface
      */
     public function getResumen(): array
     {
-        $SubTotDTE = $this->xmlDocument->query('//SetDTE/Caratula/SubTotDTE');
-
-        if ($SubTotDTE === null) {
-            throw new XmlQueryException(
-                'The shipping envelope XML does not include an assigned summary.',
-                xmlDocument: $this->xmlDocument,
-                xpathExpression: '//SetDTE/Caratula/SubTotDTE'
-            );
-        }
-
-        return ValueType::listOf(ValueType::map())->parse(
-            isset($SubTotDTE[0]) ? $SubTotDTE : [$SubTotDTE]
+        return $this->reader()->requireListOf(
+            '//SetDTE/Caratula/SubTotDTE',
+            ValueType::map()
         );
     }
 

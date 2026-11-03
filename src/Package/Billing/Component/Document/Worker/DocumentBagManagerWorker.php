@@ -459,11 +459,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos del XmlDocument.
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->emisorFactory->create(
-                ValueType::map()->parse(
-                    $bag->getXmlDocument()->query(
-                        '//Encabezado/Emisor'
-                    )
-                )
+                $bag->requireXmlReader()->requireMap('//Encabezado/Emisor')
             );
             $bag->setEmisor($emisor);
         }
@@ -514,11 +510,7 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
         // Crear a partir de los datos del XmlDocument.
         elseif ($bag->getXmlDocument()) {
             $emisor = $this->receptorFactory->create(
-                ValueType::map()->parse(
-                    $bag->getXmlDocument()->query(
-                        '//Encabezado/Receptor'
-                    )
-                )
+                $bag->requireXmlReader()->requireMap('//Encabezado/Receptor')
             );
             $bag->setReceptor($emisor);
         }

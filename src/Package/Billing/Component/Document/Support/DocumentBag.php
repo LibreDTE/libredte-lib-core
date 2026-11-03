@@ -31,6 +31,7 @@ use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicExcepti
 use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
+use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
@@ -481,6 +482,22 @@ class DocumentBag implements DocumentBagInterface
     public function requireXmlDocument(): XmlDocumentInterface
     {
         return $this->getXmlDocument() ?? throw $this->missing('xmlDocument');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getXmlReader(): ?XPathReader
+    {
+        return $this->getXmlDocument()?->getReader(source: 'document XML');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireXmlReader(): XPathReader
+    {
+        return $this->requireXmlDocument()->getReader(source: 'document XML');
     }
 
     /**

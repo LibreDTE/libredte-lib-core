@@ -240,28 +240,6 @@ return [
         'El XML del AEC que se desea enviar al SII no puede estar vacío.',
     'The book bag does not have {item}.' =>
         'La bolsa del libro no tiene {item}.',
-    'The CAF XML does not include an assigned IDK.' =>
-        'El CAF no tiene un IDK asignado en el XML.',
-    'The CAF XML does not include an assigned authorization date.' =>
-        'El CAF no tiene una fecha de autorización asignada en el XML.',
-    'The CAF XML does not include an assigned authorization.' =>
-        'El CAF no tiene una autorización asignada en el XML.',
-    'The CAF XML does not include an assigned document type.' =>
-        'El CAF no tiene un tipo de documento asignado en el XML.',
-    'The CAF XML does not include an assigned starting document number.' =>
-        'El CAF no tiene un folio desde asignado en el XML.',
-    'The CAF XML does not include an assigned ending document number.' =>
-        'El CAF no tiene un folio hasta asignado en el XML.',
-    'The CAF XML does not include an assigned issuer RUT.' =>
-        'El CAF no tiene un RUT de emisor asignado en el XML.',
-    'The CAF XML does not include an assigned issuer business name.' =>
-        'El CAF no tiene una razón social de emisor asignada en el XML.',
-    'The CAF XML does not include an assigned private key.' =>
-        'El CAF no tiene una clave privada asignada en el XML.',
-    'The CAF XML does not include an assigned public key.' =>
-        'El CAF no tiene una clave pública asignada en el XML.',
-    'The CAF XML does not include an assigned signature.' =>
-        'El CAF no tiene una firma asignada en el XML.',
     'The document batch does not have {item}.' =>
         'El lote de documentos no tiene {item}.',
     'The document bag does not have {item}.' =>
@@ -270,8 +248,6 @@ return [
         'El tipo de documento {code} no tiene un alias.',
     'The document type {code} does not have an XML tag.' =>
         'El tipo de documento {code} no tiene un tag XML.',
-    'The document XML does not include an assigned recipient business name.' =>
-        'El XML del documento no incluye una razón social del receptor asignada.',
     'The envelope does not have {item}.' =>
         'El sobre no tiene {item}.',
     'The SII AEC upload response does not include a valid status code.' =>
@@ -308,24 +284,8 @@ return [
         'La empresa no está autorizada a enviar archivos XML al SII. {detail}',
     'The cover of a book of type {type} must have {field}.' =>
         'La carátula de un libro de tipo {type} debe tener {field}.',
-    'The document XML does not include an assigned document number.' =>
-        'El documento no tiene un folio asignado en el XML.',
-    'The document XML does not include an assigned issue date.' =>
-        'El documento no tiene una fecha de emisión asignada en el XML.',
-    'The document XML does not include an assigned issuer RUT.' =>
-        'El documento no tiene un RUT de emisor asignado en el XML.',
-    'The document XML does not include an assigned issuer.' =>
-        'El documento no tiene un emisor asignado en el XML.',
-    'The document XML does not include an assigned recipient RUT.' =>
-        'El documento no tiene un RUT de receptor asignado en el XML.',
-    'The document XML does not include an assigned recipient.' =>
-        'El documento no tiene un receptor asignado en el XML.',
-    'The document XML does not include an assigned total amount.' =>
-        'El documento no tiene un monto total asignado en el XML.',
     'The document XML does not include an exchange rate assigned for currency {currency}.' =>
         'El documento no tiene un tipo de cambio asignado para la moneda {currency} en el XML.',
-    'The document XML does not include assigned totals.' =>
-        'El documento no tiene los totales asignados en el XML.',
     'The document XML root node must be the "DTE" tag. Inside this root node there must be a "Documento", "Exportaciones" or "Liquidacion" tag. That inner node must contain the document data.' =>
         'El nodo raíz del XML del documento debe ser el tag "DTE". Dentro de este nodo raíz debe existir un tag "Documento", "Exportaciones" o "Liquidacion". Este segundo nodo es el que debe contener los datos del documento.',
     'The document detail (Detalle) must be indicated: there must be at least one item.' =>
@@ -376,20 +336,6 @@ return [
         'La fila trae un ítem o una referencia, pero no hay un documento anterior al que agregarlos.',
     'The sender must include an identifier with EMAIL scheme.' =>
         'Se debe especificar el identificador con esquema EMAIL en el remitente.',
-    'The shipping envelope XML does not include an assigned agent RUN.' =>
-        'El sobre de envío no tiene un RUN de mandatario asignado en el XML.',
-    'The shipping envelope XML does not include an assigned issuer RUT.' =>
-        'El sobre de envío no tiene un RUT de emisor asignado en el XML.',
-    'The shipping envelope XML does not include an assigned recipient RUT.' =>
-        'El sobre de envío no tiene un RUT de receptor asignado en el XML.',
-    'The shipping envelope XML does not include an assigned resolution date.' =>
-        'El sobre de envío no tiene una fecha de resolución asignada en el XML.',
-    'The shipping envelope XML does not include an assigned resolution number.' =>
-        'El sobre de envío no tiene un número de resolución asignado en el XML.',
-    'The shipping envelope XML does not include an assigned signature date.' =>
-        'El sobre de envío no tiene una fecha de firma asignada en el XML.',
-    'The shipping envelope XML does not include an assigned summary.' =>
-        'El sobre de envío no tiene un resumen asignado en el XML.',
     'The sii.boleta send strategy is not implemented.' =>
         'La estrategia de envío sii.boleta no está implementada.',
     'The sii.dte send strategy is not implemented.' =>
