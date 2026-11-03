@@ -168,6 +168,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
+    public function requireSobreEnvio(): SobreEnvioInterface
+    {
+        return $this->getSobreEnvio() ?? throw $this->missing('sobreEnvio');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setXmlDocument(?XmlDocumentInterface $xmlDocument): static
     {
         $this->xmlDocument = $xmlDocument;
@@ -297,6 +305,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     /**
      * {@inheritDoc}
      */
+    public function requireEmisor(): EmisorInterface
+    {
+        return $this->getEmisor() ?? throw $this->missing('emisor');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setMandatario(?MandatarioInterface $mandatario): static
     {
         $this->mandatario = $mandatario;
@@ -328,6 +344,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     public function getReceptor(): ?ReceptorInterface
     {
         return $this->receptor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireReceptor(): ReceptorInterface
+    {
+        return $this->getReceptor() ?? throw $this->missing('receptor');
     }
 
     /**
@@ -372,6 +396,14 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
     public function getCaratula(): ?array
     {
         return $this->caratula;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function requireCaratula(): array
+    {
+        return $this->getCaratula() ?? throw $this->missing('caratula');
     }
 
     /**

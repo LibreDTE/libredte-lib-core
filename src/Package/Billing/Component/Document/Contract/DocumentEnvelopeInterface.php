@@ -68,6 +68,15 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     public function getSobreEnvio(): ?SobreEnvioInterface;
 
     /**
+     * Obtiene la entidad del sobre del envío de documentos o falla si no está
+     * asignada.
+     *
+     * @return SobreEnvioInterface
+     * @throws DispatcherException Si el sobre no tiene la entidad del sobre.
+     */
+    public function requireSobreEnvio(): SobreEnvioInterface;
+
+    /**
      * Asigna el documento XML que representa al sobre de documentos.
      *
      * @param XmlDocumentInterface|null $xmlDocument
@@ -144,6 +153,14 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
     public function getEmisor(): ?EmisorInterface;
 
     /**
+     * Obtiene el emisor del sobre de documentos o falla si no está asignado.
+     *
+     * @return EmisorInterface
+     * @throws DispatcherException Si el sobre no tiene emisor.
+     */
+    public function requireEmisor(): EmisorInterface;
+
+    /**
      * Asigna el mandatario del emisor (mandante) autorizado en el SII a enviar
      * el sobre con los documentos tributarios.
      *
@@ -174,6 +191,14 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
      * @return ReceptorInterface|null
      */
     public function getReceptor(): ?ReceptorInterface;
+
+    /**
+     * Obtiene el receptor del sobre de documentos o falla si no está asignado.
+     *
+     * @return ReceptorInterface
+     * @throws DispatcherException Si el sobre no tiene receptor.
+     */
+    public function requireReceptor(): ReceptorInterface;
 
     /**
      * Asigna el certificado para firmar el sobre de documentos.
@@ -228,6 +253,15 @@ interface DocumentEnvelopeInterface extends OptionsAwareInterface, JsonSerializa
      * @return array<string, mixed>|null
      */
     public function getCaratula(): ?array;
+
+    /**
+     * Obtiene los datos de la carátula del sobre de documentos o falla si no
+     * están asignados.
+     *
+     * @return array<string, mixed>
+     * @throws DispatcherException Si el sobre no tiene carátula.
+     */
+    public function requireCaratula(): array;
 
     /**
      * Entrega los datos del sobre de documentos en un arreglo.
