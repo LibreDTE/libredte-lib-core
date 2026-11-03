@@ -171,6 +171,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020del\u0020libro.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Book-Abstract-AbstractBook.html#method_reader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Book\\Abstract\\AbstractBook\u003A\u003AgetSignatureNamespace\u0028\u0029",
             "name": "getSignatureNamespace",
             "summary": "Entrega\u0020el\u0020namespace\u0020XML\u0020que\u0020debe\u0020usarse\u0020en\u0020el\u0020elemento\u0020\u0060Signature\u0060.",
@@ -1466,6 +1471,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020asociado\u0020al\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractDocument.html#method_reader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractDocument\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
             "summary": "Genera\u0020el\u0020documentto\u0020XML\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
@@ -2165,6 +2175,16 @@ Search.appendIndex(
             "name": "requireXmlDocument",
             "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetXmlReader\u0028\u0029",
+            "name": "getXmlReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getXmlReader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireXmlReader\u0028\u0029",
+            "name": "requireXmlReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireXmlReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetCaf\u0028\u0029",
             "name": "setCaf",
@@ -3801,6 +3821,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020documento\u0020XML\u0020asociado\u0020al\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-SobreEnvio.html#method_getXmlDocument"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\SobreEnvio\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Entity-SobreEnvio.html#method_reader"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Entity\\SobreEnvio\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
             "summary": "Genera\u0020el\u0020documentto\u0020XML\u0020como\u0020string\u0020incluyendo\u0020encabezado.",
@@ -4685,6 +4710,16 @@ Search.appendIndex(
             "name": "requireXmlDocument",
             "summary": "Obtiene\u0020el\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetXmlReader\u0028\u0029",
+            "name": "getXmlReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML\u0020o\u0020\u0060null\u0060\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getXmlReader"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireXmlReader\u0028\u0029",
+            "name": "requireXmlReader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireXmlReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetCaf\u0028\u0029",
             "name": "setCaf",
@@ -9335,6 +9370,11 @@ Search.appendIndex(
             "name": "getXmlDocument",
             "summary": "Obtiene\u0020el\u0020documento\u0020XML.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_getXmlDocument"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003Areader\u0028\u0029",
+            "name": "reader",
+            "summary": "Obtiene\u0020un\u0020lector\u0020del\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Entity-Caf.html#method_reader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Entity\\Caf\u003A\u003AsaveXml\u0028\u0029",
             "name": "saveXml",
