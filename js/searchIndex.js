@@ -2536,6 +2536,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020entidad\u0020del\u0020sobre\u0020del\u0020env\u00EDo\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getSobreEnvio"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireSobreEnvio\u0028\u0029",
+            "name": "requireSobreEnvio",
+            "summary": "Obtiene\u0020la\u0020entidad\u0020del\u0020sobre\u0020del\u0020env\u00EDo\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\nasignada.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireSobreEnvio"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AsetXmlDocument\u0028\u0029",
             "name": "setXmlDocument",
             "summary": "Asigna\u0020el\u0020documento\u0020XML\u0020que\u0020representa\u0020al\u0020sobre\u0020de\u0020documentos.",
@@ -2586,6 +2591,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getEmisor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireEmisor"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AsetMandatario\u0028\u0029",
             "name": "setMandatario",
             "summary": "Asigna\u0020el\u0020mandatario\u0020del\u0020emisor\u0020\u0028mandante\u0029\u0020autorizado\u0020en\u0020el\u0020SII\u0020a\u0020enviar\nel\u0020sobre\u0020con\u0020los\u0020documentos\u0020tributarios.",
@@ -2605,6 +2615,11 @@ Search.appendIndex(
             "name": "getReceptor",
             "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getReceptor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireReceptor\u0028\u0029",
+            "name": "requireReceptor",
+            "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireReceptor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
@@ -2635,6 +2650,11 @@ Search.appendIndex(
             "name": "getCaratula",
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_getCaratula"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003ArequireCaratula\u0028\u0029",
+            "name": "requireCaratula",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentEnvelopeInterface.html#method_requireCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentEnvelopeInterface\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
@@ -5136,6 +5156,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020la\u0020entidad\u0020del\u0020sobre\u0020del\u0020env\u00EDo\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getSobreEnvio"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireSobreEnvio\u0028\u0029",
+            "name": "requireSobreEnvio",
+            "summary": "Obtiene\u0020la\u0020entidad\u0020del\u0020sobre\u0020del\u0020env\u00EDo\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\nasignada.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireSobreEnvio"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetXmlDocument\u0028\u0029",
             "name": "setXmlDocument",
             "summary": "Asigna\u0020el\u0020documento\u0020XML\u0020que\u0020representa\u0020al\u0020sobre\u0020de\u0020documentos.",
@@ -5186,6 +5211,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getEmisor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireEmisor\u0028\u0029",
+            "name": "requireEmisor",
+            "summary": "Obtiene\u0020el\u0020emisor\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireEmisor"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetMandatario\u0028\u0029",
             "name": "setMandatario",
             "summary": "Asigna\u0020el\u0020mandatario\u0020del\u0020emisor\u0020\u0028mandante\u0029\u0020autorizado\u0020en\u0020el\u0020SII\u0020a\u0020enviar\nel\u0020sobre\u0020con\u0020los\u0020documentos\u0020tributarios.",
@@ -5205,6 +5235,11 @@ Search.appendIndex(
             "name": "getReceptor",
             "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getReceptor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireReceptor\u0028\u0029",
+            "name": "requireReceptor",
+            "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireReceptor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AsetCertificate\u0028\u0029",
             "name": "setCertificate",
@@ -5230,6 +5265,11 @@ Search.appendIndex(
             "name": "getCaratula",
             "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getCaratula"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003ArequireCaratula\u0028\u0029",
+            "name": "requireCaratula",
+            "summary": "Obtiene\u0020los\u0020datos\u0020de\u0020la\u0020car\u00E1tula\u0020del\u0020sobre\u0020de\u0020documentos\u0020o\u0020falla\u0020si\u0020no\nest\u00E1n\u0020asignados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCaratula"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentEnvelope\u003A\u003AwithCertificate\u0028\u0029",
             "name": "withCertificate",

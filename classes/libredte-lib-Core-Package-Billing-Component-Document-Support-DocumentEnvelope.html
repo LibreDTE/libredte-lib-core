@@ -377,6 +377,14 @@ el sobre con los documentos tributarios.</dd>
 <dd>{@inheritDoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCaratula">requireCaratula()</a>
+    <span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
+</dt>
+<dd>Obtiene los datos de la carátula del sobre de documentos o falla si no
+están asignados.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCertificate">requireCertificate()</a>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Certificate\Contract\CertificateInterface">CertificateInterface</abbr>    </span>
@@ -389,6 +397,28 @@ el sobre con los documentos tributarios.</dd>
                                 &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface">DocumentBagInterface</abbr></a>&gt;    </span>
 </dt>
 <dd>Obtiene los documentos del sobre o falla si no tiene.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireEmisor">requireEmisor()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>    </span>
+</dt>
+<dd>Obtiene el emisor del sobre de documentos o falla si no está asignado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireReceptor">requireReceptor()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a>    </span>
+</dt>
+<dd>Obtiene el receptor del sobre de documentos o falla si no está asignado.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireSobreEnvio">requireSobreEnvio()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SobreEnvioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface">SobreEnvioInterface</abbr></a>    </span>
+</dt>
+<dd>Obtiene la entidad del sobre del envío de documentos o falla si no está
+asignada.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireXmlDocument">requireXmlDocument()</a>
@@ -895,7 +925,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">225</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -944,7 +974,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">372</span>
+    <span class="phpdocumentor-element-found-in__line">396</span>
 
     </aside>
 
@@ -983,7 +1013,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">346</span>
+    <span class="phpdocumentor-element-found-in__line">370</span>
 
     </aside>
 
@@ -1022,7 +1052,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">274</span>
+    <span class="phpdocumentor-element-found-in__line">282</span>
 
     </aside>
 
@@ -1061,7 +1091,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">209</span>
+    <span class="phpdocumentor-element-found-in__line">217</span>
 
     </aside>
 
@@ -1100,7 +1130,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">292</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
     </aside>
 
@@ -1178,7 +1208,7 @@ utilice estas opciones deberá resolver y validar sus propias opciones.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">310</span>
+    <span class="phpdocumentor-element-found-in__line">326</span>
 
     </aside>
 
@@ -1257,7 +1287,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">328</span>
+    <span class="phpdocumentor-element-found-in__line">344</span>
 
     </aside>
 
@@ -1374,7 +1404,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">181</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -1413,7 +1443,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">423</span>
+    <span class="phpdocumentor-element-found-in__line">455</span>
 
     </aside>
 
@@ -1444,6 +1474,46 @@ el sobre con los documentos tributarios.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_requireCaratula">
+        requireCaratula()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCaratula" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">404</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene los datos de la carátula del sobre de documentos o falla si no
+están asignados.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireCaratula</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_requireCertificate">
         requireCertificate()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCertificate" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1452,7 +1522,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">354</span>
+    <span class="phpdocumentor-element-found-in__line">378</span>
 
     </aside>
 
@@ -1491,7 +1561,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">217</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
@@ -1522,6 +1592,124 @@ el sobre con los documentos tributarios.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_requireEmisor">
+        requireEmisor()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireEmisor" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">308</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el emisor del sobre de documentos o falla si no está asignado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireEmisor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_requireReceptor">
+        requireReceptor()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireReceptor" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">352</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el receptor del sobre de documentos o falla si no está asignado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireReceptor</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-ReceptorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorInterface">ReceptorInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_requireSobreEnvio">
+        requireSobreEnvio()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireSobreEnvio" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">171</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene la entidad del sobre del envío de documentos o falla si no está
+asignada.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">requireSobreEnvio</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SobreEnvioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface">SobreEnvioInterface</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-SobreEnvioInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Contract\SobreEnvioInterface">SobreEnvioInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_requireXmlDocument">
         requireXmlDocument()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireXmlDocument" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1530,7 +1718,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
@@ -1569,7 +1757,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">362</span>
+    <span class="phpdocumentor-element-found-in__line">386</span>
 
     </aside>
 
@@ -1618,7 +1806,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">336</span>
+    <span class="phpdocumentor-element-found-in__line">360</span>
 
     </aside>
 
@@ -1667,7 +1855,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">205</span>
 
     </aside>
 
@@ -1716,7 +1904,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">290</span>
 
     </aside>
 
@@ -1765,7 +1953,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">316</span>
 
     </aside>
 
@@ -1815,7 +2003,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">318</span>
+    <span class="phpdocumentor-element-found-in__line">334</span>
 
     </aside>
 
@@ -1913,7 +2101,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">171</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -1962,7 +2150,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">405</span>
+    <span class="phpdocumentor-element-found-in__line">437</span>
 
     </aside>
 
@@ -2001,7 +2189,7 @@ el sobre con los documentos tributarios.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">380</span>
+    <span class="phpdocumentor-element-found-in__line">412</span>
 
     </aside>
 
@@ -2051,7 +2239,7 @@ certificado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php"><a href="files/src-package-billing-component-document-support-documentenvelope.html"><abbr title="src/Package/Billing/Component/Document/Support/DocumentEnvelope.php">DocumentEnvelope.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">440</span>
+    <span class="phpdocumentor-element-found-in__line">472</span>
 
     </aside>
 
@@ -2140,8 +2328,12 @@ certificado.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getTipoSobre">getTipoSobre()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_getXmlDocument">getXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_jsonSerialize">jsonSerialize()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCaratula">requireCaratula()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireCertificate">requireCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireDocuments">requireDocuments()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireEmisor">requireEmisor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireReceptor">requireReceptor()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireSobreEnvio">requireSobreEnvio()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_requireXmlDocument">requireXmlDocument()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_setCaratula">setCaratula()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentEnvelope.html#method_setCertificate">setCertificate()</a></li>
