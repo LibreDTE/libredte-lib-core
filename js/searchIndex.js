@@ -12936,6 +12936,46 @@ Search.appendIndex(
             "summary": "Clase\u0020de\u0020la\u0020entidad\u0020de\u0020los\u0020receptores.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Factory-ReceptorFactory.html#property_class"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyEmisorProvider",
+            "name": "DummyEmisorProvider",
+            "summary": "Proveedor\u0020por\u0020defecto\u0020de\u0020datos\u0020de\u0020un\u0020emisor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyEmisorProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyEmisorProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020servicio\u0020y\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyEmisorProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyEmisorProvider\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020emisor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyEmisorProvider.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyEmisorProvider\u003A\u003A\u0024emisorFactory",
+            "name": "emisorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyEmisorProvider.html#property_emisorFactory"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyReceptorProvider",
+            "name": "DummyReceptorProvider",
+            "summary": "Proveedor\u0020por\u0020defecto\u0020de\u0020datos\u0020de\u0020un\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyReceptorProvider.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyReceptorProvider\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020del\u0020servicio\u0020y\u0020sus\u0020dependencias.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyReceptorProvider.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyReceptorProvider\u003A\u003Aretrieve\u0028\u0029",
+            "name": "retrieve",
+            "summary": "Buscar\u0020los\u0020datos\u0020de\u0020un\u0020receptor\u0020a\u0020trav\u00E9s\u0020de\u0020su\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyReceptorProvider.html#method_retrieve"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\DummyReceptorProvider\u003A\u003A\u0024receptorFactory",
+            "name": "receptorFactory",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Service-DummyReceptorProvider.html#property_receptorFactory"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Service\\FakeEmisorProvider",
             "name": "FakeEmisorProvider",
             "summary": "Proveedor\u0020falso\u0020de\u0020datos\u0020de\u0020un\u0020emisor\u0020para\u0020pruebas.",
