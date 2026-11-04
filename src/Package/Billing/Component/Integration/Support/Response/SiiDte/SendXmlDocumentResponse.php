@@ -23,14 +23,14 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte;
 
 use Derafu\Array\ArrayReader;
-use JsonSerializable;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiSendXmlDocumentResponseInterface;
 
 /**
  * Respuesta del SII al enviar un documento XML EnvioDTE (DTE, excepto boletas).
  *
  * Contiene el Track ID asignado por el SII para hacer seguimiento del envío.
  */
-class SendXmlDocumentResponse implements JsonSerializable
+class SendXmlDocumentResponse implements SiiSendXmlDocumentResponseInterface
 {
     private readonly int $trackId;
 

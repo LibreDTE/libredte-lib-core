@@ -25,17 +25,20 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Respon
 use Derafu\Array\ArrayReader;
 use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
-use JsonSerializable;
 use libredte\lib\Core\Package\Billing\Component\Integration\Abstract\AbstractSiiWsdlResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteCheckXmlDocumentSentStatusResponseInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii;
+use libredte\lib\Core\Package\Billing\Component\Integration\Trait\ReviewsSentStatusTrait;
 
 /**
  * Respuesta de la consulta de estado de un documento subido al SII.
  *
  * Referencia: https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf
  */
-class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse implements JsonSerializable
+class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse implements SiiDteCheckXmlDocumentSentStatusResponseInterface
 {
+    use ReviewsSentStatusTrait;
+
     /**
      * Estados de salida.
      *
@@ -162,107 +165,27 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
     }
 
     /**
-     * Devuelve el estado de revisión del documento.
-     *
-     * @return string El estado de la revisión del documento.
+     * {@inheritDoc}
      */
-    public function getReviewStatus(): string
+    public function getTrackId(): int
     {
-        $data = ArrayReader::fromArray($this->getData(), 'SII response');
-        $status = $data->requireString('status');
-        $description = $data->getString('description');
-
-        if ($status === 'EPR') {
-            if ($this->hasRejectedDocuments()) {
-                return 'RCH - DTE Rechazado';
-            }
-
-            if ($this->hasRepairsDocuments()) {
-                return 'RLV - DTE Aceptado con Reparos Leves';
-            }
-        }
-
-        return $description
-            ? ($status . ' - ' . $description)
-            : $status
-        ;
+        return ArrayReader::fromArray($this->getData(), 'SII response')->requireAsInt('track_id');
     }
 
     /**
-     * Devuelve el estado del envío normalizado como enum.
-     *
-     * Retorna `null` cuando el SII aún no ha procesado definitivamente el envío
-     * (estados intermedios como SOK, FOK, PDR, etc.).
+     * {@inheritDoc}
      */
-    public function getEstadoEnvioSii(): ?EstadoEnvioSii
+    protected function getEstadoEnvioSiiByCode(string $status): ?EstadoEnvioSii
     {
-        $status = ArrayReader::fromArray($this->getData())->requireString('status');
-
-        if ($status !== 'EPR') {
-            return EstadoEnvioSii::tryFromSiiCodigo($status);
-        }
-
-        if ($this->hasRejectedDocuments()) {
-            return EstadoEnvioSii::RECHAZADO;
-        }
-
-        if ($this->hasRepairsDocuments()) {
-            return EstadoEnvioSii::REPARO;
-        }
-
-        return EstadoEnvioSii::ACEPTADO;
+        return EstadoEnvioSii::tryFromSiiCodigo($status);
     }
 
     /**
-     * Devuelve el detalle de la revisión del documento.
-     *
-     * @return string|null El detalle de la revisión o `null` si no existe.
+     * {@inheritDoc}
      */
-    public function getReviewDetail(): ?string
+    protected function getReviewDetailByCode(string $status): ?string
     {
-        $status = ArrayReader::fromArray($this->getData())->requireString('status');
-
-        if ($status === 'EPR') {
-            if ($this->allDocumentsAreAccepted()) {
-                return 'DTE aceptado';
-            }
-        } elseif ($status === 'LOK') {
-            return 'Cuadrado';
-        }
-
-        return null;
-    }
-
-    /**
-     * Verifica si todos los documentos fueron aceptados.
-     *
-     * @return bool True si todos los documentos fueron aceptados.
-     */
-    private function allDocumentsAreAccepted(): bool
-    {
-        $resume = ArrayReader::fromArray($this->getData())->requireReader('resume');
-
-        return $resume->requireInt('reported') === $resume->requireInt('accepted');
-    }
-
-    /**
-     * Verifica si hay documentos rechazados.
-     *
-     * @return bool True si existen documentos rechazados.
-     */
-    private function hasRejectedDocuments(): bool
-    {
-        return ArrayReader::fromArray($this->getData())->requireReader('resume')->requireInt('rejected') > 0;
-    }
-
-    /**
-     * Verifica si hay documentos con reparos.
-     *
-     * @return bool True si existen documentos con reparos.
-     */
-    private function hasRepairsDocuments(): bool
-    {
-        return ArrayReader::fromArray($this->getData())->requireReader('resume')->requireInt('repairs') > 0;
+        return $status === 'LOK' ? 'Cuadrado' : null;
     }
 
     /**

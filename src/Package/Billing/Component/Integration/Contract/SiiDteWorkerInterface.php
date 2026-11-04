@@ -31,9 +31,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\Sen
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\ValidateDocumentSignatureException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\CheckXmlDocumentSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\RequestXmlDocumentSentStatusByEmailResponse;
-use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\ValidateDocumentSignatureResponse;
 use UnexpectedValueException;
@@ -58,7 +56,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param string $company RUT de la empresa emisora del XML.
      * @param bool $compress Indica si se debe enviar comprimido el XML.
      * @param int|null $retries Intentos que se realizarán como máximo al enviar.
-     * @return SendXmlDocumentResponse Respuesta con el Track ID del envío.
+     * @return SiiSendXmlDocumentResponseInterface Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si alguno de los RUT son inválidos.
      * @throws LogicException Si la solicitud no incluye un certificado
      * digital para autenticar en el SII.
@@ -72,7 +70,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
         string $company,
         bool $compress = false,
         ?int $retries = null
-    ): SendXmlDocumentResponse;
+    ): SiiSendXmlDocumentResponseInterface;
 
     /**
      * Obtiene el estado actualizado del envío de un documento XML al SII.
@@ -86,7 +84,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del XML que se envió.
-     * @return CheckXmlDocumentSentStatusResponse El estado de revisión del
+     * @return SiiDteCheckXmlDocumentSentStatusResponseInterface El estado de revisión del
      * envío, incluyendo el detalle por cada documento cuando corresponda.
      * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
      * @throws LogicException Si la solicitud no incluye un certificado
@@ -99,7 +97,7 @@ interface SiiDteWorkerInterface extends WorkerInterface
         SiiRequestInterface $request,
         int $trackId,
         string $company
-    ): CheckXmlDocumentSentStatusResponse;
+    ): SiiDteCheckXmlDocumentSentStatusResponseInterface;
 
     /**
      * Solicita al SII que le envíe el estado del DTE mediante correo
