@@ -43,6 +43,11 @@ use UnexpectedValueException;
 #[Job(name: 'send_aec', worker: 'sii_rtc', component: 'integration', package: 'billing')]
 class SendAecJob extends AbstractJob implements JobInterface
 {
+    /**
+     * Tag raíz del XML que se envía al RTC: el Archivo Electrónico de Cesión.
+     */
+    private const ENVELOPE = 'AEC';
+
     public function __construct(
         private SiiLazyWorkerInterface $siiLazyWorker,
     ) {
@@ -58,7 +63,8 @@ class SendAecJob extends AbstractJob implements JobInterface
      * @param int|null $retries Intentos máximos al enviar.
      * @return SendAecResponse Respuesta con el Track ID del envío.
      * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
-     * @throws SendAecException Si hay algún error al enviar el AEC.
+     * @throws SendAecException Si el XML no es un AEC o si hay algún error al
+     * enviarlo.
      */
     public function send(
         SiiRequestInterface $request,
@@ -67,6 +73,16 @@ class SendAecJob extends AbstractJob implements JobInterface
         string $emailNotif,
         ?int $retries = null
     ): SendAecResponse {
+        // Al RTC solo se envía el AEC (su raíz es el tag AEC): los demás XML se
+        // envían a otro servicio del SII.
+        if ($doc->getName() !== self::ENVELOPE) {
+            throw new SendAecException([
+                'The XML is a {document_name} and cannot be sent to the RTC, only an {envelope} is sent through it.',
+                'document_name' => $doc->getName(),
+                'envelope' => self::ENVELOPE,
+            ]);
+        }
+
         // Crear string del documento XML en ISO-8859-1 (requerido por el SII).
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml === '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\n") {

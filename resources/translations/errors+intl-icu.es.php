@@ -268,6 +268,8 @@ return [
         'La respuesta del SII no incluye las cabeceras esperadas.',
     'The SII system is blocked. {detail}' =>
         'El sistema del SII está bloqueado. {detail}',
+    'The XML is a {document_name} and cannot be sent to the RTC, only an {envelope} is sent through it.' =>
+        'El XML es un {document_name} y no se puede enviar al RTC, por él solo se envía un {envelope}.',
     'The XML is a {document_name} and cannot be sent with the DTE worker, boletas are sent through the boleta worker.' =>
         'El XML es un {document_name} y no se puede enviar con el worker de DTE, las boletas se envían con el worker de boletas.',
     'The XML schema is invalid. {detail}' =>
