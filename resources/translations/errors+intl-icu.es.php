@@ -44,6 +44,8 @@ return [
         'El CAF {caf} que contiene el folio {folio} del documento {document} no está vigente, venció el día {date}.',
     'CAF {caf} was authorized to issuer {caf_rut}, but document {document} is from issuer {rut}.' =>
         'El CAF {caf} fue autorizado al emisor {caf_rut}, pero el documento {document} es del emisor {rut}.',
+    'CAF {caf} is for document type {caf_type}, but document {document} is of type {type}.' =>
+        'El CAF {caf} es del tipo de documento {caf_type}, pero el documento {document} es del tipo {type}.',
     'The CAF XML could not be loaded.' =>
         'No se pudo cargar el XML del CAF.',
     'The CAF {id} does not have an expiration date.' =>

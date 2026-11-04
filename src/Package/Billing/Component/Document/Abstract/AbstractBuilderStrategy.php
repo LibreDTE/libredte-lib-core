@@ -168,6 +168,17 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
             ]);
         }
 
+        // Verificar que el CAF sea del mismo tipo de documento que el documento.
+        if ($caf->getTipoDocumento() !== $draft->getCodigo()) {
+            throw new BuilderException([
+                'CAF {caf} is for document type {caf_type}, but document {document} is of type {type}.',
+                'caf' => $caf->getId(),
+                'caf_type' => $caf->getTipoDocumento(),
+                'document' => $draft->getId(),
+                'type' => $draft->getCodigo(),
+            ]);
+        }
+
         // Asignar marca de tiempo si no se pasó una.
         $timestamp = ArrayReader::fromArray($bag->getBuilderOptions())->getString('timestamp')
             ?? date('Y-m-d\TH:i:s');

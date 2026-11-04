@@ -1,3 +1,15 @@
 # Import real configuration files for LibreDTE Lib Core from resources directory.
 imports:
   - { resource: '../resources/config/libredte-services.yaml' }
+
+# Proveedores de datos de emisor y receptor con datos fijos para las pruebas.
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
+    libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider

@@ -30,8 +30,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\Receptor
 /**
  * Proveedor falso de datos de un receptor para pruebas.
  *
- * La aplicación que use LibreDTE debe implementar este servicio para resolver
- * los datos que falten de un receptor al emitir un documento.
+ * Completa los datos del receptor con datos fijos. Se registra solo en las pruebas;
+ * el proveedor por defecto es DummyReceptorProvider.
  */
 class FakeReceptorProvider implements ReceptorProviderInterface
 {

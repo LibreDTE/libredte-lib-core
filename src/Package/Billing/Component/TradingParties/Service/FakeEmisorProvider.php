@@ -30,8 +30,8 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorPr
 /**
  * Proveedor falso de datos de un emisor para pruebas.
  *
- * La aplicación que use LibreDTE debe implementar este servicio para resolver
- * los datos que falten de un emisor al emitir un documento.
+ * Completa los datos del emisor con datos fijos. Se registra solo en las pruebas;
+ * el proveedor por defecto es DummyEmisorProvider.
  */
 class FakeEmisorProvider implements EmisorProviderInterface
 {

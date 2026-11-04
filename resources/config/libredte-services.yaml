@@ -390,9 +390,9 @@ services:
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\MandatarioFactoryInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Factory\MandatarioFactory
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\DummyEmisorProvider
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:
-        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeReceptorProvider
+        class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\DummyReceptorProvider
 
     # Fuentes de repositorios incluidas en LibreDTE Core.
     libredte\lib\Core\Provider\RepositorySourceProvider:
