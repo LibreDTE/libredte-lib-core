@@ -9801,6 +9801,46 @@ Search.appendIndex(
             "summary": "M\u00E9todo\u0020para\u0020obtener\u0020el\u0020certificado\u0020X.509\u0020del\u0020SII\u0020para\u0020la\u0020validaci\u00F3n\u0020del\nXML\u0020del\u0020CAF.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafValidatorWorker.html#method_getSiiCertificate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse",
+            "name": "AbstractSiiRtcQueryResponse",
+            "summary": "Clase\u0020base\u0020para\u0020las\u0020respuestas\u0020del\u0020servicio\u0020de\u0020consultas\u0020del\u0020RTC\u0020del\u0020SII\n\u0028\u0060wsRPETCConsulta\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AgetHeaderStatus\u0028\u0029",
+            "name": "getHeaderStatus",
+            "summary": "C\u00F3digo\u0020del\u0020estado\u0020de\u0020la\u0020cabecera.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_getHeaderStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AisRequestOk\u0028\u0029",
+            "name": "isRequestOk",
+            "summary": "Indica\u0020si\u0020el\u0020SII\u0020recibi\u00F3\u0020y\u0020proces\u00F3\u0020bien\u0020la\u0020consulta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_isRequestOk"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AgetHeaderDescription\u0028\u0029",
+            "name": "getHeaderDescription",
+            "summary": "Descripci\u00F3n\u0020del\u0020estado\u0020de\u0020la\u0020cabecera.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_getHeaderDescription"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_getStatusType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiRtcQueryResponse\u003A\u003AHEADER_STATUSES",
+            "name": "HEADER_STATUSES",
+            "summary": "Estados\u0020de\u0020la\u0020cabecera,\u0020el\u0020resultado\u0020de\u0020la\u0020operaci\u00F3n\u0020consultada.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiRtcQueryResponse.html#constant_HEADER_STATUSES"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Abstract\\AbstractSiiWsdlResponse",
             "name": "AbstractSiiWsdlResponse",
             "summary": "Clase\u0020base\u0020para\u0020respuestas\u0020de\u0020los\u0020servicios\u0020web\u0020del\u0020SII\u0020utilizando\u0020SOAP.",
@@ -10086,6 +10126,21 @@ Search.appendIndex(
             "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_sendAec"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRtcWorkerInterface\u003A\u003AcheckAecSentStatus\u0028\u0029",
+            "name": "checkAecSentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_checkAecSentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRtcWorkerInterface\u003A\u003AgetAssignmentStatus\u0028\u0029",
+            "name": "getAssignmentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_getAssignmentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRtcWorkerInterface\u003A\u003AgetRelatedAssignmentStatus\u0028\u0029",
+            "name": "getRelatedAssignmentStatus",
+            "summary": "Obtiene\u0020el\u0020detalle\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020para\u0020una\u0020empresa\nvinculada\u0020con\u0020ella,\u0020ya\u0020sea\u0020como\u0020tenedor\u0020o\u0020como\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_getRelatedAssignmentStatus"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiSendXmlDocumentResponseInterface",
             "name": "SiiSendXmlDocumentResponseInterface",
             "summary": "Interfaz\u0020para\u0020la\u0020respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020documento\u0020XML.",
@@ -10100,6 +10155,101 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiSendXmlDocumentResponseInterface.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec",
+            "name": "EstadoEnvioAec",
+            "summary": "Estados\u0020de\u0020un\u0020env\u00EDo\u0020de\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\ndel\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AgetDescription\u0028\u0029",
+            "name": "getDescription",
+            "summary": "Descripci\u00F3n\u0020del\u0020estado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#method_getDescription"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AisError\u0028\u0029",
+            "name": "isError",
+            "summary": "Indica\u0020si\u0020el\u0020estado\u0020es\u0020de\u0020un\u0020env\u00EDo\u0020rechazado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#method_isError"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AisFinal\u0028\u0029",
+            "name": "isFinal",
+            "summary": "Indica\u0020si\u0020el\u0020estado\u0020es\u0020final\u003A\u0020el\u0020SII\u0020ya\u0020no\u0020seguir\u00E1\u0020procesando\u0020el\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#method_isFinal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Tipo\u0020de\u0020estado,\u0020para\u0020presentarlo\u0020\u0028por\u0020ejemplo,\u0020con\u0020un\u0020color\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#method_getStatusType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AUPL",
+            "name": "UPL",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_UPL"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARCP",
+            "name": "RCP",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RCP"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARSC",
+            "name": "RSC",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RSC"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ASOK",
+            "name": "SOK",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_SOK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARFS",
+            "name": "RFS",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RFS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AFSO",
+            "name": "FSO",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_FSO"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARCR",
+            "name": "RCR",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RCR"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ACOK",
+            "name": "COK",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_COK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AVDC",
+            "name": "VDC",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_VDC"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARDC",
+            "name": "RDC",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RDC"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AVCS",
+            "name": "VCS",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_VCS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003ARCS",
+            "name": "RCS",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_RCS"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AEOK",
+            "name": "EOK",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_EOK"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioAec\u003A\u003AEAN",
+            "name": "EAN",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioAec.html#enumcase_EAN"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii",
             "name": "EstadoEnvioSii",
@@ -10385,6 +10535,16 @@ Search.appendIndex(
             "name": "SiiRcvException",
             "summary": "Excepci\u00F3n\u0020base\u0020para\u0020los\u0020workers\u0020del\u0020RCV\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRcvException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtc\\CheckAecSentStatusException",
+            "name": "CheckAecSentStatusException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consultar\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\ndel\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtc-CheckAecSentStatusException.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtc\\GetAssignmentStatusException",
+            "name": "GetAssignmentStatusException",
+            "summary": "Excepci\u00F3n\u0020para\u0020problemas\u0020al\u0020consultar\u0020el\u0020estado\u0020de\u0020una\u0020cesi\u00F3n\u0020en\u0020el\u0020RTC\u0020del\nSII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Exception-SiiRtc-GetAssignmentStatusException.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Exception\\SiiRtc\\SendAecException",
             "name": "SendAecException",
@@ -10905,6 +11065,71 @@ Search.appendIndex(
             "name": "description",
             "summary": "Glosa\u0020o\u0020descripci\u00F3n\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-SubmitDocumentAcceptanceResponse.html#property_description"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse",
+            "name": "CheckAecSentStatusResponse",
+            "summary": "Respuesta\u0020de\u0020la\u0020consulta\u0020del\u0020estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AgetEstadoEnvioAec\u0028\u0029",
+            "name": "getEstadoEnvioAec",
+            "summary": "Estado\u0020del\u0020env\u00EDo\u0020como\u0020enum.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_getEstadoEnvioAec"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "N\u00FAmero\u0020de\u0020seguimiento\u0020\u0028Track\u0020ID\u0029\u0020consultado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_getTrackId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AisFinal\u0028\u0029",
+            "name": "isFinal",
+            "summary": "Indica\u0020si\u0020el\u0020env\u00EDo\u0020ya\u0020termin\u00F3\u0020de\u0020procesarse\u0020\u0028fue\u0020aceptado,\u0020anulado\u0020o\nrechazado\u0029.\u0020Con\u0020un\u0020estado\u0020intermedio\u0020se\u0020debe\u0020consultar\u0020m\u00E1s\u0020adelante.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_isFinal"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_getStatusType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\CheckAecSentStatusResponse\u003A\u003AgetBodyStatus\u0028\u0029",
+            "name": "getBodyStatus",
+            "summary": "C\u00F3digo\u0020del\u0020estado\u0020del\u0020env\u00EDo\u0020que\u0020entrega\u0020el\u0020cuerpo\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html#method_getBodyStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse",
+            "name": "GetAssignmentStatusResponse",
+            "summary": "Respuesta\u0020de\u0020la\u0020consulta\u0020del\u0020estado\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020RTC\ndel\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse\u003A\u003AisAssigned\u0028\u0029",
+            "name": "isAssigned",
+            "summary": "Indica\u0020si\u0020el\u0020documento\u0020est\u00E1\u0020cedido.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html#method_isAssigned"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse\u003A\u003AgetHolder\u0028\u0029",
+            "name": "getHolder",
+            "summary": "RUT\u0020\u0028con\u0020su\u0020d\u00EDgito\u0020verificador\u0029\u0020del\u0020tenedor\u0020actual\u0020del\u0020documento,\u0020si\u0020la\nrespuesta\u0020trae\u0020el\u0020detalle\u0020de\u0020la\u0020cesi\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html#method_getHolder"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse\u003A\u003AgetStatusType\u0028\u0029",
+            "name": "getStatusType",
+            "summary": "Obtiene\u0020el\u0020tipo\u0020de\u0020salida\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html#method_getStatusType"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\GetAssignmentStatusResponse\u003A\u003AgetBodyReader\u0028\u0029",
+            "name": "getBodyReader",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html#method_getBodyReader"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRtc\\SendAecResponse",
             "name": "SendAecResponse",
@@ -11561,6 +11786,96 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#property_getDocumentSiiReceptionDateJob"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob",
+            "name": "CheckAecSentStatusJob",
+            "summary": "Clase\u0020para\u0020consultar\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob\u003A\u003Acheck\u0028\u0029",
+            "name": "check",
+            "summary": "Consulta\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html#method_check"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob\u003A\u003ASERVICE",
+            "name": "SERVICE",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html#constant_SERVICE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob\u003A\u003A\u0024siiLazyWorker",
+            "name": "siiLazyWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html#property_siiLazyWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\CheckAecSentStatusJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html#property_xmlService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob",
+            "name": "GetAssignmentStatusJob",
+            "summary": "Clase\u0020para\u0020consultar\u0020el\u0020estado\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020RTC\u0020del\nSII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Consulta\u0020si\u0020un\u0020documento\u0020est\u00E1\u0020cedido\u0020y,\u0020con\u0020el\u0020identificador\u0020de\u0020la\ncesi\u00F3n,\u0020el\u0020detalle\u0020de\u0020esta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html#method_get"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob\u003A\u003ASERVICE",
+            "name": "SERVICE",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html#constant_SERVICE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob\u003A\u003A\u0024siiLazyWorker",
+            "name": "siiLazyWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html#property_siiLazyWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetAssignmentStatusJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html#property_xmlService"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob",
+            "name": "GetRelatedAssignmentStatusJob",
+            "summary": "Clase\u0020para\u0020consultar\u0020el\u0020estado\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020RTC\u0020del\nSII\u0020desde\u0020una\u0020empresa\u0020vinculada\u0020con\u0020ella\u0020\u0028tenedor\u0020o\u0020receptor\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Consulta\u0020el\u0020detalle\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020a\u0020una\u0020empresa\u0020vinculada\ncon\u0020ella,\u0020ya\u0020sea\u0020como\u0020tenedor\u0020o\u0020como\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html#method_get"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob\u003A\u003ASERVICE",
+            "name": "SERVICE",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html#constant_SERVICE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob\u003A\u003A\u0024siiLazyWorker",
+            "name": "siiLazyWorker",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html#property_siiLazyWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\GetRelatedAssignmentStatusJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html#property_xmlService"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob",
             "name": "SendAecJob",
             "summary": "Clase\u0020para\u0020el\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
@@ -11611,10 +11926,40 @@ Search.appendIndex(
             "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_sendAec"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003AcheckAecSentStatus\u0028\u0029",
+            "name": "checkAecSentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020actualizado\u0020del\u0020env\u00EDo\u0020de\u0020un\u0020AEC\u0020al\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_checkAecSentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003AgetAssignmentStatus\u0028\u0029",
+            "name": "getAssignmentStatus",
+            "summary": "Obtiene\u0020el\u0020estado\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020RTC\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getAssignmentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003AgetRelatedAssignmentStatus\u0028\u0029",
+            "name": "getRelatedAssignmentStatus",
+            "summary": "Obtiene\u0020el\u0020detalle\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020para\u0020una\u0020empresa\nvinculada\u0020con\u0020ella,\u0020ya\u0020sea\u0020como\u0020tenedor\u0020o\u0020como\u0020receptor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024sendAecJob",
             "name": "sendAecJob",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_sendAecJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024checkAecSentStatusJob",
+            "name": "checkAecSentStatusJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_checkAecSentStatusJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024getAssignmentStatusJob",
+            "name": "getAssignmentStatusJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getAssignmentStatusJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024getRelatedAssignmentStatusJob",
+            "name": "getRelatedAssignmentStatusJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getRelatedAssignmentStatusJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\OwnershipTransfer\\Abstract\\AbstractOwnershipTransferDocument",
             "name": "AbstractOwnershipTransferDocument",

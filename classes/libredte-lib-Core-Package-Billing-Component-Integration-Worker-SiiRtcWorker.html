@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -164,7 +164,8 @@
 
 
     <section class="phpdocumentor-description"><p>Gestiona el envío del Archivo Electrónico de Cesión (AEC) al Registro de
-Transferencias de Créditos (RTC) del SII.</p>
+Transferencias de Créditos (RTC) del SII y las consultas del estado de los
+envíos y de las cesiones.</p>
 </section>
 
 
@@ -219,6 +220,24 @@ Transferencias de Créditos (RTC) del SII.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_checkAecSentStatusJob">$checkAecSentStatusJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob">CheckAecSentStatusJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getAssignmentStatusJob">$getAssignmentStatusJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob">GetAssignmentStatusJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getRelatedAssignmentStatusJob">$getRelatedAssignmentStatusJob</a>
+    <span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob">GetRelatedAssignmentStatusJob</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_sendAecJob">$sendAecJob</a>
     <span>
                         &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob">SendAecJob</abbr></a>            </span>
@@ -237,6 +256,28 @@ Transferencias de Créditos (RTC) del SII.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_checkAecSentStatus">checkAecSentStatus()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse">CheckAecSentStatusResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el estado actualizado del envío de un AEC al RTC del SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getAssignmentStatus">getAssignmentStatus()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el estado de la cesión de un documento en el RTC del SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus">getRelatedAssignmentStatus()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a>    </span>
+</dt>
+<dd>Obtiene el detalle de la cesión de un documento para una empresa
+vinculada con ella, ya sea como tenedor o como receptor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_sendAec">sendAec()</a>
@@ -265,6 +306,117 @@ Transferencias de Créditos (RTC) del SII.</p>
             -private
                                                                     "
 >
+    <h4 class="phpdocumentor-element__name" id="property_checkAecSentStatusJob">
+        $checkAecSentStatusJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_checkAecSentStatusJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob">CheckAecSentStatusJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$checkAecSentStatusJob</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_getAssignmentStatusJob">
+        $getAssignmentStatusJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getAssignmentStatusJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">53</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob">GetAssignmentStatusJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$getAssignmentStatusJob</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_getRelatedAssignmentStatusJob">
+        $getRelatedAssignmentStatusJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getRelatedAssignmentStatusJob" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob">GetRelatedAssignmentStatusJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$getRelatedAssignmentStatusJob</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
     <h4 class="phpdocumentor-element__name" id="property_sendAecJob">
         $sendAecJob
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_sendAecJob" class="headerlink"><i class="fas fa-link"></i></a>
@@ -275,7 +427,7 @@ Transferencias de Créditos (RTC) del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -317,14 +469,14 @@ Transferencias de Créditos (RTC) del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob">SendAecJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sendAecJob</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob">SendAecJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sendAecJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob">CheckAecSentStatusJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$checkAecSentStatusJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob">GetAssignmentStatusJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$getAssignmentStatusJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob">GetRelatedAssignmentStatusJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$getRelatedAssignmentStatusJob</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -335,6 +487,27 @@ Transferencias de Créditos (RTC) del SII.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$sendAecJob</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob">SendAecJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$checkAecSentStatusJob</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-CheckAecSentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob">CheckAecSentStatusJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$getAssignmentStatusJob</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob">GetAssignmentStatusJob</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$getRelatedAssignmentStatusJob</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-GetRelatedAssignmentStatusJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob">GetRelatedAssignmentStatusJob</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -353,6 +526,296 @@ Transferencias de Créditos (RTC) del SII.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_checkAecSentStatus">
+        checkAecSentStatus()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_checkAecSentStatus" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">98</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el estado actualizado del envío de un AEC al RTC del SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">checkAecSentStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$trackId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse">CheckAecSentStatusResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$request</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$trackId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Número de seguimiento asignado al envío del AEC.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_checkAecSentStatus_attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_checkAecSentStatus_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;trackId&#039; =&gt; [&#039;example&#039; =&gt; 1234567890]]
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-CheckAecSentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse">CheckAecSentStatusResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El estado del envío.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getAssignmentStatus">
+        getAssignmentStatus()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getAssignmentStatus" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">124</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el estado de la cesión de un documento en el RTC del SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAssignmentStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$assignmentId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$request</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$company</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT del emisor del documento cedido.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$document</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento tributario electrónico (33 o 34).</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$number</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Folio del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$assignmentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Clave de acceso a la información de la
+cesión.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_getAssignmentStatus_attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getAssignmentStatus_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1234], &#039;assignmentId&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El estado de la cesión.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getRelatedAssignmentStatus">
+        getRelatedAssignmentStatus()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">162</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Obtiene el detalle de la cesión de un documento para una empresa
+vinculada con ella, ya sea como tenedor o como receptor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getRelatedAssignmentStatus</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$company</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$document</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedCompany</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$request</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos de la solicitud al SII.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$company</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT del emisor del documento cedido.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$document</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tipo de documento tributario electrónico (33 o 34).</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$number</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Folio del documento.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$relatedCompany</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>RUT de la empresa vinculada con la cesión.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_getRelatedAssignmentStatus_attributes">
+                Attributes <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Derafu\Backbone\Attribute\Operation">Operation</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1234], &#039;relatedCompany&#039; =&gt; [&#039;example&#039; =&gt; &#039;76192083-9&#039;]]
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-GetAssignmentStatusResponse.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse">GetAssignmentStatusResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>El detalle de la cesión.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_sendAec">
         sendAec()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_sendAec" class="headerlink"><i class="fas fa-link"></i></a>
@@ -361,7 +824,7 @@ Transferencias de Créditos (RTC) del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -475,6 +938,9 @@ notificaciones del SII sobre el resultado del procesamiento del AEC.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_checkAecSentStatusJob">$checkAecSentStatusJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getAssignmentStatusJob">$getAssignmentStatusJob</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_getRelatedAssignmentStatusJob">$getRelatedAssignmentStatusJob</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#property_sendAecJob">$sendAecJob</a></li>
                                             </ul>
                 </li>
@@ -483,6 +949,9 @@ notificaciones del SII sobre el resultado del procesamiento del AEC.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_checkAecSentStatus">checkAecSentStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getAssignmentStatus">getAssignmentStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus">getRelatedAssignmentStatus()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_sendAec">sendAec()</a></li>
                                     </ul>
             </li>
