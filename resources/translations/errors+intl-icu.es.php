@@ -262,6 +262,8 @@ return [
         'El SII rechazó el AEC con el código de estado desconocido "{status}".',
     'The SII response does not include the expected headers.' =>
         'La respuesta del SII no incluye las cabeceras esperadas.',
+    'The XML is a {document_name} and cannot be sent with the DTE worker, boletas are sent through the boleta worker.' =>
+        'El XML es un {document_name} y no se puede enviar con el worker de DTE, las boletas se envían con el worker de boletas.',
     'The XML schema is invalid. {detail}' =>
         'El esquema del XML es inválido. {detail}',
     'The XML sent was already received by the SII. {detail}' =>

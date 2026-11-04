@@ -28,6 +28,7 @@ use Derafu\Value\ValueCaster;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
@@ -55,6 +56,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(SiiEnvironment::class)]
 #[CoversClass(SendXmlDocumentJob::class)]
 #[CoversClass(SendXmlDocumentResponse::class)]
+#[CoversClass(TipoSobre::class)]
 class SendXmlDocumentTest extends TestCase
 {
     private string $xmlDir;

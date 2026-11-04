@@ -32,6 +32,7 @@ use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
+use libredte\lib\Core\Package\Billing\Component\Document\Enum\TipoSobre;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
@@ -70,6 +71,15 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         bool $compress = false,
         ?int $retries = null
     ): SendXmlDocumentResponse {
+        // Las boletas no se envían con este Job (es otra API).
+        $envelope = TipoSobre::ENVIO_BOLETA->getTagXml();
+        if ($doc->getName() === $envelope) {
+            throw new SendXmlDocumentException([
+                'The XML is a {document_name} and cannot be sent with the DTE worker, boletas are sent through the boleta worker.',
+                'document_name' => $doc->getName(),
+            ]);
+        }
+
         // Crear string del documento XML.
         $xml = $doc->setEncoding('ISO-8859-1')->saveXml();
         if (empty($xml) || $xml == '<?xml version="1.0" encoding="ISO-8859-1"?>'."\n") {
