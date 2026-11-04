@@ -144,13 +144,17 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">Interfaz del worker de DTE del SII.</p>
 
 
+    <section class="phpdocumentor-description"><p>Este worker trabaja con los DTE, excepto las boletas (tipos 39 y 41). Los
+envíos son documentos XML con el tag de la raíz EnvioDTE. Las boletas se
+envían mediante otra API del SII y no pasan por este worker.</p>
+</section>
 
 
 
@@ -242,7 +246,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -257,6 +261,8 @@ electrónico.</dd>
     
         <section class="phpdocumentor-description"><p>Este estado podría no ser el final; en ese caso, se debe reintentar
 la consulta más adelante.</p>
+<p>El envío consultado es un envío de DTE, excepto boletas (documento XML
+con el tag de la raíz EnvioDTE).</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -361,7 +367,7 @@ envío, incluyendo el detalle por cada documento cuando corresponda.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
     </aside>
 
@@ -380,6 +386,8 @@ en el SII, no siendo posible asignarlo mediante el servicio web.</p>
 <p>La principal ventaja de utilizar este método es que el SII en el correo
 incluye los detalles de los rechazos, algo que no entrega a través del
 servicio web de consulta del estado del envío del XML al SII.</p>
+<p>El envío consultado es un envío de DTE, excepto boletas (documento XML
+con el tag de la raíz EnvioDTE).</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -485,7 +493,7 @@ registrada.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -498,7 +506,10 @@ registrada.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>El documento enviado es cualquier DTE, excepto boletas. Son documentos
+XML con el tag de la raíz EnvioDTE.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -618,7 +629,7 @@ digital para autenticar en el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
@@ -635,6 +646,7 @@ digital para autenticar en el SII.</p>
 ya sea 100% OK o con reparos.</p>
 <p>Este servicio valida que el documento exista en SII (esté aceptado) y
 además que los datos del documento proporcionados coincidan.</p>
+<p>El documento consultado es cualquier DTE, excepto boletas.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -770,7 +782,7 @@ documento en el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php"><a href="files/src-package-billing-component-integration-contract-siidteworkerinterface.html"><abbr title="src/Package/Billing/Component/Integration/Contract/SiiDteWorkerInterface.php">SiiDteWorkerInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -788,6 +800,7 @@ ya sea 100% OK o con reparos.</p>
 <p>Este servicio valida que el documento exista en SII (esté aceptado), que
 los datos del documento proporcionados coincidan. Finalmente, valida que
 la firma electrónica del documento coincida con la enviada al SII.</p>
+<p>El documento consultado es cualquier DTE, excepto boletas.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>

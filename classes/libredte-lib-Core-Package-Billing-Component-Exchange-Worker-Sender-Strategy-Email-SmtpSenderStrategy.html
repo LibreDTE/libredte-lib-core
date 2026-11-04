@@ -284,6 +284,15 @@
 </dt>
 <dd>Envía los documentos de un sobre por correo.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_uniqueAddresses">uniqueAddresses()</a>
+    <span>
+                                &nbsp;: array&lt;int, <abbr title="\Symfony\Component\Mime\Address">Address</abbr>&gt;    </span>
+</dt>
+<dd>Quita las direcciones repetidas, para que cada destinatario reciba el
+correo una sola vez aunque esté en más de un campo (por ejemplo, como
+destinatario del sobre y en copia).</dd>
+
     </dl>
 
 
@@ -401,7 +410,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">182</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -515,7 +524,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">245</span>
+    <span class="phpdocumentor-element-found-in__line">270</span>
 
     </aside>
 
@@ -580,7 +589,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">225</span>
+    <span class="phpdocumentor-element-found-in__line">250</span>
 
     </aside>
 
@@ -645,7 +654,7 @@ de la bolsa. Tiene el estado de cada estrategia que procesó el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">208</span>
 
     </aside>
 
@@ -766,6 +775,57 @@ opciones de transporte comunes a todos los sobres de este envío.</p>
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_uniqueAddresses">
+        uniqueAddresses()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_uniqueAddresses" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php"><a href="files/src-package-billing-component-exchange-worker-sender-strategy-email-smtpsenderstrategy.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/Sender/Strategy/Email/SmtpSenderStrategy.php">SmtpSenderStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">233</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Quita las direcciones repetidas, para que cada destinatario reciba el
+correo una sola vez aunque esté en más de un campo (por ejemplo, como
+destinatario del sobre y en copia).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">uniqueAddresses</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, <abbr title="\Symfony\Component\Mime\Address">Address</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addresses</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, <abbr title="\Symfony\Component\Mime\Address">Address</abbr>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$addresses</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, <abbr title="\Symfony\Component\Mime\Address">Address</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;int, <abbr title="\Symfony\Component\Mime\Address">Address</abbr>&gt;</span>
+            </section>
+
+</article>
             </section>
 
         
@@ -802,6 +862,7 @@ opciones de transporte comunes a todos los sobres de este envío.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_resolveSender">resolveSender()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_resolveTransportOptions">resolveTransportOptions()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_sendEnvelope">sendEnvelope()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_uniqueAddresses">uniqueAddresses()</a></li>
                                     </ul>
             </li>
                     </ul>

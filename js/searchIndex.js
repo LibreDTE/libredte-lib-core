@@ -9021,21 +9021,6 @@ Search.appendIndex(
             "summary": "Determina\u0020si\u0020el\u0020sobre\u0020tiene\u0020los\u0020datos\u0020m\u00EDnimos\u0020necesarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Handler-EmailSenderHandler.html#method_hasRequiredData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Handler\\SiiSenderHandler",
-            "name": "SiiSenderHandler",
-            "summary": "Handler\u0020que\u0020realiza\u0020el\u0020env\u00EDo\u0020de\u0020los\u0020documentos\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Handler-SiiSenderHandler.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Handler\\SiiSenderHandler\u003A\u003AshouldProcess\u0028\u0029",
-            "name": "shouldProcess",
-            "summary": "Determina\u0020si\u0020el\u0020sobre\u0020debe\u0020ser\u0020procesado\u0020por\u0020el\u0020handler\u0020y\u0020pasado\u0020a\u0020una\nestrategia\u0020si\u0020tiene\u0020los\u0020datos\u0020necesarios\u0020y\u0020se\u0020encuentra\u0020una\u0020estrategia\nv\u00E1lida.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Handler-SiiSenderHandler.html#method_shouldProcess"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Handler\\SiiSenderHandler\u003A\u003AhasRequiredData\u0028\u0029",
-            "name": "hasRequiredData",
-            "summary": "Determina\u0020si\u0020el\u0020sobre\u0020tiene\u0020los\u0020datos\u0020m\u00EDnimos\u0020necesarios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Handler-SiiSenderHandler.html#method_hasRequiredData"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy",
             "name": "SmtpSenderStrategy",
             "summary": "Env\u00EDo\u0020de\u0020documentos\u0020usando\u0020la\u0020estrategia\u0020SMTP\u0020de\u0020correo\u0020electr\u00F3nico.",
@@ -9066,6 +9051,11 @@ Search.appendIndex(
             "summary": "Resuelve\u0020y\u0020entrega\u0020los\u0020datos\u0020de\u0020transporte.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_resolveTransportOptions"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003AuniqueAddresses\u0028\u0029",
+            "name": "uniqueAddresses",
+            "summary": "Quita\u0020las\u0020direcciones\u0020repetidas,\u0020para\u0020que\u0020cada\u0020destinatario\u0020reciba\u0020el\ncorreo\u0020una\u0020sola\u0020vez\u0020aunque\u0020est\u00E9\u0020en\u0020m\u00E1s\u0020de\u0020un\u0020campo\u0020\u0028por\u0020ejemplo,\u0020como\ndestinatario\u0020del\u0020sobre\u0020y\u0020en\u0020copia\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#method_uniqueAddresses"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Email\\SmtpSenderStrategy\u003A\u003AresolveSender\u0028\u0029",
             "name": "resolveSender",
             "summary": "Resuelve\u0020y\u0020entrega\u0020los\u0020datos\u0020del\u0020remitente.",
@@ -9080,46 +9070,6 @@ Search.appendIndex(
             "name": "mailPackage",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Email-SmtpSenderStrategy.html#property_mailPackage"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy",
-            "name": "BoletaSenderStrategy",
-            "summary": "Env\u00EDo\u0020de\u0020boletas\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy\u003A\u003Asend\u0028\u0029",
-            "name": "send",
-            "summary": "Env\u00EDa\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html#method_send"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy\u003A\u003AsendEnvelope\u0028\u0029",
-            "name": "sendEnvelope",
-            "summary": "Env\u00EDa\u0020los\u0020documentos\u0020de\u0020un\u0020sobre\u0020al\u0020SII\u0020en\u0020el\u0020XML\u0020EnvioBOLETA.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html#method_sendEnvelope"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\BoletaSenderStrategy\u003A\u003AcanSend\u0028\u0029",
-            "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-BoletaSenderStrategy.html#method_canSend"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy",
-            "name": "DteSenderStrategy",
-            "summary": "Env\u00EDo\u0020de\u0020documentos\u0020tributarios\u0020\u0028excepto\u0020boletas\u0029\u0020al\u0020SII.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy\u003A\u003Asend\u0028\u0029",
-            "name": "send",
-            "summary": "Env\u00EDa\u0020documentos\u0020a\u0020trav\u00E9s\u0020del\u0020proceso\u0020de\u0020intercambio.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html#method_send"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy\u003A\u003AsendEnvelope\u0028\u0029",
-            "name": "sendEnvelope",
-            "summary": "Env\u00EDa\u0020los\u0020documentos\u0020de\u0020un\u0020sobre\u0020al\u0020SII\u0020en\u0020el\u0020XML\u0020EnvioDTE.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html#method_sendEnvelope"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii\\DteSenderStrategy\u003A\u003AcanSend\u0028\u0029",
-            "name": "canSend",
-            "summary": "Indica\u0020si\u0020la\u0020estrategia\u0020puede\u0020enviar\u0020un\u0020sobre\u0020espec\u00EDfico.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-Sender-Strategy-Sii-DteSenderStrategy.html#method_canSend"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\SenderWorker",
             "name": "SenderWorker",
@@ -10553,7 +10503,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse",
             "name": "SendXmlDocumentResponse",
-            "summary": "Respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020documento\u0020XML\u0020\u0028EnvioDTE\u0020o\u0020EnvioBOLETA\u0029.",
+            "summary": "Respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020documento\u0020XML\u0020EnvioDTE\u0020\u0028DTE,\u0020excepto\u0020boletas\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003A__construct\u0028\u0029",
@@ -14045,11 +13995,6 @@ Search.appendIndex(
             "name": "Strategy",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-exchange-worker-sender-strategy.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Exchange\\Worker\\Sender\\Strategy\\Sii",
-            "name": "Sii",
-            "summary": "",
-            "url": "namespaces/libredte-lib-core-package-billing-component-exchange-worker-sender-strategy-sii.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract",
             "name": "Contract",
