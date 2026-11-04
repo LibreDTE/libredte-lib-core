@@ -11906,6 +11906,11 @@ Search.appendIndex(
             "summary": "Crea\u0020un\u0020archivo\u0020temporal\u0020con\u0020el\u0020XML\u0020del\u0020AEC.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AENVELOPE",
+            "name": "ENVELOPE",
+            "summary": "Tag\u0020ra\u00EDz\u0020del\u0020XML\u0020que\u0020se\u0020env\u00EDa\u0020al\u0020RTC\u003A\u0020el\u0020Archivo\u0020Electr\u00F3nico\u0020de\u0020Cesi\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#constant_ENVELOPE"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003A\u0024siiLazyWorker",
             "name": "siiLazyWorker",
             "summary": "",
