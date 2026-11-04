@@ -100,11 +100,15 @@ class SiiRequest implements SiiRequestInterface
                     'default' => 'libredte_lib_sii_auth_token_%s',
                 ],
 
-                // Tiempo en segundos que el token es válido desde que se
-                // solicitó. Será el tiempo que se mantenga en caché.
+                // Tiempo en segundos que el token se mantiene en caché. Por
+                // defecto 45 minutos: el token del SII (autenticación manual y
+                // automática, y también el de la API de boletas) dura 1 hora
+                // y esa duración se renueva cada vez que se usa. Se debe
+                // reutilizar en ese período y evitar solicitar un token en
+                // cada conexión.
                 'ttl' => [
                     'types' => 'int',
-                    'default' => 60,
+                    'default' => 2700,
                 ],
             ],
         ],
@@ -205,7 +209,12 @@ class SiiRequest implements SiiRequestInterface
             );
         }
 
-        return sprintf($key, $this->certificate->getId());
+        // El token es válido solo en el ambiente donde se obtuvo, por eso la
+        // clave lleva el ambiente además del ID del certificado.
+        return sprintf(
+            $key,
+            $this->certificate->getId() . '_' . $this->getEnvironment()->getCode()
+        );
     }
 
     /**

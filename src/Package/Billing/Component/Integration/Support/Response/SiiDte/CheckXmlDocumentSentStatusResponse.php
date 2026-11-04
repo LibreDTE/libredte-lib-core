@@ -50,8 +50,8 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         'SOK' => 'Schema Validado',
         'CRT' => 'Carátula OK',
         'RFR' => 'Rechazado por Error en Firma',
-        'FOK' => 'Firma de Envió Validada',
-        'PDR' => 'Envió en Proceso',
+        'FOK' => 'Firma de Envío Validada',
+        'PDR' => 'Envío en Proceso',
         'RCT' => 'Rechazado por Error en Carátula',
         'EPR' => 'Envío Procesado',
         // Libros.
@@ -127,10 +127,11 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
             }
 
             // Determinar Track ID.
-            $track_id = $this->headers['TRACKID']
-                ?? $this->requestData['TrackId']
-                ?? null
-            ;
+            $track_id = ArrayReader::fromArray([
+                'track_id' => $this->headers['TRACKID']
+                    ?? $this->requestData['TrackId']
+                    ?? null,
+            ], 'SII response')->getAsInt('track_id');
 
             // RUT de la empresa que realizó la consulta del envío.
             $request = ArrayReader::fromArray($this->requestData, 'SII request');
@@ -207,8 +208,10 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
         // es un estado de error en el envío. Se valida esto primero pues es lo
         // que normalmente debería entregar el SII en la respuesta.
         if (isset(self::STATUSES[$status])) {
+            // La descripción es la del catálogo y no la glosa del SII, porque
+            // la glosa llega sin tildes.
             $error = $status[0] === 'R';
-            $description = $reader->getAsString('GLOSA');
+            $description = self::STATUSES[$status];
         }
 
         // Si el estado es un error de token se asigna.
@@ -301,6 +304,14 @@ class CheckXmlDocumentSentStatusResponse extends AbstractSiiWsdlResponse impleme
                     : $value
                 ;
             }
+
+            // El SII entrega el tipo y los contadores como texto, se
+            // normalizan a enteros.
+            $reader = ArrayReader::fromArray($document, 'SII response body');
+            foreach (array_values($keysMap) as $destination) {
+                $document[$destination] = $reader->getAsInt($destination, 0);
+            }
+
             $documents[ValueCaster::toString($columns[$keys[0]][$i]) ?? ''] = $document;
         }
 

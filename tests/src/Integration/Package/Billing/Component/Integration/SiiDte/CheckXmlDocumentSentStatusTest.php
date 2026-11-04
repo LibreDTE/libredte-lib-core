@@ -148,6 +148,6 @@ class CheckXmlDocumentSentStatusTest extends TestCase
             $company
         );
 
-        $this->assertSame('EPR - Envio Procesado', $sentResponse->getReviewStatus());
+        $this->assertSame('EPR - Envío Procesado', $sentResponse->getReviewStatus());
     }
 }

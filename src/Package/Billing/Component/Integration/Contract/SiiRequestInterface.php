@@ -66,7 +66,7 @@ interface SiiRequestInterface extends OptionsAwareInterface
 
     /**
      * Obtiene la clave (llave) del token en la caché según el certificado
-     * digital asignado.
+     * digital asignado y el ambiente del SII de la solicitud.
      *
      * @return string
      */

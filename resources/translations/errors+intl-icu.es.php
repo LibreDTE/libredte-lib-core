@@ -232,8 +232,6 @@ return [
         'No se reconoce el elemento raíz "{root}" como documento de respuesta.',
     'Row {row}: {detail}' =>
         'Fila {row}: {detail}',
-    'SII servers are experiencing internal problems. {detail}' =>
-        'Los servidores del SII están con problemas internos. {detail}',
     'SMTP username and password must be specified.' =>
         'Se debe especificar el usuario y la contraseña de SMTP.',
     'The AEC XML to send to the SII cannot be empty.' =>
@@ -262,6 +260,8 @@ return [
         'El SII rechazó el AEC con el código de estado desconocido "{status}".',
     'The SII response does not include the expected headers.' =>
         'La respuesta del SII no incluye las cabeceras esperadas.',
+    'The SII system is blocked. {detail}' =>
+        'El sistema del SII está bloqueado. {detail}',
     'The XML is a {document_name} and cannot be sent with the DTE worker, boletas are sent through the boleta worker.' =>
         'El XML es un {document_name} y no se puede enviar con el worker de DTE, las boletas se envían con el worker de boletas.',
     'The XML schema is invalid. {detail}' =>

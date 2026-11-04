@@ -92,11 +92,11 @@ class SiiEmptyElementsTest extends TestCase
     public function testAnEmptyDescriptionIsAnEmptyText(): void
     {
         $response = new CheckXmlDocumentSentStatusResponse($this->decode($this->respuesta(
-            '<ESTADO>SOK</ESTADO><GLOSA/>'
+            '<ESTADO>001</ESTADO><GLOSA/>'
         )));
 
         $this->assertSame('', $response->getDescription());
-        $this->assertSame('SOK', $response->getReviewStatus());
+        $this->assertSame('001', $response->getReviewStatus());
     }
 
     public function testCountersOfADocumentThatAreEmptyAreZero(): void

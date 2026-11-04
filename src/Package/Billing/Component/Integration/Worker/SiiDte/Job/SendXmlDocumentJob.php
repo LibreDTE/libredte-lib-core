@@ -204,7 +204,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
                 ]);
             case 9:
                 throw new SendXmlDocumentException([
-                    'SII servers are experiencing internal problems. {detail}',
+                    'The SII system is blocked. {detail}',
                     'detail' => $detail,
                 ]);
             case 99:

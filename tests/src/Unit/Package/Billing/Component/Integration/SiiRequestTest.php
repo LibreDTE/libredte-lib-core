@@ -32,6 +32,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use RuntimeException;
 
 #[CoversClass(SiiRequest::class)]
+#[CoversClass(SiiEnvironment::class)]
 class SiiRequestTest extends TestCase
 {
     public function testDefaultConnectionAndTokenOptions(): void
@@ -42,7 +43,7 @@ class SiiRequestTest extends TestCase
         $this->assertSame(10, $request->getRetries());
         $this->assertTrue($request->getVerifySsl());
         $this->assertSame('memory', $request->getTokenDefaultCache());
-        $this->assertSame(60, $request->getTokenTtl());
+        $this->assertSame(2700, $request->getTokenTtl());
         $this->assertNull($request->getCertificate());
     }
 
@@ -64,7 +65,7 @@ class SiiRequestTest extends TestCase
         $this->assertSame(3, $request->getRetries());
         $this->assertFalse($request->getVerifySsl());
         $this->assertSame('filesystem', $request->getTokenDefaultCache());
-        $this->assertSame('empresa_' . $certificate->getId() . '_token', $request->getTokenKey());
+        $this->assertSame('empresa_' . $certificate->getId() . '_cert_token', $request->getTokenKey());
         $this->assertSame(120, $request->getTokenTtl());
         $this->assertSame($certificate, $request->getCertificate());
     }
