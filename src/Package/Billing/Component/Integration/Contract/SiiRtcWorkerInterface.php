@@ -26,7 +26,11 @@ use Derafu\Backbone\Contract\WorkerInterface;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\AuthenticateException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\CheckAecSentStatusException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\GetAssignmentStatusException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
 use UnexpectedValueException;
 
@@ -59,4 +63,72 @@ interface SiiRtcWorkerInterface extends WorkerInterface
         string $emailNotif,
         ?int $retries = null
     ): SendAecResponse;
+
+    /**
+     * Obtiene el estado actualizado del envío de un AEC al RTC del SII.
+     *
+     * Este estado podría no ser el final; en ese caso, se debe reintentar la
+     * consulta más adelante.
+     *
+     * Para consultar solo se necesita el Track ID: el token de la solicitud
+     * identifica al contribuyente.
+     *
+     * @param SiiRequestInterface $request Datos de la solicitud al SII.
+     * @param int $trackId Número de seguimiento asignado al envío del AEC.
+     * @return CheckAecSentStatusResponse El estado del envío.
+     * @throws CheckAecSentStatusException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf Manual del Desarrollador Externo del SII: Consulta Estado Envío de AEC al Registro.
+     */
+    public function checkAecSentStatus(
+        SiiRequestInterface $request,
+        int $trackId
+    ): CheckAecSentStatusResponse;
+
+    /**
+     * Obtiene el estado de la cesión de un documento en el RTC del SII.
+     *
+     * Sin el identificador de la cesión, la respuesta solo informa si el
+     * documento está cedido. Con él, entrega además el detalle: el tenedor, la
+     * fecha de la última anotación y la cobranza.
+     *
+     * @param SiiRequestInterface $request Datos de la solicitud al SII.
+     * @param string $company RUT del emisor del documento cedido.
+     * @param int $document Tipo de documento tributario electrónico (33 o 34).
+     * @param int $number Folio del documento.
+     * @param string|null $assignmentId Clave de acceso a la información de la
+     * cesión.
+     * @return GetAssignmentStatusResponse El estado de la cesión.
+     * @throws UnexpectedValueException Si el RUT de la empresa es inválido.
+     * @throws GetAssignmentStatusException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf Manual del Desarrollador Externo del SII: Consulta de Cesiones.
+     */
+    public function getAssignmentStatus(
+        SiiRequestInterface $request,
+        string $company,
+        int $document,
+        int $number,
+        ?string $assignmentId = null
+    ): GetAssignmentStatusResponse;
+
+    /**
+     * Obtiene el detalle de la cesión de un documento para una empresa
+     * vinculada con ella, ya sea como tenedor o como receptor.
+     *
+     * @param SiiRequestInterface $request Datos de la solicitud al SII.
+     * @param string $company RUT del emisor del documento cedido.
+     * @param int $document Tipo de documento tributario electrónico (33 o 34).
+     * @param int $number Folio del documento.
+     * @param string $relatedCompany RUT de la empresa vinculada con la cesión.
+     * @return GetAssignmentStatusResponse El detalle de la cesión.
+     * @throws UnexpectedValueException Si alguno de los RUT es inválido.
+     * @throws GetAssignmentStatusException En caso de error.
+     * @link https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf Manual del Desarrollador Externo del SII: Consulta de Cesiones.
+     */
+    public function getRelatedAssignmentStatus(
+        SiiRequestInterface $request,
+        string $company,
+        int $document,
+        int $number,
+        string $relatedCompany
+    ): GetAssignmentStatusResponse;
 }

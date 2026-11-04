@@ -29,20 +29,29 @@ use Derafu\Xml\Contract\XmlDocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRtcWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob;
+use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob;
+use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob;
 
 /**
  * Clase del worker del RTC del SII.
  *
  * Gestiona el envío del Archivo Electrónico de Cesión (AEC) al Registro de
- * Transferencias de Créditos (RTC) del SII.
+ * Transferencias de Créditos (RTC) del SII y las consultas del estado de los
+ * envíos y de las cesiones.
  */
 #[Worker(name: 'sii_rtc', component: 'integration', package: 'billing')]
 class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
 {
     public function __construct(
         private SendAecJob $sendAecJob,
+        private CheckAecSentStatusJob $checkAecSentStatusJob,
+        private GetAssignmentStatusJob $getAssignmentStatusJob,
+        private GetRelatedAssignmentStatusJob $getRelatedAssignmentStatusJob,
     ) {
     }
 
@@ -80,6 +89,108 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
             $company,
             $emailNotif,
             $retries
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'certificate' => '',
+                        'privateKey' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'trackId' => ['example' => 1234567890],
+        ],
+    )]
+    public function checkAecSentStatus(
+        SiiRequestInterface $request,
+        int $trackId
+    ): CheckAecSentStatusResponse {
+        return $this->checkAecSentStatusJob->check($request, $trackId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'certificate' => '',
+                        'privateKey' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1234],
+            'assignmentId' => ['example' => ''],
+        ],
+    )]
+    public function getAssignmentStatus(
+        SiiRequestInterface $request,
+        string $company,
+        int $document,
+        int $number,
+        ?string $assignmentId = null
+    ): GetAssignmentStatusResponse {
+        return $this->getAssignmentStatusJob->get(
+            $request,
+            $company,
+            $document,
+            $number,
+            $assignmentId
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[Operation(
+        parameters: [
+            'request' => [
+                'example' => [
+                    'certificate' => [
+                        'certificate' => '',
+                        'privateKey' => '',
+                    ],
+                    'options' => [
+                        'environment' => SiiEnvironment::PRODUCTION,
+                    ],
+                ],
+            ],
+            'company' => ['example' => '12345678-5'],
+            'document' => ['example' => 33],
+            'number' => ['example' => 1234],
+            'relatedCompany' => ['example' => '76192083-9'],
+        ],
+    )]
+    public function getRelatedAssignmentStatus(
+        SiiRequestInterface $request,
+        string $company,
+        int $document,
+        int $number,
+        string $relatedCompany
+    ): GetAssignmentStatusResponse {
+        return $this->getRelatedAssignmentStatusJob->get(
+            $request,
+            $company,
+            $document,
+            $number,
+            $relatedCompany
         );
     }
 }

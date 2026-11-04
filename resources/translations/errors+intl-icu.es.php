@@ -94,12 +94,16 @@ return [
         'No fue posible obtener el estado de la firma del documento T{type}F{folio} de {rut}-{dv} desde el SII. {detail}',
     'Could not obtain status for document type {type} with number {folio} for {rut}-{dv} from the SII. {detail}' =>
         'No fue posible obtener el estado del documento T{type}F{folio} de {rut}-{dv} desde el SII. {detail}',
+    'Could not obtain the assignment status of document type {document} number {number} for {company} from the SII. {detail}' =>
+        'No fue posible obtener el estado de la cesión del documento tipo {document} número {number} de {company} desde el SII. {detail}',
     'Could not obtain the CAF {id} authorization date.' =>
         'No fue posible obtener la fecha de autorización del CAF {id}.',
     'Could not obtain the SII reception date for document type {type} with number {folio} for {company}. {detail}' =>
         'No fue posible obtener la fecha de recepción del documento T{type}F{folio} de {company} desde el SII. {detail}',
     'Could not obtain the seed.' =>
         'No fue posible obtener la semilla.',
+    'Could not obtain the status of the AEC sent to the SII with Track ID {trackId}. {detail}' =>
+        'No fue posible obtener el estado del AEC enviado al SII con Track ID {trackId}. {detail}',
     'Could not obtain the status of the XML sent to the SII with Track ID {trackId}. {detail}' =>
         'No fue posible obtener el estado del XML enviado al SII con Track ID {trackId}. {detail}',
     'Could not obtain the token to authenticate user {user} with the SII. {detail}' =>

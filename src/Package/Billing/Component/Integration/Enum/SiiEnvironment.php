@@ -71,6 +71,7 @@ enum SiiEnvironment: int
         'default' => 'https://%s.sii.cl/DTEWS/%s.jws?WSDL',
         'QueryEstDteAv' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
         'wsDTECorreo' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
+        'wsRPETCConsulta' => 'https://%s.sii.cl/DTEWS/services/%s?WSDL',
         // El servicio del RCV usa servidores y rutas distintos al patrón DTEWS.
         'registroreclamodteservice' => [
             self::PRODUCTION->value => 'https://ws1.sii.cl/WSREGISTRORECLAMODTE/registroreclamodteservice?wsdl',

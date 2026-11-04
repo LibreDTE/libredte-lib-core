@@ -366,6 +366,9 @@ services:
 
     # Jobs of the "billing.integration.sii_rtc" worker.
     libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\SendAecJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\CheckAecSentStatusJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetAssignmentStatusJob: ~
+    libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job\GetRelatedAssignmentStatusJob: ~
 
     # Workers of the "billing.ownership_transfer" component.
     libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWorkerInterface:
