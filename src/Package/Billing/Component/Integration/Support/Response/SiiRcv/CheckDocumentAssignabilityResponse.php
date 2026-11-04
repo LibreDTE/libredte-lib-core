@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRcv;
 
 use Derafu\Array\ArrayReader;
+use Derafu\Array\Exception\ArrayException;
 use JsonSerializable;
 
 /**
@@ -30,6 +31,20 @@ use JsonSerializable;
  */
 class CheckDocumentAssignabilityResponse implements JsonSerializable
 {
+    /**
+     * Códigos de respuesta con que el SII informa que el DTE es cedible:
+     *
+     *   - 23: DTE cedible, sin reclamos.
+     *   - 25: DTE cedible, habiendo pasado 8 días se entiende dado acuse de
+     *     recibo.
+     *
+     * Los demás códigos (1, 2, 10, 18, 20, 21, 22 y 24) son de un DTE que no es
+     * cedible o de un error en la consulta.
+     *
+     * Referencia: https://www.sii.cl/factura_electronica/Webservice_Registro_Reclamo_DTE_V1.1.pdf
+     */
+    private const ASSIGNABLE_CODES = [23, 25];
+
     /**
      * Código de respuesta del SII.
      */
@@ -42,12 +57,13 @@ class CheckDocumentAssignabilityResponse implements JsonSerializable
 
     /**
      * @param array<array-key, mixed> $response Datos de la respuesta del SII.
+     * @throws ArrayException Si la respuesta no trae el código de respuesta.
      */
     public function __construct(array $response/*, array $request = []*/)
     {
         $reader = ArrayReader::fromArray($response, 'SII response');
         $return = $reader->getReader('return') ?? $reader;
-        $this->code = $return->getAsInt('codResp', 0);
+        $this->code = $return->requireAsInt('codResp');
         $this->description = $return->getAsString('descResp') ?? '';
     }
 
@@ -72,7 +88,7 @@ class CheckDocumentAssignabilityResponse implements JsonSerializable
      */
     public function isAssignable(): bool
     {
-        return $this->code === 0;
+        return in_array($this->code, self::ASSIGNABLE_CODES, true);
     }
 
     /**
