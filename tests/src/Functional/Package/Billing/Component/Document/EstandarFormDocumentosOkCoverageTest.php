@@ -67,6 +67,16 @@ class EstandarFormDocumentosOkCoverageTest extends TestCase
         // TipoDespacho — none supported by
         // EstandarParserStrategy::addExportData()/setInitialDTE() today.
         '110_003_transporte_terrestre_internacional',
+
+        // Uses RecargoPct at the item level. The form has only the discount
+        // (ValorDR/TpoValor) per item and no surcharge at all
+        // (EstandarParserStrategy::addDetails() never reads RecargoPct).
+        '110_004_recargo_porcentaje_monto_bajo',
+
+        // Uses DescuentoPct and DescuentoMonto together in the same item. The
+        // form has a single ValorDR/TpoValor pair per item, so it is either a
+        // percentage or an amount, never both.
+        '033_020_descuento_item_porcentaje_y_monto',
     ];
 
     public function testAllFormEstandarCasesExistInDocumentosOk(): void

@@ -1,0 +1,45 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 110
+    Folio: 5
+    IndServicio: 4
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 55555555-5
+    RznSocRecep: Jackie Chan
+    Extranjero:
+      Nacionalidad: 225
+    GiroRecep: Particular
+    DirRecep: Calle 123, Hong Kong, China
+  Totales:
+    TpoMoneda: DOLAR USA
+  OtraMoneda:
+    TpoMoneda: PESO CL
+    TpoCambio: 1000
+Detalle:
+- IndExe: 1
+  NmbItem: Asesorías y proyectos profesionales
+  QtyItem: 1
+  PrcItem: 4
+  # Solo el porcentaje: el descuento es 0,2 y DescuentoMonto no admite decimales.
+  DescuentoPct: 5
+Referencia:
+- TpoDocRef: 813
+  FolioRef: E12345
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntExe: 3.8
+        MntTotal: 3.8
+      OtraMoneda:
+        MntExeOtrMnda: 3800
+        MntTotOtrMnda: 3800

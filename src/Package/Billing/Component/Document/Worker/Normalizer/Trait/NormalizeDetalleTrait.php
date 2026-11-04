@@ -165,21 +165,27 @@ trait NormalizeDetalleTrait
                         $tpoMoneda
                     );
 
-                    // Aplicar descuento.
-                    if ($d['DescuentoPct']) {
-                        $d['DescuentoMonto'] = round(
-                            $montoItem * $row->requireAsFloat('DescuentoPct') / 100
-                        );
+                    // Aplicar descuento. Si se indicó el monto se usa tal cual
+                    // (el usuario controla el valor exacto). Si solo se indicó
+                    // el porcentaje se aplica directamente sobre el monto del
+                    // ítem, sin redondear y sin agregar DescuentoMonto, porque
+                    // en el XML ese monto es un entero positivo y no puede
+                    // representar el porcentaje con decimales.
+                    $descuentoMonto = $row->getAsNumber('DescuentoMonto');
+                    if (!empty($descuentoMonto)) {
+                        $montoItem -= $descuentoMonto;
+                    } elseif (!empty($d['DescuentoPct'])) {
+                        $montoItem -= $montoItem * $row->requireAsFloat('DescuentoPct') / 100;
                     }
-                    $montoItem -= ArrayReader::fromArray($d, $path)->getAsNumber('DescuentoMonto') ?? 0;
 
-                    // Aplicar recargo.
-                    if ($d['RecargoPct']) {
-                        $d['RecargoMonto'] = round(
-                            $montoItem * $row->requireAsFloat('RecargoPct') / 100
-                        );
+                    // Aplicar recargo, sobre el monto con el descuento aplicado.
+                    // Mismo criterio que el descuento.
+                    $recargoMonto = $row->getAsNumber('RecargoMonto');
+                    if (!empty($recargoMonto)) {
+                        $montoItem += $recargoMonto;
+                    } elseif (!empty($d['RecargoPct'])) {
+                        $montoItem += $montoItem * $row->requireAsFloat('RecargoPct') / 100;
                     }
-                    $montoItem += ArrayReader::fromArray($d, $path)->getAsNumber('RecargoMonto') ?? 0;
 
                     // Aproximar monto del item.
                     $d['MontoItem'] = Utils::round($montoItem, $tpoMoneda);

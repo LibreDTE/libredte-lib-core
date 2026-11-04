@@ -1,0 +1,38 @@
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 20
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Producto con descuento exacto
+  QtyItem: 1
+  PrcItem: 1000
+  # Si se indican ambos, el monto manda en el cálculo y los dos se conservan.
+  DescuentoPct: 5
+  DescuentoMonto: 100
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Detalle:
+      0:
+        DescuentoPct: 5
+        DescuentoMonto: 100
+        MontoItem: 900
+    Encabezado:
+      Totales:
+        MntNeto: 900
+        IVA: 171
+        MntTotal: 1071
