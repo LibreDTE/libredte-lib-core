@@ -51,12 +51,23 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
         // Verificar firma del CAF con la clave pública del SII.
         $public_key_sii = $this->getSiiCertificate($caf->getIdk());
         if ($public_key_sii !== null) {
+            // Las claves se cargan antes de usarlas: con un texto que no es una
+            // clave, las funciones de cifrado y de verificación de OpenSSL
+            // emiten un warning de PHP en vez de solo fallar.
+            $sii_key = openssl_pkey_get_public($public_key_sii);
+            if ($sii_key === false) {
+                throw new CafValidatorException([
+                    'Could not obtain SII certificate {file} to validate the CAF.',
+                    'file' => $caf->getIdk() . '.cer',
+                ]);
+            }
+
             $firma = $caf->getFirma();
             $signed_da = $caf->getXmlDocument()
                 ->setEncoding('ISO-8859-1')
                 ->C14NEncodedFlattened('/AUTORIZACION/CAF/DA')
             ;
-            if (openssl_verify($signed_da, base64_decode($firma), $public_key_sii) !== 1) {
+            if (openssl_verify($signed_da, base64_decode($firma), $sii_key) !== 1) {
                 throw new CafValidatorException([
                     'CAF {id} signature is not valid (the CAF is not authorized by the SII).',
                     'id' => $caf->getId(),
@@ -66,7 +77,13 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
 
         // Verificar que la clave pública y privada sean válidas. Esto se hace
         // encriptando un texto random y desencriptándolo.
-        $private_key = $caf->getPrivateKey();
+        $private_key = openssl_pkey_get_private($caf->getPrivateKey());
+        if ($private_key === false) {
+            throw new CafValidatorException([
+                'CAF {id} failed private key validation (possible corrupt CAF file).',
+                'id' => $caf->getId(),
+            ]);
+        }
         $test_plain = md5(date('U'));
         if (!openssl_private_encrypt($test_plain, $test_encrypted, $private_key)) {
             throw new CafValidatorException([
@@ -74,7 +91,13 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
                 'id' => $caf->getId(),
             ]);
         }
-        $public_key = $caf->getPublicKey();
+        $public_key = openssl_pkey_get_public($caf->getPublicKey());
+        if ($public_key === false) {
+            throw new CafValidatorException([
+                'CAF {id} failed public key validation (possible corrupt CAF file).',
+                'id' => $caf->getId(),
+            ]);
+        }
         if (!openssl_public_decrypt($test_encrypted, $test_decrypted, $public_key)) {
             throw new CafValidatorException([
                 'CAF {id} failed public key validation (possible corrupt CAF file).',
