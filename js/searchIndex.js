@@ -10721,6 +10721,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-CheckDocumentAssignabilityResponse.html#method_jsonSerialize"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\CheckDocumentAssignabilityResponse\u003A\u003AASSIGNABLE_CODES",
+            "name": "ASSIGNABLE_CODES",
+            "summary": "C\u00F3digos\u0020de\u0020respuesta\u0020con\u0020que\u0020el\u0020SII\u0020informa\u0020que\u0020el\u0020DTE\u0020es\u0020cedible\u003A",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRcv-CheckDocumentAssignabilityResponse.html#constant_ASSIGNABLE_CODES"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiRcv\\CheckDocumentAssignabilityResponse\u003A\u003A\u0024code",
             "name": "code",
             "summary": "C\u00F3digo\u0020de\u0020respuesta\u0020del\u0020SII.",
