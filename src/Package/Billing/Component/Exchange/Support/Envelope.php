@@ -102,7 +102,7 @@ class Envelope implements EnvelopeInterface
      *
      * @var DocumentInterface[]
      */
-    private array $documents;
+    private array $documents = [];
 
     /**
      * Metadatos del sobre.
@@ -213,6 +213,7 @@ class Envelope implements EnvelopeInterface
      */
     public function setDocuments(array $documents): static
     {
+        $this->documents = [];
         foreach ($documents as $document) {
             $this->addDocument($document);
         }

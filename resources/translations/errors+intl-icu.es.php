@@ -336,10 +336,6 @@ return [
         'La fila trae un ítem o una referencia, pero no hay un documento anterior al que agregarlos.',
     'The sender must include an identifier with EMAIL scheme.' =>
         'Se debe especificar el identificador con esquema EMAIL en el remitente.',
-    'The sii.boleta send strategy is not implemented.' =>
-        'La estrategia de envío sii.boleta no está implementada.',
-    'The sii.dte send strategy is not implemented.' =>
-        'La estrategia de envío sii.dte no está implementada.',
     'The token key must allow assigning the ID associated with the token.' =>
         'La clave del token debe permitir asignar el ID asociado al token.',
     'There is an error in the XML document signature. {detail}' =>

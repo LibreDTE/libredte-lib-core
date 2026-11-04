@@ -46,10 +46,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
  * Unit test for serialization (`toArray()`/`jsonSerialize()`) of `ExchangeBag`
  * and the full tree of entities it holds.
  *
- * This is the only place this serialization is tested directly: currently
- * `ExchangeBag` is not used elsewhere in the library (`exchange.receiver::receive`
- * / `exchange.sender::send` receive an `ExchangeBagInterface` already built by
- * the caller), so there is no end-to-end functional test exercising it.
+ * This is the only place this serialization is tested directly. The sending
+ * and the reception of an `ExchangeBag` by email are tested end to end, against
+ * a real mail server, in `ExchangeEmailSenderTest`, `ExchangeEmailReceiverTest`
+ * and `ExchangeDteTest`.
  */
 #[CoversClass(ExchangeBag::class)]
 #[UsesClass(Envelope::class)]

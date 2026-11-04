@@ -40,11 +40,18 @@ use UnexpectedValueException;
 
 /**
  * Interfaz del worker de DTE del SII.
+ *
+ * Este worker trabaja con los DTE, excepto las boletas (tipos 39 y 41). Los
+ * envíos son documentos XML con el tag de la raíz EnvioDTE. Las boletas se
+ * envían mediante otra API del SII y no pasan por este worker.
  */
 interface SiiDteWorkerInterface extends WorkerInterface
 {
     /**
      * Realiza el envío de un documento XML al SII.
+     *
+     * El documento enviado es cualquier DTE, excepto boletas. Son documentos
+     * XML con el tag de la raíz EnvioDTE.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param XmlDocumentInterface $doc Documento XML que se desea enviar al SII.
@@ -72,6 +79,9 @@ interface SiiDteWorkerInterface extends WorkerInterface
      *
      * Este estado podría no ser el final; en ese caso, se debe reintentar
      * la consulta más adelante.
+     *
+     * El envío consultado es un envío de DTE, excepto boletas (documento XML
+     * con el tag de la raíz EnvioDTE).
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
@@ -102,6 +112,9 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * incluye los detalles de los rechazos, algo que no entrega a través del
      * servicio web de consulta del estado del envío del XML al SII.
      *
+     * El envío consultado es un envío de DTE, excepto boletas (documento XML
+     * con el tag de la raíz EnvioDTE).
+     *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param int $trackId Número de seguimiento asignado al envío del XML.
      * @param string $company RUT de la empresa emisora del documento.
@@ -129,6 +142,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
      *
      * Este servicio valida que el documento exista en SII (esté aceptado) y
      * además que los datos del documento proporcionados coincidan.
+     *
+     * El documento consultado es cualquier DTE, excepto boletas.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param string $company RUT de la empresa emisora del documento.
@@ -165,6 +180,8 @@ interface SiiDteWorkerInterface extends WorkerInterface
      * Este servicio valida que el documento exista en SII (esté aceptado), que
      * los datos del documento proporcionados coincidan. Finalmente, valida que
      * la firma electrónica del documento coincida con la enviada al SII.
+     *
+     * El documento consultado es cualquier DTE, excepto boletas.
      *
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param string $company RUT de la empresa emisora del documento.

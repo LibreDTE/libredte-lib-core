@@ -26,7 +26,7 @@ use Derafu\Array\ArrayReader;
 use JsonSerializable;
 
 /**
- * Respuesta del SII al enviar un documento XML (EnvioDTE o EnvioBOLETA).
+ * Respuesta del SII al enviar un documento XML EnvioDTE (DTE, excepto boletas).
  *
  * Contiene el Track ID asignado por el SII para hacer seguimiento del envío.
  */

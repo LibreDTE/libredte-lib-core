@@ -318,19 +318,12 @@ services:
         arguments:
             $strategies:
                 email.smtp: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email\SmtpSenderStrategy'
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Handler\SiiSenderHandler:
-        arguments:
-            $strategies:
-                sii.dte: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy'
-                sii.boleta: '@libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy'
 
     # Strategies for the "billing.exchange.receiver" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Receiver\Strategy\Email\ImapReceiverStrategy: ~
 
     # Strategies for the "billing.exchange.sender" worker.
     libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Email\SmtpSenderStrategy: ~
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\DteSenderStrategy: ~
-    libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\Sii\BoletaSenderStrategy: ~
 
     # Workers of the "billing.identifier" component.
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface:

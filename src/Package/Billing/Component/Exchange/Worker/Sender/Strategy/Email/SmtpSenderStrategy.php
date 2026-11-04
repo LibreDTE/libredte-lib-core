@@ -82,10 +82,9 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         EnvelopeInterface $envelope,
         ExchangeBagInterface $bag
     ): ExchangeResultInterface {
-        // Crear sobre con los correos del remitente y los destinatarios.
+        // Resolver los correos del remitente y los destinatarios.
         $sender = $this->resolveSender($envelope);
         $recipients = $this->resolveRecipients($envelope);
-        $mailEnvelope = new MailEnvelope($sender, $recipients);
 
         // Crear el mensaje que se enviará en el sobre del correo.
         $message = new MailMessage();
@@ -109,8 +108,16 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
                     'cc' => $message->addCc($email),
                     'bcc' => $message->addBcc($email),
                 };
+
+                // Los destinatarios del correo son los del sobre SMTP, no los
+                // de las cabeceras: sin estar en el sobre no reciben el correo
+                // (tampoco los CC, que solo aparecerían en la cabecera).
+                $recipients[] = $email instanceof Address ? $email : Address::create($email);
             }
         }
+
+        // Crear sobre con los correos del remitente y los destinatarios.
+        $mailEnvelope = new MailEnvelope($sender, $this->uniqueAddresses($recipients));
 
         // Agregar asunto al mensaje.
         $subject = $metadata->getString('subject')
@@ -213,6 +220,24 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
         }
 
         return $options;
+    }
+
+    /**
+     * Quita las direcciones repetidas, para que cada destinatario reciba el
+     * correo una sola vez aunque esté en más de un campo (por ejemplo, como
+     * destinatario del sobre y en copia).
+     *
+     * @param Address[] $addresses
+     * @return list<Address>
+     */
+    private function uniqueAddresses(array $addresses): array
+    {
+        $unique = [];
+        foreach ($addresses as $address) {
+            $unique[strtolower($address->getAddress())] ??= $address;
+        }
+
+        return array_values($unique);
     }
 
     /**
