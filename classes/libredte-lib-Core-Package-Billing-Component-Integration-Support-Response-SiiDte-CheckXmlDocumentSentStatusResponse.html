@@ -146,8 +146,11 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\JsonSerializable">JsonSerializable</abbr>                    </span>
+                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteCheckXmlDocumentSentStatusResponseInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteCheckXmlDocumentSentStatusResponseInterface">SiiDteCheckXmlDocumentSentStatusResponseInterface</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Trait\ReviewsSentStatusTrait">ReviewsSentStatusTrait</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -158,7 +161,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -186,7 +189,8 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\JsonSerializable">JsonSerializable</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteCheckXmlDocumentSentStatusResponseInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiDteCheckXmlDocumentSentStatusResponseInterface">SiiDteCheckXmlDocumentSentStatusResponseInterface</abbr></a></dt><dd>Interfaz para la respuesta de la consulta del estado de un envío de DTE
+(servicio web SOAP `QueryEstUp`).</dd>    </dl>
 
 
 
@@ -285,7 +289,7 @@
 <dd>Devuelve la descripción de la solicitud realizada al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a>
     <span>
                                 &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null    </span>
 </dt>
@@ -306,14 +310,14 @@
 <dd>Devuelve el mensaje de la solicitud realizada al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail">getReviewDetail()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewDetail">getReviewDetail()</a>
     <span>
                                 &nbsp;: string|null    </span>
 </dt>
 <dd>Devuelve el detalle de la revisión del documento.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus">getReviewStatus()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewStatus">getReviewStatus()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
@@ -325,6 +329,13 @@
                                 &nbsp;: string    </span>
 </dt>
 <dd>Devuelve el estado de la solicitud realizada al SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getTrackId">getTrackId()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el Track ID del envío consultado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_jsonSerialize">jsonSerialize()</a>
@@ -341,6 +352,20 @@
 <dd>Entrega los datos de la respuesta como un arreglo.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSiiByCode">getEstadoEnvioSiiByCode()</a>
+    <span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetailByCode">getReviewDetailByCode()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>{@inheritDoc}</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_parseNumeroAtencion">parseNumeroAtencion()</a>
     <span>
                                 &nbsp;: array{0: int, 1: string}    </span>
@@ -348,7 +373,7 @@
 <dd>Parsea el número de atención y la fecha/hora de un string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_allDocumentsAreAccepted">allDocumentsAreAccepted()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_allDocumentsAreAccepted">allDocumentsAreAccepted()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
@@ -362,14 +387,14 @@
 <dd>Calcula el resumen de los documentos procesados.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRejectedDocuments">hasRejectedDocuments()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRejectedDocuments">hasRejectedDocuments()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Verifica si hay documentos rechazados.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRepairsDocuments">hasRepairsDocuments()</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRepairsDocuments">hasRepairsDocuments()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
@@ -410,7 +435,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -453,7 +478,7 @@ error.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -793,7 +818,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -873,13 +898,13 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
 >
     <h4 class="phpdocumentor-element__name" id="method_getEstadoEnvioSii">
         getEstadoEnvioSii()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getEstadoEnvioSii" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">102</span>
 
     </aside>
 
@@ -893,7 +918,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
         </div>
     
         <section class="phpdocumentor-description"><p>Retorna <code class="prettyprint">null</code> cuando el SII aún no ha procesado definitivamente el envío
-(estados intermedios como SOK, FOK, PDR, etc.).</p>
+(estados intermedios) o el estado no se reconoce.</p>
 </section>
 
     
@@ -1003,13 +1028,13 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
 >
     <h4 class="phpdocumentor-element__name" id="method_getReviewDetail">
         getReviewDetail()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewDetail" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">221</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -1046,13 +1071,13 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
 >
     <h4 class="phpdocumentor-element__name" id="method_getReviewStatus">
         getReviewStatus()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewStatus" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -1130,6 +1155,45 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getTrackId">
+        getTrackId()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getTrackId" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">170</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el Track ID del envío consultado.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTrackId</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
         jsonSerialize()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1138,7 +1202,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">429</span>
+    <span class="phpdocumentor-element-found-in__line">352</span>
 
     </aside>
 
@@ -1177,7 +1241,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">419</span>
+    <span class="phpdocumentor-element-found-in__line">342</span>
 
     </aside>
 
@@ -1203,6 +1267,104 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
                 <section class="phpdocumentor-description"><p>Datos de la respuesta.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getEstadoEnvioSiiByCode">
+        getEstadoEnvioSiiByCode()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSiiByCode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">178</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getEstadoEnvioSiiByCode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$status</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$status</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getReviewDetailByCode">
+        getReviewDetailByCode()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetailByCode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">186</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">{@inheritDoc}</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getReviewDetailByCode</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$status</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$status</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
             </section>
 
 </article>
@@ -1270,13 +1432,13 @@ formato ISO.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_allDocumentsAreAccepted">
         allDocumentsAreAccepted()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_allDocumentsAreAccepted" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_allDocumentsAreAccepted" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
@@ -1319,7 +1481,7 @@ formato ISO.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">395</span>
+    <span class="phpdocumentor-element-found-in__line">318</span>
 
     </aside>
 
@@ -1368,13 +1530,13 @@ formato ISO.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_hasRejectedDocuments">
         hasRejectedDocuments()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRejectedDocuments" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRejectedDocuments" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">253</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -1411,13 +1573,13 @@ formato ISO.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_hasRepairsDocuments">
         hasRepairsDocuments()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRepairsDocuments" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRepairsDocuments" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">263</span>
+    <span class="phpdocumentor-element-found-in__line">164</span>
 
     </aside>
 
@@ -1460,7 +1622,7 @@ formato ISO.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">263</span>
 
     </aside>
 
@@ -1516,7 +1678,7 @@ normalizados, indexados por el código del tipo de documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php"><a href="files/src-package-billing-component-integration-support-response-siidte-checkxmldocumentsentstatusresponse.html"><abbr title="src/Package/Billing/Component/Integration/Support/Response/SiiDte/CheckXmlDocumentSentStatusResponse.php">CheckXmlDocumentSentStatusResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">274</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
     </aside>
 
@@ -1597,19 +1759,22 @@ normalizados, indexados por el código del tipo de documento.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getBody">getBody()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getData">getData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getDescription">getDescription()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getEstadoEnvioSii">getEstadoEnvioSii()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getHeaders">getHeaders()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getMessage">getMessage()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail">getReviewDetail()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus">getReviewStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewDetail">getReviewDetail()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewStatus">getReviewStatus()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_getStatus">getStatus()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getTrackId">getTrackId()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_jsonSerialize">jsonSerialize()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSiiByCode">getEstadoEnvioSiiByCode()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetailByCode">getReviewDetailByCode()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Abstract-AbstractSiiWsdlResponse.html#method_parseNumeroAtencion">parseNumeroAtencion()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_allDocumentsAreAccepted">allDocumentsAreAccepted()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_allDocumentsAreAccepted">allDocumentsAreAccepted()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_calculateResumen">calculateResumen()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRejectedDocuments">hasRejectedDocuments()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRepairsDocuments">hasRepairsDocuments()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRejectedDocuments">hasRejectedDocuments()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRepairsDocuments">hasRepairsDocuments()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_parseDocumentos">parseDocumentos()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_parseEstado">parseEstado()</a></li>
                                     </ul>

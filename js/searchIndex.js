@@ -9891,6 +9891,71 @@ Search.appendIndex(
             "summary": "Entrega\u0020el\u0020worker\u0020del\u0020SII\u0020para\u0020realizar\u0020las\u0020acciones\u0020del\u0020RTC.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-IntegrationComponentInterface.html#method_getSiiRtcWorker"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface",
+            "name": "SiiCheckXmlDocumentSentStatusResponseInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020respuesta\u0020del\u0020SII\u0020a\u0020la\u0020consulta\u0020del\u0020estado\u0020de\u0020un\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "Entrega\u0020el\u0020Track\u0020ID\u0020del\u0020env\u00EDo\u0020consultado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getTrackId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetStatus\u0028\u0029",
+            "name": "getStatus",
+            "summary": "Devuelve\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020informado\u0020por\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetDescription\u0028\u0029",
+            "name": "getDescription",
+            "summary": "Devuelve\u0020la\u0020descripci\u00F3n\u0020del\u0020estado\u0020del\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getDescription"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetMessage\u0028\u0029",
+            "name": "getMessage",
+            "summary": "Devuelve\u0020el\u0020mensaje\u0020del\u0020estado,\u0020con\u0020el\u0020formato\u003A\u0020\u003Cestado\u003E\u0020\u002D\u0020\u003Cdescripci\u00F3n\u003E.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getMessage"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetReviewStatus\u0028\u0029",
+            "name": "getReviewStatus",
+            "summary": "Devuelve\u0020el\u0020estado\u0020de\u0020revisi\u00F3n\u0020del\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getReviewStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetReviewDetail\u0028\u0029",
+            "name": "getReviewDetail",
+            "summary": "Devuelve\u0020el\u0020detalle\u0020de\u0020la\u0020revisi\u00F3n\u0020del\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getReviewDetail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetEstadoEnvioSii\u0028\u0029",
+            "name": "getEstadoEnvioSii",
+            "summary": "Devuelve\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020normalizado\u0020como\u0020enum.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getEstadoEnvioSii"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiCheckXmlDocumentSentStatusResponseInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiCheckXmlDocumentSentStatusResponseInterface.html#method_toArray"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteCheckXmlDocumentSentStatusResponseInterface",
+            "name": "SiiDteCheckXmlDocumentSentStatusResponseInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020respuesta\u0020de\u0020la\u0020consulta\u0020del\u0020estado\u0020de\u0020un\u0020env\u00EDo\u0020de\u0020DTE\n\u0028servicio\u0020web\u0020SOAP\u0020\u0060QueryEstUp\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteCheckXmlDocumentSentStatusResponseInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetHeaders\u0028\u0029",
+            "name": "getHeaders",
+            "summary": "Obtiene\u0020los\u0020encabezados\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteCheckXmlDocumentSentStatusResponseInterface.html#method_getHeaders"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteCheckXmlDocumentSentStatusResponseInterface\u003A\u003AgetBody\u0028\u0029",
+            "name": "getBody",
+            "summary": "Obtiene\u0020el\u0020cuerpo\u0020de\u0020la\u0020respuesta\u0020del\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiDteCheckXmlDocumentSentStatusResponseInterface.html#method_getBody"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiDteWorkerInterface",
             "name": "SiiDteWorkerInterface",
             "summary": "Interfaz\u0020del\u0020worker\u0020de\u0020DTE\u0020del\u0020SII.",
@@ -10020,6 +10085,21 @@ Search.appendIndex(
             "name": "sendAec",
             "summary": "Env\u00EDa\u0020un\u0020AEC\u0020al\u0020Registro\u0020de\u0020Transferencias\u0020de\u0020Cr\u00E9ditos\u0020\u0028RTC\u0029\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRtcWorkerInterface.html#method_sendAec"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiSendXmlDocumentResponseInterface",
+            "name": "SiiSendXmlDocumentResponseInterface",
+            "summary": "Interfaz\u0020para\u0020la\u0020respuesta\u0020del\u0020SII\u0020al\u0020enviar\u0020un\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiSendXmlDocumentResponseInterface.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiSendXmlDocumentResponseInterface\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "Entrega\u0020el\u0020Track\u0020ID\u0020asignado\u0020por\u0020el\u0020SII\u0020al\u0020recibir\u0020el\u0020env\u00EDo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiSendXmlDocumentResponseInterface.html#method_getTrackId"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiSendXmlDocumentResponseInterface\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiSendXmlDocumentResponseInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Enum\\EstadoEnvioSii",
             "name": "EstadoEnvioSii",
@@ -10401,35 +10481,20 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getData"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewStatus\u0028\u0029",
-            "name": "getReviewStatus",
-            "summary": "Devuelve\u0020el\u0020estado\u0020de\u0020revisi\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewStatus"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetTrackId\u0028\u0029",
+            "name": "getTrackId",
+            "summary": "Entrega\u0020el\u0020Track\u0020ID\u0020del\u0020env\u00EDo\u0020consultado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getTrackId"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetEstadoEnvioSii\u0028\u0029",
-            "name": "getEstadoEnvioSii",
-            "summary": "Devuelve\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020normalizado\u0020como\u0020enum.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSii"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetEstadoEnvioSiiByCode\u0028\u0029",
+            "name": "getEstadoEnvioSiiByCode",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getEstadoEnvioSiiByCode"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewDetail\u0028\u0029",
-            "name": "getReviewDetail",
-            "summary": "Devuelve\u0020el\u0020detalle\u0020de\u0020la\u0020revisi\u00F3n\u0020del\u0020documento.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetail"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AallDocumentsAreAccepted\u0028\u0029",
-            "name": "allDocumentsAreAccepted",
-            "summary": "Verifica\u0020si\u0020todos\u0020los\u0020documentos\u0020fueron\u0020aceptados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_allDocumentsAreAccepted"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AhasRejectedDocuments\u0028\u0029",
-            "name": "hasRejectedDocuments",
-            "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020rechazados.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRejectedDocuments"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AhasRepairsDocuments\u0028\u0029",
-            "name": "hasRepairsDocuments",
-            "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020con\u0020reparos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_hasRepairsDocuments"
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AgetReviewDetailByCode\u0028\u0029",
+            "name": "getReviewDetailByCode",
+            "summary": "\u007B\u0040inheritDoc\u007D",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-CheckXmlDocumentSentStatusResponse.html#method_getReviewDetailByCode"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\CheckXmlDocumentSentStatusResponse\u003A\u003AparseEstado\u0028\u0029",
             "name": "parseEstado",
@@ -10518,7 +10583,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "",
+            "summary": "Entrega\u0020los\u0020datos\u0020de\u0020la\u0020respuesta\u0020como\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiDte-SendXmlDocumentResponse.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\Response\\SiiDte\\SendXmlDocumentResponse\u003A\u003AjsonSerialize\u0028\u0029",
@@ -10940,6 +11005,56 @@ Search.appendIndex(
             "name": "SiiResponse",
             "summary": "Clase\u0020para\u0020administrar\u0020la\u0020respuesta\u0020del\u0020sitio\u0020web\u0020del\u0020SII\u0020de\u0020Chile.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiResponse.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait",
+            "name": "ReviewsSentStatusTrait",
+            "summary": "Trait\u0020que\u0020implementa\u0020la\u0020revisi\u00F3n\u0020del\u0020estado\u0020de\u0020un\u0020env\u00EDo\u0020a\u0020partir\u0020de\u0020los\ndatos\u0020normalizados\u0020de\u0020la\u0020respuesta\u0020\u0028\u0060getData\u0028\u0029\u0060\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020normalizados\u0020de\u0020la\u0020respuesta.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetEstadoEnvioSiiByCode\u0028\u0029",
+            "name": "getEstadoEnvioSiiByCode",
+            "summary": "Entrega\u0020el\u0020estado\u0020normalizado\u0020para\u0020un\u0020c\u00F3digo\u0020de\u0020estado\u0020que\u0020no\u0020es\u0020\u0060EPR\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getEstadoEnvioSiiByCode"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetReviewDetailByCode\u0028\u0029",
+            "name": "getReviewDetailByCode",
+            "summary": "Entrega\u0020el\u0020detalle\u0020de\u0020la\u0020revisi\u00F3n\u0020para\u0020un\u0020c\u00F3digo\u0020de\u0020estado\u0020que\u0020no\u0020es\n\u0060EPR\u0060.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewDetailByCode"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetReviewStatus\u0028\u0029",
+            "name": "getReviewStatus",
+            "summary": "Devuelve\u0020el\u0020estado\u0020de\u0020revisi\u00F3n\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetEstadoEnvioSii\u0028\u0029",
+            "name": "getEstadoEnvioSii",
+            "summary": "Devuelve\u0020el\u0020estado\u0020del\u0020env\u00EDo\u0020normalizado\u0020como\u0020enum.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getEstadoEnvioSii"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AgetReviewDetail\u0028\u0029",
+            "name": "getReviewDetail",
+            "summary": "Devuelve\u0020el\u0020detalle\u0020de\u0020la\u0020revisi\u00F3n\u0020del\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_getReviewDetail"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AallDocumentsAreAccepted\u0028\u0029",
+            "name": "allDocumentsAreAccepted",
+            "summary": "Verifica\u0020si\u0020todos\u0020los\u0020documentos\u0020fueron\u0020aceptados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_allDocumentsAreAccepted"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AhasRejectedDocuments\u0028\u0029",
+            "name": "hasRejectedDocuments",
+            "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020rechazados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRejectedDocuments"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait\\ReviewsSentStatusTrait\u003A\u003AhasRepairsDocuments\u0028\u0029",
+            "name": "hasRepairsDocuments",
+            "summary": "Verifica\u0020si\u0020hay\u0020documentos\u0020con\u0020reparos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Trait-ReviewsSentStatusTrait.html#method_hasRepairsDocuments"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDte\\Job\\CheckXmlDocumentSentStatusJob",
             "name": "CheckXmlDocumentSentStatusJob",
@@ -14105,6 +14220,11 @@ Search.appendIndex(
             "name": "Support",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-integration-support.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Trait",
+            "name": "Trait",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-integration-trait.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDte\\Job",
             "name": "Job",
