@@ -10053,7 +10053,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTokenKey\u0028\u0029",
             "name": "getTokenKey",
-            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado.",
+            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado\u0020y\u0020el\u0020ambiente\u0020del\u0020SII\u0020de\u0020la\u0020solicitud.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTokenKey"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTokenTtl\u0028\u0029",
@@ -10968,7 +10968,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTokenKey\u0028\u0029",
             "name": "getTokenKey",
-            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado.",
+            "summary": "Obtiene\u0020la\u0020clave\u0020\u0028llave\u0029\u0020del\u0020token\u0020en\u0020la\u0020cach\u00E9\u0020seg\u00FAn\u0020el\u0020certificado\ndigital\u0020asignado\u0020y\u0020el\u0020ambiente\u0020del\u0020SII\u0020de\u0020la\u0020solicitud.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenKey"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTokenTtl\u0028\u0029",

@@ -268,7 +268,7 @@ consulta al SII en la gestión de tokens.</dd>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Obtiene la clave (llave) del token en la caché según el certificado
-digital asignado.</dd>
+digital asignado y el ambiente del SII de la solicitud.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenTtl">getTokenTtl()</a>
@@ -361,9 +361,13 @@ digital asignado.</dd>
         // un certificado. Se utiliza un placeholder que se reemplazará
         // con el ID del certificado.
         &#039;key&#039; =&gt; [&#039;types&#039; =&gt; &#039;string&#039;, &#039;default&#039; =&gt; &#039;libredte_lib_sii_auth_token_%s&#039;],
-        // Tiempo en segundos que el token es válido desde que se
-        // solicitó. Será el tiempo que se mantenga en caché.
-        &#039;ttl&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 60],
+        // Tiempo en segundos que el token se mantiene en caché. Por
+        // defecto 45 minutos: el token del SII (autenticación manual y
+        // automática, y también el de la API de boletas) dura 1 hora
+        // y esa duración se renueva cada vez que se usa. Se debe
+        // reutilizar en ese período y evitar solicitar un token en
+        // cada conexión.
+        &#039;ttl&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 2700],
     ]],
 ]</span></code>
 
@@ -392,7 +396,7 @@ digital asignado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
@@ -435,7 +439,7 @@ digital asignado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">132</span>
 
     </aside>
 
@@ -489,7 +493,7 @@ digital asignado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">222</span>
+    <span class="phpdocumentor-element-found-in__line">231</span>
 
     </aside>
 
@@ -528,7 +532,7 @@ digital asignado.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -572,7 +576,7 @@ Servicio de Impuestos Internos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -611,7 +615,7 @@ Servicio de Impuestos Internos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">163</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
@@ -661,7 +665,7 @@ consulta a un servicio web del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">188</span>
 
     </aside>
 
@@ -705,12 +709,12 @@ consulta al SII en la gestión de tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">192</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Obtiene la clave (llave) del token en la caché según el certificado
-digital asignado.</p>
+digital asignado y el ambiente del SII de la solicitud.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -745,7 +749,7 @@ digital asignado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
@@ -784,7 +788,7 @@ digital asignado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -827,7 +831,7 @@ digital asignado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">230</span>
+    <span class="phpdocumentor-element-found-in__line">239</span>
 
     </aside>
 
@@ -866,7 +870,7 @@ digital asignado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">249</span>
 
     </aside>
 
