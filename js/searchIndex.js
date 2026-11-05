@@ -4591,6 +4591,11 @@ Search.appendIndex(
             "summary": "Constructor\u0020del\u0020handler.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method___construct"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003Atranslate\u0028\u0029",
+            "name": "translate",
+            "summary": "Traduce\u0020un\u0020mensaje\u0020al\u0020idioma\u0020configurado,\u0020o\u0020lo\u0020entrega\u0020como\u0020texto\u0020si\u0020no\nhay\u0020traductor.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_translate"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003AcreateHandlers\u0028\u0029",
             "name": "createHandlers",
             "summary": "Mapa\u0020de\u0020campos\u0020a\u0020handlers\u0020para\u0020los\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
@@ -4600,6 +4605,21 @@ Search.appendIndex(
             "name": "repositoryManager",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_repositoryManager"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024dateFormatter",
+            "name": "dateFormatter",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_dateFormatter"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024translator",
+            "name": "translator",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_translator"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Service\\TemplateDataFormatter\u003A\u003A\u0024locale",
+            "name": "locale",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_locale"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag",
             "name": "DocumentBag",

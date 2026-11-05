@@ -153,7 +153,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -187,9 +187,27 @@ ser utilizada en la renderización del documento.</p>
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_dateFormatter">$dateFormatter</a>
+    <span>
+                        &nbsp;: <abbr title="\Derafu\Date\Contract\DateFormatterInterface">DateFormatterInterface</abbr>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_locale">$locale</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_repositoryManager">$repositoryManager</a>
     <span>
                         &nbsp;: <abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_translator">$translator</a>
+    <span>
+                        &nbsp;: <abbr title="\Symfony\Contracts\Translation\TranslatorInterface">TranslatorInterface</abbr>|null            </span>
 </dt>
 
     </dl>
@@ -214,6 +232,14 @@ ser utilizada en la renderización del documento.</p>
 </dt>
 <dd>Mapa de campos a handlers para los documentos tributarios electrónicos.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_translate">translate()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Traduce un mensaje al idioma configurado, o lo entrega como texto si no
+hay traductor.</dd>
+
     </dl>
 
 
@@ -234,6 +260,80 @@ ser utilizada en la renderización del documento.</p>
             -private
                                                                     "
 >
+    <h4 class="phpdocumentor-element__name" id="property_dateFormatter">
+        $dateFormatter
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_dateFormatter" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">71</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Date\Contract\DateFormatterInterface">DateFormatterInterface</abbr></span>
+    <span class="phpdocumentor-signature__name">$dateFormatter</span>
+    </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_locale">
+        $locale
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_locale" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">73</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$locale</span>
+     = <span class="phpdocumentor-signature__default-value">&#039;es&#039;</span></code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
     <h4 class="phpdocumentor-element__name" id="property_repositoryManager">
         $repositoryManager
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_repositoryManager" class="headerlink"><i class="fas fa-link"></i></a>
@@ -244,7 +344,7 @@ ser utilizada en la renderización del documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
@@ -255,6 +355,43 @@ ser utilizada en la renderización del documento.</p>
             <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr></span>
     <span class="phpdocumentor-signature__name">$repositoryManager</span>
     </code>
+
+    
+    
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_translator">
+        $translator
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_translator" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">72</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\Symfony\Contracts\Translation\TranslatorInterface">TranslatorInterface</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$translator</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -286,7 +423,7 @@ ser utilizada en la renderización del documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -294,7 +431,7 @@ ser utilizada en la renderización del documento.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Repository\Contract\RepositoryManagerInterface">RepositoryManagerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$repositoryManager</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Date\Contract\DateFormatterInterface">DateFormatterInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dateFormatter</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Symfony\Contracts\Translation\TranslatorInterface">TranslatorInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$translator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$locale</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">'es'</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -308,6 +445,36 @@ ser utilizada en la renderización del documento.</p>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$dateFormatter</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Date\Contract\DateFormatterInterface">DateFormatterInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Describe las fechas con
+mensajes traducibles.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$translator</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Symfony\Contracts\Translation\TranslatorInterface">TranslatorInterface</abbr>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Traductor de los mensajes. Es
+responsabilidad de la aplicación proveerlo: sin traductor los mensajes
+se escriben en inglés.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$locale</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">'es'</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Idioma al que se traducen los mensajes.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -331,7 +498,7 @@ ser utilizada en la renderización del documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -353,6 +520,56 @@ ser utilizada en la renderización del documento.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_translate">
+        translate()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_translate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php"><a href="files/src-package-billing-component-document-service-templatedataformatter.html"><abbr title="src/Package/Billing/Component/Document/Service/TemplateDataFormatter.php">TemplateDataFormatter.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">81</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Traduce un mensaje al idioma configurado, o lo entrega como texto si no
+hay traductor.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">translate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Translation\Contract\TranslatableMessageInterface">TranslatableMessageInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$message</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Translation\Contract\TranslatableMessageInterface">TranslatableMessageInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -378,7 +595,10 @@ ser utilizada en la renderización del documento.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_dateFormatter">$dateFormatter</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_locale">$locale</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_repositoryManager">$repositoryManager</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#property_translator">$translator</a></li>
                                             </ul>
                 </li>
             
@@ -387,6 +607,7 @@ ser utilizada en la renderización del documento.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_createHandlers">createHandlers()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Service-TemplateDataFormatter.html#method_translate">translate()</a></li>
                                     </ul>
             </li>
                     </ul>
