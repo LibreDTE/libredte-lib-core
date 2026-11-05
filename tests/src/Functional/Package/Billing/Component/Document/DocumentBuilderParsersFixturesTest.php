@@ -135,6 +135,7 @@ use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Core\Provider\FormatterHandlerProvider;
 use libredte\lib\Core\Provider\RepositorySourceProvider;
 use libredte\lib\Core\Provider\TemplatePathProvider;
+use libredte\lib\Core\Translation\LibredteTranslationResourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -246,6 +247,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FormatterHandlerProvider::class)]
 #[UsesClass(RepositorySourceProvider::class)]
 #[UsesClass(TemplatePathProvider::class)]
+#[UsesClass(LibredteTranslationResourceProvider::class)]
 class DocumentBuilderParsersFixturesTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

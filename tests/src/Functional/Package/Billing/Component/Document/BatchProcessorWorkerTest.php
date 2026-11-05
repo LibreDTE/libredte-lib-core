@@ -134,10 +134,12 @@ use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Core\Provider\FormatterHandlerProvider;
 use libredte\lib\Core\Provider\RepositorySourceProvider;
 use libredte\lib\Core\Provider\TemplatePathProvider;
+use libredte\lib\Core\Translation\LibredteTranslationResourceProvider;
 use libredte\lib\Tests\TestCase;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Yaml\Yaml;
 use Throwable;
 
@@ -243,6 +245,7 @@ use Throwable;
 #[CoversClass(FormatterHandlerProvider::class)]
 #[CoversClass(RepositorySourceProvider::class)]
 #[CoversClass(TemplatePathProvider::class)]
+#[UsesClass(LibredteTranslationResourceProvider::class)]
 class BatchProcessorWorkerTest extends TestCase
 {
     public function testLoadDocumentsFromCsvFile(): void

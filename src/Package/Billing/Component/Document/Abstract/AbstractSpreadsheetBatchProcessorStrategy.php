@@ -25,8 +25,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Abstract;
 use Derafu\Array\ArrayReader;
 use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractStrategy;
+use Derafu\Date\Support\DateParser;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
-use Derafu\Support\Date;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BatchProcessorStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBatchInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaMoneda;
@@ -508,16 +508,16 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'TipoDTE' => (int) $data[0],
                     'Folio' => (int) $data[1],
                     'FchEmis' => (
-                        !empty($data[2]) && Date::validateAndConvert($data[2], 'Y-m-d') !== null
+                        !empty($data[2]) && DateParser::reformat($data[2], 'Y-m-d') !== null
                     ) ? $data[2] : date('Y-m-d'),
                     'TpoTranCompra' => null,
                     'TpoTranVenta' => null,
                     'FmaPago' => null,
                     'FchCancel' => null,
-                    'PeriodoDesde' => !empty($data[20]) && Date::validateAndConvert($data[20], 'Y-m-d') !== null
+                    'PeriodoDesde' => !empty($data[20]) && DateParser::reformat($data[20], 'Y-m-d') !== null
                         ? $data[20]
                         : null,
-                    'PeriodoHasta' => !empty($data[21]) && Date::validateAndConvert($data[21], 'Y-m-d') !== null
+                    'PeriodoHasta' => !empty($data[21]) && DateParser::reformat($data[21], 'Y-m-d') !== null
                         ? $data[21]
                         : null,
                     'MedioPago' => null,
@@ -527,7 +527,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'TermPagoGlosa' => !empty($data[19])
                         ? mb_substr(trim($data[19]), 0, 100)
                         : null,
-                    'FchVenc' => !empty($data[3]) && Date::validateAndConvert($data[3], 'Y-m-d') !== null
+                    'FchVenc' => !empty($data[3]) && DateParser::reformat($data[3], 'Y-m-d') !== null
                         ? $data[3]
                         : null,
                 ],
@@ -779,7 +779,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
         if (
             $transporte[7]
-            && Date::validateAndConvert(trim($transporte[7]), 'Y-m-d') !== null
+            && DateParser::reformat(trim($transporte[7]), 'Y-m-d') !== null
         ) {
             $writer->set($base . 'FchSalida', trim($transporte[7]));
         }
@@ -793,7 +793,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
         if (
             $transporte[9]
-            && Date::validateAndConvert(trim($transporte[9]), 'Y-m-d') !== null
+            && DateParser::reformat(trim($transporte[9]), 'Y-m-d') !== null
         ) {
             $writer->set($base . 'FchLlegada', trim($transporte[9]));
         }
@@ -850,7 +850,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         }
 
         $fchRef = trim((string) ($referencia[2] ?? ''));
-        if ($fchRef === '' || Date::validateAndConvert($fchRef, 'Y-m-d') === null) {
+        if ($fchRef === '' || DateParser::reformat($fchRef, 'Y-m-d') === null) {
             throw new BatchProcessorException(
                 'The reference document date must be in YYYY-MM-DD format.'
             );

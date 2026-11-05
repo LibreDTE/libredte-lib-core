@@ -9,6 +9,7 @@
 # Application also locates dependency configurations when run from a checkout.
 imports:
   - { resource: '../../../../derafu/xml/resources/config/xml-services.yaml' }
+  - { resource: '../../../../derafu/date/resources/config/date-services.yaml' }
   - { resource: '../../../../derafu/certificate/resources/config/certificate-services.yaml' }
   - { resource: '../../../../derafu/signature/resources/config/signature-services.yaml' }
   - { resource: '../../../../derafu/mail/resources/config/mail-services.yaml' }
@@ -412,6 +413,8 @@ services:
 
     Derafu\Renderer\Contract\HandlerFormatterInterface $billing_document:
         class: libredte\lib\Core\Package\Billing\Component\Document\Service\TemplateDataFormatter
+        arguments:
+            $locale: '%app.locale.default%'
 
     libredte\lib\Core\Provider\FormatterHandlerProvider:
         arguments:

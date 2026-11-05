@@ -23,11 +23,12 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Document\Service;
 
 use Com\Tecnick\Barcode\Barcode;
+use Derafu\Date\Contract\DateFormatterInterface;
 use Derafu\Enum\Currency;
 use Derafu\L10n\Cl\Rut\Rut;
 use Derafu\Renderer\Abstract\AbstractHandlerFormatter;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
-use Derafu\Support\Date;
+use Derafu\Translation\Contract\TranslatableMessageInterface;
 use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta;
@@ -46,6 +47,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\TagXml;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Traslado;
 use libredte\lib\Core\Package\Billing\Component\Document\Repository\ComunaRepository;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Servicio para traducir los datos de los documentos a su representación para
@@ -57,10 +59,31 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
      * Constructor del handler.
      *
      * @param RepositoryManagerInterface $repositoryManager
+     * @param DateFormatterInterface $dateFormatter Describe las fechas con
+     * mensajes traducibles.
+     * @param TranslatorInterface|null $translator Traductor de los mensajes. Es
+     * responsabilidad de la aplicación proveerlo: sin traductor los mensajes
+     * se escriben en inglés.
+     * @param string $locale Idioma al que se traducen los mensajes.
      */
     public function __construct(
-        private RepositoryManagerInterface $repositoryManager
+        private RepositoryManagerInterface $repositoryManager,
+        private DateFormatterInterface $dateFormatter,
+        private ?TranslatorInterface $translator = null,
+        private string $locale = 'es'
     ) {
+    }
+
+    /**
+     * Traduce un mensaje al idioma configurado, o lo entrega como texto si no
+     * hay traductor.
+     */
+    private function translate(TranslatableMessageInterface $message): string
+    {
+        return $this->translator === null
+            ? (string) $message
+            : $message->trans($this->translator, $this->locale)
+        ;
     }
 
     /**
@@ -98,7 +121,9 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             ,
             'CiudadRecep' => 'alias:CiudadOrigen',
             // Fechas largas.
-            'FchEmis' => fn (string $fecha) => Date::formatSpanish($fecha),
+            'FchEmis' => fn (string $fecha) => $this->translate(
+                $this->dateFormatter->formatDate($fecha)
+            ),
             'FchRef' => 'alias:FchEmis',
             'FchVenc' => 'alias:FchEmis',
             'FchCancel' => 'alias:FchEmis',

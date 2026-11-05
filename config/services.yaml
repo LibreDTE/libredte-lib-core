@@ -9,6 +9,16 @@ services:
         autoconfigure: true
         public: false
 
+    # Traductor de la aplicación de pruebas. En una aplicación que usa la
+    # biblioteca, el traductor lo provee la propia aplicación.
+    Symfony\Contracts\Translation\TranslatorInterface:
+        class: Symfony\Component\Translation\Translator
+        factory: ['Derafu\Translation\TranslatorFactory', 'create']
+        arguments:
+            $defaultLocale: '%app.locale.default%'
+            $fallbackLocales: [en]
+            $resourceProviders: !tagged_iterator derafu_translation.resource_provider
+
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorProviderInterface:
         class: libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeEmisorProvider
     libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\ReceptorProviderInterface:

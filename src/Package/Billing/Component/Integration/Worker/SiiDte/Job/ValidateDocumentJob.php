@@ -25,8 +25,8 @@ namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
+use Derafu\Date\Support\DateParser;
 use Derafu\L10n\Cl\Rut\Rut;
-use Derafu\Support\Date;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiLazyWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
@@ -97,7 +97,7 @@ class ValidateDocumentJob extends AbstractJob implements JobInterface
         [$rutRecipient, $dvRecipient] = Rut::toArray($recipient);
 
         // Validar fecha y convertir al formato del SII.
-        $dateSii = Date::validateAndConvert($date, 'dmY');
+        $dateSii = DateParser::reformat($date, 'dmY');
         if ($dateSii === null) {
             throw new ValidateDocumentException([
                 'Document date {date} is not valid; it must be in YYYY-MM-DD format.',

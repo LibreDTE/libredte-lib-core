@@ -130,9 +130,11 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Translation\LibredteTranslationResourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Application::class)]
@@ -232,6 +234,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
+#[UsesClass(LibredteTranslationResourceProvider::class)]
 class DocumentOkExamplesEndToEndTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

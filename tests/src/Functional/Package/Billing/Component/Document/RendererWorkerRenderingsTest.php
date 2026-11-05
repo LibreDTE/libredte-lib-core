@@ -81,9 +81,11 @@ use libredte\lib\Core\Package\System\Component\Rendering\Exception\RenderResultE
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Translation\LibredteTranslationResourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 /**
  * Tests for (tax/copy) presentations and multiple copies of the
@@ -145,6 +147,7 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 #[CoversClass(TemplateDataFormatter::class)]
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
+#[UsesClass(LibredteTranslationResourceProvider::class)]
 class RendererWorkerRenderingsTest extends TestCase
 {
     private DocumentComponentInterface $biller;
