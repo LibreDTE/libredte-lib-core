@@ -225,7 +225,7 @@ class BuildAecJob extends AbstractJob implements JobInterface
             $xml = $this->signatureService->signXml(
                 $xml,
                 $certificate,
-                'LibreDTE_AEC'
+                ['reference' => 'LibreDTE_AEC']
             );
         }
 

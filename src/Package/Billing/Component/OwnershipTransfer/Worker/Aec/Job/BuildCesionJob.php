@@ -136,7 +136,7 @@ class BuildCesionJob extends AbstractJob implements JobInterface
             $xml = $this->signatureService->signXml(
                 $xml,
                 $certificate,
-                $id
+                ['reference' => $id]
             );
         }
 

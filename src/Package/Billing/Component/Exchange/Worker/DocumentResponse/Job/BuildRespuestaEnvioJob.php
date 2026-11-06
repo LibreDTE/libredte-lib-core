@@ -103,7 +103,7 @@ class BuildRespuestaEnvioJob extends AbstractJob implements JobInterface
             $xml = $this->signatureService->signXml(
                 $xml,
                 $certificate,
-                'LibreDTE_ResultadoEnvio'
+                ['reference' => 'LibreDTE_ResultadoEnvio']
             );
         }
 

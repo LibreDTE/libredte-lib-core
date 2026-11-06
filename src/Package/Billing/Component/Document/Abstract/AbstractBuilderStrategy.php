@@ -267,7 +267,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $xmlSigned = $this->signatureService->signXml(
             $xmlDocument,
             $certificate,
-            $bag->getId()
+            ['reference' => $bag->getId()]
         );
 
         // Cargar XML en el documento y luego en la bolsa.

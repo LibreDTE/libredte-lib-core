@@ -89,7 +89,7 @@ class BuildDteCedidoJob extends AbstractJob implements JobInterface
             $xml = $this->signatureService->signXml(
                 $xml,
                 $certificate,
-                'LibreDTE_DTECedido'
+                ['reference' => 'LibreDTE_DTECedido']
             );
         }
 

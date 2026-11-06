@@ -572,7 +572,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         $xmlSigned = $this->signatureService->signXml(
             $xmlDocument,
             $certificate,
-            $envelope->getId()
+            ['reference' => $envelope->getId()]
         );
 
         // Cargar XML en el documento y luego en la bolsa.

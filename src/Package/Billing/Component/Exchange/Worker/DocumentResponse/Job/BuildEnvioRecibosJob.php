@@ -106,7 +106,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
                 $reciboXml = $this->signatureService->signXml(
                     $reciboXml,
                     $certificate,
-                    $id
+                    ['reference' => $id]
                 );
             }
 
@@ -128,7 +128,7 @@ class BuildEnvioRecibosJob extends AbstractJob implements JobInterface
             $mainXml = $this->signatureService->signXml(
                 $mainXml,
                 $certificate,
-                'LibreDTE_SetDteRecibidos'
+                ['reference' => 'LibreDTE_SetDteRecibidos']
             );
         }
 

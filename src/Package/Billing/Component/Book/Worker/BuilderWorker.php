@@ -126,8 +126,10 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
                 $signedXml = $this->signatureService->signXml(
                     $libro->saveXml(),
                     $certificate,
-                    $libro->getId(),
-                    $libro->getSignatureNamespace()
+                    [
+                        'reference' => $libro->getId(),
+                        'signature_namespace' => $libro->getSignatureNamespace(),
+                    ]
                 );
                 $libro->getXmlDocument()->loadXml($signedXml);
             }
