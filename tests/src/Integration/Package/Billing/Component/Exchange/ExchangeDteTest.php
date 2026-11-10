@@ -94,7 +94,8 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\Sender\Strategy\
 use libredte\lib\Core\Package\Billing\Component\Exchange\Worker\SenderWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateArrayJob;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
@@ -198,7 +199,8 @@ use Symfony\Component\Yaml\Yaml;
 #[UsesClass(BuildRespuestaEnvioJob::class)]
 #[UsesClass(Caf::class)]
 #[UsesClass(IdentifierComponent::class)]
-#[UsesClass(CafFaker::class)]
+#[UsesClass(CreateArrayJob::class)]
+#[UsesClass(CreateXmlJob::class)]
 #[UsesClass(CafFakerWorker::class)]
 #[UsesClass(CafLoaderWorker::class)]
 #[UsesClass(AbstractContribuyenteFactory::class)]

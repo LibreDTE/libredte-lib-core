@@ -313,7 +313,7 @@ class RendererWorkerRenderingsTest extends TestCase
 
         foreach ($entries as $i => $entry) {
             $copyNumber = $i + 1;
-            $this->assertSame($copyNumber, $entry->requireInt('copyNumber'));
+            $this->assertSame($copyNumber, $entry->requireInt('copy_number'));
             $this->assertSame($rendering->getContent(), $entry->requireString('content'));
             $this->assertSame(
                 $bag->getId() . '_' . $copyNumber . '.html',

@@ -29,7 +29,6 @@ use Derafu\Xml\XmlDocument;
 use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
@@ -297,7 +296,7 @@ class Caf implements CafInterface
     {
         $idk = $this->getIDK();
 
-        return $idk === CafFaker::IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
+        return $idk === CafInterface::FAKE_IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
     }
 
     /**
@@ -404,20 +403,20 @@ class Caf implements CafInterface
         return [
             'id' => $this->getId(),
             'emisor' => $this->getEmisor(),
-            'tipoDocumento' => $this->getTipoDocumento(),
-            'folioDesde' => $this->getFolioDesde(),
-            'folioHasta' => $this->getFolioHasta(),
-            'cantidadFolios' => $this->getCantidadFolios(),
-            'fechaAutorizacion' => $this->getFechaAutorizacion(),
-            'fechaVencimiento' => $this->getFechaVencimiento(),
-            'mesesAutorizacion' => $this->getMesesAutorizacion(),
+            'tipo_documento' => $this->getTipoDocumento(),
+            'folio_desde' => $this->getFolioDesde(),
+            'folio_hasta' => $this->getFolioHasta(),
+            'cantidad_folios' => $this->getCantidadFolios(),
+            'fecha_autorizacion' => $this->getFechaAutorizacion(),
+            'fecha_vencimiento' => $this->getFechaVencimiento(),
+            'meses_autorizacion' => $this->getMesesAutorizacion(),
             'vigente' => $this->isVigente(),
             'vence' => $this->hasVencimiento(),
             'idk' => $this->getIdk(),
             'ambiente' => $this->getEnvironment(),
             'certificacion' => $this->getCertificacion(),
-            'publicKey' => $this->getPublicKey(),
-            'privateKey' => $this->getPrivateKey(),
+            'public_key' => $this->getPublicKey(),
+            'private_key' => $this->getPrivateKey(),
             'xml' => $this->saveXml(),
         ];
     }

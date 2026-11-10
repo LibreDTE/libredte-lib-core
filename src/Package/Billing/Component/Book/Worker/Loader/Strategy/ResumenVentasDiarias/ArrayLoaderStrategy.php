@@ -52,8 +52,8 @@ class ArrayLoaderStrategy extends AbstractArrayLoaderStrategy implements LoaderS
         return array_merge([
             'RutEmisor' => $bag->getEmisor()?->getRut(),
             'RutEnvia' => $bag->getCertificate()?->getId(),
-            'FchResol' => $bag->getBookAuth()['FchResol'] ?? null,
-            'NroResol' => $bag->getBookAuth()['NroResol'] ?? null,
+            'FchResol' => $bag->getBookAuth()['fecha_resolucion'] ?? null,
+            'NroResol' => $bag->getBookAuth()['numero_resolucion'] ?? null,
             'FchInicio' => null,
             'FchFinal' => null,
             'Correlativo' => 1,

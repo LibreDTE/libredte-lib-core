@@ -86,7 +86,7 @@ interface RenderedDocumentInterface extends JsonSerializable
      *
      * @return array{
      *     content: string,
-     *     mimeType: string,
+     *     mime_type: string,
      *     filename: string|null,
      *     label: string|null,
      *     copies: int

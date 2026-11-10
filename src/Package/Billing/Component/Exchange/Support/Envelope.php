@@ -309,11 +309,11 @@ class Envelope implements EnvelopeInterface
         return [
             'sender' => $this->sender->toArray(),
             'receiver' => $this->receiver->toArray(),
-            'documentType' => $this->documentType->value,
+            'document_type' => $this->documentType->value,
             'process' => $this->process->value,
-            'businessMessageID' => $this->businessMessageID,
-            'originalBusinessMessageID' => $this->originalBusinessMessageID,
-            'creationDateAndTime' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
+            'business_message_id' => $this->businessMessageID,
+            'original_business_message_id' => $this->originalBusinessMessageID,
+            'creation_date_and_time' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
             'documents' => array_map(
                 fn (DocumentInterface $document) => $document->toArray(),
                 $this->documents,
@@ -332,11 +332,11 @@ class Envelope implements EnvelopeInterface
         return [
             'sender' => $this->sender->jsonSerialize(),
             'receiver' => $this->receiver->jsonSerialize(),
-            'documentType' => $this->documentType->value,
+            'document_type' => $this->documentType->value,
             'process' => $this->process->value,
-            'businessMessageID' => $this->businessMessageID,
-            'originalBusinessMessageID' => $this->originalBusinessMessageID,
-            'creationDateAndTime' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
+            'business_message_id' => $this->businessMessageID,
+            'original_business_message_id' => $this->originalBusinessMessageID,
+            'creation_date_and_time' => $this->creationDateAndTime->format(DateTimeInterface::ATOM),
             'documents' => array_map(
                 fn (DocumentInterface $document) => $document->jsonSerialize(),
                 $this->documents,

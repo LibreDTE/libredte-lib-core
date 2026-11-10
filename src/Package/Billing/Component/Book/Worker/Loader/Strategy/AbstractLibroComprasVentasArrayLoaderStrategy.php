@@ -79,8 +79,8 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
             'RutEmisorLibro'    => $bag->getEmisor()?->getRut(),
             'RutEnvia'          => $bag->getCertificate()?->getId(),
             'PeriodoTributario' => date('Y-m'),
-            'FchResol'          => $bag->getBookAuth()['FchResol'] ?? null,
-            'NroResol'          => $bag->getBookAuth()['NroResol'] ?? null,
+            'FchResol'          => $bag->getBookAuth()['fecha_resolucion'] ?? null,
+            'NroResol'          => $bag->getBookAuth()['numero_resolucion'] ?? null,
             'TipoOperacion'     => $bag->getTipo() === TipoLibro::VENTAS
                 ? TipoOperacion::VENTA->value
                 : TipoOperacion::COMPRA->value

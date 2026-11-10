@@ -117,8 +117,9 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWork
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFolio;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateArrayJob;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
@@ -182,7 +183,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(IdentifierComponent::class)]
 #[CoversClass(CafManager::class)]
 #[CoversClass(CafFolio::class)]
-#[CoversClass(CafFaker::class)]
+#[CoversClass(CreateArrayJob::class)]
+#[CoversClass(CreateXmlJob::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]

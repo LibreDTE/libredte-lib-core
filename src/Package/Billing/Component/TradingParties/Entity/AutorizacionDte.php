@@ -80,8 +80,8 @@ class AutorizacionDte implements AutorizacionDteInterface
     public function toArray(): array
     {
         return [
-            'FchResol' => $this->getFechaResolucion(),
-            'NroResol' => $this->getNumeroResolucion(),
+            'fecha_resolucion' => $this->getFechaResolucion(),
+            'numero_resolucion' => $this->getNumeroResolucion(),
         ];
     }
 }

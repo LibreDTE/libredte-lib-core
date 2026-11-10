@@ -330,7 +330,7 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      * El ambiente no se puede detemrinar si:
      * - No se ha timbrado el documento.
      * - El CAF utilizado para timbrar el documento no es uno entregado por el
-     *   SII. Por ejemplo, es un CAF falso generado con CafFaker.
+     *   SII. Por ejemplo, es un CAF falso generado con el worker `caf_faker`.
      *
      * @return SiiEnvironment|null
      */

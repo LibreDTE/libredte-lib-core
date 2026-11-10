@@ -334,6 +334,10 @@ services:
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker
 
+    # Jobs of the "billing.identifier.caf_faker" worker.
+    libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateArrayJob: ~
+    libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob: ~
+
     # Services of the "billing.identifier" component.
     libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafManagerInterface:
         class: libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager

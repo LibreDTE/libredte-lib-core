@@ -125,8 +125,8 @@ class PartyIdentifier implements PartyIdentifierInterface
         return [
             'id' => $this->getId(),
             'value' => $this->getValue(),
-            'schemeId' => $this->getSchemeId(),
-            'schemeName' => $this->getSchemeName(),
+            'scheme_id' => $this->getSchemeId(),
+            'scheme_name' => $this->getSchemeName(),
             'authority' => $this->getAuthority(),
         ];
     }

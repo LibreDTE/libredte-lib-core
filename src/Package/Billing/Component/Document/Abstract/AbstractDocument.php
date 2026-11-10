@@ -36,7 +36,7 @@ use Derafu\Xml\XPathReader;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Enum\CodigoDocumento;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 
 /**
@@ -515,7 +515,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             return null;
         }
 
-        return $idk === CafFaker::IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
+        return $idk === CafInterface::FAKE_IDK ? null : SiiEnvironment::tryFromCafIdk($idk);
     }
 
     /**

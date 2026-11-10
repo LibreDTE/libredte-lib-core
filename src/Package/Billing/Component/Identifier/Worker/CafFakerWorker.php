@@ -25,25 +25,20 @@ namespace libredte\lib\Core\Package\Billing\Component\Identifier\Worker;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
-use Derafu\Value\ValueCaster;
-use Derafu\Xml\Contract\XmlDocumentInterface;
-use Derafu\Xml\Contract\XmlServiceInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafFakerWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface;
 
 /**
- * Worker que permite crear CAF falsos (usando CafFaker) para pruebas.
+ * Worker que permite crear CAF falsos para pruebas.
  */
 #[Worker(name: 'caf_faker', component: 'identifier', package: 'billing')]
 class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
 {
-    protected string $cafFakerClass = CafFaker::class;
-
     public function __construct(
-        private XmlServiceInterface $xmlService,
+        private CreateXmlJob $createXmlJob,
         private CafLoaderWorkerInterface $cafLoader
     ) {
     }
@@ -70,7 +65,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
         int $folioDesde = 1,
         ?int $folioHasta = null
     ): CafInterface {
-        $xml = $this->createXml(
+        $xml = $this->createXmlJob->create(
             $emisor,
             $codigoDocumento,
             $folioDesde,
@@ -78,60 +73,5 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
         );
 
         return $this->cafLoader->load($xml);
-    }
-
-    /**
-     * Crea un CAF falso y lo entrega como un documento XML.
-     *
-     * @param EmisorInterface $emisor
-     * @param int $codigoDocumento
-     * @param int $folioDesde
-     * @param int|null $folioHasta
-     * @return XmlDocumentInterface
-     */
-    protected function createXml(
-        EmisorInterface $emisor,
-        int $codigoDocumento,
-        int $folioDesde,
-        ?int $folioHasta = null
-    ): XmlDocumentInterface {
-        $array = $this->createArray(
-            $emisor,
-            $codigoDocumento,
-            $folioDesde,
-            $folioHasta
-        );
-
-        return $this->xmlService->encode($array);
-    }
-
-    /**
-     * Crea un CAF falso y lo entrega como arreglo.
-     *
-     * @param EmisorInterface $emisor
-     * @param int $codigoDocumento
-     * @param int $folioDesde
-     * @param int|null $folioHasta
-     * @return array<string, mixed>
-     */
-    protected function createArray(
-        EmisorInterface $emisor,
-        int $codigoDocumento,
-        int $folioDesde,
-        ?int $folioHasta = null
-    ): array {
-        // Si no se indica folio final se creará un CAF con un solo folio.
-        if ($folioHasta === null) {
-            $folioHasta = $folioDesde;
-        }
-
-        // Generar la estructura del CAF falso como arreglo.
-        $class = $this->cafFakerClass;
-        return ValueCaster::requireObject(new $class(), CafFaker::class)
-            ->setEmisor($emisor->getRut(), $emisor->getRazonSocial())
-            ->setTipoDocumento($codigoDocumento)
-            ->setRangoFolios($folioDesde, $folioHasta)
-            ->toArray()
-        ;
     }
 }

@@ -33,7 +33,8 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWor
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\IdentifierComponent;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateArrayJob;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafValidatorWorker;
@@ -58,7 +59,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(CafValidatorWorker::class)]
 #[CoversClass(AbstractContribuyenteFactory::class)]
 #[CoversClass(EmisorFactory::class)]
-#[CoversClass(CafFaker::class)]
+#[CoversClass(CreateArrayJob::class)]
+#[CoversClass(CreateXmlJob::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(Contribuyente::class)]
 #[CoversClass(Emisor::class)]

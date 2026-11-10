@@ -992,7 +992,7 @@
                                 <tr>
                                     {% if document_auth is not empty %}
                                         <td class="timbre-text">
-                                            Resolución {{ document_auth.NroResol }} del {{ document_auth.FchResol | format_as('billing_document.FchResol') }}
+                                            Resolución {{ document_auth.numero_resolucion }} del {{ document_auth.fecha_resolucion | format_as('billing_document.FchResol') }}
                                         </td>
                                     {% endif %}
                                 </tr>

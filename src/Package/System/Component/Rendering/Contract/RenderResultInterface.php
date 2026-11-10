@@ -83,8 +83,8 @@ interface RenderResultInterface extends Stringable, JsonSerializable
      *
      * A diferencia de `getRenderings()`, esta representación sí se expande
      * por cantidad de copias: cada archivo con `copies > 1` aparece como
-     * múltiples entradas (mismo `content`/`mimeType`, calculados una sola
-     * vez), cada una con un `copyNumber` (desde 1) y, si hay más de una
+     * múltiples entradas (mismo `content`/`mime_type`, calculados una sola
+     * vez), cada una con un `copy_number` (desde 1) y, si hay más de una
      * copia, el `filename` ajustado para no colisionar entre copias.
      *
      * @return array<string, mixed>

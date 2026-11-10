@@ -53,7 +53,7 @@ interface AutorizacionDteInterface
     public function getEnvironment(): SiiEnvironment;
 
     /**
-     * Entrega un arreglo con los índices: FchResol y NroResol.
+     * Entrega un arreglo con los índices: fecha_resolucion y numero_resolucion.
      *
      * @return array<array-key, mixed>
      */

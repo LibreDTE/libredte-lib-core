@@ -30,7 +30,6 @@ use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafInterface
 use libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafException;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Exception\CafValidatorException;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
 
 /**
  * Worker que permite validar archivos CAF.
@@ -126,7 +125,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
      */
     private function getSiiCertificate(int $idk): ?string
     {
-        if ($idk === CafFaker::IDK) {
+        if ($idk === CafInterface::FAKE_IDK) {
             return null;
         }
 

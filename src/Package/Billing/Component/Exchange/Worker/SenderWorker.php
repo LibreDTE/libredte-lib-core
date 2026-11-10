@@ -103,30 +103,30 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
                             'sender' => [
                                 'identifier' => [
                                     'value' => '76192083-9',
-                                    'schemeId' => 'CL-RUT',
+                                    'scheme_id' => 'CL-RUT',
                                 ],
                                 'endpoints' => [
                                     [
                                         'value' => 'emisor@example.com',
-                                        'schemeId' => 'EMAIL',
+                                        'scheme_id' => 'EMAIL',
                                     ],
                                 ],
                             ],
                             'receiver' => [
                                 'identifier' => [
                                     'value' => '66666666-6',
-                                    'schemeId' => 'CL-RUT',
+                                    'scheme_id' => 'CL-RUT',
                                 ],
                                 'endpoints' => [
                                     [
                                         'value' => 'cliente@example.com',
-                                        'schemeId' => 'EMAIL',
+                                        'scheme_id' => 'EMAIL',
                                     ],
                                 ],
                             ],
-                            'documentType' => DocumentType::INVOICE,
+                            'document_type' => DocumentType::INVOICE,
                             'process' => ProcessType::BILLING,
-                            'businessMessageID' => 'envio-001',
+                            'business_message_id' => 'envio-001',
                             'documents' => [
                                 [
                                     'type' => DocumentType::INVOICE,

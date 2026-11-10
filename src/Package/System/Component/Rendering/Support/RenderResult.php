@@ -150,7 +150,7 @@ class RenderResult implements RenderResultInterface
      * represente, agregando el número de copia y, si hay más de una copia,
      * ajustando el nombre del archivo para no colisionar entre copias.
      *
-     * El `content`/`mimeType` de cada entrada se calculan una sola vez (vía
+     * El `content`/`mime_type` de cada entrada se calculan una sola vez (vía
      * `$serializer`), no una vez por copia: expandir es solo repetir el
      * mismo arreglo ya calculado.
      *
@@ -167,7 +167,7 @@ class RenderResult implements RenderResultInterface
 
             for ($copyNumber = 1; $copyNumber <= $copies; $copyNumber++) {
                 $copy = $entry;
-                $copy['copyNumber'] = $copyNumber;
+                $copy['copy_number'] = $copyNumber;
 
                 if ($copies > 1 && $copy['filename'] !== null) {
                     $copy['filename'] = $this->appendCopyNumber(

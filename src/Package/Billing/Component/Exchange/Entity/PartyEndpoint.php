@@ -106,8 +106,8 @@ class PartyEndpoint implements PartyEndpointInterface
         return [
             'id' => $this->getId(),
             'value' => $this->getValue(),
-            'schemeId' => $this->getSchemeId(),
-            'schemeName' => $this->getSchemeName(),
+            'scheme_id' => $this->getSchemeId(),
+            'scheme_name' => $this->getSchemeName(),
         ];
     }
 

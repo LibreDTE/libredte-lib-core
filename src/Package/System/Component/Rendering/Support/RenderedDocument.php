@@ -93,7 +93,7 @@ class RenderedDocument implements RenderedDocumentInterface
      *
      * @return array{
      *     content: string,
-     *     mimeType: string,
+     *     mime_type: string,
      *     filename: string|null,
      *     label: string|null,
      *     copies: int
@@ -103,7 +103,7 @@ class RenderedDocument implements RenderedDocumentInterface
     {
         return [
             'content' => $this->getContent(),
-            'mimeType' => $this->getMimeType(),
+            'mime_type' => $this->getMimeType(),
             'filename' => $this->getFilename(),
             'label' => $this->getLabel(),
             'copies' => $this->getCopies(),

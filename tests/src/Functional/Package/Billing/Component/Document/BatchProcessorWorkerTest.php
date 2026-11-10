@@ -117,7 +117,8 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strate
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Entity\Caf;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Service\CafManager;
-use libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateArrayJob;
+use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFakerWorker;
 use libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafLoaderWorker;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Abstract\AbstractContribuyenteFactory;
@@ -226,7 +227,8 @@ use Throwable;
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Caf::class)]
 #[CoversClass(CafManager::class)]
-#[CoversClass(CafFaker::class)]
+#[CoversClass(CreateArrayJob::class)]
+#[CoversClass(CreateXmlJob::class)]
 #[CoversClass(CafFakerWorker::class)]
 #[CoversClass(CafLoaderWorker::class)]
 #[CoversClass(AbstractRendererStrategy::class)]

@@ -33,6 +33,16 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 interface CafInterface extends JsonSerializable
 {
     /**
+     * IDK de los CAF falsos.
+     *
+     * Se utiliza un valor diferente a los oficiales para poder omitir la
+     * validación del SII al cargar el CAF.
+     *
+     * Define un "ambiente" de LibreDTE (DTE con este IDK no se envían a SII).
+     */
+    public const FAKE_IDK = 666;
+
+    /**
      * Obtiene el documento XML.
      *
      * @return XmlDocumentInterface
@@ -168,7 +178,7 @@ interface CafInterface extends JsonSerializable
      *
      * El resultado puede ser:
      *
-     *   - `null`: no hay ambiente, pues el Caf es falso y tiene IDK CafFaker::IDK
+     *   - `null`: no hay ambiente, pues el Caf es falso y tiene IDK CafInterface::FAKE_IDK
      *
      * @return SiiEnvironment|null
      */
@@ -181,7 +191,7 @@ interface CafInterface extends JsonSerializable
      *
      *   - SiiEnvironment::STAGING->value es CAF de certificación.
      *   - SiiEnvironment::PRODUCTION->value es CAF de producción.
-     *   - `null`: indicando que el Caf es falso y tiene IDK CafFaker::IDK
+     *   - `null`: indicando que el Caf es falso y tiene IDK CafInterface::FAKE_IDK
      *
      * @return int|null
      */
