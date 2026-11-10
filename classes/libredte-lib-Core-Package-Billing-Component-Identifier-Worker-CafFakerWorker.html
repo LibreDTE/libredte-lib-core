@@ -156,11 +156,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Worker que permite crear CAF falsos (usando CafFaker) para pruebas.</p>
+            <p class="phpdocumentor-summary">Worker que permite crear CAF falsos para pruebas.</p>
 
 
 
@@ -215,12 +215,6 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafFakerClass">$cafFakerClass</a>
-    <span>
-                        &nbsp;: string            </span>
-</dt>
-
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafLoader">$cafLoader</a>
     <span>
@@ -228,9 +222,9 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlService">$xmlService</a>
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_createXmlJob">$createXmlJob</a>
     <span>
-                        &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>            </span>
+                        &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob">CreateXmlJob</abbr></a>            </span>
 </dt>
 
     </dl>
@@ -255,20 +249,6 @@
 <dd>Genera y devuelve un CAF (Código de Autorización de Folios) ficticio para
 el emisor (contribuyente).</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createArray">createArray()</a>
-    <span>
-                                &nbsp;: array&lt;string, mixed&gt;    </span>
-</dt>
-<dd>Crea un CAF falso y lo entrega como arreglo.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createXml">createXml()</a>
-    <span>
-                                &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
-</dt>
-<dd>Crea un CAF falso y lo entrega como un documento XML.</dd>
-
     </dl>
 
 
@@ -286,43 +266,6 @@ el emisor (contribuyente).</dd>
         class="
             phpdocumentor-element
             -property
-            -protected
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_cafFakerClass">
-        $cafFakerClass
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafFakerClass" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$cafFakerClass</span>
-     = <span class="phpdocumentor-signature__default-value">\libredte\lib\Core\Package\Billing\Component\Identifier\Support\CafFaker::class</span></code>
-
-    
-    
-    
-
-        
-        
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
             -private
                                                                     "
 >
@@ -336,7 +279,7 @@ el emisor (contribuyente).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -363,9 +306,9 @@ el emisor (contribuyente).</dd>
             -private
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_xmlService">
-        $xmlService
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlService" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_createXmlJob">
+        $createXmlJob
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_createXmlJob" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
@@ -373,7 +316,7 @@ el emisor (contribuyente).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -381,8 +324,8 @@ el emisor (contribuyente).</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
-    <span class="phpdocumentor-signature__name">$xmlService</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob">CreateXmlJob</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$createXmlJob</span>
     </code>
 
     
@@ -415,14 +358,14 @@ el emisor (contribuyente).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$xmlService</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafLoaderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface">CafLoaderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafLoader</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob">CreateXmlJob</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$createXmlJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafLoaderWorkerInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Contract\CafLoaderWorkerInterface">CafLoaderWorkerInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cafLoader</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -431,8 +374,8 @@ el emisor (contribuyente).</dd>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$xmlService</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Derafu\Xml\Contract\XmlServiceInterface">XmlServiceInterface</abbr></span>
+                <span class="phpdocumentor-argument-list__argument__name">$createXmlJob</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Identifier\Worker\CafFaker\Job\CreateXmlJob">CreateXmlJob</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -466,7 +409,7 @@ el emisor (contribuyente).</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -550,146 +493,6 @@ el mismo valor de $folioDesde.</p>
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createArray">
-        createArray()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createArray" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">117</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Crea un CAF falso y lo entrega como arreglo.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigoDocumento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folioDesde</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folioHasta</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$emisor</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$codigoDocumento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$folioDesde</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$folioHasta</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createXml">
-        createXml()
-        <a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createXml" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php"><a href="files/src-package-billing-component-identifier-worker-caffakerworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafFakerWorker.php">CafFakerWorker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">92</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Crea un CAF falso y lo entrega como un documento XML.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emisor</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$codigoDocumento</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folioDesde</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$folioHasta</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$emisor</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-EmisorInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorInterface">EmisorInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$codigoDocumento</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$folioDesde</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$folioHasta</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span>
-            </section>
-
-</article>
             </section>
 
         
@@ -712,9 +515,8 @@ el mismo valor de $folioDesde.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafFakerClass">$cafFakerClass</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafLoader">$cafLoader</a></li>
-                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlService">$xmlService</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_createXmlJob">$createXmlJob</a></li>
                                             </ul>
                 </li>
             
@@ -723,8 +525,6 @@ el mismo valor de $folioDesde.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_create">create()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createArray">createArray()</a></li>
-                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createXml">createXml()</a></li>
                                     </ul>
             </li>
                     </ul>

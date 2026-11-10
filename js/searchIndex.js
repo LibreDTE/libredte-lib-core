@@ -9266,6 +9266,11 @@ Search.appendIndex(
             "summary": "Entrega\u0020los\u0020datos\u0020del\u0020CAF\u0020como\u0020un\u0020arreglo.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#method_toArray"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafInterface\u003A\u003AFAKE_IDK",
+            "name": "FAKE_IDK",
+            "summary": "IDK\u0020de\u0020los\u0020CAF\u0020falsos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Contract-CafInterface.html#constant_FAKE_IDK"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Contract\\CafLoaderWorkerInterface",
             "name": "CafLoaderWorkerInterface",
             "summary": "Interfaz\u0020para\u0020el\u0020worker\u0020que\u0020permite\u0020cargar\u0020un\u0020archivo\u0020XML\u0020con\u0020el\u0020CAF.",
@@ -9646,66 +9651,6 @@ Search.appendIndex(
             "summary": "Conjunto\u0020de\u0020folios\u0020ya\u0020consumidos\u0020por\u0020tipo\u0020de\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Service-CafManager.html#property_consumed"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker",
-            "name": "CafFaker",
-            "summary": "Clase\u0020que\u0020permite\u0020generar\u0020un\u0020CAF\u0020falso\u0020\u0028FakeCaf\u0029\u0020para\u0020pruebas.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AsetEmisor\u0028\u0029",
-            "name": "setEmisor",
-            "summary": "Configura\u0020los\u0020datos\u0020del\u0020emisor.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#method_setEmisor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AsetTipoDocumento\u0028\u0029",
-            "name": "setTipoDocumento",
-            "summary": "Configura\u0020el\u0020tipo\u0020de\u0020documento\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#method_setTipoDocumento"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AsetRangoFolios\u0028\u0029",
-            "name": "setRangoFolios",
-            "summary": "Configura\u0020el\u0020rango\u0020de\u0020folios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#method_setRangoFolios"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AgenerateKeys\u0028\u0029",
-            "name": "generateKeys",
-            "summary": "Genera\u0020las\u0020claves\u0020p\u00FAblicas\u0020y\u0020privadas\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#method_generateKeys"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020asignados\u0020al\u0020CafFaker.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#method_toArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003AIDK",
-            "name": "IDK",
-            "summary": "IDK\u0020para\u0020Caf\u0020falsos.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#constant_IDK"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003A\u0024emisor",
-            "name": "emisor",
-            "summary": "Datos\u0020del\u0020contribuyente\u0020emisor\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_emisor"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003A\u0024tipoDocumento",
-            "name": "tipoDocumento",
-            "summary": "Tipo\u0020de\u0020documento\u0020del\u0020CAF.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_tipoDocumento"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003A\u0024rangoFolios",
-            "name": "rangoFolios",
-            "summary": "Rango\u0020de\u0020folios.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_rangoFolios"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003A\u0024privateKey",
-            "name": "privateKey",
-            "summary": "Clave\u0020privada\u0020en\u0020formato\u0020PEM.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_privateKey"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFaker\u003A\u003A\u0024publicKey",
-            "name": "publicKey",
-            "summary": "Clave\u0020p\u00FAblica\u0020en\u0020formato\u0020PEM.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFaker.html#property_publicKey"
-        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Support\\CafFolio",
             "name": "CafFolio",
             "summary": "Clase\u0020que\u0020representa\u0020un\u0020contenedor\u0020de\u0020un\u0020archivo\u0020CAF\u0020y\u0020el\u0020folio\u0020asociado\u0020a\nusar\u0020en\u0020un\u0020documento\u0020electr\u00F3nico.",
@@ -9736,9 +9681,49 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Support-CafFolio.html#property_caf"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateArrayJob",
+            "name": "CreateArrayJob",
+            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020para\u0020pruebas,\u0020como\u0020arreglo\u0020con\u0020la\u0020estructura\u0020del\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateArrayJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateArrayJob\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020y\u0020lo\u0020entrega\u0020como\u0020arreglo.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateArrayJob.html#method_create"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateArrayJob\u003A\u003AgenerateKeys\u0028\u0029",
+            "name": "generateKeys",
+            "summary": "Genera\u0020las\u0020claves\u0020privada\u0020y\u0020p\u00FAblica\u0020del\u0020CAF,\u0020en\u0020formato\u0020PEM.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateArrayJob.html#method_generateKeys"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateXmlJob",
+            "name": "CreateXmlJob",
+            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020para\u0020pruebas,\u0020como\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateXmlJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateXmlJob\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020y\u0020lo\u0020entrega\u0020como\u0020un\u0020documento\u0020XML.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html#method_create"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateXmlJob\u003A\u003A\u0024createArrayJob",
+            "name": "createArrayJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html#property_createArrayJob"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job\\CreateXmlJob\u003A\u003A\u0024xmlService",
+            "name": "xmlService",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFaker-Job-CreateXmlJob.html#property_xmlService"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker",
             "name": "CafFakerWorker",
-            "summary": "Worker\u0020que\u0020permite\u0020crear\u0020CAF\u0020falsos\u0020\u0028usando\u0020CafFaker\u0029\u0020para\u0020pruebas.",
+            "summary": "Worker\u0020que\u0020permite\u0020crear\u0020CAF\u0020falsos\u0020para\u0020pruebas.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A__construct\u0028\u0029",
@@ -9751,25 +9736,10 @@ Search.appendIndex(
             "summary": "Genera\u0020y\u0020devuelve\u0020un\u0020CAF\u0020\u0028C\u00F3digo\u0020de\u0020Autorizaci\u00F3n\u0020de\u0020Folios\u0029\u0020ficticio\u0020para\nel\u0020emisor\u0020\u0028contribuyente\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_create"
         },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003AcreateXml\u0028\u0029",
-            "name": "createXml",
-            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020y\u0020lo\u0020entrega\u0020como\u0020un\u0020documento\u0020XML.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createXml"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003AcreateArray\u0028\u0029",
-            "name": "createArray",
-            "summary": "Crea\u0020un\u0020CAF\u0020falso\u0020y\u0020lo\u0020entrega\u0020como\u0020arreglo.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#method_createArray"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024cafFakerClass",
-            "name": "cafFakerClass",
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024createXmlJob",
+            "name": "createXmlJob",
             "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_cafFakerClass"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024xmlService",
-            "name": "xmlService",
-            "summary": "",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_xmlService"
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Identifier-Worker-CafFakerWorker.html#property_createXmlJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFakerWorker\u003A\u003A\u0024cafLoader",
             "name": "cafLoader",
@@ -12428,7 +12398,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\AutorizacionDteInterface\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020FchResol\u0020y\u0020NroResol.",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020fecha_resolucion\u0020y\u0020numero_resolucion.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Contract-AutorizacionDteInterface.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Contract\\ContribuyenteFactoryInterface",
@@ -12808,7 +12778,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\AutorizacionDte\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020FchResol\u0020y\u0020NroResol.",
+            "summary": "Entrega\u0020un\u0020arreglo\u0020con\u0020los\u0020\u00EDndices\u003A\u0020fecha_resolucion\u0020y\u0020numero_resolucion.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-TradingParties-Entity-AutorizacionDte.html#method_toArray"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\TradingParties\\Entity\\AutorizacionDte\u003A\u003A\u0024fecha_resolucion",
@@ -14555,6 +14525,16 @@ Search.appendIndex(
             "name": "Support",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-identifier-support.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-identifier-worker-caffaker-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker\\CafFaker",
+            "name": "CafFaker",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-identifier-worker-caffaker.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Identifier\\Worker",
             "name": "Worker",
