@@ -97,6 +97,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'render',
         parameters: [
             'bag' => [
                 'example' => [

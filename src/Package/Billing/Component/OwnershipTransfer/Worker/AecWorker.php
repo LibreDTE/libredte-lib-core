@@ -55,6 +55,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'build',
         parameters: [
             'bag' => [
                 'example' => [
@@ -106,6 +107,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_schema',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -125,6 +127,7 @@ class AecWorker extends AbstractWorker implements AecWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_signature',
         parameters: [
             'source' => ['example' => ''],
         ],

@@ -62,6 +62,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'build_envio_recibos',
         parameters: [
             'bag' => [
                 'example' => [
@@ -112,6 +113,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'build_respuesta_envio',
         parameters: [
             'bag' => [
                 'example' => [
@@ -166,6 +168,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_schema',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -199,6 +202,7 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_signature',
         parameters: [
             'source' => ['example' => ''],
         ],

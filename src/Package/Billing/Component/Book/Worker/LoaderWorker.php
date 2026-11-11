@@ -90,6 +90,7 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'load',
         parameters: [
             'bag' => [
                 'example' => [

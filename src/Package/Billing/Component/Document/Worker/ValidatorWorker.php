@@ -75,6 +75,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -124,6 +125,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_schema',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -164,6 +166,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_signature',
         parameters: [
             'source' => ['example' => ''],
         ],

@@ -59,6 +59,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'send_xml_document',
         parameters: [
             'request' => [
                 'example' => [
@@ -95,6 +96,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'check_xml_document_sent_status',
         parameters: [
             'request' => [
                 'example' => [
@@ -127,6 +129,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'request_xml_document_sent_status_by_email',
         parameters: [
             'request' => [
                 'example' => [
@@ -159,6 +162,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_document',
         parameters: [
             'request' => [
                 'example' => [
@@ -203,6 +207,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_document_signature',
         parameters: [
             'request' => [
                 'example' => [

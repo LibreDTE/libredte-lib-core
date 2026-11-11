@@ -86,6 +86,7 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'receive',
         parameters: [
             'bag' => [
                 'example' => [

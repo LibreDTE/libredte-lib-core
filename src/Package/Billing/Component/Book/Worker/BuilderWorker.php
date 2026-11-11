@@ -70,6 +70,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'build',
         parameters: [
             'bag' => [
                 'example' => [

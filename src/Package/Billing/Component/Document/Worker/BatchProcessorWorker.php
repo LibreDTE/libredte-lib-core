@@ -114,6 +114,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'parse',
         parameters: [
             'batch' => [
                 'example' => [

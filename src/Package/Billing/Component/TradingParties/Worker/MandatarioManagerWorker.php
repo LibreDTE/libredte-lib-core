@@ -47,6 +47,7 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'create_from_certificate',
         parameters: [
             'certificate' => [
                 'example' => [
@@ -70,6 +71,7 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'create_fake_certificate',
         parameters: [
             'mandatario' => [
                 'example' => [

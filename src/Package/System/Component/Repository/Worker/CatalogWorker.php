@@ -48,7 +48,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[Operation]
+    #[Operation(name: 'list')]
     public function list(): array
     {
         return $this->repositoryManager->getAvailableRepositories();
@@ -58,6 +58,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'find',
         parameters: [
             'repository' => ['example' => self::EXAMPLE_REPOSITORY],
             'id' => ['example' => 'RM'],
@@ -72,6 +73,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'find_all',
         parameters: [
             'repository' => ['example' => self::EXAMPLE_REPOSITORY],
         ],
@@ -85,6 +87,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'find_by',
         parameters: [
             'repository' => ['example' => self::EXAMPLE_REPOSITORY],
         ],
@@ -108,6 +111,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'find_one_by',
         parameters: [
             'repository' => ['example' => self::EXAMPLE_REPOSITORY],
         ],
@@ -127,6 +131,7 @@ class CatalogWorker extends AbstractWorker implements CatalogWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'count',
         parameters: [
             'repository' => ['example' => self::EXAMPLE_REPOSITORY],
         ],

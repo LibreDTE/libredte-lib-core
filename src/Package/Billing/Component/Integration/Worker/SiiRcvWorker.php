@@ -55,6 +55,7 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'submit_document_acceptance',
         parameters: [
             'request' => [
                 'example' => [
@@ -93,6 +94,7 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'list_document_events',
         parameters: [
             'request' => [
                 'example' => [
@@ -128,6 +130,7 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'check_document_assignability',
         parameters: [
             'request' => [
                 'example' => [
@@ -163,6 +166,7 @@ class SiiRcvWorker extends AbstractWorker implements SiiRcvWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'get_document_sii_reception_date',
         parameters: [
             'request' => [
                 'example' => [

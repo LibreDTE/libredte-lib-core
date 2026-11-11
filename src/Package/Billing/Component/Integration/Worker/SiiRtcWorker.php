@@ -59,6 +59,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'send_aec',
         parameters: [
             'request' => [
                 'example' => [
@@ -96,6 +97,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'check_aec_sent_status',
         parameters: [
             'request' => [
                 'example' => [
@@ -122,6 +124,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'get_assignment_status',
         parameters: [
             'request' => [
                 'example' => [
@@ -160,6 +163,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'get_related_assignment_status',
         parameters: [
             'request' => [
                 'example' => [

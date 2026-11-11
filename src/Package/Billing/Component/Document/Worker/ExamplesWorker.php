@@ -66,7 +66,7 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
     /**
      * {@inheritDoc}
      */
-    #[Operation]
+    #[Operation(name: 'list')]
     public function list(): array
     {
         $files = glob($this->fixturesDir . '/*/*' . self::EXTENSION) ?: [];
@@ -160,6 +160,7 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'get',
         parameters: [
             'id' => ['example' => '033_factura_afecta/033_001_simple'],
         ],

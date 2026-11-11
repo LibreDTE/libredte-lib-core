@@ -73,6 +73,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'create',
         parameters: [
             'bag' => [
                 'example' => [
@@ -110,6 +111,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'create_many',
         parameters: [
             'bags' => [
                 'example' => [
@@ -176,6 +178,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'load_xml',
         parameters: [
             'xml' => ['example' => ''],
         ],
@@ -199,6 +202,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -217,6 +221,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_schema',
         parameters: [
             'source' => ['example' => ''],
         ],
@@ -244,6 +249,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate_signature',
         parameters: [
             'source' => ['example' => ''],
         ],

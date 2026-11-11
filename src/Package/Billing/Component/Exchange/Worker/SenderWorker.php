@@ -88,6 +88,7 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'send',
         parameters: [
             'bag' => [
                 'example' => [

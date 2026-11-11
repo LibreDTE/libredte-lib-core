@@ -76,6 +76,7 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'parse',
         parameters: [
             'bag' => [
                 'example' => [

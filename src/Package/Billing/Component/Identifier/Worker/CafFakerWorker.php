@@ -47,6 +47,7 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'create',
         parameters: [
             'emisor' => [
                 'example' => [

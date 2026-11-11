@@ -51,6 +51,7 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'load',
         parameters: [
             'xml' => ['example' => ''],
         ],

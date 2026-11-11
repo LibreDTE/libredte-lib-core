@@ -41,6 +41,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
      * {@inheritDoc}
      */
     #[Operation(
+        name: 'validate',
         parameters: [
             'caf' => ['example' => ''],
         ],
