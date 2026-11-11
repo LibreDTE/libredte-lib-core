@@ -322,6 +322,8 @@ return [
         'No es posible asignar el folio si ya se generó el documento XML.',
     'The document number cannot be assigned when there are no parsed or normalized data.' =>
         'No es posible asignar el folio si no existen datos parseados o normalizados.',
+    'The form input data must be a mapping with string keys: {detail}' =>
+        'Los datos de entrada del formulario deben ser un mapa con claves de texto: {detail}',
     'The input data is not valid JSON.' =>
         'Los datos de entrada no son un JSON válido.',
     'The input data must be a JSON object or array.' =>

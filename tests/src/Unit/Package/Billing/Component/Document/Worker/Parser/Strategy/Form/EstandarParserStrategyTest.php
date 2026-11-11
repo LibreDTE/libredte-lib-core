@@ -198,7 +198,7 @@ class EstandarParserStrategyTest extends TestCase
     public function testYamlThatIsNotAMappingThrowsParserException(string $yaml): void
     {
         $this->expectException(ParserException::class);
-        $this->expectExceptionMessage('must be a YAML mapping or list');
+        $this->expectExceptionMessage('The form input data must be a mapping with string keys');
 
         $this->strategy->parse($yaml);
     }

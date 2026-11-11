@@ -146,6 +146,6 @@ trait NormalizeDescuentosRecargosTrait
         }
 
         // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData($writer->getReader()->toMap());
     }
 }

@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer
 
 use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
@@ -88,7 +89,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         $this->normalizeEmisor($data);
         $this->normalizeReceptor($data);
 
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData(ArrayReader::fromArray($data, 'document')->toMap());
     }
 
     /**

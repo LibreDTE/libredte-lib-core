@@ -415,7 +415,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getParserOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('parser') ?? [];
+        return $this->getOptions()->getReader()->getMap('parser') ?? [];
     }
 
     /**
@@ -423,7 +423,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getBuilderOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('builder') ?? [];
+        return $this->getOptions()->getReader()->getMap('builder') ?? [];
     }
 
     /**
@@ -431,7 +431,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getNormalizerOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('normalizer') ?? [];
+        return $this->getOptions()->getReader()->getMap('normalizer') ?? [];
     }
 
     /**
@@ -439,7 +439,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getSanitizerOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('sanitizer') ?? [];
+        return $this->getOptions()->getReader()->getMap('sanitizer') ?? [];
     }
 
     /**
@@ -447,7 +447,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getValidatorOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('validator') ?? [];
+        return $this->getOptions()->getReader()->getMap('validator') ?? [];
     }
 
     /**
@@ -455,7 +455,7 @@ class DocumentBag implements DocumentBagInterface
      */
     public function getRendererOptions(): array
     {
-        return $this->getOptions()->getReader()->getArray('renderer') ?? [];
+        return $this->getOptions()->getReader()->getMap('renderer') ?? [];
     }
 
     /**
@@ -791,13 +791,16 @@ class DocumentBag implements DocumentBagInterface
         }
 
         $documentData = $this->document->getData();
-        $documentExtra = $this->getLibredteDataReader()?->getArray('extra.dte');
+        $documentExtra = $this->getLibredteDataReader()?->getMap('extra.dte');
 
         if (empty($documentExtra)) {
             return $documentData;
         }
 
-        return array_replace_recursive($documentData, $documentExtra);
+        return ArrayReader::fromArray(
+            array_replace_recursive($documentData, $documentExtra),
+            'document data'
+        )->toMap();
     }
 
     /**
@@ -875,13 +878,15 @@ class DocumentBag implements DocumentBagInterface
         }
 
         if ($parsedData !== null) {
-            ArrayWriter::fromReference($parsedData)->set('Encabezado.IdDoc.Folio', $folio);
-            $this->setParsedData($parsedData);
+            $writer = ArrayWriter::fromReference($parsedData);
+            $writer->set('Encabezado.IdDoc.Folio', $folio);
+            $this->setParsedData($writer->getReader()->toMap());
         }
 
         if ($normalizedData !== null) {
-            ArrayWriter::fromReference($normalizedData)->set('Encabezado.IdDoc.Folio', $folio);
-            $this->setNormalizedData($normalizedData);
+            $writer = ArrayWriter::fromReference($normalizedData);
+            $writer->set('Encabezado.IdDoc.Folio', $folio);
+            $this->setNormalizedData($writer->getReader()->toMap());
         }
 
         return $this;
@@ -977,7 +982,7 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      *
-     * @return array<array-key, mixed>&array{
+     * @return array<string, mixed>&array{
      *     document_stamp: string|null,
      *     document_xml: string|null
      * }

@@ -231,14 +231,15 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Asignar los datos del emisor a los datos parseados.
         $parsedData ??= [];
-        ArrayWriter::fromReference($parsedData)->set(
+        $writer = ArrayWriter::fromReference($parsedData);
+        $writer->set(
             'Encabezado.Emisor',
             array_merge(
                 $bag->getEmisor()->toDteArray(),
                 $parsed?->getArray('Encabezado.Emisor') ?? []
             )
         );
-        $bag->setParsedData($parsedData);
+        $bag->setParsedData($writer->getReader()->toMap());
 
         // Asignar el emisor a la bolsa.
         $bag->setEmisor($bag->getEmisor());
@@ -272,11 +273,12 @@ class DocumentBagManagerWorker extends AbstractWorker implements DocumentBagMana
 
         // Asignar los datos del receptor a los datos parseados.
         $parsedData ??= [];
-        ArrayWriter::fromReference($parsedData)->set(
+        $writer = ArrayWriter::fromReference($parsedData);
+        $writer->set(
             'Encabezado.Receptor',
             $bag->getReceptor()->toDteArray()
         );
-        $bag->setParsedData($parsedData);
+        $bag->setParsedData($writer->getReader()->toMap());
 
         // Asignar el receptor a la bolsa.
         $bag->setReceptor($bag->getReceptor());

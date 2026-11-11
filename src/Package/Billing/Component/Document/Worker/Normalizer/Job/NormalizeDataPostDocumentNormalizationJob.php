@@ -65,7 +65,7 @@ class NormalizeDataPostDocumentNormalizationJob extends AbstractJob implements J
         }
 
         // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData(ArrayReader::fromArray($data, 'document')->toMap());
     }
 
     /**

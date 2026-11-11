@@ -405,7 +405,7 @@ abstract class AbstractDocument extends Entity implements DocumentInterface
             $array = $xml->getMap('DTE.Documento')
                 ?? $xml->getMap('DTE.Exportaciones')
                 ?? $xml->getMap('DTE.Liquidacion')
-                ?? $xml->toArray()
+                ?? $xml->toMap()
             ;
 
             unset($array['TED'], $array['TmstFirma']);

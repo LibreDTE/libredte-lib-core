@@ -208,7 +208,7 @@ class SmtpSenderStrategy extends AbstractStrategy implements SenderStrategyInter
     private function resolveTransportOptions(ExchangeBagInterface $bag): array
     {
         $options = $bag->getOptions()->get('transport', []);
-        $options = ValueType::array()->parse(
+        $options = ValueType::map()->parse(
             $options instanceof OptionsInterface ? $options->all() : $options,
             'transport'
         );

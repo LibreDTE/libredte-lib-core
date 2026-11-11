@@ -37,7 +37,7 @@ class TipoDocumentoRepository extends Repository
      * Entrega el listado de todos los documentos registrados en el repositorio
      * de datos.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, mixed>
      */
     public function getDocumentos(): array
     {
@@ -53,7 +53,7 @@ class TipoDocumentoRepository extends Repository
      *   - Documentos tributarios electrónicos.
      *   - Documentos tributarios adicionales (otros documentos, ej: rango 9XX).
      *
-     * @return array<string, mixed>
+     * @return array<array-key, TipoDocumentoInterface>
      */
     public function getDocumentosTributarios(): array
     {
@@ -70,7 +70,7 @@ class TipoDocumentoRepository extends Repository
      *   - Documentos informativos oficiales del SII (categoría "I").
      *   - Documentos informativos no oficiales del SII (categoría "R").
      *
-     * @return array<string, mixed>
+     * @return array<array-key, TipoDocumentoInterface>
      */
     public function getDocumentosInformativos(): array
     {
@@ -85,7 +85,7 @@ class TipoDocumentoRepository extends Repository
     /**
      * Entrega el listado de documentos tributarios electrónicos del SII.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, TipoDocumentoInterface>
      */
     public function getDocumentosTributariosElectronicos(): array
     {
@@ -98,7 +98,7 @@ class TipoDocumentoRepository extends Repository
     /**
      * Entrega el listado de documentos tributarios electrónicos del SII.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, TipoDocumentoInterface>
      */
     public function getDocumentosTributariosElectronicosCedibles(): array
     {
@@ -113,7 +113,7 @@ class TipoDocumentoRepository extends Repository
      * Entrega el listado de documentos tributarios electrónicos que pueden ser
      * emitidos utilizando LibreDTE.
      *
-     * @return array<string, mixed>
+     * @return array<array-key, TipoDocumentoInterface>
      */
     public function getDocumentosDisponibles(): array
     {

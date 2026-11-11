@@ -24,6 +24,7 @@ namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Array\Exception\DuplicateValueException;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
@@ -144,9 +145,10 @@ class LibroDocumentoRepetidoTest extends TestCase
             TipoLibro::RVD => 'books/resumen_ventas_diarias.php',
             default => 'books/libro_guias.php',
         };
-        $input = array_values(require self::getFixturesPath($fixture))[0]['input'];
+        $cases = ArrayReader::fromValue(require self::getFixturesPath($fixture))->toMap();
+        $input = ArrayReader::fromArray(array_values($cases))->requireReader(0)->requireReader('input');
 
-        return ['caratula' => $input['caratula'], 'row' => $input['detalle'][0]];
+        return ['caratula' => $input->requireMap('caratula'), 'row' => $input->requireReader('detalle')->requireMap(0)];
     }
 
     /**

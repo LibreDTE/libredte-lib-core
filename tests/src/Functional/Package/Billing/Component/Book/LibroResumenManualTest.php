@@ -22,9 +22,11 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
@@ -122,10 +124,10 @@ class LibroResumenManualTest extends TestCase
      */
     private function input(string $fixture = 'books/libro_ventas.php'): array
     {
-        $cases = require self::getFixturesPath($fixture);
-        $input = array_values($cases)[0]['input'];
+        $cases = ArrayReader::fromValue(require self::getFixturesPath($fixture))->toMap();
+        $input = ArrayReader::fromArray(array_values($cases))->requireReader(0)->requireReader('input');
 
-        return ['caratula' => $input['caratula'], 'detalle' => $input['detalle']];
+        return ['caratula' => $input->requireMap('caratula'), 'detalle' => $input->requireIndexedOf('detalle', ValueType::map())];
     }
 
     /**

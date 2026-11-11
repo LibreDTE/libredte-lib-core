@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
+use Derafu\Array\ArrayWriter;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -78,16 +79,22 @@ class NormalizeGuiaDespachoJob extends AbstractJob implements JobInterface
             ],
         ], $data);
 
+        $writer = ArrayWriter::fromReference($data, 'document');
+        $header = $writer->getReader()->requireReader('Encabezado');
+        $idDoc = $header->getMap('IdDoc');
+
         // Si es traslado interno se copia el emisor en el receptor solo si el
         // receptor no está definido o bien si el receptor tiene RUT diferente
         // al emisor.
-        if ($data['Encabezado']['IdDoc']['IndTraslado'] == 5) {
+        if (($idDoc['IndTraslado'] ?? null) == 5) {
+            $recipient = $header->getMap('Receptor');
+            $issuer = $header->getMap('Emisor');
+
             if (
-                !$data['Encabezado']['Receptor']
-                || $data['Encabezado']['Receptor']['RUTRecep']
-                    != $data['Encabezado']['Emisor']['RUTEmisor']
+                !$recipient
+                || ($recipient['RUTRecep'] ?? null) != ($issuer['RUTEmisor'] ?? null)
             ) {
-                $data['Encabezado']['Receptor'] = [];
+                $newRecipient = [];
                 $cols = [
                     'RUTEmisor' => 'RUTRecep',
                     'RznSoc' => 'RznSocRecep',
@@ -97,23 +104,26 @@ class NormalizeGuiaDespachoJob extends AbstractJob implements JobInterface
                     'DirOrigen' => 'DirRecep',
                     'CmnaOrigen' => 'CmnaRecep',
                 ];
-                foreach ($cols as $emisor => $receptor) {
-                    if (!empty($data['Encabezado']['Emisor'][$emisor])) {
-                        $data['Encabezado']['Receptor'][$receptor] =
-                            $data['Encabezado']['Emisor'][$emisor]
-                        ;
+                foreach ($cols as $source => $target) {
+                    $value = $issuer[$source] ?? null;
+                    if (!empty($value)) {
+                        $newRecipient[$target] = $value;
                     }
                 }
-                if (!empty($data['Encabezado']['Receptor']['GiroRecep'])) {
-                    $data['Encabezado']['Receptor']['GiroRecep'] =
-                        mb_substr($data['Encabezado']['Receptor']['GiroRecep'], 0, 40)
-                    ;
+                if (!empty($newRecipient['GiroRecep'])) {
+                    $newRecipient['GiroRecep'] = mb_substr(
+                        $header->requireString('Emisor.GiroEmis'),
+                        0,
+                        40
+                    );
                 }
+
+                $writer->set('Encabezado.Receptor', $newRecipient);
             }
         }
 
         // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData($writer->getReader()->toMap());
 
         // Normalizar datos.
         $this->normalizeDetalle($bag);

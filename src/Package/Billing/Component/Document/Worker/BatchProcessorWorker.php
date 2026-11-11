@@ -306,6 +306,6 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
             $writer->set($path, $reader->get($path, ValueType::mixed()) ?: $default);
         }
 
-        return $data;
+        return $writer->getReader()->toMap();
     }
 }

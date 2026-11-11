@@ -98,6 +98,6 @@ abstract class AbstractSanitizerStrategy extends AbstractStrategy implements San
         }
 
         // Actualizar los datos normalizados con los sanitizados.
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData($writer->getReader()->toMap());
     }
 }

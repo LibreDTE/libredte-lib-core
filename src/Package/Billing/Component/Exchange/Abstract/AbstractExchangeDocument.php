@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use JsonSerializable;
 
@@ -105,12 +106,12 @@ abstract class AbstractExchangeDocument implements JsonSerializable
     /**
      * Entrega el documento como arreglo.
      *
-     * @return array<array-key, mixed>
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
         return [
-            ...$this->getXmlDocument()->toArray(),
+            ...ArrayReader::fromArray($this->getXmlDocument()->toArray(), 'XML document')->toMap(),
             'xml' => $this->saveXml(),
         ];
     }

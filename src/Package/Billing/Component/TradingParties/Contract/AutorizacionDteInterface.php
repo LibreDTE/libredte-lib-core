@@ -55,7 +55,7 @@ interface AutorizacionDteInterface
     /**
      * Entrega un arreglo con los índices: fecha_resolucion y numero_resolucion.
      *
-     * @return array<array-key, mixed>
+     * @return array{fecha_resolucion: string, numero_resolucion: int}
      */
     public function toArray(): array;
 }

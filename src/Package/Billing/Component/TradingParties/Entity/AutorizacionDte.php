@@ -75,7 +75,7 @@ class AutorizacionDte implements AutorizacionDteInterface
     /**
      * {@inheritDoc}
      *
-     * @return array<array-key, mixed>
+     * @return array{fecha_resolucion: string, numero_resolucion: int}
      */
     public function toArray(): array
     {

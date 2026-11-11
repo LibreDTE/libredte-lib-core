@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Parser\Str
 
 use Derafu\Array\ArrayPath;
 use Derafu\Array\ArrayReader;
+use Derafu\Array\Exception\ArrayException;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
@@ -76,50 +77,41 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
         $this->processDTEData($data, $dte);
 
         // Retornar el DTE procesado.
-        return $dte;
+        return ArrayReader::fromArray($dte, 'DTE')->toMap();
     }
 
     /**
-     * Decodifica datos YAML o los retorna directamente si ya son un arreglo.
+     * Decodifica el formulario YAML y valida que sus campos tengan claves de texto.
      *
-     * Verifica si los datos son una cadena YAML y los decodifica a un arreglo
-     * asociativo. Si los datos ya son un arreglo, los retorna sin cambios.
+     * Los arreglos de entrada también se validan como mapas. Un documento YAML
+     * vacío representa un mapa vacío; los campos internos pueden contener listas.
      *
-     * @param string|array<string, mixed> $data Datos a procesar. Puede ser YAML o un arreglo.
-     * @return array<array-key, mixed> Datos decodificados como arreglo asociativo.
-     * @throws ParserException Si la cadena YAML proporcionada no es válida o no
-     * es un mapa ni una lista.
+     * @param string|array<string, mixed> $data Datos del formulario en YAML o como mapa.
+     * @return array<string, mixed> Campos del formulario con sus valores originales.
+     * @throws ParserException Si el YAML no es válido o los datos no son un mapa
+     * con claves de texto.
      */
     private function decodeData(string|array $data): array
     {
-        // Retornar los datos directamente si ya son un arreglo.
-        if (is_array($data)) {
-            return $data;
+        if (is_string($data)) {
+            try {
+                $data = Yaml::parse($data) ?? [];
+            } catch (ParseException $e) {
+                throw new ParserException([
+                    'The provided YAML is invalid: {detail}',
+                    'detail' => $e,
+                ]);
+            }
         }
 
-        // Parsar los datos en string como una cadena YAML.
         try {
-            $decoded = Yaml::parse($data);
-        } catch (ParseException $e) {
+            return ArrayReader::fromValue($data, 'form')->toMap();
+        } catch (ArrayException $e) {
             throw new ParserException([
-                'The provided YAML is invalid: {detail}',
+                'The form input data must be a mapping with string keys: {detail}',
                 'detail' => $e,
-            ]);
+            ], previous: $e);
         }
-
-        // Un documento YAML vacío son datos vacíos. Un texto o un número no
-        // son un mapa ni una lista de datos.
-        if ($decoded === null) {
-            return [];
-        }
-
-        if (!is_array($decoded)) {
-            throw new ParserException(
-                'The input data must be a YAML mapping or list.'
-            );
-        }
-
-        return $decoded;
     }
 
     /**

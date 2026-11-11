@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Book\Abstract;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
 use Derafu\Value\ValueType;
 use Derafu\Xml\Contract\XmlDocumentInterface;
@@ -186,11 +187,13 @@ abstract class AbstractBook implements BookInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
         return [
-            ...$this->getXmlDocument()->toArray(),
+            ...ArrayReader::fromArray($this->getXmlDocument()->toArray(), 'XML document')->toMap(),
             'xml' => $this->saveXml(),
         ];
     }

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
@@ -81,7 +82,7 @@ class NormalizeFacturaAfectaJob extends AbstractJob implements JobInterface
         ], $data);
 
         // Actualizar los datos normalizados.
-        $bag->setNormalizedData($data);
+        $bag->setNormalizedData(ArrayReader::fromArray($data, 'document')->toMap());
 
         // Normalizar datos.
         $this->normalizeDetalle($bag);

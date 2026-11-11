@@ -195,7 +195,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                 if (!empty($data[$i][0])) {
                     // Agregar el documento actual al listado si existe.
                     if ($documento) {
-                        $documentos[] = $documento;
+                        $documentos[] = ArrayReader::fromArray($documento, 'document')->toMap();
                     }
                     // Crear un nuevo documento.
                     $documento = $this->createDocument($data[$i]);
@@ -263,7 +263,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
 
         // Agregar el último documento procesado al listado si existe.
         if ($documento) {
-            $documentos[] = $documento;
+            $documentos[] = ArrayReader::fromArray($documento, 'document')->toMap();
         }
 
         return $documentos;
@@ -444,7 +444,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
         ));
         $this->addReference($documento, array_slice($data, 28, 5));
 
-        return $documento;
+        return $writer->getReader()->toMap();
     }
 
     /**

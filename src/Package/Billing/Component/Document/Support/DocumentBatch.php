@@ -254,7 +254,7 @@ class DocumentBatch implements DocumentBatchInterface
      */
     public function getBatchProcessorOptions(): array
     {
-        return $this->getOptions()->getReader()->requireArray('batch_processor');
+        return $this->getOptions()->getReader()->requireMap('batch_processor');
     }
 
     /**

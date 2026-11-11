@@ -261,7 +261,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
 
         // Validar que no se haya llenado la lista de documentos permitida.
         $maximoDocumentos = $this->getTipoSobre()->getMaxDocumentos();
-        if (isset($this->documentos[$maximoDocumentos - 1])) {
+        if (isset($this->documents[$maximoDocumentos - 1])) {
             throw new DispatcherException([
                 'Cannot add new documents to envelope {envelope}; the limit is {max} documents per envelope.',
                 'envelope' => $this->getTipoSobre()->getNombre(),
@@ -281,7 +281,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
      */
     public function getDispatcherOptions(): array
     {
-        return $this->getOptions()->getReader()->requireArray('dispatcher');
+        return $this->getOptions()->getReader()->requireMap('dispatcher');
     }
 
     /**

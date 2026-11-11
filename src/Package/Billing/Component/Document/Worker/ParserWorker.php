@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Document\Worker;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
@@ -96,7 +97,10 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
         assert($strategy instanceof ParserStrategyInterface);
 
         try {
-            $parsedData = $strategy->parse($bag->requireInputData());
+            $parsedData = ArrayReader::fromArray(
+                $strategy->parse($bag->requireInputData()),
+                'parsed document'
+            )->toMap();
         } catch (Throwable $e) {
             throw new ParserException(
                 message: [

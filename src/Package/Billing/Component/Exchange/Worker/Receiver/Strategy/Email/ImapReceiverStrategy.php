@@ -258,6 +258,6 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         ]);
 
         // Entregar las opciones resueltas.
-        return $options;
+        return $writer->getReader()->toMap();
     }
 }

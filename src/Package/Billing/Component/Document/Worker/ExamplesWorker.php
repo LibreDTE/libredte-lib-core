@@ -104,9 +104,9 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
      * mantienen ese mismo orden entre sí; solo se reordenan los que
      * dependen de otro ejemplo que todavía no aparecía.
      *
-     * @param array<string, string[]> $dependsOnById IDs de ejemplo mapeados
+     * @param array<string, list<string>> $dependsOnById IDs de ejemplo mapeados
      * a la lista de IDs de los que dependen (posiblemente vacía).
-     * @return string[] IDs en el orden final.
+     * @return list<string> IDs en el orden final.
      * @throws ExamplesException Si un ejemplo depende de un ID inexistente,
      * o si hay una dependencia circular entre ejemplos.
      */
@@ -115,45 +115,57 @@ class ExamplesWorker extends AbstractWorker implements ExamplesWorkerInterface
         $visited = [];
         $ordered = [];
 
-        $visit = function (string $id, array $path) use (
-            &$visit,
-            &$visited,
-            &$ordered,
-            $dependsOnById
-        ): void {
-            if (isset($visited[$id])) {
-                return;
-            }
-
-            if (in_array($id, $path, true)) {
-                throw new ExamplesException([
-                    'Circular dependency between examples: {path} -> {id}.',
-                    'path' => implode(' -> ', $path),
-                    'id' => $id,
-                ]);
-            }
-
-            if (!array_key_exists($id, $dependsOnById)) {
-                throw new ExamplesException([
-                    'Example "{id}" does not exist (referenced in DependsOn).',
-                    'id' => $id,
-                ]);
-            }
-
-            $path[] = $id;
-            foreach ($dependsOnById[$id] as $dependencyId) {
-                $visit($dependencyId, $path);
-            }
-
-            $visited[$id] = true;
-            $ordered[] = $id;
-        };
-
         foreach (array_keys($dependsOnById) as $id) {
-            $visit($id, []);
+            $this->visitDependency($id, [], $dependsOnById, $visited, $ordered);
         }
 
         return $ordered;
+    }
+
+    /**
+     * Visita un ejemplo y sus dependencias antes de agregarlo al resultado.
+     *
+     * @param string $id ID del ejemplo que se visita.
+     * @param list<string> $path IDs del recorrido actual para detectar ciclos.
+     * @param array<string, list<string>> $dependsOnById Dependencias de cada ejemplo.
+     * @param array<string, true> $visited IDs cuyo recorrido ya terminó, compartidos por referencia.
+     * @param list<string> $ordered IDs ordenados, compartidos por referencia.
+     * @return void
+     * @throws ExamplesException Si una dependencia no existe o forma un ciclo.
+     */
+    private function visitDependency(
+        string $id,
+        array $path,
+        array $dependsOnById,
+        array &$visited,
+        array &$ordered
+    ): void {
+        if (isset($visited[$id])) {
+            return;
+        }
+
+        if (in_array($id, $path, true)) {
+            throw new ExamplesException([
+                'Circular dependency between examples: {path} -> {id}.',
+                'path' => implode(' -> ', $path),
+                'id' => $id,
+            ]);
+        }
+
+        if (!array_key_exists($id, $dependsOnById)) {
+            throw new ExamplesException([
+                'Example "{id}" does not exist (referenced in DependsOn).',
+                'id' => $id,
+            ]);
+        }
+
+        $path[] = $id;
+        foreach ($dependsOnById[$id] as $dependencyId) {
+            $this->visitDependency($dependencyId, $path, $dependsOnById, $visited, $ordered);
+        }
+
+        $visited[$id] = true;
+        $ordered[] = $id;
     }
 
     /**

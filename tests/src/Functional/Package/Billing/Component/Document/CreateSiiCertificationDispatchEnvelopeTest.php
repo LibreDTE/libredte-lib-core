@@ -294,7 +294,7 @@ class CreateSiiCertificationDispatchEnvelopeTest extends TestCase
 
         // Bill the document.
         $documentBag = new DocumentBag(
-            inputData: $data,
+            inputData: $writer->getReader()->toMap(),
             caf: $caf,
             certificate: $certificate
         );

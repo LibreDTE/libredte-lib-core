@@ -229,7 +229,7 @@ abstract class AbstractBuilderStrategy extends AbstractStrategy implements Build
         $tedWriter->set('TED.FRMT.@value', $timbre);
 
         // Actualizar los datos del documento incorporando el timbre calculado.
-        $bag->setTimbre($tedData);
+        $bag->setTimbre($tedWriter->getReader()->toMap());
     }
 
     /**

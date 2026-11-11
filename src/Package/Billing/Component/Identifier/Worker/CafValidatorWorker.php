@@ -98,7 +98,7 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
                 'id' => $caf->getId(),
             ]);
         }
-        if (!openssl_public_decrypt($test_encrypted, $test_decrypted, $public_key)) {
+        if (!openssl_public_decrypt(ValueCaster::requireString($test_encrypted), $test_decrypted, $public_key)) {
             throw new CafValidatorException([
                 'CAF {id} failed public key validation (possible corrupt CAF file).',
                 'id' => $caf->getId(),

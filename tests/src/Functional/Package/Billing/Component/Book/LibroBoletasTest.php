@@ -23,10 +23,12 @@ declare(strict_types=1);
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Book;
 
 use Derafu\Array\ArrayCaster;
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Selector\Selector;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
@@ -118,7 +120,26 @@ class LibroBoletasTest extends TestCase
      */
     public static function dataProviderForTestFromArraySource(): array
     {
-        return require self::getFixturesPath('books/libro_boletas.php');
+        $source = self::getFixturesPath('books/libro_boletas.php');
+        $cases = ArrayReader::fromValue(require $source, $source)->toMap();
+        $result = [];
+
+        foreach ($cases as $id => $case) {
+            $reader = ArrayReader::fromValue($case, $source, $id);
+            $input = $reader->requireReader('input');
+            $parsed = [];
+
+            if ($input->hasKey('caratula')) {
+                $parsed['caratula'] = $input->requireMap('caratula');
+            }
+            if ($input->hasKey('detalle')) {
+                $parsed['detalle'] = $input->requireIndexedOf('detalle', ValueType::map());
+            }
+
+            $result[$id] = ['input' => $parsed, 'expected' => $reader->requireMap('expected')];
+        }
+
+        return $result;
     }
 
     /**
