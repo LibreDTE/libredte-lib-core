@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -207,6 +207,19 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Datos de la conexión al SII. | Campo |...                            </span>
+</dt>
+
+    </dl>
 
 
 <h4 id="toc-properties">
@@ -300,6 +313,53 @@ electrónico.</dd>
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_REQUEST_DESCRIPTION">
+        REQUEST_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#constant_REQUEST_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">REQUEST_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Datos de la conexión al SII.
+
+| Campo | Descripción |
+|---|---|
+| `certificate` | Obligatorio. Certificado digital con el que se autentica en el SII. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+| `options.environment` | Ambiente del SII: `0` producción (valor por defecto) o `1` certificación (pruebas). |
+| `options.retries` | Cantidad máxima de intentos ante fallas de conexión, de `0` a `10`; por defecto `10`. Con `0` no se hace ningún intento. Con muchos intentos la espera crece de forma exponencial. |
+| `options.verify_ssl` | Verifica el certificado SSL del SII; por defecto `true`. No se recomienda desactivarlo. |
+| `options.token` | Cómo se guarda el token de autenticación: `cache` (`memory` o `filesystem`; por defecto `memory`), `key` y `ttl` (segundos que se conserva; por defecto `2700`). |
+MD</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
     <section class="phpdocumentor-properties">
@@ -325,7 +385,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -362,7 +422,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -399,7 +459,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -436,7 +496,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -473,7 +533,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -515,7 +575,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -587,7 +647,7 @@ electrónico.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
@@ -648,7 +708,44 @@ electrónico.</dd>
         $name: &#039;check_xml_document_sent_status&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;trackId&#039; =&gt; [&#039;example&#039; =&gt; 123], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;]]
+        $summary: &#039;Consulta el estado de un envío de documentos al SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Obtiene el estado actualizado de un envío de documentos al SII, con el detalle por cada tipo de documento. Aplica a los envíos de documentos tributarios electrónicos (sobre `EnvioDTE`), excepto las boletas.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el `trackId` que entregó `billing.integration.sii_dte::send_xml_document` y el RUT de la empresa emisora en `company`. El estado puede no ser el final: en ese caso se debe repetir la consulta más adelante.
+
+## Estados (`status`)
+
+| Valor | Significado |
+|---|---|
+| `RSC` | Rechazado por error en el esquema |
+| `SOK` | Esquema validado |
+| `CRT` | Carátula OK |
+| `RFR` | Rechazado por error en la firma |
+| `FOK` | Firma del envío validada |
+| `PDR` | Envío en proceso |
+| `RCT` | Rechazado por error en la carátula |
+| `EPR` | Envío procesado |
+| `LNC` | Tipo de envío de libro no corresponde |
+| `LSO` | Esquema del envío de libro correcto |
+| `LOK` | Envío de libro aceptado |
+
+Cuando el SII responde con un error, `status` trae el código del error, `error` es `true` y `description` explica el motivo.
+
+Detalle del servicio del SII: [Consulta de Estado de Upload de DTE](https://www.sii.cl/factura_electronica/factura_mercado/estado_envio.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;trackId&#039; =&gt; [&#039;description&#039; =&gt; &#039;Número de seguimiento (Track ID) que asignó el SII al envío.&#039;, &#039;example&#039; =&gt; 1234567890], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa emisora, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Estado del envío. `status` y `description` son los que entrega el SII, `error` indica si es un error y `resume` cuenta los documentos del envío: informados (`reported`), aceptados (`accepted`), rechazados (`rejected`) y con reparos (`repairs`). `documents` trae el mismo detalle por tipo de documento, indexado por el código del tipo. `query_number` y `query_datetime` son el número y la fecha de la atención del SII, cuando los informa.
+MD, &#039;example&#039; =&gt; [&#039;query_number&#039; =&gt; &#039;2024011500123&#039;, &#039;query_datetime&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;track_id&#039; =&gt; 1234567890, &#039;company&#039; =&gt; &#039;76192083-9&#039;, &#039;status&#039; =&gt; &#039;EPR&#039;, &#039;error&#039; =&gt; false, &#039;description&#039; =&gt; &#039;Envío Procesado&#039;, &#039;resume&#039; =&gt; [&#039;reported&#039; =&gt; 1, &#039;accepted&#039; =&gt; 1, &#039;rejected&#039; =&gt; 0, &#039;repairs&#039; =&gt; 0], &#039;documents&#039; =&gt; [&#039;33&#039; =&gt; [&#039;type&#039; =&gt; 33, &#039;reported&#039; =&gt; 1, &#039;accepted&#039; =&gt; 1, &#039;rejected&#039; =&gt; 0, &#039;repairs&#039; =&gt; 0]]]]]
     </dd>
     </dl>
                     </section>
@@ -678,7 +775,7 @@ envío, incluyendo el detalle por cada documento cuando corresponda.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">242</span>
 
     </aside>
 
@@ -740,7 +837,26 @@ electrónico.</p>
         $name: &#039;request_xml_document_sent_status_by_email&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;trackId&#039; =&gt; [&#039;example&#039; =&gt; 123], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;]]
+        $summary: &#039;Solicita al SII el estado de un envío por correo&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Solicita al SII que le envíe por correo electrónico el estado de un envío de documentos. La ventaja respecto de `billing.integration.sii_dte::check_xml_document_sent_status` es que el correo incluye el detalle de los rechazos, que la consulta del estado no entrega.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el `trackId` del envío y el RUT de la empresa emisora en `company`. El correo se envía a la dirección que la empresa tiene configurada en el SII; no se puede indicar otra. Aplica a los envíos de documentos tributarios electrónicos (sobre `EnvioDTE`), excepto las boletas.
+
+Detalle del servicio del SII: [Solicitud de Reenvío de Correo de Validación de DTE](https://www.sii.cl/factura_electronica/factura_mercado/OIFE2005_wsDTECorreo_MDE.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;trackId&#039; =&gt; [&#039;description&#039; =&gt; &#039;Número de seguimiento (Track ID) que asignó el SII al envío.&#039;, &#039;example&#039; =&gt; 1234567890], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa emisora, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Respuesta del SII a la solicitud. `status` y `description` son los que entrega el SII; el ejemplo muestra la respuesta cuando el usuario autenticado no tiene permisos sobre la empresa.
+MD, &#039;example&#039; =&gt; [&#039;company&#039; =&gt; &#039;76192083-9&#039;, &#039;track_id&#039; =&gt; 1234567890, &#039;status&#039; =&gt; &#039;106&#039;, &#039;description&#039; =&gt; &#039;Usuario autenticado no tiene permisos sobre Empresa...&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -771,7 +887,7 @@ registrada.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -850,7 +966,26 @@ registrada.</p>
         $name: &#039;send_xml_document&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;doc&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;]]
+        $summary: &#039;Envía un documento XML al SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Envía al SII un archivo XML con documentos tributarios electrónicos (el sobre `EnvioDTE`) y entrega el número de seguimiento (Track ID) del envío. Sirve para cualquier documento tributario electrónico, excepto las boletas.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el XML en `doc` y el RUT de la empresa emisora en `company`. Con el `track_id` de la respuesta se consulta el estado del envío con `billing.integration.sii_dte::check_xml_document_sent_status`.
+
+La operación falla si alguno de los RUT es inválido, si la solicitud no incluye un certificado, si falla la autenticación en el SII, o si la empresa no está autorizada para enviar documentos al SII.
+
+Detalle del servicio del SII: [Envío Automático de Documentos Tributarios Electrónicos](https://www.sii.cl/factura_electronica/factura_mercado/envio.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;doc&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del sobre de documentos (`EnvioDTE`) que se envía, codificado en base64. Se obtiene con `billing.document.dispatcher::create`.&#039;, &#039;example&#039; =&gt; &#039;&#039;], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa emisora, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;compress&#039; =&gt; [&#039;description&#039; =&gt; &#039;Si es `true`, el XML se envía comprimido. Por defecto `false`.&#039;, &#039;example&#039; =&gt; false], &#039;retries&#039; =&gt; [&#039;description&#039; =&gt; &#039;Cantidad máxima de intentos al enviar. Si no se indica, se usa `request.options.retries`.&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Envío recibido por el SII. `track_id` es el número de seguimiento que asigna el SII al envío.&#039;, &#039;example&#039; =&gt; [&#039;track_id&#039; =&gt; 1234567890]]]
     </dd>
     </dl>
                     </section>
@@ -879,7 +1014,7 @@ registrada.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">305</span>
 
     </aside>
 
@@ -976,7 +1111,45 @@ registrada.</p>
         $name: &#039;validate_document&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1], &#039;date&#039; =&gt; [&#039;example&#039; =&gt; &#039;2025-01-01&#039;], &#039;total&#039; =&gt; [&#039;example&#039; =&gt; 1000], &#039;recipient&#039; =&gt; [&#039;example&#039; =&gt; &#039;23456789-6&#039;]]
+        $summary: &#039;Valida un documento aceptado por el SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Consulta al SII si un documento tributario electrónico fue aceptado y si los datos informados (tipo, folio, fecha, monto y receptor) coinciden con los que el SII tiene registrados. Aplica a cualquier documento tributario electrónico, excepto las boletas.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y los datos del documento. Si se quiere comprobar además la firma del documento, se usa `billing.integration.sii_dte::validate_document_signature`.
+
+## Estados (`status`)
+
+| Valor | Significado |
+|---|---|
+| `DOK` | Documento recibido por el SII. Datos coinciden con los registrados. |
+| `DNK` | Documento recibido por el SII pero datos no coinciden con los registrados. |
+| `FAU` | Folio del documento no recibido por el SII. |
+| `FNA` | Folio no autorizado por el SII. |
+| `FAN` | Folio anulado antes de ser enviado al SII. |
+| `EMP` | Empresa no autorizada a emitir documentos tributarios electrónicos. |
+| `TMD` | Existe nota de débito que modifica el texto del documento. |
+| `TMC` | Existe nota de crédito que modifica el texto del documento. |
+| `MMD` | Existe nota de débito que modifica los montos del documento. |
+| `MMC` | Existe nota de crédito que modifica los montos del documento. |
+| `AND` | Existe nota de débito que anula el documento. |
+| `ANC` | Existe nota de crédito que anula el documento. |
+
+Detalle del servicio del SII: [Consulta de Estado de DTE](https://www.sii.cl/factura_electronica/factura_mercado/estado_dte.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa emisora, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1], &#039;date&#039; =&gt; [&#039;description&#039; =&gt; &#039;Fecha de emisión del documento, en formato `AAAA-MM-DD`.&#039;, &#039;example&#039; =&gt; &#039;2025-01-01&#039;], &#039;total&#039; =&gt; [&#039;description&#039; =&gt; &#039;Monto total del documento.&#039;, &#039;example&#039; =&gt; 1000], &#039;recipient&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del receptor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;23456789-6&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Resultado de la validación. `status` es uno de los estados de arriba, `description` su explicación y `received` indica si el SII recibió el documento. Los datos del documento (`document`, `number`, `date`, `total`, `recipient`) repiten los consultados; `date` viene en formato `DDMMAAAA`.
+MD, &#039;example&#039; =&gt; [&#039;query_number&#039; =&gt; null, &#039;query_datetime&#039; =&gt; null, &#039;company&#039; =&gt; &#039;76192083-9&#039;, &#039;document&#039; =&gt; 33, &#039;number&#039; =&gt; 1, &#039;date&#039; =&gt; &#039;01012025&#039;, &#039;total&#039; =&gt; 1000, &#039;recipient&#039; =&gt; &#039;23456789-6&#039;, &#039;status&#039; =&gt; &#039;DOK&#039;, &#039;received&#039; =&gt; true, &#039;description&#039; =&gt; &#039;Documento recibido por el SII. Datos coinciden con los registrados.&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -1006,7 +1179,7 @@ documento en el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php"><a href="files/src-package-billing-component-integration-worker-siidteworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDteWorker.php">SiiDteWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">209</span>
+    <span class="phpdocumentor-element-found-in__line">418</span>
 
     </aside>
 
@@ -1112,7 +1285,45 @@ documento en el SII.</p>
         $name: &#039;validate_document_signature&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1], &#039;date&#039; =&gt; [&#039;example&#039; =&gt; &#039;2025-01-01&#039;], &#039;total&#039; =&gt; [&#039;example&#039; =&gt; 1000], &#039;recipient&#039; =&gt; [&#039;example&#039; =&gt; &#039;23456789-6&#039;], &#039;signature&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida un documento aceptado por el SII y su firma&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Consulta al SII si un documento tributario electrónico fue aceptado, si los datos informados coinciden con los registrados y, además, si la firma electrónica del documento coincide con la que se envió al SII. Aplica a cualquier documento tributario electrónico, excepto las boletas.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, los datos del documento y la firma del XML en `signature`. Si no se necesita comprobar la firma, se usa `billing.integration.sii_dte::validate_document`.
+
+## Estados (`status`)
+
+| Valor | Significado |
+|---|---|
+| `DOK` | Documento recibido por el SII. Datos coinciden con los registrados. |
+| `DNK` | Documento recibido por el SII pero datos no coinciden con los registrados. |
+| `FAU` | Folio del documento no recibido por el SII. |
+| `FNA` | Folio no autorizado por el SII. |
+| `FAN` | Folio anulado antes de ser enviado al SII. |
+| `EMP` | Empresa no autorizada a emitir documentos tributarios electrónicos. |
+| `TMD` | Existe nota de débito que modifica el texto del documento. |
+| `TMC` | Existe nota de crédito que modifica el texto del documento. |
+| `MMD` | Existe nota de débito que modifica los montos del documento. |
+| `MMC` | Existe nota de crédito que modifica los montos del documento. |
+| `AND` | Existe nota de débito que anula el documento. |
+| `ANC` | Existe nota de crédito que anula el documento. |
+
+Detalle del servicio del SII: [Consulta Avanzada de Estado de DTE](https://www.sii.cl/factura_electronica/factura_mercado/OIFE2006_QueryEstDteAv_MDE.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa emisora, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1], &#039;date&#039; =&gt; [&#039;description&#039; =&gt; &#039;Fecha de emisión del documento, en formato `AAAA-MM-DD`.&#039;, &#039;example&#039; =&gt; &#039;2025-01-01&#039;], &#039;total&#039; =&gt; [&#039;description&#039; =&gt; &#039;Monto total del documento.&#039;, &#039;example&#039; =&gt; 1000], &#039;recipient&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del receptor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;23456789-6&#039;], &#039;signature&#039; =&gt; [&#039;description&#039; =&gt; &#039;Valor de la firma del documento: el contenido de `Signature/SignatureValue` del XML del DTE.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Resultado de la validación. `status` es uno de los estados de arriba, `description` su explicación y `received` indica si el SII recibió el documento. `signature` trae la firma consultada. Los datos del documento repiten los consultados; `date` viene en formato `DDMMAAAA`.
+MD, &#039;example&#039; =&gt; [&#039;query_number&#039; =&gt; null, &#039;query_datetime&#039; =&gt; null, &#039;company&#039; =&gt; &#039;76192083-9&#039;, &#039;document&#039; =&gt; 33, &#039;number&#039; =&gt; 1, &#039;date&#039; =&gt; &#039;01012025&#039;, &#039;total&#039; =&gt; 1000, &#039;signature&#039; =&gt; &#039;QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...&#039;, &#039;recipient&#039; =&gt; &#039;23456789-6&#039;, &#039;status&#039; =&gt; &#039;DOK&#039;, &#039;received&#039; =&gt; true, &#039;description&#039; =&gt; &#039;Documento recibido por el SII. Datos coinciden con los registrados.&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -1142,10 +1353,17 @@ validación del documento y su firma electrónica en el SII.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#toc-constants">Constants</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#toc-properties">Properties</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a></li>
+                                            </ul>
+                </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>

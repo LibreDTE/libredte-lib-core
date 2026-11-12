@@ -302,7 +302,22 @@ XML del CAF.</dd>
         $name: &#039;validate&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;caf&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida un archivo CAF&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida un CAF (Código de Autorización de Folios): verifica la firma del CAF con la clave pública del SII (cuando se dispone de ella para el `idk` del CAF) y comprueba que su llave privada y su llave pública correspondan, cifrando y descifrando un texto de prueba. Si todo es correcto, devuelve el mismo CAF.
+
+## Cómo se usa
+
+Se envía en `caf` el XML del CAF codificado en base64. Si la firma no es válida o las llaves están dañadas, la operación falla con un error que indica el motivo. Un CAF falso, creado con `billing.identifier.caf_faker::create`, pasa la verificación de llaves porque no tiene una clave del SII contra la cual comprobar su firma.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;caf&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del CAF, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El CAF es válido. Se devuelve con los mismos datos que entrega `billing.identifier.caf_loader::load`.&#039;, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;CAF33D1H100&#039;, &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;], &#039;tipo_documento&#039; =&gt; 33, &#039;folio_desde&#039; =&gt; 1, &#039;folio_hasta&#039; =&gt; 100, &#039;cantidad_folios&#039; =&gt; 100, &#039;fecha_autorizacion&#039; =&gt; &#039;2024-01-15&#039;, &#039;fecha_vencimiento&#039; =&gt; &#039;2024-07-14&#039;, &#039;meses_autorizacion&#039; =&gt; 2.5, &#039;vigente&#039; =&gt; true, &#039;vence&#039; =&gt; true, &#039;idk&#039; =&gt; 100, &#039;ambiente&#039; =&gt; [&#039;name&#039; =&gt; &#039;PRODUCTION&#039;, &#039;value&#039; =&gt; 0], &#039;certificacion&#039; =&gt; 0, &#039;public_key&#039; =&gt; &quot;-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...&quot;, &#039;private_key&#039; =&gt; &quot;-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...&quot;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -331,7 +346,7 @@ XML del CAF.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafValidatorWorker.php"><a href="files/src-package-billing-component-identifier-worker-cafvalidatorworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafValidatorWorker.php">CafValidatorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 

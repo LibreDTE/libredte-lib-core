@@ -415,7 +415,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/TradingParties/Worker/MandatarioManagerWorker.php"><a href="files/src-package-billing-component-tradingparties-worker-mandatariomanagerworker.html"><abbr title="src/Package/Billing/Component/TradingParties/Worker/MandatarioManagerWorker.php">MandatarioManagerWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -459,7 +459,24 @@ generará el certificado falso.</p>
         $name: &#039;create_fake_certificate&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;mandatario&#039; =&gt; [&#039;example&#039; =&gt; [&#039;run&#039; =&gt; &#039;12345678-9&#039;, &#039;nombre&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;]]]
+        $summary: &#039;Crea un certificado digital falso para pruebas&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Genera un certificado digital falso a nombre del mandatario indicado, firmado por una autoridad certificadora de prueba. Sirve para probar la firma de documentos sin usar un certificado real; no es válido ante el SII.
+
+## Cómo se usa
+
+Se envían los datos del mandatario. La respuesta es el certificado completo, con su llave privada en `pkey`, y se puede enviar como `certificate` a las operaciones que firman documentos, como `billing.document.builder::build` o `billing.book.builder::build`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;mandatario&#039; =&gt; [&#039;description&#039; =&gt; &#039;Persona a cuyo nombre se genera el certificado: `run` (RUN con dígito verificador, por ejemplo `12345678-9`), `nombre` y `email`.&#039;, &#039;example&#039; =&gt; [&#039;run&#039; =&gt; &#039;12345678-9&#039;, &#039;nombre&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Certificado generado. `id` es el RUN del titular. `from` y `to` son el inicio y el fin de la vigencia, `total_days` su duración en días y `expiration_days` los días que le quedan. `is_active` indica si está vigente. `cert` es el certificado en PEM, `chain` los certificados intermedios y `pkey` la llave privada en PEM.
+MD, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;12345678-9&#039;, &#039;name&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;Derafu Test Certificate Authority&#039;, &#039;modulus&#039; =&gt; &#039;rta/vl0+RO1n1oBpvS0WB6/UvN+F+OQS1y9xmakY...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIIEbjCCA1agAwIBAgIB...&quot;, &#039;chain&#039; =&gt; [&quot;-----BEGIN CERTIFICATE-----\nMIIERjCCAy6gAwIBAgIC...&quot;], &#039;pkey&#039; =&gt; &quot;-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASC...&quot;]]]
     </dd>
     </dl>
                     </section>
@@ -532,7 +549,28 @@ que se extraen los datos del mandatario (RUT y nombre).</p>
         $name: &#039;create_from_certificate&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;certificate&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]
+        $summary: &#039;Obtiene el mandatario de un certificado digital&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega los datos de la persona titular de un certificado digital (su RUN, su nombre y su correo electrónico), tomados del propio certificado.
+
+## Cómo se usa
+
+Se envía el certificado en `certificate`. La respuesta es el mandatario, que se puede usar donde se pida uno, por ejemplo para identificar a quien firma o envía un documento.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;certificate&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Certificado digital. Se acepta una de estas formas:
+
+- `data` (archivo PKCS12 o PFX codificado en base64) y `password`.
+- `certificate` y `privateKey`, ambos en formato PEM.
+- `cert` y `pkey`, ambos en formato PEM, que son los nombres con que se entrega un certificado en las respuestas. Opcionalmente `chain`, con la lista de certificados intermedios.
+MD, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Mandatario con el RUN, el nombre y el correo del titular del certificado.&#039;, &#039;example&#039; =&gt; [&#039;run&#039; =&gt; &#039;12345678-9&#039;, &#039;nombre&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;]]]
     </dd>
     </dl>
                     </section>

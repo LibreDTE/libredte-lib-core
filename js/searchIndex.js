@@ -5996,6 +5996,11 @@ Search.appendIndex(
             "summary": "Aplica\u0020la\u0020normalizaci\u00F3n\u0020inicial\u0020de\u0020los\u0020datos\u0020de\u0020un\u0020documento\u0020tributario\nelectr\u00F3nico.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_execute"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeTipoDte\u0028\u0029",
+            "name": "normalizeTipoDte",
+            "summary": "Normaliza\u0020el\u0020c\u00F3digo\u0020del\u0020tipo\u0020de\u0020documento\u0020a\u0020entero.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeTipoDte"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeDefaultTags\u0028\u0029",
             "name": "normalizeDefaultTags",
             "summary": "Completar\u0020con\u0020campos\u0020por\u0020defecto.",
@@ -11511,6 +11516,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020estado\u0020avanzado\u0020de\u0020un\u0020documento\u0020en\u0020el\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#method_validateDocumentSignature"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDteWorker\u003A\u003AREQUEST_DESCRIPTION",
+            "name": "REQUEST_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDteWorker.html#constant_REQUEST_DESCRIPTION"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDteWorker\u003A\u003A\u0024checkXmlDocumentSentStatusJob",
             "name": "checkXmlDocumentSentStatusJob",
             "summary": "",
@@ -11811,6 +11821,11 @@ Search.appendIndex(
             "summary": "Consulta\u0020la\u0020fecha\u0020en\u0020que\u0020el\u0020SII\u0020recibi\u00F3\u0020un\u0020DTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#method_getDocumentSiiReceptionDate"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRcvWorker\u003A\u003AREQUEST_DESCRIPTION",
+            "name": "REQUEST_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#constant_REQUEST_DESCRIPTION"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRcvWorker\u003A\u003A\u0024submitDocumentAcceptanceJob",
             "name": "submitDocumentAcceptanceJob",
             "summary": "",
@@ -11990,6 +12005,11 @@ Search.appendIndex(
             "name": "getRelatedAssignmentStatus",
             "summary": "Obtiene\u0020el\u0020detalle\u0020de\u0020la\u0020cesi\u00F3n\u0020de\u0020un\u0020documento\u0020para\u0020una\u0020empresa\nvinculada\u0020con\u0020ella,\u0020ya\u0020sea\u0020como\u0020tenedor\u0020o\u0020como\u0020receptor.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#method_getRelatedAssignmentStatus"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003AREQUEST_DESCRIPTION",
+            "name": "REQUEST_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#constant_REQUEST_DESCRIPTION"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtcWorker\u003A\u003A\u0024sendAecJob",
             "name": "sendAecJob",
@@ -13935,6 +13955,21 @@ Search.appendIndex(
             "name": "EXAMPLE_REPOSITORY",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_EXAMPLE_REPOSITORY"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AREPOSITORY_DESCRIPTION",
+            "name": "REPOSITORY_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_REPOSITORY_DESCRIPTION"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003ACRITERIA_DESCRIPTION",
+            "name": "CRITERIA_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_CRITERIA_DESCRIPTION"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003AORDER_BY_DESCRIPTION",
+            "name": "ORDER_BY_DESCRIPTION",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_ORDER_BY_DESCRIPTION"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\System\\Component\\Repository\\Worker\\CatalogWorker\u003A\u003A\u0024repositoryManager",
             "name": "repositoryManager",

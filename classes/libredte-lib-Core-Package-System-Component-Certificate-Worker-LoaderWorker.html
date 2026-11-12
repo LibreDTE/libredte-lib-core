@@ -292,7 +292,30 @@
         $name: &#039;load&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;certificate&#039; =&gt; [&#039;example&#039; =&gt; [&#039;data&#039; =&gt; &#039;&#039;, &#039;password&#039; =&gt; &#039;&#039;]]]
+        $summary: &#039;Carga un certificado digital&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Carga un certificado digital y entrega sus datos: titular, vigencia, emisor, el certificado en PEM y su llave privada. Sirve para comprobar que un certificado se puede leer con la contraseña o las llaves indicadas antes de usarlo en otras operaciones.
+
+## Cómo se usa
+
+Se envía el certificado en `certificate`. La respuesta usa los mismos nombres de campo que se aceptan como entrada (`cert` y `pkey`), por lo que se puede enviar de vuelta a esta u otra operación.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;certificate&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Certificado digital. Se acepta una de estas formas:
+
+- `data` (archivo PKCS12 o PFX codificado en base64) y `password`.
+- `certificate` y `privateKey`, ambos en formato PEM.
+- `cert` y `pkey`, ambos en formato PEM, que son los nombres con que se entrega un certificado en las respuestas. Opcionalmente `chain`, con la lista de certificados intermedios.
+MD, &#039;example&#039; =&gt; [&#039;data&#039; =&gt; &#039;&#039;, &#039;password&#039; =&gt; &#039;&#039;]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Certificado cargado. `id` es el RUN del titular. `from` y `to` son el inicio y el fin de la vigencia, `total_days` su duración en días y `expiration_days` los días que le quedan. `is_active` indica si está vigente. `cert` es el certificado en PEM, `chain` los certificados intermedios y `pkey` la llave privada en PEM.
+MD, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;12345678-9&#039;, &#039;name&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;AC de Ejemplo&#039;, &#039;modulus&#039; =&gt; &#039;rta/vl0+RO1n1oBpvS0WB6/UvN+F+OQS1y9xmakY...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIIEbjCCA1agAwIBAgIB...&quot;, &#039;chain&#039; =&gt; [], &#039;pkey&#039; =&gt; &quot;-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASC...&quot;]]]
     </dd>
     </dl>
                     </section>

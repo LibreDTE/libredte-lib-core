@@ -454,7 +454,38 @@
         $name: &#039;parse&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;inputData&#039; =&gt; &#039;...&#039;, &#039;options&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;default.json&#039;]]]]
+        $summary: &#039;Interpreta los datos de entrada de un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Transforma los datos de entrada de un documento tributario (en JSON, XML, YAML o desde un formulario) en la estructura de datos del documento según el formato del SII, con campos como `Encabezado` y `Detalle`. No construye ni firma el documento; para eso se usa `billing.document.builder::build`.
+
+## Cómo se usa
+
+Se envía `bag` con `inputData`. El formato de los datos se indica con `bag.options.parser.strategy`:
+
+| Valor | Formato de `inputData` |
+|---|---|
+| `default.json` | JSON con la estructura del documento. Es el valor por defecto. |
+| `default.xml` | XML con la estructura del documento. |
+| `default.yaml` | YAML con la estructura del documento. |
+| `form.estandar` | Datos del formulario de emisión estándar de LibreDTE, que se transforman a la estructura oficial del SII. |
+
+La respuesta trae los datos interpretados en `document_parsed`, que se pueden enviar como `parsedData` a `billing.document.builder::build`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos del documento.
+
+| Campo | Descripción |
+|---|---|
+| `inputData` | Obligatorio. Los datos de entrada. Pueden enviarse como un objeto JSON, con la estructura del documento (solo con la estrategia `default.json`), o como un texto codificado en base64 con el contenido original (JSON, XML, YAML o los datos del formulario, según la estrategia). |
+| `options` | Opciones. `options.parser.strategy` es la estrategia de lectura (ver más arriba); por defecto `default.json`. |
+MD, &#039;example&#039; =&gt; [&#039;inputData&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1]], &#039;Detalle&#039; =&gt; [[&#039;NmbItem&#039; =&gt; &#039;Servicio de prueba&#039;, &#039;QtyItem&#039; =&gt; 1, &#039;PrcItem&#039; =&gt; 10000]]], &#039;options&#039; =&gt; [&#039;parser&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;default.json&#039;]]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Los datos interpretados están en `document_parsed`. Los demás campos de la bolsa del documento vienen en `null` porque aún no se construye el documento.&#039;, &#039;example&#039; =&gt; [&#039;document&#039; =&gt; null, &#039;document_parsed&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1]], &#039;Detalle&#039; =&gt; [[&#039;NmbItem&#039; =&gt; &#039;Servicio de prueba&#039;, &#039;QtyItem&#039; =&gt; 1, &#039;PrcItem&#039; =&gt; 10000]]], &#039;document_normalized&#039; =&gt; null, &#039;document_extra&#039; =&gt; null, &#039;document_stamp&#039; =&gt; null, &#039;document_auth&#039; =&gt; null, &#039;document_type&#039; =&gt; null, &#039;document_id&#039; =&gt; null, &#039;document_xml&#039; =&gt; null, &#039;options&#039; =&gt; [&#039;builder&#039; =&gt; [], &#039;normalizer&#039; =&gt; [], &#039;parser&#039; =&gt; [], &#039;renderer&#039; =&gt; [], &#039;sanitizer&#039; =&gt; [], &#039;validator&#039; =&gt; []], &#039;certificate&#039; =&gt; null, &#039;emisor&#039; =&gt; null, &#039;receptor&#039; =&gt; null, &#039;caf&#039; =&gt; null, &#039;timbre&#039; =&gt; null]]]
     </dd>
     </dl>
                     </section>

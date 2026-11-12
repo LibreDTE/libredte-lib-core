@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php"><a href="files/src-package-billing-component-book-worker-loaderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php">LoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -300,7 +300,7 @@ cualquier formato de origen (array, CSV, XML, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php"><a href="files/src-package-billing-component-book-worker-loaderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php">LoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -343,7 +343,7 @@ cualquier formato de origen (array, CSV, XML, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php"><a href="files/src-package-billing-component-book-worker-loaderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php">LoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -388,7 +388,7 @@ cualquier formato de origen (array, CSV, XML, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php"><a href="files/src-package-billing-component-book-worker-loaderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php">LoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -427,7 +427,7 @@ cualquier formato de origen (array, CSV, XML, etc.).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php"><a href="files/src-package-billing-component-book-worker-loaderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/LoaderWorker.php">LoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -471,7 +471,70 @@ su tipo y el emisor.</p>
         $name: &#039;load&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; TipoLibro::VENTAS, &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;]]]]
+        $summary: &#039;Normaliza los datos de un libro tributario&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Prepara los datos de un libro tributario electrónico para poder construirlo: completa la carátula con valores por defecto, normaliza cada fila del detalle y devuelve la misma estructura con los datos ya normalizados. No genera el XML del libro; para eso se usa `billing.book.builder::build`.
+
+## Tipos de libro
+
+El campo `tipo` indica qué libro se prepara:
+
+| Valor | Libro |
+|---|---|
+| `libro_ventas` | Libro de ventas |
+| `libro_compras` | Libro de compras |
+| `libro_boletas` | Libro de boletas |
+| `libro_guias` | Libro de guías de despacho |
+| `resumen_ventas_diarias` | Resumen de ventas diarias |
+
+## Cómo se usa
+
+Se envía `bag` con el tipo de libro, la carátula y las filas del detalle. Lo que no se indique en la carátula se completa con valores por defecto, que se describen en el parámetro `bag`. La respuesta trae el libro normalizado y puede enviarse a `billing.book.builder::build` para generar el XML.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos del libro.
+
+| Campo | Descripción |
+|---|---|
+| `tipo` | Obligatorio. Tipo de libro: `libro_ventas`, `libro_compras`, `libro_boletas`, `libro_guias` o `resumen_ventas_diarias`. |
+| `caratula` | Datos de la carátula del libro. Lo que no se indique se completa con valores por defecto (ver más abajo). |
+| `detalle` | Lista de filas del libro. Cada fila usa los nombres de campo del formato del SII, por ejemplo `TpoDoc` (tipo de documento), `NroDoc`, `FchDoc` (`AAAA-MM-DD`), `RUTDoc`, `RznSoc`, `MntNeto`, `MntIVA` y `MntTotal`. Los montos son números enteros. |
+| `inputData` | Alternativa a `detalle`. Con el formato por defecto (`array`) es la lista de filas. Con otro formato en `options.loader.format` (por ejemplo `csv`, si la instalación lo incluye) es el contenido original codificado en base64. |
+| `options` | Opciones. `options.loader.format` es el formato de `inputData`; por defecto `array`. |
+| `emisor` | Datos del emisor. Su RUT se usa como `RutEmisorLibro`, y su autorización (`autorizacion_dte` con `fecha_resolucion` y `numero_resolucion`) como `FchResol` y `NroResol`, si no se indican en la carátula. |
+| `certificate` | Certificado digital. Su RUT se usa como `RutEnvia`, si no se indica en la carátula. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+
+### Carátula por defecto
+
+Libro de ventas y libro de compras:
+
+| Campo | Valor por defecto |
+|---|---|
+| `RutEmisorLibro` | RUT del `emisor` |
+| `RutEnvia` | RUT del `certificate` |
+| `PeriodoTributario` | Mes actual, formato `AAAA-MM` |
+| `FchResol`, `NroResol` | Autorización del `emisor` |
+| `TipoOperacion` | `VENTA` en el libro de ventas; `COMPRA` en el de compras |
+| `TipoLibro` | `MENSUAL`. Otros valores: `ESPECIAL` (exige `FolioNotificacion`) y `RECTIFICA` (exige `CodAutRec`) |
+| `TipoEnvio` | `TOTAL`. Otros valores: `PARCIAL`, `FINAL` y `AJUSTE` |
+
+Libro de boletas y libro de guías de despacho: `TipoLibro` es siempre `ESPECIAL`, `TipoEnvio` es `TOTAL` por defecto (también `PARCIAL`, `FINAL` y `AJUSTE`) y `FolioNotificacion` es `1` por defecto. En el libro de boletas es un correlativo que se incrementa en `1` por cada nuevo envío del libro al SII.
+
+Resumen de ventas diarias: `RutEmisor`, `RutEnvia`, `FchResol` y `NroResol` se completan como arriba; `FchInicio` y `FchFinal` no tienen valor por defecto, y `Correlativo` y `SecEnvio` parten en `1`.
+
+### Códigos de tipo de documento
+
+Los códigos válidos para `TpoDoc` están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; &#039;libro_ventas&#039;, &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Libro normalizado. `book` es `null` porque el XML aún no se construye. `caratula` trae todos los campos con sus valores por defecto, y cada fila de `detalle` trae todos los campos del formato (los que no tienen valor van como `null`; en el ejemplo se omiten por brevedad).
+MD, &#039;example&#039; =&gt; [&#039;book&#039; =&gt; null, &#039;book_auth&#039; =&gt; null, &#039;book_type&#039; =&gt; [&#039;codigo&#039; =&gt; &#039;libro_ventas&#039;, &#039;nombre&#039; =&gt; &#039;Libro de ventas&#039;, &#039;nombre_corto&#039; =&gt; &#039;Ventas&#039;], &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;, &#039;FchResol&#039; =&gt; null, &#039;NroResol&#039; =&gt; null, &#039;TipoOperacion&#039; =&gt; &#039;VENTA&#039;, &#039;TipoLibro&#039; =&gt; &#039;MENSUAL&#039;, &#039;TipoEnvio&#039; =&gt; &#039;TOTAL&#039;, &#039;FolioNotificacion&#039; =&gt; null], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TpoImp&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;resumen&#039; =&gt; [], &#039;options&#039; =&gt; [&#039;loader&#039; =&gt; [], &#039;builder&#039; =&gt; []]]]]
     </dd>
     </dl>
                     </section>

@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -207,6 +207,19 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Datos de la conexión al SII. | Campo |...                            </span>
+</dt>
+
+    </dl>
 
 
 <h4 id="toc-properties">
@@ -286,6 +299,53 @@
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_REQUEST_DESCRIPTION">
+        REQUEST_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#constant_REQUEST_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">REQUEST_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Datos de la conexión al SII.
+
+| Campo | Descripción |
+|---|---|
+| `certificate` | Obligatorio. Certificado digital con el que se autentica en el SII. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+| `options.environment` | Ambiente del SII: `0` producción (valor por defecto) o `1` certificación (pruebas). |
+| `options.retries` | Cantidad máxima de intentos ante fallas de conexión, de `0` a `10`; por defecto `10`. Con `0` no se hace ningún intento. Con muchos intentos la espera crece de forma exponencial. |
+| `options.verify_ssl` | Verifica el certificado SSL del SII; por defecto `true`. No se recomienda desactivarlo. |
+| `options.token` | Cómo se guarda el token de autenticación: `cache` (`memory` o `filesystem`; por defecto `memory`), `key` y `ttl` (segundos que se conserva; por defecto `2700`). |
+MD</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
     <section class="phpdocumentor-properties">
@@ -311,7 +371,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -348,7 +408,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -385,7 +445,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -422,7 +482,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -464,7 +524,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -529,7 +589,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
     </aside>
 
@@ -599,7 +659,28 @@
         $name: &#039;check_document_assignability&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1]]
+        $summary: &#039;Consulta si un documento se puede ceder&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Consulta en el SII si un documento tributario electrónico puede ser cedido (factoring o cesión de crédito con un AEC).
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y el emisor, el tipo y el folio del documento. Si el documento se puede ceder, se construye el archivo de cesión con `billing.ownership_transfer.aec::build`.
+
+Los textos y códigos de la respuesta son los que entrega el SII.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Resultado de la consulta: `codigo` y `glosa` son los que entrega el SII e indican si el documento se puede ceder. El ejemplo muestra la respuesta cuando el SII no ha recibido el documento.
+MD, &#039;example&#039; =&gt; [&#039;codigo&#039; =&gt; 18, &#039;glosa&#039; =&gt; &#039;Documento no ha sido recibido&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -629,7 +710,7 @@ consulta: código y descripción indicando si el DTE puede ser cedido.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">295</span>
 
     </aside>
 
@@ -699,7 +780,24 @@ consulta: código y descripción indicando si el DTE puede ser cedido.</p>
         $name: &#039;get_document_sii_reception_date&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1]]
+        $summary: &#039;Consulta la fecha en que el SII recibió un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Consulta la fecha y hora en que el SII recibió un documento tributario electrónico.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y el emisor, el tipo y el folio del documento. Si el SII no tiene la fecha de recepción del documento, la operación falla.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Fecha de recepción del documento en el SII, en formato `AAAA-MM-DD HH:MM:SS`.&#039;, &#039;example&#039; =&gt; [&#039;fecha_recepcion_sii&#039; =&gt; &#039;2024-01-15 10:00:00&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -729,7 +827,7 @@ DTE en el SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
     </aside>
 
@@ -799,7 +897,28 @@ DTE en el SII.</p>
         $name: &#039;list_document_events&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1]]
+        $summary: &#039;Lista los eventos de un documento en el SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega el historial de eventos de un documento tributario electrónico en el Registro de Compras y Ventas (RCV) del SII: aceptaciones, reclamos y otras acciones registradas.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y el emisor, el tipo y el folio del documento. Si el documento no tiene eventos, la respuesta es una lista vacía.
+
+Los textos y códigos de la respuesta son los que entrega el SII.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Lista de eventos del documento, en el orden que entrega el SII. Cada evento trae su `codigo` y `glosa`, el `responsable` (RUT con guión y dígito verificador) y la `fecha` en formato `AAAA-MM-DD HH:MM:SS`. Vacía si no hay eventos.
+MD, &#039;example&#039; =&gt; [[&#039;codigo&#039; =&gt; &#039;ACD&#039;, &#039;glosa&#039; =&gt; &#039;Acepta Contenido del Documento&#039;, &#039;responsable&#039; =&gt; &#039;76192083-9&#039;, &#039;fecha&#039; =&gt; &#039;2024-01-15 10:00:00&#039;]]]]
     </dd>
     </dl>
                     </section>
@@ -829,7 +948,7 @@ el RCV.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php"><a href="files/src-package-billing-component-integration-worker-siircvworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRcvWorker.php">SiiRcvWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -908,7 +1027,38 @@ el RCV.</p>
         $name: &#039;submit_document_acceptance&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1], &#039;action&#039; =&gt; [&#039;example&#039; =&gt; &#039;ACD&#039;]]
+        $summary: &#039;Registra una aceptación o reclamo de un documento en el SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Registra en el Registro de Compras y Ventas (RCV) del SII una aceptación o un reclamo de un documento tributario electrónico recibido.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el emisor del documento, su tipo y folio, y la acción a registrar en `action`.
+
+## Acciones (`action`)
+
+| Valor | Acción |
+|---|---|
+| `ERM` | Entrega real de mercaderías o servicios (Ley 19.983) |
+| `ACD` | Acepta el contenido del documento |
+| `RCD` | Reclamo al contenido del documento |
+| `RFP` | Reclamo por falta parcial de mercaderías |
+| `RFT` | Reclamo por falta total de mercaderías |
+
+Los textos y códigos de la respuesta son los que entrega el SII.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento tributario electrónico, por ejemplo `33` (factura electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1], &#039;action&#039; =&gt; [&#039;description&#039; =&gt; &#039;Acción que se registra: `ERM`, `ACD`, `RCD`, `RFP` o `RFT` (ver más arriba).&#039;, &#039;example&#039; =&gt; &#039;ACD&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Resultado del registro de la acción: `codigo` y `glosa` son los que entrega el SII. El ejemplo muestra la respuesta cuando el SII no tiene registros para el documento indicado.
+MD, &#039;example&#039; =&gt; [&#039;codigo&#039; =&gt; 9, &#039;glosa&#039; =&gt; &#039;No existen registros de acuerdo a los parametros...&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -938,10 +1088,17 @@ la acción: código y descripción.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#toc-constants">Constants</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#toc-properties">Properties</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRcvWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a></li>
+                                            </ul>
+                </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>

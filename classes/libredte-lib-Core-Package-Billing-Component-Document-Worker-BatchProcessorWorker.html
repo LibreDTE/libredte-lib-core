@@ -645,7 +645,66 @@ solicitado, y entrega los datos de los documentos que se deben crear.</dd>
         $name: &#039;parse&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;batch&#039; =&gt; [&#039;example&#039; =&gt; [&#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;], &#039;inputData&#039; =&gt; &#039;...&#039;, &#039;options&#039; =&gt; [&#039;batch_processor&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;spreadsheet.csv&#039;, &#039;complete&#039; =&gt; true]]]]]
+        $summary: &#039;Interpreta un lote de documentos desde una planilla&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Interpreta un lote de documentos tributarios entregado como una planilla CSV y devuelve la lista de documentos con la estructura del SII. No construye los documentos; cada uno se construye después con `billing.document.builder::build`.
+
+## Cómo se usa
+
+Se envía `batch` con la planilla en `inputData` (codificada en base64) y el emisor. La respuesta trae un documento por cada documento de la planilla, con sus datos en `document_parsed`.
+
+## Formato de la planilla
+
+El CSV usa `;` como separador y codificación UTF-8 (si el contenido no es UTF-8 válido, se asume Windows-1252). La primera fila es el encabezado y se ignora; las columnas se leen por posición:
+
+- Una fila con `TipoDTE` crea un documento nuevo, con su primer ítem.
+- Una fila sin `TipoDTE` agrega un ítem (si trae `NmbItem`) o una referencia al último documento.
+- El par `TipoDTE` y `Folio` no puede repetirse en el archivo.
+- Las filas pueden venir sin las últimas columnas, que se asumen vacías.
+- En los decimales se puede usar punto o coma; no se usa separador de miles.
+- Los errores indican el número de la fila donde ocurrieron.
+
+| Columna | Nombre | Descripción |
+|---|---|---|
+| A | `TipoDTE` | Obligatorio. Tipo de documento: `33` factura afecta, `34` factura exenta, `39` boleta afecta, `41` boleta exenta, `46` factura de compra, `52` guía de despacho, `56` nota de débito, `61` nota de crédito, `110`, `111` y `112` documentos de exportación. |
+| B | `Folio` | Obligatorio. Entero mayor a 0 que identifica al documento dentro del archivo. |
+| C | `FchEmis` | Fecha de emisión `AAAA-MM-DD`. Si falta o no es válida, se usa la fecha actual. |
+| D | `FchVenc` | Fecha de vencimiento `AAAA-MM-DD`. Si no es válida, se ignora. |
+| E | `RUTRecep` | Obligatorio. RUT del receptor, sin puntos y con guión y dígito verificador. |
+| F | `RznSocRecep` | Razón social del receptor. Obligatoria excepto en boletas. |
+| G | `GiroRecep` | Giro del receptor. Obligatorio excepto en boletas. |
+| H | `Telefono` | Teléfono del receptor. |
+| I | `CorreoRecep` | Correo del receptor. Se valida. |
+| J | `DirRecep` | Dirección del receptor. Obligatoria excepto en boletas. |
+| K | `CmnaRecep` | Comuna del receptor, sin abreviaciones. Obligatoria excepto en boletas. |
+| L | `VlrCodigo` | Código del ítem. |
+| M | `IndExe` | `1` si el ítem es exento, `2` si es no facturable. |
+| N | `NmbItem` | Obligatorio. Nombre del ítem. |
+| O | `DscItem` | Descripción del ítem. |
+| P | `QtyItem` | Cantidad. Obligatoria salvo que el precio sea 0. |
+| Q | `UnmdItem` | Unidad del ítem. |
+| R | `PrcItem` | Obligatorio. Precio del ítem: monto bruto (con IVA) en boletas y neto en los demás documentos. |
+| S | `Descuento` | Descuento del ítem, en porcentaje (`50%`) o en monto (`1000`). |
+| T | `TermPagoGlosa` | Observación del documento. |
+| U | `PeriodoDesde` | Inicio del período `AAAA-MM-DD`. |
+| V | `PeriodoHasta` | Fin del período `AAAA-MM-DD`. |
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;batch&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Lote de documentos.
+
+| Campo | Descripción |
+|---|---|
+| `inputData` | Obligatorio. La planilla CSV, codificada en base64. |
+| `emisor` | Emisor de los documentos. Con `complete` activo, sus datos (RUT, razón social, giro, dirección, etc.) completan los del emisor de cada documento. |
+| `options` | Opciones. `options.batch_processor.strategy` es el formato de la planilla; por ahora `spreadsheet.csv`, que es el valor por defecto. `options.batch_processor.complete` indica si se completan los datos de cada documento con los del emisor; por defecto `true`. |
+MD, &#039;example&#039; =&gt; [&#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;], &#039;inputData&#039; =&gt; &#039;VGlwb0RURTtGb2xpbztGY2hFbWlzO0ZjaFZlbmM7UlVUUmVjZXA7UnpuU29jUmVjZXA7R2lyb1JlY2VwO1RlbGVmb25vO0NvcnJlb1JlY2VwO0RpclJlY2VwO0NtbmFSZWNlcDtWbHJDb2RpZ287SW5kRXhlO05tYkl0ZW07RHNjSXRlbTtRdHlJdGVtO1VubWRJdGVtO1ByY0l0ZW0KMzM7MTs7OzY2NjY2NjY2LTY7Q2xpZW50ZSBkZSBQcnVlYmE7U2VydmljaW9zOzs7U2FudGlhZ287U2FudGlhZ287OztTZXJ2aWNpbyBkZSBwcnVlYmE7OzE7OzEwMDAwCg==&#039;, &#039;options&#039; =&gt; [&#039;batch_processor&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;spreadsheet.csv&#039;, &#039;complete&#039; =&gt; true]]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista `document_bags` con un elemento por cada documento de la planilla. En cada uno, `document_parsed` trae los datos del documento con la estructura del SII (los datos que no vienen en la planilla se completan según `complete`) y `emisor` el emisor. Los demás campos vienen en `null` porque los documentos aún no se construyen.&#039;, &#039;example&#039; =&gt; [&#039;document_bags&#039; =&gt; [[&#039;document&#039; =&gt; null, &#039;document_parsed&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;], &#039;Emisor&#039; =&gt; [&#039;RUTEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RznSoc&#039; =&gt; &#039;SASCO SpA&#039;], &#039;Receptor&#039; =&gt; [&#039;RUTRecep&#039; =&gt; &#039;66666666-6&#039;, &#039;RznSocRecep&#039; =&gt; &#039;Cliente de Prueba&#039;, &#039;GiroRecep&#039; =&gt; &#039;Servicios&#039;, &#039;DirRecep&#039; =&gt; &#039;Santiago&#039;, &#039;CmnaRecep&#039; =&gt; &#039;Santiago&#039;]], &#039;Detalle&#039; =&gt; [[&#039;NmbItem&#039; =&gt; &#039;Servicio de prueba&#039;, &#039;QtyItem&#039; =&gt; 1, &#039;PrcItem&#039; =&gt; 10000]]], &#039;document_normalized&#039; =&gt; null, &#039;document_extra&#039; =&gt; null, &#039;document_stamp&#039; =&gt; null, &#039;document_auth&#039; =&gt; null, &#039;document_type&#039; =&gt; null, &#039;document_id&#039; =&gt; null, &#039;document_xml&#039; =&gt; null, &#039;options&#039; =&gt; [&#039;builder&#039; =&gt; [], &#039;normalizer&#039; =&gt; [], &#039;parser&#039; =&gt; [], &#039;renderer&#039; =&gt; [], &#039;sanitizer&#039; =&gt; [], &#039;validator&#039; =&gt; []], &#039;certificate&#039; =&gt; null, &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;giro&#039; =&gt; null, &#039;actividades_economicas&#039; =&gt; [], &#039;telefonos&#039; =&gt; [], &#039;email&#039; =&gt; null, &#039;direccion&#039; =&gt; null, &#039;comuna&#039; =&gt; null, &#039;ciudad&#039; =&gt; null, &#039;sucursal&#039; =&gt; null, &#039;codigo_sucursal&#039; =&gt; null, &#039;vendedor&#039; =&gt; null, &#039;autorizacion_dte&#039; =&gt; null, &#039;logo&#039; =&gt; null], &#039;receptor&#039; =&gt; null, &#039;caf&#039; =&gt; null, &#039;timbre&#039; =&gt; null]]]]]
     </dd>
     </dl>
                     </section>
@@ -675,7 +734,7 @@ documento parseado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">303</span>
 
     </aside>
 
@@ -726,7 +785,7 @@ documento parseado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">277</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 
@@ -782,7 +841,7 @@ documento parseado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php"><a href="files/src-package-billing-component-document-worker-batchprocessorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/BatchProcessorWorker.php">BatchProcessorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">248</span>
+    <span class="phpdocumentor-element-found-in__line">375</span>
 
     </aside>
 

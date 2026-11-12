@@ -675,7 +675,36 @@ partir del cual se arma el sobre.</p>
         $name: &#039;create&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;autorizacion_dte&#039; =&gt; [&#039;fecha_resolucion&#039; =&gt; &#039;2014-08-22&#039;, &#039;numero_resolucion&#039; =&gt; 80]]]]]
+        $summary: &#039;Crea el sobre de envío de un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Crea el sobre de envío (`EnvioDTE` o `EnvioBOLETA`) que contiene un documento tributario electrónico ya construido, con su carátula, y lo firma con el certificado digital. El sobre es el archivo que se envía al SII.
+
+## Cómo se usa
+
+Se envía `bag` con el XML del documento (que se obtiene de `billing.document.builder::build` en `document_xml`), el certificado con el que se firma el sobre y el emisor con su autorización del SII (`autorizacion_dte`). Para enviar varios documentos en un mismo sobre se usa `billing.document.dispatcher::create_many`.
+
+La carátula del sobre se arma solo si hay emisor con su autorización del SII, mandatario (que se obtiene del certificado) y receptor; si falta alguno, el XML queda sin carátula y el error aparece al validar el esquema con `billing.document.dispatcher::validate_schema`.
+
+En la respuesta, `xml` es el XML del sobre codificado en base64 y `documents` trae los documentos que contiene.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos del documento y de su envío.
+
+| Campo | Descripción |
+|---|---|
+| `xmlDocument` | Obligatorio. XML del documento ya construido, codificado en base64. |
+| `certificate` | Certificado digital con el que se firma el sobre. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. Debe estar vigente al momento de firmar. |
+| `emisor` | Emisor del documento. `autorizacion_dte` (`fecha_resolucion` y `numero_resolucion`) es la autorización del SII y va en la carátula. |
+MD, &#039;example&#039; =&gt; [&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;autorizacion_dte&#039; =&gt; [&#039;fecha_resolucion&#039; =&gt; &#039;2014-08-22&#039;, &#039;numero_resolucion&#039; =&gt; 80]]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Sobre creado. `tag` es el tipo de sobre (`EnvioDTE`), `xml` el XML del sobre en base64 y `caratula` su carátula: `RutEmisor`, `RutEnvia` (RUT del certificado), `RutReceptor`, `FchResol` y `NroResol` (autorización del emisor), `TmstFirmaEnv` (fecha y hora de la firma) y `SubTotDTE` (cantidad de documentos por tipo). `documents` trae los documentos del sobre con la misma estructura que entrega `billing.document.builder::build`.
+MD, &#039;example&#039; =&gt; [&#039;tag&#039; =&gt; &#039;EnvioDTE&#039;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;, &#039;documents&#039; =&gt; [[&#039;document&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;]]], &#039;document_id&#039; =&gt; &#039;76192083-9_T033F000000001&#039;, &#039;document_xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;]], &#039;caratula&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;version&#039; =&gt; &#039;1.0&#039;], &#039;RutEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;12345678-9&#039;, &#039;RutReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;FchResol&#039; =&gt; &#039;2014-08-22&#039;, &#039;NroResol&#039; =&gt; 80, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;SubTotDTE&#039; =&gt; [[&#039;TpoDTE&#039; =&gt; 33, &#039;NroDTE&#039; =&gt; 1]]]]]]
     </dd>
     </dl>
                     </section>
@@ -705,7 +734,7 @@ bolsa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">116</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -749,7 +778,22 @@ documentos a partir de los cuales se arma el sobre.</p>
         $name: &#039;create_many&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bags&#039; =&gt; [&#039;example&#039; =&gt; [[&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;autorizacion_dte&#039; =&gt; [&#039;fecha_resolucion&#039; =&gt; &#039;2014-08-22&#039;, &#039;numero_resolucion&#039; =&gt; 80]]]]]]
+        $summary: &#039;Crea el sobre de envío de varios documentos&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Crea un solo sobre de envío (`EnvioDTE` o `EnvioBOLETA`) que contiene varios documentos tributarios electrónicos ya construidos, y lo firma con el certificado digital. Funciona como `billing.document.dispatcher::create`, pero con una lista de documentos.
+
+## Cómo se usa
+
+Se envía `bags`, una lista con los datos de cada documento (en la forma que se describe en `billing.document.dispatcher::create`). Todos los documentos deben ser del mismo emisor: el certificado y la carátula del sobre se toman del primer elemento. Si la lista viene vacía, la operación falla, y también si el sobre supera la cantidad de tipos de documento permitida o el certificado no está vigente.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bags&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista de documentos. Cada elemento tiene `xmlDocument` (XML del documento en base64), `certificate` y `emisor`, igual que `bag` en `billing.document.dispatcher::create`. El certificado y el emisor del primer elemento se usan para todo el sobre.&#039;, &#039;example&#039; =&gt; [[&#039;xmlDocument&#039; =&gt; &#039;&#039;, &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;, &#039;autorizacion_dte&#039; =&gt; [&#039;fecha_resolucion&#039; =&gt; &#039;2014-08-22&#039;, &#039;numero_resolucion&#039; =&gt; 80]]]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Sobre creado, con la misma estructura que entrega `billing.document.dispatcher::create`: `tag`, `xml` (en base64), `documents` (todos los documentos del sobre) y `caratula`, donde `SubTotDTE` indica la cantidad de documentos de cada tipo.&#039;, &#039;example&#039; =&gt; [&#039;tag&#039; =&gt; &#039;EnvioDTE&#039;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;, &#039;documents&#039; =&gt; [[&#039;document&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;]]], &#039;document_id&#039; =&gt; &#039;76192083-9_T033F000000001&#039;, &#039;document_xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;], [&#039;document&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 2, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;]]], &#039;document_id&#039; =&gt; &#039;76192083-9_T033F000000002&#039;, &#039;document_xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;]], &#039;caratula&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;version&#039; =&gt; &#039;1.0&#039;], &#039;RutEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;12345678-9&#039;, &#039;RutReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;FchResol&#039; =&gt; &#039;2014-08-22&#039;, &#039;NroResol&#039; =&gt; 80, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;SubTotDTE&#039; =&gt; [[&#039;TpoDTE&#039; =&gt; 33, &#039;NroDTE&#039; =&gt; 2]]]]]]
     </dd>
     </dl>
                     </section>
@@ -779,7 +823,7 @@ bolsas.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">318</span>
 
     </aside>
 
@@ -822,7 +866,22 @@ bolsas.</p>
         $name: &#039;load_xml&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;xml&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Carga un sobre de documentos desde su XML&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Reconstruye un sobre de documentos tributarios electrónicos (`EnvioDTE` o `EnvioBOLETA`) a partir de su XML y entrega sus datos y los de cada documento que contiene. No valida el esquema ni la firma; para eso se usan `billing.document.dispatcher::validate_schema` y `billing.document.dispatcher::validate_signature`.
+
+## Cómo se usa
+
+Se envía en `xml` el XML del sobre completo, codificado en base64, por ejemplo el que recibe un receptor. Si el XML está vacío o mal formado, la operación falla. También falla si el XML no es un sobre (`EnvioDTE` o `EnvioBOLETA`), por ejemplo un DTE suelto, y si el sobre contiene un documento sin un tipo de documento tributario válido.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;xml&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del sobre de documentos, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Sobre cargado. `tag` es el tipo de sobre, `xml` su XML en base64 y `documents` los documentos que contiene, con la misma estructura que entrega `billing.document.builder::build`. `caratula` es la carátula del sobre, leída de su XML: `RutEmisor`, `RutEnvia`, `RutReceptor`, `FchResol`, `NroResol`, `TmstFirmaEnv` y `SubTotDTE` (cantidad de documentos por tipo).&#039;, &#039;example&#039; =&gt; [&#039;tag&#039; =&gt; &#039;EnvioDTE&#039;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;, &#039;documents&#039; =&gt; [[&#039;document&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;]]], &#039;document_id&#039; =&gt; &#039;76192083-9_T033F000000001&#039;, &#039;document_xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;]], &#039;caratula&#039; =&gt; [&#039;@attributes&#039; =&gt; [&#039;version&#039; =&gt; &#039;1.0&#039;], &#039;RutEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;12345678-9&#039;, &#039;RutReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;FchResol&#039; =&gt; &#039;2014-08-22&#039;, &#039;NroResol&#039; =&gt; 80, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;SubTotDTE&#039; =&gt; [[&#039;TpoDTE&#039; =&gt; 33, &#039;NroDTE&#039; =&gt; 1]]]]]]
     </dd>
     </dl>
                     </section>
@@ -852,7 +911,7 @@ XML.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">301</span>
 
     </aside>
 
@@ -909,7 +968,7 @@ aparte que quien consume el sobre debe ejecutar siempre con
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">221</span>
+    <span class="phpdocumentor-element-found-in__line">410</span>
 
     </aside>
 
@@ -959,7 +1018,22 @@ de cada documento.</p>
         $name: &#039;validate&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida los datos de un sobre de documentos&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida los datos del sobre de documentos (`EnvioDTE` o `EnvioBOLETA`): que los RUT de la carátula tengan dígito verificador válido, que la fecha de la resolución no sea posterior a la fecha de la firma del sobre, y que la cantidad de documentos de cada tipo declarada en la carátula coincida con la de los documentos del sobre. No valida los datos de cada documento, ni el esquema XSD ni la firma; para eso se usan `billing.document.validator::validate`, `billing.document.dispatcher::validate_schema` y `billing.document.dispatcher::validate_signature`.
+
+## Cómo se usa
+
+Se envía en `source` el XML del sobre codificado en base64. Si el sobre es válido, la respuesta es el mismo documento; si no lo es, la operación falla con un error que indica la regla incumplida.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del sobre de documentos, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El sobre es válido. Se devuelve su XML como árbol: la carátula y los documentos dentro de `SetDTE`, y la firma en `Signature`.&#039;, &#039;example&#039; =&gt; [&#039;EnvioDTE&#039; =&gt; [&#039;SetDTE&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;12345678-9&#039;, &#039;RutReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;FchResol&#039; =&gt; &#039;2014-08-22&#039;, &#039;NroResol&#039; =&gt; &#039;80&#039;, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;SubTotDTE&#039; =&gt; [&#039;TpoDTE&#039; =&gt; &#039;33&#039;, &#039;NroDTE&#039; =&gt; &#039;1&#039;]], &#039;DTE&#039; =&gt; [&#039;Documento&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;]]]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;XOs4lQZku6vLebe6...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -988,7 +1062,7 @@ de cada documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">476</span>
 
     </aside>
 
@@ -1032,7 +1106,22 @@ de cada documento.</p>
         $name: &#039;validate_schema&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida el XML de un sobre contra su esquema&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida el XML de un sobre de documentos (`EnvioDTE` o `EnvioBOLETA`) contra su esquema XSD del SII. El esquema se toma del atributo `xsi:schemaLocation` que declara el propio XML.
+
+## Cómo se usa
+
+Se envía en `source` el XML del sobre codificado en base64. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del sobre de documentos, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El XML cumple el esquema. Se devuelve el documento como árbol: la carátula y los documentos dentro de `SetDTE`, y la firma en `Signature`.&#039;, &#039;example&#039; =&gt; [&#039;EnvioDTE&#039; =&gt; [&#039;SetDTE&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RutEnvia&#039; =&gt; &#039;12345678-9&#039;, &#039;RutReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;FchResol&#039; =&gt; &#039;2014-08-22&#039;, &#039;NroResol&#039; =&gt; &#039;80&#039;, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;, &#039;SubTotDTE&#039; =&gt; [&#039;TpoDTE&#039; =&gt; &#039;33&#039;, &#039;NroDTE&#039; =&gt; &#039;1&#039;]], &#039;DTE&#039; =&gt; [&#039;Documento&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;]]]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;XOs4lQZku6vLebe6...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -1062,7 +1151,7 @@ esquema XSD.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">268</span>
+    <span class="phpdocumentor-element-found-in__line">551</span>
 
     </aside>
 
@@ -1106,7 +1195,24 @@ esquema XSD.</p>
         $name: &#039;validate_signature&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida las firmas electrónicas de un sobre&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida las firmas electrónicas (XML DSIG) de un sobre de documentos: la del propio sobre y la de cada documento que contiene. Entrega el resultado de cada firma y los datos del certificado de quien firmó.
+
+## Cómo se usa
+
+Se envía en `source` el XML del sobre firmado, codificado en base64.
+
+La operación responde con éxito tanto si las firmas son válidas como si no lo son: el resultado de cada una está en su campo `valid`. Si es `false`, `error` explica el motivo (por ejemplo, que el contenido se modificó después de firmarlo).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del sobre de documentos firmado, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con el resultado de cada firma encontrada en el XML. En cada elemento, `valid` indica si la firma es válida, `error` trae el motivo cuando no lo es (`null` si es válida), `signature` los datos de la firma y `signature.signer` los del certificado del firmante.&#039;, &#039;example&#039; =&gt; [[&#039;valid&#039; =&gt; true, &#039;error&#039; =&gt; null, &#039;signature&#039; =&gt; [&#039;reference&#039; =&gt; &#039;LibreDTE_76192083-9_T033F000000000001&#039;, &#039;canonicalization_method&#039; =&gt; &#039;http://www.w3.org/TR/2001/REC-xml-c14n-20010315&#039;, &#039;signature_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#rsa-sha1&#039;, &#039;digest_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#sha1&#039;, &#039;digest_value&#039; =&gt; &#039;NfiddEW6DjPTPBefnLCHkULI1fg=&#039;, &#039;signature_value&#039; =&gt; &#039;QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;certificate&#039; =&gt; &#039;MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...&#039;, &#039;certificate_chain&#039; =&gt; [], &#039;signer&#039; =&gt; [&#039;id&#039; =&gt; &#039;12345678-9&#039;, &#039;name&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;AC de Ejemplo&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...&quot;, &#039;chain&#039; =&gt; []]]]]]]
     </dd>
     </dl>
                     </section>
@@ -1136,7 +1242,7 @@ validar cada firma electrónica encontrada en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">389</span>
+    <span class="phpdocumentor-element-found-in__line">723</span>
 
     </aside>
 
@@ -1180,7 +1286,7 @@ validar cada firma electrónica encontrada en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">310</span>
+    <span class="phpdocumentor-element-found-in__line">644</span>
 
     </aside>
 
@@ -1226,7 +1332,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">329</span>
+    <span class="phpdocumentor-element-found-in__line">663</span>
 
     </aside>
 
@@ -1270,7 +1376,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">365</span>
+    <span class="phpdocumentor-element-found-in__line">699</span>
 
     </aside>
 
@@ -1314,7 +1420,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">377</span>
+    <span class="phpdocumentor-element-found-in__line">711</span>
 
     </aside>
 
@@ -1358,7 +1464,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">518</span>
+    <span class="phpdocumentor-element-found-in__line">852</span>
 
     </aside>
 
@@ -1402,7 +1508,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">456</span>
+    <span class="phpdocumentor-element-found-in__line">790</span>
 
     </aside>
 
@@ -1446,7 +1552,7 @@ tributarios si no está definida y existe un documento XML en el sobre.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">540</span>
+    <span class="phpdocumentor-element-found-in__line">874</span>
 
     </aside>
 
@@ -1502,7 +1608,7 @@ de documentos por tipo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">288</span>
+    <span class="phpdocumentor-element-found-in__line">622</span>
 
     </aside>
 
@@ -1551,7 +1657,7 @@ de documentos por tipo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php"><a href="files/src-package-billing-component-document-worker-dispatcherworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/DispatcherWorker.php">DispatcherWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">571</span>
+    <span class="phpdocumentor-element-found-in__line">905</span>
 
     </aside>
 

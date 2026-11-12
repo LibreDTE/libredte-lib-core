@@ -481,7 +481,28 @@ el mismo valor de $folioDesde.</p>
         $name: &#039;create&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;emisor&#039; =&gt; [&#039;example&#039; =&gt; [&#039;rut&#039; =&gt; &#039;12345678-9&#039;, &#039;razon_social&#039; =&gt; &#039;Empresa de Prueba SpA&#039;]], &#039;codigoDocumento&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;folioDesde&#039; =&gt; [&#039;example&#039; =&gt; 1], &#039;folioHasta&#039; =&gt; [&#039;example&#039; =&gt; 100]]
+        $summary: &#039;Crea un CAF falso para pruebas&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Genera un CAF (Código de Autorización de Folios) falso, con llaves propias y sin la autorización del SII. Sirve para probar la emisión de documentos sin solicitar folios reales; el SII no lo reconoce, por lo que no sirve para emitir documentos válidos.
+
+## Cómo se usa
+
+Se indica el emisor, el tipo de documento y el rango de folios. La respuesta es el CAF completo, que se puede enviar como `caf` a `billing.document.builder::build`. Si no se indica `folioHasta`, el CAF tiene un solo folio (el inicial); si el folio inicial es mayor que el final, la operación falla.
+
+En un CAF falso, `ambiente` y `certificacion` son `null`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;emisor&#039; =&gt; [&#039;description&#039; =&gt; &#039;Emisor al que pertenece el CAF. Se usan su `rut` y su `razon_social`.&#039;, &#039;example&#039; =&gt; [&#039;rut&#039; =&gt; &#039;12345678-9&#039;, &#039;razon_social&#039; =&gt; &#039;Empresa de Prueba SpA&#039;]], &#039;codigoDocumento&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Código del tipo de documento que autoriza el CAF, por ejemplo `33` (factura electrónica) o `39` (boleta electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+MD, &#039;example&#039; =&gt; 33], &#039;folioDesde&#039; =&gt; [&#039;description&#039; =&gt; &#039;Primer folio del rango. Por defecto `1`.&#039;, &#039;example&#039; =&gt; 1], &#039;folioHasta&#039; =&gt; [&#039;description&#039; =&gt; &#039;Último folio del rango. Si no se indica, el CAF tiene un solo folio (`folioDesde`).&#039;, &#039;example&#039; =&gt; 100]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+CAF creado. Incluye el rango de folios (`folio_desde`, `folio_hasta`, `cantidad_folios`), las fechas de autorización y vencimiento, su vigencia, sus llaves (`public_key` y `private_key`) y el XML completo en base64 (`xml`).
+MD, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;CAF33D1H100&#039;, &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;12345678-9&#039;, &#039;razon_social&#039; =&gt; &#039;Empresa de Prueba SpA&#039;], &#039;tipo_documento&#039; =&gt; 33, &#039;folio_desde&#039; =&gt; 1, &#039;folio_hasta&#039; =&gt; 100, &#039;cantidad_folios&#039; =&gt; 100, &#039;fecha_autorizacion&#039; =&gt; &#039;2024-01-15&#039;, &#039;fecha_vencimiento&#039; =&gt; &#039;2024-07-14&#039;, &#039;meses_autorizacion&#039; =&gt; 0, &#039;vigente&#039; =&gt; true, &#039;vence&#039; =&gt; true, &#039;idk&#039; =&gt; 666, &#039;ambiente&#039; =&gt; null, &#039;certificacion&#039; =&gt; null, &#039;public_key&#039; =&gt; &quot;-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...&quot;, &#039;private_key&#039; =&gt; &quot;-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...&quot;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...&#039;]]]
     </dd>
     </dl>
                     </section>

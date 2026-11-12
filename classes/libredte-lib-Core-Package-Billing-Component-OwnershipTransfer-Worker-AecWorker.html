@@ -527,7 +527,39 @@ certificado.</p>
         $name: &#039;build&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;source&#039; =&gt; &#039;&#039;, &#039;cedente&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76192083-9&#039;, &#039;RazonSocial&#039; =&gt; &#039;SASCO SpA&#039;, &#039;Direccion&#039; =&gt; &#039;Santa Cruz, Chile&#039;, &#039;eMail&#039; =&gt; &#039;cedente@example.com&#039;, &#039;RUTAutorizado&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76192083-9&#039;, &#039;Nombre&#039; =&gt; &#039;Administrador&#039;]], &#039;cesionario&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76354771-K&#039;, &#039;RazonSocial&#039; =&gt; &#039;Factoring S.A.&#039;, &#039;Direccion&#039; =&gt; &#039;Providencia, Santiago&#039;, &#039;eMail&#039; =&gt; &#039;factoring@example.com&#039;], &#039;cesion&#039; =&gt; [&#039;MontoCesion&#039; =&gt; 119000, &#039;UltimoVencimiento&#039; =&gt; &#039;2024-02-14&#039;], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+        $summary: &#039;Construye el archivo de cesión de un crédito (AEC)&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Construye y firma el AEC (Archivo Electrónico de Cesión): el documento con el que se cede a un tercero (el cesionario, por ejemplo una empresa de factoring) el crédito de una factura. Contiene el documento cedido (`DTECedido`), la cesión (`Cesion`) y el conjunto, y cada parte se firma.
+
+## Cómo se usa
+
+Se envía `bag` con el documento que se cede, el cedente, el cesionario, los datos de la cesión y el certificado digital con el que se firma. La respuesta trae el AEC y su XML en base64.
+
+Hay dos casos, que se distinguen por lo que se envía en `source`:
+
+- **Primera cesión**: `source` es el XML de la factura cedida (el DTE).
+- **Re-cesión**: `source` es el XML de un AEC ya construido. Se agrega una nueva cesión a las que ya tenía, con el número de secuencia siguiente, y se vuelve a firmar el conjunto.
+
+Los datos no se validan contra el esquema al construir; para comprobarlo se usa `billing.ownership_transfer.aec::validate_schema`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos de la cesión.
+
+| Campo | Descripción |
+|---|---|
+| `source` | Obligatorio. XML codificado en base64: el del documento que se cede (primera cesión) o el de un AEC (re-cesión). |
+| `cedente` | Obligatorio. Quien cede el crédito: `RUT`, `RazonSocial`, `Direccion`, `eMail` y `RUTAutorizado` (`RUT` y `Nombre` de la persona autorizada para ceder). |
+| `cesionario` | Obligatorio. Quien recibe el crédito: `RUT`, `RazonSocial`, `Direccion` y `eMail`. |
+| `cesion` | Obligatorio. Datos de la cesión: `MontoCesion` (por defecto, el monto total del documento) y `UltimoVencimiento` (`AAAA-MM-DD`). |
+| `certificate` | Certificado digital con el que se firma. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+MD, &#039;example&#039; =&gt; [&#039;source&#039; =&gt; &#039;&#039;, &#039;cedente&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76192083-9&#039;, &#039;RazonSocial&#039; =&gt; &#039;SASCO SpA&#039;, &#039;Direccion&#039; =&gt; &#039;Santa Cruz, Chile&#039;, &#039;eMail&#039; =&gt; &#039;cedente@example.com&#039;, &#039;RUTAutorizado&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76192083-9&#039;, &#039;Nombre&#039; =&gt; &#039;Administrador&#039;]], &#039;cesionario&#039; =&gt; [&#039;RUT&#039; =&gt; &#039;76354771-K&#039;, &#039;RazonSocial&#039; =&gt; &#039;Factoring S.A.&#039;, &#039;Direccion&#039; =&gt; &#039;Providencia, Santiago&#039;, &#039;eMail&#039; =&gt; &#039;factoring@example.com&#039;], &#039;cesion&#039; =&gt; [&#039;MontoCesion&#039; =&gt; 119000, &#039;UltimoVencimiento&#039; =&gt; &#039;2024-02-14&#039;], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;AEC construido y firmado. `AEC` es su contenido como árbol: `DocumentoAEC` con la carátula (`RutCedente`, `RutCesionario` y `TmstFirmaEnvio`, la fecha y hora de la firma), el documento cedido (`DTECedido`) y la cesión (`Cesion`), y la firma del conjunto en `Signature`. `xml` es el XML completo en base64.&#039;, &#039;example&#039; =&gt; [&#039;AEC&#039; =&gt; [&#039;DocumentoAEC&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutCedente&#039; =&gt; &#039;76192083-9&#039;, &#039;RutCesionario&#039; =&gt; &#039;76354771-K&#039;, &#039;TmstFirmaEnvio&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Cesiones&#039; =&gt; [&#039;DTECedido&#039; =&gt; [&#039;DocumentoDTECedido&#039; =&gt; [&#039;DTE&#039; =&gt; [&#039;Documento&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;]]]], &#039;TmstFirma&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;qA5Gk+dDePm7TdqjUqNP...&#039;]], &#039;Cesion&#039; =&gt; [&#039;DocumentoCesion&#039; =&gt; [&#039;SeqCesion&#039; =&gt; &#039;1&#039;, &#039;IdDTE&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;RUTEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RUTReceptor&#039; =&gt; &#039;66666666-6&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;MntTotal&#039; =&gt; &#039;119000&#039;], &#039;MontoCesion&#039; =&gt; &#039;119000&#039;, &#039;UltimoVencimiento&#039; =&gt; &#039;2024-02-14&#039;, &#039;TmstCesion&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;hZLU7mMg3MPc9683q5HS...&#039;]]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;GffJnGDDPNUxfXKFOgpFgDTQhxfJinl1...&#039;]], &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -556,7 +588,7 @@ certificado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aecworker.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php">AecWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">195</span>
 
     </aside>
 
@@ -601,7 +633,22 @@ string).</p>
         $name: &#039;validate_schema&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida el XML de un AEC contra su esquema&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida el XML de un AEC (Archivo Electrónico de Cesión) contra su esquema XSD del SII.
+
+## Cómo se usa
+
+Se envía en `source` el XML del AEC codificado en base64, por ejemplo el que entrega `billing.ownership_transfer.aec::build` en `xml`. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema. También falla si no se puede determinar el esquema del documento.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del AEC, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El XML cumple el esquema. Se devuelve el AEC como árbol.&#039;, &#039;example&#039; =&gt; [&#039;AEC&#039; =&gt; [&#039;DocumentoAEC&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutCedente&#039; =&gt; &#039;76192083-9&#039;, &#039;RutCesionario&#039; =&gt; &#039;76354771-K&#039;, &#039;TmstFirmaEnvio&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Cesiones&#039; =&gt; [&#039;DTECedido&#039; =&gt; [&#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;qA5Gk+dDePm7TdqjUqNP...&#039;]], &#039;Cesion&#039; =&gt; [&#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;hZLU7mMg3MPc9683q5HS...&#039;]]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;GffJnGDDPNUxfXKFOgpFgDTQhxfJinl1...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -630,7 +677,7 @@ string).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aecworker.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php">AecWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
     </aside>
 
@@ -675,7 +722,24 @@ string).</p>
         $name: &#039;validate_signature&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida las firmas de un AEC&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida las firmas electrónicas (XML DSIG) de un AEC (Archivo Electrónico de Cesión): la del documento cedido (`DTECedido`), la de la cesión (`Cesion`) y la del conjunto (`AEC`). Se entrega el resultado de cada una.
+
+## Cómo se usa
+
+Se envía en `source` el XML del AEC firmado, codificado en base64. Si el XML está mal formado o no contiene firmas, la operación falla.
+
+La operación responde con éxito tanto si las firmas son válidas como si no lo son: el resultado de cada una está en su campo `valid`. Si es `false`, `error` explica el motivo.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del AEC firmado, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con el resultado de cada firma encontrada. En cada elemento, `valid` indica si la firma es válida, `error` trae el motivo cuando no lo es (`null` si es válida), `signature` los datos de la firma y `signature.signer` los del certificado del firmante.&#039;, &#039;example&#039; =&gt; [[&#039;valid&#039; =&gt; true, &#039;error&#039; =&gt; null, &#039;signature&#039; =&gt; [&#039;reference&#039; =&gt; &#039;LibreDTE_76192083-9_T033F000000000001&#039;, &#039;canonicalization_method&#039; =&gt; &#039;http://www.w3.org/TR/2001/REC-xml-c14n-20010315&#039;, &#039;signature_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#rsa-sha1&#039;, &#039;digest_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#sha1&#039;, &#039;digest_value&#039; =&gt; &#039;NfiddEW6DjPTPBefnLCHkULI1fg=&#039;, &#039;signature_value&#039; =&gt; &#039;QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;certificate&#039; =&gt; &#039;MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...&#039;, &#039;certificate_chain&#039; =&gt; [], &#039;signer&#039; =&gt; [&#039;id&#039; =&gt; &#039;76192083-9&#039;, &#039;name&#039; =&gt; &#039;Empresa de Ejemplo SpA&#039;, &#039;email&#039; =&gt; &#039;contacto@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;AC de Ejemplo&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...&quot;, &#039;chain&#039; =&gt; []]]]]]]
     </dd>
     </dl>
                     </section>
@@ -705,7 +769,7 @@ validar cada firma electrónica encontrada en el AEC.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php"><a href="files/src-package-billing-component-ownershiptransfer-worker-aecworker.html"><abbr title="src/Package/Billing/Component/OwnershipTransfer/Worker/AecWorker.php">AecWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">327</span>
 
     </aside>
 

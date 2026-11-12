@@ -527,7 +527,47 @@ intercambio de documentos.</p>
         $name: &#039;receive&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;options&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;email.imap&#039;, &#039;transport&#039; =&gt; [&#039;username&#039; =&gt; &#039;&#039;, &#039;password&#039; =&gt; &#039;&#039;]]]]]
+        $summary: &#039;Recibe documentos desde un buzón de correo electrónico&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Recibe los documentos que llegaron a un buzón de correo electrónico (IMAP). Cada correo que trae archivos XML adjuntos se entrega como un sobre, con sus documentos. Un correo sin adjuntos XML no se considera un sobre y se ignora.
+
+## Cómo se usa
+
+Se envía `bag` con las opciones del transporte (la cuenta de correo y cómo buscar en ella). La respuesta trae los sobres encontrados en `envelopes`.
+
+## Qué correos se leen
+
+Por defecto se leen los correos no leídos de los últimos 7 días. Con `options.transport.search` se cambia:
+
+| Opción | Descripción |
+|---|---|
+| `criteria` | Criterio de búsqueda IMAP, por ejemplo `UNSEEN SINCE 2024-01-15`. Si se indica, `daysAgo` no se usa. |
+| `daysAgo` | Cantidad de días hacia atrás que se buscan. Por defecto `7`. Solo se usa si no se indica `criteria`. |
+| `markAsSeen` | Si es `true`, los correos procesados se marcan como leídos. **Por defecto es `true`**: una llamada normal modifica el buzón; para solo consultar sin alterarlo se envía `false`. |
+
+De cada correo se toma el cuerpo (texto o HTML) y los adjuntos XML. Los demás adjuntos se ignoran.
+
+## Resultado
+
+La respuesta repite las opciones enviadas, incluidas las credenciales del transporte.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Opciones de la recepción.
+
+| Campo | Descripción |
+|---|---|
+| `options.strategy` | Forma de recepción; por ahora `email.imap`, que es el valor por defecto. |
+| `options.transport` | Cuenta de correo desde la que se recibe. Obligatorios `username` y `password`. Opcionales: `host` (por defecto `imap.gmail.com`), `port` (por defecto `993`), `encryption` (`ssl` por defecto; `null` para ninguna), `mailbox` (carpeta; por defecto `INBOX`), `verify_peer` (verifica el certificado del servidor; por defecto `true`), `timeout` y `search` (qué correos se leen, ver más arriba). |
+MD, &#039;example&#039; =&gt; [&#039;options&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;email.imap&#039;, &#039;transport&#039; =&gt; [&#039;username&#039; =&gt; &#039;&#039;, &#039;password&#039; =&gt; &#039;&#039;]]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Sobres recibidos. `envelopes` trae un sobre por correo, con `sender` y `receiver` (las direcciones de correo del remitente y el destinatario), `document_type` y `process`, `business_message_id` (identificador del mensaje en el buzón), `creation_date_and_time` y `documents`. Cada documento trae sus archivos en `attachments`, con `data` en base64, `name`, `type` y `size`. `results` trae el resultado de cada sobre; en la recepción no tiene estados. Si no hay correos que cumplan, `envelopes` y `results` vienen vacíos.
+MD, &#039;example&#039; =&gt; [&#039;options&#039; =&gt; [&#039;strategy&#039; =&gt; &#039;email.imap&#039;, &#039;transport&#039; =&gt; [&#039;username&#039; =&gt; &#039;receptor@example.com&#039;, &#039;password&#039; =&gt; &#039;clave&#039;, &#039;host&#039; =&gt; &#039;imap.example.com&#039;, &#039;port&#039; =&gt; 993, &#039;encryption&#039; =&gt; &#039;ssl&#039;, &#039;verify_peer&#039; =&gt; true, &#039;search&#039; =&gt; []]], &#039;envelopes&#039; =&gt; [[&#039;sender&#039; =&gt; [&#039;identifier&#039; =&gt; [&#039;id&#039; =&gt; &#039;EMAIL:emisor@example.com&#039;, &#039;value&#039; =&gt; &#039;emisor@example.com&#039;, &#039;scheme_id&#039; =&gt; &#039;EMAIL&#039;, &#039;scheme_name&#039; =&gt; &#039;Correo electrónico&#039;, &#039;authority&#039; =&gt; &#039;INTERNET&#039;], &#039;endpoints&#039; =&gt; []], &#039;receiver&#039; =&gt; [&#039;identifier&#039; =&gt; [&#039;id&#039; =&gt; &#039;EMAIL:receptor@example.com&#039;, &#039;value&#039; =&gt; &#039;receptor@example.com&#039;, &#039;scheme_id&#039; =&gt; &#039;EMAIL&#039;, &#039;scheme_name&#039; =&gt; &#039;Correo electrónico&#039;, &#039;authority&#039; =&gt; &#039;INTERNET&#039;], &#039;endpoints&#039; =&gt; []], &#039;document_type&#039; =&gt; &#039;urn:fdc:libredte.cl:2025:doc:b2b&#039;, &#039;process&#039; =&gt; &#039;urn:fdc:libredte.cl:2025:poacc:billing&#039;, &#039;business_message_id&#039; =&gt; &#039;1&#039;, &#039;original_business_message_id&#039; =&gt; null, &#039;creation_date_and_time&#039; =&gt; &#039;2024-01-15T10:00:00-03:00&#039;, &#039;documents&#039; =&gt; [[&#039;id&#039; =&gt; &#039;5b7931f5-1365-4a75-aea6-8de532b07d54&#039;, &#039;type&#039; =&gt; &#039;urn:fdc:libredte.cl:2025:doc:b2b&#039;, &#039;content&#039; =&gt; &#039;&#039;, &#039;attachments&#039; =&gt; [[&#039;data&#039; =&gt; &#039;PEVudmlvRFRFPkZpeHR1cmUgZGUgcHJ1ZWJh...&#039;, &#039;name&#039; =&gt; &#039;envio.xml&#039;, &#039;type&#039; =&gt; &#039;application/xml&#039;, &#039;size&#039; =&gt; 71]], &#039;metadata&#039; =&gt; [&#039;id&#039; =&gt; &#039;5b7931f5-1365-4a75-aea6-8de532b07d54&#039;]]], &#039;metadata&#039; =&gt; []]], &#039;results&#039; =&gt; [[&#039;envelope&#039; =&gt; &#039;1&#039;, &#039;statuses&#039; =&gt; [], &#039;metadata&#039; =&gt; []]]]]]
     </dd>
     </dl>
                     </section>

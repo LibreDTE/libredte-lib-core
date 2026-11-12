@@ -214,9 +214,27 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_CRITERIA_DESCRIPTION">CRITERIA_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Filtro por igualdad: un objeto cuyas cl...                            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_EXAMPLE_REPOSITORY">EXAMPLE_REPOSITORY</a>
     <span>
         &nbsp;: mixed&nbsp;= &#039;libredte\lib\Core\Package\Billing\Component\Do...                            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_ORDER_BY_DESCRIPTION">ORDER_BY_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Orden del resultado: un objeto con el c...                            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_REPOSITORY_DESCRIPTION">REPOSITORY_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Repositorio que se consulta, identifica...                            </span>
 </dt>
 
     </dl>
@@ -311,6 +329,38 @@ resolución a una excepción propia de este worker.</dd>
 
         </h3>
                     <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_CRITERIA_DESCRIPTION">
+        CRITERIA_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_CRITERIA_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">47</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">CRITERIA_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Filtro por igualdad: un objeto cuyas claves son campos del registro y cuyos valores son lo que se busca, por ejemplo `{&quot;direccion_regional&quot;: &quot;ARICA&quot;}`. Con varios campos deben cumplirse todos. La comparación distingue mayúsculas de minúsculas, y un campo que no existe en el repositorio hace fallar la operación. Sin criterios se consideran todos los registros.
+MD</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -private ">
     <h4 class="phpdocumentor-element__name" id="constant_EXAMPLE_REPOSITORY">
         EXAMPLE_REPOSITORY
         <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_EXAMPLE_REPOSITORY" class="headerlink"><i class="fas fa-link"></i></a>
@@ -331,6 +381,70 @@ resolución a una excepción propia de este worker.</dd>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">EXAMPLE_REPOSITORY</span>
     = <span class="phpdocumentor-signature__default-value">&#039;libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna&#039;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_ORDER_BY_DESCRIPTION">
+        ORDER_BY_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_ORDER_BY_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">ORDER_BY_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Orden del resultado: un objeto con el campo y la dirección, `ASC` o `DESC`, por ejemplo `{&quot;nombre&quot;: &quot;DESC&quot;}`.
+MD</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_REPOSITORY_DESCRIPTION">
+        REPOSITORY_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_REPOSITORY_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">43</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">REPOSITORY_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Repositorio que se consulta, identificado por el nombre completo de su entidad, por ejemplo `libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna`. Los repositorios disponibles se obtienen con `system.repository.catalog::list`; si el repositorio no existe, la operación falla.
+MD</span>
 </code>
 
 
@@ -366,7 +480,7 @@ resolución a una excepción propia de este worker.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -408,7 +522,7 @@ resolución a una excepción propia de este worker.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -452,7 +566,7 @@ resolución a una excepción propia de este worker.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
@@ -505,7 +619,22 @@ para contar todos los elementos del repositorio.</p>
         $name: &#039;count&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;repository&#039; =&gt; [&#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY]]
+        $summary: &#039;Cuenta los registros de un repositorio&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega la cantidad de registros de un repositorio que cumplen los criterios indicados.
+
+## Cómo se usa
+
+Se envía `repository` y, opcionalmente, `criteria`. Sin `criteria` se cuentan todos los registros del repositorio.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;repository&#039; =&gt; [&#039;description&#039; =&gt; self::REPOSITORY_DESCRIPTION, &#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY], &#039;criteria&#039; =&gt; [&#039;description&#039; =&gt; self::CRITERIA_DESCRIPTION, &#039;example&#039; =&gt; [&#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Cantidad de registros que cumplen los criterios.&#039;, &#039;example&#039; =&gt; 4]]
     </dd>
     </dl>
                     </section>
@@ -530,7 +659,7 @@ para contar todos los elementos del repositorio.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
@@ -583,7 +712,24 @@ entidad o de su interfaz).</p>
         $name: &#039;find&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;repository&#039; =&gt; [&#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY], &#039;id&#039; =&gt; [&#039;example&#039; =&gt; &#039;RM&#039;]]
+        $summary: &#039;Obtiene un registro del catálogo por su código&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega el registro de un repositorio que tiene el código indicado.
+
+## Cómo se usa
+
+Se envía `repository` y el `id` (el campo `codigo` del registro). Los campos de la respuesta dependen del repositorio; se describen en `system.repository.catalog::list`.
+
+Si el código no existe, la mayoría de los repositorios responde `null`. Hay dos excepciones: las comunas (`Entity\Comuna`) y los impuestos adicionales y retenciones (`Entity\ImpuestoAdicionalRetencion`) devuelven un registro construido solo con ese código, sin los demás datos (en las comunas, con `nombre` igual al código). Para saber con certeza si un código existe, en cualquier repositorio, conviene usar `system.repository.catalog::find_one_by` o `system.repository.catalog::count`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;repository&#039; =&gt; [&#039;description&#039; =&gt; self::REPOSITORY_DESCRIPTION, &#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY], &#039;id&#039; =&gt; [&#039;description&#039; =&gt; &#039;Código del registro (`codigo`). Es un número en la mayoría de los repositorios y un texto en otros, como las comunas (`SANTIAGO`) y los medios de pago (`EF`).&#039;, &#039;example&#039; =&gt; &#039;SANTIAGO&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Registro encontrado. Sus campos dependen del repositorio.&#039;, &#039;example&#039; =&gt; [&#039;codigo&#039; =&gt; &#039;SANTIAGO&#039;, &#039;nombre&#039; =&gt; &#039;SANTIAGO&#039;, &#039;direccion_regional&#039; =&gt; &#039;SANTIAGO CENTRO&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -612,7 +758,7 @@ entidad o de su interfaz).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -655,7 +801,22 @@ entidad o de su interfaz).</p>
         $name: &#039;find_all&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;repository&#039; =&gt; [&#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY]]
+        $summary: &#039;Obtiene todos los registros de un repositorio&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega todos los registros de un repositorio del catálogo, sin filtrar ni paginar.
+
+## Cómo se usa
+
+Se envía solo `repository`. Algunos repositorios son grandes (por ejemplo, las comunas o los puertos de aduana tienen más de trescientos registros); para obtener una parte se usa `system.repository.catalog::find_by`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;repository&#039; =&gt; [&#039;description&#039; =&gt; self::REPOSITORY_DESCRIPTION, &#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con todos los registros del repositorio. Los campos de cada registro dependen del repositorio.&#039;, &#039;example&#039; =&gt; [[&#039;codigo&#039; =&gt; &#039;ARICA&#039;, &#039;nombre&#039; =&gt; &#039;ARICA&#039;, &#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;], [&#039;codigo&#039; =&gt; &#039;CAMARONES&#039;, &#039;nombre&#039; =&gt; &#039;CAMARONES&#039;, &#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;]]]]
     </dd>
     </dl>
                     </section>
@@ -680,7 +841,7 @@ entidad o de su interfaz).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">201</span>
 
     </aside>
 
@@ -760,7 +921,24 @@ cualquiera de varios valores).</p>
         $name: &#039;find_by&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;repository&#039; =&gt; [&#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY]]
+        $summary: &#039;Busca registros de un repositorio por criterios&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega los registros de un repositorio que cumplen los criterios indicados, con orden y paginación opcionales.
+
+## Cómo se usa
+
+Se envía `repository` y, opcionalmente, `criteria` para filtrar, `orderBy` para ordenar, y `limit` y `offset` para paginar. Sin `criteria` se consideran todos los registros. Si ninguno cumple, la respuesta es una lista vacía.
+
+Por ejemplo, para obtener las dos primeras comunas de la dirección regional de Arica, en orden alfabético descendente: `criteria` igual a `{&quot;direccion_regional&quot;: &quot;ARICA&quot;}`, `orderBy` igual a `{&quot;nombre&quot;: &quot;DESC&quot;}` y `limit` igual a `2`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;repository&#039; =&gt; [&#039;description&#039; =&gt; self::REPOSITORY_DESCRIPTION, &#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY], &#039;criteria&#039; =&gt; [&#039;description&#039; =&gt; self::CRITERIA_DESCRIPTION, &#039;example&#039; =&gt; [&#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;]], &#039;orderBy&#039; =&gt; [&#039;description&#039; =&gt; self::ORDER_BY_DESCRIPTION, &#039;example&#039; =&gt; [&#039;nombre&#039; =&gt; &#039;DESC&#039;]], &#039;limit&#039; =&gt; [&#039;description&#039; =&gt; &#039;Cantidad máxima de registros a devolver. Sin valor, se devuelven todos.&#039;, &#039;example&#039; =&gt; 2], &#039;offset&#039; =&gt; [&#039;description&#039; =&gt; &#039;Cantidad de registros que se omiten antes de empezar a devolver, para paginar junto con `limit`. Sin valor, se parte desde el primero.&#039;, &#039;example&#039; =&gt; 0]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con los registros que cumplen los criterios, o vacía si ninguno los cumple. Los campos de cada registro dependen del repositorio.&#039;, &#039;example&#039; =&gt; [[&#039;codigo&#039; =&gt; &#039;PUTRE&#039;, &#039;nombre&#039; =&gt; &#039;PUTRE&#039;, &#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;], [&#039;codigo&#039; =&gt; &#039;GENERAL LAGOS&#039;, &#039;nombre&#039; =&gt; &#039;GENERAL LAGOS&#039;, &#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;]]]]
     </dd>
     </dl>
                     </section>
@@ -785,7 +963,7 @@ cualquiera de varios valores).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">271</span>
 
     </aside>
 
@@ -847,7 +1025,22 @@ coincidencia.</p>
         $name: &#039;find_one_by&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;repository&#039; =&gt; [&#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY]]
+        $summary: &#039;Busca un registro de un repositorio por criterios&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega el primer registro de un repositorio que cumple los criterios indicados, o `null` si ninguno los cumple.
+
+## Cómo se usa
+
+Se envía `repository` y `criteria`, y opcionalmente `orderBy` para definir cuál es el primero cuando hay varios. A diferencia de `system.repository.catalog::find`, aquí un registro inexistente se responde con `null`, por lo que sirve para saber si un valor existe.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;repository&#039; =&gt; [&#039;description&#039; =&gt; self::REPOSITORY_DESCRIPTION, &#039;example&#039; =&gt; self::EXAMPLE_REPOSITORY], &#039;criteria&#039; =&gt; [&#039;description&#039; =&gt; self::CRITERIA_DESCRIPTION, &#039;example&#039; =&gt; [&#039;nombre&#039; =&gt; &#039;PUTRE&#039;]], &#039;orderBy&#039; =&gt; [&#039;description&#039; =&gt; self::ORDER_BY_DESCRIPTION, &#039;example&#039; =&gt; [&#039;nombre&#039; =&gt; &#039;ASC&#039;]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Primer registro que cumple los criterios, o `null` si ninguno los cumple. Los campos del registro dependen del repositorio.&#039;, &#039;example&#039; =&gt; [&#039;codigo&#039; =&gt; &#039;PUTRE&#039;, &#039;nombre&#039; =&gt; &#039;PUTRE&#039;, &#039;direccion_regional&#039; =&gt; &#039;ARICA&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -877,7 +1070,7 @@ coincidencia.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -907,6 +1100,45 @@ coincidencia.</p>
         <dd class="phpdocumentor-argument-list__entry">
         $name: &#039;list&#039;
     </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $summary: &#039;Lista los repositorios del catálogo&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega los repositorios de datos que se pueden consultar con las demás operaciones del catálogo: tipos de documento, comunas, medios de pago, datos de aduana, etc.
+
+## Cómo se usa
+
+No recibe parámetros. Cada elemento de la respuesta es el identificador de un repositorio, que se envía como `repository` a `system.repository.catalog::find`, `find_all`, `find_by`, `find_one_by` y `count`.
+
+## Repositorios
+
+Todos los identificadores empiezan con `libredte\lib\Core\Package\Billing\Component\Document\`; la columna indica el resto.
+
+| Repositorio | Contenido | Campos |
+|---|---|---|
+| `Contract\TipoDocumentoInterface` | Tipos de documento (códigos del SII) | `codigo`, `nombre`, `nombre_corto`, `categoria`, `operacion`, `es_electronico`, `se_envia_al_sii`, `disponible_en_compras`, `disponible_en_ventas`, `es_cedible`, `es_exento`, `es_boleta`, `es_exportacion`, `es_guia_despacho` |
+| `Entity\Comuna` | Comunas de Chile | `codigo` (texto), `nombre`, `direccion_regional` |
+| `Entity\FormaPago` | Formas de pago | `codigo`, `glosa` |
+| `Entity\FormaPagoExportacion` | Formas de pago de exportación | `codigo`, `glosa` |
+| `Entity\MedioPago` | Medios de pago | `codigo` (texto), `glosa` |
+| `Entity\Traslado` | Tipos de traslado | `codigo`, `glosa` |
+| `Entity\ImpuestoAdicionalRetencion` | Impuestos adicionales y retenciones | `codigo`, `tipo`, `glosa`, `tasa` |
+| `Entity\TagXml` | Etiquetas XML de los documentos | `codigo` (texto), `glosa`, `entity` |
+| `Entity\AduanaClausulaVenta` | Cláusulas de venta de aduana | `codigo`, `glosa` |
+| `Entity\AduanaFormaPago` | Formas de pago de aduana | `codigo`, `glosa` |
+| `Entity\AduanaModalidadVenta` | Modalidades de venta de aduana | `codigo`, `glosa` |
+| `Entity\AduanaMoneda` | Monedas de aduana | `codigo`, `glosa`, `codigo_iso` |
+| `Entity\AduanaPais` | Países de aduana | `codigo`, `glosa`, `codigo_iso` |
+| `Entity\AduanaPuerto` | Puertos de aduana | `codigo`, `glosa` |
+| `Entity\AduanaTipoBulto` | Tipos de bulto de aduana | `codigo`, `glosa` |
+| `Entity\AduanaTransporte` | Vías de transporte de aduana | `codigo`, `glosa` |
+| `Entity\AduanaUnidad` | Unidades de aduana | `codigo`, `glosa` |
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con el identificador de cada repositorio disponible.&#039;, &#039;example&#039; =&gt; [&#039;libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface&#039;, &#039;libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaClausulaVenta&#039;, &#039;libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna&#039;, &#039;libredte\lib\Core\Package\Billing\Component\Document\Entity\FormaPago&#039;, &#039;libredte\lib\Core\Package\Billing\Component\Document\Entity\MedioPago&#039;]]]
+    </dd>
     </dl>
                     </section>
     
@@ -930,7 +1162,7 @@ coincidencia.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/System/Component/Repository/Worker/CatalogWorker.php"><a href="files/src-package-system-component-repository-worker-catalogworker.html"><abbr title="src/Package/System/Component/Repository/Worker/CatalogWorker.php">CatalogWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">153</span>
+    <span class="phpdocumentor-element-found-in__line">361</span>
 
     </aside>
 
@@ -1007,7 +1239,10 @@ resolver.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_CRITERIA_DESCRIPTION">CRITERIA_DESCRIPTION</a></li>
                                                     <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_EXAMPLE_REPOSITORY">EXAMPLE_REPOSITORY</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_ORDER_BY_DESCRIPTION">ORDER_BY_DESCRIPTION</a></li>
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-System-Component-Repository-Worker-CatalogWorker.html#constant_REPOSITORY_DESCRIPTION">REPOSITORY_DESCRIPTION</a></li>
                                             </ul>
                 </li>
             

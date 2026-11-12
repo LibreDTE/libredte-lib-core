@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-book-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -287,7 +287,7 @@ tributario a partir del bag con detalles normalizados por el <code class="pretty
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-book-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -329,7 +329,7 @@ tributario a partir del bag con detalles normalizados por el <code class="pretty
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-book-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -381,7 +381,7 @@ tributario a partir del bag con detalles normalizados por el <code class="pretty
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php"><a href="files/src-package-billing-component-book-worker-builderworker.html"><abbr title="src/Package/Billing/Component/Book/Worker/BuilderWorker.php">BuilderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -424,7 +424,42 @@ tributario a partir del bag con detalles normalizados por el <code class="pretty
         $name: &#039;build&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; TipoLibro::VENTAS, &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;]]]]
+        $summary: &#039;Construye un libro tributario&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Construye un libro tributario electrónico: calcula los totales del período, genera el XML según el esquema del SII y, si se entrega un certificado, lo firma (los libros en formato simplificado no se firman).
+
+## Tipos de libro
+
+El campo `tipo` indica qué libro se construye:
+
+| Valor | Libro |
+|---|---|
+| `libro_ventas` | Libro de ventas |
+| `libro_compras` | Libro de compras |
+| `libro_boletas` | Libro de boletas |
+| `libro_guias` | Libro de guías de despacho |
+| `resumen_ventas_diarias` | Resumen de ventas diarias |
+
+## Cómo se usa
+
+Se envía `bag` con el tipo de libro, la carátula y las filas del detalle. Lo habitual es normalizar antes con `billing.book.loader::load`, que completa `RutEmisorLibro`, `RutEnvia`, `FchResol` y `NroResol` desde `emisor` y `certificate`, y enviar a esta operación la respuesta de esa. Si se envían datos sin normalizar, esta operación solo completa `PeriodoTributario` (mes actual), `TipoOperacion`, `TipoLibro` (`MENSUAL`) y `TipoEnvio` (`TOTAL`): el resto de la carátula debe indicarse.
+
+El libro construido está en `book`: su contenido como árbol y el XML completo codificado en base64 (`book.xml`). Ese XML puede validarse con `billing.book.validator::validate_schema` y `billing.book.validator::validate_signature`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos del libro, con la misma estructura que en `billing.book.loader::load`, donde se describen todos los campos, los valores por defecto de la carátula y los códigos de tipo de documento.
+
+Para generar un libro firmado se debe entregar `certificate` (con `certificate` y `privateKey` en PEM, `data` en base64 y `password`, o `cert` y `pkey`).
+MD, &#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; &#039;libro_ventas&#039;, &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Libro construido. `book` trae el libro completo, con los valores por defecto aplicados y los totales del período calculados: `book.xml` es el XML en base64 y el resto es su contenido como árbol. `caratula` y `detalle` repiten los datos recibidos. `book_type` identifica el tipo de libro.
+MD, &#039;example&#039; =&gt; [&#039;book&#039; =&gt; [&#039;LibroCompraVenta&#039; =&gt; [&#039;EnvioLibro&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;, &#039;TipoOperacion&#039; =&gt; &#039;VENTA&#039;, &#039;TipoLibro&#039; =&gt; &#039;MENSUAL&#039;, &#039;TipoEnvio&#039; =&gt; &#039;TOTAL&#039;], &#039;ResumenPeriodo&#039; =&gt; [&#039;TotalesPeriodo&#039; =&gt; [&#039;TpoDoc&#039; =&gt; &#039;33&#039;, &#039;TotDoc&#039; =&gt; &#039;1&#039;, &#039;TotMntExe&#039; =&gt; &#039;0&#039;, &#039;TotMntNeto&#039; =&gt; &#039;100000&#039;, &#039;TotMntIVA&#039; =&gt; &#039;19000&#039;, &#039;TotMntTotal&#039; =&gt; &#039;119000&#039;]], &#039;Detalle&#039; =&gt; [&#039;TpoDoc&#039; =&gt; &#039;33&#039;, &#039;NroDoc&#039; =&gt; &#039;1&#039;, &#039;TasaImp&#039; =&gt; &#039;19&#039;, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; &#039;100000&#039;, &#039;MntIVA&#039; =&gt; &#039;19000&#039;, &#039;MntTotal&#039; =&gt; &#039;119000&#039;], &#039;TmstFirma&#039; =&gt; &#039;2024-02-01T10:00:00&#039;], &#039;Signature&#039; =&gt; [&#039;SignedInfo&#039; =&gt; [&#039;CanonicalizationMethod&#039; =&gt; &#039;&#039;, &#039;SignatureMethod&#039; =&gt; &#039;&#039;, &#039;Reference&#039; =&gt; [&#039;Transforms&#039; =&gt; [&#039;Transform&#039; =&gt; &#039;&#039;], &#039;DigestMethod&#039; =&gt; &#039;&#039;, &#039;DigestValue&#039; =&gt; &#039;M7x5h42ilMuf3ewJGL+6/twRe4s=&#039;]], &#039;SignatureValue&#039; =&gt; &#039;BJF3oJH09VqXeKB9...&#039;, &#039;KeyInfo&#039; =&gt; [&#039;KeyValue&#039; =&gt; [&#039;RSAKeyValue&#039; =&gt; [&#039;Modulus&#039; =&gt; &#039;3xxsX5l2lZV/wzz+...&#039;, &#039;Exponent&#039; =&gt; &#039;AQAB&#039;]], &#039;X509Data&#039; =&gt; [&#039;X509Certificate&#039; =&gt; &#039;MIID8zCCAtugAwIBAgIB...&#039;]]]], &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...&#039;], &#039;book_auth&#039; =&gt; null, &#039;book_type&#039; =&gt; [&#039;codigo&#039; =&gt; &#039;libro_ventas&#039;, &#039;nombre&#039; =&gt; &#039;Libro de ventas&#039;, &#039;nombre_corto&#039; =&gt; &#039;Ventas&#039;], &#039;caratula&#039; =&gt; [&#039;RutEmisorLibro&#039; =&gt; &#039;76192083-9&#039;, &#039;PeriodoTributario&#039; =&gt; &#039;2024-01&#039;], &#039;detalle&#039; =&gt; [[&#039;TpoDoc&#039; =&gt; 33, &#039;NroDoc&#039; =&gt; 1, &#039;TasaImp&#039; =&gt; 19, &#039;FchDoc&#039; =&gt; &#039;2024-01-10&#039;, &#039;RUTDoc&#039; =&gt; &#039;12345678-9&#039;, &#039;RznSoc&#039; =&gt; &#039;Empresa Compradora SpA&#039;, &#039;MntNeto&#039; =&gt; 100000, &#039;MntIVA&#039; =&gt; 19000, &#039;MntTotal&#039; =&gt; 119000]], &#039;resumen&#039; =&gt; [], &#039;options&#039; =&gt; [&#039;loader&#039; =&gt; [], &#039;builder&#039; =&gt; []]]]]
     </dd>
     </dl>
                     </section>

@@ -452,7 +452,24 @@ string o como documento ya construido.</p>
         $name: &#039;load&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;xml&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Carga un archivo CAF&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Carga el XML de un CAF (Código de Autorización de Folios) y entrega sus datos: emisor, tipo de documento, rango de folios, fechas, vigencia y llaves. Verifica que el tipo de documento del CAF exista en el catálogo, pero no valida su firma ni sus llaves; para eso se usa `billing.identifier.caf_validator::validate`.
+
+## Cómo se usa
+
+Se envía en `xml` el contenido del archivo CAF codificado en base64.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;xml&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del CAF, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+CAF cargado. Incluye el rango de folios (`folio_desde`, `folio_hasta`, `cantidad_folios`), las fechas de autorización y vencimiento, su vigencia, sus llaves (`public_key` y `private_key`) y el XML completo en base64 (`xml`). `vence` indica si los folios de ese tipo de documento vencen. `certificacion` es `1` si el CAF es de certificación, `0` si es de producción y `null` si es un CAF falso.
+MD, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;CAF33D1H100&#039;, &#039;emisor&#039; =&gt; [&#039;rut&#039; =&gt; &#039;76192083-9&#039;, &#039;razon_social&#039; =&gt; &#039;SASCO SpA&#039;], &#039;tipo_documento&#039; =&gt; 33, &#039;folio_desde&#039; =&gt; 1, &#039;folio_hasta&#039; =&gt; 100, &#039;cantidad_folios&#039; =&gt; 100, &#039;fecha_autorizacion&#039; =&gt; &#039;2024-01-15&#039;, &#039;fecha_vencimiento&#039; =&gt; &#039;2024-07-14&#039;, &#039;meses_autorizacion&#039; =&gt; 2.5, &#039;vigente&#039; =&gt; true, &#039;vence&#039; =&gt; true, &#039;idk&#039; =&gt; 100, &#039;ambiente&#039; =&gt; [&#039;name&#039; =&gt; &#039;PRODUCTION&#039;, &#039;value&#039; =&gt; 0], &#039;certificacion&#039; =&gt; 0, &#039;public_key&#039; =&gt; &quot;-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...&quot;, &#039;private_key&#039; =&gt; &quot;-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...&quot;, &#039;xml&#039; =&gt; &#039;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...&#039;]]]
     </dd>
     </dl>
                     </section>
@@ -482,7 +499,7 @@ disponibles.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Identifier/Worker/CafLoaderWorker.php"><a href="files/src-package-billing-component-identifier-worker-cafloaderworker.html"><abbr title="src/Package/Billing/Component/Identifier/Worker/CafLoaderWorker.php">CafLoaderWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 

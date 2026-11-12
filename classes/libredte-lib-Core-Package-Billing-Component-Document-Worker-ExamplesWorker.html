@@ -456,7 +456,7 @@ archivo.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
@@ -499,7 +499,24 @@ archivo.</dd>
         $name: &#039;get&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;id&#039; =&gt; [&#039;example&#039; =&gt; &#039;033_factura_afecta/033_001_simple&#039;]]
+        $summary: &#039;Obtiene un ejemplo de documento tributario&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega los datos de un ejemplo de documento tributario electrónico: los datos de entrada, listos para enviarse a `billing.document.builder::build`, y los valores que se esperan del documento construido.
+
+## Cómo se usa
+
+Se envía el `id` del ejemplo, que se obtiene de `billing.document.examples::list`. Si el `id` no existe, la operación falla.
+
+En la respuesta, `example` tiene los datos del documento en el formato del SII (se envían como `parsedData`), y `expected` los valores que se esperan en el documento ya construido (por ejemplo, los totales calculados).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;id&#039; =&gt; [&#039;description&#039; =&gt; &#039;Identificador del ejemplo, de la forma `categoría/caso`, por ejemplo `033_factura_afecta/033_001_simple`. Los disponibles se obtienen con `billing.document.examples::list`.&#039;, &#039;example&#039; =&gt; &#039;033_factura_afecta/033_001_simple&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Ejemplo encontrado. `example` son los datos de entrada del documento y `expected` los valores que se esperan del documento construido con ellos.&#039;, &#039;example&#039; =&gt; [&#039;id&#039; =&gt; &#039;033_factura_afecta/033_001_simple&#039;, &#039;example&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1], &#039;Emisor&#039; =&gt; [&#039;RUTEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RznSoc&#039; =&gt; &#039;SASCO SpA&#039;, &#039;GiroEmis&#039; =&gt; &#039;Tecnología, informática y telecomunicaciones&#039;, &#039;Acteco&#039; =&gt; 726000, &#039;DirOrigen&#039; =&gt; &#039;Santa Cruz&#039;, &#039;CmnaOrigen&#039; =&gt; &#039;Santa Cruz&#039;, &#039;CdgVendedor&#039; =&gt; &#039;vl&#039;], &#039;Receptor&#039; =&gt; [&#039;RUTRecep&#039; =&gt; &#039;60803000-K&#039;, &#039;RznSocRecep&#039; =&gt; &#039;Servicio de Impuestos Internos&#039;, &#039;GiroRecep&#039; =&gt; &#039;Gobierno&#039;, &#039;DirRecep&#039; =&gt; &#039;Santiago&#039;, &#039;CmnaRecep&#039; =&gt; &#039;Santiago&#039;]], &#039;Detalle&#039; =&gt; [[&#039;NmbItem&#039; =&gt; &#039;Conectores RJ45&#039;, &#039;QtyItem&#039; =&gt; 450, &#039;PrcItem&#039; =&gt; 70]]], &#039;expected&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;Emisor&#039; =&gt; [&#039;CdgVendedor&#039; =&gt; &#039;vl&#039;], &#039;Totales&#039; =&gt; [&#039;MntNeto&#039; =&gt; 31500, &#039;IVA&#039; =&gt; 5985, &#039;MntTotal&#039; =&gt; 37485]]]]]]
     </dd>
     </dl>
                     </section>
@@ -559,6 +576,23 @@ ejemplo.</p>
         <dd class="phpdocumentor-argument-list__entry">
         $name: &#039;list&#039;
     </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $summary: &#039;Lista los ejemplos de documentos tributarios&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Entrega el catálogo de ejemplos de documentos tributarios electrónicos: casos de cada tipo de documento (facturas, boletas, guías de despacho, notas de crédito y de débito, documentos de exportación) con sus datos de entrada ya preparados. Sirven para aprender el formato o para probar la emisión.
+
+## Cómo se usa
+
+No recibe parámetros. Cada elemento trae un `id`, la `category` (el tipo de documento) y el `case` (el caso). Para obtener los datos de un ejemplo se envía su `id` a `billing.document.examples::get`.
+
+Los ejemplos vienen en un orden en que cada ejemplo aparece después de aquellos de los que depende (por ejemplo, una nota de crédito que anula una factura aparece después de esa factura), de modo que se pueden emitir en secuencia.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista de ejemplos. `id` identifica el ejemplo y es el valor que se envía a `billing.document.examples::get`.&#039;, &#039;example&#039; =&gt; [[&#039;id&#039; =&gt; &#039;033_factura_afecta/033_001_simple&#039;, &#039;category&#039; =&gt; &#039;033_factura_afecta&#039;, &#039;case&#039; =&gt; &#039;033_001_simple&#039;], [&#039;id&#039; =&gt; &#039;052_guia_despacho/052_001_constituye_venta&#039;, &#039;category&#039; =&gt; &#039;052_guia_despacho&#039;, &#039;case&#039; =&gt; &#039;052_001_constituye_venta&#039;]]]]
+    </dd>
     </dl>
                     </section>
     
@@ -582,7 +616,7 @@ ejemplo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
@@ -663,7 +697,7 @@ o si hay una dependencia circular entre ejemplos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">217</span>
+    <span class="phpdocumentor-element-found-in__line">310</span>
 
     </aside>
 
@@ -719,7 +753,7 @@ archivo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php"><a href="files/src-package-billing-component-document-worker-examplesworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ExamplesWorker.php">ExamplesWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 

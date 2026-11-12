@@ -542,7 +542,22 @@ bolsa, o su XML ya construido (como documento o como string).</p>
         $name: &#039;validate&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida los datos de un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida los datos de un documento tributario electrónico según las reglas de su tipo; por ejemplo, que los RUT tengan dígito verificador válido. No valida el esquema XSD ni la firma; para eso se usan `billing.document.validator::validate_schema` y `billing.document.validator::validate_signature`.
+
+## Cómo se usa
+
+Se envía en `source` el XML del documento codificado en base64, por ejemplo el que entrega `billing.document.builder::build` en `document_xml`. Si los datos son válidos, la respuesta es el documento; si no, la operación falla con un error que indica el problema. Esta validación solo mira los datos del documento: no sirve para comprobar su firma.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del documento, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Los datos son válidos. Se devuelve el documento como árbol del XML (sin firma).&#039;, &#039;example&#039; =&gt; [&#039;DTE&#039; =&gt; [&#039;Documento&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;TpoTranVenta&#039; =&gt; &#039;1&#039;], &#039;Emisor&#039; =&gt; [&#039;RUTEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RznSoc&#039; =&gt; &#039;SASCO SpA&#039;, &#039;GiroEmis&#039; =&gt; &#039;Servicios&#039;, &#039;Acteco&#039; =&gt; &#039;620100&#039;, &#039;DirOrigen&#039; =&gt; &#039;Dirección 123&#039;, &#039;CmnaOrigen&#039; =&gt; &#039;Santiago&#039;], &#039;Receptor&#039; =&gt; [&#039;RUTRecep&#039; =&gt; &#039;66666666-6&#039;, &#039;RznSocRecep&#039; =&gt; &#039;Cliente de Prueba&#039;, &#039;GiroRecep&#039; =&gt; &#039;Servicios&#039;, &#039;DirRecep&#039; =&gt; &#039;Santiago&#039;, &#039;CmnaRecep&#039; =&gt; &#039;Santiago&#039;], &#039;Totales&#039; =&gt; [&#039;MntNeto&#039; =&gt; &#039;10000&#039;, &#039;TasaIVA&#039; =&gt; &#039;19&#039;, &#039;IVA&#039; =&gt; &#039;1900&#039;, &#039;MntTotal&#039; =&gt; &#039;11900&#039;]], &#039;Detalle&#039; =&gt; [&#039;NroLinDet&#039; =&gt; &#039;1&#039;, &#039;NmbItem&#039; =&gt; &#039;Servicio de prueba&#039;, &#039;QtyItem&#039; =&gt; &#039;1&#039;, &#039;PrcItem&#039; =&gt; &#039;10000&#039;, &#039;MontoItem&#039; =&gt; &#039;10000&#039;]]]]]]
     </dd>
     </dl>
                     </section>
@@ -573,7 +588,7 @@ construyendo).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ValidatorWorker.php"><a href="files/src-package-billing-component-document-worker-validatorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ValidatorWorker.php">ValidatorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
@@ -617,7 +632,24 @@ bolsa, o su XML ya construido (como documento o como string).</p>
         $name: &#039;validate_schema&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida el XML de un documento contra su esquema&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida el XML de un documento tributario electrónico contra el esquema XSD del SII.
+
+## Cómo se usa
+
+Se envía en `source` el XML del documento codificado en base64. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema.
+
+Las boletas (tipos `39` y `41`) se validan contra un esquema propio de LibreDTE, derivado del de su sobre `EnvioBOLETA`, porque el SII no publica un esquema para la boleta suelta. El esquema del sobre se valida con `billing.document.dispatcher::validate_schema`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del documento, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El XML cumple el esquema. Se devuelve el documento como árbol del XML.&#039;, &#039;example&#039; =&gt; [&#039;DTE&#039; =&gt; [&#039;Documento&#039; =&gt; [&#039;Encabezado&#039; =&gt; [&#039;IdDoc&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;TpoTranVenta&#039; =&gt; &#039;1&#039;], &#039;Emisor&#039; =&gt; [&#039;RUTEmisor&#039; =&gt; &#039;76192083-9&#039;, &#039;RznSoc&#039; =&gt; &#039;SASCO SpA&#039;, &#039;GiroEmis&#039; =&gt; &#039;Servicios&#039;, &#039;Acteco&#039; =&gt; &#039;620100&#039;, &#039;DirOrigen&#039; =&gt; &#039;Dirección 123&#039;, &#039;CmnaOrigen&#039; =&gt; &#039;Santiago&#039;], &#039;Receptor&#039; =&gt; [&#039;RUTRecep&#039; =&gt; &#039;66666666-6&#039;, &#039;RznSocRecep&#039; =&gt; &#039;Cliente de Prueba&#039;, &#039;GiroRecep&#039; =&gt; &#039;Servicios&#039;, &#039;DirRecep&#039; =&gt; &#039;Santiago&#039;, &#039;CmnaRecep&#039; =&gt; &#039;Santiago&#039;], &#039;Totales&#039; =&gt; [&#039;MntNeto&#039; =&gt; &#039;10000&#039;, &#039;TasaIVA&#039; =&gt; &#039;19&#039;, &#039;IVA&#039; =&gt; &#039;1900&#039;, &#039;MntTotal&#039; =&gt; &#039;11900&#039;]], &#039;Detalle&#039; =&gt; [&#039;NroLinDet&#039; =&gt; &#039;1&#039;, &#039;NmbItem&#039; =&gt; &#039;Servicio de prueba&#039;, &#039;QtyItem&#039; =&gt; &#039;1&#039;, &#039;PrcItem&#039; =&gt; &#039;10000&#039;, &#039;MontoItem&#039; =&gt; &#039;10000&#039;]]]]]]
     </dd>
     </dl>
                     </section>
@@ -646,7 +678,7 @@ bolsa, o su XML ya construido (como documento o como string).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/ValidatorWorker.php"><a href="files/src-package-billing-component-document-worker-validatorworker.html"><abbr title="src/Package/Billing/Component/Document/Worker/ValidatorWorker.php">ValidatorWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">291</span>
 
     </aside>
 
@@ -690,7 +722,24 @@ bolsa, o su XML ya construido (como documento o como string).</p>
         $name: &#039;validate_signature&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida la firma electrónica de un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida la firma electrónica (XML DSIG) de un documento tributario electrónico y entrega los datos de la firma y del certificado del firmante.
+
+## Cómo se usa
+
+Se envía en `source` el XML del documento firmado, codificado en base64.
+
+La operación responde con éxito tanto si la firma es válida como si no lo es: el resultado está en el campo `valid`. Si es `false`, el campo `error` explica el motivo (por ejemplo, que el contenido se modificó después de firmarlo).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del documento firmado, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;`valid` indica si la firma es válida y `error` trae el motivo cuando no lo es (`null` si es válida). `signature` trae los datos de la firma y `signature.signer` los del certificado del firmante.&#039;, &#039;example&#039; =&gt; [&#039;valid&#039; =&gt; true, &#039;error&#039; =&gt; null, &#039;signature&#039; =&gt; [&#039;reference&#039; =&gt; &#039;LibreDTE_76192083-9_T033F000000000001&#039;, &#039;canonicalization_method&#039; =&gt; &#039;http://www.w3.org/TR/2001/REC-xml-c14n-20010315&#039;, &#039;signature_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#rsa-sha1&#039;, &#039;digest_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#sha1&#039;, &#039;digest_value&#039; =&gt; &#039;NfiddEW6DjPTPBefnLCHkULI1fg=&#039;, &#039;signature_value&#039; =&gt; &#039;QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;certificate&#039; =&gt; &#039;MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...&#039;, &#039;certificate_chain&#039; =&gt; [], &#039;signer&#039; =&gt; [&#039;id&#039; =&gt; &#039;12345678-9&#039;, &#039;name&#039; =&gt; &#039;Juan Pérez&#039;, &#039;email&#039; =&gt; &#039;juan.perez@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;AC de Ejemplo&#039;, &#039;modulus&#039; =&gt; &#039;hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...&quot;, &#039;chain&#039; =&gt; []]]]]]
     </dd>
     </dl>
                     </section>

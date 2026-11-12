@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -211,6 +211,19 @@ envíos y de las cesiones.</p>
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &lt;&lt;&lt;&#039;MD&#039; Datos de la conexión al SII. | Campo |...                            </span>
+</dt>
+
+    </dl>
 
 
 <h4 id="toc-properties">
@@ -291,6 +304,53 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_REQUEST_DESCRIPTION">
+        REQUEST_DESCRIPTION
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#constant_REQUEST_DESCRIPTION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">REQUEST_DESCRIPTION</span>
+    = <span class="phpdocumentor-signature__default-value">&lt;&lt;&lt;&#039;MD&#039;
+Datos de la conexión al SII.
+
+| Campo | Descripción |
+|---|---|
+| `certificate` | Obligatorio. Certificado digital con el que se autentica en el SII. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+| `options.environment` | Ambiente del SII: `0` producción (valor por defecto) o `1` certificación (pruebas). |
+| `options.retries` | Cantidad máxima de intentos ante fallas de conexión, de `0` a `10`; por defecto `10`. Con `0` no se hace ningún intento. Con muchos intentos la espera crece de forma exponencial. |
+| `options.verify_ssl` | Verifica el certificado SSL del SII; por defecto `true`. No se recomienda desactivarlo. |
+| `options.token` | Cómo se guarda el token de autenticación: `cache` (`memory` o `filesystem`; por defecto `memory`), `key` y `ttl` (segundos que se conserva; por defecto `2700`). |
+MD</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
     <section class="phpdocumentor-properties">
@@ -316,7 +376,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -353,7 +413,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -390,7 +450,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -427,7 +487,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -469,7 +529,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -534,7 +594,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -586,7 +646,47 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
         $name: &#039;check_aec_sent_status&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;trackId&#039; =&gt; [&#039;example&#039; =&gt; 1234567890]]
+        $summary: &#039;Consulta el estado de un AEC enviado al SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Obtiene el estado actualizado del envío de un AEC al Registro de Transferencias de Créditos (RTC) del SII. El estado puede no ser el final: en ese caso se debe repetir la consulta más adelante.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y el `trackId` que entregó `billing.integration.sii_rtc::send_aec`. No hace falta indicar la empresa: el token de la solicitud identifica al contribuyente.
+
+## Estados (`status`)
+
+| Valor | Significado |
+|---|---|
+| `UPL` | Envío en proceso de upload |
+| `RCP` | Envío recibido |
+| `RSC` | Rechazado por error en el esquema |
+| `SOK` | Esquema validado |
+| `RFS` | Rechazado por firma del sobre |
+| `FSO` | Firma del sobre validada |
+| `RCR` | Error en la carátula |
+| `COK` | Carátula OK |
+| `VDC` | Validación de documento |
+| `RDC` | Documento inválido |
+| `VCS` | Validación de cesiones |
+| `RCS` | Cesión inválida |
+| `EOK` | Envío aceptado |
+| `EAN` | Envío anulado |
+
+Son estados de error `RSC`, `RFS`, `RCR`, `RDC` y `RCS`. El estado es final cuando es de error, o es `EOK` o `EAN`: el SII ya no procesará más el envío. Cuando el SII no encuentra información del envío, `status` trae un código de error propio del SII.
+
+Detalle del servicio del SII: [Consulta Estado Envío de AEC al Registro](https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;trackId&#039; =&gt; [&#039;description&#039; =&gt; &#039;Número de seguimiento (Track ID) que asignó el SII al envío del AEC.&#039;, &#039;example&#039; =&gt; 1234567890]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Estado del envío. `status` es uno de los estados de arriba (o un código de error del SII), `description` su explicación, `error` indica si es un error y `final` si es un estado final. El ejemplo muestra la respuesta cuando el SII no encuentra información del envío.
+MD, &#039;example&#039; =&gt; [&#039;track_id&#039; =&gt; 1234567890, &#039;status&#039; =&gt; &#039;2&#039;, &#039;description&#039; =&gt; &#039;Error: no se encontró información.&#039;, &#039;error&#039; =&gt; true, &#039;final&#039; =&gt; false]]]
     </dd>
     </dl>
                     </section>
@@ -615,7 +715,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">217</span>
 
     </aside>
 
@@ -695,7 +795,28 @@ cesión.</p>
         $name: &#039;get_assignment_status&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1234], &#039;assignmentId&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Consulta el estado de la cesión de un documento&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Obtiene el estado de la cesión de un documento en el Registro de Transferencias de Créditos (RTC) del SII.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request` y el emisor, el tipo (`33` o `34`) y el folio del documento cedido. Sin la clave de acceso (`assignmentId`), la respuesta solo informa si el documento está cedido. Con ella, entrega además el tenedor, la fecha de la última anotación y la cobranza.
+
+Para consultar el detalle de la cesión como empresa vinculada se usa `billing.integration.sii_rtc::get_related_assignment_status`.
+
+Detalle del servicio del SII: [Consulta de Cesiones](https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento cedido, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &#039;Código del tipo de documento tributario electrónico: `33` (factura electrónica) o `34` (factura no afecta o exenta electrónica).&#039;, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1234], &#039;assignmentId&#039; =&gt; [&#039;description&#039; =&gt; &#039;Clave de acceso a la información de la cesión. Opcional: sin ella la respuesta solo informa si el documento está cedido.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Estado de la cesión. `assigned` indica si el documento está cedido. `status` y `description` son los que entrega el SII. Con la clave de acceso a la cesión, la respuesta trae además el tenedor (`holder`), la fecha de la última anotación (`last_annotation`), el RUT y la dirección de cobranza (`collection_rut` y `collection_address`) y la declaración jurada (`sworn_declaration`); sin ella, esos campos vienen en `null`. El ejemplo muestra la respuesta cuando el SII no tiene información del documento.
+MD, &#039;example&#039; =&gt; [&#039;assigned&#039; =&gt; false, &#039;status&#039; =&gt; &#039;2&#039;, &#039;description&#039; =&gt; &#039;Error: no se encontró información.&#039;, &#039;holder&#039; =&gt; null, &#039;last_annotation&#039; =&gt; null, &#039;collection_rut&#039; =&gt; null, &#039;collection_address&#039; =&gt; null, &#039;sworn_declaration&#039; =&gt; null]]]
     </dd>
     </dl>
                     </section>
@@ -724,7 +845,7 @@ cesión.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">298</span>
 
     </aside>
 
@@ -804,7 +925,26 @@ vinculada con ella, ya sea como tenedor o como receptor.</p>
         $name: &#039;get_related_assignment_status&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;document&#039; =&gt; [&#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;example&#039; =&gt; 1234], &#039;relatedCompany&#039; =&gt; [&#039;example&#039; =&gt; &#039;76192083-9&#039;]]
+        $summary: &#039;Consulta la cesión de un documento como empresa vinculada&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Obtiene el detalle de la cesión de un documento en el Registro de Transferencias de Créditos (RTC) del SII para una empresa vinculada con ella, ya sea como tenedor o como receptor del documento.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el emisor, el tipo (`33` o `34`) y el folio del documento cedido, y el RUT de la empresa vinculada en `relatedCompany`.
+
+Detalle del servicio del SII: [Consulta de Cesiones](https://www.sii.cl/factura_electronica/ws_consulta_estado_aec.pdf).
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del emisor del documento cedido, con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;document&#039; =&gt; [&#039;description&#039; =&gt; &#039;Código del tipo de documento tributario electrónico: `33` (factura electrónica) o `34` (factura no afecta o exenta electrónica).&#039;, &#039;example&#039; =&gt; 33], &#039;number&#039; =&gt; [&#039;description&#039; =&gt; &#039;Folio del documento.&#039;, &#039;example&#039; =&gt; 1234], &#039;relatedCompany&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT de la empresa vinculada con la cesión (tenedor o receptor), con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Estado de la cesión. `assigned` indica si el documento está cedido. `status` y `description` son los que entrega el SII. La respuesta trae además el tenedor (`holder`), la fecha de la última anotación (`last_annotation`), el RUT y la dirección de cobranza (`collection_rut` y `collection_address`) y la declaración jurada (`sworn_declaration`) cuando el SII los informa; si no, vienen en `null`. El ejemplo muestra la respuesta cuando el SII no tiene información del documento.
+MD, &#039;example&#039; =&gt; [&#039;assigned&#039; =&gt; false, &#039;status&#039; =&gt; &#039;2&#039;, &#039;description&#039; =&gt; &#039;Error: no se encontró información.&#039;, &#039;holder&#039; =&gt; null, &#039;last_annotation&#039; =&gt; null, &#039;collection_rut&#039; =&gt; null, &#039;collection_address&#039; =&gt; null, &#039;sworn_declaration&#039; =&gt; null]]]
     </dd>
     </dl>
                     </section>
@@ -833,7 +973,7 @@ vinculada con ella, ya sea como tenedor o como receptor.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -913,7 +1053,24 @@ notificaciones del SII sobre el resultado del procesamiento del AEC.</p>
         $name: &#039;send_aec&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;request&#039; =&gt; [&#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; SiiEnvironment::PRODUCTION]]], &#039;doc&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;], &#039;company&#039; =&gt; [&#039;example&#039; =&gt; &#039;12345678-5&#039;], &#039;emailNotif&#039; =&gt; [&#039;example&#039; =&gt; &#039;cedente@example.com&#039;]]
+        $summary: &#039;Envía un AEC al Registro de Transferencias de Créditos del SII&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Envía al Registro de Transferencias de Créditos (RTC) del SII un AEC (Archivo Electrónico de Cesión) y entrega el número de seguimiento (Track ID) del envío. Reproduce el envío manual de una cesión que el SII ofrece en su formulario web.
+
+## Cómo se usa
+
+Se envían los datos de conexión en `request`, el XML del AEC en `doc`, el RUT del cedente en `company` y un correo de contacto del cedente en `emailNotif`, al que el SII notifica el resultado del procesamiento. Con el `track_id` se consulta el estado con `billing.integration.sii_rtc::check_aec_sent_status`. La operación falla si la empresa no está autorizada como emisor de documentos tributarios electrónicos.
+
+El AEC se construye con `billing.ownership_transfer.aec::build`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;request&#039; =&gt; [&#039;description&#039; =&gt; self::REQUEST_DESCRIPTION, &#039;example&#039; =&gt; [&#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;], &#039;options&#039; =&gt; [&#039;environment&#039; =&gt; 1]]], &#039;doc&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del AEC que se envía, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;], &#039;company&#039; =&gt; [&#039;description&#039; =&gt; &#039;RUT del cedente (la empresa que cede el documento), con guión y dígito verificador.&#039;, &#039;example&#039; =&gt; &#039;76192083-9&#039;], &#039;emailNotif&#039; =&gt; [&#039;description&#039; =&gt; &#039;Correo electrónico de contacto del cedente, al que el SII notifica el resultado del procesamiento del AEC.&#039;, &#039;example&#039; =&gt; &#039;cedente@example.com&#039;], &#039;retries&#039; =&gt; [&#039;description&#039; =&gt; &#039;Cantidad máxima de intentos al enviar. Si no se indica, se usa `request.options.retries`.&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Envío recibido por el SII. `track_id` es el número de seguimiento que asigna el SII al envío.&#039;, &#039;example&#039; =&gt; [&#039;track_id&#039; =&gt; 1234567890]]]
     </dd>
     </dl>
                     </section>
@@ -942,10 +1099,17 @@ notificaciones del SII sobre el resultado del procesamiento del AEC.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#toc-constants">Constants</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#toc-properties">Properties</a></li>
                                                             <li><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtcWorker.html#constant_REQUEST_DESCRIPTION">REQUEST_DESCRIPTION</a></li>
+                                            </ul>
+                </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>

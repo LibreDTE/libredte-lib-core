@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -324,7 +324,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -361,7 +361,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -398,7 +398,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -435,7 +435,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -477,7 +477,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -542,7 +542,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -591,7 +591,33 @@ firma igual, y es <code class="prettyprint">validateSchema()</code> el que lo re
         $name: &#039;build_envio_recibos&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; TipoDocumentoRespuesta::ENVIO_RECIBOS, &#039;caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;], &#039;data&#039; =&gt; [[&#039;TipoDoc&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; 100000, &#039;Recinto&#039; =&gt; &#039;Oficina central&#039;, &#039;RutFirma&#039; =&gt; &#039;76192083-9&#039;]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+        $summary: &#039;Construye el acuse de recibo de documentos recibidos&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Construye y firma el `EnvioRecibos`: el acuse de recibo de mercaderías o servicios que un receptor envía a su proveedor para los documentos que recibió (Ley 19.983). Cada recibo se firma individualmente y luego se firma el conjunto.
+
+## Cómo se usa
+
+Se envía `bag` con `tipo` igual a `envio_recibos`, la carátula, la lista de documentos recibidos en `data` y el certificado digital con el que se firma. El XML construido está en la respuesta.
+
+Los datos no se validan contra el esquema al construir: un acuse con datos incompletos se firma igual. Para comprobarlo se usa siempre `billing.exchange.document_response::validate_schema`.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos del acuse de recibo.
+
+| Campo | Descripción |
+|---|---|
+| `tipo` | Obligatorio. Debe ser `envio_recibos`. |
+| `caratula` | Carátula. `RutResponde` es el RUT de quien responde (el receptor), `RutRecibe` el de quien recibe el acuse (el emisor de los documentos) y, opcionalmente, `NmbContacto`, `FonoContacto` y `MailContacto`, los datos de contacto. |
+| `data` | Lista de los documentos recibidos, uno por recibo. Cada uno trae `TipoDoc`, `Folio`, `FchEmis` (`AAAA-MM-DD`), `RUTEmisor`, `RUTRecep`, `MntTotal`, `Recinto` (lugar donde se recibió) y `RutFirma` (RUT de quien firma el recibo). |
+| `certificate` | Certificado digital con el que se firma. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+MD, &#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; &#039;envio_recibos&#039;, &#039;caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;], &#039;data&#039; =&gt; [[&#039;TipoDoc&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; 100000, &#039;Recinto&#039; =&gt; &#039;Oficina central&#039;, &#039;RutFirma&#039; =&gt; &#039;76192083-9&#039;]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Acuse construido y firmado. Es el XML del `EnvioRecibos` como árbol: `SetRecibos` con la carátula (`TmstFirmaEnv` es la fecha y hora de la firma) y cada recibo, con su `Declaracion` legal y su firma.&#039;, &#039;example&#039; =&gt; [&#039;EnvioRecibos&#039; =&gt; [&#039;SetRecibos&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Recibo&#039; =&gt; [&#039;DocumentoRecibo&#039; =&gt; [&#039;TipoDoc&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; &#039;100000&#039;, &#039;Recinto&#039; =&gt; &#039;Oficina central&#039;, &#039;RutFirma&#039; =&gt; &#039;76192083-9&#039;, &#039;Declaracion&#039; =&gt; &#039;El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4, y la letra c) del Art. 5 de la Ley 19.983, acredita que la entrega de mercaderias o servicio(s) prestado(s) ha(n) sido recibido(s).&#039;, &#039;TmstFirmaRecibo&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;eNiW6a1yU0kjO7tPCkjbWSmhCPs0...&#039;]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;XOs4lQZku6vLebe6...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -620,7 +646,7 @@ firma igual, y es <code class="prettyprint">validateSchema()</code> el que lo re
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -669,7 +695,70 @@ firma igual, y es <code class="prettyprint">validateSchema()</code> el que lo re
         $name: &#039;build_respuesta_envio&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;bag&#039; =&gt; [&#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; TipoDocumentoRespuesta::RESPUESTA_ENVIO, &#039;caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;, &#039;IdRespuesta&#039; =&gt; 1], &#039;data&#039; =&gt; [&#039;resultado_dte&#039; =&gt; [[&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; 100000, &#039;CodEnvio&#039; =&gt; 1, &#039;EstadoDTE&#039; =&gt; 0, &#039;EstadoDTEGlosa&#039; =&gt; &#039;ACEPTADO OK&#039;]]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+        $summary: &#039;Construye la respuesta a un envío de documentos&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Construye y firma la `RespuestaDTE`: la respuesta que un receptor entrega a su proveedor sobre los documentos que recibió. Puede ser la confirmación de recepción del envío (`RecepcionEnvio`) o el resultado de la aprobación comercial de cada documento (`ResultadoDTE`). El resultado se firma.
+
+## Cómo se usa
+
+Se envía `bag` con `tipo` igual a `respuesta_envio`, la carátula, el certificado digital y, en `data`, una de dos listas: `recepcion_envio` o `resultado_dte`. El XML construido está en la respuesta.
+
+Los datos no se validan contra el esquema al construir: una respuesta con datos incompletos se firma igual. Para comprobarlo se usa siempre `billing.exchange.document_response::validate_schema`.
+
+## Estados
+
+`EstadoRecepEnv` (estado de recepción del envío, en `recepcion_envio`):
+
+| Valor | Significado |
+|---|---|
+| `0` | Envío recibido conforme |
+| `1` | Envío rechazado: error de esquema |
+| `2` | Envío rechazado: error de firma |
+| `3` | Envío rechazado: RUT del receptor no corresponde |
+| `90` | Envío rechazado: archivo repetido |
+| `91` | Envío rechazado: archivo ilegible |
+| `99` | Envío rechazado: otros |
+
+`EstadoRecepDTE` (estado de recepción de cada documento, en `RecepcionDTE`):
+
+| Valor | Significado |
+|---|---|
+| `0` | Documento recibido OK |
+| `1` | No recibido: error de firma |
+| `2` | No recibido: error en el RUT del emisor |
+| `3` | No recibido: error en el RUT del receptor |
+| `4` | No recibido: documento repetido |
+| `99` | No recibido: otros |
+
+`EstadoDTE` (aprobación comercial, en `resultado_dte`):
+
+| Valor | Significado |
+|---|---|
+| `0` | Documento aceptado OK |
+| `1` | Documento aceptado con discrepancias |
+| `2` | Documento rechazado |
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;bag&#039; =&gt; [&#039;description&#039; =&gt; &lt;&lt;&lt;&#039;MD&#039;
+Datos de la respuesta.
+
+| Campo | Descripción |
+|---|---|
+| `tipo` | Obligatorio. Debe ser `respuesta_envio`. |
+| `caratula` | Carátula. `RutResponde` es el RUT de quien responde, `RutRecibe` el de quien recibe la respuesta, `IdRespuesta` un número que identifica la respuesta y, opcionalmente, `NmbContacto`, `FonoContacto` y `MailContacto`. `NroDetalles` se calcula. |
+| `data` | Debe tener una de estas dos claves: `recepcion_envio` o `resultado_dte`. |
+| `certificate` | Certificado digital con el que se firma. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
+
+`data.resultado_dte` es una lista; cada elemento trae `TipoDTE`, `Folio`, `FchEmis`, `RUTEmisor`, `RUTRecep`, `MntTotal`, `CodEnvio` (número que identifica el envío), `EstadoDTE`, `EstadoDTEGlosa` y, opcionalmente, `CodRchDsc` (código del motivo de rechazo o discrepancia).
+
+`data.recepcion_envio` es una lista; cada elemento trae `NmbEnvio`, `FchRecep`, `CodEnvio`, `EnvioDTEID`, `Digest`, `RutEmisor`, `RutReceptor`, `EstadoRecepEnv`, `RecepEnvGlosa`, `NroDTE` y `RecepcionDTE` (la lista de documentos con su estado de recepción).
+MD, &#039;example&#039; =&gt; [&#039;tipo&#039; =&gt; &#039;respuesta_envio&#039;, &#039;caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;, &#039;IdRespuesta&#039; =&gt; 1], &#039;data&#039; =&gt; [&#039;resultado_dte&#039; =&gt; [[&#039;TipoDTE&#039; =&gt; 33, &#039;Folio&#039; =&gt; 1, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; 100000, &#039;CodEnvio&#039; =&gt; 1, &#039;EstadoDTE&#039; =&gt; 0, &#039;EstadoDTEGlosa&#039; =&gt; &#039;ACEPTADO OK&#039;]]], &#039;certificate&#039; =&gt; [&#039;certificate&#039; =&gt; &#039;&#039;, &#039;privateKey&#039; =&gt; &#039;&#039;]]]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Respuesta construida y firmada. Es el XML de la `RespuestaDTE` como árbol: `Resultado` con la carátula (`TmstFirmaResp` es la fecha y hora de la firma) y el resultado de cada documento o del envío, y la firma en `Signature`.&#039;, &#039;example&#039; =&gt; [&#039;RespuestaDTE&#039; =&gt; [&#039;Resultado&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;, &#039;IdRespuesta&#039; =&gt; &#039;1&#039;, &#039;NroDetalles&#039; =&gt; &#039;1&#039;, &#039;TmstFirmaResp&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;ResultadoDTE&#039; =&gt; [&#039;TipoDTE&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; &#039;100000&#039;, &#039;CodEnvio&#039; =&gt; &#039;1&#039;, &#039;EstadoDTE&#039; =&gt; &#039;0&#039;, &#039;EstadoDTEGlosa&#039; =&gt; &#039;ACEPTADO OK&#039;]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;hZLU7mMg3MPc9683q5HS2wNf...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -698,7 +787,7 @@ firma igual, y es <code class="prettyprint">validateSchema()</code> el que lo re
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">182</span>
+    <span class="phpdocumentor-element-found-in__line">326</span>
 
     </aside>
 
@@ -743,7 +832,22 @@ string).</p>
         $name: &#039;validate_schema&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida el XML de un acuse o respuesta contra su esquema&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida el XML de un documento de respuesta (`EnvioRecibos` o `RespuestaDTE`) contra su esquema XSD del SII.
+
+## Cómo se usa
+
+Se envía en `source` el XML construido con `billing.exchange.document_response::build_envio_recibos` o `billing.exchange.document_response::build_respuesta_envio`, codificado en base64. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema. También falla si no se puede determinar el esquema del documento.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del acuse (`EnvioRecibos`) o de la respuesta (`RespuestaDTE`), codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;El XML cumple el esquema. Se devuelve el documento como árbol.&#039;, &#039;example&#039; =&gt; [&#039;EnvioRecibos&#039; =&gt; [&#039;SetRecibos&#039; =&gt; [&#039;Caratula&#039; =&gt; [&#039;RutResponde&#039; =&gt; &#039;76192083-9&#039;, &#039;RutRecibe&#039; =&gt; &#039;88888888-8&#039;, &#039;TmstFirmaEnv&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Recibo&#039; =&gt; [&#039;DocumentoRecibo&#039; =&gt; [&#039;TipoDoc&#039; =&gt; &#039;33&#039;, &#039;Folio&#039; =&gt; &#039;1&#039;, &#039;FchEmis&#039; =&gt; &#039;2024-01-15&#039;, &#039;RUTEmisor&#039; =&gt; &#039;88888888-8&#039;, &#039;RUTRecep&#039; =&gt; &#039;76192083-9&#039;, &#039;MntTotal&#039; =&gt; &#039;100000&#039;, &#039;Recinto&#039; =&gt; &#039;Oficina central&#039;, &#039;RutFirma&#039; =&gt; &#039;76192083-9&#039;, &#039;TmstFirmaRecibo&#039; =&gt; &#039;2024-01-15T10:00:00&#039;], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;qA5Gk+dDePm7TdqjUqNP...&#039;]]], &#039;Signature&#039; =&gt; [&#039;SignatureValue&#039; =&gt; &#039;XOs4lQZku6vLebe6...&#039;]]]]]
     </dd>
     </dl>
                     </section>
@@ -772,7 +876,7 @@ string).</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">406</span>
 
     </aside>
 
@@ -817,7 +921,24 @@ string).</p>
         $name: &#039;validate_signature&#039;
     </dd>
         <dd class="phpdocumentor-argument-list__entry">
-        $parameters: [&#039;source&#039; =&gt; [&#039;example&#039; =&gt; &#039;&#039;]]
+        $summary: &#039;Valida las firmas de un acuse o respuesta&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $description: &lt;&lt;&lt;&#039;MD&#039;
+Valida las firmas electrónicas (XML DSIG) de un documento de respuesta (`EnvioRecibos` o `RespuestaDTE`). Un `EnvioRecibos` tiene varias firmas: una por cada recibo y la del conjunto; se entrega el resultado de todas.
+
+## Cómo se usa
+
+Se envía en `source` el XML firmado, codificado en base64. Si el XML está mal formado o no contiene firmas, la operación falla.
+
+La operación responde con éxito tanto si las firmas son válidas como si no lo son: el resultado de cada una está en su campo `valid`. Si es `false`, `error` explica el motivo.
+MD
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $parameters: [&#039;source&#039; =&gt; [&#039;description&#039; =&gt; &#039;XML del acuse (`EnvioRecibos`) o de la respuesta (`RespuestaDTE`) firmado, codificado en base64.&#039;, &#039;example&#039; =&gt; &#039;&#039;]]
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $results: [&#039;success&#039; =&gt; [&#039;description&#039; =&gt; &#039;Lista con el resultado de cada firma encontrada. En cada elemento, `valid` indica si la firma es válida, `error` trae el motivo cuando no lo es (`null` si es válida), `signature` los datos de la firma y `signature.signer` los del certificado del firmante.&#039;, &#039;example&#039; =&gt; [[&#039;valid&#039; =&gt; true, &#039;error&#039; =&gt; null, &#039;signature&#039; =&gt; [&#039;reference&#039; =&gt; &#039;LibreDTE_T33F1&#039;, &#039;canonicalization_method&#039; =&gt; &#039;http://www.w3.org/TR/2001/REC-xml-c14n-20010315&#039;, &#039;signature_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#rsa-sha1&#039;, &#039;digest_method&#039; =&gt; &#039;http://www.w3.org/2000/09/xmldsig#sha1&#039;, &#039;digest_value&#039; =&gt; &#039;iqCtA9K9784IzklwouBBZOhavek=&#039;, &#039;signature_value&#039; =&gt; &#039;qA5Gk+dDePm7TdqjUqNPpb+SikpS8wZr...&#039;, &#039;modulus&#039; =&gt; &#039;xA9E+qja3zDCN0ll8ul38aqgm0KL9jDO...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;certificate&#039; =&gt; &#039;MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...&#039;, &#039;certificate_chain&#039; =&gt; [], &#039;signer&#039; =&gt; [&#039;id&#039; =&gt; &#039;76192083-9&#039;, &#039;name&#039; =&gt; &#039;Empresa de Ejemplo SpA&#039;, &#039;email&#039; =&gt; &#039;contacto@example.com&#039;, &#039;from&#039; =&gt; &#039;2024-01-01T00:00:00&#039;, &#039;to&#039; =&gt; &#039;2025-01-01T00:00:00&#039;, &#039;total_days&#039; =&gt; 366, &#039;expiration_days&#039; =&gt; 300, &#039;is_active&#039; =&gt; true, &#039;issuer&#039; =&gt; &#039;AC de Ejemplo&#039;, &#039;modulus&#039; =&gt; &#039;xA9E+qja3zDCN0ll8ul38aqgm0KL9jDO...&#039;, &#039;exponent&#039; =&gt; &#039;AQAB&#039;, &#039;cert&#039; =&gt; &quot;-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...&quot;, &#039;chain&#039; =&gt; []]]]]]]
     </dd>
     </dl>
                     </section>
@@ -847,7 +968,7 @@ validar cada firma electrónica encontrada en el documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php"><a href="files/src-package-billing-component-exchange-worker-documentresponseworker.html"><abbr title="src/Package/Billing/Component/Exchange/Worker/DocumentResponseWorker.php">DocumentResponseWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">235</span>
+    <span class="phpdocumentor-element-found-in__line">476</span>
 
     </aside>
 
