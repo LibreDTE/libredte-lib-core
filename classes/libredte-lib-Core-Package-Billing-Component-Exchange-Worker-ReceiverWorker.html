@@ -257,7 +257,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Worker-ReceiverWorker.html#method_receive">receive()</a>
     <span>
-                                &nbsp;: array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a>&gt;    </span>
+                                &nbsp;: <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>    </span>
 </dt>
 <dd>Recibe documentos a través del proceso de intercambio mediante la
 estrategia definida en la bolsa.</dd>
@@ -491,7 +491,7 @@ estrategia definida en la bolsa.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">receive</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">receive</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -534,10 +534,10 @@ intercambio de documentos.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeResultInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface">ExchangeResultInterface</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Exchange-Contract-ExchangeBagInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface">ExchangeBagInterface</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>El resultado del intercambio donde cada
-resultado contiene un sobre con el estado de la recepción.</p>
+                <section class="phpdocumentor-description"><p>La misma bolsa, con los sobres recibidos y
+el resultado de cada uno (<code class="prettyprint">getResults()</code>).</p>
 </section>
 
             </section>

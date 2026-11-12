@@ -1786,6 +1786,11 @@ Search.appendIndex(
             "summary": "Parsea\u0020los\u0020datos\u0020de\u0020entrada\u0020del\u0020lote\u0020y\u0020genera\u0020los\u0020datos\u0020de\u0020los\ndocumentos\u0020tributarios\u0020electr\u00F3nicos.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method_parse"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractSpreadsheetBatchProcessorStrategy\u003A\u003AoptionalDate\u0028\u0029",
+            "name": "optionalDate",
+            "summary": "Lee\u0020una\u0020fecha\u0020opcional\u0020de\u0020la\u0020planilla.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Abstract-AbstractSpreadsheetBatchProcessorStrategy.html#method_optionalDate"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Abstract\\AbstractSpreadsheetBatchProcessorStrategy\u003A\u003AcreateDocument\u0028\u0029",
             "name": "createDocument",
             "summary": "Crea\u0020un\u0020documento\u0020a\u0020partir\u0020de\u0020los\u0020datos\u0020proporcionados.",
@@ -1983,7 +1988,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
+            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DispatcherWorkerInterface.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DispatcherWorkerInterface\u003A\u003AvalidateSchema\u0028\u0029",
@@ -5571,6 +5576,41 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-BuilderWorker.html#property_documentBagManager"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob",
+            "name": "ValidateEnvelopeJob",
+            "summary": "Valida\u0020los\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios\u0020electr\u00F3nicos.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Valida\u0020los\u0020datos\u0020del\u0020sobre.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#method_execute"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003AvalidateRuts\u0028\u0029",
+            "name": "validateRuts",
+            "summary": "Valida\u0020que\u0020los\u0020RUT\u0020de\u0020la\u0020car\u00E1tula\u0020tengan\u0020d\u00EDgito\u0020verificador\u0020v\u00E1lido.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#method_validateRuts"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003AvalidateResolutionDate\u0028\u0029",
+            "name": "validateResolutionDate",
+            "summary": "Valida\u0020que\u0020la\u0020fecha\u0020de\u0020la\u0020resoluci\u00F3n\u0020no\u0020sea\u0020posterior\u0020a\u0020la\u0020fecha\u0020de\u0020la\nfirma\u0020del\u0020sobre.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#method_validateResolutionDate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003AparseDate\u0028\u0029",
+            "name": "parseDate",
+            "summary": "Lee\u0020una\u0020fecha\u0020de\u0020la\u0020car\u00E1tula,\u0020que\u0020debe\u0020estar\u0020escrita\u0020exactamente\u0020en\u0020el\nformato\u0020indicado\u0020\u0028con\u0020todos\u0020sus\u0020d\u00EDgitos\u0029.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#method_parseDate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003AvalidateSubTotals\u0028\u0029",
+            "name": "validateSubTotals",
+            "summary": "Valida\u0020que\u0020la\u0020cantidad\u0020de\u0020documentos\u0020de\u0020cada\u0020tipo\u0020declarada\u0020en\u0020la\ncar\u00E1tula\u0020coincida\u0020con\u0020la\u0020cantidad\u0020de\u0020documentos\u0020del\u0020sobre.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#method_validateSubTotals"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job\\ValidateEnvelopeJob\u003A\u003ARUT_TAGS",
+            "name": "RUT_TAGS",
+            "summary": "Tags\u0020de\u0020la\u0020car\u00E1tula\u0020que\u0020contienen\u0020un\u0020RUT.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Dispatcher-Job-ValidateEnvelopeJob.html#constant_RUT_TAGS"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker",
             "name": "DispatcherWorker",
             "summary": "Clase\u0020para\u0020la\u0020gesti\u00F3n\u0020de\u0020sobres\u0020de\u0020documentos\u0020\u0028para\u0020env\u00EDos\/transferencias\u0029.",
@@ -5603,7 +5643,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
+            "summary": "Realiza\u0020la\u0020validaci\u00F3n\u0020de\u0020los\u0020datos\u0020del\u0020sobre\u0020de\u0020documentos\u0020tributarios.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#method_validate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003AvalidateSchema\u0028\u0029",
@@ -5680,6 +5720,11 @@ Search.appendIndex(
             "name": "documentBagManagerWorker",
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_documentBagManagerWorker"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DispatcherWorker\u003A\u003A\u0024validateEnvelopeJob",
+            "name": "validateEnvelopeJob",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-DispatcherWorker.html#property_validateEnvelopeJob"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\DocumentBagManagerWorker",
             "name": "DocumentBagManagerWorker",
@@ -5816,6 +5861,11 @@ Search.appendIndex(
             "summary": "Ordena\u0020los\u0020IDs\u0020de\u0020ejemplos\u0020de\u0020forma\u0020que\u0020cada\u0020uno\u0020aparezca\u0020despu\u00E9s\u0020de\ntodos\u0020los\u0020ejemplos\u0020de\u0020los\u0020que\u0020depende\u0020\u0028\u0060Test.DependsOn\u0060\u0020en\u0020el\u0020YAML\u0020de\norigen\u0029.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_sortByDependencies"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003AvisitDependency\u0028\u0029",
+            "name": "visitDependency",
+            "summary": "Visita\u0020un\u0020ejemplo\u0020y\u0020sus\u0020dependencias\u0020antes\u0020de\u0020agregarlo\u0020al\u0020resultado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-ExamplesWorker.html#method_visitDependency"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\ExamplesWorker\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Entrega\u0020los\u0020datos\u0020de\u0020un\u0020ejemplo\u0020espec\u00EDfico.",
@@ -5950,11 +6000,6 @@ Search.appendIndex(
             "name": "normalizeDefaultTags",
             "summary": "Completar\u0020con\u0020campos\u0020por\u0020defecto.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeDefaultTags"
-        },                {
-            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeIdDocFechas\u0028\u0029",
-            "name": "normalizeIdDocFechas",
-            "summary": "Si\u0020alguna\u0020de\u0020las\u0020fechas\u0020de\u0020la\u0020identificaci\u00F3n\u0020del\u0020documento\u0020se\u0020pas\u00F3\u0020como\nentero\u0020es\u0020un\u0020timestamp\u0020y\u0020se\u0020convierte\u0020a\u0020string.",
-            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Job-NormalizeDataPreDocumentNormalizationJob.html#method_normalizeIdDocFechas"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Job\\NormalizeDataPreDocumentNormalizationJob\u003A\u003AnormalizeDescuentosRecargosGlobales\u0028\u0029",
             "name": "normalizeDescuentosRecargosGlobales",
@@ -6708,13 +6753,23 @@ Search.appendIndex(
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AdecodeData\u0028\u0029",
             "name": "decodeData",
-            "summary": "Decodifica\u0020datos\u0020YAML\u0020o\u0020los\u0020retorna\u0020directamente\u0020si\u0020ya\u0020son\u0020un\u0020arreglo.",
+            "summary": "Decodifica\u0020el\u0020formulario\u0020YAML\u0020y\u0020valida\u0020que\u0020sus\u0020campos\u0020tengan\u0020claves\u0020de\u0020texto.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AprocessDTEData\u0028\u0029",
             "name": "processDTEData",
             "summary": "Procesa\u0020los\u0020datos\u0020de\u0020un\u0020DTE\u0020y\u0020los\u0020agrega\u0020a\u0020la\u0020estructura\u0020proporcionada.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AvalidateDates\u0028\u0029",
+            "name": "validateDates",
+            "summary": "Valida\u0020que\u0020las\u0020fechas\u0020indicadas\u0020en\u0020el\u0020formulario\u0020est\u00E9n\u0020escritas\u0020como\nAAAA\u002DMM\u002DDD.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateDates"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AassertDate\u0028\u0029",
+            "name": "assertDate",
+            "summary": "Verifica\u0020una\u0020fecha\u0020del\u0020formulario.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_assertDate"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Parser\\Strategy\\Form\\EstandarParserStrategy\u003A\u003AvalidateMinimalData\u0028\u0029",
             "name": "validateMinimalData",
@@ -14325,6 +14380,16 @@ Search.appendIndex(
             "name": "Builder",
             "summary": "",
             "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-builder.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher\\Job",
+            "name": "Job",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-dispatcher-job.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Dispatcher",
+            "name": "Dispatcher",
+            "summary": "",
+            "url": "namespaces/libredte-lib-core-package-billing-component-document-worker-dispatcher.html"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Helper",
             "name": "Helper",

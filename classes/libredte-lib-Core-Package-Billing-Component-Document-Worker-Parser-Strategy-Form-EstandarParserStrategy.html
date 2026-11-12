@@ -159,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -317,11 +317,18 @@ documentos tributarios.</dd>    </dl>
 <dd>Agrega datos de traslado al DTE.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_assertDate">assertDate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Verifica una fecha del formulario.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData">decodeData()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string, mixed&gt;    </span>
 </dt>
-<dd>Decodifica datos YAML o los retorna directamente si ya son un arreglo.</dd>
+<dd>Decodifica el formulario YAML y valida que sus campos tengan claves de texto.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax">getTax()</a>
@@ -343,6 +350,14 @@ documentos tributarios.</dd>    </dl>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Crea la estructura inicial del DTE.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateDates">validateDates()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Valida que las fechas indicadas en el formulario estén escritas como
+AAAA-MM-DD.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData">validateMinimalData()</a>
@@ -381,7 +396,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -423,7 +438,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -468,7 +483,7 @@ documentos tributarios.</dd>    </dl>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -524,7 +539,7 @@ SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">859</span>
+    <span class="phpdocumentor-element-found-in__line">903</span>
 
     </aside>
 
@@ -590,7 +605,7 @@ y tasa.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">910</span>
+    <span class="phpdocumentor-element-found-in__line">954</span>
 
     </aside>
 
@@ -656,7 +671,7 @@ derecho a un crédito del 65%.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">710</span>
+    <span class="phpdocumentor-element-found-in__line">754</span>
 
     </aside>
 
@@ -753,7 +768,7 @@ boleta.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">647</span>
+    <span class="phpdocumentor-element-found-in__line">691</span>
 
     </aside>
 
@@ -821,7 +836,7 @@ cambio (<code class="prettyprint">TpoCambio</code>).</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">951</span>
+    <span class="phpdocumentor-element-found-in__line">995</span>
 
     </aside>
 
@@ -906,7 +921,7 @@ descuento.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1032</span>
+    <span class="phpdocumentor-element-found-in__line">1076</span>
 
     </aside>
 
@@ -973,7 +988,7 @@ fecha, código de referencia y razón de referencia.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">426</span>
+    <span class="phpdocumentor-element-found-in__line">470</span>
 
     </aside>
 
@@ -1041,7 +1056,7 @@ pagos.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">579</span>
+    <span class="phpdocumentor-element-found-in__line">623</span>
 
     </aside>
 
@@ -1109,7 +1124,7 @@ servicio.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">488</span>
+    <span class="phpdocumentor-element-found-in__line">532</span>
 
     </aside>
 
@@ -1167,6 +1182,78 @@ destino), esta se incluye en la sección de transporte del DTE.</li>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_assertDate">
+        assertDate()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_assertDate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">199</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Verifica una fecha del formulario.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">assertDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$value</span>
+                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Valor indicado.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$field</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nombre del campo, para el mensaje de error.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_assertDate_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_assertDate_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si la fecha no es válida.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_decodeData">
         decodeData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1175,21 +1262,21 @@ destino), esta se incluye en la sección de transporte del DTE.</li>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Decodifica datos YAML o los retorna directamente si ya son un arreglo.</p>
+        <p class="phpdocumentor-summary">Decodifica el formulario YAML y valida que sus campos tengan claves de texto.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">decodeData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">decodeData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Verifica si los datos son una cadena YAML y los decodifica a un arreglo
-asociativo. Si los datos ya son un arreglo, los retorna sin cambios.</p>
+        <section class="phpdocumentor-description"><p>Los arreglos de entrada también se validan como mapas. Un documento YAML
+vacío representa un mapa vacío; los campos internos pueden contener listas.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1199,7 +1286,7 @@ asociativo. Si los datos ya son un arreglo, los retorna sin cambios.</p>
                 : <span class="phpdocumentor-argument-list__argument__type">string|array&lt;string, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Datos a procesar. Puede ser YAML o un arreglo.</p>
+                    <section class="phpdocumentor-description"><p>Datos del formulario en YAML o como mapa.</p>
 </section>
 
             </dd>
@@ -1217,8 +1304,8 @@ asociativo. Si los datos ya son un arreglo, los retorna sin cambios.</p>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Si la cadena YAML proporcionada no es válida o no
-es un mapa ni una lista.</p>
+                                                                                        <section class="phpdocumentor-description"><p>Si el YAML no es válido o los datos no son un mapa
+con claves de texto.</p>
 </section>
 
                                     </dd>
@@ -1228,9 +1315,9 @@ es un mapa ni una lista.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Datos decodificados como arreglo asociativo.</p>
+                <section class="phpdocumentor-description"><p>Campos del formulario con sus valores originales.</p>
 </section>
 
             </section>
@@ -1250,7 +1337,7 @@ es un mapa ni una lista.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1084</span>
+    <span class="phpdocumentor-element-found-in__line">1128</span>
 
     </aside>
 
@@ -1329,7 +1416,7 @@ la tasa de IVA predeterminada asociada al tipo de documento especificado.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -1389,7 +1476,7 @@ datos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">250</span>
+    <span class="phpdocumentor-element-found-in__line">298</span>
 
     </aside>
 
@@ -1452,6 +1539,74 @@ generales que se requieren para procesar el documento.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_validateDates">
+        validateDates()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateDates" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">174</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Valida que las fechas indicadas en el formulario estén escritas como
+AAAA-MM-DD.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">validateDates</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Una fecha vacía es una fecha que no se indicó. Las fechas se comparan
+como texto (por ejemplo la de vencimiento con la de emisión), por eso el
+formato no puede ser otro.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$data</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Datos del formulario.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_validateDates_tags">
+        Tags
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateDates_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Exception-ParserException.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Document\Exception\ParserException">ParserException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Si una fecha indicada no es válida.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_validateMinimalData">
         validateMinimalData()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1460,7 +1615,7 @@ generales que se requieren para procesar el documento.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php"><a href="files/src-package-billing-component-document-worker-parser-strategy-form-estandarparserstrategy.html"><abbr title="src/Package/Billing/Component/Document/Worker/Parser/Strategy/Form/EstandarParserStrategy.php">EstandarParserStrategy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -1561,10 +1716,12 @@ directo.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addScheduledPayment">addScheduledPayment()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addServiceIndicator">addServiceIndicator()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_addTransferData">addTransferData()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_assertDate">assertDate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_decodeData">decodeData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_getTax">getTax()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_processDTEData">processDTEData()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_setInitialDTE">setInitialDTE()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateDates">validateDates()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Parser-Strategy-Form-EstandarParserStrategy.html#method_validateMinimalData">validateMinimalData()</a></li>
                                     </ul>
             </li>
