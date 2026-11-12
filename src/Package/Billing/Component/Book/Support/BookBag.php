@@ -75,7 +75,7 @@ class BookBag implements BookBagInterface
     /**
      * Datos originales de entrada que se utilizarán para construir el libro.
      *
-     * @var array<string, mixed>|string
+     * @var array<array-key, mixed>|string
      */
     private array|string $inputData;
 
@@ -126,7 +126,7 @@ class BookBag implements BookBagInterface
      * Constructor del contenedor.
      *
      * @param TipoLibro $tipo Tipo de libro tributario.
-     * @param array<string, mixed>|string $inputData Datos originales de entrada que se
+     * @param array<array-key, mixed>|string $inputData Datos originales de entrada que se
      * utilizarán para construir el libro. Si es un arreglo son los datos crudos.
      * Si es un string podrá ser un CSV, XML, JSON, etc, dependiendo del formato
      * de entrada en las opciones del `LoaderWorker`.

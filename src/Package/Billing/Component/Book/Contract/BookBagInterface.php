@@ -58,7 +58,7 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
      * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
      * `LoaderWorker`.
      *
-     * @param array<string, mixed>|string $inputData
+     * @param array<array-key, mixed>|string $inputData
      * @return static
      */
     public function setInputData(array|string $inputData): static;
@@ -70,7 +70,7 @@ interface BookBagInterface extends OptionsAwareInterface, JsonSerializable
      * XML, JSON, etc, dependiendo del formato de entrada en las opciones del
      * `LoaderWorker`.
      *
-     * @return array<string, mixed>|string
+     * @return array<array-key, mixed>|string
      */
     public function getInputData(): array|string;
 
