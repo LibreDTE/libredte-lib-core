@@ -56,6 +56,12 @@ interface ExchangeResultInterface extends JsonSerializable
      * Agrega el estado de resultado de una estrategia al resultado general del
      * intercambio del sobre.
      *
+     * El resultado guarda un solo estado por estrategia: agregar el estado de
+     * una estrategia que ya tiene uno lo reemplaza. El resultado dice cómo
+     * terminó el intercambio con cada estrategia, no el historial de sus
+     * intentos; si una estrategia falla y luego se reintenta con éxito, el
+     * resultado de esa estrategia es el éxito.
+     *
      * @return static
      */
     public function addStatus(ExchangeStatusInterface $status): static;

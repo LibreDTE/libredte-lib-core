@@ -1,0 +1,34 @@
+# Factura por un servicio mensual que solo tiene precio. Sin cantidad se asume
+# una unidad.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 24
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Hosting mensual plan pyme
+  PrcItem: 45000
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 45000
+        IVA: 8550
+        MntTotal: 53550
+    Detalle:
+    - QtyItem: 1
+      MontoItem: 45000

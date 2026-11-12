@@ -27,6 +27,7 @@ use Derafu\Array\ArrayReader;
 use Derafu\Array\Exception\ArrayException;
 use Derafu\Backbone\Abstract\AbstractStrategy;
 use Derafu\Backbone\Attribute\Strategy;
+use Derafu\Date\Support\DateParser;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
@@ -68,6 +69,9 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Validar datos mínimos requeridos.
         $this->validateMinimalData($data);
+
+        // Validar el formato de las fechas.
+        $this->validateDates($data);
 
         // Inicializar los datos del DTE.
         $dte = [];
@@ -154,6 +158,58 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
         // Agregar referencias.
         $this->addReferences($data, $dte);
+    }
+
+    /**
+     * Valida que las fechas indicadas en el formulario estén escritas como
+     * AAAA-MM-DD.
+     *
+     * Una fecha vacía es una fecha que no se indicó. Las fechas se comparan
+     * como texto (por ejemplo la de vencimiento con la de emisión), por eso el
+     * formato no puede ser otro.
+     *
+     * @param array<string, mixed> $data Datos del formulario.
+     * @throws ParserException Si una fecha indicada no es válida.
+     */
+    private function validateDates(array $data): void
+    {
+        foreach (['FchEmis', 'FchVenc', 'PeriodoDesde', 'PeriodoHasta', 'FchSalida', 'FchLlegada'] as $field) {
+            $this->assertDate($data[$field] ?? null, $field);
+        }
+
+        // Fechas que se indican como lista, una por pago o por referencia.
+        foreach (['FchPago', 'FchRef'] as $field) {
+            $values = $data[$field] ?? null;
+            if (!is_array($values)) {
+                continue;
+            }
+            foreach ($values as $i => $value) {
+                $this->assertDate($value, $field . '.' . $i);
+            }
+        }
+    }
+
+    /**
+     * Verifica una fecha del formulario.
+     *
+     * @param mixed $value Valor indicado.
+     * @param string $field Nombre del campo, para el mensaje de error.
+     * @throws ParserException Si la fecha no es válida.
+     */
+    private function assertDate(mixed $value, string $field): void
+    {
+        $date = is_string($value) ? trim($value) : $value;
+        if ($date === null || $date === '') {
+            return;
+        }
+
+        if (!is_string($date) || DateParser::reformat($date, 'Y-m-d') === null) {
+            throw new ParserException([
+                'The date {date} of the field {field} must be in YYYY-MM-DD format.',
+                'date' => is_scalar($date) ? (string) $date : get_debug_type($date),
+                'field' => $field,
+            ]);
+        }
     }
 
     /**
@@ -318,11 +374,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
                         ?? $data['RznSocEmisor']
                         ?? null
                     ) ?: null,
-                    'GiroEmis' => (
-                        $data['GiroEmis']
-                        ?? $data['GiroEmisor']
-                        ?? null
-                    ) ?: null,
+                    'GiroEmis' => $data['GiroEmis'],
                     'Telefono' => !empty($data['TelefonoEmisor'])
                         ? $data['TelefonoEmisor']
                         : null

@@ -98,7 +98,10 @@ interface DispatcherWorkerInterface extends WorkerInterface
     public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface;
 
     /**
-     * Realiza la validación del sobre de documentos tributarios.
+     * Realiza la validación de los datos del sobre de documentos tributarios.
+     *
+     * No valida el esquema XSD (ver `validateSchema()`) ni la firma (ver
+     * `validateSignature()`).
      *
      * @param DocumentEnvelopeInterface|XmlDocumentInterface|string $source
      * Origen a validar: el sobre ya construido, o su XML ya construido

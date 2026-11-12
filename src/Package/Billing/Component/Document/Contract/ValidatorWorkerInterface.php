@@ -42,12 +42,14 @@ interface ValidatorWorkerInterface extends WorkerInterface, StrategiesAwareInter
      * @param DocumentBagInterface|XmlDocumentInterface|string $source
      * Origen a validar: el documento con sus datos ya cargados en la
      * bolsa, o su XML ya construido (como documento o como string).
-     * @return void
+     * @return XmlDocumentInterface|null El documento XML validado, o `null` si
+     * se validó una bolsa que aún no tiene XML (el documento se está
+     * construyendo).
      * @throws ValidatorException
      */
     public function validate(
         DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void;
+    ): ?XmlDocumentInterface;
 
     /**
      * Valida el esquema del XML del documento.

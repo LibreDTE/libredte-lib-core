@@ -227,9 +227,9 @@ class Contribuyente implements ContribuyenteInterface
 
         if ($actividad_economica !== null) {
             array_unshift($this->actividades_economicas, $actividad_economica);
-            $this->actividades_economicas = array_unique(
+            $this->actividades_economicas = array_values(array_unique(
                 $this->actividades_economicas
-            );
+            ));
         }
 
         return $this;
@@ -252,7 +252,7 @@ class Contribuyente implements ContribuyenteInterface
 
         if ($telefono !== null) {
             array_unshift($this->telefonos, $telefono);
-            $this->telefonos = array_unique($this->telefonos);
+            $this->telefonos = array_values(array_unique($this->telefonos));
         }
 
         return $this;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_HDR>
+        <SII:ESTADO>2</SII:ESTADO>
+        <SII:GLOSA>Documento no ha sido cedido</SII:GLOSA>
+    </SII:RESP_HDR>
+    <SII:RESP_BODY/>
+</SII:RESPUESTA>

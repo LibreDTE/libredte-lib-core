@@ -23,6 +23,7 @@ declare(strict_types=1);
 namespace libredte\lib\Core\Package\Billing\Component\Book\Entity;
 
 use Derafu\Array\ArrayPath;
+use Derafu\Array\ArrayReader;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Abstract\AbstractBook;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LibroComprasVentasInterface;
@@ -54,16 +55,16 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
      */
     public function getTipoOperacion(): TipoOperacion
     {
-        $operacion = TipoOperacion::tryFrom(strtoupper(
-            $this->getXmlDocument()
-                ->getReader(source: 'purchases and sales book XML')
-                ->getString('//Caratula/TipoOperacion') ?? ''
-        ));
+        $texto = $this->getXmlDocument()
+            ->getReader(source: 'purchases and sales book XML')
+            ->getString('//Caratula/TipoOperacion') ?? ''
+        ;
+        $operacion = TipoOperacion::tryFrom(strtoupper($texto));
 
         if ($operacion === null) {
             throw new BookException([
                 'The operation type "{operation}" is not valid.',
-                'operation' => $operacion,
+                'operation' => $texto,
             ]);
         }
 
@@ -85,7 +86,10 @@ class LibroComprasVentas extends AbstractBook implements LibroComprasVentasInter
     {
         // Un solo tipo de documento se decodifica como un arreglo y no como una
         // lista, se entrega siempre una lista.
-        $resumen = ArrayPath::wrap($this->getResumen(), 'TotalesPeriodo');
+        $resumen = ArrayPath::wrap(
+            ArrayReader::fromArray($this->getResumen())->getMap('0') ?? [],
+            'TotalesPeriodo'
+        );
 
         return ValueType::listOf(ValueType::map())->parse(
             $resumen['TotalesPeriodo'] ?? [],

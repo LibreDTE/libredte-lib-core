@@ -82,7 +82,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
     )]
     public function validate(
         DocumentBagInterface|XmlDocumentInterface|string $source
-    ): void {
+    ): ?XmlDocumentInterface {
         // Un XmlDocumentInterface se trata igual que un string: se extrae su
         // XML y se procesa por la misma vía. Se usa saveXml() (con cabecera
         // y encoding declarado) y no getXml() (sin cabecera, pensado para
@@ -119,6 +119,11 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
         // Validar el documento usando la estrategia.
         $strategy->validate($bag);
+
+        // Devolver el documento XML validado. Si se valida una bolsa que aún
+        // no tiene XML (se está construyendo el documento) no hay XML que
+        // devolver.
+        return $bag->getXmlDocument();
     }
 
     /**

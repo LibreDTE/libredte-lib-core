@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Package\Billing\Component\Document\Worker\Parser\Strategy\Form;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Array\Exception\TypeMismatchException as ArrayTypeMismatchException;
 use Derafu\Value\Exception\TypeMismatchException as ValueTypeMismatchException;
 use Derafu\Value\ValueCaster;
@@ -201,6 +202,196 @@ class EstandarParserStrategyTest extends TestCase
         $this->expectExceptionMessage('The form input data must be a mapping with string keys');
 
         $this->strategy->parse($yaml);
+    }
+
+    /**
+     * Data of a valid case, as a form would submit it.
+     *
+     * @return array<string, mixed>
+     */
+    private function validFormData(string $file = '033_pago_credito_impuesto_tipos_datos.yaml'): array
+    {
+        $data = ValueType::map()->parse(Yaml::parseFile(
+            self::getFixturesPath() . '/parsers_edge/form/estandar/' . $file
+        ));
+        unset($data['Test']);
+
+        return $data;
+    }
+
+    public function testInvalidYamlThrowsParserException(): void
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('The provided YAML is invalid');
+
+        $this->strategy->parse("clave: [sin cerrar\notra: valor");
+    }
+
+    public function testWithoutDocumentTypeThrowsParserException(): void
+    {
+        $data = $this->validFormData();
+        unset($data['TpoDoc']);
+
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Must indicate the document type to issue.');
+
+        $this->strategy->parse($data);
+    }
+
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function provideRequiredFields(): array
+    {
+        $fields = ['FchEmis', 'GiroEmis', 'Acteco', 'RUTRecep', 'RznSocRecep', 'DirRecep', 'NmbItem', 'GiroRecep', 'CmnaRecep'];
+
+        return array_combine($fields, array_map(fn (string $field) => [$field], $fields));
+    }
+
+    #[DataProvider('provideRequiredFields')]
+    public function testMissingRequiredFieldIsNamed(string $field): void
+    {
+        $data = $this->validFormData();
+        $data[$field] = '';
+
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Must indicate the field ' . $field . '.');
+
+        $this->strategy->parse($data);
+    }
+
+    /**
+     * @return array<string, array{array<string, mixed>, string, string}>
+     */
+    public static function provideInvalidDates(): array
+    {
+        return [
+            'emission date that does not exist' => [['FchEmis' => '2025-02-30'], 'FchEmis', '2025-02-30'],
+            'due date in another format' => [['FchVenc' => '31/12/2025'], 'FchVenc', '31/12/2025'],
+            'period start without zeros' => [['PeriodoDesde' => '2025-1-5'], 'PeriodoDesde', '2025-1-5'],
+            'period end that is not a date' => [['PeriodoHasta' => 'enero'], 'PeriodoHasta', 'enero'],
+            'departure date with a wrong month' => [['FchSalida' => '2025-13-01'], 'FchSalida', '2025-13-01'],
+            'arrival date with a wrong day' => [['FchLlegada' => '2025-12-32'], 'FchLlegada', '2025-12-32'],
+            'payment date that is not a date' => [['FmaPago' => '2', 'FchPago' => ['2025-03-10', 'pronto']], 'FchPago.1', 'pronto'],
+            'reference date in another format' => [['FchRef' => ['10-03-2025']], 'FchRef.0', '10-03-2025'],
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $change
+     */
+    #[DataProvider('provideInvalidDates')]
+    public function testDateThatIsNotYyyyMmDdIsReportedWithItsField(array $change, string $field, string $date): void
+    {
+        $data = array_merge($this->validFormData(), $change);
+
+        try {
+            $this->strategy->parse($data);
+            $this->fail('A ParserException was expected.');
+        } catch (ParserException $e) {
+            $this->assertStringContainsString('must be in YYYY-MM-DD format', $e->getMessage());
+            $this->assertStringContainsString($field, $e->getMessage());
+            $this->assertStringContainsString($date, $e->getMessage());
+        }
+    }
+
+    public function testEmptyDatesAreOptional(): void
+    {
+        $data = array_merge($this->validFormData(), ['FchVenc' => '', 'PeriodoDesde' => '', 'PeriodoHasta' => '', 'FchSalida' => '', 'FchLlegada' => '']);
+
+        $result = $this->strategy->parse($data);
+
+        $this->assertArrayHasKey('Encabezado', $result);
+    }
+
+    public function testBoletaItemWithAdditionalTaxIsNotSupported(): void
+    {
+        $data = $this->validFormData('039_boleta_descuentos_monto.yaml');
+        $items = count(ValueType::list()->parse($data['NmbItem']));
+        $data['IndExe'] = array_fill(0, $items, '0');
+        $data['CodImpAdic'] = array_fill(0, $items, '24');
+
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('It is not possible to generate a receipt with additional taxes');
+
+        $this->strategy->parse($data);
+    }
+
+    public function testDocumentTypeThatDoesNotExistIsReported(): void
+    {
+        $data = $this->validFormData();
+        $data['TpoDoc'] = '999';
+
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Could not retrieve VAT for document type 999');
+
+        $this->strategy->parse($data);
+    }
+
+    public function testIssuerNameIsTakenFromTheEmisorField(): void
+    {
+        $data = array_merge($this->validFormData(), [
+            'RznSoc' => null, 'RznSocEmisor' => 'Emisora SpA',
+        ]);
+
+        $reader = ArrayReader::fromArray($this->strategy->parse($data));
+
+        $this->assertSame('Emisora SpA', $reader->requireString('Encabezado.Emisor.RznSoc'));
+    }
+
+    public function testWithoutTransportDataTheDocumentHasNoTransport(): void
+    {
+        $data = array_merge($this->validFormData(), [
+            'Patente' => '', 'RUTTrans' => '', 'RUTChofer' => '', 'NombreChofer' => '', 'DirDest' => '', 'CmnaDest' => '',
+        ]);
+
+        $reader = ArrayReader::fromArray($this->strategy->parse($data));
+
+        $this->assertNull($reader->get('Encabezado.Transporte', ValueType::mixed()));
+    }
+
+    public function testItemCodeIsInternalWhenItHasNoType(): void
+    {
+        $data = array_merge($this->validFormData(), ['VlrCodigo' => ['A-1'], 'TpoCodigo' => []]);
+
+        $reader = ArrayReader::fromArray($this->strategy->parse($data));
+
+        $this->assertSame('INT1', $reader->requireString('Detalle.0.CdgItem.TpoCodigo'));
+        $this->assertSame('A-1', $reader->requireString('Detalle.0.CdgItem.VlrCodigo'));
+    }
+
+    public function testItemCodeKeepsItsType(): void
+    {
+        $data = array_merge($this->validFormData(), ['VlrCodigo' => ['7801234567890'], 'TpoCodigo' => ['EAN13']]);
+
+        $reader = ArrayReader::fromArray($this->strategy->parse($data));
+
+        $this->assertSame('EAN13', $reader->requireString('Detalle.0.CdgItem.TpoCodigo'));
+    }
+
+    /**
+     * @return array<string, array{string, string, string|null}>
+     */
+    public static function provideServiceIndicators(): array
+    {
+        return [
+            'factura con indicador válido' => ['033_pago_credito_impuesto_tipos_datos.yaml', '2', '2'],
+            'factura con indicador que no corresponde' => ['033_pago_credito_impuesto_tipos_datos.yaml', '5', null],
+            'boleta con el valor invertido (1 pasa a 2)' => ['039_boleta_descuentos_monto.yaml', '1', '2'],
+            'boleta con el valor invertido (2 pasa a 1)' => ['039_boleta_descuentos_monto.yaml', '2', '1'],
+            'boleta con indicador que no corresponde' => ['039_boleta_descuentos_monto.yaml', '9', null],
+        ];
+    }
+
+    #[DataProvider('provideServiceIndicators')]
+    public function testServiceIndicatorDependsOnTheDocumentType(string $file, string $given, ?string $expected): void
+    {
+        $data = array_merge($this->validFormData($file), ['IndServicio' => $given]);
+
+        $reader = ArrayReader::fromArray($this->strategy->parse($data));
+
+        $actual = $reader->get('Encabezado.IdDoc.IndServicio', ValueType::mixed());
+        $this->assertSame($expected, is_scalar($actual) ? (string) $actual : null);
     }
 
     /**

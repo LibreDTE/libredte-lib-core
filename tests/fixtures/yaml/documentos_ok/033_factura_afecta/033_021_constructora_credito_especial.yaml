@@ -1,0 +1,37 @@
+# Factura de una empresa constructora que se acoge al crédito especial del IVA
+# para empresas constructoras (CredEC): el crédito es el 65% del IVA y se
+# descuenta del monto total del documento.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 21
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+  Totales:
+    # CredEC: Indicar `true` para que se calcule el crédito especial.
+    CredEC: true
+Detalle:
+- NmbItem: Obra gruesa etapa 1
+  QtyItem: 1
+  PrcItem: 1000000
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 1000000
+        IVA: 190000
+        CredEC: 123500
+        MntTotal: 1066500

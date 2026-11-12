@@ -38,11 +38,11 @@ interface ReceiverWorkerInterface extends WorkerInterface, HandlersAwareInterfac
      *
      * @param ExchangeBagInterface $bag Bolsa con las opciones para realizar el
      * intercambio de documentos.
-     * @return ExchangeResultInterface[] El resultado del intercambio donde cada
-     * resultado contiene un sobre con el estado de la recepción.
+     * @return ExchangeBagInterface La misma bolsa, con los sobres recibidos y
+     * el resultado de cada uno (`getResults()`).
      * @throws ExchangeException En caso de error al recibir los documentos.
      */
-    public function receive(ExchangeBagInterface $bag): array;
+    public function receive(ExchangeBagInterface $bag): ExchangeBagInterface;
 
     /**
      * Procesa una bolsa de intercambio, sus sobres y documentos.

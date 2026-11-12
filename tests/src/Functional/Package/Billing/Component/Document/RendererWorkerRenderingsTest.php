@@ -361,4 +361,51 @@ class RendererWorkerRenderingsTest extends TestCase
 
         $this->biller->getRendererWorker()->render($bag);
     }
+
+    public function testPresentationsRequestedWithLessThanOneCopyAreSkipped(): void
+    {
+        $bag = $this->facturaAfecta();
+        $bag->getOptions()->set('renderer.format', 'html');
+        $bag->getOptions()->set('renderer.renderings', [
+            'tributaria' => 1,
+            'cedible' => 0,
+        ]);
+
+        $result = $this->biller->getRendererWorker()->render($bag);
+
+        $this->assertCount(1, $result->getRenderings());
+        $this->assertTrue($result->hasRendering('tributaria'));
+        $this->assertFalse($result->hasRendering('cedible'));
+    }
+
+    public function testATemplateThatDoesNotExistIsReportedAsRendererException(): void
+    {
+        $bag = $this->facturaAfecta();
+        $bag->getOptions()->set('renderer.format', 'html');
+        $bag->getOptions()->set('renderer.template', 'plantilla_que_no_existe');
+
+        try {
+            $this->biller->getRendererWorker()->render($bag);
+            $this->fail('A RendererException was expected.');
+        } catch (RendererException $e) {
+            $this->assertStringContainsString('Could not render the document', $e->getMessage());
+            $this->assertNotNull($e->getPrevious());
+        }
+
+        // La presentación pedida no queda en las opciones de la bolsa.
+        $this->assertNull($bag->getOptions()->get('renderer.presentation'));
+    }
+
+    public function testTemplateCanBeGivenAsAnAbsolutePath(): void
+    {
+        $template = dirname(__DIR__, 7) . '/resources/templates/billing/document/renderer/estandar.html.twig';
+        $this->assertFileExists($template);
+        $bag = $this->facturaAfecta();
+        $bag->getOptions()->set('renderer.format', 'html');
+        $bag->getOptions()->set('renderer.template', $template);
+
+        $result = $this->biller->getRendererWorker()->render($bag);
+
+        $this->assertStringContainsString('Servicio Plus de LibreDTE', $result->getRendering('tributaria')->getContent());
+    }
 }

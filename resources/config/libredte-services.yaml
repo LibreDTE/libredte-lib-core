@@ -210,6 +210,9 @@ services:
     libredte\lib\Core\Package\Billing\Component\Document\Contract\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategyInterface:
         class: libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaDebitoExportacionNormalizerStrategy
 
+    # Jobs of the "billing.document.dispatcher" worker.
+    libredte\lib\Core\Package\Billing\Component\Document\Worker\Dispatcher\Job\ValidateEnvelopeJob: ~
+
     # Jobs of the "billing.document.normalizer" worker.
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob: ~
     libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaExentaJob: ~

@@ -40,6 +40,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentEnvelo
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\SobreEnvio;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DispatcherException;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentEnvelope;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Dispatcher\Job\ValidateEnvelopeJob;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\AutorizacionDte;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Mandatario;
 
@@ -55,6 +56,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      * @param XmlServiceInterface $xmlService
      * @param SignatureServiceInterface $signatureService
      * @param DocumentBagManagerWorkerInterface $documentBagManagerWorker
+     * @param ValidateEnvelopeJob $validateEnvelopeJob
      * @param iterable<array-key, JobInterface> $jobs
      * @param iterable<array-key, HandlerInterface> $handlers
      */
@@ -62,6 +64,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
         private XmlServiceInterface $xmlService,
         private SignatureServiceInterface $signatureService,
         private DocumentBagManagerWorkerInterface $documentBagManagerWorker,
+        private ValidateEnvelopeJob $validateEnvelopeJob,
         iterable $jobs = [],
         iterable $handlers = []
     ) {
@@ -159,6 +162,14 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
     /**
      * {@inheritDoc}
+     *
+     * La carátula se arma solo si el sobre tiene el emisor con su autorización
+     * del SII, el mandatario (que se obtiene del certificado digital) y el
+     * receptor. Si falta alguno no se arma y el XML del sobre queda sin
+     * carátula, sin que esto sea un error de la normalización: el esquema XSD
+     * es quien valida el contenido del sobre, y esa validación es un paso
+     * aparte que quien consume el sobre debe ejecutar siempre con
+     * `validateSchema()`.
      */
     public function normalize(
         DocumentEnvelopeInterface $envelope
@@ -200,6 +211,12 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
 
     /**
      * {@inheritDoc}
+     *
+     * Valida que los RUT de la carátula tengan dígito verificador válido, que
+     * la fecha de la resolución no sea posterior a la fecha de la firma del
+     * sobre y que la cantidad de documentos de cada tipo declarada en la
+     * carátula coincida con la de los documentos del sobre. No valida los datos
+     * de cada documento.
      */
     #[Operation(
         name: 'validate',
@@ -212,7 +229,7 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
     ): XmlDocumentInterface {
         $xmlDocument = $this->getXmlDocument($source);
 
-        // TODO: Agregar validaciones del sobre respecto a los datos.
+        $this->validateEnvelopeJob->execute($xmlDocument);
 
         return $xmlDocument;
     }
@@ -328,9 +345,16 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             $FchResol = $caratula->getAsString('//Caratula/FchResol');
             $NroResol = $caratula->getAsInt('//Caratula/NroResol', 0);
             if ($RutEmisor === $emisor->getRut() && $FchResol !== null) {
-                $emisor->setAutorizacionDte(
-                    new AutorizacionDte($FchResol, $NroResol)
-                );
+                // Cada documento tiene su propio objeto emisor, y el
+                // documento usa la autorización de su emisor (por ejemplo en
+                // su representación impresa), por eso se asigna a todos.
+                $autorizacionDte = new AutorizacionDte($FchResol, $NroResol);
+                foreach ($envelope->requireDocuments() as $document) {
+                    $documentEmisor = $document->requireEmisor();
+                    if ($documentEmisor->getRut() === $RutEmisor) {
+                        $documentEmisor->setAutorizacionDte($autorizacionDte);
+                    }
+                }
             }
         }
 

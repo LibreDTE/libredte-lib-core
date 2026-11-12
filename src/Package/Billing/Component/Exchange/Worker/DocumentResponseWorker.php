@@ -60,6 +60,12 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
 
     /**
      * {@inheritDoc}
+     *
+     * Los datos de la bolsa no se validan contra el esquema XSD al construir el
+     * documento: el esquema es quien valida el contenido, y esa validación es
+     * un paso aparte que quien consume el documento debe ejecutar siempre con
+     * `validateSchema()`. Un documento construido con datos incompletos se
+     * firma igual, y es `validateSchema()` el que lo rechaza.
      */
     #[Operation(
         name: 'build_envio_recibos',
@@ -111,6 +117,12 @@ class DocumentResponseWorker extends AbstractWorker implements DocumentResponseW
 
     /**
      * {@inheritDoc}
+     *
+     * Los datos de la bolsa no se validan contra el esquema XSD al construir el
+     * documento: el esquema es quien valida el contenido, y esa validación es
+     * un paso aparte que quien consume el documento debe ejecutar siempre con
+     * `validateSchema()`. Un documento construido con datos incompletos se
+     * firma igual, y es `validateSchema()` el que lo rechaza.
      */
     #[Operation(
         name: 'build_respuesta_envio',

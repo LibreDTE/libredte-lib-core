@@ -422,7 +422,7 @@ class DocumentEnvelope implements DocumentEnvelopeInterface
         $envelope->setEmisor($this->getEmisor());
         $envelope->setMandatario($this->getMandatario());
         $envelope->setReceptor($this->getReceptor());
-        $envelope->setCertificate($this->getCertificate());
+        $envelope->setCertificate($certificate);
 
         return $envelope;
     }

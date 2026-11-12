@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_BODY>
+        <TOKEN>ABCDEFGHIJKLM</TOKEN>
+    </SII:RESP_BODY>
+    <SII:RESP_HDR>
+        <ESTADO>00</ESTADO>
+        <GLOSA>Token Creado</GLOSA>
+    </SII:RESP_HDR>
+</SII:RESPUESTA>

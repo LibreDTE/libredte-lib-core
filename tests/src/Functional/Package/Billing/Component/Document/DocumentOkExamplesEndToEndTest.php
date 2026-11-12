@@ -41,6 +41,7 @@ use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterf
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\RendererWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ValidatorWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\DocumentComponent;
+use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaModalidadVenta;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaPais;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\AduanaTransporte;
 use libredte\lib\Core\Package\Billing\Component\Document\Entity\Comuna;
@@ -131,6 +132,9 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderedDocument;
 use libredte\lib\Core\Package\System\Component\Rendering\Support\RenderResult;
 use libredte\lib\Core\PackageRegistry;
+use libredte\lib\Core\Provider\FormatterHandlerProvider;
+use libredte\lib\Core\Provider\RepositorySourceProvider;
+use libredte\lib\Core\Provider\TemplatePathProvider;
 use libredte\lib\Core\Translation\LibredteTranslationResourceProvider;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -227,6 +231,7 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(Comuna::class)]
 #[CoversClass(ComunaRepository::class)]
+#[CoversClass(AduanaModalidadVenta::class)]
 #[CoversClass(AduanaPais::class)]
 #[CoversClass(AduanaTransporte::class)]
 #[CoversClass(FormaPago::class)]
@@ -237,6 +242,9 @@ use Symfony\Component\Yaml\Yaml;
 #[CoversClass(CategoriaDocumento::class)]
 #[CoversClass(OperacionDocumento::class)]
 #[UsesClass(LibredteTranslationResourceProvider::class)]
+#[UsesClass(FormatterHandlerProvider::class)]
+#[UsesClass(RepositorySourceProvider::class)]
+#[UsesClass(TemplatePathProvider::class)]
 class DocumentOkExamplesEndToEndTest extends TestCase
 {
     private BuilderWorkerInterface $builder;

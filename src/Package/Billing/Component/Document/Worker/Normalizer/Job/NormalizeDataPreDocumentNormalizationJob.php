@@ -30,7 +30,6 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Enum\Comuna;
-use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
@@ -79,7 +78,6 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
             $data,
             $bag->requireTipoDocumento()->getDefaultIndServicio()
         );
-        $this->normalizeIdDocFechas($data);
         $this->normalizeDescuentosRecargosGlobales($data);
         $this->normalizeReferencias($data);
         $this->normalizeTpoTranVenta(
@@ -178,26 +176,6 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
     }
 
     /**
-     * Si alguna de las fechas de la identificación del documento se pasó como
-     * entero es un timestamp y se convierte a string.
-     *
-     * @param array<array-key, mixed> $data
-     * @return void
-     */
-    private function normalizeIdDocFechas(array &$data): void
-    {
-        $writer = ArrayWriter::fromReference($data);
-
-        foreach (['FchEmis', 'FchCancel', 'FchVenc'] as $tag) {
-            $path = 'Encabezado.IdDoc.' . $tag;
-            $fecha = $writer->getReader()->get($path, ValueType::mixed());
-            if (is_numeric($fecha)) {
-                $writer->set($path, date('Y-m-d', ValueCaster::requireInt($fecha)));
-            }
-        }
-    }
-
-    /**
      * Si existe descuento o recargo global se normalizan.
      *
      * @param array<array-key, mixed> $data
@@ -255,12 +233,6 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
                 'CodRef' => null,
                 'RazonRef' => null,
             ], $item);
-
-            // Si la fecha de la referencia se pasó como entero es un timestamp
-            // y se convierte a string.
-            if (is_numeric($r['FchRef'])) {
-                $r['FchRef'] = date('Y-m-d', ValueCaster::requireInt($r['FchRef']));
-            }
 
             $writer->set('Referencia.' . $key, $r);
         }

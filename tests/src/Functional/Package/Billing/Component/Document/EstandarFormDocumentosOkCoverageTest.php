@@ -77,6 +77,20 @@ class EstandarFormDocumentosOkCoverageTest extends TestCase
         // form has a single ValorDR/TpoValor pair per item, so it is either a
         // percentage or an amount, never both.
         '033_020_descuento_item_porcentaje_y_monto',
+
+        // Uses RecargoPct together with DescuentoMonto in the same item. The
+        // form has no surcharge at all (EstandarParserStrategy::addDetails()
+        // never reads RecargoPct, see 110_004) and a single ValorDR/TpoValor
+        // pair per item for the discount.
+        '033_023_item_descuento_monto_y_recargo_porcentaje',
+
+        // The document needs an exchange rate of 0 (a free delivery in CLP)
+        // and Encabezado.Transporte.Aduana.CodModVenta. The form reads
+        // TpoCambio only when it is not empty
+        // (EstandarParserStrategy::addExportData()), so a rate of 0 cannot be
+        // submitted, and it has no field for the sales modality of the
+        // customs data (see 110_003).
+        '110_006_exportacion_muestras_sin_costo',
     ];
 
     public function testAllFormEstandarCasesExistInDocumentosOk(): void

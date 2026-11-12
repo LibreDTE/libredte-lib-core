@@ -270,6 +270,36 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
     }
 
     /**
+     * Lee una fecha opcional de la planilla.
+     *
+     * Una fecha vacía es una fecha que no se indicó. Una fecha indicada debe
+     * estar escrita como AAAA-MM-DD: si no, es un error, no se ignora ni se
+     * reemplaza por otra.
+     *
+     * @param string|null $value Valor de la celda.
+     * @param string $field Nombre del campo, para el mensaje de error.
+     * @return string|null La fecha, o `null` si no se indicó.
+     * @throws BatchProcessorException Si la fecha no es válida.
+     */
+    private function optionalDate(?string $value, string $field): ?string
+    {
+        $date = trim($value ?? '');
+        if ($date === '') {
+            return null;
+        }
+
+        if (DateParser::reformat($date, 'Y-m-d') === null) {
+            throw new BatchProcessorException([
+                'The date {date} of the field {field} must be in YYYY-MM-DD format.',
+                'date' => $date,
+                'field' => $field,
+            ]);
+        }
+
+        return $date;
+    }
+
+    /**
      * Crea un documento a partir de los datos proporcionados.
      *
      * Verifica los datos mínimos requeridos y genera la estructura base.
@@ -300,10 +330,8 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
      */
     private function createDocument(array $data): array
     {
-        // Verificar datos mínimos obligatorios.
-        if (empty($data[0])) {
-            throw new BatchProcessorException('Missing document type.');
-        }
+        // Verificar datos mínimos obligatorios. El tipo de documento no se
+        // verifica acá: una fila sin tipo no es un documento nuevo.
         $folio = trim((string) ($data[1] ?? ''));
         if ($folio === '') {
             throw new BatchProcessorException('Missing document number.');
@@ -507,19 +535,13 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                 'IdDoc' => [
                     'TipoDTE' => (int) $data[0],
                     'Folio' => (int) $data[1],
-                    'FchEmis' => (
-                        !empty($data[2]) && DateParser::reformat($data[2], 'Y-m-d') !== null
-                    ) ? $data[2] : date('Y-m-d'),
+                    'FchEmis' => $this->optionalDate($data[2] ?? null, 'FchEmis') ?? date('Y-m-d'),
                     'TpoTranCompra' => null,
                     'TpoTranVenta' => null,
                     'FmaPago' => null,
                     'FchCancel' => null,
-                    'PeriodoDesde' => !empty($data[20]) && DateParser::reformat($data[20], 'Y-m-d') !== null
-                        ? $data[20]
-                        : null,
-                    'PeriodoHasta' => !empty($data[21]) && DateParser::reformat($data[21], 'Y-m-d') !== null
-                        ? $data[21]
-                        : null,
+                    'PeriodoDesde' => $this->optionalDate($data[20] ?? null, 'PeriodoDesde'),
+                    'PeriodoHasta' => $this->optionalDate($data[21] ?? null, 'PeriodoHasta'),
                     'MedioPago' => null,
                     'TpoCtaPago' => null,
                     'NumCtaPago' => null,
@@ -527,9 +549,7 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                     'TermPagoGlosa' => !empty($data[19])
                         ? mb_substr(trim($data[19]), 0, 100)
                         : null,
-                    'FchVenc' => !empty($data[3]) && DateParser::reformat($data[3], 'Y-m-d') !== null
-                        ? $data[3]
-                        : null,
+                    'FchVenc' => $this->optionalDate($data[3] ?? null, 'FchVenc'),
                 ],
                 'Emisor' => [
                     'RUTEmisor' => null,
@@ -777,11 +797,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                 8
             ));
         }
-        if (
-            $transporte[7]
-            && DateParser::reformat(trim($transporte[7]), 'Y-m-d') !== null
-        ) {
-            $writer->set($base . 'FchSalida', trim($transporte[7]));
+        $fchSalida = $this->optionalDate($transporte[7] ?? null, 'FchSalida');
+        if ($fchSalida !== null) {
+            $writer->set($base . 'FchSalida', $fchSalida);
         }
         if ($transporte[8]) {
             // Si la hora viene como HH:MM se completa con los segundos.
@@ -791,11 +809,9 @@ abstract class AbstractSpreadsheetBatchProcessorStrategy extends AbstractStrateg
                 trim($transporte[8])
             ));
         }
-        if (
-            $transporte[9]
-            && DateParser::reformat(trim($transporte[9]), 'Y-m-d') !== null
-        ) {
-            $writer->set($base . 'FchLlegada', trim($transporte[9]));
+        $fchLlegada = $this->optionalDate($transporte[9] ?? null, 'FchLlegada');
+        if ($fchLlegada !== null) {
+            $writer->set($base . 'FchLlegada', $fchLlegada);
         }
     }
 

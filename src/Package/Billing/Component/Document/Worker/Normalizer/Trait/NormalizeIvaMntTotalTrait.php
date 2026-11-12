@@ -178,14 +178,11 @@ trait NormalizeIvaMntTotalTrait
 
         // Si hay crédito aasociado al impuesto (IVA) por ser empresa
         // constructora se descuenta del total.
-        if (
-            !empty($get($t . 'CredEC'))
-            && method_exists($this, 'getDefaultCredEC')
-        ) {
+        if (!empty($get($t . 'CredEC'))) {
             if ($get($t . 'CredEC') === true) {
                 $writer->set($t . 'CredEC', round(
                     ($num($t . 'IVA') ?? 0)
-                        * (ValueCaster::toFloat($this->getDefaultCredEC()) ?? 0.0)
+                        * ($bag->requireTipoDocumento()->getDefaultCredEC() ?? 0.0)
                 ));
             }
             $sumar($t . 'MntTotal', -($num($t . 'CredEC') ?? 0));

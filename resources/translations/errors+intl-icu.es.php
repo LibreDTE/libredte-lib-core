@@ -50,6 +50,8 @@ return [
         'No se pudo cargar el XML del CAF.',
     'The CAF {id} does not have an expiration date.' =>
         'El CAF {id} no tiene fecha de vencimiento.',
+    'The CAF {id} overlaps the document numbers of the CAF {existing}, which is already loaded.' =>
+        'El CAF {id} se solapa con los folios del CAF {existing}, que ya está cargado.',
     'CAF {id} failed private key validation (possible corrupt CAF file).' =>
         'El CAF {id} no pasó la validación de su clave privada (posible archivo CAF corrupto).',
     'CAF {id} failed public key validation (possible corrupt CAF file).' =>
@@ -182,8 +184,6 @@ return [
         'El ítem {line} tiene IndExe = {indExe}, que no está soportado (solo se soportan 1 y 2).',
     'Missing document number.' =>
         'Falta el folio del documento.',
-    'Missing document type.' =>
-        'Falta el tipo de documento.',
     'Missing driver RUT.' =>
         'Falta el RUT del chofer.',
     'Missing driver name.' =>
@@ -314,6 +314,16 @@ return [
         'El tipo de documento {type} está repetido en el resumen manual.',
     'The envelope cover is not defined.' =>
         'La carátula del sobre no está definida.',
+    'The date {date} in the envelope cover tag {tag} is not valid. {detail}' =>
+        'La fecha {date} de la etiqueta {tag} de la carátula del sobre no es válida. {detail}',
+    'The date {date} of the field {field} must be in YYYY-MM-DD format.' =>
+        'La fecha {date} del campo {field} debe tener el formato AAAA-MM-DD.',
+    'The envelope cover declares {declared} documents of type {type}, but the envelope contains {found}.' =>
+        'La carátula del sobre declara {declared} documentos de tipo {type}, pero el sobre contiene {found}.',
+    'The resolution date {resolution} of the envelope cover is later than the signing date {signature}.' =>
+        'La fecha de resolución {resolution} de la carátula del sobre es posterior a la fecha de firma {signature}.',
+    'The RUT {rut} in the envelope cover tag {tag} is not valid. {detail}' =>
+        'El RUT {rut} de la etiqueta {tag} de la carátula del sobre no es válido. {detail}',
     'The envelope to send has no documents.' =>
         'El sobre que se desea enviar no posee documentos.',
     'The exchange bag to send has no envelopes.' =>

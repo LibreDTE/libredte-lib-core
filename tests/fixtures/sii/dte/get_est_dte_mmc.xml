@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_HDR>
+        <ESTADO>MMC</ESTADO>
+        <GLOSA_ESTADO>DTE Recibido</GLOSA_ESTADO>
+        <ERR_CODE>13</ERR_CODE>
+        <GLOSA_ERR>Existe Nota de Credito que Modifica Montos Documento</GLOSA_ERR>
+        <NUM_ATENCION>1234567890</NUM_ATENCION>
+    </SII:RESP_HDR>
+</SII:RESPUESTA>

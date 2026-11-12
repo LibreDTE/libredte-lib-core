@@ -1,0 +1,37 @@
+# Boleta con productos afectos y un producto exento de IVA. Los precios de la
+# boleta incluyen IVA: el neto y el IVA se calculan solo sobre lo afecto
+# (2 x 1.190 = 2.380 => neto 2.000 e IVA 380); el producto exento se suma al
+# total sin IVA (2.380 + 5.000 = 7.380).
+Encabezado:
+  IdDoc:
+    TipoDTE: 39
+    Folio: 5
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSocEmisor: SASCO SpA
+    GiroEmisor: Tecnología, Informática y Telecomunicaciones
+    DirOrigen: DBG
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 66666666-6
+    RznSocRecep: Sin RUT
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Producto afecto
+  QtyItem: 2
+  PrcItem: 1190
+- NmbItem: Libro de texto
+  IndExe: 1
+  QtyItem: 1
+  PrcItem: 5000
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 2000
+        IVA: 380
+        MntExe: 5000
+        MntTotal: 7380

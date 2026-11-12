@@ -1,0 +1,37 @@
+# Factura con un ítem al que se le descuenta un monto (pronto pago) y luego se
+# le aplica un recargo porcentual (flete). El recargo se calcula sobre el monto
+# ya descontado: 10 x 5.000 = 50.000; - 5.000 = 45.000; + 10% = 49.500.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 23
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Caja de insumos
+  QtyItem: 10
+  PrcItem: 5000
+  DescuentoMonto: 5000
+  RecargoPct: 10
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      Totales:
+        MntNeto: 49500
+        IVA: 9405
+        MntTotal: 58905
+    Detalle:
+    - MontoItem: 49500

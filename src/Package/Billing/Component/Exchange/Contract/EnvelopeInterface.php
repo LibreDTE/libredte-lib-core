@@ -151,8 +151,16 @@ interface EnvelopeInterface extends JsonSerializable
      * Convierte el sobre a un array.
      *
      * @return array<array-key, mixed>&array{
+     *     sender: array<array-key, mixed>,
+     *     receiver: array<array-key, mixed>,
+     *     document_type: string,
+     *     process: string,
+     *     business_message_id: string,
+     *     original_business_message_id: string|null,
+     *     creation_date_and_time: string,
      *     documents: array<array-key, array<array-key, mixed>&array{
      *         id: string,
+     *         type: string,
      *         content: string,
      *         attachments: array<array-key, array{
      *             data: string,

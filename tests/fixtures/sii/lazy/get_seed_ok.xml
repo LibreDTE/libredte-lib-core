@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_BODY>
+        <SEMILLA>123456789012</SEMILLA>
+    </SII:RESP_BODY>
+    <SII:RESP_HDR>
+        <ESTADO>00</ESTADO>
+    </SII:RESP_HDR>
+</SII:RESPUESTA>

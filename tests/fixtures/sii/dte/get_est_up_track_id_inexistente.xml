@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_HDR>
+        <ESTADO>-11</ESTADO>
+        <ERR_CODE>2</ERR_CODE>
+        <SQL_CODE/>
+        <SRV_CODE/>
+        <NUM_ATENCION>100001   ( 2024/01/15 10:00:00)</NUM_ATENCION>
+    </SII:RESP_HDR>
+</SII:RESPUESTA>

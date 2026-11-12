@@ -102,6 +102,11 @@ class ExchangeResult implements ExchangeResultInterface
 
     /**
      * {@inheritDoc}
+     *
+     * Los estados se indexan por el nombre de la estrategia, por eso el último
+     * estado agregado de una estrategia reemplaza al anterior. Es lo que se
+     * busca: el resultado informa el estado final de cada estrategia para
+     * saber si el envío terminó bien, no el historial de intentos.
      */
     public function addStatus(ExchangeStatusInterface $status): static
     {

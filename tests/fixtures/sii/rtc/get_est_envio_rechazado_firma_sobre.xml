@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_HDR>
+        <SII:ESTADO>0</SII:ESTADO>
+    </SII:RESP_HDR>
+    <SII:RESP_BODY>
+        <TRACKID>1234567890</TRACKID>
+        <ESTADO_ENVIO>RFS</ESTADO_ENVIO>
+        <DESC_ESTADO>Anotacion de Cesion Rechazada, Rechazado por Firma de Sobre</DESC_ESTADO>
+    </SII:RESP_BODY>
+</SII:RESPUESTA>

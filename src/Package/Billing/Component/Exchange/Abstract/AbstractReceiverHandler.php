@@ -70,7 +70,7 @@ abstract class AbstractReceiverHandler extends AbstractHandler implements Exchan
         foreach ($strategies as $strategy) {
             // Recibir sobres usando el método receive() del worker.
             $bag->getOptions()->set('strategy', $strategy);
-            $workerResults = $this->receiverWorker->receive($bag);
+            $workerResults = $this->receiverWorker->receive($bag)->getResults();
 
             // Agregar los resultados del worker a los resultados generales del
             // handler.

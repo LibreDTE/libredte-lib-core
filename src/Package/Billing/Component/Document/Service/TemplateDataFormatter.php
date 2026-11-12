@@ -140,7 +140,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
             'FchResol' => fn (string $fecha) => explode('-', $fecha, 2)[0],
             // Datos de Aduana.
             'Aduana' => function (string $tagXmlAndValue) {
-                [$tagXml, $value] = explode(':', $tagXmlAndValue);
+                [$tagXml, $value] = explode(':', $tagXmlAndValue, 2);
                 $xmlTagEntity = $this->repositoryManager->getRepository(
                     TagXml::class
                 )->find($tagXml);
@@ -158,7 +158,7 @@ class TemplateDataFormatter extends AbstractHandlerFormatter
                         )->find($value)
                     );
                 } else {
-                    $description = $this->handle($tagXml, $value);
+                    $description = $value;
                 }
                 if ($name && !in_array($description, [false, null, ''], true)) {
                     return $name . ': ' . $description;

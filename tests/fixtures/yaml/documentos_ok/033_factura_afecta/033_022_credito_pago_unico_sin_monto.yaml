@@ -1,0 +1,43 @@
+# Factura a crédito con un solo pago a 30 días. El pago programado no indica el
+# monto: se completa con el monto total del documento.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 22
+    FchEmis: '2025-03-10'
+    FmaPago: 2
+    FchVenc: '2025-04-09'
+    MntPagos:
+      FchPago: '2025-04-09'
+      GlosaPagos: Fecha de pago igual al vencimiento
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+- NmbItem: Soporte técnico mensual
+  QtyItem: 1
+  PrcItem: 100000
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Encabezado:
+      IdDoc:
+        MntPagos:
+          FchPago: '2025-04-09'
+          MntPago: 119000
+          GlosaPagos: Fecha de pago igual al vencimiento
+      Totales:
+        MntNeto: 100000
+        IVA: 19000
+        MntTotal: 119000

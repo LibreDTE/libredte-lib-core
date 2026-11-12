@@ -101,7 +101,7 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
             ],
         ],
     )]
-    public function receive(ExchangeBagInterface $bag): array
+    public function receive(ExchangeBagInterface $bag): ExchangeBagInterface
     {
         $options = $this->resolveOptions($bag->getOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
@@ -109,7 +109,7 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
         assert($strategy instanceof ReceiverStrategyInterface);
 
         try {
-            $results = $strategy->receive($bag);
+            $strategy->receive($bag);
         } catch (Throwable $e) {
             throw new ExchangeException(
                 message: [
@@ -120,6 +120,6 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
             );
         }
 
-        return $results;
+        return $bag;
     }
 }

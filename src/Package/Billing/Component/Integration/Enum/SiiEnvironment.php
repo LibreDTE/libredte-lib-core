@@ -186,7 +186,7 @@ enum SiiEnvironment: int
     public function getWsdlPath(string $service): ?string
     {
         $server = $this->getServer();
-        $wsdlPath = dirname(__DIR__, 6);
+        $wsdlPath = dirname(__DIR__, 6) . '/resources/wsdl';
         $filepath = sprintf('%s/%s/%s.wsdl', $wsdlPath, $server, $service);
 
         return is_readable($filepath)

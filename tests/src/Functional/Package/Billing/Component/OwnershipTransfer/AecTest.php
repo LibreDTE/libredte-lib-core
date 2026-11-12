@@ -26,6 +26,7 @@ use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Value\ValueCaster;
+use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -65,6 +66,7 @@ use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Contract\AecWo
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Aec;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\Cesion;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Entity\DteCedido;
+use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Exception\OwnershipTransferException;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\OwnershipTransferComponent;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Support\AecBag;
 use libredte\lib\Core\Package\Billing\Component\OwnershipTransfer\Worker\Aec\Job\BuildAecJob;
@@ -83,6 +85,7 @@ use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(OwnershipTransferException::class)]
 #[CoversClass(AecWorker::class)]
 #[CoversClass(BuildAecJob::class)]
 #[CoversClass(BuildDteCedidoJob::class)]
@@ -316,6 +319,109 @@ class AecTest extends TestCase
         foreach ($results as $result) {
             $this->assertTrue($result->isValid());
         }
+    }
+
+    private function aecBag(): AecBag
+    {
+        return new AecBag(
+            source: $this->dte,
+            cedente: [
+                'RUT' => '76192083-9',
+                'RazonSocial' => 'SASCO SpA',
+                'Direccion' => 'Santa Cruz, Chile',
+                'eMail' => 'cedente@example.com',
+                'RUTAutorizado' => ['RUT' => '76192083-9', 'Nombre' => 'Administrador'],
+            ],
+            cesionario: [
+                'RUT' => '76354771-K',
+                'RazonSocial' => 'Factoring S.A.',
+                'Direccion' => 'Providencia, Santiago',
+                'eMail' => 'factoring@example.com',
+            ],
+            cesion: [
+                'MontoCesion' => $this->dte->getMontoTotal(),
+                'UltimoVencimiento' => date('Y-m-d', strtotime('+30 days')),
+            ],
+            certificate: $this->certificate,
+        );
+    }
+
+    public function testComponentExposesTheAecWorker(): void
+    {
+        $component = new OwnershipTransferComponent($this->worker);
+
+        $this->assertSame($this->worker, $component->getAecWorker());
+        $this->assertSame(['aec' => $this->worker], $component->getWorkers());
+    }
+
+    public function testAecSerializesAndDescribesItself(): void
+    {
+        $aec = $this->worker->build($this->aecBag());
+
+        $this->assertSame('AEC_v10.xsd', $aec->getSchema());
+        $this->assertNull($aec->getSignatureNamespace());
+        $this->assertStringContainsString('<AEC', $aec->getXml());
+        $this->assertStringNotContainsString('<?xml', $aec->getXml());
+        $this->assertStringStartsWith('<?xml', $aec->saveXml());
+
+        $array = $aec->toArray();
+        $this->assertSame($aec->saveXml(), $array['xml']);
+        $this->assertSame(base64_encode($aec->saveXml()), $aec->jsonSerialize()['xml']);
+    }
+
+    public function testValidateSchemaAcceptsAnXmlDocumentAndAString(): void
+    {
+        $aec = $this->worker->build($this->aecBag());
+
+        $this->assertSame(
+            'AEC',
+            $this->worker->validateSchema($aec->getXmlDocument())->getDomDocument()->documentElement?->localName
+        );
+        $this->assertSame(
+            'AEC',
+            $this->worker->validateSchema($aec->saveXml())->getDomDocument()->documentElement?->localName
+        );
+    }
+
+    public function testBuildingARecesionFromAnAecWithoutCessionsIsReportedAsOwnershipTransferException(): void
+    {
+        $bag = $this->aecBag();
+        $empty = new XmlDocument();
+        $empty->loadXml('<AEC xmlns="http://www.sii.cl/SiiDte"><DocumentoAEC ID="LibreDTE_AEC"/></AEC>');
+        $recesion = new AecBag(
+            source: new Aec($empty),
+            cedente: $bag->getCedente(),
+            cesionario: $bag->getCesionario(),
+            cesion: $bag->getCesion(),
+            certificate: $this->certificate,
+        );
+
+        try {
+            $this->worker->build($recesion);
+            $this->fail('An OwnershipTransferException was expected.');
+        } catch (OwnershipTransferException $e) {
+            $this->assertStringContainsString('Could not build the AEC', $e->getMessage());
+            $this->assertNotNull($e->getPrevious());
+        }
+    }
+
+    public function testCesionAndDteCedidoDescribeThemselves(): void
+    {
+        $cesionXml = new XmlDocument();
+        $cesionXml->loadXml('<DocumentoCesion ID="LibreDTE_Cesion_7"/>');
+        $cesion = new Cesion($cesionXml);
+        $this->assertSame('LibreDTE_Cesion_7', $cesion->getId());
+        $this->assertSame('Cesion_v10.xsd', $cesion->getSchema());
+
+        $dteXml = new XmlDocument();
+        $dteXml->loadXml('<DocumentoDTECedido ID="LibreDTE_DTECedido"/>');
+        $dteCedido = new DteCedido($dteXml);
+        $this->assertSame('LibreDTE_DTECedido', $dteCedido->getId());
+        $this->assertSame('DTECedido_v10.xsd', $dteCedido->getSchema());
+
+        $empty = new XmlDocument();
+        $empty->loadXml('<Otro/>');
+        $this->assertSame('', (new Aec($empty))->getId());
     }
 
     /**

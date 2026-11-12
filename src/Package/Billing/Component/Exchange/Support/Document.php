@@ -186,6 +186,7 @@ class Document implements DocumentInterface
      *
      * @return array<array-key, mixed>&array{
      *     id: string,
+     *     type: string,
      *     content: string,
      *     attachments: array<array-key, array{
      *         data: string,

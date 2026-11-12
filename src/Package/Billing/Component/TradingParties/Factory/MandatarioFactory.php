@@ -50,7 +50,7 @@ class MandatarioFactory implements MandatarioFactoryInterface
         $data = $this->normalizeData($data);
 
         [$data['run'], $data['dv']] = Rut::toArray(
-            ValueCaster::requireString($data['run'])
+            Rut::format(ValueCaster::requireString($data['run']))
         );
 
         return Factory::create($data, $this->class);

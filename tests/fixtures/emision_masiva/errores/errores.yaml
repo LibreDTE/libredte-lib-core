@@ -29,3 +29,60 @@ cantidad_cero_con_precio.csv:
 item_sin_documento.csv:
   exception: BatchProcessorException
   message: 'Row 2: The row includes an item or a reference, but there is no previous document to attach them to.'
+folio_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing document number.'
+rut_receptor_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing recipient RUT.'
+razon_social_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing recipient business name.'
+giro_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing recipient business activity.'
+direccion_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing recipient address.'
+comuna_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing recipient commune.'
+correo_invalido.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Email address no-es-un-correo is not valid.'
+moneda_no_permitida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Currency type XYZ is not allowed; only USD, EUR and CLP are allowed.'
+forma_pago_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Payment method code 5 is incorrect; it must be 1 (cash), 2 (credit) or 3 (no cost).'
+cantidad_vacia_con_precio.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing item quantity.'
+chofer_sin_rut.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing driver RUT.'
+referencia_sin_tipo.csv:
+  exception: BatchProcessorException
+  message: 'Row 3: The reference document type cannot be empty.'
+fchemis_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date 2025-02-30 of the field FchEmis must be in YYYY-MM-DD format.'
+fchvenc_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date 31/12/2025 of the field FchVenc must be in YYYY-MM-DD format.'
+periodo_desde_invalido.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date 2025-1-5 of the field PeriodoDesde must be in YYYY-MM-DD format.'
+periodo_hasta_invalido.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date enero of the field PeriodoHasta must be in YYYY-MM-DD format.'
+fchsalida_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date 2025-13-01 of the field FchSalida must be in YYYY-MM-DD format.'
+fchllegada_invalida.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: The date 2025-12-32 of the field FchLlegada must be in YYYY-MM-DD format.'
+nombre_item_faltante.csv:
+  exception: BatchProcessorException
+  message: 'Row 2: Missing item name.'

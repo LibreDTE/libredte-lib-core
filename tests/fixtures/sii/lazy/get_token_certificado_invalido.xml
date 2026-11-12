@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SII:RESPUESTA xmlns:SII="http://www.sii.cl/XMLSchema">
+    <SII:RESP_HDR>
+        <ESTADO>10</ESTADO>
+        <GLOSA>XML Inv?lido, elemento ?Certificate? no existe, funci?n getCertificado</GLOSA>
+    </SII:RESP_HDR>
+</SII:RESPUESTA>

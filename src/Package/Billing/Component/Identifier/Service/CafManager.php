@@ -71,10 +71,25 @@ class CafManager implements CafManagerInterface
             $this->pool[$dte] = [];
         }
 
-        // Ignorar si ya existe un CAF con el mismo tipo y folio desde.
         foreach ($this->pool[$dte] as $existing) {
-            if ($existing->getFolioDesde() === $caf->getFolioDesde()) {
+            // Ignorar si ya existe el mismo CAF (mismo tipo y mismo rango).
+            if (
+                $existing->getFolioDesde() === $caf->getFolioDesde()
+                && $existing->getFolioHasta() === $caf->getFolioHasta()
+            ) {
                 return $this;
+            }
+
+            // Los rangos de folios de los CAF de un mismo tipo no se solapan.
+            if (
+                $caf->getFolioDesde() <= $existing->getFolioHasta()
+                && $existing->getFolioDesde() <= $caf->getFolioHasta()
+            ) {
+                throw new RuntimeException([
+                    'The CAF {id} overlaps the document numbers of the CAF {existing}, which is already loaded.',
+                    'id' => $caf->getId(),
+                    'existing' => $existing->getId(),
+                ]);
             }
         }
 
