@@ -78,13 +78,97 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
      */
     #[Operation(
         name: 'parse',
+        summary: 'Interpreta los datos de entrada de un documento',
+        description: <<<'MD'
+            Transforma los datos de entrada de un documento tributario (en JSON, XML, YAML o desde un formulario) en la estructura de datos del documento según el formato del SII, con campos como `Encabezado` y `Detalle`. No construye ni firma el documento; para eso se usa `billing.document.builder::build`.
+
+            ## Cómo se usa
+
+            Se envía `bag` con `inputData`. El formato de los datos se indica con `bag.options.parser.strategy`:
+
+            | Valor | Formato de `inputData` |
+            |---|---|
+            | `default.json` | JSON con la estructura del documento. Es el valor por defecto. |
+            | `default.xml` | XML con la estructura del documento. |
+            | `default.yaml` | YAML con la estructura del documento. |
+            | `form.estandar` | Datos del formulario de emisión estándar de LibreDTE, que se transforman a la estructura oficial del SII. |
+
+            La respuesta trae los datos interpretados en `document_parsed`, que se pueden enviar como `parsedData` a `billing.document.builder::build`.
+            MD,
         parameters: [
             'bag' => [
+                'description' => <<<'MD'
+                    Datos del documento.
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `inputData` | Obligatorio. Los datos de entrada. Pueden enviarse como un objeto JSON, con la estructura del documento (solo con la estrategia `default.json`), o como un texto codificado en base64 con el contenido original (JSON, XML, YAML o los datos del formulario, según la estrategia). |
+                    | `options` | Opciones. `options.parser.strategy` es la estrategia de lectura (ver más arriba); por defecto `default.json`. |
+                    MD,
                 'example' => [
-                    'inputData' => '...',
-                    'options' => [
-                        'strategy' => 'default.json',
+                    'inputData' => [
+                        'Encabezado' => [
+                            'IdDoc' => [
+                                'TipoDTE' => 33,
+                                'Folio' => 1,
+                            ],
+                        ],
+                        'Detalle' => [
+                            [
+                                'NmbItem' => 'Servicio de prueba',
+                                'QtyItem' => 1,
+                                'PrcItem' => 10000,
+                            ],
+                        ],
                     ],
+                    'options' => [
+                        'parser' => [
+                            'strategy' => 'default.json',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Los datos interpretados están en `document_parsed`. Los demás campos de la bolsa del documento vienen en `null` porque aún no se construye el documento.',
+                'example' => [
+                    'document' => null,
+                    'document_parsed' => [
+                        'Encabezado' => [
+                            'IdDoc' => [
+                                'TipoDTE' => 33,
+                                'Folio' => 1,
+                            ],
+                        ],
+                        'Detalle' => [
+                            [
+                                'NmbItem' => 'Servicio de prueba',
+                                'QtyItem' => 1,
+                                'PrcItem' => 10000,
+                            ],
+                        ],
+                    ],
+                    'document_normalized' => null,
+                    'document_extra' => null,
+                    'document_stamp' => null,
+                    'document_auth' => null,
+                    'document_type' => null,
+                    'document_id' => null,
+                    'document_xml' => null,
+                    'options' => [
+                        'builder' => [],
+                        'normalizer' => [],
+                        'parser' => [],
+                        'renderer' => [],
+                        'sanitizer' => [],
+                        'validator' => [],
+                    ],
+                    'certificate' => null,
+                    'emisor' => null,
+                    'receptor' => null,
+                    'caf' => null,
+                    'timbre' => null,
                 ],
             ],
         ],

@@ -32,8 +32,6 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchan
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderWorkerInterface;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\DocumentType;
-use libredte\lib\Core\Package\Billing\Component\Exchange\Enum\ProcessType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Exception\ExchangeException;
 use Throwable;
 
@@ -89,8 +87,62 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
      */
     #[Operation(
         name: 'send',
+        summary: 'Envía documentos a un receptor por correo electrónico',
+        description: <<<'MD'
+            Envía uno o más sobres de documentos a sus receptores por correo electrónico (SMTP). Cada sobre se envía como un correo, con sus documentos y archivos adjuntos. Sirve para el intercambio de documentos tributarios entre empresas.
+
+            ## Cómo se usa
+
+            Se envía `bag` con las opciones del transporte (la cuenta de correo desde la que se envía) y los sobres. Para cada sobre se indica quién envía, quién recibe, qué tipo de documento y proceso es, y los documentos con sus archivos.
+
+            El correo sale de la cuenta indicada en `options.transport`, con el remitente y los destinatarios que tengan `scheme_id` igual a `EMAIL` en sus `endpoints`. Las opciones de transporte son comunes a todos los sobres de la llamada; para enviar con cuentas distintas se hace una llamada por cuenta.
+
+            En cada sobre se pueden indicar, dentro de `metadata`: `subject` (asunto; por defecto "Envío de documentos electrónicos de" más el identificador del remitente), `text` y `html` (cuerpo del correo en texto y en HTML) y `to`, `cc` y `bcc` (listas de correos adicionales). Los XML u otros archivos se envían como `attachments` de cada documento.
+
+            ## Tipos de documento (`document_type`)
+
+            | Valor | Documento |
+            |---|---|
+            | `urn:fdc:libredte.cl:2025:doc:b2b` | Intercambio entre empresas. Es el valor por defecto. |
+            | `urn:fdc:libredte.cl:2025:doc:b2c` | Intercambio con un consumidor final. |
+            | `urn:fdc:libredte.cl:2025:doc:invoice` | Factura |
+            | `urn:fdc:libredte.cl:2025:doc:credit_note` | Nota de crédito |
+            | `urn:fdc:libredte.cl:2025:doc:debit_note` | Nota de débito |
+            | `urn:fdc:libredte.cl:2025:doc:dispatch_advice` | Guía de despacho |
+            | `urn:fdc:libredte.cl:2025:doc:receipt_advice` | Acuse de recibo |
+            | `urn:fdc:libredte.cl:2025:doc:application_response` | Respuesta de aplicación (aceptación o rechazo de otro documento) |
+
+            ## Proceso (`process`)
+
+            El valor por defecto es `urn:fdc:libredte.cl:2025:poacc:billing` (facturación), que es el que corresponde al intercambio de documentos tributarios.
+
+            ## Identificadores (`scheme_id`)
+
+            `CL-RUT` identifica a una empresa por su RUT, y `EMAIL` identifica una dirección de correo electrónico.
+            MD,
         parameters: [
             'bag' => [
+                'description' => <<<'MD'
+                    Datos del envío.
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `options.strategy` | Forma de envío; por ahora `email.smtp`, que es el valor por defecto. |
+                    | `options.transport` | Cuenta de correo desde la que se envía. Obligatorios `username` y `password`. Opcionales: `host` (por defecto `smtp.gmail.com`), `port` (por defecto `465`), `encryption` (`ssl` por defecto; `null` para ninguna), `verify_peer` (verifica el certificado del servidor; por defecto `true`) y `timeout`. |
+                    | `envelopes` | Lista de sobres a enviar. |
+
+                    Cada sobre de `envelopes` tiene:
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `sender` | Quien envía: `identifier` (`value` y `scheme_id`, por ejemplo el RUT con `CL-RUT`) y `endpoints`, la lista de direcciones (`value` y `scheme_id`: `EMAIL`). Se usa la dirección de correo del remitente. |
+                    | `receiver` | Quien recibe, con la misma estructura que `sender`. Se envía el correo a sus direcciones `EMAIL`. |
+                    | `document_type` | Tipo de documento (ver más arriba). Por defecto `urn:fdc:libredte.cl:2025:doc:b2b`. |
+                    | `process` | Proceso (ver más arriba). Por defecto `urn:fdc:libredte.cl:2025:poacc:billing`. |
+                    | `business_message_id` | Identificador del envío, para distinguirlo; es el que se entrega en la respuesta. |
+                    | `documents` | Lista de documentos. Cada uno tiene `type` y `attachments`, la lista de archivos con `data` (el contenido en base64), `name` y `type` (tipo MIME, por ejemplo `application/xml`). Un `content` (texto en base64) se adjunta como un archivo de texto. |
+                    | `metadata` | Datos del correo: `subject`, `text`, `html`, `to`, `cc` y `bcc`. |
+                    MD,
                 'example' => [
                     'options' => [
                         'strategy' => 'email.smtp',
@@ -125,16 +177,40 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
                                     ],
                                 ],
                             ],
-                            'document_type' => DocumentType::INVOICE,
-                            'process' => ProcessType::BILLING,
+                            'document_type' => 'urn:fdc:libredte.cl:2025:doc:invoice',
+                            'process' => 'urn:fdc:libredte.cl:2025:poacc:billing',
                             'business_message_id' => 'envio-001',
                             'documents' => [
                                 [
-                                    'type' => DocumentType::INVOICE,
-                                    'content' => '',
+                                    'type' => 'urn:fdc:libredte.cl:2025:doc:invoice',
+                                    'attachments' => [
+                                        [
+                                            'data' => '',
+                                            'name' => 'envio.xml',
+                                            'type' => 'application/xml',
+                                        ],
+                                    ],
                                 ],
                             ],
                         ],
+                    ],
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Lista con el resultado de cada sobre enviado. `envelope` es el `business_message_id` del sobre y `statuses` trae un elemento por cada forma de envío usada: `strategy` es la forma (`email.smtp`) y `error` es `null` si el envío fue exitoso o trae el motivo si falló.',
+                'example' => [
+                    [
+                        'envelope' => 'envio-001',
+                        'statuses' => [
+                            [
+                                'strategy' => 'email.smtp',
+                                'error' => null,
+                                'metadata' => [],
+                            ],
+                        ],
+                        'metadata' => [],
                     ],
                 ],
             ],

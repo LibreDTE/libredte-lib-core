@@ -30,6 +30,7 @@ use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\L10n\Cl\Enum\Comuna;
+use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Contract\EmisorFactoryInterface;
@@ -78,6 +79,7 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
             $data,
             $bag->requireTipoDocumento()->getDefaultIndServicio()
         );
+        $this->normalizeTipoDte($data);
         $this->normalizeDescuentosRecargosGlobales($data);
         $this->normalizeReferencias($data);
         $this->normalizeTpoTranVenta(
@@ -88,6 +90,27 @@ class NormalizeDataPreDocumentNormalizationJob extends AbstractJob implements Jo
         $this->normalizeReceptor($data);
 
         $bag->setNormalizedData(ArrayReader::fromArray($data, 'document')->toMap());
+    }
+
+    /**
+     * Normaliza el código del tipo de documento a entero.
+     *
+     * Según el origen de los datos (por ejemplo un formulario) el código puede
+     * llegar como texto (`'41'`). Los normalizadores específicos lo comparan
+     * con enteros, por lo que desde acá siempre es un entero. Un valor que no
+     * es un número en texto se deja tal cual.
+     *
+     * @param array<array-key, mixed> $data
+     * @return void
+     */
+    private function normalizeTipoDte(array &$data): void
+    {
+        $path = 'Encabezado.IdDoc.TipoDTE';
+        $writer = ArrayWriter::fromReference($data);
+        $tipoDte = $writer->getReader()->get($path, ValueType::mixed());
+        if (is_string($tipoDte) && is_numeric($tipoDte)) {
+            $writer->set($path, ValueCaster::toInt($tipoDte));
+        }
     }
 
     /**

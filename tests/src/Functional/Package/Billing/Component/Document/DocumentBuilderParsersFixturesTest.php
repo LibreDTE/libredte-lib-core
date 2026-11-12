@@ -22,11 +22,13 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Functional\Package\Billing\Component\Document;
 
+use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateFakerInterface;
 use Derafu\Certificate\Service\CertificateFaker;
 use Derafu\Certificate\Service\CertificateLoader;
 use Derafu\Config\Options;
 use Derafu\Value\ValueCaster;
+use Derafu\Value\ValueType;
 use libredte\lib\Core\Application;
 use libredte\lib\Core\Package\Billing\BillingPackage;
 use libredte\lib\Core\Package\Billing\Component\Document\Abstract\AbstractBuilderStrategy;
@@ -141,6 +143,7 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Test for the input data parser for a tax document.
@@ -420,5 +423,65 @@ class DocumentBuilderParsersFixturesTest extends TestCase
         $pdf = (string) $this->renderer->render($bag);
         $this->assertNotEmpty($pdf);
         file_put_contents($file . '.pdf', $pdf);
+    }
+
+    /**
+     * Cases of an exempt receipt (41) with a global discount applied to
+     * exempt amounts: the same document as YAML and as a standard form.
+     *
+     * @return array<string, array{string, string, int}>
+     */
+    public static function provideExemptReceiptWithGlobalDiscountCases(): array
+    {
+        return [
+            'yaml' => [
+                'yaml/documentos_ok/041_boleta_exenta/041_002_descuento_global.yaml',
+                'default.yaml',
+                900,
+            ],
+            'form.estandar' => [
+                'parsers/form/estandar/041_002_descuento_global.yaml',
+                'form.estandar',
+                27000,
+            ],
+        ];
+    }
+
+    /**
+     * The global discount of an exempt receipt reduces the exempt amount and
+     * the total, and the totals have no net amount or tax, whatever the type
+     * the parser gives to the document code.
+     */
+    #[DataProvider('provideExemptReceiptWithGlobalDiscountCases')]
+    public function testExemptReceiptGlobalDiscountTotals(
+        string $file,
+        string $strategy,
+        int $expectedTotal
+    ): void {
+        $data = ValueCaster::requireString(
+            file_get_contents(static::getFixturesPath($file))
+        );
+        if ($strategy === 'default.yaml') {
+            // The example case carries its expected values under `Test`.
+            $parsed = ValueType::map()->parse(Yaml::parse($data), '', $file);
+            unset($parsed['Test']);
+            $bag = new DocumentBag(inputData: $parsed);
+        } else {
+            $bag = new DocumentBag(
+                inputData: $data,
+                options: new Options(['parser' => ['strategy' => $strategy]])
+            );
+        }
+
+        $this->builder->build($bag);
+
+        $totales = ArrayReader::fromArray($bag->requireNormalizedData(), $file)
+            ->getMap('Encabezado.Totales')
+        ;
+        $this->assertNotNull($totales);
+        $this->assertSame($expectedTotal, $totales['MntExe']);
+        $this->assertSame($expectedTotal, $totales['MntTotal']);
+        $this->assertArrayNotHasKey('MntNeto', $totales);
+        $this->assertArrayNotHasKey('IVA', $totales);
     }
 }

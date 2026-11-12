@@ -48,16 +48,67 @@ class CafFakerWorker extends AbstractWorker implements CafFakerWorkerInterface
      */
     #[Operation(
         name: 'create',
+        summary: 'Crea un CAF falso para pruebas',
+        description: <<<'MD'
+            Genera un CAF (Código de Autorización de Folios) falso, con llaves propias y sin la autorización del SII. Sirve para probar la emisión de documentos sin solicitar folios reales; el SII no lo reconoce, por lo que no sirve para emitir documentos válidos.
+
+            ## Cómo se usa
+
+            Se indica el emisor, el tipo de documento y el rango de folios. La respuesta es el CAF completo, que se puede enviar como `caf` a `billing.document.builder::build`. Si no se indica `folioHasta`, el CAF tiene un solo folio (el inicial); si el folio inicial es mayor que el final, la operación falla.
+
+            En un CAF falso, `ambiente` y `certificacion` son `null`.
+            MD,
         parameters: [
             'emisor' => [
+                'description' => 'Emisor al que pertenece el CAF. Se usan su `rut` y su `razon_social`.',
                 'example' => [
                     'rut' => '12345678-9',
                     'razon_social' => 'Empresa de Prueba SpA',
                 ],
             ],
-            'codigoDocumento' => ['example' => 33],
-            'folioDesde' => ['example' => 1],
-            'folioHasta' => ['example' => 100],
+            'codigoDocumento' => [
+                'description' => <<<'MD'
+                    Código del tipo de documento que autoriza el CAF, por ejemplo `33` (factura electrónica) o `39` (boleta electrónica). Los códigos válidos están en el catálogo: operación `system.repository.catalog::find_all` con `repository` igual a `libredte\lib\Core\Package\Billing\Component\Document\Contract\TipoDocumentoInterface`.
+                    MD,
+                'example' => 33,
+            ],
+            'folioDesde' => [
+                'description' => 'Primer folio del rango. Por defecto `1`.',
+                'example' => 1,
+            ],
+            'folioHasta' => [
+                'description' => 'Último folio del rango. Si no se indica, el CAF tiene un solo folio (`folioDesde`).',
+                'example' => 100,
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => <<<'MD'
+                    CAF creado. Incluye el rango de folios (`folio_desde`, `folio_hasta`, `cantidad_folios`), las fechas de autorización y vencimiento, su vigencia, sus llaves (`public_key` y `private_key`) y el XML completo en base64 (`xml`).
+                    MD,
+                'example' => [
+                    'id' => 'CAF33D1H100',
+                    'emisor' => [
+                        'rut' => '12345678-9',
+                        'razon_social' => 'Empresa de Prueba SpA',
+                    ],
+                    'tipo_documento' => 33,
+                    'folio_desde' => 1,
+                    'folio_hasta' => 100,
+                    'cantidad_folios' => 100,
+                    'fecha_autorizacion' => '2024-01-15',
+                    'fecha_vencimiento' => '2024-07-14',
+                    'meses_autorizacion' => 0,
+                    'vigente' => true,
+                    'vence' => true,
+                    'idk' => 666,
+                    'ambiente' => null,
+                    'certificacion' => null,
+                    'public_key' => "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...",
+                    'private_key' => "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...",
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...',
+                ],
+            ],
         ],
     )]
     public function create(

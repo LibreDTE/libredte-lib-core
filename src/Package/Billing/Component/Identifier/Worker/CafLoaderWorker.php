@@ -52,8 +52,51 @@ class CafLoaderWorker extends AbstractWorker implements CafLoaderWorkerInterface
      */
     #[Operation(
         name: 'load',
+        summary: 'Carga un archivo CAF',
+        description: <<<'MD'
+            Carga el XML de un CAF (Código de Autorización de Folios) y entrega sus datos: emisor, tipo de documento, rango de folios, fechas, vigencia y llaves. Verifica que el tipo de documento del CAF exista en el catálogo, pero no valida su firma ni sus llaves; para eso se usa `billing.identifier.caf_validator::validate`.
+
+            ## Cómo se usa
+
+            Se envía en `xml` el contenido del archivo CAF codificado en base64.
+            MD,
         parameters: [
-            'xml' => ['example' => ''],
+            'xml' => [
+                'description' => 'XML del CAF, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => <<<'MD'
+                    CAF cargado. Incluye el rango de folios (`folio_desde`, `folio_hasta`, `cantidad_folios`), las fechas de autorización y vencimiento, su vigencia, sus llaves (`public_key` y `private_key`) y el XML completo en base64 (`xml`). `vence` indica si los folios de ese tipo de documento vencen. `certificacion` es `1` si el CAF es de certificación, `0` si es de producción y `null` si es un CAF falso.
+                    MD,
+                'example' => [
+                    'id' => 'CAF33D1H100',
+                    'emisor' => [
+                        'rut' => '76192083-9',
+                        'razon_social' => 'SASCO SpA',
+                    ],
+                    'tipo_documento' => 33,
+                    'folio_desde' => 1,
+                    'folio_hasta' => 100,
+                    'cantidad_folios' => 100,
+                    'fecha_autorizacion' => '2024-01-15',
+                    'fecha_vencimiento' => '2024-07-14',
+                    'meses_autorizacion' => 2.5,
+                    'vigente' => true,
+                    'vence' => true,
+                    'idk' => 100,
+                    'ambiente' => [
+                        'name' => 'PRODUCTION',
+                        'value' => 0,
+                    ],
+                    'certificacion' => 0,
+                    'public_key' => "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...",
+                    'private_key' => "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...",
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...',
+                ],
+            ],
         ],
     )]
     public function load(string|XmlDocumentInterface $xml): CafInterface

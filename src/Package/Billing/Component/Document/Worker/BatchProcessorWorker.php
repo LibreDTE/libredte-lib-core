@@ -115,18 +115,145 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
      */
     #[Operation(
         name: 'parse',
+        summary: 'Interpreta un lote de documentos desde una planilla',
+        description: <<<'MD'
+            Interpreta un lote de documentos tributarios entregado como una planilla CSV y devuelve la lista de documentos con la estructura del SII. No construye los documentos; cada uno se construye después con `billing.document.builder::build`.
+
+            ## Cómo se usa
+
+            Se envía `batch` con la planilla en `inputData` (codificada en base64) y el emisor. La respuesta trae un documento por cada documento de la planilla, con sus datos en `document_parsed`.
+
+            ## Formato de la planilla
+
+            El CSV usa `;` como separador y codificación UTF-8 (si el contenido no es UTF-8 válido, se asume Windows-1252). La primera fila es el encabezado y se ignora; las columnas se leen por posición:
+
+            - Una fila con `TipoDTE` crea un documento nuevo, con su primer ítem.
+            - Una fila sin `TipoDTE` agrega un ítem (si trae `NmbItem`) o una referencia al último documento.
+            - El par `TipoDTE` y `Folio` no puede repetirse en el archivo.
+            - Las filas pueden venir sin las últimas columnas, que se asumen vacías.
+            - En los decimales se puede usar punto o coma; no se usa separador de miles.
+            - Los errores indican el número de la fila donde ocurrieron.
+
+            | Columna | Nombre | Descripción |
+            |---|---|---|
+            | A | `TipoDTE` | Obligatorio. Tipo de documento: `33` factura afecta, `34` factura exenta, `39` boleta afecta, `41` boleta exenta, `46` factura de compra, `52` guía de despacho, `56` nota de débito, `61` nota de crédito, `110`, `111` y `112` documentos de exportación. |
+            | B | `Folio` | Obligatorio. Entero mayor a 0 que identifica al documento dentro del archivo. |
+            | C | `FchEmis` | Fecha de emisión `AAAA-MM-DD`. Si falta o no es válida, se usa la fecha actual. |
+            | D | `FchVenc` | Fecha de vencimiento `AAAA-MM-DD`. Si no es válida, se ignora. |
+            | E | `RUTRecep` | Obligatorio. RUT del receptor, sin puntos y con guión y dígito verificador. |
+            | F | `RznSocRecep` | Razón social del receptor. Obligatoria excepto en boletas. |
+            | G | `GiroRecep` | Giro del receptor. Obligatorio excepto en boletas. |
+            | H | `Telefono` | Teléfono del receptor. |
+            | I | `CorreoRecep` | Correo del receptor. Se valida. |
+            | J | `DirRecep` | Dirección del receptor. Obligatoria excepto en boletas. |
+            | K | `CmnaRecep` | Comuna del receptor, sin abreviaciones. Obligatoria excepto en boletas. |
+            | L | `VlrCodigo` | Código del ítem. |
+            | M | `IndExe` | `1` si el ítem es exento, `2` si es no facturable. |
+            | N | `NmbItem` | Obligatorio. Nombre del ítem. |
+            | O | `DscItem` | Descripción del ítem. |
+            | P | `QtyItem` | Cantidad. Obligatoria salvo que el precio sea 0. |
+            | Q | `UnmdItem` | Unidad del ítem. |
+            | R | `PrcItem` | Obligatorio. Precio del ítem: monto bruto (con IVA) en boletas y neto en los demás documentos. |
+            | S | `Descuento` | Descuento del ítem, en porcentaje (`50%`) o en monto (`1000`). |
+            | T | `TermPagoGlosa` | Observación del documento. |
+            | U | `PeriodoDesde` | Inicio del período `AAAA-MM-DD`. |
+            | V | `PeriodoHasta` | Fin del período `AAAA-MM-DD`. |
+            MD,
         parameters: [
             'batch' => [
+                'description' => <<<'MD'
+                    Lote de documentos.
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `inputData` | Obligatorio. La planilla CSV, codificada en base64. |
+                    | `emisor` | Emisor de los documentos. Con `complete` activo, sus datos (RUT, razón social, giro, dirección, etc.) completan los del emisor de cada documento. |
+                    | `options` | Opciones. `options.batch_processor.strategy` es el formato de la planilla; por ahora `spreadsheet.csv`, que es el valor por defecto. `options.batch_processor.complete` indica si se completan los datos de cada documento con los del emisor; por defecto `true`. |
+                    MD,
                 'example' => [
                     'emisor' => [
                         'rut' => '76192083-9',
                         'razon_social' => 'SASCO SpA',
                     ],
-                    'inputData' => '...',
+                    'inputData' => 'VGlwb0RURTtGb2xpbztGY2hFbWlzO0ZjaFZlbmM7UlVUUmVjZXA7UnpuU29jUmVjZXA7R2lyb1JlY2VwO1RlbGVmb25vO0NvcnJlb1JlY2VwO0RpclJlY2VwO0NtbmFSZWNlcDtWbHJDb2RpZ287SW5kRXhlO05tYkl0ZW07RHNjSXRlbTtRdHlJdGVtO1VubWRJdGVtO1ByY0l0ZW0KMzM7MTs7OzY2NjY2NjY2LTY7Q2xpZW50ZSBkZSBQcnVlYmE7U2VydmljaW9zOzs7U2FudGlhZ287U2FudGlhZ287OztTZXJ2aWNpbyBkZSBwcnVlYmE7OzE7OzEwMDAwCg==',
                     'options' => [
                         'batch_processor' => [
                             'strategy' => 'spreadsheet.csv',
                             'complete' => true,
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Lista `document_bags` con un elemento por cada documento de la planilla. En cada uno, `document_parsed` trae los datos del documento con la estructura del SII (los datos que no vienen en la planilla se completan según `complete`) y `emisor` el emisor. Los demás campos vienen en `null` porque los documentos aún no se construyen.',
+                'example' => [
+                    'document_bags' => [
+                        [
+                            'document' => null,
+                            'document_parsed' => [
+                                'Encabezado' => [
+                                    'IdDoc' => [
+                                        'TipoDTE' => 33,
+                                        'Folio' => 1,
+                                        'FchEmis' => '2024-01-15',
+                                    ],
+                                    'Emisor' => [
+                                        'RUTEmisor' => '76192083-9',
+                                        'RznSoc' => 'SASCO SpA',
+                                    ],
+                                    'Receptor' => [
+                                        'RUTRecep' => '66666666-6',
+                                        'RznSocRecep' => 'Cliente de Prueba',
+                                        'GiroRecep' => 'Servicios',
+                                        'DirRecep' => 'Santiago',
+                                        'CmnaRecep' => 'Santiago',
+                                    ],
+                                ],
+                                'Detalle' => [
+                                    [
+                                        'NmbItem' => 'Servicio de prueba',
+                                        'QtyItem' => 1,
+                                        'PrcItem' => 10000,
+                                    ],
+                                ],
+                            ],
+                            'document_normalized' => null,
+                            'document_extra' => null,
+                            'document_stamp' => null,
+                            'document_auth' => null,
+                            'document_type' => null,
+                            'document_id' => null,
+                            'document_xml' => null,
+                            'options' => [
+                                'builder' => [],
+                                'normalizer' => [],
+                                'parser' => [],
+                                'renderer' => [],
+                                'sanitizer' => [],
+                                'validator' => [],
+                            ],
+                            'certificate' => null,
+                            'emisor' => [
+                                'rut' => '76192083-9',
+                                'razon_social' => 'SASCO SpA',
+                                'giro' => null,
+                                'actividades_economicas' => [],
+                                'telefonos' => [],
+                                'email' => null,
+                                'direccion' => null,
+                                'comuna' => null,
+                                'ciudad' => null,
+                                'sucursal' => null,
+                                'codigo_sucursal' => null,
+                                'vendedor' => null,
+                                'autorizacion_dte' => null,
+                                'logo' => null,
+                            ],
+                            'receptor' => null,
+                            'caf' => null,
+                            'timbre' => null,
                         ],
                     ],
                 ],

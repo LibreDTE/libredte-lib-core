@@ -272,6 +272,8 @@ return [
         'El XML es un {document_name} y no se puede enviar al RTC, por él solo se envía un {envelope}.',
     'The XML is a {document_name} and cannot be sent with the DTE worker, boletas are sent through the boleta worker.' =>
         'El XML es un {document_name} y no se puede enviar con el worker de DTE, las boletas se envían con el worker de boletas.',
+    'The XML root {root} is not an envelope: EnvioDTE or EnvioBOLETA was expected.' =>
+        'La raíz del XML {root} no es un sobre: se esperaba EnvioDTE o EnvioBOLETA.',
     'The XML schema is invalid. {detail}' =>
         'El esquema del XML es inválido. {detail}',
     'The XML sent was already received by the SII. {detail}' =>

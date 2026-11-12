@@ -77,8 +77,29 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'create',
+        summary: 'Crea el sobre de envío de un documento',
+        description: <<<'MD'
+            Crea el sobre de envío (`EnvioDTE` o `EnvioBOLETA`) que contiene un documento tributario electrónico ya construido, con su carátula, y lo firma con el certificado digital. El sobre es el archivo que se envía al SII.
+
+            ## Cómo se usa
+
+            Se envía `bag` con el XML del documento (que se obtiene de `billing.document.builder::build` en `document_xml`), el certificado con el que se firma el sobre y el emisor con su autorización del SII (`autorizacion_dte`). Para enviar varios documentos en un mismo sobre se usa `billing.document.dispatcher::create_many`.
+
+            La carátula del sobre se arma solo si hay emisor con su autorización del SII, mandatario (que se obtiene del certificado) y receptor; si falta alguno, el XML queda sin carátula y el error aparece al validar el esquema con `billing.document.dispatcher::validate_schema`.
+
+            En la respuesta, `xml` es el XML del sobre codificado en base64 y `documents` trae los documentos que contiene.
+            MD,
         parameters: [
             'bag' => [
+                'description' => <<<'MD'
+                    Datos del documento y de su envío.
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `xmlDocument` | Obligatorio. XML del documento ya construido, codificado en base64. |
+                    | `certificate` | Certificado digital con el que se firma el sobre. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. Debe estar vigente al momento de firmar. |
+                    | `emisor` | Emisor del documento. `autorizacion_dte` (`fecha_resolucion` y `numero_resolucion`) es la autorización del SII y va en la carátula. |
+                    MD,
                 'example' => [
                     'xmlDocument' => '',
                     'certificate' => [
@@ -91,6 +112,49 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
                         'autorizacion_dte' => [
                             'fecha_resolucion' => '2014-08-22',
                             'numero_resolucion' => 80,
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => <<<'MD'
+                    Sobre creado. `tag` es el tipo de sobre (`EnvioDTE`), `xml` el XML del sobre en base64 y `caratula` su carátula: `RutEmisor`, `RutEnvia` (RUT del certificado), `RutReceptor`, `FchResol` y `NroResol` (autorización del emisor), `TmstFirmaEnv` (fecha y hora de la firma) y `SubTotDTE` (cantidad de documentos por tipo). `documents` trae los documentos del sobre con la misma estructura que entrega `billing.document.builder::build`.
+                    MD,
+                'example' => [
+                    'tag' => 'EnvioDTE',
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                    'documents' => [
+                        [
+                            'document' => [
+                                'Encabezado' => [
+                                    'IdDoc' => [
+                                        'TipoDTE' => 33,
+                                        'Folio' => 1,
+                                        'FchEmis' => '2024-01-15',
+                                    ],
+                                ],
+                            ],
+                            'document_id' => '76192083-9_T033F000000001',
+                            'document_xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                        ],
+                    ],
+                    'caratula' => [
+                        '@attributes' => [
+                            'version' => '1.0',
+                        ],
+                        'RutEmisor' => '76192083-9',
+                        'RutEnvia' => '12345678-9',
+                        'RutReceptor' => '66666666-6',
+                        'FchResol' => '2014-08-22',
+                        'NroResol' => 80,
+                        'TmstFirmaEnv' => '2024-01-15T10:00:00',
+                        'SubTotDTE' => [
+                            [
+                                'TpoDTE' => 33,
+                                'NroDTE' => 1,
+                            ],
                         ],
                     ],
                 ],
@@ -115,8 +179,17 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'create_many',
+        summary: 'Crea el sobre de envío de varios documentos',
+        description: <<<'MD'
+            Crea un solo sobre de envío (`EnvioDTE` o `EnvioBOLETA`) que contiene varios documentos tributarios electrónicos ya construidos, y lo firma con el certificado digital. Funciona como `billing.document.dispatcher::create`, pero con una lista de documentos.
+
+            ## Cómo se usa
+
+            Se envía `bags`, una lista con los datos de cada documento (en la forma que se describe en `billing.document.dispatcher::create`). Todos los documentos deben ser del mismo emisor: el certificado y la carátula del sobre se toman del primer elemento. Si la lista viene vacía, la operación falla, y también si el sobre supera la cantidad de tipos de documento permitida o el certificado no está vigente.
+            MD,
         parameters: [
             'bags' => [
+                'description' => 'Lista de documentos. Cada elemento tiene `xmlDocument` (XML del documento en base64), `certificate` y `emisor`, igual que `bag` en `billing.document.dispatcher::create`. El certificado y el emisor del primer elemento se usan para todo el sobre.',
                 'example' => [
                     [
                         'xmlDocument' => '',
@@ -130,6 +203,60 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
                             'autorizacion_dte' => [
                                 'fecha_resolucion' => '2014-08-22',
                                 'numero_resolucion' => 80,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Sobre creado, con la misma estructura que entrega `billing.document.dispatcher::create`: `tag`, `xml` (en base64), `documents` (todos los documentos del sobre) y `caratula`, donde `SubTotDTE` indica la cantidad de documentos de cada tipo.',
+                'example' => [
+                    'tag' => 'EnvioDTE',
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                    'documents' => [
+                        [
+                            'document' => [
+                                'Encabezado' => [
+                                    'IdDoc' => [
+                                        'TipoDTE' => 33,
+                                        'Folio' => 1,
+                                        'FchEmis' => '2024-01-15',
+                                    ],
+                                ],
+                            ],
+                            'document_id' => '76192083-9_T033F000000001',
+                            'document_xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                        ],
+                        [
+                            'document' => [
+                                'Encabezado' => [
+                                    'IdDoc' => [
+                                        'TipoDTE' => 33,
+                                        'Folio' => 2,
+                                        'FchEmis' => '2024-01-15',
+                                    ],
+                                ],
+                            ],
+                            'document_id' => '76192083-9_T033F000000002',
+                            'document_xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                        ],
+                    ],
+                    'caratula' => [
+                        '@attributes' => [
+                            'version' => '1.0',
+                        ],
+                        'RutEmisor' => '76192083-9',
+                        'RutEnvia' => '12345678-9',
+                        'RutReceptor' => '66666666-6',
+                        'FchResol' => '2014-08-22',
+                        'NroResol' => 80,
+                        'TmstFirmaEnv' => '2024-01-15T10:00:00',
+                        'SubTotDTE' => [
+                            [
+                                'TpoDTE' => 33,
+                                'NroDTE' => 2,
                             ],
                         ],
                     ],
@@ -190,8 +317,60 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'load_xml',
+        summary: 'Carga un sobre de documentos desde su XML',
+        description: <<<'MD'
+            Reconstruye un sobre de documentos tributarios electrónicos (`EnvioDTE` o `EnvioBOLETA`) a partir de su XML y entrega sus datos y los de cada documento que contiene. No valida el esquema ni la firma; para eso se usan `billing.document.dispatcher::validate_schema` y `billing.document.dispatcher::validate_signature`.
+
+            ## Cómo se usa
+
+            Se envía en `xml` el XML del sobre completo, codificado en base64, por ejemplo el que recibe un receptor. Si el XML está vacío o mal formado, la operación falla. También falla si el XML no es un sobre (`EnvioDTE` o `EnvioBOLETA`), por ejemplo un DTE suelto, y si el sobre contiene un documento sin un tipo de documento tributario válido.
+            MD,
         parameters: [
-            'xml' => ['example' => ''],
+            'xml' => [
+                'description' => 'XML del sobre de documentos, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Sobre cargado. `tag` es el tipo de sobre, `xml` su XML en base64 y `documents` los documentos que contiene, con la misma estructura que entrega `billing.document.builder::build`. `caratula` es la carátula del sobre, leída de su XML: `RutEmisor`, `RutEnvia`, `RutReceptor`, `FchResol`, `NroResol`, `TmstFirmaEnv` y `SubTotDTE` (cantidad de documentos por tipo).',
+                'example' => [
+                    'tag' => 'EnvioDTE',
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                    'documents' => [
+                        [
+                            'document' => [
+                                'Encabezado' => [
+                                    'IdDoc' => [
+                                        'TipoDTE' => 33,
+                                        'Folio' => 1,
+                                        'FchEmis' => '2024-01-15',
+                                    ],
+                                ],
+                            ],
+                            'document_id' => '76192083-9_T033F000000001',
+                            'document_xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8...',
+                        ],
+                    ],
+                    'caratula' => [
+                        '@attributes' => [
+                            'version' => '1.0',
+                        ],
+                        'RutEmisor' => '76192083-9',
+                        'RutEnvia' => '12345678-9',
+                        'RutReceptor' => '66666666-6',
+                        'FchResol' => '2014-08-22',
+                        'NroResol' => 80,
+                        'TmstFirmaEnv' => '2024-01-15T10:00:00',
+                        'SubTotDTE' => [
+                            [
+                                'TpoDTE' => 33,
+                                'NroDTE' => 1,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function loadXml(XmlDocumentInterface|string $xml): DocumentEnvelopeInterface
@@ -201,6 +380,16 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
             $xmlDocument->loadXml($xml);
         } else {
             $xmlDocument = $xml;
+        }
+
+        // Solo se carga el XML de un sobre. Un DTE suelto u otro XML se
+        // rechaza: sin esta revisión se obtendría un sobre cuyo XML no lo es.
+        $root = $xmlDocument->getName();
+        if (!in_array($root, ['EnvioDTE', 'EnvioBOLETA'], true)) {
+            throw new DispatcherException([
+                'The XML root {root} is not an envelope: EnvioDTE or EnvioBOLETA was expected.',
+                'root' => $root,
+            ]);
         }
 
         $envelope = new DocumentEnvelope();
@@ -220,8 +409,55 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'validate',
+        summary: 'Valida los datos de un sobre de documentos',
+        description: <<<'MD'
+            Valida los datos del sobre de documentos (`EnvioDTE` o `EnvioBOLETA`): que los RUT de la carátula tengan dígito verificador válido, que la fecha de la resolución no sea posterior a la fecha de la firma del sobre, y que la cantidad de documentos de cada tipo declarada en la carátula coincida con la de los documentos del sobre. No valida los datos de cada documento, ni el esquema XSD ni la firma; para eso se usan `billing.document.validator::validate`, `billing.document.dispatcher::validate_schema` y `billing.document.dispatcher::validate_signature`.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del sobre codificado en base64. Si el sobre es válido, la respuesta es el mismo documento; si no lo es, la operación falla con un error que indica la regla incumplida.
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del sobre de documentos, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'El sobre es válido. Se devuelve su XML como árbol: la carátula y los documentos dentro de `SetDTE`, y la firma en `Signature`.',
+                'example' => [
+                    'EnvioDTE' => [
+                        'SetDTE' => [
+                            'Caratula' => [
+                                'RutEmisor' => '76192083-9',
+                                'RutEnvia' => '12345678-9',
+                                'RutReceptor' => '66666666-6',
+                                'FchResol' => '2014-08-22',
+                                'NroResol' => '80',
+                                'TmstFirmaEnv' => '2024-01-15T10:00:00',
+                                'SubTotDTE' => [
+                                    'TpoDTE' => '33',
+                                    'NroDTE' => '1',
+                                ],
+                            ],
+                            'DTE' => [
+                                'Documento' => [
+                                    'Encabezado' => [
+                                        'IdDoc' => [
+                                            'TipoDTE' => '33',
+                                            'Folio' => '1',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'Signature' => [
+                            'SignatureValue' => 'XOs4lQZku6vLebe6...',
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validate(
@@ -239,8 +475,55 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'validate_schema',
+        summary: 'Valida el XML de un sobre contra su esquema',
+        description: <<<'MD'
+            Valida el XML de un sobre de documentos (`EnvioDTE` o `EnvioBOLETA`) contra su esquema XSD del SII. El esquema se toma del atributo `xsi:schemaLocation` que declara el propio XML.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del sobre codificado en base64. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema.
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del sobre de documentos, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'El XML cumple el esquema. Se devuelve el documento como árbol: la carátula y los documentos dentro de `SetDTE`, y la firma en `Signature`.',
+                'example' => [
+                    'EnvioDTE' => [
+                        'SetDTE' => [
+                            'Caratula' => [
+                                'RutEmisor' => '76192083-9',
+                                'RutEnvia' => '12345678-9',
+                                'RutReceptor' => '66666666-6',
+                                'FchResol' => '2014-08-22',
+                                'NroResol' => '80',
+                                'TmstFirmaEnv' => '2024-01-15T10:00:00',
+                                'SubTotDTE' => [
+                                    'TpoDTE' => '33',
+                                    'NroDTE' => '1',
+                                ],
+                            ],
+                            'DTE' => [
+                                'Documento' => [
+                                    'Encabezado' => [
+                                        'IdDoc' => [
+                                            'TipoDTE' => '33',
+                                            'Folio' => '1',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'Signature' => [
+                            'SignatureValue' => 'XOs4lQZku6vLebe6...',
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSchema(
@@ -267,8 +550,59 @@ class DispatcherWorker extends AbstractWorker implements DispatcherWorkerInterfa
      */
     #[Operation(
         name: 'validate_signature',
+        summary: 'Valida las firmas electrónicas de un sobre',
+        description: <<<'MD'
+            Valida las firmas electrónicas (XML DSIG) de un sobre de documentos: la del propio sobre y la de cada documento que contiene. Entrega el resultado de cada firma y los datos del certificado de quien firmó.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del sobre firmado, codificado en base64.
+
+            La operación responde con éxito tanto si las firmas son válidas como si no lo son: el resultado de cada una está en su campo `valid`. Si es `false`, `error` explica el motivo (por ejemplo, que el contenido se modificó después de firmarlo).
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del sobre de documentos firmado, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Lista con el resultado de cada firma encontrada en el XML. En cada elemento, `valid` indica si la firma es válida, `error` trae el motivo cuando no lo es (`null` si es válida), `signature` los datos de la firma y `signature.signer` los del certificado del firmante.',
+                'example' => [
+                    [
+                        'valid' => true,
+                        'error' => null,
+                        'signature' => [
+                            'reference' => 'LibreDTE_76192083-9_T033F000000000001',
+                            'canonicalization_method' => 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315',
+                            'signature_method' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+                            'digest_method' => 'http://www.w3.org/2000/09/xmldsig#sha1',
+                            'digest_value' => 'NfiddEW6DjPTPBefnLCHkULI1fg=',
+                            'signature_value' => 'QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...',
+                            'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                            'exponent' => 'AQAB',
+                            'certificate' => 'MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...',
+                            'certificate_chain' => [],
+                            'signer' => [
+                                'id' => '12345678-9',
+                                'name' => 'Juan Pérez',
+                                'email' => 'juan.perez@example.com',
+                                'from' => '2024-01-01T00:00:00',
+                                'to' => '2025-01-01T00:00:00',
+                                'total_days' => 366,
+                                'expiration_days' => 300,
+                                'is_active' => true,
+                                'issuer' => 'AC de Ejemplo',
+                                'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                                'exponent' => 'AQAB',
+                                'cert' => "-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...",
+                                'chain' => [],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSignature(

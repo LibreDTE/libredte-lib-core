@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+	Esquema auxiliar de LibreDTE (no es un archivo oficial del SII).
+
+	El esquema oficial EnvioBOLETA_v11.xsd define el DTE de una boleta solo como
+	un elemento interno del sobre EnvioBOLETA, por lo que una boleta suelta no se
+	puede validar contra el. Este esquema reutiliza esa misma definicion
+	(BOLETADefType) y declara el elemento DTE en la raiz, para poder validar el
+	XML de una boleta individual.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SiiDte="http://www.sii.cl/SiiDte" targetNamespace="http://www.sii.cl/SiiDte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="EnvioBOLETA_v11.xsd"/>
+	<xs:element name="DTE" type="SiiDte:BOLETADefType"/>
+</xs:schema>

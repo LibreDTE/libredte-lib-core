@@ -57,8 +57,87 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     #[Operation(
         name: 'validate_schema',
+        summary: 'Valida el XML de un libro contra su esquema',
+        description: <<<'MD'
+            Valida el XML de un libro tributario electrónico contra su esquema XSD del SII. El esquema se toma del atributo `xsi:schemaLocation` que declara el propio XML.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del libro, por ejemplo el que entrega `billing.book.builder::build` en `book.xml`. Si el XML cumple el esquema, la respuesta es el mismo documento. Si no lo cumple, la operación falla con un error que indica el esquema usado y la línea y la columna del problema.
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del libro codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'El XML es válido. Se devuelve el documento como árbol: el elemento raíz del libro con su carátula, resumen, detalle y firma.',
+                'example' => [
+                    'LibroCompraVenta' => [
+                        'EnvioLibro' => [
+                            'Caratula' => [
+                                'RutEmisorLibro' => '76192083-9',
+                                'RutEnvia' => '12345678-2',
+                                'PeriodoTributario' => '2024-01',
+                                'FchResol' => '2014-08-22',
+                                'NroResol' => '80',
+                                'TipoOperacion' => 'VENTA',
+                                'TipoLibro' => 'MENSUAL',
+                                'TipoEnvio' => 'TOTAL',
+                            ],
+                            'ResumenPeriodo' => [
+                                'TotalesPeriodo' => [
+                                    'TpoDoc' => '33',
+                                    'TotDoc' => '1',
+                                    'TotMntExe' => '0',
+                                    'TotMntNeto' => '100000',
+                                    'TotMntIVA' => '19000',
+                                    'TotMntTotal' => '119000',
+                                ],
+                            ],
+                            'Detalle' => [
+                                'TpoDoc' => '33',
+                                'NroDoc' => '1',
+                                'TasaImp' => '19',
+                                'FchDoc' => '2024-01-10',
+                                'RUTDoc' => '66666666-6',
+                                'RznSoc' => 'Cliente de Prueba',
+                                'MntNeto' => '100000',
+                                'MntIVA' => '19000',
+                                'MntTotal' => '119000',
+                            ],
+                            'TmstFirma' => '2024-02-01T10:00:00',
+                        ],
+                        'Signature' => [
+                            'SignedInfo' => [
+                                'CanonicalizationMethod' => '',
+                                'SignatureMethod' => '',
+                                'Reference' => [
+                                    'Transforms' => [
+                                        'Transform' => '',
+                                    ],
+                                    'DigestMethod' => '',
+                                    'DigestValue' => 'zfRoDyFx1Hzt++GV1R0FJtfuiCw=',
+                                ],
+                            ],
+                            'SignatureValue' => 'XOs4lQZku6vLebe6...',
+                            'KeyInfo' => [
+                                'KeyValue' => [
+                                    'RSAKeyValue' => [
+                                        'Modulus' => '3g4+1EwG74k7vOsa...',
+                                        'Exponent' => 'AQAB',
+                                    ],
+                                ],
+                                'X509Data' => [
+                                    'X509Certificate' => 'MIID8zCCAtugAwIBAgIB...',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSchema(
@@ -96,8 +175,57 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     #[Operation(
         name: 'validate_signature',
+        summary: 'Valida la firma electrónica de un libro',
+        description: <<<'MD'
+            Valida la firma electrónica (XML DSIG) del XML de un libro tributario electrónico y entrega los datos de la firma y del certificado del firmante.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del libro firmado, por ejemplo el que entrega `billing.book.builder::build` en `book.xml`.
+
+            La operación responde con éxito tanto si la firma es válida como si no lo es: el resultado está en el campo `valid`. Si es `false`, el campo `error` explica el motivo (por ejemplo, que el contenido se modificó después de firmarlo).
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del libro firmado, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => '`valid` indica si la firma es válida y `error` trae el motivo cuando no lo es (`null` si es válida). `signature` trae los datos de la firma y `signature.signer` los del certificado del firmante.',
+                'example' => [
+                    'valid' => true,
+                    'error' => null,
+                    'signature' => [
+                        'reference' => 'LibreDTE_LIBRO_VENTA_761920839_202401_1794490668',
+                        'canonicalization_method' => 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315',
+                        'signature_method' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+                        'digest_method' => 'http://www.w3.org/2000/09/xmldsig#sha1',
+                        'digest_value' => '3YF6yPBrfNdJIs7oewSUbu+EXZ0=',
+                        'signature_value' => 'XCx/cVHQxiUg8/UI/pXb+iUh...',
+                        'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                        'exponent' => 'AQAB',
+                        'certificate' => 'MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...',
+                        'certificate_chain' => [],
+                        'signer' => [
+                            'id' => '76192083-9',
+                            'name' => 'Empresa de Ejemplo SpA',
+                            'email' => 'contacto@example.com',
+                            'from' => '2024-01-01T00:00:00',
+                            'to' => '2025-01-01T00:00:00',
+                            'total_days' => 366,
+                            'expiration_days' => 300,
+                            'is_active' => true,
+                            'issuer' => 'Empresa de Ejemplo SpA',
+                            'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                            'exponent' => 'AQAB',
+                            'cert' => "-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...",
+                            'chain' => [],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSignature(

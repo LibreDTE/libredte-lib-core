@@ -42,8 +42,49 @@ class CafValidatorWorker extends AbstractWorker implements CafValidatorWorkerInt
      */
     #[Operation(
         name: 'validate',
+        summary: 'Valida un archivo CAF',
+        description: <<<'MD'
+            Valida un CAF (Código de Autorización de Folios): verifica la firma del CAF con la clave pública del SII (cuando se dispone de ella para el `idk` del CAF) y comprueba que su llave privada y su llave pública correspondan, cifrando y descifrando un texto de prueba. Si todo es correcto, devuelve el mismo CAF.
+
+            ## Cómo se usa
+
+            Se envía en `caf` el XML del CAF codificado en base64. Si la firma no es válida o las llaves están dañadas, la operación falla con un error que indica el motivo. Un CAF falso, creado con `billing.identifier.caf_faker::create`, pasa la verificación de llaves porque no tiene una clave del SII contra la cual comprobar su firma.
+            MD,
         parameters: [
-            'caf' => ['example' => ''],
+            'caf' => [
+                'description' => 'XML del CAF, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'El CAF es válido. Se devuelve con los mismos datos que entrega `billing.identifier.caf_loader::load`.',
+                'example' => [
+                    'id' => 'CAF33D1H100',
+                    'emisor' => [
+                        'rut' => '76192083-9',
+                        'razon_social' => 'SASCO SpA',
+                    ],
+                    'tipo_documento' => 33,
+                    'folio_desde' => 1,
+                    'folio_hasta' => 100,
+                    'cantidad_folios' => 100,
+                    'fecha_autorizacion' => '2024-01-15',
+                    'fecha_vencimiento' => '2024-07-14',
+                    'meses_autorizacion' => 2.5,
+                    'vigente' => true,
+                    'vence' => true,
+                    'idk' => 100,
+                    'ambiente' => [
+                        'name' => 'PRODUCTION',
+                        'value' => 0,
+                    ],
+                    'certificacion' => 0,
+                    'public_key' => "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...",
+                    'private_key' => "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASC...",
+                    'xml' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pg...',
+                ],
+            ],
         ],
     )]
     public function validate(CafInterface $caf): CafInterface

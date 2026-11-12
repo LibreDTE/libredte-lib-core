@@ -76,8 +76,66 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     #[Operation(
         name: 'validate',
+        summary: 'Valida los datos de un documento',
+        description: <<<'MD'
+            Valida los datos de un documento tributario electrónico según las reglas de su tipo; por ejemplo, que los RUT tengan dígito verificador válido. No valida el esquema XSD ni la firma; para eso se usan `billing.document.validator::validate_schema` y `billing.document.validator::validate_signature`.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del documento codificado en base64, por ejemplo el que entrega `billing.document.builder::build` en `document_xml`. Si los datos son válidos, la respuesta es el documento; si no, la operación falla con un error que indica el problema. Esta validación solo mira los datos del documento: no sirve para comprobar su firma.
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del documento, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Los datos son válidos. Se devuelve el documento como árbol del XML (sin firma).',
+                'example' => [
+                    'DTE' => [
+                        'Documento' => [
+                            'Encabezado' => [
+                                'IdDoc' => [
+                                    'TipoDTE' => '33',
+                                    'Folio' => '1',
+                                    'FchEmis' => '2024-01-15',
+                                    'TpoTranVenta' => '1',
+                                ],
+                                'Emisor' => [
+                                    'RUTEmisor' => '76192083-9',
+                                    'RznSoc' => 'SASCO SpA',
+                                    'GiroEmis' => 'Servicios',
+                                    'Acteco' => '620100',
+                                    'DirOrigen' => 'Dirección 123',
+                                    'CmnaOrigen' => 'Santiago',
+                                ],
+                                'Receptor' => [
+                                    'RUTRecep' => '66666666-6',
+                                    'RznSocRecep' => 'Cliente de Prueba',
+                                    'GiroRecep' => 'Servicios',
+                                    'DirRecep' => 'Santiago',
+                                    'CmnaRecep' => 'Santiago',
+                                ],
+                                'Totales' => [
+                                    'MntNeto' => '10000',
+                                    'TasaIVA' => '19',
+                                    'IVA' => '1900',
+                                    'MntTotal' => '11900',
+                                ],
+                            ],
+                            'Detalle' => [
+                                'NroLinDet' => '1',
+                                'NmbItem' => 'Servicio de prueba',
+                                'QtyItem' => '1',
+                                'PrcItem' => '10000',
+                                'MontoItem' => '10000',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validate(
@@ -131,8 +189,68 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     #[Operation(
         name: 'validate_schema',
+        summary: 'Valida el XML de un documento contra su esquema',
+        description: <<<'MD'
+            Valida el XML de un documento tributario electrónico contra el esquema XSD del SII.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del documento codificado en base64. Si cumple el esquema, la respuesta es el mismo documento; si no, la operación falla con un error que indica el esquema usado y la línea y la columna del problema.
+
+            Las boletas (tipos `39` y `41`) se validan contra un esquema propio de LibreDTE, derivado del de su sobre `EnvioBOLETA`, porque el SII no publica un esquema para la boleta suelta. El esquema del sobre se valida con `billing.document.dispatcher::validate_schema`.
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del documento, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'El XML cumple el esquema. Se devuelve el documento como árbol del XML.',
+                'example' => [
+                    'DTE' => [
+                        'Documento' => [
+                            'Encabezado' => [
+                                'IdDoc' => [
+                                    'TipoDTE' => '33',
+                                    'Folio' => '1',
+                                    'FchEmis' => '2024-01-15',
+                                    'TpoTranVenta' => '1',
+                                ],
+                                'Emisor' => [
+                                    'RUTEmisor' => '76192083-9',
+                                    'RznSoc' => 'SASCO SpA',
+                                    'GiroEmis' => 'Servicios',
+                                    'Acteco' => '620100',
+                                    'DirOrigen' => 'Dirección 123',
+                                    'CmnaOrigen' => 'Santiago',
+                                ],
+                                'Receptor' => [
+                                    'RUTRecep' => '66666666-6',
+                                    'RznSocRecep' => 'Cliente de Prueba',
+                                    'GiroRecep' => 'Servicios',
+                                    'DirRecep' => 'Santiago',
+                                    'CmnaRecep' => 'Santiago',
+                                ],
+                                'Totales' => [
+                                    'MntNeto' => '10000',
+                                    'TasaIVA' => '19',
+                                    'IVA' => '1900',
+                                    'MntTotal' => '11900',
+                                ],
+                            ],
+                            'Detalle' => [
+                                'NroLinDet' => '1',
+                                'NmbItem' => 'Servicio de prueba',
+                                'QtyItem' => '1',
+                                'PrcItem' => '10000',
+                                'MontoItem' => '10000',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSchema(
@@ -154,14 +272,14 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
         // bolsa el tipo de documento asociado al DTE.
         $bag = $this->documentBagManager->create($xmlDocument, normalizeAll: false);
 
-        // Las boletas no se validan de manera individual (el DTE). Se validan
-        // a través del EnvioBOLETA.
-        if ($bag->requireTipoDocumento()->isBoleta()) {
-            return $bag->requireXmlDocument();
-        }
-
-        // Validar esquema de otros DTE (no boletas).
-        $schema = dirname(__DIR__, 6) . '/resources/schemas/DTE_v10.xsd';
+        // El SII no tiene un esquema para el DTE de una boleta suelta: la define
+        // solo dentro del EnvioBOLETA. Por eso las boletas se validan con un
+        // esquema auxiliar que reutiliza esa definición.
+        $schemaFile = $bag->requireTipoDocumento()->isBoleta()
+            ? 'BOLETA_v11.xsd'
+            : 'DTE_v10.xsd'
+        ;
+        $schema = dirname(__DIR__, 6) . '/resources/schemas/' . $schemaFile;
         $this->xmlService->validate($bag->requireXmlDocument(), $schema);
 
         return $bag->requireXmlDocument();
@@ -172,8 +290,57 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
      */
     #[Operation(
         name: 'validate_signature',
+        summary: 'Valida la firma electrónica de un documento',
+        description: <<<'MD'
+            Valida la firma electrónica (XML DSIG) de un documento tributario electrónico y entrega los datos de la firma y del certificado del firmante.
+
+            ## Cómo se usa
+
+            Se envía en `source` el XML del documento firmado, codificado en base64.
+
+            La operación responde con éxito tanto si la firma es válida como si no lo es: el resultado está en el campo `valid`. Si es `false`, el campo `error` explica el motivo (por ejemplo, que el contenido se modificó después de firmarlo).
+            MD,
         parameters: [
-            'source' => ['example' => ''],
+            'source' => [
+                'description' => 'XML del documento firmado, codificado en base64.',
+                'example' => '',
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => '`valid` indica si la firma es válida y `error` trae el motivo cuando no lo es (`null` si es válida). `signature` trae los datos de la firma y `signature.signer` los del certificado del firmante.',
+                'example' => [
+                    'valid' => true,
+                    'error' => null,
+                    'signature' => [
+                        'reference' => 'LibreDTE_76192083-9_T033F000000000001',
+                        'canonicalization_method' => 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315',
+                        'signature_method' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+                        'digest_method' => 'http://www.w3.org/2000/09/xmldsig#sha1',
+                        'digest_value' => 'NfiddEW6DjPTPBefnLCHkULI1fg=',
+                        'signature_value' => 'QdjpaqidVjAJXEjcVwY0CQvmXWAYmRODuL5T...',
+                        'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                        'exponent' => 'AQAB',
+                        'certificate' => 'MIID8zCCAtugAwIBAgIBADANBgkqhkiG9w0B...',
+                        'certificate_chain' => [],
+                        'signer' => [
+                            'id' => '12345678-9',
+                            'name' => 'Juan Pérez',
+                            'email' => 'juan.perez@example.com',
+                            'from' => '2024-01-01T00:00:00',
+                            'to' => '2025-01-01T00:00:00',
+                            'total_days' => 366,
+                            'expiration_days' => 300,
+                            'is_active' => true,
+                            'issuer' => 'AC de Ejemplo',
+                            'modulus' => 'hUNOQsNO9kb6QPfMeDTzDGruGejPM2O0...',
+                            'exponent' => 'AQAB',
+                            'cert' => "-----BEGIN CERTIFICATE-----\nMIID8zCCAtugAwIBAgIB...",
+                            'chain' => [],
+                        ],
+                    ],
+                ],
+            ],
         ],
     )]
     public function validateSignature(

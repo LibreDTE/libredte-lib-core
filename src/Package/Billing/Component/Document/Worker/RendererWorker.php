@@ -98,8 +98,35 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
      */
     #[Operation(
         name: 'render',
+        summary: 'Genera la representación impresa de un documento',
+        description: <<<'MD'
+            Genera la representación impresa (el PDF) de un documento tributario electrónico a partir de su XML.
+
+            ## Cómo se usa
+
+            Se envía en `bag.xmlDocument` el XML del documento codificado en base64, por ejemplo el que entrega `billing.document.builder::build` en `document_xml`. Por defecto se genera una sola presentación, la `tributaria`. Con `bag.options.renderer.renderings` se piden otras y más de una copia de cada una.
+
+            ## Presentaciones
+
+            | Valor | Descripción |
+            |---|---|
+            | `tributaria` | Copia tributaria, sin la leyenda "CEDIBLE" ni el bloque de acuse de recibo. |
+            | `cedible` | Copia cedible, con la leyenda "CEDIBLE" y el bloque de acuse de recibo (Ley 19.983). Solo para los tipos de documento que lo admiten: si se pide para uno que no lo admite (por ejemplo, una boleta), se omite sin error y no aparece en la respuesta. |
+
+            `renderings` es un objeto con la presentación como clave y la cantidad de copias como valor, por ejemplo `{"tributaria": 1, "cedible": 2}`. Una presentación que no existe hace fallar la operación.
+
+            La respuesta trae un archivo por cada copia solicitada. Cuando se piden varias copias de una presentación, el archivo se repite con `copy_number` desde `1` y el nombre del archivo termina en `_1`, `_2`, etc.
+            MD,
         parameters: [
             'bag' => [
+                'description' => <<<'MD'
+                    Datos del documento y opciones del renderizado.
+
+                    | Campo | Descripción |
+                    |---|---|
+                    | `xmlDocument` | Obligatorio. XML del documento, codificado en base64. |
+                    | `options` | Opciones. `options.renderer.format` es el formato de salida; por defecto `pdf`. `options.renderer.renderings` son las presentaciones y la cantidad de copias de cada una; por defecto `{"tributaria": 1}`. `options.renderer.strategy` es el motor de renderizado; por defecto `template.estandar`. |
+                    MD,
                 'example' => [
                     'xmlDocument' => '',
                     'options' => [
@@ -113,7 +140,32 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
                     ],
                 ],
             ],
-        ]
+        ],
+        results: [
+            'success' => [
+                'description' => 'Archivos generados, uno por cada copia solicitada. `content` es el archivo codificado en base64, `mime_type` su tipo, `filename` su nombre sugerido, `label` la presentación, `copies` la cantidad de copias de esa presentación y `copy_number` el número de esta copia.',
+                'example' => [
+                    'renderings' => [
+                        [
+                            'content' => 'JVBERi0xLjQKJeLjz9MKMyAwIG9iago8PC9UeXBlIC9QYWdl...',
+                            'mime_type' => 'application/pdf',
+                            'filename' => 'LibreDTE_76192083-9_T033F000000000001_tributaria.pdf',
+                            'label' => 'tributaria',
+                            'copies' => 1,
+                            'copy_number' => 1,
+                        ],
+                        [
+                            'content' => 'JVBERi0xLjQKJeLjz9MKMyAwIG9iago8PC9UeXBlIC9QYWdl...',
+                            'mime_type' => 'application/pdf',
+                            'filename' => 'LibreDTE_76192083-9_T033F000000000001_cedible.pdf',
+                            'label' => 'cedible',
+                            'copies' => 1,
+                            'copy_number' => 1,
+                        ],
+                    ],
+                ],
+            ],
+        ],
     )]
     public function render(DocumentBagInterface $bag): RenderResultInterface
     {

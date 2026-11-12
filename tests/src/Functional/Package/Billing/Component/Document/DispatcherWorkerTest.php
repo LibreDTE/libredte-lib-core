@@ -51,21 +51,26 @@ use libredte\lib\Core\Package\Billing\Component\Document\Worker\DispatcherWorker
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\DocumentBagManagerWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ExamplesWorker;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Helper\Utils;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeBoletaAfectaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPostDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeDataPreDocumentNormalizationJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeFacturaAfectaJob;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Job\NormalizeNotaCreditoJob;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\BoletaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\FacturaAfectaNormalizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Strategy\NotaCreditoNormalizerStrategy;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeBoletasTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDescuentosRecargosTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeDetalleTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeImpuestoAdicionalRetencionTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeIvaMntTotalTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Normalizer\Trait\NormalizeTransporteTrait;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\NormalizerWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\BoletaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\FacturaAfectaSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Sanitizer\Strategy\NotaCreditoSanitizerStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\SanitizerWorker;
+use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\BoletaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\FacturaAfectaValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\Validator\Strategy\NotaCreditoValidatorStrategy;
 use libredte\lib\Core\Package\Billing\Component\Document\Worker\ValidatorWorker;
@@ -92,6 +97,8 @@ use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(SobreEnvio::class)]
 #[CoversClass(AbstractBuilderStrategy::class)]
@@ -138,6 +145,11 @@ use PHPUnit\Framework\Attributes\DataProvider;
 #[CoversClass(Emisor::class)]
 #[CoversClass(PersonaNatural::class)]
 #[CoversClass(Receptor::class)]
+#[UsesClass(NormalizeBoletaAfectaJob::class)]
+#[UsesClass(BoletaAfectaNormalizerStrategy::class)]
+#[UsesTrait(NormalizeBoletasTrait::class)]
+#[UsesClass(BoletaAfectaSanitizerStrategy::class)]
+#[UsesClass(BoletaAfectaValidatorStrategy::class)]
 #[CoversClass(EmisorFactory::class)]
 #[CoversClass(ReceptorFactory::class)]
 #[CoversClass(FakeEmisorProvider::class)]
@@ -158,6 +170,8 @@ class DispatcherWorkerTest extends TestCase
     private const FACTURA = '033_factura_afecta/033_001_simple';
 
     private const NOTA_CREDITO = '061_nota_credito/061_001_anula_factura';
+
+    private const BOLETA = '039_boleta_afecta/039_001_simple';
 
     private DispatcherWorkerInterface $dispatcher;
 
@@ -466,6 +480,36 @@ class DispatcherWorkerTest extends TestCase
 
         $this->assertSame($xmlDocument, $envelope->getXmlDocument());
         $this->assertCount(1, $envelope->requireDocuments());
+    }
+
+    public function testLoadXmlRejectsADocumentThatIsNotAnEnvelope(): void
+    {
+        $dte = $this->buildDocument(self::FACTURA)->getXmlDocument()->saveXml();
+
+        $this->expectException(DispatcherException::class);
+        $this->expectExceptionMessage('DTE');
+
+        $this->dispatcher->loadXml($dte);
+    }
+
+    public function testLoadXmlRejectsAnXmlDocumentThatIsNotAnEnvelope(): void
+    {
+        $dte = $this->buildDocument(self::FACTURA)->getXmlDocument();
+
+        $this->expectException(DispatcherException::class);
+
+        $this->dispatcher->loadXml($dte);
+    }
+
+    public function testLoadXmlAcceptsAnEnvioBoleta(): void
+    {
+        $envelope = $this->dispatcher->create($this->authorizedBag(self::BOLETA));
+
+        $loaded = $this->dispatcher->loadXml($envelope->requireXmlDocument()->saveXml());
+
+        $this->assertSame('EnvioBOLETA', $loaded->requireXmlDocument()->getName());
+        $this->assertSame(TipoSobre::ENVIO_BOLETA, $loaded->getTipoSobre());
+        $this->assertCount(1, $loaded->requireDocuments());
     }
 
     public function testLoadXmlOfAnEnvelopeWithSeveralDocumentsLoadsAllOfThem(): void

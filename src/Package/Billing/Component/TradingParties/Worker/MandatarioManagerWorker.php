@@ -48,11 +48,36 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
      */
     #[Operation(
         name: 'create_from_certificate',
+        summary: 'Obtiene el mandatario de un certificado digital',
+        description: <<<'MD'
+            Entrega los datos de la persona titular de un certificado digital (su RUN, su nombre y su correo electrónico), tomados del propio certificado.
+
+            ## Cómo se usa
+
+            Se envía el certificado en `certificate`. La respuesta es el mandatario, que se puede usar donde se pida uno, por ejemplo para identificar a quien firma o envía un documento.
+            MD,
         parameters: [
             'certificate' => [
+                'description' => <<<'MD'
+                    Certificado digital. Se acepta una de estas formas:
+
+                    - `data` (archivo PKCS12 o PFX codificado en base64) y `password`.
+                    - `certificate` y `privateKey`, ambos en formato PEM.
+                    - `cert` y `pkey`, ambos en formato PEM, que son los nombres con que se entrega un certificado en las respuestas. Opcionalmente `chain`, con la lista de certificados intermedios.
+                    MD,
                 'example' => [
                     'certificate' => '',
                     'privateKey' => '',
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => 'Mandatario con el RUN, el nombre y el correo del titular del certificado.',
+                'example' => [
+                    'run' => '12345678-9',
+                    'nombre' => 'Juan Pérez',
+                    'email' => 'juan.perez@example.com',
                 ],
             ],
         ],
@@ -72,12 +97,46 @@ class MandatarioManagerWorker extends AbstractWorker implements MandatarioManage
      */
     #[Operation(
         name: 'create_fake_certificate',
+        summary: 'Crea un certificado digital falso para pruebas',
+        description: <<<'MD'
+            Genera un certificado digital falso a nombre del mandatario indicado, firmado por una autoridad certificadora de prueba. Sirve para probar la firma de documentos sin usar un certificado real; no es válido ante el SII.
+
+            ## Cómo se usa
+
+            Se envían los datos del mandatario. La respuesta es el certificado completo, con su llave privada en `pkey`, y se puede enviar como `certificate` a las operaciones que firman documentos, como `billing.document.builder::build` o `billing.book.builder::build`.
+            MD,
         parameters: [
             'mandatario' => [
+                'description' => 'Persona a cuyo nombre se genera el certificado: `run` (RUN con dígito verificador, por ejemplo `12345678-9`), `nombre` y `email`.',
                 'example' => [
                     'run' => '12345678-9',
                     'nombre' => 'Juan Pérez',
                     'email' => 'juan.perez@example.com',
+                ],
+            ],
+        ],
+        results: [
+            'success' => [
+                'description' => <<<'MD'
+                    Certificado generado. `id` es el RUN del titular. `from` y `to` son el inicio y el fin de la vigencia, `total_days` su duración en días y `expiration_days` los días que le quedan. `is_active` indica si está vigente. `cert` es el certificado en PEM, `chain` los certificados intermedios y `pkey` la llave privada en PEM.
+                    MD,
+                'example' => [
+                    'id' => '12345678-9',
+                    'name' => 'Juan Pérez',
+                    'email' => 'juan.perez@example.com',
+                    'from' => '2024-01-01T00:00:00',
+                    'to' => '2025-01-01T00:00:00',
+                    'total_days' => 366,
+                    'expiration_days' => 300,
+                    'is_active' => true,
+                    'issuer' => 'Derafu Test Certificate Authority',
+                    'modulus' => 'rta/vl0+RO1n1oBpvS0WB6/UvN+F+OQS1y9xmakY...',
+                    'exponent' => 'AQAB',
+                    'cert' => "-----BEGIN CERTIFICATE-----\nMIIEbjCCA1agAwIBAgIB...",
+                    'chain' => [
+                        "-----BEGIN CERTIFICATE-----\nMIIERjCCAy6gAwIBAgIC...",
+                    ],
+                    'pkey' => "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASC...",
                 ],
             ],
         ],
