@@ -833,8 +833,7 @@ class EstandarParserStrategy extends AbstractStrategy implements ParserStrategyI
 
                 // Agregar al precio (si el ítem tiene precio).
                 if (isset($detalle['PrcItem'])) {
-                    assert(is_numeric($detalle['PrcItem']));
-                    $detalle['PrcItem'] += $iva + $adicional;
+                    $detalle['PrcItem'] = ValueType::toFloat()->parse($detalle['PrcItem'], 'PrcItem', 'form') + $iva + $adicional;
                 }
             }
 

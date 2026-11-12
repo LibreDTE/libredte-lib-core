@@ -28,6 +28,7 @@ use Derafu\Backbone\Contract\HandlerInterface;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\HandlersAwareTrait;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverStrategyInterface;
@@ -214,7 +215,7 @@ class ReceiverWorker extends AbstractExchangeWorker implements ReceiverWorkerInt
         $options = $this->resolveOptions($bag->getOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
-        assert($strategy instanceof ReceiverStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, ReceiverStrategyInterface::class);
 
         try {
             $strategy->receive($bag);

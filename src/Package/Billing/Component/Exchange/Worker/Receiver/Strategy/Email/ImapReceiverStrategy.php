@@ -30,8 +30,11 @@ use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Mail\Contract\EnvelopeInterface as MailEnvelopeInterface;
 use Derafu\Mail\Contract\MailPackageInterface;
 use Derafu\Mail\Contract\MessageInterface as MailMessageInterface;
+use Derafu\Mail\Model\Envelope as MailEnvelope;
+use Derafu\Mail\Model\Message as MailMessage;
 use Derafu\Mail\Model\Postman as MailPostman;
 use Derafu\Support\Str;
+use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
@@ -44,7 +47,6 @@ use libredte\lib\Core\Package\Billing\Component\Exchange\Support\Attachment;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\Document;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\Envelope;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Support\ExchangeResult;
-use Symfony\Component\Mailer\Envelope as SymfonyEnvelope;
 use Symfony\Component\Mime\Email as SymfonyEmail;
 
 /**
@@ -83,14 +85,14 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         // Iterar los sobres para armar los sobres de intercambio con los
         // documentos que se hayan encontrado en los mensajes.
         foreach ($mailEnvelopes as $mailEnvelope) {
-            assert($mailEnvelope instanceof SymfonyEnvelope);
+            $mailEnvelope = ValueCaster::requireObject($mailEnvelope, MailEnvelope::class);
 
             // Iterar cada mensaje del sobre. La implementación de MailPackage
             // que viene por defecto en Derafu, entrega solo un mensaje por cada
             // sobre. Sin embargo, cada mensaje podría tener múltiples adjuntos,
             // pues eso lo decide quien envía el correo.
             foreach ($mailEnvelope->getMessages() as $message) {
-                assert($message instanceof SymfonyEmail);
+                $message = ValueCaster::requireObject($message, MailMessage::class);
 
                 // Revisar cada adjunto del mensaje y agregarlo al listado si es
                 // un XML, pues los XML se deberán considerar como documentos
@@ -132,8 +134,8 @@ class ImapReceiverStrategy extends AbstractStrategy implements ReceiverStrategyI
         MailMessageInterface $message,
         array $attachments
     ): EnvelopeInterface {
-        assert($mailEnvelope instanceof SymfonyEnvelope);
-        assert($message instanceof SymfonyEmail);
+        $mailEnvelope = ValueCaster::requireObject($mailEnvelope, MailEnvelope::class);
+        $message = ValueCaster::requireObject($message, MailMessage::class);
 
         // Asignar el correo electrónico del remitente del mensaje.
         $sender = new Sender(new PartyIdentifier(

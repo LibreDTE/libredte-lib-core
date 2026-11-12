@@ -26,6 +26,7 @@ use Derafu\Array\ArrayCaster;
 use Derafu\Array\ArrayPath;
 use Derafu\Array\ArrayReader;
 use Derafu\Repository\Contract\RepositoryManagerInterface;
+use Derafu\Value\ValueCaster;
 use Derafu\Value\ValueType;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Enum\TipoLibro;
@@ -289,7 +290,7 @@ abstract class AbstractLibroComprasVentasArrayLoaderStrategy extends AbstractArr
 
         foreach ($otrosImp as $otroImp) {
             $impuesto = $repository->find($otroImp['CodImp'] ?? null);
-            assert($impuesto instanceof ImpuestoAdicionalRetencion);
+            $impuesto = ValueCaster::requireObject($impuesto, ImpuestoAdicionalRetencion::class);
 
             if ($impuesto->getTipo() === 'R') {
                 $ivaRetenido += ArrayReader::fromArray($otroImp)->getAsInt('MntImp', 0);

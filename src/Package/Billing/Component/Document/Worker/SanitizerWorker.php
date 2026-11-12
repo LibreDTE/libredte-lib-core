@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\SanitizerWorkerInterface;
@@ -64,7 +65,7 @@ class SanitizerWorker extends AbstractWorker implements SanitizerWorkerInterface
 
         // Buscar la estrategia para sanitizar el tipo de documento tributario.
         $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
-        assert($strategy instanceof SanitizerStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, SanitizerStrategyInterface::class);
 
         // Sanitizar el documento usando la estrategia.
         $sanitizedData = $strategy->sanitize($bag);

@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Backbone\Abstract\AbstractHandler;
 use Derafu\Backbone\Contract\StrategyInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ReceiverStrategyInterface;
@@ -112,7 +113,7 @@ abstract class AbstractReceiverHandler extends AbstractHandler implements Exchan
         $strategies = [];
 
         foreach ($this->getStrategies() as $name => $strategy) {
-            assert($strategy instanceof ReceiverStrategyInterface);
+            $strategy = ValueCaster::requireObject($strategy, ReceiverStrategyInterface::class);
             try {
                 $strategy->canReceive($bag);
                 $strategies[] = $name;

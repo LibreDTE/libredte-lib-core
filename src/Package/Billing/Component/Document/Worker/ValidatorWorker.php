@@ -31,6 +31,7 @@ use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
 use Derafu\Signature\Contract\SignatureValidationResultInterface;
+use Derafu\Value\ValueCaster;
 use Derafu\Xml\Contract\XmlDocumentInterface;
 use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
@@ -173,7 +174,7 @@ class ValidatorWorker extends AbstractWorker implements ValidatorWorkerInterface
 
         // Buscar la estrategia para validar el tipo de documento tributario.
         $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
-        assert($strategy instanceof ValidatorStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, ValidatorStrategyInterface::class);
 
         // Validar el documento usando la estrategia.
         $strategy->validate($bag);

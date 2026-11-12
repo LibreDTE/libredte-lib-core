@@ -24,6 +24,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 
 use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Contract\WorkerInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeResultInterface;
@@ -52,7 +53,7 @@ abstract class AbstractExchangeWorker extends AbstractWorker implements WorkerIn
         $results = [];
         foreach ($handlers as $handlerCode) {
             $handler = $this->getHandler($handlerCode);
-            assert($handler instanceof ExchangeHandlerInterface);
+            $handler = ValueCaster::requireObject($handler, ExchangeHandlerInterface::class);
             $results = array_merge($results, $handler->handle($bag));
         }
 

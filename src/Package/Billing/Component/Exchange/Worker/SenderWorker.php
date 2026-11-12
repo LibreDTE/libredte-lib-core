@@ -28,6 +28,7 @@ use Derafu\Backbone\Contract\HandlerInterface;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\HandlersAwareTrait;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Abstract\AbstractExchangeWorker;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\SenderStrategyInterface;
@@ -221,7 +222,7 @@ class SenderWorker extends AbstractExchangeWorker implements SenderWorkerInterfa
         $options = $this->resolveOptions($bag->getOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
-        assert($strategy instanceof SenderStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, SenderStrategyInterface::class);
 
         try {
             $results = $strategy->send($bag);

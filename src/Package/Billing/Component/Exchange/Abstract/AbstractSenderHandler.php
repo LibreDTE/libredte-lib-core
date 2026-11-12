@@ -25,6 +25,7 @@ namespace libredte\lib\Core\Package\Billing\Component\Exchange\Abstract;
 use Derafu\Backbone\Abstract\AbstractHandler;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Translation\Exception\Core\TranslatableLogicException as LogicException;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\EnvelopeInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Exchange\Contract\ExchangeHandlerInterface;
@@ -162,7 +163,7 @@ abstract class AbstractSenderHandler extends AbstractHandler implements Exchange
         $strategies = [];
 
         foreach ($this->getStrategies() as $name => $strategy) {
-            assert($strategy instanceof SenderStrategyInterface);
+            $strategy = ValueCaster::requireObject($strategy, SenderStrategyInterface::class);
             try {
                 $strategy->canSend($envelope, $bag);
                 $strategies[] = $name;

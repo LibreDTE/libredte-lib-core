@@ -26,6 +26,7 @@ use Derafu\Backbone\Abstract\AbstractWorker;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\NormalizerWorkerInterface;
@@ -64,7 +65,7 @@ class NormalizerWorker extends AbstractWorker implements NormalizerWorkerInterfa
 
         // Buscar la estrategia para normalizar el tipo de documento tributario.
         $strategy = $this->getStrategy($bag->requireTipoDocumento()->requireAlias());
-        assert($strategy instanceof NormalizerStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, NormalizerStrategyInterface::class);
 
         // Normalizar el documento usando la estrategia.
         $normalizedData = $strategy->normalize($bag);

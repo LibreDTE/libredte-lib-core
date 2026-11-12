@@ -29,6 +29,7 @@ use Derafu\Backbone\Contract\HandlerInterface;
 use Derafu\Backbone\Contract\JobInterface;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\BuilderWorkerInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
@@ -70,7 +71,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
         $strategy = $this->getStrategy(
             $bag->requireTipoDocumento()->requireAlias()
         );
-        assert($strategy instanceof BuilderStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, BuilderStrategyInterface::class);
 
         // Construir el documento usando la estrategia.
         $document = $strategy->create($bag->requireXmlDocument());
@@ -398,7 +399,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
 
         // Buscar la estrategia para construir el documento tributario.
         $strategy = $this->getStrategy($bag->getAlias());
-        assert($strategy instanceof BuilderStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, BuilderStrategyInterface::class);
 
         // Construir el documento usando la estrategia.
         $strategy->build($bag);

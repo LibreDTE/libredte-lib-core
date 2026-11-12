@@ -28,6 +28,7 @@ use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Contract\ParserWorkerInterface;
@@ -178,7 +179,7 @@ class ParserWorker extends AbstractWorker implements ParserWorkerInterface
         $options = $this->resolveOptions($bag->getParserOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
-        assert($strategy instanceof ParserStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, ParserStrategyInterface::class);
 
         try {
             $parsedData = ArrayReader::fromArray(

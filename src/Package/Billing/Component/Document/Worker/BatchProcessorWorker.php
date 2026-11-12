@@ -377,7 +377,7 @@ class BatchProcessorWorker extends AbstractWorker implements BatchProcessorWorke
         $options = $this->resolveOptions($batch->getBatchProcessorOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
-        assert($strategy instanceof BatchProcessorStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, BatchProcessorStrategyInterface::class);
 
         try {
             $documents = $strategy->parse($batch);

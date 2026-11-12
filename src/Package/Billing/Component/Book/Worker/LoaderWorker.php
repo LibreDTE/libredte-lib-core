@@ -27,6 +27,7 @@ use Derafu\Backbone\Attribute\Operation;
 use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\LoaderWorkerInterface;
@@ -231,7 +232,7 @@ class LoaderWorker extends AbstractWorker implements LoaderWorkerInterface
         $strategyName = $bag->getTipo()->value . '.' . $format;
         $strategy = $this->getStrategy($strategyName);
 
-        assert($strategy instanceof LoaderStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, LoaderStrategyInterface::class);
 
         try {
             return $strategy->load($bag);

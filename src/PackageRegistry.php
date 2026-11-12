@@ -24,6 +24,7 @@ namespace libredte\lib\Core;
 
 use Derafu\Backbone\Contract\PackageRegistryInterface;
 use Derafu\Backbone\Trait\PackageRegistryTrait;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Contract\BillingPackageInterface;
 use libredte\lib\Core\Package\System\Contract\SystemPackageInterface;
 
@@ -58,7 +59,7 @@ class PackageRegistry implements PackageRegistryInterface
     public function getBillingPackage(): BillingPackageInterface
     {
         $package = $this->getPackage('billing');
-        assert($package instanceof BillingPackageInterface);
+        $package = ValueCaster::requireObject($package, BillingPackageInterface::class);
 
         return $package;
     }
@@ -71,7 +72,7 @@ class PackageRegistry implements PackageRegistryInterface
     public function getSystemPackage(): SystemPackageInterface
     {
         $package = $this->getPackage('system');
-        assert($package instanceof SystemPackageInterface);
+        $package = ValueCaster::requireObject($package, SystemPackageInterface::class);
 
         return $package;
     }

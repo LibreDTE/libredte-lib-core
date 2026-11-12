@@ -172,7 +172,7 @@ class RendererWorker extends AbstractWorker implements RendererWorkerInterface
         $options = $this->resolveOptions($bag->getRendererOptions());
         $strategy = $this->getStrategy($options->getReader()->requireString('strategy'));
 
-        assert($strategy instanceof RendererStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, RendererStrategyInterface::class);
 
         $bag = $this->documentBagManager->normalize($bag, all: true);
 

@@ -28,6 +28,7 @@ use Derafu\Backbone\Attribute\Worker;
 use Derafu\Backbone\Contract\StrategyInterface;
 use Derafu\Backbone\Trait\StrategiesAwareTrait;
 use Derafu\Signature\Contract\SignatureServiceInterface;
+use Derafu\Value\ValueCaster;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BookBagInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderStrategyInterface;
 use libredte\lib\Core\Package\Billing\Component\Book\Contract\BuilderWorkerInterface;
@@ -233,7 +234,7 @@ class BuilderWorker extends AbstractWorker implements BuilderWorkerInterface
         $strategyName = $bag->getTipo()->value;
         $strategy = $this->getStrategy($strategyName);
 
-        assert($strategy instanceof BuilderStrategyInterface);
+        $strategy = ValueCaster::requireObject($strategy, BuilderStrategyInterface::class);
 
         try {
             if ($bag->getResumen() !== [] && !$bag->getTipo()->acceptsResumen()) {
