@@ -6646,6 +6646,11 @@ Search.appendIndex(
             "summary": "Normaliza\u0020los\u0020detalles\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDetalleTrait.html#method_normalizeDetalle"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeDetalleTrait\u003A\u003AgetAmountFromDifference\u0028\u0029",
+            "name": "getAmountFromDifference",
+            "summary": "Entrega\u0020la\u0020diferencia\u0020como\u0020monto\u0020de\u0020descuento\u0020o\u0020recargo\u0020de\u0020un\u0020\u00EDtem.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Worker-Normalizer-Trait-NormalizeDetalleTrait.html#method_getAmountFromDifference"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Worker\\Normalizer\\Trait\\NormalizeExportacionTrait",
             "name": "NormalizeExportacionTrait",
             "summary": "Reglas\u0020de\u0020normalizaci\u00F3n\u0020para\u0020documentos\u0020de\u0020exportaci\u00F3n.",
